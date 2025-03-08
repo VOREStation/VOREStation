@@ -1425,3 +1425,14 @@
 	..()
 	H.patting_defence = TRUE
 	add_verb(H, /mob/living/proc/toggle_patting_defence)
+
+/datum/trait/neutral/personal_space
+	name = "Personal Space Bubble"
+	desc = "You will reflexively dodge any attempt to hug, pat, boop you or even shake your hand, this can be toggled off."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.personal_space = TRUE
+	add_verb(H, /mob/living/proc/toggle_personal_space)

@@ -466,6 +466,13 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
+
+	if(target.personal_space)
+		H.visible_message( \
+			span_notice("[target] moves to avoid being touched by [H]!"), \
+			span_notice("[target] moves to avoid being touched by you!"), )
+		return
+
 	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
 		if(target.patting_defence)

@@ -39,3 +39,12 @@
 	patting_defence = !patting_defence
 
 	to_chat(src,span_notice("You will [patting_defence ? "now" : "no longer"] bite hands who pat or boop you."))
+
+/mob/living/proc/toggle_personal_space()
+	set name = "Toggle Personal Space"
+	set desc = "Toggles dodging any attempts to hug or pat you."
+	set category = "Abilities.General"
+
+	personal_space = !personal_space
+
+	to_chat(src,span_notice("You will [personal_space ? "now" : "no longer"] dodge all attempts at hugging, patting, booping and hand shaking."))

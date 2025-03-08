@@ -107,3 +107,4 @@
 									)
 
 	var/patting_defence = FALSE
+	var/personal_space = FALSE
