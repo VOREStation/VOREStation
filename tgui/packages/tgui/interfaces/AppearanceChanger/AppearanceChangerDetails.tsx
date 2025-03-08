@@ -113,8 +113,7 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           <Box>
-            Ears Alpha
-            <NumberInput
+            Ears Alpha: <NumberInput
               step={1}
               minValue={0}
               value={ears_alpha}
@@ -152,8 +151,7 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           <Box>
-            Tail Alpha
-            <NumberInput
+            Tail Alpha: <NumberInput
               step={1}
               minValue={0}
               value={tail_alpha}
@@ -178,8 +176,7 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           <Box>
-            Wing Alpha
-            <NumberInput
+            Wing Alpha: <NumberInput
               step={1}
               minValue={0}
               value={wing_alpha}
