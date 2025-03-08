@@ -103,7 +103,7 @@
 	savefile_key = "tail_alpha"
 	can_randomize = FALSE
 	minimum = 0
-	maximum = 255 //while it'd be dumb to have fully transparent wings, I'm not your mom.
+	maximum = 255
 
 /datum/preference/numeric/human/tail_alpha/apply_to_human(mob/living/carbon/human/target, value)
 	target.a_tail = value
