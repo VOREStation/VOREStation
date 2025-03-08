@@ -116,19 +116,6 @@
 		to_chat(H, span_filter_notice("[span_red("Your nose begins to bleed...")]"))
 		H.drip(1)
 
-/mob/living/carbon/human/proc/regurgitate()
-	set name = "Regurgitate"
-	set desc = "Empties the contents of your stomach"
-	set category = "Abilities.General"
-
-	if(stomach_contents.len)
-		for(var/mob/M in src)
-			if(M in stomach_contents)
-				stomach_contents.Remove(M)
-				M.loc = loc
-		src.visible_message(span_filter_warning(span_red(span_bold("[src] hurls out the contents of their stomach!"))))
-	return
-
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
