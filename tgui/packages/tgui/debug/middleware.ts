@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { Action, Store } from 'common/redux';
+import type { Action, Store } from 'common/redux';
 import { globalEvents } from 'tgui-core/events';
 import { acquireHotKey } from 'tgui-core/hotkeys';
 import { KEY_BACKSPACE, KEY_F10, KEY_F11, KEY_F12 } from 'tgui-core/keycodes';
