@@ -20,12 +20,9 @@ var/global/list/micro_tunnels = list()
 		/mob/living/simple_mob/slime
 	)
 
-/obj/structure/micro_tunnel/New()
+/obj/structure/micro_tunnel/Initialize(mapload)
 	. = ..()
 	micro_tunnels.Add(src)
-
-/obj/structure/micro_tunnel/Initialize()
-	. = ..()
 	if(name == initial(name))
 		var/area/our_area = get_area(src)
 		name = "[our_area.name] [name]"
@@ -455,7 +452,7 @@ var/global/list/micro_tunnels = list()
 
 	var/chance_to_spawn = 25
 
-/obj/effect/mouse_hole_spawner/Initialize()
+/obj/effect/mouse_hole_spawner/Initialize(mapload)
 	. = ..()
 
 	if(prob(chance_to_spawn))

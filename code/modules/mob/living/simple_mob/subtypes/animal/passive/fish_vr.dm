@@ -4,7 +4,7 @@
 	maxHealth = 50
 	meat_amount = 0
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize()
+/mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize(mapload)
 	. = ..()
 	create_reagents(60)
 	reagents.add_reagent(REAGENT_ID_TOXIN, 45)

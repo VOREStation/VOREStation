@@ -84,13 +84,13 @@
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusblue"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	body_parts_covered = CHEST|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusred"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	body_parts_covered = CHEST|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/psypurple
 	name = "purple robes"
@@ -102,7 +102,7 @@
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/wizrobe/fake
@@ -124,6 +124,6 @@
 	name = "Witch Robe"
 	desc = "Magic is all about the spell power, ZE!"
 	icon_state = "marisa"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 1.0

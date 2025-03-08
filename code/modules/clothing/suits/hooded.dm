@@ -2,7 +2,8 @@
 
 //Hoods for winter coats and chaplain hoodie etc
 
-/obj/item/clothing/suit/storage/hooded
+/obj/item/clothing/suit/
+	name = DEVELOPER_WARNING_NAME
 	var/obj/item/clothing/head/hood
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/hood_up = FALSE
@@ -19,7 +20,7 @@
 	return ..()
 
 /obj/item/clothing/suit/storage/hooded/proc/MakeHood()
-	if(!hood)
+	if(!hood && hoodtype)
 		var/obj/item/clothing/head/hood/H = new hoodtype(src)
 		hood = H
 
@@ -72,9 +73,10 @@
 	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
 
 /obj/item/clothing/suit/storage/hooded/costume
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	name = DEVELOPER_WARNING_NAME
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = CHEST|ARMS
 	actions_types = list(/datum/action/item_action/toggle_hood)
 
 /obj/item/clothing/suit/storage/hooded/costume/siffet
@@ -106,9 +108,9 @@
 	desc = "A heavy jacket made from 'synthetic' animal furs."
 	icon_state = "coatwinter"
 	item_state_slots = list(slot_r_hand_str = "coatwinter", slot_l_hand_str = "coatwinter")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	cold_protection = CHEST|ARMS|LEGS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	hoodtype = /obj/item/clothing/head/hood/winter
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
@@ -340,9 +342,9 @@
 	icon_state = "explorer"
 	item_state = "explorer"
 	flags = THICKMATERIAL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = CHEST|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hood/explorer
 	siemens_coefficient = 0.9
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
@@ -358,7 +360,7 @@
 	name = "raincoat"
 	desc = "A thin, opaque coat meant to protect you from all sorts of rain. Preferred by outdoorsmen and janitors alike across the rift. Of course, the only type of fluids you'd like to protect yourself from around this place don't rain down from the sky. Usually. Comes with a hood!"
 	icon_state = "raincoat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDEHOLSTER
 	hoodtype = /obj/item/clothing/head/hood/raincoat
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
@@ -366,27 +368,27 @@
 
 //hooded cloaks
 /obj/item/clothing/suit/storage/hooded/cloak
-    name = "hooded maroon cloak"
-    desc = "A simple maroon colored cloak."
-    icon_state = "maroon_cloak"
-    body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-    hoodtype = /obj/item/clothing/head/hood/cloak
+  name = "hooded maroon cloak"
+  desc = "A simple maroon colored cloak."
+  icon_state = "maroon_cloak"
+  body_parts_covered = CHEST|ARMS
+  hoodtype = /obj/item/clothing/head/hood/cloak
 
 /obj/item/clothing/suit/storage/hooded/cloak/winter
-    name = "hooded winter cloak"
-    desc = "A simple wool cloak used during winter."
-    icon_state = "winter_cloak"
-    hoodtype = /obj/item/clothing/head/hood/cloak/winter
+  name = "hooded winter cloak"
+  desc = "A simple wool cloak used during winter."
+  icon_state = "winter_cloak"
+  hoodtype = /obj/item/clothing/head/hood/cloak/winter
 
 /obj/item/clothing/suit/storage/hooded/cloak/asymmetric
-    name = "hooded asymmetric cloak"
-    desc = "A blue hooded cloak with an asymmetric design."
-    icon_state = "asymmetric_cloak"
-    hoodtype = /obj/item/clothing/head/hood/cloak/asymmetric
+  name = "hooded asymmetric cloak"
+  desc = "A blue hooded cloak with an asymmetric design."
+  icon_state = "asymmetric_cloak"
+  hoodtype = /obj/item/clothing/head/hood/cloak/asymmetric
 
 
 /obj/item/clothing/suit/storage/hooded/cloak/fancy
-    name = "hooded fancy cloak"
-    desc = "A fancy black hooded cloak."
-    icon_state = "hb_cloak"
-    hoodtype = /obj/item/clothing/head/hood/cloak/fancy
+  name = "hooded fancy cloak"
+  desc = "A fancy black hooded cloak."
+  icon_state = "hb_cloak"
+  hoodtype = /obj/item/clothing/head/hood/cloak/fancy

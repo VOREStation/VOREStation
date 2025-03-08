@@ -1,5 +1,5 @@
 "aa" = (/turf/space,/area)
-"ab" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 14},/area/shuttle/overmap_examples/outpost)
+"ab" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 2},/area/shuttle/overmap_examples/outpost)
 "ac" = (/obj/structure/shuttle/window{ icon_state = "3"},/turf/simulated/shuttle/floor,/area/shuttle/overmap_examples/outpost)
 "ad" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 2},/area/shuttle/overmap_examples/outpost)
 "ae" = (/turf/simulated/shuttle/wall{ icon_state = "swall_straight"; dir = 1},/area/shuttle/overmap_examples/outpost)

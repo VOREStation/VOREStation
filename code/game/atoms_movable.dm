@@ -420,9 +420,14 @@
 /atom/movable/proc/hit_check(var/speed)
 	if(src.throwing)
 		for(var/atom/A in get_turf(src))
-			if(A == src) continue
+			if(A == src)
+				continue
+			if(A.is_incorporeal())
+				continue
 			if(isliving(A))
-				if(A:lying) continue
+				var/mob/living/M = A
+				if(M.lying)
+					continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
 				if(!A.density || A.throwpass)
@@ -461,10 +466,10 @@
 	var/atom/master = null
 	anchored = TRUE
 
-/atom/movable/overlay/New()
+/atom/movable/overlay/Initialize(mapload)
+	. = ..()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)

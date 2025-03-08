@@ -196,7 +196,6 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/zero
 	boot_type = null
 	glove_type = null
-
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_BAYSUIT)
 
 	slowdown = 0
@@ -224,7 +223,7 @@
 	icon_state = "null_rig"
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS // like a voidsuit
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS // like a voidsuit
 	slowdown = 0
 
 // Medical rig from bay

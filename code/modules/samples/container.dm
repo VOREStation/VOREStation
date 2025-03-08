@@ -49,11 +49,11 @@
 	can_hold.Add(/obj/item/storage/sample_container)
 
 //ditto, lockers and redemption machines
-/obj/structure/closet/secure_closet/miner/Initialize()
+/obj/structure/closet/secure_closet/miner/Initialize(mapload)
 	. = ..()
 	starts_with += /obj/item/storage/sample_container
 
-/obj/structure/closet/secure_closet/xenoarchaeologist/Initialize()
+/obj/structure/closet/secure_closet/xenoarchaeologist/Initialize(mapload)
 	. = ..()
 	starts_with += /obj/item/storage/sample_container
 

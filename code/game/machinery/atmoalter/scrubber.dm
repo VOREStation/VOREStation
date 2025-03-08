@@ -245,7 +245,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
 	. = ..()
 	desc += "This one seems to be tightly secured with large bolts."
 

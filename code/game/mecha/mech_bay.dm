@@ -16,7 +16,7 @@
 		/mob/living/silicon/robot/platform
 	)
 
-/obj/machinery/mech_recharger/Initialize()
+/obj/machinery/mech_recharger/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

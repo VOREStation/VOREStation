@@ -23,7 +23,7 @@
 			zone.rebuild()
 	return ..()
 
-/turf/simulated/Initialize()
+/turf/simulated/Initialize(mapload)
 	. = ..()
 	updateVisibility(src)
 
@@ -34,8 +34,8 @@
 	updateVisibility(src)
 	return ..()
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize(mapload)
+	. = ..()
 	updateVisibility(src)
 
 // EFFECTS

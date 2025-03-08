@@ -454,7 +454,7 @@
 //
 // Clearly super important. Obviously.
 //
-/mob/living/proc/lick(mob/living/tasted in living_mobs(1))
+/mob/living/proc/lick(mob/living/tasted in living_mobs_in_view(1, TRUE))
 	set name = "Lick"
 	set category = "IC.Game"
 	set desc = "Lick someone nearby!"
@@ -543,7 +543,7 @@
 			s.undo_prey_takeover(TRUE)
 			return
 		var/obj/belly/B = loc
-		var/confirm = tgui_alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", list("Okay", "Cancel"))
+		var/confirm = tgui_alert(src, "Please feel free to use this button at any time you are uncomfortable and in a belly. Consent is important.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
@@ -829,6 +829,8 @@
 
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+	if(user.is_incorporeal())
+		return FALSE
 	var/belly = user.vore_selected
 	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
 
@@ -836,6 +838,10 @@
 	set name = "Glow (Toggle)"
 	set category = "Abilities.General"
 	set desc = "Toggle your glowing on/off!"
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
 	//I don't really see a point to any sort of checking here.
 	//If they're passed out, the light won't help them. Same with buckled. Really, I think it's fine to do this whenever.
@@ -868,6 +874,10 @@
 	set category = "Abilities.Vore"
 	set desc = "Consume held garbage."
 
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
+
 	if(!vore_selected)
 		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
 		return
@@ -877,7 +887,7 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(is_type_in_list(I,edible_trash) | adminbus_trash)
+	if(is_type_in_list(I,edible_trash) || adminbus_trash)
 		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
 			return
 		drop_item()
@@ -885,6 +895,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
+		visible_message(span_warning("[src] demonstrates their voracious capabilities by swallowing [I] whole!"))
 		return
 	to_chat(src, span_notice("This item is not appropriate for ethical consumption."))
 	return

@@ -5,7 +5,7 @@
 	req_one_access = list(access_armory)
 	closet_appearance = null
 
-/obj/structure/closet/secure_closet/guncabinet/Initialize()
+/obj/structure/closet/secure_closet/guncabinet/Initialize(mapload)
 	. = ..()
 	update_icon()
 

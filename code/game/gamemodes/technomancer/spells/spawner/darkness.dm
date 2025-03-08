@@ -18,7 +18,7 @@
 		adjust_instability(4)
 		..()
 
-/obj/item/spell/spawner/darkness/Initialize()
+/obj/item/spell/spawner/darkness/Initialize(mapload)
 	. = ..()
 	set_light(6, -20, l_color = "#FFFFFF")
 

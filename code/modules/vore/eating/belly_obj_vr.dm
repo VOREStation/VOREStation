@@ -245,7 +245,7 @@
 
 	return ..() + saving
 
-/obj/belly/Initialize()
+/obj/belly/Initialize(mapload)
 	. = ..()
 	//If not, we're probably just in a prefs list or something.
 	if(ismob(loc))

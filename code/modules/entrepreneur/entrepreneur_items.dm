@@ -123,7 +123,7 @@
 	var/pisces = ""
 	var/list/zodiacs = list("aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces")
 
-/obj/item/entrepreneur/horoscope/Initialize()
+/obj/item/entrepreneur/horoscope/Initialize(mapload)
 	. = ..()
 	var/stars = pick(stars_list)
 	var/prediction = pick(prediction_list)
@@ -396,7 +396,7 @@
 	icon_state = "crystal_pink"
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/crystal/Initialize()
+/obj/item/entrepreneur/crystal/Initialize(mapload)
 	. = ..()
 	var/list/colour_choice = list("crystal_pink","crystal_blue","crystal_green","crystal_orange","crystal_dblue","crystal_purple")
 	icon_state = pick(colour_choice)
@@ -452,7 +452,7 @@
 	if(!T.desc)
 		return
 	user.visible_message(span_notice("\The [user] examines the \the [T] with \the [src]!"))
-	to_chat(user, "<FONT size=4>[T.desc]</FONT>")
+	to_chat(user, span_huge("[T.desc]"))
 
 // Streamer and influencer
 

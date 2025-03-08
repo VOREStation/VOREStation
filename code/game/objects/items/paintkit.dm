@@ -195,7 +195,7 @@
 		return
 	return ..()
 
-/obj/item/kit/suit/rig/debug/Initialize()
+/obj/item/kit/suit/rig/debug/Initialize(mapload)
 	set_info("debug suit", "This is a test", "debug", CUSTOM_ITEM_OBJ, CUSTOM_ITEM_MOB)
 	. = ..()
 

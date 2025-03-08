@@ -16,7 +16,7 @@
 	icon_state = "oxygen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-/obj/item/tank/oxygen/Initialize()
+/obj/item/tank/oxygen/Initialize(mapload)
 	. = ..()
 	air_contents.adjust_gas(GAS_O2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -41,7 +41,7 @@
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
 
-/obj/item/tank/anesthetic/Initialize()
+/obj/item/tank/anesthetic/Initialize(mapload)
 	. = ..()
 
 	air_contents.gas[GAS_O2] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
@@ -62,7 +62,7 @@
 		. += span_warning("The meter on \the [src] indicates you are almost out of air!")
 		user << sound('sound/effects/alert.ogg')
 
-/obj/item/tank/air/Initialize()
+/obj/item/tank/air/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_multi(GAS_O2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, GAS_N2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
@@ -76,7 +76,7 @@
 	gauge_icon = null
 	slot_flags = null	//they have no straps!
 
-/obj/item/tank/phoron/Initialize()
+/obj/item/tank/phoron/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_PHORON, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -100,7 +100,7 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	slot_flags = SLOT_BACK	//these ones have straps!
 
-/obj/item/tank/vox/Initialize()
+/obj/item/tank/vox/Initialize(mapload)
 	. = ..()
 	air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)) //VOREStation Edit
 
@@ -109,7 +109,7 @@
 	icon_state = "phoron_vox"
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/tank/phoron/pressurized/Initialize()
+/obj/item/tank/phoron/pressurized/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.8)
 	air_contents.adjust_gas(GAS_PHORON, (7*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
@@ -135,7 +135,7 @@
 	icon_state = "emergency"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/tank/emergency/oxygen/Initialize()
+/obj/item/tank/emergency/oxygen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_O2, (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -163,7 +163,7 @@
 	gauge_icon = "indicator_emergency_double"
 	volume = 10
 
-/obj/item/tank/stasis/oxygen/Initialize()
+/obj/item/tank/stasis/oxygen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_O2, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -173,7 +173,7 @@
 	icon_state = "emergency_nitro"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/tank/emergency/nitrogen/Initialize()
+/obj/item/tank/emergency/nitrogen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_N2, (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -189,7 +189,7 @@
 	icon_state = "emergency_nitro"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/tank/emergency/phoron/Initialize()
+/obj/item/tank/emergency/phoron/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -208,7 +208,7 @@
 	icon_state = "oxygen_fr"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-/obj/item/tank/nitrogen/Initialize()
+/obj/item/tank/nitrogen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(GAS_N2, (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -225,6 +225,6 @@
 	gauge_icon = "indicator_emergency_double"
 	volume = 10
 
-/obj/item/tank/stasis/nitro_cryo/Initialize()
+/obj/item/tank/stasis/nitro_cryo/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas_temp(GAS_N2, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*TN60C), TN60C)

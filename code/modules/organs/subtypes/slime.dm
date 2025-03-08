@@ -91,7 +91,7 @@
 	var/last_strain_increase = 0	// World time of the last increase in strain.
 	var/strain_regen_cooldown = 5 MINUTES
 
-/obj/item/organ/internal/regennetwork/Initialize()
+/obj/item/organ/internal/regennetwork/Initialize(mapload)
 	. = ..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)

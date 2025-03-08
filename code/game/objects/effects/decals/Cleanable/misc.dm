@@ -24,8 +24,8 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-/obj/effect/decal/cleanable/greenglow/New()
-	..()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
+	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
@@ -37,9 +37,12 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
+	var/delete_me = FALSE
 
 /obj/effect/decal/cleanable/dirt/Initialize(mapload, var/_age, var/dirt)
 	.=..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	var/turf/simulated/our_turf = src.loc
 	if(our_turf && istype(our_turf) && our_turf.can_dirty)
 		our_turf.dirt = clamp(max(age ? (dirt ? dirt : 101) : our_turf.dirt, our_turf.dirt), 0, 101)
@@ -49,7 +52,10 @@
 			if (alreadythere == src)
 				continue
 			else if (alreadyfound)
-				qdel(alreadythere)
+				if(!(alreadythere.flags & ATOM_INITIALIZED))
+					delete_me = TRUE
+				else
+					qdel(alreadythere)
 				continue
 			alreadyfound = TRUE
 			alreadythere.alpha = calcalpha //don't need to constantly recalc for all of them in it because it'll just max if a non-persistent dirt overlay gets added, and then the new dirt overlay will be deleted

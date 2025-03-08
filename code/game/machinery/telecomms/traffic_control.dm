@@ -149,7 +149,7 @@
 
 			if("scan")
 				if(servers.len > 0)
-					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
+					temp = span_red("- FAILED: CANNOT PROBE WHEN BUFFER FULL -")
 
 				else
 					for(var/obj/machinery/telecomms/server/T in range(25, src))
@@ -157,9 +157,9 @@
 							servers.Add(T)
 
 					if(!servers.len)
-						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font>"
+						temp = span_red("- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -")
 					else
-						temp = "<font color = #336699>- [servers.len] SERVERS PROBED & BUFFERED -</font>"
+						temp = span_blue("- [servers.len] SERVERS PROBED & BUFFERED -")
 
 					screen = 0
 
@@ -197,14 +197,14 @@
 
 		if(newnet && ((usr in range(1, src)) || issilicon(usr)))
 			if(length(newnet) > 15)
-				temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font>"
+				temp = span_red("- FAILED: NETWORK TAG STRING TOO LENGHTLY -")
 
 			else
 
 				network = newnet
 				screen = 0
 				servers = list()
-				temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font>"
+				temp = span_blue("- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -")
 
 	updateUsrDialog(usr)
 	return

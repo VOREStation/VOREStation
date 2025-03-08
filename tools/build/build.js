@@ -157,6 +157,7 @@ export const IconCutterTarget = new Juke.Target({
       `icons/**/*.png.toml`,
       `icons/**/*.dmi.toml`,
       `cutter_templates/**/*.toml`,
+      "tgui/public/tgui.html",
       cutter_path,
     ]
     // Alright we're gonna search out any existing toml files and convert

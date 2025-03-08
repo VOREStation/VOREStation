@@ -17,7 +17,6 @@
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 20, energy = 50, bomb = 50, bio = 100, rad = 50)
 	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_MINING, /obj/item/t_scanner, /obj/item/rcd)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list(SPECIES_SKRELL,SPECIES_HUMAN)
 
@@ -36,7 +35,6 @@
 	allowed = list(POCKET_GENERIC, POCKET_EXPLO, POCKET_ALL_TANKS, /obj/item/melee/energy/sword)
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 30, bio = 100, rad = 50)
 	siemens_coefficient = 0.2
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list(SPECIES_VOX)
 

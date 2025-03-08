@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/ship/Initialize()
+/obj/effect/overmap/visitable/ship/Initialize(mapload)
 	. = ..()
 	listening_objects += src
 

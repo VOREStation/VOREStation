@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
 
-/obj/item/reagent_containers/glass/replenishing/Initialize()
+/obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
@@ -96,7 +96,7 @@
 	//use up stored charges
 	if(charges >= 10)
 		charges -= 10
-		var/new_object = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
+		var/new_object = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell, /obj/item/clothing/shoes/cult)
 		new new_object(pick(RANGE_TURFS(1,src)))
 		playsound(src, 'sound/effects/ghost.ogg', 50, 1, -3)
 

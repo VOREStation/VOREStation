@@ -436,7 +436,7 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/clown/dullahan/clown
+/datum/robot_sprite/dogborg/tall/clown/dullahan
 	name = "Dullahan Clown"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_clown.dmi'
 	sprite_icon_state = "dullahanclown"
@@ -452,6 +452,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/service/valech
 	name = "ServicehoundV2 - Alt"

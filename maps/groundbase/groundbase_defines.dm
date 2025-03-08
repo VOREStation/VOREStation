@@ -1,28 +1,3 @@
-//Normal map defs
-#define Z_LEVEL_GB_BOTTOM  					1
-#define Z_LEVEL_GB_MIDDLE  					2
-#define Z_LEVEL_GB_TOP     					3
-#define Z_LEVEL_GB_WILD_N  					4
-#define Z_LEVEL_GB_WILD_S  					5
-#define Z_LEVEL_GB_WILD_E  					6
-#define Z_LEVEL_GB_WILD_W  					7
-#define Z_LEVEL_CENTCOM						8
-#define Z_LEVEL_MISC						9
-#define Z_LEVEL_MINING						10
-#define Z_LEVEL_BEACH						11
-#define Z_LEVEL_BEACH_CAVE					12
-#define Z_LEVEL_AEROSTAT					13
-#define Z_LEVEL_AEROSTAT_SURFACE			14
-#define Z_LEVEL_DEBRISFIELD					15
-#define Z_LEVEL_FUELDEPOT					16
-#define Z_LEVEL_OFFMAP1						17
-#define Z_LEVEL_GATEWAY						18
-#define Z_LEVEL_OM_ADVENTURE				19
-#define Z_LEVEL_REDGATE						20
-
-//Camera networks
-#define NETWORK_HALLS "Halls"
-
 /datum/map/groundbase/New()
 	..()
 	var/choice = pickweight(list(
@@ -297,16 +272,7 @@
 		Z_LEVEL_BEACH
 	)
 
-/obj/effect/landmark/map_data/groundbase
-	height = 3
-
 /obj/effect/overmap/visitable/sector/virgo3b
-	name = "Virgo 3B"
-	desc = "Full of phoron, and home to the NSB Adephagia."
-	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
-[i]Class[/i]: Installation
-[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
-[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	known = TRUE
 	in_space = TRUE
 
@@ -323,34 +289,7 @@
 
 	extra_z_levels = list()
 
-/obj/effect/overmap/visitable/sector/virgo3c
-	name = "Virgo 3C"
-	desc = "A small, volcanically active moon."
-	scanner_desc = @{"[i]Registration[/i]: NSB Rascal's Pass
-[i]Class[/i]: Installation
-[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
-[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
-	known = TRUE
-	in_space = TRUE
 
-	icon = 'icons/obj/overmap.dmi'
-	icon_state = "lush"
-
-	skybox_icon = null
-	skybox_icon_state = null
-	skybox_pixel_x = 0
-	skybox_pixel_y = 0
-
-	initial_generic_waypoints = list("groundbase", "gb_excursion_pad","omship_axolotl")
-	initial_restricted_waypoints = list()
-
-	extra_z_levels = list(
-		Z_LEVEL_MINING,
-		Z_LEVEL_GB_WILD_N,
-		Z_LEVEL_GB_WILD_S,
-		Z_LEVEL_GB_WILD_E,
-		Z_LEVEL_GB_WILD_W
-		)
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define SHIP_MAP_SIZE 140 // Width and height of compiled in tether z levels.

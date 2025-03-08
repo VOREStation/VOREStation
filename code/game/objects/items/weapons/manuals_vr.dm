@@ -6,7 +6,7 @@
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
-/obj/item/book/manual/standard_operating_procedure/Initialize()
+/obj/item/book/manual/standard_operating_procedure/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -29,7 +29,7 @@
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/book/manual/command_guide/Initialize()
+/obj/item/book/manual/command_guide/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -53,7 +53,7 @@
 	author = "Ali Big"
 	title = "Food for Dummies 2"
 
-/obj/item/book/manual/cook_guide/Initialize()
+/obj/item/book/manual/cook_guide/Initialize(mapload)
 	. = ..()
 	dat = {"
 		<html>
@@ -137,7 +137,7 @@
 	author = "Ali Big"
 	title = "How to Alcohol (And other Drinks)"
 
-/obj/item/book/manual/bar_guide/Initialize()
+/obj/item/book/manual/bar_guide/Initialize(mapload)
 	. = ..()
 	dat = {"
 			<html>
@@ -350,7 +350,7 @@
 	author = "Engineering Encyclopedia"
 	title = "Rotary Electric Generator Manual"
 
-/obj/item/book/manual/rotary_electric_generator/Initialize()
+/obj/item/book/manual/rotary_electric_generator/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -447,7 +447,7 @@
 	author = "Pontifex Publishing"
 	title = "Synthetics"
 
-/obj/item/book/manual/synthetic_life/Initialize()
+/obj/item/book/manual/synthetic_life/Initialize(mapload)
 	. = ..()
 	dat = {"
 <html lang="en">

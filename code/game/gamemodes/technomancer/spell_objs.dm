@@ -110,16 +110,15 @@
 // Proc: New()
 // Parameters: 0
 // Description: Sets owner to equal its loc, links to the owner's core, then applies overlays if needed.
-/obj/item/spell/New()
-	..()
+/obj/item/spell/Initialize(mapload, var/coreless)
+	. = ..()
 	if(isliving(loc))
 		owner = loc
-	if(owner)
+	if(owner && !coreless)
 		core = owner.get_technomancer_core()
 		if(!core)
 			to_chat(owner, span_warning("You need a Core to do that."))
-			qdel(src)
-			return
+			return INITIALIZE_HINT_QDEL
 //		if(istype(/obj/item/technomancer_core, owner.back))
 //			core = owner.back
 	update_icon()
