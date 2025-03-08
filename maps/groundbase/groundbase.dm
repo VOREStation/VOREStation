@@ -1,15 +1,11 @@
 #if !defined(USING_MAP_DATUM)
 
-	#include "groundbase_areas.dm"
 	#include "groundbase_defines.dm"
 	#include "groundbase_shuttles.dm"
 	#include "groundbase_telecomms.dm"
 	#include "groundbase_things.dm"
-	#include "..\tether\tether_jobs.dm"
 	#include "groundbase_events.dm"
-	#include "groundbase_poi_stuff.dm"
-	#include "groundbase_wilds.dm"
-	#include "..\offmap_vr\common_offmaps.dm"
+	#include "groundbase_poi_maps.dm"
 	#include "..\~map_system\maps_vr.dm"
 
 	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions

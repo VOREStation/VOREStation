@@ -66,6 +66,16 @@
 	mappath = "maps/expedition_vr/aerostat/surface.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat_surface
 
+/datum/map_template/virgo2
+	name = "Surface Content - Virgo 2"
+	desc = "For seeding submaps on Virgo 2"
+	allow_duplicates = FALSE
+
+/datum/random_map/noise/ore/virgo2
+	descriptor = "virgo 2 ore distribution map"
+	deep_val = 0.2
+	rare_val = 0.1
+
 /datum/map_template/common_lateload/away_aerostat_surface/on_map_loaded(z)
 	. = ..()
 	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 120, /area/offmap/aerostat/surface/unexplored, /datum/map_template/virgo2)
@@ -420,7 +430,7 @@
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/Initialize()
+/obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
@@ -483,7 +493,7 @@
 	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/tether_away_spawner/Initialize()
+/obj/tether_away_spawner/Initialize(mapload)
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))

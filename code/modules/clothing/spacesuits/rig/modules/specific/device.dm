@@ -9,8 +9,8 @@
 	var/device_type
 	var/obj/item/device
 
-/obj/item/rig_module/device/New()
-	..()
+/obj/item/rig_module/device/Initialize(mapload)
+	. = ..()
 	if(device_type) device = new device_type(src)
 
 /obj/item/rig_module/device/engage(atom/target)
@@ -156,8 +156,8 @@
 	var/iastamp
 	var/deniedstamp
 
-/obj/item/rig_module/device/stamp/New()
-	..()
+/obj/item/rig_module/device/stamp/Initialize(mapload)
+	. = ..()
 	iastamp = new /obj/item/stamp/internalaffairs(src)
 	deniedstamp = new /obj/item/stamp/denied(src)
 	device = iastamp

@@ -15,7 +15,7 @@
 	// The trap item will be triggered in some manner when detonating. Default only checks for grenades.
 	var/obj/item/trap = null
 
-/obj/effect/mine/Initialize()
+/obj/effect/mine/Initialize(mapload)
 	icon_state = "landmine_armed"
 	wires = new(src)
 	. = ..()

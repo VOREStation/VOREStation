@@ -260,13 +260,13 @@
 /obj/machinery/light/broken
 	icon_state = "tube-broken"
 
-/obj/machinery/light/broken/Initialize()
+/obj/machinery/light/broken/Initialize(mapload)
 	. = ..()
 	broken()
 
 /obj/machinery/light/broken/small
 	icon_state = "bulb-broken"
 
-/obj/machinery/light/broken/small/Initialize()
+/obj/machinery/light/broken/small/Initialize(mapload)
 	. = ..()
 	broken()

@@ -37,7 +37,7 @@ var/list/marker_beacon_colors = list(
 /obj/item/stack/marker_beacon/hundred
 	amount = 100
 
-/obj/item/stack/marker_beacon/Initialize()
+/obj/item/stack/marker_beacon/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -93,7 +93,7 @@ var/list/marker_beacon_colors = list(
 	var/perma = FALSE
 	var/mapped_in_color
 
-/obj/structure/marker_beacon/New(newloc, set_color)
+/obj/structure/marker_beacon/Initialize(mapload, set_color)
 	. = ..()
 	if(set_color)
 		picked_color = set_color

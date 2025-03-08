@@ -27,7 +27,7 @@
 /obj/machinery/smartfridge/secure
 	is_secure = 1
 
-/obj/machinery/smartfridge/Initialize()
+/obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
 	if(persistent)
 		SSpersistence.track_value(src, persistent)

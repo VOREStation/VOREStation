@@ -19,7 +19,7 @@
 
 	var/lg_id = "change_me"
 
-/obj/machinery/computer/looking_glass/Initialize()
+/obj/machinery/computer/looking_glass/Initialize(mapload)
 	. = ..()
 	for(var/area/looking_glass/lga in world)
 		if(lga.lg_id == lg_id)

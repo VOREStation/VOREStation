@@ -82,7 +82,7 @@
 /mob/living/simple_mob/animal/sif/frostfly/get_cold_protection()
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
-/mob/living/simple_mob/animal/sif/frostfly/Initialize()
+/mob/living/simple_mob/animal/sif/frostfly/Initialize(mapload)
 	. = ..()
 	smoke_special = new
 	add_verb(src, /mob/living/proc/ventcrawl)

@@ -105,8 +105,8 @@
 	var/obj/item/storage/backpack/rig_storage
 	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
 
-/obj/item/rig/New()
-	..()
+/obj/item/rig/Initialize(mapload)
+	. = ..()
 
 	suit_state = icon_state
 	item_state = icon_state
@@ -175,6 +175,8 @@
 	chest = null
 	cell = null
 	air_supply = null
+	for(var/obj/item/rig_module/module in installed_modules)
+		qdel(module)
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
@@ -576,7 +578,7 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && (H.back != src && H.belt != src))
 			fail_msg = span_warning("You must be wearing \the [src] to do this.")
-		else if(user.incorporeal_move)
+		else if(user.is_incorporeal())
 			fail_msg = span_warning("You must be solid to do this.")
 	if(sealing)
 		fail_msg = span_warning("The hardsuit is in the process of adjusting seals and cannot be activated.")

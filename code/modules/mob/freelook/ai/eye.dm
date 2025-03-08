@@ -75,7 +75,7 @@
 	SetName(src.name)
 
 // Intiliaze the eye by assigning it's "ai" variable to us. Then set it's loc to us.
-/mob/living/silicon/ai/Initialize()
+/mob/living/silicon/ai/Initialize(mapload)
 	. = ..()
 	create_eyeobj()
 	if(eyeobj)

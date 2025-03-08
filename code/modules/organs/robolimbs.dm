@@ -576,7 +576,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon_state = "datadisk2"
 	var/species = SPECIES_HUMAN
 
-/obj/item/disk/species/Initialize()
+/obj/item/disk/species/Initialize(mapload)
 	. = ..()
 	if(species)
 		name = "[species] [initial(name)]"

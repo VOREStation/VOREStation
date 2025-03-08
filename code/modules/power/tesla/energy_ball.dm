@@ -27,7 +27,7 @@
 	..()
 	miniball = is_miniball
 
-/obj/singularity/energy_ball/Initialize()
+/obj/singularity/energy_ball/Initialize(mapload)
 	. = ..()
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")
@@ -156,7 +156,7 @@
 
 
 /obj/singularity/energy_ball/proc/dust_mob(mob/living/L)
-	if(!istype(L) || L.incorporeal_move)
+	if(!istype(L) || L.is_incorporeal())
 		return
 	// L.dust() - Changing to do fatal elecrocution instead
 	L.electrocute_act(500, src, def_zone = BP_TORSO)

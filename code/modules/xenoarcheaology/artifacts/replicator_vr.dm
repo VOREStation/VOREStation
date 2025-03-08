@@ -352,7 +352,6 @@
 	/obj/item/clothing/gloves/black,
 	/obj/item/clothing/under/swimsuit/black,
 	/obj/item/clothing/under/shorts/black,
-	/obj/item/clothing/under/wetsuit_skimpy,
 	/obj/item/clothing/under/dress/maid,
 	/obj/item/clothing/under/fluff/latexmaid,
 	/obj/item/clothing/suit/oversize,

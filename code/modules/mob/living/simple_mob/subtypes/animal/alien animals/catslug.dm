@@ -138,7 +138,7 @@
 	wander = TRUE
 	belly_attack = FALSE
 
-/mob/living/simple_mob/vore/alienanimals/catslug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
@@ -359,7 +359,7 @@
 	var/siemens_coefficient = 1 		//Referenced later by others.
 	can_wear_hat = FALSE
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
@@ -765,7 +765,7 @@
 /obj/item/holder/catslug/custom/capslug
 	item_state = "capslug"
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize() 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize(mapload) 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = PUB_FREQ
@@ -809,7 +809,7 @@
 
 	player_msg = "You work in the service of corporate Asset Protection, answering directly to the Board of Directors and Asset Protection Commandos."
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug/Initialize(mapload)
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
@@ -850,7 +850,7 @@
 
 	player_msg = "You are in the employ of a criminal syndicate hostile to corporate interests. Follow the Mercenary or Commando's orders and assist them in their goals by any means available."
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize(mapload)
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
@@ -894,7 +894,7 @@
 	If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! \
 	Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to the ERT.</b>"
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize(mapload)
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = ERT_FREQ
@@ -916,7 +916,7 @@
 
 	can_wear_hat = TRUE
 
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/pilotslug/Initialize(mapload)
 	. = ..()
 	if(prob(25))
 		var/list/possible_targets = list()
@@ -1116,7 +1116,7 @@
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/impostor
 	is_impostor = TRUE
 
-/mob/living/simple_mob/vore/alienanimals/catslug/suslug/Initialize()
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate)
 	update_icon()

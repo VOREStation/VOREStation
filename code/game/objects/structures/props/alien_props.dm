@@ -106,7 +106,7 @@
 	var/static/list/possible_states = list("health", "spider", "slime", "emp", "species", "egg", "vent", "mindshock", "viral", "gland")
 	var/static/list/possible_tech = list(TECH_MATERIAL, TECH_ENGINEERING, TECH_PHORON, TECH_POWER, TECH_BIO, TECH_COMBAT, TECH_MAGNET, TECH_DATA)
 
-/obj/item/prop/alien/junk/Initialize()
+/obj/item/prop/alien/junk/Initialize(mapload)
 	. = ..()
 	icon_state = pick(possible_states)
 	var/list/techs = possible_tech.Copy()

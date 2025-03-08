@@ -28,7 +28,7 @@
 	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
 
-/obj/vehicle/bike/Initialize()
+/obj/vehicle/bike/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 	ion = new /datum/effect/effect/system/ion_trail_follow()
@@ -37,12 +37,12 @@
 	icon_state = "[bike_icon]_off"
 	update_icon()
 
-/obj/vehicle/bike/built/Initialize()
+/obj/vehicle/bike/built/Initialize(mapload)
 	. = ..()
 	qdel(cell)
 	cell = null
 
-/obj/vehicle/bike/random/Initialize()
+/obj/vehicle/bike/random/Initialize(mapload)
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	. = ..()
 

@@ -62,6 +62,10 @@
 
 	var/requestable = TRUE
 
+	VAR_PROTECTED/list/mail_goodies = null		  // Goodies that can be received via the mail system
+	VAR_PROTECTED/exclusive_mail_goodies = FALSE	  // If this job's mail goodies compete with generic goodies.
+	VAR_PROTECTED/mail_color = "#FFF"
+
 /datum/job/New()
 	. = ..()
 	department_accounts = department_accounts || departments_managed

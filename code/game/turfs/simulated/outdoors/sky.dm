@@ -12,7 +12,7 @@
 	nitrogen = 0
 	phoron = 0
 
-/turf/simulated/sky/Initialize()
+/turf/simulated/sky/Initialize(mapload)
 	. = ..()
 	//SSplanets.addTurf(src)	VOREStation edit - Handled by parent
 	set_light(2, 2, "#FFFFFF")

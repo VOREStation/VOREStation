@@ -224,7 +224,7 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/security/dullahan/secalt
 	name = "Dullahan v2"
@@ -243,6 +243,7 @@
 	sprite_icon_state = "secvale"
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/security/cat
 	name = "Cat"
