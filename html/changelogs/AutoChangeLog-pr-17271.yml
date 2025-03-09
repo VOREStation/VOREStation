@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Adds a new trait 'Lumbar Impairment' which makes you incapable of utilizing your legs."
