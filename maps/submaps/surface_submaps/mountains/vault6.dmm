@@ -1,31 +1,206 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 6},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"c" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 2},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"d" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 10},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"e" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 6},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"f" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"g" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 10},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"h" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 4},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"i" = (/mob/living/simple_mob/humanoid/merc/ranged/grenadier,/turf/simulated/floor/cult,/area/submap/cave/vault6)
-"j" = (/turf/simulated/floor/cult,/area/submap/cave/vault6)
-"k" = (/obj/random/tool/power,/obj/random/tech_supply,/turf/simulated/floor/cult,/area/submap/cave/vault6)
-"l" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 8},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"m" = (/obj/structure/bonfire/permanent/sifwood,/obj/structure/grille/rustic,/turf/simulated/floor/cult,/area/submap/cave/vault6)
-"n" = (/obj/random/multiple/minevault,/turf/simulated/floor/cult,/area/submap/cave/vault6)
-"o" = (/obj/structure/cliff/automatic/corner,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"p" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"q" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"r" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
-"s" = (/obj/structure/cliff/automatic,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault6)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 6
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"c" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 2
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"d" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 10
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"e" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 6
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"f" = (
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"g" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 10
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"h" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"i" = (
+/mob/living/simple_mob/humanoid/merc/ranged/grenadier,
+/turf/simulated/floor/cult,
+/area/submap/cave/vault6)
+"j" = (
+/turf/simulated/floor/cult,
+/area/submap/cave/vault6)
+"k" = (
+/obj/random/tool/power,
+/obj/random/tech_supply,
+/turf/simulated/floor/cult,
+/area/submap/cave/vault6)
+"l" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 8
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"m" = (
+/obj/structure/bonfire/permanent/sifwood,
+/obj/structure/grille/rustic,
+/turf/simulated/floor/cult,
+/area/submap/cave/vault6)
+"n" = (
+/obj/random/multiple/minevault,
+/turf/simulated/floor/cult,
+/area/submap/cave/vault6)
+"o" = (
+/obj/structure/cliff/automatic/corner,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"p" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 5
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"q" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 9
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"r" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 9
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
+"s" = (
+/obj/structure/cliff/automatic,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/cave/vault6)
 
 (1,1,1) = {"
-aaaaaaaaa
-aabcccdaa
-abefffgda
-ahfijkfla
-ahfjmjfla
-ahfnjjfla
-aopfffqra
-aaosssraa
-aaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+b
+h
+h
+h
+o
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+e
+f
+f
+f
+p
+o
+a
+"}
+(4,1,1) = {"
+a
+c
+f
+i
+j
+n
+f
+s
+a
+"}
+(5,1,1) = {"
+a
+c
+f
+j
+m
+j
+f
+s
+a
+"}
+(6,1,1) = {"
+a
+c
+f
+k
+j
+j
+f
+s
+a
+"}
+(7,1,1) = {"
+a
+d
+g
+f
+f
+f
+q
+r
+a
+"}
+(8,1,1) = {"
+a
+a
+d
+l
+l
+l
+r
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

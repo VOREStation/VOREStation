@@ -1,19 +1,143 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"c" = (/turf/simulated/floor/outdoors/snow,/area/submap)
-"d" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"e" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
-"f" = (/obj/item/seeds/random,/turf/simulated/floor/outdoors/snow,/area/submap/Small1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Small1)
+"c" = (
+/turf/simulated/floor/outdoors/snow,
+/area/submap)
+"d" = (
+/obj/structure/flora/tree/pine,
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Small1)
+"e" = (
+/obj/structure/flora/tree/dead,
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Small1)
+"f" = (
+/obj/item/seeds/random,
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Small1)
 
 (1,1,1) = {"
-aaaaaaaaaa
-abbbacbbaa
-adbbcdbbba
-abcbbbbbda
-abbbebbdaa
-adbbfbbbba
-aabbbbbbba
-aabbbbbdba
-abdbbdbaaa
-aaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+d
+b
+b
+d
+a
+a
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+c
+b
+b
+b
+b
+d
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+a
+c
+b
+e
+f
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+c
+d
+b
+b
+b
+b
+b
+d
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+d
+b
+b
+d
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+b
+d
+a
+b
+b
+b
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}
