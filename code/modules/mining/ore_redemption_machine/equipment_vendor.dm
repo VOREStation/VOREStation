@@ -95,6 +95,7 @@
 		EQUIPMENT("Mini-Translocator",							/obj/item/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
 		EQUIPMENT("Mining Satchel of Holding",					/obj/item/storage/bag/ore/holding,							1500),
+		EQUIPMENT("Sheet Snatcher of Holding",					/obj/item/storage/bag/sheetsnatcher/holding,				1000),
 		EQUIPMENT("Advanced Ore Scanner",						/obj/item/mining_scanner/advanced,							500),
 	)
 	prize_list["Consumables"] = list(
