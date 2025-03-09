@@ -30,3 +30,21 @@
 
 	to_chat(src, span_notice("You will [allow_self_surgery ? "now" : "no longer"] attempt to operate upon yourself."))
 	log_admin("DEBUG \[[world.timeofday]\]: [src.ckey ? "[src.name]:([src.ckey])" : "[src.name]"] has [allow_self_surgery ? "Enabled" : "Disabled"] self surgery.")
+
+/mob/living/proc/toggle_patting_defence()
+	set name = "Toggle Reflexive Biting"
+	set desc = "Toggles the automatic biting for if someone pats you on the head or boops your nose."
+	set category = "Abilities.General"
+
+	patting_defence = !patting_defence
+
+	to_chat(src,span_notice("You will [patting_defence ? "now" : "no longer"] bite hands who pat or boop you."))
+
+/mob/living/proc/toggle_personal_space()
+	set name = "Toggle Personal Space"
+	set desc = "Toggles dodging any attempts to hug or pat you."
+	set category = "Abilities.General"
+
+	personal_space = !personal_space
+
+	to_chat(src,span_notice("You will [personal_space ? "now" : "no longer"] dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
