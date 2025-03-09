@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	var/obj/machinery/alarm/AM = master_air_alarm?.resolve()
+	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
 	if(!(AM && AM.shorted))
 		for(var/obj/machinery/alarm/AA in src)
 			if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
