@@ -87,7 +87,7 @@
 	"silver" = "#fdfbf3", \
 	)
 
-/mob/living/simple_mob/animal/space/carp/Initialize()
+/mob/living/simple_mob/animal/space/carp/Initialize(mapload)
 	. = ..()
 	carp_randomify(rarechance)
 	update_icons()

@@ -120,7 +120,7 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/simple_mob/animal/giant_spider/Initialize()
+/mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
