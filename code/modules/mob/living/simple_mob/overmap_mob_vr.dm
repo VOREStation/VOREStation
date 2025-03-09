@@ -58,7 +58,8 @@
 
 /obj/effect/overmap/visitable/simplemob/Destroy()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
-	qdel_null(parent)
+	if(!QDELETED(parent))
+		qdel_null(parent)
 	return ..()
 
 /obj/effect/overmap/visitable/simplemob/get_scan_data(mob/user)
@@ -154,7 +155,8 @@
 		child_om_marker = C
 
 /mob/living/simple_mob/vore/overmap/Destroy()
-	qdel_null(child_om_marker)
+	if(!QDELETED(child_om_marker))
+		qdel_null(child_om_marker)
 	return ..()
 
 //SHIP
