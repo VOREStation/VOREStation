@@ -180,3 +180,8 @@
   - rscadd: Strong rat variant
   Willburd:
   - image: added missing sidewalk turf edge overlays
+2025-03-09:
+  Kashargul:
+  - code_imp: fix initialize for grep checks
+  tacoguy7765093:
+  - qol: Synthfabs no longer apply massive damage when unupgraded.
