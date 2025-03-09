@@ -3140,7 +3140,6 @@
 #include "code\modules\mob\living\carbon\human\species\station\replicant_crew.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_special_abilities.dm"
-#include "code\modules\mob\living\carbon\human\species\station\teshari.dm"
 #include "code\modules\mob\living\carbon\human\species\station\protean\_protean_defines.dm"
 #include "code\modules\mob\living\carbon\human\species\station\protean\protean_blob.dm"
 #include "code\modules\mob\living\carbon\human\species\station\protean\protean_powers.dm"
