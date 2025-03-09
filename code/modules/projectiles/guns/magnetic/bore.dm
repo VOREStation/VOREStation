@@ -165,7 +165,6 @@
 	item_state = "bore"
 	wielded_item_state = "bore-wielded"
 	one_handed_penalty = 5
-	fire_delay = 20
 
 	projectile_type = /obj/item/projectile/bullet/magnetic/bore
 

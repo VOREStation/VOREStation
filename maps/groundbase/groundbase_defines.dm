@@ -16,7 +16,7 @@
 	path = "groundbase"
 
 	use_overmap = TRUE
-	overmap_z = Z_LEVEL_MISC
+	overmap_z = Z_NAME_ALIAS_MISC
 	overmap_size = 62
 	overmap_event_areas = 100
 	usable_email_tlds = list("virgo.nt")
@@ -31,7 +31,8 @@
 	holomap_smoosh = list(list(
 		Z_LEVEL_GB_BOTTOM,
 		Z_LEVEL_GB_MIDDLE,
-		Z_LEVEL_GB_TOP))
+		Z_LEVEL_GB_TOP,
+		))
 
 	station_name  = "NSB Rascal's Pass"
 	station_short = "Rascal's Pass"
@@ -69,7 +70,7 @@
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
 							NETWORK_TELECOM,
-							NETWORK_HALLS
+							NETWORK_HALLS,
 							)
 	secondary_networks = list(
 							NETWORK_ERT,
@@ -80,7 +81,7 @@
 							NETWORK_ALARM_POWER,
 							NETWORK_ALARM_FIRE,
 							NETWORK_TALON_HELMETS,
-							NETWORK_TALON_SHIP
+							NETWORK_TALON_SHIP,
 							)
 
 	bot_patrolling = FALSE
@@ -94,7 +95,7 @@
 	meteor_strike_areas = list(
 		/area/groundbase/level3,
 		/area/groundbase/level2,
-		/area/groundbase/level1
+		/area/groundbase/level1,
 		)
 
 
@@ -149,7 +150,7 @@
 		/area/groundbase/unexplored/outdoors,
 		/area/groundbase/unexplored/rock,
 		/area/groundbase/engineering/solarshed,
-		/area/groundbase/engineering/solarfield
+		/area/groundbase/engineering/solarfield,
 		)
 
 	unit_test_exempt_from_atmos = list()
@@ -157,68 +158,68 @@
 	unit_test_z_levels = list(
 		Z_LEVEL_GB_BOTTOM,
 		Z_LEVEL_GB_MIDDLE,
-		Z_LEVEL_GB_TOP
-	)
+		Z_LEVEL_GB_TOP,
+		)
 
 	lateload_z_levels = list(
-		list("Groundbase - Central Command"),
-		list("Groundbase - Misc"), //Shuttle transit zones, holodeck templates, OM
-		list("V3c Underground"),
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
-		list("Debris Field - Z1 Space"),
-		list("Fuel Depot - Z1 Space"),
-		list("Offmap Ship - Talon V2")
+		list(Z_NAME_GB_CENTCOM),
+		list(Z_NAME_GB_MISC), //Shuttle transit zones, holodeck templates, OM
+		list(Z_NAME_GB_MINING),
+		list(Z_NAME_BEACH, Z_NAME_BEACH_CAVE),
+		list(Z_NAME_AEROSTAT, Z_NAME_AEROSTAT_SURFACE),
+		list(Z_NAME_DEBRISFIELD),
+		list(Z_NAME_FUELDEPOT),
+		list(Z_NAME_OFFMAP1),
 		)
 
 	lateload_gateway = list(
-		list("Gateway - Carp Farm"),
-		list("Gateway - Snow Field"),
-		list("Gateway - Listening Post"),
-		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
-		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
-		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
-		list("Gateway - Wild West")
+		list(Z_NAME_GATEWAY_CARP_FARM),
+		list(Z_NAME_GATEWAY_SNOW_FIELD),
+		list(Z_NAME_GATEWAY_LISTENING_POST),
+		list(list(Z_NAME_GATEWAY_HONLETH_A, Z_NAME_GATEWAY_HONLETH_B)),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_A, Z_NAME_GATEWAY_ARYNTHI_A),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_B, Z_NAME_GATEWAY_ARYNTHI_B),
+		list(Z_NAME_GATEWAY_WILD_WEST),
 		)
 
 	lateload_overmap = list(
-		list("Grass Cave")
+		list(Z_NAME_OM_GRASS_CAVE),
 		)
 
 	lateload_redgate = list(
-		list("Redgate - Teppi Ranch"),
-		list("Redgate - Innland"),
-//		list("Redgate - Abandoned Island"),	//This will come back later
-		list("Redgate - Dark Adventure"),
-		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
-		list("Redgate - Star Dog"),
-		list("Redgate - Hotsprings"),
-		list("Redgate - Rain City"),
-		list("Redgate - Islands Underwater","Redgate - Islands"),
-		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
-		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town"),
-		list("Redgate - Laserdome"),
-		list("Redgate - Cascading Falls"),
-		list("Redgate - Jungle Underground", "Redgate - Jungle"),
-		list("Redgate - Facility")
+		list(Z_NAME_REDGATE_TEPPI_RANCH),
+		list(Z_NAME_REDGATE_INNLAND),
+//		list(Z_NAME_REDGATE_ABANDONED_ISLAND),	//This will come back later
+		list(Z_NAME_REDGATE_DARK_ADVENTURE),
+		list(Z_NAME_REDGATE_EGGNOG_CAVE,Z_NAME_REDGATE_EGGNOG_TOWN),
+		list(Z_NAME_REDGATE_STAR_DOG),
+		list(Z_NAME_REDGATE_HOTSPRINGS),
+		list(Z_NAME_REDGATE_RAIN_CITY),
+		list(Z_NAME_REDGATE_ISLANDS_UNDERWATER,Z_NAME_REDGATE_ISLANDS),
+		list(Z_NAME_REDGATE_MOVING_TRAIN, Z_NAME_REDGATE_MOVING_TRAIN_UPPER),
+		list(Z_NAME_REDGATE_FANTASY_DUNGEON, Z_NAME_REDGATE_FANTASY_TOWN),
+		list(Z_NAME_REDGATE_LASERDOME),
+		list(Z_NAME_REDGATE_CASCADING_FALLS),
+		list(Z_NAME_REDGATE_JUNGLE_CAVE, Z_NAME_REDGATE_JUNGLE),
+		list(Z_NAME_REDGATE_FACILITY),
 		)
 
 	lateload_gb_north = list(
-		list("Northern Wilds 1"),
-		list("Northern Wilds 2")
+		list(Z_NAME_GB_WILDS_N1),
+		list(Z_NAME_GB_WILDS_N2),
 		)
 	lateload_gb_south = list(
-		list("Southern Wilds 1"),
-		list("Southern Wilds 2"),
-		list("Southern Wilds 3")
+		list(Z_NAME_GB_WILDS_S1),
+		list(Z_NAME_GB_WILDS_S2),
+		list(Z_NAME_GB_WILDS_S3),
 		)
 	lateload_gb_east = list(
-		list("Eastern Wilds 1"),
-		list("Eastern Wilds 2")
+		list(Z_NAME_GB_WILDS_E1),
+		list(Z_NAME_GB_WILDS_E2),
 		)
 	lateload_gb_west = list(
-		list("Western Wilds 1"),
-		list("Western Wilds 2")
+		list(Z_NAME_GB_WILDS_W1),
+		list(Z_NAME_GB_WILDS_W2),
 		)
 
 	ai_shell_restricted = TRUE
@@ -226,15 +227,16 @@
 		Z_LEVEL_GB_BOTTOM,
 		Z_LEVEL_GB_MIDDLE,
 		Z_LEVEL_GB_TOP,
-		Z_LEVEL_MISC,
-		Z_LEVEL_BEACH,
-		Z_LEVEL_AEROSTAT
+		Z_NAME_ALIAS_MISC,
+		Z_NAME_BEACH,
+		Z_NAME_AEROSTAT,
 		)
 
 	planet_datums_to_make = list(
 		/datum/planet/virgo3b,
 		/datum/planet/virgo3c,
-		/datum/planet/virgo4)
+		/datum/planet/virgo4,
+		)
 
 /datum/map/groundbase/get_map_info()
 	. = list()
@@ -245,8 +247,8 @@
 
 	seed_submaps(list(Z_LEVEL_GB_BOTTOM,Z_LEVEL_GB_MIDDLE,Z_LEVEL_GB_TOP), 100, /area/groundbase/unexplored/outdoors, /datum/map_template/groundbase/outdoor)	//Outdoor POIs
 	seed_submaps(list(Z_LEVEL_GB_BOTTOM,Z_LEVEL_GB_MIDDLE), 200, /area/groundbase/unexplored/rock, /datum/map_template/groundbase/maintcaves)	//Cave POIs
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_MINING, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MINING, 64, 64)         // Create the mining ore distribution map.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_NAME_GB_MINING, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_NAME_GB_MINING, 64, 64)         // Create the mining ore distribution map.
 	return 1
 
 /datum/skybox_settings/groundbase
@@ -258,18 +260,18 @@
 		Z_LEVEL_GB_BOTTOM,
 		Z_LEVEL_GB_MIDDLE,
 		Z_LEVEL_GB_TOP,
-		Z_LEVEL_GB_WILD_N,
-		Z_LEVEL_GB_WILD_S,
-		Z_LEVEL_GB_WILD_E,
-		Z_LEVEL_GB_WILD_W
+		Z_NAME_ALIAS_GB_WILDS_N,
+		Z_NAME_ALIAS_GB_WILDS_S,
+		Z_NAME_ALIAS_GB_WILDS_E,
+		Z_NAME_ALIAS_GB_WILDS_W
 		)
 /datum/planet/virgo3b
 	expected_z_levels = list(
-		Z_LEVEL_CENTCOM
+		Z_NAME_ALIAS_CENTCOM
 	)
 /datum/planet/virgo4
 	expected_z_levels = list(
-		Z_LEVEL_BEACH
+		Z_NAME_BEACH
 	)
 
 /obj/effect/overmap/visitable/sector/virgo3b
@@ -289,7 +291,14 @@
 
 	extra_z_levels = list()
 
-
+/obj/effect/overmap/visitable/sector/virgo3c
+	extra_z_levels = list(
+		Z_NAME_GB_MINING,
+		Z_NAME_ALIAS_GB_WILDS_N,
+		Z_NAME_ALIAS_GB_WILDS_S,
+		Z_NAME_ALIAS_GB_WILDS_E,
+		Z_NAME_ALIAS_GB_WILDS_W
+		)
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define SHIP_MAP_SIZE 140 // Width and height of compiled in tether z levels.
@@ -339,16 +348,22 @@
 		return
 
 	new associated_map_datum(using_map, z)
+	return ..()
+
+/datum/map_z_level/gb_lateload/New(datum/map/map, mapZ)
+	z = mapZ
+	return ..(map)
 
 /datum/map_template/gb_lateload/gb_centcom
-	name = "Groundbase - Central Command"
+	name = Z_NAME_GB_CENTCOM
 	desc = "Central Command lives here!"
 	mappath = "maps/groundbase/gb-centcomm.dmm"
+	name_alias = Z_NAME_ALIAS_CENTCOM
 
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_centcom
 
 /datum/map_z_level/gb_lateload/gb_centcom
-	z = Z_LEVEL_CENTCOM
+	//z = Z_NAME_ALIAS_CENTCOM
 	name = "Centcom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/floor/outdoors/rocks
@@ -357,20 +372,21 @@
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_template/gb_lateload/gb_misc
-	name = "Groundbase - Misc"
+	name = Z_NAME_GB_MISC
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = "maps/groundbase/gb-misc.dmm"
+	name_alias = Z_NAME_ALIAS_MISC
 
 	associated_map_datum = /datum/map_z_level/gb_lateload/misc
 
 /datum/map_z_level/gb_lateload/misc
-	z = Z_LEVEL_MISC
+	//z = Z_NAME_ALIAS_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 #include "groundbase_mining.dm"
 /datum/map_template/gb_lateload/mining
-	name = "V3c Underground"
+	name = Z_NAME_GB_MINING
 	desc = "The caves underneath the survace of Virgo 3C"
 	mappath = "maps/groundbase/gb-mining.dmm"
 
@@ -378,19 +394,19 @@
 
 /datum/map_template/gb_lateload/mining/on_map_loaded(z)
 	. = ..()
-//	seed_submaps(list(Z_LEVEL_MINING), 60, /area/gb_mine/unexplored, /datum/map_template/space_rocks)	//POI seeding
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_MINING, world.maxx - 4, world.maxy - 4)
-	new /datum/random_map/noise/ore/gb_mining(null, 1, 1, Z_LEVEL_MINING, 64, 64)
+//	seed_submaps(list(z), 60, /area/gb_mine/unexplored, /datum/map_template/space_rocks)	//POI seeding
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/gb_mining(null, 1, 1, z, 64, 64)
 
 /datum/map_z_level/gb_lateload/mining
-	z = Z_LEVEL_MINING
-	name = "V3c Underground"
+	//z = Z_NAME_GB_MINING
+	name = Z_NAME_GB_MINING
 	base_turf = /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 #include "../expedition_vr/aerostat/_aerostat.dm"
 /datum/map_template/common_lateload/away_aerostat
-	name = "Remmi Aerostat - Z1 Aerostat"
+	name = Z_NAME_AEROSTAT
 	desc = "The Virgo 2 Aerostat away mission."
 	mappath = "maps/expedition_vr/aerostat/aerostat.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
@@ -405,96 +421,119 @@
 
 /datum/map_z_level/gb_lateload/gb_north_wilds
 	name = "GB North Wilderness"
-	z = Z_LEVEL_GB_WILD_N
+	//z = Z_NAME_ALIAS_GB_WILDS_N
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_z_level/gb_lateload/gb_south_wilds
 	name = "GB South Wilderness"
-	z = Z_LEVEL_GB_WILD_S
+	//z = Z_NAME_ALIAS_GB_WILDS_S
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_z_level/gb_lateload/gb_east_wilds
 	name = "GB East Wilderness"
-	z = Z_LEVEL_GB_WILD_E
+	//z = Z_NAME_ALIAS_GB_WILDS_E
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_z_level/gb_lateload/gb_west_wilds
 	name = "GB West Wilderness"
-	z = Z_LEVEL_GB_WILD_W
+	//z = Z_NAME_ALIAS_GB_WILDS_W
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_template/gb_lateload/wilds/north/on_map_loaded(z)
 	. = ..()
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_GB_WILD_N, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_GB_WILD_N, 64, 64)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/mining(null, 1, 1, z, 64, 64)
 
 /datum/map_template/gb_lateload/wilds/south/on_map_loaded(z)
 	. = ..()
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_GB_WILD_S, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_GB_WILD_N, 64, 64)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/mining(null, 1, 1, z, 64, 64)
 
 /datum/map_template/gb_lateload/wilds/east/on_map_loaded(z)
 	. = ..()
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_GB_WILD_E, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_GB_WILD_N, 64, 64)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/mining(null, 1, 1, z, 64, 64)
 
 /datum/map_template/gb_lateload/wilds/west/on_map_loaded(z)
 	. = ..()
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_GB_WILD_W, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_GB_WILD_N, 64, 64)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/mining(null, 1, 1, z, 64, 64)
 
+// North Wilds
+/datum/map_template/gb_lateload/wilds/north
+	name_alias = Z_NAME_ALIAS_GB_WILDS_N
 
 /datum/map_template/gb_lateload/wilds/north/type1
-	name = "Northern Wilds 1"
+	name = Z_NAME_GB_WILDS_N1
 	desc = "Wilderness"
 	mappath = "maps/groundbase/northwilds/northwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_north_wilds
+
 /datum/map_template/gb_lateload/wilds/north/type2
-	name = "Northern Wilds 2"
+	name = Z_NAME_GB_WILDS_N2
 	desc = "Wilderness"
 	mappath = "maps/groundbase/northwilds/northwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_north_wilds
 
+// South Wilds
+/datum/map_template/gb_lateload/wilds/south
+	name_alias = Z_NAME_ALIAS_GB_WILDS_S
+
 /datum/map_template/gb_lateload/wilds/south/type1
-	name = "Southern Wilds 1"
+	name = Z_NAME_GB_WILDS_S1
 	desc = "Wilderness"
 	mappath = "maps/groundbase/southwilds/southwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
+
 /datum/map_template/gb_lateload/wilds/south/type2
-	name = "Southern Wilds 2"
+	name = Z_NAME_GB_WILDS_S2
 	desc = "Wilderness"
 	mappath = "maps/groundbase/southwilds/southwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
+
 /datum/map_template/gb_lateload/wilds/south/type3
-	name = "Southern Wilds 3"
+	name = Z_NAME_GB_WILDS_S3
 	desc = "Wilderness"
 	mappath = "maps/groundbase/southwilds/southwilds3.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
+
+/*
 /datum/map_template/gb_lateload/wilds/south/type3/on_map_loaded(z)
 	. = ..()
-	// Using landmarks for this now.
-	//seed_submaps(list(Z_LEVEL_GB_WILD_S), 6, /area/submap/groundbase/poi/wildvillage/plot/square, /datum/map_template/groundbase/wildvillage/square)	//POI seeding
-	//seed_submaps(list(Z_LEVEL_GB_WILD_S), 2, /area/submap/groundbase/poi/wildvillage/plot/wide, /datum/map_template/groundbase/wildvillage/wide)
-	//seed_submaps(list(Z_LEVEL_GB_WILD_S), 1, /area/submap/groundbase/poi/wildvillage/plot/long, /datum/map_template/groundbase/wildvillage/long)
+	 Using landmarks for this now.
+	seed_submaps(list(z), 6, /area/submap/groundbase/poi/wildvillage/plot/square, /datum/map_template/groundbase/wildvillage/square)	//POI seeding
+	seed_submaps(list(z), 2, /area/submap/groundbase/poi/wildvillage/plot/wide, /datum/map_template/groundbase/wildvillage/wide)
+	seed_submaps(list(z), 1, /area/submap/groundbase/poi/wildvillage/plot/long, /datum/map_template/groundbase/wildvillage/long)
+*/
+
+// East Wilds
+/datum/map_template/gb_lateload/wilds/east
+	name_alias = Z_NAME_ALIAS_GB_WILDS_E
 
 /datum/map_template/gb_lateload/wilds/east/type1
-	name = "Eastern Wilds 1"
+	name = Z_NAME_GB_WILDS_E1
 	desc = "Wilderness"
 	mappath = "maps/groundbase/eastwilds/eastwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_east_wilds
+
 /datum/map_template/gb_lateload/wilds/east/type2
-	name = "Eastern Wilds 2"
+	name = Z_NAME_GB_WILDS_E2
 	desc = "Wilderness"
 	mappath = "maps/groundbase/eastwilds/eastwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_east_wilds
 
+// West Wilds
+/datum/map_template/gb_lateload/wilds/west
+	name_alias = Z_NAME_ALIAS_GB_WILDS_W
+
 /datum/map_template/gb_lateload/wilds/west/type1
-	name = "Western Wilds 1"
+	name = Z_NAME_GB_WILDS_W1
 	desc = "Wilderness"
 	mappath = "maps/groundbase/westwilds/westwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_west_wilds
+
 /datum/map_template/gb_lateload/wilds/west/type2
-	name = "Western Wilds 2"
+	name = Z_NAME_GB_WILDS_W2
 	desc = "Wilderness"
 	mappath = "maps/groundbase/westwilds/westwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_west_wilds

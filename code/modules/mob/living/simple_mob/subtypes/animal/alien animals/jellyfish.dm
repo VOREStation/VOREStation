@@ -25,6 +25,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	icon_dead = "space_jellyfish_dead"
 	has_eye_glow = TRUE
 	hovering = TRUE
+	density = FALSE
 
 
 	faction = FACTION_JELLYFISH
@@ -79,6 +80,16 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	vore_default_item_mode = IM_DIGEST
 
 	var/reproduction_cooldown = 0
+
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize()
+	. = ..()
+	AddComponent(/datum/component/swarming)
+
+// Allows this mob to swarm
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/CanPass(atom/movable/mover, turf/target)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/vore/alienanimals/space_jellyfish) && mover.density == TRUE)
+		return FALSE
+	return ..()
 
 /datum/say_list/jellyfish
 	emote_see = list("flickers", "flashes", "looms","pulses","sways","shimmers hypnotically")

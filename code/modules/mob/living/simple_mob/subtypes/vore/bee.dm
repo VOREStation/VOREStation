@@ -46,6 +46,10 @@
 
 	allow_mind_transfer = TRUE
 
+/mob/living/simple_mob/vore/bee/Initialize()
+	. = ..()
+	AddComponent(/datum/component/swarming)
+
 /mob/living/simple_mob/vore/bee/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space bee!
 
