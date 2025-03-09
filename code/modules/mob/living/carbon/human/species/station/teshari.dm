@@ -5,6 +5,7 @@
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
 	hunting skills that emphasized taking out their prey without themselves getting hit. They \
 	are only recently becoming known on human stations after reaching space with Skrell assistance."
+	wikilink="https://wiki.vore-station.net/Teshari"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/teshari)
 
 	num_alternate_languages = 3
@@ -12,15 +13,15 @@
 	name_language = LANGUAGE_SCHECHI
 	species_language = LANGUAGE_SCHECHI
 
-	min_age = 12
+	min_age = 18
 	max_age = 45
 
 	economic_modifier = 6
 
 	health_hud_intensity = 3
 
-	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
-	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	male_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
+	female_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
 	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
 	center_offset = 0
@@ -28,18 +29,20 @@
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
+	color_mult = 1
 	tail = "seromitail"
-	//tail_hair = "feathers" //VORESTATION TESHARI TEMPORARY REMOVAL
+	icobase_tail = 1
 	reagent_tag = IS_TESHARI
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
-	icobase = 'icons/mob/human_races/r_teshari.dmi'
-	deform = 'icons/mob/human_races/r_teshari.dmi'
+	icobase = 'icons/mob/human_races/r_teshari_vr.dmi'
+	deform = 'icons/mob/human_races/r_teshari_vr.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_teshari.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_teshari.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_teshari.dmi'
 	suit_storage_icon = 'icons/inventory/suit_store/mob_teshari.dmi'
+	vore_belly_default_variant = "T" //Teshari belly sprite
 
 	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
 
@@ -49,23 +52,22 @@
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
-	mob_size = MOB_SMALL
+	mob_size = MOB_MEDIUM
 	pass_flags = PASSTABLE
 	holder_type = /obj/item/holder/human
 //	short_sighted = 1
 	has_vibration_sense = TRUE
-	gluttonous = 1
+	gluttonous = FALSE
 	blood_volume = 400
 	hunger_factor = 0.2
 	soft_landing = TRUE
+	agility = 90
 
 	ambiguous_genders = TRUE
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	bump_flag = MONKEY
-	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
 	body_temperature = 270
 
@@ -136,13 +138,11 @@
 
 	inherent_verbs = list(
 		///mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/proc/hide
+		/mob/living/proc/hide,
+		/mob/living/proc/toggle_pass_table
 		)
 
-	descriptors = list(
-		/datum/mob_descriptor/height = -3,
-		/datum/mob_descriptor/build = -3
-	)
+	descriptors = list()
 
 /*	var/static/list/flight_bodyparts = list(
 		BP_L_ARM,
