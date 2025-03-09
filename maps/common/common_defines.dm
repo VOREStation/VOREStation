@@ -1,6 +1,6 @@
 // Z_LEVEL are just hard coded z-levels
 // Z_NAME are late loaded z-level maps that can be looked up in GLOB.map_templates_loaded
-// GLOB.map_templates_loaded is populated as /datum/map_template/proc/on_map_loaded(z) is called
+// GLOB.map_templates_loaded is populated as /datum/map_template/proc/on_map_preload(z) is called
 // Some Z_NAME ultimately will be indexed under an alias however e.g. Z_NAME_ALIAS_GATEWAY
 
 // Tether
