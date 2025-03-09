@@ -50,7 +50,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-/mob/living/simple_mob/mechanical/viscerator/Initialize()
+/mob/living/simple_mob/mechanical/viscerator/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
