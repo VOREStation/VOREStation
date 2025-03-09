@@ -1743,3 +1743,11 @@
 	ani_state = "nightstalker_diamondback_w"
 	extra_overlay = "nightstalker_diamondback_markings"
 	extra_overlay_w = "nightstalker_diamondback_markings_w"
+
+/datum/sprite_accessory/tail/demi_tesh_feathered
+	name = "Demi-Teshari tail"
+	desc = ""
+	icon_state = "demi-tesh-kit-tail"
+	do_colouration = 1
+	extra_overlay = "demi-tesh-kit-tail_floof"
+	color_blend_mode = ICON_MULTIPLY
