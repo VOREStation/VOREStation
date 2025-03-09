@@ -57,7 +57,6 @@
 	holder_type = /obj/item/holder/human
 //	short_sighted = 1
 	has_vibration_sense = TRUE
-	gluttonous = FALSE
 	blood_volume = 400
 	hunger_factor = 0.2
 	soft_landing = TRUE
@@ -142,7 +141,6 @@
 		/mob/living/proc/toggle_pass_table
 		)
 
-	descriptors = list()
 
 /*	var/static/list/flight_bodyparts = list(
 		BP_L_ARM,

@@ -46,8 +46,6 @@
 	cold_level_2 = 50
 	cold_level_3 = 0
 
-	gluttonous = FALSE
-
 	breath_type = GAS_PHORON
 	poison_type = GAS_O2
 	ideal_air_type = /datum/gas_mixture/belly_air/vox
