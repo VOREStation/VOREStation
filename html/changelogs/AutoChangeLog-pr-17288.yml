@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Guns now have their fire_delays fixed. No more rapidfire RPGs."
-  - qol: "Phoron bore gets to keep it's unintentional attack-speed buff. (Mining is in need of QoL changes, so let this be at least one of them.)"

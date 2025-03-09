@@ -1,4 +1,0 @@
-author: "tacoguy7765093"
-delete-after: True
-changes:
-  - bugfix: "Shield capacitors now only take power from wires when anchored to the ground."

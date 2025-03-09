@@ -1,6 +1,0 @@
-author: "Drathek"
-delete-after: True
-changes:
-  - bugfix: "Fixed space whales deleting themselves when already deleted"
-  - refactor: "Refactored late loaded map defines to a GLOB list instead"
-  - code_imp: "Simplified groundbase wilds loading"
