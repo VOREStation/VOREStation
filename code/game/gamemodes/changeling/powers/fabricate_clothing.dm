@@ -269,7 +269,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	if(ismob(loc))
 		registered_user = loc
 
-/obj/item/card/id/syndicate/changeling/Initialize()
+/obj/item/card/id/syndicate/changeling/Initialize(mapload)
 	. = ..()
 	access = null
 

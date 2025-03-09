@@ -164,7 +164,7 @@
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 	var/datum/looping_sound/showering/soundloop
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	create_reagents(50)
 	soundloop = new(list(src), FALSE)
 	return ..()

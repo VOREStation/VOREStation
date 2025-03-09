@@ -26,7 +26,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
 	)
 
-/obj/item/rcd/Initialize()
+/obj/item/rcd/Initialize(mapload)
 	. = ..()
 	update_icon()
 

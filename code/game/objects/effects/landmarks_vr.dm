@@ -15,7 +15,7 @@
 	name = "Antag Latespawn"
 	var/antag_id
 
-/obj/effect/landmark/late_antag/Initialize()
+/obj/effect/landmark/late_antag/Initialize(mapload)
 	. = ..()
 	var/datum/antagonist/A = all_antag_types[antag_id]
 	if(istype(A))

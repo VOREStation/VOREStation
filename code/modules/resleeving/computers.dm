@@ -35,7 +35,7 @@
 
 	var/gene_sequencing = FALSE // Traitgenes edit - create a dna injector for fixing dna, but don't let it be abusable
 
-/obj/machinery/computer/transhuman/resleeving/Initialize()
+/obj/machinery/computer/transhuman/resleeving/Initialize(mapload)
 	. = ..()
 	pods = list()
 	spods = list()

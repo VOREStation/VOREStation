@@ -20,7 +20,7 @@
 
 	var/list/filtering_outputs = list()	//maps gasids to gas_mixtures
 
-/obj/machinery/atmospherics/omni/atmos_filter/Initialize()
+/obj/machinery/atmospherics/omni/atmos_filter/Initialize(mapload)
 	. = ..()
 
 	rebuild_filtering_list()

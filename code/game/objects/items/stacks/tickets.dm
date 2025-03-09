@@ -7,7 +7,7 @@
 	w_class = ITEMSIZE_TINY
 	max_amount = 30
 
-/obj/item/stack/arcadeticket/Initialize()
+/obj/item/stack/arcadeticket/Initialize(mapload)
 	. = ..()
 	update_icon()
 

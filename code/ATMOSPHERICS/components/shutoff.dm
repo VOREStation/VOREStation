@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	. = ..()
 	. += "The automatic shutoff circuit is [close_on_leaks ? "enabled" : "disabled"]."
 
-/obj/machinery/atmospherics/valve/shutoff/Initialize()
+/obj/machinery/atmospherics/valve/shutoff/Initialize(mapload)
 	. = ..()
 	open()
 	GLOB.shutoff_valves += src

@@ -34,7 +34,7 @@
 	var/to_wear_l_hand = null
 	var/to_wear_r_hand = /obj/item/melee/baton
 
-/mob/living/carbon/human/ai_controlled/Initialize()
+/mob/living/carbon/human/ai_controlled/Initialize(mapload)
 	if(generate_gender)
 		gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
 
@@ -143,7 +143,7 @@
 
 	to_wear_r_hand = null
 
-/mob/living/carbon/human/ai_controlled/replicant/Initialize()
+/mob/living/carbon/human/ai_controlled/replicant/Initialize(mapload)
 	. = ..()
 	name = species.get_random_name(gender)
 	add_modifier(/datum/modifier/homeothermic, 0, null)

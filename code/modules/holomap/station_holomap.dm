@@ -34,7 +34,7 @@
 	..()
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
-/obj/machinery/station_map/Initialize()
+/obj/machinery/station_map/Initialize(mapload)
 	. = ..()
 	holomap_datum = new()
 	original_zLevel = loc.z
@@ -253,7 +253,7 @@
 	var/filter = HOLOMAP_FILTER_STATIONMAP
 	var/id = "generic"
 
-/obj/effect/landmark/holomarker/Initialize()
+/obj/effect/landmark/holomarker/Initialize(mapload)
 	. = ..()
 	var/datum/holomap_marker/holomarker = new()
 	holomarker.id = id

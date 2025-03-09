@@ -24,7 +24,7 @@
 
 	density = TRUE
 
-/obj/machinery/atmospherics/binary/circulator/Initialize()
+/obj/machinery/atmospherics/binary/circulator/Initialize(mapload)
 	. = ..()
 
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."

@@ -26,7 +26,7 @@
 		prey_body = prey
 	pred_body = pred
 
-/mob/living/dominated_brain/Initialize()
+/mob/living/dominated_brain/Initialize(mapload)
 	if(!isliving(loc))
 		qdel(src)
 		return

@@ -113,9 +113,9 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 	helmet_becomes = /obj/item/clothing/head/helmet/space/void/medical
 	suit_becomes = /obj/item/clothing/suit/space/void/medical
 /datum/suit_cycler_choice/department/med/streamlined
-	name = "Vey-Medical Streamlined"
-	helmet_becomes = /obj/item/clothing/head/helmet/space/void/medical/alt
-	suit_becomes = /obj/item/clothing/suit/space/void/medical/alt
+	name = "Vey-Medical Lightweight"
+	helmet_becomes = /obj/item/clothing/head/helmet/space/void/medical/veymed_static
+	suit_becomes = /obj/item/clothing/suit/space/void/medical/veymed_static
 /datum/suit_cycler_choice/department/med/commonwealth
 	name = "Commonwealth Medical"
 	helmet_becomes = /obj/item/clothing/head/helmet/space/void/medical/alt2

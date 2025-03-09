@@ -7,7 +7,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 14
 
-/obj/item/reagent_containers/food/snacks/meat/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
@@ -54,7 +54,7 @@
 	cooked_icon = "chickensteak"
 	filling_color = "#BBBBAA"
 
-/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize(mapload)
 	. = ..()
 	reagents.remove_reagent(REAGENT_ID_TRIGLYCERIDE, INFINITY)
 	//Chicken is low fat. Less total calories than other meats
@@ -65,7 +65,7 @@
 	icon_state = "crabmeat"
 	bitesize = 1
 
-/obj/item/reagent_containers/food/snacks/crabmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/crabmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SEAFOOD, 2)
 
@@ -80,7 +80,7 @@
 	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize()
+/obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 
@@ -104,7 +104,7 @@
 	center_of_mass_y = 10
 	bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/bearmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 12)
 	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
@@ -118,7 +118,7 @@
 	center_of_mass_y = 10
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
+/obj/item/reagent_containers/food/snacks/xenomeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_PACID,6)
@@ -132,7 +132,7 @@
 	center_of_mass_y = 10
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPIDERTOXIN,6)
 	reagents.remove_reagent(REAGENT_ID_PACID,6)
@@ -143,7 +143,7 @@
 	icon_state = "rawturkey"
 	bitesize = 2.5
 
-/obj/item/reagent_containers/food/snacks/rawturkey/Initialize()
+/obj/item/reagent_containers/food/snacks/rawturkey/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 10)
 
@@ -159,7 +159,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
@@ -174,7 +174,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 14
 
-/obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/worm/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_PHORON, 3)

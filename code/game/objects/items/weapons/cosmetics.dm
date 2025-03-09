@@ -100,7 +100,7 @@
 	icon_state = "trinketbox"
 	var/datum/tgui_module/appearance_changer/mirror/coskit/M
 
-/obj/item/makeover/Initialize()
+/obj/item/makeover/Initialize(mapload)
 	. = ..()
 	M = new(src, null)
 
@@ -112,3 +112,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
 			E.change_eye_color()
+
+/obj/item/makeover/Destroy()
+	qdel(M)
+	. = ..()

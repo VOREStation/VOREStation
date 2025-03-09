@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	GLOB.areas_by_type[type] = src
 	return ..()
 
-/area/Initialize()
+/area/Initialize(mapload)
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
@@ -573,3 +573,12 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		if(SK.ability_flags & AB_PHASE_SHIFTED)
 			SK.phase_in(SK.loc)
 // RS Port #658 End
+
+/area/proc/isAlwaysIndoors()
+	return FALSE
+
+/area/shuttle/isAlwaysIndoors()
+	return TRUE
+
+/area/turbolift/isAlwaysIndoors()
+	return TRUE

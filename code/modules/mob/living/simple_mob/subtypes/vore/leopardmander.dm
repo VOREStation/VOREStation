@@ -70,7 +70,7 @@
 	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/leopardmander/Initialize()
+/mob/living/simple_mob/vore/leopardmander/Initialize(mapload)
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 

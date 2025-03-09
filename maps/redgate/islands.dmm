@@ -937,7 +937,7 @@
 /turf/simulated/floor/outdoors/grass/heavy,
 /area/redgate/islands/ocean)
 "By" = (
-/obj/structure/ladder/updown,
+/obj/structure/ladder,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/secretladder)
 "BA" = (
@@ -1695,13 +1695,13 @@
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "YD" = (
-/obj/structure/ladder/updown,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/structure/ladder,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/ladder)
 "YV" = (

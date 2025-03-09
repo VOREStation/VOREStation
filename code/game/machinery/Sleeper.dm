@@ -15,7 +15,7 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
-/obj/machinery/sleep_console/Initialize()
+/obj/machinery/sleep_console/Initialize(mapload)
 	findsleeper()
 	return ..()
 
@@ -113,7 +113,7 @@
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 	default_apply_parts()
@@ -536,6 +536,6 @@
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
 
-/obj/machinery/sleeper/survival_pod/Initialize()
+/obj/machinery/sleeper/survival_pod/Initialize(mapload)
 	. = ..()
 	RefreshParts(1)

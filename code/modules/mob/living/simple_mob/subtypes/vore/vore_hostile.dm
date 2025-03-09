@@ -329,7 +329,7 @@
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 3
 
-/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize()
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize(mapload)
 	. = ..()
 	color = random_color(TRUE)
 

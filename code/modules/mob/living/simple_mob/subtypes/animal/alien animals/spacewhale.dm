@@ -63,7 +63,7 @@
 	B.digest_burn = 50
 	B.escapechance = 0
 
-/mob/living/simple_mob/vore/overmap/spacewhale/Initialize()
+/mob/living/simple_mob/vore/overmap/spacewhale/Initialize(mapload)
 	. = ..()
 	handle_restless()
 

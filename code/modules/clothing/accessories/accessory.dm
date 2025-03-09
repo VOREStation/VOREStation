@@ -49,8 +49,7 @@
 	else
 		wearer = null
 
-	wearer?.resolve()
-	var/mob/living/carbon/human/H = wearer
+	var/mob/living/carbon/human/H = wearer?.resolve()
 	if(!ishuman(H))
 		return
 
