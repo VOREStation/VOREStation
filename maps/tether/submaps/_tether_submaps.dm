@@ -8,6 +8,7 @@
 	name = Z_NAME_TETHER_CENTCOM
 	desc = "Central Command lives here!"
 	mappath = "maps/tether/submaps/tether_centcom.dmm"
+	name_alias = Z_NAME_ALIAS_CENTCOM
 
 	associated_map_datum = /datum/map_z_level/tether_lateload/centcom
 
@@ -21,6 +22,7 @@
 	name = Z_NAME_TETHER_MISC
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = "maps/tether/submaps/tether_misc.dmm"
+	name_alias = Z_NAME_ALIAS_MISC
 
 	associated_map_datum = /datum/map_z_level/tether_lateload/misc
 
