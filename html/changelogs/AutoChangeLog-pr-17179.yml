@@ -1,0 +1,8 @@
+author: "Caramelion"
+delete-after: True
+changes:
+  - rscadd: "Different colourations for carps"
+  - bugfix: "Fixed attacking resetting pixelshift position to 0, 0 after the animation"
+  - qol: "Allows various mobs to create swarms"
+  - code_imp: "Added Swarm component"
+  - code_imp: "Added connect_loc_behalf component"
