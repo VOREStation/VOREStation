@@ -47,4 +47,4 @@
 
 	personal_space = !personal_space
 
-	to_chat(src,span_notice("You will [personal_space ? "now" : "no longer"] dodge all attempts at hugging, patting, booping and hand shaking."))
+	to_chat(src,span_notice("You will [personal_space ? "now" : "no longer"] dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
