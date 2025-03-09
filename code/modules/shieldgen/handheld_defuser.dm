@@ -9,7 +9,7 @@
 	var/enabled = 0
 
 
-/obj/item/shield_diffuser/Initialize()
+/obj/item/shield_diffuser/Initialize(mapload)
 	. = ..()
 	cell = new(src)
 

@@ -328,7 +328,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 ///////////////////////////////////////Other stuff///////////////////////////////////////////
 
-/mob/living/simple_mob/vore/alienanimals/teppi/Initialize()
+/mob/living/simple_mob/vore/alienanimals/teppi/Initialize(mapload)
 	. = ..()
 
 	if(name == initial(name))

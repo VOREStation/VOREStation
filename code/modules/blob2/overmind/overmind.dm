@@ -31,7 +31,7 @@ var/list/overminds = list()
 /mob/observer/blob/get_default_language()
 	return default_language
 
-/mob/observer/blob/Initialize(newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
+/mob/observer/blob/Initialize(mapload, pre_placed = 0, starting_points = 60, desired_blob_type = null)
 	blob_points = starting_points
 	if(pre_placed) //we already have a core!
 		placed = 1
@@ -54,7 +54,7 @@ var/list/overminds = list()
 	if(languages.len)
 		default_language = languages[1]
 
-	return ..(newloc)
+	return ..()
 
 /mob/observer/blob/Destroy()
 	for(var/obj/structure/blob/B as anything in GLOB.all_blobs)

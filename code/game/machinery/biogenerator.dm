@@ -53,7 +53,7 @@
 	src.reagent_amt = amt
 	src.cost = cost
 
-/obj/machinery/biogenerator/Initialize()
+/obj/machinery/biogenerator/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R

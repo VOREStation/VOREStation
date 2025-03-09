@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 		"moebius" = list(LIGHT_COLOR_PURPLE, "Moebius. One of the few companies worth merit beyond their local bubble staffed completely by synthetics. 'For synths, by synths.'")
 	)
 
-/obj/machinery/holoposter/Initialize()
+/obj/machinery/holoposter/Initialize(mapload)
 	. = ..()
 	set_rand_sprite()
 	GLOB.holoposters += src

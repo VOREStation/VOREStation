@@ -21,7 +21,7 @@
 /obj/item/projectile/arc/Bump()
 	return
 
-/obj/item/projectile/arc/Initialize()
+/obj/item/projectile/arc/Initialize(mapload)
 	shadow = new(get_turf(src))
 	return ..()
 

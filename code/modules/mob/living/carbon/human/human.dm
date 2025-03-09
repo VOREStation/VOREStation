@@ -1091,11 +1091,14 @@
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 	return L && L.is_bruised()
 
-/mob/living/carbon/human/proc/rupture_lung()
+/mob/living/carbon/human/proc/rupture_lung(var/gradual)
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 
 	if(L)
-		L.rupture()
+		if(gradual && (L.damage < (L.min_bruised_damage-1))) //We do slow ticking damage up to 9. After 9, we rupture completely.
+			L.damage++
+		else
+			L.rupture()
 
 /*
 /mob/living/carbon/human/verb/simulate()
@@ -1326,9 +1329,8 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	//This was the old location of initialize_vessel. A race condiiton happened here because of species code being JANK. This resulted in runtimes during unit test, but worked perfectly fine in game.
-	//Now, initialize_vessel has been moved to human/Initialize()
-	// addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
+	if(vessel)
+		initialize_vessel()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()

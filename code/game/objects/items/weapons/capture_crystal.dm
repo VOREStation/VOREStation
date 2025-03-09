@@ -19,7 +19,7 @@
 	var/full_icon = "full"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
 
-/obj/item/capture_crystal/Initialize()
+/obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -847,7 +847,7 @@
 		list(/mob/living/simple_mob/vore/devil)
 		)
 
-/obj/item/capture_crystal/random/Initialize()
+/obj/item/capture_crystal/random/Initialize(mapload)
 	var/subchoice = pickweight(possible_mob_types)		//Some of the lists have nested lists, so let's pick one of them
 	var/choice = pickweight(subchoice)					//And then we'll pick something from whatever's left
 	spawn_mob_type = choice								//Now when someone uses this, we'll spawn whatever we picked!

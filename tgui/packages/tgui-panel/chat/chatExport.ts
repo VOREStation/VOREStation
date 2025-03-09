@@ -135,14 +135,10 @@ async function getRound(
                 '</body>\n' +
                 '</html>\n';
 
-              try {
-                fileHandle.createWritable().then((writableHandle) => {
-                  writableHandle.write(pageHtml);
-                  writableHandle.close();
-                });
-              } catch (e) {
-                console.error(e);
-              }
+              fileHandle.createWritable().then((writableHandle) => {
+                writableHandle.write(pageHtml);
+                writableHandle.close();
+              });
 
               resolve();
             }

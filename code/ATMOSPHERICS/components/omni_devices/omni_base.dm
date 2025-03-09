@@ -25,7 +25,7 @@
 
 	var/list/ports = new()
 
-/obj/machinery/atmospherics/omni/Initialize()
+/obj/machinery/atmospherics/omni/Initialize(mapload)
 	. = ..()
 
 	icon_state = "base"

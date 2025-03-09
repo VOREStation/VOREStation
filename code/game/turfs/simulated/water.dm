@@ -21,7 +21,7 @@
 
 	var/reagent_type = REAGENT_ID_WATER
 
-/turf/simulated/floor/water/Initialize()
+/turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
 	handle_fish()
