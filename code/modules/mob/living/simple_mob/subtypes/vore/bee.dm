@@ -46,7 +46,7 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/simple_mob/vore/bee/Initialize()
+/mob/living/simple_mob/vore/bee/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
