@@ -1511,7 +1511,7 @@
 		O_VOICE =		/obj/item/organ/internal/voicebox,
 		O_LIVER =		/obj/item/organ/internal/liver,
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
-		O_BRAIN =		/obj/item/organ/internal/brain/xenochimera,
+		O_BRAIN =		/obj/item/organ/internal/brain,
 		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
@@ -1558,13 +1558,10 @@
 			H.shock_stage = min(H.shock_stage + (temp_diff/20), 160) // Divided by 20 is the same as previous numbers, but a full scale
 			H.eye_blurry = max(5,H.eye_blurry)
 
-/obj/item/organ/internal/brain/xenochimera
-	var/laststress = 0
-
 /datum/species/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
 	//first, calculate how stressed the chimera is
 	var/laststress = 0
-	var/obj/item/organ/internal/brain/xenochimera/B = H.internal_organs_by_name[O_BRAIN]
+	var/obj/item/organ/internal/brain/B = H.internal_organs_by_name[O_BRAIN]
 	if(B) //if you don't have a chimera brain in a chimera body somehow, you don't get the feraless protection
 		laststress = B.laststress
 

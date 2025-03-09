@@ -19,6 +19,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
 	var/defib_timer = -1
+	var/laststress = 0
 
 /obj/item/organ/internal/brain/process()
 	..()
