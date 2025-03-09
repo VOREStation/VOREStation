@@ -10,7 +10,7 @@
 	icon_state = "globe"
 	in_space = 0
 	initial_generic_waypoints = list("beach_e", "beach_c", "beach_nw")
-	extra_z_levels = list(Z_LEVEL_BEACH_CAVE)
+	extra_z_levels = list(Z_NAME_BEACH_CAVE)
 	known = TRUE
 	icon_state = "desert"
 
@@ -67,8 +67,8 @@
 	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
 
 	// Now for the tunnels.
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_BEACH_CAVE, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_LEVEL_BEACH_CAVE, 64, 64)*/
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_NAME_BEACH_CAVE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_NAME_BEACH_CAVE, 64, 64)*/
 
 	flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_QDEL
