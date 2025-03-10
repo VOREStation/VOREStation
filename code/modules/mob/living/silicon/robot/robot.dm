@@ -993,7 +993,7 @@
 					continue
 				//If we have glowy stomach sprites.
 				if(glowy_enabled)
-					var/mutable_appearance/MA = mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
+					var/mutable_appearance/MA = mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
 					MA.appearance_flags = KEEP_APART
 					add_overlay(MA)
 					add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class)))
