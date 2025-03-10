@@ -371,7 +371,7 @@
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
 
-	reagent_tag = null //I am going to just NUKE reagent_tag omfg...This is rediculous
+	reagent_tag = null //I am going to just NUKE reagent_tag omfg...This is ridiculous
 	allergens = null
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
