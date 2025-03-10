@@ -22,6 +22,7 @@ export const abnormalities: (string | ((occupant: occupant) => string))[][] = [
     (occupant) => 'Photoreceptor abnormalities detected.',
   ],
   ['nearsighted', 'average', (occupant) => 'Retinal misalignment detected.'],
+  ['brokenspine', 'average', (occupant) => 'Lumbar spine impairement.'],
   [
     'humanPrey',
     'average',

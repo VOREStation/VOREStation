@@ -48,11 +48,11 @@
 	//Staph infection symptoms for CHEST
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -78,11 +78,10 @@
 	//Staph infection symptoms for GROIN
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 
 /obj/item/organ/external/arm
 	organ_tag = BP_L_ARM
@@ -106,11 +105,10 @@
 	//Staph infection symptoms for ARM
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			if(organ_tag == BP_L_ARM) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_ARM)
@@ -147,12 +145,21 @@
 	//Staph infection symptoms for LEG
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
+
+/obj/item/organ/external/leg/is_usable() // We only do legs, otherwise the stance_damage will be 8 instead of 4, meaning crutches do nothing as they only negate 4
+	if(robotic == ORGAN_FLESH && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
+
+/obj/item/organ/external/leg/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
 
 /obj/item/organ/external/leg/right
 	organ_tag = BP_R_LEG
@@ -191,12 +198,16 @@
 	//Staph infection symptoms for FOOT
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
+
+/obj/item/organ/external/foot/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
 
 /obj/item/organ/external/foot/right
 	organ_tag = BP_R_FOOT
@@ -237,11 +248,10 @@
 	//Staph infection symptoms for HAND
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			if(organ_tag == BP_L_HAND) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_HAND)
@@ -282,7 +292,7 @@
 	throwforce = 7
 	var/eyes_over_markings = FALSE //VOREStation edit
 
-/obj/item/organ/external/head/Initialize()
+/obj/item/organ/external/head/Initialize(mapload)
 	if(CONFIG_GET(flag/allow_headgibs))
 		cannot_gib = FALSE
 	return ..()
@@ -327,11 +337,10 @@
 	//Staph infection symptoms for HEAD
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.eye_blurry += 20 //Specific level 2 'feature
 
 /obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)

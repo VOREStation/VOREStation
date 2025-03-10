@@ -404,7 +404,7 @@
 	desc = "A 14.5mm sabot shell."
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 
-/obj/item/ammo_casing/a145/spent/Initialize()
+/obj/item/ammo_casing/a145/spent/Initialize(mapload)
 	. = ..()
 	expend()
 

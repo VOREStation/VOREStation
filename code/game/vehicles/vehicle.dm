@@ -53,7 +53,7 @@
 
 
 
-/obj/vehicle/Initialize()
+/obj/vehicle/Initialize(mapload)
 	. = ..()
 	icon_state += "-unmanned"
 	add_radio()

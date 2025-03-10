@@ -20,7 +20,7 @@
 	var/obj/item/stock_parts/scanning_module/scanmod
 	var/dropnoms_active = TRUE
 
-/obj/item/bluespace_harpoon/Initialize()
+/obj/item/bluespace_harpoon/Initialize(mapload)
 	. = ..()
 	scanmod = new(src)
 	update_fail_chance()

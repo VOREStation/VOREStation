@@ -711,7 +711,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 		)
 
 
-/turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize()
+/turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize(mapload)
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/bigtree(src)
 

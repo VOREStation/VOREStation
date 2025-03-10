@@ -29,7 +29,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/skills/Initialize()
+/obj/machinery/computer/skills/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General

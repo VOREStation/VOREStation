@@ -20,7 +20,7 @@
 /obj/item/clothing/suit/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Suit"
 
-/obj/item/clothing/suit/space/void/responseteam/command/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/command/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/command) //autoinstall the helmet
 
@@ -29,7 +29,7 @@
 	icon_state = "ertsuit_m"
 	item_state = "ertsuit_m"
 
-/obj/item/clothing/suit/space/void/responseteam/medical/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/medical/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/medical) //autoinstall the helmet
 
@@ -38,7 +38,7 @@
 	icon_state = "ertsuit_e"
 	item_state = "ertsuit_e"
 
-/obj/item/clothing/suit/space/void/responseteam/engineer/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/engineer/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/engineer) //autoinstall the helmet
 
@@ -47,7 +47,7 @@
 	icon_state = "ertsuit_s"
 	item_state = "ertsuit_s"
 
-/obj/item/clothing/suit/space/void/responseteam/security/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/security/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/security) //autoinstall the helmet
 
@@ -59,7 +59,7 @@
 	slowdown = 0 //light armor means no slowdown
 	item_flags = NOSLIP //INBUILT NANOGALOSHES
 
-/obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/janitor/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/janitor) //autoinstall the helmet
 

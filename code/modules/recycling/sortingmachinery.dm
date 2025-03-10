@@ -394,7 +394,7 @@
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/Initialize()
+/obj/machinery/disposal/deliveryChute/Initialize(mapload)
 	. = ..()
 	trunk = locate() in src.loc
 	if(trunk)

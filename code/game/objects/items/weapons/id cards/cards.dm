@@ -275,7 +275,7 @@
 	name = "Robot Miner ID"
 	rank = JOB_SHAFT_MINER
 
-/obj/item/card/id/cargo/miner/borg/Initialize()
+/obj/item/card/id/cargo/miner/borg/Initialize(mapload)
 	. = ..()
 	if(isrobot(loc?.loc))
 		R = loc.loc

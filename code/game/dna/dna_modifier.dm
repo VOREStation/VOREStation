@@ -75,7 +75,7 @@
 	var/scan_level
 	var/precision_coeff
 
-/obj/machinery/dna_scannernew/Initialize()
+/obj/machinery/dna_scannernew/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	RefreshParts()
@@ -357,7 +357,7 @@
 				return
 	return
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 	for(var/i=0;i<3;i++)
 		// Traitgenes Use bodyrecords

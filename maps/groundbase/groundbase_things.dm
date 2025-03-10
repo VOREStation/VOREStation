@@ -1,10 +1,10 @@
-/obj/effect/step_trigger/teleporter/to_mining/Initialize()
+/obj/effect/step_trigger/teleporter/to_mining/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = y ++
-	teleport_z = Z_LEVEL_MINING
+	teleport_z = GLOB.map_templates_loaded[Z_NAME_GB_MINING]
 
-/obj/effect/step_trigger/teleporter/from_mining/Initialize()
+/obj/effect/step_trigger/teleporter/from_mining/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = y --

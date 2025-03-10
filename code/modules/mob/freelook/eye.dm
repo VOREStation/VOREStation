@@ -85,7 +85,7 @@
 		return
 
 	return eyeobj.EyeMove(n, direct)
-	
+
 /mob/observer/eye/proc/GetViewerClient()
     if(owner)
         return owner.client

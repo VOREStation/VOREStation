@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	debug = TRUE
 
 
-/obj/item/cataloguer/Initialize()
+/obj/item/cataloguer/Initialize(mapload)
 	GLOB.all_cataloguers += src
 	return ..()
 

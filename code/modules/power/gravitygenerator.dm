@@ -24,11 +24,11 @@
 	var/effectiverange = 25
 
 	// Borrows code from cloning computer
-/obj/machinery/computer/gravity_control_computer/Initialize()
+/obj/machinery/computer/gravity_control_computer/Initialize(mapload)
 	. = ..()
 	updatemodules()
 
-/obj/machinery/gravity_generator/Initialize()
+/obj/machinery/gravity_generator/Initialize(mapload)
 	. = ..()
 	locatelocalareas()
 

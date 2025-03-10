@@ -50,7 +50,7 @@
 	sprite_name = "atmos_extinguisher"
 	rand_overlays = 0
 
-/obj/item/extinguisher/Initialize()
+/obj/item/extinguisher/Initialize(mapload)
 	create_reagents(max_water)
 	reagents.add_reagent(REAGENT_ID_FIREFOAM, max_water)
 	if(rand_overlays)

@@ -53,7 +53,7 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 
-/obj/effect/overlay/wallrot/Initialize()
+/obj/effect/overlay/wallrot/Initialize(mapload)
 	. = ..()
 	pixel_x += rand(-10, 10)
 	pixel_y += rand(-10, 10)
@@ -165,7 +165,7 @@
 
 	var/static/matrix/normal_transform
 
-/obj/effect/overlay/light_cone/Initialize()
+/obj/effect/overlay/light_cone/Initialize(mapload)
 	. = ..()
 	apply_standard_transform()
 

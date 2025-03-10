@@ -9,7 +9,7 @@
 	unacidable = TRUE
 	layer = STAIRS_LAYER
 
-/obj/structure/stairs/Initialize()
+/obj/structure/stairs/Initialize(mapload)
 	. = ..()
 	if(check_integrity())
 		update_icon()
@@ -71,7 +71,7 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/middle/middle = null
 
-/obj/structure/stairs/bottom/Initialize()
+/obj/structure/stairs/bottom/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
@@ -245,7 +245,7 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/middle/Initialize()
+/obj/structure/stairs/middle/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
@@ -328,7 +328,7 @@
 	var/obj/structure/stairs/middle/middle = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/top/Initialize()
+/obj/structure/stairs/top/Initialize(mapload)
 	. = ..()
 	if(!GetBelow(src))
 		warning("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
@@ -497,7 +497,7 @@
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 
-/obj/structure/stairs/spawner/Initialize()
+/obj/structure/stairs/spawner/Initialize(mapload)
 	..()
 	var/turf/B1 = get_step(get_turf(src), turn(dir, 180))
 	var/turf/B2 = get_turf(src)

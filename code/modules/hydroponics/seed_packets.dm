@@ -77,7 +77,7 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/random
 	seed_type = null
 
-/obj/item/seeds/random/Initialize()
+/obj/item/seeds/random/Initialize(mapload)
 	seed = SSplants.create_random_seed()
 	seed_type = seed.name
 	. = ..()

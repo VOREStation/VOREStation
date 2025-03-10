@@ -49,7 +49,7 @@
 	var/speed_coeff
 	var/efficiency
 
-/obj/machinery/clonepod/Initialize()
+/obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_icon()
@@ -451,7 +451,7 @@
 		icon_state = "pod_g"
 
 
-/obj/machinery/clonepod/full/Initialize()
+/obj/machinery/clonepod/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
@@ -484,7 +484,7 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/Initialize()
+/obj/item/storage/box/disks/Initialize(mapload)
 	. = ..()
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
