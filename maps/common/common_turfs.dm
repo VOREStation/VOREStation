@@ -75,7 +75,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 
 /turf/simulated/sky/virgo3b/Initialize(mapload)
 	. = ..()
-	SSplanets.addTurf(src)
+	//SSplanets.addTurf(src) //Already added, no need to add it twice.
 	set_light(2, 2, "#FFBBBB")
 
 /turf/simulated/sky/virgo3b/north
