@@ -101,3 +101,16 @@
 
 /turf/space/v3b_midpoint/CanZPass(atom, direction)
 	return 0			// We're not Space
+
+// Virgo 3b trufs
+/turf/space/transit/south/virgo3b/planet_fall/find_planet()
+	return planet_virgo3b
+
+/turf/space/transit/east/virgo3b/planet_fall/find_planet()
+	return planet_virgo3b
+
+/turf/simulated/sky/virgo3b/south/planet_fall/find_planet()
+	return planet_virgo3b
+
+/turf/space/v3b_midpoint/find_planet()
+	return planet_virgo3b

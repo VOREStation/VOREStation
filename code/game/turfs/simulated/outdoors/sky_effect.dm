@@ -1,4 +1,4 @@
-// Those turfs replace the sky step striggers
+// Those turfs replace the fall from sky step striggers
 /turf/Entered(var/atom/movable/am, var/atom/old_loc)
 	..()
 	if(!am.can_fall())
@@ -50,16 +50,3 @@
 
 /turf/proc/find_planet()
 	return
-
-// Virgo 3b trufs
-/turf/space/transit/south/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
-
-/turf/space/transit/east/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
-
-/turf/simulated/sky/virgo3b/south/planet_fall/find_planet()
-	return planet_virgo3b
-
-/turf/space/v3b_midpoint/find_planet()
-	return planet_virgo3b
