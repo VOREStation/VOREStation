@@ -1,4 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - bugfix: "fixed the \"Print\" options for OOC notes in examine text sending the notes to the wrong person"
