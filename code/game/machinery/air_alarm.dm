@@ -34,21 +34,20 @@
 	main_air_alarm = null
 	var/list/checks = list()
 	for(var/obj/machinery/alarm/AA in air_alarms)
+		if(exclude_self && AA == src)
+			continue
 		if(!(AA.stat & (NOPOWER|BROKEN)))
 			checks += AA
-
-	if(checks.len)
-		var/obj/machinery/alarm/new_mast = pick(checks)
-		main_air_alarm = WEAKREF(new_mast)
-		for(var/obj/machinery/alarm/AA in checks)
-			update_icon()
-		return TRUE
-	else
-		return FALSE
+	if(!checks.len)
+		return
+	main_air_alarm = WEAKREF(pick(checks))
+	for(var/obj/machinery/alarm/AA in checks)
+		AA.update_icon()
 
 /area/proc/main_air_alarm_is_operating()
 	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
 	return AM && !(AM.stat & (NOPOWER | BROKEN))
+
 
 
 /obj/machinery/alarm
@@ -148,6 +147,7 @@
 	alarm_area.air_alarms -= src
 	if(alarm_area.main_air_alarm?.resolve() == src)
 		alarm_area.elect_main_air_alarm(TRUE)
+	alarm_area = null
 	. = ..()
 
 /obj/machinery/alarm/proc/offset_airalarm()
@@ -419,8 +419,7 @@
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
-	spawn(10)
-		send_signal(m_id, list("init" = new_name))
+	addtimer(CALLBACK(src, PROC_REF(send_signal),m_id, list("init" = new_name)), 10, TIMER_DELETE_ME)
 
 /obj/machinery/alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
