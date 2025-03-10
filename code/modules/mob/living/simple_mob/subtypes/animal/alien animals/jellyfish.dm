@@ -81,7 +81,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/reproduction_cooldown = 0
 
-/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize()
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
