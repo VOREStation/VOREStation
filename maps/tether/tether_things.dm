@@ -2,25 +2,25 @@
 	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
-	teleport_z = Z_LEVEL_SURFACE_MINE
+	teleport_z = Z_LEVEL_TETHER_SURFACE_MINE
 
 /obj/effect/step_trigger/teleporter/from_mining/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
-	teleport_z = Z_LEVEL_SURFACE_LOW
+	teleport_z = Z_LEVEL_TETHER_SURFACE_LOW
 
 /obj/effect/step_trigger/teleporter/to_solars/Initialize(mapload)
 	. = ..()
 	teleport_x = world.maxx - 1
 	teleport_y = src.y
-	teleport_z = Z_LEVEL_SOLARS
+	teleport_z = Z_LEVEL_TETHER_SOLARS
 
 /obj/effect/step_trigger/teleporter/from_solars/Initialize(mapload)
 	. = ..()
 	teleport_x = 2
 	teleport_y = src.y
-	teleport_z = Z_LEVEL_SURFACE_LOW
+	teleport_z = Z_LEVEL_TETHER_SURFACE_LOW
 
 /obj/effect/step_trigger/teleporter/wild/Initialize(mapload)
 	. = ..()
@@ -62,13 +62,13 @@
 	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
-	teleport_z = Z_LEVEL_PLAINS
+	teleport_z = GLOB.map_templates_loaded[Z_NAME_TETHER_PLAINS]
 
 /obj/effect/step_trigger/teleporter/from_plains/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
-	teleport_z = Z_LEVEL_SURFACE_LOW
+	teleport_z = Z_LEVEL_TETHER_SURFACE_LOW
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/find_planet()
 	planet = planet_virgo3b

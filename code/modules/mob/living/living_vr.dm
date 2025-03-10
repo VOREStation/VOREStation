@@ -95,7 +95,7 @@
 		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
 	if(ooc_notes_dislikes)
 		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(src, span_chatexport("[src]'s Metainfo:<br>[msg]"))
+	to_chat(user, span_chatexport("[src]'s Metainfo:<br>[msg]"))
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
