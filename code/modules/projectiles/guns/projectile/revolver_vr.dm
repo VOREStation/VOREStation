@@ -16,4 +16,3 @@
 	ammo_type = /obj/item/ammo_casing/a380
 	max_ammo = 8
 	multiple_sprites = 1
-

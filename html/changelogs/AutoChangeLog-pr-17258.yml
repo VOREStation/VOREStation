@@ -1,0 +1,10 @@
+author: "Will & Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds a nevrean plush with two variants, normal and security."
+  - qol: "Goes through and gives plushies speech bubbles pertaining to what they are."
+  - bugfix: "Fixes it so plushies now properly speak."
+  - qol: "Makes it so any interaction with plushies will play their phrase, NOT just disarm-intenting them (This was never made clear that disarm intent makes them speak.)"
+  - code_imp: "Gets rid of a few non-existent base paths by converting one of the paths into the base one. (plushy/therapy & plushies/squid)"
+  - bugfix: "Fixes the toaster from having the sus plushie sound."
+  - code_imp: "Changed some timers that were calling a proc that just set a var to false. Instead, we now use a varset_callback timer there."

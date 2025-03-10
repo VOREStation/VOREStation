@@ -91,6 +91,3 @@
 		out.Insert(I, "", 2, frame_num++, 0, frame[2])
 
 	return out
-
-
-

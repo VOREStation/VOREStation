@@ -23,4 +23,3 @@
 	log_debug("canister_leak event: Canister [C] ([C.x],[C.y],[C.z]) destroyed.")
 	C.health = 0
 	C.healthcheck()
-
