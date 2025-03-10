@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - config: "the example now has the correct flags for the BUILD and SOUND permissions"

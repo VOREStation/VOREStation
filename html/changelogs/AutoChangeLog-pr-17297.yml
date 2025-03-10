@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "myelamine properly clots your external wounds"
-  - balance: "myelamine now applies an up-front heal for bleeding wounds when clotting them."
-  - qol: "myelamine now ACTUALLY heals internal wounds if you take a 10u dose of it. No more 'I took 10u and it had 0.1 damage remaining and I bled out 10 minutes later'"
-  - spellcheck: "myelamine has an updated description, informing you that it doesn't heal JUST internal wounds, but it also heals external wounds."
-  - spellcheck: "myelamine now accurately tells you via the chemmaster that it clots MORE than just internal hemorrhages. It additionally tells you the ideal dose for wound healing."

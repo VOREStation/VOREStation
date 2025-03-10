@@ -48,9 +48,6 @@
 	invisibility = 0
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
-	icon_state = ""
-	invisibility = 0
 
 /obj/effect/step_trigger/lost_in_space
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
