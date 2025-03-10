@@ -31,6 +31,7 @@ export type occupant = {
   intOrgan: internalOrgan[];
   blind: BooleanLike;
   nearsighted: BooleanLike;
+  brokenspine: BooleanLike;
   livingPrey: number;
   humanPrey: number;
   objectPrey: number;
