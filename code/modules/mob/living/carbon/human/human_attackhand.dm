@@ -35,7 +35,7 @@
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
 	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
-  
+
 	if(is_incorporeal())
 		return
 

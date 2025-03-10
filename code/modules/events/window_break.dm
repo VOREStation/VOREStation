@@ -57,7 +57,7 @@
 			if(!(neighbor in frontier_set) && !(neighbor in explored_set))
 				frontier_set += neighbor
 	return result_set
-	
+
 
 
 /datum/event/window_break/start()

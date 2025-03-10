@@ -87,7 +87,7 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/proc/print_ooc_notes_to_chat(mob/user)
+/mob/living/proc/print_ooc_notes_chat(mob/user)
 	if(!ooc_notes)
 		return
 	var/msg = ooc_notes

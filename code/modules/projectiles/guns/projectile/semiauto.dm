@@ -63,4 +63,3 @@
 	The semi-automatic revolving mechanism offers no real advantage, but some colonists swear by it. \
 	Uses .44 magnum revolver rounds."
 	icon_state = "vintagerevolvingrifle"
-
