@@ -147,7 +147,7 @@
 
 //Officer Crewsuit (GOLD, X)
 //The best of the bunch - at the time, this would have been almost cutting edge
-//Now it's good, but it's badly outclassed by the hot shit that the TSCs and such can get 
+//Now it's good, but it's badly outclassed by the hot shit that the TSCs and such can get
 /obj/item/clothing/head/helmet/space/void/refurb/officer
 	name = "vintage officer's voidsuit helmet"
 	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. This variant appears to be an officer's, and has the best protection of all the old models."
@@ -214,7 +214,7 @@
 			/obj/item/gps,
 			/obj/item/radio/beacon,
 			)
-			
+
 //Scientist Crewsuit (PURPLE, O)
 //Baseline values are slightly worse than the gray crewsuit, but it has significantly better Energy protection and is the only other suit with 100% rad immunity besides the engi suit
 /obj/item/clothing/head/helmet/space/void/refurb/research
