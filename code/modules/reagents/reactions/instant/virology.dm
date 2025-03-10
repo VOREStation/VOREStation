@@ -56,6 +56,7 @@
 	var/level_max = 2
 
 /decl/chemical_reaction/instant/mix_virus/picky
+	id = "mixviruspicky"
 	var/list/datum/symptom/symptoms
 
 /decl/chemical_reaction/instant/mix_virus/on_reaction(datum/reagents/holder)
@@ -156,6 +157,6 @@
 	name = REAGENT_ANTIBODIES
 	id = "antibodiesmix"
 	result = REAGENT_ID_ANTIBODIES
-	required_reagents = list(REAGENT_ID_VACCINE)
+	required_reagents = list(REAGENT_ID_VACCINE = 1)
 	catalysts = list(REAGENT_ID_INAPROVALINE = 0.1)
 	result_amount = 0.5
