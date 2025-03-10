@@ -22,6 +22,11 @@ export { loadSourceMaps };
 export const setupLink = () => new LinkServer();
 
 class LinkServer {
+  wss: any;
+  httpServer: http.Server<
+    typeof http.IncomingMessage,
+    typeof http.ServerResponse
+  >;
   constructor() {
     logger.log('setting up');
     this.wss = null;

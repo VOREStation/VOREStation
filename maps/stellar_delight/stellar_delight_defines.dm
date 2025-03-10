@@ -6,7 +6,7 @@
 		"gateway" = 5,
 		"youcanttaketheskyfromme" = 200,
 		"intothedark" = 200,
-		"above3b" = 200
+		"above3b" = 200,
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -17,7 +17,7 @@
 	path = "stellardelight"
 
 	use_overmap = TRUE
-	overmap_z = Z_LEVEL_OVERMAP
+	overmap_z = Z_NAME_OVERMAP
 	overmap_size = 99
 	overmap_event_areas = 200
 	usable_email_tlds = list("virgo.nt")
@@ -32,7 +32,8 @@
 	holomap_smoosh = list(list(
 		Z_LEVEL_SHIP_LOW,
 		Z_LEVEL_SHIP_MID,
-		Z_LEVEL_SHIP_HIGH))
+		Z_LEVEL_SHIP_HIGH,
+		))
 
 	station_name  = "NRV Stellar Delight"
 	station_short = "Stellar Delight"
@@ -70,7 +71,7 @@
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
 							NETWORK_TELECOM,
-							NETWORK_HALLS
+							NETWORK_HALLS,
 							)
 	secondary_networks = list(
 							NETWORK_ERT,
@@ -81,7 +82,7 @@
 							NETWORK_ALARM_POWER,
 							NETWORK_ALARM_FIRE,
 							NETWORK_TALON_HELMETS,
-							NETWORK_TALON_SHIP
+							NETWORK_TALON_SHIP,
 							)
 
 	bot_patrolling = FALSE
@@ -108,7 +109,7 @@
 
 		/area/medical/cryo,
 		/area/holodeck_control,
-		/area/tcommsat/chamber
+		/area/tcommsat/chamber,
 		)
 
 	unit_test_exempt_from_atmos = list() //it maint
@@ -116,51 +117,51 @@
 	unit_test_z_levels = list(
 		Z_LEVEL_SHIP_LOW,
 		Z_LEVEL_SHIP_MID,
-		Z_LEVEL_SHIP_HIGH
-	)
+		Z_LEVEL_SHIP_HIGH,
+		)
 
 	lateload_z_levels = list(
-		list("Ship - Central Command"),
-		list("Ship - Misc"), //Shuttle transit zones, holodeck templates, etc
-		list("V3b Asteroid Field"),
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
-		list("Debris Field - Z1 Space"),
-		list("Fuel Depot - Z1 Space"),
-		list("Overmap"),
-		list("Offmap Ship - Talon V2")
+		list(Z_NAME_SHIP_CENTCOM), // Aliased to Z_NAME_ALIAS_CENTCOM
+		list(Z_NAME_SHIP_MISC), //Aliased to Z_NAME_ALIAS_MISC: Shuttle transit zones, holodeck templates, etc
+		list(Z_NAME_SPACE_ROCKS),
+		list(Z_NAME_BEACH, Z_NAME_BEACH_CAVE),
+		list(Z_NAME_AEROSTAT, Z_NAME_AEROSTAT_SURFACE),
+		list(Z_NAME_DEBRISFIELD),
+		list(Z_NAME_FUELDEPOT),
+		list(Z_NAME_OVERMAP),
+		list(Z_NAME_OFFMAP1),
 		)
 
 	lateload_gateway = list(
-		list("Gateway - Carp Farm"),
-		list("Gateway - Snow Field"),
-		list("Gateway - Listening Post"),
-		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
-		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
-		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
-		list("Gateway - Wild West")
+		list(Z_NAME_GATEWAY_CARP_FARM),
+		list(Z_NAME_GATEWAY_SNOW_FIELD),
+		list(Z_NAME_GATEWAY_LISTENING_POST),
+		list(list(Z_NAME_GATEWAY_HONLETH_A, Z_NAME_GATEWAY_HONLETH_B)),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_A,Z_NAME_GATEWAY_ARYNTHI_A),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_B,Z_NAME_GATEWAY_ARYNTHI_B),
+		list(Z_NAME_GATEWAY_WILD_WEST),
 		)
 
 	lateload_overmap = list(
-		list("Grass Cave")
+		list(Z_NAME_OM_GRASS_CAVE),
 		)
 
 	lateload_redgate = list(
-		list("Redgate - Teppi Ranch"),
-		list("Redgate - Innland"),
-//		list("Redgate - Abandoned Island"),	//This will come back later
-		list("Redgate - Dark Adventure"),
-		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
-		list("Redgate - Star Dog"),
-		list("Redgate - Hotsprings"),
-		list("Redgate - Rain City"),
-		list("Redgate - Islands Underwater","Redgate - Islands"),
-		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
-		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town"),
-		list("Redgate - Laserdome"),
-		list("Redgate - Cascading Falls"),
-		list("Redgate - Jungle Underground", "Redgate - Jungle"),
-		list("Redgate - Facility")
+		list(Z_NAME_REDGATE_TEPPI_RANCH),
+		list(Z_NAME_REDGATE_INNLAND),
+//		list(Z_NAME_REDGATE_ABANDONED_ISLAND),	//This will come back later
+		list(Z_NAME_REDGATE_DARK_ADVENTURE),
+		list(Z_NAME_REDGATE_EGGNOG_CAVE, Z_NAME_REDGATE_EGGNOG_TOWN),
+		list(Z_NAME_REDGATE_STAR_DOG),
+		list(Z_NAME_REDGATE_HOTSPRINGS),
+		list(Z_NAME_REDGATE_RAIN_CITY),
+		list(Z_NAME_REDGATE_ISLANDS_UNDERWATER, Z_NAME_REDGATE_ISLANDS),
+		list(Z_NAME_REDGATE_MOVING_TRAIN, Z_NAME_REDGATE_MOVING_TRAIN_UPPER),
+		list(Z_NAME_REDGATE_FANTASY_DUNGEON, Z_NAME_REDGATE_FANTASY_TOWN),
+		list(Z_NAME_REDGATE_LASERDOME),
+		list(Z_NAME_REDGATE_CASCADING_FALLS),
+		list(Z_NAME_REDGATE_JUNGLE_CAVE, Z_NAME_REDGATE_JUNGLE),
+		list(Z_NAME_REDGATE_FACILITY),
 		)
 
 	ai_shell_restricted = TRUE
@@ -168,22 +169,24 @@
 		Z_LEVEL_SHIP_LOW,
 		Z_LEVEL_SHIP_MID,
 		Z_LEVEL_SHIP_HIGH,
-		Z_LEVEL_MISC,
-		Z_LEVEL_BEACH,
-		Z_LEVEL_AEROSTAT
+		Z_NAME_ALIAS_MISC,
+		Z_NAME_BEACH,
+		Z_NAME_AEROSTAT,
 		)
 
 /*
-	belter_docked_z = 		list(Z_LEVEL_SPACE_LOW)
-	belter_transit_z =	 	list(Z_LEVEL_MISC)
-	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2)
+	belter_docked_z = 		list(Z_LEVEL_TETHER_SPACE_LOW)
+	belter_transit_z =	 	list(Z_NAME_ALIAS_MISC)
+	belter_belt_z = 		list(Z_NAME_TETHER_ROGUEMINE_1,
+						 		 Z_NAME_TETHER_ROGUEMINE_2)
 
-	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
-	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
+	mining_station_z =		list(Z_LEVEL_TETHER_SPACE_LOW)
+	mining_outpost_z =		list(Z_LEVEL_TETHER_SURFACE_MINE)
 */
-	planet_datums_to_make = list(/datum/planet/virgo3b,
-								/datum/planet/virgo4)
+	planet_datums_to_make = list(
+		/datum/planet/virgo3b,
+		/datum/planet/virgo4,
+		)
 
 /datum/map/stellar_delight/get_map_info()
 	. = list()
@@ -196,8 +199,8 @@
 
 /datum/map/stellar_delight/perform_map_generation()
 
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SPACE_ROCKS, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)         // Create the mining ore distribution map.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_NAME_SPACE_ROCKS, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_NAME_SPACE_ROCKS, 64, 64)         // Create the mining ore distribution map.
 	return 1
 
 
@@ -206,10 +209,10 @@
 	use_stars = FALSE
 
 /datum/planet/virgo3b
-	expected_z_levels = list(Z_LEVEL_CENTCOM)
+	expected_z_levels = list(Z_NAME_ALIAS_CENTCOM)
 /datum/planet/virgo4
 	expected_z_levels = list(
-		Z_LEVEL_BEACH
+		Z_NAME_BEACH
 	)
 
 /obj/effect/overmap/visitable/ship/stellar_delight/build_skybox_representation()
@@ -266,16 +269,22 @@
 		return
 
 	new associated_map_datum(using_map, z)
+	return ..()
+
+/datum/map_z_level/ship_lateload/New(datum/map/map, mapZ)
+	z = mapZ
+	return ..(map)
 
 /datum/map_template/ship_lateload/ship_centcom
-	name = "Ship - Central Command"
+	name = Z_NAME_SHIP_CENTCOM
 	desc = "Central Command lives here!"
 	mappath = "maps/stellar_delight/ship_centcom.dmm"
+	name_alias = Z_NAME_ALIAS_CENTCOM
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/ship_centcom
 
 /datum/map_z_level/ship_lateload/ship_centcom
-	z = Z_LEVEL_CENTCOM
+	//z = Z_NAME_ALIAS_CENTCOM
 	name = "Centcom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/floor/outdoors/rocks
@@ -284,20 +293,21 @@
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_template/ship_lateload/ship_misc
-	name = "Ship - Misc"
+	name = Z_NAME_SHIP_MISC
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = "maps/stellar_delight/ship_misc.dmm"
+	name_alias = Z_NAME_ALIAS_MISC
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/misc
 
 /datum/map_z_level/ship_lateload/misc
-	z = Z_LEVEL_MISC
+	//z = Z_NAME_ALIAS_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 #include "../submaps/space_rocks/space_rocks.dm"
 /datum/map_template/ship_lateload/space_rocks
-	name = "V3b Asteroid Field"
+	name = Z_NAME_SPACE_ROCKS
 	desc = "Space debris is common in V3b's orbit due to the proximity of Virgo 3"
 	mappath = "maps/submaps/space_rocks/space_rocks.dmm"
 
@@ -305,31 +315,31 @@
 
 /datum/map_template/ship_lateload/space_rocks/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_SPACE_ROCKS), 60, /area/sdmine/unexplored, /datum/map_template/space_rocks)
-	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_SPACE_ROCKS, world.maxx - 4, world.maxy - 4)
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)
+	seed_submaps(list(z), 60, /area/sdmine/unexplored, /datum/map_template/space_rocks)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)
 
 /datum/map_z_level/ship_lateload/space_rocks
-	z = Z_LEVEL_SPACE_ROCKS
-	name = "V3b Asteroid Field"
+	//z = Z_NAME_SPACE_ROCKS
+	name = Z_NAME_SPACE_ROCKS
 	base_turf = /turf/space
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_template/ship_lateload/overmap
-	name = "Overmap"
+	name = Z_NAME_OVERMAP
 	desc = "Overmap lives here :3"
 	mappath = "maps/stellar_delight/overmap.dmm"
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/overmap
 
 /datum/map_z_level/ship_lateload/overmap
-	z = Z_LEVEL_OVERMAP
-	name = "Overmap"
+	//z = Z_NAME_OVERMAP
+	name = Z_NAME_OVERMAP
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 #include "../expedition_vr/aerostat/_aerostat_science_outpost.dm"
 /datum/map_template/common_lateload/away_aerostat
-	name = "Remmi Aerostat - Z1 Aerostat"
+	name = Z_NAME_AEROSTAT
 	desc = "The Virgo 2 Aerostat away mission."
 	mappath = "maps/expedition_vr/aerostat/aerostat_science_outpost.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
@@ -342,7 +352,7 @@
 	initial_generic_waypoints = list("sr-c","sr-n","sr-s")
 	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 
-	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
+	extra_z_levels = list(Z_NAME_SPACE_ROCKS)
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
 /obj/effect/overmap/visitable/sector/virgo3b/Initialize(mapload)
@@ -378,4 +388,4 @@
 		atc.msg(message)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
-	return list(Z_LEVEL_SPACE_ROCKS)
+	return list(Z_NAME_SPACE_ROCKS)
