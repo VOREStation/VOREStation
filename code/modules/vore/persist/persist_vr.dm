@@ -135,6 +135,7 @@
 	prefs.update_preference_by_type(/datum/preference/color/human/ears_color1, rgb(character.r_ears, character.g_ears, character.b_ears))
 	prefs.update_preference_by_type(/datum/preference/color/human/ears_color2, rgb(character.r_ears2, character.g_ears2, character.b_ears2))
 	prefs.update_preference_by_type(/datum/preference/color/human/ears_color3, rgb(character.r_ears3, character.g_ears3, character.b_ears3))
+	prefs.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, character.a_ears)
 
 	// secondary ears
 	prefs.ear_secondary_style = character.ear_secondary_style?.name
@@ -143,11 +144,13 @@
 	prefs.update_preference_by_type(/datum/preference/color/human/tail_color1, rgb(character.r_tail, character.g_tail, character.b_tail))
 	prefs.update_preference_by_type(/datum/preference/color/human/tail_color2, rgb(character.r_tail2, character.g_tail2, character.b_tail2))
 	prefs.update_preference_by_type(/datum/preference/color/human/tail_color3, rgb(character.r_tail3, character.g_tail3, character.b_tail3))
+	prefs.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, character.a_tail)
 
 	// TODO: This will break if update_preference_by_type starts to respect is_accessible
 	prefs.update_preference_by_type(/datum/preference/color/human/wing_color1, rgb(character.r_wing, character.g_wing, character.b_wing))
 	prefs.update_preference_by_type(/datum/preference/color/human/wing_color2, rgb(character.r_wing2, character.g_wing2, character.b_wing2))
 	prefs.update_preference_by_type(/datum/preference/color/human/wing_color3, rgb(character.r_wing3, character.g_wing3, character.b_wing3))
+	prefs.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, character.a_wing)
 
 	prefs.custom_species	= character.custom_species
 	prefs.digitigrade		= character.digitigrade
