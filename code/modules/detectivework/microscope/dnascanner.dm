@@ -15,7 +15,7 @@
 	var/last_process_worldtime = 0
 	var/report_num = 0
 
-/obj/machinery/dnaforensics/Initialize()
+/obj/machinery/dnaforensics/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

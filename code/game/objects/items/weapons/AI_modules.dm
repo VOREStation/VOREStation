@@ -270,7 +270,7 @@ AI MODULES
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
 
 // VOREstation edit: use map default laws
-/obj/item/aiModule/reset/Initialize()
+/obj/item/aiModule/reset/Initialize(mapload)
 	. = ..()
 	laws = new global.using_map.default_law_type // Pull from loaded map
 

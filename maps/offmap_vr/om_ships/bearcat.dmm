@@ -597,9 +597,6 @@
 /obj/machinery/light_switch{
 	pixel_x = 28
 	},
-/obj/machinery/light_switch{
-	pixel_x = 28
-	},
 /obj/structure/closet/crate{
 	dir = 2
 	},

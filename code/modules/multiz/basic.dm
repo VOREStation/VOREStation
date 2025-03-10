@@ -8,7 +8,7 @@ var/list/z_levels = list()// Each bit re... haha just kidding this is a list of 
 			z_levels.len = i
 		z_levels[i] = TRUE
 
-/obj/effect/landmark/map_data/Initialize()
+/obj/effect/landmark/map_data/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_QDEL
 

@@ -29,7 +29,7 @@
 		/obj/item/clothing/head/helmet/space
 		)
 
-/obj/machinery/washing_machine/Initialize()
+/obj/machinery/washing_machine/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

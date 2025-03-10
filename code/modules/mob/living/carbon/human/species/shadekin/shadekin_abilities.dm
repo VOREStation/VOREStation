@@ -133,35 +133,38 @@
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
-		custom_emote(1,"phases in!")
-		sleep(5) //The duration of the TP animation
-		canmove = original_canmove
-		alpha = initial(alpha)
-		remove_modifiers_of_type(/datum/modifier/shadekin_phase_vision)
+		INVOKE_ASYNC(src, PROC_REF(custom_emote),1,"phases in!")
 
-		//Potential phase-in vore
-		if(can_be_drop_pred) //Toggleable in vore panel
-			var/list/potentials = living_mobs(0)
-			if(potentials.len)
-				var/mob/living/target = pick(potentials)
-				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
-					target.forceMove(vore_selected)
-					to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
+		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove), 5, TIMER_DELETE_ME)
 
-		ability_flags &= ~AB_PHASE_SHIFTING
 
-		//Affect nearby lights
-		var/destroy_lights = 0
+/mob/living/carbon/human/proc/shadekin_complete_phase_in(var/original_canmove)
+	canmove = original_canmove
+	alpha = initial(alpha)
+	remove_modifiers_of_type(/datum/modifier/shadekin_phase_vision)
 
-		for(var/obj/machinery/light/L in machines)
-			if(L.z != z || get_dist(src,L) > 10)
-				continue
+	//Potential phase-in vore
+	if(can_be_drop_pred) //Toggleable in vore panel
+		var/list/potentials = living_mobs(0)
+		if(potentials.len)
+			var/mob/living/target = pick(potentials)
+			if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
+				target.forceMove(vore_selected)
+				to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
-			if(prob(destroy_lights))
-				spawn(rand(5,25))
-					L.broken()
-			else
-				L.flicker(10)
+	ability_flags &= ~AB_PHASE_SHIFTING
+
+	//Affect nearby lights
+	var/destroy_lights = 0
+
+	for(var/obj/machinery/light/L in machines)
+		if(L.z != z || get_dist(src,L) > 10)
+			continue
+
+		if(prob(destroy_lights))
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, broken)), rand(5,25), TIMER_DELETE_ME)
+		else
+			L.flicker(10)
 
 /mob/living/carbon/human/proc/phase_out(var/turf/T)
 	if(!(ability_flags & AB_PHASE_SHIFTED))

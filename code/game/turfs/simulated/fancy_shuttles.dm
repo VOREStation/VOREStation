@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	layer = DISPOSAL_LAYER
 	alpha = 90
 
-/obj/effect/fancy_shuttle_floor_preview/Initialize()
+/obj/effect/fancy_shuttle_floor_preview/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/icon_file
 	var/fancy_shuttle_tag
 
-/obj/effect/floor_decal/fancy_shuttle/Initialize()
+/obj/effect/floor_decal/fancy_shuttle/Initialize(mapload)
 	var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
 	if(!F)
 		warning("Fancy shuttle floor decal at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")

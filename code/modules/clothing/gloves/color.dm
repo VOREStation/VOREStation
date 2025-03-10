@@ -18,7 +18,7 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-/obj/item/clothing/gloves/fyellow/Initialize()
+/obj/item/clothing/gloves/fyellow/Initialize(mapload)
 	. = ..()
 	//Picks a value between 0 and 1.25, in 5% increments // VOREStation edit
 	var/shock_pick = rand(0,15) // VOREStation Edit

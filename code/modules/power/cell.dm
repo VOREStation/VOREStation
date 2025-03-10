@@ -36,7 +36,7 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-/obj/item/cell/Initialize()
+/obj/item/cell/Initialize(mapload)
 	. = ..()
 	c_uid = cell_uid++
 	update_icon()

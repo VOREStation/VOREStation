@@ -197,10 +197,10 @@
 		humanform.species.update_misc_tabs(src)
 
 /mob/living/simple_mob/protean_blob/updatehealth()
+	if(!humanform)
+		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
 	if(humanform.nano_dead_check(src))
 		return
-	if(!humanform)
-		return ..()
 
 	//Set the max
 	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
@@ -324,6 +324,8 @@
 
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
+	if(!humanform)
+		CRASH("A protean_blob calling Life() has no humanform! Src = [src] ckey = [ckey]")
 	if(!humanform.nano_dead_check(src))
 		if(. && istype(refactory) && humanform)
 			if(!healing && (human_brute || human_burn) && refactory.get_stored_material(MAT_STEEL) >= 100)
@@ -654,6 +656,8 @@
 	return ..()
 
 /mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
+	if(!humanform)
+		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
 	humanform.handle_mutations_and_radiation()
 
 /mob/living/simple_mob/protean_blob/update_icon()

@@ -42,7 +42,7 @@
 	var/randomize = TRUE
 	var/square_chance = 10
 
-/obj/item/soap/Initialize()
+/obj/item/soap/Initialize(mapload)
 	if(randomize && prob(square_chance))
 		icon_state = "[icon_state]-alt"
 	. = ..()

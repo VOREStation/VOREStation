@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	var/datum/wires/suit_storage_unit/wires = null
 
-/obj/machinery/suit_cycler/Initialize()
+/obj/machinery/suit_cycler/Initialize(mapload)
 	. = ..()
 
 	departments = load_departments()

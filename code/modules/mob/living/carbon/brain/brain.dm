@@ -10,7 +10,7 @@
 	icon_state = "brain1"
 	no_vore = TRUE
 
-/mob/living/carbon/brain/Initialize()
+/mob/living/carbon/brain/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R

@@ -31,7 +31,7 @@
 	light_overlay = "helmet_light"
 	light_range = 4
 
-/obj/item/clothing/head/helmet/space/Initialize()
+/obj/item/clothing/head/helmet/space/Initialize(mapload)
 	. = ..()
 	if(camera_networks)
 		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
@@ -92,7 +92,7 @@
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
 //VOREStation edit start - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
-/obj/item/clothing/suit/space/Initialize()
+/obj/item/clothing/suit/space/Initialize(mapload)
 	. = ..()
 	if(type == /obj/item/clothing/suit/space)
 		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/suit/mob_vr_teshari.dmi')
