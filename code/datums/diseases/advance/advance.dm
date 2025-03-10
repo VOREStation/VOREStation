@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s_processing = FALSE
 	var/id = ""
 
-/datum/disease/advance/New(process = 1, datum/disease/advance/D)
+/datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
 	if(istype(D))
 		for(var/datum/symptom/S in D.symptoms)
 			symptoms += new S.type
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	return TRUE
 
-/datum/disease/advance/cure(resistance=1)
+/datum/disease/advance/cure(resistance = TRUE)
 	if(affected_mob)
 		var/id = "[GetDiseaseID()]"
 		if(resistance && !(id in affected_mob.GetResistances()))
@@ -259,14 +259,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
-		Refresh(1)
 	return
 
 /datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
-		Refresh(1)
 	return
 
 // Randomly remove a symptom.
@@ -275,8 +273,16 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/s = safepick(symptoms)
 		if(s)
 			RemoveSymptom(s)
-			Refresh(1)
+			Refresh(TRUE)
 	return
+
+// Randomly neuter a symptom.
+/datum/disease/advance/proc/Neuter()
+	if(symptoms.len)
+		var/s safepick(symptoms)
+		if(s)
+			NeuterSymptom(s)
+			Refresh(TRUE)
 
 // Name the disease.
 /datum/disease/advance/proc/AssignName(name = "Unknown")
@@ -317,6 +323,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	symptoms -= S
 	return
 
+/datum/disease/advance/proc/NeuterSymptom(datum/symptom/S)
+	if(!S.neutered)
+		S.neutered = TRUE
+		S.name += " (neutered)"
+		S.OnRemove(src)
+
 // Mix a list of advance diseases and return the mixed result.
 /proc/Advance_Mix(list/D_list)
 
@@ -344,7 +356,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	// Should be only 1 entry left, but if not let's only return a single entry
 	var/datum/disease/advance/to_return = pick(diseases)
-	to_return.Refresh(1)
+	to_return.Refresh(new_name = TRUE)
 	return to_return
 
 /proc/SetViruses(datum/reagent/R, list/data)

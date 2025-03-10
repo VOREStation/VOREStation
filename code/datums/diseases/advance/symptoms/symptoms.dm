@@ -25,6 +25,8 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 	var/base_message_chance = 10
 	var/power = 1
+	// If the symptom is neutered or not. If it is, it will only affect stats
+	var/neutered = FALSE
 
 /datum/symptom/New()
 	var/list/S = GLOB.list_symptoms
@@ -36,6 +38,8 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when processing of the advance disease, which holds this symptom, starts.
 /datum/symptom/proc/Start(datum/disease/advance/A)
+	if(neutered)
+		return FALSE
 	next_activaction = world.time + rand(symptom_delay_min, symptom_delay_max)
 	return TRUE
 
@@ -44,11 +48,15 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when the advance disease is going to be deleted or when the advance disease stops processing.
 /datum/symptom/proc/End(datum/disease/advance/A)
+	if(neutered)
+		return FALSE
 	return TRUE
 
 // Called when the disease activates. It's what makes your diseases work!
 /datum/symptom/proc/Activate(datum/disease/advance/A)
 	if(!A)
+		return FALSE
+	if(neutered)
 		return FALSE
 	if(world.time < next_activaction)
 		return FALSE
@@ -58,10 +66,12 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when the host dies
 /datum/symptom/proc/OnDeath(datum/disease/advance/A)
-	return
+	return !neutered
 
 // Called when the stage changes
 /datum/symptom/proc/OnStageChange(datum/disease/advance/A)
+	if(neutered)
+		return FALSE
 	return TRUE
 
 /datum/symptom/proc/OnAdd(datum/disease/advance/A)
@@ -81,6 +91,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	data["resistance"] = resistance
 	data["stage_speed"] = stage_speed
 	data["transmission"] = transmission
+	data["neutered"] = neutered
 	data["level"] = level
 	data["threshold_desc"] = threshold_descs
 	return data

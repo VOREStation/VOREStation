@@ -83,6 +83,8 @@ BONUS
 					H.drip(bleeding_rng)
 
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
+	if(neutered)
+		return
 	var/mob/living/M = A.affected_mob
 	M.visible_message(span_danger("[M] starts swelling grotesquely!"))
 	addtimer(CALLBACK(src, PROC_REF(pop), A, M), 10 SECONDS)

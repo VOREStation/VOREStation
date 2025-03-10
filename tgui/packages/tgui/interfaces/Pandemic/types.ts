@@ -49,6 +49,7 @@ type Symptom = {
   stage_speed: number;
   transmission: number;
   level: number;
+  neutered: BooleanLike;
   treshod_desc: Threshold[];
 };
 
