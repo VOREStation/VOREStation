@@ -232,11 +232,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			severity = "Unknown"
 
 /datum/disease/advance/proc/GenerateCure(list/properties = list())
-    if(properties && length(properties))
-        var/res = clamp(properties["resistance"] - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-        cures = list(GLOB.advance_cures[res])
-        cure_text = cures[1]
-    return
+	if(properties && length(properties))
+		var/res = clamp(properties["resistance"] - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+		cures = list(GLOB.advance_cures[res])
+		cure_text = cures[1]
+	return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
 /datum/disease/advance/proc/Evolve(min_level, max_level)

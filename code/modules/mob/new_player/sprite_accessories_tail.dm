@@ -126,22 +126,22 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/rabbit
-    name = "rabbit, colourable (vwag)"
-    desc = ""
-    icon_state = "rabbit"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "rabbit_w"
+	name = "rabbit, colourable (vwag)"
+	desc = ""
+	icon_state = "rabbit"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "rabbit_w"
 
 /datum/sprite_accessory/tail/rabbitalt
-    name = "rabbit, dual color (vwag)"
-    desc = ""
-    icon_state = "rabbitalt"
-    extra_overlay = "rabbitalt-tips"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "rabbitalt_w"
-    extra_overlay_w = "rabbitalt-tips_w"
+	name = "rabbit, dual color (vwag)"
+	desc = ""
+	icon_state = "rabbitalt"
+	extra_overlay = "rabbitalt-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "rabbitalt_w"
+	extra_overlay_w = "rabbitalt-tips_w"
 
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
@@ -1169,14 +1169,14 @@
 	extra_overlay = "ninekitsune-tips"
 
 /datum/sprite_accessory/tail/hideableninetails
-    name = "Kitsune 9-in-1 tail, colourable (vwag)"
-    desc = ""
-    icon_state = "ninekitsune"
-    extra_overlay = "ninekitsune-tips"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "foxtail_w"
-    extra_overlay_w = "foxtail-tips_w"
+	name = "Kitsune 9-in-1 tail, colourable (vwag)"
+	desc = ""
+	icon_state = "ninekitsune"
+	extra_overlay = "ninekitsune-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "foxtail_w"
+	extra_overlay_w = "foxtail-tips_w"
 
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail, colorable"
@@ -1702,16 +1702,16 @@
 	ckeys_allowed = list("arokha")
 
 /datum/sprite_accessory/tail/cabletail
-    name = "cabletail"
-    desc = "cabletail"
-    icon_state = "cabletail"
-    ckeys_allowed = list("tucker0666")
+	name = "cabletail"
+	desc = "cabletail"
+	icon_state = "cabletail"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/tail/featherfluff_tail
-    name = "featherfluff_tail"
-    desc = ""
-    icon_state = "featherfluff_tail"
-    ckeys_allowed = list("tucker0666")
+	name = "featherfluff_tail"
+	desc = ""
+	icon_state = "featherfluff_tail"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"

@@ -552,9 +552,9 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
 /area/proc/flag_check(var/flag, var/match_all = FALSE)
-    if(match_all)
-        return (flags & flag) == flag
-    return flags & flag
+	if(match_all)
+		return (flags & flag) == flag
+	return flags & flag
 
 // RS Port #658 Start
 /area/proc/check_phase_shift(var/mob/ourmob)

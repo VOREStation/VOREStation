@@ -536,7 +536,7 @@
 		holder = new /obj/item/organ/internal/mmi_holder/robot(target, 1, M)
 	else
 		holder = new /obj/item/organ/internal/mmi_holder(target, 1, M) // Fallback to old behavior if organic MMI or if no subtype exists.
-    //VOREstation edit end
+	//VOREstation edit end
 	target.internal_organs_by_name["brain"] = holder
 
 	if(M.brainmob && M.brainmob.mind)

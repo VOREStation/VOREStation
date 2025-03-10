@@ -8,11 +8,11 @@
 	random_color = FALSE
 
 /obj/item/tool/wirecutters/clippers/trimmers
-    name = "hedgetrimmers"
-    desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
-    icon_state = "hedget"
-    item_state = "hedget"
-    force = 7 //One point extra than standard wire cutters.
+	name = "hedgetrimmers"
+	desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
+	icon_state = "hedget"
+	item_state = "hedget"
+	force = 7 //One point extra than standard wire cutters.
 
 /obj/item/tool/wirecutters/clippers/trimmers/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return

@@ -134,12 +134,12 @@
 
 // This is about 0.896m^3 of atmosphere, which is enough to last for quite a while.
 /datum/gas_mixture/pod_air
-    volume = 2500
-    temperature = 293.150
-    total_moles = 104
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
 
 /datum/gas_mixture/pod_air/New()
-    . = ..()
-    gas = list(
-        GAS_O2 = 21,
-        GAS_N2 = 79)
+	. = ..()
+	gas = list(
+		GAS_O2 = 21,
+		GAS_N2 = 79)

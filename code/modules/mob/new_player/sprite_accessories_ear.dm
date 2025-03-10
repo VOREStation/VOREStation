@@ -1228,13 +1228,13 @@
 	ckeys_allowed = list("natje")
 
 /datum/sprite_accessory/ears/frost
-    name = "Frost antenna"
-    desc = ""
-    icon_state = "frosted_tips"
-    ckeys_allowed = list("tucker0666")
+	name = "Frost antenna"
+	desc = ""
+	icon_state = "frosted_tips"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/ears/sylv_pip
-    name = "sylveon ears and ribbons (Pip Shyner)"
-    desc = ""
-    icon_state = "pipears"
-    ckeys_allowed = list("phoaly")
+	name = "sylveon ears and ribbons (Pip Shyner)"
+	desc = ""
+	icon_state = "pipears"
+	ckeys_allowed = list("phoaly")

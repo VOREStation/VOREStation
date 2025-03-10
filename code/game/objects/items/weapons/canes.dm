@@ -72,11 +72,11 @@
 	icon_state = "whitecane"
 
 /obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
-    if(user.a_intent == I_HELP)
-        user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
-        return TRUE
-    else
-        . = ..()
+	if(user.a_intent == I_HELP)
+		user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
+		return TRUE
+	else
+		. = ..()
 
 
 //Code for Telescopic White Cane writen by Gozulio

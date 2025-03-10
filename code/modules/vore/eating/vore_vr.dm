@@ -135,7 +135,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 //
 //	Belly searching for simplifying other procs
-//  Mostly redundant now with belly-objects and isbelly(loc)
+//	Mostly redundant now with belly-objects and isbelly(loc)
 //
 /proc/check_belly(atom/movable/A)
 	return isbelly(A.loc)

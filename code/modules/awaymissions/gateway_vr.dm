@@ -38,28 +38,28 @@
 	icon_state = "key"
 
 /obj/machinery/gateway/centeraway/proc/entrydetect()
-    return
+	return
 
 /obj/machinery/gateway/centeraway/mcguffin/entrydetect()
-    if(key)
-        return
+	if(key)
+		return
 
-    var/list/spawners = list()
-    for(var/obj/effect/landmark/mcguffin_spawner/sp in world)
-        spawners += sp
+	var/list/spawners = list()
+	for(var/obj/effect/landmark/mcguffin_spawner/sp in world)
+		spawners += sp
 
-    var/obj/effect/landmark/mcguffin_spawner/the_cool_one = pick(spawners)
+	var/obj/effect/landmark/mcguffin_spawner/the_cool_one = pick(spawners)
 
-    var/atom/destination = get_turf(the_cool_one)
-    var/obj/structure/closet/CL = locate() in destination
-    if(CL)
-        destination = CL
+	var/atom/destination = get_turf(the_cool_one)
+	var/obj/structure/closet/CL = locate() in destination
+	if(CL)
+		destination = CL
 
-    if(!destination)
-        warning("A gateway is trying to spawn it's mcguffin but there are no mapped in spawner landmarks")
-        destination = get_turf(src)
+	if(!destination)
+		warning("A gateway is trying to spawn it's mcguffin but there are no mapped in spawner landmarks")
+		destination = get_turf(src)
 
-    key = new mcguffin_type(destination)
+	key = new mcguffin_type(destination)
 
 /obj/machinery/gateway/centeraway/mcguffin/Bumped(atom/movable/M as mob|obj)
 	if(!ready)	return

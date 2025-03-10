@@ -61,18 +61,18 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 
 // tucker0666 : Frost
 /datum/robolimb/zenghu_frost
-    company = "Zeng-Hu (Custom)"
-    desc = "This limb has realistic synthetic flesh covering with 'blue accents'."
-    icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/Frosty.dmi'
-    blood_color = "#45ccff"
-    lifelike = 1
-    skin_tone = 1
-    unavailable_to_build = 1
-    whitelisted_to = list("tucker0666")
+	company = "Zeng-Hu (Custom)"
+	desc = "This limb has realistic synthetic flesh covering with 'blue accents'."
+	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/Frosty.dmi'
+	blood_color = "#45ccff"
+	lifelike = 1
+	skin_tone = 1
+	unavailable_to_build = 1
+	whitelisted_to = list("tucker0666")
 
 /obj/item/disk/limb/zenghu_frost
-    company = "Zeng-Hu (Modified)"
-    catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
+	company = "Zeng-Hu (Modified)"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
 
 //Ported from CitRP
 /datum/robolimb/cyber_beast

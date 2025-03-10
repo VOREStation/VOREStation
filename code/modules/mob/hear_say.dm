@@ -184,13 +184,13 @@
 	return list("AI") // AI door!
 
 /proc/encode_html_emphasis(message)
-    var/tagged_message = message
-    for(var/delimiter in GLOB.speech_toppings)
-        var/regex/R = new("\\[delimiter](.+?)\\[delimiter]","g")
-        var/tag = GLOB.speech_toppings[delimiter]
-        tagged_message = R.Replace(tagged_message,"<[tag]>$1</[tag]>")
+	var/tagged_message = message
+	for(var/delimiter in GLOB.speech_toppings)
+		var/regex/R = new("\\[delimiter](.+?)\\[delimiter]","g")
+		var/tag = GLOB.speech_toppings[delimiter]
+		tagged_message = R.Replace(tagged_message,"<[tag]>$1</[tag]>")
 
-    return tagged_message
+	return tagged_message
 
 /mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/part_d, var/part_e, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
 	if(!client)
