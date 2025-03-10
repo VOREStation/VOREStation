@@ -121,7 +121,7 @@
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_gloves"
 
-/obj/item/clothing/gloves/ranger/Initialize()
+/obj/item/clothing/gloves/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_gloves")
 		name = "[glovecolor] ranger gloves"

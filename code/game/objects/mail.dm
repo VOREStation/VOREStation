@@ -61,7 +61,7 @@
 	stamp_max = 2
 	stamp_offset_y = 5
 
-/obj/item/mail/Initialize()
+/obj/item/mail/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 
@@ -306,7 +306,7 @@
 	points_per_crate = 0
 	closet_appearance = /decl/closet_appearance/crate/nanotrasen
 
-/obj/structure/closet/crate/mail/full/Initialize()
+/obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
 	var/list/mail_recipients = list()
 	for(var/mob/living/carbon/human/alive in player_list)
@@ -412,7 +412,7 @@
 
 // JUNK MAIL STUFF
 
-/obj/item/mail/junkmail/Initialize()
+/obj/item/mail/junkmail/Initialize(mapload)
 	. = ..()
 	junk_mail()
 
@@ -469,7 +469,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/paper/fluff/junkmail_generic/Initialize()
+/obj/item/paper/fluff/junkmail_generic/Initialize(mapload)
 	. = ..()
 	info = pick(
 		prob(5);"Hello! I am executive at Nanotrasen Nigel Takall. Due to accounting error all of my salary is stored in an account unreachable. In order to withdraw I am required to utilize your account to make a deposit to confirm my reality situation. In exchange for a temporary deposit I will give you a payment 1000 credits. All I need is access to your account. Will you be assistant please?",
@@ -492,7 +492,7 @@
 	name = "smudged paper"
 	icon_state = "scrap"
 
-/obj/item/paper/fluff/junkmail_redpill/Initialize()
+/obj/item/paper/fluff/junkmail_redpill/Initialize(mapload)
 	. = ..()
 	info = "You need to escape the simulation. Don't forget the numbers, they help you remember: '[rand(0,9)]*[rand(0,9)][rand(0,9)]...'"
 
@@ -500,7 +500,7 @@
 	name = "love letter"
 	icon_state = "paper_words"
 
-/obj/item/paper/fluff/love_letter/Initialize()
+/obj/item/paper/fluff/love_letter/Initialize(mapload)
 	. = ..()
 	info = "I HATE CARGO MAIL\n\"GRAA LEMME BREAK YOUR DOORS DOWN I GOTTA GIVE YOU MAIL\nREE YOU GOTTA GET YOUR MAIL I SORTED IT\nYOU'RE WASTIN YOUR TIME IF YOU DONT GET MAIL YOU NEED TO GET YOUR MAIL NOW\nWHY ARENT YO UGETTING YOUR MAIL RAAA\""
 

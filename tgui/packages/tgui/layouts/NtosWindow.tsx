@@ -10,9 +10,23 @@ import { Box, Button, Image } from 'tgui-core/components';
 
 import { Window } from './Window';
 
+type Header = { icon: string };
+
+type Data = {
+  PC_device_theme: string;
+  PC_batteryicon: string;
+  PC_showbatteryicon: boolean;
+  PC_batterypercent: number;
+  PC_ntneticon: string;
+  PC_stationdate: string;
+  PC_stationtime: string;
+  PC_programheaders: Header[];
+  PC_showexitprogram: boolean;
+};
+
 export const NtosWindow = (props) => {
   const { title, width = 575, height = 700, children } = props;
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     PC_device_theme,
     PC_batteryicon,

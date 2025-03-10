@@ -136,36 +136,42 @@ fi
 
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"
+
 	part "empty variable values"
 	if $grep -PU '{\n\t},' $map_files; then
 		echo
 		echo -e "${RED}ERROR: Empty variable value list detected in map file. Please remove the curly brackets entirely.${NC}"
 		FAILED=1
 	fi;
+
 	part "to_chat sanity"
 	if $grep -P 'to_chat\((?!.*,).*\)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: to_chat() missing arguments.${NC}"
 		FAILED=1
 	fi;
+
 	part "timer flag sanity"
 	if $grep -P 'addtimer\((?=.*TIMER_OVERRIDE)(?!.*TIMER_UNIQUE).*\)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: TIMER_OVERRIDE used without TIMER_UNIQUE.${NC}"
 		FAILED=1
 	fi
+
 	part "trailing newlines"
 	if $grep -PU '[^\n]$(?!\n)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
 		FAILED=1
 	fi
+
 	part "improper atom initialize args"
 	if $grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: Initialize override without 'mapload' argument.${NC}"
 		FAILED=1
 	fi;
+
 	part "tag"
 	#Checking for 'tag' set to something on maps
 	(! $grep -Pn '( |\t|;|{)tag( ?)=' $map_files)

@@ -346,7 +346,7 @@ var/global/list/paikeys = list()
 	icon_state = "broken"
 	pickup_sound = 'sound/items/pickup/card.ogg'
 	drop_sound = 'sound/items/drop/card.ogg'
-/obj/item/paiparts/Initialize()
+/obj/item/paiparts/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)

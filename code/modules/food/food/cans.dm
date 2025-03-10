@@ -16,7 +16,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COLA, 30)
 
@@ -28,7 +28,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/decaf_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/decaf_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 30)
 
@@ -42,7 +42,7 @@
 	pickup_sound = 'sound/items/pickup/disk.ogg'
 	cant_chance = 0
 
-/obj/item/reagent_containers/food/drinks/cans/waterbottle/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/waterbottle/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
@@ -54,7 +54,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 30)
 
@@ -65,7 +65,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/thirteenloko/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_THIRTEENLOKO, 30)
 
@@ -77,7 +77,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_DRGIBB, 30)
 
@@ -89,7 +89,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_DIETDRGIBB, 30)
 
@@ -101,7 +101,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/starkist/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/starkist/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BROWNSTAR, 30)
 
@@ -113,7 +113,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/starkistdecaf/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/starkistdecaf/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BROWNSTARDECAF, 30)
 
@@ -125,7 +125,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/space_up/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/space_up/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPACEUP, 30)
 
@@ -137,7 +137,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/lemon_lime/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/lemon_lime/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_LEMONLIME, 30)
 
@@ -149,7 +149,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/iced_tea/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/iced_tea/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ICETEA, 30)
 
@@ -161,7 +161,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/grape_juice/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/grape_juice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 30)
 
@@ -173,7 +173,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/tonic/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/tonic/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TONIC, 30)
 
@@ -184,7 +184,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/sodawater/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/sodawater/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
@@ -196,7 +196,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/gingerale/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/gingerale/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_GINGERALE, 30)
 
@@ -208,7 +208,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/root_beer/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/root_beer/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ROOTBEER, 30)
 
@@ -222,7 +222,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/kvass/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/kvass/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_KVASS, 30)
 
@@ -234,7 +234,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/kompot/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/kompot/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_KOMPOT, 30)
 
@@ -245,7 +245,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/boda/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/boda/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
@@ -256,7 +256,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/bodaplus/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/bodaplus/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
 	reagents.add_reagent(pick(list(
@@ -276,7 +276,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/redarmy/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/redarmy/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_POTATOJUICE, 15)
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
@@ -288,7 +288,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/arstbru/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/arstbru/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TURNIPJUICE, 30)
 
@@ -300,7 +300,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/terra_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/terra_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 25)
 	reagents.add_reagent(REAGENT_ID_IRON, 5)
@@ -314,7 +314,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/straw_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/straw_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_STRAWSODA, 30)
 
@@ -325,7 +325,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/apple_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/apple_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_APPLESODA, 30)
 
@@ -336,7 +336,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/lemon_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/lemon_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_LEMONSODA, 30)
 
@@ -347,7 +347,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/sarsaparilla/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/sarsaparilla/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SARSAPARILLA, 30)
 
@@ -358,7 +358,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/grape_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/grape_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_GRAPESODA, 30)
 
@@ -369,7 +369,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/orange_cola/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/orange_cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ORANGESODA, 30)
 
@@ -380,7 +380,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/baconsoda/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/baconsoda/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PORKSODA, 30)
 
@@ -395,7 +395,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/bepis/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/bepis/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BEPIS, 30)
 
@@ -407,7 +407,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/astrodew/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/astrodew/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
@@ -424,7 +424,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/icecoffee/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/icecoffee/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ICECOFFEE, 30)
 
@@ -436,7 +436,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/buzz/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/buzz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BUZZFUZZ, 30)
 
@@ -448,7 +448,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/shambler/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/shambler/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SHAMBLERS, 30)
 
@@ -460,7 +460,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/drinks/cans/cranberry/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/cranberry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPRITEDCRANBERRY, 30)
 
@@ -473,7 +473,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/beercan/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/beercan/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BEER, 30)
 
@@ -484,7 +484,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 8
 
-/obj/item/reagent_containers/food/drinks/cans/alecan/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/alecan/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ALE, 30)
 
@@ -498,7 +498,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_peach/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_peach/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEPEACH, 60)
 
@@ -510,7 +510,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_pear/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_pear/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEPEAR, 60)
 
@@ -522,7 +522,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_cherry/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_cherry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIECHERRY, 60)
 
@@ -534,7 +534,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_melon/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_melon/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMELON, 60)
 
@@ -546,7 +546,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_banana/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_banana/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEBANANA, 60)
 
@@ -558,7 +558,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_rose/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_rose/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEROSE, 60)
 
@@ -570,7 +570,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_lemon/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_lemon/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIELEMON, 60)
 
@@ -582,7 +582,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_fruit/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_fruit/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEFRUIT, 60)
 
@@ -594,7 +594,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_special/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_special/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIESPECIAL, 60)
 
@@ -609,7 +609,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGASIGHT, 60)
 
@@ -621,7 +621,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHEART, 60)
 
@@ -633,7 +633,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGASLEEP, 60)
 
@@ -645,7 +645,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHOCK, 60)
 
@@ -657,7 +657,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGAFAST, 60)
 
@@ -669,7 +669,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHIGH, 60)
 
@@ -681,7 +681,7 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHRINK, 60)
 
@@ -693,6 +693,6 @@
 	center_of_mass_y = 8
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize()
+/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGAGROWTH, 60)

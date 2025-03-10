@@ -34,7 +34,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/perfect_tele/Initialize()
+/obj/item/perfect_tele/Initialize(mapload)
 	. = ..()
 
 	flags |= NOBLUDGEON

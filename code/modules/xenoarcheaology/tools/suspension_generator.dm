@@ -11,7 +11,7 @@
 	var/power_use = 5
 	var/obj/effect/suspension_field/suspension_field
 
-/obj/machinery/suspension_gen/Initialize()
+/obj/machinery/suspension_gen/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 

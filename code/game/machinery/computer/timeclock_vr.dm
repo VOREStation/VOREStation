@@ -22,7 +22,7 @@
 	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
-/obj/machinery/computer/timeclock/Initialize()
+/obj/machinery/computer/timeclock/Initialize(mapload)
 	. = ..()
 	announce = new /obj/item/radio/intercom(src)
 

@@ -72,6 +72,6 @@
 	spleen_efficiency = 0.3
 	spleen_tick = 15
 
-/obj/item/organ/internal/spleen/minor/Initialize()
+/obj/item/organ/internal/spleen/minor/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.7)

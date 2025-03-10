@@ -133,7 +133,7 @@
 	var/dummy_card = null
 	var/dummy_card_type = /obj/item/card/id/science/roboticist/dummy_cyborg
 
-/obj/item/card/robot/Initialize()
+/obj/item/card/robot/Initialize(mapload)
 	. = ..()
 	dummy_card = new dummy_card_type(src)
 
@@ -151,7 +151,7 @@
 /obj/item/card/id/science/roboticist/dummy_cyborg
 	access = list(access_robotics)
 
-/obj/item/card/id/syndicate/dummy_cyborg/Initialize()
+/obj/item/card/id/syndicate/dummy_cyborg/Initialize(mapload)
 	. = ..()
 	access |= access_robotics
 

@@ -39,7 +39,7 @@
 	anchored = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/material/regular_crystal)
 
-/obj/machinery/crystal/Initialize()
+/obj/machinery/crystal/Initialize(mapload)
 	randomize_color()
 	return ..()
 

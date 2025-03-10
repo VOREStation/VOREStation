@@ -19,7 +19,7 @@
 	var/tally = 0				//The counter referenced against total_creature_max, or just to see how many mobs it has spawned.
 	var/total_creature_max	//If set, it can spawn this many creatures, total, ever.
 
-/obj/structure/prop/nest/Initialize()
+/obj/structure/prop/nest/Initialize(mapload)
 	. = ..()
 	den_mobs = list()
 	START_PROCESSING(SSobj, src)

@@ -27,7 +27,7 @@
 	var/obj/item/noz
 	var/volume = 500
 
-/obj/item/watertank/Initialize()
+/obj/item/watertank/Initialize(mapload)
 	. = ..()
 	create_reagents(volume)
 	noz = make_noz()
@@ -143,7 +143,7 @@
 
 	var/obj/item/watertank/tank
 
-/obj/item/reagent_containers/spray/mister/Initialize()
+/obj/item/reagent_containers/spray/mister/Initialize(mapload)
 	. = ..()
 	tank = loc
 	if(!istype(tank))
@@ -171,7 +171,7 @@
 	icon_state = "waterbackpackjani"
 	item_state = "waterbackpackjani"
 
-/obj/item/watertank/janitor/Initialize()
+/obj/item/watertank/janitor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CLEANER, 500)
 
@@ -200,7 +200,7 @@
 	item_state = "pepperbackpacksec"
 	volume = 1000
 
-/obj/item/watertank/pepperspray/Initialize()
+/obj/item/watertank/pepperspray/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 1000)
 
@@ -231,7 +231,7 @@
 	volume = 2000
 	slowdown = 0
 
-/obj/item/watertank/op/Initialize()
+/obj/item/watertank/op/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL, 500)
 	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 500)
@@ -264,7 +264,7 @@
 	item_state = "waterbackpackatmos"
 	volume = 200
 
-/obj/item/watertank/atmos/Initialize()
+/obj/item/watertank/atmos/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 200)
 

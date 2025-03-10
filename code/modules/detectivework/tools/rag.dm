@@ -31,7 +31,7 @@
 	var/on_fire = 0
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
 
-/obj/item/reagent_containers/glass/rag/Initialize()
+/obj/item/reagent_containers/glass/rag/Initialize(mapload)
 	. = ..()
 	update_name()
 

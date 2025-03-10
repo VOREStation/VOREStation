@@ -29,7 +29,7 @@ const SEARCH_LOCATIONS = [
   `/mnt/c/Users/*/*/BYOND/cache`,
 ];
 
-let cacheRoot;
+let cacheRoot: string;
 
 export const findCacheRoot = async () => {
   if (cacheRoot) {
@@ -83,9 +83,10 @@ export const reloadByondCache = async (bundleDir) => {
     return;
   }
   // Get dreamseeker instances
-  const pids = cacheDirs.map((cacheDir) =>
-    parseInt(cacheDir.split('/cache/tmp').pop(), 10),
-  );
+  const pids = cacheDirs.map((cacheDir) => {
+    const ourDir = cacheDir.split('/cache/tmp').pop();
+    return parseInt(ourDir ? ourDir : '', 10);
+  });
   const dssPromise = DreamSeeker.getInstancesByPids(pids);
   // Copy assets
   const assets = await resolveGlob(

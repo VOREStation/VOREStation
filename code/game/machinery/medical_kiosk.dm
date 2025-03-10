@@ -39,7 +39,7 @@
 	/// This determines if the kiosk can dispense or not. Edit the below line to FALSE if you don't want them to do such.
 	var/can_dispense = TRUE
 
-/obj/machinery/medical_kiosk/Initialize()
+/obj/machinery/medical_kiosk/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 
