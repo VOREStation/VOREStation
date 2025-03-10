@@ -213,45 +213,10 @@ GLOBAL_LIST_EMPTY(tele_landmarks)
 	return
 
 /obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
-	if(!A.can_fall())
-		return // Phased shifted kin should not fall
-
-	var/datum/planet/planet = find_planet()
-
-	if(!planet)
-		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
-		return
-	if(!planet.planet_floors.len)
-		message_admins("ERROR: planetary_fall step trigger's list of outdoor floors was empty.")
-		return
-	var/turf/simulated/T = null
-	var/safety = 100 // Infinite loop protection.
-	while(!T && safety)
-		var/turf/simulated/candidate = pick(planet.planet_floors)
-		if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
-			safety--
-			continue
-		else if(candidate && !candidate.is_outdoors())
-			safety--
-			continue
-		else
-			T = candidate
-			break
-
+	var/turf/T = get_turf(A)
 	if(!T)
-		message_admins("ERROR: planetary_fall step trigger could not find a suitable landing turf.")
 		return
-
-	if(isobserver(A))
-		A.forceMove(T) // Harmlessly move ghosts.
-		return
-
-	A.forceMove(T)
-	// Living things should probably be logged when they fall...
-	if(isliving(A))
-		message_admins("\The [A] fell out of the sky.")
-	// ... because they're probably going to die from it.
-	A.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
+	T.trigger_fall(A, planet)
 
 //Death
 
