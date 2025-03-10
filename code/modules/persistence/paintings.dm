@@ -17,7 +17,7 @@
 				tokens -= token
 
 	SSpersistence.unpicked_paintings = SSpersistence.all_paintings.Copy()
-	
+
 	for(var/obj/structure/sign/painting/P in SSpersistence.painting_frames)
 		P.load_persistent()
 

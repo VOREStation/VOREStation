@@ -39,7 +39,7 @@
 
 	var/new_x = 0
 	var/new_y = 0
-	
+
 	if(dir & NORTH)
 		new_y = 112
 	else if(dir & SOUTH)
@@ -52,7 +52,7 @@
 
 	var/matrix/M = matrix()
 	var/mutable_appearance/MA = new (src)
-	
+
 	if(!center)
 		var/horizontal = (dir & (WEST|EAST))
 		var/vertical = (dir & (NORTH|SOUTH))
@@ -61,7 +61,7 @@
 		MA.opacity = 1
 		if(!optional)
 			MA.density = TRUE
-		
+
 	MA.icon_state = "origin_active"
 	MA.plane = PLANE_LOOKINGGLASS
 	MA.layer = 0
@@ -86,4 +86,3 @@
 	animate(src, color = null, time = 3 SECONDS)
 	sleep(3 SECONDS)
 	icon_state = "origin"
-

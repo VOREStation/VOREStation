@@ -20,4 +20,3 @@
 
 /turf/simulated/floor/fixed/set_flooring()
 	return
-
