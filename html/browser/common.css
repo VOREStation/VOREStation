@@ -198,6 +198,31 @@ h4
 	color: #d09000;
 }
 
+.brute
+{
+	color: #FF3333;
+}
+
+.burn
+{
+	color: #FF9933;
+}
+
+.tox
+{
+	color: #00CC66;
+}
+
+.oxy
+{
+	color: #0053FA;
+}
+
+.clone
+{
+	color: #00CCCC;
+}
+
 .bad, .red
 {
 	color: #ff0000;

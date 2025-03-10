@@ -249,3 +249,13 @@
 #define span_major_announcement_title(str) ("<span class='major_announcement_title'>" + str + "</span>")
 #define span_ooc_announcement_text(str) ("<span class='ooc_announcement_text'>" + str + "</span>")
 #define span_subheader_announcement_text(str) ("<span class='subheader_announcement_text'>" + str + "</span>")
+
+// damage type spans, mostly used for admin for now
+#define span_brute(str) ("<span class='brute'>" + str + "</span>")
+#define span_burn(str) ("<span class='burn'>" + str + "</span>")
+#define span_tox(str) ("<span class='tox'>" + str + "</span>")
+#define span_oxy(str) ("<span class='oxy'>" + str + "</span>")
+#define span_clone(str) ("<span class='clone'>" + str + "</span>")
+
+// Admin VV
+#define span_value(str) ("<span class='value'>" + str + "</span>")

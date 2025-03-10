@@ -12,7 +12,6 @@ var/list/admin_verbs_default = list(
 //	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Remove,
 //	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Remove,
 //	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Remove,
-//	/client/proc/mark_datum_mapview,	//VOREStation Remove,
 //	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Remove,
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
@@ -42,7 +41,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/client/proc/toggle_view_range,		//changes how far we can see,
 	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
@@ -147,7 +145,6 @@ var/list/admin_verbs_sounds = list(
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
@@ -261,8 +258,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/delete_random_map,
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/SDQL2_query,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
@@ -275,7 +270,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/datum/admins/proc/view_runtimes,
 	// /client/proc/show_gm_status, // VOREStation Edit - We don't use SSgame_master yet.
@@ -293,8 +287,6 @@ var/list/admin_verbs_debug = list(
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/debug_controller
 	)
 
@@ -338,7 +330,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/play_web_sound,
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
@@ -364,8 +355,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/adjump,
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
@@ -400,7 +389,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/client/proc/cmd_mod_say,
 	/client/proc/cmd_event_say,
@@ -437,7 +425,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
@@ -468,7 +455,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
@@ -479,8 +465,6 @@ var/list/admin_verbs_event_manager = list(
 	/datum/admins/proc/call_supply_drop,
 	/datum/admins/proc/call_drop_pod,
 	/datum/admins/proc/PlayerNotes,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/debug_controller,
 	// /client/proc/show_gm_status,  // VOREStation Edit - We don't use SSgame_master yet.
 	/datum/admins/proc/change_weather,
@@ -490,7 +474,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_reload_robot_sprite_test,
 	/client/proc/admin_give_modifier,
 	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/client/proc/invisimin,                         //allows our mob to go invisible/visible,
@@ -577,43 +560,3 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/remove_hidden_area,
 	/client/proc/hide_motion_tracker_feedback
 )
-
-/client/proc/add_admin_verbs()
-	if(holder)
-		var/rights = holder.rank_flags()
-		add_verb(src, admin_verbs_default)
-		if(rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
-		if(rights & R_BAN)			add_verb(src, admin_verbs_ban)
-		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
-		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)
-			add_verb(src, admin_verbs_debug)
-			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
-				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
-		if(rights & R_PERMISSIONS)	add_verb(src, admin_verbs_permissions)
-		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
-		if(rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
-		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
-		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
-
-/client/proc/remove_admin_verbs()
-	remove_verb(src, list(
-		admin_verbs_default,
-		/client/proc/togglebuildmodeself,
-		admin_verbs_admin,
-		admin_verbs_ban,
-		admin_verbs_fun,
-		admin_verbs_server,
-		admin_verbs_debug,
-		admin_verbs_possess,
-		admin_verbs_permissions,
-		/client/proc/stealth,
-		admin_verbs_rejuv,
-		admin_verbs_sounds,
-		admin_verbs_spawn,
-		debug_verbs
-		))

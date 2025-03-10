@@ -813,6 +813,17 @@
 	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
 	. = ..()
 
+/client/proc/open_filter_editor(atom/in_atom)
+	if(holder)
+		holder.filteriffic = new /datum/filter_editor(in_atom)
+		holder.filteriffic.tgui_interact(mob)
+
+///opens the particle editor UI for the in_atom object for this client
+/client/proc/open_particle_editor(atom/movable/in_atom)
+	if(holder)
+		holder.particle_test = new /datum/particle_editor(in_atom)
+		holder.particle_test.tgui_interact(mob)
+
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE
 #undef CURRENT_SECOND
