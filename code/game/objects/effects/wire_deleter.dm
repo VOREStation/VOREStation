@@ -9,7 +9,7 @@
 
 /obj/effect/wire_deleter/Initialize(mapload)
 	. = ..()
-	
+
 	for(var/c in loc.contents)
 		if(istype(c, /obj/structure/cable))
 			if(prob(33))

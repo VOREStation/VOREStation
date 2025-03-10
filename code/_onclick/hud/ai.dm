@@ -1,14 +1,14 @@
-/obj/screen/ai/multicam/Click() 
-    if(..()) 
-        return 
+/obj/screen/ai/multicam/Click()
+    if(..())
+        return
     var/mob/living/silicon/ai/AI = usr
-    AI.toggle_multicam() 
- 
-/obj/screen/ai/add_multicam/Click() 
-    if(..()) 
-        return 
+    AI.toggle_multicam()
+
+/obj/screen/ai/add_multicam/Click()
+    if(..())
+        return
     var/mob/living/silicon/ai/AI = usr
-    AI.drop_new_multicam() 
+    AI.drop_new_multicam()
 
 /obj/screen/ai/up/Click()
 	var/mob/living/silicon/ai/AI = usr
@@ -154,7 +154,7 @@
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
 
-//Multicamera mode 
+//Multicamera mode
 	using = new /obj/screen/ai/multicam() // special
 	using.name = "Multicamera Mode"
 	using.icon = HUD.ui_style
@@ -162,8 +162,8 @@
 	using.screen_loc = ui_ai_multicam
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
- 
-//Add multicamera camera 
+
+//Add multicamera camera
 	using = new /obj/screen/ai/add_multicam() // special
 	using.name = "New Camera"
 	using.icon = HUD.ui_style
@@ -188,7 +188,7 @@
 	using.screen_loc = ui_ai_updown
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
- 
+
 	if(client && apply_to_client)
 		client.screen = list()
 		client.screen += HUD.adding + HUD.other

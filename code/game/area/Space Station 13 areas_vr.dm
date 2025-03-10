@@ -41,7 +41,7 @@
 //holodeck 3/29/21
 /area/holodeck/source_smoleworld
 	name = "\improper Holodeck - Smolworld"
-	
+
 /area/holodeck/source_gym
 	name = "\improper Holodeck - Gym"
 
