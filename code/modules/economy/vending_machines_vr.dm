@@ -781,7 +781,7 @@
 					)
 	premium = list(/obj/item/bedsheet/rainbow = 1)
 	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1,
-	                   /obj/item/clothing/accessory/collar/collarplanet_earth = 5)
+						/obj/item/clothing/accessory/collar/collarplanet_earth = 5)
 
 /obj/machinery/vending/loadout/clothing
 	name = "General Jump"

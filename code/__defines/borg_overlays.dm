@@ -56,6 +56,6 @@
 /*
 /datum/robot_sprite/combat/fluff/foopwotch/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg) //Make sure the path is correct!
 	..() //THIS IS ESSENTIAL. IF YOU FORGET THIS LINE, YOU WILL NOT GET THE NORMAL SPRITES.
-    if(ourborg.has_active_type(/obj/item/weapon/combat_borgblade))
-        ourborg.add_overlay("[sprite_icon_state]-dagger")
+	if(ourborg.has_active_type(/obj/item/weapon/combat_borgblade))
+		ourborg.add_overlay("[sprite_icon_state]-dagger")
 */

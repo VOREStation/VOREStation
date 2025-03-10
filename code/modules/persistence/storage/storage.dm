@@ -45,12 +45,12 @@
 	LAZYADDASSOC(., "items", storage_list)
 
 // Usage: returns list with structure:
-//  list(
-//      [type1] = [stored_quantity],
-//      [type2] = [stored_quantity]
-//  )
+//	list(
+//		[type1] = [stored_quantity],
+//		[type2] = [stored_quantity]
+//	)
 /datum/persistent/storage/proc/get_storage_list(var/atom/entry)
-    return list() // Subtypes define list structure
+	return list() // Subtypes define list structure
 
 /datum/persistent/storage/proc/find_specific_instance(var/turf/T)
 	return locate(target_type) in T

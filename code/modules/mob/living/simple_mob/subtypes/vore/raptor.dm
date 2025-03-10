@@ -117,13 +117,13 @@
 	consider_wg()
 
 /mob/living/simple_mob/vore/raptor/proc/consider_wg()
-  var/past_state = wg_state
-  if(nutrition >= 900)
-    wg_state = 1
-  else
-    wg_state = 0
-  if(past_state != wg_state)
-    update_icon()
+	var/past_state = wg_state
+	if(nutrition >= 900)
+		wg_state = 1
+	else
+		wg_state = 0
+	if(past_state != wg_state)
+		update_icon()
 
 /mob/living/simple_mob/vore/raptor/update_icon()
 	if(wg_state == 1)

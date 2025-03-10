@@ -33,7 +33,7 @@ var/global/list/latejoin_talon = list()
 	on_store_name = "ITV Talon Robotic Storage"
 
 /obj/effect/landmark/map_data/talon
-    height = 2
+	height = 2
 
 ///////////////////////////
 //// The Talon

@@ -573,9 +573,9 @@
 	icon_state = "countess"
 
 /obj/item/clothing/under/dress/verglasdress
-    name = "verglas dress"
-    desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
-    icon_state = "verglas_dress"
+	name = "verglas dress"
+	desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
+	icon_state = "verglas_dress"
 
 /obj/item/clothing/under/dress/alpine
 	name = "alpine dress"
@@ -1084,19 +1084,19 @@
 	icon_state = "swim_cow"
 
 /obj/item/clothing/under/swimsuit/highclass
-    name = "high class swimsuit"
-    desc = "An elegant swimsuit with a white bikini top and black bikini bottom. Thin black silk drapes down the back and goes to the upper thighs, and authentic gold rings hold the top together at the bust and back."
-    icon_state = "swim_highclass"
+	name = "high class swimsuit"
+	desc = "An elegant swimsuit with a white bikini top and black bikini bottom. Thin black silk drapes down the back and goes to the upper thighs, and authentic gold rings hold the top together at the bust and back."
+	icon_state = "swim_highclass"
 
 /obj/item/clothing/under/swimsuit/risque
-    name = "risque swimsuit"
-    desc = "This fits a bit too snug in all the right places. Comes with a collar, for inscrutable reasons."
-    icon_state = "swim_risque"
+	name = "risque swimsuit"
+	desc = "This fits a bit too snug in all the right places. Comes with a collar, for inscrutable reasons."
+	icon_state = "swim_risque"
 
 /obj/item/clothing/under/swimsuit/streamlined
-    name = "streamlined swimsuit"
-    desc = "An all white one-piece that maintains modesty without sacrificing class."
-    icon_state = "swim_stream"
+	name = "streamlined swimsuit"
+	desc = "An all white one-piece that maintains modesty without sacrificing class."
+	icon_state = "swim_stream"
 
 /*
  * Pyjamas
@@ -1534,14 +1534,14 @@
 
 //leotards
 /obj/item/clothing/under/leotard
-    name = "black leotard"
-    desc = "A black leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
-    icon_state = "leotard"
+	name = "black leotard"
+	desc = "A black leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
+	icon_state = "leotard"
 
 /obj/item/clothing/under/leotardcolor
-    name = "colored leotard"
-    desc = "A colorable leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
-    icon_state = "leotard_color"
+	name = "colored leotard"
+	desc = "A colorable leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
+	icon_state = "leotard_color"
 
 //skinsuits
 /obj/item/clothing/under/skinsuit
@@ -1550,18 +1550,18 @@
 	icon_state = "skinsuit"
 
 /obj/item/clothing/under/skinsuit/gray
-    name = "gray skinsuit"
-    icon_state = "skinsuit_g"
+	name = "gray skinsuit"
+	icon_state = "skinsuit_g"
 
 /obj/item/clothing/under/skinsuit/leotard
-    name = "leotard skinsuit"
-    desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
-    icon_state = "skinsuitleo"
+	name = "leotard skinsuit"
+	desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
+	icon_state = "skinsuitleo"
 
 
 /obj/item/clothing/under/skinsuit/leotard/gray
-    name = "gray leotard skinsuit"
-    icon_state = "skinsuitleo_g"
+	name = "gray leotard skinsuit"
+	icon_state = "skinsuitleo_g"
 
 /obj/item/clothing/under/skinsuit/fem
 	name = "feminine skinsuit"
@@ -1569,17 +1569,17 @@
 	icon_state = "skinsuitfem"
 
 /obj/item/clothing/under/skinsuit/fem/gray
-    name = "feminine gray skinsuit"
-    icon_state = "skinsuitfem_g"
+	name = "feminine gray skinsuit"
+	icon_state = "skinsuitfem_g"
 
 /obj/item/clothing/under/skinsuit/fem/leotard
-    name = "feminine leotard skinsuit"
-    desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
-    icon_state = "skinsuitfemleo"
+	name = "feminine leotard skinsuit"
+	desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
+	icon_state = "skinsuitfemleo"
 
 /obj/item/clothing/under/skinsuit/fem/leotard/gray
-    name = "feminine gray leotard skinsuit"
-    icon_state = "skinsuitfemleo_g"
+	name = "feminine gray leotard skinsuit"
+	icon_state = "skinsuitfemleo_g"
 
 //baggy turtlenecks
 /obj/item/clothing/under/turtlebaggy
@@ -1590,58 +1590,58 @@
 
 
 /obj/item/clothing/under/turtlebaggy/cream_fem
-    name = "feminine cream baggy turtleneck"
-    icon_state = "bb_turtle_fem"
+	name = "feminine cream baggy turtleneck"
+	icon_state = "bb_turtle_fem"
 
 
 /obj/item/clothing/under/turtlebaggy/purple
-    name = "purple baggy turtleneck"
-    icon_state = "bb_turtlepur"
+	name = "purple baggy turtleneck"
+	icon_state = "bb_turtlepur"
 
 
 /obj/item/clothing/under/turtlebaggy/purple_fem
-    name = "feminine purple baggy turtleneck"
-    icon_state = "bb_turtlepur_fem"
+	name = "feminine purple baggy turtleneck"
+	icon_state = "bb_turtlepur_fem"
 
 
 /obj/item/clothing/under/turtlebaggy/red
-    name = "red baggy turtleneck"
-    icon_state = "bb_turtlered"
+	name = "red baggy turtleneck"
+	icon_state = "bb_turtlered"
 
 
 /obj/item/clothing/under/turtlebaggy/red_fem
-    name = "feminine red baggy turtleneck"
-    icon_state = "bb_turtlered_fem"
+	name = "feminine red baggy turtleneck"
+	icon_state = "bb_turtlered_fem"
 
 
 /obj/item/clothing/under/turtlebaggy/blue
-    name = "blue baggy turtleneck"
-    icon_state = "bb_turtleblu"
+	name = "blue baggy turtleneck"
+	icon_state = "bb_turtleblu"
 
 
 /obj/item/clothing/under/turtlebaggy/blue_fem
-    name = "feminine blue baggy turtleneck"
-    icon_state = "bb_turtleblu_fem"
+	name = "feminine blue baggy turtleneck"
+	icon_state = "bb_turtleblu_fem"
 
 
 /obj/item/clothing/under/turtlebaggy/green
-    name = "green baggy turtleneck"
-    icon_state = "bb_turtlegrn"
+	name = "green baggy turtleneck"
+	icon_state = "bb_turtlegrn"
 
 
 /obj/item/clothing/under/turtlebaggy/green_fem
-    name = "feminine green baggy turtleneck"
-    icon_state = "bb_turtlegrn_fem"
+	name = "feminine green baggy turtleneck"
+	icon_state = "bb_turtlegrn_fem"
 
 
 /obj/item/clothing/under/turtlebaggy/black
-    name = "black baggy turtleneck"
-    icon_state = "bb_turtleblk"
+	name = "black baggy turtleneck"
+	icon_state = "bb_turtleblk"
 
 
 /obj/item/clothing/under/turtlebaggy/black_fem
-    name = "feminine black baggy turtleneck"
-    icon_state = "bb_turtleblk_fem"
+	name = "feminine black baggy turtleneck"
+	icon_state = "bb_turtleblk_fem"
 
 //more big sweaters
 
@@ -1663,21 +1663,21 @@
 
 //half-moon outfit
 /obj/item/clothing/under/half_moon
-    name = "half moon outfit"
-    desc = "This eminently fashionable outfit consists of a tailored latex leotard and daringly cut white shorts. Paired with plunging off-color stockings, it's to die for."
-    icon_state = "half_moon"
+	name = "half moon outfit"
+	desc = "This eminently fashionable outfit consists of a tailored latex leotard and daringly cut white shorts. Paired with plunging off-color stockings, it's to die for."
+	icon_state = "half_moon"
 
 //fiend clothes
 /obj/item/clothing/under/fiendsuit
-    name = "fiendish suit"
-    desc = "A red and black suit befitting someone from the dark pits themselves… Or someone way too edgy."
-    icon_state = "fiendsuit"
+	name = "fiendish suit"
+	desc = "A red and black suit befitting someone from the dark pits themselves… Or someone way too edgy."
+	icon_state = "fiendsuit"
 
 
 /obj/item/clothing/under/fienddress
-    name = "fiendish dress"
-    desc = "A red and black dress befitting someone from the dark pits themselves… Or someone way too edgy."
-    icon_state = "fienddress"
+	name = "fiendish dress"
+	desc = "A red and black dress befitting someone from the dark pits themselves… Or someone way too edgy."
+	icon_state = "fienddress"
 
 //bunny suits
 

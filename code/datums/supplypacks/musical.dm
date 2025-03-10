@@ -1,10 +1,10 @@
 /datum/supply_pack/musical/strings
 	contains = list(
-        /obj/item/instrument/violin,
-        /obj/item/instrument/banjo,
-        /obj/item/instrument/guitar,
-        /obj/item/instrument/eguitar,
-    )
+		/obj/item/instrument/violin,
+		/obj/item/instrument/banjo,
+		/obj/item/instrument/guitar,
+		/obj/item/instrument/eguitar,
+	)
 	name = "string instruments"
 	desc = "A set of string instruments."
 	cost = 50
@@ -13,14 +13,14 @@
 
 /datum/supply_pack/musical/wind
 	contains = list(
-        /obj/item/instrument/accordion,
-        /obj/item/instrument/trumpet,
-        /obj/item/instrument/saxophone,
-        /obj/item/instrument/trombone,
-        /obj/item/instrument/recorder,
-        /obj/item/instrument/harmonica,
-        /obj/item/instrument/bikehorn,
-    )
+		/obj/item/instrument/accordion,
+		/obj/item/instrument/trumpet,
+		/obj/item/instrument/saxophone,
+		/obj/item/instrument/trombone,
+		/obj/item/instrument/recorder,
+		/obj/item/instrument/harmonica,
+		/obj/item/instrument/bikehorn,
+	)
 	name = "wind instruments"
 	desc = "A set of wind instruments."
 	cost = 50
@@ -29,10 +29,10 @@
 
 /datum/supply_pack/musical/keys
 	contains = list(
-        /obj/item/instrument/piano_synth,
-        /obj/item/instrument/glockenspiel, // cough
-        /obj/item/instrument/musicalmoth
-    )
+		/obj/item/instrument/piano_synth,
+		/obj/item/instrument/glockenspiel, // cough
+		/obj/item/instrument/musicalmoth
+	)
 	name = "keyed instruments"
 	desc = "A set of keyboard-style instruments."
 	cost = 50

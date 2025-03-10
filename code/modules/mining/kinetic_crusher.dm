@@ -230,8 +230,8 @@
 	and kit-bashed into a high-tech cleaver on a stick - with a handguard and a goliath hide grip. While it is still of little use to any \
 	but the most skilled and/or suicidal miners against local fauna, it's an elegant weapon for a more civilized hunter."
 
-    look gary there i am
-    - hatterhat
+	look gary there i am
+	- hatterhat
 */
 
 

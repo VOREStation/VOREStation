@@ -12,9 +12,9 @@
 	var/flags = SHUTTLE_FLAGS_NONE
 	var/process_state = IDLE_STATE // Used with SHUTTLE_FLAGS_PROCESS, as well as to store current state.
 	var/category = /datum/shuttle
-	var/multiz = 0	//how many multiz levels, starts at 0  TODO Leshana - Are we porting this?
+	var/multiz = 0	//how many multiz levels, starts at 0 TODO Leshana - Are we porting this?
 
-	var/ceiling_type // Type path of turf to roof over the shuttle when at multi-z landmarks.  Ignored if null.
+	var/ceiling_type // Type path of turf to roof over the shuttle when at multi-z landmarks. Ignored if null.
 
 	var/sound_takeoff = 'sound/effects/shuttles/shuttle_takeoff.ogg'
 	var/sound_landing = 'sound/effects/shuttles/shuttle_landing.ogg'
@@ -22,11 +22,11 @@
 	var/knockdown = 1 //whether shuttle downs non-buckled people when it moves
 
 	var/defer_initialisation = FALSE //If this this shuttle should be initialised automatically.
-	                                 //If set to true, you are responsible for initialzing the shuttle manually.
-	                                 //Useful for shuttles that are initialized by map_template loading, or shuttles that are created in-game or not used.
+	 								//If set to true, you are responsible for initialzing the shuttle manually.
+	 								//Useful for shuttles that are initialized by map_template loading, or shuttles that are created in-game or not used.
 
-	var/mothershuttle //tag of mothershuttle
-	var/motherdock    //tag of mothershuttle landmark, defaults to starting location
+	var/mothershuttle 	//tag of mothershuttle
+	var/motherdock		//tag of mothershuttle landmark, defaults to starting location
 
 	var/tmp/depart_time = 0 //Similar to above, set when the shuttle leaves when long jumping. Used for progress bars.
 
@@ -104,8 +104,8 @@
 /datum/shuttle/proc/on_shuttle_departure(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
 	return
 
-// Similar to above, but when it finishes moving to the target.  Short jump generally makes this occur immediately after the above proc.
-// Keep in mind we might not actually have gotten to destination.  Check current_location to be sure where we ended up.
+// Similar to above, but when it finishes moving to the target. Short jump generally makes this occur immediately after the above proc.
+// Keep in mind we might not actually have gotten to destination. Check current_location to be sure where we ended up.
 /datum/shuttle/proc/on_shuttle_arrival(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
 	return
 
@@ -117,7 +117,7 @@
 		return
 
 	var/obj/effect/shuttle_landmark/start_location = current_location
-	// TODO - Figure out exactly when to play sounds.  Before warmup_time delay? Should there be a sleep for waiting for sounds? or no?
+	// TODO - Figure out exactly when to play sounds. Before warmup_time delay? Should there be a sleep for waiting for sounds? or no?
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 
@@ -155,7 +155,7 @@
 		return
 
 	var/obj/effect/shuttle_landmark/start_location = current_location
-	// TODO - Figure out exactly when to play sounds.  Before warmup_time delay? Should there be a sleep for waiting for sounds? or no?
+	// TODO - Figure out exactly when to play sounds. Before warmup_time delay? Should there be a sleep for waiting for sounds? or no?
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 
@@ -204,7 +204,7 @@
 
 
 //////////////////////////////
-// Forward declarations of public procs.  They do nothing because this is not auto-dock.
+// Forward declarations of public procs. They do nothing because this is not auto-dock.
 
 /datum/shuttle/proc/fuel_check()
 	return 1 //fuel check should always pass in non-overmap shuttles (they have magic engines)
@@ -300,7 +300,7 @@
 			if(our_area.get_gravity() != new_grav)
 				our_area.gravitychange(new_grav)
 
-	// TODO - Old code used to throw stuff out of the way instead of squashing.  Should we?
+	// TODO - Old code used to throw stuff out of the way instead of squashing. Should we?
 
 	// Move, gib, or delete everything in our way!
 	for(var/turf/src_turf in turf_translation)
@@ -345,7 +345,7 @@
 						if(move_direction)
 							throw_a_mob(M,move_direction)
 						//VOREStation Add End
-		// We only need to rebuild powernets for our cables.  No need to check machines because they are on top of cables.
+		// We only need to rebuild powernets for our cables. No need to check machines because they are on top of cables.
 		for(var/obj/structure/cable/C in A)
 			powernets |= C.powernet
 

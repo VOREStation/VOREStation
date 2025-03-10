@@ -186,9 +186,9 @@
 		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 
 /obj/mecha/combat/fighter/get_step_delay()
-    . = ..()
-    if(get_gravity() && !landing_gear_raised)
-        . += 4
+	. = ..()
+	if(get_gravity() && !landing_gear_raised)
+		. += 4
 
 /obj/mecha/combat/fighter/handle_equipment_movement()
 	. = ..()

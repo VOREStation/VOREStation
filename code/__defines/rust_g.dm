@@ -19,21 +19,21 @@
 /* This comment bypasses grep checks */ /var/__rust_g
 
 /proc/__detect_rust_g()
-        if (world.system_type == UNIX)
-                if (fexists("./librust_g.so"))
-                        // No need for LD_LIBRARY_PATH badness.
-                        return __rust_g = "./librust_g.so"
-                else if (fexists("./rust_g"))
-                        // Old dumb filename.
-                        return __rust_g = "./rust_g"
-                else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/rust_g"))
-                        // Old dumb filename in `~/.byond/bin`.
-                        return __rust_g = "rust_g"
-                else
-                        // It's not in the current directory, so try others
-                        return __rust_g = "librust_g.so"
-        else
-                return __rust_g = "rust_g"
+		if (world.system_type == UNIX)
+				if (fexists("./librust_g.so"))
+						// No need for LD_LIBRARY_PATH badness.
+						return __rust_g = "./librust_g.so"
+				else if (fexists("./rust_g"))
+						// Old dumb filename.
+						return __rust_g = "./rust_g"
+				else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/rust_g"))
+						// Old dumb filename in `~/.byond/bin`.
+						return __rust_g = "rust_g"
+				else
+						// It's not in the current directory, so try others
+						return __rust_g = "librust_g.so"
+		else
+				return __rust_g = "rust_g"
 
 #define RUST_G (__rust_g || __detect_rust_g())
 #endif
@@ -105,7 +105,7 @@
  * * height: The height of the grid.
  */
 #define rustg_cnoise_generate(percentage, smoothing_iterations, birth_limit, death_limit, width, height) \
-        RUSTG_CALL(RUST_G, "cnoise_generate")(percentage, smoothing_iterations, birth_limit, death_limit, width, height)
+		RUSTG_CALL(RUST_G, "cnoise_generate")(percentage, smoothing_iterations, birth_limit, death_limit, width, height)
 
 /**
  * This proc generates a grid of perlin-like noise
@@ -121,7 +121,7 @@
  * * upper_range: upper bound of values selected for. (exclusive)
  */
 #define rustg_dbp_generate(seed, accuracy, stamp_size, world_size, lower_range, upper_range) \
-        RUSTG_CALL(RUST_G, "dbp_generate")(seed, accuracy, stamp_size, world_size, lower_range, upper_range)
+		RUSTG_CALL(RUST_G, "dbp_generate")(seed, accuracy, stamp_size, world_size, lower_range, upper_range)
 
 
 #define rustg_dmi_strip_metadata(fname) RUSTG_CALL(RUST_G, "dmi_strip_metadata")(fname)
@@ -142,8 +142,8 @@
 #define rustg_file_seek_line(fname, line) RUSTG_CALL(RUST_G, "file_seek_line")(fname, "[line]")
 
 #ifdef RUSTG_OVERRIDE_BUILTINS
-        #define file2text(fname) rustg_file_read("[fname]")
-        #define text2file(text, fname) rustg_file_append(text, "[fname]")
+		#define file2text(fname) rustg_file_read("[fname]")
+		#define text2file(text, fname) rustg_file_append(text, "[fname]")
 #endif
 
 /// Returns the git hash of the given revision, ex. "HEAD".
@@ -154,7 +154,7 @@
  * Defaults to returning %F which is YYYY-MM-DD.
  */
 /proc/rustg_git_commit_date(rev, format = "%F")
-        return RUSTG_CALL(RUST_G, "rg_git_commit_date")(rev, format)
+		return RUSTG_CALL(RUST_G, "rg_git_commit_date")(rev, format)
 
 /**
  * Returns the formatted datetime string of HEAD using the provided format.
@@ -162,7 +162,7 @@
  * This is different to rustg_git_commit_date because it only needs the logs directory.
  */
 /proc/rustg_git_commit_date_head(format = "%F")
-        return RUSTG_CALL(RUST_G, "rg_git_commit_date_head")(format)
+		return RUSTG_CALL(RUST_G, "rg_git_commit_date_head")(format)
 
 #define rustg_hash_string(algorithm, text) RUSTG_CALL(RUST_G, "hash_string")(algorithm, text)
 #define rustg_hash_file(algorithm, fname) RUSTG_CALL(RUST_G, "hash_file")(algorithm, fname)
@@ -182,7 +182,7 @@
 #define rustg_decode_base64(str) RUSTG_CALL(RUST_G, "decode_base64")(str)
 
 #ifdef RUSTG_OVERRIDE_BUILTINS
-        #define md5(thing) (isfile(thing) ? rustg_hash_file(RUSTG_HASH_MD5, "[thing]") : rustg_hash_string(RUSTG_HASH_MD5, thing))
+		#define md5(thing) (isfile(thing) ? rustg_hash_file(RUSTG_HASH_MD5, "[thing]") : rustg_hash_string(RUSTG_HASH_MD5, thing))
 #endif
 
 #define RUSTG_HTTP_METHOD_GET "get"
@@ -372,33 +372,33 @@
 
 /// Provided a static RSC file path or a raw text file path, returns the duration of the file in deciseconds as a float.
 /proc/rustg_sound_length(file_path)
-        var/static/list/sound_cache
-        if(isnull(sound_cache))
-                sound_cache = list()
+		var/static/list/sound_cache
+		if(isnull(sound_cache))
+				sound_cache = list()
 
-        . = 0
+		. = 0
 
-        if(!istext(file_path))
-                if(!isfile(file_path))
-                        CRASH("rustg_sound_length error: Passed non-text object")
+		if(!istext(file_path))
+				if(!isfile(file_path))
+						CRASH("rustg_sound_length error: Passed non-text object")
 
-                if(length("[file_path]")) // Runtime generated RSC references stringify into 0-length strings.
-                        file_path = "[file_path]"
-                else
-                        CRASH("rustg_sound_length does not support non-static file refs.")
+				if(length("[file_path]")) // Runtime generated RSC references stringify into 0-length strings.
+						file_path = "[file_path]"
+				else
+						CRASH("rustg_sound_length does not support non-static file refs.")
 
-        var/cached_length = sound_cache[file_path]
-        if(!isnull(cached_length))
-                return cached_length
+		var/cached_length = sound_cache[file_path]
+		if(!isnull(cached_length))
+				return cached_length
 
-        var/ret = RUSTG_CALL(RUST_G, "sound_len")(file_path)
-        var/as_num = text2num(ret)
-        if(isnull(ret))
-                . = 0
-                CRASH("rustg_sound_length error: [ret]")
+		var/ret = RUSTG_CALL(RUST_G, "sound_len")(file_path)
+		var/as_num = text2num(ret)
+		if(isnull(ret))
+				. = 0
+				CRASH("rustg_sound_length error: [ret]")
 
-        sound_cache[file_path] = as_num
-        return as_num
+		sound_cache[file_path] = as_num
+		return as_num
 
 
 #define RUSTG_SOUNDLEN_SUCCESSES "successes"
@@ -426,25 +426,25 @@
 
 /// Returns the timestamp as a string
 /proc/rustg_unix_timestamp()
-        return RUSTG_CALL(RUST_G, "unix_timestamp")()
+		return RUSTG_CALL(RUST_G, "unix_timestamp")()
 
 #define rustg_raw_read_toml_file(path) json_decode(RUSTG_CALL(RUST_G, "toml_file_to_json")(path) || "null")
 
 /proc/rustg_read_toml_file(path)
-        var/list/output = rustg_raw_read_toml_file(path)
-        if (output["success"])
-                return json_decode(output["content"])
-        else
-                CRASH(output["content"])
+		var/list/output = rustg_raw_read_toml_file(path)
+		if (output["success"])
+				return json_decode(output["content"])
+		else
+				CRASH(output["content"])
 
 #define rustg_raw_toml_encode(value) json_decode(RUSTG_CALL(RUST_G, "toml_encode")(json_encode(value)))
 
 /proc/rustg_toml_encode(value)
-        var/list/output = rustg_raw_toml_encode(value)
-        if (output["success"])
-                return output["content"]
-        else
-                CRASH(output["content"])
+		var/list/output = rustg_raw_toml_encode(value)
+		if (output["success"])
+				return output["content"]
+		else
+				CRASH(output["content"])
 
 #define rustg_unzip_download_async(url, unzip_directory) RUSTG_CALL(RUST_G, "unzip_download_async")(url, unzip_directory)
 #define rustg_unzip_check(job_id) RUSTG_CALL(RUST_G, "unzip_check")("[job_id]")
@@ -453,8 +453,8 @@
 #define rustg_url_decode(text) RUSTG_CALL(RUST_G, "url_decode")(text)
 
 #ifdef RUSTG_OVERRIDE_BUILTINS
-        #define url_encode(text) rustg_url_encode(text)
-        #define url_decode(text) rustg_url_decode(text)
+		#define url_encode(text) rustg_url_encode(text)
+		#define url_decode(text) rustg_url_decode(text)
 #endif
 
 /**
@@ -471,4 +471,4 @@
  * * node_max: maximum amount of nodes in a region
  */
 #define rustg_worley_generate(region_size, threshold, node_per_region_chance, size, node_min, node_max) \
-        RUSTG_CALL(RUST_G, "worley_generate")(region_size, threshold, node_per_region_chance, size, node_min, node_max)
+		RUSTG_CALL(RUST_G, "worley_generate")(region_size, threshold, node_per_region_chance, size, node_min, node_max)

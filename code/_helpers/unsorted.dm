@@ -9,10 +9,10 @@
 
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 #define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
+	block( \
+		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
+		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+	)
 
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
@@ -566,13 +566,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //returns random gauss number
 /proc/GaussRand(var/sigma)
-  var/x,y,rsq
-  do
-    x=2*rand()-1
-    y=2*rand()-1
-    rsq=x*x+y*y
-  while(rsq>1 || !rsq)
-  return sigma*y*sqrt(-2*log(rsq)/rsq)
+	var/x,y,rsq
+	do
+		x=2*rand()-1
+		y=2*rand()-1
+		rsq=x*x+y*y
+	while(rsq>1 || !rsq)
+	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
 /proc/GaussRandRound(var/sigma,var/roundto)

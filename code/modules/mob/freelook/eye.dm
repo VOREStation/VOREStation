@@ -85,11 +85,11 @@
 		return
 
 	return eyeobj.EyeMove(n, direct)
-	
+
 /mob/observer/eye/proc/GetViewerClient()
-    if(owner)
-        return owner.client
-    return null
+	if(owner)
+		return owner.client
+	return null
 
 /mob/observer/eye/EyeMove(n, direct)
 	var/initial = initial(sprint)
