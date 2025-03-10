@@ -74,7 +74,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 	color = "#FFBBBB"
 
 /turf/simulated/sky/virgo3b/Initialize(mapload)
-    . = ..(mapload, color)
+	. = ..(mapload, color)
 
 /turf/simulated/sky/virgo3b/north
 	dir = NORTH
