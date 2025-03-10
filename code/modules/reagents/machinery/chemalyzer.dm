@@ -168,11 +168,6 @@
 					final_message += span_underline("Fluid Pump Filtrate: <br>")
 					final_message += pump_results
 					final_message += "<br>"
-
-		// Last, unseal it if it's an autoinjector.
-		if(istype(I,/obj/item/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
-			I.flags |= OPENCONTAINER
-			final_message += "Sample container unsealed.<br>"
 		final_message += "Scanning of \the [I] complete."
 
 		to_chat(user, span_notice(final_message))
