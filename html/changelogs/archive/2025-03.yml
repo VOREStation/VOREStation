@@ -221,3 +221,23 @@
   TeleTubby2:
   - bugfix: fixed the "Print" options for OOC notes in examine text sending the notes
       to the wrong person
+2025-03-11:
+  ItsSelis:
+  - config: the example now has the correct flags for the BUILD and SOUND permissions
+  Kashargul:
+  - code_imp: end of file new line fix for grep
+  SatinIsle:
+  - bugfix: Fixed jungle and fantasy redgates having cave walls generate where they
+      shouldn't.
+  Will & Diana:
+  - rscadd: Adds a nevrean plush with two variants, normal and security.
+  - qol: Goes through and gives plushies speech bubbles pertaining to what they are.
+  - bugfix: Fixes it so plushies now properly speak.
+  - qol: Makes it so any interaction with plushies will play their phrase, NOT just
+      disarm-intenting them (This was never made clear that disarm intent makes them
+      speak.)
+  - code_imp: Gets rid of a few non-existent base paths by converting one of the paths
+      into the base one. (plushy/therapy & plushies/squid)
+  - bugfix: Fixes the toaster from having the sus plushie sound.
+  - code_imp: Changed some timers that were calling a proc that just set a var to
+      false. Instead, we now use a varset_callback timer there.
