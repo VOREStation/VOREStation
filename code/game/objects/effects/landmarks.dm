@@ -6,7 +6,7 @@
 	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 100
-	var/delete_me = 0
+	var/delete_me = FALSE
 
 /obj/effect/landmark/Initialize(mapload)
 	. = ..()

@@ -215,7 +215,7 @@
 	known = FALSE
 
 // It notifies admins when you spawn it and gives you a 'JMP' and 'VV' link in the message so you can find it easily.
-/obj/effect/overmap/visitable/admin_use/Initialize()
+/obj/effect/overmap/visitable/admin_use/Initialize(mapload)
 	. = ..()
 	message_admins("An uploaded sector [ADMIN_JMP(src)][ADMIN_VV(src)] has been placed on the overmap. Don't forget to rename and set cool scanner info on it!")
 
@@ -274,7 +274,7 @@
 	known = FALSE
 
 // Similarly notifies you
-/obj/effect/overmap/visitable/ship/admin_use/Initialize()
+/obj/effect/overmap/visitable/ship/admin_use/Initialize(mapload)
 	. = ..()
 	message_admins("An uploaded ship [ADMIN_JMP(src)][ADMIN_VV(src)] has been placed on the overmap. Don't forget to rename and set cool scanner info on it!")
 

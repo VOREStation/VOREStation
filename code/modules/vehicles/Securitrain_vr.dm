@@ -59,7 +59,7 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/security/engine/Initialize()
+/obj/vehicle/train/security/engine/Initialize(mapload)
 	cell = new /obj/item/cell/high(src)
 	key = new key_type(src)
 	. = ..()

@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	GLOB.areas_by_type[type] = src
 	return ..()
 
-/area/Initialize()
+/area/Initialize(mapload)
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""

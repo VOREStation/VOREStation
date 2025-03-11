@@ -49,7 +49,8 @@
 			continue
 		if(istype(DD.vars[V],/list))
 			var/list/L = D.vars[V]
-			DD.vars[V] = L.Copy()
+			if(L)
+				DD.vars[V] = L.Copy()
 		else
 			DD.vars[V] = D.vars[V]
 
@@ -168,7 +169,7 @@
 	set name = "Release Virus"
 	set desc = "Release a pre-set virus."
 
-	if(!is_admin())
+	if(!check_rights(R_FUN|R_EVENT))
 		return FALSE
 
 	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))

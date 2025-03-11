@@ -305,7 +305,7 @@
 	icon_state = "rollerbed"
 	var/obj/item/roller/held
 
-/obj/item/roller_holder/Initialize()
+/obj/item/roller_holder/Initialize(mapload)
 	. = ..()
 	held = new /obj/item/roller(src)
 

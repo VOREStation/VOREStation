@@ -313,7 +313,7 @@
 	job_description = "An " + JOB_ENTERTAINER + " does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list(JOB_ALT_PERFORMER = /datum/alt_title/performer, JOB_ALT_MUSICIAN = /datum/alt_title/musician, JOB_ALT_STAGEHAND = /datum/alt_title/stagehand,
 						JOB_ALT_ACTOR = /datum/alt_title/actor, JOB_ALT_DANCER = /datum/alt_title/dancer, JOB_ALT_SINGER = /datum/alt_title/singer,
-						JOB_ALT_MAGICIAN = /datum/alt_title/magician, JOB_ALT_COMEDIAN = /datum/alt_title/comedian, JOB_ALT_ARTIST = /datum/alt_title/tragedian,
+						JOB_ALT_MAGICIAN = /datum/alt_title/magician, JOB_ALT_COMEDIAN = /datum/alt_title/comedian, JOB_ALT_TRAGEDIAN = /datum/alt_title/tragedian,
 						JOB_ALT_ARTIST = /datum/alt_title/artist, JOB_ALT_GAME_MASTER = /datum/alt_title/game_master)
 
 // Entertainer Alt Titles

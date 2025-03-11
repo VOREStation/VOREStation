@@ -12,7 +12,7 @@
 	var/lid_color = "black"
 
 
-/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/Initialize(mapload)
 	. = ..()
 	lid_color = pick("black", "red", "blue")
 	update_icon()
@@ -29,7 +29,7 @@
 	base_icon = "protein_shake"
 	desc = "NanoTrasen brand pre-done pre-workout mix. Also perfect for an empty stomach."
 
-/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/Initialize(mapload)
 	. = ..()
 	cut_overlays()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 30)

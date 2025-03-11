@@ -63,7 +63,7 @@
 
 	pass_flags = PASSTABLE | PASSGRILLE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
+/mob/living/simple_mob/vore/aggressive/macrophage/Initialize(mapload)
 	. = ..()
 	var/datum/disease/advance/random/macrophage/D = new
 	health += D.totalResistance()

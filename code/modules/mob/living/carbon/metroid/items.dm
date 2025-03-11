@@ -356,7 +356,7 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
-/obj/item/reagent_containers/food/snacks/egg/slime/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/slime/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 1)

@@ -280,7 +280,7 @@
 	primitive_expression_messages=list("looks drowsy")
 
 /datum/trait/negative/low_blood_sugar/handle_environment_special(var/mob/living/carbon/human/H)
-	if(H.nutrition > 200)	//Sanity check because stupid bugs >:v
+	if(H.nutrition > 200 || isbelly(H.loc))
 		return
 	if((H.nutrition < 200) && prob(5))
 		if(H.nutrition > 100)

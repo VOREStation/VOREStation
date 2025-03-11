@@ -296,7 +296,7 @@
 	make_exact_fit()
 	. = ..()
 
-/obj/item/storage/bag/circuits/all/Initialize()
+/obj/item/storage/bag/circuits/all/Initialize(mapload)
 	new /obj/item/storage/bag/circuits/mini/arithmetic/all(src)
 	new /obj/item/storage/bag/circuits/mini/trig/all(src)
 	new /obj/item/storage/bag/circuits/mini/input/all(src)

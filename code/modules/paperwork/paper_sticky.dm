@@ -84,7 +84,7 @@
 
 	return
 
-/obj/item/sticky_pad/random/Initialize()
+/obj/item/sticky_pad/random/Initialize(mapload)
 	. = ..()
 	color = pick(COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_ORANGE, COLOR_PINK)
 
@@ -95,7 +95,7 @@
 	color = COLOR_YELLOW
 	slot_flags = 0
 
-/obj/item/paper/sticky/Initialize()
+/obj/item/paper/sticky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
