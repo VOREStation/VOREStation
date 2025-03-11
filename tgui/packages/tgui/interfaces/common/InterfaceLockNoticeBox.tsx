@@ -28,8 +28,8 @@ export const InterfaceLockNoticeBox = (props: {
   readonly onLockStatusChange?: (status: BooleanLike) => void;
   readonly accessText?: string;
   readonly preventLocking?: BooleanLike;
-  readonly deny: boolean;
-  readonly denialMessage: string;
+  readonly deny?: BooleanLike;
+  readonly denialMessage?: React.JSX.Element | string;
 }) => {
   const { act, data } = useBackend<Data>();
   const {
