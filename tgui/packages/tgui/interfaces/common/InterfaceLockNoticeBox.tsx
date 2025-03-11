@@ -23,11 +23,11 @@ type Data = {
  * it's preferred to stick to defaults.
  */
 export const InterfaceLockNoticeBox = (props: {
-  readonly siliconUser: BooleanLike;
-  readonly locked: BooleanLike;
-  readonly onLockStatusChange: (status: BooleanLike) => void;
-  readonly accessText: string;
-  readonly preventLocking: BooleanLike;
+  readonly siliconUser?: BooleanLike;
+  readonly locked?: BooleanLike;
+  readonly onLockStatusChange?: (status: BooleanLike) => void;
+  readonly accessText?: string;
+  readonly preventLocking?: BooleanLike;
 }) => {
   const { act, data } = useBackend<Data>();
   const {
