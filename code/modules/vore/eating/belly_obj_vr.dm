@@ -237,7 +237,9 @@
 	"item_multiplier",
 	"undergarment_chosen",
 	"undergarment_if_none",
-	"undergarment_color"
+	"undergarment_color",
+	"trash_eater_in",
+	"trash_eater_out"
 	)
 
 	if (save_digest_mode == 1)
@@ -541,7 +543,10 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && !isobserver(M))
-		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
+		if(isitem(M))
+			owner.visible_message(span_vnotice(span_green(span_bold(belly_format_string(trash_eater_out, M, item=M)))),range = privacy_range) //double dip. prey = item, item = prey. sanity check in case they use %prey in the message.
+		else
+			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
