@@ -28,6 +28,8 @@ export const InterfaceLockNoticeBox = (props: {
   readonly onLockStatusChange?: (status: BooleanLike) => void;
   readonly accessText?: string;
   readonly preventLocking?: BooleanLike;
+  readonly deny: boolean;
+  readonly denialMessage: string;
 }) => {
   const { act, data } = useBackend<Data>();
   const {
@@ -36,7 +38,12 @@ export const InterfaceLockNoticeBox = (props: {
     onLockStatusChange = () => act('lock'),
     accessText = 'an ID card',
     preventLocking = data.preventLocking,
+    deny = false,
+    denialMessage = 'Error.',
   } = props;
+  if (deny) {
+    return denialMessage;
+  }
   // For silicon users
   if (siliconUser) {
     return (
