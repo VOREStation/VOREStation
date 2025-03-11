@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed jungle and fantasy redgates having cave walls generate where they shouldn't."
