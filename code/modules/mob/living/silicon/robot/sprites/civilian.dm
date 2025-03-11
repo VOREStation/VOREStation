@@ -320,7 +320,6 @@
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/service/dullahan/servicealt
 	name = "Dullahan v2"
@@ -443,7 +442,6 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/clown/stoat
 	name = "ST-04t"
@@ -472,7 +470,6 @@
 /datum/robot_sprite/dogborg/tall/service/mekaserve_alt
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	name = "MEKA Alt"
-	pixel_x = 0
 	sprite_icon_state = "mekaserve_alt"
 	rest_sprite_options = list("Default", "Sit")
 
