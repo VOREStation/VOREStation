@@ -8,7 +8,7 @@
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/hood_up = FALSE
 	var/toggleicon
-	actions_types = list(/datum/action/item_action/toggle_hood)
+	actions_types = list()
 
 /obj/item/clothing/suit/storage/hooded/New()
 	toggleicon = "[initial(icon_state)]"
@@ -23,6 +23,9 @@
 	if(!hood && hoodtype)
 		var/obj/item/clothing/head/hood/H = new hoodtype(src)
 		hood = H
+		actions_types |= /datum/action/item_action/toggle_hood
+	else if(hood)
+		actions_types |= /datum/action/item_action/toggle_hood
 
 /obj/item/clothing/suit/storage/hooded/ui_action_click(mob/user, actiontype)
 	ToggleHood()
