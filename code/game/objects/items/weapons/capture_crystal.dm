@@ -19,7 +19,7 @@
 	var/full_icon = "full"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
 
-/obj/item/capture_crystal/Initialize()
+/obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -44,7 +44,7 @@
 		if(isanimal(bound_mob))
 			. += span_notice("[bound_mob.health / bound_mob.maxHealth * 100]%")
 		if(bound_mob.ooc_notes)
-			. += span_deptradio("OOC Notes:") + " <a href='byond://?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+			. += span_deptradio("OOC Notes:") + " <a href='byond://?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 		. += span_deptradio("<a href='byond://?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
@@ -847,7 +847,7 @@
 		list(/mob/living/simple_mob/vore/devil)
 		)
 
-/obj/item/capture_crystal/random/Initialize()
+/obj/item/capture_crystal/random/Initialize(mapload)
 	var/subchoice = pickweight(possible_mob_types)		//Some of the lists have nested lists, so let's pick one of them
 	var/choice = pickweight(subchoice)					//And then we'll pick something from whatever's left
 	spawn_mob_type = choice								//Now when someone uses this, we'll spawn whatever we picked!

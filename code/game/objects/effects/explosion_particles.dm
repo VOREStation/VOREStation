@@ -6,7 +6,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/expl_particles/Initialize()
+/obj/effect/expl_particles/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1.5 SECONDS)
 	return
@@ -41,7 +41,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECOND)
 	return

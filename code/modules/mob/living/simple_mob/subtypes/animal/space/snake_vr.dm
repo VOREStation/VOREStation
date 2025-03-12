@@ -216,7 +216,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list(REAGENT_ID_SUGAR = 1)
 
-/obj/item/reagent_containers/food/snacks/snakesnack/Initialize()
+/obj/item/reagent_containers/food/snacks/snakesnack/Initialize(mapload)
 	. = ..()
 	if(!snack_colour)
 		snack_colour = pick( list("yellow","green","pink","blue") )

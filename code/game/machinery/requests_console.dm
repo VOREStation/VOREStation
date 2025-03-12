@@ -54,7 +54,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	light_range = 0
 	var/datum/announcement/announcement = new
 
-/obj/machinery/requests_console/Initialize()
+/obj/machinery/requests_console/Initialize(mapload)
 	. = ..()
 
 	announcement.title = "[department] announcement"

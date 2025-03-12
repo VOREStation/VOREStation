@@ -36,7 +36,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/flash/Initialize()
+/obj/item/flash/Initialize(mapload)
 	. = ..()
 	power_supply = new cell_type(src)
 

@@ -7,7 +7,7 @@
 	taste_description = "powdered wax"
 	reagent_state = LIQUID
 	color = "#888888"
-	overdose = 5
+	overdose = 10
 
 /datum/reagent/crayon_dust/red
 	name = REAGENT_CRAYONDUSTRED
@@ -56,7 +56,7 @@
 	taste_description = "extremely bitter"
 	reagent_state = LIQUID
 	color = "#888888"
-	overdose = 5
+	overdose = 10
 
 /datum/reagent/marker_ink/black
 	name = REAGENT_MARKERINKBLACK

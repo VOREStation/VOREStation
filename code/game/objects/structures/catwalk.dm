@@ -20,7 +20,7 @@
 	var/maxhealth = 100
 	var/delete_me = FALSE
 
-/obj/structure/catwalk/Initialize()
+/obj/structure/catwalk/Initialize(mapload)
 	. = ..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL

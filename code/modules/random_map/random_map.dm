@@ -35,6 +35,12 @@ var/global/list/map_count = list()
 	var/priority_process
 
 /datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
+	if(!isnum(tz))
+		var/old_tz = tz
+		tz = GLOB.map_templates_loaded[tz]
+		if(!tz)
+			admin_notice(span_danger("[src] could not be created on an unknown z ([old_tz])!"), R_DEBUG)
+			return
 
 	// Store this for debugging.
 	if(!map_count[descriptor])

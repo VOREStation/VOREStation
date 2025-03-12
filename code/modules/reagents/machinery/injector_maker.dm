@@ -30,7 +30,7 @@
 	var/capacity_plastic = 60000 // cost_plastic_large * 40
 
 
-/obj/machinery/injector_maker/Initialize()
+/obj/machinery/injector_maker/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

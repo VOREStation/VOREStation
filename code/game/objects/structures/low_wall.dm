@@ -346,7 +346,7 @@
 	noblend_objects = list(/obj/machinery/door/window)
 	color = "#666666"
 
-/obj/structure/grille/bay/Initialize()
+/obj/structure/grille/bay/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -404,7 +404,7 @@
 	maxhealth = 24
 	glasstype = /obj/item/stack/material/glass
 
-/obj/structure/window/bay/Initialize()
+/obj/structure/window/bay/Initialize(mapload)
 	. = ..()
 	var/obj/item/stack/material/glass/G = glasstype
 	var/datum/material/M = get_material_by_name(initial(G.default_type))
@@ -498,7 +498,7 @@
 	maxhealth = 24
 	alpha = 150
 
-/obj/structure/window/eris/Initialize()
+/obj/structure/window/eris/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -576,7 +576,7 @@
 
 	icon = null
 
-/obj/effect/low_wall_spawner/Initialize()
+/obj/effect/low_wall_spawner/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/effect/low_wall_spawner) in oview(0, src))
 		warning("Duplicate low wall spawners in [x],[y],[z]!")

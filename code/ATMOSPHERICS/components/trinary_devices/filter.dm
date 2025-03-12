@@ -39,7 +39,7 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
+/obj/machinery/atmospherics/trinary/atmos_filter/Initialize(mapload)
 	. = ..()
 
 	switch(filter_type)

@@ -101,7 +101,7 @@
 	var/datum/powernet/PN
 	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = T.get_cable_node()
-	if (C)
+	if (C && anchored) //Make sure its anchored too.
 		PN = C.powernet
 
 	if (PN)

@@ -9,7 +9,7 @@
 	var/active = 0
 
 
-/obj/machinery/gateway/Initialize()
+/obj/machinery/gateway/Initialize(mapload)
 	update_icon()
 	if(dir == SOUTH)
 		density = FALSE
@@ -36,7 +36,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	var/wait = 0				//this just grabs world.time at world start
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
-/obj/machinery/gateway/centerstation/Initialize()
+/obj/machinery/gateway/centerstation/Initialize(mapload)
 	if(GLOB.gateway_station)
 		warning("[src] at [x],[y],[z] appears to be an additional station-gateway")
 	else
@@ -252,7 +252,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 /obj/machinery/gateway/centeraway/New()
 	density = TRUE
 
-/obj/machinery/gateway/centeraway/Initialize()
+/obj/machinery/gateway/centeraway/Initialize(mapload)
 	if(GLOB.gateway_away)
 		warning("[src] at [x],[y],[z] appears to be an additional away-gateway")
 	else

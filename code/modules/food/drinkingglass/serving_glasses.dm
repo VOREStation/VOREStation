@@ -17,4 +17,3 @@
 	volume = 120
 	possible_transfer_amounts = list(5,15,30)
 	matter = list(MAT_PLASTIC = 50)
-	

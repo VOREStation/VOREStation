@@ -24,7 +24,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/secure_data/Initialize()
+/obj/machinery/computer/secure_data/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General

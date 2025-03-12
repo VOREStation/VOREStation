@@ -16,7 +16,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/geiger/Initialize()
+/obj/item/geiger/Initialize(mapload)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -110,7 +110,7 @@
 	var/last_tick //used to delay the powercheck
 	var/wiresexposed = 0
 
-/obj/item/geiger/wall/Initialize()
+/obj/item/geiger/wall/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
 	return ..()

@@ -79,7 +79,7 @@
 	layer = MOB_LAYER + 0.2
 	plane = MOB_PLANE
 
-/obj/structure/canopy/Initialize()
+/obj/structure/canopy/Initialize(mapload)
 	. = ..()
 	dir = pick(alldirs)
 
@@ -93,14 +93,14 @@
 /obj/structure/canopy/edge/north
 	icon_state = "north"
 
-/obj/structure/canopy/edge/north/Initialize()
+/obj/structure/canopy/edge/north/Initialize(mapload)
 	. = ..()
 	dir = pick(1,2) //i cba to add two more
 
 /obj/structure/canopy/edge/south
 	icon_state = "south"
 
-/obj/structure/canopy/edge/south/Initialize()
+/obj/structure/canopy/edge/south/Initialize(mapload)
 	. = ..()
 	dir = pick(cardinal)
 
@@ -266,6 +266,6 @@
 //teleport_z must be populated but this is a gateway map
 //switching between tether or another map will change the z
 //so we just do this lmfao
-/obj/effect/step_trigger/teleporter/atoll/Initialize()
+/obj/effect/step_trigger/teleporter/atoll/Initialize(mapload)
 	. = ..()
 	teleport_z = z

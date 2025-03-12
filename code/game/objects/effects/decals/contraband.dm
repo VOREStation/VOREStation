@@ -165,7 +165,7 @@
 			pixel_x = -32
 			pixel_y = 0
 
-/obj/structure/sign/poster/Initialize()
+/obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
 	if (poster_type)
 		var/path = text2path(poster_type)

@@ -679,7 +679,7 @@
 	eye_safety_modifier = 2
 	always_process = TRUE
 
-/obj/item/weldingtool/electric/mounted/exosuit/Initialize()
+/obj/item/weldingtool/electric/mounted/exosuit/Initialize(mapload)
 	. = ..()
 
 	if(istype(loc, /obj/item/mecha_parts/mecha_equipment))

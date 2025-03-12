@@ -59,5 +59,3 @@ var/list/modules = list(			// global associative list
 	modcount["[type]"] = num
 
 	return 2**num-1
-
-

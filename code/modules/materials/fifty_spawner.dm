@@ -6,7 +6,7 @@
 	icon_state = "x4"
 	var/obj/item/stack/type_to_spawn = null
 
-/obj/fiftyspawner/Initialize()
+/obj/fiftyspawner/Initialize(mapload)
 	..()
 	var/turf/T = get_turf(src)
 	var/obj/structure/closet/C = locate() in T
