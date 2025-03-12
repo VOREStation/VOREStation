@@ -527,7 +527,7 @@
 	var/client/owner_c = null //They'll be dead when we message them probably.
 	var/state = 0 //0 - New, 1 - Paired, 2 - Breaking, 3 - Broken (same as iconstates)
 
-/obj/item/clothing/accessory/collar/khcrystal/Initialize()
+/obj/item/clothing/accessory/collar/khcrystal/Initialize(mapload)
 	. = ..()
 	update_state(0)
 
@@ -620,7 +620,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 2
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/storage/box/khcrystal/Initialize()
+/obj/item/storage/box/khcrystal/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper/khcrystal_manual(src)
 	new /obj/item/clothing/accessory/collar/khcrystal(src)
@@ -693,7 +693,7 @@
 	var/ambulance_state = FALSE
 	var/ambulance_last_switch = 0
 
-/obj/item/storage/backpack/saddlebag/tempest/Initialize()
+/obj/item/storage/backpack/saddlebag/tempest/Initialize(mapload)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -929,7 +929,7 @@
 	var/wielded = 0
 	var/base_name = "stunstaff"
 
-/obj/item/melee/baton/fluff/stunstaff/Initialize()
+/obj/item/melee/baton/fluff/stunstaff/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
@@ -998,7 +998,7 @@
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/item/storage/backpack/fluff/stunstaff/Initialize()
+/obj/item/storage/backpack/fluff/stunstaff/Initialize(mapload)
 	. = ..()
 	new /obj/item/melee/baton/fluff/stunstaff(src)
 
@@ -1158,7 +1158,7 @@
 	name = "flask of expensive alcohol"
 	desc = "A standard vacuum-flask filled with good and expensive drink."
 
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PWINE, 60)
 
@@ -1274,7 +1274,7 @@
 	filling_states = list(15, 30, 50, 60, 80, 100)
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TEA, 40)
 	reagents.add_reagent(REAGENT_ID_MILK, 20)
@@ -1348,7 +1348,7 @@
 	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 7)
 
-/obj/item/storage/fancy/fluff/charlotte/Initialize()
+/obj/item/storage/fancy/fluff/charlotte/Initialize(mapload)
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
@@ -1399,7 +1399,7 @@
 	icon_state = "bottle3"
 	prefill = list(REAGENT_ID_BICARIDINE = 30, REAGENT_ID_NUTRIMENT = 30)
 
-/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize()
+/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize(mapload)
 	. = ..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
 	hold.can_hold = list(/obj/item/material/knife, /obj/item/reagent_containers/glass/bottle)
@@ -1559,7 +1559,7 @@
 	..()
 	icon_state = "ceph_d6[result]"
 
-/obj/item/dice/loaded/ceph/Initialize()
+/obj/item/dice/loaded/ceph/Initialize(mapload)
 	. = ..()
 	icon_state = "ceph_d6[rand(1,sides)]"
 

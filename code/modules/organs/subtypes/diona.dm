@@ -211,7 +211,7 @@
 	parent_organ = BP_TORSO
 	vital = TRUE
 
-/obj/item/organ/internal/brain/cephalon/Initialize()
+/obj/item/organ/internal/brain/cephalon/Initialize(mapload)
 	. = ..()
 	spawn(30 SECONDS)	// FBP Dionaea need some way to be disassembled through surgery, if absolutely necessary.
 		if(!owner.isSynthetic())

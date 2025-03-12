@@ -22,7 +22,7 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
-/obj/structure/safe/Initialize()
+/obj/structure/safe/Initialize(mapload)
 	. = ..()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
@@ -178,7 +178,7 @@ FLOOR SAFES
 	plane = PLATING_PLANE
 	layer = ABOVE_UTILITY
 
-/obj/structure/safe/floor/Initialize()
+/obj/structure/safe/floor/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	if(istype(T) && !T.is_plating())

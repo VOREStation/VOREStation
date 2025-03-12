@@ -7,7 +7,7 @@
 	icon = 'icons/mecha/mecha_vr.dmi'
 
 
-/obj/mecha/combat/phazon/scree/Initialize()
+/obj/mecha/combat/phazon/scree/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 	ME.attach(src)

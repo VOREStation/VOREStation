@@ -41,7 +41,7 @@
 	plane = DIRTY_PLANE
 	layer = DIRTY_LAYER
 
-/obj/effect/weaversilk/floor/Initialize()
+/obj/effect/weaversilk/floor/Initialize(mapload)
 	. = ..()
 	icon_state = pick(possible_icon_states)
 
@@ -52,7 +52,7 @@
 	var/possible_icon_states = list("wallweb1", "wallweb2", "wallweb3")
 	density = TRUE
 
-/obj/effect/weaversilk/wall/Initialize()
+/obj/effect/weaversilk/wall/Initialize(mapload)
 	. = ..()
 	icon_state = pick(possible_icon_states)
 

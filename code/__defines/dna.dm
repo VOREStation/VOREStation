@@ -49,6 +49,7 @@
 #define BLIND 0x1
 #define MUTE  0x2
 #define DEAF  0x4
+#define SPINE 0x8
 
 /* Traitgenes (Blocks have finally been retired, huzzah!
 // The way blocks are handled badly needs a rewrite, this is horrible.

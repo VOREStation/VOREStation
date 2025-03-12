@@ -19,7 +19,7 @@
 	oxygentanks = 0
 
 
-/obj/structure/dispenser/Initialize()
+/obj/structure/dispenser/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to oxygentanks)
 		new /obj/item/tank/oxygen(src)

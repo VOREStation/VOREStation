@@ -8,6 +8,6 @@
 	anchored = TRUE
 	persistent = TRUE
 
-/obj/effect/decal/cleanable/filth/Initialize()
+/obj/effect/decal/cleanable/filth/Initialize(mapload)
 	. = ..()
 	alpha = rand(180,220)

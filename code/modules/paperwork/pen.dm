@@ -175,7 +175,7 @@
 	var/active_icon_state
 	var/default_icon_state
 
-/obj/item/pen/blade/Initialize()
+/obj/item/pen/blade/Initialize(mapload)
 	. = ..()
 	active_icon_state = "[icon_state]-x"
 	default_icon_state = icon_state

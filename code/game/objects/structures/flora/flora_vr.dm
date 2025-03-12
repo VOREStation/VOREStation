@@ -37,13 +37,13 @@
 	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has large, round eyes and a squiggly, cat-like smiling mouth. Its pleasantly surprised expression seems to suggest that the pumpkin has noticed something about you."
 	icon_state = "decor-jackolantern-owo"
 
-// Various decorá 
+// Various decorá
 /obj/structure/flora/log1
 	name = "waterlogged trunk"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A part of a felled tree. Moss is growing across it."
 	icon_state = "log1"
-	
+
 /obj/structure/flora/log2
 	name = "driftwood"
 	icon = 'icons/obj/flora/amayastuff.dmi'
@@ -55,13 +55,13 @@
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A bunch of lilypads. A beautiful red flower grows in the middle of them."
 	icon_state = "lilypad1"
-	
+
 /obj/structure/flora/lily2
 	name = "yellow flowered lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A few lilypads. A sunny yellow flower stems from the water and from between the lilypads."
 	icon_state = "lilypad2"
-	
+
 /obj/structure/flora/lily3
 	name = "lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
@@ -73,27 +73,27 @@
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A small boulder, with its top smothered with moss."
 	icon_state = "smallerboulder"
-	
+
 /obj/structure/flora/bboulder1
 	name = "large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "Small stones sit beside this large boulder. Moss grows on the top of each of them."
 	icon_state = "bigboulder1"
 	density = TRUE
-	
+
 /obj/structure/flora/bboulder2
 	name = "jagged large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "This boulder has had plates broken off it. Moss grows in the cracks and across the top."
 	icon_state = "bigboulder2"
 	density = TRUE
-	
+
 /obj/structure/flora/rocks1
 	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A bunch of mossy rocks."
 	icon_state = "rocks1"
-	
+
 /obj/structure/flora/rocks2
 	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'

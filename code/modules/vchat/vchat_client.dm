@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 	"code/modules/vchat/js/vchat.min.js"
 ))
 
-// The to_chat() macro calls this proc
+// The to chat macro calls this proc, deprecated
 /proc/__to_chat(var/target, var/message)
 	// First do logging in database
 	if(isclient(target))

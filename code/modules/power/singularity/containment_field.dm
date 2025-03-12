@@ -18,7 +18,7 @@
 	var/list/shockdirs
 	var/hasShocked = 0 //Used to add a delay between shocks. In some cases this used to crash servers by spawning hundreds of sparks every second.
 
-/obj/machinery/containment_field/Initialize()
+/obj/machinery/containment_field/Initialize(mapload)
 	. = ..()
 	shockdirs = list(turn(dir,90),turn(dir,-90))
 	sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
