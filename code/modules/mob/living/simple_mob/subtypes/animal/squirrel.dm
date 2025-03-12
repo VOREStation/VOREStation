@@ -152,7 +152,7 @@
 	say_maybe_target = list("Sqk?")
 	say_got_target = list("SQUEAK!!!")
 
-/mob/living/simple_mob/vore/squirrel/Initialize()
+/mob/living/simple_mob/vore/squirrel/Initialize(mapload)
 	. = ..()
 	if(do_seasons)
 		switch(world_time_season)
@@ -160,6 +160,7 @@
 				if(prob(1))
 					winterize()
 			if("summer")
+				pass()
 			if("autumn")
 				vore_bump_chance = 20
 				if(prob(50))
@@ -227,6 +228,6 @@
 /mob/living/simple_mob/vore/squirrel/big
 	do_seasons = FALSE
 
-/mob/living/simple_mob/vore/squirrel/big/Initialize()
+/mob/living/simple_mob/vore/squirrel/big/Initialize(mapload)
 	. = ..()
 	winterize()

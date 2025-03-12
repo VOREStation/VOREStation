@@ -117,7 +117,7 @@
 	var/image/bigshadow
 	var/autodoom = TRUE
 
-/mob/living/simple_mob/vore/fennec/huge/Initialize()
+/mob/living/simple_mob/vore/fennec/huge/Initialize(mapload)
 	. = ..()
 	bigshadow = image(icon, icon_state = "shadow")
 	bigshadow.plane = MOB_PLANE

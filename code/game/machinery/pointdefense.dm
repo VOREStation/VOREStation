@@ -137,7 +137,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/datum/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
 
-/obj/machinery/power/pointdefense/Initialize()
+/obj/machinery/power/pointdefense/Initialize(mapload)
 	. = ..()
 	// TODO - Remove this bit once machines are converted to Initialize
 	if(ispath(circuit))

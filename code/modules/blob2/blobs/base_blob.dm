@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
 	var/faction = FACTION_BLOB
 
-/obj/structure/blob/Initialize(newloc, new_overmind)
+/obj/structure/blob/Initialize(mapload, new_overmind)
 	if(new_overmind)
 		overmind = new_overmind
 		faction = overmind.blob_type.faction

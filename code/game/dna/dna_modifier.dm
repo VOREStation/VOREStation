@@ -75,7 +75,7 @@
 	var/scan_level
 	var/precision_coeff
 
-/obj/machinery/dna_scannernew/Initialize()
+/obj/machinery/dna_scannernew/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	RefreshParts()
@@ -298,7 +298,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/computer/scan_consolenew
@@ -356,10 +355,9 @@
 			if(prob(50))
 				qdel(src)
 				return
-		else
 	return
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 	for(var/i=0;i<3;i++)
 		// Traitgenes Use bodyrecords

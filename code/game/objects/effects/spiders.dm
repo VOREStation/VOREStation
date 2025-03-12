@@ -72,7 +72,7 @@
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
 
-/obj/effect/spider/stickyweb/Initialize()
+/obj/effect/spider/stickyweb/Initialize(mapload)
 	if(prob(50))
 		icon_state = "stickyweb2"
 	return ..()
@@ -98,7 +98,7 @@
 	var/spider_type = /obj/effect/spider/spiderling
 	var/faction = FACTION_SPIDERS
 
-/obj/effect/spider/eggcluster/Initialize()
+/obj/effect/spider/eggcluster/Initialize(mapload)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
@@ -223,6 +223,7 @@
 
 					if(prob(50))
 						src.visible_message(span_notice("You hear something squeezing through the ventilation ducts."),2)
+						SSmotiontracker.ping(src,10)
 					sleep(travel_time)
 
 					if(!exit_vent || exit_vent.welded)
@@ -269,6 +270,7 @@
 				walk_to(src, target_atom, 5)
 				if(prob(25))
 					src.visible_message(span_notice("\The [src] skitters[pick(" away"," around","")]."))
+				SSmotiontracker.ping(src,10)
 		else if(amount_grown < 75 && prob(5))
 			//vent crawl!
 			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))

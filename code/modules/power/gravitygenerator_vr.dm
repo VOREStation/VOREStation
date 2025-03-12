@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	use_power = USE_POWER_ACTIVE
 	current_overlay = "activated"
 
-/obj/machinery/gravity_generator/main/station/Initialize()
+/obj/machinery/gravity_generator/main/station/Initialize(mapload)
 	. = ..()
 	setup_parts()
 	middle.add_overlay("activated")
@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	var/list/levels = list()
 	var/list/areas = list()
 
-/obj/machinery/gravity_generator/main/Initialize()
+/obj/machinery/gravity_generator/main/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -268,7 +268,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	switch(action)
 		if("gentoggle")
 			breaker = !breaker
-			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(ui.user)].", "gravity")
+			investigate_log("was toggled [breaker ? span_green("ON") : span_red("OFF")] by [key_name(ui.user)].", "gravity")
 			set_power()
 			return TOPIC_REFRESH
 

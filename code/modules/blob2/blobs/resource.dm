@@ -9,7 +9,7 @@
 	var/resource_delay = 0
 	var/resource_cooldown = 4 SECONDS
 
-/obj/structure/blob/resource/Initialize(newloc, new_overmind)
+/obj/structure/blob/resource/Initialize(mapload, new_overmind)
 	if(overmind)
 		overmind.resource_blobs += src
 	return ..()

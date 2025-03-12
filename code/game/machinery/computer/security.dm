@@ -24,7 +24,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/secure_data/Initialize()
+/obj/machinery/computer/secure_data/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -272,13 +272,13 @@
 					qdel(active2)
 			if("sync_r")
 				if(active2)
-					set_temp(client_update_record(src,usr))
+					set_temp(client_update_record(src,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
-				var/new_notes = strip_html_simple(tgui_input_text(usr,"Enter new information here.","Character Preference", html_decode(active2.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-				if(usr.Adjacent(src))
-					if(new_notes != "" || tgui_alert(usr, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
-						if(usr.Adjacent(src))
+				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active2.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+				if(ui.user.Adjacent(src))
+					if(new_notes != "" || tgui_alert(ui.user, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
+						if(ui.user.Adjacent(src))
 							active2.fields["notes"] = new_notes
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")

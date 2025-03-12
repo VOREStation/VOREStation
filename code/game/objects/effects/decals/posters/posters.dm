@@ -83,7 +83,7 @@
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/poster/nanotrasen/Initialize(turf/loc, var/decl/poster/P = null)
+/obj/item/poster/nanotrasen/Initialize(mapload, var/decl/poster/P = null)
 	if(!ispath(src.poster_decl) && !ispath(P) && !istype(P))
 		src.poster_decl = get_poster_decl(/decl/poster/nanotrasen, FALSE)
 	return ..()

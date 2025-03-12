@@ -197,10 +197,10 @@
 		humanform.species.update_misc_tabs(src)
 
 /mob/living/simple_mob/protean_blob/updatehealth()
+	if(!humanform)
+		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
 	if(humanform.nano_dead_check(src))
 		return
-	if(!humanform)
-		return ..()
 
 	//Set the max
 	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
@@ -324,6 +324,8 @@
 
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
+	if(!humanform)
+		CRASH("A protean_blob calling Life() has no humanform! Src = [src] ckey = [ckey]")
 	if(!humanform.nano_dead_check(src))
 		if(. && istype(refactory) && humanform)
 			if(!healing && (human_brute || human_burn) && refactory.get_stored_material(MAT_STEEL) >= 100)
@@ -654,6 +656,8 @@
 	return ..()
 
 /mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
+	if(!humanform)
+		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
 	humanform.handle_mutations_and_radiation()
 
 /mob/living/simple_mob/protean_blob/update_icon()
@@ -731,6 +735,56 @@
 			add_overlay(I)
 			qdel(I)
 
+		if(S.blob_appearance == "dullahan")
+			icon = 'icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi'
+			vis_height = 64
+			var/image/I = image(icon, "[S.dullahan_overlays[1]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[1]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[2]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[2]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[3]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[3]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[4]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[4]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[5]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[5]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[6]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[6]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
 		//You know technically I could just put all the icons into the 128x64.dmi file and off-set them to fit..
 		if(S.blob_appearance in wide_icons)
 			icon = 'icons/mob/species/protean/protean64x32.dmi'

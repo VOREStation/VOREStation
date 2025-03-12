@@ -69,7 +69,9 @@
 	icon_state = "hawaiian_cyan"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
+	heat_protection = CHEST
+	cold_protection = CHEST
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
@@ -113,7 +115,9 @@
 	icon_state = "animalstyle"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
+	heat_protection = CHEST
+	cold_protection = CHEST
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
@@ -165,11 +169,13 @@
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
 	icon_override = 'icons/inventory/accessory/mob.dmi'
-	var/fire_resist = T0C+100
-	allowed = list(/obj/item/tank/emergency/oxygen)
+	max_heat_protection_temperature = T0C+100
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
+	heat_protection = CHEST|ARMS|LEGS
+	cold_protection = CHEST|ARMS|LEGS
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
@@ -255,6 +261,8 @@
 	icon_state = "qmcloak"
 	item_state = "qmcloak"
 	body_parts_covered = null
+	heat_protection = null
+	cold_protection = null
 
 /obj/item/clothing/accessory/poncho/roles/cloak/ce
 	name = "chief engineer's cloak"
@@ -360,10 +368,12 @@
 	item_state = "vest"
 	icon_override = 'icons/inventory/accessory/mob.dmi'
 	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
-	allowed = list(/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes, /obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
+	heat_protection = CHEST
+	cold_protection = CHEST
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
@@ -423,7 +433,11 @@
 	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "sweater"
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
+	heat_protection = CHEST|ARMS
+	cold_protection = CHEST|ARMS
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE-275 //325k/125F
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE+80 //240K/-27F
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
@@ -487,7 +501,7 @@
 	name = "virgin killer"
 	desc = "A knit sweater that leaves little to the imagination."
 	icon_state = "virginkiller"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /*
  * Misc
@@ -544,7 +558,7 @@
 	icon_state = "klbr"
 	icon_override = 'icons/inventory/accessory/mob.dmi'
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "armor", SLOT_ID_LEFT_HAND = "armor")
-	allowed = list(/obj/item/gun,/obj/item/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_EXPLO)
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = UPPER_TORSO|ARMS
 	siemens_coefficient = 0.9

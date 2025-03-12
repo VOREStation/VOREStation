@@ -40,7 +40,6 @@
 	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
-	var/datum/admins/deadmin_holder = null
 	var/buildmode		= 0
 
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
@@ -178,3 +177,6 @@
 
 	/// If this client has been fully initialized or not
 	var/fully_created = FALSE
+
+	/// Token used for the external chatlog api. Only valid for the current round.
+	var/chatlog_token

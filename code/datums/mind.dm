@@ -357,13 +357,13 @@
 						if(I in organs.implants)
 							qdel(I)
 							break
-				to_chat(H, span_notice("<font size =3><B>Your loyalty implant has been deactivated.</B></font>"))
+				to_chat(H, span_notice(span_large(span_bold("Your loyalty implant has been deactivated."))))
 				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
 			if("add")
-				to_chat(H, span_danger("<font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font>"))
+				to_chat(H, span_danger(span_large("You somehow have become the recepient of a loyalty transplant, and it just activated!")))
 				H.implant_loyalty(override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
-			else
+
 	else if (href_list["silicon"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])
@@ -413,7 +413,7 @@
 				take_uplink()
 				memory = null//Remove any memory they may have had.
 			if("crystals")
-				if (usr.client.holder.rights & R_FUN)
+				if (check_rights_for(usr.client, R_FUN))
 				//	var/obj/item/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
 					crystals = tcrystals

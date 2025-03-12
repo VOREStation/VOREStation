@@ -1,12 +1,12 @@
-#if !defined(CITESTING) && !defined(SPACEMAN_DMM)
+#if !defined(CITESTING)
 
 /*********************/
 /* MAP SELECTION     */
 /* FOR LIVE SERVER   */
 /*********************/
 
-//#define USE_MAP_TETHER
-#define USE_MAP_STELLARDELIGHT
+#define USE_MAP_TETHER
+//#define USE_MAP_STELLARDELIGHT
 //#define USE_MAP_GROUNDBASE
 
 // Debug
@@ -33,6 +33,7 @@
 #include "../groundbase/groundbase.dm"
 #endif
 
+// Debug: Minitest
 #ifdef USE_MAP_MINITEST
 #include "../virgo_minitest/virgo_minitest.dm"
 #endif

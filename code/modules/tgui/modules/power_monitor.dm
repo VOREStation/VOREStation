@@ -17,7 +17,7 @@
 
 	var/z = get_z(user)
 	var/list/map_levels = using_map.get_map_levels(z)
-	
+
 	// Build list of data from sensor readings.
 	for(var/obj/machinery/power/sensor/S in grid_sensors)
 		if(!(S.z in map_levels))

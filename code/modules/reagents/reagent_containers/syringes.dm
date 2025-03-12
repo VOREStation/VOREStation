@@ -38,7 +38,7 @@
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 
-/obj/item/reagent_containers/syringe/Initialize()
+/obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -337,7 +337,7 @@
 	name = "Syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 
-/obj/item/reagent_containers/syringe/inaprovaline/Initialize()
+/obj/item/reagent_containers/syringe/inaprovaline/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_INAPROVALINE, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
@@ -347,7 +347,7 @@
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 
-/obj/item/reagent_containers/syringe/antitoxin/Initialize()
+/obj/item/reagent_containers/syringe/antitoxin/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
@@ -357,7 +357,7 @@
 	name = "Syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
 
-/obj/item/reagent_containers/syringe/antiviral/Initialize()
+/obj/item/reagent_containers/syringe/antiviral/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPACEACILLIN, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
@@ -367,7 +367,7 @@
 	name = "Syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 
-/obj/item/reagent_containers/syringe/drugs/Initialize()
+/obj/item/reagent_containers/syringe/drugs/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BLISS,  5)
 	reagents.add_reagent(REAGENT_ID_MINDBREAKER,  5)
@@ -375,7 +375,7 @@
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
-/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize()
+/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CHLORALHYDRATE, 50)
 	mode = SYRINGE_INJECT
@@ -385,7 +385,7 @@
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 
-/obj/item/reagent_containers/syringe/steroid/Initialize()
+/obj/item/reagent_containers/syringe/steroid/Initialize(mapload)
 	. = ..()
 	//reagents.add_reagent(REAGENT_ID_ADRENALINE,5) //VOREStation Edit - No thanks.
 	reagents.add_reagent(REAGENT_ID_HYPERZINE,10)

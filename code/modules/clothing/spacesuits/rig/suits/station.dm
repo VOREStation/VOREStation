@@ -31,12 +31,7 @@
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, /obj/item/storage)
 
 	req_access = list()
 	req_one_access = list()
@@ -78,15 +73,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		/obj/item/t_scanner,
-		/obj/item/pickaxe,
-		/obj/item/rcd
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_MINING, POCKET_CE, /obj/item/storage)
 
 	req_access = list()
 	req_one_access = list()
@@ -116,14 +103,7 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		/obj/item/t_scanner,
-		/obj/item/rcd
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_CE, /obj/item/storage)
 
 	req_access = list()
 	req_one_access = list()
@@ -163,14 +143,7 @@
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce //VOREStation Add
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		/obj/item/t_scanner,
-		/obj/item/rcd
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_ENGINEERING, POCKET_CE)
 
 	req_access = list()
 	req_one_access = list()
@@ -206,23 +179,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/stack/flag,
-		/obj/item/storage,
-		/obj/item/pickaxe,
-		/obj/item/healthanalyzer,
-		/obj/item/measuring_tape,
-		/obj/item/ano_scanner,
-		/obj/item/depth_scanner,
-		/obj/item/core_sampler,
-		/obj/item/gps,
-		/obj/item/beacon_locator,
-		/obj/item/radio/beacon,
-		/obj/item/pickaxe/hand
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_MINING, POCKET_XENOARC)
 
 	req_access = list()
 	req_one_access = list()
@@ -252,15 +209,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		/obj/item/healthanalyzer,
-		/obj/item/stack/medical,
-		/obj/item/roller
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_MEDICAL, /obj/item/storage, /obj/item/roller)
 
 	req_access = list()
 	req_one_access = list()
@@ -291,14 +240,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
 
-	allowed = list(
-		/obj/item/gun,
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/melee/baton,
-		/obj/item/storage
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_EXPLO, /obj/item/storage)
 
 	req_access = list()
 	req_one_access = list()

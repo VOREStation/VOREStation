@@ -107,7 +107,7 @@ const InputArea = (props: {
   return (
     <TextArea
       autoFocus
-      // userMarkup={{ u: '_', i: '|', b: '+' }}   needs tgui core 1.8.x
+      userMarkup={{ u: '_', i: '|', b: '+' }}
       autoSelect
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}

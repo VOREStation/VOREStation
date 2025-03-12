@@ -275,7 +275,7 @@
 				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
 
 				master.buildmode.varholder = tgui_input_text(usr,"Enter variable name:" ,"Name", "name")
-				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
+				if((master.buildmode.varholder in locked) && !check_rights(R_DEBUG,0))
 					return 1
 				var/thetype = tgui_input_list(usr,"Select variable type:", "Type", list("text","number","mob-reference","obj-reference","turf-reference"))
 				if(!thetype) return 1
@@ -658,12 +658,10 @@
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = FALSE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE)
 			else if(pa.Find("right"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = TRUE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))

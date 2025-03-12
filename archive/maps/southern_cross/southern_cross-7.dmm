@@ -115,7 +115,7 @@
 "ck" = (/obj/effect/step_trigger/teleporter/landmark{landmark_id = "fall_sif"},/turf/simulated/sky/moving/north,/area/space)
 "cl" = (/obj/effect/step_trigger/teleporter/landmark{landmark_id = "fall_sif"},/turf/simulated/sky/moving/south,/area/space)
 "cm" = (/obj/effect/step_trigger/teleporter/landmark{landmark_id = "fall_sif"},/turf/simulated/sky/south,/area/space)
-"cn" = (/obj/effect/step_trigger/teleporter/planetary_fall/sif,/turf/simulated/sky/moving/north,/area/space)
+"cn" = (/turf/simulated/sky/moving/north/sif/planet_fall,/area/space)
 "co" = (/obj/effect/landmark/teleport_mark{landmark_id = "fall_sif"},/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; nostop = 1; stopper = 0; tiles = 0},/turf/simulated/sky/moving/north,/area/space)
 "cp" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/simulated/sky/north,/area/space)
 "cq" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/simulated/sky/moving/north,/area/space)

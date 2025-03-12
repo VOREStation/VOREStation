@@ -48,7 +48,7 @@
 	current_filter = filter
 
 /datum/tgui_module/player_notes/proc/open_legacy()
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
@@ -113,7 +113,7 @@
 	if(..())
 		return TRUE
 
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.show_player_info_legacy(key)
 
 /datum/tgui_module/player_notes_info/tgui_act(action, params, datum/tgui/ui)
@@ -279,7 +279,7 @@
 			if(!I.rank)
 				I.rank = "N/A"
 				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			dat += span_green("[I.content]") + " " + span_italics("by [I.author] ([I.rank])") + " on " + span_italics(span_blue("[I.timestamp]")) + " "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='byond://?src=\ref[src];[HrefToken()];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"

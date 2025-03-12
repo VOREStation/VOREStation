@@ -20,7 +20,7 @@
 	density = TRUE
 	opacity = 1
 
-/obj/structure/bookcase/Initialize()
+/obj/structure/bookcase/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
@@ -87,7 +87,6 @@
 					b.loc = (get_turf(src))
 				qdel(src)
 			return
-		else
 	return
 
 /obj/structure/bookcase/update_icon()

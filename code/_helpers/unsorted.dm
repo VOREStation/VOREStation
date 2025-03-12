@@ -1248,7 +1248,7 @@ var/mob/dview/dview_mob = new
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/Initialize()
+/mob/dview/Initialize(mapload)
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
 	mob_list -= src
@@ -1498,6 +1498,10 @@ var/mob/dview/dview_mob = new
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
+
+/// No op
+/proc/pass(...)
+	return
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)

@@ -610,8 +610,8 @@
 
 		if(breath && should_have_organ(O_LUNGS))
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised() && prob(8))
-				rupture_lung()
+			if(!L.is_bruised())
+				rupture_lung(TRUE)
 
 		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
 		return 0
@@ -677,8 +677,8 @@
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			spawn(0) emote("gasp")
-		if(is_below_sound_pressure(get_turf(src)) && prob(8))	//No more popped lungs from choking/drowning
-			rupture_lung()
+		if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning. You also have ~20 seconds to get internals on before your lungs pop.
+			rupture_lung(TRUE)
 
 		var/ratio = inhale_pp/safe_pressure_min
 		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
@@ -798,13 +798,13 @@
 		if(breath.temperature >= species.heat_discomfort_level)
 
 			if(breath.temperature >= species.breath_heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
 			else if(breath.temperature >= species.breath_heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
 			else if(breath.temperature >= species.breath_heat_level_1)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_HOT))
 				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
@@ -814,13 +814,13 @@
 		else if(breath.temperature <= species.cold_discomfort_level)
 
 			if(breath.temperature <= species.breath_cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 			else if(breath.temperature <= species.breath_cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
 			else if(breath.temperature <= species.breath_cold_level_1)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
 				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)

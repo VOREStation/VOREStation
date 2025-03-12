@@ -28,7 +28,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/sleevemate/Initialize()
+/obj/item/sleevemate/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 

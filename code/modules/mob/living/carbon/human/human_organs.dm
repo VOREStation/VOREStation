@@ -51,7 +51,7 @@
 			//Moving around with fractured ribs won't do you any good
 				if (prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50 && E.is_broken() && E.internal_organs.len)
 					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 50)
-					emote("pain")
+					emote("scream")
 					drop_item(loc)
 					Stun(2)
 
@@ -73,7 +73,7 @@
 	if (istype(buckled, /obj/structure/bed))
 		return
 
-	var/limb_pain
+	var/limb_pain = FALSE
 	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || !E.is_usable())
@@ -111,7 +111,8 @@
 			if(limb_pain)
 				emote("scream")
 			custom_emote(1, "collapses!")
-		Weaken(5) //can't emote while weakened, apparently.
+		if(!(lying || resting)) // stops permastun with SPINE sdisability
+			Weaken(5) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
 	if(!l_hand && !r_hand)
