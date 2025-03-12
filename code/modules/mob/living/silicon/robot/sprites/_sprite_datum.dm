@@ -133,13 +133,7 @@
 /datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!ourborg.resting)
 		return "[sprite_icon_state]-glow"
-	switch(ourborg.rest_style)
-		if("Sit")
-			return "[sprite_icon_state]-sit-glow"
-		if("Bellyup")
-			return "[sprite_icon_state]-bellyup-glow"
-		else
-			return "[sprite_icon_state]-rest-glow"
+	return "[get_rest_sprite(ourborg.rest_style)]-glow"
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
