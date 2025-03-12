@@ -501,7 +501,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		ui.open()
 
 /datum/admin_help/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN | R_EVENT | R_DEBUG)
 
 /datum/admin_help/tgui_data(mob/user)
 	var/list/data = list()

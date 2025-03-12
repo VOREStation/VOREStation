@@ -89,6 +89,28 @@
 		return FALSE
 	return ..()
 
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION("move_atom", "Move To Coordinate")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
+
+/atom/movable/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_EDIT_PARTICLES] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(src)
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("move_atom")
+		usr.client.cmd_admin_move_atom(src)
+		href_list["datumrefresh"] = "\ref[src]"
+
 ////////////////////////////////////////
 /atom/movable/Move(atom/newloc, direct = 0, movetime)
 	// Didn't pass enough info
@@ -665,3 +687,6 @@
 	var/direction = get_dir(old_loc, new_loc)
 	loc = new_loc
 	Moved(old_loc, direction, TRUE)
+
+/atom/movable/proc/Bump_vr(var/atom/A, yes)
+	return
