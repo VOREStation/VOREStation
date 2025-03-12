@@ -171,7 +171,6 @@ export const VoreSelectedBellyDescriptions = (props: {
             Examine Message (with absorbed victims)
           </Button>
         </LabeledList.Item>
-
         <LabeledList.Item label="Trash Eater Messages">
           <Button
             onClick={() =>
@@ -191,7 +190,6 @@ export const VoreSelectedBellyDescriptions = (props: {
             Item Expel Message
           </Button>
         </LabeledList.Item>
-
         {message_mode || escapable ? (
           <>
             <VoreSelectedBellyDescriptionsStruggle />
