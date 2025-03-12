@@ -82,7 +82,7 @@
 		if(check_fuel())
 			// spawn projectile
 			var/obj/item/projectile/P = new /obj/item/projectile/bullet/dragon/flamethrower(get_turf(src))
-			P.submunition_spread_max = 30 + round(80*thrower_spew_percent())
+			P.submunition_spread_max = 90 + round(80*thrower_spew_percent())
 			P.submunition_spread_min = 5 + round(50*thrower_spew_percent())
 			P.submunitions = list(/obj/item/projectile/bullet/incendiary/dragonflame/flamethrower = 1 + round(thrower_spew_percent()*2))
 			P.launch_projectile( target, BP_TORSO, user)
