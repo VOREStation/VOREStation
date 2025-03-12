@@ -163,4 +163,4 @@
 		SSatc.msg(message)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
-	return list(Z_LEVEL_SPACE_ROCKS)
+	return list(Z_NAME_SPACE_ROCKS)
