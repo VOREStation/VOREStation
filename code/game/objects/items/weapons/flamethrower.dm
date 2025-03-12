@@ -28,13 +28,13 @@
 	var/obj/item/tank/phoron/ptank = null
 	var/volume_per_max_burn = 20 // gets divided by the intended burn ratio
 
-/obj/item/flamethrower/Initialize()
+/obj/item/flamethrower/Initialize(mapload)
 	weldtool = new /obj/item/weldingtool(src)
 	weldtool.status = 0 // for disassembly
 	update_icon()
 	. = ..()
 
-/obj/item/flamethrower/full/Initialize()
+/obj/item/flamethrower/full/Initialize(mapload)
 	igniter = new /obj/item/assembly/igniter(src)
 	igniter.secured = 0 // for disassembly
 	. = ..()
