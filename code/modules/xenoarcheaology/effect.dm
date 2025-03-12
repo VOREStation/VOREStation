@@ -63,29 +63,16 @@
 		if(3)
 			//large range, long charge time
 			chargelevelmax = rand(20, 120)
-			effectrange = rand(20, 100) //VOREStation Edit - Map size.
+			effectrange = rand(20, 100)
 	if(can_start_activated && prob(50))
-		ToggleActivate(FALSE, TRUE) //50% chance for us to be activated!
+		ToggleActivate(TRUE, TRUE)
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE, var/spawn_activate = FALSE)
+/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE, var/spawn_toggle = FALSE)
 	//so that other stuff happens first
 	set waitfor = FALSE
 
 	var/atom/target = get_master_holder()
 
-	if(target && spawn_activate) //If we spawn in and want an overlay. Doesn't show the 'we were manually activated' icon, but DO show our overlay to show we're a danger!
-		activated = TRUE
-		if(!active_effect) //We have an overlay appearance. We ONLY have a 50/50 on effects with an overlay. No overlay = no trigger.
-			return
-		activated = TRUE
-		target.underlays.Add(active_effect)
-		var/display_msg
-		display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
-		var/atom/toplevelholder = target
-		while(!istype(toplevelholder.loc, /turf))
-			toplevelholder = toplevelholder.loc
-		toplevelholder.visible_message(span_filter_notice("[span_red("[icon2html(toplevelholder, viewers(toplevelholder))] [toplevelholder] [display_msg]")]"))
-		return
 
 	if(world.time - last_activation > 1 SECOND)
 		last_activation = world.time
@@ -94,8 +81,8 @@
 		else
 			activated = TRUE
 		if(reveal_toggle && target)
-			if(!isliving(target))
-				target.update_icon()
+			if(!isliving(target) && !(spawn_toggle && istype(target, /obj/machinery/artifact))) //This is to keep it from updating icons if our owner is a large artifact
+				target.update_icon() //As it will runtime since it hasn't set it's artifact_master yet. The update icon is handled in /obj/machinery/artifact/Initialize()
 			var/display_msg
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")

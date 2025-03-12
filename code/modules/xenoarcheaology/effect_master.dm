@@ -79,6 +79,12 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	do_setup()
 	return
 
+// This handles the randomization for large artifacts. This allows them to spawn in and do the 50/50 to see if they'll be activated or not.
+/datum/component/artifact_master/proc/do_large_randomization()
+	for(var/datum/artifact_effect/my_effect in my_effects)
+		if(my_effect.can_start_activated && prob(50))
+			my_effect.ToggleActivate(TRUE, TRUE)
+
 /*
  * Component System Registry.
  * Here be dragons.
