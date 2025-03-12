@@ -3,7 +3,7 @@
 	desc = "It's a very shiny and somewhat protective suit, built to help carry cores on the user's back."
 	icon_state = "technomancer"
 	body_parts_covered = CHEST|ARMS|LEGS|FEET|HANDS
-	allowed = list(/obj/item/tank)
+	allowed = list(POCKET_ALL_TANKS)
 	armor = list(melee = 50, bullet = 20, laser = 30, energy = 30, bomb = 10, bio = 0, rad = 40)
 	siemens_coefficient = 0.75
 
