@@ -58,4 +58,3 @@
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
 	build_path = /obj/item/analyzer/plant_analyzer
 	sort_string = "JAADA"
-

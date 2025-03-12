@@ -13,7 +13,7 @@
 			continue
 		if(emote.key in keys)
 			if(!duplicates[emote.key])
-				duplicates[emote.key] = list() 
+				duplicates[emote.key] = list()
 			duplicates[emote.key] += etype
 		else
 			keys += emote.key
