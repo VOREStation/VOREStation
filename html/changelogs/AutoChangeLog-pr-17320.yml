@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "tgui core to 1.8.2"
