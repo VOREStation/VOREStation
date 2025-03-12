@@ -78,8 +78,8 @@
 		desc = "A strange statue."
 		my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD)
 	artifact_master.do_large_randomization()
-	update_icon()
 	. = ..()
+		update_icon()
 /obj/machinery/artifact/update_icon()
 	..()
 
