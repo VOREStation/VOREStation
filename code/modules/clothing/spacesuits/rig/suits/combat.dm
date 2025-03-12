@@ -12,14 +12,7 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
-	allowed = list(
-		/obj/item/gun,
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/melee/baton,
-		/obj/item/storage
-		)
+	allowed = list(POCKET_GENERIC, POCKET_SECURITY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_STORAGE)
 
 
 /obj/item/rig/combat/equipped
@@ -49,26 +42,7 @@
 	slowdown = 0.5
 	offline_slowdown = 1.5
 	offline_vision_restriction = 1
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/ammo_magazine,
-		/obj/item/ammo_casing,
-		/obj/item/handcuffs,
-		/obj/item/t_scanner,
-		/obj/item/rcd,
-		/obj/item/weldingtool,
-		/obj/item/tool,
-		/obj/item/multitool,
-		/obj/item/radio,
-		/obj/item/analyzer,
-		/obj/item/melee/baton,
-		/obj/item/gun,
-		/obj/item/storage,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/roller,
-		/obj/item/suit_cooling_unit
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_ENGINEERING, POCKET_HEAVYTOOLS, POCKET_STORAGE, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS)
 
 	chest_type = /obj/item/clothing/suit/space/rig/military
 	helm_type = /obj/item/clothing/head/helmet/space/rig/military

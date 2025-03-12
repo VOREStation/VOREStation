@@ -107,6 +107,8 @@
 		var/obj/item/clothing/gloves/has_gloves = has_suit
 		has_gloves.punch_force = initial(has_gloves.punch_force)
 	has_suit = null
+	if(QDELETED(src))
+		return
 	if(user)
 		user.put_in_hands(src)
 		add_fingerprint(user)

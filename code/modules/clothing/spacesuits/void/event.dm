@@ -18,15 +18,7 @@
 	icon_state = "rig-vintagecrew"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/storage/briefcase/inflatable,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/pickaxe,
-			/obj/item/shovel
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_MINING)
 
 //Engineering Crewsuit (ORANGE, RING)
 //This is probably the most appealing to get your hands on for basic protection and the specialist stuff
@@ -52,26 +44,7 @@
 	max_pressure_protection = 15 * ONE_ATMOSPHERE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 	breach_threshold = 14 //These are kinda thicc
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/t_scanner,
-			/obj/item/rcd,
-			/obj/item/rcd_ammo,
-			/obj/item/storage/toolbox,
-			/obj/item/storage/briefcase/inflatable,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/robotanalyzer,
-			/obj/item/geiger,
-			/obj/item/tool,
-			/obj/item/weldingtool,
-			/obj/item/cell,
-			/obj/item/pickaxe,
-			/obj/item/measuring_tape,
-			/obj/item/lightreplacer,
-			/obj/item/shovel
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_CE, POCKET_MINING, POCKET_HEAVYTOOLS)
 
 //Medical Crewsuit (GREEN, CROSS)
 //This thing is basically tissuepaper, but it has very solid rad protection for its age
@@ -94,19 +67,7 @@
 	icon_state = "rig-vintagemedic"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15, energy = 5, bomb = 25, bio = 100, rad = 75)
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/storage/firstaid,
-			/obj/item/healthanalyzer,
-			/obj/item/robotanalyzer,
-			/obj/item/mass_spectrometer,
-			/obj/item/halogen_counter,
-			/obj/item/stack/medical,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/cell
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MEDICAL)
 
 //Marine Crewsuit (BLUE, SHIELD)
 //Really solid, balance between Sec and Sec EVA, but it has slightly worse shock protection
@@ -128,22 +89,7 @@
 	breach_threshold = 14 //These are kinda thicc
 	resilience = 0.15 //Armored
 	siemens_coefficient = 0.8
-	allowed = list(/obj/item/gun,
-			/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/melee,
-			/obj/item/grenade,
-			/obj/item/flash,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/handcuffs,
-			/obj/item/hailer,
-			/obj/item/holowarrant,
-			/obj/item/megaphone,
-			/obj/item/ammo_magazine,
-			/obj/item/cell
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY)
 
 //Officer Crewsuit (GOLD, X)
 //The best of the bunch - at the time, this would have been almost cutting edge
@@ -166,22 +112,7 @@
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.1 //Heavily Armored
 	siemens_coefficient = 0.7
-	allowed = list(/obj/item/gun,
-			/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/melee,
-			/obj/item/grenade,
-			/obj/item/flash,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/handcuffs,
-			/obj/item/hailer,
-			/obj/item/holowarrant,
-			/obj/item/megaphone,
-			/obj/item/ammo_magazine,
-			/obj/item/cell
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY)
 
 //Pilot Crewsuit (ROYAL BLUE, I)
 //The lightest weight of the lot, but protection is about the same as the crew variant's. It has an extra helmet variant for those who prefer that design.
@@ -207,13 +138,7 @@
 	slowdown = 0
 	armor = list(melee = 25, bullet = 20, laser = 20, energy = 5, bomb = 20, bio = 100, rad = 50)
 	siemens_coefficient = 0.9
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/storage/briefcase/inflatable,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MINING)
 
 //Scientist Crewsuit (PURPLE, O)
 //Baseline values are slightly worse than the gray crewsuit, but it has significantly better Energy protection and is the only other suit with 100% rad immunity besides the engi suit
@@ -237,28 +162,7 @@
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 25, bullet = 10, laser = 10, energy = 50, bomb = 10, bio = 100, rad = 100)
 	siemens_coefficient = 0.8
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/storage/firstaid,
-			/obj/item/healthanalyzer,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/ano_scanner,
-			/obj/item/depth_scanner,
-			/obj/item/xenoarch_multi_tool,
-			/obj/item/measuring_tape,
-			/obj/item/reagent_scanner,
-			/obj/item/robotanalyzer,
-			/obj/item/analyzer,
-			/obj/item/cataloguer,
-			/obj/item/universal_translator,
-			/obj/item/tool/crowbar,
-			/obj/item/stack/marker_beacon,
-			/obj/item/stack/flag,
-			/obj/item/clipboard,
-			/obj/item/cell
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_XENOARC, /obj/item/storage/firstaid)
 
 //Miner's Crewsuit (BROWN)
 //Basically just the basic suit, but with brown markings. If anyone wants to tweak this, go wild.
@@ -276,15 +180,7 @@
 	icon_state = "rig-vintageminer"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/storage/briefcase/inflatable,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/pickaxe,
-			/obj/item/shovel
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_MINING)
 
 //Mercenary Crewsuit (RED, CROSS)
 //The best of the best, this should be ultra-rare
@@ -306,22 +202,4 @@
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.05 //Military Armor
 	siemens_coefficient = 0.6
-	allowed = list(/obj/item/gun,
-			/obj/item/flashlight,
-			/obj/item/tank,
-			/obj/item/suit_cooling_unit,
-			/obj/item/melee,
-			/obj/item/grenade,
-			/obj/item/flash,
-			/obj/item/gps,
-			/obj/item/radio/beacon,
-			/obj/item/handcuffs,
-			/obj/item/hailer,
-			/obj/item/holowarrant,
-			/obj/item/megaphone,
-			/obj/item/ammo_magazine,
-			/obj/item/spaceflare,
-			/obj/item/powersink,
-			/obj/item/radio_jammer,
-			/obj/item/cell
-			)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_SECURITY)

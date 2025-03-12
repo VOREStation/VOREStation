@@ -156,7 +156,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return FALSE
 
 /obj/item/nif/proc/quick_install(var/mob/living/carbon/human/H)
-	if(!H) //Or letting them get deleted
+	if(QDELETED(H)) //Or letting them get deleted
 		return
 	if(H.mind)
 		owner = H.mind.name

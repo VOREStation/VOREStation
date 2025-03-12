@@ -8,7 +8,10 @@
 	var/used = FALSE
 	var/busy = FALSE // Don't spam ghosts by spamclicking.
 	var/needscharger //For drone pods that want their pod to turn into a charger.
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 	unacidable = TRUE
+	var/delay_to_self_open = 0 // How long to wait for first attempt.  Note that the timer by default starts when the pod is created.
+	var/delay_to_try_again = 0 // How long to wait if first attempt fails.  Set to 0 to never try again.
 
 // Call this to get a ghost volunteer.
 /obj/structure/ghost_pod/proc/trigger(var/alert, var/adminalert)
@@ -22,19 +25,27 @@
 	if(adminalert)
 		log_and_message_admins(adminalert)
 	busy = TRUE
-	var/datum/ghost_query/Q = new ghost_query_type()
-	var/list/winner = Q.query()
+	Q = new ghost_query_type()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query()
+
+/obj/structure/ghost_pod/proc/get_winner()
 	busy = FALSE
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	var/deletion_candidate = FALSE
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
 		create_occupant(D)
 		icon_state = icon_state_opened
 		if(needscharger)
 			new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
-			qdel(src)
-		return TRUE
+			deletion_candidate = TRUE
 	else
-		return FALSE
+		if(delay_to_try_again)
+			addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
+	if(deletion_candidate)
+		qdel(src)
 
 // Override this to create whatever mob you need. Be sure to call ..() if you don't want it to make infinite mobs.
 /obj/structure/ghost_pod/proc/create_occupant(var/mob/M)
@@ -68,8 +79,8 @@
 
 // This type is triggered on a timer, as opposed to needing another player to 'open' the pod.  Good for away missions.
 /obj/structure/ghost_pod/automatic
-	var/delay_to_self_open = 10 MINUTES // How long to wait for first attempt.  Note that the timer by default starts when the pod is created.
-	var/delay_to_try_again = 20 MINUTES // How long to wait if first attempt fails.  Set to 0 to never try again.
+	delay_to_self_open = 10 MINUTES
+	delay_to_try_again = 20 MINUTES
 
 /obj/structure/ghost_pod/automatic/Initialize(mapload)
 	. = ..()
