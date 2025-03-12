@@ -17048,6 +17048,11 @@
 /obj/item/packageWrap,
 /obj/fiftyspawner/cardboard,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/storage/bag/mail{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/storage/bag/mail,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "LG" = (
@@ -17598,6 +17603,11 @@
 /obj/machinery/light/floortube{
 	pixel_y = -4
 	},
+/obj/item/mail_scanner{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/mail_scanner,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "MN" = (
