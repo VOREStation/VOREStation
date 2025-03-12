@@ -20,6 +20,8 @@
 
 	// The last time the effect was toggled.
 	var/last_activation = 0
+	// If we can start activated or not!
+	var/can_start_activated = TRUE
 
 /datum/artifact_effect/Destroy()
 	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
@@ -62,6 +64,8 @@
 			//large range, long charge time
 			chargelevelmax = rand(20, 120)
 			effectrange = rand(20, 100) //VOREStation Edit - Map size.
+	if(can_start_activated && prob(50))
+		ToggleActivate() //50% chance for us to be activated!
 
 /datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
 	//so that other stuff happens first
@@ -192,6 +196,7 @@
 			. += " Activation index involves " + span_bold("precise temperature conditions.") + " Heating/Cooling the atmosphere (>[ARTIFACT_HEAT_TRIGGER]K or <[ARTIFACT_COLD_TRIGGER]K) or using a welder are potential triggers."
 		else
 			. += " Unable to determine any data about activation trigger."
+	. += "<br>"
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
 /proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
