@@ -74,7 +74,8 @@
 		var/mob/living/L = new pilot_type(loc)
 		L.faction = src.faction
 
-	new wreckage(loc) // Leave some wreckage.
+	if(wreckage)
+		new wreckage(loc) // Leave some wreckage.
 
 	qdel(src) // Then delete us since we don't actually have a body.
 
