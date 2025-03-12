@@ -10,7 +10,7 @@
 	var/locked = 1
 	var/emagged = 0
 
-/obj/item/circuitboard/security/Initialize()
+/obj/item/circuitboard/security/Initialize(mapload)
 	. = ..()
 	network = using_map.station_networks
 
@@ -23,7 +23,7 @@
 	build_path = /obj/machinery/computer/security/engineering
 	req_access = list()
 
-/obj/item/circuitboard/security/engineering/Initialize()
+/obj/item/circuitboard/security/engineering/Initialize(mapload)
 	. = ..()
 	network = engineering_networks
 
@@ -39,7 +39,7 @@
 	board_type = new /datum/frame/frame_types/display
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-/obj/item/circuitboard/security/telescreen/entertainment/Initialize()
+/obj/item/circuitboard/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
 	network = NETWORK_THUNDER
 

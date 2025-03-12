@@ -23,7 +23,7 @@
 		"cargo" = new /obj/item/pda/multicaster/cargo(src),
 		"civilian" = new /obj/item/pda/multicaster/civilian(src))
 
-/obj/machinery/pda_multicaster/prebuilt/Initialize()
+/obj/machinery/pda_multicaster/prebuilt/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

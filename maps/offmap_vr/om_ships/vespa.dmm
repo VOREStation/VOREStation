@@ -585,10 +585,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/obj/machinery/firealarm{
-	pixel_w = 31;
-	pixel_z = 1
-	},
+/obj/machinery/firealarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seccells)
 "bE" = (
@@ -4370,8 +4367,7 @@
 /area/ship/expe/medicalchem)
 "iP" = (
 /obj/machinery/firealarm{
-	pixel_x = 0;
-	pixel_y = 28
+	pixel_x = 0
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9;
@@ -6587,8 +6583,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/yellow/border,
 /obj/machinery/firealarm{
-	pixel_x = 0;
-	pixel_y = -27
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/engineeringpower)
@@ -6603,7 +6598,6 @@
 	icon_state = "bordercolor"
 	},
 /obj/machinery/firealarm{
-	pixel_x = -28;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -7093,10 +7087,7 @@
 	dir = 4;
 	icon_state = "bordercolor"
 	},
-/obj/machinery/firealarm{
-	pixel_w = 31;
-	pixel_z = 1
-	},
+/obj/machinery/firealarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/sechall)
 "nG" = (
@@ -7221,10 +7212,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "nS" = (
-/obj/machinery/firealarm{
-	pixel_x = -31;
-	pixel_y = -1
-	},
+/obj/machinery/firealarm,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8;
 	icon_state = "borderfloor_white"
@@ -7999,9 +7987,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
 "pi" = (
-/obj/machinery/firealarm{
-	pixel_x = -28
-	},
+/obj/machinery/firealarm,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8;
 	icon_state = "borderfloor_white"
@@ -8293,9 +8279,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -8496,10 +8480,7 @@
 	dir = 4;
 	icon_state = "bordercolor"
 	},
-/obj/machinery/firealarm{
-	pixel_w = 31;
-	pixel_z = 1
-	},
+/obj/machinery/firealarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seclobby)
 "pZ" = (
@@ -8533,10 +8514,7 @@
 	dir = 6;
 	icon_state = "bordercolor"
 	},
-/obj/machinery/firealarm{
-	pixel_w = 31;
-	pixel_z = 1
-	},
+/obj/machinery/firealarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seclobby2)
 "qb" = (
@@ -9994,10 +9972,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medical1)
 "sM" = (
-/obj/machinery/firealarm{
-	pixel_x = -1;
-	pixel_y = 30
-	},
+/obj/machinery/firealarm,
 /obj/structure/bed,
 /obj/structure/curtain/medical,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -10295,7 +10270,6 @@
 /area/ship/expe/medical)
 "tI" = (
 /obj/machinery/firealarm{
-	pixel_x = -31;
 	pixel_y = 0
 	},
 /obj/effect/floor_decal/borderfloorwhite{
@@ -12095,9 +12069,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor4)
@@ -12118,9 +12090,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor3)
@@ -12141,9 +12111,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor3)
@@ -12161,9 +12129,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor1)
@@ -12178,9 +12144,7 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
@@ -12198,9 +12162,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor2)
@@ -12218,9 +12180,7 @@
 	icon_state = "techfloor_edges"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_w = 0;
-	pixel_y = 26;
-	pixel_z = 1
+	pixel_w = 0
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor2)

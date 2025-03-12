@@ -81,7 +81,7 @@
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
-/obj/machinery/vending/Initialize()
+/obj/machinery/vending/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 	if(product_slogans)
@@ -230,6 +230,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else if(istype(W, /obj/item/multitool) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
+		return
+	else if(istype(W, /obj/item/fake_coin) && has_premium)
+		to_chat(user, span_notice("\The [W] doesn't fit into the coin slot on \the [src]."))
 		return
 	else if(istype(W, /obj/item/coin) && has_premium)
 		user.drop_item()

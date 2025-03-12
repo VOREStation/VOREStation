@@ -29,7 +29,7 @@
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/Initialize()
+/obj/machinery/disposal/Initialize(mapload)
 	. = ..()
 
 	trunk = locate() in loc
@@ -572,7 +572,7 @@
 
 	density = FALSE
 
-/obj/machinery/disposal/wall/Initialize()
+/obj/machinery/disposal/wall/Initialize(mapload)
 	. = ..()
 
 	spawn(1 SECOND)	// Fixfix for weird interaction with buildmode or other late-spawning.
@@ -645,6 +645,10 @@
 		if(istype(AM, /mob/living/silicon/robot/drone))
 			var/mob/living/silicon/robot/drone/drone = AM
 			src.destinationTag = drone.mail_destination
+
+		if(istype(AM, /obj/item/mail) && !hasmob)
+			var/obj/item/mail/T = AM
+			src.destinationTag = T.sortTag
 
 
 // start the movement process
@@ -1430,7 +1434,7 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/Initialize()
+/obj/structure/disposalpipe/trunk/Initialize(mapload)
 	..()
 	dpdir = dir
 	return INITIALIZE_HINT_LATELOAD
@@ -1553,7 +1557,7 @@
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-/obj/structure/disposaloutlet/Initialize()
+/obj/structure/disposaloutlet/Initialize(mapload)
 	. = ..()
 
 	target = get_ranged_target_turf(src, dir, 10)

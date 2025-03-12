@@ -22,7 +22,7 @@
 /obj/item/cane/concealed
 	var/concealed_blade
 
-/obj/item/cane/concealed/Initialize()
+/obj/item/cane/concealed/Initialize(mapload)
 	. = ..()
 	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
 	concealed_blade = temp_blade

@@ -6,7 +6,7 @@
 	dries = FALSE // We do this ourselves
 	slips = FALSE
 
-/obj/effect/effect/foam/firefighting/Initialize()
+/obj/effect/effect/foam/firefighting/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

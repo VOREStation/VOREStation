@@ -19,7 +19,7 @@
 	var/full_icon = "full"
 	var/capture_chance_modifier = 1		//So we can have special subtypes with different capture rates!
 
-/obj/item/capture_crystal/Initialize()
+/obj/item/capture_crystal/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -44,7 +44,7 @@
 		if(isanimal(bound_mob))
 			. += span_notice("[bound_mob.health / bound_mob.maxHealth * 100]%")
 		if(bound_mob.ooc_notes)
-			. += span_deptradio("OOC Notes:") + " <a href='byond://?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+			. += span_deptradio("OOC Notes:") + " <a href='byond://?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 		. += span_deptradio("<a href='byond://?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
@@ -494,18 +494,14 @@
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!active)					//The ball isn't set up, let's try to set it up.
 		if(isliving(target))	//We're hitting a mob, let's try to capture it.
-			sleep(10)
-			activate(thrower, target)
+			addtimer(CALLBACK(src, PROC_REF(activate), thrower, target), 10, TIMER_DELETE_ME)
 			return
-		sleep(10)
-		activate(thrower, src)
+		addtimer(CALLBACK(src, PROC_REF(activate), thrower, src), 10, TIMER_DELETE_ME)
 	else if(!bound_mob)				//We hit something else, and we don't have a mob, so we can't really do anything!
 		to_chat(thrower, span_notice("\The [src] clicks unpleasantly..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(bound_mob in contents)	//We have our mob! Let's try to let it out.
-		sleep(10)
-		unleash(thrower, src)
-		update_icon()
+		addtimer(CALLBACK(src, PROC_REF(unleash), thrower, src), 10, TIMER_DELETE_ME)
 	else						//Our mob isn't here, we can't do anything.
 		to_chat(thrower, span_notice("\The [src] clicks unpleasantly..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
@@ -851,7 +847,7 @@
 		list(/mob/living/simple_mob/vore/devil)
 		)
 
-/obj/item/capture_crystal/random/Initialize()
+/obj/item/capture_crystal/random/Initialize(mapload)
 	var/subchoice = pickweight(possible_mob_types)		//Some of the lists have nested lists, so let's pick one of them
 	var/choice = pickweight(subchoice)					//And then we'll pick something from whatever's left
 	spawn_mob_type = choice								//Now when someone uses this, we'll spawn whatever we picked!

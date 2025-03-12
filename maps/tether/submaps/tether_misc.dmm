@@ -678,8 +678,7 @@
 /turf/unsimulated/wall,
 /area/ai_multicam_room)
 "ce" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/space/transit/south,
+/turf/space/transit/south/virgo3b/planet_fall
 /area/space)
 "cf" = (
 /turf/space/transit/south,
@@ -2319,8 +2318,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "oI" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/space/transit/east,
+/turf/space/transit/east/virgo3b/planet_fall,
 /area/space)
 "oL" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -2881,8 +2879,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "Lz" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/simulated/sky/virgo3b/south,
+/turf/simulated/sky/virgo3b/south/planet_fall,
 /area/space)
 "Me" = (
 /turf/simulated/floor/smole/desert,

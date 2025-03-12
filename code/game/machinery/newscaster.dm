@@ -171,7 +171,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	name = "Security Newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/Initialize()
+/obj/machinery/newscaster/Initialize(mapload)
 	..()
 	allCasters += src
 	unit_no = ++unit_no_cur

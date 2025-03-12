@@ -591,10 +591,10 @@ const rank2color = {
   'Off-duty Explorer': 'white',
   'Off-duty Worker': 'white',
   // AI / Robot
-  AI: 'darkgrey',
-  Cyborg: 'darkgrey',
-  Robot: 'darkgrey',
-  Drone: 'darkgrey',
+  AI: 'maroon',
+  Cyborg: 'maroon',
+  Robot: 'maroon',
+  Drone: 'maroon',
   // Clown / Mime
   Clown: 'green',
   Jester: 'green',
@@ -627,11 +627,11 @@ const rank2color = {
   Security: 'red',
   Combat: 'yellow',
   Engineering: 'orange',
-  Gravekeeper: 'dark-grey',
+  Gravekeeper: 'maroon',
   Lost: 'grey',
-  Protector: 'darkred',
-  Mechanist: 'darkred',
-  'Combat Medic': 'darkred',
+  Protector: 'maroon',
+  Mechanist: 'maroon',
+  'Combat Medic': 'maroon',
 };
 
 type rank_icon = { rank: string; color: string };

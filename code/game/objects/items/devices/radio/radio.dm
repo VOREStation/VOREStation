@@ -766,6 +766,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/radio/phone/medbay
 	frequency = MED_I_FREQ
 
-/obj/item/radio/phone/medbay/Initialize()
+/obj/item/radio/phone/medbay/Initialize(mapload)
 	. = ..()
 	internal_channels = default_medbay_channels.Copy()

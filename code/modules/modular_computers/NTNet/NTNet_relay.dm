@@ -100,7 +100,7 @@
 	assign_uid()
 	default_apply_parts()
 
-/obj/machinery/ntnet_relay/Initialize()
+/obj/machinery/ntnet_relay/Initialize(mapload)
 	. = ..()
 	if(ntnet_global)
 		ntnet_global.relays.Add(src)

@@ -4,7 +4,7 @@
 	icon_state = "crystal"
 	density = TRUE
 
-/obj/structure/crystal/Initialize()
+/obj/structure/crystal/Initialize(mapload)
 	. = ..()
 
 	icon_state = pick("ano70","ano80")

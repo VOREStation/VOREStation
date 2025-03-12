@@ -76,7 +76,6 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/syndie/dullahanv3syndi
 	sprite_icon = 'icons/mob/robot/dullahan/v3/syndi.dmi'
@@ -86,7 +85,8 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
+
 
 // Protector
 
@@ -184,7 +184,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
 	name = "Raptor V-4"

@@ -4,6 +4,7 @@
 	default_type = MAT_STEEL
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/steel
 
 /obj/item/stack/material/plasteel
 	name = MAT_PLASTEEL
@@ -11,6 +12,7 @@
 	default_type = MAT_PLASTEEL
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/plasteel
 
 /obj/item/stack/material/plasteel/rebar
 	name = MAT_PLASTEELREBAR
@@ -32,6 +34,7 @@
 	default_type = MAT_DURASTEEL
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/durasteel
 
 /obj/item/stack/material/titanium
 	name = MAT_TITANIUM
@@ -40,6 +43,7 @@
 	item_state = "sheet-silver"
 	default_type = MAT_TITANIUM
 	no_variants = FALSE
+	coin_type = /obj/item/coin/titanium
 
 /obj/item/stack/material/iron
 	name = MAT_IRON
@@ -47,6 +51,7 @@
 	default_type = MAT_IRON
 	apply_colour = 1
 	no_variants = FALSE
+	coin_type = /obj/item/coin/iron
 
 /obj/item/stack/material/lead
 	name = MAT_LEAD
@@ -54,6 +59,7 @@
 	default_type = MAT_LEAD
 	apply_colour = 1
 	no_variants = FALSE
+	coin_type = /obj/item/coin/lead
 
 /obj/item/stack/material/gold
 	name = MAT_GOLD
@@ -61,6 +67,7 @@
 	default_type = MAT_GOLD
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/gold
 
 /obj/item/stack/material/silver
 	name = MAT_SILVER
@@ -68,6 +75,7 @@
 	default_type = MAT_SILVER
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/silver
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -76,12 +84,14 @@
 	default_type = MAT_PLATINUM
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/platinum
 
 /obj/item/stack/material/uranium
 	name = MAT_URANIUM
 	icon_state = "sheet-uranium"
 	default_type = MAT_URANIUM
 	no_variants = FALSE
+	coin_type = /obj/item/coin/uranium
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -119,6 +129,7 @@
 	default_type = MAT_GRAPHITE
 	apply_colour = 1
 	no_variants = FALSE
+	coin_type = /obj/item/coin/graphite
 
 /obj/item/stack/material/bronze
 	name = MAT_BRONZE
@@ -143,6 +154,7 @@
 	default_type = MAT_COPPER
 	apply_colour = 1
 	no_variants = FALSE
+	coin_type = /obj/item/coin/copper
 
 /obj/item/stack/material/aluminium
 	name = MAT_ALUMINIUM
@@ -151,3 +163,4 @@
 	default_type = MAT_ALUMINIUM
 	apply_colour = 1
 	no_variants = FALSE
+	coin_type = /obj/item/coin/aluminium

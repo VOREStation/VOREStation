@@ -11,7 +11,7 @@
 
 	var/static/list/codex_tree_keys = list() // static list linking codexes to the correct codex_tree.
 
-/obj/item/book/codex/Initialize()
+/obj/item/book/codex/Initialize(mapload)
 	tree = codex_tree_keys["[root_type]"]
 	if(!tree)
 		tree = new(src, root_type)

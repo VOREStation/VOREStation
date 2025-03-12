@@ -9,7 +9,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/machinery/disperser/Initialize()
+/obj/machinery/disperser/Initialize(mapload)
 	. = ..()
 	// TODO - Remove this bit once machines are converted to Initialize
 	if(ispath(circuit))

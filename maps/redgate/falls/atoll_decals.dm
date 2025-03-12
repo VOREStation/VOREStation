@@ -22,7 +22,7 @@
 	name = "marble stairs"
 	icon_state = "stairs"
 
-/obj/effect/floor_decal/atoll/stairs/Initialize()
+/obj/effect/floor_decal/atoll/stairs/Initialize(mapload)
 	dir = pick(cardinal)
 	. = ..()
 
@@ -30,7 +30,7 @@
 	name = "moss"
 	icon_state = "moss"
 
-/obj/effect/floor_decal/atoll/moss/random/Initialize()
+/obj/effect/floor_decal/atoll/moss/random/Initialize(mapload)
 	dir = pick(alldirs)
 	. = ..()
 
@@ -62,7 +62,7 @@
 	anchored = 1
 	mouse_opacity = 0
 
-/obj/effect/decal/whitecaps/Initialize()
+/obj/effect/decal/whitecaps/Initialize(mapload)
 	icon_state = pick("1","2","3")
 	. = ..()
 

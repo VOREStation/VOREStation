@@ -4,7 +4,7 @@
 	path = /obj/item/clothing/suit/storage/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
-	cost = 2
+	cost = 1
 
 /datum/gear/suit/apron_white
 	display_name = "apron, colorable"
@@ -825,7 +825,6 @@
 /datum/gear/suit/roles/labcoat_old
 	display_name = "labcoat selection, department, oldschool"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
-	cost = 2
 
 /datum/gear/suit/roles/labcoat_old/New()
 	..()
@@ -1143,3 +1142,12 @@ Talon winter coat
 /datum/gear/suit/martianminer
 	display_name = "martian miner's coat, basic"
 	path = /obj/item/clothing/suit/storage/vest/martian_miner
+
+//Formerly my custom fluff gear, but free to use for anyone, now.
+/datum/gear/suit/purple_robes
+	display_name = "purple robes"
+	path = /obj/item/clothing/suit/fluff/purp_robes
+
+/datum/gear/suit/pirate_coat
+	display_name = "pirate coat"
+	path = /obj/item/clothing/suit/pirate

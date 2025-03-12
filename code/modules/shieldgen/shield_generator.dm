@@ -50,7 +50,7 @@
 		set_light(0)
 
 
-/obj/machinery/power/shield_generator/Initialize()
+/obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
 	if(!wires)
 		wires = new(src)
@@ -695,12 +695,12 @@
 
 
 // Starts fully charged
-/obj/machinery/power/shield_generator/charged/Initialize()
+/obj/machinery/power/shield_generator/charged/Initialize(mapload)
 	. = ..()
 	current_energy = max_energy
 
 // Starts with the best SMES coil and capacitor (and fully charged)
-/obj/machinery/power/shield_generator/upgraded/Initialize()
+/obj/machinery/power/shield_generator/upgraded/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/smes_coil/sc in component_parts)
 		component_parts -= sc

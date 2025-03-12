@@ -16,6 +16,7 @@
 	has_vore_belly_sprites = TRUE
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	sprite_icon_state = "argonne-russ-sec" //This is overwritten. This borg should never be seen as it's just a parent for the actual subtypes.
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16

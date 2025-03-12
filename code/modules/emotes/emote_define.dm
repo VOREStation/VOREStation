@@ -46,7 +46,7 @@ var/global/list/emotes_by_key
 	var/sound_preferences = list(/datum/preference/toggle/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
 
-/decl/emote/Initialize()
+/decl/emote/Initialize(mapload)
 	. = ..()
 	if(key)
 		LAZYSET(global.emotes_by_key, key, src)

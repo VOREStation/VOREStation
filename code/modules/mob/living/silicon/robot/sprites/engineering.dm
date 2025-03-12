@@ -227,7 +227,6 @@
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/engineering/dullahan/engineerv2
 	name = "Dullahan v2"
