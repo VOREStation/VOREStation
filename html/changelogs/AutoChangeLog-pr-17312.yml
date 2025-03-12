@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed swarm mobs becoming walls on death"
-  - code_imp: "Slightly changed projectile code to check for lying down mobs instead of their density"

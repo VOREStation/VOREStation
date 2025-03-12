@@ -10,8 +10,9 @@ import { Box, Button, Stack, Tabs } from 'tgui-core/components';
 import { openChatSettings } from '../settings/actions';
 import { addChatPage, changeChatPage } from './actions';
 import { selectChatPages, selectCurrentChatPage } from './selectors';
+import { Page } from './types';
 
-const UnreadCountWidget = ({ value }) => (
+const UnreadCountWidget = ({ value }: { value: number }) => (
   <Box
     style={{
       fontSize: '0.7em',
@@ -34,7 +35,7 @@ export const ChatTabs = (props) => {
     <Stack align="center">
       <Stack.Item>
         <Tabs textAlign="center">
-          {pages.map((page) => (
+          {pages.map((page: Page) => (
             <Tabs.Tab
               key={page.id}
               selected={page === currentPage}
