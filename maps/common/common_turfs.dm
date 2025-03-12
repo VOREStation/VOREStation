@@ -73,9 +73,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 /turf/simulated/sky/virgo3b
 	color = "#FFBBBB"
 
-/turf/simulated/sky/virgo3b/Initialize()
-	SSplanets.addTurf(src)
-	set_light(2, 2, "#FFBBBB")
+/turf/simulated/sky/virgo3b/Initialize(mapload)
+	. = ..(mapload, color)
 
 /turf/simulated/sky/virgo3b/north
 	dir = NORTH
@@ -111,7 +110,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 	icon_state = "reinf_glass-0"
 	base_icon_state = "reinf_glass"
 
-/turf/simulated/floor/midpoint_glass/Initialize()
+/turf/simulated/floor/midpoint_glass/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

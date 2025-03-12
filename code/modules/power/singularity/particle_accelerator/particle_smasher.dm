@@ -27,7 +27,7 @@
 	var/max_storage = 3	// How many items can be jammed into it?
 	var/list/recipes	// The list containing the Particle Smasher's recipes.
 
-/obj/machinery/particle_smasher/Initialize()
+/obj/machinery/particle_smasher/Initialize(mapload)
 	. = ..()
 	storage = list()
 	update_icon()

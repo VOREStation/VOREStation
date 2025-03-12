@@ -11,7 +11,7 @@
 	on_rolled = list("down" = "none")
 	var/hide_on_roll = FALSE
 
-/obj/item/clothing/accessory/storage/Initialize()
+/obj/item/clothing/accessory/storage/Initialize(mapload)
 	. = ..()
 	hold = new/obj/item/storage/internal(src)
 	hold.max_storage_space = slots * 2
@@ -94,7 +94,7 @@
 	icon_state = "unathiharness2"
 	slots = 2
 
-/obj/item/clothing/accessory/storage/knifeharness/Initialize()
+/obj/item/clothing/accessory/storage/knifeharness/Initialize(mapload)
 	. = ..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
 	hold.can_hold = list(/obj/item/material/knife/machete/hatchet/unathiknife,\

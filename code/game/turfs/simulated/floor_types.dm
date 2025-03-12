@@ -100,13 +100,13 @@
 
 // For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
 /turf/simulated/shuttle/proc/update_breaklights()
-	if(join_flags in cornerdirs) //We're joined at an angle
-		//Dynamic lighting dissolver
-		var/turf/T = get_step(src, turn(join_flags,180))
-		if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
-			add_overlay(antilight_cache["[join_flags]"], TRUE)
-			return
 	cut_overlay(antilight_cache["[join_flags]"], TRUE)
+	if(!(join_flags in cornerdirs)) //We're not joined at an angle
+		return
+	//Dynamic lighting dissolver
+	var/turf/T = get_step(src, turn(join_flags,180))
+	if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
+		add_overlay(antilight_cache["[join_flags]"], TRUE)
 
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
@@ -217,7 +217,7 @@
 	light_on = TRUE
 	block_tele = TRUE
 
-/turf/simulated/shuttle/floor/alien/Initialize()
+/turf/simulated/shuttle/floor/alien/Initialize(mapload)
 	. = ..()
 	icon_state = "alienpod[rand(1, 9)]"
 	update_light()
@@ -246,7 +246,7 @@
 	takes_underlays = 1
 	blocks_air = 1 //I'd make these unsimulated but it just fucks with so much stuff so many other places.
 
-/turf/simulated/shuttle/plating/carry/Initialize()
+/turf/simulated/shuttle/plating/carry/Initialize(mapload)
 	. = ..()
 	icon_state = "carry_ingame"
 
@@ -257,7 +257,7 @@
 	takes_underlays = 1
 	blocks_air = 1
 
-/turf/simulated/shuttle/plating/airless/carry/Initialize()
+/turf/simulated/shuttle/plating/airless/carry/Initialize(mapload)
 	. = ..()
 	icon_state = "carry_ingame"
 

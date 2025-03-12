@@ -13,7 +13,7 @@
 	var/obj/item/my_tool = null
 	var/tooltype = /obj/item/tool/wrench/power
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/Initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/Initialize(mapload)
 	my_tool = new tooltype(src)
 	my_tool.name = name
 	my_tool.anchored = TRUE

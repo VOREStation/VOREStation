@@ -100,7 +100,7 @@
 	icon_state = "trinketbox"
 	var/datum/tgui_module/appearance_changer/mirror/coskit/M
 
-/obj/item/makeover/Initialize()
+/obj/item/makeover/Initialize(mapload)
 	. = ..()
 	M = new(src, null)
 

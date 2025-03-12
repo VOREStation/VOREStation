@@ -114,7 +114,7 @@
 	var/area/dump_area
 	var/obj/shuttle_connector/shuttle_friend
 
-/area/shuttle/excursion/away_alienship/Initialize()
+/area/shuttle/excursion/away_alienship/Initialize(mapload)
 	. = ..()
 	dump_area = locate(/area/tether_away/alienship/equip_dump)
 

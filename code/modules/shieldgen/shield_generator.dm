@@ -50,7 +50,7 @@
 		set_light(0)
 
 
-/obj/machinery/power/shield_generator/Initialize()
+/obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
 	if(!wires)
 		wires = new(src)

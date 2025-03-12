@@ -251,7 +251,7 @@
 /obj/structure/prop/machine/stamper/starts_on
 	icon_state = "stamper_on"
 
-/obj/structure/prop/machine/stamper/starts_on/Initialize()
+/obj/structure/prop/machine/stamper/starts_on/Initialize(mapload)
 	. = ..()
 	add_overlay("stamper_proc")
 	add_overlay("stamper_but")

@@ -67,7 +67,7 @@
 
 	var/list/adding = list()
 	HUD.adding = adding
-	
+
 	var/obj/screen/using
 
 	using = new /obj/screen/nifsc/reenter()

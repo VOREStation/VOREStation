@@ -132,7 +132,7 @@ Pipelines + Other Objects -> Pipe network
 
 	return null
 
-/obj/machinery/atmospherics/proc/build_network()
+/obj/machinery/atmospherics/proc/build_network(var/new_attachment)
 	// Called to build a network from this node
 
 	return null
@@ -158,11 +158,14 @@ Pipelines + Other Objects -> Pipe network
 	return null
 
 /obj/machinery/atmospherics/proc/can_unwrench()
+
+/* //Old version. We now handle unwrenching in the machinery itself.
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		return 0
-	return 1
+		return FALSE
+*/
+	return TRUE
 
 // Deconstruct into a pipe item.
 /obj/machinery/atmospherics/proc/deconstruct()
@@ -191,13 +194,17 @@ Pipelines + Other Objects -> Pipe network
 	atmos_init()
 	if(QDELETED(src))
 		return // TODO - Eventually should get rid of the need for this.
-	build_network()
 	var/list/nodes = get_neighbor_nodes_for_init()
 	for(var/obj/machinery/atmospherics/A in nodes)
 		A.atmos_init()
-		A.build_network()
-	// TODO - Should we do src.build_network() before or after the nodes?
-	// We've historically done before, but /tg does after. TODO research if there is a difference.
+		A.build_network(TRUE)
+	build_network()
+
+	// There was a coder comment her from 7 years ago asking 'tg does it this way, should we?' and the answer was yes.
+	// By building the network BEFORE our nodes build their network, two things happened:
+	// 1. The network was built and none of the pipes got their temporary air vaiables, resulting in the  pipes having no air in them
+	// 2. The previous network was nulled but never deleted, resulting in a memory leak.
+	// So now, we build our network AFTER the nodes build their network AND we delete the previous network.
 
 // This sets our piping layer.  Hopefully its cool.
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
@@ -232,3 +239,21 @@ Pipelines + Other Objects -> Pipe network
 	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)
 	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)
 	// layer = initial(layer) + PIPE_LAYER_OFFSET(piping_layer)
+
+/obj/machinery/atmospherics/proc/unsafe_pressure_release(mob/user, pressures = null)
+	if(!user)
+		return
+	if(!pressures)
+		var/datum/gas_mixture/int_air = return_air()
+		var/datum/gas_mixture/env_air = loc.return_air()
+		pressures = int_air.return_pressure() - env_air.return_pressure()
+
+	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
+
+	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
+	// otherwise, edge_target_turf uses a random cardinal direction
+	// range is pressures / 250
+	// speed is pressures / 1250
+	if(user.buckled)
+		user.buckled.unbuckle_mob(user, TRUE)
+	user.throw_at(get_edge_target_turf(user, get_dir(src, user) || pick(GLOB.cardinal)), pressures / 250, pressures / 1250)

@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/transhuman_clonepod
 
 //A full version of the pod
-/obj/machinery/clonepod/transhuman/full/Initialize()
+/obj/machinery/clonepod/transhuman/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
@@ -221,8 +221,8 @@
 	var/max_res_amount = 30000 //Max the thing can hold
 	var/datum/transhuman/body_record/current_project
 	var/broken = 0
-	var/burn_value = 45
-	var/brute_value = 60
+	var/burn_value = 0 //Setting these to 0, if resleeving as organic with unupgraded sleevers gives them no damage, resleeving synths with unupgraded synthfabs should not give them potentially 105 damage.
+	var/brute_value = 0
 
 /obj/machinery/transhuman/synthprinter/New()
 	..()

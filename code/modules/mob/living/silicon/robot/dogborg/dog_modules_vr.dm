@@ -422,7 +422,7 @@
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
 
-/obj/item/reagent_containers/glass/beaker/large/borg/Initialize()
+/obj/item/reagent_containers/glass/beaker/large/borg/Initialize(mapload)
 	. = ..()
 	R = loc.loc
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))

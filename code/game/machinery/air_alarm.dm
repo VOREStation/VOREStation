@@ -161,7 +161,7 @@
 	if(name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
 
-/obj/machinery/alarm/Initialize()
+/obj/machinery/alarm/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 	if(!master_is_operating())

@@ -23,7 +23,7 @@
 	var/min_harvests = -1
 	var/list/harvest_loot = null	// Should be an associative list for things to spawn, and their weights. An example would be a branch from a tree.
 
-/obj/structure/flora/Initialize()
+/obj/structure/flora/Initialize(mapload)
 	. = ..()
 
 	if(randomize_size)
@@ -472,7 +472,7 @@
 	max_harvests = 2
 	min_harvests = 0
 
-/obj/structure/flora/mushroom/Initialize()
+/obj/structure/flora/mushroom/Initialize(mapload)
 	. = ..()
 	icon_state = "mush[rand(1,4)]"
 	if(prob(50))
@@ -545,7 +545,7 @@
 	max_harvests = 2
 	min_harvests = 0
 
-/obj/structure/flora/sif/subterranean/Initialize()
+/obj/structure/flora/sif/subterranean/Initialize(mapload)
 	icon_state = "[initial(icon_state)][rand(1,2)]"
 	. = ..()
 
@@ -566,7 +566,7 @@
 	min_harvests = 0
 	harvest_loot = list(/obj/item/reagent_containers/food/snacks/grown/sif/eyebulbs = 1)
 
-/obj/structure/flora/sif/eyes/Initialize()
+/obj/structure/flora/sif/eyes/Initialize(mapload)
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()
 
@@ -593,7 +593,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/sif/wildwabback = 30
 	)
 
-/obj/structure/flora/sif/tendrils/Initialize()
+/obj/structure/flora/sif/tendrils/Initialize(mapload)
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()
 
@@ -625,7 +625,7 @@
 
 	var/variantnum = null
 
-/obj/structure/flora/sif/frostbelle/Initialize()
+/obj/structure/flora/sif/frostbelle/Initialize(mapload)
 	. = ..()
 	variantnum = rand(1,3)
 	update_icon()

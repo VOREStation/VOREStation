@@ -9,8 +9,16 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/emergency_beacon/New()
+/obj/item/emergency_beacon/Initialize(mapload)
 	gps = new/obj/item/gps/emergency_beacon(src)
+	for(var/i in 1 to length(levels_for_distress))
+		var/current = levels_for_distress[i]
+		if(isnum(current))
+			continue
+		levels_for_distress[i] = GLOB.map_templates_loaded[current]
+	if(!levels_for_distress)
+		levels_for_distress = list(1)
+	return ..()
 
 /obj/item/gps/emergency_beacon
 	gps_tag = "EMERGENCY BEACON"
@@ -41,8 +49,6 @@
 				Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
 				or relay the message to those who can."
 
-				if(!levels_for_distress)
-					levels_for_distress = list(1)
 				for(var/zlevel in levels_for_distress)
 					priority_announcement.Announce(message, new_title = "Automated Personal Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 	else

@@ -17,7 +17,7 @@
 	skip_init = FALSE
 	movement_cost = 4 // Water should slow you down, just like simulated turf.
 
-/turf/unsimulated/beach/water/Initialize()
+/turf/unsimulated/beach/water/Initialize(mapload)
 	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1))
 
@@ -36,7 +36,7 @@
 	icon_state = "desert"
 	initial_flooring = /decl/flooring/sand/desert
 
-/turf/simulated/floor/beach/sand/desert/Initialize()
+/turf/simulated/floor/beach/sand/desert/Initialize(mapload)
 	. = ..()
 	if(prob(5))
 		icon_state = "desert[rand(0,4)]"
@@ -57,7 +57,7 @@
 	movement_cost = 8 // Deep water should be difficult to wade through.
 	initial_flooring = /decl/flooring/water/beach/deep
 
-/turf/simulated/floor/beach/water/Initialize()
+/turf/simulated/floor/beach/water/Initialize(mapload)
 	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))
 

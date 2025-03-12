@@ -440,6 +440,7 @@
 				return
 
 			if(ticker == burst)
+				next_fire_time = world.time + fire_delay
 				if(muzzle_flash)
 					if(gun_light)
 						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),light_brightness), burst_delay, TIMER_DELETE_ME)

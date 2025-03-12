@@ -6,7 +6,7 @@
 
 	var/obj/item/stack/wetleather/drying = null
 
-/obj/structure/tanning_rack/Initialize()
+/obj/structure/tanning_rack/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src) // SSObj fires ~every 2s , starting from wetness 30 takes ~1m
 
@@ -64,4 +64,4 @@
 		update_icon()
 
 /obj/structure/tanning_rack/attack_robot(var/mob/user)
-	attack_hand(user) // That has checks to 
+	attack_hand(user) // That has checks to

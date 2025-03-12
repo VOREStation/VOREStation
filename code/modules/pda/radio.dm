@@ -17,7 +17,7 @@
 	on = 0 //Are we currently active??
 	var/menu_message = ""
 
-/obj/item/radio/integrated/Initialize()
+/obj/item/radio/integrated/Initialize(mapload)
 	..()
 	if(istype(loc.loc, /obj/item/pda))
 		hostpda = loc.loc
@@ -106,7 +106,7 @@
 	radio_connection = null
 	return ..()
 
-/obj/item/radio/integrated/signal/Initialize()
+/obj/item/radio/integrated/signal/Initialize(mapload)
 	. = ..()
 	if(radio_controller)
 		if(src.frequency < PUBLIC_LOW_FREQ || src.frequency > PUBLIC_HIGH_FREQ)

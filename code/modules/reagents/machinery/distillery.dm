@@ -59,7 +59,7 @@
 // A multiplier for the production amount. This should really only ever be lower than one, otherwise you end up with duping.
 	var/efficiency = 1
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize()
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize(mapload)
 	. = ..()
 
 	create_reagents(600, /datum/reagents/distilling)

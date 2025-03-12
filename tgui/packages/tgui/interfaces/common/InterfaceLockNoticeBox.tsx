@@ -22,7 +22,15 @@ type Data = {
  * All props can be redefined if you want custom behavior, but
  * it's preferred to stick to defaults.
  */
-export const InterfaceLockNoticeBox = (props) => {
+export const InterfaceLockNoticeBox = (props: {
+  readonly siliconUser?: BooleanLike;
+  readonly locked?: BooleanLike;
+  readonly onLockStatusChange?: (status: BooleanLike) => void;
+  readonly accessText?: string;
+  readonly preventLocking?: BooleanLike;
+  readonly deny?: BooleanLike;
+  readonly denialMessage?: React.JSX.Element | string;
+}) => {
   const { act, data } = useBackend<Data>();
   const {
     siliconUser = data.siliconUser,
@@ -30,7 +38,12 @@ export const InterfaceLockNoticeBox = (props) => {
     onLockStatusChange = () => act('lock'),
     accessText = 'an ID card',
     preventLocking = data.preventLocking,
+    deny = false,
+    denialMessage = 'Error.',
   } = props;
+  if (deny) {
+    return denialMessage;
+  }
   // For silicon users
   if (siliconUser) {
     return (

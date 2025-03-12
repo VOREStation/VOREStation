@@ -19,17 +19,17 @@
 		),
 		MALE = list(
 			'sound/effects/mob_effects/m_machine_cougha.ogg',
-			'sound/effects/mob_effects/m_machine_coughb.ogg', 
+			'sound/effects/mob_effects/m_machine_coughb.ogg',
 			'sound/effects/mob_effects/m_machine_coughc.ogg'
 		),
 		NEUTER = list(
 			'sound/effects/mob_effects/m_machine_cougha.ogg',
-			'sound/effects/mob_effects/m_machine_coughb.ogg', 
+			'sound/effects/mob_effects/m_machine_coughb.ogg',
 			'sound/effects/mob_effects/m_machine_coughc.ogg'
 		),
 		PLURAL = list(
 			'sound/effects/mob_effects/m_machine_cougha.ogg',
-			'sound/effects/mob_effects/m_machine_coughb.ogg', 
+			'sound/effects/mob_effects/m_machine_coughb.ogg',
 			'sound/effects/mob_effects/m_machine_coughc.ogg'
 		)
 	)
@@ -40,7 +40,7 @@
 		if(H.get_gender() == FEMALE)
 			if(length(H.species.female_cough_sounds))
 				return list(
-					"sound" = H.species.female_cough_sounds, 
+					"sound" = H.species.female_cough_sounds,
 					"vol" = emote_volume
 				)
 		else

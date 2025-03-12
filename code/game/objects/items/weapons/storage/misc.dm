@@ -40,7 +40,7 @@ var/list/random_weighted_donuts = list(
 	foldable = /obj/item/stack/material/cardboard
 	//starts_with = list(/obj/item/reagent_containers/food/snacks/donut/normal = 6)
 
-/obj/item/storage/box/donut/Initialize()
+/obj/item/storage/box/donut/Initialize(mapload)
 	if(!empty)
 		for(var/i in 1 to 6)
 			var/type_to_spawn = pickweight(random_weighted_donuts)
@@ -73,7 +73,7 @@ var/list/random_weighted_donuts = list(
 	)
 	starts_with = list(/obj/item/reagent_containers/food/snacks/worm = 6)
 
-/obj/item/storage/box/wormcan/Initialize()
+/obj/item/storage/box/wormcan/Initialize(mapload)
 	. = ..()
 	update_icon()
 

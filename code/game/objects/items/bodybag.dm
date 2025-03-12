@@ -138,7 +138,7 @@
 	var/stasis_level = 3 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/obj/item/reagent_containers/syringe/syringe
 
-/obj/structure/closet/body_bag/cryobag/Initialize()
+/obj/structure/closet/body_bag/cryobag/Initialize(mapload)
 	tank = new tank_type(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 

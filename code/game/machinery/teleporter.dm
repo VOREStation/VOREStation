@@ -19,7 +19,7 @@
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
 
-/obj/machinery/computer/teleporter/Initialize()
+/obj/machinery/computer/teleporter/Initialize(mapload)
 	. = ..()
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
@@ -142,7 +142,7 @@
 	circuit = /obj/item/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
-/obj/machinery/teleport/hub/Initialize()
+/obj/machinery/teleport/hub/Initialize(mapload)
 	. = ..()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 	default_apply_parts()
@@ -210,7 +210,7 @@
 	circuit = /obj/item/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
-/obj/machinery/teleport/station/Initialize()
+/obj/machinery/teleport/station/Initialize(mapload)
 	. = ..()
 	add_overlay("controller-wires")
 	default_apply_parts()

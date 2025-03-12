@@ -21,7 +21,7 @@
 	var/list/raw_images
 	var/last_status
 
-/obj/item/clothing/head/pilot/Initialize()
+/obj/item/clothing/head/pilot/Initialize(mapload)
 	. = ..()
 
 	images = list()
