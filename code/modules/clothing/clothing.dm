@@ -807,6 +807,73 @@
 
 	update_icon_define_digi = "icons/inventory/suit/mob_digi.dmi"
 
+/obj/item/clothing/suit/Initialize(mapload)
+	MakeHood()
+	toggleicon = "[initial(icon_state)]"
+	. = ..()
+
+/obj/item/clothing/suit/Destroy()
+	QDEL_NULL(hood)
+	return ..()
+
+/obj/item/clothing/suit/update_icon()
+	. = ..()
+	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
+
+/obj/item/clothing/suit/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood()
+	..()
+
+/obj/item/clothing/suit/dropped(mob/user)
+	RemoveHood()
+	..()
+
+/obj/item/clothing/suit/ui_action_click(mob/user, actiontype)
+	ToggleHood()
+
+/// HOOD STUFF BELOW HERE.
+/obj/item/clothing/suit/proc/MakeHood()
+	if(hoodtype)
+		var/obj/item/clothing/head/hood/H = new hoodtype(src)
+		hood = H
+		actions_types |= /datum/action/item_action/toggle_hood
+
+/obj/item/clothing/suit/proc/RemoveHood()
+	hood_up = FALSE
+	update_icon()
+	if(hood)
+		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
+		if(ishuman(hood.loc))
+			var/mob/living/carbon/H = hood.loc
+			H.unEquip(hood, 1)
+			H.update_inv_wear_suit()
+		hood.forceMove(src)
+
+/obj/item/clothing/suit/proc/ToggleHood()
+	if(!hood) //Some suits have special handling (See: void.dm with it's ui_action_click doing toggle_helmet())
+		return //So until it's all consolidated into something like: var/list/accepted_helmet_types = list(helm1 helm2 helm3 etc), we let our children do their special code.
+	if(!hood_up)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = src.loc
+			if(H.wear_suit != src)
+				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+				return
+			if(H.head)
+				to_chat(H, span_warning("You're already wearing something on your head!"))
+				return
+			else
+				if(color != hood.color)
+					hood.color = color
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				hood_up = TRUE
+				hood.canremove = FALSE
+				update_icon()
+				H.update_inv_wear_suit()
+	else
+		RemoveHood()
+///Hood stuff end.
+
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
