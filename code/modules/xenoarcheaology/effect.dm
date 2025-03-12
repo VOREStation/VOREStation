@@ -65,9 +65,9 @@
 			chargelevelmax = rand(20, 120)
 			effectrange = rand(20, 100) //VOREStation Edit - Map size.
 	if(can_start_activated && prob(50))
-		ToggleActivate() //50% chance for us to be activated!
+		ToggleActivate(TRUE) //50% chance for us to be activated!
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
+/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE)
 	//so that other stuff happens first
 	set waitfor = FALSE
 
@@ -76,9 +76,9 @@
 	if(world.time - last_activation > 1 SECOND)
 		last_activation = world.time
 		if(activated)
-			activated = 0
+			activated = FALSE
 		else
-			activated = 1
+			activated = TRUE
 		if(reveal_toggle && target)
 			if(!isliving(target))
 				target.update_icon()
