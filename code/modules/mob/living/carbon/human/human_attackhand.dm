@@ -168,9 +168,10 @@
 		w_uniform.add_fingerprint(M)
 
 	if(M.lying && (M.loc == src.loc)) //If we are on the ground and they're on top of us, we don't have enough space to push them! Also antispam.
-		if(world.time > (last_push_time + 60))
-			visible_message(span_warning("[M] struggles under [src]!"))
-			last_push_time = world.time
+		if(world.time <= (last_push_time + 6 SECONDS))
+			return
+		visible_message(span_warning("[M] struggles under [src]!"))
+		last_push_time = world.time
 		return
 
 	add_attack_logs(H,src,"Disarmed")
