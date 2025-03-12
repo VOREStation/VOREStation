@@ -23,6 +23,8 @@ BONUS
 	level = 9
 	severity = 3
 	naturally_occuring = FALSE
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 40 SECONDS
 
 	threshold_descs = list(
 		"Resistance 8" = "Spawns a strong blob instead of a normal blob",

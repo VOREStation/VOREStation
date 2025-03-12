@@ -25,8 +25,8 @@ Bonus
 	level = 3
 	severity = 2
 	base_message_chance = 100
-	symptom_delay_min = 15
-	symptom_delay_max = 45
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 45 SECONDS
 
 	var/starving = TRUE
 

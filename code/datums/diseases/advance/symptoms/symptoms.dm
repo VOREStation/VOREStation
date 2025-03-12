@@ -36,6 +36,13 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 			return
 	CRASH("We couldn't assign an ID!")
 
+/datum/symptom/proc/Copy()
+	var/datum/symptom/new_symp = new type
+	new_symp.name = name
+	new_symp.id = id
+	new_symp.neutered = neutered
+	return new_symp
+
 // Called when processing of the advance disease, which holds this symptom, starts.
 /datum/symptom/proc/Start(datum/disease/advance/A)
 	if(neutered)

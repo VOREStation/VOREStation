@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 // Randomly neuter a symptom.
 /datum/disease/advance/proc/Neuter()
 	if(symptoms.len)
-		var/s safepick(symptoms)
+		var/s = safepick(symptoms)
 		if(s)
 			NeuterSymptom(s)
 			Refresh(TRUE)

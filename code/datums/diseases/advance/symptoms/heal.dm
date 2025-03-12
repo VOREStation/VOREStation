@@ -55,7 +55,7 @@
 
 	threshold_descs = list(
 		"Resistance 7" = "Increases chem removal speed.",
-		"Stage Speed 6" = "Consumed chemicals nourish "
+		"Stage Speed 6" = "Consumed chemicals nourish the host."
 	)
 
 /datum/symptom/heal/chem/Start(datum/disease/advance/A)
@@ -120,7 +120,7 @@
 				if(H.stat != DEAD)
 					to_chat(H, span_userdanger("You retch, and a splatter of gore escapes your gullet!"))
 					H.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
-					// Spitting tumors go here! Whenever we get it up-ported.
+					// Spitting tumors go here! IF they get up-ported.
 				if(tetsuo)
 					var/list/missing = H.get_missing_limbs()
 					if(prob(35) && H.mind && ishuman(H) && H.stat != DEAD)
@@ -129,7 +129,7 @@
 						for(var/Z in missing)
 							if(H.regenerate_limb(Z, TRUE))
 								playsound(H, 'sound/effects/blobattack.ogg', 50, 1)
-								H.visible_message(span_warning("[H]'s missing limbs reform, making a loud, grotesque sound!"), span_userdanger("You limbs regrow, making a loud, cruncy sound and giving you great pain!"))
+								H.visible_message(span_warning("[H]'s missing limbs reform, making a loud, grotesque sound!"), span_userdanger("You limbs regrow, making a loud, crunchy sound and giving you great pain!"))
 								H.emote("scream")
 								if(Z == BP_HEAD)
 									if(isliving(ownermind.current))
