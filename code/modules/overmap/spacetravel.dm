@@ -22,7 +22,7 @@
 /obj/effect/overmap/visitable/sector/temporary/Destroy()
 	for(var/zlevel in map_z)
 		using_map.cache_empty_zlevel(zlevel)
-	testing("Temporary sector at [x],[y],[z] was destroyed, returning empty zlevel [map_z[1]] to map datum.")
+	testing("Temporary sector at [x],[y] was destroyed, returning empty zlevel [map_z[1]] to map datum.")
 	return ..()
 
 /obj/effect/overmap/visitable/sector/temporary/find_z_levels()
