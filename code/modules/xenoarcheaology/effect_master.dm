@@ -269,9 +269,12 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
 			if (my_effect.trigger == TRIGGER_TOUCH)
 				my_effect.ToggleActivate()
+				warn = 1
 				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 					my_effect.DoEffectTouch(bumped)
-				warn = 1
+					continue //We activated it, go ahead and move on to the next. If we don't continue, we hit them with the effect again.
+			if(my_effect.effect == EFFECT_TOUCH && my_effect.activated) //We are activated and have a touch effect!
+				my_effect.DoEffectTouch(bumped)
 
 	if(warn && isliving(bumped))
 		to_chat(bumped, span_filter_notice(span_bold("You accidentally touch \the [holder] as it hits you.")))
@@ -286,11 +289,15 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 					my_effect.ToggleActivate()
 
 		else if(ishuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
-			if (my_effect.trigger == TRIGGER_TOUCH)
+			if(my_effect.trigger == TRIGGER_TOUCH)
 				my_effect.ToggleActivate(M)
+				warn = 1
 				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 					my_effect.DoEffectTouch(M)
-				warn = 1
+					continue //We activated it, go ahead and move on to the next. If we don't continue, we hit them with the effect again.
+			if(my_effect.effect == EFFECT_TOUCH && my_effect.activated) //We are activated and have a touch effect!
+				my_effect.DoEffectTouch(M)
+
 
 	if(warn && isliving(M))
 		to_chat(M, span_filter_notice(span_bold("You accidentally touch \the [holder].")))
@@ -313,6 +320,9 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 				my_effect.ToggleActivate()
 				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 					my_effect.DoEffectTouch(user)
+					continue //We activated it, go ahead and move on to the next. If we don't continue, we hit them with the effect again.
+			if(my_effect.effect == EFFECT_TOUCH && my_effect.activated) //We are activated and have a touch effect!
+				my_effect.DoEffectTouch(user)
 
 	if(triggered)
 		to_chat(user, span_filter_notice(span_bold("You touch [holder].")))
