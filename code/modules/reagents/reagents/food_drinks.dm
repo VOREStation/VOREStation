@@ -845,8 +845,6 @@
 
 	var/effective_strength = 5
 
-	if(alien == IS_SKRELL)	//Larger eyes means bigger targets.
-		effective_strength = 8
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -4246,11 +4244,9 @@
 
 		var/drug_strength = 10
 		if(M.species.chem_strength_tox > 0)
-			drug_strength /= M.species.chem_strength_tox
-		if(alien == IS_SKRELL)
-			drug_strength /= 1.2
+			drug_strength *= M.species.chem_strength_tox
 		if(alien == IS_SLIME)
-			drug_strength /= 6
+			drug_strength *= 0.15 //~ 1/6
 
 		M.druggy = max(M.druggy, drug_strength)
 		if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())

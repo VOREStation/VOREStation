@@ -548,14 +548,9 @@
 			to_chat(M, span_warning("Your cellular mass hardens for a moment."))
 			M.Stun(6)
 		return
-	if(alien == IS_SKRELL)
-		M.take_organ_damage(2.4 * removed, 0)
-		if(M.losebreath < 10)
-			M.AdjustLosebreath(1)
-	else
-		M.take_organ_damage(3 * removed, 0)
-		if(M.losebreath < 15)
-			M.AdjustLosebreath(1)
+	M.take_organ_damage(3 * removed, 0)
+	if(M.losebreath < 15)
+		M.AdjustLosebreath(1)
 
 /datum/reagent/mutagen
 	name = REAGENT_MUTAGEN
@@ -664,12 +659,10 @@
 
 	var/threshold = 1
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
-	if(alien == IS_SKRELL)
-		threshold /= 1.2
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold /= 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold *= 0.15 //~1/6	//Evens to 3 due to the fact they are considered 'small' for flaps.
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -714,12 +707,10 @@
 
 	var/threshold = 1
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
-	if(alien == IS_SKRELL)
-		threshold /= 1.2
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold /= 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold *= 0.15 //~1/6
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -810,12 +801,10 @@
 		return
 	var/drug_strength = 4
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
-	if(alien == IS_SKRELL)
-		drug_strength /= 1.2
+		drug_strength *= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		drug_strength /= 6
+		drug_strength *= 0.15 //~ 1/6
 
 	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
@@ -857,12 +846,10 @@
 
 	var/drug_strength = 100
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength would = 10000
-	if(alien == IS_SKRELL)
-		drug_strength /= 1.2
+		drug_strength *= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength would = 10000
 
 	if(alien == IS_SLIME)
-		drug_strength /= 6
+		drug_strength *= 0.15 //~ 1/6
 
 	drug_strength = CLAMP(drug_strength, 0, 150) //Let's not have users be hallucinating more than 5 minutes.
 

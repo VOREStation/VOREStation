@@ -59,11 +59,9 @@
 	..()
 	var/drug_strength = 15
 	if(M.species.chem_strength_tox > 0)
-		drug_strength /= M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		drug_strength /= 1.2
+		drug_strength *= M.species.chem_strength_tox
 	if(alien == IS_SLIME)
-		drug_strength /= 6
+		drug_strength *= 0.15 //~ 1/6
 
 	M.druggy = max(M.druggy, drug_strength)
 	if(prob_proc == TRUE && prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
@@ -105,11 +103,9 @@
 	..()
 	var/drug_strength = 3
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
-	if(alien == IS_SKRELL)
-		drug_strength /= 1.2
+		drug_strength *= M.species.chem_strength_tox
 	if(alien == IS_SLIME)
-		drug_strength /= 6
+		drug_strength *= 0.15 //~ 1/6
 
 	M.adjustToxLoss(-2)
 	M.druggy = max(M.druggy, drug_strength)
@@ -140,12 +136,10 @@
 
 	var/threshold = 1
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
-	if(alien == IS_SKRELL)
-		threshold /= 1.2
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold /= 6
+		threshold *= 0.15 //~1/6
 
 	M.druggy = max(M.druggy, 30)
 
@@ -195,9 +189,7 @@
 
 	var/drug_strength = 29
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
-		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength will = 100
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+		drug_strength *= M.species.chem_strength_tox
 	else
 		M.adjustToxLoss(10 * removed) //Given incorporations of other toxins with similiar damage, this seems right.
 

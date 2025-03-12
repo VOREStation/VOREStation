@@ -204,11 +204,9 @@
 	..()
 	var/drug_strength = 20
 	if(M.species.chem_strength_tox > 0)
-		drug_strength /= M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		drug_strength /= 1.2
+		drug_strength *= M.species.chem_strength_tox
 	if(alien == IS_SLIME)
-		drug_strength /= 6
+		drug_strength *= 0.15 //~ 1/6
 	M.druggy = max(M.druggy, drug_strength)
 
 /datum/reagent/drugs/rainbow_toxin/overdose(var/mob/living/M as mob)

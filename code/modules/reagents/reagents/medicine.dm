@@ -928,9 +928,6 @@
 	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
 		strength_mod = 0.75
 
-	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
-		strength_mod = 1.5
-
 	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
 		strength_mod = 1.75
 
@@ -979,9 +976,6 @@
 
 /datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 0.5 * M.species.chem_strength_heal
-
-	if(alien == IS_SKRELL)
-		strength_mod = 1
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
