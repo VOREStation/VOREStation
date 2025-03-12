@@ -126,7 +126,7 @@
 	initial_generic_waypoints = list("sr-c","sr-n","sr-s")
 	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 
-	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
+	extra_z_levels = list(Z_NAME_SPACE_ROCKS)
 	mob_announce_cooldown = 0
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
