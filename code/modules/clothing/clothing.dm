@@ -860,25 +860,25 @@
 /obj/item/clothing/suit/proc/ToggleHood()
 	if(!hood || special_hood_handling) //Some suits have special handling (See: void.dm with it's ui_action_click doing toggle_helmet())
 		return //In that case, we return and allow it to do it's special handling!
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = src.loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				if(color != hood.color)
-					hood.color = color
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = TRUE
-				hood.canremove = FALSE
-				update_icon()
-				H.update_inv_wear_suit()
-	else
+	if(hood_up)
 		RemoveHood()
+		return
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.wear_suit != src)
+			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+			return
+		if(H.head)
+			to_chat(H, span_warning("You're already wearing something on your head!"))
+			return
+		else
+			if(color != hood.color)
+				hood.color = color
+			H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+			hood_up = TRUE
+			hood.canremove = FALSE
+			update_icon()
+			H.update_inv_wear_suit()
 ///Hood stuff end.
 
 /obj/item/clothing/suit/update_clothing_icon()
