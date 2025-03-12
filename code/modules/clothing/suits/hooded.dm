@@ -1,30 +1,19 @@
 // Hooded suits
 
 //Hoods for winter coats and chaplain hoodie etc
-
-/obj/item/clothing/suit/
-	name = DEVELOPER_WARNING_NAME
-	var/obj/item/clothing/head/hood
-	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
-	var/hood_up = FALSE
-	var/toggleicon
-	actions_types = list()
-
-/obj/item/clothing/suit/storage/hooded/New()
+/obj/item/clothing/suit/storage/hooded/Initialize(mapload)
+	. = ..()
 	toggleicon = "[initial(icon_state)]"
 	MakeHood()
-	..()
 
 /obj/item/clothing/suit/storage/hooded/Destroy()
 	QDEL_NULL(hood)
 	return ..()
 
 /obj/item/clothing/suit/storage/hooded/proc/MakeHood()
-	if(!hood && hoodtype)
+	if(hoodtype)
 		var/obj/item/clothing/head/hood/H = new hoodtype(src)
 		hood = H
-		actions_types |= /datum/action/item_action/toggle_hood
-	else if(hood)
 		actions_types |= /datum/action/item_action/toggle_hood
 
 /obj/item/clothing/suit/storage/hooded/ui_action_click(mob/user, actiontype)

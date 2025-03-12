@@ -782,6 +782,14 @@
 	var/blood_overlay_type = "suit"
 	blood_sprite_state = "suitblood" //Defaults to the suit's blood overlay, so that some blood renders instead of no blood.
 
+	//Hood stuff. See hooded.dm for more info. This should be expanded so all suits can have hoods if desired.
+	//Currently only used by /obj/item/clothing/suit/storage/hooded.
+	var/obj/item/clothing/head/hood
+	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
+	var/hood_up = FALSE
+	var/toggleicon
+	actions_types = list()
+
 	var/taurized = FALSE
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
