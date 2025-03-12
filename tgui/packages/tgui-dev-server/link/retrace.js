@@ -16,15 +16,13 @@ const { parse: parseStackTrace } = require('stacktrace-parser');
 
 const logger = createLogger('retrace');
 
-type SourceMapData = { file: string; consumer: any };
-
 const { SourceMapConsumer } = SourceMap;
-const sourceMaps: SourceMapData[] = [];
+const sourceMaps = [];
 
 export const loadSourceMaps = async (bundleDir) => {
   // Destroy and garbage collect consumers
   while (sourceMaps.length !== 0) {
-    const { consumer } = sourceMaps.shift() as SourceMapData;
+    const { consumer } = sourceMaps.shift();
     consumer.destroy();
   }
   // Load new sourcemaps

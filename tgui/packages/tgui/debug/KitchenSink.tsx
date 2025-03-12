@@ -23,7 +23,7 @@ const getStories = () => r.keys().map((path) => r(path));
 
 export const KitchenSink = (props: { panel: boolean }) => {
   const { panel } = props;
-  const [theme] = useState(undefined);
+  const [theme, setTheme] = useState(undefined);
   const [pageIndex, setPageIndex] = useState(0);
   const stories = getStories();
   const story = stories[pageIndex];
@@ -48,7 +48,9 @@ export const KitchenSink = (props: { panel: boolean }) => {
           </Section>
         </Stack.Item>
         <Stack.Item position="relative" grow>
-          <Layout.Content scrollable>{story.meta.render()}</Layout.Content>
+          <Layout.Content scrollable>
+            {story.meta.render(theme, setTheme)}
+          </Layout.Content>
         </Stack.Item>
       </Stack>
     </Layout>
