@@ -116,7 +116,7 @@
 
 // You generally shouldn't destroy these.
 /obj/effect/overmap/visitable/Destroy()
-	testing("Deleting [src] overmap sector at [x],[y]")
+	testing("Deleting [src] overmap sector at [x],[y],[z]")
 	unregister_z_levels()
 	return ..()
 
