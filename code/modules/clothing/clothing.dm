@@ -787,6 +787,8 @@
 	var/obj/item/clothing/head/hood
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/hood_up = FALSE
+	var/has_hood_sprite = FALSE
+	var/special_hood_handling = FALSE
 	var/toggleicon
 	actions_types = list()
 
@@ -818,7 +820,8 @@
 
 /obj/item/clothing/suit/update_icon()
 	. = ..()
-	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
+	if(has_hood_sprite) //If we have a special hood_sprite, great, let's use it! Only used by /obj/item/clothing/suit/storage/hooded atm.
+		icon_state = "[toggleicon][hood_up ? "_t" : ""]"
 
 /obj/item/clothing/suit/equipped(mob/user, slot)
 	if(slot != slot_wear_suit)
@@ -830,13 +833,17 @@
 	..()
 
 /obj/item/clothing/suit/ui_action_click(mob/user, actiontype)
+	if(..())
+		return TRUE
 	ToggleHood()
 
 /// HOOD STUFF BELOW HERE.
 /obj/item/clothing/suit/proc/MakeHood()
-	if(hoodtype)
-		var/obj/item/clothing/head/hood/H = new hoodtype(src)
-		hood = H
+	if(!hoodtype)
+		return
+	var/obj/item/clothing/head/hood/H = new hoodtype(src)
+	hood = H
+	if(!actions_types.len) //If we don't already have a special action type, let's add it.
 		actions_types |= /datum/action/item_action/toggle_hood
 
 /obj/item/clothing/suit/proc/RemoveHood()
@@ -851,8 +858,8 @@
 		hood.forceMove(src)
 
 /obj/item/clothing/suit/proc/ToggleHood()
-	if(!hood) //Some suits have special handling (See: void.dm with it's ui_action_click doing toggle_helmet())
-		return //So until it's all consolidated into something like: var/list/accepted_helmet_types = list(helm1 helm2 helm3 etc), we let our children do their special code.
+	if(!hood || special_hood_handling) //Some suits have special handling (See: void.dm with it's ui_action_click doing toggle_helmet())
+		return //In that case, we return and allow it to do it's special handling!
 	if(!hood_up)
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = src.loc

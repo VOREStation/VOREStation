@@ -1,5 +1,8 @@
 // Hooded suits
 
+/obj/item/clothing/suit/storage/hooded
+	has_hood_sprite = TRUE //These all have suit sprites that HAVE hood sprites.
+
 /obj/item/clothing/suit/storage/hooded/costume
 	name = DEVELOPER_WARNING_NAME
 	body_parts_covered = CHEST|ARMS
