@@ -95,7 +95,7 @@
 
 // This is so carps can swarm
 /mob/living/simple_mob/animal/space/carp/CanPass(atom/movable/mover, turf/target)
-	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE && stat != DEAD)
 		return FALSE
 	return ..()
 

@@ -55,7 +55,7 @@
 
 	cut_overlays()
 	add_overlay(icon_manager.get_atmos_icon("pipe", , pipe_color, "cap[icon_connect_type]"))
-	
+
 /obj/machinery/atmospherics/pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
 		if (can_be_node(target, 1))

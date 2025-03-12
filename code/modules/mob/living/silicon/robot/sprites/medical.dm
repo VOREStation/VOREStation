@@ -149,7 +149,6 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/crisis/dullahan/crisisalt
 	name = "Dullahan v2"

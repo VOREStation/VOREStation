@@ -733,7 +733,8 @@
 		user.visible_message(span_warning(span_bold("\The [user]") + " attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
 	else
 		user.visible_message(span_notice(span_bold("\The [user]") + " pokes the [src]."),span_notice("You poke the [src]."))
-		visible_message("[src] says, \"[phrase]\"")
+	if(phrase) //There was no indiciation you had to use disarm intent to make it speak...So now it speaks if you touch it at all!
+		atom_say("[phrase]")
 
 
 /obj/structure/plushie/attackby(obj/item/I as obj, mob/user as mob)
@@ -775,6 +776,7 @@
 	desc = "A plushie of a happy drone! It appears to be smiling."
 	icon_state = "droneplushie"
 	phrase = "Beep boop!"
+	bubble_icon = "machine"
 
 /obj/structure/plushie/carp
 	name = "plush carp"
@@ -787,6 +789,7 @@
 	desc = "A plushie of a popular industrious cleaning robot! If it could feel emotions, it would love you."
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
+	bubble_icon = "security"
 
 //Small plushies.
 /obj/item/toy/plushie
@@ -801,7 +804,11 @@
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
+	var/adjusted_name // Our modified name. Used so people don't do funny business with us!
 
+/obj/item/toy/plushie/Initialize(mapload)
+	. = ..()
+	adjusted_name = name
 
 /obj/item/toy/plushie/examine(mob/user)
 	. = ..()
@@ -833,8 +840,14 @@
 	else
 		user.visible_message(span_notice(span_bold("\The [user]") + " pokes [src]."),span_notice("You poke [src]."))
 		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
-		visible_message("[src] says, \"[pokephrase]\"")
+	if(pokephrase) //There was no indiciation you had to use disarm intent to make it speak...So now it speaks if you touch it at all!
+		say_phrase()
 	last_message = world.time
+
+/obj/item/toy/plushie/proc/say_phrase()
+	name = initial(name) //No namestealing.
+	atom_say("[pokephrase]")
+	name = adjusted_name
 
 /obj/item/toy/plushie/verb/rename_plushie()
 	set name = "Name Plushie"
@@ -848,6 +861,7 @@
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
+		adjusted_name = input
 		to_chat(M, "You name the plushie [input], giving it a hug for good luck.")
 		return 1
 
@@ -887,67 +901,79 @@
 	desc = "A plushie of an adorable diona nymph! While its level of self-awareness is still being debated, its level of cuteness is not."
 	icon_state = "nymphplushie"
 	pokephrase = "Chirp!"
+	bubble_icon = "plant"
 
 /obj/item/toy/plushie/teshari
 	name = "teshari plush"
 	desc = "This is a plush teshari. Very soft, with a pompom on the tail. The toy is made well, as if alive. Looks like she is sleeping. Shhh!"
 	icon_state = "teshariplushie"
 	pokephrase = "Rya!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
 	icon_state = "mouseplushie"
 	pokephrase = "Squeak!"
+	bubble_icon = "maus"
 
 /obj/item/toy/plushie/kitten
 	name = "kitten plush"
 	desc = "A plushie of a cute kitten! Watch as it purrs its way right into your heart."
 	icon_state = "kittenplushie"
 	pokephrase = "Mrow!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/lizard
 	name = "lizard plush"
 	desc = "A plushie of a scaly lizard! Very controversial, after being accused as \"racist\" by some Unathi."
 	icon_state = "lizardplushie"
 	pokephrase = "Hiss!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/spider
 	name = "spider plush"
 	desc = "A plushie of a fuzzy spider! It has eight legs - all the better to hug you with."
 	icon_state = "spiderplushie"
 	pokephrase = "Sksksk!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/farwa
 	name = "farwa plush"
 	desc = "A farwa plush doll. It's soft and comforting!"
 	icon_state = "farwaplushie"
 	pokephrase = "Squaw!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/corgi
 	name = "corgi plushie"
 	icon_state = "corgi"
 	pokephrase = "Woof!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/girly_corgi
 	name = "corgi plushie"
 	icon_state = "girlycorgi"
 	pokephrase = "Arf!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/robo_corgi
 	name = "borgi plushie"
 	icon_state = "robotcorgi"
 	pokephrase = "Bark."
+	bubble_icon = "synthetic"
 
 /obj/item/toy/plushie/octopus
 	name = "octopus plushie"
 	icon_state = "loveable"
 	pokephrase = "Squish!"
+	bubble_icon = "tentacles"
 
 /obj/item/toy/plushie/face_hugger
 	name = "facehugger plushie"
 	icon_state = "huggable"
 	pokephrase = "Hug!"
+	bubble_icon = "science"
 
 //foxes are basically the best
 
@@ -955,176 +981,183 @@
 	name = "red fox plushie"
 	icon_state = "redfox"
 	pokephrase = "Gecker!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/black_fox
 	name = "black fox plushie"
 	icon_state = "blackfox"
 	pokephrase = "Ack!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/marble_fox
 	name = "marble fox plushie"
 	icon_state = "marblefox"
 	pokephrase = "Awoo!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/blue_fox
 	name = "blue fox plushie"
 	icon_state = "bluefox"
 	pokephrase = "Yoww!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/orange_fox
 	name = "orange fox plushie"
 	icon_state = "orangefox"
 	pokephrase = "Yagh!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/coffee_fox
 	name = "coffee fox plushie"
 	icon_state = "coffeefox"
 	pokephrase = "Gerr!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/pink_fox
 	name = "pink fox plushie"
 	icon_state = "pinkfox"
 	pokephrase = "Yack!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/purple_fox
 	name = "purple fox plushie"
 	icon_state = "purplefox"
 	pokephrase = "Whine!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/crimson_fox
 	name = "crimson fox plushie"
 	icon_state = "crimsonfox"
 	pokephrase = "Auuu!"
+	bubble_icon = "latte_fox"
 
 /obj/item/toy/plushie/deer
 	name = "deer plushie"
 	icon_state = "deer"
 	pokephrase = "Bleat!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/black_cat
 	name = "black cat plushie"
 	icon_state = "blackcat"
 	pokephrase = "Mlem!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/grey_cat
 	name = "grey cat plushie"
 	icon_state = "greycat"
 	pokephrase = "Mraw!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/white_cat
 	name = "white cat plushie"
 	icon_state = "whitecat"
 	pokephrase = "Mew!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/orange_cat
 	name = "orange cat plushie"
 	icon_state = "orangecat"
 	pokephrase = "Meow!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/siamese_cat
 	name = "siamese cat plushie"
 	icon_state = "siamesecat"
 	pokephrase = "Mrew?"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/tabby_cat
 	name = "tabby cat plushie"
 	icon_state = "tabbycat"
 	pokephrase = "Purr!"
+	bubble_icon = "heart"
 
 /obj/item/toy/plushie/tuxedo_cat
 	name = "tuxedo cat plushie"
 	icon_state = "tuxedocat"
 	pokephrase = "Mrowww!!"
+	bubble_icon = "heart"
 
 // nah, squids are better than foxes :>
 
-/obj/item/toy/plushie/squid/green
+/obj/item/toy/plushie/squid
+	name = DEVELOPER_WARNING_NAME
+
+/obj/item/toy/plushie/squid
 	name = "green squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is green."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "greensquid"
 	slot_flags = SLOT_HEAD
 	pokephrase = "Squrr!"
+	bubble_icon = "tentacles"
 
 /obj/item/toy/plushie/squid/mint
 	name = "mint squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is mint coloured."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "mintsquid"
-	slot_flags = SLOT_HEAD
 	pokephrase = "Blurble!"
 
 /obj/item/toy/plushie/squid/blue
 	name = "blue squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is blue."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "bluesquid"
-	slot_flags = SLOT_HEAD
 	pokephrase = "Blob!"
 
 /obj/item/toy/plushie/squid/orange
 	name = "orange squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is orange."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "orangesquid"
-	slot_flags = SLOT_HEAD
 	pokephrase = "Squash!"
 
 /obj/item/toy/plushie/squid/yellow
 	name = "yellow squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is yellow."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "yellowsquid"
-	slot_flags = SLOT_HEAD
 	pokephrase = "Glorble!"
 
 /obj/item/toy/plushie/squid/pink
 	name = "pink squid plushie"
 	desc = "A small, cute and loveable squid friend. This one is pink."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "pinksquid"
-	slot_flags = SLOT_HEAD
 	pokephrase = "Wobble!"
 
-/obj/item/toy/plushie/therapy/red
+/obj/item/toy/plushie/therapy
 	name = "red therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is red."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
+	bubble_icon = "medical"
 
 /obj/item/toy/plushie/therapy/purple
 	name = "purple therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is purple."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
 
 /obj/item/toy/plushie/therapy/blue
 	name = "blue therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is blue."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
 
 /obj/item/toy/plushie/therapy/yellow
 	name = "yellow therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
 
 /obj/item/toy/plushie/therapy/orange
 	name = "orange therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is orange."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
 
 /obj/item/toy/plushie/therapy/green
 	name = "green therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is green."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
 
@@ -1133,6 +1166,39 @@
 	desc = "A plushie of a....?"
 	icon_state = "fumoplushie"
 	pokephrase = "I just don't think about losing."
+
+// Tiny tin, rip - OP21
+
+/obj/item/toy/plushie/tinytin
+	name = "tiny tin plushie"
+	desc = "A tiny fluffy nevrean plush with the label 'Tiny-Tin.' Press his belly to hear a sound!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "plushie_tin"
+	pokephrase = "Peep peep!"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/peep.ogg', 20, 0)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
+	return ..()
+
+/obj/item/toy/plushie/tinytin_sec
+	name = "officer tiny tin plushie"
+	desc = "Officer Tiny-Tin, now with rooty-tooty-shooty action! Press his belly to hear a sound!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "plushie_tinsec"
+	bubble_icon = "security"
+	pokephrase = "That means you fucked up!"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 25, 0)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
+	return ..()
 
 //Toy cult sword
 /obj/item/toy/cultsword

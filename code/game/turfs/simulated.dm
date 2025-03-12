@@ -172,8 +172,8 @@
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0
-
 	..()
+
 /turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
 	PRIVATE_PROC(TRUE)
 	if(!M || !slip_dist)
