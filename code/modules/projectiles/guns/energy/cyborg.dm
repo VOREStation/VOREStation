@@ -216,12 +216,12 @@
 		bcell = R.cell
 	if(!bcell)
 		return FALSE
-	if(bcell.checked_use(hitcost))
+	if(bcell.checked_use(600))
 		return TRUE
 	return null
 
 /obj/item/melee/robotic/borg_combat_shocker/attack(mob/M, mob/user)
-	deductcharge(hitcost)
+	deductcharge(600)
 	return ..()
 
 /obj/item/melee/robotic/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
