@@ -398,22 +398,23 @@
 		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
 		agony *= 0.5
 		stun *= 0.5
-	else if(!status)
+
+	//We are off!
+	if(!status)
 		if(affecting)
 			target.visible_message(span_warning("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 		else
 			target.visible_message(span_warning("[target] has been prodded with [src] by [user]. Luckily it was off."))
-	else
-		if(affecting)
-			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
-		else
-			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		return
 
-	//stun effects
+	//We are on!
+	if(affecting)
+		target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
+	else
+		target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
+	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	target.stun_effect_act(stun, agony, hit_zone, src)
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.forcesay(hit_appends)
