@@ -39,6 +39,7 @@ export const AppearanceChangerColors = (props) => {
     ears_color,
     ears2_color,
     ears_alpha,
+    secondary_ears_alpha,
     tail_color,
     tail2_color,
     tail3_color,
@@ -135,6 +136,18 @@ export const AppearanceChangerColors = (props) => {
               </Button>
             </Box>
           ))}
+          <Box>
+            Horns Alpha:{' '}
+            <NumberInput
+              step={1}
+              minValue={0}
+              value={ears_alpha}
+              maxValue={255}
+              onDrag={(val: number) =>
+                act('secondary_ears_alpha', { secondary_ears_alpha: val })
+              }
+            />
+          </Box>
           <Box>
             <ColorBox color={tail_color} mr={1} />
             <Button onClick={() => act('tail_color')}>Change Tail Color</Button>

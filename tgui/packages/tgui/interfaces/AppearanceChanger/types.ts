@@ -36,6 +36,7 @@ export type Data = {
   ears_color: string;
   ears2_color: string;
   ears_alpha: number;
+  secondary_ears_alpha: number;
   tail_color: string;
   tail2_color: string;
   tail3_color: string;

@@ -130,7 +130,8 @@
 	var/r_ears3 = 30 //Trust me, we could always use more colour. No japes.
 	var/g_ears3 = 30
 	var/b_ears3 = 30
-	var/a_ears = 255 //applied to the entire ear
+	var/a_ears = 255 //applied to the ears
+	var/a_ears2 = 255 //applied to the horns
 
 	/// secondary ears sprite accessory reference
 	var/datum/sprite_accessory/ears/ear_secondary_style

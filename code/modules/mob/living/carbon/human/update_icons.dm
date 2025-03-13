@@ -1289,6 +1289,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				overlay.Blend(color, ear_secondary_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
+		ears_s += rgb(,,,src.a_ears2)
 		if(!rendered)
 			rendered = ears_s
 		else

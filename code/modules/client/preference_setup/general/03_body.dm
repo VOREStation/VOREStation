@@ -448,6 +448,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
 		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))
 			. += "<a href='byond://?src=\ref[src];ear_secondary_color=[channel]'>Change [GLOB.fancy_sprite_accessory_color_channel_names[channel]] Color</a> [color_square(hex = LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff")]<br>"
+		.+= "<a href='byond://?src=\ref[src];secondary_ears_alpha=1'>Change Horns Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>Select</a><br>"
 
@@ -1083,9 +1084,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if (href_list["ears_alpha"])
 		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
-		 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+			 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
 		if(new_ear_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["secondary_ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
+		 	pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_secondary_style"])

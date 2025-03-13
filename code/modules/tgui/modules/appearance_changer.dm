@@ -271,6 +271,14 @@
 				owner.update_hair()
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 				return 1
+		if("secondary_ears_alpha")
+			var/new_alpha = clamp(params["secondary_ears_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears2 = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
 
 		if("ears_secondary_color")
 			if(can_change(owner, APPEARANCE_HAIR_COLOR))
@@ -840,6 +848,7 @@
 		data["wing_alpha"] = owner.a_wing
 		data["tail_alpha"] = owner.a_tail
 		data["ears_alpha"] = owner.a_ears
+		data["secondary_ears_alpha"] = owner.a_ears2
 
 	data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])

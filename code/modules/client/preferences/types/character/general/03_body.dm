@@ -200,6 +200,12 @@
 	minimum = 0
 	maximum = 255
 
+/datum/preference/numeric/human/ears_alpha/secondary
+	savefile_key = "secondary_ears_alpha"
+
+/datum/preference/numeric/human/ears_alpha/secondary/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_ears2 = value;
+
 /datum/preference/numeric/human/ears_alpha/apply_to_human(mob/living/carbon/human/target, value)
 	target.a_ears = value
 
