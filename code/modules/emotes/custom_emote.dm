@@ -2,7 +2,7 @@
 /// This is the custom_emote that you'll want to use if you want the mob to be able to input their emote.
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view, var/check_stat = TRUE)
 
-	if((check_stat && (usr && stat)) || (!use_me && usr == src))
+	if((check_stat && (src && stat)) || (!use_me && usr == src))
 		to_chat(src, "You are unable to emote.")
 		return
 
@@ -16,8 +16,7 @@
 /// This is the custom_emote that you'll want to use if you're forcing something to custom emote with no input from the mob.
 /// By default, we have a visible message, our range is world.view, and we do NOT check the stat.
 /mob/proc/automatic_custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view, var/check_stat = FALSE)
-	if(check_stat && (usr && stat))
-		to_chat(src, "You are unable to emote.")
+	if(check_stat && (src && stat))
 		return
 	var/input = message
 	process_emote(m_type, message, input, range)
@@ -39,7 +38,7 @@
 
 	if(input)
 		log_emote(message,src) //Log before we add junk
-		if(usr && usr.client)
+		if(client)
 			message = span_emote(span_bold("[src]") + " [input]")
 		else
 			message = span_npc_emote(span_bold("[src]") + " [input]")
@@ -73,7 +72,7 @@
 			if(M)
 				if(isobserver(M))
 					message = span_emote(span_bold("[src]") + " ([ghost_follow_link(src, M)]) [input]")
-				if(usr && usr.client && M && !(get_z(usr) == get_z(M)))
+				if(src.client && M && !(get_z(src) == get_z(M)))
 					message = span_multizsay("[message]")
 				// If you are in the same tile, right next to, or being held by a person doing an emote, you should be able to see it while blind
 				if(m_type != AUDIBLE_MESSAGE && (src.Adjacent(M) || (istype(src.loc, /obj/item/holder) && src.loc.loc == M)))
