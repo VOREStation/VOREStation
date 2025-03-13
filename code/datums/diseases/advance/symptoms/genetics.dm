@@ -24,11 +24,11 @@
 		domutcheck(H, null, TRUE)
 		H.UpdateAppearance()
 
-/datum/symptom/genetic/OnRemove()
+/datum/symptom/genetic/OnRemove(datum/disease/advance/A)
 	. = ..()
 	if(mutation)
 		var/mob/living/carbon/human/H = A.affected_mob
-		H.dna.SetSEState(G.block, FALSE)
+		H.dna.SetSEState(mutation.block, FALSE)
 		domutcheck(H, null, TRUE)
 		H.UpdateAppearance()
 

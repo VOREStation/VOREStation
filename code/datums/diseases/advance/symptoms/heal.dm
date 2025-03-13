@@ -157,37 +157,43 @@ Bonus
 
 //////////////////////////////////////
 
-
+*/
 /datum/symptom/heal/metabolism
-	name = "Anti-Bodies Metabolism"
+	name = "Metabolic Boost"
+	desc = "The virus causes the host's metabolism to accelerate rapidly, making them process chemicals twice as fast, but also causing increased hunger."
 	stealth = -1
-	resistance = -1
-	stage_speed = -1
-	transmission = -4
-	level = 3
-	severity = 0
-	var/list/cured_diseases = list()
+	resistance = -2
+	stage_speed = 2
+	transmission = 1
+	level = 6
+	var/triple_metabolism = FALSE
+	var/reduced_hunger = FALSE
 
-/datum/symptom/heal/metabolism/Heal(mob/living/M, datum/disease/advance/A)
-	var/cured = 0
-	for(var/thing in M.GetViruses())
-		var/datum/disease/D = thing
-		if(D.virus_heal_resistant)
-			continue
-		if(D != A)
-			cured = TRUE
-			cured_diseases += D.GetDiseaseID()
-			D.cure()
-	if(cured)
-		to_chat(M, span_notice("You feel much better."))
+	threshold_descs = list(
+		"Stealth 3" = "Reduces hunger rate.",
+		"Stage Speed 10" = "Chemical metabolization is tripled instead of doubled."
+	)
 
-/datum/symptom/heal/metabolism/End(datum/disease/advance/A)
-	var/mob/living/M = A.affected_mob
-	if(istype(M))
-		if(length(cured_diseases))
-			for(var/res in M.GetResistances())
-				M.resistances -= res
-		to_chat(M, span_warning("You feel weaker."))
+/datum/symptom/heal/metabolism/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage_rate >= 10)
+		triple_metabolism = TRUE
+	if(A.stealth >= 3)
+		reduced_hunger = TRUE
+
+/datum/symptom/heal/metabolism/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
+	if(!istype(H))
+		return
+	if(H.ingested)
+		H.ingested.metabolize()
+	if(triple_metabolism)
+		H.ingested.metabolize()
+	var/lost_nutrition = 9 - (reduced_hunger * 5)
+	H.adjust_nutrition(-lost_nutrition * 0.1)
+	if(prob(2) && H.stat != DEAD)
+		to_chat(H, span_notice("You feel an odd gurgle in your stomach, as if it was working much faster than normal."))
+	return TRUE
 
 /*
 //////////////////////////////////////
@@ -204,7 +210,7 @@ Bonus
 	After a certain amount of time the symptom will cure itself.
 
 //////////////////////////////////////
-*/
+
 
 /datum/symptom/heal/longevity
 	name = "Longevity"

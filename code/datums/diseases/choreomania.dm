@@ -31,8 +31,6 @@
 				for(var/D in dance)
 					affected_mob.dir = D
 					animate(affected_mob, pixel_x = 5, time = 5)
-					sleep(3)
 					animate(affected_mob, pixel_x = -5, time = 5)
-					animate(pixel_x = affected_mob.default_pixel_x, pixel_y = affected_mob.default_pixel_x, time = 2)
-					sleep(3)
+					animate(affected_mob, pixel_x = affected_mob.default_pixel_x, pixel_y = affected_mob.default_pixel_x, time = 2)
 	return
