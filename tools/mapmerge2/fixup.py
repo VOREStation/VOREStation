@@ -82,6 +82,7 @@ def main(repo : pygit2.Repository):
     map_folder_to_check = os.path.join(frontend.read_settings().map_folder).replace("\\", "/").replace("../", "") # Remove this ever virgo maps aren't busted
     for path, blob in walk_tree(head_commit.tree):
         if path.endswith(".dmm") and path.startswith(map_folder_to_check):
+            print(f"Checking: {path}...")
             head_data = blob.read_raw()
             head_map = dmm.DMM.from_bytes(head_data)
 
