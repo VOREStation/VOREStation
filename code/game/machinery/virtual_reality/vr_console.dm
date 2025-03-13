@@ -26,9 +26,6 @@
 /obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
-
-/obj/machinery/vr_sleeper/Initialize(mapload)
-	. = ..()
 	smoke = new
 	update_icon()
 

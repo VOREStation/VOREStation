@@ -1912,6 +1912,11 @@
 "MO" = (
 /turf/simulated/floor/bmarble,
 /area/redgate/fantasy/dungeon)
+"MQ" = (
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
+/area/redgate/fantasy/caves)
 "MR" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/alienbasement)
@@ -7215,7 +7220,7 @@ tV
 Iq
 Iq
 Iq
-Iq
+MQ
 Iq
 Hz
 RZ

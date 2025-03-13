@@ -22,7 +22,6 @@
 #define open_link(target, url) target << link(url)
 
 // From TG, might be useful to have.
-// Didn't port SEND_TEXT() since to_chat() appears to serve the same purpose.
 #define DIRECT_OUTPUT(A, B) A << B
 #define DIRECT_INPUT(A, B) A >> B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)

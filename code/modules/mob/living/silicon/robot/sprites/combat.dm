@@ -160,7 +160,6 @@
 	module_type = "Combat"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	has_vore_belly_sprites = TRUE
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/combat/tall/mmeka
 	name = "NIKO"
