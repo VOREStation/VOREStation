@@ -195,12 +195,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	else if(direction & WEST)
 		pixel_x_diff = 8
 
-	var/default_pixel_x = initial(pixel_x)
-	var/default_pixel_y = initial(pixel_y)
-	var/mob/mob = src
-	if(istype(mob))
-		default_pixel_x = mob.default_pixel_x
-		default_pixel_y = mob.default_pixel_y
+	var/default_pixel_x = pixel_x
+	var/default_pixel_y = pixel_y
 
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = windup_time - 2)
 	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)
@@ -220,12 +216,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	else if(direction & WEST)
 		pixel_x_diff = -8
 
-	var/default_pixel_x = initial(pixel_x)
-	var/default_pixel_y = initial(pixel_y)
-	var/mob/mob = src
-	if(istype(mob))
-		default_pixel_x = mob.default_pixel_x
-		default_pixel_y = mob.default_pixel_y
+	var/default_pixel_x = pixel_x
+	var/default_pixel_y = pixel_y
 
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)

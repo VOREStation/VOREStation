@@ -16,7 +16,6 @@
 /datum/robot_sprite/dogborg/tall/explorer/dullahan
 	module_type = "Exploration"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_explorer.dmi'
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/explorer/dullahan/explorer
 	name = "Dullahan"
