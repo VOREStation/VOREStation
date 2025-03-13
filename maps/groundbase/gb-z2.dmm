@@ -1332,6 +1332,11 @@
 "cZ" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/lights/mixed,
+/obj/item/mail_scanner{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/mail_scanner,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "da" = (
@@ -12063,6 +12068,11 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/item/storage/bag/mail,
+/obj/item/storage/bag/mail{
+	pixel_x = -5;
+	pixel_y = -5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "HK" = (

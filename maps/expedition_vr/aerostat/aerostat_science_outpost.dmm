@@ -530,7 +530,6 @@
 /area/offmap/aerostat/inside/airlock/north)
 "bo" = (
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2106,7 +2105,6 @@
 	dir = 4
 	},
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2159,7 +2157,6 @@
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/atmos)
 "fW" = (
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -2773,7 +2770,6 @@
 	name = "Xenobiology"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
 	id = "xenobio_blast";
 	name = "Xenobiology Emergency Blast Door"
@@ -2852,7 +2848,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/northchamb)
@@ -3505,7 +3500,6 @@
 /area/offmap/aerostat/inside/arm/nw)
 "lt" = (
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -4048,7 +4042,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 8
 	},
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -4948,7 +4941,6 @@
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/toxins)
 "qM" = (
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -6480,7 +6472,6 @@
 	dir = 8
 	},
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -6550,7 +6541,6 @@
 "xH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -7614,7 +7604,6 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "BV" = (
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -9043,7 +9032,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "zorrenpartyroom";
@@ -9246,7 +9234,6 @@
 /area/offmap/aerostat/inside/virology)
 "IB" = (
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -9380,7 +9367,6 @@
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
 "Jd" = (
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -12572,7 +12558,6 @@
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/se)
 "Ww" = (
-/obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{

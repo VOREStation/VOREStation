@@ -102,7 +102,7 @@ steam.start() -- spawns the effect
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/effect/sparks/Initialize()
+/obj/effect/effect/sparks/Initialize(mapload)
 	. = ..()
 	playsound(src, "sparks", 100, 1)
 	var/turf/T = src.loc
@@ -179,7 +179,7 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/effect/smoke/Initialize()
+/obj/effect/effect/smoke/Initialize(mapload)
 	. = ..()
 	if(time_to_live)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), time_to_live, TIMER_DELETE_ME)
@@ -288,7 +288,7 @@ steam.start() -- spawns the effect
 	opacity = FALSE
 	var/strength = 5 // How much damage to do inside each affect()
 
-/obj/effect/effect/smoke/elemental/Initialize()
+/obj/effect/effect/smoke/elemental/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
 

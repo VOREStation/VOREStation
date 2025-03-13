@@ -42,7 +42,7 @@
 	var/obj/effect/overlay/closet_door/door_obj
 	var/vore_sound = 'sound/effects/metalscrape2.ogg'
 
-/obj/structure/closet/Initialize()
+/obj/structure/closet/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

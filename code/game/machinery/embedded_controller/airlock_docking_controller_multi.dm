@@ -7,7 +7,7 @@
 	var/child_names_txt
 	var/list/child_names = list()
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
+/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize(mapload)
 	. = ..()
 	var/list/names = splittext(child_names_txt, ";")
 	var/list/tags = splittext(child_tags_txt, ";")
@@ -40,7 +40,7 @@
 	var/master_tag	//for mapping
 	tag_secure = 1
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
-	
+
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/tgui_data(mob/user)
 	var/datum/embedded_program/airlock/multi_docking/airlock_program = program // Cast to proper type

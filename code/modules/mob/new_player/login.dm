@@ -9,7 +9,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	icon = 'icons/misc/loading.dmi'
 	icon_state = "loading"
 
-/obj/effect/lobby_image/Initialize()
+/obj/effect/lobby_image/Initialize(mapload)
 	icon = using_map.lobby_icon
 	var/known_icon_states = cached_icon_states(icon)
 	for(var/lobby_screen in using_map.lobby_screens)

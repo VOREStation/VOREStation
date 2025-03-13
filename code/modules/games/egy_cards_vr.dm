@@ -44,4 +44,3 @@
 				P.card_icon = "[colour]_[number]"
 				P.back_icon = "deck1"
 				cards += P
-

@@ -10,7 +10,7 @@ Given the apply() proc is only called if they have verbs - this should avoid it 
 This ability intends to retrieve all positive, neutral and negative traits chosen in the character set-up
 then retrieve their relevant vars by assuming the character's species has the full list. This should always work. Should
 
-The ability is intended to be developed both as a to_chat() and a tgui window.
+The ability is intended to be developed both as a message to chat and a tgui window.
 The user is given the ability to choose which they would like whenever they press the ability to better suit whatever scenario they find themselves
 thirsty for knowledge.
 

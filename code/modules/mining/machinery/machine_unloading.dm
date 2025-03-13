@@ -11,7 +11,7 @@
 	var/obj/machinery/mineral/output = null
 
 
-/obj/machinery/mineral/unloading_machine/Initialize()
+/obj/machinery/mineral/unloading_machine/Initialize(mapload)
 	. = ..()
 	for(var/dir in cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))

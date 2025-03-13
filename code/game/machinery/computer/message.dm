@@ -68,7 +68,7 @@
 		icon_screen = initial(icon_screen)
 	..()
 
-/obj/machinery/computer/message_monitor/Initialize()
+/obj/machinery/computer/message_monitor/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -341,7 +341,7 @@
 /obj/item/paper/monitorkey
 	name = "Monitor Decryption Key"
 
-/obj/item/paper/monitorkey/Initialize()
+/obj/item/paper/monitorkey/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

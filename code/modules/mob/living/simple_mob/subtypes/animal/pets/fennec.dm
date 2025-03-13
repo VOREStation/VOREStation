@@ -21,7 +21,7 @@
 	name = "faux"
 	desc = "Domesticated fennec. Seems to like screaming just as much though."
 
-/mob/living/simple_mob/animal/passive/fennec/Initialize()
+/mob/living/simple_mob/animal/passive/fennec/Initialize(mapload)
 	icon_living = "[initial(icon_state)]"
 	icon_dead = "[initial(icon_state)]_dead"
 	icon_rest = "[initial(icon_state)]_rest"

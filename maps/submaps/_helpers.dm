@@ -6,7 +6,7 @@
 	density = 1
 	blocks_air = TRUE
 
-/turf/space/internal_edge/Initialize()
+/turf/space/internal_edge/Initialize(mapload)
 	. = ..()
 	opacity = 1 // This will get reset due to using appearances that are precreated in SSskybox, and apps have opacity = 0
 	density = 1

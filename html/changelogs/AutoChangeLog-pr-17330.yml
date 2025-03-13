@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixed a number of duplicate structures and cleanables on maps for the map linter PR."

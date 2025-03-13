@@ -35,7 +35,7 @@
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
 	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
-  
+
 	if(is_incorporeal())
 		return
 
@@ -125,7 +125,7 @@
 			return FALSE
 
 		cpr_time = 0
-		addtimer(VARSET_CALLBACK(src, cpr_time , 1), 3 SECONDS, TIMER_DELETE_ME)
+		addtimer(VARSET_CALLBACK(src, cpr_time, 1), 3 SECONDS, TIMER_DELETE_ME)
 
 		H.visible_message(span_danger("\The [H] is trying to perform CPR on \the [src]!"))
 

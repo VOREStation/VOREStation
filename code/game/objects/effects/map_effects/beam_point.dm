@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	var/beam_type = /obj/effect/ebeam // The type of beam. Default has no special properties. Some others may do things like hurt things touching it.
 	var/beam_sleep_time = 3 // How often the beam updates visually. Suggested to leave this alone, 3 is already fast.
 
-/obj/effect/map_effect/beam_point/Initialize()
+/obj/effect/map_effect/beam_point/Initialize(mapload)
 	GLOB.all_beam_points += src
 	if(make_beams_on_init)
 		create_beams()

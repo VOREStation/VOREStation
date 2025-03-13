@@ -4,7 +4,7 @@
 	modtype = "Recon"
 	module = /obj/item/robot_module/robot/platform/explorer
 
-/mob/living/silicon/robot/platform/explorer/Initialize()
+/mob/living/silicon/robot/platform/explorer/Initialize(mapload)
 	. = ..()
 	laws = new /datum/ai_laws/explorer
 

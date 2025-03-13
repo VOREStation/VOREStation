@@ -542,7 +542,6 @@
 "bS" = (
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "bT" = (
@@ -619,23 +618,18 @@
 /area/submap/virgo2/Rockybase)
 "ch" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "ci" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Rockybase)
 "cj" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/item/material/shard,
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Rockybase)
 "ck" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Rockybase)
@@ -701,8 +695,6 @@
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Rockybase)
 "ct" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating/virgo2,

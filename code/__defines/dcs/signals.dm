@@ -31,6 +31,9 @@
 
 //////////////////////////////////////////////////////////////////
 
+/// Signal that gets sent when a ghost query is completed
+#define COMSIG_GHOST_QUERY_COMPLETE "ghost_query_complete"
+
 // /datum signals
 /// when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_ADDED "component_added"

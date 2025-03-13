@@ -178,6 +178,7 @@
 // Admin log filters
 #define span_log_message(str) ("<span class='log_message'>" + str + "</span>")
 #define span_filter_adminlog(str) ("<span class='filter_adminlog'>" + str + "</span>") // (Uses the chat message type directly)
+#define span_adminprefix(str) ("<span class='admin prefix'>" + str + "</span>")
 
 // Attack log filter
 #define span_filter_attacklog(str) ("<span class='filter_attacklog'>" + str + "</span>") // (Uses the chat message type directly)
@@ -212,25 +213,25 @@
 
 /* Byond Sizes */
 // Sizes only!
-#define span_small(str) "<font size='1'>" + str + "</font>"
+#define span_small(str) ("<font size='1'>" + str + "</font>")
 
-#define span_normal(str) "<font size='2'>" + str + "</font>"
+#define span_normal(str) ("<font size='2'>" + str + "</font>")
 
-#define span_large(str) "<font size='3'>" + str + "</font>"
+#define span_large(str) ("<font size='3'>" + str + "</font>")
 
-#define span_huge(str) "<font size='4'>" + str + "</font>"
+#define span_huge(str) ("<font size='4'>" + str + "</font>")
 
-#define span_giant(str) "<font size='5'>" + str + "</font>"
+#define span_giant(str) ("<font size='5'>" + str + "</font>")
 
-#define span_giganteus(str) "<font size='6'>" + str + "</font>"
+#define span_giganteus(str) ("<font size='6'>" + str + "</font>")
 
-#define span_massive(str) "<font size='7'>" + str + "</font>"
+#define span_massive(str) ("<font size='7'>" + str + "</font>")
 
-#define span_extramassive(str) "<font size='8'>" + str + "</font>"
+#define span_extramassive(str) ("<font size='8'>" + str + "</font>")
 
-#define span_narsie(str) "<font size='15'>" + str + "</font>"
+#define span_narsie(str) ("<font size='15'>" + str + "</font>")
 
-#define span_cascade(str) "<span style='font-size:22pt'>" + str + "</span>"
+#define span_cascade(str) ("<span style='font-size:22pt'>" + str + "</span>")
 
 /* Style spans */
 // text style only
