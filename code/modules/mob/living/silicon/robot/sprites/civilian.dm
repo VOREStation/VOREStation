@@ -314,16 +314,18 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/service/dullahan
-	name = "Dullahan"
+	name = "Dullahan v1"
 	sprite_icon_state = "dullahanserv"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_serv.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/service/dullahan/servicealt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahanserv_alt"
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/service/dullahan/servicealt2
 	name = "Dullahan v3"
@@ -442,6 +444,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/clown/stoat
 	name = "ST-04t"

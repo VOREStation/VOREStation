@@ -220,11 +220,13 @@
 	has_eye_light_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
 	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
 
 
 /datum/robot_sprite/dogborg/tall/science/dullahan/scialt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahansci_alt"
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/science/dullahan/scialt2
 	name = "Dullahan v3"

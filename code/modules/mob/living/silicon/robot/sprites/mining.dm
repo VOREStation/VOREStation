@@ -196,10 +196,12 @@
 	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahan/mineralt
 	name = "Dullahan Mining unit v2"
 	sprite_icon_state = "dullahanmine_alt"
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahan/miningdully
 	name = "Dullahan mining v3"
@@ -214,10 +216,12 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancarg/cargoalt
 	name = "Dullahan Cargo v2"
 	sprite_icon_state = "dullahancargo_alt"
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/mining/cat
 	name = "Cat - Mining"

@@ -225,10 +225,12 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/security/dullahan/secalt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahansec_alt"
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/security/dullahan/securitydully
 	name = "Dullahan security v3"
