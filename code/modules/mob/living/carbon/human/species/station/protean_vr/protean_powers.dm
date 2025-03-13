@@ -571,7 +571,7 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(src, "Pick shell color:","Shell Color", S.dullahan_overlays[3])
+					var/new_color = tgui_color_picker(protie, "Pick shell color:","Shell Color", S.dullahan_overlays[3])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[3] = choice //metal overlay is 3, eyes is 4
@@ -590,7 +590,7 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(src, "Pick eye color:","Eye Color", S.dullahan_overlays[4])
+					var/new_color = tgui_color_picker(protie, "Pick eye color:","Eye Color", S.dullahan_overlays[4])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[4] = choice
@@ -603,7 +603,7 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(src, "Pick decal color:","Decal Color", S.dullahan_overlays[5])
+					var/new_color = tgui_color_picker(protie, "Pick decal color:","Decal Color", S.dullahan_overlays[5])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[5] = choice
