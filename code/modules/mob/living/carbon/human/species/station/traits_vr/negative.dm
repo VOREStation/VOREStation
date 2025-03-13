@@ -684,6 +684,7 @@
 	var_changes = list("chem_strength_tox" = 1.25)
 
 	//Traitgenes
+	can_take = ORGANICS
 	is_genetrait = FALSE
 	hidden = FALSE
 
@@ -694,6 +695,7 @@
 	var_changes = list("chem_strength_tox" = 1.5)
 
 	//Traitgenes
+	can_take = ORGANICS
 	is_genetrait = FALSE
 
 /datum/trait/negative/sensitive_biochem/major
@@ -703,6 +705,7 @@
 	var_changes = list("chem_strength_tox" = 2)
 
 	//Traitgenes
+	can_take = ORGANICS
 	is_genetrait = TRUE
 
 /datum/trait/negative/slipperydirt
