@@ -196,7 +196,7 @@
 		update_icon()
 
 
-/obj/item/melee/robotic/borg_combat_shocker
+/obj/item/melee/robotic/borg_combat_shocker //Like a baton, but is always on.
 	name = "combat shocker"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "combatshocker"
@@ -209,12 +209,26 @@
 	var/charge_cost = 15
 	var/dogborg = FALSE
 
+/obj/item/melee/robotic/borg_combat_shocker/proc/deductcharge()
+	var/mob/living/silicon/robot/R = loc
+	var/obj/item/cell/bcell
+	if(istype(R))
+		bcell = R.cell
+	if(!bcell)
+		return FALSE
+	if(bcell.checked_use(hitcost))
+		return TRUE
+	return null
+
+/obj/item/melee/robotic/borg_combat_shocker/attack(mob/M, mob/user)
+	deductcharge(hitcost)
+	return ..()
+
 /obj/item/melee/robotic/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
-	var/agony = 60 // Copied from stun batons
-	var/stun = 0 // ... same
+	var/agony = 60
 
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(target))
@@ -222,11 +236,8 @@
 		affecting = H.get_organ(hit_zone)
 
 	if(user.a_intent == I_HURT)
-		// Parent handles messages
 		. = ..()
-		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
 		agony *= 0.5
-		stun *= 0.5
 	else
 		if(affecting)
 			if(dogborg)
@@ -238,21 +249,13 @@
 				target.visible_message(span_danger("[target] has been zap-chomped with [src] by [user]!"))
 			else
 				target.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
-		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
-	// Try to use power
-	var/stunning = FALSE
-	if(isrobot(loc))
-		var/mob/living/silicon/robot/R = loc
-		if(R.cell?.use(charge_cost) == charge_cost)
-			stunning = TRUE
-
-	if(stunning)
-		target.stun_effect_act(stun, agony, hit_zone, src)
-		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
+	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+	target.stun_effect_act(0, agony, hit_zone, src)
+	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.forcesay(hit_appends)
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
