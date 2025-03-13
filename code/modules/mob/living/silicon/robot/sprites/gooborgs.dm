@@ -164,8 +164,7 @@
 /datum/robot_sprite/dogborg/combat_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
-	else
-		return ..()
+	return ..()
 
 /datum/robot_sprite/dogborg/clown/gooborg
 	name = "Gooborg"
