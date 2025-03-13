@@ -16,8 +16,8 @@
 	var/ar_toggled = TRUE //Used for toggle_ar_planes() verb
 
 
-/obj/item/clothing/glasses/omnihud/New()
-	..()
+/obj/item/clothing/glasses/omnihud/Initialize(mapload)
+	. = ..()
 	if(tgarscreen_path)
 		tgarscreen = new tgarscreen_path(src)
 

@@ -8,8 +8,8 @@
 	drop_sound = 'sound/items/drop/toolbox.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
-/obj/item/storage/briefcase/crimekit/New()
-	..()
+/obj/item/storage/briefcase/crimekit/Initialize(mapload)
+	. = ..()
 	new /obj/item/storage/box/swabs(src)
 	new /obj/item/storage/box/fingerprints(src)
 	new /obj/item/reagent_containers/spray/luminol(src)
