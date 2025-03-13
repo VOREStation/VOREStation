@@ -379,7 +379,8 @@
 	return null
 
 /obj/item/melee/robotic/baton/attack(mob/M, mob/user)
-	deductcharge(hitcost)
+	if(status)
+		deductcharge(hitcost)
 	return ..()
 
 /obj/item/melee/robotic/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
