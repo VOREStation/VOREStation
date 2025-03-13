@@ -446,21 +446,18 @@
 
 /obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/user, hit_zone)
 	if(!istype(L))
-		..()
-		return
+		return ..()
+
 	if(L.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
 		if(isslime(L))
 			var/mob/living/simple_mob/slime/S = L
 			S.slimebatoned(user, 5) // Feral and xenobio slimes will react differently to this.
 		else
 			L.Weaken(5)
-		..()
-		return
 
 	// Now for prommies.
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.species && H.species.name == SPECIES_PROMETHEAN)
-			var/agony_to_apply = 60 - agonyforce
-			H.apply_damage(agony_to_apply, HALLOSS)
+			H.apply_damage(35, HALLOSS)
 	..()
