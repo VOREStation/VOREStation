@@ -280,7 +280,6 @@
 "bj" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/yellow,
 /area/submap/crashedcontainmentshuttle)
 "bk" = (
@@ -303,7 +302,6 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/crashedcontainmentshuttle)
 "bn" = (
-/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/black,
 /area/submap/crashedcontainmentshuttle)
@@ -328,7 +326,6 @@
 /turf/template_noop,
 /area/submap/crashedcontainmentshuttle)
 "bt" = (
-/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)
@@ -368,7 +365,6 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)

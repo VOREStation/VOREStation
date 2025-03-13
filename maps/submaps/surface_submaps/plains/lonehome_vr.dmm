@@ -83,7 +83,6 @@
 /area/submap/lonehome)
 "ar" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "as" = (
@@ -125,7 +124,6 @@
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
 "ax" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
@@ -407,7 +405,6 @@
 	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bm" = (
@@ -450,7 +447,6 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "br" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
@@ -520,7 +516,6 @@
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
@@ -601,7 +596,6 @@
 	name = "Stained sheet of paper"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bN" = (
@@ -641,11 +635,9 @@
 "bS" = (
 /obj/random/trash,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bT" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
@@ -954,7 +946,6 @@
 /area/submap/lonehome)
 "cM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cN" = (
@@ -963,14 +954,12 @@
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cO" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
