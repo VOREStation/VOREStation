@@ -250,3 +250,24 @@
       of their density
   Kashargul:
   - code_imp: changes the falling turf effect to turfs directly
+2025-03-13:
+  Diana:
+  - rscadd: Medical kiosk now informs you how to cure Dizziness and Jitteryness
+  Guti:
+  - image: Fixed mailman's hat
+  - maptweak: Added a couple of mail scanners and mail bags to all the maps
+  Kashargul:
+  - code_imp: fixes some runtimes
+  - code_imp: tgui core to 1.8.2
+  TankTheBirb:
+  - image: modified the head states of DSI nevreans
+  - image: modified the torso states of DSI tesh and regular tesh
+  Will:
+  - qol: Clothing pockets now have better lists that allow you to carry a wider list
+      of items inside of them. No longer will winter jacket allow you to hold pens,
+      but winter coat won't.
+  - code_imp: Pockets have been completely reworked to not use randomly defined lists
+      everywhere. They are now consolidated.
+  - code_imp: adds some more map tests
+  Willburd:
+  - rscadd: AI law modules will show the laws they apply when examined
