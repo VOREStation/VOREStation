@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - qol: "Clothing pockets now have better lists that allow you to carry a wider list of items inside of them. No longer will winter jacket allow you to hold pens, but winter coat won't."
-  - code_imp: "Pockets have been completely reworked to not use randomly defined lists everywhere. They are now consolidated."
