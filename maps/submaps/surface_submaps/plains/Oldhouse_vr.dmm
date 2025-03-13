@@ -195,7 +195,6 @@
 /area/submap/Oldhouse)
 "aO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aP" = (

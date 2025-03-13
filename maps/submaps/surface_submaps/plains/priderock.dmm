@@ -68,7 +68,6 @@
 /area/submap/priderock)
 "qP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "qY" = (
@@ -84,7 +83,6 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "sr" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/priderock)

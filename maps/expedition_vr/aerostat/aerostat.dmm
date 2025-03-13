@@ -474,7 +474,6 @@
 /area/tether_away/aerostat/inside)
 "bo" = (
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
