@@ -155,12 +155,12 @@
 		var/mob/living/L = A
 		if(will_eat(L))
 			var/obj/belly/B = vore_organs[1]
-			custom_emote(message = "snatches and devours [L]!")
+			automatic_custom_emote(message = "snatches and devours [L]!")
 			B.nom_mob(L)
 			ai_holder.find_target()
 			return
 		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)
-			custom_emote(message = "stomps [L] into oblivion!")
+			automatic_custom_emote(message = "stomps [L] into oblivion!")
 			L.gib()
 			return
 		else
