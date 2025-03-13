@@ -266,7 +266,6 @@
 /area/template_noop)
 "AG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks2,
 /obj/structure/ledge/ledge_stairs,
 /turf/simulated/floor/outdoors/rocks/virgo3b,
@@ -398,7 +397,6 @@
 /area/submap/GreatWolfDen)
 "LP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks2,
 /obj/structure/ledge/ledge_stairs,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -476,7 +474,6 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "Qb" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks1,
 /obj/structure/ledge/ledge_stairs,
