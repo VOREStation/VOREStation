@@ -18,6 +18,7 @@ var/list/blob_cores = list()
 	var/resource_delay = 0
 	var/point_rate = 2
 	var/ai_controlled = TRUE
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
 // Spawn this if you want a ghost to be able to play as the blob.
 /obj/structure/blob/core/player
@@ -95,8 +96,8 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
 
-/obj/structure/blob/core/Initialize(newloc, client/new_overmind = null, new_rate = 2, placed = 0)
-	. = ..(newloc)
+/obj/structure/blob/core/Initialize(mapload, client/new_overmind = null, new_rate = 2, placed = 0)
+	. = ..()
 	blob_cores += src
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
@@ -152,38 +153,8 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/proc/create_overmind(client/new_overmind, override_delay)
 	if(overmind_get_delay > world.time && !override_delay)
 		return
-	if(!ai_controlled) // Do we want a bona fide player blob?
-		overmind_get_delay = world.time + 15 SECONDS //if this fails, we'll try again in 15 seconds
 
-		if(overmind)
-			qdel(overmind)
-
-
-		var/client/C = null
-		if(!new_overmind)
-			var/datum/ghost_query/Q = new /datum/ghost_query/blob()
-			var/list/winner = Q.query()
-			if(winner.len)
-				var/mob/observer/dead/D = winner[1]
-				C = D.client
-
-		else
-			C = new_overmind
-
-		if(C)
-			if(!desired_blob_type && !isnull(difficulty_threshold))
-				desired_blob_type = get_random_blob_type()
-			var/mob/observer/blob/B = new(loc, TRUE, 60, desired_blob_type)
-			B.key = C.key
-			B.blob_core = src
-			src.overmind = B
-			update_icon()
-			if(B.mind && !B.mind.special_role)
-				B.mind.special_role = "Blob Overmind"
-			return TRUE
-		return FALSE
-
-	else // An AI opponent.
+	if(ai_controlled)
 		if(!desired_blob_type && !isnull(difficulty_threshold))
 			desired_blob_type = get_random_blob_type()
 		var/mob/observer/blob/B = new(loc, TRUE, 60, desired_blob_type)
@@ -192,6 +163,47 @@ var/list/blob_cores = list()
 		B.ai_controlled = TRUE
 		update_icon()
 		return TRUE
+
+	overmind_get_delay = world.time + 15 SECONDS //if this fails, we'll try again in 15 seconds
+
+	if(overmind)
+		qdel(overmind)
+
+
+	var/client/C = null
+	if(!new_overmind)
+		Q = new /datum/ghost_query/blob()
+		RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+		Q.query()
+
+	else
+		C = new_overmind
+		overmind_creation(C)
+
+/obj/structure/blob/core/proc/get_winner()
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
+		var/client/C
+		C = D.client
+		overmind_creation(C)
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
+
+
+
+/obj/structure/blob/core/proc/overmind_creation(var/client/new_overmind)
+	if(new_overmind)
+		if(!desired_blob_type && !isnull(difficulty_threshold))
+			desired_blob_type = get_random_blob_type()
+		var/mob/observer/blob/B = new(loc, TRUE, 60, desired_blob_type)
+		B.key = new_overmind.key
+		B.blob_core = src
+		src.overmind = B
+		update_icon()
+		if(B.mind && !B.mind.special_role)
+			B.mind.special_role = "Blob Overmind"
+		return TRUE
+	return FALSE
 
 /obj/structure/blob/core/proc/get_random_blob_type()
 	if(!difficulty_threshold)

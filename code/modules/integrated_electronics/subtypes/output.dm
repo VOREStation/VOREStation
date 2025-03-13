@@ -149,7 +149,7 @@
 
 	var/mob/living/voice/my_voice
 
-/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize()
+/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize(mapload)
 	. = ..()
 	my_voice = new (src)
 	mob_list -= my_voice // no life() ticks
@@ -442,7 +442,7 @@
 //	var/datum/beam/holo_beam = null // A visual effect, to make it easy to know where a hologram is coming from.
 	// It is commented out due to picking up the assembly killing the beam.
 
-/obj/item/integrated_circuit/output/holographic_projector/Initialize()
+/obj/item/integrated_circuit/output/holographic_projector/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(on_moved))

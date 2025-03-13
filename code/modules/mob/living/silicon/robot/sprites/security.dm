@@ -220,7 +220,7 @@
 	name = "Dullahan"
 	sprite_icon_state = "dullahansec"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
-	pixel_x = 0
+
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE

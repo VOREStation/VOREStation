@@ -152,4 +152,3 @@
 					for(var/obj/effect/energy_field/F in T)
 						if(!(F in affected_shields))
 							F.impact_effect(i, affected_shields) // Spread the effect to them.
-

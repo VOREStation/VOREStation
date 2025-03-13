@@ -112,13 +112,13 @@
 /obj/item/flame/candle/everburn
 	wax = 99999
 
-/obj/item/flame/candle/everburn/Initialize()
+/obj/item/flame/candle/everburn/Initialize(mapload)
 	. = ..()
 	light(span_notice("\The [src] mysteriously lights itself!."))
 
 /obj/item/flame/candle/candelabra/everburn
 	wax = 99999
 
-/obj/item/flame/candle/candelabra/everburn/Initialize()
+/obj/item/flame/candle/candelabra/everburn/Initialize(mapload)
 	. = ..()
 	light(span_notice("\The [src] mysteriously lights itself!."))

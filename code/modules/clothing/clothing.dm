@@ -774,7 +774,7 @@
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
 	max_heat_protection_temperature = T0C+100
-	allowed = list(/obj/item/tank/emergency/oxygen)
+	allowed = list(POCKET_EMERGENCY)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
 	slot_flags = SLOT_OCLOTHING
 	heat_protection = ARMS|LEGS|CHEST //At a minimum. Some might be more covering or less covering!

@@ -21,7 +21,7 @@
 
 	var/list/food_inserted_micros
 
-/obj/item/material/kitchen/utensil/Initialize()
+/obj/item/material/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)

@@ -63,6 +63,6 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/sdboat
 	..()
 
-/obj/item/paper/dockingcodes/sd/New(newloc, text, title)
-	..()
+/obj/item/paper/dockingcodes/sd/Initialize(mapload, ...)
 	codes_from_z = Z_LEVEL_SHIP_LOW
+	return ..()

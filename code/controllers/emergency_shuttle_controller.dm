@@ -251,7 +251,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	layer = TURF_LAYER
 	plane = TURF_PLANE
 
-/obj/effect/bgstar/Initialize()
+/obj/effect/bgstar/Initialize(mapload)
 	. = ..()
 	pixel_x += rand(-2,30)
 	pixel_y += rand(-2,30)

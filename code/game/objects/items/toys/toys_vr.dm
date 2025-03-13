@@ -84,15 +84,18 @@
 	desc = "An adorable stuffed toy of a robot."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "securityk9"
+	bubble_icon = "security"
 	attack_verb = list("beeped", "booped", "pinged")
 
 /obj/item/toy/plushie/borgplushie/medihound
 	name = "medihound plushie"
 	icon_state = "medihound"
+	bubble_icon = "cardiogram"
 
 /obj/item/toy/plushie/borgplushie/scrubpuppy
 	name = "janihound plushie"
 	icon_state = "scrubpuppy"
+	bubble_icon = "synthetic"
 
 /obj/item/toy/plushie/borgplushie/drake
 	icon = 'icons/obj/drakietoy_vr.dmi'
@@ -118,30 +121,37 @@
 /obj/item/toy/plushie/borgplushie/drake/sec
 	name = "security drake plushie"
 	icon_state = "secdrake"
+	bubble_icon = "security"
 
 /obj/item/toy/plushie/borgplushie/drake/med
 	name = "medical drake plushie"
 	icon_state = "meddrake"
+	bubble_icon = "cardiogram"
 
 /obj/item/toy/plushie/borgplushie/drake/sci
 	name = "science drake plushie"
 	icon_state = "scidrake"
+	bubble_icon = "science"
 
 /obj/item/toy/plushie/borgplushie/drake/jani
 	name = "janitor drake plushie"
 	icon_state = "janidrake"
+	bubble_icon = "synthetic"
 
 /obj/item/toy/plushie/borgplushie/drake/eng
 	name = "engineering drake plushie"
 	icon_state = "engdrake"
+	bubble_icon = "engineering"
 
 /obj/item/toy/plushie/borgplushie/drake/mine
 	name = "mining drake plushie"
 	icon_state = "minedrake"
+	bubble_icon = "notepad"
 
 /obj/item/toy/plushie/borgplushie/drake/trauma
 	name = "trauma drake plushie"
 	icon_state = "traumadrake"
+	bubble_icon = "medical"
 
 /obj/item/toy/plushie/foxbear
 	name = "toy fox"
@@ -154,6 +164,8 @@
 	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_nuke"
+	pokephrase = "Hey, has anyone seen the nuke disk?"
+	bubble_icon = "synthetic_evil"
 	attack_verb = list("shot", "nuked", "detonated")
 
 /obj/item/toy/plushie/otter
@@ -167,14 +179,14 @@
 	desc = "A stitched-together vox, fresh from the skipjack. Press its belly to hear it skree!"
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_vox"
-	var/cooldown = 0
+	pokephrase = "Skreee!"
+	var/cooldown = FALSE
 
 /obj/item/toy/plushie/vox/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
-		src.visible_message(span_danger("Skreee!"))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
 
 /obj/item/toy/plushie/vox/proc/cooldownreset()
@@ -185,6 +197,8 @@
 	desc = "A pleasing soft-toy of a monitor-headed robot. Toaster functionality included."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_ipc"
+	bubble_icon = "synthetic"
+	pokephrase = "Ping!"
 	var/cooldown = 0
 
 /obj/item/reagent_containers/food/snacks/slice/bread
@@ -222,26 +236,23 @@
 /obj/item/toy/plushie/ipc/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ping.ogg', 10, 0)
-		src.visible_message(span_danger("Ping!"))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
-
-/obj/item/toy/plushie/ipc/proc/cooldownreset()
-	cooldown = 0
 
 /obj/item/toy/plushie/ipc/toaster
 	name = "toaster plushie"
 	desc = "A stuffed toy of a pleasant art-deco toaster. It has a small tag on it reading 'Bricker Home Appliances! All rights reserved, copyright 2298.' It's a tad heavy on account of containing a heating coil. Want to make toast?"
 	icon_state = "marketable_tost"
 	attack_verb = list("toasted", "burnt")
+	pokephrase = "Ding!"
+	bubble_icon = "machine"
 
 /obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ding.ogg', 10, 0)
-		src.visible_message(span_danger("Ding!"))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
 
 /obj/item/toy/plushie/snakeplushie
@@ -257,49 +268,47 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "generic"
 	attack_verb = list("existed near")
+	bubble_icon = "textbox"
 
 /obj/item/toy/plushie/marketable_pip
 	name = "mascot CRO plushie"
 	desc = "An adorable plushie of NanoTrasen's Best Girl(TM) mascot. It smells faintly of paperwork."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "marketable_pip"
-	var/cooldown = 0
+	var/cooldown = FALSE
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
-	var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
 	var/obj/item/card/id/id = I.GetID()
-	if(istype(id))
-		if(!cooldown)
-			user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
-			atom_say(pick(responses))
-			playsound(user, 'sound/effects/whistle.ogg', 10, 0)
-			cooldown = 1
-			addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+	if(istype(id) && !cooldown)
+		var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
+		pokephrase = pick(responses)
+		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
+		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
+		say_phrase()
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 		return ..()
 
 /obj/item/toy/plushie/marketable_pip/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
-
-/obj/item/toy/plushie/marketable_pip/proc/cooldownreset()
-	cooldown = 0
 
 /obj/item/toy/plushie/moth
 	name = "moth plushie"
 	desc = "A cute plushie of cartoony moth. It's ultra fluffy but leaves dust everywhere."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "moth"
-	var/cooldown = 0
+	pokephrase = "Aaaaaaa."
+	var/cooldown = FALSE
 
 /obj/item/toy/plushie/moth/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
-		src.visible_message(span_danger("Aaaaaaa."))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
 
 /obj/item/toy/plushie/moth/proc/cooldownreset()
@@ -332,31 +341,31 @@
 	icon_state = "mouse"
 	icon = 'icons/obj/toy_vr.dmi'
 
-/obj/item/toy/plushie/susred
+/obj/item/toy/plushie/sus
 	name = "red spaceman plushie"
 	desc = "A suspicious looking red spaceman plushie. Why does it smell like the vents?"
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "sus_red"
+	pokephrase = "Stab!"
+	bubble_icon = "security"
 	attack_verb = list("stabbed", "slashed")
+	var/cooldown = FALSE
 
-/obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
+/obj/item/toy/plushie/sus/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
-		src.visible_message(span_danger("Stab!"))
-		cooldown = 1
-		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
 
-/obj/item/toy/plushie/susblue
+/obj/item/toy/plushie/sus/blue
 	name = "blue spaceman plushie"
 	desc = "A dapper looking blue spaceman plushie. Looks very intuitive."
-	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "sus_blue"
 
-/obj/item/toy/plushie/suswhite
+/obj/item/toy/plushie/sus/white
 	name = "white spaceman plushie"
 	desc = "A whiny looking white spaceman plushie. Looks like it could cry at any moment."
-	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "sus_white"
 
 /obj/item/toy/plushie/bigcat

@@ -25,7 +25,7 @@
 	if(wrapped)
 		add_overlay("[initial(icon_state)]_wrapper")
 
-/obj/item/clothing/mask/chewable/Initialize()
+/obj/item/clothing/mask/chewable/Initialize(mapload)
 	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
@@ -118,7 +118,7 @@
 	type_butt = /obj/item/trash/spitgum
 	wrapped = TRUE
 
-/obj/item/clothing/mask/chewable/tobacco/nico/Initialize()
+/obj/item/clothing/mask/chewable/tobacco/nico/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 2)
 	color = reagents.get_color()
@@ -136,7 +136,7 @@
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco = 6)
 
-/obj/item/storage/chewables/Initialize()
+/obj/item/storage/chewables/Initialize(mapload)
 	. = ..()
 	make_exact_fit()
 
@@ -224,7 +224,7 @@
 	item_state = "gum"
 	wrapped = TRUE
 
-/obj/item/clothing/mask/chewable/candy/gum/Initialize()
+/obj/item/clothing/mask/chewable/candy/gum/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(pick(REAGENT_ID_BANANA,REAGENT_ID_BERRYJUICE,REAGENT_ID_GRAPEJUICE,REAGENT_ID_LEMONJUICE,REAGENT_ID_LIMEJUICE,REAGENT_ID_ORANGEJUICE,REAGENT_ID_WATERMELONJUICE),10)
 	color = reagents.get_color()
@@ -261,7 +261,7 @@
 	if(chewtime < 1)
 		spitout(0)
 
-/obj/item/clothing/mask/chewable/candy/lolli/Initialize()
+/obj/item/clothing/mask/chewable/candy/lolli/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(pick(REAGENT_ID_BANANA,REAGENT_ID_BERRYJUICE,REAGENT_ID_GRAPEJUICE,REAGENT_ID_LEMONJUICE,REAGENT_ID_LIMEJUICE,REAGENT_ID_ORANGEJUICE,REAGENT_ID_WATERMELONJUICE),20)
 	color = reagents.get_color()

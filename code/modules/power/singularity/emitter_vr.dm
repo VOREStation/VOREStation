@@ -3,7 +3,7 @@
 	icon_state = "emitter0"
 	var/previous_state = 0
 
-/obj/machinery/power/emitter/Initialize()
+/obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	previous_state = state
 
@@ -35,4 +35,3 @@
 		icon_state = "emitter_+a"
 	else
 		icon_state = "emitter"
-

@@ -12,7 +12,7 @@
 	var/lit = TRUE // If true, will have a glowing overlay and lighting.
 	var/festive = FALSE // If true, adds a festive bow overlay to it.
 
-/obj/structure/lightpost/Initialize()
+/obj/structure/lightpost/Initialize(mapload)
 	update_icon()
 	return ..()
 

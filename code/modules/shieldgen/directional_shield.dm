@@ -98,7 +98,7 @@
 	var/high_color = "#0099FF"			// Color the shield will be when at max health.  A light blue.
 	var/low_color = "#FF0000"			// Color the shield will drift towards as health is lowered.  Deep red.
 
-/obj/item/shield_projector/Initialize()
+/obj/item/shield_projector/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(moved_event))

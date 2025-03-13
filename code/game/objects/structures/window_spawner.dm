@@ -26,7 +26,7 @@
 /obj/effect/wingrille_spawn/CanPass(atom/movable/mover, turf/target)
 	return FALSE
 
-/obj/effect/wingrille_spawn/Initialize()
+/obj/effect/wingrille_spawn/Initialize(mapload)
 	if(win_path && ticker && ticker.current_state < GAME_STATE_PLAYING)
 		activate()
 	..()

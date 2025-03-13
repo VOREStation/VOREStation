@@ -7,7 +7,7 @@
 
 	var/obj/machinery/artifact/contained
 
-/obj/structure/anomaly_container/Initialize()
+/obj/structure/anomaly_container/Initialize(mapload)
 	. = ..()
 
 	var/obj/machinery/artifact/A = locate() in loc
@@ -53,4 +53,3 @@
 		if(!QDELETED(src) && istype(loc, /turf) && is_anomalous() && Adjacent(over_object) && CanMouseDrop(over_object, usr))
 			Bumped(usr)
 			over_object.contain(src)
-

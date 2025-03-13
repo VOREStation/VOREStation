@@ -104,7 +104,7 @@
 		if(capacity && current_capacity)
 			. += "The drill currently has [current_capacity] capacity taken up and can fit [capacity - current_capacity] more ore."
 
-/obj/machinery/mining/drill/Initialize()
+/obj/machinery/mining/drill/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
@@ -423,7 +423,7 @@
 	if(brace_tier >= 3)
 		. += span_notice("The internals of the brace look resilient enough to support a drill by itself.")
 
-/obj/machinery/mining/brace/Initialize()
+/obj/machinery/mining/brace/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

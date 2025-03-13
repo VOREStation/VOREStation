@@ -111,3 +111,163 @@
   - bugfix: Fixed redgate ladders that allowed upwards movement without having a z-level
       above.
   - bugfix: More maps fixed for the linter.
+2025-03-07:
+  Diana:
+  - rscadd: You can now unwrench pipes that are over-pressurized, at the cost of being
+      flung back.
+  - bugfix: Atmos analyzers will no longer fail on portable connectors
+  - bugfix: No more attempting to blendRGB if we have nothing to blend.
+  - bugfix: Diseases will not try to copy non-existent vars over.
+  - bugfix: Recursive explosions no longer runtime if the turf it tries to step into
+      is invalid.
+  - qol: Health analyzer guide now tells users what to do, no longer requiring medical
+      access. Also some wording changes.
+  - bugfix: Health analyzer guide no longer runtimes if someone has no viruses.
+  - bugfix: Cards no longer runtime if you try to pull a card without being a human.
+  - bugfix: Anything-turned-protean will alert you if it has no humanform
+  - bugfix: Tunneler spiders will no longer runtime if the turf they try to tunnel
+      into doesn't exist
+  - bugfix: Mannequins now properly get deleted when you observe.
+  - bugfix: When placing a pipe on a pipeline, the pipeline will no longer lose all
+      the gas within the pipeline. This occurred when you placed a new pipe on a pipeline
+      that had not had not previously had a pipe unwrenched on the pipeline, resulting
+      in the pipes on the pipeline not saving the gas, resulting in all the gas within
+      the pipes on that pipeline being voided.
+  - qol: Reworks the medical kiosk to have use. It now dispenses small amounts of
+      painpills and medications to help stabilize you to get you to medical before
+      you croak.
+  - qol: Lungs no longer IMMEDIATELY risk popping if you forget internals for one
+      second. You now have gradually accumulate damage over time. Get those internals
+      on quick!
+  - qol: Infections now give you a better alert that it's an INFECTION you have instead
+      of just a random 'you feel itchy' so players are less blindsided by infections.
+  - qol: Adjusts the text that you get when you suffer internal bleeding. Now it sticks
+      out more during fights so you can know you have IB and get to medical quicker.
+  - rscadd: Makes the medical kiosk actually DETECT more issues than before. Now it
+      actually does a full body scan on you to see what's wrong with you!
+  - qol: Crayons and markers are no longer the strongest poison in the game. One crayon
+      won't OD you anymore, but two will. One marker can still OD you with disaster
+      effects if you eat it entirely. OORAH
+  - bugfix: Crayons and markers get properly added to your stomach
+  - bugfix: inaprovaline PROPERLY affects internal bleeding now.
+  - qol: Putting pressure on an external wound will put some pressure on arterial
+      bleeds as well, helping decrease (but not entirely stop) bloodloss.
+  - qol: Vox can be defibbed.
+  - code_imp: Changes a few sections in the code to use REAGENTS_OVERDOSE instead
+      of just a plain number.
+  - code_imp: Gets rid of a few //EDIT comments for better code quality.
+  - code_imp: Moved internal wound handling to handle_blood()
+  Kashargul:
+  - bugfix: some rare scaling issues
+  - qol: adds close button
+  - qol: resizes button
+  KillianKirilenko:
+  - rscadd: added fake coins to loadouts, can be flipped, can't be put in vendors
+  - rscadd: 'added seven new coin types (plus fakes): steel, titanium, copper, durasteel,
+      plasteel, graphite, and lead. some of these are in the random coin spawner.'
+  - image: moved coin icons into their own dmi
+  - refactor: a sheet's coin type is now set on the stack obj definition, tidied up
+      the mint code to not be a string of if/else if, and to not require a list of
+      valid materials on the machine, so now it's easier to add new coin types. coin
+      names also use material def names now.
+2025-03-08:
+  Kashargul:
+  - bugfix: hair gradient selection arrows
+  - bugfix: wrong blood volumes on apply prefs
+  - bugfix: early spawns in nullspace
+  SpadesNeil:
+  - balance: Rat health reduced to 5, same as mice
+  - rscadd: Strong rat variant
+  Willburd:
+  - image: added missing sidewalk turf edge overlays
+2025-03-09:
+  Caramelion:
+  - rscadd: Different colourations for carps
+  - bugfix: Fixed attacking resetting pixelshift position to 0, 0 after the animation
+  - qol: Allows various mobs to create swarms
+  - code_imp: Added Swarm component
+  - code_imp: Added connect_loc_behalf component
+  Diana:
+  - bugfix: Guns now have their fire_delays fixed. No more rapidfire RPGs.
+  - qol: Phoron bore gets to keep it's unintentional attack-speed buff. (Mining is
+      in need of QoL changes, so let this be at least one of them.)
+  Drathek:
+  - bugfix: Fixed space whales deleting themselves when already deleted
+  - refactor: Refactored late loaded map defines to a GLOB list instead
+  - code_imp: Simplified groundbase wilds loading
+  Kashargul:
+  - code_imp: fix initialize for grep checks
+  - code_imp: finishes up typescript
+  Will:
+  - rscadd: Adds a new trait 'Lumbar Impairment' which makes you incapable of utilizing
+      your legs.
+  tacoguy7765093:
+  - qol: Synthfabs no longer apply massive damage when unupgraded.
+  - bugfix: Shield capacitors now only take power from wires when anchored to the
+      ground.
+2025-03-10:
+  Diana:
+  - bugfix: myelamine properly clots your external wounds
+  - balance: myelamine now applies an up-front heal for bleeding wounds when clotting
+      them.
+  - qol: myelamine now ACTUALLY heals internal wounds if you take a 10u dose of it.
+      No more 'I took 10u and it had 0.1 damage remaining and I bled out 10 minutes
+      later'
+  - spellcheck: myelamine has an updated description, informing you that it doesn't
+      heal JUST internal wounds, but it also heals external wounds.
+  - spellcheck: myelamine now accurately tells you via the chemmaster that it clots
+      MORE than just internal hemorrhages. It additionally tells you the ideal dose
+      for wound healing.
+  TeleTubby2:
+  - bugfix: fixed the "Print" options for OOC notes in examine text sending the notes
+      to the wrong person
+2025-03-11:
+  ItsSelis:
+  - config: the example now has the correct flags for the BUILD and SOUND permissions
+  Kashargul:
+  - code_imp: end of file new line fix for grep
+  SatinIsle:
+  - bugfix: Fixed jungle and fantasy redgates having cave walls generate where they
+      shouldn't.
+  Will & Diana:
+  - rscadd: Adds a nevrean plush with two variants, normal and security.
+  - qol: Goes through and gives plushies speech bubbles pertaining to what they are.
+  - bugfix: Fixes it so plushies now properly speak.
+  - qol: Makes it so any interaction with plushies will play their phrase, NOT just
+      disarm-intenting them (This was never made clear that disarm intent makes them
+      speak.)
+  - code_imp: Gets rid of a few non-existent base paths by converting one of the paths
+      into the base one. (plushy/therapy & plushies/squid)
+  - bugfix: Fixes the toaster from having the sus plushie sound.
+  - code_imp: Changed some timers that were calling a proc that just set a var to
+      false. Instead, we now use a varset_callback timer there.
+2025-03-12:
+  Cameron-The-Raven:
+  - bugfix: Fixed dullahans being in between two tiles
+  Guti:
+  - bugfix: Fixed swarm mobs becoming walls on death
+  - code_imp: Slightly changed projectile code to check for lying down mobs instead
+      of their density
+  Kashargul:
+  - code_imp: changes the falling turf effect to turfs directly
+2025-03-13:
+  Diana:
+  - rscadd: Medical kiosk now informs you how to cure Dizziness and Jitteryness
+  Guti:
+  - image: Fixed mailman's hat
+  - maptweak: Added a couple of mail scanners and mail bags to all the maps
+  Kashargul:
+  - code_imp: fixes some runtimes
+  - code_imp: tgui core to 1.8.2
+  TankTheBirb:
+  - image: modified the head states of DSI nevreans
+  - image: modified the torso states of DSI tesh and regular tesh
+  Will:
+  - qol: Clothing pockets now have better lists that allow you to carry a wider list
+      of items inside of them. No longer will winter jacket allow you to hold pens,
+      but winter coat won't.
+  - code_imp: Pockets have been completely reworked to not use randomly defined lists
+      everywhere. They are now consolidated.
+  - code_imp: adds some more map tests
+  Willburd:
+  - rscadd: AI law modules will show the laws they apply when examined

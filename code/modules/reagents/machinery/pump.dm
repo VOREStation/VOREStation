@@ -23,7 +23,7 @@
 	var/unlocked = 0
 	var/open = 0
 
-/obj/machinery/pump/Initialize()
+/obj/machinery/pump/Initialize(mapload)
 	create_reagents(200)
 	. = ..()
 	default_apply_parts()

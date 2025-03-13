@@ -14,7 +14,7 @@
 	var/alarm = 0
 	var/enabled = 1
 
-/obj/machinery/shield_diffuser/Initialize()
+/obj/machinery/shield_diffuser/Initialize(mapload)
 	. = ..()
 	// TODO - Remove this bit once machines are converted to Initialize
 	if(ispath(circuit))

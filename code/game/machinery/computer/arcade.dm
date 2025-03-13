@@ -101,7 +101,7 @@
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/battle/Initialize()
+/obj/machinery/computer/arcade/battle/Initialize(mapload)
 	. = ..()
 	randomize_characters()
 

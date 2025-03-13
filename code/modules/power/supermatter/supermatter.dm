@@ -113,7 +113,7 @@
 	..()
 	uid = gl_uid++
 
-/obj/machinery/power/supermatter/Initialize()
+/obj/machinery/power/supermatter/Initialize(mapload)
 	soundloop = new(list(src), TRUE)
 	return ..()
 

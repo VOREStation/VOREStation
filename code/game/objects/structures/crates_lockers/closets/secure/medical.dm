@@ -49,7 +49,7 @@
 		/obj/item/storage/box/freezer = 3,
 		/obj/item/storage/belt/medical) //VOREStation Add
 
-/obj/structure/closet/secure_closet/medical3/Initialize()
+/obj/structure/closet/secure_closet/medical3/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else
@@ -164,7 +164,7 @@
 		/obj/item/reagent_containers/glass/beaker/vial, //VOREStation Add
 		/obj/item/storage/belt/medical) //VOREStation Add
 
-/obj/structure/closet/secure_closet/CMO/Initialize()
+/obj/structure/closet/secure_closet/CMO/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else

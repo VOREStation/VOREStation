@@ -157,6 +157,6 @@
 		list(mode_name="deter", projectile_type=/obj/item/projectile/beam/shock, charge_cost = 175),
 		)
 
-/obj/item/gun/energy/xray/swarm/Initialize()
+/obj/item/gun/energy/xray/swarm/Initialize(mapload)
 	. = ..()
 	adjust_scale(-1, 1)

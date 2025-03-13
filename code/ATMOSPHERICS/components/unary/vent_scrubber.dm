@@ -31,7 +31,7 @@
 	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
-/obj/machinery/atmospherics/unary/vent_scrubber/Initialize()
+/obj/machinery/atmospherics/unary/vent_scrubber/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 

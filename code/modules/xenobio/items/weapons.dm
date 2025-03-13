@@ -28,7 +28,7 @@
 				H.apply_damage(agony_to_apply, HALLOSS)
 
 	..()
-/obj/item/melee/baton/slime/loaded/Initialize()
+/obj/item/melee/baton/slime/loaded/Initialize(mapload)
 	bcell = new/obj/item/cell/device(src)
 	update_icon()
 	return ..()
