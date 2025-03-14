@@ -363,7 +363,7 @@
 	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDEHOLSTER
 	hoodtype = /obj/item/clothing/head/hood/raincoat
-  allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
 
 
 //hooded cloaks
