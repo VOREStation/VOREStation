@@ -242,7 +242,6 @@
 /area/mine/explored/underdark)
 "bf" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "bg" = (

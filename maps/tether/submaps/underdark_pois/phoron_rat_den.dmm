@@ -39,7 +39,6 @@
 /area/mine/explored/underdark)
 "l" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "m" = (
