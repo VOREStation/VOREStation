@@ -6,9 +6,7 @@
 "af" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Blackshuttledown)
 "ag" = (/obj/structure/table/steel,/turf/template_noop,/area/submap/Blackshuttledown)
 "ah" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/sol,/turf/template_noop,/area/submap/Blackshuttledown)
-"ai" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "aj" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark0"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
-"ak" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "al" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/turf/simulated/shuttle/wall/dark{icon_state = "dark0"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "am" = (/obj/structure/shuttle/engine/propulsion{dir = 4; icon_state = "propulsion_l"},/turf/template_noop,/area/submap/Blackshuttledown)
 "an" = (/obj/machinery/light{dir = 1},/obj/structure/table/rack,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -19,7 +17,6 @@
 "as" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 1},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "at" = (/obj/machinery/bodyscanner{dir = 8},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 1},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "au" = (/obj/machinery/body_scanconsole,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 5},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"av" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "aw" = (/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "ax" = (/obj/structure/table/steel,/obj/item/gun/projectile/automatic/wt550,/obj/item/gun/projectile/automatic/p90,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "ay" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -30,8 +27,8 @@
 "aD" = (/obj/structure/janitorialcart,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "aE" = (/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aF" = (/obj/machinery/organ_printer/flesh,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 5},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aG" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
-"aH" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aG" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aH" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "aI" = (/mob/living/simple_mob/mechanical/viscerator/mercenary,/mob/living/simple_mob/mechanical/viscerator/mercenary,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "aJ" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "aK" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -55,7 +52,7 @@
 "bc" = (/obj/structure/bed/chair/office/dark{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bd" = (/obj/machinery/door/airlock/security{locked = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "be" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"bf" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"bf" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "bg" = (/obj/machinery/computer/communications,/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bh" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bi" = (/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -106,7 +103,6 @@
 "cb" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/structure/curtain/open/shower/security,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/obj/structure/window/reinforced/tinted/frosted,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cc" = (/obj/structure/table/steel,/obj/item/gun/projectile/pistol,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "cd" = (/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"ce" = (/obj/structure/bed,/obj/item/bedsheet,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cf" = (/obj/structure/urinal{dir = 4; icon_state = "urinal"; pixel_x = -32},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cg" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 4},/obj/structure/curtain,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "ch" = (/obj/structure/table/steel,/obj/random/energy,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
@@ -115,8 +111,7 @@
 "ck" = (/obj/structure/dispenser/oxygen,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cl" = (/obj/structure/table/woodentable,/obj/random/projectile,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cm" = (/obj/structure/bed,/obj/item/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"cp" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
-"cq" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"cp" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "cr" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cs" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "ct" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/sol,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -129,10 +124,10 @@ aaabababababababababababababadadabababafabababafababaeababadadabababaa
 aaababafabadadadababababafababababababababababababababababadadabababaa
 aaabababababadadadabacababababagagagagagagabababababacabafabadabababaa
 aaababababababadadabafababababagahabababagabababababababababababababaa
-aaabababababababaiajajajakababagabababbKagabababafaiajajajajakabababaa
+aaabababababababaHajajajbfababagabababbKagabababafaHajajajajbfabababaa
 aaabababababababajajajajajajajajajababajajajajajajajajajajajalamababaa
 aaababababafababajajajajajajanaoajapapajaqarasatauajajajajajalamababaa
-aaabababababababavajajawaxajayazajaAaAajaBaCaEaEaEaEaFajajaGababababaa
+aaabababababababcpajajawaxajayazajaAaAajaBaCaEaEaEaEaFajajaGababababaa
 aaabababababababaHajajaIaJajayaKaLaLaMajaBaEaEaEaOaEaPajaGabababababaa
 aaabafababababaHajaQajawaRajayaSaTaTaUajaVaWaEaXaYaZbaajababababafabaa
 aaabababababaHajbbbcajbdajajayazajajajajajajbeajajajajajbfabababababaa
@@ -142,13 +137,13 @@ aaabababababbxbrblaKbybhblbzblblbAblblbBbCbCblblbDblblctaNalamabababaa
 aaabababababbxbrblaSbEbFblblblblbAblblbCbCbCblblbDblblblcialamabababaa
 aaabababababbGbrblazajbsblblblbtajblblbububublblajbHblblbIalamabababaa
 aaabababababajbJbFcsajbLaTaTbFbMajbNbOblbPctblblajbQbRbSajaGababababaa
-aaabababababavajbTbUajbdajajayazajajajajajajbAajajajajajaGabababababaa
-aaababababababavajaQajawbVajaybWaLaLbXajbYblblbZcacabnajababababababaa
-aaabafabababababavajajaIccajayaSaTaTcdajceblbYajbwcacbajbfabafabababaa
+aaabababababcpajbTbUajbdajajayazajajajajajajbAajajajajajaGabababababaa
+aaababababababcpajaQajawbVajaybWaLaLbXajbYblblbZcacabnajababababababaa
+aaabafabababababcpajajaIccajayaSaTaTcdajbYblbYajbwcacbajbfabafabababaa
 aaabababababababaHajajawchajaycrajaAaAajbYblbYajcfcabnajajbfababababaa
 aaabababababababajajajajajajcjckajapapajbYclcmajcgcabnajajalamabababaa
 aaabababababababajajajajajajajajajababajajajajajajajajajajalamabababaa
-aaababafababababcpajajajcqababagbKabababagabababcpajajajajcqababababaa
+aaababafababababcpajajajaGababagbKabababagabababcpajajajajaGababababaa
 aaabababadabababababafababababagabababahagababafabafabababadadadababaa
 aaababadadabacababababafabababagagagagagagababababacababadadadadababaa
 aaabadadadabababababababaeababababababababababadadabababadadadadababaa

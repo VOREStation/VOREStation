@@ -385,11 +385,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
-"aaH" = (
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/outside/outside3)
 "aaI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -36953,18 +36948,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
-"daD" = (
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/tether/surfacebase/shuttle_pad)
 "daN" = (
 /obj/machinery/scale,
 /obj/structure/disposalpipe/segment{
@@ -57087,7 +57070,7 @@ aab
 aab
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -57305,7 +57288,7 @@ aKU
 aKU
 aKU
 aKU
-daD
+asj
 aKU
 aKU
 aKU
