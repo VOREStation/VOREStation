@@ -1,0 +1,8 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Adds a positive trait that allows you to have your genetics unable to be scrambled."
+  - rscadd: "Adds three new negative traits: One Life, Unsleeveable, and Unreviveable."
+  - rscadd: "If you have NO_DNA or NO_RESLEEVE(your genetics is trashed), slimes find you unappealing!"
+  - code_imp: "NO_DNA and NO_RESLEEVE are now separated."
+  - bugfix: "Traits will no longer wipe innate species traits"
