@@ -49,6 +49,8 @@
 
 	var/unique_identifier //Define this for objs that we want to be able to rename. Needed to avoid compiler errors if not included.
 
+	var/mob_announce_cooldown = 0 //Define this to make it so when visited, the ATC will announce their arrival. Only used if you have a Crossed/Uncrossed that calls announce_atc w/ announce_atc being redefined.
+
 /obj/effect/overmap/visitable/Initialize(mapload)
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)
@@ -250,6 +252,8 @@
 	icon_state = "sector"
 	anchored = TRUE
 
+/obj/effect/overmap/visitable/sector/proc/announce_atc(var/atom/movable/AM, var/going = FALSE) //Base proc. Used for virgo3b at this time.
+	return
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
 /obj/effect/overmap/visitable/sector/hide()
