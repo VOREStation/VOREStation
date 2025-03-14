@@ -175,24 +175,26 @@
 	//However, if a mob IS attacking a player, let's throw in some RNG into the mix to make it feel better for players.
 	//If a mob eats hits and dies, people are happy.
 	//If you shoot a mob point blank 10 times and every hit misses, people are upset (and rightfully so)
-	if(mob_misses)
-		var/randomization_chance = 10 //This can also be set to 0 to ensure mobs ALWAYS target the limb they're originally targeting.
 
-		/// First, we roll to see if we're going to target a random limb.
-		if(randomization_chance) //We got a 10% chance! Randomize where we're targeting!
-			zone = pick(base_miss_chance)
+	if(!mob_misses) //If mob_misses is disabled, they land their blow on the zone they're targeting.
+		return zone
 
-		// Second, we make sure to see if the place we are attacking is a valid area.
-		if(zone in base_miss_chance)
-			randomization_chance = base_miss_chance[zone]
+	var/randomization_chance = 10 //This can also be set to 0 to ensure mobs ALWAYS target the limb they're originally targeting.
+	/// First, we roll to see if we're going to target a random limb.
+	if(randomization_chance) //We got a 10% chance! Randomize where we're targeting!
+		zone = pick(base_miss_chance)
 
-		// Eyes and mouth can be targeted (although typically not by mobs) so we set it to the head.
-		else if (zone == "eyes" || zone == "mouth")
-			randomization_chance = base_miss_chance["head"]
+	// Second, we make sure to see if the place we are attacking is a valid area.
+	if(zone in base_miss_chance)
+		randomization_chance = base_miss_chance[zone]
 
-		// Finally, now that we have our newfound zone, we see if we miss it or not!
-		if(prob(randomization_chance)) //If the mob rolled a miss chance?
-			return null //No hit! Player escapes unscathed!
+	// Eyes and mouth can be targeted (although typically not by mobs) so we set it to the head.
+	else if (zone == "eyes" || zone == "mouth")
+		randomization_chance = base_miss_chance["head"]
+
+	// Finally, now that we have our newfound zone, we see if we miss it or not!
+	if(prob(randomization_chance)) //If the mob rolled a miss chance?
+		return null //No hit! Player escapes unscathed!
 	return zone
 
 
