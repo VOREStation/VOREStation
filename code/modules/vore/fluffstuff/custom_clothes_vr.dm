@@ -2709,10 +2709,10 @@ Departamental Swimsuits, for general use
 //sixberry: Thistle
 
 /obj/item/clothing/head/fluff/memory_crown
-    name = "Memory Crown"
-    desc = "A thorned crown sporting numerous amethyst inserts, all of which seem to glow faintly in the dark.  Just holding it makes you feel as though you've forgotten something unpleasant."
-    icon = 'icons/vore/custom_clothes_vr.dmi'
-    icon_state = "memorycrown"
-    icon_override = 'icons/vore/custom_clothes_vr.dmi'
-    item_state = "memorycrown_onmob"
-    slot_flags = SLOT_HEAD
+	name = "Memory Crown"
+	desc = "A thorned crown sporting numerous amethyst inserts, all of which seem to glow faintly in the dark.  Just holding it makes you feel as though you've forgotten something unpleasant."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "memorycrown"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "memorycrown_onmob"
+	slot_flags = SLOT_HEAD
