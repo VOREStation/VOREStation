@@ -311,7 +311,7 @@ Category: Reference
 				<li>"} + span_bold("Avoid opening fire locks.") + {"</li>
 				</ul>
 				<p class="indent">In the event of depressurization, the station's fire locks automatically drop in an attempt to contain the breach. However, this can also impede movement. If possible, find an alternate route to your destination or find a safe place to wait until the station's engineering team repairs the station. Do not open a fire lock without an engineer's express permission unless you are in immediate mortal danger. After you have opened a fire lock, make sure to close it immediately so as to prevent the breach from spreading.</p>
-				    <ul>
+					<ul>
 				<li>"} + span_bold("Listen to emergency personnel.") + {"</li>
 				</ul>
 				<p class="indent">Follow the instructions of engineering, medical, and security personnel, as well as the orders of the heads of staff. Engineering personnel are trained to fix these situations, and medical personnel will likely be conducting search and rescue operations. Do not impede them and follow their instructions; you are more likely to survive, and less likely to endanger your fellow crew members.</p>
