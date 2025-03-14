@@ -808,7 +808,7 @@
 
 	//This makes it so it reverts back to its initial name when it speaks if TRUE.
 	//This should be used if a plushie can be made to say custom messages. Not currently required at the moment, but here just in case it'd added in the future.
-	var/prevent_impersionation = FALSE
+	var/prevent_impersonation = FALSE
 
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
@@ -849,13 +849,13 @@
 	last_message = world.time
 
 /obj/item/toy/plushie/proc/say_phrase()
-	//If we don't prevent impersionation, we just speak like normal!
+	//If we don't prevent impersonation, we just speak like normal!
 	//The PI var is used in case a plushie can be made to speak a custom message.
-	if(!prevent_impersionation)
+	if(!prevent_impersonation)
 		atom_say("[pokephrase]")
 		return
 
-	//If we do prevent impersionation, change the name to original, speak, then bring it back.
+	//If we do prevent impersonation, change the name to original, speak, then bring it back.
 	name = initial(name) //No namestealing.
 	atom_say("[pokephrase]")
 	name = adjusted_name
