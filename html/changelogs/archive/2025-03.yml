@@ -271,3 +271,10 @@
   - code_imp: adds some more map tests
   Willburd:
   - rscadd: AI law modules will show the laws they apply when examined
+2025-03-14:
+  Kashargul:
+  - bugfix: map placed dirt now applies 50 to 100 dirt
+  SatinIsle:
+  - bugfix: Fixed a number of duplicate structures and cleanables on maps for the
+      map linter PR.
+  - bugfix: Fixed mantraps voring people who step on them when they're dead.
