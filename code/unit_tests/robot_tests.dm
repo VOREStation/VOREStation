@@ -175,8 +175,20 @@
 				failed = TRUE
 		if(RS.has_dead_sprite_overlay) // Only one per dmi
 			if(!("wreck-overlay" in cached_icon_states(RS.sprite_icon)))
-				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", had wreck-overlay state enabled, but was missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
+				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
 				failed = TRUE
+		// offset
+		var/icon/I = new icon(RS.sprite_icon)
+		if(RS.icon_x != I.Width())
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_x \"[RS.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
+			failed = TRUE
+		if(RS.icon_y != I.Height())
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_y \"[RS.icon_x]\" did not match dmi configured height \"[I.Height()]\"")
+			failed = TRUE
+		if(I.Width() > 32 && RS.pixel_x != (I.Width()/2))
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[I.Width()/2]\"")
+			failed = TRUE
+		qdel(I)
 		qdel(RS)
 
 	if(failed)
@@ -188,6 +200,6 @@
 /datum/unit_test/all_robot_sprites_must_be_valid/proc/check_state(var/datum/robot_sprite/RS,var/append)
 	var/check_state = "[RS.sprite_icon_state][append]"
 	if(!(check_state in cached_icon_states(RS.sprite_icon)))
-		log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", had [append] state enabled, but was missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
+		log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
 		return TRUE
 	return FALSE
