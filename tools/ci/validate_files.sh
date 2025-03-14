@@ -59,6 +59,19 @@ if [ $retVal -ne 0 ]; then
   FAILED=1
 fi
 
+part "vareditted areas"
+if grep -P '^/area/.+[\{]' $map_files;	then
+	echo -e "${RED}ERROR: Vareditted /area path use detected in maps, please replace with proper paths.${NC}"
+	FAILED=1
+fi;
+
+part "base /turf usage"
+if grep -P '\W\/turf\s*[,\){]' $map_files; then
+	echo
+	echo -e "${RED}ERROR: base /turf path use detected in maps, please replace with proper paths.${NC}"
+	FAILED=1
+fi;
+
 part "test map included"
 #Checking for any 'checked' maps that include 'test'
 (! $grep 'maps\\.*test.*' *.dme)
@@ -105,6 +118,13 @@ if [ $retVal -ne 0 ]; then
   FAILED=1
 fi
 
+part "typescript react files"
+if ls -1 tgui/**/*.jsx 2>/dev/null; then
+	echo
+	echo -e "${RED}ERROR: JSX file(s) detected, these must be converted to typescript (TSX).${NC}"
+	FAILED=1
+fi;
+
 part "balloon_alert sanity"
 if $grep 'balloon_alert\(".*"\)' $code_files; then
   echo
@@ -133,6 +153,34 @@ if [ $retVal -ne 0 ]; then
   echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
   FAILED=1
 fi
+
+part "space indentation"
+if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: space indentation detected.${NC}"
+	FAILED=1
+fi;
+
+part "mixed tab/space indentation"
+if grep -P '^\t+ [^ *]' $code_files; then
+	echo
+	echo -e "${RED}ERROR: mixed <tab><space> indentation detected.${NC}"
+	FAILED=1
+fi;
+
+part "proc ref syntax"
+if $grep '\.proc/' $code_x_515 ; then
+    echo
+    echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
+    FAILED=1
+fi;
+
+part "ambiguous bitwise or"
+if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: Likely operator order mistake with bitwise OR. Use parentheses to specify intention.${NC}"
+	FAILED=1
+fi;
 
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"
