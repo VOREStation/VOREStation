@@ -440,7 +440,6 @@
 "jR" = (
 /obj/machinery/light/small/torch,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/crypt)
 "kc" = (
@@ -2080,7 +2079,6 @@
 /area/redgate/fantasy/dark)
 "Qb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "Qm" = (
@@ -2239,7 +2237,6 @@
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/crypt)
