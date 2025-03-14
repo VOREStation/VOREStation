@@ -392,7 +392,7 @@
 			"slime" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "slime"),
 			"chaos" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "chaos"),
 			"cloud" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cloud"),
-			/*"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
+			"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
 			"cat" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cat"),
 			"mouse" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
 			"rabbit" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
@@ -407,7 +407,8 @@
 			"teppi" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "teppi", pixel_x = -16),
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
-			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small")*/
+			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small"),
+			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")
 			)
 	var/blobstyle = show_radial_menu(protie, protie, icon_choices, require_near = TRUE, tooltips = FALSE)
 	if(!blobstyle || QDELETED(protie) || protie.incapacitated())
@@ -528,7 +529,7 @@
 					S.dragon_overlays[6] = choice
 					S.dragon_overlays[S.dragon_overlays[6]] = new_color
 			S.blob_appearance = "dragon"
-		if("dullahan") //START OF DULLAHAN PORT.
+		if("Dullahan") //START OF DULLAHAN PORT.
 			var/list/options = list("Metalshell","Eyes","Decals","Import","Export")
 			for(var/option in options)
 				LAZYSET(options, option, image('icons/mob/robot/dullahan/v1/dullahansigns.dmi', option))
