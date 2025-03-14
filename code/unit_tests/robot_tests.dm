@@ -193,8 +193,8 @@
 		if(RS.icon_y != RS.vis_height)
 			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", vis_height \"[RS.vis_height]\" did not match icon_y \"[RS.icon_y]\"")
 			failed = TRUE
-		if(I.Width() > 32 && RS.pixel_x != -(I.Width()/2))
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[-(I.Width()/2)]\"")
+		if(I.Width() > 32 && RS.pixel_x != -(I.Width()/4)) // Shifted a quarter to center a borg offset to the center of a wide sprite. Half a sprite on each side!
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[-(I.Width()/4)]\"")
 			failed = TRUE
 		qdel(I)
 		qdel(RS)
