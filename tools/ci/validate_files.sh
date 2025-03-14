@@ -106,14 +106,13 @@ fi
 section "code issues"
 
 part "indentation"
-echo -e "${RED}DISABLED"
-#Check for weird indentation in any .dm files
-# awk -f tools/indentation.awk $code_files
-# retVal=$?
-# if [ $retVal -ne 0 ]; then
-#   echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
-#   FAILED=1
-# fi
+check for weird indentation in any .dm files
+awk -f tools/indentation.awk $code_files
+retVal=$?
+if [ $retVal -ne 0 ]; then
+	echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
+	FAILED=1
+fi
 
 part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
