@@ -178,12 +178,15 @@
 				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
 				failed = TRUE
 		// offset
-		var/icon/I = new icon(RS.sprite_icon)
+		var/icon/I = new(RS.sprite_icon)
 		if(RS.icon_x != I.Width())
 			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_x \"[RS.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
 			failed = TRUE
 		if(RS.icon_y != I.Height())
 			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_y \"[RS.icon_x]\" did not match dmi configured height \"[I.Height()]\"")
+			failed = TRUE
+		if(RS.icon_y != RS.vis_height)
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", vis_height \"[RS.vis_height]\" did not match icon_y \"[RS.icon_y]\"")
 			failed = TRUE
 		if(I.Width() > 32 && RS.pixel_x != (I.Width()/2))
 			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[I.Width()/2]\"")
