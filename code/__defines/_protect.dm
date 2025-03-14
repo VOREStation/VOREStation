@@ -8,4 +8,3 @@
 }\
 ##Path/CanProcCall(procname){\
 	return FALSE;\
-}

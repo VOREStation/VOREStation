@@ -72,6 +72,8 @@
 /mob/living/simple_mob/vore/mantrap/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
+	if(src.stat)
+		return
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L in eaten_mobs)
