@@ -28,13 +28,6 @@
 /obj/random/mob/merc/all,
 /turf/template_noop,
 /area/submap/Blackshuttledown)
-"ai" = (
-/turf/template_noop,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark6";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
 "aj" = (
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
@@ -1694,7 +1687,7 @@ ab
 ab
 ab
 ab
-ai
+aH
 aj
 aj
 aE

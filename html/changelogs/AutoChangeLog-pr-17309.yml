@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - rscadd: "AI law modules will show the laws they apply when examined"

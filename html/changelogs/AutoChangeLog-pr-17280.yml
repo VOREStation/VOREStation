@@ -1,0 +1,9 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds gooborgs! Sprites by Toriate"
+  - rscadd: "You can now TOGGLE STOMACH GLOWING on borgs! If toggled on, your tummy will GLOW IN THE DARK!"
+  - rscadd: "Catborgs now have passive glowing parts if they are toggled on"
+  - code_imp: "Robotic eswords and batons now count as robotic weapons and trigger appropriate sprites."
+  - bugfix: "Borg batons will no longer start looking like it has no cell."
+  - qol: "Moves 'toggle extras' to a more conspicuous spot in the Abilities tab. (Dullahans and Gryphonborg have alternative sprites if used)"

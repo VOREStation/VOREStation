@@ -27,14 +27,14 @@
 	dept_time_required = 60
 
 	access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
-				            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
-				            access_heads, access_construction,
-				            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload, access_gateway)
+							access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
+							access_heads, access_construction,
+							access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload, access_gateway)
 
 	minimal_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
-				            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
-				            access_heads, access_construction,
-				            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload, access_gateway)
+							access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
+							access_heads, access_construction,
+							access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload, access_gateway)
 	alt_titles = list(JOB_ALT_HEAD_ENGINEER = /datum/alt_title/head_engineer, JOB_ALT_FOREMAN = /datum/alt_title/foreman, JOB_ALT_MAINTENANCE_MANAGER = /datum/alt_title/maintenance_manager)
 	minimal_player_age = 7
 

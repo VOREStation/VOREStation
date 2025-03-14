@@ -1164,22 +1164,21 @@
 
 //RadiantAurora: Tiemli Kroto
 /obj/item/clothing/glasses/welding/tiemgogs
-   name = "custom-fitted welding goggles"
-   desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
+	name = "custom-fitted welding goggles"
+	desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
 
-   icon = 'icons/vore/custom_items_vr.dmi'
-   icon_state = "tiemgogs"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "tiemgogs"
 
-   icon_override = 'icons/vore/custom_clothes_vr.dmi'
-   icon_state = "tiemgogs"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tiemgogs"
 
 /obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-   if(..())
-      if(H.ckey != "radiantaurora")
-         to_chat(H, span_warning("These don't look like they were made to fit you..."))
-         return 0
-      else
-         return 1
+	if(..())
+		if(H.ckey != "radiantaurora")
+			to_chat(H, span_warning("These don't look like they were made to fit you..."))
+			return 0
+		return 1
 
 //Ryumi - Nikki Yumeno
 /obj/item/rig/nikki
@@ -1224,11 +1223,11 @@
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
-    name = "Security Bomber Jacket"
-    desc = "A black bomber jacket with the security emblem sewn onto it."
-    icon = 'icons/vore/custom_items_vr.dmi'
-    icon_override = 'icons/vore/custom_items_vr.dmi'
-    icon_state = "bombersec"
+	name = "Security Bomber Jacket"
+	desc = "A black bomber jacket with the security emblem sewn onto it."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "bombersec"
 
 
 //pimientopyro - Scylla Casmus
@@ -1479,21 +1478,21 @@
 
 //Bricker98:Nettie Stough
 /obj/item/modular_computer/tablet/preset/custom_loadout/nettie
-  name = "Remodeled Tablet"
-  desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
-  icon = 'icons/obj/modular_tablet.dmi'
-  icon_state = "elite"
-  icon_state_unpowered = "elite"
+	name = "Remodeled Tablet"
+	desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+	icon = 'icons/obj/modular_tablet.dmi'
+	icon_state = "elite"
+	icon_state_unpowered = "elite"
 
 /obj/item/modular_computer/tablet/preset/custom_loadout/nettie/install_default_hardware()
-  ..()
-  processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
-  tesla_link = new/obj/item/computer_hardware/tesla_link(src)
-  hard_drive = new/obj/item/computer_hardware/hard_drive/(src)
-  network_card = new/obj/item/computer_hardware/network_card/advanced(src)
-  nano_printer = new/obj/item/computer_hardware/nano_printer(src)
-  battery_module = new/obj/item/computer_hardware/battery_module(src)
-  battery_module.charge_to_full()
+	..()
+	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
+	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
+	hard_drive = new/obj/item/computer_hardware/hard_drive/(src)
+	network_card = new/obj/item/computer_hardware/network_card/advanced(src)
+	nano_printer = new/obj/item/computer_hardware/nano_printer(src)
+	battery_module = new/obj/item/computer_hardware/battery_module(src)
+	battery_module.charge_to_full()
 
 
 //Stobarico - Kyu Comet

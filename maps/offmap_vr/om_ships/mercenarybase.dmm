@@ -3710,8 +3710,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westinteriorsensor";
-	pixel_z = 23
+	master_tag = "westinteriorsensor"
 	},
 /turf/simulated/wall/r_wall,
 /area/mercbase/hall)

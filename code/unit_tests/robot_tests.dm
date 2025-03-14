@@ -45,6 +45,10 @@
 				failed = TRUE
 			if(check_state(RS,"-openpanel_w"))
 				failed = TRUE
+		// Glow State
+		if(RS.has_glow_sprites)
+			if(check_state(RS,"-glow"))
+				failed = TRUE
 		// Bellies
 		if(RS.has_vore_belly_sprites && !RS.belly_capacity_list)
 			if(RS.has_sleeper_light_indicator)
@@ -162,6 +166,9 @@
 				rest_style = "rest"
 			if(check_state(RS,"-[rest_style]"))
 				failed = TRUE
+			if(RS.has_glow_sprites)
+				if(check_state(RS,"-[rest_style]-glow"))
+					failed = TRUE
 		// death
 		if(RS.has_dead_sprite)
 			if(check_state(RS,"-wreck"))
