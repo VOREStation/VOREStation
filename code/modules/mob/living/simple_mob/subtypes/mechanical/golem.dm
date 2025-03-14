@@ -115,7 +115,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/technomancer_golem/melee_pre_animation(atom/A)
-	if(active_spell && active_spell.cast_methods & CAST_MELEE|CAST_RANGED) // If they're trying to melee-cast a spell, use the special animation instead.
+	if(active_spell && active_spell.cast_methods & (CAST_MELEE|CAST_RANGED)) // If they're trying to melee-cast a spell, use the special animation instead.
 		special_pre_animation(A)
 		return
 
