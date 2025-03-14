@@ -45,7 +45,6 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			//to_chat(H, span_warning("You can't use your hand."))
 			has_hands = FALSE
 		for(var/thing in GetViruses()) //This is intentionally not having a has_hands check. If you are clicking on someone next to them, you're close enough to sneeze/cough on them!
 			var/datum/disease/D = thing
@@ -80,7 +79,13 @@
 			if(D.spread_flags & CONTACT_HANDS)
 				ContractDisease(D)
 
-	switch(M.a_intent)	//VARS: H = The one doing the attack. || M = The mob we are targeting || TT = gender of what we are targeting.
+	switch(M.a_intent)
+		//VARS:  (Placed here for your convenience, because it's confusing)
+		// H = THE PERSON DOING THE ATTACK, BUT DEFINED AS A HUMAN. (This is for human specific interactions, such as CPR.)
+		// M = THE PERSON DOING THE ATTACK, AGAIN, DEFINED AS A MOB
+		// src = THE PERSON BEING ATTACKED
+		// TT = GENDER OF THE TARGET
+		// has_hands = Local variable. If the attacker has hands or not.
 		if(I_HELP)
 			attack_hand_help_intent(H, M, TT, has_hands)
 
@@ -103,11 +108,15 @@
 /mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	if(M.restrained()) //If we're restrained, we can't help them. If you want to add snowflake stuff that you can do while restrained, add it here.
+		return FALSE
 	if(!has_hands) //This is here so if you WANT to do special code for 'if we don't have hands, do stuff' it can be done here!
 		return FALSE
-	if (istype(H) && attempt_to_scoop(H))
+	if(istype(M) && attempt_to_scoop(M))
 		return FALSE;
-	if(istype(H) && health < CONFIG_GET(number/health_threshold_crit))
+
+	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
+	if(istype(H) && health < CONFIG_GET(number/health_threshold_crit)) //Only humans can do CPR.
 		if(!H.check_has_mouth())
 			to_chat(H, span_danger("You don't have a mouth, you cannot perform CPR!"))
 			return FALSE
@@ -148,15 +157,25 @@
 /mob/living/carbon/human/proc/attack_hand_disarm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	if(M.restrained()) //If we're restrained, we can't disarm them. If you want to add snowflake stuff that you can do while restrained, add it here.
+		return
 	if(!has_hands)  //This is here so if you WANT to do special code for 'if we don't have hands, do stuff' it can be done here!
 		return
-
-	add_attack_logs(H,src,"Disarmed")
 
 	M.do_attack_animation(src)
 
 	if(w_uniform)
 		w_uniform.add_fingerprint(M)
+
+	if(M.lying && (M.loc == src.loc)) //If we are on the ground and they're on top of us, we don't have enough space to push them! Also antispam.
+		if(world.time <= (last_push_time + 6 SECONDS))
+			return
+		visible_message(span_warning("[M] struggles under [src]!"))
+		last_push_time = world.time
+		return
+
+	add_attack_logs(H,src,"Disarmed")
+
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 
 	var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
@@ -172,8 +191,11 @@
 				visible_message(span_danger("[src]'s [W] goes off during the struggle!"))
 				return W.afterattack(target,src)
 
-	if(last_push_time + 30 > world.time)
-		visible_message(span_warning("[M] has weakly pushed [src]!"))
+	if(last_push_time + 30 > world.time) //The fact that we're repeatedly doing it doesn't lessen the severity of the action! Send it full blast!
+		if(M.lying)
+			visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to sweep [src] to the floor!"))]"))
+		else
+			visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to disarm [src]!"))]"))
 		return
 
 	var/randn = rand(1, 100)
@@ -186,7 +208,13 @@
 		apply_effect(3, WEAKEN, armor_check)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(armor_check < 60)
-			visible_message(span_danger("[M] has pushed [src]!"))
+			if(M.lying)
+				visible_message(span_danger("[M] swept [src] down onto the floor!"))
+			else
+				visible_message(span_danger("[M] has pushed [src]!"))
+			break_all_grabs(M)
+			for(var/obj/item/I in holding)
+				drop_from_inventory(I)
 		else
 			visible_message(span_warning("[M] attempted to push [src]!"))
 		return
@@ -206,15 +234,20 @@
 				return
 
 	playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to disarm [src]!"))]"))
+	if(M.lying)
+		visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to sweep [src] to the floor!"))]"))
+	else
+		visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to disarm [src]!"))]"))
 //Grab Intent
 /mob/living/carbon/human/proc/attack_hand_grab_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	if(M.restrained()) //If we're restrained, we can't grab them. If you want to add snowflake stuff that you can do while restrained, add it here.
+		return
 	if(!has_hands)  //This is here so if you WANT to do special code for 'if we don't have hands, do stuff' it can be done here!
-		return FALSE
+		return
 	if(M == src || anchored)
-		return FALSE
+		return
 	for(var/obj/item/grab/G in src.grabbed_by)
 		if(G.assailant == M)
 			to_chat(M, span_notice("You already grabbed [src]."))
@@ -232,7 +265,7 @@
 	G.synch()
 	LAssailant = M
 
-	H.do_attack_animation(src)
+	M.do_attack_animation(src)
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	visible_message(span_warning("[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!"))
 //Harm Intent
@@ -274,7 +307,7 @@
 			if(canmove && src!=H && prob(20))
 				block = 1
 
-	if (M.grabbed_by.len)
+	if(M.grabbed_by.len)
 		// Someone got a good grip on them, they won't be able to do much damage
 		rand_damage = max(1, rand_damage - 2)
 

@@ -208,6 +208,9 @@
 
 	if((!can_buckle && !forced) || M.buckled || M.pinned.len || (max_buckled_mobs == 0) || (buckle_require_restraints && !M.restrained()))
 		return FALSE
+	if(LAZYLEN(M.grabbed_by) && !forced)
+		to_chat(M, span_boldwarning("You can not buckle while grabbed!"))
+		return FALSE
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
 		if(can_do_spont_vore && is_vore_predator(M) && M.vore_selected)
