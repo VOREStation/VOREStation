@@ -768,22 +768,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "skullzippo"
 
 /obj/item/flame/lighter/supermatter
-    name = "Hardlight Supermatter Zippo"	// Base SM Lighter
-    desc = "State of the Art Supermatter Lighter."
-    description_fluff = "A zippo style lighter with a tiny supermatter sliver held by a hardlight shield. When lighting a cigar, make sure to hover the tip near the sliver, not against it!"
-    icon_state = "SMzippo"
-    item_state = "SMzippo"
-    activation_sound = 'sound/items/zippo_on_alt.ogg'
-    deactivation_sound = 'sound/items/zippo_off.ogg'
+	name = "Hardlight Supermatter Zippo"	// Base SM Lighter
+	desc = "State of the Art Supermatter Lighter."
+	description_fluff = "A zippo style lighter with a tiny supermatter sliver held by a hardlight shield. When lighting a cigar, make sure to hover the tip near the sliver, not against it!"
+	icon_state = "SMzippo"
+	item_state = "SMzippo"
+	activation_sound = 'sound/items/zippo_on_alt.ogg'
+	deactivation_sound = 'sound/items/zippo_off.ogg'
 
 /obj/item/flame/lighter/supermatter/syndismzippo
-    name = "Phoron Supermatter Zippo"		// Syndicate SM Lighter
-    desc = "State of the Art Supermatter Lighter."
-    description_fluff = "A red zippo style lighter with a tiny supermatter sliver held by a phoron field."
-    icon_state = "SyndiSMzippo"
-    item_state = "SyndiSMzippo"
-    activation_sound = 'sound/items/zippo_on_alt.ogg'
-    deactivation_sound = 'sound/items/zippo_off.ogg'
+	name = "Phoron Supermatter Zippo"		// Syndicate SM Lighter
+	desc = "State of the Art Supermatter Lighter."
+	description_fluff = "A red zippo style lighter with a tiny supermatter sliver held by a phoron field."
+	icon_state = "SyndiSMzippo"
+	item_state = "SyndiSMzippo"
+	activation_sound = 'sound/items/zippo_on_alt.ogg'
+	deactivation_sound = 'sound/items/zippo_off.ogg'
 
 /obj/item/flame/lighter/supermatter/expsmzippo
 	name = "Experimental SM Lighter"		// Dangerous WIP (admin/event only ATM)

@@ -106,21 +106,21 @@
 	required_reagents = list(REAGENT_ID_COLA = 1, REAGENT_ID_MINT = 1)
 
 /decl/chemical_reaction/instant/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
-    name = REAGENT_FIREFOAM
-    id = "firefighting foam"
-    result = REAGENT_ID_FIREFOAM
-    required_reagents = list(REAGENT_ID_WATER = 1)
-    catalysts = list(REAGENT_ID_FLUORINE = 10)
-    result_amount = 1
+	name = REAGENT_FIREFOAM
+	id = "firefighting foam"
+	result = REAGENT_ID_FIREFOAM
+	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_FLUORINE = 10)
+	result_amount = 1
 
 /decl/chemical_reaction/instant/firefightingfoamqol //Please don't abuse this and make us remove it. Seriously.
-    name = "Firefighting Foam EZ"
-    id = "firefighting foam ez"
-    result = REAGENT_ID_FIREFOAM
-    required_reagents = list(REAGENT_ID_WATER = 1)
-    catalysts = list(REAGENT_ID_FIREFOAM = 5)
-    inhibitors = list(REAGENT_ID_FLUORINE = 0.01)
-    result_amount = 1
+	name = "Firefighting Foam EZ"
+	id = "firefighting foam ez"
+	result = REAGENT_ID_FIREFOAM
+	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_FIREFOAM = 5)
+	inhibitors = list(REAGENT_ID_FLUORINE = 0.01)
+	result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs

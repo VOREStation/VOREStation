@@ -775,20 +775,20 @@
 
 // Robotics + Associated Areas
 /area/rnd/robotics
-    name = "\improper Robotics Lab"
-    icon_state = "robotics"
+	name = "\improper Robotics Lab"
+	icon_state = "robotics"
 
 /area/rnd/robotics/mechbay
-    name = "\improper Mech Bay"
-    icon_state = "mechbay"
+	name = "\improper Mech Bay"
+	icon_state = "mechbay"
 /area/rnd/robotics/surgeryroom1
-    name = "\improper Robotics Surgery Room 1"
+	name = "\improper Robotics Surgery Room 1"
 
 /area/rnd/robotics/surgeryroom2
-    name = "\improper Robotics Surgery Room 2"
+	name = "\improper Robotics Surgery Room 2"
 
 /area/rnd/robotics/resleeving
-    name = "\improper Robotics Resleeving"
+	name = "\improper Robotics Resleeving"
 
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
