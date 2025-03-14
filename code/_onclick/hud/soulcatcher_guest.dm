@@ -27,9 +27,9 @@
 	icon_state = "arproj"
 
 /obj/screen/nifsc/arproj/Click()
-        ..()
-        var/mob/living/carbon/brain/caught_soul/CS = usr
-        CS.ar_project()
+		..()
+		var/mob/living/carbon/brain/caught_soul/CS = usr
+		CS.ar_project()
 
 /obj/screen/nifsc/jumptoowner
 	name = "Jump back to host"
