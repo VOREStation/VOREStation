@@ -95,8 +95,6 @@
 
 /obj/machinery/power/rtg/Initialize(mapload)
 	. = ..()
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 	connect_to_network()
 

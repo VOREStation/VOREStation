@@ -28,8 +28,8 @@
 	should_be_mapped = TRUE
 
 
-/obj/machinery/power/smes/batteryrack/New()
-	..()
+/obj/machinery/power/smes/batteryrack/Initialize(mapload)
+	. = ..()
 	add_parts()
 	RefreshParts()
 

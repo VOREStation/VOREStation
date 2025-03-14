@@ -10,19 +10,16 @@
 	var/obj/machinery/mineral/stacking_machine/machine = null
 	//var/machinedir = SOUTHEAST //This is really dumb, so lets burn it with fire.
 
-/obj/machinery/mineral/stacking_unit_console/New()
-
-	..()
-
-	spawn(7)
-		//src.machine = locate(/obj/machinery/mineral/stacking_machine, get_step(src, machinedir)) //No.
-		src.machine = locate(/obj/machinery/mineral/stacking_machine) in range(5,src)
-		if (machine)
-			machine.console = src
-		else
-			//Silently failing and causing mappers to scratch their heads while runtiming isn't ideal.
-			to_world(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
-			qdel(src)
+/obj/machinery/mineral/stacking_unit_console/Initialize(mapload)
+	. = ..()
+	//src.machine = locate(/obj/machinery/mineral/stacking_machine, get_step(src, machinedir)) //No.
+	src.machine = locate(/obj/machinery/mineral/stacking_machine) in range(5,src)
+	if (machine)
+		machine.console = src
+	else
+		//Silently failing and causing mappers to scratch their heads while runtiming isn't ideal.
+		to_world(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
@@ -84,23 +81,19 @@
 	var/list/stack_paths[0]
 	var/stack_amt = 50; // Amount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/New()
-	..()
-
+/obj/machinery/mineral/stacking_machine/Initialize(mapload)
+	. = ..()
 	for(var/obj/item/stack/material/S as anything in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
 		var/s_matname = initial(S.default_type)
 		stack_storage[s_matname] = 0
 		stack_paths[s_matname] = S
 
-	spawn( 5 )
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		return
-	return
+	for (var/dir in cardinal)
+		src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+		if(src.input) break
+	for (var/dir in cardinal)
+		src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+		if(src.output) break
 
 /obj/machinery/mineral/stacking_machine/proc/toggle_speed(var/forced)
 	if(forced)

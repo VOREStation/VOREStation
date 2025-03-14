@@ -68,11 +68,10 @@ field_generator power level display
 	return
 
 
-/obj/machinery/field_generator/New()
-	..()
+/obj/machinery/field_generator/Initialize(mapload)
+	. = ..()
 	fields = list()
 	connected_gens = list()
-	return
 
 /obj/machinery/field_generator/process()
 	if(Varedit_start == 1)

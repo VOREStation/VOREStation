@@ -269,7 +269,7 @@
 	for(var/obj/ct as anything in req_components)
 		req_component_names[ct] = initial(ct.name)
 
-/obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
+/obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
 	..()
 	if(building)
 		frame_type = type
@@ -277,9 +277,6 @@
 
 		if(dir)
 			set_dir(dir)
-
-		if(loc)
-			src.loc = loc
 
 		if(frame_type.x_offset)
 			pixel_x = (dir & 3)? 0 : (dir == EAST ? -frame_type.x_offset : frame_type.x_offset)

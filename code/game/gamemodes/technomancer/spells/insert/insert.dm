@@ -20,16 +20,19 @@
 	var/mob/living/host = null
 	var/spell_power_at_creation = 1.0 // This is here because the spell object that made this object probably won't exist.
 
-/obj/item/inserted_spell/New(var/newloc, var/user, var/obj/item/spell/insert/inserter)
-	..(newloc)
-	host = newloc
+/obj/item/inserted_spell/Initialize(mapload, var/user, var/obj/item/spell/insert/inserter)
+	. = ..()
+	host = loc
 	origin = user
 	if(light_color)
-		spawn(1)
-			set_light(inserter.spell_light_range, inserter.spell_light_intensity, inserter.spell_color)
+		set_light(inserter.spell_light_range, inserter.spell_light_intensity, inserter.spell_color)
 	on_insert()
 
 /obj/item/inserted_spell/proc/on_insert()
+	return
+
+/obj/item/inserted_spell/proc/looped_insert(var/remaining_callbacks, var/mob/living/carbon/human/H)
+	PROTECTED_RPOC(TRUE)
 	return
 
 /obj/item/inserted_spell/proc/on_expire(var/dispelled = 0)

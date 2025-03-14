@@ -100,12 +100,12 @@
 		price_tag = null
 
 // for /obj/machinery/vending/sovietsoda
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda/New()
-	..()
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODAWATER, 50)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola/New()
-	..()
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_COLA, 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass

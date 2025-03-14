@@ -89,10 +89,11 @@
 	name = "Catacombs"
 	desc = "In a temple like this, these doors could be booby trapped..."
 
-/obj/machinery/door/airlock/vault/temple/New()
+/obj/machinery/door/airlock/vault/temple/Initialize(mapload)
+	. = ..()
 	if(prob(33))
 		new /obj/structure/falsewall/cultspecial(src.loc)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	if(prob(33))
 		safe = 0
 	if(prob(33))

@@ -11,8 +11,8 @@
 	slot_flags = SLOT_TIE
 	var/obj/item/dosimeter_film/current_film = null
 
-/obj/item/clothing/accessory/dosimeter/New()
-	..()
+/obj/item/clothing/accessory/dosimeter/Initialize(mapload)
+	. = ..()
 	current_film = new /obj/item/dosimeter_film(src)
 	update_state(current_film.state)
 	START_PROCESSING(SSobj, src)
@@ -119,8 +119,8 @@
 	max_storage_space = (ITEMSIZE_COST_SMALL * 4) + (ITEMSIZE_COST_TINY * 1)
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/storage/box/dosimeter/New()
-	..()
+/obj/item/storage/box/dosimeter/Initialize(mapload)
+	. = ..()
 	new /obj/item/paper/dosimeter_manual(src)
 	new /obj/item/clothing/accessory/dosimeter(src)
 	new /obj/item/dosimeter_film(src)

@@ -90,8 +90,8 @@
 	icon_state = "doorbell-standby"
 	use_power = USE_POWER_OFF
 
-/obj/machinery/button/doorbell/New(var/loc, var/dir, var/building = 0)
-	..()
+/obj/machinery/button/doorbell/Initialize(mapload, var/dir, var/building = FALSE)
+	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0

@@ -4,14 +4,14 @@
 	w_class = ITEMSIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/sample/New(var/newloc, var/atom/supplied)
-	..(newloc)
+/obj/item/sample/Initialize(mapload, var/atom/supplied)
+	. = ..()
 	if(supplied)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/sample/print/New(var/newloc, var/atom/supplied)
-	..(newloc, supplied)
+/obj/item/sample/print/Initialize(mapload, supplied)
+	. = ..()
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 

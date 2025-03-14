@@ -29,8 +29,8 @@
 	else
 		. += span_warning("It is not secured!")
 
-/obj/machinery/power/tesla_coil/New()
-	..()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
+	. = ..()
 	wires = new(src)
 
 /obj/machinery/power/tesla_coil/Initialize(mapload)

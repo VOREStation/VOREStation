@@ -12,8 +12,8 @@
 	var/obj/machinery/power/fusion_core/cur_viewed_device
 	var/datum/tgui_module/rustcore_monitor/monitor
 
-/obj/machinery/computer/fusion_core_control/New()
-	..()
+/obj/machinery/computer/fusion_core_control/Initialize(mapload)
+	. = ..()
 	monitor = new(src)
 	monitor.core_tag = id_tag
 
