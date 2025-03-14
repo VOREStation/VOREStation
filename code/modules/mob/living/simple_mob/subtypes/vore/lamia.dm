@@ -54,7 +54,6 @@
 
 	say_list_type = /datum/say_list/lamia
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
-	load_owner = "seriouslydontsavethis"	//RS ADD - They're people
 
 /mob/living/simple_mob/vore/lamia/update_icon()
 	. = ..()
