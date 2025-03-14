@@ -1,51 +1,361 @@
-"a" = (/turf/simulated/mineral,/area/template_noop)
-"b" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"d" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"e" = (/obj/structure/cliff/automatic,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"f" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"g" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"h" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"i" = (/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"j" = (/obj/structure/cliff/automatic/corner,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"k" = (/obj/mecha/working/ripley,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"l" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 8},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"m" = (/obj/structure/table/sifwoodentable,/obj/item/mecha_parts/mecha_equipment/tool/drill/bore,/obj/item/ore/marble,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"n" = (/obj/item/ore,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"o" = (/obj/structure/table/sifwoodentable,/obj/item/mecha_parts/mecha_equipment/hardpoint_actuator,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"p" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 4},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"q" = (/obj/structure/table/sifwoodentable,/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"r" = (/obj/structure/table/sifwoodentable,/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/rigged,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"s" = (/obj/item/ore/marble,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"t" = (/obj/item/ore/gold,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"u" = (/obj/item/ore/diamond,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"v" = (/mob/living/simple_mob/mechanical/mining_drone,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"w" = (/obj/structure/table/sifwoodentable,/obj/item/pickaxe/jackhammer,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"x" = (/obj/structure/table/sifwoodentable,/obj/random/projectile/scrapped_grenadelauncher,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"y" = (/obj/structure/table/sifwoodentable,/obj/random/medical/pillbottle,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"z" = (/obj/structure/table/sifwoodentable,/obj/item/grenade/chem_grenade/metalfoam,/obj/item/grenade/chem_grenade/metalfoam,/obj/item/grenade/chem_grenade/metalfoam,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"A" = (/obj/structure/table/sifwoodentable,/obj/item/mining_scanner,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"B" = (/obj/structure/table/sifwoodentable,/obj/random/cigarettes,/obj/random/tool/powermaint,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Excavation)
-"C" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 10},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"D" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 2},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"E" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 10},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"F" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 6},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
-"G" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 6},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Excavation)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral,
+/area/template_noop)
+"b" = (
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/template_noop)
+"c" = (
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"d" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 9
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"e" = (
+/obj/structure/cliff/automatic,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"f" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 5
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"g" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 9
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"h" = (
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"i" = (
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"j" = (
+/obj/structure/cliff/automatic/corner,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"k" = (
+/obj/mecha/working/ripley,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"l" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 8
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"m" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/mecha_parts/mecha_equipment/tool/drill/bore,
+/obj/item/ore/marble,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"n" = (
+/obj/item/ore,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"o" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/mecha_parts/mecha_equipment/hardpoint_actuator,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"p" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"q" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"r" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/rigged,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"s" = (
+/obj/item/ore/marble,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"t" = (
+/obj/item/ore/gold,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"u" = (
+/obj/item/ore/diamond,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"v" = (
+/mob/living/simple_mob/mechanical/mining_drone,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"w" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/pickaxe/jackhammer,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"x" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/projectile/scrapped_grenadelauncher,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"y" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/medical/pillbottle,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"z" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"A" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/mining_scanner,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"B" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/cigarettes,
+/obj/random/tool/powermaint,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Excavation)
+"C" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 10
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"D" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 2
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"E" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 10
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"F" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 6
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
+"G" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 6
+	},
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/Excavation)
 
 (1,1,1) = {"
-aabbbbbbbaa
-accdeeefcca
-bcdghhijfcb
-bdghikihjfb
-bliimnoiipb
-blhiqirihpb
-bliniisnhpb
-blhtiuiiipb
-bliviinvhpb
-blhwinixipb
-blhynitzhpb
-bliAiniBhpb
-bliisinihpb
-aCDEniiFDGa
-aabbbbbbbaa
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+c
+d
+l
+l
+l
+l
+l
+l
+l
+l
+l
+C
+a
+"}
+(3,1,1) = {"
+b
+c
+d
+g
+i
+h
+i
+h
+i
+h
+h
+i
+i
+D
+b
+"}
+(4,1,1) = {"
+b
+d
+g
+h
+i
+i
+n
+t
+v
+w
+y
+A
+i
+E
+b
+"}
+(5,1,1) = {"
+b
+e
+h
+i
+m
+q
+i
+i
+i
+i
+n
+i
+s
+n
+b
+"}
+(6,1,1) = {"
+b
+e
+h
+k
+n
+i
+i
+u
+i
+n
+i
+n
+i
+i
+b
+"}
+(7,1,1) = {"
+b
+e
+i
+i
+o
+r
+s
+i
+n
+i
+t
+i
+n
+i
+b
+"}
+(8,1,1) = {"
+b
+f
+j
+h
+i
+i
+n
+i
+v
+x
+z
+B
+i
+F
+b
+"}
+(9,1,1) = {"
+b
+c
+f
+j
+i
+h
+h
+i
+h
+i
+h
+h
+h
+D
+b
+"}
+(10,1,1) = {"
+a
+c
+c
+f
+p
+p
+p
+p
+p
+p
+p
+p
+p
+G
+a
+"}
+(11,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+a
 "}
