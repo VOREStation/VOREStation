@@ -51,7 +51,6 @@
 
 	say_list_type = /datum/say_list/lamia
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
-	load_owner = "seriouslydontsavethis" // Hopefully warns people not to accidentally overwrite their profiles.
 
 /mob/living/simple_mob/vore/lamia/update_fullness()
 	var/new_fullness = 0
