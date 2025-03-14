@@ -58,10 +58,10 @@
 /datum/reagent/drugs/bliss/affect_blood(mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 15
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+	if(M.species.chem_strength_tox > 0)
+		drug_strength *= M.species.chem_strength_tox
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength *= 0.15 //~ 1/6
 
 	M.druggy = max(M.druggy, drug_strength)
 	if(prob_proc == TRUE && prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
@@ -102,10 +102,10 @@
 /datum/reagent/drugs/ambrosia_extract/affect_blood(mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 3
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength *= M.species.chem_strength_tox
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength *= 0.15 //~ 1/6
 
 	M.adjustToxLoss(-2)
 	M.druggy = max(M.druggy, drug_strength)
@@ -134,12 +134,12 @@
 /datum/reagent/drugs/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold *= 0.15 //~1/6
 
 	M.druggy = max(M.druggy, 30)
 
@@ -187,9 +187,9 @@
 /datum/reagent/drugs/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	var/drug_strength = 29 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+	var/drug_strength = 29
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength *= M.species.chem_strength_tox
 	else
 		M.adjustToxLoss(10 * removed) //Given incorporations of other toxins with similiar damage, this seems right.
 
