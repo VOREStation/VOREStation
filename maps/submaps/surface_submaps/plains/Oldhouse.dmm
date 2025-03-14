@@ -38,7 +38,7 @@
 "L" = (/obj/structure/table/woodentable,/obj/item/paper/crumpled,/turf/simulated/floor/wood,/area/submap/Oldhouse)
 "M" = (/obj/structure/frame,/turf/simulated/floor/wood,/area/submap/Oldhouse)
 "N" = (/mob/living/simple_mob/animal/giant_spider{attack_armor_pen = 100; attacktext = list("lightly bonked"); desc = "Furry and brown, this spider is so goddamn fat you're surprised it even moves around."; faction = "neutral"; health = 400; melee_damage_lower = 1; melee_damage_upper = 3; melee_miss_chance = 30; movement_cooldown = 8; name = "Mr. Tuddly"},/turf/simulated/floor/carpet/turcarpet,/area/submap/Oldhouse)
-"O" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/turcarpet,/area/submap/Oldhouse)
+"O" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/turcarpet,/area/submap/Oldhouse)
 "P" = (/obj/item/circuitboard/papershredder,/turf/simulated/floor/wood,/area/submap/Oldhouse)
 "Q" = (/obj/item/reagent_containers/food/snacks/cheesiehonkers,/obj/item/reagent_containers/food/snacks/cheesiehonkers,/turf/simulated/floor/carpet/turcarpet,/area/submap/Oldhouse)
 "R" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/wood,/area/submap/Oldhouse)

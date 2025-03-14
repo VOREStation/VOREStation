@@ -374,7 +374,7 @@
 "hj" = (/obj/item/pickaxe,/obj/item/pickaxe/plasmacutter,/obj/structure/closet/crate,/turf/simulated/floor/plating,/area/awaymission/spacebattle/cruiser)
 "hk" = (/obj/item/circular_saw,/turf/simulated/floor{icon_state = "white"},/area/awaymission/spacebattle/cruiser)
 "hl" = (/obj/structure/table/woodentable,/obj/item/paper_bin,/turf/simulated/floor/wood,/area/awaymission/spacebattle/cruiser)
-"hm" = (/obj/effect/landmark/corpse/engineer/rig{corpseidjob = "Gunner"; mobname = "Dan Hedricks"; name = "Dan Hedricks"},/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating/airless,/area/awaymission/spacebattle/cruiser)
+"hm" = (/obj/effect/landmark/corpse/engineer/rig{corpseidjob = "Gunner"; mobname = "Dan Hedricks"; name = "Dan Hedricks"},/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating/airless,/area/awaymission/spacebattle/cruiser)
 "hn" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/awaymission/spacebattle/syndicate7)
 "ho" = (/obj/structure/table/reinforced,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/awaymission/spacebattle/syndicate7)
 "hp" = (/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/awaymission/spacebattle/syndicate7)

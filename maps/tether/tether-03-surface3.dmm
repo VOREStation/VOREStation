@@ -387,7 +387,6 @@
 /area/tether/surfacebase/security/breakroom)
 "aaH" = (
 /obj/structure/catwalk,
-/obj/structure/catwalk,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aaI" = (

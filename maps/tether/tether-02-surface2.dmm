@@ -3505,7 +3505,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "aft" = (
@@ -31549,7 +31548,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/catwalk,
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
