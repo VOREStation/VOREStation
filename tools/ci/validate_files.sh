@@ -24,14 +24,14 @@ if command -v rg >/dev/null 2>&1; then
 	code_files="code/**/**.dm"
 	map_files="maps/**/**.dmm"
 	# shuttle_map_files="_maps/shuttles/**.dmm"
-	# code_x_515="code/**/!(__byond_version_compat).dm"
+	code_x_515="code/**/!(__byond_version_compat).dm"
 else
 	pcre2_support=0
 	grep=grep
 	code_files="-r --include=code/**/**.dm"
 	map_files="-r --include=maps/**/**.dmm"
 	# shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
-	# code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
+	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
 fi
 
 echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
@@ -55,17 +55,24 @@ part "step_[xy]"
 (! $grep 'step_[xy]' $map_files)
 retVal=$?
 if [ $retVal -ne 0 ]; then
-  echo -e "${RED}The variables 'step_x' and 'step_y' are present on a map, and they 'break' movement ingame.${NC}"
-  FAILED=1
+	echo -e "${RED}The variables 'step_x' and 'step_y' are present on a map, and they 'break' movement ingame.${NC}"
+	FAILED=1
 fi
+
+part "base /turf usage"
+if grep -P '\W\/turf\s*[,\){]' $map_files; then
+	echo
+	echo -e "${RED}ERROR: base /turf path use detected in maps, please replace with proper paths.${NC}"
+	FAILED=1
+fi;
 
 part "test map included"
 #Checking for any 'checked' maps that include 'test'
 (! $grep 'maps\\.*test.*' *.dme)
 retVal=$?
 if [ $retVal -ne 0 ]; then
-  echo -e "${RED}A map containing the word 'test' is included. This is not allowed to be committed.${NC}"
-  FAILED=1
+	echo -e "${RED}A map containing the word 'test' is included. This is not allowed to be committed.${NC}"
+	FAILED=1
 fi
 
 section "code issues"
@@ -76,8 +83,8 @@ echo -e "${RED}DISABLED"
 # awk -f tools/indentation.awk $code_files
 # retVal=$?
 # if [ $retVal -ne 0 ]; then
-#   echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
-#   FAILED=1
+#	 echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
+#	 FAILED=1
 # fi
 
 part "improperly pathed static lists"
@@ -92,8 +99,8 @@ part "changelog"
 md5sum -c - <<< "0c56937110d88f750a32d9075ddaab8b *html/changelogs/example.yml"
 retVal=$?
 if [ $retVal -ne 0 ]; then
-  echo -e "${RED}Do not modify the example.yml changelog file.${NC}"
-  FAILED=1
+	echo -e "${RED}Do not modify the example.yml changelog file.${NC}"
+	FAILED=1
 fi
 
 part "color macros"
@@ -101,28 +108,49 @@ part "color macros"
 (num=`$grep -n '\\\\(red|blue|green|black|b|i[^mnc])' $code_files | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
 retVal=$?
 if [ $retVal -ne 0 ]; then
-  echo -e "${RED}Do not use any byond color macros (such as \blue), they are deprecated.${NC}"
-  FAILED=1
+	echo -e "${RED}Do not use any byond color macros (such as \blue), they are deprecated.${NC}"
+	FAILED=1
 fi
+
+part "typescript react files"
+if ls -1 tgui/**/*.jsx 2>/dev/null; then
+	echo
+	echo -e "${RED}ERROR: JSX file(s) detected, these must be converted to typescript (TSX).${NC}"
+	FAILED=1
+fi;
 
 part "balloon_alert sanity"
 if $grep 'balloon_alert\(".*"\)' $code_files; then
-  echo
-  echo -e "${RED}ERROR: Found a balloon alert with improper arguments.${NC}"
-  FAILED=1
+	echo
+	echo -e "${RED}ERROR: Found a balloon alert with improper arguments.${NC}"
+	FAILED=1
 fi;
 
 if $grep 'balloon_alert(.*span_)' $code_files; then
-  echo
-  echo -e "${RED}ERROR: Balloon alerts should never contain spans.${NC}"
-  FAILED=1
+	echo
+	echo -e "${RED}ERROR: Balloon alerts should never contain spans.${NC}"
+	FAILED=1
 fi;
 
 part "balloon_alert idiomatic usage"
 if $grep 'balloon_alert\(.*?, ?"[A-Z]' $code_files; then
-  echo
-  echo -e "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
-  FAILED=1
+	echo
+	echo -e "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	FAILED=1
+fi;
+
+part ".proc ref syntax"
+if $grep '\.proc/' $code_x_515 ; then
+	echo
+	echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
+	FAILED=1
+fi;
+
+part "ambiguous bitwise or"
+if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: Likely operator order mistake with bitwise OR. Use parentheses to specify intention.${NC}"
+	FAILED=1
 fi;
 
 part "html tag matching"
@@ -130,8 +158,8 @@ part "html tag matching"
 python tools/TagMatcher/tag-matcher.py ../..
 retVal=$?
 if [ $retVal -ne 0 ]; then
-  echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
-  FAILED=1
+	echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
+	FAILED=1
 fi
 
 if [ "$pcre2_support" -eq 1 ]; then
@@ -204,11 +232,11 @@ else
 fi
 
 if [ $FAILED = 0 ]; then
-    echo
-    echo -e "${GREEN}No errors found using $grep!${NC}"
+	echo
+	echo -e "${GREEN}No errors found using $grep!${NC}"
 else
-    echo
-    echo -e "${RED}Errors found, please fix them and try again.${NC}"
+	echo
+	echo -e "${RED}Errors found, please fix them and try again.${NC}"
 fi
 
 # Quit with our status code
