@@ -22,6 +22,7 @@
 	var/has_dead_sprite_overlay = FALSE
 	var/has_extra_customization = FALSE
 	var/has_custom_equipment_sprites = FALSE
+	var/has_glow_sprites = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
 	var/icon_x = 32
@@ -87,6 +88,14 @@
 				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
 					ourborg.add_overlay("[sprite_icon_state]-disabler")
 					continue
+	//These are outliers that don't fit the normal sprite flags. These should not be expanded unless absolutely neccessary.
+	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
+		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+			if(istype(thing_to_check, /obj/item/pickaxe))
+				var/obj/item/pickaxe/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	//Size
@@ -120,6 +129,11 @@
 			return "[get_belly_overlay(ourborg, size, b_class)]-bellyup"
 		else
 			return "[get_belly_overlay(ourborg, size, b_class)]-rest"
+
+/datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
+	if(!ourborg.resting)
+		return "[sprite_icon_state]-glow"
+	return "[get_rest_sprite(ourborg.rest_style)]-glow"
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
