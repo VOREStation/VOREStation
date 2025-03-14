@@ -30,6 +30,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
+	special_hood_handling = TRUE
 	actions_types = list(/datum/action/item_action/toggle_helmet)
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
@@ -42,7 +43,7 @@
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
-	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
+	hood = null   // Deployable helmet, if any.
 	var/obj/item/tank/tank = null              // Deployable tank, if any.
 	var/obj/item/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
 
@@ -54,23 +55,23 @@
 	. = ..()
 	if(boots && ispath(boots))
 		boots = new boots(src)
-	if(helmet && ispath(helmet))
-		helmet = new helmet(src)
+	if(hood && ispath(hood))
+		hood = new hood(src)
 	if(tank && ispath(tank))
 		tank = new tank(src)
 
 /obj/item/clothing/suit/space/void/examine(mob/user)
 	. = ..()
 	. += to_chat(user, span_notice("Alt-click to relase Tank/Cooling unit if installed."))
-	for(var/obj/item/I in list(helmet,boots,tank,cooler))
+	for(var/obj/item/I in list(hood,boots,tank,cooler))
 		. += "It has \a [I] installed."
 	if(tank && in_range(src,user))
 		. += span_notice("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
-	if(istype(helmet))
-		helmet.refit_for_species(target_species)
+	if(istype(hood))
+		hood.refit_for_species(target_species)
 	if(istype(boots))
 		boots.refit_for_species(target_species)
 
@@ -88,12 +89,12 @@
 		if (H.equip_to_slot_if_possible(boots, slot_shoes))
 			boots.canremove = FALSE
 
-	if(helmet)
+	if(hood)
 		if(H.head)
 			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
-		else if (H.equip_to_slot_if_possible(helmet, slot_head))
+		else if (H.equip_to_slot_if_possible(hood, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = FALSE
+			hood.canremove = FALSE
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
@@ -114,13 +115,13 @@
 
 	var/mob/living/carbon/human/H
 
-	if(helmet)
-		helmet.canremove = TRUE
-		H = helmet.loc
+	if(hood)
+		hood.canremove = TRUE
+		H = hood.loc
 		if(istype(H))
-			if(helmet && H.head == helmet)
-				H.drop_from_inventory(helmet)
-				helmet.forceMove(src)
+			if(hood && H.head == hood)
+				H.drop_from_inventory(hood)
+				hood.forceMove(src)
 
 	if(boots)
 		boots.canremove = TRUE
@@ -139,20 +140,20 @@
 		cooler.forceMove(src)
 
 /obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
-	if(!istype(helm) || helmet)
+	if(!istype(helm) || hood)
 		return
 
 	helm.forceMove(src)
 	helm.set_light_flags(helm.light_flags | LIGHT_ATTACHED)
-	helmet = helm
+	hood = helm
 
 /obj/item/clothing/suit/space/void/proc/remove_helmet()
-	if(!helmet)
+	if(!hood)
 		return
 
-	helmet.forceMove(get_turf(src))
-	helmet.set_light_flags(helmet.light_flags & ~LIGHT_ATTACHED)
-	helmet = null
+	hood.forceMove(get_turf(src))
+	hood.set_light_flags(hood.light_flags & ~LIGHT_ATTACHED)
+	hood = null
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
 	if(..())
@@ -167,7 +168,7 @@
 	if(!isliving(loc))
 		return
 
-	if(!helmet)
+	if(!hood)
 		to_chat(usr, "There is no helmet installed.")
 		return
 
@@ -177,22 +178,22 @@
 	if(H.stat) return
 	if(H.wear_suit != src) return
 
-	if(helmet.light_on)
+	if(hood.light_on)
 		to_chat(H, span_notice("The helmet light shuts off as it retracts."))
-		helmet.update_flashlight(H)
+		hood.update_flashlight(H)
 
-	if(H.head == helmet)
+	if(H.head == hood)
 		to_chat(H, span_notice("You retract your suit helmet."))
-		helmet.canremove = TRUE
-		H.drop_from_inventory(helmet)
-		helmet.forceMove(src)
+		hood.canremove = TRUE
+		H.drop_from_inventory(hood)
+		hood.forceMove(src)
 		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 	else
 		if(H.head)
 			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
-		if(H.equip_to_slot_if_possible(helmet, slot_head))
-			helmet.canremove = FALSE
+		if(H.equip_to_slot_if_possible(hood, slot_head))
+			hood.canremove = FALSE
 			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 
@@ -240,8 +241,8 @@
 		return
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		if(helmet || boots || tank)
-			var/choice = tgui_input_list(user, "What component would you like to remove?", "Remove Component", list(helmet,boots,tank,cooler))
+		if(hood || boots || tank)
+			var/choice = tgui_input_list(user, "What component would you like to remove?", "Remove Component", list(hood,boots,tank,cooler))
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
@@ -254,8 +255,8 @@
 				cooler.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
-			else if(choice == helmet)
-				to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
+			else if(choice == hood)
+				to_chat(user, "You detach \the [hood] from \the [src]'s helmet mount.")
 				remove_helmet()
 				playsound(src, W.usesound, 50, 1)
 			else if(choice == boots)
@@ -267,7 +268,7 @@
 			to_chat(user, "\The [src] does not have anything installed.")
 		return
 	else if(istype(W,/obj/item/clothing/head/helmet/space))
-		if(helmet)
+		if(hood)
 			to_chat(user, "\The [src] already has a helmet installed.")
 		else
 			to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
