@@ -169,7 +169,7 @@ if grep -P '^\t+ [^ *]' $code_files; then
 fi;
 
 part "proc ref syntax"
-if $grep '\.proc/' $code_x_515 ; then
+if $grep '\.proc/' $code_files ; then
     echo
     echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
     FAILED=1
