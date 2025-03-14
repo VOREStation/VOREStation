@@ -106,7 +106,7 @@ fi
 section "code issues"
 
 part "indentation"
-check for weird indentation in any .dm files
+#check for weird indentation in any .dm files
 awk -f tools/indentation.awk $code_files
 retVal=$?
 if [ $retVal -ne 0 ]; then
