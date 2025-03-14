@@ -15,7 +15,6 @@
 /area/submap/oldhotel)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "bW" = (
@@ -617,7 +616,6 @@
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/oldhotel)
 "Wy" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)

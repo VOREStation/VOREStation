@@ -234,7 +234,6 @@
 "tL" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "tQ" = (
@@ -295,7 +294,6 @@
 /area/submap/methlab)
 "zu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "zG" = (
@@ -330,8 +328,6 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "BP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -434,8 +430,6 @@
 /obj/machinery/light,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -480,12 +474,10 @@
 "LM" = (
 /obj/random/trash,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "LX" = (
 /obj/item/stool,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -500,7 +492,6 @@
 /area/submap/methlab)
 "Ol" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
@@ -539,8 +530,6 @@
 "Sn" = (
 /obj/structure/barricade,
 /obj/effect/floor_decal/steeldecal/steel_decals_central5,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -615,7 +604,6 @@
 /area/submap/methlab)
 "Vf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
@@ -626,7 +614,6 @@
 /turf/template_noop,
 /area/submap/methlab)
 "Vw" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/steel_dirty,

@@ -786,7 +786,6 @@
 "cE" = (
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cF" = (
@@ -884,23 +883,18 @@
 /area/submap/Rockybase)
 "cV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cW" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/submap/Rockybase)
 "cX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/item/material/shard,
 /turf/simulated/floor,
 /area/submap/Rockybase)
 "cY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/submap/Rockybase)
@@ -968,8 +962,6 @@
 /area/submap/Rockybase)
 "di" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor,
 /area/submap/Rockybase)
@@ -1014,7 +1006,6 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "dp" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_mob/mechanical/combat_drone/lesser,
 /turf/simulated/floor/tiled,
