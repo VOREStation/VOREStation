@@ -18,12 +18,10 @@
 	name = "syndicate guard dog"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "ay" = (
 /obj/structure/dogbed,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/tajaran,
 /obj/random/maintenance/medical,
@@ -37,7 +35,6 @@
 /obj/structure/dogbed,
 /obj/effect/decal/remains/tajaran,
 /obj/effect/decal/cleanable/filth,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bone,
 /obj/random/maintenance/security,
@@ -117,7 +114,6 @@
 /area/submap/DogBase)
 "fI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
@@ -153,7 +149,6 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/filth,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/item/bone/ribs,
 /obj/random/maintenance/research,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -175,13 +170,11 @@
 /obj/structure/dogbed,
 /obj/effect/decal/remains/unathi,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "kl" = (
 /obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -213,7 +206,6 @@
 /turf/simulated/floor/plating,
 /area/submap/DogBase)
 "lk" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
@@ -254,7 +246,6 @@
 /area/submap/DogBase)
 "oW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "pR" = (
@@ -285,7 +276,6 @@
 /area/submap/DogBase)
 "qI" = (
 /obj/structure/dogbed,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bone,
 /obj/random/maintenance/security,
@@ -417,7 +407,6 @@
 "xp" = (
 /obj/structure/dogbed,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -425,7 +414,6 @@
 "yl" = (
 /obj/structure/dogbed,
 /obj/effect/decal/remains/deer,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -493,7 +481,6 @@
 "CQ" = (
 /obj/structure/dogbed,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/item/bone,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -552,7 +539,6 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/filth,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
@@ -592,7 +578,6 @@
 /area/submap/DogBase)
 "Jm" = (
 /obj/structure/dogbed,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/research,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -662,7 +647,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "Ol" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bone/leg,
 /mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
@@ -739,7 +723,6 @@
 	name = "syndicate guard dog"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Rz" = (
@@ -776,7 +759,6 @@
 "UY" = (
 /obj/structure/dogbed,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
@@ -787,7 +769,6 @@
 /area/submap/DogBase)
 "Vy" = (
 /obj/effect/decal/remains/unathi,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
@@ -863,7 +844,6 @@
 "YX" = (
 /obj/structure/dogbed,
 /obj/effect/decal/remains/deer,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
