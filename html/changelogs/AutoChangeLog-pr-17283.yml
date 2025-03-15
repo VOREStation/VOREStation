@@ -1,0 +1,4 @@
+author: "TeleTubby2"
+delete-after: True
+changes:
+  - rscadd: "You can now adjust the transparency of your wings in the character editor and related."
