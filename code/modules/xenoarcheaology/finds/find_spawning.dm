@@ -445,8 +445,13 @@
 			possible_object_paths -= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
 			//BLACKLIST ABOVE
 
-			var/new_organ = pick(possible_object_paths)
+			var/obj/item/organ/internal/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_organ = new_item
+			new_organ.can_reject = FALSE
+
 
 		if(ARCHAEO_REMAINS_ROBOT)
 			//robot remains
@@ -476,10 +481,17 @@
 			/obj/item/organ/internal/xenos/hivenode,
 			/obj/item/organ/internal/xenos/resinspinner)
 
-			var/new_vessel = pick(possible_plasma_vessel)
-			var/new_organ = pick(possible_organ)
+			var/obj/item/organ/internal/xenos/plasmavessel/new_vessel = pick(possible_plasma_vessel)
+			var/obj/item/organ/internal/xenos/new_organ = pick(possible_organ)
 			new_item = new new_vessel(src.loc)
 			secondary_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_vessel = new_item
+			new_organ = secondary_item
+			new_vessel.can_reject = FALSE
+			new_organ.can_reject = FALSE
+
 		if(ARCHAEO_GASMASK)
 			//gas mask
 			if(prob(50))
