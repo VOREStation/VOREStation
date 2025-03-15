@@ -107,7 +107,7 @@
 /obj/belly/proc/ReagentSwitch()
 	var/list/our_reagents = list()
 	for(var/entry in reagent_choices)
-		our_reagents.add(lowertext(entry))
+		our_reagents.Add(lowertext(entry))
 	switch(reagent_chosen)
 		if(REAGENT_WATER)
 			generated_reagents = list(REAGENT_ID_WATER = 1)
