@@ -86,6 +86,8 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+
 
 /datum/robot_sprite/dogborg/tall/command/mmeka
 	name = "NIKO"
@@ -94,6 +96,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
 
 /datum/robot_sprite/dogborg/tall/command/fmeka
 	name = "NIKA"
@@ -102,6 +105,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
 
 /datum/robot_sprite/dogborg/command/smolraptorcommand
 	name = "Small Raptor"
