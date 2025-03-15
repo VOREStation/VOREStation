@@ -315,8 +315,10 @@
 // Solars map areas
 /area/tether/outpost/solars_outside
 	name = "\improper Solar Farm"
+/area/tether/outpost/solars_outside/lower
+	name = "\improper Solar Farm Lower"
 /area/tether/outpost/solars_shed
-	name = "\improper Solar Farm Shed"
+	name = "\improper Solar Farm Lower Shed"
 
 // Exploration area - Plains
 /area/tether/outpost/exploration_plains
