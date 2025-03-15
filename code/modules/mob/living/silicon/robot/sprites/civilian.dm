@@ -335,6 +335,7 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v3/service.dmi'
 	sprite_icon_state = "dullahanservice"
 	sprite_decals = list("decals")
+	pixel_y = 64
 	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/service/dullahan/servicealt3
@@ -342,6 +343,7 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v3/barista.dmi'
 	sprite_icon_state = "dullahanbarista"
 	sprite_decals = list("decals")
+	pixel_y = 64
 	pixel_x = -16
 
 // Clerical
@@ -451,7 +453,7 @@
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = 0
-	icon_x = 64
+	icon_x = 32
 
 /datum/robot_sprite/dogborg/clown/stoat
 	name = "ST-04t"
