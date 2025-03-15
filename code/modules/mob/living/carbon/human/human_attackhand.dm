@@ -77,7 +77,7 @@
 
 	if(istype(M,/mob/living/carbon) && has_hands)
 		for(var/datum/disease/D in M.GetViruses())
-			if(D.spread_flags & CONTACT_HANDS)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				ContractDisease(D)
 
 	switch(M.a_intent)	//VARS: H = The one doing the attack. || M = The mob we are targeting || TT = gender of what we are targeting.

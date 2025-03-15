@@ -2,13 +2,13 @@
 	name = "GBS"
 	max_stages = 5
 	spread_text = "On contact"
-	spread_flags = CONTACT_GENERAL
+	spread_flags = DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
 	cure_text = REAGENT_ADRANOL + " & " + REAGENT_SULFUR
 	cures = list(REAGENT_ID_ADRANOL, REAGENT_ID_SULFUR)
 	agent = "Gravitokinetic Bipotential SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "if left untreated death will occur."
-	severity = BIOHAZARD // Mimics real GBS
+	danger = DISEASE_BIOHAZARD // Mimics real GBS
 
 /datum/disease/fake_gbs/stage_act()
 	if(!..())

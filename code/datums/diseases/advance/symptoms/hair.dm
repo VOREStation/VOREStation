@@ -6,7 +6,7 @@ Alopecia
 	Noticable.
 	Decreases resistance slightly.
 	Reduces stage speed slightly.
-	Transmittable.
+	transmission.
 	Intense Level.
 
 BONUS
@@ -17,16 +17,16 @@ BONUS
 
 /datum/symptom/shedding
 	name = "Alopecia"
+	desc = "The virus attacks hair follicles, making hair thin and brittle."
 	stealth = -1
 	resistance = -1
 	stage_speed = -1
-	transmittable = 2
+	transmission = 2
 	level = 4
 	severity = 1
 
 /datum/symptom/shedding/Activate(datum/disease/advance/A)
-	..()
-	if(!prob(SYMPTOM_ACTIVATION_PROB))
+	if(!..())
 		return
 	if(ishuman(A.affected_mob))
 		return
