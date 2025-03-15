@@ -278,3 +278,29 @@
   - bugfix: Fixed a number of duplicate structures and cleanables on maps for the
       map linter PR.
   - bugfix: Fixed mantraps voring people who step on them when they're dead.
+2025-03-15:
+  Cameron-The-Raven:
+  - bugfix: All suits no longer have a 'toggle hood' button even if they have no hood
+      to toggle.
+  Diana:
+  - rscadd: Adds gooborgs! Sprites by Toriate
+  - rscadd: You can now TOGGLE STOMACH GLOWING on borgs! If toggled on, your tummy
+      will GLOW IN THE DARK!
+  - rscadd: Catborgs now have passive glowing parts if they are toggled on
+  - code_imp: Robotic eswords and batons now count as robotic weapons and trigger
+      appropriate sprites.
+  - bugfix: Borg batons will no longer start looking like it has no cell.
+  - qol: Moves 'toggle extras' to a more conspicuous spot in the Abilities tab. (Dullahans
+      and Gryphonborg have alternative sprites if used)
+  - maptweak: touches every map and smashes it with a plasteel hammer to make it comply
+  Kashargul:
+  - code_imp: some more grep checks
+  Will:
+  - code_imp: ATC is now a subsystem
+  - rscadd: Adds a positive trait that allows you to have your genetics unable to
+      be scrambled.
+  - rscadd: 'Adds three new negative traits: One Life, Unsleeveable, and Unreviveable.'
+  - rscadd: If you have NO_DNA or NO_RESLEEVE(your genetics is trashed), slimes find
+      you unappealing!
+  - code_imp: NO_DNA and NO_RESLEEVE are now separated.
+  - bugfix: Traits will no longer wipe innate species traits
