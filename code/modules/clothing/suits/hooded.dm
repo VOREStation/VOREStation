@@ -1,76 +1,7 @@
 // Hooded suits
 
-//Hoods for winter coats and chaplain hoodie etc
-
-/obj/item/clothing/suit/
-	name = DEVELOPER_WARNING_NAME
-	var/obj/item/clothing/head/hood
-	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
-	var/hood_up = FALSE
-	var/toggleicon
-	actions_types = list(/datum/action/item_action/toggle_hood)
-
-/obj/item/clothing/suit/storage/hooded/New()
-	toggleicon = "[initial(icon_state)]"
-	MakeHood()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/Destroy()
-	QDEL_NULL(hood)
-	return ..()
-
-/obj/item/clothing/suit/storage/hooded/proc/MakeHood()
-	if(!hood && hoodtype)
-		var/obj/item/clothing/head/hood/H = new hoodtype(src)
-		hood = H
-
-/obj/item/clothing/suit/storage/hooded/ui_action_click(mob/user, actiontype)
-	ToggleHood()
-
-/obj/item/clothing/suit/storage/hooded/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
-	hood_up = FALSE
-	update_icon()
-	if(hood)
-		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
-		if(ishuman(hood.loc))
-			var/mob/living/carbon/H = hood.loc
-			H.unEquip(hood, 1)
-			H.update_inv_wear_suit()
-		hood.forceMove(src)
-
-/obj/item/clothing/suit/storage/hooded/dropped(mob/user)
-	RemoveHood()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/proc/ToggleHood()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = src.loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				if(color != hood.color)
-					hood.color = color
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = TRUE
-				hood.canremove = FALSE
-				update_icon()
-				H.update_inv_wear_suit()
-	else
-		RemoveHood()
-
-/obj/item/clothing/suit/storage/hooded/update_icon()
-	. = ..()
-	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
+/obj/item/clothing/suit/storage/hooded
+	has_hood_sprite = TRUE //These all have suit sprites that HAVE hood sprites.
 
 /obj/item/clothing/suit/storage/hooded/costume
 	name = DEVELOPER_WARNING_NAME

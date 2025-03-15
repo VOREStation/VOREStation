@@ -782,6 +782,16 @@
 	var/blood_overlay_type = "suit"
 	blood_sprite_state = "suitblood" //Defaults to the suit's blood overlay, so that some blood renders instead of no blood.
 
+	//Hood stuff. See hooded.dm for more info. This should be expanded so all suits can have hoods if desired.
+	//Currently only used by /obj/item/clothing/suit/storage/hooded.
+	var/obj/item/clothing/head/hood
+	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
+	var/hood_up = FALSE
+	var/has_hood_sprite = FALSE
+	var/special_hood_handling = FALSE
+	var/toggleicon
+	actions_types = list()
+
 	var/taurized = FALSE
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
@@ -798,6 +808,78 @@
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
 
 	update_icon_define_digi = "icons/inventory/suit/mob_digi.dmi"
+
+/obj/item/clothing/suit/Initialize(mapload)
+	MakeHood()
+	toggleicon = "[initial(icon_state)]"
+	. = ..()
+
+/obj/item/clothing/suit/Destroy()
+	QDEL_NULL(hood)
+	return ..()
+
+/obj/item/clothing/suit/update_icon()
+	. = ..()
+	if(has_hood_sprite) //If we have a special hood_sprite, great, let's use it! Only used by /obj/item/clothing/suit/storage/hooded atm.
+		icon_state = "[toggleicon][hood_up ? "_t" : ""]"
+
+/obj/item/clothing/suit/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood()
+	..()
+
+/obj/item/clothing/suit/dropped(mob/user)
+	RemoveHood()
+	..()
+
+/obj/item/clothing/suit/ui_action_click(mob/user, actiontype)
+	if(..())
+		return TRUE
+	ToggleHood()
+
+/// HOOD STUFF BELOW HERE.
+/obj/item/clothing/suit/proc/MakeHood()
+	if(!hoodtype)
+		return
+	var/obj/item/clothing/head/hood/H = new hoodtype(src)
+	hood = H
+	if(!actions_types.len) //If we don't already have a special action type, let's add it.
+		actions_types |= /datum/action/item_action/toggle_hood
+
+/obj/item/clothing/suit/proc/RemoveHood()
+	hood_up = FALSE
+	update_icon()
+	if(hood)
+		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
+		if(ishuman(hood.loc))
+			var/mob/living/carbon/H = hood.loc
+			H.unEquip(hood, 1)
+			H.update_inv_wear_suit()
+		hood.forceMove(src)
+
+/obj/item/clothing/suit/proc/ToggleHood()
+	if(!hood || special_hood_handling) //Some suits have special handling (See: void.dm with it's ui_action_click doing toggle_helmet())
+		return //In that case, we return and allow it to do it's special handling!
+	if(hood_up)
+		RemoveHood()
+		return
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.wear_suit != src)
+			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+			return
+		if(H.head)
+			to_chat(H, span_warning("You're already wearing something on your head!"))
+			return
+		else
+			if(color != hood.color)
+				hood.color = color
+			H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+			hood_up = TRUE
+			hood.canremove = FALSE
+			update_icon()
+			H.update_inv_wear_suit()
+///Hood stuff end.
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
