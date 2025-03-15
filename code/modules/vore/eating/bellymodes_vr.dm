@@ -14,6 +14,8 @@
 	update_belly_surrounding() //CHOMPAdd - Updates belly_surrounding list for indirect vore usage
 	// VERY early exit
 	if(!contents.len)
+		if(owner.previewing_belly == src)
+			HandleBellyReagentEffects() //CHOMPAdd
 		return
 
 	//CHOMPEdit Start: Autotransfer count moved here.
