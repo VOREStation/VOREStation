@@ -282,6 +282,8 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/tall/k4t_alt1cargo
 	name = "K4Talt - Cargo"
@@ -289,6 +291,8 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/mining/smolraptorminer
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'
