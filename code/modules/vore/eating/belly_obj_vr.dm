@@ -1039,16 +1039,24 @@
 			Prey.bloodstr.del_reagent(REAGENT_ID_NUMBENZYME)
 			Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
 			Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
-			Prey.touching.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
-			Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
-			Prey.touching.del_reagent(REAGENT_ID_PACID) //Don't need this stuff in our bloodstream.
-			Prey.touching.del_reagent(REAGENT_ID_SACID) //Don't need this stuff in our bloodstream.
-			Prey.touching.del_reagent(REAGENT_ID_CLEANER) //Don't need this stuff in our bloodstream.
+			//Don't need this stuff in our bloodstream.
+			Prey.touching.del_reagent(REAGENT_ID_STOMACID)
+			Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID)
+			Prey.touching.del_reagent(REAGENT_ID_PACID)
+			Prey.touching.del_reagent(REAGENT_ID_SACID)
+			Prey.touching.del_reagent(REAGENT_ID_CLEANER)
+			Prey.touching.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
+			Prey.touching.del_reagent(REAGENT_ID_TRICORDRAZINE)
 			Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
 		else if(M.reagents)
-			M.reagents.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
-			M.reagents.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
-			M.reagents.del_reagent(REAGENT_ID_CLEANER) //Don't need this stuff in our bloodstream.
+			//Don't need this stuff in our bloodstream.
+			M.reagents.del_reagent(REAGENT_ID_STOMACID)
+			M.reagents.del_reagent(REAGENT_ID_DIETSTOMACID)
+			M.reagents.del_reagent(REAGENT_ID_PACID)
+			M.reagents.del_reagent(REAGENT_ID_SACID)
+			M.reagents.del_reagent(REAGENT_ID_CLEANER)
+			M.reagents.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
+			M.reagents.del_reagent(REAGENT_ID_TRICORDRAZINE)
 			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE)
 
 	owner.handle_belly_update()
