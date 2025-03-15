@@ -20,6 +20,8 @@
 
 	// The last time the effect was toggled.
 	var/last_activation = 0
+	// If we can start activated or not!
+	var/can_start_activated = TRUE
 
 /datum/artifact_effect/Destroy()
 	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
@@ -61,29 +63,31 @@
 		if(3)
 			//large range, long charge time
 			chargelevelmax = rand(20, 120)
-			effectrange = rand(20, 100) //VOREStation Edit - Map size.
+			effectrange = rand(20, 100)
+	if(can_start_activated && prob(50))
+		ToggleActivate(TRUE, TRUE)
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
+/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE, var/spawn_toggle = FALSE)
 	//so that other stuff happens first
 	set waitfor = FALSE
 
 	var/atom/target = get_master_holder()
 
+
 	if(world.time - last_activation > 1 SECOND)
 		last_activation = world.time
 		if(activated)
-			activated = 0
+			activated = FALSE
 		else
-			activated = 1
+			activated = TRUE
 		if(reveal_toggle && target)
-			if(!isliving(target))
-				target.update_icon()
+			if(!isliving(target) && !(spawn_toggle && istype(target, /obj/machinery/artifact))) //This is to keep it from updating icons if our owner is a large artifact
+				target.update_icon() //As it will runtime since it hasn't set it's artifact_master yet. The update icon is handled in /obj/machinery/artifact/Initialize()
 			var/display_msg
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
 			else
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
-
 			if(active_effect)
 				if(activated)
 					target.underlays.Add(active_effect)
@@ -192,6 +196,7 @@
 			. += " Activation index involves " + span_bold("precise temperature conditions.") + " Heating/Cooling the atmosphere (>[ARTIFACT_HEAT_TRIGGER]K or <[ARTIFACT_COLD_TRIGGER]K) or using a welder are potential triggers."
 		else
 			. += " Unable to determine any data about activation trigger."
+	. += "<br>"
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
 /proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
