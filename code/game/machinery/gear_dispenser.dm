@@ -85,7 +85,7 @@ var/list/dispenser_presets = list()
 	// If we're supposed to make a helmet
 	if(voidhelmet_type)
 		// The coder may not have realized this type spawns its own helmet
-		if(voidsuit.helmet)
+		if(voidsuit.hood)
 			error("[src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
 		else
 			voidhelmet = new voidhelmet_type()

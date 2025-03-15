@@ -27,13 +27,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
-"ai" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark6";
-	name = "Unknown Shuttle"
-	},
-/area/submap/virgo2/Blackshuttledown)
 "aj" = (
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
@@ -111,13 +104,6 @@
 "at" = (
 /obj/machinery/organ_printer/flesh,
 /turf/simulated/floor/tiled/steel,
-/area/submap/virgo2/Blackshuttledown)
-"au" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark5";
-	name = "Unknown Shuttle"
-	},
 /area/submap/virgo2/Blackshuttledown)
 "av" = (
 /obj/structure/table/steel,
@@ -716,7 +702,7 @@ af
 af
 af
 af
-ai
+Aw
 aj
 aA
 aF
@@ -725,7 +711,7 @@ aF
 aF
 aQ
 aj
-au
+hd
 af
 af
 af

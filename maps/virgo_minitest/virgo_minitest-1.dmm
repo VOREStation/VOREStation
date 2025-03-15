@@ -3157,12 +3157,10 @@
 /area/shuttle/webdemo)
 "hA" = (
 /obj/structure/shuttle/engine/heater,
-/turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/webdemo)
 "hB" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/webdemo)
 "hC" = (
@@ -3173,7 +3171,6 @@
 /obj/machinery/ion_engine{
 	dir = 1
 	},
-/turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/overmapdemo)
 "hJ" = (
@@ -3432,11 +3429,6 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
-"kT" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "kU" = (
 /obj/structure/shuttle,
 /turf/simulated/shuttle/wall/voidcraft/green,
@@ -5743,9 +5735,6 @@
 	id = "SupermatterPort";
 	layer = 3.3;
 	name = "Reactor Blast Door"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
 	},
 /turf/simulated/floor,
 /area/engineering/workshop)
@@ -15372,7 +15361,7 @@ vh
 mP
 od
 wW
-kT
+wW
 Pp
 II
 GB
@@ -16698,7 +16687,7 @@ JB
 lx
 lx
 tz
-kT
+wW
 oG
 II
 GB

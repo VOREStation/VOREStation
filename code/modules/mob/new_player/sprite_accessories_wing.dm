@@ -569,11 +569,11 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/mothwings_luna_colorable
-    name = "Moth Wings (Luna, Colorable)"
-    desc = ""
-    icon_state = "mothwings_luna_colorable"
-    do_colouration = 1
-    color_blend_mode = ICON_MULTIPLY
+	name = "Moth Wings (Luna, Colorable)"
+	desc = ""
+	icon_state = "mothwings_luna_colorable"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/sect_drone_alt
 	name = "Sect drone wings Alt. (To use with bodytype marking)"

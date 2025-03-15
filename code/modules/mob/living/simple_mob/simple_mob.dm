@@ -318,7 +318,7 @@
 	return verb
 
 /mob/living/simple_mob/is_sentient()
-	return mob_class & MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME // Update this if needed.
+	return mob_class & (MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME) // Update this if needed.
 
 /mob/living/simple_mob/get_nametag_desc(mob/user)
 	return span_italics("[tt_desc]")

@@ -56,78 +56,78 @@
 	return max(((started_time + vote_time - world.time)/10), 0)
 
 /datum/vote/proc/calculate_result()
-    if(!length(voted))
-        to_chat(world, span_interface("No votes were cast. Do you all hate democracy?!"))
-        return null
+	if(!length(voted))
+		to_chat(world, span_interface("No votes were cast. Do you all hate democracy?!"))
+		return null
 
-    return calculate_vote_result(voted, choices, vote_result_type)
+	return calculate_vote_result(voted, choices, vote_result_type)
 
 
 /datum/vote/proc/calculate_vote_result(var/list/voted, var/list/choices, var/vote_result_type)
-    var/list/results = list()
+	var/list/results = list()
 
-    for(var/ck in voted)
-        if(voted[ck] in results)
-            results[voted[ck]]++
-        else
-            results[voted[ck]] = 1
+	for(var/ck in voted)
+		if(voted[ck] in results)
+			results[voted[ck]]++
+		else
+			results[voted[ck]] = 1
 
-    var/maxvotes = 0
-    for(var/res in results)
-        maxvotes = max(results[res], maxvotes)
+	var/maxvotes = 0
+	for(var/res in results)
+		maxvotes = max(results[res], maxvotes)
 
-    var/list/winning_options = list()
+	var/list/winning_options = list()
 
-    for(var/res in results)
-        if(results[res] == maxvotes)
-            winning_options |= res
+	for(var/res in results)
+		if(results[res] == maxvotes)
+			winning_options |= res
 
-    for(var/res in results)
-        to_chat(world, span_interface("<code>[res]</code> - [results[res]] vote\s"))
+	for(var/res in results)
+		to_chat(world, span_interface("<code>[res]</code> - [results[res]] vote\s"))
 
-    switch(vote_result_type)
-        if(VOTE_RESULT_TYPE_MAJORITY)
-            if(length(winning_options) == 1)
-                var/res = winning_options[1]
-                if(res in choices)
-                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote!")))
-                    return res
-                else
-                    to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
-                    stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
-                    return null
+	switch(vote_result_type)
+		if(VOTE_RESULT_TYPE_MAJORITY)
+			if(length(winning_options) == 1)
+				var/res = winning_options[1]
+				if(res in choices)
+					to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote!")))
+					return res
+				else
+					to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
+					stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
+					return null
 
-            to_chat(world, span_interface(span_bold("No clear winner. The vote did not pass.")))
-            return null
+			to_chat(world, span_interface(span_bold("No clear winner. The vote did not pass.")))
+			return null
 
-        if(VOTE_RESULT_TYPE_SKEWED)
-            var/required_votes = ceil(length(voted) * 0.7)  // 70% of total votes
-            if(maxvotes >= required_votes && length(winning_options) == 1)
-                var/res = winning_options[1]
-                if(res in choices)
-                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote with a 70% majority!")))
-                    return res
-                else
-                    to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
-                    stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
-                    return null
+		if(VOTE_RESULT_TYPE_SKEWED)
+			var/required_votes = ceil(length(voted) * 0.7)  // 70% of total votes
+			if(maxvotes >= required_votes && length(winning_options) == 1)
+				var/res = winning_options[1]
+				if(res in choices)
+					to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote with a 70% majority!")))
+					return res
+				else
+					to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
+					stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
+					return null
 
-            to_chat(world, span_interface(span_bold("No option received 70% of the votes. The vote did not pass.")))
-            return null
+			to_chat(world, span_interface(span_bold("No option received 70% of the votes. The vote did not pass.")))
+			return null
 
-    return null
+	return null
 
 /datum/vote/proc/announce(start_text, var/time = vote_time)
-    to_chat(world, span_lightpurple("Type <b>vote</b> or click <a href='byond://?src=\ref[src];[HrefToken()];vote=open'>here</a> to place your vote. \
-        You have [time/10] seconds to vote."))
-    world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+	to_chat(world, span_lightpurple("Type <b>vote</b> or click <a href='byond://?src=\ref[src];[HrefToken()];vote=open'>here</a> to place your vote. \
+		You have [time/10] seconds to vote."))
+	world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 /datum/vote/Topic(href, list/href_list)
-    if(href_list["vote"] == "open")
-        if(src)
-            tgui_interact(usr)
-        else
-            to_chat(usr, "There is no active vote to participate in.")
+	if(href_list["vote"] == "open")
+		if(src)
+			tgui_interact(usr)
+		else
+			to_chat(usr, "There is no active vote to participate in.")
 
 /datum/vote/proc/tick()
 	if(remaining() == 0)
