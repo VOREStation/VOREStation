@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Xenoarch organs no longer have the possibility of being rejected."
