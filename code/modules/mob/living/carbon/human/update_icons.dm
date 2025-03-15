@@ -1116,7 +1116,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER
-		wing_image.alpha = chest?.transparent ? 180 : a_wing //should this just be gotten rid of wholesale?
 		overlays_standing[WING_LAYER] = wing_image
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)
