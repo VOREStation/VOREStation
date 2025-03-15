@@ -211,7 +211,7 @@ SUBSYSTEM_DEF(explosions)
 	// BOINK! Time to wake up sleeping beauty!
 	if(!can_fire)
 		wake()
-		fire(FALSE) // waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
+		next_fire = 0 // waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
 
 // Collect prepared explosions for BLAST PROCESSING
 /datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr)
