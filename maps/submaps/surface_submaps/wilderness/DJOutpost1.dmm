@@ -9,7 +9,7 @@
 /obj/structure/grille/broken,
 /obj/item/material/shard,
 /obj/item/material/shard{
-	 icon_state = "shardmedium"
+	icon_state = "shardmedium"
 	},
 /obj/item/stack/rods,
 /turf/simulated/floor,
@@ -57,7 +57,7 @@
 "l" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/radio/intercom{
-	 icon_state = "intercom";
+	icon_state = "intercom";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -105,7 +105,7 @@
 /area/submap/DJOutpost1)
 "s" = (
 /obj/structure/bed/chair/office/dark{
-	 icon_state = "officechair_dark";
+	icon_state = "officechair_dark";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -144,7 +144,7 @@
 /area/submap/DJOutpost1)
 "w" = (
 /obj/structure/bed/chair/wood{
-	 icon_state = "wooden_chair";
+	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -231,7 +231,7 @@
 /area/submap/DJOutpost1)
 "H" = (
 /obj/structure/bed/chair/wood{
-	 icon_state = "wooden_chair";
+	icon_state = "wooden_chair";
 	dir = 1
 	},
 /turf/simulated/floor/wood,

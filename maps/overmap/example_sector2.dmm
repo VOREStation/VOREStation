@@ -4,19 +4,19 @@
 /area)
 "ab" = (
 /turf/simulated/shuttle/wall{
-	 icon_state = "swall_s";
+	icon_state = "swall_s";
 	dir = 2
 	},
 /area/shuttle/overmap_examples/outpost)
 "ac" = (
 /obj/structure/shuttle/window{
-	 icon_state = "3"
+	icon_state = "3"
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/overmap_examples/outpost)
 "ae" = (
 /turf/simulated/shuttle/wall{
-	 icon_state = "swall_straight";
+	icon_state = "swall_straight";
 	dir = 1
 	},
 /area/shuttle/overmap_examples/outpost)
@@ -43,7 +43,7 @@
 /area/shuttle/escape_pod2/centcom)
 "aj" = (
 /turf/simulated/shuttle/wall{
-	 icon_state = "swall_s";
+	icon_state = "swall_s";
 	dir = 1
 	},
 /area/shuttle/overmap_examples/outpost)
@@ -53,7 +53,7 @@
 /area/shuttle/overmap_examples/outpost)
 "al" = (
 /turf/simulated/shuttle/wall{
-	 icon_state = "swall_s";
+	icon_state = "swall_s";
 	dir = 8
 	},
 /area/shuttle/overmap_examples/outpost)

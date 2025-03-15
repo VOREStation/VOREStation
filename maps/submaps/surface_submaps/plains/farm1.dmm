@@ -11,7 +11,7 @@
 /area/submap/farm1)
 "d" = (
 /obj/structure/railing{
-	 icon_state = "railing0";
+	icon_state = "railing0";
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/dirt,
@@ -21,7 +21,7 @@
 /area/submap/farm1)
 "f" = (
 /obj/structure/railing{
-	 icon_state = "railing0";
+	icon_state = "railing0";
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/dirt,
@@ -135,7 +135,7 @@
 /area/submap/farm1)
 "B" = (
 /obj/structure/bed/chair/wood{
-	 icon_state = "wooden_chair";
+	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -207,7 +207,7 @@
 /area/submap/farm1)
 "R" = (
 /obj/structure/railing{
-	 icon_state = "railing0";
+	icon_state = "railing0";
 	dir = 1
 	},
 /turf/simulated/floor/outdoors/dirt,

@@ -104,7 +104,7 @@
 /area/submap/cave/crashed_ufo)
 "ay" = (
 /obj/structure/prop/alien/computer{
-	 icon_state = "console-c";
+	icon_state = "console-c";
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -138,14 +138,14 @@
 /area/submap/cave/crashed_ufo)
 "aF" = (
 /obj/structure/prop/alien/computer/camera/flipped{
-	 icon_state = "camera_flipped";
+	icon_state = "camera_flipped";
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo)
 "aG" = (
 /obj/structure/prop/alien/computer/camera{
-	 icon_state = "camera";
+	icon_state = "camera";
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -188,7 +188,7 @@
 /area/submap/cave/crashed_ufo)
 "aO" = (
 /obj/structure/prop/alien/computer{
-	 icon_state = "console-c";
+	icon_state = "console-c";
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -286,7 +286,7 @@
 /area/submap/cave/crashed_ufo)
 "bj" = (
 /obj/machinery/porta_turret/alien/destroyed{
-	 icon_state = "destroyed_target_prism";
+	icon_state = "destroyed_target_prism";
 	dir = 6
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -297,7 +297,7 @@
 /area/submap/cave/crashed_ufo)
 "bl" = (
 /obj/machinery/porta_turret/alien/destroyed{
-	 icon_state = "destroyed_target_prism";
+	icon_state = "destroyed_target_prism";
 	dir = 10
 	},
 /turf/simulated/shuttle/floor/alienplating,

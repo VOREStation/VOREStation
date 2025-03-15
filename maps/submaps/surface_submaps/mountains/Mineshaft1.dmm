@@ -38,7 +38,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/machinery/light{
-	 icon_state = "tube1";
+	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -96,7 +96,7 @@
 /area/submap/cave/AMine1)
 "t" = (
 /obj/machinery/light{
-	 icon_state = "tube1";
+	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -180,7 +180,7 @@
 /area/submap/cave/AMine1)
 "L" = (
 /obj/machinery/light{
-	 icon_state = "tube1";
+	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -216,7 +216,7 @@
 /area/submap/cave/AMine1)
 "R" = (
 /obj/machinery/light{
-	 icon_state = "tube1";
+	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor,

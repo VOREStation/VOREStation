@@ -42,7 +42,7 @@
 "ak" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "burned1"
+	icon_state = "burned1"
 	},
 /area/submap/BoomBase)
 "al" = (
@@ -70,14 +70,14 @@
 "aq" = (
 /obj/machinery/portable_atmospherics/canister/empty/phoron,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "steel_dirty"
+	icon_state = "steel_dirty"
 	},
 /area/submap/BoomBase)
 "ar" = (
 /obj/machinery/portable_atmospherics/canister/empty/phoron,
 /obj/item/material/shard,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "steel_dirty"
+	icon_state = "steel_dirty"
 	},
 /area/submap/BoomBase)
 "as" = (
@@ -102,7 +102,7 @@
 /area/submap/BoomBase)
 "ax" = (
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "burned1"
+	icon_state = "burned1"
 	},
 /area/submap/BoomBase)
 "ay" = (
@@ -111,12 +111,12 @@
 /area/submap/BoomBase)
 "az" = (
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "steel_dirty"
+	icon_state = "steel_dirty"
 	},
 /area/submap/BoomBase)
 "aA" = (
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "broken0"
+	icon_state = "broken0"
 	},
 /area/submap/BoomBase)
 "aB" = (
@@ -138,13 +138,13 @@
 "aF" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "broken1"
+	icon_state = "broken1"
 	},
 /area/submap/BoomBase)
 "aG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "burned2"
+	icon_state = "burned2"
 	},
 /area/submap/BoomBase)
 "aH" = (
@@ -166,7 +166,7 @@
 /area/submap/BoomBase)
 "aL" = (
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "burned2"
+	icon_state = "burned2"
 	},
 /area/submap/BoomBase)
 "aM" = (
@@ -183,13 +183,13 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "steel_dirty"
+	icon_state = "steel_dirty"
 	},
 /area/submap/BoomBase)
 "aP" = (
 /obj/item/material/shard,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "steel_dirty"
+	icon_state = "steel_dirty"
 	},
 /area/submap/BoomBase)
 "aQ" = (
@@ -222,7 +222,7 @@
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/tiled/steel{
-	 icon_state = "burned1"
+	icon_state = "burned1"
 	},
 /area/submap/BoomBase)
 "aX" = (
