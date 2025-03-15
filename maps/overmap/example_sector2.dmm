@@ -9,15 +9,9 @@
 /area/shuttle/overmap_examples/outpost)
 "ac" = (
 /obj/structure/shuttle/window{
-	icon_state = "3"
+	
 	},
 /turf/simulated/shuttle/floor,
-/area/shuttle/overmap_examples/outpost)
-"ae" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "swall_straight";
-	dir = 1
-	},
 /area/shuttle/overmap_examples/outpost)
 "af" = (
 /obj/machinery/computer/shuttle_control/explore{
@@ -1871,8 +1865,8 @@ aa
 "}
 (23,1,1) = {"
 ab
-ae
-ae
+aj
+aj
 aj
 am
 ap
@@ -1955,8 +1949,8 @@ aa
 "}
 (25,1,1) = {"
 ab
-ae
-ae
+aj
+aj
 al
 am
 ar
