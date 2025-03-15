@@ -514,7 +514,6 @@
 	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	icon_state = "manifold-f";
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -527,7 +526,6 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -538,7 +536,6 @@
 	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -548,7 +545,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 10
 	},
 /obj/machinery/power/apc{
@@ -793,7 +789,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 5
 	},
 /turf/simulated/floor/plating,
@@ -805,7 +800,6 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 10
 	},
 /turf/simulated/wall/r_wall,
@@ -1653,7 +1647,6 @@
 /area/tcommsat/chamber)
 "dw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact-f";
 	dir = 9
 	},
 /turf/simulated/floor/bluegrid{

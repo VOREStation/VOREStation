@@ -87,11 +87,6 @@
 /obj/item/stool,
 /turf/simulated/floor/wood,
 /area/submap/Boathouse)
-"av" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken6"
-	},
-/area/submap/Boathouse)
 "aw" = (
 /obj/structure/railing{
 	dir = 8
@@ -121,24 +116,8 @@
 /obj/item/reagent_containers/food/drinks/glass2/shot,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Boathouse)
-"aB" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken2"
-	},
-/area/submap/Boathouse)
-"aC" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
-	},
-/turf/simulated/floor/water,
-/area/submap/Boathouse)
 "aD" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
 /turf/simulated/floor/water,
@@ -157,30 +136,19 @@
 /obj/item/oar,
 /turf/simulated/floor/wood,
 /area/submap/Boathouse)
-"aH" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 8
-	},
-/turf/simulated/floor/water,
-/area/submap/Boathouse)
 "aI" = (
 /obj/structure/table/woodentable,
 /obj/random/powercell,
 /turf/simulated/floor/wood,
 /area/submap/Boathouse)
 "aJ" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken4"
-	},
+/turf/simulated/floor/wood/broken,
 /area/submap/Boathouse)
 "aK" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 8
 	},
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
 /turf/simulated/floor/water,
@@ -991,7 +959,7 @@ ak
 ak
 ak
 ak
-aB
+aJ
 ak
 ak
 ak
@@ -1053,14 +1021,14 @@ ai
 ao
 ak
 ak
-aC
+aK
 aw
 ao
 ak
 ak
 aK
-aH
-aH
+aw
+aw
 ai
 aL
 ai
@@ -1113,7 +1081,7 @@ ad
 ai
 ai
 ap
-av
+aJ
 ak
 aD
 ad
@@ -1304,8 +1272,8 @@ aw
 ad
 ad
 ad
-aH
-aH
+aw
+aw
 ad
 ad
 ad

@@ -4,7 +4,6 @@
 /area)
 "ab" = (
 /turf/simulated/shuttle/wall{
-	icon_state = "swall_s";
 	dir = 2
 	},
 /area/shuttle/overmap_examples/outpost)
@@ -43,7 +42,6 @@
 /area/shuttle/escape_pod2/centcom)
 "aj" = (
 /turf/simulated/shuttle/wall{
-	icon_state = "swall_s";
 	dir = 1
 	},
 /area/shuttle/overmap_examples/outpost)
@@ -53,7 +51,6 @@
 /area/shuttle/overmap_examples/outpost)
 "al" = (
 /turf/simulated/shuttle/wall{
-	icon_state = "swall_s";
 	dir = 8
 	},
 /area/shuttle/overmap_examples/outpost)
