@@ -47,7 +47,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/feeding = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
-	var/allow_inbelly_spawning = FALSE
 	var/allow_spontaneous_tf = FALSE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
@@ -207,7 +206,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
-	allow_inbelly_spawning = json_from_file["allow_inbelly_spawning"]
 	allow_spontaneous_tf = json_from_file["allow_spontaneous_tf"]
 	step_mechanics_pref = json_from_file["step_mechanics_pref"]
 	pickup_pref = json_from_file["pickup_pref"]
@@ -279,8 +277,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
 		can_be_drop_pred = FALSE
-	if(isnull(allow_inbelly_spawning))
-		allow_inbelly_spawning = FALSE
 	if(isnull(allow_spontaneous_tf))
 		allow_spontaneous_tf = FALSE
 	if(isnull(step_mechanics_pref))
@@ -408,7 +404,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
-			"allow_inbelly_spawning"= allow_inbelly_spawning,
 			"latejoin_vore"			= latejoin_vore, //CHOMPedit
 			"latejoin_prey"			= latejoin_prey, //CHOMPedit
 			"allow_spontaneous_tf"	= allow_spontaneous_tf,

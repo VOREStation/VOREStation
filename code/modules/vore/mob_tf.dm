@@ -115,7 +115,6 @@
 	new_mob.feeding = feeding
 	new_mob.can_be_drop_prey = can_be_drop_prey
 	new_mob.can_be_drop_pred = can_be_drop_pred
-	new_mob.allow_inbelly_spawning = allow_inbelly_spawning
 	new_mob.digest_leave_remains = digest_leave_remains
 	new_mob.allowmobvore = allowmobvore
 	new_mob.permit_healbelly = permit_healbelly
