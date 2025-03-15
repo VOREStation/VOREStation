@@ -92,6 +92,7 @@ SUBSYSTEM_DEF(explosions)
 		if(defer_powernet_rebuild)
 			INVOKE_ASYNC(SSmachines, TYPE_PROC_REF(/datum/controller/subsystem/machines,makepowernets))
 			defer_powernet_rebuild = FALSE
+			SSair.wake() // AWAKEN MY MASTERS
 
 /datum/controller/subsystem/explosions/proc/fire_prepare_explosions(var/list/data)
 	var/pwr = data[4]
@@ -210,7 +211,7 @@ SUBSYSTEM_DEF(explosions)
 	// BOINK! Time to wake up sleeping beauty!
 	if(!can_fire)
 		wake()
-		fire(FALSE) // waking from sleep, we are absolutely not resuming, and INSTAND feedback to players is required here.
+		fire(FALSE) // waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
 
 // Collect prepared explosions for BLAST PROCESSING
 /datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr)
@@ -293,6 +294,7 @@ SUBSYSTEM_DEF(explosions)
 	// Large enough explosion. For performance reasons, powernets will be rebuilt manually
 	if((devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range > 25)
 		defer_powernet_rebuild = TRUE
+		SSair.suspend() // we're gonna be making a bit of a mess, lets wait till we're done
 
 	if(heavy_impact_range > 1)
 		var/datum/effect/system/explosion/E = new/datum/effect/system/explosion()
