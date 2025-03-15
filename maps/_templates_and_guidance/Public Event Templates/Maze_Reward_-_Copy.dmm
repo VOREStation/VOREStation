@@ -351,25 +351,6 @@
 	},
 /turf/simulated/floor/gorefloor,
 /area/survivalpod)
-"pn" = (
-/obj/structure/window/phoronreinforced{
-	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
-	dir = 1;
-	maxhealth = 500;
-	name = "Veil of sanity"
-	},
-/obj/structure/window/phoronreinforced{
-	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
-	maxhealth = 500;
-	name = "Veil of sanity"
-	},
-/obj/structure/gootrap{
-	basecolor = #610B0B;
-	desc = "As if you stepped on a bear trap, you can feel a chilling horror crawling up your spine, gazing upon a pond of maroon fluids you can't help but experience terror upon it";
-	name = "Spill of fear"
-	},
-/turf/simulated/floor/gorefloor,
-/area/survivalpod)
 "qo" = (
 /obj/structure/cult/tome,
 /turf/simulated/floor/cult,
@@ -437,16 +418,6 @@
 	name = "Veil of sanity"
 	},
 /turf/simulated/floor/gorefloor,
-/area/survivalpod)
-"tq" = (
-/obj/effect/simple_portal/linked{
-	desc = "It looks like a hole that leads to somewhere, although you can't quite see through it. . . It seems dormant and sealed closed. . .";
-	name = "Demonic portal";
-	portal_id = 20
-	},
-/turf/simulated/floor/flesh/colour{
-	color = red
-	},
 /area/survivalpod)
 "tt" = (
 /obj/structure/window/phoronreinforced{
@@ -739,12 +710,6 @@
 /obj/structure/girder/cult,
 /turf/simulated/floor/cult,
 /area/survivalpod)
-"Ia" = (
-/mob/living/simple_mob/vore/demonAI{
-	faction = "cult"
-	},
-/turf/simulated/floor/gorefloor2,
-/area/survivalpod)
 "Ib" = (
 /obj/structure/window/phoronreinforced{
 	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
@@ -777,12 +742,6 @@
 	color = red
 	},
 /area/survivalpod)
-"Iy" = (
-/mob/living/simple_mob/vore/demon/wendigo{
-	faction = "cult"
-	},
-/turf/simulated/floor/gorefloor2,
-/area/survivalpod)
 "Jb" = (
 /obj/effect/decal/remains/deer,
 /turf/simulated/floor/gorefloor2,
@@ -795,27 +754,6 @@
 "Jt" = (
 /obj/structure/loot_pile/surface/bones,
 /turf/simulated/floor/gorefloor2,
-/area/survivalpod)
-"JY" = (
-/obj/structure/window/phoronreinforced{
-	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
-	dir = 1;
-	maxhealth = 500;
-	name = "Veil of sanity"
-	},
-/obj/structure/gootrap{
-	basecolor = #610B0B;
-	desc = "As if you stepped on a bear trap, you can feel a chilling horror crawling up your spine, gazing upon a pond of maroon fluids you can't help but experience terror upon it";
-	name = "Spill of fear"
-	},
-/obj/structure/window/phoronreinforced{
-	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
-	maxhealth = 500;
-	name = "Veil of sanity"
-	},
-/turf/simulated/floor/flesh/colour{
-	color = red
-	},
 /area/survivalpod)
 "Kb" = (
 /turf/simulated/goreeyes,
@@ -970,12 +908,6 @@
 	color = red
 	},
 /area/survivalpod)
-"PU" = (
-/mob/living/simple_mob/vore/demon/covern{
-	faction = "cult"
-	},
-/turf/simulated/floor/cult,
-/area/survivalpod)
 "Qh" = (
 /obj/structure/window/phoronreinforced{
 	desc = "You gaze upon a nightmare of your own mind as it feels as if the horrors before you can harm you, yet the thought of keeping yourself alive cracks upon the glass you gaze at. You have to keep yourself sane. . .";
@@ -1066,11 +998,6 @@
 	dir = 8;
 	maxhealth = 500;
 	name = "Veil of sanity"
-	},
-/obj/structure/gootrap{
-	basecolor = #610B0B;
-	desc = "As if you stepped on a bear trap, you can feel a chilling horror crawling up your spine, gazing upon a pond of maroon fluids you can't help but experience terror upon it";
-	name = "Spill of fear"
 	},
 /obj/effect/step_trigger/message{
 	message = "Your body starts to feel numb with every step you take, there is an imposing presence you have yet to face. . . Maybe this isn't as bad.";
@@ -1421,7 +1348,7 @@ iK
 ZZ
 Es
 Mv
-tq
+Mv
 Mv
 NI
 iK
@@ -1452,7 +1379,7 @@ Mv
 Mv
 NI
 iK
-Ia
+eh
 Nh
 "}
 (8,1,1) = {"
@@ -1596,7 +1523,7 @@ eh
 eh
 eh
 iK
-JY
+CK
 iK
 eh
 eh
@@ -1695,7 +1622,7 @@ eh
 eh
 eh
 eh
-Iy
+eh
 Nh
 "}
 (17,1,1) = {"
@@ -1979,10 +1906,10 @@ Jt
 Nh
 YJ
 Bt
-pn
+LY
 iK
 El
-PU
+eD
 KC
 Ut
 vf
@@ -2000,7 +1927,7 @@ Nh
 Nh
 eh
 iK
-pn
+LY
 eh
 eh
 Kb

@@ -36,7 +36,6 @@
 "co" = (
 /obj/effect/alien/weeds,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = 0
 	},
@@ -74,9 +73,6 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/XenoHive)
 "fW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight,
 /turf/simulated/floor/outdoors/dirt,
@@ -179,8 +175,6 @@
 /area/submap/XenoHive)
 "sp" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
@@ -377,13 +371,6 @@
 /obj/structure/prop/blackbox/quarantined_shuttle,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/XenoHive)
-"HJ" = (
-/obj/effect/alien/weeds,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/rocks{
-	outdoors = 0
-	},
-/area/submap/XenoHive)
 "HO" = (
 /obj/structure/table,
 /obj/effect/alien/weeds,
@@ -448,7 +435,6 @@
 /obj/effect/alien/weeds,
 /obj/effect/alien/weeds,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = 0
 	},
@@ -461,7 +447,6 @@
 /area/submap/XenoHive)
 "Pq" = (
 /obj/structure/simple_door/resin,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
@@ -532,27 +517,10 @@
 "Vj" = (
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/XenoHive)
-"Vu" = (
-/obj/effect/alien/weeds/node,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/XenoHive)
 "VA" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/junk,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/XenoHive)
-"WD" = (
-/obj/effect/alien/weeds,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -583,7 +551,6 @@
 /area/submap/XenoHive)
 "YL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /mob/living/simple_mob/humanoid/merc/ranged{
 	health = 15;
 	maxHealth = 15
@@ -593,7 +560,6 @@
 "Zc" = (
 /obj/effect/alien/weeds,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/junk,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
@@ -601,7 +567,6 @@
 /area/submap/XenoHive)
 "Zx" = (
 /obj/effect/alien/weeds,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_mob/humanoid/merc/melee/sword/poi{
 	health = 15;
@@ -792,7 +757,7 @@ QC
 xB
 xB
 xB
-HJ
+co
 kl
 AB
 sy
@@ -808,7 +773,7 @@ AB
 AB
 AB
 tz
-WD
+kl
 VA
 AB
 AB
@@ -924,7 +889,7 @@ sy
 Et
 AB
 dn
-Vu
+sp
 kl
 AB
 Et

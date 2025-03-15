@@ -193,11 +193,6 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
-"O" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/carpet/turcarpet,
-/area/submap/Oldhouse)
 "P" = (
 /obj/item/circuitboard/papershredder,
 /turf/simulated/floor/wood,
@@ -707,7 +702,7 @@ r
 r
 r
 n
-O
+n
 i
 i
 u

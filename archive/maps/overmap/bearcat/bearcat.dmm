@@ -2790,7 +2790,6 @@
 	level = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor{
 	 icon_state = "wall_thermite";
 	dir = 2
@@ -3745,7 +3744,6 @@
 	},
 /area/ship/scrap/maintenance)
 "gF" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom{
 	pixel_y = 32

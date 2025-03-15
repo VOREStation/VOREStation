@@ -28,23 +28,9 @@
 /mob/living/simple_mob/humanoid/merc/ranged/smg/sol,
 /turf/template_noop,
 /area/submap/Blackshuttledown)
-"ai" = (
-/turf/template_noop,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark6";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
 "aj" = (
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
-"ak" = (
-/turf/template_noop,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark10";
 	name = "Unknown Shuttle"
 	},
 /area/submap/Blackshuttledown)
@@ -146,13 +132,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
-"av" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark5";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
 "aw" = (
 /turf/simulated/floor/tiled/steel_grid,
 /area/submap/Blackshuttledown)
@@ -205,14 +184,12 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
 "aG" = (
-/turf/simulated/floor/tiled/steel,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
 	},
 /area/submap/Blackshuttledown)
 "aH" = (
-/turf/simulated/floor/tiled/steel,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
 	name = "Unknown Shuttle"
@@ -370,7 +347,6 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
 "bf" = (
-/turf/simulated/floor/tiled/steel,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
 	name = "Unknown Shuttle"
@@ -705,12 +681,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
-"ce" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/structure/bed,
-/turf/simulated/floor/tiled/steel,
-/area/submap/Blackshuttledown)
 "cf" = (
 /obj/structure/urinal{
 	dir = 4;
@@ -774,16 +744,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 "cp" = (
-/turf/template_noop,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
-"cq" = (
-/turf/template_noop,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark9";
 	name = "Unknown Shuttle"
 	},
 /area/submap/Blackshuttledown)
@@ -1049,7 +1011,7 @@ bx
 bx
 bG
 aj
-av
+cp
 ab
 ab
 ab
@@ -1087,7 +1049,7 @@ br
 br
 bJ
 aj
-av
+cp
 ab
 ab
 ab
@@ -1110,10 +1072,10 @@ ab
 ab
 ad
 ad
-ai
+aH
 aj
 aj
-av
+cp
 aH
 aj
 bb
@@ -1125,7 +1087,7 @@ bl
 bF
 bT
 aj
-av
+cp
 aH
 aj
 aj
@@ -1258,7 +1220,7 @@ ab
 af
 ab
 ab
-ak
+bf
 aj
 aj
 ax
@@ -1277,7 +1239,7 @@ cc
 ch
 aj
 aj
-cq
+aG
 ab
 ab
 ae
@@ -1569,7 +1531,7 @@ bu
 bP
 aj
 bY
-ce
+bY
 bY
 bY
 aj
@@ -1739,7 +1701,7 @@ ab
 ab
 ab
 ab
-ai
+aH
 aj
 aj
 aE
@@ -1906,7 +1868,7 @@ ab
 bf
 al
 al
-cq
+aG
 ad
 ad
 ad
@@ -1924,7 +1886,7 @@ ad
 ad
 ad
 ab
-ak
+bf
 al
 al
 ab

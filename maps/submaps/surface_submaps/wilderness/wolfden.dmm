@@ -17,7 +17,6 @@
 /area/submap/WolfDen)
 "e" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/junk,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/outdoors/dirt{
@@ -66,7 +65,6 @@
 /area/submap/WolfDen)
 "u" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/ledge/ledge_stairs{
 	dir = 4
 	},
@@ -76,13 +74,11 @@
 /area/submap/WolfDen)
 "v" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
 /area/submap/WolfDen)
 "w" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/junk,
 /turf/simulated/floor/outdoors/dirt{
@@ -124,27 +120,6 @@
 	outdoors = 0
 	},
 /area/submap/WolfDen)
-"I" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/WolfDen)
-"J" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/random/junk,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/WolfDen)
-"K" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/WolfDen)
 "M" = (
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/outdoors/rocks{
@@ -157,15 +132,8 @@
 	outdoors = 0
 	},
 /area/submap/WolfDen)
-"R" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/WolfDen)
 "S" = (
 /obj/item/bone,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = 0
@@ -258,8 +226,8 @@ v
 A
 w
 e
-J
-I
+w
+v
 r
 o
 "}
@@ -278,7 +246,7 @@ o
 (6,1,1) = {"
 Z
 o
-K
+v
 o
 o
 p
@@ -303,7 +271,7 @@ o
 Z
 z
 v
-I
+v
 o
 o
 o
@@ -313,7 +281,7 @@ o
 "}
 (9,1,1) = {"
 a
-R
+z
 z
 o
 o
