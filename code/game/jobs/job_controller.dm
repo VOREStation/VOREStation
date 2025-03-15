@@ -808,7 +808,7 @@ var/global/datum/controller/occupations/job_master
 				if(alert(C, "Do you want to instantly absorb them?", "Confirm", "Yes", "No") == "Yes")
 					absorb_choice = TRUE
 				//CHOMPAdd End
-				to_chat(C, "<b><span class='warning'>[prey] has received your spawn request. Please wait.</span></b>")
+				to_chat(C, span_boldwarning("[prey] has received your spawn request. Please wait."))
 				log_admin("[key_name(C)] has requested to pred spawn onto [key_name(prey)]")
 				message_admins("[key_name(C)] has requested to pred spawn onto [key_name(prey)]")
 
@@ -910,7 +910,7 @@ var/global/datum/controller/occupations/job_master
 
 				var/mob/living/carrier = carriers[index]
 				if(istype(carrier))
-					to_chat(C, "<b><span class='warning'>[carrier] has received your spawn request. Please wait.</span></b>")
+					to_chat(C, span_boldwarning("[carrier] has received your spawn request. Please wait."))
 					log_and_message_admins("[key_name(C)] has requested to item spawn into [key_name(carrier)]'s possession")
 
 					var/confirm = tgui_alert(carrier, "[C.prefs.real_name] is attempting to join as the [item_name] in your possession.", "Confirm", list("No", "Yes"))

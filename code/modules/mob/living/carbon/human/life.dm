@@ -1241,14 +1241,12 @@
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
-	/* //Unused here, used downstream.
 	if(nutrition > 500 && noisy_full == TRUE)
 		var/belch_prob = 5 //Maximum belch prob.
 		if(nutrition < 4075)
 			belch_prob = ((nutrition-500)/3575)*5 //Scale belch prob with fullness if not already at max. If editing make sure the multiplier matches the max prob above.
 		if(prob(belch_prob))
 			src.emote("belch")
-	*/
 	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
 		recalculate_vis()
 		chemical_darksight = 1

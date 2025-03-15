@@ -1,6 +1,7 @@
 /mob/living/simple_mob/vore
 	mob_class = MOB_CLASS_ANIMAL
 	mob_bump_flag = 0
+	can_be_drop_pred = TRUE
 
 /mob/living/simple_mob
 	var/nameset
@@ -21,6 +22,11 @@
 	ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 	ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 	ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+	/* Not implemented on virgo
+	ooc_notes_favs = read_preference(/datum/preference/text/living/ooc_notes_favs)
+	ooc_notes_maybes = read_preference(/datum/preference/text/living/ooc_notes_maybes)
+	ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
+	*/
 	private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
@@ -49,8 +55,28 @@
 	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
 	pickup_pref = client.prefs_vr.pickup_pref
 	allow_mind_transfer = client.prefs_vr.allow_mind_transfer
+
+	//CHOMP Stuff Start
+	phase_vore = client.prefs_vr.phase_vore
+	latejoin_vore = client.prefs_vr.latejoin_vore
+	latejoin_prey = client.prefs_vr.latejoin_prey
+	receive_reagents = client.prefs_vr.receive_reagents
+	give_reagents = client.prefs_vr.give_reagents
+	apply_reagents = client.prefs_vr.apply_reagents
+	autotransferable = client.prefs_vr.autotransferable
+	noisy_full = client.prefs_vr.noisy_full
+	strip_pref = client.prefs_vr.strip_pref
 	vore_sprite_color = client.prefs_vr.vore_sprite_color
 	vore_sprite_multiply = client.prefs_vr.vore_sprite_multiply
+	no_latejoin_vore_warning = client.prefs_vr.no_latejoin_vore_warning
+	no_latejoin_prey_warning = client.prefs_vr.no_latejoin_prey_warning
+	no_latejoin_vore_warning_time = client.prefs_vr.no_latejoin_vore_warning_time
+	no_latejoin_prey_warning_time = client.prefs_vr.no_latejoin_prey_warning_time
+	no_latejoin_vore_warning_persists = client.prefs_vr.no_latejoin_vore_warning_persists
+	no_latejoin_prey_warning_persists = client.prefs_vr.no_latejoin_prey_warning_persists
+	belly_rub_target = client.prefs_vr.belly_rub_target
+	soulcatcher_pref_flags = client.prefs_vr.soulcatcher_pref_flags
+	//CHOMP Stuff End
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"

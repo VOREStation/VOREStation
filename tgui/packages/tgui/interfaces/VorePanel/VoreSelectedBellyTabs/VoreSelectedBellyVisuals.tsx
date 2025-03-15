@@ -342,7 +342,6 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
           {Object.keys(possible_fullscreens).map((key, index) => (
             <span key={index} style={{ width: '256px' }}>
               <Button
-                key={key}
                 width="256px"
                 height="256px"
                 selected={key === belly_fullscreen}
@@ -351,7 +350,10 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                 }
               >
                 <Box
-                  className={classes(['vore240x240', key])}
+                  className={classes([
+                    colorization_enabled ? 'vore240x240' : 'fixedvore240x240',
+                    key,
+                  ])}
                   style={{
                     transform: 'translate(0%, 4%)',
                   }}

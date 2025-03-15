@@ -921,7 +921,7 @@
 /datum/gas_mixture/belly_air/vox/New()
 	. = ..()
 	gas = list(
-		GAS_N2 = 100) // Chomp edit
+		GAS_PHORON = 100)
 
 /datum/gas_mixture/belly_air/zaddat
 	volume = 2500

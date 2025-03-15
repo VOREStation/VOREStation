@@ -97,6 +97,7 @@
 /mob/living/proc/handle_tf_holder()
 	if(!tf_mob_holder)
 		return
+	if(tf_mob_holder.loc != src) return // Prevent bodyswapped creatures having their life linked
 	if(stat != tf_mob_holder.stat)
 		if(stat == DEAD)
 			tf_mob_holder.death(FALSE, null)
@@ -139,5 +140,25 @@
 	new_mob.allow_mimicry = allow_mimicry
 	new_mob.text_warnings = text_warnings
 	new_mob.allow_mind_transfer = allow_mind_transfer
+
+	//CHOMP stuff Start
+	new_mob.phase_vore = phase_vore
+	new_mob.latejoin_vore = latejoin_vore
+	new_mob.latejoin_prey = latejoin_prey
+	new_mob.receive_reagents = receive_reagents
+	new_mob.give_reagents = give_reagents
+	new_mob.apply_reagents = apply_reagents
+	new_mob.autotransferable = autotransferable
+	new_mob.strip_pref = strip_pref
 	new_mob.vore_sprite_color = vore_sprite_color
 	new_mob.vore_sprite_multiply = vore_sprite_multiply
+	new_mob.noisy_full = noisy_full
+	new_mob.no_latejoin_vore_warning = no_latejoin_vore_warning
+	new_mob.no_latejoin_prey_warning = no_latejoin_prey_warning
+	new_mob.no_latejoin_vore_warning_time = no_latejoin_vore_warning_time
+	new_mob.no_latejoin_prey_warning_time = no_latejoin_prey_warning_time
+	new_mob.no_latejoin_vore_warning_persists = no_latejoin_vore_warning_persists
+	new_mob.no_latejoin_prey_warning_persists = no_latejoin_prey_warning_persists
+	new_mob.belly_rub_target = belly_rub_target
+	new_mob.soulcatcher_pref_flags = soulcatcher_pref_flags
+	//CHOMP stuff End
