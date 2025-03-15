@@ -178,7 +178,7 @@ var/list/channel_to_radio_key = new
 	//Maybe they are using say/whisper to do a quick emote, so do those
 	switch(copytext(message, 1, 2))
 		if("*") return emote(copytext(message, 2))
-		if("^") return custom_emote(1, copytext(message, 2))
+		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
 
 	//Parse the radio code and consume it
 	if(message_mode)
@@ -318,7 +318,7 @@ var/list/channel_to_radio_key = new
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
-			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			custom_emote(VISIBLE_MESSAGE, "[pick(S.speaking.signlang_verb)].")
 			do_sound = FALSE
 
 	//These will contain the main receivers of the message

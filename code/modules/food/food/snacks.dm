@@ -398,7 +398,7 @@
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
-			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
+			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
 	On_Consume(user)
 

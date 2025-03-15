@@ -127,7 +127,7 @@
 		if(11 to 30)
 			H.custom_pain("The muscles in your body cramp up painfully.",0)
 		if(31 to INFINITY)
-			H.custom_emote(VISIBLE_MESSAGE, "flinches as all the muscles in their body cramp up.")
+			H.automatic_custom_emote(VISIBLE_MESSAGE, "flinches as all the muscles in their body cramp up.", check_stat = TRUE)
 			H.custom_pain("There's pain all over your body.",1)
 
 // ITCH
@@ -145,5 +145,5 @@
 		if(11 to 30)
 			H.custom_pain("You want to scratch your itch badly.",0)
 		if(31 to INFINITY)
-			H.custom_emote(VISIBLE_MESSAGE, "shivers slightly.")
+			H.automatic_custom_emote(VISIBLE_MESSAGE, "shivers slightly.", check_stat = TRUE)
 			H.custom_pain("This itch makes it really hard to concentrate.",1)

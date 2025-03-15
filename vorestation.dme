@@ -2422,6 +2422,7 @@
 #include "code\modules\economy\vending_machines.dm"
 #include "code\modules\economy\vending_machines_vr.dm"
 #include "code\modules\economy\vending_refills.dm"
+#include "code\modules\emotes\custom_emote.dm"
 #include "code\modules\emotes\emote_define.dm"
 #include "code\modules\emotes\emote_mob.dm"
 #include "code\modules\emotes\definitions\_mob.dm"

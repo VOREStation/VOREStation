@@ -56,7 +56,7 @@
 /mob/living/simple_mob/vore/aggressive/dragon/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"snaps at [.]")
+		customautomatic_custom_emote_emote(1,"snaps at [.]")
 */
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/dragon
