@@ -212,16 +212,22 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahanjani_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt2
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/janitor.dmi'
 	sprite_icon_state = "dullahanjanitor"
 	sprite_decals = list("decals")
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/janitor/cat
 	name = "Cat"
