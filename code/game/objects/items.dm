@@ -3,6 +3,7 @@
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	var/digestable = TRUE
 
 	//matter = list(MAT_STEEL = 1)
 
@@ -1110,3 +1111,11 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/proc/get_welder()
 	return
+
+/obj/item/verb/toggle_digestable()
+	set category = "Object"
+	set name = "Toggle Digestable"
+	set desc = "Toggle item's digestability."
+	digestable = !digestable
+	if(!digestable)
+		to_chat(usr, span_notice("[src] is now protected from digestion."))

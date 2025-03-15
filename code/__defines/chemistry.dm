@@ -5,6 +5,7 @@
 #define CHEM_TOUCH 1
 #define CHEM_INGEST 2
 #define CHEM_BLOOD 3
+#define CHEM_VORE 4 // vore belly interactions
 
 #define MINIMUM_CHEMICAL_VOLUME 0.01
 

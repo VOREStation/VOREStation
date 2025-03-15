@@ -36,6 +36,7 @@
 				N.identifying_gender = M.gender
 
 		mob_belly_transfer(M)
+		M.soulgem.transfer_self(src) // Soulcatcher
 
 		nutrition = M.nutrition
 		src.ckey = M.ckey
@@ -64,6 +65,8 @@
 	if(!tf_mob_holder)
 		return
 	var/mob/living/ourmob = tf_mob_holder
+	if(soulgem) //Should always be the case, but...Safety. Done here first
+		soulgem.transfer_self(ourmob)
 	if(ourmob.ai_holder)
 		var/datum/ai_holder/our_AI = ourmob.ai_holder
 		our_AI.set_stance(STANCE_IDLE)

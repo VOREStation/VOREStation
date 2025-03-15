@@ -93,6 +93,20 @@
 	var/list/secondary_transfer_messages_prey = list(
 		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into %pred's %dest!")
 
+	//CHOMPAdd Start
+	var/list/primary_autotransfer_messages_owner = list(
+		"%prey moves along into your %dest!")
+
+	var/list/primary_autotransfer_messages_prey = list(
+		"%pred's %belly moves you along into their %dest!")
+
+	var/list/secondary_autotransfer_messages_owner = list(
+		"%prey moves along into your %dest!")
+
+	var/list/secondary_autotransfer_messages_prey = list(
+		"%pred's %belly moves you along into their %dest!")
+	//CHOMPAdd End
+
 	var/list/digest_chance_messages_owner = list(
 		"You feel your %belly beginning to become active!")
 
@@ -223,7 +237,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
 /obj/belly/proc/get_examine_msg()
-	if(!(contents.len) || !(examine_messages.len))
+	if(!(contents?.len) || !(examine_messages?.len)) //ChompEDIT - runtimes
 		return ""
 
 	var/raw_message = pick(examine_messages)
@@ -244,7 +258,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	return(span_red(span_italics("[belly_format_string(raw_message, english_list(vore_contents))]")))
 
 /obj/belly/proc/get_examine_msg_absorbed()
-	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
+	if(!(contents?.len) || !(examine_messages_absorbed?.len) || !display_absorbed_examine) //ChompEDIT - runtimes
 		return ""
 
 	var/raw_message = pick(examine_messages_absorbed)
@@ -265,7 +279,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "atrnspp" || type == "atrnspo" || type == "atrnssp" || type == "atrnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") //CHOMPEdit
 
 	var/list/raw_messages
 	switch(type)
@@ -319,6 +333,16 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = secondary_transfer_messages_owner
 		if("trnssp")
 			raw_messages = secondary_transfer_messages_prey
+		//CHOMPAdd Start
+		if("atrnspo")
+			raw_messages = primary_autotransfer_messages_owner
+		if("atrnspp")
+			raw_messages = primary_autotransfer_messages_prey
+		if("atrnsso")
+			raw_messages = secondary_autotransfer_messages_owner
+		if("atrnssp")
+			raw_messages = secondary_autotransfer_messages_prey
+		//CHOMPAdd End
 		if("stmodo")
 			raw_messages = digest_chance_messages_owner
 		if("stmodp")
@@ -377,7 +401,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n", limit)
 	if(!limit)
 		CRASH("[src] set message called without limit!")
-	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "atrnspp" || type == "atrnspo" || type == "atrnssp" || type == "atrnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") //CHOMPEdit
 
 	var/list/raw_list
 
@@ -460,6 +484,16 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			secondary_transfer_messages_owner = raw_list
 		if("trnssp")
 			secondary_transfer_messages_prey = raw_list
+		//CHOMPAdd Start
+		if("atrnspo")
+			primary_autotransfer_messages_owner = raw_list
+		if("atrnspp")
+			primary_autotransfer_messages_prey = raw_list
+		if("atrnsso")
+			secondary_autotransfer_messages_owner = raw_list
+		if("atrnssp")
+			secondary_autotransfer_messages_prey = raw_list
+		//CHOMPAdd End
 		if("stmodo")
 			digest_chance_messages_owner = raw_list
 		if("stmodp")

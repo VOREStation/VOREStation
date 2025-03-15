@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList } from 'tgui-core/components';
 
 import { digestModeToColor } from '../constants';
-import type { selectedData } from '../types';
+import { selectedData } from '../types';
 
 export const VoreSelectedBellyControls = (props: { belly: selectedData }) => {
   const { act } = useBackend();

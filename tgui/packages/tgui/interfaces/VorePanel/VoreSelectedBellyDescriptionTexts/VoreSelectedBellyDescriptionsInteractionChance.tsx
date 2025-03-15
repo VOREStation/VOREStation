@@ -1,8 +1,8 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
-import type { interactData } from '../types';
+import { interactData } from '../types';
 
 export const VoreSelectedBellyDescriptionsInteractionChance = (props: {
   message_mode: BooleanLike;

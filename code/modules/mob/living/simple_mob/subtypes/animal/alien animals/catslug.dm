@@ -68,7 +68,7 @@
 		/obj/item/holder,
 		/obj/machinery/camera,
 		/obj/belly,
-		//obj/soulgem, // Used downstream.
+		/obj/soulgem,
 		/obj/screen,
 		/atom/movable/emissive_blocker,
 		/obj/item/material,
