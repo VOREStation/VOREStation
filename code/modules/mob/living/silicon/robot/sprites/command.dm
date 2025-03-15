@@ -79,6 +79,7 @@
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
 	icon_y = 45
+	vis_height = 45
 
 /datum/robot_sprite/dogborg/tall/command/meka
 	name = "MEKA"
