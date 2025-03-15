@@ -1670,11 +1670,8 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc))
+		if(!surrounding_belly() && !previewing_belly) //VOREStation Add - Belly fullscreens safety
 			clear_fullscreen("belly")
-			clear_fullscreen("belly2")
-			clear_fullscreen("belly3")
-			clear_fullscreen("belly4")
 
 		if(CONFIG_GET(flag/welder_vision))
 			var/found_welder
