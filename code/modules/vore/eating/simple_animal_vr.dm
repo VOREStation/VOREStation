@@ -27,7 +27,7 @@
 	if(istype(src, /mob/living/simple_mob/animal/passive/mouse) && !T.ckey)
 		// Mice can't eat logged out players!
 		return
-	/*if(client && IsAdvancedToolUser()) //CHOMPedit: Mob QOL, not everything can be grabbed and nobody wants wiseguy gotchas for trying.
+	/*if(client && IsAdvancedToolUser()) Mob QOL, not everything can be grabbed and nobody wants wiseguy gotchas for trying.
 		to_chat(src, span_warning("Put your hands to good use instead!"))
 		return
 	*/
@@ -123,7 +123,7 @@
 
 /mob/living/simple_mob/proc/nutrition_heal()
 	set name = "Nutrition Heal"
-	set category = "Abilities.Mob" //CHOMPEdit
+	set category = "Abilities.Mob"
 	set desc = "Slowly regenerate health using nutrition."
 
 	if(nutrition < 10)

@@ -24,7 +24,6 @@
 	skull_type = /obj/item/digestion_remains/skull/teshari
 /datum/species/vox
 	skull_type = /obj/item/digestion_remains/skull/vox
-//CHOMPadd start
 /datum/species/monkey
 	skull_type = /obj/item/digestion_remains/skull
 /datum/species/monkey/tajaran
@@ -41,7 +40,6 @@
 	skull_type = /obj/item/digestion_remains/skull/vulpkanin
 /datum/species/monkey/sergal
 	skull_type = /obj/item/digestion_remains/skull/sergal
-//CHOMPadd end.
 
 /obj/belly/proc/handle_remains_leaving(var/mob/living/M)
 	if(!ishuman(M) && !isrobot(M))	//Are we even humanoid or a borg?
@@ -91,18 +89,18 @@
 		return			// TODO: add synth skulls and remove this.
 	var/skull_amount = 1
 	if(H.species.skull_type)
-		new H.species.skull_type(src, owner, H) //CHOMPEdit
+		new H.species.skull_type(src, owner, H)
 		skull_amount--
 
 	if(skull_amount && H.species.selects_bodytype)
 		// We still haven't found correct skull...
 		if(H.species.base_species == SPECIES_HUMAN)
-			new /obj/item/digestion_remains/skull/unknown(src, owner, H) //CHOMPEdit
+			new /obj/item/digestion_remains/skull/unknown(src, owner, H)
 		else
-			new /obj/item/digestion_remains/skull/unknown/anthro(src, owner, H) //CHOMPEdit
+			new /obj/item/digestion_remains/skull/unknown/anthro(src, owner, H)
 	else if(skull_amount)
 		// Something entirely different...
-		new /obj/item/digestion_remains/skull/unknown(src, owner, H) //CHOMPEdit
+		new /obj/item/digestion_remains/skull/unknown(src, owner, H)
 
 
 /obj/item/digestion_remains
@@ -126,12 +124,12 @@
 	drop_sound = 'sound/items/drop/device.ogg'   //not organic bones, so they get different sounds
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
-/obj/item/digestion_remains/Initialize(mapload, var/mob/living/pred, var/mob/living/prey) //CHOMPEdit
+/obj/item/digestion_remains/Initialize(mapload, var/mob/living/pred, var/mob/living/prey)
 	. = ..()
 	if(!mapload)
 		pred_ckey = pred?.ckey
 		pred_name = pred?.name
-		if(prey && isliving(prey) && prey.size_multiplier != 1) //CHOMPAdd
+		if(prey && isliving(prey) && prey.size_multiplier != 1)
 			icon_scale_x = prey.size_multiplier
 			icon_scale_y = prey.size_multiplier
 			update_transform()

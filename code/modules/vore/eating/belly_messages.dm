@@ -93,7 +93,6 @@
 	var/list/secondary_transfer_messages_prey = list(
 		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into %pred's %dest!")
 
-	//CHOMPAdd Start
 	var/list/primary_autotransfer_messages_owner = list(
 		"%prey moves along into your %dest!")
 
@@ -105,7 +104,6 @@
 
 	var/list/secondary_autotransfer_messages_prey = list(
 		"%pred's %belly moves you along into their %dest!")
-	//CHOMPAdd End
 
 	var/list/digest_chance_messages_owner = list(
 		"You feel your %belly beginning to become active!")
@@ -237,7 +235,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
 /obj/belly/proc/get_examine_msg()
-	if(!(contents?.len) || !(examine_messages?.len)) //ChompEDIT - runtimes
+	if(!(LAZYLEN(contents)) || !(LAZYLEN(examine_messages)))
 		return ""
 
 	var/raw_message = pick(examine_messages)
@@ -258,7 +256,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	return(span_red(span_italics("[belly_format_string(raw_message, english_list(vore_contents))]")))
 
 /obj/belly/proc/get_examine_msg_absorbed()
-	if(!(contents?.len) || !(examine_messages_absorbed?.len) || !display_absorbed_examine) //ChompEDIT - runtimes
+	if(!(LAZYLEN(contents)) || !(LAZYLEN(examine_messages_absorbed)) || !display_absorbed_examine)
 		return ""
 
 	var/raw_message = pick(examine_messages_absorbed)
@@ -333,7 +331,6 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = secondary_transfer_messages_owner
 		if(SECONDARY_TRANSFER_PREY)
 			raw_messages = secondary_transfer_messages_prey
-		//CHOMPAdd Start
 		if(PRIMARY_AUTO_TRANSFER_OWNER)
 			raw_messages = primary_autotransfer_messages_owner
 		if(PRIMARY_AUTO_TRANSFER_PREY)
@@ -342,7 +339,6 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = secondary_autotransfer_messages_owner
 		if(SECONDARY_AUTO_TRANSFER_PREY)
 			raw_messages = secondary_autotransfer_messages_prey
-		//CHOMPAdd End
 		if(DIGEST_CHANCE_OWNER)
 			raw_messages = digest_chance_messages_owner
 		if(DIGEST_CHANCE_PREY)
@@ -484,7 +480,6 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			secondary_transfer_messages_owner = raw_list
 		if(SECONDARY_TRANSFER_PREY)
 			secondary_transfer_messages_prey = raw_list
-		//CHOMPAdd Start
 		if(PRIMARY_AUTO_TRANSFER_OWNER)
 			primary_autotransfer_messages_owner = raw_list
 		if(PRIMARY_AUTO_TRANSFER_PREY)
@@ -493,7 +488,6 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			secondary_autotransfer_messages_owner = raw_list
 		if(SECONDARY_AUTO_TRANSFER_PREY)
 			secondary_autotransfer_messages_prey = raw_list
-		//CHOMPAdd End
 		if(DIGEST_CHANCE_OWNER)
 			digest_chance_messages_owner = raw_list
 		if(DIGEST_CHANCE_PREY)

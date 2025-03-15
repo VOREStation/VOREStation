@@ -497,7 +497,7 @@
 		B.forceMove(src)
 		B.owner = src
 
-	soulgem.owner = src //CHOMPAdd
+	soulgem.owner = src
 
 	//vore_organs.Cut()
 

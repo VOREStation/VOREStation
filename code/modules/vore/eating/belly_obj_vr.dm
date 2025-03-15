@@ -53,20 +53,20 @@
 	var/obj/item/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
 	var/egg_path = /obj/item/storage/vore_egg
-	var/egg_name = null						// CHOMPAdd. Custom egg name
-	var/egg_size = 0						// CHOMPAdd. Custom egg size
+	var/egg_name = null						// Custom egg name
+	var/egg_size = 0						// Custom egg size
 	var/list/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
 	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
 	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
-	var/is_feedable = TRUE					// If this belly shows up in belly selections for others. //CHOMPAdd
+	var/is_feedable = TRUE					// If this belly shows up in belly selections for others.
 	var/silicon_belly_overlay_preference = "Sleeper" //Selects between placing belly overlay in sleeper or normal vore mode. Exclusive
 	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
 	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
-	var/private_struggle = FALSE			// If struggles are made public or not //CHOMPAdd
+	var/private_struggle = FALSE			// If struggles are made public or not
 
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
@@ -99,23 +99,23 @@
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
 	var/autotransferwait = 10 				// Time between trying to transfer.
 	var/autotransferlocation				// Place to send them
-	var/autotransferextralocation = list()	// List of extra places this could go //CHOMPAdd
-	var/autotransfer_whitelist = 0			// Flags for what can be transferred to the primary location //CHOMPAdd
-	var/autotransfer_blacklist = 2			// Flags for what can not be transferred to the primary location, defaults to Absorbed //CHOMPAdd
-	var/autotransfer_whitelist_items = 0	// Flags for what can be transferred to the primary location //CHOMPAdd
-	var/autotransfer_blacklist_items = 0	// Flags for what can not be transferred to the primary location //CHOMPAdd
-	var/autotransferchance_secondary = 0 	// % Chance of prey being autotransferred to secondary transfer location //CHOMPAdd
-	var/autotransferlocation_secondary		// Second place to send them //CHOMPAdd
-	var/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go //CHOMPAdd
-	var/autotransfer_secondary_whitelist = 0// Flags for what can be transferred to the secondary location //CHOMPAdd
-	var/autotransfer_secondary_blacklist = 2// Flags for what can not be transferred to the secondary location, defaults to Absorbed //CHOMPAdd
-	var/autotransfer_secondary_whitelist_items = 0// Flags for what can be transferred to the secondary location //CHOMPAdd
-	var/autotransfer_secondary_blacklist_items = 0// Flags for what can not be transferred to the secondary location //CHOMPAdd
+	var/autotransferextralocation = list()	// List of extra places this could go
+	var/autotransfer_whitelist = 0			// Flags for what can be transferred to the primary location
+	var/autotransfer_blacklist = 2			// Flags for what can not be transferred to the primary location, defaults to Absorbed
+	var/autotransfer_whitelist_items = 0	// Flags for what can be transferred to the primary location
+	var/autotransfer_blacklist_items = 0	// Flags for what can not be transferred to the primary location
+	var/autotransferchance_secondary = 0 	// % Chance of prey being autotransferred to secondary transfer location
+	var/autotransferlocation_secondary		// Second place to send them
+	var/autotransferextralocation_secondary = list()	// List of extra places the secondary transfer could go
+	var/autotransfer_secondary_whitelist = 0// Flags for what can be transferred to the secondary location
+	var/autotransfer_secondary_blacklist = 2// Flags for what can not be transferred to the secondary location, defaults to Absorbed
+	var/autotransfer_secondary_whitelist_items = 0// Flags for what can be transferred to the secondary location
+	var/autotransfer_secondary_blacklist_items = 0// Flags for what can not be transferred to the secondary location
 	var/autotransfer_enabled = FALSE		// Player toggle
-	var/autotransfer_min_amount = 0			// Minimum amount of things to pass at once. //CHOMPAdd
-	var/autotransfer_max_amount = 0			// Maximum amount of things to pass at once. //CHOMPAdd
-	var/tmp/list/autotransfer_queue = list()// Reserve for above things. //CHOMPAdd
-	//Auto-transfer flags for whitelist //CHOMPAdd
+	var/autotransfer_min_amount = 0			// Minimum amount of things to pass at once.
+	var/autotransfer_max_amount = 0			// Maximum amount of things to pass at once.
+	var/tmp/list/autotransfer_queue = list()// Reserve for above things.
+	//Auto-transfer flags for whitelist
 	var/tmp/static/list/autotransfer_flags_list = list("Creatures" = AT_FLAG_CREATURES, "Absorbed" = AT_FLAG_ABSORBED, "Carbon" = AT_FLAG_CARBON, "Silicon" = AT_FLAG_SILICON, "Mobs" = AT_FLAG_MOBS, "Animals" = AT_FLAG_ANIMALS, "Mice" = AT_FLAG_MICE, "Dead" = AT_FLAG_DEAD, "Digestable Creatures" = AT_FLAG_CANDIGEST, "Absorbable Creatures" = AT_FLAG_CANABSORB, "Full Health" = AT_FLAG_HEALTHY)
 	var/tmp/static/list/autotransfer_flags_list_items = list("Items" = AT_FLAG_ITEMS, "Trash" = AT_FLAG_TRASH, "Eggs" = AT_FLAG_EGGS, "Remains" = AT_FLAG_REMAINS, "Indigestible Items" = AT_FLAG_INDIGESTIBLE, "Recyclable Items" = AT_FLAG_RECYCLABLE, "Ores" = AT_FLAG_ORES, "Clothes and Bags" = AT_FLAG_CLOTHES, "Food" = AT_FLAG_FOOD)
 
@@ -123,9 +123,9 @@
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_SELECT,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE) //CHOMPEdit
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB, "Slow Body Digestion" = DM_FLAG_SLOWBODY, "Muffle Items" = DM_FLAG_MUFFLEITEMS, "TURBO MODE" = DM_FLAG_TURBOMODE)
 	//Item related modes
-	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST,IM_DIGEST_PARALLEL) //CHOMPEdit
+	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST,IM_DIGEST_PARALLEL)
 	//drain modes
 	var/tmp/static/list/drainmodes = list(DR_NORMAL,DR_SLEEP,DR_FAKE,DR_WEIGHT)
 
@@ -140,21 +140,19 @@
 	var/tmp/digested_prey_count = 0				// Amount of prey that have been digested
 
 	var/item_digest_mode = IM_DIGEST_FOOD	// Current item-related mode from item_digest_modes
-	var/contaminates = TRUE					// Whether the belly will contaminate stuff // CHOMPedit: reset to true like it always was
+	var/contaminates = TRUE					// Whether the belly will contaminate stuff
 	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
 	var/contamination_color = "green"		// Color of contamination overlay
 
 	// Lets you do a fullscreen overlay. Set to an icon_state string.
 	var/belly_fullscreen = ""
 	var/disable_hud = FALSE
-	var/colorization_enabled = TRUE //CHOMPedit
+	var/colorization_enabled = TRUE
 	var/belly_fullscreen_color = "#823232"
-	//var/belly_fullscreen_color_secondary = "#428242" //Chomp Disable, using our implementation
-	//var/belly_fullscreen_color_trinary = "#f0f0f0" //Chomp Disable, using our implementation
-	var/belly_fullscreen_color2 = "#FFFFFF" //ChompEDIT
-	var/belly_fullscreen_color3 = "#823232" //ChompEDIT
-	var/belly_fullscreen_color4 = "#FFFFFF" //ChompEDIT
-	var/belly_fullscreen_alpha = 255 //ChompEDIT
+	var/belly_fullscreen_color2 = "#FFFFFF"
+	var/belly_fullscreen_color3 = "#823232"
+	var/belly_fullscreen_color4 = "#FFFFFF"
+	var/belly_fullscreen_alpha = 255
 
 	// Liquid belly vars
 	var/reagentbellymode = FALSE			// Belly has abilities to make liquids from digested/absorbed/drained prey and/or nutrition
@@ -293,7 +291,7 @@
 	"transferchance_secondary",
 	"transferlocation",
 	"transferlocation_secondary",
-	"belchchance",	//CHOMPAdd
+	"belchchance",
 	"bulge_size",
 	"display_absorbed_examine",
 	"shrink_grow_size",
@@ -322,10 +320,10 @@
 	"primary_transfer_messages_prey",
 	"secondary_transfer_messages_owner",
 	"secondary_transfer_messages_prey",
-	"primary_autotransfer_messages_owner",		//CHOMPAdd
-	"primary_autotransfer_messages_prey",		//CHOMPAdd
-	"secondary_autotransfer_messages_owner",	//CHOMPAdd
-	"secondary_autotransfer_messages_prey",		//CHOMPAdd
+	"primary_autotransfer_messages_owner",
+	"primary_autotransfer_messages_prey",
+	"secondary_autotransfer_messages_owner",
+	"secondary_autotransfer_messages_prey",
 	"digest_chance_messages_owner",
 	"digest_chance_messages_prey",
 	"absorb_chance_messages_owner",
@@ -353,10 +351,8 @@
 	"wet_loop",
 	"belly_fullscreen",
 	"disable_hud",
-	"reagent_mode_flags",	//CHOMP start of variables from CHOMP
+	"reagent_mode_flags",
 	"belly_fullscreen_color",
-	//"belly_fullscreen_color_secondary",  //Chomp Disable, using our implementation
-	//"belly_fullscreen_color_trinary",  //Chomp Disable, using our implementation
 	"belly_fullscreen_color2",
 	"belly_fullscreen_color3",
 	"belly_fullscreen_color4",
@@ -443,7 +439,7 @@
 	"private_struggle",
 	"item_digest_logs",
 	"show_fullness_messages",
-	"digest_max", //CHOMP end of variables from CHOMP
+	"digest_max",
 	"egg_type",
 	"save_digest_mode",
 	"eating_privacy_local",
@@ -478,12 +474,12 @@
 		owner = loc
 		owner.vore_organs |= src
 		if(isliving(loc))
-			if(mode_flags & DM_FLAG_TURBOMODE) //CHOMPEdit Start
+			if(mode_flags & DM_FLAG_TURBOMODE)
 				START_PROCESSING(SSobj, src)
 			else
 				START_PROCESSING(SSbellies, src)
 
-	create_reagents(300)	//CHOMP So we can have some liquids in bellies
+	create_reagents(300)	// So we can have some liquids in bellies
 	flags |= NOREACT		// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 /obj/belly/Destroy()
@@ -499,16 +495,16 @@
 
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
-	. = ..()  //CHOMPEdit Start
+	. = ..()
 	if(!owner)
 		thing.forceMove(get_turf(src))
 		return
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
-		// var/turf/simulated/T = owner.loc // CHOMPEdit
-		var/S = pick(GLOB.slosh) //ChompEDIT
+		// var/turf/simulated/T = owner.loc
+		var/S = pick(GLOB.slosh)
 		if(S)
-			playsound(owner.loc, S, sound_volume * (reagents.total_volume / 100), FALSE, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises) //CHOMPEdit
+			playsound(owner.loc, S, sound_volume * (reagents.total_volume / 100), FALSE, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises)
 			cycle_sloshed = TRUE
 	thing.belly_cycles = 0 //reset cycle count
 	if(istype(thing, /mob/observer)) //Ports CHOMPStation PR#3072
@@ -520,10 +516,9 @@
 		return //Someone dropping something (or being stripdigested)
 	if(istype(OldLoc, /mob/observer) || istype(OldLoc, /obj/item/mmi)) // Prevent reforming causing a lot of log spam/sounds
 		return //Someone getting reformed most likely (And if not, uh... shouldn't happen anyways?)
-	//CHOMPEdit end
 
 	//Generic entered message
-	if(!owner.mute_entry && entrance_logs) //CHOMPEdit
+	if(!owner.mute_entry && entrance_logs)
 		if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
 			to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
 
@@ -534,27 +529,27 @@
 			soundfile = classic_vore_sounds[vore_sound]
 		else
 			soundfile = fancy_vore_sounds[vore_sound]
-		if(special_entrance_sound) //CHOMPEdit: Custom sound set by mob's init_vore or ingame varedits.
+		if(special_entrance_sound) // Custom sound set by mob's init_vore or ingame varedits.
 			soundfile = special_entrance_sound
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 			recent_sound = TRUE
 
-	if(reagents.total_volume >= 5 && !isliving(thing) && (item_digest_mode == IM_DIGEST || item_digest_mode == IM_DIGEST_PARALLEL)) //CHOMPAdd
-		reagents.trans_to(thing, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE) //CHOMPAdd
+	if(reagents.total_volume >= 5 && !isliving(thing) && (item_digest_mode == IM_DIGEST || item_digest_mode == IM_DIGEST_PARALLEL))
+		reagents.trans_to(thing, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE)
 	//Messages if it's a mob
-	//CHOMPEdit Start - Include indirect viewers in seeing vorefx
+	// Include indirect viewers in seeing vorefx
 	var/list/startfx = list()
 	if(isliving(thing))
 		var/mob/living/L = thing
 		startfx.Add(L)
 		startfx.Add(get_belly_surrounding(L.contents))
-		owner.handle_belly_update() //CHOMPEdit - This is run whenever a belly's contents are changed.
+		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 	if(istype(thing,/obj/item))
 		var/obj/item/I = thing
 		startfx.Add(get_belly_surrounding(I.contents))
 
-	for(var/mob/living/M in startfx) //CHOMPEdit End of indirect vorefx changes
+	for(var/mob/living/M in startfx) // End of indirect vorefx changes
 		M.updateVRPanel()
 		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
 		if(absorbed_desc && M.absorbed)
@@ -568,74 +563,57 @@
 			to_chat(M, span_vnotice(span_bold("[belly_format_string(raw_desc, M)]")))
 
 		var/taste
-		if(can_taste && M.loc == src && (taste = M.get_taste_message(FALSE))) //CHOMPEdit - Prevent indirect tasting
+		if(can_taste && M.loc == src && (taste = M.get_taste_message(FALSE))) // Prevent indirect tasting
 			to_chat(owner, span_vnotice("[M] tastes of [taste]."))
-		vore_fx(M, TRUE) //CHOMPEdit: update belleh
-		if(owner.previewing_belly == src) //CHOMPEdit
-			vore_fx(owner, TRUE) //CHOMPEdit: update belleh
+		vore_fx(M, TRUE)
+		if(owner.previewing_belly == src)
+			vore_fx(owner, TRUE)
 		//Stop AI processing in bellies
 		if(M.ai_holder)
 			M.ai_holder.go_sleep()
-		if(reagents.total_volume >= 5) //CHOMPEdit Start
+		if(reagents.total_volume >= 5)
 			if(digest_mode == DM_DIGEST && M.digestable)
 				reagents.trans_to(M, reagents.total_volume * 0.1, 1 / max(LAZYLEN(contents), 1), FALSE)
 			to_chat(M, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
-	if(!isliving(thing) && count_items_for_sprite) //CHOMPEdit - If this is enabled also update fullness for non-living things
-		owner.handle_belly_update() //CHOMPEdit - This is run whenever a belly's contents are changed.
-	//if(istype(thing, /obj/item/capture_crystal)) //CHOMPEdit start: Capture crystal occupant gets to see belly text too. Moved to modular_chomp capture_crystal.dm.
-		//var/obj/item/capture_crystal/CC = thing
-		//if(CC.bound_mob && desc)
-			//if(CC.bound_mob in CC.contents)
-				//var/formatted_desc
-				//formatted_desc = replacetext(desc, "%belly", lowertext(name)) //replace with this belly's name
-				//formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
-				//formatted_desc = replacetext(formatted_desc, "%prey", thing) //replace with whatever mob entered into this belly
-				//to_chat(CC.bound_mob, span_notice("<B>[formatted_desc]</B>")) //CHOMPedit end
-
-	/*/ Intended for simple mobs //CHMOPEdit: Counting belly cycles now.
-	if((!owner.client || autotransfer_enabled) && autotransferlocation && autotransferchance > 0)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/belly, check_autotransfer), thing, autotransferlocation), autotransferwait)
-	*/
+	if(!isliving(thing) && count_items_for_sprite) // If this is enabled also update fullness for non-living things
+		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
 	. = ..()
 	if(QDELETED(owner))
 		return
-	thing.exit_belly(src) // CHOMPEdit - atom movable proc, does nothing by default. Overridden in children for special behavior.
-	if(isbelly(thing.loc)) //CHOMPEdit Start
+	thing.exit_belly(src) // atom movable proc, does nothing by default. Overridden in children for special behavior.
+	if(isbelly(thing.loc))
 		var/obj/belly/NB = thing.loc
 		if(count_items_for_sprite && !NB.count_items_for_sprite)
 			owner.handle_belly_update()
-		return //CHOMPEdit End
+		return
 
-	//CHOMPEdit Start - Remove vorefx from all those indirectly viewing as well
+	// Remove vorefx from all those indirectly viewing as well
 	var/list/endfx = list()
 	if(isliving(thing))
 		var/mob/living/L = thing
 		endfx.Add(L)
 		endfx.Add(get_belly_surrounding(L.contents))
-		owner.handle_belly_update() //CHOMPEdit - This is run whenever a belly's contents are changed.
+		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 	if(istype(thing,/obj/item))
 		var/obj/item/I = thing
 		endfx.Add(get_belly_surrounding(I.contents))
 	if(!isbelly(thing.loc))
-		for(var/mob/living/L in endfx) //CHOMPEdit End
+		for(var/mob/living/L in endfx)
 			if(L.surrounding_belly()) continue
 			L.clear_fullscreen("belly")
-			//L.clear_fullscreen("belly2") // CHOMP Disable - using our implementation, not upstream's
-			//L.clear_fullscreen("belly3") // CHOMP Disable - using our implementation, not upstream's
-			//L.clear_fullscreen("belly4") // CHOMP Disable - using our implementation, not upstream's
 			if(L.hud_used)
 				if(!L.hud_used.hud_shown)
 					L.toggle_hud_vis()
 			if((L.stat != DEAD) && L.ai_holder)
 				L.ai_holder.go_wake()
-			L.stop_sound_channel(CHANNEL_PREYLOOP) //CHOMPAdd - This was on release_specific_contents proc, why is it not here on belly exit?
-	//CHOMPEdit End of indirect vorefx changes
-	if(isitem(thing) && !isbelly(thing.loc)) //CHOMPEdit: Digest stage effects. Don't bother adding overlays to stuff that won't make it back out.
-		if(count_items_for_sprite) //CHOMPEdit - If this is enabled also update fullness for non-living things
-			owner.handle_belly_update() //CHOMPEdit - This is run whenever a belly's contents are changed.
+			L.stop_sound_channel(CHANNEL_PREYLOOP) // This was on release_specific_contents proc, why is it not here on belly exit?
+	// End of indirect vorefx changes
+	if(isitem(thing) && !isbelly(thing.loc)) // Digest stage effects. Don't bother adding overlays to stuff that won't make it back out.
+		if(count_items_for_sprite) // If this is enabled also update fullness for non-living things
+			owner.handle_belly_update() // This is run whenever a belly's contents are changed.
 		var/obj/item/I = thing
 		if(I.gurgled)
 			I.cut_overlay(gurgled_overlays[I.gurgled_color]) //No double-overlay for worn items.
@@ -647,54 +625,30 @@
 			temp.filters += filter(type = "alpha", icon = icon(I.icon, I.icon_state))
 			I.d_stage_overlay = temp
 			for(var/count in I.d_mult to 1 step 0.25)
-				I.add_overlay(I.d_stage_overlay, TRUE) //CHOMPEdit end
+				I.add_overlay(I.d_stage_overlay, TRUE)
 
-// CHOMPedit: SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
+// SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
 // to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
 // Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0) //CHOMPEdit
+/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0)
 	if(!istype(L))
 		return
 	if(!L.client)
 		return
-	if(L.previewing_belly && L.previewing_belly != src) //CHOMPEdit Start
+	if(L.previewing_belly && L.previewing_belly != src)
 		return
 	if(L.previewing_belly == src && L.vore_selected != src)
 		L.previewing_belly = null
 		return
 	if(!L.show_vore_fx)
 		L.clear_fullscreen("belly")
-		L.previewing_belly = null //CHOMPEdit End
+		L.previewing_belly = null
 		return
 	if(update)
 		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
-			/* //Chomp Disable - disable upstream's solution, use ours
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
-			F.icon_state = belly_fullscreen
-			F.color = belly_fullscreen_color
-			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
-				F2.icon_state = "[belly_fullscreen]_l1"
-				F2.color = belly_fullscreen_color_secondary
-			else
-				L.clear_fullscreen("belly2")
-			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
-				F3.icon_state = "[belly_fullscreen]_l2"
-				F3.color = belly_fullscreen_color_trinary
-			else
-				L.clear_fullscreen("belly3")
-			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
-				F4.icon_state = "[belly_fullscreen]_nc"
-			else
-				L.clear_fullscreen("belly4")
-			*/ //Chomp Disable END
-
-			// Chomp EDIT Begin
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) //CHOMPEdit Start: preserving save data
+			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) // preserving save data
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
 				CRASH("Icon datum was not defined for [belly_fullscreen]")
@@ -823,12 +777,8 @@
 				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
 				F.add_overlay(I)
 			F.update_for_view(L.client.view)
-			 //CHOMPEdit End
 	else
 		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Chomp Disable - disable upstream's solution, use ours
-		//L.clear_fullscreen("belly3") //Chomp Disable - disable upstream's solution, use ours
-		//L.clear_fullscreen("belly4") //Chomp Disable - disable upstream's solution, use ours
 
 	if(disable_hud && L != owner)
 		if(L?.hud_used?.hud_shown)
@@ -836,172 +786,15 @@
 			L.toggle_hud_vis(TRUE)
 
 /obj/belly/proc/vore_preview(mob/living/L)
-	if(!istype(L) || !L.client) //CHOMPEdit Start
+	if(!istype(L) || !L.client)
 		L.previewing_belly = null
 		return
 	L.previewing_belly = src
 	vore_fx(L)
-	//CHOMPEdit End
-
-/* //CHOMPRemove. Using regular vore_fx above.
-	if(belly_fullscreen)
-		if(colorization_enabled)
-			/* //Chomp Disable - disable upstream's solution, use ours
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/colorized)
-			F.icon_state = belly_fullscreen
-			F.color = belly_fullscreen_color
-			if("[belly_fullscreen]_l1" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F2 = L.overlay_fullscreen("belly2", /obj/screen/fullscreen/belly/colorized/overlay)
-				F2.icon_state = "[belly_fullscreen]_l1"
-				F2.color = belly_fullscreen_color_secondary
-			if("[belly_fullscreen]_l2" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F3 = L.overlay_fullscreen("belly3", /obj/screen/fullscreen/belly/colorized/overlay)
-				F3.icon_state = "[belly_fullscreen]_l2"
-				F3.color = belly_fullscreen_color_trinary
-			if("[belly_fullscreen]_nc" in icon_states('icons/mob/screen_full_colorized_vore_overlays.dmi'))
-				var/obj/screen/fullscreen/F4 = L.overlay_fullscreen("belly4", /obj/screen/fullscreen/belly/colorized/overlay)
-				F4.icon_state = "[belly_fullscreen]_nc"
-			*/ //Chomp Disable END
-			//CHOMPedit Start: preserving save data
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, reagents.total_volume)
-			F.icon = file("modular_chomp/icons/mob/vore_fullscreens/[belly_fullscreen].dmi")
-			F.cut_overlays()
-			var/image/I = image(F.icon, belly_fullscreen)
-			I.color = belly_fullscreen_color
-			I.alpha = belly_fullscreen_alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-2")
-			I.color = belly_fullscreen_color2
-			I.alpha = belly_fullscreen_alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-3")
-			I.color = belly_fullscreen_color3
-			I.alpha = belly_fullscreen_alpha
-			F.add_overlay(I)
-			I = image(F.icon, belly_fullscreen+"-4")
-			I.color = belly_fullscreen_color4
-			I.alpha = belly_fullscreen_alpha
-			F.add_overlay(I)
-			var/extra_mush = 0
-			var/extra_mush_color = mush_color
-			if(L.liquidbelly_visuals && ishuman(owner) && metabolism_overlay && metabolism_mush_ratio > 0)
-				var/mob/living/carbon/human/H = owner
-				var/datum/reagents/metabolism/ingested = H.ingested
-				if(ingested && ingested.total_volume > 0)
-					if(custom_ingested_color)
-						extra_mush_color = custom_ingested_color
-					else
-						extra_mush_color = ingested.get_color()
-					extra_mush = ingested.total_volume * metabolism_mush_ratio
-				if(!mush_overlay)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = custom_ingested_alpha
-					I.pixel_y = -450 + (450 / max(max_ingested, 1) * max(min(max_ingested, ingested.total_volume), 1))
-					F.add_overlay(I)
-			if(L.liquidbelly_visuals && mush_overlay && (owner.nutrition > 0 || max_mush == 0 || min_mush > 0 || (LAZYLEN(contents) * item_mush_val) > 0))
-				I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-				I.color = mush_color
-				I.alpha = mush_alpha
-				var/total_mush_content = owner.nutrition + LAZYLEN(contents) * item_mush_val + extra_mush
-				I.pixel_y = -450 + (450 / max(max_mush, 1) * max(min(max_mush, total_mush_content), 1))
-				if(I.pixel_y < -450 + (450 / 100 * min_mush))
-					I.pixel_y = -450 + (450 / 100 * min_mush)
-				var/stored_y = I.pixel_y
-				F.add_overlay(I)
-				if(metabolism_overlay && metabolism_mush_ratio > 0 && extra_mush > 0)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = min(mush_alpha, (extra_mush / max(total_mush_content, 1)) * mush_alpha)
-					I.pixel_y = stored_y
-					F.add_overlay(I)
-			if(L.liquidbelly_visuals && liquid_overlay && reagents.total_volume)
-				if(digest_mode == DM_HOLD && item_digest_mode == IM_HOLD)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-				else
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "bubbles")
-				if(custom_reagentcolor)
-					I.color = custom_reagentcolor
-				else
-					I.color = reagentcolor
-				if(custom_reagentalpha)
-					I.alpha = custom_reagentalpha
-				else
-					I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
-				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
-				F.add_overlay(I)
-			F.update_for_view(L.client.view)
-		else
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, reagents.total_volume) //preserving save data
-			F.cut_overlays()
-			F.add_overlay(image(F.icon, belly_fullscreen))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-3"))
-			F.add_overlay(image(F.icon, belly_fullscreen+"-4"))
-			var/image/I
-			var/extra_mush = 0
-			var/extra_mush_color = mush_color
-			if(L.liquidbelly_visuals && ishuman(owner) && metabolism_overlay && metabolism_mush_ratio > 0)
-				var/mob/living/carbon/human/H = owner
-				var/datum/reagents/metabolism/ingested = H.ingested
-				if(ingested && ingested.total_volume > 0)
-					if(custom_ingested_color)
-						extra_mush_color = custom_ingested_color
-					else
-						extra_mush_color = ingested.get_color()
-					extra_mush = ingested.total_volume * metabolism_mush_ratio
-				if(!mush_overlay)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = custom_ingested_alpha
-					I.pixel_y = -450 + (450 / max(max_ingested, 1) * max(min(max_ingested, ingested.total_volume), 1))
-					F.add_overlay(I)
-			if(L.liquidbelly_visuals && mush_overlay && (owner.nutrition > 0 || max_mush == 0 || min_mush > 0 || (LAZYLEN(contents) * item_mush_val) > 0))
-				I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-				I.color = mush_color
-				I.alpha = mush_alpha
-				var/total_mush_content = owner.nutrition + LAZYLEN(contents) * item_mush_val + extra_mush
-				I.pixel_y = -450 + (450 / max(max_mush, 1) * max(min(max_mush, total_mush_content), 1))
-				if(I.pixel_y < -450 + (450 / 100 * min_mush))
-					I.pixel_y = -450 + (450 / 100 * min_mush)
-				var/stored_y = I.pixel_y
-				F.add_overlay(I)
-				if(metabolism_overlay && metabolism_mush_ratio > 0 && extra_mush > 0)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "mush")
-					I.color = extra_mush_color
-					I.alpha = min(mush_alpha, (extra_mush / max(total_mush_content, 1)) * mush_alpha)
-					I.pixel_y = stored_y
-					F.add_overlay(I)
-			if(L.liquidbelly_visuals && liquid_overlay && reagents.total_volume)
-				if(digest_mode == DM_HOLD && item_digest_mode == IM_HOLD)
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "calm")
-				else
-					I = image('modular_chomp/icons/mob/vore_fullscreens/bubbles.dmi', "bubbles")
-				if(custom_reagentcolor)
-					I.color = custom_reagentcolor
-				else
-					I.color = reagentcolor
-				if(custom_reagentalpha)
-					I.alpha = custom_reagentalpha
-				else
-					I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
-				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
-				F.add_overlay(I)
-			F.update_for_view(L.client.view)
-			//CHOMPEdit End
-	else
-		L.clear_fullscreen("belly")
-		//L.clear_fullscreen("belly2") //Chomp Disable - disable upstream's solution, use ours
-		//L.clear_fullscreen("belly3") //Chomp Disable - disable upstream's solution, use ours
-		//L.clear_fullscreen("belly4") //Chomp Disable - disable upstream's solution, use ours
-*/
 
 /obj/belly/proc/clear_preview(mob/living/L)
-	L.previewing_belly = null //CHOMPAdd
+	L.previewing_belly = null
 	L.clear_fullscreen("belly")
-	//L.clear_fullscreen("belly2") //Chomp Disable - disable upstream's solution, use ours
-	//L.clear_fullscreen("belly3") //Chomp Disable - disable upstream's solution, use ours
-	//L.clear_fullscreen("belly4") //Chomp Disable - disable upstream's solution, use ours
 
 
 
@@ -1050,7 +843,7 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	return count
 
@@ -1125,7 +918,7 @@
 			//privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(istype(M, /mob/observer)) //CHOMPEdit
+	if(istype(M, /mob/observer))
 		silent = TRUE
 	if(!silent)
 		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
@@ -1135,7 +928,7 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	//Should fix your view not following you out of mobs sometimes!
 	if(ismob(M))
 		var/mob/ourmob = M
@@ -1169,7 +962,7 @@
 		if(owner.mind)
 			owner.mind.vore_prey_eaten++
 
-//CHOMPEdit Start - new procs for handling digestion damage as a total rather than per-type
+// new procs for handling digestion damage as a total rather than per-type
 // Returns the current total digestion damage per tick of a belly.
 /obj/belly/proc/get_total_digestion_damage()
 	return (digest_brute + digest_burn + digest_oxy + digest_tox + digest_clone)
@@ -1185,7 +978,6 @@
 	digest_tox = 0
 	digest_clone = 0
 	return
-// CHOMPEdit End
 
 // Handle the death of a mob via digestion.
 // Called from the process_Life() methods of bellies that digest prey.
@@ -1195,7 +987,7 @@
 	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
 
-	//CHOMPEdit Start - Reverts TF on death. This fixes a bug with posibrains or similar, and also makes reforming easier.
+	// Reverts TF on death. This fixes a bug with posibrains or similar, and also makes reforming easier.
 	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
 		M.tf_mob_holder.ckey = M.ckey
 		M.tf_mob_holder.enabled = TRUE
@@ -1212,13 +1004,12 @@
 
 	if(M.tf_mob_holder)
 		M.tf_mob_holder = null
-	//CHOMPEdit End
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
 		M.release_vore_contents(include_absorbed = TRUE, silent = TRUE)
 
-	var/obj/item/mmi/hasMMI // CHOMPEdit - Adjust how MMI's are handled
+	var/obj/item/mmi/hasMMI // Adjust how MMI's are handled
 
 	//Drop all items into the belly.
 	if(CONFIG_GET(flag/items_survive_digestion))
@@ -1228,7 +1019,7 @@
 				var/obj/item/mmi/brainbox = MMI.removed()
 				if(brainbox)
 					items_preserved += brainbox
-					hasMMI = brainbox // CHOMPEdit - Adjust how MMI's are handled
+					hasMMI = brainbox // Adjust how MMI's are handled
 			for(var/slot in slots)
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
@@ -1246,7 +1037,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/Prey = M
 			Prey.bloodstr.del_reagent(REAGENT_ID_NUMBENZYME)
-			Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway //CHOMPEdit Start
+			Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
 			Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
 			Prey.touching.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
 			Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
@@ -1258,14 +1049,14 @@
 			M.reagents.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
 			M.reagents.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
 			M.reagents.del_reagent(REAGENT_ID_CLEANER) //Don't need this stuff in our bloodstream.
-			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE) //CHOMPEdit End
+			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE)
 
 	owner.handle_belly_update()
 
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
-	//CHOMPEdit start - Changed qdel to a forceMove to allow reforming, and... handled robots special.
+	// Changed qdel to a forceMove to allow reforming, and... handled robots special.
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.mmi && R.mind && R.mmi.brainmob)
@@ -1294,8 +1085,7 @@
 		M.enabled = FALSE
 		M.forceMove(hasMMI)
 	else
-		//Another CHOMPEdit started here. I left the comment here, though obviously we're doing a lot more now as well.
-		var/mob/observer/G = M.ghostize(FALSE) //CHOMPEdit start. Make sure they're out, so we can copy attack logs and such.
+		var/mob/observer/G = M.ghostize(FALSE) // Make sure they're out, so we can copy attack logs and such.
 		if(G)
 			G.forceMove(src)
 			G.body_backup = M
@@ -1304,7 +1094,6 @@
 		else
 			qdel(M)
 	owner.handle_belly_update()
-	//CHOMPEdit End
 
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(mob/living/M)
@@ -1324,11 +1113,11 @@
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
 		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
 		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
-		Prey.touching.del_reagent(REAGENT_ID_STOMACID) //CHOMPEdit Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID) //CHOMPEdit Don't need this stuff in our bloodstream.
+		Prey.touching.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
+		Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
 		Prey.touching.del_reagent(REAGENT_ID_PACID) //Don't need this stuff in our bloodstream.
 		Prey.touching.del_reagent(REAGENT_ID_SACID) //Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_CLEANER) //CHOMPEdit Don't need this stuff in our bloodstream.
+		Prey.touching.del_reagent(REAGENT_ID_CLEANER) //Don't need this stuff in our bloodstream.
 		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
@@ -1396,16 +1185,13 @@
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition
 //the item should be worth
-/obj/belly/proc/digest_item(obj/item/item, touchable_amount) //CHOMPEdit
-	var/digested = item.digest_act(src, touchable_amount) //CHOMPEdit
-	if(digested == FALSE) //CHOMPEdit
+/obj/belly/proc/digest_item(obj/item/item, touchable_amount)
+	var/digested = item.digest_act(src, touchable_amount)
+	if(digested == FALSE)
 		items_preserved |= item
 	else
-		owner_adjust_nutrition((nutrition_percent / 100) * 5 * digested) //CHOMPEdit
-		// if(isrobot(owner)) //CHOMPEdit: Borgos can now use nutrition too.
-		//	var/mob/living/silicon/robot/R = owner
-		//	R.cell.charge += ((nutrition_percent / 100) * 50 * digested)
-		digested = TRUE //CHOMPEdit
+		owner_adjust_nutrition((nutrition_percent / 100) * 5 * digested)
+		digested = TRUE
 	return digested
 
 //Determine where items should fall out of us into.
@@ -1465,33 +1251,29 @@
 	var/struggle_outer_message = span_valert(belly_format_string(struggle_messages_outside, R))
 	var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, R))
 
-	//CHOMPEdit Start
 	if(private_struggle)
 		to_chat(owner, struggle_outer_message)
 	else
 		for(var/mob/M in hearers(4, owner))
 			M.show_message(struggle_outer_message, 2) // hearable
-	//CHOMPEdit End
 
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
 
-	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && !private_struggle && resist_triggers_animation && affects_vore_sprites) // CHOMPEdit
+	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && !private_struggle && resist_triggers_animation && affects_vore_sprites)
 		owner.vs_animate(belly_sprite_to_affect)
 
-	//CHOMPEdit Start
 	if(!private_struggle)
 		if(is_wet)
 			if(!fancy_vore)
 				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
 			else
 				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(prob(belchchance))//Unsure if this should go in escapable or not, leaving it here for now.
 		owner.emote("belch")
-	//CHOMPEdit End
 	if(escapable) //If the stomach has escapable enabled.
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
 			to_chat(R, escape_attempt_prey_message)
@@ -1505,11 +1287,9 @@
 					release_specific_contents(C)
 					to_chat(R, escape_item_prey_message)
 					to_chat(owner, escape_item_owner_message)
-					//CHOMPEdit Start
 					if(!private_struggle)
 						for(var/mob/M in hearers(4, owner))
 							M.show_message(escape_item_outside_message, 2)
-					//CHOMPEdit End
 					return
 				if(escapable && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
 					var/escape_owner_message = span_vwarning(belly_format_string(escape_messages_owner, R))
@@ -1519,11 +1299,9 @@
 					release_specific_contents(R)
 					to_chat(R, escape_prey_message)
 					to_chat(owner, escape_owner_message)
-					//CHOMPEdit Start
 					if(!private_struggle)
 						for(var/mob/M in hearers(4, owner))
 							M.show_message(escape_outside_message, 2)
-					//CHOMPEdit End
 					return
 				else if(!(R.loc == src)) //Aren't even in the belly. Quietly fail.
 					return
@@ -1619,28 +1397,24 @@
 	var/struggle_outer_message = span_valert(belly_format_string(absorbed_struggle_messages_outside, R, use_absorbed_count = TRUE))
 	var/struggle_user_message = span_valert(belly_format_string(absorbed_struggle_messages_inside, R, use_absorbed_count = TRUE))
 
-	//CHOMPEdit Start
 	if(private_struggle)
 		to_chat(owner, struggle_outer_message)
 	else
 		for(var/mob/M in hearers(4, owner))
 			M.show_message(struggle_outer_message, 2) // hearable
-	//CHOMPEdit End
 
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
 
-	//CHOMPEdit Start
 	if(!private_struggle)
 		if(is_wet)
 			if(!fancy_vore)
 				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
 			else
 				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
-	//CHOMPEdit End
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	//absorb resists
 	if(escapable || owner.stat) //If the stomach has escapable enabled or the owner is dead/unconscious
@@ -1659,11 +1433,9 @@
 					release_specific_contents(R)
 					to_chat(R, escape_absorbed_prey_message)
 					to_chat(owner, escape_absorbed_owner_message)
-					//CHOMPEdit Start
 					if(!private_struggle)
 						for(var/mob/M in hearers(4, owner))
 							M.show_message(escape_absorbed_outside_message, 2)
-					//CHOMPEdit End
 					return
 				else if(!(R.loc == src)) //Aren't even in the belly. Quietly fail.
 					return
@@ -1693,7 +1465,7 @@
 /obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
 		return
-	content.belly_cycles = 0 //CHOMPEdit
+	content.belly_cycles = 0
 	content.forceMove(target)
 	if(ismob(content) && !isobserver(content))
 		var/mob/ourmob = content
@@ -1711,7 +1483,7 @@
 		M.updateVRPanel()
 	owner.handle_belly_update()
 
-//Autotransfer callback CHOMPEdit Start
+//Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/atom/movable/prey)
 	if(!(prey in contents) || !prey.autotransferable) return
 	var/dest_belly_name
@@ -1749,9 +1521,9 @@
 			to_chat(owner, autotransfer_owner_message)
 
 	transfer_contents(prey, dest_belly)
-	return TRUE //CHOMPEdit end
+	return TRUE
 
-//Autotransfer filter CHOMPEdit Start
+//Autotransfer filter
 /obj/belly/proc/autotransfer_filter(var/atom/movable/prey, var/whitelist, var/blacklist)
 	if(ismob(prey))
 		if(blacklist & autotransfer_flags_list["Absorbed"])
@@ -1862,7 +1634,7 @@
 			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Food"])
 			if(istype(prey, /obj/item/reagent_containers/food)) return TRUE
-	return FALSE //CHOMPEdit end
+	return FALSE
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
@@ -1909,8 +1681,8 @@
 	dupe.fancy_vore = fancy_vore
 	dupe.is_wet = is_wet
 	dupe.wet_loop = wet_loop
-
-	dupe.reagent_mode_flags = reagent_mode_flags	//CHOMP start of variables from CHOMP
+	dupe.reagent_mode_flags = reagent_mode_flags
+	dupe.belly_fullscreen_color = belly_fullscreen_color
 	dupe.belly_fullscreen_color2 = belly_fullscreen_color2
 	dupe.belly_fullscreen_color3 = belly_fullscreen_color3
 	dupe.belly_fullscreen_color4 = belly_fullscreen_color4
@@ -1979,13 +1751,9 @@
 	dupe.item_digest_logs = item_digest_logs
 	dupe.show_fullness_messages = show_fullness_messages
 	dupe.belchchance = belchchance
-	dupe.digest_max = digest_max //CHOMP end of variables from CHOMP
-
+	dupe.digest_max = digest_max
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
-	dupe.belly_fullscreen_color = belly_fullscreen_color
-	//dupe.belly_fullscreen_color_secondary = belly_fullscreen_color_secondary //Chomp Disable - Use our solution, not upstream's
-	//dupe.belly_fullscreen_color_trinary = belly_fullscreen_color_trinary //Chomp Disable - Use our solution, not upstream's
 	dupe.colorization_enabled = colorization_enabled
 	dupe.egg_type = egg_type
 	dupe.emote_time = emote_time
@@ -2191,38 +1959,31 @@
 	for(var/I in examine_messages)
 		dupe.examine_messages += I
 
-
-	// CHOMP reagent belly
 	//generated_reagents - strings
 	dupe.generated_reagents.Cut()
 	for(var/I in generated_reagents)
 		dupe.generated_reagents += I
 
-	// CHOMP fullness messages stage 1
 	//fullness1_messages - strings
 	dupe.fullness1_messages.Cut()
 	for(var/I in fullness1_messages)
 		dupe.fullness1_messages += I
 
-	// CHOMP fullness messages stage 2
 	//fullness2_messages - strings
 	dupe.fullness2_messages.Cut()
 	for(var/I in fullness2_messages)
 		dupe.fullness2_messages += I
 
-	// CHOMP fullness messages stage 3
 	//fullness3_messages - strings
 	dupe.fullness3_messages.Cut()
 	for(var/I in fullness3_messages)
 		dupe.fullness3_messages += I
 
-	// CHOMP fullness messages stage 4
 	//fullness4_messages - strings
 	dupe.fullness4_messages.Cut()
 	for(var/I in fullness4_messages)
 		dupe.fullness4_messages += I
 
-	// CHOMP fullness messages stage 5
 	//generated_reagents - strings
 	dupe.fullness5_messages.Cut()
 	for(var/I in fullness5_messages)
@@ -2262,8 +2023,8 @@
 					fullness_to_add *= M.health / M.getMaxHealth()
 			if(fullness_to_add > 0)
 				belly_fullness += fullness_to_add
-	if(count_liquid_for_sprite) // CHOMPEnable
-		belly_fullness += (reagents.total_volume / 100) * liquid_multiplier // CHOMPEnable
+	if(count_liquid_for_sprite)
+		belly_fullness += (reagents.total_volume / 100) * liquid_multiplier
 	if(count_items_for_sprite)
 		for(var/obj/item/I in src)
 			var/fullness_to_add = 0
@@ -2320,22 +2081,18 @@
 					D.matter[mat] += modified_mats[mat]
 				if(O.w_class > D.w_class)
 					D.w_class = O.w_class
-				//CHOMPAdd Start
 				if(O.possessed_voice && O.possessed_voice.len)
 					for(var/mob/living/voice/V in O.possessed_voice)
 						D.inhabit_item(V, null, V.tf_mob_holder)
 						qdel(V)
 					O.possessed_voice = list()
-				//CHOMPAdd End
 				return TRUE
-		var/obj/item/debris_pack/digested/D = new /obj/item/debris_pack/digested(src, modified_mats) //CHOMPEdit
-		//CHOMPAdd Start
+		var/obj/item/debris_pack/digested/D = new /obj/item/debris_pack/digested(src, modified_mats)
 		if(O.possessed_voice && O.possessed_voice.len)
 			for(var/mob/living/voice/V in O.possessed_voice)
 				D.inhabit_item(V, null, V.tf_mob_holder)
 				qdel(V)
 			O.possessed_voice = list()
-		//CHOMPAdd End
 	return TRUE
 
 /obj/belly/proc/owner_adjust_nutrition(var/amount = 0)

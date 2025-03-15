@@ -61,7 +61,7 @@
 // Resist override, only returning a message that one is stuck for now
 /mob/living/carbon/brain/caught_soul/vore/resist()
 	set name = "Resist"
-	set category = "IC.Game" //CHOMPEdit
+	set category = "IC.Game"
 
 	to_chat(src, span_warning("There's no way out! You're stuck inside your predator."))
 

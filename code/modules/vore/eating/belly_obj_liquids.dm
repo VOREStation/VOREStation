@@ -321,7 +321,7 @@
 
 /////////////////////////// Process Cycle Lite /////////////////////////// CHOMP PCL
 /obj/belly/proc/quick_cycle() //For manual belly cycling without straining the bellies subsystem.
-	HandleBellyReagents()	//CHOMP reagent belly stuff.
+	HandleBellyReagents()	//reagent belly stuff.
 	// VERY early exit
 	if(!contents.len)
 		return

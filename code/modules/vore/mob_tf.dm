@@ -141,7 +141,6 @@
 	new_mob.text_warnings = text_warnings
 	new_mob.allow_mind_transfer = allow_mind_transfer
 
-	//CHOMP stuff Start
 	new_mob.phase_vore = phase_vore
 	new_mob.latejoin_vore = latejoin_vore
 	new_mob.latejoin_prey = latejoin_prey
@@ -161,4 +160,3 @@
 	new_mob.no_latejoin_prey_warning_persists = no_latejoin_prey_warning_persists
 	new_mob.belly_rub_target = belly_rub_target
 	new_mob.soulcatcher_pref_flags = soulcatcher_pref_flags
-	//CHOMP stuff End

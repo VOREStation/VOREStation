@@ -56,7 +56,6 @@
 	pickup_pref = client.prefs_vr.pickup_pref
 	allow_mind_transfer = client.prefs_vr.allow_mind_transfer
 
-	//CHOMP Stuff Start
 	phase_vore = client.prefs_vr.phase_vore
 	latejoin_vore = client.prefs_vr.latejoin_vore
 	latejoin_prey = client.prefs_vr.latejoin_prey
@@ -76,7 +75,6 @@
 	no_latejoin_prey_warning_persists = client.prefs_vr.no_latejoin_prey_warning_persists
 	belly_rub_target = client.prefs_vr.belly_rub_target
 	soulcatcher_pref_flags = client.prefs_vr.soulcatcher_pref_flags
-	//CHOMP Stuff End
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"

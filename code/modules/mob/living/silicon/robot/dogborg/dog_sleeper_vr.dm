@@ -674,7 +674,7 @@
 						hound.adjust_nutrition(5 * digested)  //drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
-				hound.adjust_nutrition(10) //drain(-100) //CHOMPEdit
+				hound.adjust_nutrition(10) //drain(-100)
 			else
 				items_preserved |= target
 		update_patient()
