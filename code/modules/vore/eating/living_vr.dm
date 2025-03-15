@@ -266,8 +266,8 @@
 	P.weight_message_visible = src.weight_message_visible
 	P.weight_messages = src.weight_messages
 	P.allow_mind_transfer = src.allow_mind_transfer
-
-	P.vore_sprite_color = ishuman(src) ? src:vore_sprite_color : null
+	P.vore_sprite_multiply = src.vore_sprite_multiply
+	P.vore_sprite_color = src.vore_sprite_color
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -321,6 +321,7 @@
 	weight_messages = P.weight_messages
 	vore_sprite_color = P.vore_sprite_color
 	allow_mind_transfer = P.allow_mind_transfer
+	vore_sprite_multiply = P.vore_sprite_multiply
 
 	if(bellies)
 		if(isliving(src))

@@ -50,6 +50,8 @@
 	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
 	pickup_pref = client.prefs_vr.pickup_pref
 	allow_mind_transfer = client.prefs_vr.allow_mind_transfer
+	vore_sprite_color = client.prefs_vr.vore_sprite_color
+	vore_sprite_multiply = client.prefs_vr.vore_sprite_multiply
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"

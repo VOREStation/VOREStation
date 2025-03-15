@@ -206,6 +206,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	allow_mimicry = json_from_file["allow_mimicry"]
 	vore_sprite_color = json_from_file["vore_sprite_color"]
 	allow_mind_transfer = json_from_file["allow_mind_transfer"]
+	vore_sprite_multiply = json_from_file["vore_sprite_multiply"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -298,6 +299,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
 	if(isnull(allow_mind_transfer))
 		allow_mind_transfer = FALSE
+	if(isnull(vore_sprite_multiply))
+		vore_sprite_multiply = list("stomach" = FALSE, "taur belly" = FALSE)
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
@@ -341,6 +344,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"eating_privacy_global"		= eating_privacy_global,
 			"allow_mimicry"				= allow_mimicry,
 			"vore_sprite_color"		= vore_sprite_color,
+			"vore_sprite_multiply"		= vore_sprite_multiply,
 		)
 
 	//List to JSON

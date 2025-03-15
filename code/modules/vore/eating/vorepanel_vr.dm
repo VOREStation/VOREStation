@@ -362,6 +362,8 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		"weight_messages" = host.weight_messages,
 		"eating_privacy_global" = host.eating_privacy_global,
 		"allow_mimicry" = host.allow_mimicry,
+		"vore_sprite_color" = host.vore_sprite_color,
+		"vore_sprite_multiply" = host.vore_sprite_multiply,
 	)
 
 	return data

@@ -137,3 +137,5 @@
 	new_mob.allow_mimicry = allow_mimicry
 	new_mob.text_warnings = text_warnings
 	new_mob.allow_mind_transfer = allow_mind_transfer
+	new_mob.vore_sprite_color = vore_sprite_color
+	new_mob.vore_sprite_multiply = vore_sprite_multiply
