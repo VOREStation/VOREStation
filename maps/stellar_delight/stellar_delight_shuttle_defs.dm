@@ -103,3 +103,64 @@
 
 /obj/item/paper/dockingcodes/sd
 	name = "Stellar Delight Docking Codes"
+
+/////FOR CENTCOMM (at least)/////
+/obj/effect/overmap/visitable/sector/virgo3b
+	name = "Virgo 3B"
+	desc = "Full of phoron, and home to the NSB Adephagia."
+	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
+[i]Class[/i]: Installation
+[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
+[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
+	known = TRUE
+	in_space = TRUE
+
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "virgo3b"
+
+	skybox_icon = 'icons/skybox/virgo3b.dmi'
+	skybox_icon_state = "small"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
+	initial_generic_waypoints = list("sr-c","sr-n","sr-s")
+	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
+
+	extra_z_levels = list(Z_NAME_SPACE_ROCKS)
+	mob_announce_cooldown = 0
+
+/////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
+/obj/effect/overmap/visitable/sector/virgo3b/Initialize()
+	. = ..()
+	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
+		sd.forceMove(loc, SOUTH)
+		return
+
+/obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = FALSE)
+
+/obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = TRUE)
+
+/obj/effect/overmap/visitable/sector/virgo3b/announce_atc(var/atom/movable/AM, var/going = FALSE)
+	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
+		if(world.time < mob_announce_cooldown)
+			return
+		else
+			mob_announce_cooldown = world.time + 5 MINUTES
+	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
+	//For landables, we need to see if their shuttle is cloaked
+	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))
+		var/obj/effect/overmap/visitable/ship/landable/SL = AM //Phew
+		var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[SL.shuttle]
+		if(!istype(shuttle) || !shuttle.cloaked) //Not a multishuttle (the only kind that can cloak) or not cloaked
+			SSatc.msg(message)
+
+	//For ships, it's safe to assume they're big enough to not be sneaky
+	else if(istype(AM, /obj/effect/overmap/visitable/ship))
+		SSatc.msg(message)
+
+/obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
+	return list(Z_NAME_SPACE_ROCKS)
