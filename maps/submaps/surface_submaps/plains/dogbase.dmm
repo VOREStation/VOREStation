@@ -798,10 +798,6 @@
 /obj/random/cash/huge,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
-"Xz" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/template_noop)
 "Ya" = (
 /mob/living/simple_mob/vore/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
@@ -1004,7 +1000,7 @@ hp
 hp
 hp
 hp
-Xz
+oW
 hp
 hp
 km
@@ -1035,8 +1031,8 @@ Qp
 LJ
 hp
 hp
-Xz
-Xz
+oW
+oW
 Ez
 hp
 SW
