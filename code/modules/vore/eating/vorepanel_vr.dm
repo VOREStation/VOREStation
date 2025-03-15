@@ -3,6 +3,7 @@
 //
 
 #define VORE_RESIZE_COST 125
+#define STATION_PREF_NAME "Virgo"
 
 /mob
 	var/datum/vore_look/vorePanel
@@ -669,9 +670,9 @@
 				if(choice != "Yes, save.")
 					return TRUE
 			if(!host.save_vore_prefs())
-				tgui_alert_async(ui.user, "ERROR: Chomp-specific preferences failed to save!","Error")
+				tgui_alert_async(ui.user, "ERROR: " + STATION_PREF_NAME + "-specific preferences failed to save!","Error")
 			else
-				to_chat(ui.user, span_notice("Chomp-specific preferences saved!"))
+				to_chat(ui.user, span_notice(STATION_PREF_NAME + "-specific preferences saved!"))
 				unsaved_changes = FALSE
 			return TRUE
 		if("reloadprefs")
@@ -679,9 +680,9 @@
 			if(alert != "Reload")
 				return FALSE
 			if(!host.apply_vore_prefs())
-				tgui_alert_async(ui.user, "ERROR: Chomp-specific preferences failed to apply!","Error")
+				tgui_alert_async(ui.user, "ERROR: " + STATION_PREF_NAME + "-specific preferences failed to apply!","Error")
 			else
-				to_chat(ui.user,span_notice("Chomp-specific preferences applied from active slot!"))
+				to_chat(ui.user,span_notice(STATION_PREF_NAME + "-specific preferences applied from active slot!"))
 				unsaved_changes = FALSE
 			return TRUE
 		if("loadprefsfromslot")
@@ -3126,3 +3127,4 @@
 		unsaved_changes = TRUE
 
 #undef VORE_RESIZE_COST
+#undef STATION_PREF_NAME
