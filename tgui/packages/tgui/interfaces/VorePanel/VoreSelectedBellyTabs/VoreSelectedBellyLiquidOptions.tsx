@@ -3,7 +3,7 @@ import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { reagentToColor } from '../constants';
 import { LiquidColorInput } from '../LiquidColorInput';
-import { selectedData } from '../types';
+import type { selectedData } from '../types';
 
 export const VoreSelectedBellyLiquidOptions = (props: {
   belly: selectedData;

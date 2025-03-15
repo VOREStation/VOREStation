@@ -3,7 +3,7 @@ import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { FeatureColorInput } from '../FeatureColorInput';
-import { selectedData } from '../types';
+import type { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
   const { act } = useBackend();

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
-import { autotransferData, interactData } from '../types';
+import type { autotransferData, interactData } from '../types';
 
 export const VoreSelectedBellyDescriptionsTransfer = (props: {
   message_mode: BooleanLike;

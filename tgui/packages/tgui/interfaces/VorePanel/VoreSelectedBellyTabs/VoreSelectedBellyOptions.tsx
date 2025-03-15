@@ -3,7 +3,7 @@ import { Button, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
 import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../constants';
-import { hostMob, selectedData } from '../types';
+import type { hostMob, selectedData } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const VoreSelectedBellyOptions = (props: {
