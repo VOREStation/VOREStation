@@ -200,6 +200,9 @@
 	if(stomach_vision)
 		compiled_vis += VIS_CH_STOMACH
 
+	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))
+		compiled_vis += VIS_SOULCATCHER
+
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
 

@@ -29,6 +29,8 @@
 
 	var/cloaked = FALSE //If we're cloaked or not
 	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
+	var/belly_cycles = 0 // Counting current belly process cycles for autotransfer.
+	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -665,3 +667,10 @@
 	var/direction = get_dir(old_loc, new_loc)
 	loc = new_loc
 	Moved(old_loc, direction, TRUE)
+
+// Helper procs called on entering/exiting a belly. Does nothing by default, override on children for special behavior.
+/atom/movable/proc/enter_belly(obj/belly/B)
+	return
+
+/atom/movable/proc/exit_belly(obj/belly/B)
+	return

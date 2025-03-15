@@ -27,7 +27,7 @@ Please do not abuse this ability.
 			continue
 		if(ishuman(pred))
 			var/mob/living/carbon/human/H = pred
-			if(!H.allow_inbelly_spawning)
+			if(!H.latejoin_vore)
 				continue
 			eligible_targets += H
 			continue
@@ -35,7 +35,7 @@ Please do not abuse this ability.
 			var/mob/living/silicon/S = pred
 			if(isAI(S))
 				continue						// Sorry, AI buddies. Your vore works too differently.
-			if(!S.allow_inbelly_spawning)
+			if(!S.latejoin_vore)
 				continue
 			eligible_targets += S
 			continue
@@ -43,7 +43,7 @@ Please do not abuse this ability.
 			var/mob/living/simple_mob/SM = pred
 			if(!SM.vore_active)						// No vore, no bellies, no inbelly spawning
 				continue
-			if(!SM.allow_inbelly_spawning)
+			if(!SM.latejoin_vore)
 				continue
 			eligible_targets += SM
 			continue

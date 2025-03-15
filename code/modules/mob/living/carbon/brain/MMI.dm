@@ -18,6 +18,7 @@
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/radio/headset/mmi_radio/radio = null//Let's give it a radio.
+	var/mob/living/body_backup = null //add reforming
 
 /obj/item/mmi/New()
 	radio = new(src)//Spawns a radio inside the MMI.
@@ -146,6 +147,8 @@
 			rig.forced_move(direction, user)
 
 /obj/item/mmi/Destroy()
+	if(body_backup)
+		qdel(body_backup)
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null

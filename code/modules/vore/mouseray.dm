@@ -101,6 +101,7 @@
 		ourmob.vore_selected = M.vore_selected
 		M.vore_selected = null
 		ourmob.mob_belly_transfer(M)
+		M.soulgem.transfer_self(ourmob) // Soulcatcher
 
 		ourmob.Life(1)
 		if(ishuman(M))
@@ -193,6 +194,7 @@
 			B.owner = ourmob
 			M.vore_organs -= B
 			ourmob.vore_organs += B
+		M.soulgem.transfer_self(ourmob) // Soulcatcher
 
 		ourmob.Life(1)
 

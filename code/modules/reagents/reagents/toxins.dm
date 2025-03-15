@@ -485,6 +485,16 @@
 	power = 2
 	meltdose = 30
 
+/datum/reagent/acid/diet_digestive
+	name = REAGENT_DIETSTOMACID
+	id = REAGENT_ID_DIETSTOMACID
+	description = "Some form of digestive slurry."
+	taste_description = "vomit"
+	reagent_state = LIQUID
+	color = "#664330"
+	power = 0.4
+	meltdose = 150
+
 /datum/reagent/thermite/venom
 	name = REAGENT_THERMITEV
 	id = REAGENT_ID_THERMITEV

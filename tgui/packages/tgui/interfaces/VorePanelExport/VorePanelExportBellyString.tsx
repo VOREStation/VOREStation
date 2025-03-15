@@ -1,6 +1,10 @@
 import { ItemModeSpan, ModeSpan } from './constants';
-import type { Belly } from './types';
-import { GetAddons } from './VorePanelExportBellyStringHelpers';
+import { Belly } from './types';
+import {
+  GetAddons,
+  GetAutotransferFlags,
+  GetLiquidAddons,
+} from './VorePanelExportBellyStringHelpers';
 
 // prettier-ignore
 export const generateBellyString = (belly: Belly, index: number) => {
@@ -26,6 +30,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     digest_clone,
 
     can_taste,
+    is_feedable,
     contaminates,
     contamination_flavor,
     contamination_color,
@@ -36,8 +41,16 @@ export const generateBellyString = (belly: Belly, index: number) => {
     emote_active,
     emote_time,
     shrink_grow_size,
+    vorespawn_blacklist,
+    vorespawn_whitelist,
+    vorespawn_absorbed,
     egg_type,
+    egg_name,
     selective_preference,
+    recycling,
+    storing_nutrition,
+    entrance_logs,
+    item_digest_logs,
 
     // Messages
     struggle_messages_outside,
@@ -65,6 +78,10 @@ export const generateBellyString = (belly: Belly, index: number) => {
     primary_transfer_messages_prey,
     secondary_transfer_messages_owner,
     secondary_transfer_messages_prey,
+    primary_autotransfer_messages_owner,
+    primary_autotransfer_messages_prey,
+    secondary_autotransfer_messages_owner,
+    secondary_autotransfer_messages_prey,
     digest_chance_messages_owner,
     digest_chance_messages_prey,
     absorb_chance_messages_owner,
@@ -97,6 +114,24 @@ export const generateBellyString = (belly: Belly, index: number) => {
     fancy_vore,
     vore_sound,
     release_sound,
+    sound_volume,
+    noise_freq,
+
+    // Visuals
+    affects_vore_sprites,
+    count_absorbed_prey_for_sprite,
+    resist_triggers_animation,
+    size_factor_for_sprite,
+    belly_sprite_to_affect,
+
+    // Visuals (Belly Fullscreens Preview and Coloring)
+    belly_fullscreen,
+    belly_fullscreen_color,
+    belly_fullscreen_color2,
+    belly_fullscreen_color3,
+    belly_fullscreen_color4,
+    belly_fullscreen_alpha,
+    colorization_enabled,
 
     // Visuals (Vore FX)
     disable_hud,
@@ -116,6 +151,68 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
     absorbchance,
     digestchance,
+
+    belchchance,
+
+    // Interactions (Auto-Transfer)
+    autotransferwait,
+    autotransferchance,
+    autotransferlocation,
+    autotransferextralocation,
+    autotransferchance_secondary,
+    autotransferlocation_secondary,
+    autotransferextralocation_secondary,
+    autotransfer_enabled,
+    autotransfer_min_amount,
+    autotransfer_max_amount,
+    autotransfer_whitelist,
+    autotransfer_blacklist,
+    autotransfer_secondary_whitelist,
+    autotransfer_secondary_blacklist,
+    autotransfer_whitelist_items,
+    autotransfer_blacklist_items,
+    autotransfer_secondary_whitelist_items,
+    autotransfer_secondary_blacklist_items,
+
+    // Liquid Options
+    show_liquids,
+    reagentbellymode,
+		reagent_chosen,
+		reagent_name,
+		reagent_transfer_verb,
+		gen_time_display,
+		custom_max_volume,
+		vorefootsteps_sounds,
+		reagent_mode_flag_list,
+    liquid_overlay,
+    max_liquid_level,
+    reagent_touches,
+    mush_overlay,
+    mush_color,
+    mush_alpha,
+    max_mush,
+    min_mush,
+    item_mush_val,
+    custom_reagentcolor,
+    custom_reagentalpha,
+    metabolism_overlay,
+    metabolism_mush_ratio,
+    max_ingested,
+    custom_ingested_color,
+    custom_ingested_alpha,
+
+    // Liquid Messages
+    liquid_fullness1_messages,
+    liquid_fullness2_messages,
+    liquid_fullness3_messages,
+    liquid_fullness4_messages,
+    liquid_fullness5_messages,
+
+    fullness1_messages,
+    fullness2_messages,
+    fullness3_messages,
+    fullness4_messages,
+    fullness5_messages,
   } = belly;
 
   let result = '';
@@ -324,6 +421,30 @@ export const generateBellyString = (belly: Belly, index: number) => {
   });
   result += '</div>';
 
+  result += '<div class="tab-pane fade" id="primaryAutoTransferMessagesOwner' + index + '" role="messagesTabpanel">';
+  primary_autotransfer_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="primaryAutoTransferMessagesPrey' + index + '" role="messagesTabpanel">';
+  primary_autotransfer_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="secondaryAutoTransferMessagesOwner' + index + '" role="messagesTabpanel">';
+  secondary_autotransfer_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="secondaryAutoTransferMessagesPrey' + index + '" role="messagesTabpanel">';
+  secondary_autotransfer_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
   result += '<div class="tab-pane fade" id="digestChanceMessagesOwner' + index + '" role="messagesTabpanel">';
   digest_chance_messages_owner?.forEach((msg) => {
     result += msg + '<br>';
@@ -510,6 +631,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<div class="accordion-body">';
   result += '<ul class="list-group">';
   result += '<li class="list-group-item">Can Taste: ' + (can_taste ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
+  result += '<li class="list-group-item">Feedable: ' + (is_feedable ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
   result += '<li class="list-group-item">Contaminates: ' + (contaminates ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
   result += '<li class="list-group-item">Contamination Flavor: ' + contamination_flavor + '</li>';
   result += '<li class="list-group-item">Contamination Color: ' + contamination_color + '</li>';
@@ -520,6 +642,9 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<li class="list-group-item">Idle Emotes: ' + (emote_active ? '<span style="color: green;">Active' : '<span style="color: red;">Inactive') + '</li>';
   result += '<li class="list-group-item">Idle Emote Delay: ' + emote_time + ' seconds</li>';
   result += '<li class="list-group-item">Shrink/Grow Size: ' + shrink_grow_size * 100 + '%</li>';
+  result += '<li class="list-group-item">Vore Spawn Blacklist: ' + (vorespawn_blacklist ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
+  result += '<li class="list-group-item">Vore Spawn Whitelist: ' + (vorespawn_whitelist.length ? vorespawn_whitelist.join(', ') : 'Anyone!') + '</li>';
+  result += '<li class="list-group-item">Vore Spawn Absorbed: ' + (vorespawn_absorbed === 0 ? '<span style="color: red;">No' : vorespawn_absorbed === 1 ? '<span style="color: green;">Yes' : '<span style="color: orange;">Prey Choice') + '</li>';
   result += '<li class="list-group-item">Egg Type: ' + egg_type + '</li>';
   result += '<li class="list-group-item">Selective Mode Preference: ' + selective_preference + '</li>';
   result += '</ul>';
@@ -556,6 +681,18 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div id="settingsAccordion' + index + '-collapseVisuals" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' + index + '-headingVisuals>';
   result += '<div class="accordion-body">';
+  result += '<b>Vore Sprites</b>';
+  result += '<ul class="list-group">';
+  result += '<li class="list-group-item">Affect Vore Sprites: ' + (affects_vore_sprites ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
+  result += '<li class="list-group-item">Count Absorbed prey for vore sprites: ' + (count_absorbed_prey_for_sprite ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
+  result += '<li class="list-group-item">Animation when prey resist: ' + (resist_triggers_animation ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
+  result += '<li class="list-group-item">Vore Sprite Size Factor: ' + size_factor_for_sprite + '</li>';
+  result += '<li class="list-group-item">Belly Sprite to affect: ' + belly_sprite_to_affect + '</li>';
+  result += '</ul>';
+  result += '<b>Belly Fullscreens Preview and Coloring</b>';
+  result += '<ul class="list-group">';
+  result += '<li class="list-group-item">Color: <span style="color: ' + belly_fullscreen_color + ';">' + belly_fullscreen_color + '</span>';
+  result += '</ul>';
   result += '<b>Vore FX</b>';
   result += '<ul class="list-group">';
   result += '<li class="list-group-item">Disable Prey HUD: ' + (disable_hud ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</li>';
@@ -586,10 +723,126 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<li class="list-group-item">Secondary Transfer Location: ' + transferlocation_secondary + '</li>';
   result += '<li class="list-group-item">Absorb Chance: ' + absorbchance + '%</li>';
   result += '<li class="list-group-item">Digest Chance: ' + digestchance + '%</li>';
+  result += '<li class="list-group-item">Belch Chance: ' + belchchance + '%</li>';
+  result += '</ul>';
+  result += '<hr>';
+  result += '<b>Auto-Transfer Options (' +
+  (autotransfer_enabled ? '<span style="color: green;">Enabled' : '<span style="color: red;">Disabled') +
+  '</span>)</b>';
+  result += '<ul class="list-group">';
+  result += '<li class="list-group-item">Auto-Transfer Time: ' + autotransferwait / 10 + 's</li>';
+  result += '<li class="list-group-item">Auto-Transfer Chance: ' + autotransferchance + '%</li>';
+  result += '<li class="list-group-item">Auto-Transfer Location: ' + autotransferlocation + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Chance: ' + autotransferchance_secondary + '%</li>';
+  result += '<li class="list-group-item">Auto-Transfer Location: ' + autotransferlocation_secondary + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Min Amount: ' + autotransfer_min_amount + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Max Amount: ' + autotransfer_max_amount + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Chance: ' + autotransferchance + '%</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Location: ' + autotransferlocation + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Location Extras: ' + autotransferextralocation.join(', ') + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Whitelist (Mobs): ' + GetAutotransferFlags(autotransfer_whitelist, true) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Whitelist (Items): ' + GetAutotransferFlags(autotransfer_whitelist_items, true) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Blacklist (Mobs): ' + GetAutotransferFlags(autotransfer_blacklist, false) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Primary Blacklist (Items): ' + GetAutotransferFlags(autotransfer_blacklist_items, false) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Chance: ' + autotransferchance_secondary + '%</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Location: ' + autotransferlocation_secondary + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Location Extras: ' + autotransferextralocation_secondary.join(', ') + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Whitelist (Mobs): ' + GetAutotransferFlags(autotransfer_secondary_whitelist, true) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Whitelist (Items): ' + GetAutotransferFlags(autotransfer_secondary_whitelist_items, true) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Blacklist (Mobs): ' + GetAutotransferFlags(autotransfer_secondary_blacklist, false) + '</li>';
+  result += '<li class="list-group-item">Auto-Transfer Secondary Blacklist (Items): ' + GetAutotransferFlags(autotransfer_secondary_blacklist_items, false) + '</li>';
   result += '</ul>';
   result += '</div></div></div>';
 
   // END INTERACTIONS
+  // LIQUID OPTIONS
+
+  result += '<div class="accordion-item">';
+  result += '<h2 class="accordion-header" id="settingsAccordion' + index + '-headingFour">';
+  result += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' + index + '-collapseFour" aria-expanded="true" aria-controls="settingsAccordion' + index + '-collapseFour">';
+  result += '<b>== Liquid Options (' +
+  (show_liquids ? '<span style="color: green;">Liquids On' : '<span style="color: red;">Liquids Off') +
+  '</span>) ==</b>';
+  result += '</button></h2>';
+
+  result += '<div id="settingsAccordion' + index + '-collapseFour" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' + index + '-headingFour">';
+  result += '<div class="accordion-body">';
+  result += '<ul class="list-group">';
+  result += '<li class="list-group-item">Generate Liquids: ' + (reagentbellymode ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</li>';
+  result += '<li class="list-group-item">Liquid Type: ' + reagent_chosen + '</li>';
+  result += '<li class="list-group-item">Liquid Name: ' + reagent_name + '</li>';
+  result += '<li class="list-group-item">Transfer Verb: ' + reagent_transfer_verb + '</li>';
+  result += '<li class="list-group-item">Generation Time: ' + gen_time_display + '</li>';
+  result += '<li class="list-group-item">Liquid Capacity: ' + custom_max_volume + '</li>';
+  result += '<li class="list-group-item">Slosh Sounds: ' + (vorefootsteps_sounds ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</li>';
+  result += '<li class="list-group-item">Liquid Addons: ' + GetLiquidAddons(reagent_mode_flag_list) + '</li>';
+  result += '</ul>';
+  result += '</div></div></div>';
+
+  // END LIQUID OPTIONS
+  // LIQUID MESSAGES
+
+  result += '<div class="accordion-item">';
+  result += '<h2 class="accordion-header" id="settingsAccordion' + index + '-headingFive">';
+  result += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' + index + '-collapseFive" aria-expanded="true" aria-controls="settingsAccordion' + index + '-collapseFive">';
+  result += '<b>== Liquid Messages (' +
+  (show_liquids ? '<span style="color: green;">Messages On' : '<span style="color: red;">Messages Off') +
+  '</span>) ==</b>';
+  result += '</button></h2>';
+
+  result += '<div id="settingsAccordion' + index + '-collapseFive" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' + index + '-headingFive">';
+  result += '<div class="accordion-body">';
+
+  result += '<div role="liquidMessagesTabpanel">'; // Start Div liquidMessagesTabpanel
+  result += '<div class="row"><div class="col-4">';
+  result += '<div class="list-group" id="liquidMessagesList" role="messagesTablist">';
+  result += '<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#examineMessage0_20' + index + '" role="tab">Examine Message (0 to 20%) (' + (liquid_fullness1_messages ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</span>)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage20_40' + index + '" role="tab">Examine Message (20 to 40%) (' + (liquid_fullness2_messages ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</span>)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage40_60' + index + '" role="tab">Examine Message (40 to 60%) (' + (liquid_fullness3_messages ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</span>)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage60_80' + index + '" role="tab">Examine Message (60 to 80%) (' + (liquid_fullness4_messages ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</span>)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage80_100' + index + '" role="tab">Examine Message (80 to 100%) (' + (liquid_fullness5_messages ? '<span style="color: green;">On' : '<span style="color: red;">Off') + '</span>)</a>';
+  result += '</div></div>';
+
+  result += '<div class="col-8">';
+  result += '<div class="tab-content">';
+
+  result += '<div class="tab-pane fade show active" id="examineMessage0_20' + index + '" role="liquidMessagesTabpanel">';
+  fullness1_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="examineMessage20_40' + index + '" role="liquidMessagesTabpanel">';
+  fullness2_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="examineMessage40_60' + index + '" role="liquidMessagesTabpanel">';
+  fullness3_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="examineMessage60_80' + index + '" role="liquidMessagesTabpanel">';
+  fullness4_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="examineMessage80_100' + index + '" role="liquidMessagesTabpanel">';
+  fullness5_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '</div>';
+  result += '</div></div>';
+  result += '</div>'; // End Div liquidMessagesTabpanel
+
+  result += '</div></div></div>';
+
+  // END LIQUID MESSAGES
 
   result += '</div></div></div>';
 

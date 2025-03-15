@@ -207,9 +207,10 @@
 	if(!vore_active || no_vore || !voremob_loaded)
 		return
 
-	if(!IsAdvancedToolUser())
-		add_verb(src, /mob/living/simple_mob/proc/animal_nom)
-		add_verb(src, /mob/living/proc/shred_limb)
+	AddElement(/datum/element/slosh) // Sloshy element
+
+	if(!soulgem)
+		soulgem = new(src)
 
 	if(LAZYLEN(vore_organs))
 		return

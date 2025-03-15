@@ -2,6 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
+import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../constants';
 import type { hostMob, selectedData } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
@@ -14,6 +15,7 @@ export const VoreSelectedBellyOptions = (props: {
   const { belly, host_mobtype } = props;
   const {
     can_taste,
+    is_feedable,
     nutrition_percent,
     digest_brute,
     digest_burn,
@@ -29,9 +31,19 @@ export const VoreSelectedBellyOptions = (props: {
     contaminate_flavor,
     contaminate_color,
     egg_type,
+    egg_name,
+    egg_size,
+    recycling,
+    storing_nutrition,
+    entrance_logs,
+    item_digest_logs,
     selective_preference,
     save_digest_mode,
     eating_privacy_local,
+    vorespawn_blacklist,
+    vorespawn_whitelist,
+    vorespawn_absorbed,
+    private_struggle,
     drainmode,
   } = belly;
 
@@ -48,10 +60,19 @@ export const VoreSelectedBellyOptions = (props: {
               {can_taste ? 'Yes' : 'No'}
             </Button>
           </LabeledList.Item>
+          <LabeledList.Item label="Feedable">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_feedable' })}
+              icon={is_feedable ? 'toggle-on' : 'toggle-off'}
+              selected={is_feedable}
+            >
+              {is_feedable ? 'Yes' : 'No'}
+            </Button>
+          </LabeledList.Item>
           <LabeledList.Item label="Contaminates">
             <Button
               onClick={() =>
-                act('set_attribute', { attribute: 'b_contaminate' })
+                act('set_attribute', { attribute: 'b_contaminates' })
               }
               icon={contaminates ? 'toggle-on' : 'toggle-off'}
               selected={contaminates}
@@ -59,7 +80,7 @@ export const VoreSelectedBellyOptions = (props: {
               {contaminates ? 'Yes' : 'No'}
             </Button>
           </LabeledList.Item>
-          {(contaminates && (
+          {contaminates ? (
             <>
               <LabeledList.Item label="Contamination Flavor">
                 <Button
@@ -84,8 +105,9 @@ export const VoreSelectedBellyOptions = (props: {
                 </Button>
               </LabeledList.Item>
             </>
-          )) ||
-            null}
+          ) : (
+            ''
+          )}
           <LabeledList.Item label="Nutritional Gain">
             <Button
               onClick={() =>
@@ -124,6 +146,17 @@ export const VoreSelectedBellyOptions = (props: {
               }
             >
               {capitalize(eating_privacy_local)}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Toggle Struggle Privacy">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_private_struggle' })
+              }
+              icon={private_struggle ? 'toggle-on' : 'toggle-off'}
+              selected={private_struggle}
+            >
+              {private_struggle ? 'Private' : 'Loud'}
             </Button>
           </LabeledList.Item>
 
@@ -215,12 +248,109 @@ export const VoreSelectedBellyOptions = (props: {
               {shrink_grow_size * 100 + '%'}
             </Button>
           </LabeledList.Item>
+          <LabeledList.Item label="Vore Spawn Blacklist">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_vorespawn_blacklist' })
+              }
+              icon={vorespawn_blacklist ? 'toggle-on' : 'toggle-off'}
+              selected={vorespawn_blacklist}
+            >
+              {vorespawn_blacklist ? 'Yes' : 'No'}
+            </Button>
+          </LabeledList.Item>
+          {vorespawn_blacklist ? (
+            ''
+          ) : (
+            <>
+              <LabeledList.Item label="Vore Spawn Whitelist">
+                <Button
+                  onClick={() =>
+                    act('set_attribute', { attribute: 'b_vorespawn_whitelist' })
+                  }
+                  icon="pen"
+                >
+                  {vorespawn_whitelist.length
+                    ? vorespawn_whitelist.join(', ')
+                    : 'Anyone!'}
+                </Button>
+              </LabeledList.Item>
+              <LabeledList.Item label="Vore Spawn Absorbed">
+                <Button
+                  color={vorespawnAbsorbedColor[vorespawn_absorbed]}
+                  tooltip="Click to toggle between No, Yes and Prey's Choice."
+                  onClick={() =>
+                    act('set_attribute', { attribute: 'b_vorespawn_absorbed' })
+                  }
+                >
+                  {vorespawnAbsorbedText[vorespawn_absorbed]}
+                </Button>
+              </LabeledList.Item>
+            </>
+          )}
           <LabeledList.Item label="Egg Type">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_egg_type' })}
               icon="pen"
             >
               {capitalize(egg_type)}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Custom Egg Name">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_egg_name' })}
+              icon="pen"
+            >
+              {egg_name ? egg_name : 'Default'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Custom Egg Size">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_egg_size' })}
+            >
+              {egg_size ? egg_size * 100 + '%' : 'Automatic'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Recycling">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_recycling' })}
+              icon={recycling ? 'toggle-on' : 'toggle-off'}
+              selected={recycling}
+            >
+              {recycling ? 'Enabled' : 'Disabled'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Storing Nutrition">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_storing_nutrition' })
+              }
+              icon={storing_nutrition ? 'toggle-on' : 'toggle-off'}
+              selected={storing_nutrition}
+            >
+              {storing_nutrition ? 'Storing' : 'Absorbing'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Entrance Logs">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_entrance_logs' })
+              }
+              icon={entrance_logs ? 'toggle-on' : 'toggle-off'}
+              selected={entrance_logs}
+            >
+              {entrance_logs ? 'Enabled' : 'Disabled'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Item Digestion Logs">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_item_digest_logs' })
+              }
+              icon={item_digest_logs ? 'toggle-on' : 'toggle-off'}
+              selected={item_digest_logs}
+            >
+              {item_digest_logs ? 'Enabled' : 'Disabled'}
             </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Selective Mode Preference">
