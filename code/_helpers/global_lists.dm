@@ -398,3 +398,5 @@ var/global/list/item_digestion_blacklist = list(
 		/obj/item/mmi/digital/posibrain,
 		/obj/item/mmi/digital/robot,
 		/obj/item/rig/protean)
+
+var/global/list/item_tf_spawnpoints = list() // Global variable tracking which items are item tf spawnpoints
