@@ -65,10 +65,7 @@
 /turf/simulated/shuttle/floor,
 /area/submap/admin_upload/AU2/req_no_power)
 "G" = (
-/obj/effect/overmap/visitable/ship/admin_use{
-	name = "Rascal Pass-Central Shuttle";
-	scanner_desc = @"[i]Registration[/i]: NTS Blueline[i]Class[/i]: Transport shuttle[i]Transponder[/i]: INACTIVE[b]Notice[/b]: High amounts of space carp detected near the shuttle."
-	},
+/obj/effect/overmap/visitable/ship/admin_use/rascal_pass,
 /turf/space,
 /area/space)
 "I" = (

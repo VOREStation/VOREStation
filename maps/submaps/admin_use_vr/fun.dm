@@ -276,6 +276,10 @@
 	start_y = 2
 	known = FALSE
 
+/obj/effect/overmap/visitable/ship/admin_use/rascal_pass
+	name = "Rascal Pass-Central Shuttle";
+	scanner_desc = @"[i]Registration[/i]: NTS Blueline[i]Class[/i]: Transport shuttle[i]Transponder[/i]: INACTIVE[b]Notice[/b]: High amounts of space carp detected near the shuttle."
+
 // Similarly notifies you
 /obj/effect/overmap/visitable/ship/admin_use/Initialize(mapload)
 	. = ..()

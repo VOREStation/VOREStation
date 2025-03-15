@@ -8,9 +8,7 @@
 	},
 /area/shuttle/overmap_examples/outpost)
 "ac" = (
-/obj/structure/shuttle/window{
-	
-	},
+/obj/structure/shuttle/window,
 /turf/simulated/shuttle/floor,
 /area/shuttle/overmap_examples/outpost)
 "af" = (
