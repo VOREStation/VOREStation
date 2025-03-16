@@ -9,7 +9,7 @@
 /obj/structure/grille/broken,
 /obj/item/material/shard,
 /obj/item/material/shard{
-	 icon_state = "shardmedium"
+	icon_state = "shardmedium"
 	},
 /obj/item/stack/rods,
 /turf/simulated/floor,
@@ -96,7 +96,7 @@
 "w" = (
 /obj/structure/grille/broken,
 /obj/item/material/shard{
-	 icon_state = "shardmedium"
+	icon_state = "shardmedium"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/DJOutpost1)
@@ -132,7 +132,7 @@
 /area/submap/virgo2/DJOutpost1)
 "D" = (
 /obj/item/material/shard{
-	 icon_state = "shardmedium"
+	icon_state = "shardmedium"
 	},
 /turf/template_noop,
 /area/template_noop)

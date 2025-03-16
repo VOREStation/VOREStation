@@ -8,5 +8,3 @@ Slime core lives here.
 	icon_state = "slime extract"
 	source = "Slime"
 	product = "core"
-
-	

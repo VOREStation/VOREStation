@@ -24,7 +24,7 @@
 		to_chat(src, span_warning("\The [T] is not compatible with our biology."))
 		return
 
-	if(T.species.flags & NO_SCAN)
+	if(T.species.flags & (NO_DNA|NO_SLEEVE))
 		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return
 

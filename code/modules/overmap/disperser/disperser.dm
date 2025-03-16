@@ -11,9 +11,6 @@
 
 /obj/machinery/disperser/Initialize(mapload)
 	. = ..()
-	// TODO - Remove this bit once machines are converted to Initialize
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 
 /obj/machinery/disperser/examine(mob/user)

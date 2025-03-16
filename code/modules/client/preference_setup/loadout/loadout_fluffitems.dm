@@ -68,16 +68,16 @@
 	character_name = list("Xander Bevin")
 
 /datum/gear/fluff/charlotte_medal
-    path = /obj/item/clothing/accessory/medal/silver/security
-    display_name = "Charlotte's Robust Security Medal"
-    ckeywhitelist = list("alfalah")
-    character_name = list("Charlotte Graves")
+	path = /obj/item/clothing/accessory/medal/silver/security
+	display_name = "Charlotte's Robust Security Medal"
+	ckeywhitelist = list("alfalah")
+	character_name = list("Charlotte Graves")
 
 /datum/gear/fluff/charlotte_medal_2
-    path = /obj/item/clothing/accessory/medal/conduct
-    display_name = "Charlotte's Medal of Conduct"
-    ckeywhitelist = list("alfalah")
-    character_name = list("Charlotte Graves")
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Charlotte's Medal of Conduct"
+	ckeywhitelist = list("alfalah")
+	character_name = list("Charlotte Graves")
 
 /datum/gear/fluff/charlotte_cigarettes
 	path = /obj/item/storage/fancy/fluff/charlotte
@@ -912,10 +912,10 @@
 
 //  P CKEYS
 /datum/gear/fluff/evelyn_medal
-    path = /obj/item/clothing/accessory/medal/conduct
-    display_name = "Evelyn's Medal of Conduct"
-    ckeywhitelist = list("pandora029")
-    character_name = list("Evelyn Tareen")
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Evelyn's Medal of Conduct"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Evelyn Tareen")
 
 /datum/gear/fluff/evelyn_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/
@@ -1205,10 +1205,10 @@
 	character_name = list("Lilith Vespers")
 
 /datum/gear/fluff/greek_dress
-    path = /obj/item/clothing/under/fluff/greek_dress
-    display_name = "mytilenean Dress"
-    ckeywhitelist = list("sudate")
-    character_name = list("Shea Corbett")
+	path = /obj/item/clothing/under/fluff/greek_dress
+	display_name = "mytilenean Dress"
+	ckeywhitelist = list("sudate")
+	character_name = list("Shea Corbett")
 
 /datum/gear/fluff/silent_mimemask
 	path = /obj/item/clothing/mask/gas/sexymime
@@ -1225,24 +1225,24 @@
 	character_name = list("Silent Stripes")
 
 /datum/gear/fluff/parrizjacket
-    path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/parrizjacket
-    display_name = "pink crop bomber"
-    slot = slot_wear_suit
-    ckeywhitelist = list("satinisle")
-    character_name = list("Parriz Tavakdavi")
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/parrizjacket
+	display_name = "pink crop bomber"
+	slot = slot_wear_suit
+	ckeywhitelist = list("satinisle")
+	character_name = list("Parriz Tavakdavi")
 
 /datum/gear/fluff/dark_tarot
-    path = /obj/item/deck/dark_tarot
-    display_name = "dark rose tarot deck"
-    ckeywhitelist = list("satinisle")
-    character_name = list("Millie Orlen")
+	path = /obj/item/deck/dark_tarot
+	display_name = "dark rose tarot deck"
+	ckeywhitelist = list("satinisle")
+	character_name = list("Millie Orlen")
 
 /datum/gear/fluff/memorycrown
-    path = /obj/item/clothing/head/fluff/memory_crown
-    display_name = "memory crown"
-    slot = slot_head
-    ckeywhitelist = list("sixberry")
-    character_name = list("Thistle")
+	path = /obj/item/clothing/head/fluff/memory_crown
+	display_name = "memory crown"
+	slot = slot_head
+	ckeywhitelist = list("sixberry")
+	character_name = list("Thistle")
 
 //  T CKEYS
 /datum/gear/fluff/ascian_medal

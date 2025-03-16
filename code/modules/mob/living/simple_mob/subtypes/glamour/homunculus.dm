@@ -121,4 +121,3 @@
 				armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 100, rad = 100)
 			transformed = 1
 			return TRUE
-

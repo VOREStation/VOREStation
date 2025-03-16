@@ -218,14 +218,14 @@
 /proc/sanitize_or_reflect(message,user)
 	//Way too long to send
 	if(length(message) > MAX_HUGE_MESSAGE_LEN)
-		fail_to_chat(user)
+		fail_chat_message(user)
 		return
 
 	message = sanitize(message, max_length = MAX_HUGE_MESSAGE_LEN)
 
 	//Came back still too long to send
 	if(length(message) > MAX_MESSAGE_LEN)
-		fail_to_chat(user,message)
+		fail_chat_message(user,message)
 		return null
 	else
 		return message
@@ -233,11 +233,11 @@
 // returns true if it failed
 /proc/reflect_if_needed(message, user)
 	if(length(message) > MAX_HUGE_MESSAGE_LEN)
-		fail_to_chat(user)
+		fail_chat_message(user)
 		return TRUE
 	return FALSE
 
-/proc/fail_to_chat(user,message)
+/proc/fail_chat_message(user,message)
 	if(!message)
 		to_chat(user, span_danger("Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all."))
 		return

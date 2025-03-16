@@ -96,7 +96,7 @@
 
 	var/list/adding = list()
 	HUD.adding = adding
-	
+
 	var/obj/screen/using
 	using = new /obj/screen/ghost/returntomenu()
 	using.screen_loc = ui_ghost_returntomenu

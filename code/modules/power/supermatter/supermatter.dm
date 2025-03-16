@@ -109,8 +109,8 @@
 
 	var/datum/looping_sound/supermatter/soundloop
 
-/obj/machinery/power/supermatter/New()
-	..()
+/obj/machinery/power/supermatter/Initialize(mapload)
+	. = ..()
 	uid = gl_uid++
 
 /obj/machinery/power/supermatter/Initialize(mapload)
@@ -374,7 +374,7 @@
 		//Release reaction gasses
 		var/heat_capacity = removed.heat_capacity()
 		removed.adjust_multi(GAS_PHORON, max(device_energy / PHORON_RELEASE_MODIFIER, 0), \
-		                     GAS_O2, max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+								GAS_O2, max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 		var/thermal_power = THERMAL_RELEASE_MODIFIER * device_energy
 		if (debug)

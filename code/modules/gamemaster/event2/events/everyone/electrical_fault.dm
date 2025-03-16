@@ -96,4 +96,3 @@
 //		log_debug("ELECTRICAL EVENT: Emagged \the [A].")
 		playsound(A, 'sound/machines/chime.ogg', 50, 1)
 		apcs_emagged++
-

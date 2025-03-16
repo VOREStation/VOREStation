@@ -81,9 +81,9 @@
 		//VOREStation Add End
 
 		if(level >= SEC_LEVEL_RED)
-			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
+			SSatc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
 		else
-			atc.reroute_traffic(yes = 0)
+			SSatc.reroute_traffic(yes = 0)
 
 		spawn()
 			SSnightshift.check_nightshift()

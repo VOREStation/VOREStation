@@ -221,13 +221,13 @@
 	..()
 
 /mob/living/carbon/human/proc/Stasis(amount)
-	if((species.flags & NO_SCAN) || isSynthetic())
+	if((species.flags & NO_DNA) || isSynthetic())
 		in_stasis = 0
 	else
 		in_stasis = amount
 
 /mob/living/carbon/human/proc/getStasis()
-	if((species.flags & NO_SCAN) || isSynthetic())
+	if((species.flags & NO_DNA) || isSynthetic())
 		return 0
 
 	return in_stasis
@@ -241,12 +241,12 @@
 	return 0
 
 /mob/living/carbon/human/getCloneLoss()
-	if((species.flags & NO_SCAN) || isSynthetic())
+	if((species.flags & NO_DNA) || isSynthetic())
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(var/amount)
-	if((species.flags & NO_SCAN) || isSynthetic())
+	if((species.flags & NO_DNA) || isSynthetic())
 		cloneloss = 0
 	else
 		..()
@@ -254,7 +254,7 @@
 /mob/living/carbon/human/adjustCloneLoss(var/amount)
 	..()
 
-	if((species.flags & NO_SCAN) || isSynthetic())
+	if((species.flags & NO_DNA) || isSynthetic())
 		cloneloss = 0
 		return
 
