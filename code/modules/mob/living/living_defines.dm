@@ -106,5 +106,4 @@
 									" is rocking slightly from side to side."
 									)
 
-	var/patting_defence = FALSE
-	var/personal_space = FALSE
+	var/touch_reaction_flags

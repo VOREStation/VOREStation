@@ -1423,7 +1423,7 @@
 
 /datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.patting_defence = TRUE
+	H.touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
 	add_verb(H, /mob/living/proc/toggle_patting_defence)
 
 /datum/trait/neutral/personal_space
@@ -1434,5 +1434,5 @@
 
 /datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.personal_space = TRUE
+	H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 	add_verb(H, /mob/living/proc/toggle_personal_space)

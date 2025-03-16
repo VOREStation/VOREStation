@@ -467,7 +467,7 @@
 			if(FEMALE)
 				t_him = "her"
 
-	if(target.personal_space)
+	if(target.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE)
 		H.visible_message( \
 			span_notice("[target] moves to avoid being touched by [H]!"), \
 			span_notice("[target] moves to avoid being touched by you!"), )
@@ -475,7 +475,7 @@
 
 	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
-		if(target.patting_defence)
+		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
 				span_warning("[target] reflexively bites your hand!"), )
@@ -492,7 +492,7 @@
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
-		if(target.patting_defence)
+		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent nose booping!"), \
 				span_warning("[target] reflexively bites your hand!"), )
