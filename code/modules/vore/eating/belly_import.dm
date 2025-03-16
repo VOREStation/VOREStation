@@ -796,9 +796,6 @@
 		var/possible_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi')
 		if(!new_belly.colorization_enabled)
 			possible_fullscreens = icon_states('icons/mob/screen_full_vore.dmi')
-			possible_fullscreens -= "a_synth_flesh_mono"
-			possible_fullscreens -= "a_synth_flesh_mono_hole"
-			possible_fullscreens -= "a_anim_belly"
 		if(!(new_belly.belly_fullscreen in possible_fullscreens))
 			new_belly.belly_fullscreen = ""
 
