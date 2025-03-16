@@ -1,9 +1,9 @@
 // #### Relays ####
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
-/obj/machinery/telecomms/relay/preset/station/Initialize(mapload)
-	. = ..()
+/obj/machinery/telecomms/relay/preset/station
 	id = "SD Relay"
 	autolinkers = list("sd_relay")
+
 
 /datum/map/sd/default_internal_channels()
 	return list(

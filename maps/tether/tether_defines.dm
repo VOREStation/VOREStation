@@ -287,7 +287,7 @@
 	announce_atc(AM,going = TRUE)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
-	return list(Z_LEVEL_TETHER_SPACE_LOW)
+	return list(GLOB.map_templates_loaded[Z_LEVEL_TETHER_SPACE_LOW])
 
 /obj/effect/overmap/visitable/sector/virgo3b/announce_atc(var/atom/movable/AM, var/going = FALSE)
 	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
