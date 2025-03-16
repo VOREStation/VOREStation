@@ -1,14 +1,14 @@
 /obj/screen/ai/multicam/Click()
-    if(..())
-        return
-    var/mob/living/silicon/ai/AI = usr
-    AI.toggle_multicam()
+	if(..())
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.toggle_multicam()
 
 /obj/screen/ai/add_multicam/Click()
-    if(..())
-        return
-    var/mob/living/silicon/ai/AI = usr
-    AI.drop_new_multicam()
+	if(..())
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.drop_new_multicam()
 
 /obj/screen/ai/up/Click()
 	var/mob/living/silicon/ai/AI = usr

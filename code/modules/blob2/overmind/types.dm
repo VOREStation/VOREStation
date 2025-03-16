@@ -5,7 +5,7 @@
 	var/effect_desc = "This does nothing special."	// For examine panel.
 	var/ai_desc = "default" // Shown when examining the overmind.
 	var/difficulty = BLOB_DIFFICULTY_EASY // A rough guess on how hard a blob is to kill.
-	                                      // When a harder blob spawns by event, the crew is given more information than usual from the announcement.
+	  									// When a harder blob spawns by event, the crew is given more information than usual from the announcement.
 	var/color = "#FFFFFF"	// The actual blob's color.
 	var/complementary_color = "#000000" //a color that's complementary to the normal blob color.  Blob mobs are colored in this.
 

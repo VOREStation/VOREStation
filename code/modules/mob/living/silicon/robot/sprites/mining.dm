@@ -196,16 +196,22 @@
 	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahan/mineralt
 	name = "Dullahan Mining unit v2"
 	sprite_icon_state = "dullahanmine_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahan/miningdully
 	name = "Dullahan mining v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/mining.dmi'
 	sprite_icon_state = "dullahanmining"
 	sprite_decals = list("decals")
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancarg
 	name = "Dullahan Cargo"
@@ -214,10 +220,14 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancarg/cargoalt
 	name = "Dullahan Cargo v2"
 	sprite_icon_state = "dullahancargo_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/mining/cat
 	name = "Cat - Mining"
@@ -245,6 +255,8 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/tall/mmekacargo
 	name = "NIKO - Cargo"
@@ -252,6 +264,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/tall/fmekacargo
 	name = "NIKA - Cargo"
@@ -259,6 +273,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/tall/k4tcargo
 	name = "K4T - Cargo"
@@ -266,6 +282,8 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/mining/tall/k4t_alt1cargo
 	name = "K4Talt - Cargo"
@@ -273,6 +291,8 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/mining/smolraptorminer
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'

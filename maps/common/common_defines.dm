@@ -132,7 +132,7 @@
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
-	var/mob_announce_cooldown = 0
+	mob_announce_cooldown = 0
 
 /obj/effect/overmap/visitable/sector/virgo3c
 	name = "Virgo 3C"

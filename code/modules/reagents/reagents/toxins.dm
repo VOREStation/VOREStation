@@ -605,7 +605,7 @@
 						H.b_hair = max(0, min(255, H.b_hair + color_shift))
 					if(H.b_facial)
 						H.b_facial = max(0, min(255, H.b_facial + color_shift))
-		if(H.species.flags & NO_SCAN)
+		if(H.species.flags & NO_DNA)
 			return
 
 //The original coder comment here wanted it to be "Approx. one mutation per 10 injected/20 ingested/30 touching units"
@@ -875,7 +875,7 @@
 		return
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
+	if(istype(H) && (H.species.flags & NO_DNA))
 		return
 
 	if(M.dna)
@@ -901,7 +901,7 @@
 		return
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
+	if(istype(H) && (H.species.flags & NO_DNA))
 		return
 
 	if(M.dna)

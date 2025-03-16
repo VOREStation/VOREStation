@@ -59,11 +59,11 @@ var/list/all_maps = list()
 	var/list/lateload_redgate = list() //VOREStation Add - The same thing as gateway, but safe-ish
 
 	var/list/allowed_jobs = list() //Job datums to use.
-	                               //Works a lot better so if we get to a point where three-ish maps are used
-	                               //We don't have to C&P ones that are only common between two of them
-	                               //That doesn't mean we have to include them with the rest of the jobs though, especially for map specific ones.
-	                               //Also including them lets us override already created jobs, letting us keep the datums to a minimum mostly.
-	                               //This is probably a lot longer explanation than it needs to be.
+								//Works a lot better so if we get to a point where three-ish maps are used
+								//We don't have to C&P ones that are only common between two of them
+								//That doesn't mean we have to include them with the rest of the jobs though, especially for map specific ones.
+								//Also including them lets us override already created jobs, letting us keep the datums to a minimum mostly.
+								//This is probably a lot longer explanation than it needs to be.
 
 	var/list/holomap_smoosh		// List of lists of zlevels to smoosh into single icons
 	var/list/holomap_offset_x = list()
@@ -264,19 +264,19 @@ var/list/all_maps = list()
 // This list needs to be purged but people insist on adding more cruft to the radio.
 /datum/map/proc/default_internal_channels()
 	return list(
-		num2text(PUB_FREQ)   = list(),
-		num2text(AI_FREQ)    = list(access_synth),
-		num2text(ENT_FREQ)   = list(),
-		num2text(ERT_FREQ)   = list(access_cent_specops),
-		num2text(COMM_FREQ)  = list(access_heads),
-		num2text(ENG_FREQ)   = list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ)   = list(access_medical_equip),
-		num2text(MED_I_FREQ) = list(access_medical_equip),
-		num2text(SEC_FREQ)   = list(access_security),
-		num2text(SEC_I_FREQ) = list(access_security),
-		num2text(SCI_FREQ)   = list(access_tox,access_robotics,access_xenobiology),
-		num2text(SUP_FREQ)   = list(access_cargo),
-		num2text(SRV_FREQ)   = list(access_janitor, access_hydroponics),
+		num2text(PUB_FREQ)	= list(),
+		num2text(AI_FREQ)	= list(access_synth),
+		num2text(ENT_FREQ)	= list(),
+		num2text(ERT_FREQ)	= list(access_cent_specops),
+		num2text(COMM_FREQ)	= list(access_heads),
+		num2text(ENG_FREQ)	= list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ)	= list(access_medical_equip),
+		num2text(MED_I_FREQ)= list(access_medical_equip),
+		num2text(SEC_FREQ)	= list(access_security),
+		num2text(SEC_I_FREQ)= list(access_security),
+		num2text(SCI_FREQ)	= list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ)	= list(access_cargo),
+		num2text(SRV_FREQ)	= list(access_janitor, access_hydroponics),
 	)
 
 /datum/map/proc/get_skybox_datum(z)

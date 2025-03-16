@@ -76,24 +76,24 @@
 	sheets_refunded = 2
 
 /obj/machinery/light_construct/floortube/verb/rotate_clockwise()
-    set name = "Rotate Fixture Clockwise"
-    set category = "Object"
-    set src in view(1)
+	set name = "Rotate Fixture Clockwise"
+	set category = "Object"
+	set src in view(1)
 
-    if (usr.stat || usr.restrained() || anchored)
-        return
+	if (usr.stat || usr.restrained() || anchored)
+		return
 
-    src.set_dir(turn(src.dir, 270))
+	src.set_dir(turn(src.dir, 270))
 
 /obj/machinery/light_construct/floortube/verb/rotate_counterclockwise()
-    set name = "Rotate Fixture Counter-Clockwise"
-    set category = "Object"
-    set src in view(1)
+	set name = "Rotate Fixture Counter-Clockwise"
+	set category = "Object"
+	set src in view(1)
 
-    if (usr.stat || usr.restrained() || anchored)
-        return
+	if (usr.stat || usr.restrained() || anchored)
+		return
 
-    src.set_dir(turn(src.dir, 90))
+	src.set_dir(turn(src.dir, 90))
 
 /obj/machinery/light_construct/floortube/update_icon()
 	switch(stage)
