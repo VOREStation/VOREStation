@@ -1751,11 +1751,11 @@
 				if(host.vore_selected.mode_flags & DM_FLAG_TURBOMODE)
 					host.vore_selected.speedy_mob_processing = TRUE
 					START_PROCESSING(SSobj, host.vore_selected)
-					to_chat(user, "<span class= 'warning'>TURBO MODE activated! Belly processing speed tripled! This also affects timed settings, such as autotransfer and liquid generation.</span>")
+					to_chat(user, span_warning("TURBO MODE activated! Belly processing speed tripled! This also affects timed settings, such as autotransfer and liquid generation."))
 				else
 					host.vore_selected.speedy_mob_processing = FALSE
 					START_PROCESSING(SSbellies, host.vore_selected)
-					to_chat(user, "<span class= 'warning'>TURBO MODE deactivated. Belly processing returned to normal speed.</span>")
+					to_chat(user, span_warning("TURBO MODE deactivated. Belly processing returned to normal speed."))
 			. = TRUE
 		if("b_item_mode")
 			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
