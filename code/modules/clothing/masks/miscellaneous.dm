@@ -15,8 +15,8 @@
 	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
 	w_class = ITEMSIZE_TINY
 
-/obj/item/clothing/mask/muzzle/New()
-	..()
+/obj/item/clothing/mask/muzzle/Initialize(mapload)
+	. = ..()
 	say_messages = list("Mmfph!", "Mmmf mrrfff!", "Mmmf mnnf!")
 	say_verbs = list("mumbles", "says")
 
@@ -217,8 +217,8 @@
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = HEAD|FACE
 */
-/obj/item/clothing/mask/horsehead/New()
-	..()
+/obj/item/clothing/mask/horsehead/Initialize(mapload)
+	. = ..()
 	// The horse mask doesn't cause voice changes by default, the wizard spell changes the flag as necessary
 	say_messages = list("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
 	say_verbs = list("whinnies", "neighs", "says")
@@ -232,7 +232,8 @@
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
 
-/obj/item/clothing/mask/ai/New()
+/obj/item/clothing/mask/ai/Initialize(mapload)
+	. = ..()
 	eye = new(src)
 
 /obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
