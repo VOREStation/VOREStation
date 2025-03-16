@@ -205,6 +205,8 @@
 		H.r_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_R,   255)
 		H.g_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_G,   255)
 		H.b_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_B,	  255)
+		H.a_ears = dna.GetUIValueRange(DNA_UI_EARS_ALPHA, 255)
+		H.a_ears2 = dna.GetUIValueRange(DNA_UI_EARS_SECONDARY_ALPHA, 255)
 
 		LAZYINITLIST(H.ear_secondary_colors)
 		H.ear_secondary_colors.len = max(length(H.ear_secondary_colors), DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
@@ -231,15 +233,16 @@
 			H.wing_style = wing_styles_list[wing_styles_list[wing]]
 
 		//Wing Color
-		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,    255)
-		H.g_wing   = dna.GetUIValueRange(DNA_UI_WING_G,    255)
-		H.b_wing   = dna.GetUIValueRange(DNA_UI_WING_B,    255)
+		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,     255)
+		H.g_wing   = dna.GetUIValueRange(DNA_UI_WING_G,     255)
+		H.b_wing   = dna.GetUIValueRange(DNA_UI_WING_B,     255)
 		H.r_wing2  = dna.GetUIValueRange(DNA_UI_WING2_R,    255)
 		H.g_wing2  = dna.GetUIValueRange(DNA_UI_WING2_G,    255)
 		H.b_wing2  = dna.GetUIValueRange(DNA_UI_WING2_B,    255)
 		H.r_wing3  = dna.GetUIValueRange(DNA_UI_WING3_R,    255)
 		H.g_wing3  = dna.GetUIValueRange(DNA_UI_WING3_G,    255)
 		H.b_wing3  = dna.GetUIValueRange(DNA_UI_WING3_B,    255)
+		H.a_wing = dna.GetUIValueRange(DNA_UI_WING_ALPHA,	255)
 
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
@@ -256,6 +259,7 @@
 		H.r_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_R,   255)
 		H.g_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_G,   255)
 		H.b_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_B,   255)
+		H.a_tail = dna.GetUIValueRange(DNA_UI_TAIL_ALPHA,  255)
 
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
