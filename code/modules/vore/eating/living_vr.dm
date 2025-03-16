@@ -1271,7 +1271,7 @@
 
 // Full screen belly overlays!
 /obj/screen/fullscreen/belly
-	icon = 'icons/mob/vore_fullscreens/screen_full_vore_ch.dmi'
+	icon = 'icons/mob/vore_fullscreens/screen_full_vore_list.dmi'
 
 /obj/screen/fullscreen/belly/fixed
 	icon = 'icons/mob/screen_full_vore.dmi'

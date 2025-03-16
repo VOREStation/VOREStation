@@ -402,15 +402,9 @@
 		selected_list["belly_fullscreen_alpha"] = selected.belly_fullscreen_alpha
 
 		if(selected.colorization_enabled)
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore_ch.dmi') //Makes any icons inside of here selectable.
+			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
 		else
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi') //Where all upstream stomachs are stored. I'm not touching the chunks of comments below but they are inaccurate here.
-			//INSERT COLORIZE-ONLY STOMACHS HERE.
-			//This manually removed color-only stomachs from the above list.
-			//For some reason, colorized stomachs have to be added to both colorized_vore(to be selected) and full_vore (to show the preview in tgui)
-			//Why? I have no flipping clue. As you can see above, vore_colorized is included in the assets but isn't working. It makes no sense.
-			//I can only imagine this is a BYOND/TGUI issue with the cache. If you can figure out how to fix this and make it so you only need to
-			//include things in full_colorized_vore, that would be great. For now, this is the only workaround that I could get to work.
+			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
 
 		var/list/selected_contents = list()
 		for(var/O in selected)

@@ -793,7 +793,7 @@
 			if(new_disable_hud == 1)
 				new_belly.disable_hud = TRUE
 
-		var/possible_fullscreens = icon_states('icons/mob/screen_full_vore_ch.dmi')
+		var/possible_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi')
 		if(!new_belly.colorization_enabled)
 			possible_fullscreens = icon_states('icons/mob/screen_full_vore.dmi')
 			possible_fullscreens -= "a_synth_flesh_mono"

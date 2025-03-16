@@ -28,6 +28,9 @@
 /datum/belly_overlays/vbo_belly9
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_belly9.dmi'
 
+/datum/belly_overlays/vbo_belly9_fluidless
+	belly_icon = 'icons/mob/vore_fullscreens/VBO_belly9_fluidless.dmi'
+
 /datum/belly_overlays/vbo_breast
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_breast.dmi'
 
@@ -81,6 +84,9 @@
 
 /datum/belly_overlays/vbo_intestines9
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_intestines9.dmi'
+
+/datum/belly_overlays/vbo_intestines9_fluidless
+	belly_icon = 'icons/mob/vore_fullscreens/VBO_intestines9_fluidless.dmi'
 
 /datum/belly_overlays/vbo_maw1
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_maw1.dmi'

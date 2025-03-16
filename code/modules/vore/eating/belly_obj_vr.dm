@@ -721,7 +721,7 @@
 			F.update_for_view(L.client.view)
 		else
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, severity) //preserving save data
-			F.icon = file("icons/mob/vore_fullscreens/[belly_fullscreen].dmi")
+			F.icon = 'icons/mob/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))

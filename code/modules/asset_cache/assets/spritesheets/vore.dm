@@ -2,7 +2,7 @@
 	name = "vore"
 
 /datum/asset/spritesheet/vore/create_spritesheets()
-	var/icon/downscaled = icon('icons/mob/screen_full_vore_ch.dmi') // preserving save data
+	var/icon/downscaled = icon('icons/mob/screen_full_vore_list.dmi') // preserving save data
 	downscaled.Scale(240, 240)
 	InsertAll("", downscaled)
 
