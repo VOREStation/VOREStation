@@ -304,3 +304,27 @@
       you unappealing!
   - code_imp: NO_DNA and NO_RESLEEVE are now separated.
   - bugfix: Traits will no longer wipe innate species traits
+2025-03-16:
+  Diana:
+  - bugfix: Xenoarch organs no longer have the possibility of being rejected.
+  - bugfix: Plushies will no longer lose their loadout name
+  - bugfix: Plushies will speak in their given name in the chat properly.
+  Drathek:
+  - code_imp: Updated mapmerge, dmi testing, and hooks
+  - code_imp: Added UpdatePaths and maplints
+  - code_imp: Added multivar support to hook installers
+  - rscdel: Removed two corrupt dmi files
+  - maptweak: TGMified 106 maps
+  - maptweak: Removed invalid d1 d2 edits for cables
+  - maptweak: Removed area var edits and codified most of them
+  Kashargul:
+  - code_imp: fix admin vote
+  - bugfix: robot sprites broken by goo borgs
+  TeleTubby2:
+  - rscadd: You can now adjust the transparency of your wings in the character editor
+      and related.
+  - bugfix: The various character transparency additions are properly added to character
+      DNA now.
+  Will & Diana:
+  - bugfix: Dullahans (among others) have proper offsets now
+  - code_imp: Unit test forces coders to comply with proper offsetting of borg sprites
