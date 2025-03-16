@@ -110,7 +110,7 @@
 		if(!(lying || resting) && !isbelly(loc))
 			if(limb_pain)
 				emote("scream")
-			custom_emote(1, "collapses!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
 		if(!(lying || resting)) // stops permastun with SPINE sdisability
 			Weaken(5) //can't emote while weakened, apparently.
 
@@ -155,7 +155,7 @@
 
 			if(!isbelly(loc))
 				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-				custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!", check_stat = TRUE)
 				if(can_feel_pain())
 					emote("pain")
 
@@ -171,7 +171,7 @@
 					drop_from_inventory(r_hand)
 
 			if(!isbelly(loc))
-				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!", check_stat = TRUE)
 
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)
