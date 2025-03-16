@@ -13,6 +13,10 @@ export const VoreSelectedBellyLiquidOptions = (props: {
   const { belly } = props;
   const { show_liq, liq_interacts } = belly;
 
+  const generationTime = (liq_interacts.liq_reagent_nutri_rate + 1) * 10;
+  const generationMinutes = generationTime % 60;
+  const generationHours = Math.floor(generationTime / 60);
+
   return (
     <Section
       title="Liquid Options"
@@ -89,8 +93,14 @@ export const VoreSelectedBellyLiquidOptions = (props: {
               }
               icon="clock"
             >
-              {((liq_interacts.liq_reagent_nutri_rate + 1) * 10) / 60 +
-                ' Hours'}
+              {(generationHours < 10
+                ? '0' + generationHours
+                : generationHours) +
+                ':' +
+                (generationMinutes < 10
+                  ? '0' + generationMinutes
+                  : generationMinutes) +
+                ' hh:mm'}
             </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Liquid Capacity">
