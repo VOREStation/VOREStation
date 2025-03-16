@@ -28,7 +28,7 @@
 /obj/item/clothing/suit/space/void/zaddat/verb/custom_suit()
 	set name = "Customize Shroud"
 	set category = "Object"
-	set desc = "Pick an appearence for your Shroud."
+	set desc = "Pick an appearance for your Shroud."
 
 	var/mob/M = usr
 	var/suit_style = null
@@ -162,7 +162,7 @@
 /obj/item/clothing/suit/space/void/zaddat/security/custom_suit() //so it cant turn into looks that dont makes sense and keep security name in it
 	set name = "Customize Shroud"
 	set category = "Object"
-	set desc = "Pick an appearence for your Shroud."
+	set desc = "Pick an appearance for your Shroud."
 
 	var/mob/M = usr
 	var/suit_style = null
@@ -238,7 +238,7 @@
 /obj/item/clothing/suit/space/void/zaddat/engineer/custom_suit()
 	set name = "Customize Shroud"
 	set category = "Object"
-	set desc = "Pick an appearence for your Shroud."
+	set desc = "Pick an appearance for your Shroud."
 
 	var/mob/M = usr
 	var/suit_style = null
