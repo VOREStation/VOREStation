@@ -37,7 +37,7 @@
 	opacity = 0
 	density = FALSE
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return

@@ -17,7 +17,7 @@
 
 /obj/machinery/computer/fusion_fuel_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/fusion_fuel_control/attack_ai(var/mob/user)
 	attack_hand(user)
