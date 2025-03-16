@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new bluespace sheet snatcher of holding that can be created by science (cheaper and easier than other \"of holding\" items). This allows it to carry up to 5000 sheets. It can also be bought from the mining vendor for 1000 points."
+  - balance: "Changed the normal sheet snatcher to hold 500 (previously 300), and the borg version to hold 700 (previously 500)."
