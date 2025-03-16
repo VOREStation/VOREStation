@@ -41,7 +41,7 @@
 	if(generate_id_gender)
 		identifying_gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
 
-	..(loc, generate_species)
+	. = ..(mapload, generate_species)
 
 	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 

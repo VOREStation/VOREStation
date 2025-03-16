@@ -12,7 +12,7 @@
 /datum/gear/ears/circuitry
 	display_name = "earwear, circuitry (empty)"
 	path = /obj/item/clothing/ears/circuitry
-	
+
 
 /datum/gear/ears/earrings
 	display_name = "earring selection"

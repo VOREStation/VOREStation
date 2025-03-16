@@ -197,7 +197,10 @@ Variables you may want to make use of are:
 	flags ^= NO_SLIP
 
 /datum/species/event1/proc/toggle_cloning()
-	flags ^= NO_SCAN
+	flags ^= NO_SLEEVE
+
+/datum/species/event1/proc/toggle_dna()
+	flags ^= NO_DNA
 
 /datum/species/event1/proc/toggle_defibbing()
 	flags ^= NO_DEFIB

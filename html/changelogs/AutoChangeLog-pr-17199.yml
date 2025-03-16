@@ -1,0 +1,10 @@
+author: "Drathek"
+delete-after: True
+changes:
+  - code_imp: "Updated mapmerge, dmi testing, and hooks"
+  - code_imp: "Added UpdatePaths and maplints"
+  - code_imp: "Added multivar support to hook installers"
+  - rscdel: "Removed two corrupt dmi files"
+  - maptweak: "TGMified 106 maps"
+  - maptweak: "Removed invalid d1 d2 edits for cables"
+  - maptweak: "Removed area var edits and codified most of them"

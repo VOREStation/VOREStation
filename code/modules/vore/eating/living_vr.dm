@@ -787,45 +787,45 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-    volume = 2500
-    temperature = 293.150
-    total_moles = 104
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
 
 /datum/gas_mixture/belly_air/New()
-    . = ..()
-    gas = list(
-        GAS_O2 = 21,
-        GAS_N2 = 79)
+	. = ..()
+	gas = list(
+		GAS_O2 = 21,
+		GAS_N2 = 79)
 
 /datum/gas_mixture/belly_air/vox
-    volume = 2500
-    temperature = 293.150
-    total_moles = 104
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
 
 /datum/gas_mixture/belly_air/vox/New()
-    . = ..()
-    gas = list(
-        GAS_PHORON = 100)
+	. = ..()
+	gas = list(
+		GAS_PHORON = 100)
 
 /datum/gas_mixture/belly_air/zaddat
-    volume = 2500
-    temperature = 293.150
-    total_moles = 300
+	volume = 2500
+	temperature = 293.150
+	total_moles = 300
 
 /datum/gas_mixture/belly_air/zaddat/New()
-    . = ..()
-    gas = list(
-        GAS_O2 = 100)
+	. = ..()
+	gas = list(
+		GAS_O2 = 100)
 
 /datum/gas_mixture/belly_air/nitrogen_breather
-    volume = 2500
-    temperature = 293.150
-    total_moles = 104
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
 
 /datum/gas_mixture/belly_air/nitrogen_breather/New()
-    . = ..()
-    gas = list(
-        GAS_N2 = 100)
+	. = ..()
+	gas = list(
+		GAS_N2 = 100)
 
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
@@ -1064,7 +1064,7 @@
 	if(custom_link)
 		. += "Custom link: " + span_linkify("[custom_link]")
 	if(ooc_notes)
-		. += "OOC Notes: <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+		. += "OOC Notes: <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 	. += "<a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 
 
@@ -1085,8 +1085,8 @@
 	if(href_list["save_ooc_panel"])
 		if(usr == src)
 			save_ooc_panel(usr)
-	if(href_list["print_ooc_notes_to_chat"])
-		print_ooc_notes_to_chat(usr)
+	if(href_list["print_ooc_notes_chat"])
+		print_ooc_notes_chat(usr)
 	if(href_list["save_private_notes"])
 		if(usr == src)
 			save_private_notes(usr)

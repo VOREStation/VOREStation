@@ -125,7 +125,7 @@
 	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_mob/animal/giant_spider/CanPass(atom/movable/mover, turf/target)
-	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/giant_spider) && mover.density == TRUE)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/giant_spider) && mover.density == TRUE && stat != DEAD)
 		return FALSE
 	return ..()
 

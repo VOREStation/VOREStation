@@ -8,17 +8,13 @@
 	pixel_y = 6
 	},
 /turf/simulated/shuttle/floor,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "f" = (
 /obj/machinery/light/floortube{
 	pixel_y = -6
 	},
 /turf/simulated/shuttle/floor,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "g" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
@@ -29,9 +25,7 @@
 	name = "Shuttle Airlock"
 	},
 /turf/simulated/shuttle/floor/yellow,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "m" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -40,16 +34,12 @@
 	pixel_x = -31
 	},
 /turf/simulated/shuttle/floor/black,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "p" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /turf/simulated/floor,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "v" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -59,9 +49,7 @@
 	pixel_y = 31
 	},
 /turf/simulated/shuttle/floor/black,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "x" = (
 /obj/effect/shuttle_landmark/automatic/admin_use1,
 /turf/space,
@@ -75,14 +63,9 @@
 	pixel_x = 6
 	},
 /turf/simulated/shuttle/floor,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "G" = (
-/obj/effect/overmap/visitable/ship/admin_use{
-	name = "Rascal Pass-Central Shuttle";
-	scanner_desc = "[i]Registration[/i]: NTS Blueline[i]Class[/i]: Transport shuttle[i]Transponder[/i]: INACTIVE[b]Notice[/b]: High amounts of space carp detected near the shuttle."
-	},
+/obj/effect/overmap/visitable/ship/admin_use/rascal_pass,
 /turf/space,
 /area/space)
 "I" = (
@@ -90,19 +73,13 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/plating,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "K" = (
 /turf/simulated/shuttle/floor,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "M" = (
 /turf/simulated/shuttle/wall,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "R" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
@@ -112,17 +89,13 @@
 	name = "Shuttle Airlock"
 	},
 /turf/simulated/shuttle/floor/yellow,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 "W" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/black,
-/area/submap/admin_upload/AU2{
-	requires_power = 0
-	})
+/area/submap/admin_upload/AU2/req_no_power)
 
 (1,1,1) = {"
 a

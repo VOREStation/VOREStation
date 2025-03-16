@@ -64,15 +64,15 @@
 			var/mob/living/carbon/human/H = player.current
 			if(H.isSynthetic())
 				return 0
-			if(H.species.flags & NO_SCAN)
+			if(H.species.flags & (NO_SLEEVE|NO_DNA))
 				return 0
 			return 1
 		else if(isnewplayer(player.current))
 			if(player.current.client && player.current.client.prefs)
 				var/datum/species/S = GLOB.all_species[player.current.client.prefs.species]
-				if(S && (S.flags & NO_SCAN))
+				if(S && (S.flags & (NO_SLEEVE|NO_DNA)))
 					return 0
-				if(player.current.client.prefs.organ_data["torso"] == "cyborg") // Full synthetic.
+				if(player.current.client.prefs.organ_data["torso"] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
 					return 0
 				return 1
 	return 0

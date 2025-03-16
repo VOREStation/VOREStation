@@ -36,7 +36,7 @@
 /datum/preference/toggle/tgui_input_mode
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "tgui_input_mode"
-	default_value = FALSE
+	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/toggle/tgui_large_buttons

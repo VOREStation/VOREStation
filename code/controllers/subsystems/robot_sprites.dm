@@ -203,6 +203,9 @@ SUBSYSTEM_DEF(robot_sprites)
 			if(findtext(icon, regex("-openpanel_w")))
 				RS.has_custom_open_sprites = TRUE
 				continue
+			if(findtext(icon, regex("-glow")))
+				RS.has_glow_sprites = TRUE
+				continue
 			if(findtext(icon, regex("-\\d-rest")))
 				RS.has_vore_belly_resting_sprites = TRUE
 				continue

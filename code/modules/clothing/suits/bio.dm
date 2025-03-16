@@ -23,7 +23,7 @@
 	permeability_coefficient = 0.01
 	body_parts_covered = CHEST|LEGS|ARMS|HANDS|FEET
 	slowdown = 1.0
-	allowed = list(/obj/item/tank/emergency/oxygen,/obj/item/pen,/obj/item/flashlight/pen)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0.9

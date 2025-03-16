@@ -222,22 +222,22 @@
 
 //hooded cloak hoods
 /obj/item/clothing/head/hood/cloak
-    name  = "maroon cloak hood"
-    desc = "A hood attached to a maroon cloak."
-    icon_state = "maroon_cloakhood"
-    flags_inv = HIDEEARS|BLOCKHAIR
+	name  = "maroon cloak hood"
+	desc = "A hood attached to a maroon cloak."
+	icon_state = "maroon_cloakhood"
+	flags_inv = HIDEEARS|BLOCKHAIR
 
 /obj/item/clothing/head/hood/cloak/winter
-    name = "winter cloak hood"
-    desc = "A hood attached to a winter cloak."
-    icon_state = "winter_cloakhood"
+	name = "winter cloak hood"
+	desc = "A hood attached to a winter cloak."
+	icon_state = "winter_cloakhood"
 
 /obj/item/clothing/head/hood/cloak/asymmetric
-    name = "asymmetric cloak hood"
-    desc = "A hood attached to an asymmetric cloak."
-    icon_state = "asymmetric_cloakhood"
+	name = "asymmetric cloak hood"
+	desc = "A hood attached to an asymmetric cloak."
+	icon_state = "asymmetric_cloakhood"
 
 /obj/item/clothing/head/hood/cloak/fancy
-    name = "fancy cloak hood"
-    desc = "A hood attached to a fancy cloak."
-    icon_state = "hb_cloakhood"
+	name = "fancy cloak hood"
+	desc = "A hood attached to a fancy cloak."
+	icon_state = "hb_cloakhood"

@@ -83,6 +83,9 @@
 /area/gateway/arynthilake/underground/intocave
 	icon_state = "redwhisqu"
 
+/area/gateway/arynthilake/underground/intocave/entry
+	enter_message = "There is some light filtering from the center of this patch of sand. You could probably climb up from there."
+
 /obj/item/paper/gateway/arynthilake
 	name = "Maintenance Tunnel Notes"
 	info = span_narsie(span_bold("Please be advised")) + "<p>Beyond this point the underground maintenance tunnels are dangerous. Monsters have taken to making their nests in the tunnels. As such we have installed an automatic defense system.</p><p>The turrets and supply caches in the tunnels are powered by this facility. Should there be undesired creatures or personnel in the tunnels, the turrets exist to keep them clear.</p><p>The turret control system is situated within the local administration building. It is advised that you never enter the tunnels outside of regulatly scheduled maintenance windows, and never without secturity escort.</p><p>If you should need to enter the tunnels outside of regularly scheduled maintenance windows, it is advised that you contact the administration building to disable the turrets, and when you are done, contact them again to re-enable them.</p><p>Your safety is important to us. Should you end up within the tunnels when dangerous entities are present, it is advised to seek out the supply caches scattered throughout. Survival equipment can be obtained from within.</p>"

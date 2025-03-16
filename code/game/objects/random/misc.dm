@@ -753,7 +753,6 @@
 				/obj/item/toy/plushie/tabby_cat,
 				/obj/item/toy/plushie/tuxedo_cat,
 				/obj/item/toy/plushie/white_cat,
-				//VOREStation Add Start
 				/obj/item/toy/plushie/lizardplushie,
 				/obj/item/toy/plushie/lizardplushie/kobold,
 				/obj/item/toy/plushie/lizardplushie/resh,
@@ -767,6 +766,8 @@
 				/obj/item/toy/plushie/otter,
 				/obj/item/toy/plushie/vox,
 				/obj/item/toy/plushie/shark,
+				/obj/item/toy/plushie/tinytin,
+				/obj/item/toy/plushie/tinytin_sec,
 				pick(list(/obj/item/toy/plushie/borgplushie/drake/sec,
 							/obj/item/toy/plushie/borgplushie/drake/med,
 							/obj/item/toy/plushie/borgplushie/drake/sci,
@@ -774,7 +775,6 @@
 							/obj/item/toy/plushie/borgplushie/drake/eng,
 							/obj/item/toy/plushie/borgplushie/drake/mine,
 							/obj/item/toy/plushie/borgplushie/drake/trauma)))
-				//VOREStation Add End
 
 /obj/random/plushielarge
 	name = "random large plushie"
@@ -796,7 +796,7 @@
 
 /obj/random/toy/item_to_spawn()
 	return pick(/obj/item/toy/bosunwhistle,
-				/obj/item/toy/plushie/therapy/red,
+				/obj/item/toy/plushie/therapy,
 				/obj/item/toy/plushie/therapy/purple,
 				/obj/item/toy/plushie/therapy/blue,
 				/obj/item/toy/plushie/therapy/yellow,
