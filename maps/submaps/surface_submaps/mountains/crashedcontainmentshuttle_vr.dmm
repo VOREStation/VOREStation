@@ -301,10 +301,6 @@
 /obj/effect/decal/remains/human,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/crashedcontainmentshuttle)
-"bn" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
 "bo" = (
 /obj/structure/extinguisher_cabinet,
 /turf/simulated/shuttle/wall/dark,
@@ -331,10 +327,6 @@
 /area/submap/crashedcontainmentshuttle)
 "bu" = (
 /obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
-"bv" = (
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)
 "bw" = (
@@ -634,7 +626,7 @@ an
 ak
 ak
 ak
-bn
+aF
 aD
 ak
 ak
@@ -880,7 +872,7 @@ ak
 ak
 ak
 bq
-bv
+bt
 bC
 aq
 ah

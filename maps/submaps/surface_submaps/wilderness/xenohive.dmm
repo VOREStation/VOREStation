@@ -1,113 +1,1004 @@
-"av" = (/obj/structure/table/steel_reinforced,/obj/structure/salvageable/personal,/obj/effect/alien/weeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"aS" = (/mob/living/simple_mob/animal/space/alien/sentinel,/obj/effect/alien/weeds/node,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"bq" = (/obj/effect/alien/weeds,/obj/random/maintenance/medical,/obj/random/maintenance/medical,/obj/random/maintenance/engineering,/obj/random/plushie,/obj/item/organ/internal/augment/armmounted,/obj/item/organ/internal/intestine,/obj/structure/safe,/obj/random/projectile/scrapped_laser,/obj/random/contraband,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"bO" = (/obj/effect/alien/weeds,/obj/structure/simple_door/resin,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"co" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"dk" = (/mob/living/simple_mob/animal/space/alien/sentinel,/obj/effect/alien/weeds,/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"dm" = (/obj/effect/alien/weeds,/obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"dn" = (/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"eM" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor/outdoors/dirt,/area/template_noop)
-"fw" = (/turf/template_noop,/area/submap/XenoHive)
-"fG" = (/obj/effect/alien/weeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"fW" = (/obj/effect/decal/cleanable/dirt,/obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight,/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"gO" = (/obj/effect/alien/weeds,/obj/item/organ/internal/heart,/obj/item/organ/internal/kidneys/vox,/obj/structure/safe,/obj/random/multiple/gun/projectile/shotgun,/obj/random/contraband,/turf/simulated/floor,/area/submap/XenoHive)
-"gS" = (/obj/structure/alien/wall,/turf/simulated/mineral/ignore_mapgen,/area/template_noop)
-"hx" = (/obj/effect/alien/weeds,/obj/machinery/telecomms/broadcaster,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/XenoHive)
-"im" = (/obj/item/stack/animalhide/xeno,/obj/effect/alien/weeds,/obj/structure/table/rack,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"iF" = (/obj/structure/bed/chair{dir = 8},/obj/effect/alien/weeds,/obj/effect/gibspawner/human,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"iJ" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/machinery/light/small/emergency/flicker{dir = 1},/turf/simulated/floor,/area/submap/XenoHive)
-"jY" = (/mob/living/simple_mob/animal/space/alien/queen/empress,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"kl" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"lb" = (/turf/template_noop,/area/template_noop)
-"mE" = (/obj/effect/alien/weeds,/obj/random/junk,/turf/simulated/floor,/area/submap/XenoHive)
-"nd" = (/obj/structure/salvageable/server,/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/XenoHive)
-"oo" = (/mob/living/simple_mob/animal/space/alien/drone,/obj/effect/alien/weeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"ps" = (/obj/effect/alien/weeds,/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"qz" = (/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"qI" = (/obj/effect/alien/weeds/node,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor,/area/submap/XenoHive)
-"rL" = (/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"sp" = (/obj/effect/alien/weeds/node,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"sy" = (/turf/simulated/mineral/ignore_mapgen,/area/template_noop)
-"sX" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor,/area/submap/XenoHive)
-"tz" = (/obj/effect/alien/weeds,/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"tA" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/humanoid/merc/ranged{health = 15; maxHealth = 15},/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"uJ" = (/obj/structure/sign/biohazard,/turf/simulated/wall/skipjack,/area/submap/XenoHive)
-"va" = (/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"vu" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"wH" = (/obj/effect/alien/weeds,/obj/structure/loot_pile/mecha/durand,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"xB" = (/turf/simulated/wall/skipjack,/area/submap/XenoHive)
-"xQ" = (/obj/effect/decal/cleanable/dirt,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"yb" = (/obj/effect/alien/weeds,/mob/living/simple_mob/humanoid/merc/ranged{health = 15; maxHealth = 15},/turf/simulated/floor,/area/submap/XenoHive)
-"yx" = (/mob/living/simple_mob/animal/space/alien/sentinel,/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"yS" = (/obj/structure/table/steel_reinforced,/obj/effect/alien/weeds,/obj/item/toy/plushie/face_hugger,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/XenoHive)
-"zU" = (/obj/structure/salvageable/autolathe,/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"AA" = (/obj/structure/alien/wall,/obj/effect/alien/weeds,/turf/simulated/mineral/ignore_mapgen,/area/submap/XenoHive)
-"AB" = (/obj/structure/alien/wall,/turf/simulated/mineral/ignore_mapgen,/area/submap/XenoHive)
-"BD" = (/obj/structure/alien/membrane,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Cb" = (/obj/structure/bed/chair,/obj/effect/alien/weeds,/obj/effect/gibspawner/human,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"Ce" = (/obj/effect/alien/weeds,/obj/random/maintenance/security,/obj/random/maintenance/security,/obj/random/maintenance/security,/obj/item/organ/internal/eyes/replicant,/obj/structure/safe,/obj/random/multiple/gun/projectile/rifle,/obj/random/contraband,/turf/simulated/floor,/area/submap/XenoHive)
-"CR" = (/obj/structure/alien/wall,/turf/simulated/floor/outdoors/dirt,/area/template_noop)
-"De" = (/obj/effect/alien/weeds,/obj/effect/gibspawner/human,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Dh" = (/mob/living/simple_mob/animal/space/alien/sentinel,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Et" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/XenoHive)
-"FE" = (/mob/living/simple_mob/animal/space/alien/drone,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"Gw" = (/obj/structure/table,/obj/effect/alien/weeds,/obj/item/stack/material/phoron{amount = 10},/turf/simulated/floor,/area/submap/XenoHive)
-"Gy" = (/mob/living/simple_mob/animal/space/alien/sentinel,/obj/effect/alien/weeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"GN" = (/obj/effect/alien/weeds,/obj/structure/alien/membrane,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Hr" = (/turf/simulated/floor/outdoors/dirt,/area/template_noop)
-"Hu" = (/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"Hx" = (/obj/item/portable_destructive_analyzer,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Hz" = (/obj/effect/alien/weeds,/obj/structure/simple_door/resin,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"HI" = (/obj/effect/alien/weeds,/obj/structure/prop/blackbox/quarantined_shuttle,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/XenoHive)
-"HJ" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"HO" = (/obj/structure/table,/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/obj/item/storage/backpack/holding,/turf/simulated/floor,/area/submap/XenoHive)
-"Ir" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/floor,/area/submap/XenoHive)
-"Is" = (/obj/effect/alien/weeds,/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"IY" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"Jj" = (/obj/effect/alien/weeds,/obj/item/stack/material/phoron{amount = 10},/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"JV" = (/obj/effect/alien/weeds,/obj/structure/simple_door/resin,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"LB" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/XenoHive)
-"Mx" = (/obj/machinery/door/airlock/vault,/turf/simulated/floor/tiled/techfloor,/area/submap/XenoHive)
-"MJ" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"MZ" = (/obj/effect/alien/weeds,/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Or" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"Pe" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/machinery/telecomms/receiver,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"Pq" = (/obj/structure/simple_door/resin,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Pv" = (/mob/living/simple_mob/animal/space/alien,/obj/effect/alien/weeds,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"PX" = (/obj/effect/decal/cleanable/dirt,/obj/structure/loot_pile/mecha/gygax/dark/adv,/turf/template_noop,/area/submap/XenoHive)
-"QC" = (/obj/effect/alien/weeds,/obj/item/organ/internal/intestine/xeno,/obj/structure/safe,/obj/random/multiple/gun/projectile/handgun,/obj/random/contraband,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"QG" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"Rr" = (/obj/structure/noticeboard/anomaly,/turf/simulated/wall/skipjack,/area/submap/XenoHive)
-"Sl" = (/obj/structure/salvageable/bliss,/obj/effect/alien/weeds,/turf/simulated/floor,/area/submap/XenoHive)
-"Tb" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"Tq" = (/mob/living/simple_mob/animal/space/alien,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Tv" = (/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/XenoHive)
-"Vg" = (/obj/effect/alien/weeds,/obj/structure/prop/transmitter,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/XenoHive)
-"Vj" = (/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"Vu" = (/obj/effect/alien/weeds/node,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"VA" = (/obj/effect/alien/weeds/node,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"WD" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"WE" = (/obj/effect/alien/weeds,/obj/structure/mopbucket,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Xy" = (/obj/structure/table/steel_reinforced,/obj/effect/alien/weeds,/obj/machinery/light/small/emergency/flicker{dir = 8},/obj/item/reagent_containers/food/snacks/truffle/random,/turf/simulated/floor,/area/submap/XenoHive)
-"YG" = (/obj/effect/alien/weeds,/mob/living/simple_mob/humanoid/merc/melee/sword/poi{health = 15; maxHealth = 15},/turf/simulated/floor/tiled/steel_dirty,/area/submap/XenoHive)
-"YL" = (/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/humanoid/merc/ranged{health = 15; maxHealth = 15},/turf/simulated/floor/outdoors/dirt,/area/submap/XenoHive)
-"Zc" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
-"Zx" = (/obj/effect/alien/weeds,/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/humanoid/merc/melee/sword/poi{health = 15; maxHealth = 15},/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/XenoHive)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"av" = (
+/obj/structure/table/steel_reinforced,
+/obj/structure/salvageable/personal,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"aS" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/obj/effect/alien/weeds/node,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"bq" = (
+/obj/effect/alien/weeds,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/engineering,
+/obj/random/plushie,
+/obj/item/organ/internal/augment/armmounted,
+/obj/item/organ/internal/intestine,
+/obj/structure/safe,
+/obj/random/projectile/scrapped_laser,
+/obj/random/contraband,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"bO" = (
+/obj/effect/alien/weeds,
+/obj/structure/simple_door/resin,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"co" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"dk" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"dm" = (
+/obj/effect/alien/weeds,
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"dn" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"eM" = (
+/obj/structure/loot_pile/surface/bones,
+/turf/simulated/floor/outdoors/dirt,
+/area/template_noop)
+"fw" = (
+/turf/template_noop,
+/area/submap/XenoHive)
+"fG" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"fW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"gO" = (
+/obj/effect/alien/weeds,
+/obj/item/organ/internal/heart,
+/obj/item/organ/internal/kidneys/vox,
+/obj/structure/safe,
+/obj/random/multiple/gun/projectile/shotgun,
+/obj/random/contraband,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"gS" = (
+/obj/structure/alien/wall,
+/turf/simulated/mineral/ignore_mapgen,
+/area/template_noop)
+"hx" = (
+/obj/effect/alien/weeds,
+/obj/machinery/telecomms/broadcaster,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"im" = (
+/obj/item/stack/animalhide/xeno,
+/obj/effect/alien/weeds,
+/obj/structure/table/rack,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"iF" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/alien/weeds,
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"iJ" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/obj/machinery/light/small/emergency/flicker{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"jY" = (
+/mob/living/simple_mob/animal/space/alien/queen/empress,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"kl" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"lb" = (
+/turf/template_noop,
+/area/template_noop)
+"mE" = (
+/obj/effect/alien/weeds,
+/obj/random/junk,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"nd" = (
+/obj/structure/salvageable/server,
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/submap/XenoHive)
+"oo" = (
+/mob/living/simple_mob/animal/space/alien/drone,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"ps" = (
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"qz" = (
+/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"qI" = (
+/obj/effect/alien/weeds/node,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/junk,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"rL" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"sp" = (
+/obj/effect/alien/weeds/node,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"sy" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/template_noop)
+"sX" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/junk,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"tz" = (
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"tA" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_mob/humanoid/merc/ranged{
+	health = 15;
+	maxHealth = 15
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"uJ" = (
+/obj/structure/sign/biohazard,
+/turf/simulated/wall/skipjack,
+/area/submap/XenoHive)
+"va" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"vu" = (
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"wH" = (
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/mecha/durand,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"xB" = (
+/turf/simulated/wall/skipjack,
+/area/submap/XenoHive)
+"xQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"yb" = (
+/obj/effect/alien/weeds,
+/mob/living/simple_mob/humanoid/merc/ranged{
+	health = 15;
+	maxHealth = 15
+	},
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"yx" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"yS" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/alien/weeds,
+/obj/item/toy/plushie/face_hugger,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"zU" = (
+/obj/structure/salvageable/autolathe,
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"AA" = (
+/obj/structure/alien/wall,
+/obj/effect/alien/weeds,
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/XenoHive)
+"AB" = (
+/obj/structure/alien/wall,
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/XenoHive)
+"BD" = (
+/obj/structure/alien/membrane,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Cb" = (
+/obj/structure/bed/chair,
+/obj/effect/alien/weeds,
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"Ce" = (
+/obj/effect/alien/weeds,
+/obj/random/maintenance/security,
+/obj/random/maintenance/security,
+/obj/random/maintenance/security,
+/obj/item/organ/internal/eyes/replicant,
+/obj/structure/safe,
+/obj/random/multiple/gun/projectile/rifle,
+/obj/random/contraband,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"CR" = (
+/obj/structure/alien/wall,
+/turf/simulated/floor/outdoors/dirt,
+/area/template_noop)
+"De" = (
+/obj/effect/alien/weeds,
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Dh" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Et" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/XenoHive)
+"FE" = (
+/mob/living/simple_mob/animal/space/alien/drone,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Gw" = (
+/obj/structure/table,
+/obj/effect/alien/weeds,
+/obj/item/stack/material/phoron{
+	amount = 10
+	},
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Gy" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"GN" = (
+/obj/effect/alien/weeds,
+/obj/structure/alien/membrane,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Hr" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/template_noop)
+"Hu" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Hx" = (
+/obj/item/portable_destructive_analyzer,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Hz" = (
+/obj/effect/alien/weeds,
+/obj/structure/simple_door/resin,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"HI" = (
+/obj/effect/alien/weeds,
+/obj/structure/prop/blackbox/quarantined_shuttle,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/submap/XenoHive)
+"HO" = (
+/obj/structure/table,
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/backpack/holding,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Ir" = (
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Is" = (
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/maint/boxfort,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"IY" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"Jj" = (
+/obj/effect/alien/weeds,
+/obj/item/stack/material/phoron{
+	amount = 10
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"JV" = (
+/obj/effect/alien/weeds,
+/obj/structure/simple_door/resin,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"LB" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Mx" = (
+/obj/machinery/door/airlock/vault,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/XenoHive)
+"MJ" = (
+/obj/structure/loot_pile/surface/bones,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"MZ" = (
+/obj/effect/alien/weeds,
+/obj/structure/loot_pile/maint/boxfort,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Or" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Pe" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/obj/machinery/telecomms/receiver,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"Pq" = (
+/obj/structure/simple_door/resin,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Pv" = (
+/mob/living/simple_mob/animal/space/alien,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"PX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/loot_pile/mecha/gygax/dark/adv,
+/turf/template_noop,
+/area/submap/XenoHive)
+"QC" = (
+/obj/effect/alien/weeds,
+/obj/item/organ/internal/intestine/xeno,
+/obj/structure/safe,
+/obj/random/multiple/gun/projectile/handgun,
+/obj/random/contraband,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"QG" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Rr" = (
+/obj/structure/noticeboard/anomaly,
+/turf/simulated/wall/skipjack,
+/area/submap/XenoHive)
+"Sl" = (
+/obj/structure/salvageable/bliss,
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Tb" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"Tq" = (
+/mob/living/simple_mob/animal/space/alien,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Tv" = (
+/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/turf/simulated/floor/outdoors/rocks{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Vg" = (
+/obj/effect/alien/weeds,
+/obj/structure/prop/transmitter,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"Vj" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"VA" = (
+/obj/effect/alien/weeds/node,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/junk,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"WE" = (
+/obj/effect/alien/weeds,
+/obj/structure/mopbucket,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Xy" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/alien/weeds,
+/obj/machinery/light/small/emergency/flicker{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/truffle/random,
+/turf/simulated/floor,
+/area/submap/XenoHive)
+"YG" = (
+/obj/effect/alien/weeds,
+/mob/living/simple_mob/humanoid/merc/melee/sword/poi{
+	health = 15;
+	maxHealth = 15
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/XenoHive)
+"YL" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_mob/humanoid/merc/ranged{
+	health = 15;
+	maxHealth = 15
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/XenoHive)
+"Zc" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/junk,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
+"Zx" = (
+/obj/effect/alien/weeds,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_mob/humanoid/merc/melee/sword/poi{
+	health = 15;
+	maxHealth = 15
+	},
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/XenoHive)
 
 (1,1,1) = {"
-lblblbsysysysysysylblblbHrsyeMlblblblbHrlblbsysylb
-lbsysyABABABABABABsysysyrLABrLHrsysysyrLrLABsysylb
-lbsyxBxBIsvuvaimRrxBxBEtdndndnEtEtEtEtEtyxrLMJfwlb
-syABxBHIndqzGwaviJgOxBABEtdkEtEtABEtABEtEtEtVjfwlb
-syABTvfGooqItAiFjYIrbqABEtEtEtEtPvdndnMZABEtEtEtlb
-syABHxSltAhxVgPeYGIYQCABEtEtABwHdnDeVuklHzPvABEtsy
-syABdmJjsXfGTbmEFECexBABABABWEklZcZxkldnBDxQxQEtsy
-syABpsHOTbCbLBHuABABxBtzcoJVdnklPvdnABEtEtxQspdnsy
-syABxBySTbybzUuJxBxBxBWDOrBDdnABABEtEtEtEtABPqPqCR
-lbsyxBXyfGaSLBMxGyGNHJVAvaAAABEtEtEtEtEtEtEtTqfWeM
-lbsyxBABABHufGMxQGbOklABABABEtEttzdnDhdnEtEtABYLlb
-lbsyEtEtxBxBxBxBxBABABABEtEtEtdnDhdnABrLrLEtEtPXlb
-lblblbsysysysysysysysysylblbMJrLsygSsysyMJVjEtEtlb
-lblblblblblbsysysysylblblblblbsysysysysysylblbsylb
-lblblblblblblblblblblblblblblblblblblblblblblblblb
+lb
+lb
+lb
+sy
+sy
+sy
+sy
+sy
+sy
+lb
+lb
+lb
+lb
+lb
+lb
+"}
+(2,1,1) = {"
+lb
+sy
+sy
+AB
+AB
+AB
+AB
+AB
+AB
+sy
+sy
+sy
+lb
+lb
+lb
+"}
+(3,1,1) = {"
+lb
+sy
+xB
+xB
+Tv
+Hx
+dm
+ps
+xB
+xB
+xB
+Et
+lb
+lb
+lb
+"}
+(4,1,1) = {"
+sy
+AB
+xB
+HI
+fG
+Sl
+Jj
+HO
+yS
+Xy
+AB
+Et
+sy
+lb
+lb
+"}
+(5,1,1) = {"
+sy
+AB
+Is
+nd
+oo
+tA
+sX
+Tb
+Tb
+fG
+AB
+xB
+sy
+lb
+lb
+"}
+(6,1,1) = {"
+sy
+AB
+vu
+qz
+qI
+hx
+fG
+Cb
+yb
+aS
+Hu
+xB
+sy
+lb
+lb
+"}
+(7,1,1) = {"
+sy
+AB
+va
+Gw
+tA
+Vg
+Tb
+LB
+zU
+LB
+fG
+xB
+sy
+sy
+lb
+"}
+(8,1,1) = {"
+sy
+AB
+im
+av
+iF
+Pe
+mE
+Hu
+uJ
+Mx
+Mx
+xB
+sy
+sy
+lb
+"}
+(9,1,1) = {"
+sy
+AB
+Rr
+iJ
+jY
+YG
+FE
+AB
+xB
+Gy
+QG
+xB
+sy
+sy
+lb
+"}
+(10,1,1) = {"
+lb
+sy
+xB
+gO
+Ir
+IY
+Ce
+AB
+xB
+GN
+bO
+AB
+sy
+sy
+lb
+"}
+(11,1,1) = {"
+lb
+sy
+xB
+xB
+bq
+QC
+xB
+xB
+xB
+co
+kl
+AB
+sy
+lb
+lb
+"}
+(12,1,1) = {"
+lb
+sy
+Et
+AB
+AB
+AB
+AB
+tz
+kl
+VA
+AB
+AB
+sy
+lb
+lb
+"}
+(13,1,1) = {"
+Hr
+rL
+dn
+Et
+Et
+Et
+AB
+co
+Or
+va
+AB
+Et
+lb
+lb
+lb
+"}
+(14,1,1) = {"
+sy
+AB
+dn
+dk
+Et
+Et
+AB
+JV
+BD
+AA
+AB
+Et
+lb
+lb
+lb
+"}
+(15,1,1) = {"
+eM
+rL
+dn
+Et
+Et
+AB
+WE
+dn
+dn
+AB
+Et
+Et
+MJ
+lb
+lb
+"}
+(16,1,1) = {"
+lb
+Hr
+Et
+Et
+Et
+wH
+kl
+kl
+AB
+Et
+Et
+dn
+rL
+sy
+lb
+"}
+(17,1,1) = {"
+lb
+sy
+Et
+AB
+Pv
+dn
+Zc
+Pv
+AB
+Et
+tz
+Dh
+sy
+sy
+lb
+"}
+(18,1,1) = {"
+lb
+sy
+Et
+Et
+dn
+De
+Zx
+dn
+Et
+Et
+dn
+dn
+gS
+sy
+lb
+"}
+(19,1,1) = {"
+lb
+sy
+Et
+AB
+dn
+sp
+kl
+AB
+Et
+Et
+Dh
+AB
+sy
+sy
+lb
+"}
+(20,1,1) = {"
+Hr
+rL
+Et
+Et
+MZ
+kl
+dn
+Et
+Et
+Et
+dn
+rL
+sy
+sy
+lb
+"}
+(21,1,1) = {"
+lb
+rL
+yx
+Et
+AB
+Hz
+BD
+Et
+Et
+Et
+Et
+rL
+MJ
+sy
+lb
+"}
+(22,1,1) = {"
+lb
+AB
+rL
+Et
+Et
+Pv
+xQ
+xQ
+AB
+Et
+Et
+Et
+Vj
+lb
+lb
+"}
+(23,1,1) = {"
+sy
+sy
+MJ
+Vj
+Et
+AB
+xQ
+sp
+Pq
+Tq
+AB
+Et
+Et
+lb
+lb
+"}
+(24,1,1) = {"
+sy
+sy
+fw
+fw
+Et
+Et
+Et
+dn
+Pq
+fW
+YL
+PX
+Et
+sy
+lb
+"}
+(25,1,1) = {"
+lb
+lb
+lb
+lb
+lb
+sy
+sy
+sy
+CR
+eM
+lb
+lb
+lb
+lb
+lb
 "}

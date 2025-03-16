@@ -565,10 +565,6 @@
 /obj/item/bedsheet/yellowdouble,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
-"Sy" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/old_tile/white/virgo3b,
-/area/submap/oldhotel)
 "SL" = (
 /obj/item/material/shard,
 /obj/item/material/shard,
@@ -614,10 +610,6 @@
 /area/submap/oldhotel)
 "Vj" = (
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
-/area/submap/oldhotel)
-"Wy" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "WD" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -861,7 +853,7 @@ hQ
 TU
 Vj
 yM
-Wy
+SZ
 ZG
 vN
 Vj
@@ -1050,10 +1042,10 @@ Cx
 Jq
 Cx
 Jq
-Sy
+bQ
 Jq
 mR
-Sy
+bQ
 Cx
 Jq
 Cx
@@ -1072,7 +1064,7 @@ hQ
 hQ
 hQ
 cA
-Sy
+bQ
 mR
 Es
 mR
@@ -1094,7 +1086,7 @@ hQ
 hQ
 aJ
 dz
-Sy
+bQ
 Vf
 nD
 dr
@@ -1120,7 +1112,7 @@ MU
 MU
 hQ
 sd
-Sy
+bQ
 Nu
 Gz
 hQ

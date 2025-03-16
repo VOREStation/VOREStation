@@ -1,5 +1,0 @@
-author: "Will & Diana"
-delete-after: True
-changes:
-  - bugfix: "Dullahans (among others) have proper offsets now"
-  - code_imp: "Unit test forces coders to comply with proper offsetting of borg sprites"

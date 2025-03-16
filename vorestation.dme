@@ -2837,6 +2837,7 @@
 #include "code\modules\lore_codex\robutt_data\main_robutts.dm"
 #include "code\modules\lore_codex\robutt_data\more.dm"
 #include "code\modules\makeup\nailpolish.dm"
+#include "code\modules\maps\merge_conflicts.dm"
 #include "code\modules\maps\bapi-dmm\bapi_bindings.dm"
 #include "code\modules\maps\bapi-dmm\bapi_dmm_reader.dm"
 #include "code\modules\maps\bapi-dmm\bapi_helpers.dm"
