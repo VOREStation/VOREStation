@@ -122,41 +122,45 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA_UI_TAIL3_R     27
 #define DNA_UI_TAIL3_G     28
 #define DNA_UI_TAIL3_B     29
+#define DNA_UI_TAIL_ALPHA  30
 
-#define DNA_UI_EARS_R      30
-#define DNA_UI_EARS_G      31
-#define DNA_UI_EARS_B      32
-#define DNA_UI_EARS2_R     33
-#define DNA_UI_EARS2_G     34
-#define DNA_UI_EARS2_B     35
-#define DNA_UI_EARS3_R     36
-#define DNA_UI_EARS3_G     37
-#define DNA_UI_EARS3_B     38
+#define DNA_UI_EARS_R      31
+#define DNA_UI_EARS_G      32
+#define DNA_UI_EARS_B      33
+#define DNA_UI_EARS2_R     34
+#define DNA_UI_EARS2_G     35
+#define DNA_UI_EARS2_B     36
+#define DNA_UI_EARS3_R     37
+#define DNA_UI_EARS3_G     38
+#define DNA_UI_EARS3_B     39
+#define DNA_UI_EARS_ALPHA  40
 
-#define DNA_UI_EARS_SECONDARY_START 39
+#define DNA_UI_EARS_SECONDARY_START 41
 #define DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT 3
 
-#define DNA_UI_EARS_SECONDARY_R      39
-#define DNA_UI_EARS_SECONDARY_G      40
-#define DNA_UI_EARS_SECONDARY_B      41
-#define DNA_UI_EARS_SECONDARY2_R     42
-#define DNA_UI_EARS_SECONDARY2_G     43
-#define DNA_UI_EARS_SECONDARY2_B     44
-#define DNA_UI_EARS_SECONDARY3_R     45
-#define DNA_UI_EARS_SECONDARY3_G     46
-#define DNA_UI_EARS_SECONDARY3_B     47
+#define DNA_UI_EARS_SECONDARY_R      41
+#define DNA_UI_EARS_SECONDARY_G      42
+#define DNA_UI_EARS_SECONDARY_B      43
+#define DNA_UI_EARS_SECONDARY2_R     44
+#define DNA_UI_EARS_SECONDARY2_G     45
+#define DNA_UI_EARS_SECONDARY2_B     46
+#define DNA_UI_EARS_SECONDARY3_R     47
+#define DNA_UI_EARS_SECONDARY3_G     48
+#define DNA_UI_EARS_SECONDARY3_B     49
+#define DNA_UI_EARS_SECONDARY_ALPHA  50
 
-#define DNA_UI_WING_STYLE  48
-#define DNA_UI_WING_R      49
-#define DNA_UI_WING_G      50
-#define DNA_UI_WING_B      51
-#define DNA_UI_WING2_R     52
-#define DNA_UI_WING2_G     53
-#define DNA_UI_WING2_B     54
-#define DNA_UI_WING3_R     55
-#define DNA_UI_WING3_G     56
-#define DNA_UI_WING3_B     57 // VOREStation snippet end.
-#define DNA_UI_LENGTH      57 // VOREStation Edit - Needs to match the highest number above.
+#define DNA_UI_WING_STYLE  51
+#define DNA_UI_WING_R      52
+#define DNA_UI_WING_G      53
+#define DNA_UI_WING_B      54
+#define DNA_UI_WING2_R     55
+#define DNA_UI_WING2_G     56
+#define DNA_UI_WING2_B     57
+#define DNA_UI_WING3_R     58
+#define DNA_UI_WING3_G     59
+#define DNA_UI_WING3_B     60 // VOREStation snippet end.
+#define DNA_UI_WING_ALPHA  61
+#define DNA_UI_LENGTH      61 // VOREStation Edit - Needs to match the highest number above.
 
 #define DNA_SE_LENGTH 90 // Traitgenes (Expanded from 49 to 84, there have been a considerable expansion of genes.
 // This leaves room for future expansion. This can be arbitrarily raised without worry if genes start to get crowded.

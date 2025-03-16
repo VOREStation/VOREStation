@@ -678,7 +678,7 @@
 /turf/unsimulated/wall,
 /area/ai_multicam_room)
 "ce" = (
-/turf/space/transit/south/virgo3b/planet_fall
+/turf/space/transit/south/virgo3b/planet_fall,
 /area/space)
 "cf" = (
 /turf/space/transit/south,

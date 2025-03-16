@@ -29,8 +29,8 @@
 	var/stored_power = 0//Power to deploy per tick
 
 
-/obj/machinery/power/am_control_unit/New()
-	..()
+/obj/machinery/power/am_control_unit/Initialize(mapload)
+	. = ..()
 	linked_shielding = list()
 	linked_cores = list()
 
@@ -227,16 +227,13 @@
 		for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 			if(AMS.processing)	AMS.shutdown_core()
 			AMS.control_unit = null
-			spawn(10)
-				AMS.controllerscan()
+			addtimer(CALLBACK(AMS, TYPE_PROC_REF(/obj/machinery/am_shielding, controllerscan)), 1 SECOND, TIMER_DELETE_ME)
 		linked_shielding = list()
 
 	else
 		for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 			AMS.update_icon()
-	spawn(20)
-		shield_icon_delay = 0
-	return
+	VARSET_IN(src, shield_icon_delay, 0, 2 SECONDS)
 
 
 /obj/machinery/power/am_control_unit/proc/check_core_stability()
@@ -246,8 +243,7 @@
 	for(var/obj/machinery/am_shielding/AMS in linked_cores)
 		stored_core_stability += AMS.stability
 	stored_core_stability/=linked_cores.len
-	spawn(40)
-		stored_core_stability_delay = 0
+	VARSET_IN(src, stored_core_stability_delay, 0, 4 SECONDS)
 	return
 
 

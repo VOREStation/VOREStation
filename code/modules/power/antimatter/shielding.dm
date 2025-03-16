@@ -26,44 +26,48 @@
 	var/efficiency = 1//How many cores this core counts for when doing power processing, phoron in the air and stability could affect this
 
 
-/obj/machinery/am_shielding/New(loc)
-	..(loc)
-	spawn(10)
-		controllerscan()
-	return
-
-
-/obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
+/obj/machinery/am_shielding/Initialize(mapload)
+	. = ..()
+	if(!istype(loc, /turf))
+		return INITIALIZE_HINT_QDEL
 	//Make sure we are the only one here
-	if(!istype(src.loc, /turf))
+	for(var/obj/machinery/am_shielding/AMS in loc.contents)
+		if(AMS == src)
+			continue
+		return INITIALIZE_HINT_QDEL
+
+	scan_control_shield()
+
+	if(!control_unit) // Failed to link
+		return INITIALIZE_HINT_QDEL
+
+/obj/machinery/am_shielding/proc/controllerscan()
+	//Make sure we are the only one here
+	if(!istype(loc, /turf))
 		qdel(src)
 		return
+
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
-		if(AMS == src) continue
-		spawn(0)
-			qdel(src)
+		if(AMS == src)
+			continue
+		qdel(src)
 		return
 
+	scan_control_shield()
+
+	if(!control_unit) // Failed to link
+		qdel(src)
+
+/obj/machinery/am_shielding/proc/scan_control_shield()
 	//Search for shielding first
 	for(var/obj/machinery/am_shielding/AMS in cardinalrange(src))
 		if(AMS && AMS.control_unit && link_control(AMS.control_unit))
 			break
 
 	if(!control_unit)//No other guys nearby look for a control unit
-		for(var/direction in cardinal)
 		for(var/obj/machinery/power/am_control_unit/AMC in cardinalrange(src))
 			if(AMC.add_shielding(src))
 				break
-
-	if(!control_unit)
-		if(!priorscan)
-			spawn(20)
-				controllerscan(1)//Last chance
-			return
-		spawn(0)
-			qdel(src)
-	return
-
 
 /obj/machinery/am_shielding/Destroy()
 	if(control_unit)	control_unit.remove_shielding(src)

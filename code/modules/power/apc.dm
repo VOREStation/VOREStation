@@ -190,8 +190,8 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	return drained_energy
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
+	. = ..()
 	wires = new(src)
 	GLOB.apcs += src
 
@@ -211,12 +211,10 @@ GLOBAL_LIST_EMPTY(apcs)
 		name = "[area.name] APC"
 		stat |= MAINT
 		update_icon()
+		return
 
-/obj/machinery/power/apc/Initialize(mapload, ndir, building)
-	. = ..()
-	if(!building)
-		init()
-		return INITIALIZE_HINT_LATELOAD
+	init()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/apc/LateInitialize()
 	. = ..()

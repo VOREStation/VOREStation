@@ -33,8 +33,8 @@
 	//So if xenoarch isn't careful and is just shoving items willy-nilly without taking the proper precautions they can end up in a bit of trouble!
 
 
-/obj/machinery/replicator/vore/New() //This replicator turns people into mobs!
-	..() //TODO: Someone can replace the 'alien' interface with something neater sometime. It is simply out of my abilities at the current moment.
+/obj/machinery/replicator/vore/Initialize(mapload) //This replicator turns people into mobs!
+	. = ..() //TODO: Someone can replace the 'alien' interface with something neater sometime. It is simply out of my abilities at the current moment.
 
 	for(var/i=0, i<quantity, i++)
 		var/background = pick("yellow","purple","green","blue","red","orange","white")
@@ -385,8 +385,8 @@
 	) 	// Currently: 3 gloves, 5 undersuits, 3 oversuits, 5 plushies, 5 headwear, 7 shoes, 7 misc. = 35
 		//Fishing hat was going to be added, but it was simply too powerful for this world.
 
-/obj/machinery/replicator/clothing/New() //The specific thing about the VORE replicator is that it will only contain obj/items. Only things that can be picked up, used, and worn!
-	..() //TODO: Someone can replace the 'alien' interface with something neater sometime. It is simply out of my abilities at the current moment.
+/obj/machinery/replicator/clothing/Initialize(mapload) //The specific thing about the VORE replicator is that it will only contain obj/items. Only things that can be picked up, used, and worn!
+	. = ..() //TODO: Someone can replace the 'alien' interface with something neater sometime. It is simply out of my abilities at the current moment.
 
 	for(var/i=0, i<quantity, i++)
 		var/background = pick("yellow","purple","green","blue","red","orange","white")
