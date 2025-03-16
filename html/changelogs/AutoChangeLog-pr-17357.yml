@@ -1,0 +1,4 @@
+author: "TeleTubby2"
+delete-after: True
+changes:
+  - bugfix: "The various character transparency additions are properly added to character DNA now."
