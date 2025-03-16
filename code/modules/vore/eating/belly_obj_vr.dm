@@ -501,7 +501,6 @@
 		return
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
-		// var/turf/simulated/T = owner.loc
 		var/S = pick(GLOB.slosh)
 		if(S)
 			playsound(owner.loc, S, sound_volume * (reagents.total_volume / 100), FALSE, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises)
@@ -1121,11 +1120,13 @@
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
 		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
 		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
-		Prey.touching.del_reagent(REAGENT_ID_STOMACID) //Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID) //Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_PACID) //Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_SACID) //Don't need this stuff in our bloodstream.
-		Prey.touching.del_reagent(REAGENT_ID_CLEANER) //Don't need this stuff in our bloodstream.
+		Prey.touching.del_reagent(REAGENT_ID_STOMACID)
+		Prey.touching.del_reagent(REAGENT_ID_DIETSTOMACID)
+		Prey.touching.del_reagent(REAGENT_ID_PACID)
+		Prey.touching.del_reagent(REAGENT_ID_SACID)
+		Prey.touching.del_reagent(REAGENT_ID_CLEANER)
+		Prey.touching.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
+		Prey.touching.del_reagent(REAGENT_ID_TRICORDRAZINE)
 		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
