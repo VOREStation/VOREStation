@@ -10,15 +10,18 @@
 	symptom_delay_max = 1
 	var/datum/gene/trait/mutation
 	var/passive_message
+	var/preset = FALSE
 
 /datum/symptom/genetic/Start(datum/disease/advance/A)
 	if(!..())
-		return FALSE
-	return TRUE
+		return
+	var/mob/living/carbon/human/H = A.affected_mob
+	if(mutation)
+		preset = H.dna.GetSEState(mutation.block)
 
 /datum/symptom/genetic/OnAdd(datum/disease/advance/A)
 	. = ..()
-	if(mutation)
+	if(mutation && !preset)
 		var/mob/living/carbon/human/H = A.affected_mob
 		H.dna.SetSEState(mutation.block, TRUE)
 		domutcheck(H, null, TRUE)
@@ -26,7 +29,7 @@
 
 /datum/symptom/genetic/OnRemove(datum/disease/advance/A)
 	. = ..()
-	if(mutation)
+	if(mutation && !preset)
 		var/mob/living/carbon/human/H = A.affected_mob
 		H.dna.SetSEState(mutation.block, FALSE)
 		domutcheck(H, null, TRUE)
@@ -66,6 +69,9 @@ Bonus
 	transmission = -4
 	level = 5
 	severity = 0
+
+/datum/symptom/genetic/telepathy/New()
+	. = ..()
 	mutation = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
 
 /*
@@ -92,7 +98,10 @@ BONUS
 	resistance = -4
 	transmission = 1
 	severity = 1
-	mutation = get_gene_from_trait(/datum/trait/positive/bloodsucker)
+
+/datum/symptom/genetic/hematophagy/New()
+	. = ..()
+	mutation = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
 
 /*
 //////////////////////////////////////
@@ -119,4 +128,7 @@ BONUS
 	transmission = 1
 	level = 1
 	severity = 0
+
+/datum/symptom/genetic/pica/New()
+	. = ..()
 	mutation = get_gene_from_trait(/datum/trait/neutral/trashcan)

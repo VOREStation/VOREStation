@@ -27,7 +27,7 @@ BONUS
 //////////////////////////////////////
 Viral evolution
 
-	Moderate stealth reductopn.
+	Moderate stealth reduction.
 	Major decreases to resistance.
 	increases stage speed.
 	increase to transmission
@@ -97,3 +97,76 @@ BONUS
 		else if(S.power >= 2)
 			S.power -= 1
 			powerbudget += 1
+
+/datum/symptom/viralreverse
+	name = "Viral Aggressive Metabolism"
+	desc = "The virus sacrifices its long term survivability to nearly instantly fully spread inside a host. \
+	The virus will start at the last stage, but will eventually decay and die off by itself."
+	stealth = 1
+	resistance = 1
+	stage_speed = 3
+	transmission = -4
+	level = 4
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	threshold_descs = list(
+		"Stage Speed" = "Highest between these determines the amount before self-curing.",
+		"Stealth 4" = "Doubles the time before the virus self-cures."
+	)
+
+	var/time_to_cure
+
+/datum/symptom/viralreverse/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	if(time_to_cure > 0)
+		time_to_cure--
+	else
+		var/mob/living/M = A.affected_mob
+		Heal(M, A)
+
+/datum/symptom/viralreverse/proc/Heal(mob/living/M, datum/disease/advance/A)
+	A.stage -= 1
+	if(A.stage < 2)
+		to_chat(M, span_notice("You suddenly feel healthy."))
+		A.cure(FALSE)
+
+/datum/symptom/viralreverse/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	A.stage = 5
+	if(A.stealth >= 4)
+		power = 2
+	time_to_cure = max(A.resistance, A.stage_rate) * 10 * power
+
+/datum/symptom/viralincubate
+	name = "Viral Suspended Animation"
+	desc = "The virus has very little effect until it reaches its final stage"
+	stealth = 4
+	resistance = -2
+	stage_speed = -2
+	transmission = 1
+	level = 4
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	var/list/captives = list()
+	var/used = FALSE
+
+/datum/symptom/viralincubate/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage >= 5)
+		for(var/datum/symptom/S as() in captives)
+			S.stopped = FALSE
+			captives -= S
+		if(!LAZYLEN(captives))
+			stopped = TRUE
+	else if(!used)
+		for(var/datum/symptom/S as() in A.symptoms)
+			if(S.neutered)
+				continue
+			if(S == src)
+				continue
+			S.stopped = TRUE
+			captives += S
+		used = TRUE

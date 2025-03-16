@@ -938,6 +938,8 @@
 			var/obj/item/reagent_containers/glass/bucket/puke_bucket = vomit_goal
 			if(S && S.acidtype)
 				puke_bucket.reagents.add_reagent(S.acidtype, rand(3, 6))
+			else if(blood)
+				puke_bucket.reagents.add_reagent(REAGENT_BLOOD, rand(3, 6))
 			else
 				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
 		distance = 0
@@ -963,17 +965,18 @@
 		adjust_nutrition(-lost_nutrition)
 		adjustToxLoss(-3)
 
-	for(var/i=0 to distance)
-		if(blood)
-			if(T)
-				blood_splatter(T, large = TRUE)
-			if(stun)
-				adjustBruteLoss(3)
-		else if(T)
-			T.add_vomit_floor(src, vomit_type, purge)
-		T = get_step(T, dir)
-		if (!CanPass(src, T))
-			break
+	if(distance)
+		for(var/i=0 to distance)
+			if(blood)
+				if(T)
+					blood_splatter(T, large = TRUE)
+				if(stun)
+					adjustBruteLoss(2)
+			else if(T)
+				T.add_vomit_floor(src, vomit_type, purge)
+			T = get_step(T, dir)
+			if (!CanPass(src, T))
+				break
 	return TRUE
 
 /mob/living/proc/check_vomit_goal()

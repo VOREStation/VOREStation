@@ -15,7 +15,7 @@ BONUS
 //////////////////////////////////////
 */
 
-/datum/symptom/spyndrome
+/datum/symptom/flip
 	name = "Flippinov"
 	desc = "The virus hijacks the host's motor system, making them flip incontrollably."
 	stealth = 2
@@ -27,14 +27,8 @@ BONUS
 	level = 1
 	severity = 0
 
-	threshold_descs = list(
-		"Resistance 5" = "The host will flip more violently"
-	)
-
-/datum/symptom/spyndrome/Activate(datum/disease/advance/A)
+/datum/symptom/flip/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
-	if(A.resistance >= 5)
-		M.emote("floorspin")
-	else M.emote("spin")
+	M.emote("flip")

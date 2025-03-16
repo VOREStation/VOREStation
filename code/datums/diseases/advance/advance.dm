@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	severity += (max(c2sev, c3sev) + c1sev)
 
-/datum/disease/advance/proc/AssignProperties(list/properties = list())
+/datum/disease/advance/proc/AssignProperties()
 
 	if(stealth >= 2)
 		visibility_flags |= HIDDEN_SCANNER
@@ -248,11 +248,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		else
 			severity = "Unknown"
 
-/datum/disease/advance/proc/GenerateCure(list/properties = list())
-	if(properties && length(properties))
-		var/res = clamp(properties["resistance"] - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-		cures = list(GLOB.advance_cures[res])
-		cure_text = cures[1]
+/datum/disease/advance/proc/GenerateCure()
+	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+	cures = list(GLOB.advance_cures[res])
+	cure_text = cures[1]
 	return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
@@ -262,6 +261,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		AddSymptom(s)
 	return
 
+// Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
 /datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
 	var/s = safepick(D)
 	if(s)
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	set name = "Create Advanced Virus"
 	set desc = "Create an advanced virus and release it."
 
-	if(!is_admin())
+	if(!is_admin(usr))
 		return FALSE
 
 	var/i = VIRUS_SYMPTOM_LIMIT
@@ -388,8 +388,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	symptoms += "Done"
 	symptoms += GLOB.list_symptoms.Copy()
 	do
-		if(usr)
-			var/symptom = tgui_input_list(usr, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
+		if(src)
+			var/symptom = tgui_input_list(src, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))
@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	if(length(D.symptoms) > 0)
 
-		var/new_name = tgui_input_text(usr, "Name your new disease.", "New Name")
+		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
 		D.AssignName(new_name)
@@ -413,7 +413,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(usr, "Choose infectee", "Infectees", human_mob_list)
+		H = tgui_input_list(src, "Choose infectee", "Infectees", human_mob_list)
 
 		if(isnull(H))
 			return FALSE
@@ -424,7 +424,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
-		message_admins("[key_name_admin(usr)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
-		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
+		message_admins("[key_name_admin(src)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
+		log_admin("[key_name_admin(src)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 		return TRUE

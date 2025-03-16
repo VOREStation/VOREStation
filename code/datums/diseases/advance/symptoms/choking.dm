@@ -24,6 +24,7 @@ Bonus
 	transmission = -2
 	level = 9
 	severity = 5
+	naturally_occuring = FALSE
 	base_message_chance = 15
 	symptom_delay_min = 30 SECONDS
 	symptom_delay_max = 45 SECONDS

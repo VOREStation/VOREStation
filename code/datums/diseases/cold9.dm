@@ -14,8 +14,12 @@
 /datum/disease/cold9/stage_act()
 	..()
 	switch(stage)
+		if(1)
+			if(prob(1))
+				affected_mob.emote("sniff")
 		if(2)
-			affected_mob.bodytemperature -= 5
+			if(prob(10))
+				affected_mob.bodytemperature -= 2
 			if(prob(1) && prob(10))
 				to_chat(affected_mob, span_notice("You feel better."))
 				cure()
@@ -29,7 +33,8 @@
 			if(prob(5))
 				to_chat(affected_mob, span_danger("You feel stiff."))
 		if(3)
-			affected_mob.bodytemperature -= 10
+			if(prob(10))
+				affected_mob.bodytemperature -= 5
 			if(prob(1))
 				affected_mob.emote("sneeze")
 			if(prob(1))

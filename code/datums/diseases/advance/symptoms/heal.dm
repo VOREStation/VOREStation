@@ -84,8 +84,8 @@
 	transmission = -2
 	level = 8
 	severity = 1
-	symptom_delay_min = 5 SECONDS
-	symptom_delay_max = 10 SECONDS
+	symptom_delay_min = 10 SECONDS
+	symptom_delay_max = 20 SECONDS
 
 	var/current_size = 1
 	var/tetsuo = FALSE
@@ -116,7 +116,7 @@
 	var/mob/living/carbon/human/H = A.affected_mob
 	switch(A.stage)
 		if(4, 5)
-			if(prob(10) && bruteheal)
+			if(prob(5) && bruteheal)
 				if(H.stat != DEAD)
 					to_chat(H, span_userdanger("You retch, and a splatter of gore escapes your gullet!"))
 					H.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
@@ -140,6 +140,14 @@
 									ownermind.transfer_to(H)
 									H.grab_ghost()
 								break
+			if(bruteheal)
+				H.heal_overall_damage(2 * power)
+				if(prob(33) && tetsuo)
+					H.adjustCloneLoss(1)
+		else
+			if(prob(base_message_chance) && H.stat != DEAD)
+				to_chat(H, span_notice(pick("You feel bloated.", "The station seems small.", "You are the strongest.")))
+	return
 
 /*
 //////////////////////////////////////
@@ -198,41 +206,6 @@ Bonus
 /*
 //////////////////////////////////////
 
-Longevity
-
-	Medium hidden boost.
-	Large resistance boost.
-	Large stage speed boost.
-	Large transmittablity boost.
-	High Level.
-
-Bonus
-	After a certain amount of time the symptom will cure itself.
-
-//////////////////////////////////////
-
-
-/datum/symptom/heal/longevity
-	name = "Longevity"
-	stealth = 3
-	resistance = 4
-	stage_speed = 4
-	transmission = 4
-	level = 3
-	severity = 0
-	var/longevity = 30
-
-/datum/symptom/heal/longevity/Heal(mob/living/M, datum/disease/advance/A)
-	longevity -= 1
-	if(!longevity)
-		A.cure()
-
-/datum/symptom/heal/longevity/Start(datum/disease/advance/A)
-	longevity = rand(initial(longevity) - 5, initial(longevity) + 5)
-
-/*
-//////////////////////////////////////
-
 	DNA Restoration
 
 	Not well hidden.
@@ -245,7 +218,6 @@ Bonus
 	Heals clone damage, treats radiation.
 
 //////////////////////////////////////
-*/
 
 /datum/symptom/heal/dna
 	name = "Deoxyribonucleic Acid Restoration"

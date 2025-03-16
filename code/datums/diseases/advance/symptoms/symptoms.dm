@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	var/power = 1
 	// If the symptom is neutered or not. If it is, it will only affect stats
 	var/neutered = FALSE
+	var/stopped = FALSE // Used for Viral Suspended Animaton, stops a symptom but doesn't neuter it.
 
 /datum/symptom/New()
 	var/list/S = GLOB.list_symptoms
@@ -63,7 +64,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 /datum/symptom/proc/Activate(datum/disease/advance/A)
 	if(!A)
 		return FALSE
-	if(neutered)
+	if(neutered || stopped)
 		return FALSE
 	if(world.time < next_activaction)
 		return FALSE
@@ -77,7 +78,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when the stage changes
 /datum/symptom/proc/OnStageChange(datum/disease/advance/A)
-	if(neutered)
+	if(neutered || stopped)
 		return FALSE
 	return TRUE
 
