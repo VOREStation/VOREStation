@@ -1640,6 +1640,13 @@
 			var/list/choices = list()
 			for(var/obj/item/reagent_containers/rc in view(1,user.loc))
 				choices += rc
+			var/obj/item/reagent_containers/arc = user.get_active_hand()
+			if(istype(arc,/obj/item/reagent_containers))
+				choices += arc
+			var/obj/item/reagent_containers/irc = user.get_inactive_hand()
+			if(istype(irc,/obj/item/reagent_containers))
+				choices += irc
+
 			var/obj/item/reagent_containers/T = tgui_input_list(user,"Choose what to transfer to","Select Target", choices)
 			if(!T)
 				return FALSE
