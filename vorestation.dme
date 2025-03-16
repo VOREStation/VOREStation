@@ -4378,8 +4378,6 @@
 #include "code\modules\vore\eating\transforming_vr.dm"
 #include "code\modules\vore\eating\vertical_nom_vr.dm"
 #include "code\modules\vore\eating\vore_vr.dm"
-#include "code\modules\vore\eating\vorehooks_vr.dm"
-#include "code\modules\vore\eating\vorepanel_prefs.dm"
 #include "code\modules\vore\eating\vorepanel_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_boxes_vr.dm"
 #include "code\modules\vore\fluffstuff\custom_clothes_vr.dm"
