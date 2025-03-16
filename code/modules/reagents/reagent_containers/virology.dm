@@ -8,7 +8,7 @@
 	name = "cold virus culture"
 	desc = "A bottle with the common cold culture"
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/cold/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/cold/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/cold
 	data["viruses"] = diseases
@@ -18,7 +18,7 @@
 	name = "flu virus culture"
 	desc = "A bottle with the flu culture"
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/flu/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/flu/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/flu
 	data["viruses"] = diseases
@@ -28,7 +28,7 @@
 	name = "blob spores culture"
 	desc = "A bottle with blob spores"
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/blobspores/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/blobspores/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/blobspores
 	data["viruses"] = diseases
@@ -38,7 +38,7 @@
 	name = "macrophages culture"
 	desc = "A bottle with giant viruses"
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/macrophages/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/macrophages/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/macrophage
 	data["viruses"] = diseases
@@ -48,7 +48,7 @@
 	name = "experimental disease culture bottle"
 	desc = "A small bottle. Contains an untested viral culture."
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/random
 	data["viruses"] = diseases
@@ -58,7 +58,7 @@
 	name = "minor experimental disease culture bottle"
 	desc = "A small bottle. Contains a weak version of an untested viral culture."
 
-/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/minor/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/minor/Initialize(mapload)
 	. = ..()
 	diseases += new /datum/disease/advance/random/minor
 	data["viruses"] = diseases
