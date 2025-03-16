@@ -252,10 +252,6 @@
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
-"Oc" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/submap/priderock)
 "Od" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 10
@@ -372,10 +368,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/priderock)
-"ZJ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/submap/priderock)
 "ZO" = (
 /obj/structure/table/woodentable,
 /obj/random/plushie,
@@ -430,7 +422,7 @@ Zm
 (3,1,1) = {"
 Zm
 Zm
-Oc
+qP
 Wk
 Zm
 UG
@@ -441,7 +433,7 @@ FO
 YP
 Wk
 SE
-Oc
+qP
 Xd
 Wk
 md
@@ -476,7 +468,7 @@ qP
 sr
 qP
 Fg
-ZJ
+sr
 Xd
 Wk
 Tb
@@ -496,14 +488,14 @@ Zm
 (6,1,1) = {"
 Zm
 Wk
-ZJ
+sr
 Fg
 qP
 LK
 YP
 Tb
 YP
-ZJ
+sr
 LK
 Wk
 nG
@@ -520,7 +512,7 @@ Zm
 Wk
 yi
 Ix
-ZJ
+sr
 LK
 YP
 Tb
@@ -542,7 +534,7 @@ Zm
 Zm
 Bf
 Lo
-Oc
+qP
 Xd
 YP
 Tb
@@ -564,7 +556,7 @@ Zm
 Zm
 Zm
 Lo
-Oc
+qP
 VF
 yI
 Si
@@ -583,15 +575,15 @@ Zm
 "}
 (10,1,1) = {"
 Zm
-Oc
+qP
 Zm
 Mg
-ZJ
-Oc
+sr
+qP
 Wk
 nV
-ZJ
-ZJ
+sr
+sr
 Wk
 Jk
 As
@@ -610,10 +602,10 @@ Zm
 Lo
 qP
 ZA
-Oc
-ZJ
-ZJ
-Oc
+qP
+sr
+sr
+qP
 FO
 Jk
 Wk
@@ -630,10 +622,10 @@ Zm
 Wk
 Zm
 Mg
-ZJ
+sr
 Ud
-Oc
-ZJ
+qP
+sr
 ZA
 If
 hI
@@ -655,8 +647,8 @@ Lo
 Pn
 dq
 Gk
-Oc
-ZJ
+qP
+sr
 If
 ZO
 cR
@@ -676,7 +668,7 @@ Zm
 Lo
 PW
 Wk
-Oc
+qP
 Jk
 xE
 Jk

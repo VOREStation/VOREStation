@@ -616,21 +616,9 @@
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
-"ch" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/Rockybase)
-"ci" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/Rockybase)
 "cj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/material/shard,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/Rockybase)
-"ck" = (
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Rockybase)
 "cl" = (
@@ -1847,9 +1835,9 @@ ao
 al
 bL
 bO
-ch
+bO
 ct
-ch
+bO
 ao
 al
 ag
@@ -1879,9 +1867,9 @@ ao
 al
 bM
 bS
-ci
-ck
-ci
+bU
+bU
+bU
 ao
 al
 ag
@@ -1912,7 +1900,7 @@ al
 bN
 bT
 cj
-ck
+bU
 bU
 cJ
 al
@@ -1943,8 +1931,8 @@ ao
 al
 bO
 bU
-ck
-ci
+bU
+bU
 bU
 bW
 al
@@ -1975,7 +1963,7 @@ ao
 al
 ao
 bV
-ci
+bU
 bV
 bU
 cJ

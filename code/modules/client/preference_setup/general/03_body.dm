@@ -438,6 +438,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color2))]<br>"
 		if(ear.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];ears_alpha=1'>Change Ears Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>Select</a><br>"
 
@@ -447,6 +448,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
 		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))
 			. += "<a href='byond://?src=\ref[src];ear_secondary_color=[channel]'>Change [GLOB.fancy_sprite_accessory_color_channel_names[channel]] Color</a> [color_square(hex = LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff")]<br>"
+		.+= "<a href='byond://?src=\ref[src];secondary_ears_alpha=1'>Change Horns Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>Select</a><br>"
 
@@ -461,6 +463,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color2))]<br>"
 		if(tail.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];tail_alpha=1'>Change Tail Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/tail_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>Select</a><br>"
 
@@ -475,6 +478,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color2))]<br>"
 		if(wings.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];wing_alpha=1'>Change Wing Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/wing_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>Select</a><br>"
 
@@ -1078,6 +1082,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/ears_color3, new_earc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if (href_list["ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
+			 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["secondary_ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
+		 	pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["ear_secondary_style"])
 		var/new_style = tgui_input_list(user, "Select an ear style for this character:", "Character Preference", pref.get_available_styles(global.ear_styles_list), pref.ear_secondary_style)
 		if(!new_style)
@@ -1131,6 +1149,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/tail_color3, new_tailc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["tail_alpha"])
+		var/new_tail_alpha = tgui_input_number(user, "Choose how transparent your character's tail is.", "Character Preference",
+		 pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
+		if(new_tail_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["wing_style"])
 		var/new_wing_style = tgui_input_list(user, "Select a wing style for this character:", "Character Preference", pref.get_available_styles(global.wing_styles_list), pref.wing_style)
 		if(new_wing_style)
@@ -1157,6 +1182,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.read_preference(/datum/preference/color/human/wing_color3))
 		if(new_wingc)
 			pref.update_preference_by_type(/datum/preference/color/human/wing_color3, new_wingc)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["wing_alpha"])
+		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
+		 pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+		if(new_wing_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 

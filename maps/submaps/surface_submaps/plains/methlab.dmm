@@ -287,11 +287,6 @@
 /obj/structure/curtain/black,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/methlab)
-"yY" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/methlab)
 "zu" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
@@ -437,10 +432,6 @@
 /obj/structure/sign/warning/lethal_turrets,
 /turf/simulated/wall,
 /area/submap/methlab)
-"IH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/old_tile/green/virgo3b,
-/area/submap/methlab)
 "IQ" = (
 /obj/item/clothing/accessory/stethoscope,
 /obj/effect/floor_decal/industrial/warning{
@@ -513,11 +504,6 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/module/power_control,
 /turf/simulated/floor/tiled/steel_dirty,
-/area/submap/methlab)
-"PZ" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "QP" = (
 /obj/structure/table/steel_reinforced,
@@ -768,8 +754,8 @@ Lh
 Xi
 HA
 HA
-PZ
-PZ
+Ol
+Ol
 wd
 Xo
 wd
@@ -815,7 +801,7 @@ HA
 zu
 Ol
 Vf
-IH
+zu
 QW
 HA
 ps
@@ -937,7 +923,7 @@ Of
 Gs
 DP
 iN
-yY
+tL
 AB
 LX
 HX
