@@ -806,6 +806,10 @@
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
 	var/adjusted_name // Our modified name. Used so people don't do funny business with us!
 
+	//This makes it so it reverts back to its initial name when it speaks if TRUE.
+	//This should be used if a plushie can be made to say custom messages. Not currently required at the moment, but here just in case it'd added in the future.
+	var/prevent_impersonation = FALSE
+
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
 	adjusted_name = name
@@ -845,6 +849,13 @@
 	last_message = world.time
 
 /obj/item/toy/plushie/proc/say_phrase()
+	//If we don't prevent impersonation, we just speak like normal!
+	//The PI var is used in case a plushie can be made to speak a custom message.
+	if(!prevent_impersonation)
+		atom_say("[pokephrase]")
+		return
+
+	//If we do prevent impersonation, change the name to original, speak, then bring it back.
 	name = initial(name) //No namestealing.
 	atom_say("[pokephrase]")
 	name = adjusted_name

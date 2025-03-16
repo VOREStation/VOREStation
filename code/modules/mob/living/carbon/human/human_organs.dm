@@ -192,10 +192,10 @@
 	SHOULD_NOT_OVERRIDE(TRUE) //Don't. Even. /Think/. About. It.
 	if(!dna || !species)
 		return
-	// Traitgenes NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(isSynthetic())
 		return
-	if(species.flags & NO_SCAN)
+	if(species.flags & NO_DNA)
 		return
 	if(refresh_traits && species.traits)
 		for(var/TR in species.traits)

@@ -160,21 +160,29 @@
 	module_type = "Combat"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	has_vore_belly_sprites = TRUE
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/combat/tall/mmeka
 	name = "NIKO"
 	sprite_icon_state = "mmekasyndi"
 	has_vore_belly_sprites = TRUE
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/combat/tall/fmeka
 	name = "NIKA"
 	sprite_icon_state = "fmekasyndi"
 	has_vore_belly_sprites = TRUE
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/combat/tall/k4t
 	name = "K4T"
 	sprite_icon_state = "k4tsyndi"
 	has_vore_belly_sprites = FALSE
+	icon_x = 32
+	pixel_x = 0
 
 //Using our own category wide here not to interfere with upstream in case they add wide sprites under just dogborg.
 /datum/robot_sprite/dogborg/wide/combat
