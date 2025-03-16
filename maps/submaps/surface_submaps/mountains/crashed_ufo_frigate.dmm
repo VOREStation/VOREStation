@@ -1,154 +1,2132 @@
-"aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/turf/simulated/shuttle/wall/alien,/area/submap/cave/crashed_ufo_frigate)
-"ac" = (/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ad" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"ae" = (/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"af" = (/mob/living/simple_mob/animal/space/alien/drone,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ag" = (/obj/machinery/porta_turret/alien{faction = "xeno"},/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"ah" = (/obj/structure/table/alien,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"ai" = (/obj/machinery/artifact,/obj/effect/alien/weeds/node,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aj" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/ice,/area/template_noop)
-"ak" = (/obj/machinery/porta_turret/alien{faction = "xeno"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"al" = (/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"am" = (/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"an" = (/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ao" = (/obj/structure/loot_pile/surface/alien/security,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ap" = (/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"aq" = (/obj/structure/prop/alien/pod/open,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"ar" = (/obj/effect/alien/weeds/node,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"as" = (/obj/structure/prop/alien/pod/open,/obj/random/tech_supply/component,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"at" = (/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"au" = (/obj/machinery/door/airlock/alien/locked,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"av" = (/obj/structure/loot_pile/surface/alien/engineering,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"aw" = (/obj/structure/prop/alien/pod/open,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ax" = (/turf/simulated/floor/outdoors/ice,/area/template_noop)
-"ay" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"az" = (/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aA" = (/obj/effect/alien/weeds/node,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aB" = (/obj/structure/loot_pile/surface/alien/medical,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aC" = (/obj/structure/loot_pile/surface/alien/security,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"aD" = (/obj/structure/table/alien,/obj/random/tech_supply/component,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"aE" = (/obj/structure/prop/alien/pod/open,/obj/random/tech_supply/component,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"aF" = (/obj/structure/table/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aG" = (/obj/machinery/vr_sleeper/alien/random_replicant,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aH" = (/obj/structure/prop/alien/pod,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aI" = (/obj/structure/loot_pile/surface/alien/engineering,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aJ" = (/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aK" = (/obj/structure/table/alien,/obj/random/tech_supply/component,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aL" = (/obj/structure/table/alien,/obj/item/clothing/under/psysuit,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aM" = (/obj/structure/prop/alien/computer/camera,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aN" = (/obj/structure/prop/alien/computer/camera/flipped,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aO" = (/obj/structure/simple_door/resin,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aP" = (/obj/structure/prop/alien/power,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aQ" = (/obj/effect/alien/weeds/node,/mob/living/simple_mob/animal/space/alien/drone,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aR" = (/obj/effect/alien/weeds/node,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"aS" = (/obj/structure/table/alien,/obj/random/tool/alien,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"aT" = (/obj/structure/loot_pile/surface/alien/security,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"aU" = (/obj/machinery/replicator,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aV" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/drug_den,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aW" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/under/psysuit,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aX" = (/obj/structure/prop/alien/computer/camera/flipped{icon_state = "camera_flipped"; dir = 4},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aY" = (/obj/structure/prop/alien/computer/camera{icon_state = "camera"; dir = 8},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"aZ" = (/obj/machinery/porta_turret/alien/destroyed,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"ba" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/scientific,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bb" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/nanites,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bc" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/fresh_medicine,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bd" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/viral,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"be" = (/obj/machinery/door/blast/puzzle,/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bf" = (/obj/structure/table/alien,/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bg" = (/obj/structure/prop/lock/projectile,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bh" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/old_medicine,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bi" = (/obj/structure/prop/alien/dispenser,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bj" = (/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bk" = (/mob/living/simple_mob/animal/space/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bl" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/under/psysuit,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bm" = (/obj/structure/table/alien,/obj/item/paper/alien,/obj/item/paper/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bn" = (/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bo" = (/obj/machinery/porta_turret/alien{faction = "xeno"},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bp" = (/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bq" = (/obj/machinery/implantchair,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"br" = (/obj/structure/prop/alien/computer{icon_state = "console-c"; dir = 8},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bs" = (/obj/effect/alien/weeds/node,/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bt" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bu" = (/obj/structure/loot_pile/surface/drone,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bv" = (/obj/item/surgical/bone_clamp/alien,/obj/structure/closet/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bw" = (/obj/structure/prop/alien/computer,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bx" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/accessory/medal/dungeon/alien_ufo{desc = "It vaguely like a star. It looks like something an alien admiral might've worn. Probably."; name = "alien admiral's medal"},/obj/item/telecube/precursor/mated/zone,/obj/item/clothing/head/helmet/alien/tank,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"by" = (/obj/structure/loot_pile/mecha/gygax/dark,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bz" = (/obj/structure/mopbucket,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bA" = (/obj/item/brokenbug,/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"bB" = (/mob/living/simple_mob/animal/space/alien/sentinel,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bC" = (/obj/structure/prop/alien/computer/camera/flipped{icon_state = "camera_flipped"; dir = 4},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bD" = (/obj/structure/prop/alien/computer/camera{icon_state = "camera"; dir = 8},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bE" = (/obj/structure/loot_pile/maint/boxfort,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bF" = (/obj/structure/prop/blackbox/xenofrigate,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bG" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"bH" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bI" = (/obj/structure/table/alien,/obj/structure/loot_pile/surface/alien/medical,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bJ" = (/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bK" = (/obj/structure/table/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bL" = (/obj/structure/table/alien,/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/obj/item/gps/internal/poi,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bM" = (/obj/structure/window/phoronreinforced{dir = 4},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bN" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced{dir = 4},/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bO" = (/obj/structure/table/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bP" = (/obj/structure/table/alien,/obj/item/weldingtool/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bQ" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced{dir = 4},/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bR" = (/obj/structure/table/alien,/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bS" = (/obj/structure/closet/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bT" = (/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bU" = (/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{dir = 4},/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bV" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced,/obj/item/paper/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bW" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced{dir = 4},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bX" = (/mob/living/simple_mob/animal/space/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"bY" = (/obj/structure/foamedmetal,/obj/machinery/door/airlock/alien/locked,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bZ" = (/obj/structure/foamedmetal,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"ca" = (/obj/structure/table/alien,/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"cb" = (/obj/structure/prop/alien/power,/obj/structure/foamedmetal,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"cc" = (/obj/structure/loot_pile/surface/alien/end,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"cd" = (/obj/item/prop/alien/junk,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"ce" = (/obj/random/tech_supply/component,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"cf" = (/obj/random/tech_supply/component,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"cg" = (/obj/machinery/door/airlock/alien/public,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-"ch" = (/turf/simulated/shuttle/wall/alien/hard_corner,/area/submap/cave/crashed_ufo_frigate)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/shuttle/wall/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"ac" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ad" = (
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/template_noop)
+"af" = (
+/mob/living/simple_mob/animal/space/alien/drone,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ag" = (
+/obj/machinery/porta_turret/alien{
+	faction = "xeno"
+	},
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"ah" = (
+/obj/structure/table/alien,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"ai" = (
+/obj/machinery/artifact,
+/obj/effect/alien/weeds/node,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aj" = (
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/ice,
+/area/template_noop)
+"ak" = (
+/obj/machinery/porta_turret/alien{
+	faction = "xeno"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"al" = (
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"am" = (
+/obj/structure/window/phoronreinforced,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ao" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ap" = (
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"aq" = (
+/obj/structure/prop/alien/pod/open,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"ar" = (
+/obj/effect/alien/weeds/node,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"as" = (
+/obj/structure/prop/alien/pod/open,
+/obj/random/tech_supply/component,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"at" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"au" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"av" = (
+/obj/structure/loot_pile/surface/alien/engineering,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"aw" = (
+/obj/structure/prop/alien/pod/open,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ax" = (
+/turf/simulated/floor/outdoors/ice,
+/area/template_noop)
+"ay" = (
+/obj/structure/loot_pile/surface/bones,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"az" = (
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aA" = (
+/obj/effect/alien/weeds/node,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aB" = (
+/obj/structure/loot_pile/surface/alien/medical,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aC" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"aD" = (
+/obj/structure/table/alien,
+/obj/random/tech_supply/component,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"aE" = (
+/obj/structure/prop/alien/pod/open,
+/obj/random/tech_supply/component,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"aF" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aG" = (
+/obj/machinery/vr_sleeper/alien/random_replicant,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aH" = (
+/obj/structure/prop/alien/pod,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aI" = (
+/obj/structure/loot_pile/surface/alien/engineering,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aJ" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aK" = (
+/obj/structure/table/alien,
+/obj/random/tech_supply/component,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aL" = (
+/obj/structure/table/alien,
+/obj/item/clothing/under/psysuit,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aM" = (
+/obj/structure/prop/alien/computer/camera,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aN" = (
+/obj/structure/prop/alien/computer/camera/flipped,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aO" = (
+/obj/structure/simple_door/resin,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aP" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aQ" = (
+/obj/effect/alien/weeds/node,
+/mob/living/simple_mob/animal/space/alien/drone,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aR" = (
+/obj/effect/alien/weeds/node,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"aS" = (
+/obj/structure/table/alien,
+/obj/random/tool/alien,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"aT" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"aU" = (
+/obj/machinery/replicator,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aV" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/drug_den,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aW" = (
+/obj/effect/decal/remains/xeno,
+/obj/item/clothing/under/psysuit,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aX" = (
+/obj/structure/prop/alien/computer/camera/flipped{
+	icon_state = "camera_flipped";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aY" = (
+/obj/structure/prop/alien/computer/camera{
+	icon_state = "camera";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"aZ" = (
+/obj/machinery/porta_turret/alien/destroyed,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"ba" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/scientific,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bb" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/nanites,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bc" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/fresh_medicine,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bd" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/viral,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"be" = (
+/obj/machinery/door/blast/puzzle,
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bf" = (
+/obj/structure/table/alien,
+/obj/item/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bg" = (
+/obj/structure/prop/lock/projectile,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bh" = (
+/obj/structure/closet/alien,
+/obj/random/unidentified_medicine/old_medicine,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bi" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bj" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bk" = (
+/mob/living/simple_mob/animal/space/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bl" = (
+/obj/effect/decal/remains/xeno,
+/obj/item/clothing/under/psysuit,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bm" = (
+/obj/structure/table/alien,
+/obj/item/paper/alien,
+/obj/item/paper/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bn" = (
+/obj/structure/foamedmetal,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bo" = (
+/obj/machinery/porta_turret/alien{
+	faction = "xeno"
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bp" = (
+/obj/structure/foamedmetal,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bq" = (
+/obj/machinery/implantchair,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"br" = (
+/obj/structure/prop/alien/computer{
+	icon_state = "console-c";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bs" = (
+/obj/effect/alien/weeds/node,
+/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bt" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bu" = (
+/obj/structure/loot_pile/surface/drone,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bv" = (
+/obj/item/surgical/bone_clamp/alien,
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bw" = (
+/obj/structure/prop/alien/computer,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bx" = (
+/obj/effect/decal/remains/xeno,
+/obj/item/clothing/accessory/medal/dungeon/alien_ufo{
+	desc = "It vaguely like a star. It looks like something an alien admiral might've worn. Probably.";
+	name = "alien admiral's medal"
+	},
+/obj/item/telecube/precursor/mated/zone,
+/obj/item/clothing/head/helmet/alien/tank,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"by" = (
+/obj/structure/loot_pile/mecha/gygax/dark,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bz" = (
+/obj/structure/mopbucket,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bA" = (
+/obj/item/brokenbug,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/template_noop)
+"bB" = (
+/mob/living/simple_mob/animal/space/alien/sentinel,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bC" = (
+/obj/structure/prop/alien/computer/camera/flipped{
+	icon_state = "camera_flipped";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bD" = (
+/obj/structure/prop/alien/computer/camera{
+	icon_state = "camera";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bE" = (
+/obj/structure/loot_pile/maint/boxfort,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bF" = (
+/obj/structure/prop/blackbox/xenofrigate,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bG" = (
+/obj/random/outcrop,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/template_noop)
+"bH" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bI" = (
+/obj/structure/table/alien,
+/obj/structure/loot_pile/surface/alien/medical,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bJ" = (
+/obj/structure/window/phoronreinforced{
+	icon_state = "phoronrwindow";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bK" = (
+/obj/structure/table/alien,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bL" = (
+/obj/structure/table/alien,
+/obj/item/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/obj/item/gps/internal/poi,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bM" = (
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bN" = (
+/obj/structure/table/alien,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/obj/item/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bO" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bP" = (
+/obj/structure/table/alien,
+/obj/item/weldingtool/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bQ" = (
+/obj/structure/table/alien,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/obj/item/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bR" = (
+/obj/structure/table/alien,
+/obj/structure/foamedmetal,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bS" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bT" = (
+/obj/structure/window/phoronreinforced{
+	icon_state = "phoronrwindow";
+	dir = 8
+	},
+/obj/structure/window/phoronreinforced,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo_frigate)
+"bU" = (
+/obj/structure/window/phoronreinforced,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bV" = (
+/obj/structure/table/alien,
+/obj/structure/window/phoronreinforced,
+/obj/item/paper/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bW" = (
+/obj/structure/table/alien,
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/obj/structure/window/phoronreinforced,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bX" = (
+/mob/living/simple_mob/animal/space/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"bY" = (
+/obj/structure/foamedmetal,
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"bZ" = (
+/obj/structure/foamedmetal,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"ca" = (
+/obj/structure/table/alien,
+/obj/item/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"cb" = (
+/obj/structure/prop/alien/power,
+/obj/structure/foamedmetal,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"cc" = (
+/obj/structure/loot_pile/surface/alien/end,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"cd" = (
+/obj/item/prop/alien/junk,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"ce" = (
+/obj/random/tech_supply/component,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"cf" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/outdoors/ice,
+/area/submap/cave/crashed_ufo_frigate)
+"cg" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo_frigate)
+"ch" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/submap/cave/crashed_ufo_frigate)
 
 (1,1,1) = {"
-aaaaaaaxbGaaaaaaaaaaaaaaaaaaaaabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaxaxadaxaxbGaaaaaaaaababababacaeacafaeababababaaaaaaajaxadaaaaadaxajaaaaaa
-adbGadadadadaxaxaaaaabababagahababacaiacababacakabababaaaaadaxadadaxaxaaaaaaaa
-aaaxaxadadadadaaaaababacalalahahabamamanabacacacacaoababaaaaadbGadadaaaaaaaaaa
-aaaaaaadbGadaaaaababaoacacalapapchalalalchapapaqaracasababaaaaaaadadadaxaxadaa
-aaaaadadadaaaaababaoacacapapapapatalapapauapapapavalacawababaaaaaaadadadaxajaa
-aaadadaxaaaaababaoacayapapapalalchazacaAchaAaBapapaCacacawababaaaaaxadadadaaaa
-aaaxaxaaaaababaoacalalapapahaDabababazababababawapapaEacacaBababaaaxadaaaaaaaa
-adbGaxaaaaabacacalalapapacaFababaGabababaHabababaIapapaqaAacakabaaajaxaaaaaaaa
-aaadaaaaababacacaFapapacacaFabaGacaGabaHalalaJacacacapapacacabababaaaxaaaaaaaa
-aaadaaaaabakacacaKapapacacacababaJababawacacchabacaAapapacababaIabaaaaaaaaaaaa
-aaaaaaababababaFaFapalalacacaJacacakabaLacaLabababacapapababaIacababaaaaaaaaaa
-aaaaaaabaMaNabababalalacacacababaOababaLacaLababababchatchaFalacaPabaaaaaaaaaa
-aaaaaaabaFacakacchauchaoacacabaeaQaeabaLacaLabababakapaRabaSalacaPabadaxaaaaaa
-aaaaaaabaFacalalapalababaTalababaeabababawababaMaFacapapabahalacaPabadadaaaaaa
-aaaaababaFalalapapapacababalaTabababakabababaUacaFacapapatacacababababadaxaaaa
-aaaaabaVacapapapapacacakababababacacaWaAacababacacapapapabavababacacabadaxaaaa
-aaaaabacapapapapacacacacabababaXacaFaFahalaYababchaRapacabababaZacacabadadadaa
-adaaabbaapapacalbbalbcacbdabacacapalalalapapapapbeapacacaIabalalacapchaZadadaa
-adaaabalapabababababababababapapapapapapapapapapchaFacbfababbgacapapatacadbAaa
-adaaabbhalabbiawabbiapaFabapapaRbjbkacacacaparblabbmacaFabacacapapapchaZadadaa
-axaaabalbnbobpacabbiapbqchapalalalaFaFaFacacapalabbfacbmabacapapapalabadadaxaa
-axaaabalbnbnbnbrabbibsapatapalagabababababakapapabbtaAbuabalapapalalabadadaxaa
-aaadababaFbnapbvababaFaFchapalababbwbxbwababapapabbyacbzabalalapacababadadaaaa
-aaaaaaabaFapbBacaYababababapapabbCapapapbDabapapabbEbFbHabalalapacabadaxaaaaaa
-aaaaaaabaFapapalalalalababapapabapapaRapapabapapabababababalapapalabadaaaaaaaa
-axaaaaabbIaFapapbpalalabacalapbJapbKbLbfapbMapapacabacakbNapapalalabaaaaaaaaaa
-axadaaababaFapbnbnacacabagalapbJbOaFapbPbObMapapakabacacbQapapalababaaaaaaaaaa
-adbGadaaabbIbRbnapapbSabalalapbTapaRapapalbUapapacabacbVbWapacalabaaaaaaaaaaaa
-aaaxaxaaababaFacapapbSababalaRapapapbXalalalaRacababacapapacakababaaaaaaaaaaaa
-aaaaaxaaaaabbIaFapapapbSabalapapapapapapapapapacabacapapapacacabaaaaaaaaadadaa
-aaaaaaaaaaabababchbYchabababbfbOapapapapapbObfabababchatchabababaaaaaaadbGadaa
-aaadaaaaaaaaababbZbZbnapacababaFahalagarcaaFababacapapapacababaaaaaaadadadadaa
-aaadaxajaaaaaaababcbbZapapalabababccabccabababacapapapaPababaaaaaaadadadadaaaa
-aaadadaxaxbGaaaaababbZapapcdalalabababababacapapapapacababaaaaaaaxaxadadadadaa
-aaaaadadadadadaaaaababaPacapapalalchapchceapapalcfaPababaaaaaabGadadadaxaxadaa
-aaaaaabGaxaxadbGaaaaabababacapapapcgapcgapalalalabababaaaaaaadadadadadaxbGaaaa
-aaaaaaaaaaaxaxadadaaaaaaababababakchaHchakababababaaaaaaadadaxaxbGaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababaaaaaaaaaabGadaaaaaaaaaaaaaaaaaaaa
+aa
+aa
+ad
+aa
+aa
+aa
+aa
+aa
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ax
+ax
+aa
+aa
+aa
+ax
+ax
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+bG
+ax
+aa
+aa
+ad
+ax
+bG
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+aa
+aa
+aa
+ad
+bG
+ax
+aa
+aa
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+ax
+ad
+ax
+aa
+ad
+ad
+ax
+ax
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ax
+ax
+aa
+aa
+ax
+ad
+ad
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+ax
+ax
+ad
+ad
+ad
+ad
+ax
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aV
+ac
+ba
+al
+bh
+al
+al
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aj
+ax
+ad
+bG
+aa
+aa
+"}
+(5,1,1) = {"
+bG
+ad
+ad
+ad
+bG
+ad
+aa
+aa
+aa
+ab
+ab
+ab
+aM
+aF
+aF
+aF
+ac
+ap
+ap
+ap
+al
+bn
+bn
+aF
+aF
+aF
+bI
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+ax
+ad
+ax
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+ax
+ad
+ad
+ad
+aa
+aa
+ab
+ab
+ab
+ak
+ab
+aN
+ac
+ac
+al
+ap
+ap
+ap
+ab
+ab
+bo
+bn
+bn
+ap
+ap
+aF
+aF
+bI
+ab
+ab
+ab
+aa
+aa
+bG
+ad
+ax
+ax
+aa
+"}
+(7,1,1) = {"
+aa
+ax
+ax
+ad
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+ak
+al
+al
+ap
+ap
+ac
+ab
+bi
+bp
+bn
+ap
+bB
+ap
+ap
+ap
+bR
+aF
+bI
+ab
+ab
+aa
+aa
+ad
+ad
+ax
+aa
+"}
+(8,1,1) = {"
+aa
+bG
+ax
+aa
+aa
+ab
+ab
+ao
+ac
+ac
+ac
+aF
+ab
+ac
+al
+ap
+ap
+ap
+al
+ab
+aw
+ac
+br
+bv
+ac
+al
+ap
+bn
+bn
+ac
+aF
+ab
+ab
+ab
+aa
+aa
+bG
+ad
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ao
+ac
+al
+aF
+aK
+aF
+ab
+ch
+ap
+ap
+ap
+ac
+bb
+ab
+ab
+ab
+ab
+ab
+aY
+al
+bp
+bn
+ap
+ap
+ap
+ch
+bZ
+ab
+ab
+aa
+aa
+ad
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ao
+ac
+al
+al
+ap
+ap
+ap
+al
+au
+al
+ap
+ac
+ac
+al
+ab
+bi
+bi
+bi
+ab
+ab
+al
+al
+ac
+ap
+ap
+ap
+bY
+bZ
+cb
+ab
+ab
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+ab
+ab
+ao
+ac
+ay
+al
+ap
+ap
+ap
+al
+al
+ch
+ab
+ac
+ac
+ac
+bc
+ab
+ap
+ap
+bs
+aF
+ab
+al
+al
+ac
+bS
+bS
+ap
+ch
+bn
+bZ
+bZ
+ab
+ab
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+ab
+ac
+ac
+ac
+ap
+ap
+ap
+ac
+ac
+al
+ac
+ao
+ab
+ab
+ak
+ac
+ac
+ab
+aF
+bq
+ap
+aF
+ab
+ab
+ab
+ab
+ab
+ab
+bS
+ab
+ap
+ap
+ap
+aP
+ab
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+ab
+ab
+al
+ac
+ap
+ap
+ap
+ac
+ac
+ac
+ac
+ac
+ac
+aT
+ab
+ab
+ab
+bd
+ab
+ab
+ch
+at
+ch
+ab
+ab
+ac
+ag
+al
+ab
+ab
+ab
+ac
+ap
+ap
+ac
+ab
+ab
+aa
+"}
+(14,1,1) = {"
+aa
+ab
+ag
+al
+al
+ap
+ap
+ah
+aF
+aF
+ac
+ac
+ac
+ac
+al
+al
+ab
+ab
+ab
+ab
+ap
+ap
+ap
+ap
+ap
+ap
+al
+al
+al
+al
+al
+ab
+ab
+al
+cd
+ap
+ac
+ab
+aa
+"}
+(15,1,1) = {"
+aa
+ab
+ah
+ah
+ap
+ap
+al
+aD
+ab
+ab
+ab
+aJ
+ab
+ab
+ab
+aT
+ab
+ab
+ac
+ap
+ap
+al
+al
+al
+ap
+ap
+ap
+ap
+ap
+aR
+ap
+bf
+ab
+ab
+al
+ap
+ap
+ab
+aa
+"}
+(16,1,1) = {"
+ab
+ab
+ab
+ah
+ap
+ap
+al
+ab
+ab
+aG
+ab
+ac
+ab
+ac
+ab
+ab
+ab
+aX
+ac
+ap
+aR
+al
+ag
+ab
+ab
+ab
+bJ
+bJ
+bT
+ap
+ap
+bO
+aF
+ab
+al
+al
+ap
+ab
+ab
+"}
+(17,1,1) = {"
+ab
+ac
+ab
+ab
+ch
+at
+ch
+ab
+aG
+ac
+aJ
+ac
+aO
+aQ
+ac
+ab
+ac
+ac
+ap
+ap
+bj
+al
+ab
+ab
+bC
+ap
+ap
+bO
+ap
+ap
+ap
+ap
+ah
+ab
+ab
+al
+ap
+ak
+ab
+"}
+(18,1,1) = {"
+ab
+ac
+ac
+am
+al
+al
+az
+ab
+ab
+aG
+ab
+ak
+ab
+ac
+ab
+ab
+ac
+aF
+al
+ap
+bk
+aF
+ab
+bw
+ap
+ap
+bK
+aF
+aR
+ap
+ap
+ap
+al
+cc
+ab
+ch
+cg
+ch
+ab
+"}
+(19,1,1) = {"
+ab
+ac
+ai
+am
+al
+ap
+ac
+az
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ak
+aW
+aF
+al
+ap
+ac
+aF
+ab
+bx
+ap
+aR
+bL
+ap
+ap
+bX
+ap
+ap
+ag
+ab
+ab
+ap
+ap
+aH
+ab
+"}
+(20,1,1) = {"
+ab
+af
+ac
+am
+al
+ap
+aA
+ab
+ab
+aH
+aw
+aL
+aL
+aL
+ab
+ab
+aA
+ah
+al
+ap
+ac
+aF
+ab
+bw
+ap
+ap
+bf
+bP
+ap
+al
+ap
+ap
+ar
+cc
+ab
+ch
+cg
+ch
+ab
+"}
+(21,1,1) = {"
+ab
+ac
+ab
+ab
+ch
+au
+ch
+ab
+aH
+al
+ac
+ac
+ac
+ac
+aw
+ab
+ac
+al
+ap
+ap
+ac
+ac
+ab
+ab
+bD
+ap
+ap
+bO
+al
+al
+ap
+ap
+ca
+ab
+ab
+ce
+ap
+ak
+ab
+"}
+(22,1,1) = {"
+ab
+ab
+ab
+ac
+ap
+ap
+aA
+ab
+ab
+al
+ac
+aL
+aL
+aL
+ab
+ab
+ab
+aY
+ap
+ap
+ap
+ac
+ak
+ab
+ab
+ab
+bM
+bM
+bU
+al
+ap
+bO
+aF
+ab
+ac
+ap
+al
+ab
+ab
+"}
+(23,1,1) = {"
+aa
+ab
+ac
+ac
+ap
+ap
+aB
+ab
+ab
+aJ
+ch
+ab
+ab
+ab
+ab
+aU
+ab
+ab
+ap
+ap
+ar
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+aR
+ap
+bf
+ab
+ab
+ap
+ap
+al
+ab
+aa
+"}
+(24,1,1) = {"
+aa
+ab
+ak
+ac
+aq
+ap
+ap
+aw
+ab
+ac
+ab
+ab
+ab
+ab
+aM
+ac
+ac
+ab
+ap
+ap
+bl
+al
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ac
+ac
+ab
+ab
+ac
+ap
+al
+al
+ab
+aa
+"}
+(25,1,1) = {"
+aa
+ab
+ab
+ac
+ar
+av
+ap
+ap
+aI
+ac
+ac
+ab
+ab
+ab
+aF
+aF
+ac
+ch
+be
+ch
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ak
+ac
+ab
+ab
+ab
+ac
+ap
+ap
+cf
+ab
+ab
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+ab
+ao
+ac
+al
+aC
+ap
+ap
+ac
+aA
+ac
+ab
+ak
+ac
+ac
+ap
+aR
+ap
+aF
+bm
+bf
+bt
+by
+bE
+ab
+ab
+ab
+ab
+ab
+ac
+ab
+ap
+ap
+ap
+aP
+ab
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+ab
+ab
+as
+ac
+ac
+aE
+ap
+ap
+ap
+ap
+ch
+ap
+ap
+ap
+ap
+ap
+ac
+ac
+ac
+ac
+aA
+ac
+bF
+ab
+ac
+ac
+ac
+ac
+ap
+ch
+ap
+ap
+ac
+ab
+ab
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+aw
+ac
+ac
+aq
+ap
+ap
+ap
+at
+aR
+ap
+ap
+ap
+ac
+ac
+bf
+aF
+bm
+bu
+bz
+bH
+ab
+ak
+ac
+bV
+ap
+ap
+at
+ap
+aP
+ab
+ab
+aa
+aa
+bG
+"}
+(29,1,1) = {"
+aa
+aj
+aa
+aa
+ab
+ab
+aw
+ac
+aA
+ac
+ac
+ab
+ch
+ab
+ab
+at
+ab
+ab
+aI
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bN
+bQ
+bW
+ap
+ap
+ch
+ac
+ab
+ab
+aa
+aa
+ad
+ad
+"}
+(30,1,1) = {"
+aa
+ax
+ad
+aa
+aa
+ab
+ab
+aB
+ac
+ac
+ab
+ab
+aF
+aS
+ah
+ac
+av
+ab
+ab
+ab
+ac
+ac
+al
+al
+al
+al
+ap
+ap
+ap
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+ad
+aa
+"}
+(31,1,1) = {"
+aa
+ad
+ax
+ad
+aa
+aa
+ab
+ab
+ak
+ab
+ab
+aI
+al
+al
+al
+ac
+ab
+ab
+al
+bg
+ac
+ap
+ap
+al
+al
+ap
+ap
+ap
+ac
+ak
+ac
+ab
+ab
+aa
+aa
+aa
+ad
+ax
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+ad
+bG
+aa
+aa
+aa
+ab
+ab
+ab
+aI
+ac
+ac
+ac
+ac
+ab
+ab
+aZ
+al
+ac
+ap
+ap
+ap
+ap
+ap
+ap
+al
+al
+al
+ab
+ab
+ab
+aa
+aa
+aa
+bG
+ad
+ax
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+aP
+aP
+aP
+ab
+ac
+ac
+ac
+ap
+ap
+ap
+al
+ac
+ac
+al
+al
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+ax
+ad
+ad
+bG
+aa
+"}
+(34,1,1) = {"
+aa
+ad
+ax
+ad
+ad
+ad
+ax
+ax
+aj
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ap
+ap
+ap
+al
+al
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+ad
+ax
+ad
+ad
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+ax
+ax
+aa
+ad
+ad
+ad
+ad
+ax
+ax
+aa
+aa
+aa
+ad
+ad
+ab
+ab
+ab
+ch
+at
+ch
+ab
+ab
+ab
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+aj
+aa
+aa
+ax
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+ax
+ad
+ad
+ad
+ad
+aZ
+ac
+aZ
+ad
+ad
+ad
+ax
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ax
+ax
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+aa
+ax
+ax
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ax
+ax
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+bG
+ad
+ad
+ad
+ax
+bG
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+aa
+ad
+aj
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+bA
+ad
+ax
+ax
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+aa
+ad
+ad
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}

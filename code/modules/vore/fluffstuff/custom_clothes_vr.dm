@@ -64,47 +64,11 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "coatroiz"
 	item_state_slots = list(slot_r_hand_str = "coatroiz", slot_l_hand_str = "coatroiz")
+	//hoodtype = ??? //This needs a hoodtype set...I'm not a spriter, so someone else will have to do it.
+	has_hood_sprite = TRUE
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "coatroiz_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click(mob/user, actiontype)
-	ToggleHood_roiz()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_roiz()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/RemoveHood_roiz()
-	icon_state = "coatroiz"
-	item_state = "coatroiz_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/ToggleHood_roiz()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "coatroiz_t"
-				item_state = "coatroiz_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_roiz()
-
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
@@ -1505,43 +1469,9 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "kilanocoat_mob"
+	//hoodtype = ??? //Needs a hoodtype to be created for it.
+	has_hood_sprite = TRUE
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click(mob/user, actiontype)
-	ToggleHood_kilano()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_kilano()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/RemoveHood_kilano()
-	icon_state = "kilanocoat"
-	item_state = "kilanocoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/ToggleHood_kilano()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "kilanocoat_t"
-				item_state = "kilanocoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_kilano()
 
 //BeyondMyLife: Ne'tra Ky'ram
 /obj/item/clothing/under/fluff/kilanosuit
@@ -2312,6 +2242,8 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechacoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/mechanic
+	has_hood_sprite = TRUE
+
 
 /obj/item/clothing/head/hood/winter/fluff/mechanic
 	name = "mechanic winter hood"
@@ -2321,43 +2253,6 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechahood_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click(mob/user, actiontype)
-	ToggleHood_mechacoat()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_mechacoat()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/RemoveHood_mechacoat()
-	icon_state = "mechacoat"
-	item_state = "mechacoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/ToggleHood_mechacoat()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "mechacoat_t"
-				item_state = "mechacoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_mechacoat()
 
 //Pandora029 : Evelyn Tareen
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn
@@ -2369,6 +2264,8 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelyncoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/security/fluff/evelyn
+	has_hood_sprite = TRUE
+
 
 /obj/item/clothing/head/hood/winter/security/fluff/evelyn
 	name = "warden's navy winter hood"
@@ -2379,43 +2276,6 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelynhood_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click(mob/user, actiontype)
-	ToggleHood_evelyn()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_evelyn()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/RemoveHood_evelyn()
-	icon_state = "evelyncoat"
-	item_state = "evelyncoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/ToggleHood_evelyn()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "evelyncoat_t"
-				item_state = "evelyncoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_evelyn()
 
 //Allweek:Fifi the Magnificent
 /obj/item/clothing/head/fluff/fifi_hat
