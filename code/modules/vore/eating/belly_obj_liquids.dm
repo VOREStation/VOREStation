@@ -184,7 +184,7 @@
 		if(REAGENT_BIOMASS)
 			generated_reagents = list(REAGENT_ID_BIOMASS = 1)
 			if(reagent_name in our_reagents)
-				reagent_name = loowertext(REAGENT_BIOMASS)
+				reagent_name = lowertext(REAGENT_BIOMASS)
 			gen_amount = 1
 			gen_cost = 10
 			reagentid = REAGENT_ID_BIOMASS
