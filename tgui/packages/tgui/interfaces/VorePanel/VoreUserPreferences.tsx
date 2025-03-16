@@ -54,6 +54,7 @@ export const VoreUserPreferences = (props: {
     liq_rec,
     liq_giv,
     liq_apply,
+    consume_liquid_belly,
     no_spawnpred_warning,
     no_spawnprey_warning,
     no_spawnpred_warning_time,
@@ -270,6 +271,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Food Vore Enabled',
         disabled: 'Food Vore Disabled',
+      },
+    },
+    toggle_consume_liquid_belly: {
+      action: 'toggle_consume_liquid_belly',
+      test: consume_liquid_belly,
+      tooltip: {
+        main: 'Allows you to consume reagents produced by bellies.',
+        enable: 'Click here to allow consuming belly reagents.',
+        disable: 'Click here to disallow consuming belly reagents.',
+      },
+      content: {
+        enabled: 'Consuming Belly Reagents Enabled',
+        disabled: 'Consuming Belly Reagents Disabled',
       },
     },
     toggle_digest_pain: {

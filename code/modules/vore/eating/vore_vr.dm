@@ -61,6 +61,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/slip_vore = TRUE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
+	var/consume_liquid_belly = FALSE //starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 
 	var/digest_pain = TRUE
 
@@ -212,6 +213,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	slip_vore = json_from_file["slip_vore"]
 	food_vore = json_from_file["food_vore"]
 	throw_vore = json_from_file["throw_vore"]
+	consume_liquid_belly = json_from_file["consume_liquid_belly"]
 	stumble_vore = json_from_file["stumble_vore"]
 	digest_pain = json_from_file["digest_pain"]
 	nutrition_message_visible = json_from_file["nutrition_message_visible"]
@@ -291,6 +293,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		stumble_vore = TRUE
 	if(isnull(food_vore))
 		food_vore = TRUE
+	if(isnull(consume_liquid_belly))
+		consume_liquid_belly = FALSE
 	if(isnull(digest_pain))
 		digest_pain = TRUE
 	if(isnull(nutrition_message_visible))
@@ -414,7 +418,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"throw_vore" 			= throw_vore,
 			"allow_mind_transfer"	= allow_mind_transfer,
 			"phase_vore" 			= phase_vore,
-			"food_vore" 			= food_vore,
+			"consume_liquid_belly" 	= consume_liquid_belly,
 			"digest_pain"			= digest_pain,
 			"nutrition_message_visible"	= nutrition_message_visible,
 			"nutrition_messages"		= nutrition_messages,

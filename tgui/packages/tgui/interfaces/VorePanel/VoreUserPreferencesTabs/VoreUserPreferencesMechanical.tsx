@@ -114,10 +114,16 @@ export const VoreUserPreferencesMechanical = (props: {
             tooltipPosition="left"
           />
         </Stack.Item>
-        <Stack.Item basis="34%">
+        <Stack.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.allow_mimicry}
             tooltipPosition="right"
+          />
+        </Stack.Item>
+        <Stack.Item basis="32%">
+          <VoreUserPreferenceItem
+            spec={preferences.toggle_consume_liquid_belly}
+            tooltipPosition="top"
           />
         </Stack.Item>
       </Stack>

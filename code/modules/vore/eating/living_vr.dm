@@ -272,6 +272,7 @@
 	P.slip_vore = src.slip_vore
 	P.throw_vore = src.throw_vore
 	P.food_vore = src.food_vore
+	P.consume_liquid_belly = src.consume_liquid_belly
 	P.digest_pain = src.digest_pain
 	P.stumble_vore = src.stumble_vore
 	P.eating_privacy_global = src.eating_privacy_global
@@ -345,6 +346,7 @@
 	throw_vore = P.throw_vore
 	stumble_vore = P.stumble_vore
 	food_vore = P.food_vore
+	consume_liquid_belly = P.consume_liquid_belly
 	digest_pain = P.digest_pain
 	eating_privacy_global = P.eating_privacy_global
 	allow_mimicry = P.allow_mimicry
@@ -1253,6 +1255,7 @@
 	dat += span_bold("Feedable:") + " [feeding ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Receiving liquids:") + " [receive_reagents ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Giving liquids:") + " [give_reagents ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Consuming liquids:") + " [consume_liquid_belly ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Late join spawn point belly:") + " [latejoin_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
 	if(latejoin_vore)
 		dat += span_bold("Late join spawn auto accept:") + " [no_latejoin_vore_warning ? span_green("Enabled") : span_red("Disabled")]<br>"

@@ -18,6 +18,7 @@
 	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/throw_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/food_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/consume_liquid_belly = FALSE	//starting off because if someone is into that, they'll toggle it first time they get the error. Otherway around would be more pref breaky.
 	var/digest_pain = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE

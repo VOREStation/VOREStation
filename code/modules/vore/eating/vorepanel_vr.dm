@@ -526,6 +526,7 @@
 		"throw_vore" = host.throw_vore,
 		"phase_vore" = host.phase_vore,
 		"food_vore" = host.food_vore,
+		"consume_liquid_belly" = host.consume_liquid_belly,
 		"digest_pain" = host.digest_pain,
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
@@ -934,6 +935,12 @@
 			host.food_vore = !host.food_vore
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.food_vore = host.food_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_consume_liquid_belly")
+			host.consume_liquid_belly = !host.consume_liquid_belly
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.consume_liquid_belly = host.consume_liquid_belly
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_digest_pain")
