@@ -269,6 +269,7 @@ export type prefData = {
   liq_rec: BooleanLike;
   liq_giv: BooleanLike;
   liq_apply: BooleanLike;
+  consume_liquid_belly: BooleanLike;
   autotransferable: BooleanLike;
   noisy_full: BooleanLike;
   selective_active: string;
@@ -356,6 +357,7 @@ export type localPrefs = {
   liquid_receive: preferenceData;
   liquid_give: preferenceData;
   liquid_apply: preferenceData;
+  toggle_consume_liquid_belly: preferenceData;
   no_spawnpred_warning: preferenceData;
   no_spawnprey_warning: preferenceData;
   soulcatcher: preferenceData;
