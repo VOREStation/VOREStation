@@ -761,16 +761,12 @@
 /area/submap/Rockybase)
 "cA" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cB" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0
 	},
@@ -778,7 +774,6 @@
 /area/submap/Rockybase)
 "cC" = (
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/port_gen/pacman,
@@ -857,14 +852,10 @@
 "cR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /mob/living/simple_mob/mechanical/combat_drone/lesser,
@@ -875,7 +866,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled,
@@ -883,7 +873,6 @@
 "cT" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
 /obj/structure/cable/green{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor,
@@ -892,21 +881,9 @@
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
-"cV" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled,
-/area/submap/Rockybase)
-"cW" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
-/area/submap/Rockybase)
 "cX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/material/shard,
-/turf/simulated/floor,
-/area/submap/Rockybase)
-"cY" = (
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/submap/Rockybase)
 "cZ" = (
@@ -937,15 +914,12 @@
 	pixel_x = -24
 	},
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "df" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -953,14 +927,10 @@
 "dg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -971,13 +941,9 @@
 	icon_state = "tube1"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1011,8 +977,6 @@
 /area/submap/Rockybase)
 "dm" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -2484,7 +2448,7 @@ bQ
 at
 ct
 bL
-cV
+bL
 di
 dp
 aN
@@ -2522,9 +2486,9 @@ bQ
 at
 cu
 cE
-cW
-cY
-cW
+cG
+cG
+cG
 aN
 at
 ai
@@ -2561,7 +2525,7 @@ at
 cv
 cF
 cX
-cY
+cG
 cG
 dA
 at
@@ -2598,8 +2562,8 @@ bQ
 at
 bL
 cG
-cY
-cW
+cG
+cG
 cG
 cI
 at
@@ -2636,7 +2600,7 @@ bQ
 at
 aN
 cH
-cW
+cG
 cH
 cG
 dA
