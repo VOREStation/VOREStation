@@ -37,7 +37,7 @@
 	set category = "Abilities.General"
 
 	if(touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
-		touch_reaction_flags -= SPECIES_TRAIT_PATTING_DEFENCE
+		touch_reaction_flags &= ~(SPECIES_TRAIT_PATTING_DEFENCE)
 		to_chat(src,span_notice("You will no longer bite hands who pat or boop you."))
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
@@ -49,7 +49,7 @@
 	set category = "Abilities.General"
 
 	if(touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE)
-		touch_reaction_flags -= SPECIES_TRAIT_PERSONAL_BUBBLE
+		touch_reaction_flags &= ~(SPECIES_TRAIT_PERSONAL_BUBBLE)
 		to_chat(src,span_notice("You will no longer dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
