@@ -56,7 +56,7 @@
 
 		//Cosmetics mostly
 		flick("tp_in",src)
-		INVOKE_ASYNC(src, PROC_REF(custom_emote),1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 
 		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove), 5, TIMER_DELETE_ME)
 
@@ -110,7 +110,7 @@
 		// change
 		ability_flags |= AB_PHASE_SHIFTED
 		throwpass = TRUE
-		custom_emote(1,"phases out!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		real_name = name
 		name = "Something"
 

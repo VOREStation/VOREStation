@@ -196,7 +196,7 @@
 	if(dna)
 		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
 			// random strange symptoms from organ/limb
-			custom_emote(VISIBLE_MESSAGE, "flinches slightly.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
 			switch(rand(1,4))
 				if(1)
 					adjustToxLoss(rand(2,8))
@@ -1949,7 +1949,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
 		eye_blurry = max(2, eye_blurry)
 		if(traumatic_shock >= 80)
 			stuttering = max(stuttering, 5)
@@ -1961,7 +1961,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
 		if (prob(2))
 			if(traumatic_shock >= 80)
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
@@ -1985,7 +1985,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
 			if(prob(60))
 				emote("pain")
 		Weaken(20)
