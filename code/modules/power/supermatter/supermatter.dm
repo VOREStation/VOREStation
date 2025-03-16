@@ -110,10 +110,7 @@
 	var/datum/looping_sound/supermatter/soundloop
 
 /obj/machinery/power/supermatter/Initialize(mapload)
-	. = ..()
 	uid = gl_uid++
-
-/obj/machinery/power/supermatter/Initialize(mapload)
 	soundloop = new(list(src), TRUE)
 	return ..()
 
