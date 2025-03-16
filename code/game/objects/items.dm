@@ -112,6 +112,9 @@
 
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
+	var/digestable = TRUE
+	var/item_tf_spawn_allowed = FALSE
+	var/list/ckeys_allowed_itemspawn = list()
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -136,6 +139,8 @@
 	M.update_held_icons()
 
 /obj/item/Destroy()
+	if(item_tf_spawn_allowed)
+		item_tf_spawnpoints -= src
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
@@ -1110,3 +1115,21 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/proc/get_welder()
 	return
+
+/obj/item/verb/toggle_digestable()
+	set category = "Object"
+	set name = "Toggle Digestable"
+	set desc = "Toggle item's digestability."
+	digestable = !digestable
+	if(!digestable)
+		to_chat(usr, span_notice("[src] is now protected from digestion."))
+
+/obj/item/proc/item_tf_spawnpoint_set()
+	if(!item_tf_spawn_allowed)
+		item_tf_spawn_allowed = TRUE
+		item_tf_spawnpoints += src
+
+/obj/item/proc/item_tf_spawnpoint_used()
+	if(item_tf_spawn_allowed)
+		item_tf_spawn_allowed = FALSE
+		item_tf_spawnpoints -= src

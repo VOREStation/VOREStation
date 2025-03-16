@@ -334,3 +334,10 @@
 						return new /datum/ai_laws/tyrant()
 
 	return
+
+/mob/living/silicon/robot/lost/handle_special_unlocks()
+	if(!emag_items)
+		scramble_hardware(20)
+	if (churn_count == 5)
+		module.emag += new /obj/item/self_repair_system/advanced(module)
+		hud_used.update_robot_modules_display()

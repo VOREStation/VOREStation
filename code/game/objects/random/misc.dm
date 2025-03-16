@@ -1128,6 +1128,7 @@
 		prob(10);/obj/item/clothing/under/hyperfiber/bluespace,
 		prob(20);/obj/item/implant/sizecontrol,
 		prob(2);/obj/item/storage/bag/ore/holding,
+		prob(2);/obj/item/storage/bag/sheetsnatcher/holding,
 		prob(2);/obj/item/storage/backpack/holding,
 		prob(2);/obj/item/storage/backpack/holding/duffle,
 		prob(2);/obj/item/storage/bag/trash/holding,

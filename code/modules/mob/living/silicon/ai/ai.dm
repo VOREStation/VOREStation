@@ -612,7 +612,7 @@ var/list/ai_verbs_default = list(
 
 	switch(choice)
 		if("Color")
-			input = tgui_color_picker("Choose a color:", "Hologram Color", holo_color)
+			input = tgui_color_picker(src, "Choose a color:", "Hologram Color", holo_color)
 
 			if(input)
 				holo_color = input

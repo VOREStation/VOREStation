@@ -19,7 +19,7 @@
 
 /obj/machinery/computer/gyrotron_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/gyrotron_control/attack_ai(var/mob/user)
 	attack_hand(user)
