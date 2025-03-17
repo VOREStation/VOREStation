@@ -533,6 +533,9 @@ var/list/preferences_datums = list()
 	var/datum/preference/color/wing_color3 = GLOB.preference_entries[/datum/preference/color/human/wing_color3]
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
 
+	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
+	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
+
 	character.set_gender(biological_gender)
 
 	// Destroy/cyborgize organs and limbs.

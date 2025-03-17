@@ -182,6 +182,8 @@
 	//vars for vore_icons toggle control
 	var/vore_icons_cache = null // null by default. Going from ON to OFF should store vore_icons val here, OFF to ON reset as null
 
+	//no stripping of simplemobs
+	strip_pref = FALSE
 
 /mob/living/simple_mob/Initialize(mapload)
 	remove_verb(src, /mob/verb/observe)
@@ -318,7 +320,7 @@
 	return verb
 
 /mob/living/simple_mob/is_sentient()
-	return mob_class & MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME // Update this if needed.
+	return mob_class & (MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME) // Update this if needed.
 
 /mob/living/simple_mob/get_nametag_desc(mob/user)
 	return span_italics("[tt_desc]")

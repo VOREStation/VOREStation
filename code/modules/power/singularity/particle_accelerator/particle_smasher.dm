@@ -37,7 +37,7 @@
 	for(var/datum/particle_smasher_recipe/D in recipes)
 		qdel(D)
 	recipes.Cut()
-	..()
+	. = ..()
 
 /obj/machinery/particle_smasher/examine(mob/user)
 	. = ..()

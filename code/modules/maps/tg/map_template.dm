@@ -1,6 +1,7 @@
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
+	var/name_alias // Override to what this map gets registered as in map_templates_loaded
 	var/template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
 	var/width = 0
 	var/height = 0
@@ -45,7 +46,7 @@
 	var/list/obj/structure/cable/cables = list()
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
 	var/list/turf/turfs = block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
-	                   			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
+								locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
 	for(var/turf/B as anything in turfs)
 		areas |= B.loc
 		for(var/A in B)
@@ -84,6 +85,7 @@
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
+	on_map_preload(world.maxz + 1) //VOREStation Edit
 	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, x, y, no_changeturf = TRUE)
 	var/list/bounds = map.bounds
 	if(!bounds)

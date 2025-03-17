@@ -180,3 +180,173 @@
   - rscadd: Strong rat variant
   Willburd:
   - image: added missing sidewalk turf edge overlays
+2025-03-09:
+  Caramelion:
+  - rscadd: Different colourations for carps
+  - bugfix: Fixed attacking resetting pixelshift position to 0, 0 after the animation
+  - qol: Allows various mobs to create swarms
+  - code_imp: Added Swarm component
+  - code_imp: Added connect_loc_behalf component
+  Diana:
+  - bugfix: Guns now have their fire_delays fixed. No more rapidfire RPGs.
+  - qol: Phoron bore gets to keep it's unintentional attack-speed buff. (Mining is
+      in need of QoL changes, so let this be at least one of them.)
+  Drathek:
+  - bugfix: Fixed space whales deleting themselves when already deleted
+  - refactor: Refactored late loaded map defines to a GLOB list instead
+  - code_imp: Simplified groundbase wilds loading
+  Kashargul:
+  - code_imp: fix initialize for grep checks
+  - code_imp: finishes up typescript
+  Will:
+  - rscadd: Adds a new trait 'Lumbar Impairment' which makes you incapable of utilizing
+      your legs.
+  tacoguy7765093:
+  - qol: Synthfabs no longer apply massive damage when unupgraded.
+  - bugfix: Shield capacitors now only take power from wires when anchored to the
+      ground.
+2025-03-10:
+  Diana:
+  - bugfix: myelamine properly clots your external wounds
+  - balance: myelamine now applies an up-front heal for bleeding wounds when clotting
+      them.
+  - qol: myelamine now ACTUALLY heals internal wounds if you take a 10u dose of it.
+      No more 'I took 10u and it had 0.1 damage remaining and I bled out 10 minutes
+      later'
+  - spellcheck: myelamine has an updated description, informing you that it doesn't
+      heal JUST internal wounds, but it also heals external wounds.
+  - spellcheck: myelamine now accurately tells you via the chemmaster that it clots
+      MORE than just internal hemorrhages. It additionally tells you the ideal dose
+      for wound healing.
+  TeleTubby2:
+  - bugfix: fixed the "Print" options for OOC notes in examine text sending the notes
+      to the wrong person
+2025-03-11:
+  ItsSelis:
+  - config: the example now has the correct flags for the BUILD and SOUND permissions
+  Kashargul:
+  - code_imp: end of file new line fix for grep
+  SatinIsle:
+  - bugfix: Fixed jungle and fantasy redgates having cave walls generate where they
+      shouldn't.
+  Will & Diana:
+  - rscadd: Adds a nevrean plush with two variants, normal and security.
+  - qol: Goes through and gives plushies speech bubbles pertaining to what they are.
+  - bugfix: Fixes it so plushies now properly speak.
+  - qol: Makes it so any interaction with plushies will play their phrase, NOT just
+      disarm-intenting them (This was never made clear that disarm intent makes them
+      speak.)
+  - code_imp: Gets rid of a few non-existent base paths by converting one of the paths
+      into the base one. (plushy/therapy & plushies/squid)
+  - bugfix: Fixes the toaster from having the sus plushie sound.
+  - code_imp: Changed some timers that were calling a proc that just set a var to
+      false. Instead, we now use a varset_callback timer there.
+2025-03-12:
+  Cameron-The-Raven:
+  - bugfix: Fixed dullahans being in between two tiles
+  Guti:
+  - bugfix: Fixed swarm mobs becoming walls on death
+  - code_imp: Slightly changed projectile code to check for lying down mobs instead
+      of their density
+  Kashargul:
+  - code_imp: changes the falling turf effect to turfs directly
+2025-03-13:
+  Diana:
+  - rscadd: Medical kiosk now informs you how to cure Dizziness and Jitteryness
+  Guti:
+  - image: Fixed mailman's hat
+  - maptweak: Added a couple of mail scanners and mail bags to all the maps
+  Kashargul:
+  - code_imp: fixes some runtimes
+  - code_imp: tgui core to 1.8.2
+  TankTheBirb:
+  - image: modified the head states of DSI nevreans
+  - image: modified the torso states of DSI tesh and regular tesh
+  Will:
+  - qol: Clothing pockets now have better lists that allow you to carry a wider list
+      of items inside of them. No longer will winter jacket allow you to hold pens,
+      but winter coat won't.
+  - code_imp: Pockets have been completely reworked to not use randomly defined lists
+      everywhere. They are now consolidated.
+  - code_imp: adds some more map tests
+  Willburd:
+  - rscadd: AI law modules will show the laws they apply when examined
+2025-03-14:
+  Kashargul:
+  - bugfix: map placed dirt now applies 50 to 100 dirt
+  SatinIsle:
+  - bugfix: Fixed a number of duplicate structures and cleanables on maps for the
+      map linter PR.
+  - bugfix: Fixed mantraps voring people who step on them when they're dead.
+2025-03-15:
+  Cameron-The-Raven:
+  - bugfix: All suits no longer have a 'toggle hood' button even if they have no hood
+      to toggle.
+  Diana:
+  - rscadd: Adds gooborgs! Sprites by Toriate
+  - rscadd: You can now TOGGLE STOMACH GLOWING on borgs! If toggled on, your tummy
+      will GLOW IN THE DARK!
+  - rscadd: Catborgs now have passive glowing parts if they are toggled on
+  - code_imp: Robotic eswords and batons now count as robotic weapons and trigger
+      appropriate sprites.
+  - bugfix: Borg batons will no longer start looking like it has no cell.
+  - qol: Moves 'toggle extras' to a more conspicuous spot in the Abilities tab. (Dullahans
+      and Gryphonborg have alternative sprites if used)
+  - maptweak: touches every map and smashes it with a plasteel hammer to make it comply
+  Kashargul:
+  - code_imp: some more grep checks
+  Will:
+  - code_imp: ATC is now a subsystem
+  - rscadd: Adds a positive trait that allows you to have your genetics unable to
+      be scrambled.
+  - rscadd: 'Adds three new negative traits: One Life, Unsleeveable, and Unreviveable.'
+  - rscadd: If you have NO_DNA or NO_RESLEEVE(your genetics is trashed), slimes find
+      you unappealing!
+  - code_imp: NO_DNA and NO_RESLEEVE are now separated.
+  - bugfix: Traits will no longer wipe innate species traits
+2025-03-16:
+  Diana:
+  - bugfix: Xenoarch organs no longer have the possibility of being rejected.
+  - bugfix: Plushies will no longer lose their loadout name
+  - bugfix: Plushies will speak in their given name in the chat properly.
+  Drathek:
+  - code_imp: Updated mapmerge, dmi testing, and hooks
+  - code_imp: Added UpdatePaths and maplints
+  - code_imp: Added multivar support to hook installers
+  - rscdel: Removed two corrupt dmi files
+  - maptweak: TGMified 106 maps
+  - maptweak: Removed invalid d1 d2 edits for cables
+  - maptweak: Removed area var edits and codified most of them
+  Kashargul:
+  - code_imp: fix admin vote
+  - bugfix: robot sprites broken by goo borgs
+  TeleTubby2:
+  - rscadd: You can now adjust the transparency of your wings in the character editor
+      and related.
+  - bugfix: The various character transparency additions are properly added to character
+      DNA now.
+  Will & Diana:
+  - bugfix: Dullahans (among others) have proper offsets now
+  - code_imp: Unit test forces coders to comply with proper offsetting of borg sprites
+2025-03-17:
+  Diana:
+  - code_imp: Emotes work a bit differently on the backend.
+  - bugfix: immunosuprizine is no longer the strongest poison in the game. It will
+      no longer do 1245 damage per unit to people you hit with it.
+  Kashargul:
+  - code_imp: finishes machines new to init
+  - rscadd: liquid bellies
+  - rscadd: all chomp belly overlays
+  - rscadd: soul catcher for generic usage by every mob
+  - rscadd: more transfer, processing and other belly options
+  - bugfix: bellies no longer update every life tick
+  - qol: reworked the entire vore panel preference section
+  - qol: rework vorespwan to also be autoamted / used as direct spawn point
+  - bugfix: get_space_zlevels returning strings instead of z levels in some cases
+  SatinIsle:
+  - rscadd: Added a new bluespace sheet snatcher of holding that can be created by
+      science (cheaper and easier than other "of holding" items). This allows it to
+      carry up to 5000 sheets. It can also be bought from the mining vendor for 1000
+      points.
+  - balance: Changed the normal sheet snatcher to hold 500 (previously 300), and the
+      borg version to hold 700 (previously 500).

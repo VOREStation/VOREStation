@@ -45,7 +45,7 @@
 
 		//Cosmetics mostly
 		flick("phasein",src)
-		custom_emote(1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 		sleep(30) //The duration of the TP animation
 		is_shifting = FALSE
 		canmove = original_canmove
@@ -83,7 +83,7 @@
 	else
 		shifted_out = TRUE
 		shift_state = AB_SHIFT_PASSIVE
-		custom_emote(1,"phases out!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		real_name = name
 		name = "Something"
 		health = maxHealth	//Fullheal
@@ -139,7 +139,7 @@
 	is_shifting = TRUE
 
 	shifted_out = TRUE
-	custom_emote(1,"phases out!")
+	automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 	real_name = name
 	name = "Something"
 
@@ -179,7 +179,7 @@
 
 		//Cosmetics mostly
 		flick("phasein",src)
-		custom_emote(1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 		sleep(30) //The duration of the TP animation
 		is_shifting = FALSE
 		canmove = original_canmove

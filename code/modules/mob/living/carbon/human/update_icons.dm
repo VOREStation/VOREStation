@@ -489,8 +489,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(head_organ.transparent) //VORESTATION EDIT: transparent instead of nonsolid
 		face_standing += rgb(,,,120)
-		if (ears_s)
-			ears_s += rgb(,,,180)
+		//if (ears_s) //maybe cap this instead of removing it? ae, if your ears are above 180 a reduce it down?
+			//ears_s += rgb(,,,180)
 
 	var/image/em_block_ears
 	if(ears_s)
@@ -997,7 +997,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
 		tail_image.layer = BODY_LAYER+tail_layer
-		tail_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
 		overlays_standing[tail_layer] = tail_image
 		apply_layer(tail_layer)
 		return
@@ -1008,7 +1007,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
 		tail_image = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+tail_layer)
-		tail_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
+		tail_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid //keeping this as is
 		overlays_standing[tail_layer] = tail_image
 		animate_tail_reset()
 
@@ -1117,7 +1116,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER
-		wing_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
 		overlays_standing[WING_LAYER] = wing_image
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)
@@ -1236,6 +1234,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				wing_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
 		var/image/working = image(wing_s)
+		working.alpha = src.a_wing
 		if(wing_style.em_block)
 			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
 		working.pixel_x -= wing_style.wing_offset
@@ -1266,6 +1265,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
 		rendered = ears_s
+		rendered += rgb(,,,src.a_ears) //idk why this isn't an img but there's surely a good reason
 
 	// todo: this is utterly horrible but i don't think i should be violently refactoring sprite acc rendering in a feature PR ~silicons
 	if(ear_secondary_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
@@ -1288,6 +1288,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				overlay.Blend(color, ear_secondary_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
+		ears_s += rgb(,,,src.a_ears2)
 		if(!rendered)
 			rendered = ears_s
 		else
@@ -1349,6 +1350,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		else if(islongtail(tail_style))
 			working.pixel_x = tail_style.offset_x
 			working.pixel_y = tail_style.offset_y
+		working.alpha = src.a_tail
 		return working
 	return null
 

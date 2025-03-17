@@ -64,47 +64,11 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "coatroiz"
 	item_state_slots = list(slot_r_hand_str = "coatroiz", slot_l_hand_str = "coatroiz")
+	//hoodtype = ??? //This needs a hoodtype set...I'm not a spriter, so someone else will have to do it.
+	has_hood_sprite = TRUE
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "coatroiz_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click(mob/user, actiontype)
-	ToggleHood_roiz()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_roiz()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/RemoveHood_roiz()
-	icon_state = "coatroiz"
-	item_state = "coatroiz_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/ToggleHood_roiz()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "coatroiz_t"
-				item_state = "coatroiz_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_roiz()
-
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
@@ -219,7 +183,7 @@
 	item_state = "russofurcoat"
 
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	allowed = list (/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes, /obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 //For general use
@@ -235,18 +199,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
-	allowed = list(
-				/obj/item/tank/emergency/oxygen,
-				/obj/item/flashlight,
-				/obj/item/gun/energy,
-				/obj/item/gun/projectile,
-				/obj/item/ammo_magazine,
-				/obj/item/ammo_casing,
-//				/obj/item/storage/fancy/shotgun_ammo,
-				/obj/item/melee/baton,
-				/obj/item/handcuffs,
-//				/obj/item/detective_scanner,
-				/obj/item/taperecorder)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 	armor = list(melee = 50, bullet = 15, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 	var/unbuttoned = 0
 
@@ -305,18 +258,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
-	allowed = list(
-				/obj/item/tank/emergency/oxygen,
-				/obj/item/flashlight,
-				/obj/item/gun/energy,
-				/obj/item/gun/projectile,
-				/obj/item/ammo_magazine,
-				/obj/item/ammo_casing,
-//				/obj/item/storage/fancy/shotgun_ammo,
-				/obj/item/melee/baton,
-				/obj/item/handcuffs,
-//				/obj/item/detective_scanner,
-				/obj/item/taperecorder)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 	armor = list(melee = 50, bullet = 15, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 	//Variants
@@ -569,7 +511,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight,/obj/item/tank)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -860,7 +802,7 @@
 
 	armor = list(melee = 50, bullet = 40, laser = 45, energy = 25, bomb = 50, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/melee/baton)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_SECURITY, POCKET_SUIT_REGULATORS)
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "joansuit"
@@ -983,7 +925,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
-	allowed = list(/obj/item/tank/emergency/oxygen, /obj/item/flashlight,/obj/item/gun/energy,/obj/item/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/storage/fancy/cigarettes,/obj/item/flame/lighter,/obj/item/taperecorder,/obj/item/uv_light)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/under/det/fluff/octavious
@@ -1261,14 +1203,8 @@ Departamental Swimsuits, for general use
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS
 	permeability_coefficient = 0.50
-	allowed = list(
-		/obj/item/flashlight, /obj/item/analyzer,
-		/obj/item/radio, /obj/item/tank/emergency/oxygen,
-		/obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/glass/bottle,/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/pill,/obj/item/storage/pill_bottle
-		)
+
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_MEDICAL)
 	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 20, rad = 25)
 
 /obj/item/clothing/suit/storage/trek/ds9/admiral // Only for adminuz
@@ -1533,43 +1469,9 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "kilanocoat_mob"
+	//hoodtype = ??? //Needs a hoodtype to be created for it.
+	has_hood_sprite = TRUE
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click(mob/user, actiontype)
-	ToggleHood_kilano()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_kilano()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/RemoveHood_kilano()
-	icon_state = "kilanocoat"
-	item_state = "kilanocoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/ToggleHood_kilano()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "kilanocoat_t"
-				item_state = "kilanocoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_kilano()
 
 //BeyondMyLife: Ne'tra Ky'ram
 /obj/item/clothing/under/fluff/kilanosuit
@@ -2340,6 +2242,8 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechacoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/mechanic
+	has_hood_sprite = TRUE
+
 
 /obj/item/clothing/head/hood/winter/fluff/mechanic
 	name = "mechanic winter hood"
@@ -2349,43 +2253,6 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechahood_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click(mob/user, actiontype)
-	ToggleHood_mechacoat()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_mechacoat()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/RemoveHood_mechacoat()
-	icon_state = "mechacoat"
-	item_state = "mechacoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/ToggleHood_mechacoat()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "mechacoat_t"
-				item_state = "mechacoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_mechacoat()
 
 //Pandora029 : Evelyn Tareen
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn
@@ -2397,6 +2264,8 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelyncoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/security/fluff/evelyn
+	has_hood_sprite = TRUE
+
 
 /obj/item/clothing/head/hood/winter/security/fluff/evelyn
 	name = "warden's navy winter hood"
@@ -2407,43 +2276,6 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelynhood_mob"
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click(mob/user, actiontype)
-	ToggleHood_evelyn()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/equipped(mob/user, slot)
-	if(slot != slot_wear_suit)
-		RemoveHood_evelyn()
-	..()
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/RemoveHood_evelyn()
-	icon_state = "evelyncoat"
-	item_state = "evelyncoat_mob"
-	hood_up = 0
-	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
-		H.unEquip(hood, 1)
-		H.update_inv_wear_suit()
-	hood.loc = src
-
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/ToggleHood_evelyn()
-	if(!hood_up)
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.wear_suit != src)
-				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
-				return
-			if(H.head)
-				to_chat(H, span_warning("You're already wearing something on your head!"))
-				return
-			else
-				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				hood_up = 1
-				icon_state = "evelyncoat_t"
-				item_state = "evelyncoat_mob_t"
-				H.update_inv_wear_suit()
-	else
-		RemoveHood_evelyn()
 
 //Allweek:Fifi the Magnificent
 /obj/item/clothing/head/fluff/fifi_hat
@@ -2737,10 +2569,10 @@ Departamental Swimsuits, for general use
 //sixberry: Thistle
 
 /obj/item/clothing/head/fluff/memory_crown
-    name = "Memory Crown"
-    desc = "A thorned crown sporting numerous amethyst inserts, all of which seem to glow faintly in the dark.  Just holding it makes you feel as though you've forgotten something unpleasant."
-    icon = 'icons/vore/custom_clothes_vr.dmi'
-    icon_state = "memorycrown"
-    icon_override = 'icons/vore/custom_clothes_vr.dmi'
-    item_state = "memorycrown_onmob"
-    slot_flags = SLOT_HEAD
+	name = "Memory Crown"
+	desc = "A thorned crown sporting numerous amethyst inserts, all of which seem to glow faintly in the dark.  Just holding it makes you feel as though you've forgotten something unpleasant."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "memorycrown"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "memorycrown_onmob"
+	slot_flags = SLOT_HEAD

@@ -736,7 +736,7 @@
 /datum/reagent/myelamine
 	name = REAGENT_MYELAMINE
 	id = REAGENT_ID_MYELAMINE
-	description = "Used to rapidly clot internal hemorrhages by increasing the effectiveness of platelets."
+	description = "Used to rapidly clot hemorrhages by increasing the effectiveness of platelets. An ideal dosage of 10 units will fully heal any internal hemorrhages."
 	reagent_state = LIQUID
 	color = "#4246C7"
 	metabolism = REM * 0.75
@@ -755,30 +755,30 @@
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
 			for(var/datum/wound/W in O.wounds)
 				if(W.bleeding())
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
+					W.bandage() //This is the ACTUAL clotting being performed.
+					W.damage = max(W.damage - (wound_heal*3.5), 0) 	//Removed should be 0.15 (can be higher if you have high/apex metabolism). repair_strength is 6. Making wound_heal  .9. Multiply by 3.5 and that gives us a heal of 3.15 on our wounds.
+					if(W.damage <= 0)								//We do this since this will only happen once per bleeding wound, as it's then bandaged (clotted). We do the heal as we want it to be somewhat like slapping them with an advanceed/bruise_pack. (Bruise packs heal 3.5 on application, as of the time of writing.)
 						O.wounds -= W
-				if(W.internal)
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
+					break //We only heal ONE external wound per go around.
+			for(var/datum/wound/internal_bleeding/W in O.wounds)
+				W.damage = max(W.damage - wound_heal, 0)
+				if(W.damage <= 0)
+					O.wounds -= W
+				else if(dose >= 9.5 && dose < 11) //If you are in the 'sweet zone' of 9.5u to 11u, your internal wounds instantly heal. This is to prevent people from using a clotting pen or taking a 10u clotting pill from medical and it not actually fixing their wounds.
+					W.damage = 0
+					O.wounds -= W
 
 /datum/reagent/myelamine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
-	// Copypaste of affect_blood with slight adjustment. Heals slightly faster at the cost of high toxins
+	//Heals slightly faster at the cost of high toxins. Honestly you should never do this, but whatever.
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength / 2
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
-			for(var/datum/wound/W in O.wounds)
-				if(W.bleeding())
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
-				if(W.internal)
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
+			for(var/datum/wound/internal_bleeding/W in O.wounds)
+				W.damage = max(W.damage - wound_heal, 0)
+				if(W.damage <= 0)
+					O.wounds -= W
 
 /datum/reagent/respirodaxon
 	name = REAGENT_RESPIRODAXON
@@ -920,27 +920,27 @@
 	metabolism = REM * 0.06
 
 /datum/reagent/immunosuprizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/strength_mod = 1 * M.species.chem_strength_heal
+	var/strength_mod = 1 // * M.species.chem_strength_heal //Just removing the chem strength adjustment. It'd require division, which is best avoided.
 
 	if(alien == IS_DIONA)	// It's a tree.
-		strength_mod = 0.25
+		strength_mod = 4
 
 	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
-		strength_mod = 0.75
+		strength_mod = 1.3
 
 	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
-		strength_mod = 1.5
+		strength_mod = 0.66
 
 	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
-		strength_mod = 1.75
+		strength_mod = 0.6
 
 	if(alien == IS_TAJARA)	// Highest metabolism.
-		strength_mod = 2
+		strength_mod = 0.5
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(alien != IS_DIONA)
-			H.adjustToxLoss((30 / strength_mod) * removed)
+			H.adjustToxLoss((30 * strength_mod) * removed)
 
 		var/list/organtotal = list()
 		organtotal |= H.organs
@@ -962,7 +962,7 @@
 					var/rejectmem = I.can_reject
 					I.can_reject = initial(I.can_reject)
 					if(rejectmem != I.can_reject)
-						H.adjustToxLoss((15 / strength_mod))
+						H.adjustToxLoss((15 / strength_mod) * removed) //Someone forgot a * removed here in the past. It made it so 1u of this chem would do (baseline) 1245 toxins per unit, or 15 toxins per tick.
 						I.take_damage(1)
 
 /datum/reagent/skrellimmuno //skrell exist?

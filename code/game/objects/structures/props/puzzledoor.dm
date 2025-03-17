@@ -51,7 +51,7 @@
 		for(var/obj/structure/prop/lock/L in locks)
 			L.linked_objects -= src
 			locks -= L
-	..()
+	. = ..()
 
 /obj/machinery/door/blast/puzzle/attack_hand(mob/user as mob)
 	if(check_locks())

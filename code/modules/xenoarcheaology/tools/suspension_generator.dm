@@ -189,7 +189,7 @@
 
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
-	..()
+	. = ..()
 
 /obj/machinery/suspension_gen/verb/rotate_counterclockwise()
 	set src in view(1)

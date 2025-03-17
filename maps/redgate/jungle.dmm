@@ -44,7 +44,9 @@
 /obj/item/clothing/shoes/footwraps,
 /obj/item/clothing/gloves/fluff/morsleeves,
 /obj/random/potion_base,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "as" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -62,7 +64,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "aC" = (
@@ -89,7 +92,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "aM" = (
@@ -121,14 +125,17 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "bi" = (
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "bk" = (
 /obj/machinery/microwave/cookingpot,
@@ -148,12 +155,15 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "bD" = (
 /obj/fiftyspawner/log,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "bO" = (
 /obj/structure/closet/crate/chest,
@@ -161,7 +171,9 @@
 /obj/random/fantasy_item/better,
 /obj/random/potion_base,
 /obj/random/potion_base,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "bR" = (
 /obj/random/bluespace,
@@ -174,7 +186,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "bU" = (
@@ -191,7 +204,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ch" = (
@@ -239,7 +253,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "cA" = (
@@ -291,7 +306,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "cY" = (
@@ -305,19 +321,25 @@
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "df" = (
 /obj/fiftyspawner/log,
 /obj/item/storage/box/matches,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "di" = (
 /obj/structure/closet/grave/dirthole,
 /obj/random/plushie,
 /obj/random/potion_ingredient,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "dl" = (
 /turf/simulated/floor/water/deep{
@@ -349,7 +371,9 @@
 "dC" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/red,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "dJ" = (
 /obj/structure/bed/chair/wood/wings{
@@ -358,7 +382,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "dK" = (
@@ -382,7 +407,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "dP" = (
@@ -391,7 +417,9 @@
 /area/redgate/jungle/aboveground)
 "dS" = (
 /obj/structure/prop/statue/pillar,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "dT" = (
 /turf/simulated/floor/outdoors/newdirt_nograss,
@@ -426,7 +454,9 @@
 /area/redgate/jungle/aboveground)
 "eK" = (
 /obj/item/picnic_blankets_carried,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "eT" = (
 /obj/machinery/button/remote/airlock{
@@ -465,7 +495,9 @@
 /mob/living/simple_mob/vore/bigdragon/friendly{
 	ghostjoin = 1
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "fb" = (
 /obj/structure/closet/walllocker/wooden/east,
@@ -494,7 +526,9 @@
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "fj" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -540,7 +574,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "fC" = (
@@ -570,14 +605,17 @@
 /area/redgate/jungle/aboveground)
 "fT" = (
 /obj/effect/spider/stickyweb,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "ga" = (
 /obj/structure/reagent_dispensers/beerkeg/wine,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "gj" = (
@@ -613,7 +651,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "gE" = (
@@ -625,12 +664,15 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "gP" = (
 /obj/structure/prop/rock,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "gR" = (
 /obj/machinery/porta_turret/alien/destroyed{
@@ -640,7 +682,9 @@
 /area/redgate/jungle/aboveground)
 "gS" = (
 /obj/structure/prop/rock/small,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "gX" = (
 /turf/simulated/open,
@@ -718,7 +762,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ib" = (
@@ -755,7 +800,9 @@
 /area/redgate/jungle/temple)
 "iJ" = (
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "iK" = (
 /obj/effect/floor_decal/atoll/border{
@@ -764,7 +811,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "iN" = (
@@ -774,7 +822,9 @@
 /area/redgate/jungle/westcaves)
 "iP" = (
 /obj/structure/prop/rock/sharp,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "iR" = (
 /obj/structure/bed/double/weaversilk_nest{
@@ -800,7 +850,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ji" = (
@@ -820,7 +871,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "jG" = (
@@ -849,14 +901,17 @@
 /obj/item/stack/material/log,
 /obj/item/stack/material/log,
 /obj/item/stack/material/log,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "kc" = (
 /mob/living/simple_mob/vore/peasant,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "kd" = (
@@ -904,7 +959,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "kO" = (
@@ -933,7 +989,9 @@
 /obj/random/material/precious,
 /obj/random/instrument,
 /obj/random/potion_base,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "ld" = (
 /obj/structure/bed/double/padded,
@@ -942,13 +1000,16 @@
 /area/redgate/jungle/aboveground)
 "ll" = (
 /obj/structure/bonfire,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "lt" = (
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/southcaves)
 "lu" = (
@@ -968,7 +1029,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "lA" = (
@@ -984,7 +1046,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "lI" = (
@@ -994,7 +1057,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "lM" = (
@@ -1007,7 +1071,9 @@
 	vore_bump_emote = "lunges at";
 	vore_pounce_chance = 50
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "lO" = (
 /obj/item/instrument/violin/golden,
@@ -1015,7 +1081,9 @@
 /area/redgate/jungle/temple)
 "lT" = (
 /obj/structure/prop/rock/small/alt,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "lV" = (
 /turf/simulated/shuttle/wall/dark,
@@ -1036,7 +1104,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "my" = (
@@ -1059,7 +1128,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "mH" = (
@@ -1074,16 +1144,22 @@
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/temple)
 "mJ" = (
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/aboveground)
 "mK" = (
 /obj/structure/prop/rock/small,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "mT" = (
 /obj/structure/table/woodentable,
 /obj/item/material/knife/machete/hatchet/stone,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "mX" = (
 /obj/structure/bonfire,
@@ -1105,15 +1181,21 @@
 /area/redgate/jungle/temple)
 "ne" = (
 /obj/structure/curtain/open,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "nk" = (
 /obj/structure/prop/rock/small/alt,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "nl" = (
 /obj/structure/bed/pillowpile,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "np" = (
 /obj/effect/fake_sun/warm,
@@ -1128,7 +1210,9 @@
 /area/redgate/jungle/aboveground)
 "nH" = (
 /obj/structure/flora/sif/subterranean,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "nL" = (
 /obj/structure/bed/chair/sofa/bench/marble,
@@ -1140,7 +1224,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "nR" = (
@@ -1148,7 +1233,9 @@
 	icon_scale_x = 2;
 	icon_scale_y = 2
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "nX" = (
 /obj/machinery/appliance/cooker/oven/yeoldoven,
@@ -1157,7 +1244,9 @@
 "od" = (
 /obj/structure/table/woodentable,
 /obj/random/potion,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "oe" = (
 /obj/structure/simple_door/silver{
@@ -1168,7 +1257,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "og" = (
@@ -1218,7 +1308,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "oN" = (
@@ -1235,7 +1326,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "oZ" = (
@@ -1276,7 +1368,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "py" = (
@@ -1286,7 +1379,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "pB" = (
@@ -1312,7 +1406,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/southcaves)
 "pQ" = (
@@ -1326,7 +1421,9 @@
 /mob/living/simple_mob/vore/raptor/yellow{
 	ghostjoin = 1
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "pU" = (
 /obj/random/tool/alien,
@@ -1344,7 +1441,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "pY" = (
@@ -1381,7 +1479,9 @@
 /area/redgate/jungle/aboveground)
 "qj" = (
 /obj/structure/prop/rock/small/alt,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "qk" = (
 /obj/structure/sign/scenery/overlay/vine/top,
@@ -1396,7 +1496,9 @@
 "qr" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/prop/rock/small/alt,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "qt" = (
 /obj/structure/table/darkglass,
@@ -1404,7 +1506,9 @@
 	dir = 8
 	},
 /obj/random/fantasy_item/better,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "qB" = (
 /obj/structure/simple_door/diamond{
@@ -1438,7 +1542,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "qL" = (
@@ -1514,7 +1619,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "rs" = (
@@ -1536,7 +1642,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "rI" = (
@@ -1593,7 +1700,9 @@
 /obj/machinery/door/airlock/angled_bay/hazard{
 	name = "fire exit"
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "sR" = (
 /obj/structure/table/woodentable,
@@ -1624,7 +1733,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "tj" = (
@@ -1638,11 +1748,15 @@
 /obj/structure/closet/crate/nanotrasen,
 /obj/item/gps/explorer,
 /obj/random/bluespace,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "tr" = (
 /obj/structure/prop/rock/round,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "tB" = (
 /obj/effect/floor_decal/atoll/border/invert{
@@ -1652,7 +1766,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "tC" = (
@@ -1661,17 +1776,22 @@
 /area/redgate/jungle/aboveground)
 "tF" = (
 /obj/random/material/precious,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "tG" = (
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "tS" = (
 /mob/living/simple_mob/vore/succubus,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ue" = (
@@ -1680,7 +1800,9 @@
 	},
 /area/redgate/jungle/temple)
 "uf" = (
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "ug" = (
 /obj/machinery/vr_sleeper/alien,
@@ -1698,7 +1820,9 @@
 /obj/item/clothing/head/pelt/tigerpelt,
 /obj/random/multiple/underdark/treasure,
 /obj/random/multiple/underdark/treasure,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "um" = (
 /turf/simulated/floor/weird_things/dark,
@@ -1722,7 +1846,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "uM" = (
@@ -1737,7 +1862,9 @@
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "uO" = (
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "uY" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -1779,7 +1906,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "vB" = (
@@ -1818,7 +1946,9 @@
 "vU" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/backpack/parachute,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "wa" = (
 /obj/structure/table/woodentable,
@@ -1846,7 +1976,9 @@
 /area/redgate/jungle/aboveground)
 "wq" = (
 /obj/machinery/light/small/torch,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "wv" = (
 /obj/structure/prop/poicanister,
@@ -1871,7 +2003,9 @@
 /area/redgate/jungle/aboveground)
 "wR" = (
 /obj/structure/prop/statue/pillar/dark,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "wS" = (
 /obj/structure/bed/chair/shuttle_padded{
@@ -1903,7 +2037,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "xh" = (
@@ -1967,7 +2102,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "xE" = (
@@ -2005,7 +2141,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "xK" = (
@@ -2066,7 +2203,9 @@
 /area/redgate/jungle/aboveground)
 "yo" = (
 /obj/random/multiple/underdark/ores,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "yr" = (
 /mob/living/simple_mob/vore/wolf/direwolf{
@@ -2139,7 +2278,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "zl" = (
@@ -2180,7 +2320,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "zy" = (
@@ -2200,7 +2341,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "zJ" = (
@@ -2236,7 +2378,9 @@
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "Az" = (
 /obj/structure/sink/puddle,
@@ -2272,7 +2416,9 @@
 /area/redgate/jungle/temple)
 "Bb" = (
 /obj/structure/prop/rock/crystal,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "Bc" = (
 /obj/structure/closet/walllocker/emerglocker/north,
@@ -2312,7 +2458,9 @@
 /obj/item/material/twohanded/spear,
 /obj/item/material/knife/machete,
 /obj/random/fantasy_item,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "By" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -2357,7 +2505,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "BZ" = (
@@ -2390,7 +2539,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Cy" = (
@@ -2433,7 +2583,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "CQ" = (
@@ -2443,7 +2594,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Dh" = (
@@ -2456,7 +2608,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Du" = (
@@ -2467,14 +2620,17 @@
 /area/redgate/jungle/aboveground)
 "DA" = (
 /obj/structure/prop/rock/flat,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "DG" = (
 /obj/fiftyspawner/log,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "DQ" = (
@@ -2483,7 +2639,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "DZ" = (
@@ -2535,16 +2692,21 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Eu" = (
 /obj/structure/bonfire,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "EB" = (
 /obj/structure/prop/rock,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "EF" = (
 /obj/structure/prop/rock/sharp,
@@ -2602,7 +2764,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Fq" = (
@@ -2611,7 +2774,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Fu" = (
@@ -2621,7 +2785,9 @@
 /area/redgate/jungle/temple)
 "Fv" = (
 /obj/structure/prop/rock/round,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "Fx" = (
 /obj/structure/table/rack/shelf/wood,
@@ -2638,7 +2804,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "FC" = (
@@ -2652,7 +2819,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "FD" = (
@@ -2671,7 +2839,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "FM" = (
@@ -2689,7 +2858,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Gg" = (
@@ -2698,7 +2868,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Gs" = (
@@ -2733,7 +2904,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "GK" = (
@@ -2870,7 +3042,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Jc" = (
@@ -2883,20 +3056,24 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Jg" = (
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "Ji" = (
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Jj" = (
@@ -2927,7 +3104,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Js" = (
@@ -2937,7 +3115,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Jt" = (
@@ -2961,7 +3140,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "JG" = (
@@ -2969,7 +3149,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "JJ" = (
@@ -2977,7 +3158,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "JL" = (
@@ -3000,7 +3182,9 @@
 /obj/item/coin/gold,
 /obj/item/coin/gold,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "JR" = (
 /obj/structure/table/gold,
@@ -3032,7 +3216,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Kp" = (
@@ -3089,7 +3274,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "KV" = (
@@ -3102,7 +3288,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Lb" = (
@@ -3113,7 +3300,9 @@
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Lf" = (
 /obj/structure/table/woodentable,
@@ -3121,7 +3310,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Lg" = (
@@ -3133,7 +3323,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Lk" = (
@@ -3141,7 +3332,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Ls" = (
@@ -3174,7 +3366,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "LR" = (
@@ -3203,7 +3396,9 @@
 /obj/item/reagent_containers/food/snacks/carpmeat/fish,
 /obj/structure/table/woodentable,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Mm" = (
 /obj/structure/bed/chair/sofa/pew/left{
@@ -3212,7 +3407,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Mo" = (
@@ -3240,7 +3436,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "MN" = (
@@ -3256,7 +3453,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "MS" = (
@@ -3266,7 +3464,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "MV" = (
@@ -3326,7 +3525,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Od" = (
@@ -3352,7 +3552,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Om" = (
@@ -3362,7 +3563,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Oq" = (
@@ -3379,7 +3581,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Ow" = (
@@ -3387,7 +3590,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "OB" = (
@@ -3408,7 +3612,9 @@
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "OM" = (
 /obj/machinery/door/airlock/multi_tile/metal{
@@ -3445,7 +3651,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Pf" = (
@@ -3489,12 +3696,15 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Px" = (
 /obj/random/multiple/underdark/treasure,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "PF" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -3505,11 +3715,15 @@
 /area/redgate/jungle/aboveground)
 "PK" = (
 /obj/item/bedsheet/pillow,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "PO" = (
 /obj/structure/prop/rock/small,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "PS" = (
 /obj/structure/table/rack/shelf/wood,
@@ -3550,12 +3764,16 @@
 /area/redgate/jungle/temple)
 "Qu" = (
 /obj/structure/bed/double/weaversilk_nest,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Qv" = (
 /obj/structure/table/darkglass,
 /obj/item/potion_material/folded_dark,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "Qx" = (
 /obj/effect/floor_decal/milspec/color/purple,
@@ -3571,7 +3789,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "QD" = (
@@ -3579,7 +3798,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/southcaves)
 "QJ" = (
@@ -3601,7 +3821,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "QT" = (
@@ -3635,7 +3856,9 @@
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "Ru" = (
 /obj/structure/prop/rock/small/water,
@@ -3658,7 +3881,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "RC" = (
@@ -3670,14 +3894,17 @@
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/item/reagent_containers/food/snacks/meat,
 /obj/fruitspawner/watermelon,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "RD" = (
 /obj/structure/simple_door/sandstone,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "RL" = (
@@ -3705,7 +3932,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Sp" = (
@@ -3713,7 +3941,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Sr" = (
@@ -3721,7 +3950,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Sy" = (
@@ -3738,11 +3968,15 @@
 "SM" = (
 /obj/structure/closet/grave/dirthole,
 /obj/random/fantasy_item/better,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "SP" = (
 /obj/structure/prop/rock/round,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "ST" = (
 /obj/structure/table/marble,
@@ -3754,7 +3988,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Te" = (
@@ -3762,7 +3997,9 @@
 /obj/item/clothing/under/pants/classicjeans/ripped,
 /obj/item/clothing/accessory/poncho/roles/cloak/half,
 /obj/item/clothing/head/hood/explorer,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "Tf" = (
 /obj/machinery/light/small/torch,
@@ -3796,7 +4033,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "TE" = (
@@ -3810,7 +4048,9 @@
 /area/redgate/jungle/aboveground)
 "TH" = (
 /obj/effect/spider/stickyweb/dark,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "TI" = (
 /obj/item/simple_key/dungeon{
@@ -3821,12 +4061,15 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "TM" = (
 /obj/random/coin,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "TX" = (
 /obj/structure/flora/log1,
@@ -3844,7 +4087,9 @@
 /area/redgate/jungle/aboveground)
 "Uk" = (
 /obj/structure/prop/rock/flat,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "Un" = (
 /obj/structure/prop/rock/small,
@@ -3911,7 +4156,9 @@
 /area/redgate/jungle/aboveground)
 "UY" = (
 /obj/item/bedsheet/pillow/orange,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "UZ" = (
 /mob/living/simple_mob/vore/alienanimals/succlet,
@@ -3919,7 +4166,9 @@
 /area/redgate/jungle/temple)
 "Vb" = (
 /obj/structure/prop/rock/sharp,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "Vc" = (
 /obj/structure/curtain/open{
@@ -3998,7 +4247,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/southcaves)
 "Wd" = (
@@ -4008,7 +4258,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Wj" = (
@@ -4030,7 +4281,9 @@
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Wv" = (
 /obj/structure/window/basic/full,
@@ -4072,7 +4325,9 @@
 /area/redgate/jungle/temple)
 "Xk" = (
 /obj/random/outcrop,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Xm" = (
 /obj/structure/loot_pile/surface/bones,
@@ -4083,7 +4338,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Xp" = (
@@ -4112,11 +4368,15 @@
 /area/redgate/jungle/aboveground)
 "XJ" = (
 /obj/random/material/precious,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "XM" = (
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "XO" = (
 /obj/structure/reagent_dispensers/watertank/barrel,
@@ -4148,7 +4408,9 @@
 /area/redgate/jungle/aboveground)
 "Ya" = (
 /obj/fruitspawner/glowshroom,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 "Ye" = (
 /obj/structure/reagent_dispensers/bloodbarrel,
@@ -4186,7 +4448,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "YG" = (
@@ -4210,7 +4473,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "YS" = (
@@ -4219,7 +4483,9 @@
 /area/redgate/jungle/westcaves)
 "YV" = (
 /obj/structure/prop/rock/flat,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/eastcaves)
 "Zb" = (
 /obj/structure/sign/scenery/overlay/vine/mid,
@@ -4240,7 +4506,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "Zs" = (
@@ -4257,7 +4524,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ZB" = (
@@ -4266,7 +4534,9 @@
 	dir = 4
 	},
 /obj/random/fantasy_item/better,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/westcaves)
 "ZJ" = (
 /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel,
@@ -4284,7 +4554,8 @@
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
-	temperature = 293.15
+	temperature = 293.15;
+	ignore_mapgen = 1
 	},
 /area/redgate/jungle/temple)
 "ZR" = (
@@ -4296,7 +4567,9 @@
 /area/redgate/jungle/aboveground)
 "ZU" = (
 /obj/structure/prop/rock/sharp,
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/cave{
+	ignore_mapgen = 1
+	},
 /area/redgate/jungle/southcaves)
 
 (1,1,1) = {"
