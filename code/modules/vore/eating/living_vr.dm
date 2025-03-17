@@ -530,17 +530,17 @@
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+	if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
+		visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
+		return
+
 	if(tasted == src)
 		visible_message(span_vwarning("[src] licks themself!"),span_notice("You lick yourself. You taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 		//balloon_alert_visible("licks themself!", "tastes like [tasted.get_taste_message()]")
 	else
 		visible_message(span_vwarning("[src] licks [tasted]!"),span_notice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 		//balloon_alert_visible("licks [tasted]!", "tastes like [tasted.get_taste_message()]")
-
-	if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
-		visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
-		return
-	visible_message(span_vwarning("[src] licks [tasted]!"),span_vnotice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 
 /mob/living/proc/get_taste_message(allow_generic = 1)
 	if(!vore_taste && !allow_generic)
