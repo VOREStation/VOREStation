@@ -125,7 +125,7 @@
 	pixel_x = -24
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)

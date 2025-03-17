@@ -42,7 +42,7 @@
 	tank1 = null //Base machine Destroy()
 	tank2 = null //handles deleting contents
 	test_canister = null
-	..()
+	. = ..()
 
 /obj/machinery/bomb_tester/dismantle()
 	if(tank1)

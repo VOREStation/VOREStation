@@ -82,10 +82,10 @@ emp_act
 				drop_from_inventory(c_hand)
 				if(!isbelly(loc)) //VOREStation Add
 					if (affected.robotic >= ORGAN_ROBOT)
-						custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!", check_stat = TRUE)
 					else
 						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-						custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!", check_stat = TRUE)
 
 	..(stun_amount, agony_amount, def_zone)
 

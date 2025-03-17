@@ -205,18 +205,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/solars)
-"aC" = (
-/obj/machinery/atmospherics/binary/algae_farm,
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
-	dir = 5;
-	icon_state = "intact"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
-	dir = 5;
-	icon_state = "intact"
-	},
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/inside)
 "aD" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
@@ -314,12 +302,6 @@
 	name = "east bump";
 	pixel_x = 28;
 	req_access = list()
-	},
-/turf/simulated/floor/bluegrid/virgo2,
-/area/tether_away/aerostat/inside)
-"aQ" = (
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /turf/simulated/floor/bluegrid/virgo2,
 /area/tether_away/aerostat/inside)
@@ -428,11 +410,6 @@
 /turf/simulated/shuttle/wall,
 /area/shuttle/aerostat)
 "be" = (
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat/inside)
-"bf" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "bg" = (
@@ -8991,16 +8968,16 @@ ac
 ac
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
 ac
@@ -9184,16 +9161,16 @@ ac
 ac
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
 ac
@@ -9275,16 +9252,16 @@ ac
 ac
 ac
 ac
-bf
-bf
-ac
-ac
-bf
-bf
+bo
+bo
 ac
 ac
 bo
-bf
+bo
+ac
+ac
+bo
+bo
 ac
 ac
 ac
@@ -9468,16 +9445,16 @@ ce
 ac
 ac
 ac
-bf
-bf
-ac
-ac
-bf
-bf
+bo
+bo
 ac
 ac
 bo
-bf
+bo
+ac
+ac
+bo
+bo
 ac
 ac
 ac
@@ -10894,11 +10871,11 @@ be
 be
 be
 be
-bf
-bf
-bf
-bf
-bf
+bo
+bo
+bo
+bo
+bo
 aw
 aw
 aw
@@ -10976,11 +10953,11 @@ aw
 aw
 aw
 aw
-bf
-bf
-bf
-bf
-bf
+bo
+bo
+bo
+bo
+bo
 be
 be
 be
@@ -11040,7 +11017,7 @@ be
 be
 be
 be
-bf
+bo
 aw
 aw
 aw
@@ -11118,7 +11095,7 @@ aw
 aw
 aw
 aw
-bf
+bo
 Wk
 be
 be
@@ -11182,7 +11159,7 @@ be
 be
 be
 be
-bf
+bo
 aw
 aw
 aw
@@ -11260,7 +11237,7 @@ aw
 aw
 aw
 aw
-bf
+bo
 be
 be
 bi
@@ -11397,11 +11374,11 @@ aw
 aw
 ac
 bo
-bf
+bo
 ac
 ac
 bo
-bf
+bo
 ac
 be
 be
@@ -11434,7 +11411,7 @@ cI
 be
 ac
 aK
-aQ
+aM
 dn
 dn
 dN
@@ -11469,11 +11446,11 @@ bq
 ac
 ac
 bo
-bf
+bo
 ac
 ac
 bo
-bf
+bo
 ac
 aw
 aw
@@ -11823,11 +11800,11 @@ aw
 aw
 ac
 bo
-bf
+bo
 ac
 ac
 bo
-bf
+bo
 ac
 be
 be
@@ -11895,11 +11872,11 @@ bq
 ac
 ac
 bo
-bf
+bo
 ac
 ac
 bo
-bf
+bo
 ac
 aw
 aw
@@ -11970,7 +11947,7 @@ aw
 aw
 aw
 aw
-bf
+bo
 be
 be
 bk
@@ -12112,7 +12089,7 @@ aw
 aw
 aw
 aw
-bf
+bo
 be
 be
 be
@@ -12176,7 +12153,7 @@ be
 be
 be
 be
-bf
+bo
 aw
 aw
 aw
@@ -12254,11 +12231,11 @@ aw
 aw
 aw
 aw
-bf
-bf
-bf
-bf
-bf
+bo
+bo
+bo
+bo
+bo
 be
 be
 be
@@ -12318,7 +12295,7 @@ be
 be
 be
 be
-bf
+bo
 aw
 aw
 aw
@@ -12456,11 +12433,11 @@ be
 be
 be
 be
-bf
-bf
-bf
-bf
-bf
+bo
+bo
+bo
+bo
+bo
 aw
 aw
 aw
@@ -13000,7 +12977,7 @@ bv
 ci
 ci
 bv
-aC
+az
 bR
 az
 bR
@@ -13870,16 +13847,16 @@ ce
 ac
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
 ac
@@ -13961,16 +13938,16 @@ ac
 ac
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
-bf
-bf
+bo
+bo
 ac
 ac
 ac
@@ -14154,16 +14131,16 @@ ac
 ac
 ac
 ac
-bf
-bf
-ac
-ac
-bf
-bf
+bo
+bo
 ac
 ac
 bo
-bf
+bo
+ac
+ac
+bo
+bo
 ac
 ac
 ac
@@ -14245,16 +14222,16 @@ ac
 ac
 ac
 ac
-bf
-bf
-ac
-ac
-bf
-bf
+bo
+bo
 ac
 ac
 bo
-bf
+bo
+ac
+ac
+bo
+bo
 ac
 ac
 ac
