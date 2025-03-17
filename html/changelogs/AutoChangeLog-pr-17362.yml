@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "get_space_zlevels returning strings instead of z levels in some cases"

@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Emotes work a bit differently on the backend."
-  - bugfix: "immunosuprizine is no longer the strongest poison in the game. It will no longer do 1245 damage per unit to people you hit with it."

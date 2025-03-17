@@ -328,3 +328,25 @@
   Will & Diana:
   - bugfix: Dullahans (among others) have proper offsets now
   - code_imp: Unit test forces coders to comply with proper offsetting of borg sprites
+2025-03-17:
+  Diana:
+  - code_imp: Emotes work a bit differently on the backend.
+  - bugfix: immunosuprizine is no longer the strongest poison in the game. It will
+      no longer do 1245 damage per unit to people you hit with it.
+  Kashargul:
+  - code_imp: finishes machines new to init
+  - rscadd: liquid bellies
+  - rscadd: all chomp belly overlays
+  - rscadd: soul catcher for generic usage by every mob
+  - rscadd: more transfer, processing and other belly options
+  - bugfix: bellies no longer update every life tick
+  - qol: reworked the entire vore panel preference section
+  - qol: rework vorespwan to also be autoamted / used as direct spawn point
+  - bugfix: get_space_zlevels returning strings instead of z levels in some cases
+  SatinIsle:
+  - rscadd: Added a new bluespace sheet snatcher of holding that can be created by
+      science (cheaper and easier than other "of holding" items). This allows it to
+      carry up to 5000 sheets. It can also be bought from the mining vendor for 1000
+      points.
+  - balance: Changed the normal sheet snatcher to hold 500 (previously 300), and the
+      borg version to hold 700 (previously 500).
