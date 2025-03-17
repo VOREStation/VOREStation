@@ -134,8 +134,16 @@
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0, var/force_hit = FALSE)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, mob/living/user)
 	zone = check_zone(zone)
+
+
+	/// Toggle for servers that desire to have attacks ALWAYS hit, since force_hit isn't always its default.
+	/// NOTE: This means that mobs will ALWAYS hit players and leads to much more punishing combat.
+	/// The system as is gives players an edge in PvE, while enabling always_hit gives mobs an edge in PvE.
+	var/always_hit = FALSE
+	if(always_hit)
+		return zone
 
 	if(!ranged_attack)
 		// you cannot miss if your target is prone or restrained
@@ -151,19 +159,33 @@
 
 	//This is done here now, since previously it was just done in a dumb spot that made no sense.
 	//Even if you were Neo, anyone could land a blow on you.
+	var/has_evasion_chance = FALSE
 	if(isliving(target))
 		var/mob/living/our_target = target
-		miss_chance_mod += our_target.get_evasion()
+		var/evasion_chance = our_target.get_evasion()
+
+		if(!evasion_chance && !target.client) //If our target HAS no evasion chance and they're an NPC, we hit.
+			return zone
+		if(evasion_chance)
+			has_evasion_chance = TRUE
+			miss_chance_mod += evasion_chance
 	//However, get_accuracy_penalty() is also used in eyestab, open-hand clicking someone, and resolve_item_attack()
 	//The big one is resolve_item_attack(). It's the 'we are hit in melee combat'
 	//We are unable to include it here as it is dependent on the user, so we'll let it just continue being calculated where it is.
 
-	if(miss_chance_mod > 0 && prob(miss_chance_mod))
-		return null //Mobs could technically get this if evasive modifiers are applied to them.
+	if(has_evasion_chance && miss_chance_mod > 0 && prob(miss_chance_mod))
+		return null
 
-	if(!target.client) //If the target is an NPC, we will always hit (barring extreme circumstances like mobs having modified evasion). Removes baymiss against mobs.
+	if(!target.client) //If the target is an NPC, we will always hit (barring extreme circumstances like mobs having modified evasion, handled above). Removes baymiss against mobs.
 		return zone
 
+	/// Toggle for servers that desire to have players able to miss each other.
+	/// This is if users are subjected to the same RNG hitchance against other players as mobs are.
+	/// By default, this is set to off, as evasion being calculated is (in my eyes) enough for PvP combat.
+	/// However, if you wish to enable it so there's miss chance, flip this FALSE to TRUE
+	var/user_misses = FALSE
+	if(user.client && !user_misses)
+		return zone
 
 	/// Variable that controls mob missing.
 	/// If toggled on, mobs (or players in PvP) will have chances to miss each other.
