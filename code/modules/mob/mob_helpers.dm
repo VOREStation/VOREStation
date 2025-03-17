@@ -131,10 +131,13 @@
 
 	return ran_zone
 
-// Emulates targetting a specific body part, and miss chances
-// May return null if missed
-// miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, mob/living/user)
+/// Hit and miss chance is calculated here.
+/// Returns: null(miss) or zone(hit)
+/// Has a variety of toggles. In short:
+/// always_hit: Miss chance is not calculateed. Always hit the zone it's targeting. (Default: FALSE)
+/// user_misses: If Player Characters are subjected to RNG hitchance on other Player Characters (Default: FALSE)
+/// mob_misses: If mobs are subjected to RNG hitchance on Player Characters (Default: TRUE)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, mob/living/attacker)
 	zone = check_zone(zone)
 
 
@@ -171,7 +174,7 @@
 			miss_chance_mod += evasion_chance
 	//However, get_accuracy_penalty() is also used in eyestab, open-hand clicking someone, and resolve_item_attack()
 	//The big one is resolve_item_attack(). It's the 'we are hit in melee combat'
-	//We are unable to include it here as it is dependent on the user, so we'll let it just continue being calculated where it is.
+	//We are unable to include it here as it is dependent on the attacker, so we'll let it just continue being calculated where it is.
 
 	if(has_evasion_chance && miss_chance_mod > 0 && prob(miss_chance_mod))
 		return null
@@ -184,22 +187,22 @@
 	/// By default, this is set to off, as evasion being calculated is (in my eyes) enough for PvP combat.
 	/// However, if you wish to enable it so there's miss chance, flip this FALSE to TRUE
 	var/user_misses = FALSE
-	if(user.client && !user_misses)
+	if(!user_misses && attacker.client)
 		return zone
 
-	/// Variable that controls mob missing.
-	/// If toggled on, mobs (or players in PvP) will have chances to miss each other.
-	/// If toggled off, mobs (or players in PvP) will always hit each other, evasion-not-withstanding
+	/// Toggle for servers that desire to have mobs able to miss players.
+	/// If toggled on, mobs will have chances to miss players.
+	/// If toggled off, mobs will always hit each players, evasion-not-withstanding
 	/// This can make PvE combat feel better for players or introduce some randomization with PvP.
-	/// Due to the fact that we don't pass the user of the attack into this proc
 	var/mob_misses = TRUE //Toggle to enable mob missing or not.
+	if(!mob_misses && !attacker.client) //If mob_misses is disabled, they land their blow on the zone they're targeting.
+		return zone
 
 	//However, if a mob IS attacking a player, let's throw in some RNG into the mix to make it feel better for players.
 	//If a mob eats hits and dies, people are happy.
 	//If you shoot a mob point blank 10 times and every hit misses, people are upset (and rightfully so)
 
-	if(!mob_misses) //If mob_misses is disabled, they land their blow on the zone they're targeting.
-		return zone
+
 
 	var/randomization_chance = 10 //This can also be set to 0 to ensure mobs ALWAYS target the limb they're originally targeting.
 	/// First, we roll to see if we're going to target a random limb.
