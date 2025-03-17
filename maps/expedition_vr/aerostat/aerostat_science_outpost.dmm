@@ -317,7 +317,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	master_tag = "aerostat_n_n_airlock";
 	pixel_x = 24;
-	pixel_y = 24;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -528,15 +528,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/airlock/north)
-"bo" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/arm/nw)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -921,7 +912,7 @@
 	dir = 1;
 	master_tag = "aerostat_s_s_airlock";
 	pixel_x = -24;
-	pixel_y = -24;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
@@ -1965,7 +1956,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 8;
 	master_tag = "aerostat_n_e_airlock";
-	pixel_x = 32;
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -2127,15 +2118,6 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating,
 /area/offmap/aerostat/inside/toxins)
-"fS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/airlock/south)
 "fT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2192,10 +2174,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
-"gb" = (
-/obj/machinery/computer/centrifuge,
-/turf/simulated/floor/tiled/white,
-/area/offmap/aerostat/inside/virology)
 "gd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -2351,15 +2329,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"gN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/airlock/north)
 "gO" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -3498,15 +3467,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/nw)
-"lt" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/arm/ne)
 "lu" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -4940,15 +4900,6 @@
 /obj/structure/grille,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/toxins)
-"qM" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/airlock/north)
 "qN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -5100,12 +5051,6 @@
 /obj/item/tool/wirecutters,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"rC" = (
-/obj/machinery/computer/diseasesplicer{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/offmap/aerostat/inside/virology)
 "rH" = (
 /obj/structure/closet/crate/science,
 /obj/effect/floor_decal/rust,
@@ -7292,11 +7237,6 @@
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/ne)
 "AE" = (
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
 /obj/structure/closet/crate/medical{
 	name = "Virus Samples"
 	},
@@ -7603,15 +7543,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"BV" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/arm/se)
 "BW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	name = "Distro Loop Drain"
@@ -8658,7 +8589,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 8;
 	master_tag = "aerostat_s_e_airlock";
-	pixel_x = 24;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
@@ -9228,10 +9159,6 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/airlock/south)
-"IA" = (
-/obj/machinery/disease2/diseaseanalyser,
-/turf/simulated/floor/tiled/white,
-/area/offmap/aerostat/inside/virology)
 "IB" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -9430,15 +9357,6 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/toxins)
-"Jz" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/airlock/south)
 "JA" = (
 /obj/machinery/light{
 	dir = 8
@@ -10791,7 +10709,6 @@
 /obj/item/storage/box/beakers,
 /obj/item/storage/fancy/vials,
 /obj/item/storage/box/syringes,
-/obj/item/antibody_scanner,
 /obj/item/storage/box/syringes,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -11317,7 +11234,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 4;
 	master_tag = "aerostat_n_w_airlock";
-	pixel_x = -32;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -12120,9 +12037,6 @@
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/telesci)
 "UD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 6
-	},
 /obj/effect/floor_decal/rust,
 /obj/machinery/power/solar_control,
 /obj/effect/decal/cleanable/cobweb2,
@@ -12698,7 +12612,6 @@
 "WR" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/virology,
-/obj/item/antibody_scanner,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "WS" = (
@@ -13012,7 +12925,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/disease2/incubator,
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 28
 	},
@@ -13194,7 +13106,6 @@
 "YN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/disease2/isolator,
 /obj/machinery/firealarm{
 	dir = 4;
 	layer = 3.3;
@@ -13458,7 +13369,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 4;
 	master_tag = "aerostat_s_w_airlock";
-	pixel_x = -24;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
@@ -21117,7 +21028,7 @@ sQ
 sQ
 ac
 ac
-bo
+sQ
 sQ
 ac
 ac
@@ -23230,11 +23141,11 @@ JB
 bn
 Wd
 cn
-qM
+cO
 cO
 cn
 cn
-qM
+cO
 cO
 de
 qj
@@ -23303,7 +23214,7 @@ eW
 KK
 DC
 IB
-fS
+IB
 DC
 DC
 IB
@@ -23657,11 +23568,11 @@ bp
 Wd
 cn
 fW
-gN
+fW
 cn
 cn
 fW
-gN
+fW
 dY
 Ce
 Ze
@@ -23729,7 +23640,7 @@ tR
 KK
 DC
 Jd
-Jz
+Jd
 DC
 DC
 Jd
@@ -25996,7 +25907,7 @@ xF
 xF
 aY
 aY
-BV
+xF
 xF
 aY
 aY
@@ -26087,7 +25998,7 @@ Up
 Up
 fb
 fb
-lt
+Up
 Up
 fb
 fb
@@ -26524,7 +26435,7 @@ aw
 aw
 IO
 IO
-gb
+Uo
 Uo
 Uo
 pa
@@ -26667,7 +26578,7 @@ aw
 aw
 IO
 IO
-rC
+Uo
 WR
 pa
 UM
@@ -26810,7 +26721,7 @@ aw
 aw
 IO
 IO
-IA
+Uo
 pa
 Uo
 Uo

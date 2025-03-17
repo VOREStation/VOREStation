@@ -178,6 +178,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	r_ears3 = character.r_ears3
 	b_ears3 = character.b_ears3
 	g_ears3 = character.g_ears3
+	a_ears = character.a_ears
 
 	tail_style = character.tail_style
 	r_tail = character.r_tail
@@ -189,6 +190,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	r_tail3 = character.r_tail3
 	b_tail3 = character.b_tail3
 	g_tail3 = character.g_tail3
+	a_tail = character.a_tail
 
 	wing_style = character.wing_style
 	r_wing = character.r_wing
@@ -200,6 +202,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	r_wing3 = character.r_wing3
 	b_wing3 = character.b_wing3
 	g_wing3 = character.g_wing3
+	a_wing = character.a_wing
 
 
 	var/bodytype = character.species?.get_bodytype()

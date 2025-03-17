@@ -313,15 +313,17 @@ var/list/ai_verbs_default = list(
 	var/mob/living/silicon/ai/powered_ai = null
 	invisibility = 100
 
-/obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
-	powered_ai = ai
+/obj/machinery/ai_powersupply/Initialize(mapload)
+	. = ..()
+	powered_ai = loc
+	if(!istype(powered_ai))
+		return INITIALIZE_HINT_QDEL
 	powered_ai.psupply = src
 	if(istype(powered_ai,/mob/living/silicon/ai/announcer))	//Don't try to get a loc for a nullspace announcer mob, just put it into it
 		forceMove(powered_ai)
 	else
 		forceMove(powered_ai.loc)
 
-	..()
 	use_power(1) // Just incase we need to wake up the power system.
 
 /obj/machinery/ai_powersupply/Destroy()
@@ -610,7 +612,7 @@ var/list/ai_verbs_default = list(
 
 	switch(choice)
 		if("Color")
-			input = tgui_color_picker("Choose a color:", "Hologram Color", holo_color)
+			input = tgui_color_picker(src, "Choose a color:", "Hologram Color", holo_color)
 
 			if(input)
 				holo_color = input

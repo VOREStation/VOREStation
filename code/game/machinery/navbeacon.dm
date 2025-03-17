@@ -202,7 +202,7 @@ Transponder Codes:<UL>"}
 
 /obj/machinery/navbeacon/Destroy()
 	navbeacons.Remove(src)
-	..()
+	. = ..()
 
 
 //

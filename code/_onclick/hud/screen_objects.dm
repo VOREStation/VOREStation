@@ -707,17 +707,20 @@
 	plane = PLANE_PLAYER_HUD_ABOVE
 	var/client/holder
 
-/obj/screen/splash/New(client/C, visible)
+INITIALIZE_IMMEDIATE(/obj/screen/splash)
+/obj/screen/splash/Initialize(mapload, visible)
 	. = ..()
 
-	holder = C
+	if(!isclient(loc))
+		return INITIALIZE_HINT_QDEL
+
+	holder = loc
 
 	if(!visible)
 		alpha = 0
 
 	if(!lobby_image)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	icon = lobby_image.icon
 	icon_state = lobby_image.icon_state

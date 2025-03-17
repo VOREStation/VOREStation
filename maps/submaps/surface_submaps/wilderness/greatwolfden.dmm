@@ -427,10 +427,6 @@
 /obj/structure/cliff/automatic/ramp,
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
-"Pf" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/GreatWolfDen)
 "Pl" = (
 /obj/effect/decal/remains/lizard,
 /obj/effect/decal/cleanable/dirt,
@@ -1051,7 +1047,7 @@ Pa
 OV
 tm
 LJ
-Pf
+CR
 CR
 tm
 ju

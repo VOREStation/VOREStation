@@ -274,7 +274,7 @@
 		return splash_mob(target, amount, copy)
 	if(isturf(target))
 		return trans_to_turf(target, amount, multiplier, copy)
-	if(isobj(target) && target.is_open_container())
+	if(isobj(target) && target.is_open_container() && !isbelly(target.loc))
 		return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 

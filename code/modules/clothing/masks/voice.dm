@@ -33,6 +33,6 @@
 	changer.voice = null
 	to_chat(usr, span_notice("You have reset your voice changer's mimicry feature."))
 
-/obj/item/clothing/mask/gas/voice/New()
-	..()
+/obj/item/clothing/mask/gas/voice/Initialize(mapload)
+	. = ..()
 	changer = new(src)
