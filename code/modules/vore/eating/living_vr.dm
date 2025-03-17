@@ -531,14 +531,13 @@
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-	if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
-		visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
-		return
-
 	if(tasted == src)
 		visible_message(span_vwarning("[src] licks themself!"),span_notice("You lick yourself. You taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 		//balloon_alert_visible("licks themself!", "tastes like [tasted.get_taste_message()]")
 	else
+		if((tasted.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!tasted.grabbed_by.len || !tasted.stat))
+			visible_message(span_warning("[src] tries to lick [tasted], but they dodge out of the way!"),span_warning("You try to lick [tasted], but they deftly avoid your attempt."))
+			return
 		visible_message(span_vwarning("[src] licks [tasted]!"),span_notice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 		//balloon_alert_visible("licks [tasted]!", "tastes like [tasted.get_taste_message()]")
 
@@ -579,14 +578,13 @@
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-	if((smelled.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!smelled.grabbed_by.len || !smelled.stat))
-		visible_message(span_warning("[src] tries to smell [smelled], but they dodge out of the way!"),span_warning("You try to smell [smelled], but they deftly avoid your attempt."))
-		return
-
 	if(smelled == src)
 		visible_message(span_vwarning("[src] smells themself!"),span_notice("You smell yourself. You smell like [smelled.get_smell_message()]."),span_infoplain(span_bold("Sniff!")))
 		//balloon_alert_visible("smells themself!", "smells like [smelled.get_smell_message()]")
 	else
+		if((smelled.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE) && (!smelled.grabbed_by.len || !smelled.stat))
+			visible_message(span_warning("[src] tries to smell [smelled], but they dodge out of the way!"),span_warning("You try to smell [smelled], but they deftly avoid your attempt."))
+			return
 		visible_message(span_vwarning("[src] smells [smelled]!"),span_notice("You smell [smelled]. They smell like [smelled.get_smell_message()]."),span_infoplain(span_bold("Sniff!")))
 		//balloon_alert_visible("smells [smelled]!", "smells like [smelled.get_smell_message()]")
 
