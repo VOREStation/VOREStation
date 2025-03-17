@@ -141,6 +141,7 @@
 #include "code\__defines\span.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\species_languages_vr.dm"
+#include "code\__defines\species_traits.dm"
 #include "code\__defines\speech_channels.dm"
 #include "code\__defines\spells.dm"
 #include "code\__defines\sprite_sheets.dm"
