@@ -50,6 +50,9 @@
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
 
+	// Mitigating natural (induced by species tag) allergies trait
+	var/reduced_negative_chem_reaction = FALSE
+
 /datum/species/unathi
 	vore_belly_default_variant = "L"
 

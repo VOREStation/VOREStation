@@ -1414,3 +1414,10 @@
 	cost = 0
 	var_changes = list("mudking" = TRUE)
 	custom_only = FALSE
+
+/datum/trait/neutral/reduced_neg_reaction
+	name = "Reduced Natural Chem Reaction"
+	desc = "Certain natural negative reactions of your species to chemicals are reduced. You're hardier than average in that regard!"
+	cost = 0
+	var_changes = list("reduced_negative_chem_reaction" = TRUE)
+	allowed_species = list(SPECIES_UNATHI)
