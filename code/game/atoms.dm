@@ -240,7 +240,8 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", get_examine_desc())
+	var/examine_text = replacetext(get_examine_desc(), "||", "")
+	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", examine_text)
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
