@@ -274,14 +274,17 @@
 	toggle_piece("chest", loc, ONLY_RETRACT, TRUE)
 	update_icon(1)
 
-/obj/item/rig/proc/toggle_seals(var/mob/living/carbon/human/M,var/instant)
+/obj/item/rig/proc/toggle_seals(mob/living/carbon/human/M, instant, destructive)
 
 	if(sealing) return
 
 	if(!check_power_cost(M))
 		return 0
 
-	deploy(M,instant)
+	//NOTE: DESTRUCTIVE SHOULD ONLY BE CALLED ONCE (DURING THE INITIAL DEPLOYMENT)
+	//DESTRUCTIVE WILL DELETE ANY CLOTHING THAT WOULD OTHERWISE BE BLOCKING IT.
+	//IF DESTRUCTIVE IS CALLED WHILE THE RIG IS ALREADY DEPLOYED, THE RIG WILL DELETE ITSELF.
+	deploy(M,destructive)
 
 	var/seal_target = !canremove
 	var/failed_to_seal
@@ -754,7 +757,7 @@
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
 		helmet.update_light()
 
-/obj/item/rig/proc/deploy(mob/M,var/sealed)
+/obj/item/rig/proc/deploy(mob/M,destructive)
 
 	var/mob/living/carbon/human/H = M
 
@@ -763,7 +766,7 @@
 	if(H.back != src && H.belt != src)
 		return
 
-	if(sealed)
+	if(destructive)
 		if(H.head)
 			var/obj/item/garbage = H.head
 			H.drop_from_inventory(garbage)
