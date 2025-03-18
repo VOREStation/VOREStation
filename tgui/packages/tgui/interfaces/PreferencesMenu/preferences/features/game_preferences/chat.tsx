@@ -50,14 +50,6 @@ export const CHAT_MENTION: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const VORE_HEALTH_BARS: FeatureToggle = {
-  name: 'Vore Health Bars',
-  category: 'CHAT',
-  description:
-    'Periodically shows status health bars in chat occasionally during vore absorption/digestion.',
-  component: CheckboxInput,
-};
-
 export const NEWS_POPUP: FeatureToggle = {
   name: 'Lore News Popups',
   category: 'CHAT',
