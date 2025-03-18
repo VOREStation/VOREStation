@@ -5,6 +5,7 @@
 	var/random = TRUE
 	effect_type = EFFECT_GAS
 	effect = EFFECT_AURA
+	can_start_activated = FALSE //This is set to FALSE so we do NOT CREATE IMMEDIATE HELLFIRES
 
 	effect_color = "#a5a5a5"
 
