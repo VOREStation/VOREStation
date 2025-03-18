@@ -323,10 +323,9 @@ default behaviour is:
 			inertia_dir = 0
 			return
 
-		var/locthen = loc
-		addtimer(CALLBACK(src, PROC_REF(handle_inertial_drift)), 0.5 SECONDS, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(handle_inertial_drift), loc), 0.5 SECONDS, TIMER_DELETE_ME)
 
-/mob/living/proc/handle_inertial_drift()
+/mob/living/proc/handle_inertial_drift(var/locthen)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!anchored && !pulledby && loc == locthen)
