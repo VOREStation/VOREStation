@@ -108,8 +108,94 @@
 	tail.nonhuman_prey_swallow_time = swallowTime
 	tail.vore_verb = "stuff"
 	tail.belly_sprite_to_affect = "tail"
-	tail.emote_lists[DM_HOLD] = B.emote_lists[DM_HOLD].Copy()
-	tail.emote_lists[DM_DIGEST] = B.emote_lists[DM_DIGEST].Copy()
+
+	// Belly Lines by killerdragn (@kilo.ego on discord) from Rogue Star
+	B.emote_lists[DM_HOLD] = list(
+		"You could feel the %pred drum their fingertips atop your head from outside, the walls ever so subtly clenching inwards to smear you in more of that weakly tingling slime inside.",
+		"Ugh, this place wasn't as roomy as you wish it could be, pushing your hands out you found little yield in any direction, but at least you were only along for the ride.",
+		"You can feel your body pressed into a balled up shape, %preds %belly giving a reassuring squeeze as if reminding you it had you to itself.",
+		"%pred let out a burp, the amount of air available decreasing and leaving their stomach tightening around you while they went about their day, likely thinking about what to do with you.",
+		"%pred slithers along with you inside them, content with the weight in their %belly.",
+		"%pred lifted their arms above their head and did a little bellydance, smushing and sloshing you around inside.",
+		"The %pred hugs their arms around their gut, giving you a firm squeeze."
+	)
+	B.emote_lists[DM_DIGEST] = list(
+		"A persistent gnawing ache was making itself known, with the lamia's %belly churning away telling you it was hard at work digesting you down into calories you needed to get out of here before it was too late.",
+		"Everything stings, a prickling tingle wherever %preds stomach acid touched that turned into a dull numbing heat after their stomach melted away your senses. You wondered if anyone was going to help you or if you were destined to become %preds tummyslop.",
+		"Gggglllrrrrnn.. Ggwrrgglbllrtgluort. Over time the sounds inside %preds stomach were becoming thicker and sloppier, noticing the level of muck in there has risen, likely with whatever parts of you have already joined it.",
+		"%pred jostled their stomach and burped, make it apparent they were enjoying the state of things, that is, you digesting and them seemingly relaxing relishing it, your body weakening and running like melting ice-cream under the sun while they enjoyed the fizzly pleasant tingle radiating from inside their meat filled %belly.",
+		"%pred clenches their %belly around you, it just made things hurt more while they continued to digest you and soak you in that disintegrating acid.",
+		"Your clothes weren't doing so well and neither were you, the lamia's belly unable to distinguish what was dropped into it, converting anything here into more fuel. Obviously by the state of the too hot pool of chyme rising towards your shoulders you were soon about to find out how it feels to be lamiafat.",
+		"%pred lifted their arms above their head and sighed hotly while doing a little lamia bellydance, sloshing and gluorping you and your soupy self around in their %belly.",
+		"Your captor gripped the underside of their %belly and lifted it, dunking you under the gooey stomach acids once they let go, everything becoming muffled before you broke the slimy surface tension to free yourself and managed to breath humid acrid 'air' once more."
+	)
+	B.struggle_messages_inside = list(
+		"You push outwards with your hands and lift your head, trying to uncurl yourself in this cramped humid prison, the walls push back and force you back into a ball.",
+		"Every twitch and squirm inside just seems to coat you in more and more of that tingling acidic slime.",
+		"%pred lets out a small burp thanks to you dislodging a pocket of air inside, leaving you woozier than before.",
+		"All your struggling doesn't seem to be doing much other than giving %pred a tummy massage from the inside, their stomach growling louder in response.",
+		"Put up as much of a fight as you may, it doesn't seem to do much, perhaps you need to keep trying, but your arms were growing tired.",
+		"You struggled with all your might, leaving the lamia winded for a moment, they burped with momentary indigestion."
+	)
+	B.struggle_messages_outside = list(
+		"Struggles and cries emit from %preds %belly, hands pushing out jostling that prey-filled gut side to side.",
+		"You were able to make out %preys face pushing out from %preds %belly, they didn't look happy!",
+		"%pred burps when someone inside their %belly kicks and wobbles themself around inside.",
+		"%preds %belly ggllrrt's and gluts as the curled up shape inside resists being balled up, although they relent and are forced back into compliance.",
+		"%pred bops someones head bulging from their %belly. Chastising them for struggling."
+	)
+	B.digest_messages_prey = list(
+		"For all your fighting and struggling you couldn't resist the lamia's efforts to eventually suffuse you down completely into the nutritious sludge you had been whipped up into this whole time, soaking in their acid for so long you had melted down into a dense soup that they are going to be happy feeling pumping through their guts and fattening their body. Congratulations, you're part of a lamia's waistline.",
+		"The bulges you made in the lamia's stomach have completely rounded and smoothed over by now. You are left to burble and glub inside %pred as a thick stew. Your things starting to bulge the underside of their swollen belly while whatever was left of you melted away into a slurry in the lamia's gworgling belly, soon to be filtered down through their lower body.",
+		"You were far too weak to continue resisting the lamia's %belly, you wanted to rest and nothing more. With no more strength and no fight to give, you submit to the burbling mirepit inside the lamia's %belly , feeling yourself sink below the surface suspended in that dense chyme while suffusing right into it, all those hot tingling sensations just a blurry afterthought as you're completely unmade."
+	)
+	//TAIL TIME!!!~~~
+	tail.emote_lists[DM_HOLD] = list(
+		"The walls swaddled your motions, smothering thick flesh idly kneaded and squeezed, conforming to your shapes and keeping you coated in that dull acid.",
+		"Ominous low groans and gluorps echoed around you, %pred squeezing down over the shapes you made on their %belly.",
+		"The feeling in here wasn't entirely unpleasant when their stomach wasn't too tight, the undulations against your back like a massage, leaving your eyes fluttering shut for a few minutes.",
+		"You open your eyes afew what must have been a brief nap, the warm walls seemed to caress your body upon your movement.",
+		"You could feel your body squeezed inwards from all sides at random, a ceaseless snuggling of the lamia's stomach paired with one of their hands feeling over your shapes from the outside had you wondering if anyone was around to help.",
+		"Your body twisted and bent this way and that as the lamia slithered along.",
+		"You seemed to be safe here for now, the walls idly and deftly rubbed along you, you could try to struggle and get out, but that might rile their stomach up."
+	)
+	tail.emote_lists[DM_DIGEST] = list(
+		"The walls ground firmly into you, smearing and coating you in that tingling acid which burned through your clothing.",
+		"The lamia's %belly was operating as intended, processing down the meat inside it, that would be you.",
+		"Loud gurgling growls vibrated through your body while the lamia's %belly clenched and oppressively smothered you.",
+		"For a moment you were rolled onto your stomach and forced under the surface of the acids, thankfully after a flurry of squirming you managed some grip on the slippery walls to get onto your back once more.",
+		"Your body was aching in here, soreness turning into a gnawing pain that beckoned you to flee, but which way could you go?",
+		"You could hear the lamia musing something about how you didn't stand a chance, a pat atop the softening lump you made in their %belly was as much injury as insult, you were feeling a tad spent.",
+		"A fizzling hot slimy bath was doing its best to render you down into a form the lamia's body could work with easier, acids stinging and seeping through your form to reduce its integrity into a uniform slurry.",
+		"It was hard to breathe, you could feel the dull tingling heat in your chest from breathing the foggy fumes in here, definitely not good for you but neither is being digested.",
+		"You were wondering if you'd be able to get out looking close to how you went in if this goes on any longer, this organ was built to deconstruct things into nutrition after all."
+	)
+	tail.struggle_messages_inside = list(
+		"You twist and turn, nearly drowning yourself in the acid slowly building underneath you.",
+		"Kicking and shoving, you jostle and bulge out the lamia's %belly well, but don't seem to make any progress in actually escaping, instead the walls just squeeze down and crush you in retaliation.",
+		"You try to work yourself into as much of an uncomfortable shape for your predator as you can, sadly you've been eaten by a flexible lamia, who just laughs at your attempts before straightening their lower body out undoing your effort.",
+		"%pred fights back by bending their lower body into an S shape, scrunching you up inside as you attempt to struggle free, resisting your attempts.",
+		"All your fidgeting earned you a sudden smack against a hard surface leaving you dazed, it seemed %pred didn't appreciate all your struggles.",
+		"You tried hard to get free, pushing your hands upwards against the valve you came in through, starting to work it open before %pred clenches down over you, forcing your escape shut at the last second, you'd have to try harder.",
+		"You nearly managed to push with your legs and find some sort of give to force yourself out of their lower stomach but it seemed to resist your attempt.",
+		"%pred flopped down atop you outside when you squirmed, listening to your voice and chuckling, suddenly giving you a hug with their arms.",
+		"You rocked your hips side to side and shoved your shoulders in a similar motion, trying to make the lamia develop indigestion, a sudden sigh outside instead sounded like you just gave them a wonderful tummy massage from the inside.",
+		"You kick your leg to let the lamia know you want out, it seems to just... ignore you, what did you expect?"
+	)
+	tail.struggle_messages_outside = list(
+		"%preds %belly groans deeply from someone struggling inside of it, kicking and jostling it.",
+		"Someone struggles inside of %pred, the lamia bending and twisting their tail to bully their prey inside.",
+		"It was hard to tell what they were saying, but someone was calling for help from inside of %pred, fighting to get out but the lamia simply shook their head and laughed.",
+		"The struggles inside of %preds %belly were growing weaker, but they were still trying to get free.",
+		"Deep low ominous groans rose from that belly when whoever was inside stirred it up from the inside with their squirming.",
+		"The lamia seemed satisfied from their prey giving them a massage from the inside, a blissed out look on their face when someones hands pushed out and then slipped out of sight.",
+		"Someone rolled and turned inside %preds lower body trying to find the way out, making no progress."
+	)
+	tail.digest_messages_prey = list(
+		"You were burbling and bubbling inside this lethal sleeping bag for longer than you ought to be, the only option now was to sleep in forever, barely able to keep your eyes open while your body refused to respond to any input the lamia's %belly had done an efficient job of rendering your entire body down. You didn't have long to think before even your consciousness began to spread out and fill the lamia's lengthy lower stomach in a nutritious puddle left to be squeezed and piped through the rest of their digestive system and sent right onto their body.",
+		"It was a grueling feat to go through the many stages of digestion inside a lamia's %belly, forced to lay there and submit to a lethargic digestion and feel yourself break down steadily, for all your efforts and struggling you just couldn't overcome the power of this half-serpent breaking you down over the next few hours, it hurt at first but now it was all just a dull hot swaddling blanket of chyme welcoming you to your new existence as bellysoup.",
+		"You kicked, squirmed, twisted, rolled and voiced all your frustrations but none of them would stop %pred from digesting you completely, everything you were and could be reduced to a disgusting caloric sludge inside the lamia's %belly. None of your weak struggles from here on out mattered, you twitched and lurched- pushing your hands out weakly hoping someone could rescue you at this last moment but alas your strength failed and you were forced to become food, thoughts drifting off as your meaty self was squeezed and churned down totally after you lost consciousness."
+	)
 
 // FFTA Bra
 /mob/living/simple_mob/vore/lamia/bra
