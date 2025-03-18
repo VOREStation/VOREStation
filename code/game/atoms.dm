@@ -245,8 +245,6 @@
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
-	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
-		user.client.statpanel = "Examine" // Switch to stat panel
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
