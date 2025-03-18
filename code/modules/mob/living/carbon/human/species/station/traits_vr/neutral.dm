@@ -1432,7 +1432,7 @@
 	cost = 0
 	custom_only = FALSE
 
-/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/personal_space/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 	add_verb(H, /mob/living/proc/toggle_personal_space)
