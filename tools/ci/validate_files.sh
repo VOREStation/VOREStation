@@ -191,7 +191,7 @@ if [ $retVal -ne 0 ]; then
 fi
 
 part "proc ref syntax"
-if $grep '\.proc/' $code_files ; then
+if $grep '\.proc/' $code_x_515 ; then
     echo
     echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
     FAILED=1
