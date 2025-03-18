@@ -28,3 +28,5 @@
 	var/dispense_sound //played on top of the standard vendor one
 
 	var/vendor_category = MAINTVENDOR_GENERIC
+
+/datum/maint_recycler_vendor_entry/proc/post_purchase_handling(var/obj/bought)

@@ -2801,6 +2801,7 @@
 #include "code\modules\lighting\sunlight_handler.dm"
 #include "code\modules\looking_glass\lg_area.dm"
 #include "code\modules\looking_glass\lg_console.dm"
+#include "code\modules\maint_recycler\code\vendor_datums\scene_tools.dm"
 #include "code\modules\looking_glass\lg_imageholder.dm"
 #include "code\modules\looking_glass\lg_turfs.dm"
 #include "code\modules\lore_codex\codex.dm"
