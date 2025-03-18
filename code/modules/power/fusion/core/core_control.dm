@@ -19,7 +19,7 @@
 
 /obj/machinery/computer/fusion_core_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
