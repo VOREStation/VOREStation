@@ -159,7 +159,7 @@
 	//If they have these values, apply them
 	if(isliving(M))
 		var/mob/living/L = M
-		brainmob.dna = L.dna
+		brainmob.dna = L.dna.Clone()
 		brainmob.ooc_notes = L.ooc_notes
 		brainmob.ooc_notes_likes = L.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = L.ooc_notes_dislikes
