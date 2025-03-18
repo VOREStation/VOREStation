@@ -36,7 +36,7 @@
 
 /datum/genetics/side_effect/genetic_burn/start(mob/living/carbon/human/H)
 	..()
-	H.custom_emote(VISIBLE_MESSAGE, "starts turning very red..")
+	H.automatic_custom_emote(VISIBLE_MESSAGE, "starts turning very red..", check_stat = TRUE)
 
 /datum/genetics/side_effect/genetic_burn/finish(datum/weakref/WR)
 	if(..()) return
@@ -52,7 +52,7 @@
 
 /datum/genetics/side_effect/bone_snap/start(mob/living/carbon/human/H)
 	..()
-	H.custom_emote(VISIBLE_MESSAGE, "'s limbs start shivering uncontrollably.")
+	H.automatic_custom_emote(VISIBLE_MESSAGE, "'s limbs start shivering uncontrollably.", check_stat = TRUE)
 
 /datum/genetics/side_effect/bone_snap/finish(datum/weakref/WR)
 	if(..()) return
@@ -70,7 +70,7 @@
 /datum/genetics/side_effect/confuse/start(mob/living/carbon/human/H)
 	..()
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
-	H.custom_emote(VISIBLE_MESSAGE, "has drool running down from [T.his] mouth.")
+	H.automatic_custom_emote(VISIBLE_MESSAGE, "has drool running down from [T.his] mouth.", check_stat = TRUE)
 
 /datum/genetics/side_effect/confuse/finish(datum/weakref/WR)
 	if(..()) return

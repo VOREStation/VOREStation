@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Artifacts now have a coinflip's chance of spawning active when unearthed (EXCLUDING gas artifacts)"
+  - qol: "Artifacts are always visible at any depth now."
+  - qol: "Artifacts no longer apply a Z wide spawn, it will only apply effects for those within a small range."
+  - bugfix: "Artifacts that have a TOUCH EFFECT but not a TOUCH TRIGGER can now be ACTIVATED and you can have the effect happen to you by bumping into it, having it bump into you, or touching it without gloves"

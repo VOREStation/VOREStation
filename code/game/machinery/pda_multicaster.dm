@@ -30,7 +30,7 @@
 /obj/machinery/pda_multicaster/Destroy()
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	..()
+	. = ..()
 
 /obj/machinery/pda_multicaster/update_icon()
 	if(on)

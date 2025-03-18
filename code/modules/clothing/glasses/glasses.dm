@@ -97,8 +97,8 @@ BLIND     // can't see anything
 	vision_flags = SEE_TURFS
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
-/obj/item/clothing/glasses/meson/New()
-	..()
+/obj/item/clothing/glasses/meson/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
@@ -142,8 +142,8 @@ BLIND     // can't see anything
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	item_flags = AIRTIGHT
 
-/obj/item/clothing/glasses/science/New()
-	..()
+/obj/item/clothing/glasses/science/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.science
 
 /obj/item/clothing/glasses/goggles
@@ -172,8 +172,8 @@ BLIND     // can't see anything
 	species_restricted = list("Vox")
 	flags = PHORONGUARD
 
-/obj/item/clothing/glasses/night/New()
-	..()
+/obj/item/clothing/glasses/night/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.nvg
 
 /obj/item/clothing/glasses/eyepatch
@@ -264,8 +264,8 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_REDUCED
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
-/obj/item/clothing/glasses/graviton/New()
-	..()
+/obj/item/clothing/glasses/graviton/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.material
 
 /obj/item/clothing/glasses/regular
@@ -551,8 +551,8 @@ BLIND     // can't see anything
 					M.disabilities &= ~NEARSIGHTED
 	..()
 
-/obj/item/clothing/glasses/thermal/New()
-	..()
+/obj/item/clothing/glasses/thermal/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
