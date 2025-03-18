@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - balance: "sec fed uniform no longer gives 50% melee armor. Gives same as Cyberpunk vest and also costs 2 points."
+  - balance: "Fed uniforms now give resistances based on other common loadout items. (Ex: Hazard vest, labcoat)"
+  - balance: "Hazard vests now give 20% rad resistance"

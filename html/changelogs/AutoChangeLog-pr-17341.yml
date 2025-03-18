@@ -1,0 +1,4 @@
+author: "Ace"
+delete-after: True
+changes:
+  - rscadd: "Lamias now have unique belly text!"

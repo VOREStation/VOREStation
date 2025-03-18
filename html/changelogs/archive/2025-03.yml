@@ -350,3 +350,12 @@
       points.
   - balance: Changed the normal sheet snatcher to hold 500 (previously 300), and the
       borg version to hold 700 (previously 500).
+2025-03-18:
+  SatinIsle:
+  - rscadd: Added a new trait called "Reflexive biting" that causes you to bite the
+      hand of anyone who either pats you on the head or boops you on the nose. This
+      deals one point of damage to the hand committing said offense. This also includes
+      a verb in Abilities to toggle this off and on.
+  - rscadd: Added a personal space bubble trait that takes of priority over the biting
+      trait, which dodges all attempts at hugging, booping, patting, licking, sniffing
+      or hand shaking. This can also be toggled on and off.
