@@ -530,7 +530,6 @@
 		var/datum/browser/popup = new(usr, "[name]", "[name]", 500, 300, src)
 		popup.set_content(examine_text)
 		popup.open()
-		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()
