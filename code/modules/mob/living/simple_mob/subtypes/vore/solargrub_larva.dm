@@ -253,13 +253,13 @@ var/global/list/grub_machine_overlays = list()
 		ignored_targets += A
 
 
-/obj/machinery/abstract_grub_machine/New()
-	..()
+/obj/machinery/abstract_grub_machine/Initialize(mapload)
+	. = ..()
 	shuffle_power_usages()
 	grub = loc
 	if(!istype(grub))
 		grub = null
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/abstract_grub_machine/Destroy()
 	grub = null

@@ -23,8 +23,8 @@
 	else
 		return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/New()
-	..()
+/obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload)
+	. = ..()
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/remove_label
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/setlight
@@ -89,4 +89,4 @@
 	for(var/obj/effect/plant/plant in get_turf(src))
 		if(plant.invisibility == INVISIBILITY_MAXIMUM)
 			plant.invisibility = initial(plant.invisibility)
-	..()
+	. = ..()

@@ -125,8 +125,7 @@
 	pixel_x = -24
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/Lab1)
@@ -135,7 +134,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty,

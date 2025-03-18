@@ -227,16 +227,22 @@
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/engineering/dullahan/engineerv2
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahaneng_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/engineering/dullahan/engineerv3
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/engineer.dmi'
 	sprite_icon_state = "dullahanengineer"
 	sprite_decals = list("decals")
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/engineering/cat
 	name = "Cat"

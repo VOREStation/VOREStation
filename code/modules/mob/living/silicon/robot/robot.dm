@@ -7,6 +7,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
+	nutrition = 0
 
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ~HEAVY
@@ -25,6 +26,7 @@
 	var/crisis_override = 0
 	var/integrated_light_power = 6
 	var/list/robotdecal_on = list()
+	var/glowy_enabled = FALSE
 	var/datum/wires/robot/wires
 
 	can_be_antagged = TRUE
@@ -447,8 +449,8 @@
 	update_icon()
 
 /mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
-	set category = "Abilities.Silicon"
-	set name = "Toggle extras"
+	set category = "Abilities.Settings"
+	set name = "Toggle Extra Decals"
 
 	if(!sprite_datum)
 		return
@@ -472,6 +474,17 @@
 	else
 		robotdecal_on += decal_to_toggle
 		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
+	update_icon()
+
+/mob/living/silicon/robot/verb/toggle_glowy_stomach()
+	set category = "Abilities.Settings"
+	set name = "Toggle Glowing Stomach & Accents"
+
+	glowy_enabled = !glowy_enabled
+	if(glowy_enabled)
+		to_chat(src, span_filter_notice("Your stomach will now glow and any naturally glowing accents you have will now appear!"))
+	else
+		to_chat(src, span_filter_notice("Your stomach will no longer glow, and any naturally glowing accents you have will be hidden!"))
 	update_icon()
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
@@ -956,31 +969,52 @@
 		pixel_x = sprite_datum.pixel_x
 		old_x = sprite_datum.pixel_x
 
+	//Want to know how to make an overlay appear in darkness? Look at the below. Add a mutable and then emissive overlay.
+	//These get applied first and foremost, as things will get applied overtop of them.
+	//Only borgs that have specialty glow sprites get this.
+	if(sprite_datum.has_glow_sprites && glowy_enabled)
+		add_overlay(mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
+		add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
+
 	if(stat == CONSCIOUS)
 		update_fullness()
 		for(var/belly_class in vore_fullness_ex)
 			reset_belly_lights(belly_class)
 			var/vs_fullness = vore_fullness_ex[belly_class]
-			if(belly_class == "sleeper" && sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper") continue
-			if(belly_class == "sleeper" && sleeper_state != 0 && !(vs_fullness + 1 > vore_capacity_ex[belly_class]))
-				if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
-					vs_fullness = vore_capacity_ex[belly_class]
-				else if(vore_selected.silicon_belly_overlay_preference == "Both")
-					vs_fullness += 1
+			if(belly_class == "sleeper")
+				if(sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper") continue
+				if(sleeper_state != 0 && !(vs_fullness + 1 > vore_capacity_ex[belly_class]))
+					if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
+						vs_fullness = vore_capacity_ex[belly_class]
+					else if(vore_selected.silicon_belly_overlay_preference == "Both")
+						vs_fullness += 1
 			if(!vs_fullness > 0) continue
 			if(resting)
 				if(!sprite_datum.has_vore_belly_resting_sprites)
 					continue
-				add_overlay(sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
+				//If we have glowy stomach sprites.
+				if(glowy_enabled)
+					var/mutable_appearance/MA = mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
+					MA.appearance_flags = KEEP_APART
+					add_overlay(MA)
+					add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class)))
+				else
+					add_overlay(sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
 			else
 				update_belly_lights(belly_class)
-				add_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
+				//If we have glowy stomach sprites.
+				if(glowy_enabled)
+					var/mutable_appearance/MA = mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
+					MA.appearance_flags = KEEP_APART
+					add_overlay(MA)
+					add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)))
+				else
+					add_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
 
 		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
 
 		if(resting && sprite_datum.has_rest_sprites)
 			icon_state = sprite_datum.get_rest_sprite(src)
-
 		if(sprite_datum.has_eye_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
 				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
@@ -1423,6 +1457,13 @@
 			undeploy()
 	..()
 
+/mob/living/silicon/robot/use_power()
+	if(cell && cell.charge < cell.maxcharge)
+		if(nutrition >= 1 * CYBORG_POWER_USAGE_MULTIPLIER)
+			adjust_nutrition(-(1 * CYBORG_POWER_USAGE_MULTIPLIER))
+			cell.charge += 10 * CYBORG_POWER_USAGE_MULTIPLIER
+	..()
+
 // Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
 /mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
 	if(given_type == /obj/item/borg/upgrade/basic/vtec)
@@ -1530,3 +1571,14 @@
 	if(issilicon(user))
 		return TRUE
 	return FALSE
+
+/mob/living/silicon/robot/verb/purge_nutrition()
+	set name = "Purge Nutrition"
+	set category = "Abilities.Vore"
+	set desc = "Allows you to clear out most of your nutrition if needed."
+
+	if (stat != CONSCIOUS || nutrition <= 1000)
+		return
+	nutrition = 1000
+	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
+	return TRUE

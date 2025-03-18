@@ -17,7 +17,7 @@
 /obj/machinery/computer/crew/Destroy()
 	qdel(crew_monitor)
 	crew_monitor = null
-	..()
+	. = ..()
 
 /obj/machinery/computer/crew/attack_ai(mob/user)
 	attack_hand(user)

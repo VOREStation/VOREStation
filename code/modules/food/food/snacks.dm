@@ -111,6 +111,11 @@
 
 	if(istype(M, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
+
+		if(!M.consume_liquid_belly)
+			if(liquid_belly_check())
+				to_chat(user, span_infoplain("[user == M ? "You can't" : "\The [M] can't"] consume that, it contains something produced from a belly!"))
+				return FALSE
 		var/swallow_whole = FALSE
 		var/obj/belly/belly_target				// These are surprise tools that will help us later
 
@@ -398,7 +403,7 @@
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
-			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
+			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
 	On_Consume(user)
 

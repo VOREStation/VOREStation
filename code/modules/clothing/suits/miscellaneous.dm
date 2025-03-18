@@ -1129,19 +1129,19 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/croppedhoodie/croppier
-    name = "high cropped hoodie"
-    desc = "This style of hoodie is worn by those that wish to display ample amounts of midriff, or never threw out their childhood apparel. The hood is cosmetic, and non-functional."
-    icon_state = "croppierhoodie"
+	name = "high cropped hoodie"
+	desc = "This style of hoodie is worn by those that wish to display ample amounts of midriff, or never threw out their childhood apparel. The hood is cosmetic, and non-functional."
+	icon_state = "croppierhoodie"
 
 /obj/item/clothing/suit/storage/croppedhoodie/croppierer
-    name = "very high cropped hoodie"
-    desc = "This style of hoodie is worn by those that wish to display ample amounts of underboob, and love the breeze. Comes with a free 'functionally_nude' sticker. The hood is cosmetic, and non-functional."
-    icon_state = "highcrophoodie"
+	name = "very high cropped hoodie"
+	desc = "This style of hoodie is worn by those that wish to display ample amounts of underboob, and love the breeze. Comes with a free 'functionally_nude' sticker. The hood is cosmetic, and non-functional."
+	icon_state = "highcrophoodie"
 
 /obj/item/clothing/suit/storage/croppedhoodie/croppiest
-    name = "super cropped hoodie"
-    desc = "This style of hoodie is worn by those that have little respect for the concept of a hoodie. Often seen in nightclubs and your daughter's wardrdobe. The hood is cosmetic, and non-functional."
-    icon_state = "supercroppedhoodie"
+	name = "super cropped hoodie"
+	desc = "This style of hoodie is worn by those that have little respect for the concept of a hoodie. Often seen in nightclubs and your daughter's wardrdobe. The hood is cosmetic, and non-functional."
+	icon_state = "supercroppedhoodie"
 
 //Drive jacket
 /obj/item/clothing/suit/storage/drive
@@ -1158,7 +1158,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/punkvest
-    name = "punk vest"
-    desc = "For the spiritual rebels that nevertheless wish to conform to standard goth trends. You're totally showing them your anti-authority spunk."
-    icon_state = "punkvest"
-    body_parts_covered = CHEST|ARMS
+	name = "punk vest"
+	desc = "For the spiritual rebels that nevertheless wish to conform to standard goth trends. You're totally showing them your anti-authority spunk."
+	icon_state = "punkvest"
+	body_parts_covered = CHEST|ARMS

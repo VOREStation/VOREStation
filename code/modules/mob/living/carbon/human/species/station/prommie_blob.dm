@@ -428,6 +428,8 @@
 		B.forceMove(blob)
 		B.owner = blob
 
+	soulgem.owner = blob
+
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
 
@@ -494,6 +496,8 @@
 	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
+
+	soulgem.owner = src
 
 	//vore_organs.Cut()
 

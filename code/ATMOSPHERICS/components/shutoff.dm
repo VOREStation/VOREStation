@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 
 /obj/machinery/atmospherics/valve/shutoff/Destroy()
 	GLOB.shutoff_valves -= src
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/valve/shutoff/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
