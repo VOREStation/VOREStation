@@ -18,8 +18,7 @@
 	if(teleport_delay <= 0) //just try to teleport immediately.
 		try_tele(thing)
 		return
-	addtimer(CALLBACKteleport_delay)
-		try_tele(thing)
+	addtimer(CALLBACK(src, PROC_REF(try_tele), thing), teleport_delay, TIMER_DELETE_ME)
 
 /obj/belly/special/teleporter/process(wait)
 	if(istype(target))
