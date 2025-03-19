@@ -270,7 +270,7 @@
 		req_component_names[ct] = initial(ct.name)
 
 /obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
-	..()
+	. = ..()
 	if(building)
 		frame_type = type
 		state = FRAME_PLACED

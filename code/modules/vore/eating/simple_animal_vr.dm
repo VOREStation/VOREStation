@@ -27,11 +27,12 @@
 	if(istype(src, /mob/living/simple_mob/animal/passive/mouse) && !T.ckey)
 		// Mice can't eat logged out players!
 		return
-	if(client && IsAdvancedToolUser())
+	/*if(client && IsAdvancedToolUser()) Mob QOL, not everything can be grabbed and nobody wants wiseguy gotchas for trying.
 		to_chat(src, span_warning("Put your hands to good use instead!"))
 		return
+	*/
 	feed_grabbed_to_self(src,T)
-	update_icon()
+	//update_icon() CHOMPEdit
 
 /mob/living/simple_mob/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
 	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.
@@ -56,9 +57,12 @@
 	if(!vore_selected)
 		to_chat(user, span_warning("[src] isn't planning on eating anything much less digesting it."))
 		return
+/*ChompStation edit: This prevented some flexibility with mob vore and the returned message was highly unprofessional.
+
 	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
 		to_chat(user, span_warning("This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you."))
 		return
+*/
 	if(vore_selected.digest_mode == DM_HOLD)
 		var/confirm = tgui_alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", list("Enable", "Cancel"))
 		if(confirm == "Enable")
@@ -116,3 +120,43 @@
 	if(isweakref(target))
 		var/mob/living/L = target.resolve()
 		LAZYREMOVE(prey_excludes, L) // It's fine to remove a null from the list if we couldn't resolve L
+
+/mob/living/simple_mob/proc/nutrition_heal()
+	set name = "Nutrition Heal"
+	set category = "Abilities.Mob"
+	set desc = "Slowly regenerate health using nutrition."
+
+	if(nutrition < 10)
+		to_chat(src, span_warning("You are too hungry to regenerate health."))
+		return
+	var/heal_amount = tgui_input_number(src, "Input the amount of health to regenerate at the rate of 10 nutrition per second per hitpoint. Current health: [health] / [maxHealth]", "Regenerate health.", 1, min_value=1)
+	if(!heal_amount)
+		return
+	heal_amount = CLAMP(heal_amount, 1, maxHealth - health)
+	heal_amount = CLAMP(heal_amount, 1, nutrition / 10)
+	if(do_after (src, 10 * heal_amount))
+		nutrition -= 10 * heal_amount
+		if(heal_amount < getBruteLoss())
+			adjustBruteLoss(-heal_amount)
+			return
+		heal_amount = heal_amount - getBruteLoss()
+		adjustBruteLoss(-getBruteLoss())
+		if(heal_amount < getFireLoss())
+			adjustFireLoss(-heal_amount)
+			return
+		heal_amount = heal_amount - getFireLoss()
+		adjustFireLoss(-getFireLoss())
+		if(heal_amount < getOxyLoss())
+			adjustOxyLoss(-heal_amount)
+			return
+		heal_amount = heal_amount - getOxyLoss()
+		adjustOxyLoss(-getOxyLoss())
+		if(heal_amount < getToxLoss())
+			adjustToxLoss(-heal_amount)
+			return
+		heal_amount = heal_amount - getToxLoss()
+		adjustToxLoss(-getToxLoss())
+		if(heal_amount < getCloneLoss())
+			adjustCloneLoss(-heal_amount)
+			return
+		adjustCloneLoss(-getCloneLoss())

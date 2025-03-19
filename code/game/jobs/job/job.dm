@@ -212,6 +212,8 @@
 		return TRUE
 	*/
 
+/datum/job/proc/update_limit(var/comperator)
+	return
 
 // Check client-specific availability rules.
 /datum/job/proc/player_has_enough_pto(client/C)

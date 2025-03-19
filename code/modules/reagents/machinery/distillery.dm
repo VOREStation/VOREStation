@@ -99,7 +99,7 @@
 		qdel(OutputBeaker)
 		OutputBeaker = null
 
-	..()
+	. = ..()
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/examine(mob/user)
 	. = ..()

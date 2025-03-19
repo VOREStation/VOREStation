@@ -1112,7 +1112,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/image/wing_image = get_wing_image(FALSE)
 
-	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER

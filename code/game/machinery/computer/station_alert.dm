@@ -25,7 +25,7 @@
 /obj/machinery/computer/station_alert/Destroy()
 	alarm_monitor.unregister_alarm(src)
 	qdel(alarm_monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	add_fingerprint(user)

@@ -194,6 +194,10 @@
 			var/mob/living/carbon/human/H = target
 			var/obj/item/organ/external/affected //VOREStation Edit - Moved this outside this if
 			if(istype(H))
+				if(!H.consume_liquid_belly)
+					if(liquid_belly_check())
+						to_chat(user, span_infoplain("[user == H ? "You can't" : "\The [H] can't"] take that, it contains something produced from a belly!"))
+						return
 				affected = H.get_organ(user.zone_sel.selecting) //VOREStation Edit - See above comment.
 				if(!affected)
 					to_chat(user, span_danger("\The [H] is missing that limb!"))

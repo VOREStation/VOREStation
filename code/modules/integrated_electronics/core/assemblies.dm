@@ -23,8 +23,8 @@
 	return ..()
 
 /obj/item/electronic_assembly/Destroy()
-	battery = null // It will be qdel'd by ..() if still in our contents
 	STOP_PROCESSING(SSobj, src)
+	battery = null // It will be qdel'd by ..() if still in our contents
 	return ..()
 
 /obj/item/electronic_assembly/process()
