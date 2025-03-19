@@ -12510,6 +12510,9 @@
 "Ab" = (
 /obj/machinery/light,
 /obj/structure/closet/excavation,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenoarch_storage)
 "Ac" = (
@@ -20172,6 +20175,9 @@
 /obj/item/clothing/gloves/sterile/latex,
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/glasses/science,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenoarch_storage)
 "QS" = (
@@ -21382,13 +21388,17 @@
 	color = "#42038a";
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenoarch_storage)
