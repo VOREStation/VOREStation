@@ -33,6 +33,6 @@
 	if(!istype(target))
 		return
 	if(isturf(target)) // if it's a turf, we dont need to do anything else, just teleport to it
-		thing.forceMove(T)
+		thing.forceMove(target)
 	else
 		thing.forceMove(target_turf ? get_turf(target) : target )
