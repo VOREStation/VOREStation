@@ -82,7 +82,7 @@
 /obj/item/clothing/head/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/head/justice,)//Prevent infinite loops and bad hats.
+		var/blocked = list(src.type)//Prevent infinite loops and bad hats.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/head, blocked)
 
 /obj/item/clothing/head/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
@@ -304,8 +304,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/global/clothing_choices
 
-/obj/item/clothing/glasses/chameleon/New()
-	..()
+/obj/item/clothing/glasses/chameleon/Initialize(mapload)
+	. = ..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses, list(src.type))
 

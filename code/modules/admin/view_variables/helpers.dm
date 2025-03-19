@@ -6,27 +6,25 @@
 
 /atom/get_view_variables_header()
 	return {"
-		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>
-		<br><font size='1'>
-		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
-		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
-		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
-		</font>
+		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'>"} + span_bold("[src]") + {"</a>
+		<br>
+		"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>") + {"
+		"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>") + {"
+		"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>") + {"
 		"}
 
 /mob/living/get_view_variables_header()
 	return {"
-		<a href='byond://?_src_=vars;[HrefToken()];rename=\ref[src]'><b>[src]</b></a><font size='1'>
-		<br><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
-		<br><a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>
+		<a href='byond://?_src_=vars;[HrefToken()];rename=\ref[src]'>"} + span_bold("[src]") + {"</a>
+		"} + span_small("<br><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>") + {"
+		"} + span_small("<br><a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>") + {"
 		<br>
-		BRUTE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>
-		FIRE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>
-		TOXIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>
-		OXY:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>
-		CLONE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>
-		BRAIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
-		</font>
+		"} + span_small("BRUTE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>") + {"
+		"} + span_small("FIRE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>") + {"
+		"} + span_small("TOXIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>") + {"
+		"} + span_small("OXY:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>") + {"
+		"} + span_small("CLONE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>") + {"
+		"} + span_small("BRAIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>") + {"
 		"}
 
 //This entire file needs to be removed eventually
@@ -174,21 +172,24 @@
 /client/VV_ckey_edit()
 	return list("key", "ckey")
 
-/datum/proc/may_edit_var(var/user, var/var_to_edit)
+/datum/proc/may_edit_var(var/user, var/var_to_edit) //User must be a CLIENT that is passed to this.
 	if(!user)
 		return FALSE
+	if(ismob(user)) //Failsafe catch in case someone feeds a mob into us.
+		var/mob/living = user
+		user = living.client
 	if(!(var_to_edit in vars))
 		to_chat(user, span_warning("\The [src] does not have a var '[var_to_edit]'"))
 		return FALSE
 	if(var_to_edit in VV_static())
 		return FALSE
-	if((var_to_edit in VV_secluded()) && !check_rights(R_ADMIN|R_DEBUG, FALSE, C = user))
+	if((var_to_edit in VV_secluded()) && !check_rights_for(user, R_ADMIN|R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_locked()) && !check_rights(R_DEBUG, C = user))
+	if((var_to_edit in VV_locked()) && !check_rights_for(user, R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_ckey_edit()) && !check_rights(R_SPAWN|R_DEBUG, C = user))
+	if((var_to_edit in VV_ckey_edit()) && !check_rights_for(user, R_SPAWN|R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_icon_edit_lock()) && !check_rights(R_FUN|R_DEBUG, C = user))
+	if((var_to_edit in VV_icon_edit_lock()) && !check_rights_for(user, R_FUN|R_DEBUG))
 		return FALSE
 	return TRUE
 

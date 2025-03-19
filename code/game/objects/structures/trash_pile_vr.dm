@@ -29,7 +29,7 @@
 
 	var/global/list/allocated_gamma = list()
 
-/obj/structure/trash_pile/Initialize()
+/obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
 	icon_state = pick(
 		"pile1",
@@ -351,8 +351,8 @@
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 	spawn_types = list(
-    /mob/living/simple_mob/animal/passive/mouse= 100,
-    /mob/living/simple_mob/animal/passive/cockroach = 25)
+	/mob/living/simple_mob/animal/passive/mouse= 100,
+	/mob/living/simple_mob/animal/passive/cockroach = 25)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

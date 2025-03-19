@@ -165,7 +165,7 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/autoname
 	var/static/list/by_area
 
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(!A)
@@ -228,7 +228,7 @@ var/global/list/engineering_networks = list(
 	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	START_MACHINE_PROCESSING(src)
-	sense_proximity(callback = /atom/proc/HasProximity)
+	sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	update_coverage()
 
 /obj/machinery/camera/proc/setPowerUsage()

@@ -29,12 +29,9 @@
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
+	flags = ON_BORDER
 
-/obj/machinery/station_map/New()
-	..()
-	flags |= ON_BORDER // Why? It doesn't help if its not density
-
-/obj/machinery/station_map/Initialize()
+/obj/machinery/station_map/Initialize(mapload)
 	. = ..()
 	holomap_datum = new()
 	original_zLevel = loc.z
@@ -253,7 +250,7 @@
 	var/filter = HOLOMAP_FILTER_STATIONMAP
 	var/id = "generic"
 
-/obj/effect/landmark/holomarker/Initialize()
+/obj/effect/landmark/holomarker/Initialize(mapload)
 	. = ..()
 	var/datum/holomap_marker/holomarker = new()
 	holomarker.id = id

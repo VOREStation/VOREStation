@@ -55,7 +55,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	return name
 
 /datum/admin_secret_item/proc/can_view(var/mob/user)
-	return check_rights(permissions, 0, user)
+	return check_rights_for(user.client, permissions)
 
 /datum/admin_secret_item/proc/can_execute(var/mob/user)
 	if(can_view(user))

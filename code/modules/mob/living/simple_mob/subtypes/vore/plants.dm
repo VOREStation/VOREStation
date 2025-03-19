@@ -41,6 +41,8 @@
 /mob/living/simple_mob/vore/mantrap/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "trap"
@@ -71,6 +73,8 @@
 
 /mob/living/simple_mob/vore/mantrap/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
+		return
+	if(src.stat)
 		return
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -132,6 +136,8 @@
 
 /mob/living/simple_mob/vore/pitcher/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

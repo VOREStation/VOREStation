@@ -37,7 +37,7 @@
 		icon_state += "off"
 		update_use_power(USE_POWER_OFF)
 
-/obj/machinery/atmospherics/trinary/mixer/Initialize()
+/obj/machinery/atmospherics/trinary/mixer/Initialize(mapload)
 	. = ..()
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_MIXER

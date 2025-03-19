@@ -57,7 +57,7 @@
 	var/selected_cat
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/uplink/hidden/Initialize()
+/obj/item/uplink/hidden/Initialize(mapload)
 	. = ..()
 	if(!isitem(loc))
 		return INITIALIZE_HINT_QDEL
@@ -174,7 +174,7 @@
 				"items" = (category == selected_cat ? list() : null)
 			)
 		for(var/datum/uplink_item/item in category.items)
-			var/cost = item.cost(src, user) || "???"
+			var/cost = item.cost(src, user.mind.tcrystals) || "???"
 			cat["items"] += list(list(
 				"name" = item.name,
 				"cost" = cost,
@@ -217,8 +217,8 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
-/obj/item/radio/uplink/Initialize()
-	..()
+/obj/item/radio/uplink/Initialize(mapload)
+	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
@@ -237,6 +237,6 @@
 /obj/item/radio/headset/uplink
 	traitor_frequency = 1445
 
-/obj/item/radio/headset/uplink/Initialize()
+/obj/item/radio/headset/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)

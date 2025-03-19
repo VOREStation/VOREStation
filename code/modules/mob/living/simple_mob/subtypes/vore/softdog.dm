@@ -97,6 +97,8 @@
 /mob/living/simple_mob/vore/woof/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -273,7 +275,7 @@
 	var/killswitch = FALSE
 
 
-/mob/living/simple_mob/vore/woof/hostile/aweful/Initialize()
+/mob/living/simple_mob/vore/woof/hostile/aweful/Initialize(mapload)
 	. = ..()
 	var/thismany = (rand(25,500)) / 100
 	resize(thismany, animate = FALSE, uncapped = TRUE, ignore_prefs = TRUE)

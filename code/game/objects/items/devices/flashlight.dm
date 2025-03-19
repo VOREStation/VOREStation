@@ -36,7 +36,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 
 	if(power_use && cell_type)
@@ -367,7 +367,7 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/flare/Initialize()
+/obj/item/flashlight/flare/Initialize(mapload)
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	. = ..()
 
@@ -430,7 +430,7 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/flashlight/glowstick/Initialize()
+/obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
 	. = ..()
 

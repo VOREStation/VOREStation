@@ -75,7 +75,7 @@
 	var/scan_level
 	var/precision_coeff
 
-/obj/machinery/dna_scannernew/Initialize()
+/obj/machinery/dna_scannernew/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	RefreshParts()
@@ -298,7 +298,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/computer/scan_consolenew
@@ -356,10 +355,9 @@
 			if(prob(50))
 				qdel(src)
 				return
-		else
 	return
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 	for(var/i=0;i<3;i++)
 		// Traitgenes Use bodyrecords
@@ -469,13 +467,13 @@
 		occupantData["name"] = WC.real_name
 		occupantData["stat"] = WC.stat
 		occupantData["isViableSubject"] = 1
-		// Traitgenes NO_SCAN and Synthetics cannot be mutated
+		// Traitgenes NO_DNA and Synthetics cannot be mutated
 		var/allowed = TRUE
 		if(WC.isSynthetic())
 			allowed = FALSE
 		if(ishuman(WC))
 			var/mob/living/carbon/human/H = WC
-			if(!H.species || (H.species.flags & NO_SCAN))
+			if(!H.species || (H.species.flags & NO_DNA))
 				allowed = FALSE
 		if(!allowed || (NOCLONE in WC.mutations) || !WC.dna)
 			occupantData["isViableSubject"] = 0

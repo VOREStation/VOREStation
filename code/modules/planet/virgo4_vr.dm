@@ -402,7 +402,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 			if(amount_soaked >= damage)
 				continue // No need to apply damage.
 
-			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked)
 			if(show_message)
 				to_chat(H, effect_message)
 
@@ -605,8 +605,8 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	name = "deep ocean"
 	alpha = 0
 
-/obj/machinery/power/smes/buildable/offmap_spawn/empty/New()
-	..(1)
+/obj/machinery/power/smes/buildable/offmap_spawn/empty/Initialize(mapload)
+	. = ..()
 	charge = 0
 	RCon = TRUE
 	input_level = input_level_max

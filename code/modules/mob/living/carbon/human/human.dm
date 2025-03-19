@@ -67,6 +67,7 @@
 		sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 		sync_organ_dna()
 	initialize_vessel()
+	regenerate_icons()
 
 	AddComponent(/datum/component/personal_crafting)
 
@@ -1090,11 +1091,14 @@
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 	return L && L.is_bruised()
 
-/mob/living/carbon/human/proc/rupture_lung()
+/mob/living/carbon/human/proc/rupture_lung(var/gradual)
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 
 	if(L)
-		L.rupture()
+		if(gradual && (L.damage < (L.min_bruised_damage-1))) //We do slow ticking damage up to 9. After 9, we rupture completely.
+			L.damage++
+		else
+			L.rupture()
 
 /*
 /mob/living/carbon/human/verb/simulate()
@@ -1325,9 +1329,8 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	//This was the old location of initialize_vessel. A race condiiton happened here because of species code being JANK. This resulted in runtimes during unit test, but worked perfectly fine in game.
-	//Now, initialize_vessel has been moved to human/Initialize()
-	// addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
+	if(vessel)
+		initialize_vessel()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
@@ -1342,7 +1345,6 @@
 
 /mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
 	SHOULD_NOT_OVERRIDE(TRUE)
-	regenerate_icons()
 	make_blood()
 	if(vessel.total_volume < species.blood_volume)
 		vessel.maximum_volume = species.blood_volume
@@ -1484,20 +1486,6 @@
 		return flavor_text
 	else
 		return ..()
-
-/mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	if(isSynthetic())
-		return
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
-		return
-	if(isSynthetic())
-		return
-	..()
 
 /mob/living/carbon/human/has_brain()
 	if(internal_organs_by_name[O_BRAIN])
@@ -1802,7 +1790,7 @@
 			var/obj/item/organ/external/e = organs_by_name[name]
 			if(!e)
 				continue
-			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+			if((e.status & ORGAN_BROKEN && (!e.splinted || ((e.splinted in e.contents) && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
 				return 1
 	else
 		return ..()
@@ -1847,21 +1835,19 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
-/mob/living/carbon/human/verb/lay_down_left()
-	set name = "Rest-Left"
+/mob/living/carbon/human/verb/flip_lying()
+	set name = "Flip Resting Direction"
+	set category = "Abilities.General"
+	set desc = "Switch your horizontal direction while prone."
 
-	rest_dir = 1
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
-/mob/living/carbon/human/verb/lay_down_right()
-	set name = "Rest-Right"
-
-	rest_dir = 0
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(isnull(rest_dir))
+		rest_dir = FALSE
+	rest_dir = !rest_dir
+	update_transform(TRUE)
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier

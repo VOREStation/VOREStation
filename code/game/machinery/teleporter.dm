@@ -13,14 +13,11 @@
 						 //Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
 	var/datum/tgui_module/teleport_control/teleport_control
 
-/obj/machinery/computer/teleporter/New()
+/obj/machinery/computer/teleporter/Initialize(mapload)
 	id = "[rand(1000, 9999)]"
-	..()
+	. = ..()
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
-
-/obj/machinery/computer/teleporter/Initialize()
-	. = ..()
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
@@ -142,7 +139,7 @@
 	circuit = /obj/item/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
-/obj/machinery/teleport/hub/Initialize()
+/obj/machinery/teleport/hub/Initialize(mapload)
 	. = ..()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 	default_apply_parts()
@@ -210,7 +207,7 @@
 	circuit = /obj/item/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
-/obj/machinery/teleport/station/Initialize()
+/obj/machinery/teleport/station/Initialize(mapload)
 	. = ..()
 	add_overlay("controller-wires")
 	default_apply_parts()

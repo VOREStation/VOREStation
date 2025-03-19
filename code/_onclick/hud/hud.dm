@@ -341,15 +341,15 @@ var/list/global_huds = list(
 	if(!ismob(mymob))
 		return 0
 
+	toggle_palette = new()
+	palette_down = new()
+	palette_up = new()
 	mymob.create_mob_hud(src)
 
 	// Past this point, mymob.hud_used is set
 
-	toggle_palette = new()
 	toggle_palette.set_hud(src)
-	palette_down = new()
 	palette_down.set_hud(src)
-	palette_up = new()
 	palette_up.set_hud(src)
 
 	persistant_inventory_update()

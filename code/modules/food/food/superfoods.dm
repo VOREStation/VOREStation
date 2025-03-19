@@ -182,7 +182,7 @@
 	nutriment_amt = 4
 	volume = 80
 
-/obj/item/reagent_containers/food/snacks/chaoscakeslice/Initialize()
+/obj/item/reagent_containers/food/snacks/chaoscakeslice/Initialize(mapload)
 	. = ..()
 	var/i = rand(1,6)
 	icon_state = "chaoscake_slice-[i]"

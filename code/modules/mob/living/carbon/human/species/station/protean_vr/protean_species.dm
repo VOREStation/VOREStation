@@ -18,7 +18,7 @@
 	flesh_color = "#505050"
 	base_color = "#FFFFFF" //Color mult, start out with this
 
-	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_PAIN
+	flags =            NO_DNA | NO_SLEEVE | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_PAIN
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR | HAS_LIPS
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	health_hud_intensity = 2
@@ -130,6 +130,15 @@
 		"dragon_eyesNormal" = "#FFFFFF"
 	)
 
+	var/list/dullahan_overlays = list(
+		"dullahanbody" = "#FFFFFF",
+		"dullahanhead" = "#FFFFFF",
+		"dullahanmetal" = "#FFFFFF",
+		"dullahaneyes" = "#FFFFFF",
+		"dullahandecals" = "#FFFFFF",
+		"dullahanextended" = "#FFFFFF"
+		// loads the icons from the DMI file in that order on spawn. they are overlay 1-6.
+	)
 	var/pseudodead = 0
 
 /datum/species/protean/New()

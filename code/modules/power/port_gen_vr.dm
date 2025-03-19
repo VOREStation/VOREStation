@@ -93,10 +93,8 @@
 	var/power_gen = 1000 // Enough to power a single APC. 4000 output with T4 capacitor.
 	var/irradiate = TRUE // RTGs irradiate surroundings, but only when panel is open.
 
-/obj/machinery/power/rtg/Initialize()
+/obj/machinery/power/rtg/Initialize(mapload)
 	. = ..()
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 	connect_to_network()
 
@@ -251,7 +249,7 @@
 /obj/machinery/power/rtg/abductor/built
 	icon_state = "core"
 
-/obj/machinery/power/rtg/abductor/built/Initialize()
+/obj/machinery/power/rtg/abductor/built/Initialize(mapload)
 	. = ..()
 	cell = new(src)
 	RefreshParts()
@@ -265,7 +263,7 @@
 /obj/machinery/power/rtg/abductor/hybrid/built
 	icon_state = "coreb"
 
-/obj/machinery/power/rtg/abductor/hybrid/built/Initialize()
+/obj/machinery/power/rtg/abductor/hybrid/built/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/void/hybrid(src)
 	RefreshParts()
@@ -329,7 +327,7 @@
 	interact_offline = TRUE
 	density = FALSE
 
-/obj/machinery/power/rtg/reg/Initialize()
+/obj/machinery/power/rtg/reg/Initialize(mapload)
 	pixel_x = -32
 	. = ..()
 
@@ -460,7 +458,7 @@
 	var/time_per_sheet = 120		//fuel efficiency - how long 1 sheet lasts at power level 1
 	var/max_sheets = 100 		//max capacity of the hopper
 
-/obj/machinery/power/port_gen/large_altevian/Initialize()
+/obj/machinery/power/port_gen/large_altevian/Initialize(mapload)
 	.=..()
 	if(anchored)
 		connect_to_network()

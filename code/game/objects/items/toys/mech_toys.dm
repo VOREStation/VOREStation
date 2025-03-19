@@ -35,7 +35,7 @@
 	var/wins = 0 // This mech's win count in combat
 	var/losses = 0 // ...And their loss count in combat
 
-/obj/item/toy/mecha/Initialize()
+/obj/item/toy/mecha/Initialize(mapload)
 	. = ..()
 	desc = "Mini-Mecha action figure! Collect them all! Attack your friends or another mech with one to initiate epic mech combat! [desc]."
 	combat_health = max_combat_health

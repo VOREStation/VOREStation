@@ -66,11 +66,18 @@
 /obj/item/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
+		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = /atom/proc/HasProximity)
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
-/obj/item/assembly_holder/HasProximity(turf/T, atom/movable/AM, old_loc)
+/obj/item/assembly_holder/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
 	if(a_left)
 		a_left.HasProximity(T, AM, old_loc)
 	if(a_right)
@@ -170,8 +177,8 @@
 /obj/item/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"
 
-/obj/item/assembly_holder/timer_igniter/New()
-	..()
+/obj/item/assembly_holder/timer_igniter/Initialize(mapload)
+	. = ..()
 
 	var/obj/item/assembly/igniter/ign = new(src)
 	ign.secured = 1

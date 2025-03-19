@@ -63,13 +63,12 @@
 	var/dat = "<TT><b>Select an item:</b><br>"
 
 	if (contents.len == 0)
-		dat += "<font color = 'red'>No seeds loaded!</font>"
+		dat += span_red("No seeds loaded!")
 	else
 		for (var/O in item_quants)
 			if(item_quants[O] > 0)
 				var/N = item_quants[O]
-				dat += "<FONT color = 'blue'><B>[capitalize(O)]</B>:"
-				dat += " [N] </font>"
+				dat += span_blue(span_bold("[capitalize(O)]") + ": [N] ")
 				dat += "<a href='byond://?src=\ref[src];vend=[O]'>Vend</A>"
 				dat += "<br>"
 

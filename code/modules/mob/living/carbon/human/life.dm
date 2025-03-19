@@ -196,7 +196,7 @@
 	if(dna)
 		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
 			// random strange symptoms from organ/limb
-			custom_emote(VISIBLE_MESSAGE, "flinches slightly.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
 			switch(rand(1,4))
 				if(1)
 					adjustToxLoss(rand(2,8))
@@ -610,8 +610,8 @@
 
 		if(breath && should_have_organ(O_LUNGS))
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised() && prob(8))
-				rupture_lung()
+			if(!L.is_bruised())
+				rupture_lung(TRUE)
 
 		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
 		return 0
@@ -677,8 +677,8 @@
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			spawn(0) emote("gasp")
-		if(is_below_sound_pressure(get_turf(src)) && prob(8))	//No more popped lungs from choking/drowning
-			rupture_lung()
+		if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning. You also have ~20 seconds to get internals on before your lungs pop.
+			rupture_lung(TRUE)
 
 		var/ratio = inhale_pp/safe_pressure_min
 		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
@@ -798,13 +798,13 @@
 		if(breath.temperature >= species.heat_discomfort_level)
 
 			if(breath.temperature >= species.breath_heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
 			else if(breath.temperature >= species.breath_heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
 			else if(breath.temperature >= species.breath_heat_level_1)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_HOT))
 				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
@@ -814,13 +814,13 @@
 		else if(breath.temperature <= species.cold_discomfort_level)
 
 			if(breath.temperature <= species.breath_cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 			else if(breath.temperature <= species.breath_cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
 			else if(breath.temperature <= species.breath_cold_level_1)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
 				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
 				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
@@ -1241,14 +1241,12 @@
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
-	/* //Unused here, used downstream.
 	if(nutrition > 500 && noisy_full == TRUE)
 		var/belch_prob = 5 //Maximum belch prob.
 		if(nutrition < 4075)
 			belch_prob = ((nutrition-500)/3575)*5 //Scale belch prob with fullness if not already at max. If editing make sure the multiplier matches the max prob above.
 		if(prob(belch_prob))
 			src.emote("belch")
-	*/
 	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
 		recalculate_vis()
 		chemical_darksight = 1
@@ -1670,11 +1668,8 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc))
+		if(!surrounding_belly() && !previewing_belly) //VOREStation Add - Belly fullscreens safety
 			clear_fullscreen("belly")
-			clear_fullscreen("belly2")
-			clear_fullscreen("belly3")
-			clear_fullscreen("belly4")
 
 		if(CONFIG_GET(flag/welder_vision))
 			var/found_welder
@@ -1949,7 +1944,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
 		eye_blurry = max(2, eye_blurry)
 		if(traumatic_shock >= 80)
 			stuttering = max(stuttering, 5)
@@ -1961,7 +1956,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
 		if (prob(2))
 			if(traumatic_shock >= 80)
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
@@ -1985,7 +1980,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
 			if(prob(60))
 				emote("pain")
 		Weaken(20)

@@ -56,6 +56,9 @@
 	 * its inherent color, the colored paint applied on it, special color effect etc...
 	 */
 	var/list/atom_colours
+	/// Lazylist of all images to update when we change z levels
+	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
+	var/list/image/update_on_z
 
 /atom/New(loc, ...)
 	// Don't call ..() unless /datum/New() ever exists
@@ -151,7 +154,8 @@
 
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.
-/atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
+/atom/proc/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
 	return
 
 //Register listeners on turfs in a certain range
@@ -653,15 +657,16 @@
 	if(!isliving(src))
 		custom_edit_name = "<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
 	. += {"
-		[custom_edit_name]
-		<br><font size='1'>
+		[custom_edit_name]<br>
+		"}
+	var/content = {"
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
 		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
-		</font>
 		"}
+	. += span_small(content)
 	var/turf/T = get_turf(src)
-	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"
+	. += "<br>" + span_small("[ADMIN_COORDJMP(T)]")
 
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -826,14 +831,14 @@
 GLOBAL_LIST_EMPTY(icon_dimensions)
 
 /atom/proc/get_oversized_icon_offsets()
-    if (pixel_x == 0 && pixel_y == 0)
-        return list("x" = 0, "y" = 0)
-    var/list/icon_dimensions = get_icon_dimensions(icon)
-    var/icon_width = icon_dimensions["width"]
-    var/icon_height = icon_dimensions["height"]
-    return list(
-        "x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
-        "y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
+	if (pixel_x == 0 && pixel_y == 0)
+		return list("x" = 0, "y" = 0)
+	var/list/icon_dimensions = get_icon_dimensions(icon)
+	var/icon_width = icon_dimensions["width"]
+	var/icon_height = icon_dimensions["height"]
+	return list(
+		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
+		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
 
 /// Returns a list containing the width and height of an icon file

@@ -554,6 +554,10 @@
 	else
 		var/mob/living/L = target
 		if(!direct_target)
+			// Swarms are special scuffed critters. They must have density FALSE to swarm, but then they don't get hit.
+			// So we'll check before, just in case. Lying might gives a chance to dodge, however.
+			if(L.GetComponent(/datum/component/swarming) && L.stat != DEAD && !L.lying)
+				return TRUE
 			if(!L.density)
 				return FALSE
 	return TRUE
@@ -677,6 +681,9 @@
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier = 0)
 	if(!istype(target_mob))
+		return
+
+	if(target_mob.is_incorporeal())
 		return
 
 	if(target_mob in impacted_mobs)

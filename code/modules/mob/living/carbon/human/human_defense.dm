@@ -82,10 +82,10 @@ emp_act
 				drop_from_inventory(c_hand)
 				if(!isbelly(loc)) //VOREStation Add
 					if (affected.robotic >= ORGAN_ROBOT)
-						custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!", check_stat = TRUE)
 					else
 						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-						custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!", check_stat = TRUE)
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -390,6 +390,8 @@ emp_act
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+	if(src.is_incorporeal())
+		return
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
@@ -431,7 +433,7 @@ emp_act
 				I.forceMove(vore_selected)
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
-			if(canmove && !restrained())
+			if(canmove && !restrained() && !src.is_incorporeal())
 				if(isturf(O.loc))
 					if(can_catch(O))
 						put_in_active_hand(O)

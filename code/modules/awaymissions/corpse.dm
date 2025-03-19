@@ -30,10 +30,9 @@
 //	var/cause_of_death = null //TODO: set up a cause-of-death system. needs to support both damage types and actual wound types, so a body can have been bitten/stabbed/clawed/shot/burned/lasered/etc. to death
 	delete_me = TRUE
 
-/obj/effect/landmark/corpse/Initialize()
-	..()
+/obj/effect/landmark/corpse/Initialize(mapload)
+	. = ..()
 	createCorpse()
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
@@ -354,7 +353,7 @@
 	corpsehelmet = /obj/item/clothing/head/beret/solgov/sifguard
 	corpsegloves = /obj/item/clothing/gloves/duty
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
-	corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
+	//corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
 	corpseid = 1
 	corpseidjob = "Sif Defense Force Patrolman"
 

@@ -23,7 +23,7 @@
 	var/hole_size= NO_HOLE
 	var/invulnerable = FALSE
 
-/obj/structure/fence/Initialize()
+/obj/structure/fence/Initialize(mapload)
 	update_cut_status()
 	return ..()
 
@@ -129,7 +129,7 @@
 	var/lock_difficulty = 1	//multiplier to picking/bypassing time
 	var/keysound = 'sound/items/toolbelt_equip.ogg'
 
-/obj/structure/fence/door/Initialize()
+/obj/structure/fence/door/Initialize(mapload)
 	update_door_status()
 	return ..()
 

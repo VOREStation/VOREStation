@@ -418,7 +418,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			if(amount_soaked >= damage)
 				continue // No need to apply damage.
 
-			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked)
 			if(show_message)
 				to_chat(H, effect_message)
 
@@ -711,7 +711,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 		)
 
 
-/turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize()
+/turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize(mapload)
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/bigtree(src)
 

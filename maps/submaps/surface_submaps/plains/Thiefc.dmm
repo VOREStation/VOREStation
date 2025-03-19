@@ -1,39 +1,671 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/Thiefc)
-"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Thiefc)
-"d" = (/obj/structure/ore_box,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"e" = (/obj/structure/closet/crate,/obj/item/extinguisher,/obj/item/extinguisher,/obj/item/extinguisher,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"f" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"g" = (/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/obj/item/ore/coal,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"h" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"i" = (/obj/structure/closet/crate,/obj/item/lipstick,/obj/item/lipstick/black,/obj/item/lipstick/random,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"j" = (/obj/structure/table/steel,/obj/item/beartrap,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"k" = (/obj/vehicle/train/trolley,/obj/random/firstaid,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"l" = (/obj/structure/closet/crate,/obj/item/folder/blue,/obj/item/folder/red,/obj/item/folder/white,/obj/item/folder/yellow,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"m" = (/obj/structure/table/steel,/obj/item/paper{desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow."; name = "Note"},/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"n" = (/obj/vehicle/train/trolley,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"o" = (/obj/structure/closet/crate,/obj/item/cell/device/weapon,/obj/item/cell/device/weapon,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"p" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/ammo_box/b12g,/obj/item/ammo_magazine/ammo_box/b12g/practice,/obj/random/projectile/scrapped_gun,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Thiefc)
+"c" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/Thiefc)
+"d" = (
+/obj/structure/ore_box,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"e" = (
+/obj/structure/closet/crate,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"f" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"g" = (
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"h" = (
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"i" = (
+/obj/structure/closet/crate,
+/obj/item/lipstick,
+/obj/item/lipstick/black,
+/obj/item/lipstick/random,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"j" = (
+/obj/structure/table/steel,
+/obj/item/beartrap,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"k" = (
+/obj/vehicle/train/trolley,
+/obj/random/firstaid,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"l" = (
+/obj/structure/closet/crate,
+/obj/item/folder/blue,
+/obj/item/folder/red,
+/obj/item/folder/white,
+/obj/item/folder/yellow,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"m" = (
+/obj/structure/table/steel,
+/obj/item/paper{
+	desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow.";
+	name = "Note"
+	},
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"n" = (
+/obj/vehicle/train/trolley,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"o" = (
+/obj/structure/closet/crate,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"p" = (
+/obj/structure/closet/crate,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g/practice,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaa
-abcbbbbbcccccccbbbbbbbbba
-abccccccccdecccccbbbbbbba
-accccccccfghcchcccbbbbbba
-accccccchhhhihhccccbbbbba
-abcccccjhhkhhhlccccbbbbba
-abbccccmhhnhhhocccccbbbba
-abbbbbcchhhhhhpccccccbbba
-abbbbcccchhhhchccccccbbba
-abbbcccccchhcccccccccbbba
-abbbbccchhhhccccccccbbbba
-abbbbbhhhhhcccccccccbbbba
-abbbbbhhhccccccccccbbbbba
-abbbccccccccccccccbbbbbba
-abbbbbcccccccccccbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbba
-aaaaaaaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+b
+c
+b
+b
+b
+c
+b
+b
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+c
+c
+c
+b
+b
+c
+b
+b
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+h
+h
+c
+c
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+c
+c
+j
+m
+c
+c
+c
+c
+h
+h
+c
+c
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+c
+h
+h
+h
+h
+c
+c
+h
+h
+h
+c
+c
+b
+b
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+c
+c
+f
+h
+h
+h
+h
+h
+c
+h
+h
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+c
+d
+g
+h
+k
+n
+h
+h
+h
+h
+h
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(12,1,1) = {"
+a
+c
+e
+h
+h
+h
+h
+h
+h
+h
+h
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+c
+c
+c
+i
+h
+h
+h
+h
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+c
+c
+c
+h
+h
+h
+h
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+c
+c
+h
+h
+l
+o
+p
+h
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(16,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(17,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(18,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+b
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(21,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(22,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(23,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(24,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(25,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

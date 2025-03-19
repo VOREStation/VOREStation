@@ -23,8 +23,8 @@
 	else
 		return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/New()
-	..()
+/obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload)
+	. = ..()
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/remove_label
 	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/setlight
@@ -50,12 +50,12 @@
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/New(var/newloc,var/datum/seed/newseed)
+/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload,var/datum/seed/newseed)
 	//VOREStation Addition Start
 	if(istype(loc, /turf/simulated/open) || istype(loc, /turf/space))
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	//VOREStation Addition End
-	..()
+	. = ..()
 	seed = newseed
 	dead = 0
 	age = 1
@@ -89,4 +89,4 @@
 	for(var/obj/effect/plant/plant in get_turf(src))
 		if(plant.invisibility == INVISIBILITY_MAXIMUM)
 			plant.invisibility = initial(plant.invisibility)
-	..()
+	. = ..()

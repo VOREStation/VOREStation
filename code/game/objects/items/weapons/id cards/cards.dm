@@ -27,7 +27,7 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-/obj/item/card/New()
+/obj/item/card/Initialize(mapload)
 	. = ..()
 	reset_icon()
 
@@ -275,7 +275,7 @@
 	name = "Robot Miner ID"
 	rank = JOB_SHAFT_MINER
 
-/obj/item/card/id/cargo/miner/borg/Initialize()
+/obj/item/card/id/cargo/miner/borg/Initialize(mapload)
 	. = ..()
 	if(isrobot(loc?.loc))
 		R = loc.loc
@@ -299,4 +299,4 @@
 		UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 		R = null
 		last_robot_loc = null
-	..()
+	. = ..()
