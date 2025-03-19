@@ -2183,6 +2183,7 @@
 #include "code\modules\client\preferences\types\character\general\01_basic.dm"
 #include "code\modules\client\preferences\types\character\general\03_body.dm"
 #include "code\modules\client\preferences\types\game\admin.dm"
+#include "code\modules\client\preferences\types\game\adult.dm"
 #include "code\modules\client\preferences\types\game\auto_fit_viewport.dm"
 #include "code\modules\client\preferences\types\game\chat.dm"
 #include "code\modules\client\preferences\types\game\fps.dm"

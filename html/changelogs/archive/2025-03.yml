@@ -359,3 +359,34 @@
   - rscadd: Added a personal space bubble trait that takes of priority over the biting
       trait, which dodges all attempts at hugging, booping, patting, licking, sniffing
       or hand shaking. This can also be toggled on and off.
+2025-03-19:
+  Ace:
+  - rscadd: Lamias now have unique belly text!
+  Diana:
+  - rscadd: Artifacts now have a coinflip's chance of spawning active when unearthed
+      (EXCLUDING gas artifacts)
+  - qol: Artifacts are always visible at any depth now.
+  - qol: Artifacts no longer apply a Z wide spawn, it will only apply effects for
+      those within a small range.
+  - bugfix: Artifacts that have a TOUCH EFFECT but not a TOUCH TRIGGER can now be
+      ACTIVATED and you can have the effect happen to you by bumping into it, having
+      it bump into you, or touching it without gloves
+  - balance: sec fed uniform no longer gives 50% melee armor. Gives same as Cyberpunk
+      vest and also costs 2 points.
+  - balance: 'Fed uniforms now give resistances based on other common loadout items.
+      (Ex: Hazard vest, labcoat)'
+  - balance: Hazard vests now give 20% rad resistance
+  Kash, Diana:
+  - bugfix: some protean rig issues
+  - bugfix: Your DNA will no longer randomly eat itself under certain circumstances
+  - bugfix: Protean rigs no longer delete theirselves
+  - bugfix: Protean rigs no longer delete clothing blocking their deployment
+  Kashargul:
+  - code_imp: enables more grep checks
+  - bugfix: an exploit to detect invisible entities
+  SatinIsle:
+  - bugfix: Fixed personal space trait applying nothing and reactive biting applying
+      both effects.
+  TeleTubby2:
+  - rscadd: The belly visibility pref is now a client one, so you don't need to adjust
+      it on a per-character basis anymore.
