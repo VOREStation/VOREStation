@@ -101,6 +101,7 @@
 		/obj/item/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/reagent_containers/food/snacks/bunbun
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/hotdog
 	appliance = GRILL
@@ -118,6 +119,7 @@
 		/obj/item/reagent_containers/food/snacks/meat/human,
 	)
 	result = /obj/item/reagent_containers/food/snacks/human/kabob
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/kabob	//Do not put before humankabob
 	appliance = GRILL
@@ -162,6 +164,7 @@
 		/obj/item/clothing/head/wizard/fake,
 	)
 	result = /obj/item/reagent_containers/food/snacks/spellburger
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/spellburger
 	appliance = GRILL

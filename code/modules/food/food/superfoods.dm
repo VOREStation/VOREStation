@@ -10,6 +10,7 @@
 			/obj/item/reagent_containers/food/snacks/meat/
 		)
 	result = /obj/structure/chaoscake
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layertwo
 	reagents = list(REAGENT_ID_FLOUR = 30, REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9, )
@@ -21,6 +22,7 @@
 			/obj/item/reagent_containers/food/snacks/dough
 		)
 	result = /obj/item/chaoscake_layer
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layerthree
 	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_DEATHBELL = 10)
@@ -31,6 +33,7 @@
 			/obj/item/reagent_containers/food/snacks/dough
 		)
 	result = /obj/item/chaoscake_layer/three
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layerfour
 	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_MILKSHAKE = 30)
@@ -41,12 +44,14 @@
 			/obj/item/reagent_containers/food/snacks/dough
 		)
 	result = /obj/item/chaoscake_layer/four
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layerfive
 	reagents = list(REAGENT_ID_FLOUR = 20, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_BLOOD = 30)
 	fruit = list(PLANT_TOMATO = 2)
 	items = list() //supposed to be made with lobster, still has to be ported.
 	result = /obj/item/chaoscake_layer/five
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layersix
 	reagents = list(REAGENT_ID_FLOUR = 20, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_SPRINKLES = 5)
@@ -60,6 +65,7 @@
 			/obj/item/reagent_containers/food/snacks/chocolatebar
 		)
 	result = /obj/item/chaoscake_layer/six
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layerseven
 	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_DEVILSKISS = 20)
@@ -70,6 +76,7 @@
 			/obj/item/reagent_containers/food/snacks/dough
 		)
 	result = /obj/item/chaoscake_layer/seven
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layereight
 	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_CREAM = 20)
@@ -80,12 +87,14 @@
 			/obj/item/reagent_containers/food/snacks/dough
 		)
 	result = /obj/item/chaoscake_layer/eight
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/chaoscake_layernine
 	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_BLOOD = 10)
 	fruit = list(PLANT_GOLDAPPLE = 1)
 	items = list()
 	result = /obj/item/chaoscake_layer/nine
+	wiki_flag = WIKI_SPOILER
 
 /obj/structure/chaoscake
 	name = "An unfinished cake"

@@ -49,6 +49,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.heat()
@@ -480,6 +481,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/doughslice
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/dankpocket
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)

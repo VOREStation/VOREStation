@@ -655,6 +655,7 @@
 	description = "A slimy liquid which appears to rapidly clot internal hemorrhages by increasing the effectiveness of platelets at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/osteodaxon/slime
 	name = REAGENT_SLIMEBONEFIXER
@@ -662,6 +663,7 @@
 	description = "A slimy liquid which can be used to heal bone fractures at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/peridaxon/slime
 	name = REAGENT_SLIMEORGANFIXER
@@ -669,6 +671,7 @@
 	description = "A slimy liquid which is used to encourage recovery of internal organs and nervous systems in low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
+	wiki_flag = WIKI_SPOILER
 
 
 // **************

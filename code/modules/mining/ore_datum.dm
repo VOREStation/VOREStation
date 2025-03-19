@@ -16,6 +16,7 @@
 		)
 	var/xarch_source_mineral = REAGENT_ID_IRON
 	var/reagent = REAGENT_ID_SILICATE
+	var/wiki_flag = 0
 
 /ore/New()
 	. = ..()

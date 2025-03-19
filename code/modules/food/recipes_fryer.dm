@@ -168,6 +168,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/chaos
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/funnelcake
 	appliance = FRYER

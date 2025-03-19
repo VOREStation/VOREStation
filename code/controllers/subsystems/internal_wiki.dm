@@ -35,6 +35,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
 
+	VAR_PRIVATE/list/spoiler_entries = list()
+
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
 	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkrecipe.len]  | C: [chemreact.len]  | B: [botseeds.len] "
 	return ..()
@@ -89,6 +91,9 @@ SUBSYSTEM_DEF(internal_wiki)
 	// assemble ore wiki
 	for(var/N in GLOB.ore_data)
 		var/ore/OR = GLOB.ore_data[N]
+		if(OR.wiki_flag & WIKI_SPOILER)
+			spoiler_entries.Add(OR.type)
+			continue
 		var/datum/internal_wiki/page/P = new()
 		P.ore_assemble(OR)
 		ores["[OR.display_name]"] = P
@@ -98,6 +103,9 @@ SUBSYSTEM_DEF(internal_wiki)
 	// assemble material wiki
 	for(var/mat in name_to_material)
 		var/datum/material/M = name_to_material[mat]
+		if(M.wiki_flag & WIKI_SPOILER)
+			spoiler_entries.Add(M.type)
+			continue
 		var/datum/internal_wiki/page/P = new()
 		var/id = "[M.display_name]"
 		P.material_assemble(M)
@@ -106,10 +114,11 @@ SUBSYSTEM_DEF(internal_wiki)
 		pages.Add(P)
 
 	// assemble particle smasher wiki
-	var/list/smasher_recip = list()
 	for(var/D in subtypesof(/datum/particle_smasher_recipe))
-		smasher_recip += new D
-	for(var/datum/particle_smasher_recipe/R in smasher_recip)
+		if(initial(D:wiki_flag) & WIKI_SPOILER)
+			spoiler_entries.Add(D)
+			continue
+		var/datum/particle_smasher_recipe/R = new D()
 		var/datum/internal_wiki/page/P = new()
 		var/res_path = new R.result;
 		var/res_name = initial(res_path:name)
@@ -119,17 +128,21 @@ SUBSYSTEM_DEF(internal_wiki)
 			smashers[id] = P
 			searchcache_smasher.Add(id)
 			pages.Add(P)
+		qdel(R)
 
 	// assemble chemical reactions wiki
 	for(var/reagent in SSchemistry.chemical_reagents)
 		if(allow_reagent(reagent))
 			var/datum/internal_wiki/page/P = new()
 			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
+			if(R.wiki_flag & WIKI_SPOILER)
+				spoiler_entries.Add(R.type)
+				continue
 			var/id = "[R.name]"
-			if(R.is_food)
+			if(R.wiki_flag & WIKI_FOOD)
 				P.food_assemble(R)
 				foodreact[id] = P
-			else if(R.is_drink)
+			else if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
 				P.drink_assemble(R)
 				drinkreact[id] = P
 			else
@@ -146,6 +159,9 @@ SUBSYSTEM_DEF(internal_wiki)
 	for(var/SN in SSplants.seeds)
 		var/datum/seed/S = SSplants.seeds[SN]
 		if(S && S.roundstart && !S.mysterious)
+			if(S.wiki_flag & WIKI_SPOILER)
+				spoiler_entries.Add(S.type)
+				continue
 			var/datum/internal_wiki/page/P = new()
 			P.seed_assemble(S)
 			searchcache_botseeds.Add("[S.display_name]")
@@ -165,7 +181,9 @@ SUBSYSTEM_DEF(internal_wiki)
 									"Flavor" = "[Rd.taste_description]",
 									"ResAmt" = CR.result_amount,
 									"Reagents" = CR.required_reagents ? CR.required_reagents.Copy() : list(),
-									"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list())
+									"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list(),
+									"Flags" = CR.wiki_flag
+									)
 		else
 			log_runtime(EXCEPTION("Invalid reagent result id: [CR.result] in instant drink reaction id: [CR.id]"))
 	// Build the kitchen recipe lists
@@ -187,7 +205,8 @@ SUBSYSTEM_DEF(internal_wiki)
 						"Coating" = R.coating,
 						"Appliance" = R.appliance,
 						"Allergens" = 0,
-						"Price" = initial(res:price_tag)
+						"Price" = initial(res:price_tag),
+						"Flags" = R.wiki_flag
 						)
 		qdel(R)
 	// basically condiments, tofu, cheese, soysauce, etc
@@ -198,7 +217,9 @@ SUBSYSTEM_DEF(internal_wiki)
 								"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list(),
 								"Fruit" = list(),
 								"Ingredients" = list(),
-								"Allergens" = 0)
+								"Allergens" = 0,
+								"Flags" = CR.wiki_flag
+								)
 	//Items needs further processing into human-readability.
 	for(var/Rp in food_recipes)
 		var/working_ing_list = list()
@@ -317,9 +338,12 @@ SUBSYSTEM_DEF(internal_wiki)
 	food_recipes = foods_newly_sorted
 	drink_recipes = drinks_newly_sorted
 
-	// assemble output page
+	// assemble output pages
 	for(var/Rp in food_recipes)
 		if(food_recipes[Rp] && !isnull(food_recipes[Rp]["Result"]))
+			if(food_recipes[Rp]["Flags"] & WIKI_SPOILER)
+				spoiler_entries.Add(Rp)
+				continue
 			var/datum/internal_wiki/page/P = new()
 			P.recipe_assemble(food_recipes[Rp])
 			foodrecipe["[P.title]"] = P
@@ -334,6 +358,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			pages.Add(P)
 	for(var/Rp in drink_recipes)
 		if(drink_recipes[Rp] && !isnull(drink_recipes[Rp]["Result"]))
+			if(drink_recipes[Rp]["Flags"] & WIKI_SPOILER)
+				spoiler_entries.Add(Rp)
+				continue
 			var/datum/internal_wiki/page/P = new()
 			P.recipe_assemble(drink_recipes[Rp])
 			drinkrecipe["[P.title]"] = P
@@ -651,6 +678,8 @@ SUBSYSTEM_DEF(internal_wiki)
 
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/CR in reaction_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
 			display_reactions.Add(CR)
 		for(var/decl/chemical_reaction/CR in display_reactions)
 			if(display_reactions.len == 1)
@@ -687,6 +716,8 @@ SUBSYSTEM_DEF(internal_wiki)
 
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
 			display_reactions.Add(CR)
 
 		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
@@ -735,6 +766,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		var/segment = 1
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/CR in reaction_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
 			display_reactions.Add(CR)
 		for(var/decl/chemical_reaction/CR in display_reactions)
 			if(display_reactions.len == 1)
@@ -776,6 +809,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		var/segment = 1
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/CR in reaction_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
 			display_reactions.Add(CR)
 		for(var/decl/chemical_reaction/CR in display_reactions)
 			if(display_reactions.len == 1)
