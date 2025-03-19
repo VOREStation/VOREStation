@@ -381,6 +381,7 @@
 	var/mob/living/protie = src
 	if(temporary_form)
 		protie = temporary_form
+	//VoreStation Note: Catslug through Dullahan are commented out (Disabled) intentionally, as the ability to have mob icons as a protean is unwanted as of 19-3-2025. Nonetheless, the sprites have been tested and are completely functional at the current momented. If desired to re-enable downstream or at a later time, simply remove the comment tags starting at catslug and ending at Dullahan. These should honestly be split into two lists ('basic_forms' and 'advanced_forms') with a proper toggle instead of commenting it out, but that's for a later date.  
 	var/list/icon_choices = list(
 			"Primary" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "primary"),
 			"Highlight" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "highlight"),
@@ -392,7 +393,7 @@
 			"slime" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "slime"),
 			"chaos" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "chaos"),
 			"cloud" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cloud"),
-			"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
+			/*"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
 			"cat" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cat"),
 			"mouse" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
 			"rabbit" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
@@ -408,7 +409,7 @@
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
 			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small"),
-			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")
+			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")*/
 			)
 	var/blobstyle = show_radial_menu(protie, protie, icon_choices, require_near = TRUE, tooltips = FALSE)
 	if(!blobstyle || QDELETED(protie) || protie.incapacitated())
