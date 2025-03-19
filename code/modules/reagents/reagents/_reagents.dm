@@ -44,6 +44,9 @@
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
 
+	var/is_food = FALSE // if it shows up in the food recipe wiki
+	var/is_drink = FALSE // if it shows up in the drink recipe wiki
+
 	var/from_belly = FALSE
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
