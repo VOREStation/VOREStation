@@ -687,25 +687,33 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
-/datum/species/sparkledog
+/datum/species/sparkledog //Exists primarily as an april fools joke, along with everything tied to it!
 	name = SPECIES_SPARKLE
 	name_plural = "Sparklies"
 	icobase = 'icons/mob/human_races/r_sparkle.dmi'
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	slowdown = -0.5
-	brute_mod = 0.5
-	burn_mod =  0.5
+	brute_mod = 1.5
+	burn_mod =  1.5
+	bloodloss_rate = 1.5
+	toxins_mod =    0.5
+	radiation_mod = 0
+	flash_mod =     2
+	siemens_coefficient = 10
+
+	darksight = 2
+
 	num_alternate_languages = 3
 	language = LANGUAGE_SPARKLE
 	species_language = LANGUAGE_SPARKLE
 	secondary_langs = list(LANGUAGE_SPARKLE, LANGUAGE_SOL_COMMON)
 	color_mult = 1
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN)
-	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/proc/toggle_sparkles, /mob/living/proc/healing_rainbows)
 	min_age = 18
 	max_age = 21
-	digi_allowed = TRUE
+	digi_allowed = FALSE //No time for making rainbow legs for the meme, sorry!
 
 	pass_flags = PASSTABLE
 
