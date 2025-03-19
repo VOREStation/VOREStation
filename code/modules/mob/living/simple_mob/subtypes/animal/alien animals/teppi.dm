@@ -668,7 +668,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Life()
 	. =..()
-	if(!.)
+	if(!. || QDELETED(src))
 		return
 	wantpet += rand(0,2) * affection_factor
 	amount_grown += rand(1,5)

@@ -3,7 +3,7 @@
 
 	if(!plane_holder || !vis_enabled)
 		return
-
+	var/stomach_vision = client?.prefs.read_preference(/datum/preference/toggle/tummy_sprites)
 	if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))
 		plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
 		vis_enabled += VIS_CH_STOMACH
@@ -40,10 +40,10 @@
 	if(!toggle)
 		return
 	if(toggle =="Yes")
-		stomach_vision = 1 //Simple! Easy!
+		client?.prefs.write_preference_by_type(/datum/preference/toggle/tummy_sprites,TRUE) //Simple! Easy!
 		to_chat(src, "You can now see stomachs!")
 	else
-		stomach_vision = 0
+		client?.prefs.write_preference_by_type(/datum/preference/toggle/tummy_sprites,FALSE)
 		to_chat(src, "You will no longer see stomachs!")
 	recalculate_vis()
 

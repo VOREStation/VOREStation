@@ -138,28 +138,6 @@ export const SOUND_MENTORHELP: FeatureToggle = {
   component: CheckboxInput,
 };
 
-// Vorey sounds
-export const BELCH_NOISES: FeatureToggle = {
-  name: 'Belch Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing burping noises.',
-  component: CheckboxInput,
-};
-
-export const EATING_NOISES: FeatureToggle = {
-  name: 'Eating Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing vore eating noises.',
-  component: CheckboxInput,
-};
-
-export const DIGEST_NOISES: FeatureToggle = {
-  name: 'Digestion Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing vore digestion noises.',
-  component: CheckboxInput,
-};
-
 export const ambience_freq: FeatureNumeric = {
   name: 'Ambience Frequency',
   category: 'SOUNDS',
