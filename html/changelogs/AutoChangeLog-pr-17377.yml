@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed personal space trait applying nothing and reactive biting applying both effects."

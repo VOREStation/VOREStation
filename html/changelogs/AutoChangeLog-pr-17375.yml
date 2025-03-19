@@ -1,4 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - rscadd: "The belly visibility pref is now a client one, so you don't need to adjust it on a per-character basis anymore."
