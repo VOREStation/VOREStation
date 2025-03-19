@@ -669,9 +669,10 @@
 			for(var/obj/belly/B in host.vore_organs)
 				if(B.prevent_saving)
 					unsavable_bellies += B.name
-			var/choice = tgui_alert(ui.user, "Warning: One or more of your vore organs are unsavable. Saving now will save every vore belly except \[[jointext(unsavable_bellies, ", ")]\]. Are you sure you want to save?", "WARNING!", list("No, abort!", "Yes, save."))
-			if(choice != "Yes, save.")
-				return TRUE
+			if(LAZYLEN(unsavable_bellies))
+				var/choice = tgui_alert(ui.user, "Warning: One or more of your vore organs are unsavable. Saving now will save every vore belly except \[[jointext(unsavable_bellies, ", ")]\]. Are you sure you want to save?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
 			if(!host.save_vore_prefs())
 				tgui_alert_async(ui.user, "ERROR: " + STATION_PREF_NAME + "-specific preferences failed to save!","Error")
 			else

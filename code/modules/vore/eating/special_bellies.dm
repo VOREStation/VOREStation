@@ -18,7 +18,7 @@
 	if(teleport_delay <= 0) //just try to teleport immediately.
 		try_tele(thing)
 		return
-	spawn(teleport_delay)
+	addtimer(CALLBACKteleport_delay)
 		try_tele(thing)
 
 /obj/belly/special/teleporter/process(wait)
