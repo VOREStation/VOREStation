@@ -92,19 +92,19 @@
 
 	//need to obtain the new reagent's data before anything is altered
 	var/data = send_data(holder, reaction_progress)
-	var/was_from_belly
+	var/belly_reagent
 
 	//remove the reactants
 	for(var/reactant in required_reagents)
 		var/amt_used = required_reagents[reactant] * reaction_progress
 		holder.remove_reagent(reactant, amt_used, safety = 1)
-		if(!was_from_belly)
-			was_from_belly = R.from_belly
+		if(!belly_reagent)
+			belly_reagent = reactant.from_belly
 
 	//add the product
 	var/amt_produced = result_amount * reaction_progress
 	if(result)
-		holder.add_reagent(result, amt_produced, data, safety = 1, was_from_belly)
+		holder.add_reagent(result, amt_produced, data, safety = 1, was_from_belly = belly_reagent)
 
 	on_reaction(holder, amt_produced)
 

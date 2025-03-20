@@ -108,9 +108,6 @@
 	update_total()
 	amount = min(amount, get_free_space())
 
-	if(was_from_belly)
-		R.from_belly = was_from_belly
-
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			if(current.id == REAGENT_ID_BLOOD)
@@ -133,6 +130,8 @@
 		R.holder = src
 		R.volume = amount
 		R.initialize_data(data)
+		if(was_from_belly)
+			R.from_belly = was_from_belly
 		update_total()
 		if(!safety)
 			handle_reactions()
@@ -254,7 +253,7 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, current.from_belly) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.id, amount_to_transfer, 1)
 

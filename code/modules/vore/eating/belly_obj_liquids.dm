@@ -53,7 +53,7 @@
 	else
 		owner.nutrition -= gen_cost
 	for(var/reagent in generated_reagents)
-		reagents.add_reagent(reagent, generated_reagents[reagent])
+		reagents.add_reagent(reagent, generated_reagents[reagent], was_from_belly = TRUE)
 	if(count_liquid_for_sprite)
 		owner.handle_belly_update() //This is run whenever a belly's contents are changed.
 	if(LAZYLEN(belly_surrounding))
@@ -64,7 +64,7 @@
 /obj/belly/proc/GenerateBellyReagents_digesting()	//The rate isnt based on selected reagent, due to the fact that the price of the reagent is already paid by nutrient not gained.
 	if(reagents.total_volume + (digest_nutri_gain * gen_amount) <= custom_max_volume) //By default a reagent with an amount of 1 should result in pred getting 100 units from a full health prey
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] * digest_nutri_gain / gen_cost)
+			reagents.add_reagent(reagent, generated_reagents[reagent] * digest_nutri_gain / gen_cost, was_from_belly = TRUE)
 	else
 		owner_adjust_nutrition(digest_nutri_gain * owner.get_digestion_efficiency_modifier())
 	digest_nutri_gain = 0
@@ -72,10 +72,10 @@
 /obj/belly/proc/GenerateBellyReagents_digested()
 	if(reagents.total_volume <= custom_max_volume - 25 * gen_amount)
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] * 25)
+			reagents.add_reagent(reagent, generated_reagents[reagent] * 25, was_from_belly = TRUE)
 	else
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume))
+			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume), was_from_belly = TRUE)
 	digest_nutri_gain = 0
 
 //////////////////////////// REAGENT_ABSORB ////////////////////////
@@ -83,18 +83,18 @@
 /obj/belly/proc/GenerateBellyReagents_absorbing()
 	if(reagents.total_volume <= custom_max_volume - 1.5 * gen_amount) //Going for 1.5 amount of reagent per cycle, can be adjusted in future if need adjustments
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] * 1.5)
+			reagents.add_reagent(reagent, generated_reagents[reagent] * 1.5, was_from_belly = TRUE)
 	else
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume))
+			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume), was_from_belly = TRUE)
 
 /obj/belly/proc/GenerateBellyReagents_absorbed()
 	if(reagents.total_volume <= custom_max_volume - 25 * gen_amount) //Going for 25 amount of reagent for absorbing the prey, can be adjusted in future if need adjustments
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] * 10)
+			reagents.add_reagent(reagent, generated_reagents[reagent] * 10, was_from_belly = TRUE)
 	else
 		for(var/reagent in generated_reagents)
-			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume))
+			reagents.add_reagent(reagent, generated_reagents[reagent] / gen_amount * (custom_max_volume - reagents.total_volume), was_from_belly = TRUE)
 
 //////////////////////////// REAGENT_DRAIN ///////////////////////// //Currently not needed, maybe later a specific proc for drain needs to be made - Jack
 
