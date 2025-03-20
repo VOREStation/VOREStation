@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Replicant pods now let you be NOT just a human! You can be yourself!"
+  - bugfix: "Replicant pods will no longer break movement related things."
+  - code_imp: "VR pods and Replicant pods work a bit better on the backend"
