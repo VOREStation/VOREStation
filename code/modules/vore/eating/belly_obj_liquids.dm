@@ -1,7 +1,7 @@
 ///////////////////// NUTRITION REAGENT PRODUCTION /////////////////
 
 /obj/belly/proc/HandleBellyReagents()
-	if(show_liquids && reagentbellymode && reagent_mode_flags & DM_FLAG_REAGENTSNUTRI && reagents.total_volume < custom_max_volume && !isnewplayer(owner)) //Removed if(reagentbellymode == TRUE) since that's less optimized
+	if(show_liquids && reagentbellymode && reagent_mode_flags & DM_FLAG_REAGENTSNUTRI && reagents.total_volume < custom_max_volume && !isnewplayer(owner))
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			if(R.cell && R.cell.charge >= gen_cost*10 && gen_interval >= gen_time)
@@ -110,100 +110,100 @@
 		our_reagents.Add(lowertext(entry))
 	switch(reagent_chosen)
 		if(REAGENT_WATER)
-			generated_reagents = list(REAGENT_ID_WATER_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_WATER = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_WATER)
 			gen_amount = 1
 			gen_cost = 1
-			reagentid = REAGENT_ID_WATER_BELLY
+			reagentid = REAGENT_ID_WATER
 			reagentcolor = "#0064C877"
 		if(REAGENT_MILK)
-			generated_reagents = list(REAGENT_ID_MILK_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_MILK = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_MILK)
 			gen_amount = 1
 			gen_cost = 5
-			reagentid = REAGENT_ID_MILK_BELLY
+			reagentid = REAGENT_ID_MILK
 			reagentcolor = "#DFDFDF"
 		if(REAGENT_CREAM)
-			generated_reagents = list(REAGENT_ID_CREAM_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_CREAM = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_CREAM)
 			gen_amount = 1
 			gen_cost = 5
-			reagentid = REAGENT_ID_CREAM_BELLY
+			reagentid = REAGENT_ID_CREAM
 			reagentcolor = "#DFD7AF"
 		if(REAGENT_HONEY)
-			generated_reagents = list(REAGENT_ID_HONEY_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_HONEY = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_HONEY)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_HONEY_BELLY
+			reagentid = REAGENT_ID_HONEY
 			reagentcolor = "#FFFF00"
 		if(REAGENT_CHERRYJELLY)	//Kinda WIP, allows slime like folks something to stuff others with, should make a generic jelly in future
-			generated_reagents = list(REAGENT_ID_CHERRYJELLY_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_CHERRYJELLY = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_CHERRYJELLY)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_CHERRYJELLY_BELLY
+			reagentid = REAGENT_ID_CHERRYJELLY
 			reagentcolor = "#801E28"
 		if(REAGENT_STOMACID)
-			generated_reagents = list(REAGENT_ID_STOMACID_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_STOMACID = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_STOMACID)
 			gen_amount = 1
 			gen_cost = 1
-			reagentid = REAGENT_ID_STOMACID_BELLY
+			reagentid = REAGENT_ID_STOMACID
 			reagentcolor = "#664330"
 		if(REAGENT_DIETSTOMACID)
-			generated_reagents = list(REAGENT_ID_DIETSTOMACID_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_DIETSTOMACID = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_DIETSTOMACID)
 			gen_amount = 1
 			gen_cost = 1
-			reagentid = REAGENT_ID_DIETSTOMACID_BELLY
+			reagentid = REAGENT_ID_DIETSTOMACID
 			reagentcolor = "#664330"
 		if(REAGENT_CLEANER)
-			generated_reagents = list(REAGENT_ID_CLEANER_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_CLEANER = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_CLEANER)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_CLEANER_BELLY
+			reagentid = REAGENT_ID_CLEANER
 			reagentcolor = "#A5F0EE"
 		if(REAGENT_LUBE)
-			generated_reagents = list(REAGENT_ID_LUBE_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_LUBE = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_LUBE)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_LUBE_BELLY
+			reagentid = REAGENT_ID_LUBE
 			reagentcolor = "#009CA8"
 		if(REAGENT_BIOMASS)
-			generated_reagents = list(REAGENT_ID_BIOMASS_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_BIOMASS = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_BIOMASS)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_BIOMASS_BELLY
+			reagentid = REAGENT_ID_BIOMASS
 			reagentcolor = "#DF9FBF"
 		if(REAGENT_CONCENTRATEDRADIUM)
-			generated_reagents = list(REAGENT_ID_CONCENTRATEDRADIUM_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_CONCENTRATEDRADIUM = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_CONCENTRATEDRADIUM)
 			gen_amount = 1
 			gen_cost = 1
-			reagentid = REAGENT_ID_CONCENTRATEDRADIUM_BELLY
+			reagentid = REAGENT_ID_CONCENTRATEDRADIUM
 			reagentcolor = "#C7C7C7"
 		if(REAGENT_TRICORDRAZINE)
-			generated_reagents = list(REAGENT_ID_TRICORDRAZINE_BELLY = 1)
+			generated_reagents = list(REAGENT_ID_TRICORDRAZINE = 1)
 			if(reagent_name in our_reagents)
 				reagent_name = lowertext(REAGENT_TRICORDRAZINE)
 			gen_amount = 1
 			gen_cost = 10
-			reagentid = REAGENT_ID_TRICORDRAZINE_BELLY
+			reagentid = REAGENT_ID_TRICORDRAZINE
 			reagentcolor = "#8040FF"
 			is_beneficial = TRUE
 

@@ -480,6 +480,7 @@
 				START_PROCESSING(SSbellies, src)
 
 	create_reagents(300)	// So we can have some liquids in bellies
+	reagents.from_belly = TRUE
 	flags |= NOREACT		// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 /obj/belly/Destroy()

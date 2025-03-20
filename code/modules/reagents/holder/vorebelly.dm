@@ -7,6 +7,7 @@
 			var/datum/reagents/R = target_belly.reagents
 			if(!R)
 				R = new /datum/reagents(amount)
+				R.from_belly = TRUE
 				target_belly.reagents = R
 			return trans_to_holder(R, amount, multiplier, copy)
 		if(type == CHEM_INGEST && iscarbon(target))
@@ -16,6 +17,7 @@
 
 	else //Retaining this code as a backup
 		var/datum/reagents/R = new /datum/reagents(amount)
+		R.from_belly = TRUE
 		. = trans_to_holder(R, amount, multiplier, copy)
 		R.touch_mob(target)
 
