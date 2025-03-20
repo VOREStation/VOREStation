@@ -1,0 +1,5 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - rscadd: "Added human compatible tesh ears and tail"
+  - image: "added new sprite states to tails.dmi and ears.dmi"

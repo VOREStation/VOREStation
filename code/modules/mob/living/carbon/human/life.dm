@@ -196,7 +196,7 @@
 	if(dna)
 		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
 			// random strange symptoms from organ/limb
-			custom_emote(VISIBLE_MESSAGE, "flinches slightly.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
 			switch(rand(1,4))
 				if(1)
 					adjustToxLoss(rand(2,8))
@@ -1241,14 +1241,12 @@
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
-	/* //Unused here, used downstream.
 	if(nutrition > 500 && noisy_full == TRUE)
 		var/belch_prob = 5 //Maximum belch prob.
 		if(nutrition < 4075)
 			belch_prob = ((nutrition-500)/3575)*5 //Scale belch prob with fullness if not already at max. If editing make sure the multiplier matches the max prob above.
 		if(prob(belch_prob))
 			src.emote("belch")
-	*/
 	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
 		recalculate_vis()
 		chemical_darksight = 1
@@ -1670,11 +1668,8 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc))
+		if(!surrounding_belly() && !previewing_belly) //VOREStation Add - Belly fullscreens safety
 			clear_fullscreen("belly")
-			clear_fullscreen("belly2")
-			clear_fullscreen("belly3")
-			clear_fullscreen("belly4")
 
 		if(CONFIG_GET(flag/welder_vision))
 			var/found_welder
@@ -1866,23 +1861,6 @@
 					return
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
-/mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
-				stomach_contents.Remove(M)
-				continue
-			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(SSair.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjust_nutrition(10)
-
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
@@ -1949,7 +1927,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
 		eye_blurry = max(2, eye_blurry)
 		if(traumatic_shock >= 80)
 			stuttering = max(stuttering, 5)
@@ -1961,7 +1939,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
 		if (prob(2))
 			if(traumatic_shock >= 80)
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
@@ -1985,7 +1963,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
 			if(prob(60))
 				emote("pain")
 		Weaken(20)

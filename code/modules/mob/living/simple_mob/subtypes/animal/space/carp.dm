@@ -232,6 +232,8 @@
 /mob/living/simple_mob/animal/space/carp/large/huge/vorny/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

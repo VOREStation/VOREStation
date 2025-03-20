@@ -83,6 +83,13 @@ var/global/datum/controller/occupations/job_master
 		return 1
 	return 0
 
+/datum/controller/occupations/proc/update_limit(var/rank, var/comperator)
+	var/datum/job/job = GetJob(rank)
+	if(job && job.total_positions != -1)
+		job.update_limit(comperator)
+		return 1
+	return 0
+
 /datum/controller/occupations/proc/FindOccupationCandidates(datum/job/job, level, flag)
 	Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
@@ -351,7 +358,7 @@ var/global/datum/controller/occupations/job_master
 	return 1
 
 
-/datum/controller/occupations/proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
+/datum/controller/occupations/proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0, var/announce = TRUE)
 	if(!H)	return null
 
 	var/datum/job/job = GetJob(rank)
@@ -428,7 +435,7 @@ var/global/datum/controller/occupations/job_master
 					//else
 					if(G.slot == slot_wear_suit && H.client?.prefs?.no_jacket)
 						continue
-					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)
+					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
 						continue
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						to_chat(H, span_notice("Equipping you with \the [thing]!"))
@@ -457,7 +464,7 @@ var/global/datum/controller/occupations/job_master
 			var/datum/gear/G = gear_datums[thing]
 			if(G.slot == slot_wear_suit && H.client?.prefs?.no_jacket)
 				continue
-			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)
+			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
 				continue
 			if(G.slot in custom_equip_slots)
 				spawn_in_storage += thing
@@ -499,7 +506,7 @@ var/global/datum/controller/occupations/job_master
 			return H
 
 		// TWEET PEEP
-		if(rank == JOB_SITE_MANAGER)
+		if(rank == JOB_SITE_MANAGER && announce)
 			var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
 			captain_announcement.Announce("All hands, [alt_title ? alt_title : JOB_SITE_MANAGER] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
@@ -659,31 +666,305 @@ var/global/datum/controller/occupations/job_master
 
 	var/datum/spawnpoint/spawnpos
 	var/fail_deadly = FALSE
+	var/obj/belly/vore_spawn_gut
+	var/absorb_choice = FALSE // Ability to start absorbed with vorespawn
+	var/mob/living/prey_to_nomph
+	var/obj/item/item_to_be // Item TF spawning
+	var/mob/living/item_carrier // Capture crystal spawning
+	var/vorgans = FALSE // capture crystal simplemob spawning
 
-	var/datum/job/J = SSjob.get_job(rank)
-	fail_deadly = J?.offmap_spawn
+	// Remove fail_deadly addition on offmap_spawn
 
 	//Spawn them at their preferred one
 	if(C && C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint))
-		if(!(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) in using_map.allowed_spawns))
-			if(fail_deadly)
-				to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
-				return
+		if(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) == "Vorespawn - Prey")
+			var/list/preds = list()
+			var/list/pred_names = list() //This is cringe
+			for(var/client/V in GLOB.clients)
+				if(!isliving(V.mob))
+					continue
+				var/mob/living/M = V.mob
+				if(M.stat == UNCONSCIOUS || M.stat == DEAD || (M.client.is_afk(10 MINUTES) && !M.no_latejoin_vore_warning))
+					continue
+				if(!M.latejoin_vore)
+					continue
+				if(!(M.z in using_map.vorespawn_levels))
+					continue
+				preds += M
+				pred_names += M.real_name //very cringe
+
+			if(preds.len)
+				var/pred_name = tgui_input_list(C, "Choose a Predator.", "Pred Spawnpoint", pred_names)
+				if(!pred_name)
+					return
+				var/index = pred_names.Find(pred_name)
+				var/mob/living/pred = preds[index]
+				var/list/available_bellies = list()
+				for(var/obj/belly/Y in pred.vore_organs)
+					if(Y.vorespawn_blacklist)
+						continue
+					if(LAZYLEN(Y.vorespawn_whitelist) && !(C.ckey in Y.vorespawn_whitelist))
+						continue
+					available_bellies += Y
+				var/backup = tgui_alert(C, "Do you want a mind backup?", "Confirm", list("Yes", "No"))
+				if(backup == "Yes")
+					backup = 1
+				vore_spawn_gut = tgui_input_list(C, "Choose a Belly.", "Belly Spawnpoint", available_bellies)
+				if(!vore_spawn_gut)
+					return
+				if(vore_spawn_gut.vorespawn_absorbed & VS_FLAG_ABSORB_YES)
+					absorb_choice = TRUE
+					if(vore_spawn_gut.vorespawn_absorbed & VS_FLAG_ABSORB_PREY)
+						if(tgui_alert(C, "Do you want to start absorbed into [pred]'s [vore_spawn_gut]?", "Confirm", list("Yes", "No")) != "Yes")
+							absorb_choice = FALSE
+					else if(tgui_alert(C, "[pred]'s [vore_spawn_gut] will start with you absorbed. Continue?", "Confirm", list("Yes", "No")) != "Yes")
+						return
+				to_chat(C, span_boldwarning("[pred] has received your spawn request. Please wait."))
+				log_admin("[key_name(C)] has requested to vore spawn into [key_name(pred)]")
+				message_admins("[key_name(C)] has requested to vore spawn into [key_name(pred)]")
+
+				var/confirm
+				if(pred.no_latejoin_vore_warning)
+					if(pred.no_latejoin_vore_warning_time > 0)
+						if(absorb_choice)
+							confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
+						else
+							confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), pred.no_latejoin_vore_warning_time SECONDS)
+					if(!confirm)
+						confirm = "Yes"
+				else
+					if(absorb_choice)
+						confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn absorbed as your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+					else
+						confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+				if(confirm != "Yes")
+					to_chat(C, span_warning("[pred] has declined your spawn request."))
+					var/message = sanitizeSafe(input(pred,"Do you want to leave them a message?")as text|null)
+					if(message)
+						to_chat(C, span_notice("[pred] message : [message]"))
+					return
+				if(!vore_spawn_gut || QDELETED(vore_spawn_gut))
+					to_chat(C, span_warning("Somehow, the belly you were trying to enter no longer exists."))
+					return
+				if(pred.stat == UNCONSCIOUS || pred.stat == DEAD)
+					to_chat(C, span_warning("[pred] is not conscious."))
+					to_chat(pred, span_warning("You must be conscious to accept."))
+					return
+				if(!(pred.z in using_map.vorespawn_levels))
+					to_chat(C, span_warning("[pred] is no longer in station grounds."))
+					to_chat(pred, span_warning("You must be within station grounds to accept."))
+					return
+				if(backup)
+					addtimer(CALLBACK(src, PROC_REF(m_backup_client), C), 5 SECONDS)
+				log_admin("[key_name(C)] has vore spawned into [key_name(pred)]")
+				message_admins("[key_name(C)] has vore spawned into [key_name(pred)]")
+				to_chat(C, span_notice("You have been spawned via vore. You are free to roleplay how you got there as you please, such as teleportation or having had already been there."))
+				if(vore_spawn_gut.entrance_logs)
+					to_chat(pred, span_notice("Your prey has spawned via vore. You are free to roleplay this how you please, such as teleportation or having had already been there."))
 			else
-				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
-				spawnpos = null
-		else
+				to_chat(C, span_warning("No predators were available to accept you."))
+				return
 			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
+		if(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) == "Vorespawn - Pred") //Same as above, but in reverse!
+			var/list/preys = list()
+			var/list/prey_names = list() //This is still cringe
+			for(var/client/V in GLOB.clients)
+				if(!isliving(V.mob))
+					continue
+				var/mob/living/M = V.mob
+				if(M.stat == UNCONSCIOUS || M.stat == DEAD || (M.client.is_afk(10 MINUTES) && !M.no_latejoin_prey_warning))
+					continue
+				if(!M.latejoin_prey)
+					continue
+				if(!(M.z in using_map.vorespawn_levels))
+					continue
+				preys += M
+				prey_names += M.real_name
+			if(preys.len)
+				var/prey_name = tgui_input_list(C, "Choose a Prey to spawn nom.", "Prey Spawnpoint", prey_names)
+				if(!prey_name)
+					return
+				var/index = prey_names.Find(prey_name)
+				var/mob/living/prey = preys[index]
+				var/list/available_bellies = list()
+
+				var/datum/vore_preferences/P = C.prefs_vr
+				for(var/Y in P.belly_prefs)
+					available_bellies += Y["name"]
+				vore_spawn_gut = tgui_input_list(C, "Choose your Belly.", "Belly Spawnpoint", available_bellies)
+				if(!vore_spawn_gut)
+					return
+				if(alert(C, "Do you want to instantly absorb them?", "Confirm", "Yes", "No") == "Yes")
+					absorb_choice = TRUE
+				to_chat(C, span_boldwarning("[prey] has received your spawn request. Please wait."))
+				log_admin("[key_name(C)] has requested to pred spawn onto [key_name(prey)]")
+				message_admins("[key_name(C)] has requested to pred spawn onto [key_name(prey)]")
+
+				var/confirm
+				if(prey.no_latejoin_prey_warning)
+					if(prey.no_latejoin_prey_warning_time > 0)
+						if(absorb_choice)
+							confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
+						else
+							confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"), prey.no_latejoin_prey_warning_time SECONDS)
+					if(!confirm)
+						confirm = "Yes"
+				else
+					if(absorb_choice)
+						confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore and instantly absorb you with their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+					else
+						confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
+				if(confirm != "Yes")
+					to_chat(C, span_warning("[prey] has declined your spawn request."))
+					var/message = sanitizeSafe(input(prey,"Do you want to leave them a message?")as text|null)
+					if(message)
+						to_chat(C, span_notice("[prey] message : [message]"))
+					return
+				if(prey.stat == UNCONSCIOUS || prey.stat == DEAD)
+					to_chat(C, span_warning("[prey] is not conscious."))
+					to_chat(prey, span_warning("You must be conscious to accept."))
+					return
+				if(!(prey.z in using_map.vorespawn_levels))
+					to_chat(C, span_warning("[prey] is no longer in station grounds."))
+					to_chat(prey, span_warning("You must be within station grounds to accept."))
+					return
+				log_admin("[key_name(C)] has pred spawned onto [key_name(prey)]")
+				message_admins("[key_name(C)] has pred spawned onto [key_name(prey)]")
+				prey_to_nomph = prey
+			else
+				to_chat(C, span_warning("No prey were available to accept you."))
+				return
+		// Item TF spawnpoints!
+		else if(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) == "Item TF spawn")
+			var/list/items = list()
+			var/list/item_names = list()
+			var/list/carriers = list()
+			for(var/obj/item/I in item_tf_spawnpoints)
+				if(LAZYLEN(I.ckeys_allowed_itemspawn))
+					if(!(C.ckey in I.ckeys_allowed_itemspawn))
+						continue
+				var/atom/item_loc = I.loc
+				var/mob/living/carrier
+				while(!isturf(item_loc))
+					if(isliving(item_loc))
+						carrier = item_loc
+						break
+					else
+						item_loc = item_loc.loc
+				if(istype(carrier))
+					if(!(carrier.z in using_map.vorespawn_levels))
+						continue
+					if(carrier.stat == UNCONSCIOUS || carrier.stat == DEAD || carrier.client.is_afk(10 MINUTES))
+						continue
+					carriers += carrier
+				else
+					if(!(item_loc.z in using_map.vorespawn_levels))
+						continue
+					carriers += null
+
+				if(istype(I, /obj/item/capture_crystal))
+					if(carrier)
+						items += I
+						var/obj/item/capture_crystal/cryst = I
+						if(cryst.spawn_mob_type)
+							item_names += "\a [cryst.spawn_mob_name] inside of [carrier]'s [I.name] ([I.loc.name])"
+						else
+							item_names += "Inside of [carrier]'s [I.name] ([I.loc.name])"
+				else if(I.name == initial(I.name))
+					items += I
+					if(carrier)
+						item_names += "[carrier]'s [I.name] ([I.loc.name])"
+					else
+						item_names += "[I.name] ([I.loc.name])"
+				else
+					items += I
+					if(carrier)
+						item_names += "[carrier]'s [I.name] (\a [initial(I.name)] at [I.loc.name])"
+					else
+						item_names += "[I.name] (\a [initial(I.name)] at [I.loc.name])"
+			if(LAZYLEN(items))
+				var/backup = tgui_alert(C, "Do you want a mind backup?", "Confirm", list("Yes", "No"))
+				if(backup == "Yes")
+					backup = 1
+				var/item_name = tgui_input_list(C, "Choose an Item to spawn as.", "Item TF Spawnpoint", item_names)
+				if(!item_name)
+					return
+				var/index = item_names.Find(item_name)
+				var/obj/item/item = items[index]
+
+				var/mob/living/carrier = carriers[index]
+				if(istype(carrier))
+					to_chat(C, span_boldwarning("[carrier] has received your spawn request. Please wait."))
+					log_and_message_admins("[key_name(C)] has requested to item spawn into [key_name(carrier)]'s possession")
+
+					var/confirm = tgui_alert(carrier, "[C.prefs.real_name] is attempting to join as the [item_name] in your possession.", "Confirm", list("No", "Yes"))
+					if(confirm != "Yes")
+						to_chat(C, span_warning("[carrier] has declined your spawn request."))
+						var/message = sanitizeSafe(input(carrier,"Do you want to leave them a message?")as text|null)
+						if(message)
+							to_chat(C, span_notice("[carrier] message : [message]"))
+						return
+					if(carrier.stat == UNCONSCIOUS || carrier.stat == DEAD)
+						to_chat(C, span_warning("[carrier] is not conscious."))
+						to_chat(carrier, span_warning("You must be conscious to accept."))
+						return
+					if(!(carrier.z in using_map.vorespawn_levels))
+						to_chat(C, span_warning("[carrier] is no longer in station grounds."))
+						to_chat(carrier, span_warning("You must be within station grounds to accept."))
+						return
+					log_and_message_admins("[key_name(C)] has item spawned onto [key_name(carrier)]")
+					item_to_be = item
+					item_carrier = carrier
+					if(backup)
+						addtimer(CALLBACK(src, PROC_REF(m_backup_client), C), 5 SECONDS)
+				else
+					var/confirm = tgui_alert(C, "\The [item.name] is currently not in any character's possession! Do you still want to spawn as it?", "Confirm", list("No", "Yes"))
+					if(confirm != "Yes")
+						return
+					log_and_message_admins("[key_name(C)] has item spawned into \a [item.name] that was not held by anyone")
+					item_to_be = item
+					if(backup)
+						addtimer(CALLBACK(src, PROC_REF(m_backup_client), C), 5 SECONDS)
+				if(istype(item, /obj/item/capture_crystal))
+					var/obj/item/capture_crystal/cryst = item
+					if(cryst.spawn_mob_type)
+						var/confirm = tgui_alert(C, "Do you want to spawn with your slot's vore organs and prefs?", "Confirm", list("No", "Yes"))
+						if(confirm == "Yes")
+							vorgans = TRUE
+			else
+				to_chat(C, span_warning("No items were available to accept you."))
+				return
+		else
+			if(!(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) in using_map.allowed_spawns))
+				if(fail_deadly)
+					to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
+					return
+				else
+					to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
+					spawnpos = null
+			else
+				spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
 
 	//We will return a list key'd by "turf" and "msg"
-	. = list("turf","msg")
+	. = list("turf","msg", "voreny", "prey", "itemtf", "vorgans", "carrier") // Item TF spawnpoints, spawn as mob
+	if(vore_spawn_gut)
+		.["voreny"] = vore_spawn_gut
+		.["absorb"] = absorb_choice
+	if(prey_to_nomph)
+		.["prey"] = prey_to_nomph	//We pass this on later to reverse the vorespawn in new_player.dm
+	// Item TF spawnpoints
+	if(item_to_be)
+		.["carrier"] = item_carrier
+		.["vorgans"] = vorgans
+		.["itemtf"] = item_to_be
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
 			.["turf"] = spawnpos.get_spawn_position()
 			.["msg"] = spawnpos.msg
 			.["channel"] = spawnpos.announce_channel
 		else
-			if(fail_deadly)
+			var/datum/job/J = SSjob.get_job(rank)
+			if(fail_deadly || J?.offmap_spawn)
 				to_chat(C, span_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice."))
 				return
 			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
@@ -694,3 +975,9 @@ var/global/datum/controller/occupations/job_master
 		var/spawning = pick(latejoin)
 		.["turf"] = get_turf(spawning)
 		.["msg"] = "has arrived on the station"
+
+/datum/controller/occupations/proc/m_backup_client(var/client/C)	//Same as m_backup, but takes a client entry. Used for vore late joining.
+	if(!ishuman(C.mob))
+		return
+	var/mob/living/carbon/human/CM = C.mob
+	SStranscore.m_backup(CM.mind, CM.nif, TRUE)

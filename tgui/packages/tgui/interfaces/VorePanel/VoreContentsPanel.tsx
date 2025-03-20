@@ -1,22 +1,30 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Image, LabeledList, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
 import { stats } from './constants';
-import type { contentData } from './types';
+import { contentData } from './types';
 
 export const VoreContentsPanel = (props: {
   contents: contentData[];
   belly?: string;
   outside?: BooleanLike;
   show_pictures: BooleanLike;
+  icon_overflow: BooleanLike;
 }) => {
   const { act } = useBackend();
-  const { contents, belly, outside = false, show_pictures } = props;
+
+  const {
+    contents,
+    belly,
+    outside = false,
+    show_pictures,
+    icon_overflow,
+  } = props;
 
   return (
     <>
-      {(outside && (
+      {outside ? (
         <Button
           textAlign="center"
           fluid
@@ -25,9 +33,10 @@ export const VoreContentsPanel = (props: {
         >
           All
         </Button>
-      )) ||
-        null}
-      {(show_pictures && (
+      ) : (
+        ''
+      )}
+      {(show_pictures && !icon_overflow && (
         <Stack wrap="wrap" justify="center" align="center">
           {contents.map((thing) => (
             <Stack.Item key={thing.name} basis="32%">
@@ -64,8 +73,8 @@ export const VoreContentsPanel = (props: {
         </Stack>
       )) || (
         <LabeledList>
-          {contents.map((thing) => (
-            <LabeledList.Item key={thing.ref} label={thing.name}>
+          {contents.map((thing, i) => (
+            <LabeledList.Item key={i} label={thing.name}>
               <Button
                 fluid
                 mt={-1}

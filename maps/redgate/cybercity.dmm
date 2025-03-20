@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/neutral,
+/area/redgate/city/house2)
 "acu" = (
 /obj/structure/toilet,
 /turf/simulated/floor/tiled/white,
@@ -17412,6 +17416,7 @@
 	pixel_x = -24;
 	pixel_y = -24
 	},
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house9)
 "wJC" = (
@@ -24674,7 +24679,7 @@ iPk
 nqa
 raL
 gox
-ica
+aaa
 ica
 vLi
 eXX
