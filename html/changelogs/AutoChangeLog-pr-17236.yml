@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "The flamethrower UI now works properly."
+  - rscadd: "Flamethrower now is more useful than spawning a few fire tiles. It's now an actual threat!"
