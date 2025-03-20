@@ -1042,12 +1042,12 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/winebrandy
-    name = "Wine brandy"
-    id = REAGENT_ID_WINEBRANDY
-    result = REAGENT_ID_WINEBRANDY
-    required_reagents = list(REAGENT_ID_REDWINE = 10)
-    catalysts = list(REAGENT_ID_ENZYME = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
-    result_amount = 5
+	name = "Wine brandy"
+	id = REAGENT_ID_WINEBRANDY
+	result = REAGENT_ID_WINEBRANDY
+	required_reagents = list(REAGENT_ID_REDWINE = 10)
+	catalysts = list(REAGENT_ID_ENZYME = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
+	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/love_potion
 	name = REAGENT_LOVEPOTION

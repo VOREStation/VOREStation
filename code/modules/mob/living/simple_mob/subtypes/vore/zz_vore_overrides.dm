@@ -224,6 +224,8 @@
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/safe = (faction == FACTION_NEUTRAL)
 	for(var/obj/belly/B as anything in vore_organs)

@@ -1,0 +1,5 @@
+/obj/structure/cable:
+  banned_variables:
+  - dir
+  - d1
+  - d2

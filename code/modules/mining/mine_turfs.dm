@@ -644,14 +644,14 @@ var/list/mining_overlay_cache = list()
 		var/pain = 0
 		if(prob(50))
 			pain = 1
-		for(var/mob/living/M in range(src, 200))
+		for(var/mob/living/M in range(src, 5)) //Let's only hit people nearby us.
 			to_chat(M, span_danger("[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!"))
 			if(pain)
 				flick("pain",M.pain)
 			M.flash_eyes()
 			if(prob(50))
 				M.Stun(5)
-			M.make_jittery(1000) //SHAKY
+			M.make_jittery(50) //SHAKY this used to be 1000(seizure) but I toned it to 50 to be less aggressive.
 		if(prob(25))
 			excavate_find(prob(25), finds[1])
 	else if(rand(1,500) == 1)

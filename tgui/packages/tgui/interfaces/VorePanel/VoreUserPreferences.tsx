@@ -1,50 +1,77 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
-import type { prefData } from './types';
-import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic ';
-import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical ';
+import { digestModeToColor } from './constants';
+import { localPrefs, prefData, selectedData } from './types';
+import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic';
+import { VoreUserPreferencesDevouring } from './VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
+import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
+import { VoreUserPreferencesSoulcatcher } from './VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher';
+import { VoreUserPreferencesSpawn } from './VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
+import { VoreUserPreferencesSpontaneous } from './VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
 export const VoreUserPreferences = (props: {
   prefs: prefData;
+  selected: selectedData | null;
   show_pictures: BooleanLike;
+  icon_overflow: BooleanLike;
 }) => {
   const { act } = useBackend();
 
-  const { prefs, show_pictures } = props;
-
+  const { prefs, selected, show_pictures, icon_overflow } = props;
   const {
     digestable,
-    devourable,
-    resizable,
-    feeding,
     absorbable,
-    digest_leave_remains,
+    devourable,
     allowmobvore,
+    feeding,
     permit_healbelly,
-    show_vore_fx,
     can_be_drop_prey,
     can_be_drop_pred,
-    allow_inbelly_spawning,
-    allow_spontaneous_tf,
-    allow_mind_transfer,
-    step_mechanics_active,
-    pickup_mechanics_active,
-    noisy,
     drop_vore,
-    stumble_vore,
     slip_vore,
+    stumble_vore,
     throw_vore,
+    phase_vore,
     food_vore,
     digest_pain,
-    nutrition_message_visible,
-    weight_message_visible,
+    latejoin_vore,
+    latejoin_prey,
+    noisy,
+    noisy_full,
+    resizable,
+    step_mechanics_active,
+    show_vore_fx,
+    digest_leave_remains,
+    pickup_mechanics_active,
+    allow_spontaneous_tf,
+    allow_mind_transfer,
     eating_privacy_global,
     allow_mimicry,
+    strip_mechanics_active,
+    autotransferable,
+    liq_rec,
+    liq_giv,
+    liq_apply,
+    consume_liquid_belly,
+    no_spawnpred_warning,
+    no_spawnprey_warning,
+    no_spawnpred_warning_time,
+    no_spawnprey_warning_time,
+    no_spawnpred_warning_save,
+    no_spawnprey_warning_save,
+    nutrition_message_visible,
+    weight_message_visible,
+    selective_active,
+    belly_rub_target,
+    soulcatcher_allow_capture,
+    soulcatcher_allow_transfer,
+    soulcatcher_allow_deletion,
+    soulcatcher_allow_takeover,
   } = prefs;
 
-  const preferences = {
+  const preferences: localPrefs = {
     digestion: {
       action: 'toggle_digest',
       test: digestable,
@@ -74,6 +101,7 @@ export const VoreUserPreferences = (props: {
     devour: {
       action: 'toggle_devour',
       test: devourable,
+      fluid: false,
       tooltip: {
         main: 'This button is to toggle your ability to be devoured by others.',
         enable: 'Click here to allow being devoured.',
@@ -114,9 +142,7 @@ export const VoreUserPreferences = (props: {
       action: 'toggle_healbelly',
       test: permit_healbelly,
       tooltip: {
-        main:
-          "This button is for those who don't like healbelly used on them as a mechanic." +
-          ' It does not affect anything, but is displayed under mechanical prefs for ease of quick checks.',
+        main: "This button is for those who don't like healbelly used on them as a mechanic.",
         enable: 'Click here to allow being heal-bellied.',
         disable: 'Click here to prevent being heal-bellied.',
       },
@@ -128,6 +154,7 @@ export const VoreUserPreferences = (props: {
     dropnom_prey: {
       action: 'toggle_dropnom_prey',
       test: can_be_drop_prey,
+      fluid: false,
       tooltip: {
         main:
           'This toggle is for spontaneous, environment related vore' +
@@ -143,6 +170,7 @@ export const VoreUserPreferences = (props: {
     dropnom_pred: {
       action: 'toggle_dropnom_pred',
       test: can_be_drop_pred,
+      fluid: false,
       tooltip: {
         main:
           'This toggle is for spontaneous, environment related vore' +
@@ -215,6 +243,21 @@ export const VoreUserPreferences = (props: {
         disabled: 'Throw Vore Disabled',
       },
     },
+    toggle_phase_vore: {
+      action: 'toggle_phase_vore',
+      test: phase_vore,
+      tooltip: {
+        main:
+          'Allows for phasing related spontaneous vore to occur. ' +
+          ' Note, you still need spontaneous vore pred and/or prey enabled.',
+        enable: 'Click here to allow for phase vore.',
+        disable: 'Click here to disable phase vore.',
+      },
+      content: {
+        enabled: 'Phase Vore Enabled',
+        disabled: 'Phase Vore Disabled',
+      },
+    },
     toggle_food_vore: {
       action: 'toggle_food_vore',
       test: food_vore,
@@ -228,6 +271,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Food Vore Enabled',
         disabled: 'Food Vore Disabled',
+      },
+    },
+    toggle_consume_liquid_belly: {
+      action: 'toggle_consume_liquid_belly',
+      test: consume_liquid_belly,
+      tooltip: {
+        main: 'Allows you to consume reagents produced by bellies.',
+        enable: 'Click here to allow consuming belly reagents.',
+        disable: 'Click here to disallow consuming belly reagents.',
+      },
+      content: {
+        enabled: 'Consuming Belly Reagents Enabled',
+        disabled: 'Consuming Belly Reagents Disabled',
       },
     },
     toggle_digest_pain: {
@@ -245,19 +301,32 @@ export const VoreUserPreferences = (props: {
         disabled: 'Digestion Pain Disabled',
       },
     },
-    inbelly_spawning: {
-      action: 'toggle_allow_inbelly_spawning',
-      test: allow_inbelly_spawning,
+    spawnbelly: {
+      action: 'toggle_latejoin_vore',
+      test: latejoin_vore,
+      fluid: false,
       tooltip: {
-        main:
-          'This toggle is ghosts being able to spawn in one of your bellies.' +
-          ' You will have to confirm again when they attempt to.',
-        enable: 'Click here to allow prey to spawn in you.',
-        disable: 'Click here to prevent prey from spawning in you.',
+        main: 'Toggle late join vore spawnpoint.',
+        enable: 'Click here to turn on vorish spawnpoint.',
+        disable: 'Click here to turn off vorish spawnpoint.',
       },
       content: {
-        enabled: 'Inbelly Spawning Allowed',
-        disabled: 'Inbelly Spawning Forbidden',
+        enabled: 'Vore Spawn Pred Enabled',
+        disabled: 'Vore Spawn Pred Disabled',
+      },
+    },
+    spawnprey: {
+      action: 'toggle_latejoin_prey',
+      test: latejoin_prey,
+      fluid: false,
+      tooltip: {
+        main: 'Toggle late join preds spawning on you.',
+        enable: 'Click here to turn on preds spawning around you.',
+        disable: 'Click here to turn off preds spawning around you.',
+      },
+      content: {
+        enabled: 'Vore Spawn Prey Enabled',
+        disabled: 'Vore Spawn Prey Disabled',
       },
     },
     noisy: {
@@ -271,6 +340,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Hunger Noises Enabled',
         disabled: 'Hunger Noises Disabled',
+      },
+    },
+    noisy_full: {
+      action: 'toggle_noisy_full',
+      test: noisy_full,
+      tooltip: {
+        main: 'Toggle belching while full.',
+        enable: 'Click here to turn on belching while full.',
+        disable: 'Click here to turn off belching while full.',
+      },
+      content: {
+        enabled: 'Belching Enabled',
+        disabled: 'Belching Disabled',
       },
     },
     resize: {
@@ -410,6 +492,23 @@ export const VoreUserPreferences = (props: {
         disabled: 'Examine Weight Messages Inactive',
       },
     },
+    strippref: {
+      action: 'toggle_strippref',
+      test: strip_mechanics_active,
+      tooltip: {
+        main: '',
+        enable:
+          'Regardless of Predator Setting, you will not be stripped inside their bellies.' +
+          ' Click this to allow stripping.',
+        disable:
+          'Your Predator must have this setting enabled in their belly modes to allow stripping your gear,' +
+          ' if they do not, they will not strip your gear, even with this on. Click to disable stripping.',
+      },
+      content: {
+        enabled: 'Allow Worn Item Stripping',
+        disabled: 'Do Not Allow Worn Item Stripping',
+      },
+    },
     eating_privacy_global: {
       action: 'toggle_global_privacy',
       test: eating_privacy_global,
@@ -439,35 +538,232 @@ export const VoreUserPreferences = (props: {
         disabled: 'Allow Mimicry: No',
       },
     },
+    autotransferable: {
+      action: 'toggle_autotransferable',
+      test: autotransferable,
+      tooltip: {
+        main: 'This button is for allowing or preventing belly auto-transfer mechanics from moving you.',
+        enable: 'Click here to allow autotransfer.',
+        disable: 'Click here to prevent autotransfer.',
+      },
+      content: {
+        enabled: 'Auto-Transfer Allowed',
+        disabled: 'Do Not Allow Auto-Transfer',
+      },
+    },
+    liquid_receive: {
+      action: 'toggle_liq_rec',
+      test: liq_rec,
+      tooltip: {
+        main: 'This button is for allowing or preventing others from giving you liquids from their vore organs.',
+        enable: 'Click here to allow receiving liquids.',
+        disable: 'Click here to prevent receiving liquids.',
+      },
+      content: {
+        enabled: 'Receiving Liquids Allowed',
+        disabled: 'Do Not Allow Receiving Liquids',
+      },
+    },
+    liquid_give: {
+      action: 'toggle_liq_giv',
+      test: liq_giv,
+      tooltip: {
+        main: 'This button is for allowing or preventing others from taking liquids from your vore organs.',
+        enable: 'Click here to allow taking liquids.',
+        disable: 'Click here to prevent taking liquids.',
+      },
+      content: {
+        enabled: 'Taking Liquids Allowed',
+        disabled: 'Do Not Allow Taking Liquids',
+      },
+    },
+    liquid_apply: {
+      action: 'toggle_liq_apply',
+      test: liq_apply,
+      tooltip: {
+        main: 'This button is for allowing or preventing vorgans from applying liquids to you.',
+        enable: 'Click here to allow the application of liquids.',
+        disable: 'Click here to prevent the application of liquids.',
+      },
+      content: {
+        enabled: 'Applying Liquids Allowed',
+        disabled: 'Do Not Allow Applying Liquids',
+      },
+    },
+    no_spawnpred_warning: {
+      action: 'toggle_no_latejoin_vore_warning',
+      test: no_spawnpred_warning,
+      tooltip: {
+        main:
+          'This button is to disable the vore spawnpoint confirmations ' +
+          (no_spawnpred_warning_save
+            ? '(round persistent).'
+            : '(no round persistence).'),
+        enable:
+          'Click here to auto accept spawnpoint confirmations after ' +
+          String(no_spawnpred_warning_time) +
+          ' seconds.',
+        disable:
+          'Click here to no longer auto accept spawnpoint confirmations after ' +
+          String(no_spawnpred_warning_time) +
+          ' seconds.',
+      },
+      back_color: {
+        enabled: no_spawnpred_warning_save ? 'green' : '#8B8000',
+        disabled: '',
+      },
+      content: {
+        enabled: 'Vore Spawn Pred Auto Accept Enabled',
+        disabled: 'Vore Spawn Pred Auto Accept Disabled',
+      },
+    },
+    no_spawnprey_warning: {
+      action: 'toggle_no_latejoin_prey_warning',
+      test: no_spawnprey_warning,
+      tooltip: {
+        main:
+          'This button is to disable the pred spawning on you confirmations ' +
+          (no_spawnprey_warning_save
+            ? '(round persistent).'
+            : '(no round persistence).'),
+        enable:
+          'Click here to auto accept pred spawn confirmations after ' +
+          String(no_spawnprey_warning_time) +
+          ' seconds.',
+        disable:
+          'Click here to no longer auto accept pred spawn confirmations after ' +
+          String(no_spawnprey_warning_time) +
+          ' seconds.',
+      },
+      back_color: {
+        enabled: no_spawnprey_warning_save ? 'green' : '#8B8000',
+        disabled: '',
+      },
+      content: {
+        enabled: 'Vore Spawn Prey Auto Accept Enabled',
+        disabled: 'Vore Spawn Prey Auto Accept Disabled',
+      },
+    },
+    soulcatcher: {
+      action: 'toggle_soulcatcher_allow_capture',
+      test: soulcatcher_allow_capture,
+      tooltip: {
+        main: 'This button is for allowing or preventing vorgans from soulcatching you.',
+        enable: 'Click here to allow soul capturing.',
+        disable: 'Click here to prevent soul capturing.',
+      },
+      content: {
+        enabled: 'Soul Capturing Allowed',
+        disabled: 'Do Not Allow Soul Capturing',
+      },
+    },
+    soulcatcher_takeover: {
+      action: 'toggle_soulcatcher_allow_takeover',
+      test: soulcatcher_allow_takeover,
+      tooltip: {
+        main: 'This button is for allowing or preventing to give body control to captured souls.',
+        enable:
+          'Click here to allow body takeovers. (Both parties need it enabled to function)',
+        disable: 'Click here to prevent body takeovers.',
+      },
+      content: {
+        enabled: 'Body Takeover Allowed',
+        disabled: 'Do Not Allow Body Takeover',
+      },
+    },
+    soulcatcher_transfer: {
+      action: 'toggle_soulcatcher_allow_transfer',
+      test: soulcatcher_allow_transfer,
+      tooltip: {
+        main: 'This button is for allowing or preventing soulcatchers from transferring your soul.',
+        enable: 'Click here to allow soul transferring to sleevemates or mmis.',
+        disable:
+          'Click here to prevent soul transferring to sleevemates or mmis.',
+      },
+      content: {
+        enabled: 'Soul Transfer Allowed',
+        disabled: 'Do Not Allow Soul Transfer',
+      },
+    },
+    soulcatcher_delete: {
+      action: 'toggle_soulcatcher_allow_deletion',
+      test: soulcatcher_allow_deletion,
+      tooltip: {
+        main: 'This button is for allowing or preventing soulcatchers from deleting your soul WARNING! Deletion will round remove you.',
+        enable: 'Click here to allow the deletion of your soul.',
+        disable:
+          (soulcatcher_allow_deletion === 1 &&
+            'Click here to allow the deletion of your soul without additional request.') ||
+          (soulcatcher_allow_deletion === 2 &&
+            'Click here to prevent the deletion of your soul.') ||
+          '',
+      },
+      back_color: {
+        enabled:
+          (soulcatcher_allow_deletion === 1 && 'orange') ||
+          (soulcatcher_allow_deletion === 2 && 'red') ||
+          '',
+        disabled: '',
+      },
+      content: {
+        enabled:
+          (soulcatcher_allow_deletion === 1 &&
+            'WARNING, Soul Deletion Possible') ||
+          (soulcatcher_allow_deletion === 2 &&
+            'DANGER! Instant Soul Deletion Allowed') ||
+          '',
+        disabled: 'Do Not Allow Soul Deletion',
+      },
+    },
   };
 
   return (
-    <Section fill scrollable>
+    <Section scrollable fill>
       <VoreUserPreferencesMechanical
         show_pictures={show_pictures}
+        icon_overflow={icon_overflow}
         preferences={preferences}
       />
-      <VoreUserPreferencesAesthetic preferences={preferences} />
+      <VoreUserPreferencesDevouring
+        devourable={devourable}
+        digestModeToColor={digestModeToColor}
+        selective_active={selective_active}
+        preferences={preferences}
+      />
+      <VoreUserPreferencesSpontaneous
+        can_be_drop_prey={can_be_drop_prey}
+        can_be_drop_pred={can_be_drop_pred}
+        preferences={preferences}
+      />
+      <VoreUserPreferencesSoulcatcher
+        soulcatcher_allow_capture={soulcatcher_allow_capture}
+        preferences={preferences}
+      />
+      <VoreUserPreferencesSpawn
+        latejoin_vore={latejoin_vore}
+        no_spawnpred_warning_time={no_spawnpred_warning_time}
+        preferences={preferences}
+        no_spawnpred_warning_save={no_spawnpred_warning_save}
+        latejoin_prey={latejoin_prey}
+        no_spawnprey_warning_time={no_spawnprey_warning_time}
+        no_spawnprey_warning_save={no_spawnprey_warning_save}
+      />
+      <VoreUserPreferencesAesthetic
+        preferences={preferences}
+        belly_rub_target={belly_rub_target}
+        selected={selected}
+      />
       <Divider />
       <Section>
         <Stack>
-          <Stack.Item basis="32%">
+          <Stack.Item basis="49%">
             <Button fluid icon="save" onClick={() => act('saveprefs')}>
               Save Prefs
             </Button>
           </Stack.Item>
-          <Stack.Item basis="32%" grow>
+          <Stack.Item basis="49%" grow>
             <Button fluid icon="undo" onClick={() => act('reloadprefs')}>
               Reload Prefs
-            </Button>
-          </Stack.Item>
-          <Stack.Item basis="32%" grow>
-            <Button
-              fluid
-              icon="people-arrows"
-              onClick={() => act('loadprefsfromslot')}
-            >
-              Load Prefs From Slot
             </Button>
           </Stack.Item>
         </Stack>
