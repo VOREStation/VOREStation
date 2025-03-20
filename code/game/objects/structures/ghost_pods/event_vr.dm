@@ -208,7 +208,7 @@
 
 	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should not be used with characters you regularly play on station. Are you absolutely sure you wish to continue?", "Maint Lurker Spawner", list("Yes", "No"))
 
-	if(!choice || choice == "No")
+	if(choice != "Yes")
 		return
 
 	create_occupant(user)
@@ -284,7 +284,7 @@
 
 	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should be a character who has a suitable reason for existing within this redspace location. You will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redspace Inhabitant Spawner", list("Yes", "No"))
 
-	if(!choice || choice == "No")
+	if(choice != "Yes")
 		return
 
 	create_occupant(user)
