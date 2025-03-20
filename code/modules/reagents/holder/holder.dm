@@ -101,13 +101,15 @@
 
 /* Holder-to-chemical */
 
-/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
+/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/was_from_belly)
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
 	update_total()
 	amount = min(amount, get_free_space())
 
+	if(was_from_belly)
+		R.from_belly = was_from_belly
 
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
