@@ -4,7 +4,7 @@
 /datum/trait/neutral/disability_censored
 	name = "Censored"
 	desc = "You are unable to speak profanity. To an excessive degree..."
-	cost = 0 //Originally was -1
+	cost = 0 // TRAITGENETICS - Originally was -1
 	custom_only = FALSE
 
 	is_genetrait = TRUE
@@ -17,7 +17,7 @@
 /datum/trait/neutral/disability_nervousness
 	name = "Nervousness"
 	desc = "You are generally nervous natured, often stuttering words."
-	cost = 0 //Originally was -1
+	cost = 0 // TRAITGENETICS - Originally was -1
 	custom_only = FALSE
 
 	is_genetrait = TRUE
