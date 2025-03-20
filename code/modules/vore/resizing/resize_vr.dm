@@ -86,15 +86,20 @@
  * * ignore_prefs - CHANGE_ME. Default: FALSE
  * * aura_animation - CHANGE_ME. Default: TRUE
  */
+//#define USE_DIRECT_MULTIPLIERS //Uncomment to use old resize calculations.
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
-		var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
-		var/size_cap = world.icon_size * (RESIZE_MAXIMUM+(ishuman(src)?0:0.5)) //Grace for non-humanoids so they don't get forcibly shrunk.
+		#ifdef USE_DIRECT_MULTIPLIERS
+			new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
+		#else
+			var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
+			var/size_cap = world.icon_size * (RESIZE_MAXIMUM+(ishuman(src)?0:0.5)) //Grace for non-humanoids so they don't get forcibly shrunk.
+			if(size_diff - size_cap  > 0)
+				var/real_diff = size_cap / size_diff // Returns our diff based on the offset to world size
+				new_size *= real_diff // Applies our diff to the new size
+				new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM) //If the sprite is below 32, we clamp it to only go to the resize max.
+		#endif
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
-		if(size_diff - size_cap  > 0)
-			var/real_diff = size_cap / size_diff // Returns our diff based on the offset to world size
-			new_size *= real_diff // Applies our diff to the new size
-			new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM) //If the sprite is below 32, we clamp it to only go to the resize max.
 		if(guard)
 			qdel(guard)
 	else if(has_large_resize_bounds())
