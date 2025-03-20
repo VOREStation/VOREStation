@@ -1861,23 +1861,6 @@
 					return
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
-/mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
-				stomach_contents.Remove(M)
-				continue
-			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(SSair.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjust_nutrition(10)
-
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()

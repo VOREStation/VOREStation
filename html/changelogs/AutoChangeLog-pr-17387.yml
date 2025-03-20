@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Voidsuits can now properly integrate oxygen tanks into them"
+  - qol: "Voidsuit oxygentanks now no longer deploy into your suit storage slot, but are integrated."
+  - qol: "Vox can put phoron tanks into voidsuits"

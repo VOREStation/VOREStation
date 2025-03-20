@@ -18,10 +18,18 @@
 
 	var/mirror_first_occupant = TRUE	// Do we force the newly produced body to look like the occupant?
 
+	/// If we have a perfect replica of the mob's species that is entering us!
+	/// Because of our player population, I have defaulted this to TRUE.
+	/// If you are a downstream and want to have people spawn as VR prometheans by default, change this to FALSE
+	var/perfect_replica = TRUE
+
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
+
+/obj/machinery/vr_sleeper/perfect
+	perfect_replica = TRUE
 
 /obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
@@ -195,7 +203,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = src.loc
+	occupant.forceMove(src)
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
@@ -220,6 +228,9 @@
 	if(occupant.stat == DEAD)
 		return
 
+	if(QDELETED(occupant.vr_link)) //Hardrefs...
+		occupant.vr_link = null
+
 	avatar = occupant.vr_link
 	// If they've already enterred VR, and are reconnecting, prompt if they want a new body
 	if(avatar && tgui_alert(occupant, "You already have a [avatar.stat == DEAD ? "" : "deceased "]Virtual Reality avatar. Would you like to use it?", "New avatar", list("Yes", "No")) != "Yes")
@@ -243,7 +254,11 @@
 				S = i
 				break
 
-		avatar = new(S, "Virtual Reality Avatar")
+		if(!perfect_replica)
+			avatar = new(S, "Virtual Reality Avatar")
+		else
+			avatar = new(src, occupant.species.name)
+
 		// If the user has a non-default (Human) bodyshape, make it match theirs.
 		if(occupant.species.name != "Promethean" && occupant.species.name != "Human" && mirror_first_occupant)
 			avatar.shapeshifter_change_shape(occupant.species.name)
@@ -251,9 +266,16 @@
 
 
 		occupant.enter_vr(avatar)
-		//Yes, I am using a aheal just so your markings transfer over, I could not get .prefs.copy_to working. This is very stupid, and I can't be assed to rewrite this.  Too bad!
-		avatar.revive()
-		avatar.revive()
+		//This handles all the 'We make it look like ourself' code.
+		if(perfect_replica)
+			avatar.species.create_organs(avatar) // Reset our organs/limbs.
+			avatar.restore_all_organs()
+			avatar.client.prefs.copy_to(avatar)
+			avatar.dna.ResetUIFrom(avatar)
+			avatar.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
+			avatar.sync_organ_dna()
+			avatar.initialize_vessel()
+
 		add_verb(avatar, /mob/living/carbon/human/proc/exit_vr) //ahealing removes the prommie verbs and the VR verbs, giving it back
 		avatar.Sleeping(1)
 
