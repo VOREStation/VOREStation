@@ -89,17 +89,12 @@
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
 		var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size <<<--- does this even work properly????
-		to_world("RYO = [runechat_y_offset()] size_diff = [size_diff], size_multiplier = [size_multiplier] new_size = [new_size]")
 		var/size_cap = world.icon_size * (RESIZE_MAXIMUM+(ishuman(src)?0:0.5)) //Grace for non-humanoids so they don't get forcibly shrunk.
-		to_world("size_cap = [size_cap]")
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 		if(size_diff - size_cap  > 0)
 			var/real_diff = size_cap / size_diff // Returns our diff based on the offset to world size
-			to_world("real_diff = [real_diff]")
 			new_size *= real_diff // Applies our diff to the new size
 			new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM) //If the sprite is below 32, we clamp it to only go to the resize max.
-			to_world("size_diff was > resize, new_size = [new_size]")
-		to_world("we have completed size calculations. Final size = [new_size]")
 		if(guard)
 			qdel(guard)
 	else if(has_large_resize_bounds())
