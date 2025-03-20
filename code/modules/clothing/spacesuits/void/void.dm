@@ -96,13 +96,6 @@
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			hood.canremove = FALSE
 
-	if(tank)
-		if(H.s_store) //In case someone finds a way.
-			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
-		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
-			to_chat(M, "The valve on your suit's installed tank safely engages.")
-			tank.canremove = FALSE
-
 	if(cooler)
 		if(H.s_store) //Ditto
 			to_chat(M, "Alarmingly, the cooling unit installed into your suit fails to deploy.")
@@ -288,9 +281,7 @@
 		if(tank)
 			to_chat(user, "\The [src] already has an airtank installed.")
 		else if(cooler)
-			to_chat(user, "\The [src]'s suit cooling unit is in the way.  Remove it first.")
-		else if(istype(W,/obj/item/tank/phoron))
-			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
+			to_chat(user, "\The [src]'s suit cooling unit is the modular suit storage.  Remove it first.")
 		else
 			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()
@@ -301,7 +292,7 @@
 		if(cooler)
 			to_chat(user, "\The [src] already has a suit cooling unit installed.")
 		else if(tank)
-			to_chat(user, "\The [src]'s airtank is in the way.  Remove it first.")
+			to_chat(user, "\The [src]'s airtank is in the modular suit storage.  Remove it first.")
 		else
 			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()
