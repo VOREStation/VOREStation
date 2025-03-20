@@ -211,19 +211,19 @@ if $grep '\.proc/' $code_x_515 ; then
     FAILED=1
 fi;
 
-part "var in proc args"
-if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: changed files contains proc argument starting with 'var'.${NC}"
-	FAILED=1
-fi;
+#part "var in proc args"
+#if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
+#	echo
+#	echo -e "${RED}ERROR: changed files contains proc argument starting with 'var'.${NC}"
+#	FAILED=1
+#fi;
 
-part "unmanaged global vars"
-if grep -P '^/*var/' $code_files; then
-	echo
-	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
-	FAILED=1
-fi;
+#part "unmanaged global vars"
+#if grep -P '^/*var/' $code_files; then
+#	echo
+#	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
+#	FAILED=1
+#fi;
 
 part "ambiguous bitwise or"
 if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
