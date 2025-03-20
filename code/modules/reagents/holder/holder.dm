@@ -83,14 +83,17 @@
 	var/reaction_occurred
 	var/list/eligible_reactions = list()
 	var/list/effect_reactions = list()
+	var/from_belly
 	do
 		reaction_occurred = FALSE
 		for(var/datum/reagent/R as anything in reagent_list)
 			if(SSchemistry.instant_reactions_by_reagent[R.id])
 				eligible_reactions |= SSchemistry.instant_reactions_by_reagent[R.id]
+				if(!from_belly)
+					from_belly = R.from_belly
 
 		for(var/decl/chemical_reaction/C as anything in eligible_reactions)
-			if(C.can_happen(src) && C.process(src))
+			if(C.can_happen(src) && C.process(src, from_belly))
 				effect_reactions |= C
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
@@ -253,7 +256,7 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, current.from_belly) // We don't react until everything is in place
+		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, was_from_belly = current.from_belly) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.id, amount_to_transfer, 1)
 

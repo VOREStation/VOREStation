@@ -78,7 +78,7 @@
 
 	return progress
 
-/decl/chemical_reaction/process(var/datum/reagents/holder)
+/decl/chemical_reaction/process(var/datum/reagents/holder, var/belly_reagent)
 	//determine how far the reaction can proceed
 	var/list/reaction_limits = list()
 	for(var/reactant in required_reagents)
@@ -92,14 +92,11 @@
 
 	//need to obtain the new reagent's data before anything is altered
 	var/data = send_data(holder, reaction_progress)
-	var/belly_reagent
 
 	//remove the reactants
 	for(var/reactant in required_reagents)
 		var/amt_used = required_reagents[reactant] * reaction_progress
 		holder.remove_reagent(reactant, amt_used, safety = 1)
-		if(!belly_reagent)
-			belly_reagent = reactant.from_belly
 
 	//add the product
 	var/amt_produced = result_amount * reaction_progress
