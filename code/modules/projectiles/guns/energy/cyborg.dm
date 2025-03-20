@@ -447,7 +447,15 @@
 		target.taunt(user)
 
 /obj/item/melee/robotic/baton/slime
-	hitcost = 200
+	name = "slimebaton"
+	desc = "A modified stun baton designed to stun slimes and other lesser slimy xeno lifeforms for handling."
+	icon_state = "slimebaton_active"
+	item_state = "slimebaton"
+	force = 10 //we like round numbers here
+	lightcolor = "#33CCFF"
+	agonyforce = 10	//It's not supposed to be great at stunning human beings.
+	hitcost = 48	//Less zap for less cost
+
 
 /obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/user, hit_zone)
 	if(!istype(L))

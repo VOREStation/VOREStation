@@ -1019,6 +1019,15 @@
 	else
 		return null
 
+/atom/proc/get_voidsuit()
+	return null
+
+/mob/living/carbon/human/get_voidsuit()
+	if(istype(wear_suit, /obj/item/clothing/suit/space/void))
+		return wear_suit
+	else
+		return null
+
 //Boot animation screen objects
 /obj/screen/rig_booting
 	screen_loc = "1,1"
