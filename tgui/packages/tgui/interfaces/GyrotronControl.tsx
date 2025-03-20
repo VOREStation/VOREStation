@@ -32,6 +32,8 @@ export const GyrotronControlContent = (props) => {
 
   return (
     <Section
+      fill
+      scrollable
       title="Gyrotrons"
       buttons={
         <Button icon="pencil-alt" onClick={() => act('set_tag')}>
