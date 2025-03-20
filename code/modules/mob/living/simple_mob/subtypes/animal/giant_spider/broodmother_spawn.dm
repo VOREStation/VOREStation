@@ -7,7 +7,7 @@
 
 	movement_cooldown = 3
 
-/mob/living/simple_mob/animal/giant_spider/frost/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/frost/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -25,7 +25,7 @@
 
 	movement_cooldown = -1
 
-/mob/living/simple_mob/animal/giant_spider/electric/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/electric/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -40,7 +40,7 @@
 
 	movement_cooldown = 0
 
-/mob/living/simple_mob/animal/giant_spider/hunter/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/hunter/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -55,7 +55,7 @@
 
 	movement_cooldown = 0
 
-/mob/living/simple_mob/animal/giant_spider/lurker/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/lurker/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -71,7 +71,7 @@
 	movement_cooldown = 3
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/animal/giant_spider/nurse/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/nurse/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -86,7 +86,7 @@
 
 	movement_cooldown = 3
 
-/mob/living/simple_mob/animal/giant_spider/pepper/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/pepper/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -104,7 +104,7 @@
 
 	movement_cooldown = 1
 
-/mob/living/simple_mob/animal/giant_spider/thermic/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/thermic/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -119,7 +119,7 @@
 
 	movement_cooldown = 1
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/tunneler/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -136,7 +136,7 @@
 
 	movement_cooldown = 1.5
 
-/mob/living/simple_mob/animal/giant_spider/webslinger/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/webslinger/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
@@ -154,7 +154,7 @@
 
 	movement_cooldown = 3
 
-/mob/living/simple_mob/animal/giant_spider/broodling/Initialize()
+/mob/living/simple_mob/animal/giant_spider/broodling/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.75)
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)

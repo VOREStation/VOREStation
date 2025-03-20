@@ -845,8 +845,6 @@
 
 	var/effective_strength = 5
 
-	if(alien == IS_SKRELL)	//Larger eyes means bigger targets.
-		effective_strength = 8
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -955,7 +953,6 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), span_danger("You feel like your insides are burning!"))
-	// holder.remove_reagent(REAGENT_ID_FROSTOIL, 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /* Drinks */
 
@@ -983,7 +980,7 @@
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.species.allergens & allergen_type))
 		var/bonus = M.food_preference(allergen_type)
-		M.adjust_nutrition((nutrition + bonus) * removed) //RS edit
+		M.adjust_nutrition((nutrition + bonus) * removed)
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.AdjustSleeping(adj_sleepy)
@@ -991,10 +988,6 @@
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	/* VOREStation Removal
-	if(alien == IS_SLIME && water_based)
-		M.adjustToxLoss(removed * 2)
-	*/ //VOREStation Removal End
 
 /datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Add special interactions here in the future if desired.
 	..()
@@ -1582,7 +1575,7 @@
 	adj_drowsy = -3
 	adj_sleepy = -2
 	adj_temp = 25
-	overdose = 45
+	overdose = REAGENTS_OVERDOSE *1.5
 
 	cup_icon_state = "cup_coffee"
 	cup_name = REAGENT_ID_COFFEE
@@ -2788,7 +2781,7 @@
 	glass_desc = "That is just way too much syrup to drink on its own."
 	allergen_type = ALLERGEN_SUGARS
 
-	overdose = 45
+	overdose = REAGENTS_OVERDOSE *1.5
 
 /datum/reagent/drink/syrup/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
@@ -3103,7 +3096,7 @@
 /datum/reagent/ethanol/coffee
 	name = REAGENT_DEVELOPER_WARNING
 	id = REAGENT_ID_DEVELOPER_WARNING
-	overdose = 45
+	overdose = REAGENTS_OVERDOSE *1.5
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
 /datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -4245,8 +4238,10 @@
 			return
 
 		var/drug_strength = 10
-		if(alien == IS_SKRELL)
-			drug_strength = drug_strength * 0.8
+		if(M.species.chem_strength_tox > 0)
+			drug_strength *= M.species.chem_strength_tox
+		if(alien == IS_SLIME)
+			drug_strength *= 0.15 //~ 1/6
 
 		M.druggy = max(M.druggy, drug_strength)
 		if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())

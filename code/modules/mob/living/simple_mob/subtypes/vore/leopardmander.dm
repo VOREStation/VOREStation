@@ -70,12 +70,14 @@
 	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/leopardmander/Initialize()
+/mob/living/simple_mob/vore/leopardmander/Initialize(mapload)
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 
 /mob/living/simple_mob/vore/leopardmander/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected
@@ -147,6 +149,8 @@
 
 /mob/living/simple_mob/vore/leopardmander/exotic/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

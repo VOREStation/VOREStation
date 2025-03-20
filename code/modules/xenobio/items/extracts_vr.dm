@@ -16,7 +16,7 @@
 	flags = OPENCONTAINER
 
 
-/obj/item/slime_extract/Initialize()
+/obj/item/slime_extract/Initialize(mapload)
 	. = ..()
 	create_reagents(60)
 

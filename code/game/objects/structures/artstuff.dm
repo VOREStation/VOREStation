@@ -68,7 +68,7 @@
 	pixel_x = 10
 	pixel_y = 9
 
-/obj/item/canvas/Initialize()
+/obj/item/canvas/Initialize(mapload)
 	. = ..()
 	reset_grid()
 	desc += " (Canvas size is [width]x[height].)"
@@ -270,7 +270,7 @@
 	var/image/color_drop
 	var/hud_level = FALSE
 
-/obj/item/paint_brush/Initialize()
+/obj/item/paint_brush/Initialize(mapload)
 	. = ..()
 	color_drop = image(icon, null, "brush_color")
 	color_drop.color = selected_color

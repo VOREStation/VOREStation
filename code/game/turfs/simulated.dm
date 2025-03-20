@@ -4,7 +4,7 @@
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
-	var/has_resources
+	var/turf_resource_types
 	var/list/resources
 
 	var/thermite = 0
@@ -103,7 +103,7 @@
 	if (isliving(A))
 		var/dirtslip = FALSE
 		var/mob/living/M = A
-		if(M.lying || M.flying || M.is_incorporeal())
+		if(M.lying || M.flying || M.is_incorporeal() || !(M.flags & ATOM_INITIALIZED)) // Also ignore newly spawning mobs
 			return ..()
 
 		if(M.dirties_floor())
@@ -172,8 +172,8 @@
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0
-
 	..()
+
 /turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
 	PRIVATE_PROC(TRUE)
 	if(!M || !slip_dist)

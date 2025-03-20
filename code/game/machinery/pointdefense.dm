@@ -26,9 +26,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			if(PC != src && PC.id_tag == id_tag)
 				warning("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
-	// TODO - Remove this bit once machines are converted to Initialize
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 
 /obj/machinery/pointdefense_control/get_description_interaction()
@@ -137,11 +134,8 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/datum/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
 
-/obj/machinery/power/pointdefense/Initialize()
+/obj/machinery/power/pointdefense/Initialize(mapload)
 	. = ..()
-	// TODO - Remove this bit once machines are converted to Initialize
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 	if(anchored)
 		connect_to_network()

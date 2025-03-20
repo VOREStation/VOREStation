@@ -3,19 +3,23 @@ import { BooleanLike } from 'tgui-core/react';
 export type Data = {
   unsaved_changes: BooleanLike;
   show_pictures: BooleanLike;
+  icon_overflow: BooleanLike;
   inside: insideData;
   host_mobtype: hostMob;
   our_bellies: bellyData[];
-  selected: selectedData;
+  selected: selectedData | null;
   prefs: prefData;
-  abilities: {
-    nutrition: number;
-    current_size: number;
-    minimum_size: number;
-    maximum_size: number;
-    resize_cost: number;
-  };
+  soulcatcher: soulcatcherData | null;
+  abilities: abilities;
   vore_words: Record<string, string[]>;
+};
+
+export type abilities = {
+  nutrition: number;
+  current_size: number;
+  minimum_size: number;
+  maximum_size: number;
+  resize_cost: number;
 };
 
 export type hostMob = {
@@ -30,6 +34,9 @@ export type insideData = {
   desc?: string;
   pred?: string;
   ref?: string;
+  liq_lvl?: number;
+  liq_reagent_type?: string;
+  liuq_name?: string;
   contents?: contentData[];
 };
 
@@ -65,7 +72,13 @@ export type selectedData = {
   sound: string;
   release_sound: string;
   can_taste: BooleanLike;
+  is_feedable: BooleanLike;
   egg_type: string;
+  egg_name: string;
+  egg_size: number;
+  recycling: BooleanLike;
+  storing_nutrition: BooleanLike;
+  entrance_logs: BooleanLike;
   nutrition_percent: number;
   digest_brute: number;
   digest_burn: number;
@@ -89,9 +102,53 @@ export type selectedData = {
   belly_overall_mult: number;
   drainmode: string;
   belly_fullscreen_color: string;
-  belly_fullscreen_color_secondary: string;
-  belly_fullscreen_color_trinary: string;
+  belly_fullscreen_color2: string;
+  belly_fullscreen_color3: string;
+  belly_fullscreen_color4: string;
+  belly_fullscreen_alpha: number;
   colorization_enabled: BooleanLike;
+  custom_reagentcolor: string;
+  custom_reagentalpha: number;
+  liquid_overlay: BooleanLike;
+  max_liquid_level: number;
+  reagent_touches: BooleanLike;
+  mush_overlay: BooleanLike;
+  mush_color: string;
+  mush_alpha: number;
+  max_mush: number;
+  min_mush: number;
+  item_mush_val: number;
+  metabolism_overlay: BooleanLike;
+  metabolism_mush_ratio: number;
+  max_ingested: number;
+  custom_ingested_color: string;
+  custom_ingested_alpha: number;
+  vorespawn_blacklist: BooleanLike;
+  vorespawn_whitelist: string[];
+  vorespawn_absorbed: number;
+  sound_volume: number;
+  affects_voresprite: BooleanLike;
+  absorbed_voresprite: BooleanLike;
+  absorbed_multiplier: number;
+  liquid_voresprite: BooleanLike;
+  liquid_multiplier: number;
+  item_voresprite: BooleanLike;
+  item_multiplier: number;
+  health_voresprite: number;
+  resist_animation: BooleanLike;
+  voresprite_size_factor: number;
+  belly_sprite_to_affect: string;
+  undergarment_chosen: string;
+  undergarment_if_none: string;
+  undergarment_color: string;
+  belly_sprite_option_shown: BooleanLike;
+  tail_option_shown: BooleanLike;
+  tail_to_change_to: BooleanLike | string;
+  tail_colouration: BooleanLike;
+  tail_extra_overlay: BooleanLike;
+  tail_extra_overlay2: BooleanLike;
+  noise_freq: number;
+  item_digest_logs: BooleanLike;
   private_struggle: BooleanLike;
   addons: string[];
   vore_sprite_flags: string[];
@@ -105,25 +162,10 @@ export type selectedData = {
   disable_hud: BooleanLike;
   possible_fullscreens: string[];
   contents: contentData[];
-  affects_voresprite: BooleanLike;
-  absorbed_voresprite: BooleanLike;
-  absorbed_multiplier: number;
-  liquid_voresprite: BooleanLike;
-  liquid_multiplier: number;
-  item_voresprite: BooleanLike;
-  item_multiplier: number;
-  health_voresprite: BooleanLike;
-  resist_animation: BooleanLike;
-  voresprite_size_factor: number;
-  belly_sprite_to_affect: string;
-  belly_sprite_option_shown: BooleanLike;
-  tail_option_shown: BooleanLike;
-  tail_to_change_to: BooleanLike | string;
-  tail_colouration: BooleanLike;
-  tail_extra_overlay: BooleanLike;
-  tail_extra_overlay2: BooleanLike;
-  undergarment_chosen: undefined; // NOT IMPLEMENTED!!!
-  undergarment_if_none: undefined; // NOT IMPLEMENTED!!!
+  show_liq: BooleanLike;
+  liq_interacts: liqInteractData;
+  show_liq_fullness: BooleanLike;
+  liq_messages: liqMessageData;
 };
 
 export type interactData = {
@@ -136,12 +178,67 @@ export type interactData = {
   transferlocation_secondary: string;
   absorbchance: number;
   digestchance: number;
+  belchchance: number;
 };
 
-type autotransferData = {
+export type autotransferData = {
   autotransferchance: number;
   autotransferwait: number;
   autotransferlocation: string;
+  autotransferextralocation: string[];
+  autotransferchance_secondary: number;
+  autotransferlocation_secondary: string;
+  autotransferextralocation_secondary: string[];
+  autotransfer_min_amount: number;
+  autotransfer_max_amount: number;
+  autotransfer_whitelist: string[];
+  autotransfer_blacklist: string[];
+  autotransfer_whitelist_items: string[];
+  autotransfer_blacklist_items: string[];
+  autotransfer_secondary_whitelist: string[];
+  autotransfer_secondary_blacklist: string[];
+  autotransfer_secondary_whitelist_items: string[];
+  autotransfer_secondary_blacklist_items: string[];
+};
+
+type liqInteractData = {
+  liq_reagent_gen: BooleanLike;
+  liq_reagent_type: string;
+  liq_reagent_name: string;
+  liq_reagent_transfer_verb: string;
+  liq_reagent_nutri_rate: number;
+  liq_reagent_capacity: number;
+  liq_sloshing: BooleanLike;
+  liq_reagent_addons: string[];
+  custom_reagentcolor: string;
+  custom_reagentalpha: number | string;
+  liquid_overlay: BooleanLike;
+  max_liquid_level: number;
+  reagent_touches: BooleanLike;
+  mush_overlay: BooleanLike;
+  mush_color: string;
+  mush_alpha: number;
+  max_mush: number;
+  min_mush: number;
+  item_mush_val: number;
+  metabolism_overlay: BooleanLike;
+  metabolism_mush_ratio: number;
+  max_ingested: number;
+  custom_ingested_color: string;
+  custom_ingested_alpha: number;
+};
+
+type liqMessageData = {
+  liq_msg_toggle1: BooleanLike;
+  liq_msg_toggle2: BooleanLike;
+  liq_msg_toggle3: BooleanLike;
+  liq_msg_toggle4: BooleanLike;
+  liq_msg_toggle5: BooleanLike;
+  liq_msg1: BooleanLike;
+  liq_msg2: BooleanLike;
+  liq_msg3: BooleanLike;
+  liq_msg4: BooleanLike;
+  liq_msg5: BooleanLike;
 };
 
 export type prefData = {
@@ -156,16 +253,32 @@ export type prefData = {
   show_vore_fx: BooleanLike;
   can_be_drop_prey: BooleanLike;
   can_be_drop_pred: BooleanLike;
+  latejoin_vore: BooleanLike;
+  latejoin_prey: BooleanLike;
+  no_spawnpred_warning: BooleanLike;
+  no_spawnprey_warning: BooleanLike;
+  no_spawnpred_warning_time: number;
+  no_spawnprey_warning_time: number;
+  no_spawnpred_warning_save: BooleanLike;
+  no_spawnprey_warning_save: BooleanLike;
   allow_spontaneous_tf: BooleanLike;
-  allow_inbelly_spawning: BooleanLike;
   step_mechanics_active: BooleanLike;
   pickup_mechanics_active: BooleanLike;
+  strip_mechanics_active: BooleanLike;
   noisy: BooleanLike;
+  liq_rec: BooleanLike;
+  liq_giv: BooleanLike;
+  liq_apply: BooleanLike;
+  consume_liquid_belly: BooleanLike;
+  autotransferable: BooleanLike;
+  noisy_full: BooleanLike;
+  selective_active: string;
   allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
   stumble_vore: BooleanLike;
   throw_vore: BooleanLike;
+  phase_vore: BooleanLike;
   food_vore: BooleanLike;
   digest_pain: BooleanLike;
   nutrition_message_visible: BooleanLike;
@@ -174,8 +287,38 @@ export type prefData = {
   weight_messages: string[];
   eating_privacy_global: BooleanLike;
   allow_mimicry: BooleanLike;
+  belly_rub_target: string | null;
   vore_sprite_color: { stomach: string; 'taur belly': string };
   vore_sprite_multiply: { stomach: BooleanLike; 'taur belly': BooleanLike };
+  soulcatcher_allow_capture: BooleanLike;
+  soulcatcher_allow_transfer: BooleanLike;
+  soulcatcher_allow_deletion: BooleanLike;
+  soulcatcher_allow_takeover: BooleanLike;
+};
+
+export type soulcatcherData = {
+  active: BooleanLike;
+  name: string;
+  caught_souls: DropdownEntry[];
+  selected_sfx: string;
+  selected_soul: string;
+  interior_design: string;
+  catch_self: BooleanLike;
+  taken_over: BooleanLike;
+  catch_prey: BooleanLike;
+  catch_drain: BooleanLike;
+  catch_ghost: BooleanLike;
+  ext_hearing: BooleanLike;
+  ext_vision: BooleanLike;
+  mind_backups: BooleanLike;
+  sr_projecting: BooleanLike;
+  show_vore_sfx: BooleanLike;
+  see_sr_projecting: BooleanLike;
+};
+
+export type DropdownEntry = {
+  displayText: string;
+  value: string;
 };
 
 export type localPrefs = {
@@ -191,10 +334,13 @@ export type localPrefs = {
   toggle_slip_vore: preferenceData;
   toggle_stumble_vore: preferenceData;
   toggle_throw_vore: preferenceData;
+  toggle_phase_vore: preferenceData;
   toggle_food_vore: preferenceData;
   toggle_digest_pain: preferenceData;
-  inbelly_spawning: preferenceData;
+  spawnbelly: preferenceData;
+  spawnprey: preferenceData;
   noisy: preferenceData;
+  noisy_full: preferenceData;
   resize: preferenceData;
   steppref: preferenceData;
   vore_fx: preferenceData;
@@ -204,8 +350,20 @@ export type localPrefs = {
   mind_transfer: preferenceData;
   examine_nutrition: preferenceData;
   examine_weight: preferenceData;
+  strippref: preferenceData;
   eating_privacy_global: preferenceData;
   allow_mimicry: preferenceData;
+  autotransferable: preferenceData;
+  liquid_receive: preferenceData;
+  liquid_give: preferenceData;
+  liquid_apply: preferenceData;
+  toggle_consume_liquid_belly: preferenceData;
+  no_spawnpred_warning: preferenceData;
+  no_spawnprey_warning: preferenceData;
+  soulcatcher: preferenceData;
+  soulcatcher_transfer: preferenceData;
+  soulcatcher_takeover: preferenceData;
+  soulcatcher_delete: preferenceData;
 };
 
 export type preferenceData = {

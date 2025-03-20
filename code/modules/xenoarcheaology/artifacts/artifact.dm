@@ -37,7 +37,6 @@
 	. = ..()
 
 /obj/machinery/artifact/Initialize(mapload)
-	. = ..()
 
 	if(ispath(artifact_master))
 		AddComponent(artifact_master)
@@ -78,7 +77,9 @@
 		name = "intricately carved statue"
 		desc = "A strange statue."
 		my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD)
-
+	artifact_master.do_large_randomization()
+	. = ..()
+	update_icon()
 /obj/machinery/artifact/update_icon()
 	..()
 

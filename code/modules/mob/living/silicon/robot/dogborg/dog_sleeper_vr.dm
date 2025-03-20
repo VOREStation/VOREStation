@@ -594,7 +594,7 @@
 				var/actual_brute = T.getBruteLoss() - old_brute
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
-				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
+				hound.adjust_nutrition(2.5 * damage_gain) //drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -643,6 +643,7 @@
 			//Handle the target being anything but a /mob/living
 			var/obj/item/T = target
 			if(istype(T))
+				var/is_trash = istype(T, /obj/item/trash)
 				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
@@ -667,10 +668,13 @@
 									plastic.add_charge(total_material)
 								if(material == MAT_WOOD && wood)
 									wood.add_charge(total_material)
-					drain(-50 * digested)
+					if(is_trash)
+						hound.adjust_nutrition(digested)
+					else
+						hound.adjust_nutrition(5 * digested)  //drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
-				drain(-100)
+				hound.adjust_nutrition(10) //drain(-100)
 			else
 				items_preserved |= target
 		update_patient()

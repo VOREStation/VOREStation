@@ -37,5 +37,5 @@
 /obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
 	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
 
-	if(zlevel == Z_LEVEL_SPACE_ROCKS)
+	if(zlevel == GLOB.map_templates_loaded[Z_NAME_SPACE_ROCKS])
 		return smallone

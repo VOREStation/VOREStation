@@ -11,10 +11,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2, TECH_ILLEGAL = 1)
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
-
-/obj/item/bodysnatcher/New()
-	..()
-	flags |= NOBLUDGEON //So borgs don't spark.
+	flags = NOBLUDGEON
 
 /obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

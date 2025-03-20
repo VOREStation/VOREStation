@@ -8,7 +8,7 @@
 	delete_me = TRUE
 	var/platform_type
 
-/obj/effect/landmark/robot_platform/Initialize()
+/obj/effect/landmark/robot_platform/Initialize(mapload)
 	if(platform_type)
 		new platform_type(get_turf(src))
 	return ..()

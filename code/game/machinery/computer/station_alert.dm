@@ -17,7 +17,7 @@
 	monitor_type = /datum/tgui_module/alarm_monitor/all
 	circuit = /obj/item/circuitboard/stationalert_all
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	alarm_monitor = new monitor_type(src)
 	alarm_monitor.register_alarm(src, "update_console_icon")
 	. = ..()
@@ -25,7 +25,7 @@
 /obj/machinery/computer/station_alert/Destroy()
 	alarm_monitor.unregister_alarm(src)
 	qdel(alarm_monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	add_fingerprint(user)

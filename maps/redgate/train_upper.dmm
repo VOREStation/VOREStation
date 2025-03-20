@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/dark,
+/area/redgate/train/staff)
 "ai" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/redgate/train/gym)
@@ -7969,7 +7973,7 @@ wl
 dL
 yp
 Wy
-ua
+aa
 wl
 zj
 tK

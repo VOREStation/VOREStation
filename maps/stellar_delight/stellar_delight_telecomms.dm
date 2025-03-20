@@ -1,9 +1,9 @@
 // #### Relays ####
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
-/obj/machinery/telecomms/relay/preset/station/New()
-	..()
+/obj/machinery/telecomms/relay/preset/station
 	id = "SD Relay"
 	autolinkers = list("sd_relay")
+
 
 /datum/map/sd/default_internal_channels()
 	return list(
@@ -23,8 +23,10 @@
 		num2text(EXP_FREQ) = list(access_explorer)
 	)
 
-/obj/item/multitool/station_buffered/Initialize()
-	. = ..()
+/obj/item/multitool/station_buffered
 	name = "pre-linked multitool (sd hub)"
 	desc = "This multitool has already been linked to the SD telecomms hub and can be used to configure one (1) relay."
+
+/obj/item/multitool/station_buffered/Initialize(mapload)
+	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/sd)

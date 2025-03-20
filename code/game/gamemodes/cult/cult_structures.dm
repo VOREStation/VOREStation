@@ -33,7 +33,7 @@
 	var/activation_cooldown = 30 SECONDS
 	var/last_activation = 0
 
-/obj/structure/cult/pylon/Initialize()
+/obj/structure/cult/pylon/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -153,7 +153,7 @@
 /obj/effect/gateway/active/cult/cultify()
 	return
 
-/obj/effect/gateway/active/Initialize()
+/obj/effect/gateway/active/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(spawn_and_qdel)), rand(30, 60) SECONDS)
 

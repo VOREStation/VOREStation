@@ -35,7 +35,7 @@
 	visible_message(span_cult("\The [src] is completely unaffected by the blast."))
 	return
 
-/obj/machinery/door/blast/puzzle/Initialize()
+/obj/machinery/door/blast/puzzle/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name("dungeonium")
 	if(locks.len)
@@ -51,7 +51,7 @@
 		for(var/obj/structure/prop/lock/L in locks)
 			L.linked_objects -= src
 			locks -= L
-	..()
+	. = ..()
 
 /obj/machinery/door/blast/puzzle/attack_hand(mob/user as mob)
 	if(check_locks())

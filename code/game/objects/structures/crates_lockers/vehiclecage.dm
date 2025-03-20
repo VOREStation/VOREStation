@@ -13,7 +13,7 @@
 	if(my_vehicle)
 		. += span_notice("It seems to contain \the [my_vehicle].")
 
-/obj/structure/vehiclecage/Initialize()
+/obj/structure/vehiclecage/Initialize(mapload)
 	. = ..()
 	if(my_vehicle_type)
 		my_vehicle = new my_vehicle_type(src)

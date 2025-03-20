@@ -141,7 +141,7 @@
 	light_overlay = "helmet_light"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 
-/obj/item/clothing/head/hardhat/ranger/Initialize()
+/obj/item/clothing/head/hardhat/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_helmet")
 		name = "[hatcolor] ranger helmet"

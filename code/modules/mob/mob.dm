@@ -15,7 +15,7 @@
 		spellremove(src)
 	if(!istype(src,/mob/observer))
 		ghostize()
-	// QDEL_NULL(soulgem) //Soulcatcher. Needs to be ported sometime.
+	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
