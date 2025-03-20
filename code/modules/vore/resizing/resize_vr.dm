@@ -88,7 +88,7 @@
  */
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
-		var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size <<<--- does this even work properly????
+		var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
 		var/size_cap = world.icon_size * (RESIZE_MAXIMUM+(ishuman(src)?0:0.5)) //Grace for non-humanoids so they don't get forcibly shrunk.
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 		if(size_diff - size_cap  > 0)
