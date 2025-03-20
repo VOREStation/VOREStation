@@ -51,7 +51,7 @@
 			for(var/datum/reagent/R in I.reagents.reagent_list)
 				if(!R.name)
 					continue
-				final_message += span_notice("Contains " + span_info("[R.volume]u") + " of " + span_bold(span_underline("[R.name]")) + ".<br>[R.description]<br><br>")
+				final_message += span_notice("*=*=*=*= Contains " + span_info("[R.volume]u") + " of " + span_bold(span_underline("[R.name]")) + " =*=*=*=*<br>[R.description][R.from_belly ? " Something seems strange about it...? (OOC: It's from a belly!)" : ""]<br><br>")
 				/* Downstream addiction code
 				if(R.id in addictives)
 					final_message += span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)") + "<br>"
