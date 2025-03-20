@@ -43,7 +43,7 @@
 //	/// The contents of this file. Uses paper formatting.
 //	var/file_info = "Hello World!"
 
-///obj/effect/computer_file_creator/Initialize()
+///obj/effect/computer_file_creator/Initialize(mapload)
 //	. = ..()
 //	return INITIALIZE_HINT_LATELOAD
 

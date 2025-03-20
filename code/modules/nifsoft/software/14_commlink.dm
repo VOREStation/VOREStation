@@ -39,9 +39,9 @@
 	var/obj/item/nif/nif
 	var/datum/nifsoft/commlink/nifsoft
 
-/obj/item/communicator/commlink/New(var/newloc,var/soft)
-	..()
-	nif = newloc
+/obj/item/communicator/commlink/Initialize(mapload, var/soft)
+	. = ..()
+	nif = loc
 	nifsoft = soft
 
 /obj/item/communicator/commlink/Destroy()

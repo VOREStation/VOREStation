@@ -60,7 +60,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		if(instance.ckeys_allowed && (!client || !(client.ckey in instance.ckeys_allowed)))
 			continue
-		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed)))
+		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights_for(client, R_ADMIN | R_EVENT | R_FUN)) && (!custom_base || !(custom_base in instance.species_allowed)))
 			continue
 		.[instance.name] = instance
 
@@ -438,6 +438,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color2))]<br>"
 		if(ear.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];ears_alpha=1'>Change Ears Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>Select</a><br>"
 
@@ -447,6 +448,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
 		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))
 			. += "<a href='byond://?src=\ref[src];ear_secondary_color=[channel]'>Change [GLOB.fancy_sprite_accessory_color_channel_names[channel]] Color</a> [color_square(hex = LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff")]<br>"
+		.+= "<a href='byond://?src=\ref[src];secondary_ears_alpha=1'>Change Horns Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>Select</a><br>"
 
@@ -461,6 +463,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color2))]<br>"
 		if(tail.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];tail_alpha=1'>Change Tail Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/tail_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>Select</a><br>"
 
@@ -475,6 +478,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color2))]<br>"
 		if(wings.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];wing_alpha=1'>Change Wing Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/wing_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>Select</a><br>"
 
@@ -539,7 +543,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		else
 			return TOPIC_NOACTION
 
-		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN|R_EVENT, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(user.client,setting_species))) && !check_rights(R_ADMIN|R_EVENT, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species
@@ -615,6 +619,28 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(new_grad_style && CanUseTopic(user))
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["grad_style_left"])
+		var/H = href_list["grad_style_left"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.grad_style = valid_gradients[start-1]
+		else //But if we ARE, become the final element.
+			pref.grad_style = valid_gradients[valid_gradients.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["grad_style_right"])
+		var/H = href_list["grad_style_right"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != valid_gradients.len) //If we're not the end of the list, become the next element.
+			pref.grad_style = valid_gradients[start+1]
+		else //But if we ARE, become the first element.
+			pref.grad_style = valid_gradients[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style_left"])
 		var/H = href_list["hair_style_left"]
@@ -1056,6 +1082,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/ears_color3, new_earc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if (href_list["ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
+			 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["secondary_ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
+		 	pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["ear_secondary_style"])
 		var/new_style = tgui_input_list(user, "Select an ear style for this character:", "Character Preference", pref.get_available_styles(global.ear_styles_list), pref.ear_secondary_style)
 		if(!new_style)
@@ -1109,6 +1149,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/tail_color3, new_tailc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["tail_alpha"])
+		var/new_tail_alpha = tgui_input_number(user, "Choose how transparent your character's tail is.", "Character Preference",
+		 pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
+		if(new_tail_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["wing_style"])
 		var/new_wing_style = tgui_input_list(user, "Select a wing style for this character:", "Character Preference", pref.get_available_styles(global.wing_styles_list), pref.wing_style)
 		if(new_wing_style)
@@ -1135,6 +1182,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.read_preference(/datum/preference/color/human/wing_color3))
 		if(new_wingc)
 			pref.update_preference_by_type(/datum/preference/color/human/wing_color3, new_wingc)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["wing_alpha"])
+		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
+		 pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+		if(new_wing_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 
@@ -1189,8 +1242,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "</br>" + span_bold("Does not have a circulatory system.")
 	if(!current_species.has_organ[O_LUNGS])
 		dat += "</br>" + span_bold("Does not have a respiratory system.")
-	if(current_species.flags & NO_SCAN)
+	if(current_species.flags & NO_DNA)
 		dat += "</br>" + span_bold("Does not have DNA.")
+	if(current_species.flags & NO_SLEEVE)
+		dat += "</br>" + span_bold("Cannot be cloned.")
 	if(current_species.flags & NO_DEFIB)
 		dat += "</br>" + span_bold("Cannot be defibrillated.")
 	if(current_species.flags & NO_PAIN)
@@ -1215,7 +1270,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 		restricted = 2
-	else if(!is_alien_whitelisted(preference_mob(),current_species))
+	else if(!is_alien_whitelisted(user.client,current_species))
 		restricted = 1
 
 	if(restricted)

@@ -44,6 +44,8 @@
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
 
+	var/from_belly = FALSE
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)

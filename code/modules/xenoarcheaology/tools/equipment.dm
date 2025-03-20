@@ -23,7 +23,7 @@
 	icon_state = "cespace_suit"
 	item_state = "cespace_suit"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/pickaxe)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING)
 	slowdown = 1
 	// Pressure protection inherited from space suits
 

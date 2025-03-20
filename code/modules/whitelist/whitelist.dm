@@ -97,4 +97,4 @@
 
 
 /proc/whitelist_overrides(mob/M)
-	return !config.usealienwhitelist || check_rights(R_ADMIN|R_EVENT, 0, M)
+	return !config.usealienwhitelist || check_rights_for(M.client, R_ADMIN|R_EVENT)

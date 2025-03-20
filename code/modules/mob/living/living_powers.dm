@@ -30,3 +30,27 @@
 
 	to_chat(src, span_notice("You will [allow_self_surgery ? "now" : "no longer"] attempt to operate upon yourself."))
 	log_admin("DEBUG \[[world.timeofday]\]: [src.ckey ? "[src.name]:([src.ckey])" : "[src.name]"] has [allow_self_surgery ? "Enabled" : "Disabled"] self surgery.")
+
+/mob/living/proc/toggle_patting_defence()
+	set name = "Toggle Reflexive Biting"
+	set desc = "Toggles the automatic biting for if someone pats you on the head or boops your nose."
+	set category = "Abilities.General"
+
+	if(touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+		touch_reaction_flags &= ~(SPECIES_TRAIT_PATTING_DEFENCE)
+		to_chat(src,span_notice("You will no longer bite hands who pat or boop you."))
+	else
+		touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
+		to_chat(src,span_notice("You will now longer bite hands who pat or boop you."))
+
+/mob/living/proc/toggle_personal_space()
+	set name = "Toggle Personal Space"
+	set desc = "Toggles dodging any attempts to hug or pat you."
+	set category = "Abilities.General"
+
+	if(touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE)
+		touch_reaction_flags &= ~(SPECIES_TRAIT_PERSONAL_BUBBLE)
+		to_chat(src,span_notice("You will no longer dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
+	else
+		touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
+		to_chat(src,span_notice("You will now dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))

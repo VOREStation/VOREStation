@@ -71,7 +71,7 @@
 			/obj/item/toy/plushie/siamese_cat,
 			/obj/item/toy/plushie/tabby_cat,
 			/obj/item/toy/plushie/tuxedo_cat,
-			/obj/item/toy/plushie/squid/green,
+			/obj/item/toy/plushie/squid,
 			/obj/item/toy/plushie/squid/mint,
 			/obj/item/toy/plushie/squid/blue,
 			/obj/item/toy/plushie/squid/orange,

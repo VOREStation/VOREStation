@@ -69,9 +69,9 @@
 
 		if(T.density && !T.ignore_oregen)
 			if(map[current_cell] == DOOR_CHAR)
-				T.make_ore()
+				T.turf_resource_types |= TURF_HAS_ORE
 			else if(map[current_cell] == EMPTY_CHAR)
-				T.make_ore(1)
+				T.turf_resource_types |= TURF_HAS_RARE_ORE
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	//VOREStation Edit End
 	return T

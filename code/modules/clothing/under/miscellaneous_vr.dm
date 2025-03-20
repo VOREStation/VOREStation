@@ -182,7 +182,7 @@
 /obj/item/clothing/gloves/bluespace/emagged
 	emagged = TRUE
 
-/obj/item/clothing/gloves/bluespace/emagged/Initialize()
+/obj/item/clothing/gloves/bluespace/emagged/Initialize(mapload)
 	. = ..()
 	target_size = (rand(1,300)) /100
 	if(target_size < 0.1)

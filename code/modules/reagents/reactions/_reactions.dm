@@ -78,7 +78,7 @@
 
 	return progress
 
-/decl/chemical_reaction/process(var/datum/reagents/holder)
+/decl/chemical_reaction/process(var/datum/reagents/holder, var/belly_reagent)
 	//determine how far the reaction can proceed
 	var/list/reaction_limits = list()
 	for(var/reactant in required_reagents)
@@ -101,7 +101,7 @@
 	//add the product
 	var/amt_produced = result_amount * reaction_progress
 	if(result)
-		holder.add_reagent(result, amt_produced, data, safety = 1)
+		holder.add_reagent(result, amt_produced, data, safety = 1, was_from_belly = belly_reagent)
 
 	on_reaction(holder, amt_produced)
 

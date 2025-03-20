@@ -35,7 +35,7 @@
 		parent = new_parent
 	return ..()
 
-/obj/effect/overmap/visitable/simplemob/Initialize()
+/obj/effect/overmap/visitable/simplemob/Initialize(mapload)
 	. = ..()
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")
@@ -58,7 +58,8 @@
 
 /obj/effect/overmap/visitable/simplemob/Destroy()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
-	qdel_null(parent)
+	if(!QDELETED(parent))
+		qdel_null(parent)
 	return ..()
 
 /obj/effect/overmap/visitable/simplemob/get_scan_data(mob/user)
@@ -144,7 +145,7 @@
 		child_om_marker = new_child
 	return ..()
 
-/mob/living/simple_mob/vore/overmap/Initialize()
+/mob/living/simple_mob/vore/overmap/Initialize(mapload)
 	. = ..()
 	if(!om_child_type)
 		log_and_message_admins("An improperly configured OM mob tried to spawn, and was deleted.")
@@ -154,7 +155,8 @@
 		child_om_marker = C
 
 /mob/living/simple_mob/vore/overmap/Destroy()
-	qdel_null(child_om_marker)
+	if(!QDELETED(child_om_marker))
+		qdel_null(child_om_marker)
 	return ..()
 
 //SHIP
@@ -177,7 +179,7 @@
 		parent = new_parent
 	return ..()
 
-/obj/effect/overmap/visitable/ship/simplemob/Initialize()
+/obj/effect/overmap/visitable/ship/simplemob/Initialize(mapload)
 	. = ..()
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")

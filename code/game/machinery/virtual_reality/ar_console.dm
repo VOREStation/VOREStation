@@ -16,7 +16,7 @@
 	var/randomize_species = FALSE
 	var/list/possible_species	// Do we make the newly produced body a random species?
 
-/obj/machinery/vr_sleeper/alien/Initialize()
+/obj/machinery/vr_sleeper/alien/Initialize(mapload)
 	. = ..()
 	if(possible_species && possible_species.len)
 		produce_species = pick(possible_species)

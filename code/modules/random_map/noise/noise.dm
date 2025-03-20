@@ -105,7 +105,7 @@
 
  	// Recurse until size is too small to subdivide.
 	if(isize>3)
-		if(!priority_process) 
+		if(!priority_process)
 			CHECK_TICK
 		iteration++
 		subdivide(iteration, x,       y,       hsize)
@@ -167,7 +167,7 @@
 					map[current_cell]-=cell_smooth_amt
 				map[current_cell] = max(0,min(cell_range,map[current_cell]))
 		map = next_map
-	
+
 	if(smooth_single_tiles)
 		var/list/buddies = list()
 		for(var/x in 1 to limit_x - 1)

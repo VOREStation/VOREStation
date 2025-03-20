@@ -88,8 +88,8 @@ const InputArea = (props) => {
     <Stack fill>
       <Stack.Item>
         <Button
-          disabled={input === min_value}
-          icon="angle-double-left"
+          disabled={input === min_value || min_value === -Infinity}
+          icon={min_value === -Infinity ? 'infinity' : 'angle-double-left'}
           onClick={() => onClick(min_value)}
           tooltip={min_value ? `Min (${min_value})` : 'Min'}
         />
@@ -110,8 +110,8 @@ const InputArea = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Button
-          disabled={input === max_value}
-          icon="angle-double-right"
+          disabled={input === max_value || max_value === Infinity}
+          icon={max_value === Infinity ? 'infinity' : 'angle-double-right'}
           onClick={() => onClick(max_value)}
           tooltip={max_value ? `Max (${max_value})` : 'Max'}
         />

@@ -48,9 +48,6 @@
 	invisibility = 0
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
-	icon_state = ""
-	invisibility = 0
 
 /obj/effect/step_trigger/lost_in_space
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
@@ -94,7 +91,7 @@
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
-/turf/simulated/floor/maglev/Initialize()
+/turf/simulated/floor/maglev/Initialize(mapload)
 	. = ..()
 	shock_area = locate(shock_area)
 
@@ -322,7 +319,7 @@
 	name = "science outpost linked multitool"
 	desc = "It has the data for the science outpost's quantum pad pre-loaded... assuming you didn't override it."
 
-/obj/item/multitool/scioutpost/Initialize()
+/obj/item/multitool/scioutpost/Initialize(mapload)
 	. = ..()
 	for(var/obj/machinery/power/quantumpad/scioutpost/outpost in world)
 		connectable = outpost
@@ -334,7 +331,7 @@
 
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
-    height = 5
+	height = 5
 
 /obj/turbolift_map_holder/tether
 	name = "Tether Climber"

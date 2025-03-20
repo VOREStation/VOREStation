@@ -41,7 +41,7 @@
 /obj/item/modular_computer/proc/install_default_programs()
 	return 1
 
-/obj/item/modular_computer/Initialize()
+/obj/item/modular_computer/Initialize(mapload)
 	if(!overlay_icon)
 		overlay_icon = icon
 	START_PROCESSING(SSobj, src)
