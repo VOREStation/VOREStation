@@ -85,6 +85,7 @@
 	var/list/effect_reactions = list()
 	var/from_belly
 	do
+		from_belly = FALSE
 		reaction_occurred = FALSE
 		for(var/datum/reagent/R as anything in reagent_list)
 			if(SSchemistry.instant_reactions_by_reagent[R.id])
