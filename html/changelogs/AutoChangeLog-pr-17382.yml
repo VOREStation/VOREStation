@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new subtype of maint lurker spawns to each redgate map. These ghost pods spawn you in a similar way, but because they are guaranteed spawns, they do not allow you to use the redgate to leave. Any person with redgate access can give permission to these people simply by clicking on the redgate with an empty hand when they are nearby. This is explained to the redgate inhabitant on spawn and when they try to use the redgate."

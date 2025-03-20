@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - bugfix: "tgui asset loading retries"
+  - rscadd: "item muffling in bellies"
