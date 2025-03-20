@@ -344,7 +344,7 @@
 	icon_state = "void_explorer"
 	item_state_slots = list(slot_r_hand_str = "skrell_suit_black", slot_l_hand_str = "skrell_suit_black")
 	armor = list(melee = 50, bullet = 15, laser = 35, energy = 25, bomb = 30, bio = 100, rad = 70)
-	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_MEDICAL, POCKET_EXPLO)
+	allowed = list(POCKET_ALL_TANKS, POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_MEDICAL, POCKET_EXPLO)
 	breach_threshold = 14 //These are kinda thicc
 	resilience = 0.15 //Armored
 
