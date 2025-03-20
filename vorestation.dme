@@ -4052,7 +4052,6 @@
 #include "code\modules\reagents\reagents\drugs.dm"
 #include "code\modules\reagents\reagents\food_drinks.dm"
 #include "code\modules\reagents\reagents\food_drinks_vr.dm"
-#include "code\modules\reagents\reagents\liquid_belly.dm"
 #include "code\modules\reagents\reagents\medicine.dm"
 #include "code\modules\reagents\reagents\medicine_vr.dm"
 #include "code\modules\reagents\reagents\modifiers.dm"

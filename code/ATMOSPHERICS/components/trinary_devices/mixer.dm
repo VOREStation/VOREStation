@@ -100,36 +100,6 @@
 	if(..())
 		return
 	tgui_interact(user)
-	// src.add_fingerprint(user)
-	// if(!src.allowed(user))
-	// 	to_chat(user, span_warning("Access denied."))
-	// 	return
-	// user.set_machine(src)
-	// var/list/node_connects = get_node_connect_dirs()
-	// var/dat = {span_bold("Power: ") + "<a href='byond://?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
-	// 			<b>Set Flow Rate Limit: </b>
-	// 			[set_flow_rate]L/s | <a href='byond://?src=\ref[src];set_press=1'>Change</a>
-	// 			<br>
-	// 			<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
-	// 			<br><hr>
-	// 			<b>Node 1 ([dir_name(node_connects[1],TRUE)]) Concentration:</b>
-	// 			<a href='byond://?src=\ref[src];node1_c=-0.1'><b>-</b></a>
-	// 			<a href='byond://?src=\ref[src];node1_c=-0.01'>-</a>
-	// 			[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
-	// 			<a href='byond://?src=\ref[src];node1_c=0.01'><b>+</b></a>
-	// 			<a href='byond://?src=\ref[src];node1_c=0.1'>+</a>
-	// 			<br>
-	// 			<b>Node 2 ([dir_name(node_connects[2],TRUE)]) Concentration:</b>
-	// 			<a href='byond://?src=\ref[src];node2_c=-0.1'><b>-</b></a>
-	// 			<a href='byond://?src=\ref[src];node2_c=-0.01'>-</a>
-	// 			[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
-	// 			<a href='byond://?src=\ref[src];node2_c=0.01'><b>+</b></a>
-	// 			<a href='byond://?src=\ref[src];node2_c=0.1'>+</a>
-	// 			"}
-
-	// user << browse("<html><HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT></html>", "window=atmo_mixer")
-	// onclose(user, "atmo_mixer")
-	// return
 
 /obj/machinery/atmospherics/trinary/mixer/tgui_act(action, params)
 	if(..())
