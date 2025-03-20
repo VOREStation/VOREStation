@@ -1,4 +1,4 @@
-//VOREStation Note: Originally, these were in negative_genes.dm
+//VOREStation Note: TRAITGENETICS - Originally, these were in negative_genes.dm
 //However, given their more RP centric nature, they have been moved to neutral_traits.
 //If desire is wanted to move them back to negative traits, change the 'neutral' to 'negative'
 /datum/trait/neutral/disability_censored
