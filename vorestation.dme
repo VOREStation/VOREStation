@@ -4373,6 +4373,7 @@
 #include "code\modules\vore\eating\simple_animal_vr.dm"
 #include "code\modules\vore\eating\slipvore_vr.dm"
 #include "code\modules\vore\eating\soulcatcher.dm"
+#include "code\modules\vore\eating\soulcatcher_import.dm"
 #include "code\modules\vore\eating\soulcatcher_mob.dm"
 #include "code\modules\vore\eating\soulcatcher_observer.dm"
 #include "code\modules\vore\eating\stumblevore_vr.dm"
