@@ -30,9 +30,7 @@
 		return return_val
 
 	if(islist(input_data["bellies"]))
-		to_world("Do we ball?")
 		input_data = input_data["bellies"]
-	to_world("WE do not ball")
 
 	if(!islist(input_data))
 		tgui_alert_async(host, "The supplied file was not a valid VRDB file.", "Error!")
