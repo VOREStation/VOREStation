@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "updates server logs verbs"

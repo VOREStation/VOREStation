@@ -407,6 +407,10 @@
 /obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/kitchihome/den)
+"bh" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/wood,
+/area/redgate/eggnogtown/alipad)
 "bk" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
@@ -18943,7 +18947,7 @@ dN
 dN
 dN
 dN
-dN
+bh
 dN
 dN
 QM
