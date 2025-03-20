@@ -119,7 +119,7 @@
 					continue
 
 			if(was_from_belly)
-				current.was_from_belly = was_from_belly
+				current.from_belly = was_from_belly
 			current.volume += amount
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
