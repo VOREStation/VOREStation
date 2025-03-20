@@ -105,14 +105,29 @@ fi
 
 section "code issues"
 
-part "indentation"
-#check for weird indentation in any .dm files
-awk -f tools/indentation.awk $code_files
-retVal=$?
-if [ $retVal -ne 0 ]; then
-	echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
+# No longer in use, see below
+#part "indentation"
+##check for weird indentation in any .dm files
+#awk -f tools/indentation.awk $code_files
+#retVal=$?
+#if [ $retVal -ne 0 ]; then
+#	echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
+#	FAILED=1
+#fi
+
+part "space indentation"
+if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: space indentation detected.${NC}"
 	FAILED=1
-fi
+fi;
+
+part "mixed tab/space indentation"
+if grep -P '^\t+ [^ *]' $code_files; then
+	echo
+	echo -e "${RED}ERROR: mixed <tab><space> indentation detected.${NC}"
+	FAILED=1
+fi;
 
 part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
@@ -188,20 +203,6 @@ if [ $retVal -ne 0 ]; then
 	echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
 	FAILED=1
 fi
-
-part "space indentation"
-if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: space indentation detected.${NC}"
-	FAILED=1
-fi;
-
-part "mixed tab/space indentation"
-if grep -P '^\t+ [^ *]' $code_files; then
-	echo
-	echo -e "${RED}ERROR: mixed <tab><space> indentation detected.${NC}"
-	FAILED=1
-fi;
 
 part "proc ref syntax"
 if $grep '\.proc/' $code_x_515 ; then
