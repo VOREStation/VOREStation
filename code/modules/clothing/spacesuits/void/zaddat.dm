@@ -35,7 +35,7 @@
 
 	if(has_been_customized)
 		to_chat(M, "This Shroud has already been customized!")
-		return 0
+		return FALSE
 
 	suit_style = tgui_input_list(M, "Which suit style would you like?", "Suit Style", list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft"))
 	switch(suit_style)
@@ -120,7 +120,7 @@
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
 	M.regenerate_icons()
-	return 1
+	return TRUE
 
 //Zaddat subtypes
 
@@ -169,7 +169,7 @@
 
 	if(has_been_customized)
 		to_chat(M, "This Shroud has already been customized!")
-		return 0
+		return FALSE
 
 	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft")
 	switch(suit_style)
@@ -232,7 +232,7 @@
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
 	M.regenerate_icons()
-	return 1
+	return TRUE
 
 
 /obj/item/clothing/suit/space/void/zaddat/engineer/custom_suit()
@@ -245,7 +245,7 @@
 
 	if(has_been_customized)
 		to_chat(M, "This Shroud has already been customized!")
-		return 0
+		return FALSE
 
 	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft")
 	switch(suit_style)
@@ -330,4 +330,4 @@
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
 	M.regenerate_icons()
-	return 1
+	return TRUE
