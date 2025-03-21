@@ -188,11 +188,8 @@ SUBSYSTEM_DEF(explosions)
 		return
 	// Update data at position for next run. Floodfill until the current_run is empty of new explosions!
 	var/list/dat = currentrun["[x0].[y0].[z0]"]
-	if(isnull(dat))
+	if(isnull(dat) || pwr >= dat[4])
 		currentrun["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,direction)
-	else
-		if(dat[4] < pwr)
-			dat[4] = pwr
 
 // Queue explosion event, call this from explosion() ONLY
 /datum/controller/subsystem/explosions/proc/append_explosion(var/x0,var/y0,var/z0,var/pwr,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/flash_range)
@@ -201,11 +198,8 @@ SUBSYSTEM_DEF(explosions)
 		return
 	// actual explosion. Do not allow multiple, just take the highest power explosion hitting that turf
 	var/list/dat = pending_explosions["[x0].[y0].[z0]"]
-	if(isnull(dat))
+	if(isnull(dat) || pwr >= dat[4])
 		pending_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,0)
-	else
-		if(dat[4] < pwr)
-			dat[4] = pwr
 	// send signals to dopplers
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
 	// BOINK! Time to wake up sleeping beauty!
@@ -220,11 +214,8 @@ SUBSYSTEM_DEF(explosions)
 	if(pwr <= 0)
 		return
 	var/list/dat = pending_explosions["[x0].[y0].[z0]"]
-	if(isnull(dat))
+	if(isnull(dat) || pwr >= dat[4])
 		resolving_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr)
-	else
-		if(dat[4] < pwr)
-			dat[4] = pwr
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
 	// Lets assume recursive prey has happened...
