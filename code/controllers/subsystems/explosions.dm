@@ -96,33 +96,33 @@ SUBSYSTEM_DEF(explosions)
 
 /datum/controller/subsystem/explosions/proc/fire_prepare_explosions(var/list/data)
 	var/pwr = data[4]
-	var/our_dir = data[5]
+	var/direction = data[5]
 	if(pwr <= 0)
 		return
 	//This step handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
 	var/turf/epicenter = locate(data[1],data[2],data[3])
-	var/spread_power = pwr - epicenter.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
-	if(spread_power > 0)
-		for(var/direction in cardinal)
-			if(our_dir && our_dir == reverse_dir[direction]) // Don't go backwards
-				continue
+	if(!epicenter)
+		return
+	var/list/res_explo = resolving_explosions["[epicenter.x].[epicenter.y].[epicenter.z]"] // check if this has already resolved
+	if(res_explo && res_explo[4] >= pwr)
+		return
+	if(direction)
+		//This is the amount of power that will be spread to the tile in the direction of the blast, subtracted from everything blocking it in the turf!
+		var/spread_power = pwr - epicenter.explosion_resistance
+		for(var/obj/O in epicenter)
+			if(O.explosion_resistance)
+				spread_power -= O.explosion_resistance
+		if(spread_power > 0)
+			// Fan outward from the original explosion
 			var/turf/T = get_step(epicenter, direction)
-			if(!T)
-				spread_power -= 5 // Stop following edge of map walls
-				continue
-			if(spread_power > (max_explosion_range * 2))
-				// Nothing will block us above this strength. Treat it like a radial explosion
-				spread_power -= 3 // Superblasts are primarily at center of explosion
-			else
-				// Act like old recursive explosions at this powerlevel
-				for(var/obj/O in T)
-					if(O.explosion_resistance)
-						spread_power -= O.explosion_resistance
-					if(spread_power <= 0)
-						break
-			// Make a new blast in the direction we're attempting to propogate if we have enough power!
-			append_currentrun(T.x,T.y,T.z,spread_power,direction)
-
+			if(T)
+				append_currentrun(T.x,T.y,T.z,spread_power,direction)
+				T = get_step(epicenter, turn(direction,90))
+				if(T)
+					append_currentrun(T.x,T.y,T.z,spread_power,direction)
+				T = get_step(src, turn(direction,-90))
+				if(T)
+					append_currentrun(T.x,T.y,T.z,spread_power,direction)
 			// Make these feel a little more flashy
 			if(spread_power > 3 && spread_power < max_explosion_range && prob(6)) // bombs above maxcap are probably badmins, lets not make 10000 effects
 				if(prob(30))
@@ -192,14 +192,27 @@ SUBSYSTEM_DEF(explosions)
 		currentrun["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,direction)
 
 // Queue explosion event, call this from explosion() ONLY
-/datum/controller/subsystem/explosions/proc/append_explosion(var/x0,var/y0,var/z0,var/pwr,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/flash_range)
+/datum/controller/subsystem/explosions/proc/append_explosion(var/turf/epicenter,var/pwr,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/flash_range)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(pwr <= 0)
 		return
+	var/x0 = epicenter.x
+	var/y0 = epicenter.y
+	var/z0 = epicenter.z
 	// actual explosion. Do not allow multiple, just take the highest power explosion hitting that turf
 	var/list/dat = pending_explosions["[x0].[y0].[z0]"]
 	if(isnull(dat) || pwr >= dat[4])
+		// primary explosion
 		pending_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,0)
+		// outward radiating explosions
+		var/rad_power = pwr - epicenter.explosion_resistance
+		for(var/direction in cardinal)
+			var/turf/T = get_step(epicenter, direction)
+			if(T)
+				dat = pending_explosions["[T.x].[T.y].[T.z]"]
+				if(isnull(dat) || rad_power >= dat[4])
+					pending_explosions["[T.x].[T.y].[T.z]"] = list(T.x,T.y,T.z,rad_power,direction)
+
 	// send signals to dopplers
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
 	// BOINK! Time to wake up sleeping beauty!
@@ -293,8 +306,5 @@ SUBSYSTEM_DEF(explosions)
 		E.start()
 
 	// Queue explosion event
-	var/x0 = epicenter.x
-	var/y0 = epicenter.y
-	var/z0 = epicenter.z
 	var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-	SSexplosions.append_explosion(x0,y0,z0,power,devastation_range,heavy_impact_range,light_impact_range,flash_range)
+	SSexplosions.append_explosion(epicenter,power,devastation_range,heavy_impact_range,light_impact_range,flash_range)
