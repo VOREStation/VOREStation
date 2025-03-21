@@ -25,8 +25,8 @@ Bonus
 	level = 3
 	severity = 1
 	base_message_chance = 25
-	symptom_delay_min = 20 SECONDS
-	symptom_delay_max = 80 SECONDS
+	symptom_delay_min = 10 SECONDS
+	symptom_delay_max = 70 SECONDS
 
 	var/fake_healthy = FALSE
 
@@ -45,7 +45,7 @@ Bonus
 		return
 	if(A.stealth >= 2)
 		fake_healthy = TRUE
-		base_message_chance = 30
+		base_message_chance = 50
 	if(A.stage_rate >= 7)
 		power = 2
 

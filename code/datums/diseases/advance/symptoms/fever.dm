@@ -25,8 +25,8 @@ Bonus
 	level = 2
 	severity = 0
 	base_message_chance = 20
-	symptom_delay_min = 20 SECONDS
-	symptom_delay_max = 40 SECONDS
+	symptom_delay_min = 25 SECONDS
+	symptom_delay_max = 50 SECONDS
 
 	var/unsafe = FALSE
 
@@ -65,6 +65,6 @@ Bonus
 
 /datum/symptom/fever/proc/set_body_temp(mob/living/M, datum/disease/advance/A)
 	if(!unsafe)
-		M.bodytemperature = min(M.bodytemperature + max((6 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT - 1)))
+		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT - 1)))
 	else
-		M.bodytemperature = min(M.bodytemperature + max((6 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT + 20)))
+		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT + 20)))

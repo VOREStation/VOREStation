@@ -18,12 +18,15 @@ BONUS
 /datum/symptom/shedding
 	name = "Alopecia"
 	desc = "The virus attacks hair follicles, making hair thin and brittle."
-	stealth = -1
-	resistance = -1
-	stage_speed = -1
+	stealth = 0
+	resistance = 3
+	stage_speed = 2
 	transmission = 2
-	level = 4
-	severity = 1
+	level = 5
+	severity = 0
+	base_message_chance = 50
+	symptom_delay_min = 45
+	symptom_delay_max = 90
 
 /datum/symptom/shedding/Activate(datum/disease/advance/A)
 	if(!..())

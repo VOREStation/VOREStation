@@ -49,8 +49,8 @@ BONUS
 		if(A.stage_rate >= 6)
 			power = 2
 	if(A.stage_rate >= 9)
-		symptom_delay_min = 30
-		symptom_delay_max = 60
+		symptom_delay_min = 30 SECONDS
+		symptom_delay_max = 60 SECONDS
 		power = 3
 
 /datum/symptom/headache/Activate(datum/disease/advance/A)

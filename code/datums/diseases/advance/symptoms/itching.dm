@@ -38,8 +38,8 @@ BONUS
 	if(!..())
 		return
 	if(A.transmission >= 6)
-		symptom_delay_min = 1
-		symptom_delay_max = 4
+		symptom_delay_min = 5 SECONDS
+		symptom_delay_max = 10 SECONDS
 	if(A.stage >= 7)
 		scratch = TRUE
 

@@ -67,7 +67,7 @@ Bonus
 	var/obj/item/organ/external/O = pick(H.organs)
 
 	if(bleed)
-		O.createwound(CUT, 5 * power)
+		O.createwound(PIERCE, 5 * power)
 	else
 		O.createwound(BRUISE, 7.5 * power)
 	return TRUE

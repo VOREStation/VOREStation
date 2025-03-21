@@ -85,8 +85,6 @@ Bonus
 	symptom_delay_max = 30 SECONDS
 	level = 4
 	severity = 3
-	symptom_delay_min = 5
-	symptom_delay_max = 35
 
 /datum/symptom/bsneeze/Activate(datum/disease/advance/A)
 	if(!..())

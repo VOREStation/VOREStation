@@ -26,8 +26,8 @@ Bonus
 	severity = 5
 	naturally_occuring = FALSE
 	base_message_chance = 15
-	symptom_delay_min = 30 SECONDS
-	symptom_delay_max = 45 SECONDS
+	symptom_delay_min = 10 SECONDS
+	symptom_delay_max = 30 SECONDS
 
 	var/paralysis = FALSE
 

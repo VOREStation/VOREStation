@@ -17,12 +17,14 @@ BONUS
 
 /datum/symptom/size
 	name = "Mass Revectoring"
-	stealth = -4
-	resistance = 1
+	stealth = -1
+	resistance = 0
 	stage_speed = 2
 	transmission = -2
 	level = 4
-	severity = 1
+	severity = 0
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 60 SECONDS
 
 /datum/symptom/size/Activate(datum/disease/advance/A)
 	..()

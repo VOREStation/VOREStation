@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/shivering
 	name = "Shivering"
+	desc = "The virus inhibits the body's thermoregulation, cooling the body down."
 	stealth = 0
 	resistance = 2
 	stage_speed = 2
@@ -59,10 +60,10 @@ Bonus
 		to_chat(M, span_warning(pick("You feel cold.", "You shiver.")))
 	else
 		to_chat(M, span_userdanger(pick("You fel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently.")))
-		set_body_temp(A.affected_mob, A)
+		set_body_temp(M, A)
 
-/datum/symptom/shivering/proc/set_body_temp(/mob/living/M, datum/disease/advance/A)
+/datum/symptom/shivering/proc/set_body_temp(var/mob/living/carbon/H, datum/disease/advance/A)
 	if(!unsafe)
-		M.bodytemperature += max(-((6 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT +1))
+		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT +1))
 	else
-		M.bodytemperature += max(-((6 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT - 20))
+		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT - 20))

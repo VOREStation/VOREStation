@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 	return cures_found
 
-/datum/disease/proc/spread(force_spread = 0)
+/datum/disease/proc/spread(var/force_spread = 0)
 	if(!affected_mob)
 		return
 	if(affected_mob.is_incorporeal())

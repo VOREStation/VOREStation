@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/visionloss
 	name = "Hyphema"
+	desc = "The virus causes inflammation of the retina, leading to eye damage and eventually blindness."
 	stealth = -1
 	resistance = -3
 	stage_speed = -4
@@ -50,7 +51,7 @@ Bonus
 /datum/symptom/visionloss/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	if(iscarbon(A))
+	if(iscarbon(A.affected_mob))
 		var/mob/living/carbon/M = A.affected_mob
 		var/obj/item/organ/internal/eyes/eyes = M.internal_organs_by_name[O_EYES]
 		if(!eyes)

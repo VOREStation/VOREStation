@@ -7,6 +7,8 @@
 		zone_list -= excluded_zones
 	for(var/organ in zone_list)
 		regenerate_limb(organ)
+	for(var/obj/item/organ/external/stump/stump in organs)
+		qdel(stump)
 
 /mob/living/proc/regenerate_limb(limb_zone, noheal)
 	return
@@ -26,3 +28,4 @@
 	organ_data["descriptor"] = O.name
 
 	update_icons_body()
+	return TRUE

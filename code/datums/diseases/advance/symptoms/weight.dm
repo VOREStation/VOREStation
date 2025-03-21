@@ -18,6 +18,7 @@ Bonus
 
 /datum/symptom/weight_loss
 	name = "Weight Loss"
+	desc = "The virus mutates the host's metabolism, making it almost unable to gain nutrition from food."
 	stealth = 0
 	resistance = 2
 	stage_speed = -2
@@ -57,6 +58,8 @@ Bonus
 			if(prob(base_message_chance))
 				to_chat(M, span_warning(pick("You feel hungry.", "You crave for food.")))
 		else
-			to_chat(M, span_warning(pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")))
+			if(prob(base_message_chance))
+				to_chat(M, span_warning(pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")))
+			M.adjust_nutrition(rand(10, 50))
 			if(starving)
 				M.adjust_nutrition(-100)

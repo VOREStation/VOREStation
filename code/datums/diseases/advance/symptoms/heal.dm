@@ -44,7 +44,7 @@
 
 /datum/symptom/heal/chem
 	name = "Toxolysis"
-	desc = "This virus rapidly breaks down any foreign chemicals in the bloodstream."
+	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream."
 	stealth = 0
 	resistance = -2
 	stage_speed = 2
@@ -70,7 +70,7 @@
 	for(var/datum/reagent/R in H.bloodstr.reagent_list)
 		H.reagents.remove_reagent(R.type, actual_power)
 		if(food_conversion)
-			H.adjust_nutrition(0.3)
+			H.adjust_nutrition(2)
 		if(prob(2) && H.stat != DEAD)
 			to_chat(H, span_notice("You feel a mild warmth as your blood purifies itself."))
 

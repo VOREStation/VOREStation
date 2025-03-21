@@ -60,29 +60,31 @@ BONUS
 
 	switch(A.stage)
 		if(1)
-			if(prob(2))
-				to_chat(M, span_notice("You feel bloated."))
+			to_chat(M, span_notice("You feel bloated."))
 
-			if(prob(3) && !M.jitteriness)
+			if(!M.jitteriness)
 				to_chat(M, span_notice("You feel a bit jittery."))
 				M.jitteriness = 10
 
 		if(2)
-			if(prob(1) && ishuman(M))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				H.vomit(TRUE, FALSE)
 		if(3, 4)
-			if(prob(10))
-				to_chat(M, span_notice("You feel blobby?"))
+			to_chat(M, span_notice("You feel blobby?"))
 
 		if(5)
-			ready_to_pop = TRUE
-			if(prob(5))
-				M.audible_emote("coughs up a small amount of blood!")
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					var/bleeding_rng = rand(1, 2)
-					H.drip(bleeding_rng)
+			M.audible_emote("coughs up a small amount of blood!")
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				var/bleeding_rng = rand(1, 2)
+				H.drip(bleeding_rng)
+
+/datum/symptom/blobspores/OnStageChange(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage == 5)
+		ready_to_pop = TRUE
 
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
 	if(neutered)

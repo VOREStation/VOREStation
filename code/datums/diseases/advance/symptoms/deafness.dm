@@ -56,3 +56,11 @@ Bonus
 		if(3, 4)
 			if(prob(base_message_chance) && !supress_warning)
 				to_chat(M, span_warning(pick("You hear a ringing in your ears.", "Your ears pop.")))
+		if(5)
+			if(power >= 2)
+				M.adjustEarDamage(100, 10)
+				to_chat(M, span_userdanger("Your ears pop painfully and start bleeding!"))
+				M.emote("scream")
+			else
+				to_chat(M, span_userdanger("Your ears pop and begin ringing loudly!"))
+				M.adjustEarDamage(0, 10)

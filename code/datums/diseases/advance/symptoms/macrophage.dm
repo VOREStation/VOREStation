@@ -24,6 +24,8 @@ BONUS
 	transmission = 2
 	level = 9
 	severity = 2
+	symptom_delay_min = 40
+	symptom_delay_max = 60
 
 	var/gigagerms = FALSE
 	var/netspeed = 0

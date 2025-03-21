@@ -115,6 +115,8 @@
 			pred.ForceContractDisease(base_disease)
 	else
 		var/obj/effect/decal/cleanable/mucus/sick = new(loc)
+		sick.pixel_x = rand(-24, 24)
+		sick.pixel_y = rand(-24, 24)
 		sick.viruses += base_disease
 	qdel(src)
 

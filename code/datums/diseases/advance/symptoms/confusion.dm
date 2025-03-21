@@ -25,8 +25,8 @@ Bonus
 	level = 3
 	severity = 2
 	base_message_chance = 25
-	symptom_delay_min = 20 SECONDS
-	symptom_delay_max = 40 SECONDS
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 30 SECONDS
 
 	threshold_descs = list(
 		"Transmission 6" = "Increases confusion duration.",
