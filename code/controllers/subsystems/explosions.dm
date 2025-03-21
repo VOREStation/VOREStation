@@ -87,12 +87,7 @@ SUBSYSTEM_DEF(explosions)
 	// return to setup mode... Unless...
 	end_resolve()
 	if(!pending_explosions.len)
-		suspend() // we've finished. Pause if we have no more work to do.
-		// If requested we rebuild powernets.
-		if(defer_powernet_rebuild)
-			INVOKE_ASYNC(SSmachines, TYPE_PROC_REF(/datum/controller/subsystem/machines,makepowernets))
-			defer_powernet_rebuild = FALSE
-			SSair.wake() // AWAKEN MY MASTERS
+		suspend_and_invoke_deferred_subsystems()
 
 /datum/controller/subsystem/explosions/proc/fire_prepare_explosions(var/list/data)
 	var/pwr = data[4]
@@ -165,6 +160,24 @@ SUBSYSTEM_DEF(explosions)
 	PRIVATE_PROC(TRUE)
 	resolve_explosions = FALSE
 
+/datum/controller/subsystem/explosions/proc/wake_and_defer_subsystem_updates()
+	// waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
+	if(can_fire) // already awake
+		return
+	wake()
+	next_fire = 0
+	// Save these for AFTER the explosion has resolved
+	defer_powernet_rebuild = TRUE
+
+/datum/controller/subsystem/explosions/proc/suspend_and_invoke_deferred_subsystems()
+	// we've finished. Pause because was have no more work to do.
+	if(!can_fire) // already asleep
+		return
+	suspend()
+	// Resolve all the stuff we put off for after the explosion resolved
+	defer_powernet_rebuild = FALSE
+	INVOKE_ASYNC(SSmachines, TYPE_PROC_REF(/datum/controller/subsystem/machines,makepowernets))
+
 /datum/controller/subsystem/explosions/proc/abort()
 	if(!currentrun.len)
 		return
@@ -226,10 +239,9 @@ SUBSYSTEM_DEF(explosions)
 
 	// send signals to dopplers
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
+
 	// BOINK! Time to wake up sleeping beauty!
-	if(!can_fire)
-		wake()
-		next_fire = 0 // waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
+	wake_and_defer_subsystem_updates()
 
 // Collect prepared explosions for BLAST PROCESSING
 /datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr,var/max_starting)
@@ -305,11 +317,6 @@ SUBSYSTEM_DEF(explosions)
 	if(adminlog)
 		message_admins("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 		log_game("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
-
-	// Large enough explosion. For performance reasons, powernets will be rebuilt manually
-	if((devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range > 5)
-		defer_powernet_rebuild = TRUE
-		SSair.suspend() // we're gonna be making a bit of a mess, lets wait till we're done
 
 	if(heavy_impact_range > 1)
 		var/datum/effect/system/explosion/E = new/datum/effect/system/explosion()
