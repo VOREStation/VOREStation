@@ -98,7 +98,7 @@
 
 	//Write the appearance and whatnot out to the character
 	var/client/C = client
-	C.prefs.copy_to(avatar) // Unfortunately the cascade of procs this calls will add the body to the transcore body DB. Don't see a simple way to prevent that.
+	C.prefs.copy_to(avatar)
 	avatar.key = key
 	for(var/lang in C.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
