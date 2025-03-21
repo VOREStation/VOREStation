@@ -1431,3 +1431,141 @@
 			drop.invisibility = 0
 	//else
 		// come up with drips for other mobs someday
+
+// Requires a /mob/living type path for transformation. Returns the new mob on success, null in all other cases.
+// Just handles mob TF right now, but maybe we'll want to do something similar for items in the future.
+/mob/living/proc/transform_into_mob(mob/living/new_form, pref_override = FALSE, revert = FALSE, shapeshifting = FALSE)
+	if(!src.mind)
+		return
+	if(!src.allow_spontaneous_tf && !pref_override)
+		return
+	if(src.tf_mob_holder) //If we're already transformed
+		if(revert)
+			revert_mob_tf()
+			return
+		else
+			return
+	else
+		if(src.stat == DEAD)
+			return
+		if(!ispath(new_form, /mob/living) && !ismob(new_form))
+			return
+		var/mob/living/new_mob
+		if(shapeshifting && src.tf_form)
+			new_mob = src.tf_form
+			add_verb(new_mob,/mob/living/proc/shapeshift_form)
+			new_mob.tf_form = src
+			new_mob.forceMove(src.loc)
+			visible_message(span_warning("[src] twists and contorts, shapeshifting into a different form!"))
+			if(new_mob.ckey)
+				new_mob.tf_form_ckey = new_mob.ckey
+		else
+			new_mob = new new_form(get_turf(src))
+
+		if(new_mob && isliving(new_mob))
+			new_mob.faction = src.faction
+			if(istype(new_mob, /mob/living/simple_mob))
+				var/mob/living/simple_mob/S = new_mob
+				if(!S.voremob_loaded)
+					S.voremob_loaded = TRUE
+					S.init_vore()
+			new /obj/effect/effect/teleport_greyscale(src.loc)
+			if(!new_mob.ckey)
+				for(var/obj/belly/B as anything in new_mob.vore_organs)
+					new_mob.vore_organs -= B
+					qdel(B)
+				new_mob.vore_organs = list()
+				new_mob.name = src.name
+				new_mob.real_name = src.real_name
+				for(var/lang in src.languages)
+					new_mob.languages |= lang
+				src.copy_vore_prefs_to_mob(new_mob)
+				new_mob.vore_selected = src.vore_selected
+				if(ishuman(src))
+					var/mob/living/carbon/human/H = src
+					if(ishuman(new_mob))
+						var/mob/living/carbon/human/N = new_mob
+						N.gender = H.gender
+						N.identifying_gender = H.identifying_gender
+					else
+						new_mob.gender = H.gender
+				else
+					new_mob.gender = src.gender
+					if(ishuman(new_mob))
+						var/mob/living/carbon/human/N = new_mob
+						N.identifying_gender = src.gender
+
+				for(var/obj/belly/B as anything in src.vore_organs)
+					B.loc = new_mob
+					B.forceMove(new_mob)
+					B.owner = new_mob
+					src.vore_organs -= B
+					new_mob.vore_organs += B
+				new_mob.nutrition = src.nutrition
+
+				src.soulgem?.transfer_self(new_mob)
+
+			new_mob.ckey = src.ckey
+			if(new_mob.tf_form_ckey)
+				src.ckey = new_mob.tf_form_ckey
+			if(src.ai_holder && new_mob.ai_holder)
+				var/datum/ai_holder/old_AI = src.ai_holder
+				old_AI.set_stance(STANCE_SLEEP)
+				var/datum/ai_holder/new_AI = new_mob.ai_holder
+				new_AI.hostile = old_AI.hostile
+				new_AI.retaliate = old_AI.retaliate
+			src.loc = new_mob
+			src.forceMove(new_mob)
+			new_mob.tf_mob_holder = src
+			return new_mob
+
+// Used to check if THIS MOB has been transformed into a different mob, as only the NEW mob uses tf_mob_holder.
+// Necessary in niche cases where a proc interacts with the old body and needs to know it's been transformed (such as transforming into a mob then dying in virtual reality).
+// Use this if you cannot use the tf_mob_holder var. Returns TRUE if transformed, FALSE if not.
+/mob/living/proc/tfed_into_mob_check()
+	if(loc && isliving(loc))
+		var/mob/living/M = loc
+		if(istype(M) && M.tf_mob_holder && (M.tf_mob_holder == src))
+			return TRUE
+		else
+			return FALSE
+	else
+		return FALSE
+
+/mob/living/proc/shapeshift_form()
+	set name = "Shapeshift Form"
+	set category = "Abilities.Shapeshift"
+	set desc = "Shape shift between set mob forms. (Requires a spawned mob to be varedited into the user's tf_form var as mob reference.)"
+	if(!istype(tf_form))
+		to_chat(src, span_notice("No shapeshift form set. (Requires a spawned mob to be varedited into the user's tf_form var as mob reference.)"))
+		return
+	else
+		transform_into_mob(tf_form, TRUE, TRUE, TRUE)
+
+/mob/living/set_dir(var/new_dir)
+	. = ..()
+	if(size_multiplier != 1 || icon_scale_x != 1 && center_offset > 0)
+		update_transform(TRUE)
+
+// Gross proc which is called on Life() to check for escaped VR mobs. Tried to do this with Exited() on area/vr but ended up being too heavy.
+/mob/living/proc/handle_vr_derez()
+	if(virtual_reality_mob && !istype(get_area(src), /area/vr))
+		log_debug("[src] escaped virtual reality")
+		visible_message("[src] blinks out of existence.")
+		return_from_vr()
+		for(var/obj/belly/B in vore_organs) // Assume anybody inside an escaped VR mob is also an escaped VR mob.
+			for(var/mob/living/L in B)
+				log_debug("[L] was inside an escaped VR mob and has been deleted.")
+				L.handle_vr_derez() //Recursive! Let's get EVERYONE properly out of here!
+				if(!QDELETED(L)) //This is so we don't double qdel() things when we're doing recursive removal.
+					qdel(L)
+		qdel(src) // Would like to convert escaped players into AR holograms in the future to encourage exploit finding.
+
+// This proc checks to see two things: 1. If we have a tf_mob_holder (we are a simple mob) and 2. If we are a human. If so, we try to exit VR properly.
+/mob/living/proc/return_from_vr()
+	if(tf_mob_holder)
+		var/mob/living/carbon/human/our_holder = tf_mob_holder
+		our_holder.exit_vr() //If we have no vr_holder, perfect, we do nothing. If we DO, we get shoved back into our body.
+	else if(ishuman(src)) //Alright! We don't have a tf_mob_holder, so we must be a human in VR.
+		var/mob/living/carbon/human/our_holder = src
+		our_holder.exit_vr()

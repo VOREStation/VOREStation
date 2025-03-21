@@ -67,6 +67,37 @@
 	var/mob/living/ourmob = tf_mob_holder
 	if(soulgem) //Should always be the case, but...Safety. Done here first
 		soulgem.transfer_self(ourmob)
+	if(ourmob.loc != src)
+		if(isnull(ourmob.loc))
+			to_chat(src,span_notice("You have no body."))
+			tf_mob_holder = null
+			return
+		if(istype(ourmob.loc, /mob/living)) //Check for if body was transformed
+			ourmob = ourmob.loc
+		if(ourmob.ckey)
+			if(ourmob.tf_mob_holder && ourmob.tf_mob_holder == src)
+				//Body Swap
+				var/datum/mind/ourmind = src.mind
+				var/datum/mind/theirmind = ourmob.mind
+				ourmob.ghostize()
+				src.ghostize()
+				ourmob.mind = null
+				src.mind = null
+				ourmind.current = null
+				theirmind.current = null
+				ourmind.active = TRUE
+				ourmind.transfer_to(ourmob)
+				theirmind.active = TRUE
+				theirmind.transfer_to(src)
+				ourmob.tf_mob_holder = null
+				src.tf_mob_holder = null
+			else
+				to_chat(src,span_notice("Your body appears to be in someone else's control."))
+			return
+		src.mind.transfer_to(ourmob)
+		tf_mob_holder = null
+		return
+	new /obj/effect/effect/teleport_greyscale(src.loc)
 	if(ourmob.ai_holder)
 		var/datum/ai_holder/our_AI = ourmob.ai_holder
 		our_AI.set_stance(STANCE_IDLE)
@@ -75,14 +106,15 @@
 	var/turf/get_dat_turf = get_turf(src)
 	ourmob.loc = get_dat_turf
 	ourmob.forceMove(get_dat_turf)
-	ourmob.vore_selected = vore_selected
-	vore_selected = null
-	for(var/obj/belly/B as anything in vore_organs)
-		B.loc = ourmob
-		B.forceMove(ourmob)
-		B.owner = ourmob
-		vore_organs -= B
-		ourmob.vore_organs += B
+	if(!tf_form_ckey)
+		ourmob.vore_selected = vore_selected
+		vore_selected = null
+		for(var/obj/belly/B as anything in vore_organs)
+			B.loc = ourmob
+			B.forceMove(ourmob)
+			B.owner = ourmob
+			vore_organs -= B
+			ourmob.vore_organs += B
 
 	ourmob.Life(1)
 
@@ -92,7 +124,15 @@
 				continue
 			src.drop_from_inventory(W)
 
-	qdel(src)
+	if(tf_form == ourmob)
+		if(tf_form_ckey)
+			src.ckey = tf_form_ckey
+		else
+			src.mind = null
+		ourmob.tf_form = src
+		src.forceMove(ourmob)
+	else
+		qdel(src)
 
 /mob/living/proc/handle_tf_holder()
 	if(!tf_mob_holder)

@@ -4559,6 +4559,7 @@
 #include "maps\tether\tether_phoronlock.dm"
 #include "maps\tether\tether_shuttle_defs.dm"
 #include "maps\tether\tether_telecomm_defs.dm"
+#include "maps\virtual_reality\constructVR.dm"
 #include "maps\~map_system\_map_selection.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

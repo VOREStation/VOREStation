@@ -18,6 +18,8 @@
 
 	var/mirror_first_occupant = TRUE	// Do we force the newly produced body to look like the occupant?
 
+	var/spawn_with_clothing = TRUE		// Do we spawn the avatar with clothing?
+
 	/// If we have a perfect replica of the mob's species that is entering us!
 	/// Because of our player population, I have defaulted this to TRUE.
 	/// If you are a downstream and want to have people spawn as VR prometheans by default, change this to FALSE
@@ -27,6 +29,7 @@
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
+	//var/global/list/vr_mob_tf_options // Global var located in global_lists.dm
 
 /obj/machinery/vr_sleeper/perfect
 	perfect_replica = TRUE
@@ -38,8 +41,17 @@
 	update_icon()
 
 /obj/machinery/vr_sleeper/Destroy()
+	if(occupant && occupant.vr_link)
+		occupant.vr_link.exit_vr()
+	//The below deals with the edge case of there being no occupant but there IS things inside, somehow.
+	//Just in case some weirdness happened.
+	for(var/atom/movable/A in src)
+		if(A == circuit)
+			continue
+		if(A in component_parts)
+			continue
+		A.loc = src.loc
 	. = ..()
-	go_out()
 
 /obj/machinery/vr_sleeper/process()
 	if(stat & (NOPOWER|BROKEN))
@@ -53,6 +65,11 @@
 
 /obj/machinery/vr_sleeper/update_icon()
 	icon_state = "[base_state][occupant ? "1" : "0"]"
+
+/obj/machinery/vr_sleeper/examine(mob/user)
+	. = ..()
+	if(occupant)
+		. += span_notice("[occupant] is inside.")
 
 /obj/machinery/vr_sleeper/Topic(href, href_list)
 	if(..())
@@ -148,7 +165,7 @@
 /obj/machinery/vr_sleeper/relaymove(mob/user as mob)
 	if(user.incapacitated())
 		return 0 //maybe they should be able to get out with cuffs, but whatever
-	go_out()
+	go_out(TRUE)
 
 /obj/machinery/vr_sleeper/proc/go_in(var/mob/M, var/mob/user)
 	if(!M)
@@ -157,6 +174,7 @@
 		return
 	if(!ishuman(M))
 		to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
+		return
 	if(occupant)
 		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
@@ -175,35 +193,31 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.loc = src
-		// update_use_power(USE_POWER_ACTIVE) //VOREstation edit: borer VR crash fix
 		occupant = M
 
 		update_icon()
 
-		//VOREstation edit - crashes borers
 		if(!M.has_brain_worms())
 			update_use_power(USE_POWER_ACTIVE)
 			enter_vr()
 		else
 			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
-		//VOREstation edit end
 	return
 
 /obj/machinery/vr_sleeper/proc/go_out(var/forced = TRUE)
 	if(!occupant)
 		return
 
-	if(!forced && avatar && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
-		return
+	if(!forced && avatar)
+		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
+			return
 
-	if(avatar)
-		avatar.exit_vr()
 	avatar = null
 
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.forceMove(src)
+	occupant.forceMove(src.loc)
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
@@ -249,6 +263,13 @@
 		if(!S)
 			return 0
 
+		var/tf = null
+		if(tgui_alert(occupant, "Would you like to play as a different creature?", "Join as a mob?", list("Yes", "No")) == "Yes")
+			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", vr_mob_tf_options)
+			if(!k)
+				return 0
+			tf = vr_mob_tf_options[k]
+
 		for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
 			if(i.name == S)
 				S = i
@@ -264,9 +285,16 @@
 			avatar.shapeshifter_change_shape(occupant.species.name)
 		avatar.forceMove(get_turf(S))			// Put the mob on the landmark, instead of inside it
 
-
 		occupant.enter_vr(avatar)
+		if(spawn_with_clothing)
+			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
+		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
+		add_verb(avatar,/mob/living/proc/set_size)
+		avatar.virtual_reality_mob = TRUE
+
 		//This handles all the 'We make it look like ourself' code.
+		//We do this BEFORE any mob tf so prefs  carry over properly!
 		if(perfect_replica)
 			avatar.species.create_organs(avatar) // Reset our organs/limbs.
 			avatar.restore_all_organs()
@@ -276,13 +304,123 @@
 			avatar.sync_organ_dna()
 			avatar.initialize_vessel()
 
+		if(tf)
+			var/mob/living/new_form = avatar.transform_into_mob(tf, TRUE) // No need to check prefs when the occupant already chose to transform.
+			if(isliving(new_form)) // Make sure the mob spawned properly.
+				add_verb(new_form,/mob/living/proc/vr_revert_mob_tf)
+				new_form.virtual_reality_mob = TRUE
+
 		add_verb(avatar, /mob/living/carbon/human/proc/exit_vr) //ahealing removes the prommie verbs and the VR verbs, giving it back
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.
 		var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
-		if (newname)
+		if(newname)
 			avatar.real_name = newname
+			avatar.name = newname
 
 	else
+		// If TFed, revert TF. Easier than coding mind transfer stuff for edge cases.
+		if(avatar.tfed_into_mob_check())
+			var/mob/living/M = loc
+			if(istype(M)) // Sanity check, though shouldn't be needed since this is already checked by the proc.
+				M.revert_mob_tf()
 		occupant.enter_vr(avatar)
+
+/mob/living/carbon/human/proc/vr_transform_into_mob()
+	set name = "Transform Into Creature"
+	set category = "Abilities.VR"
+	set desc = "Become a different creature"
+
+	var/tf = null
+	var/k = tgui_input_list(usr, "Please select a creature:", "Mob list", vr_mob_tf_options)
+	if(!k)
+		return 0
+	tf = vr_mob_tf_options[k]
+
+	var/mob/living/new_form = transform_into_mob(tf, TRUE, TRUE)
+	if(isliving(new_form)) // Sanity check
+		add_verb(new_form,/mob/living/proc/vr_revert_mob_tf)
+		new_form.virtual_reality_mob = TRUE
+
+/mob/living/proc/vr_revert_mob_tf()
+	set name = "Revert Transformation"
+	set category = "Abilities.VR"
+
+	revert_mob_tf()
+
+// Exiting VR but for ghosts
+/mob/living/carbon/human/proc/fake_exit_vr()
+	set name = "Log Out Of Virtual Reality"
+	set category = "Abilities.VR"
+
+	if(tgui_alert(usr, "Would you like to log out of virtual reality?", "Log out?", list("Yes", "No")) == "Yes")
+		release_vore_contents(TRUE)
+		for(var/obj/item/I in src)
+			drop_from_inventory(I)
+		qdel(src)
+
+/mob/observer/dead/verb/fake_enter_vr()
+	set name = "Join virtual reality"
+	set category = "Ghost.Join"
+	set desc = "Log into NanoTrasen's local virtual reality server."
+
+/* Temp removal while I figure out how to reduce the respawn time to 1 minute
+	var/time_till_respawn = time_till_respawn()
+	if(time_till_respawn == -1) // Special case, never allowed to respawn
+		to_chat(usr, span_warning("Respawning is not allowed!"))
+		return
+	if(time_till_respawn) // Nonzero time to respawn
+		to_chat(usr, span_warning("You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
+		return
+*/
+	var/datum/data/record/record_found
+	record_found = find_general_record("name", client.prefs.real_name)
+	// Found their record, they were spawned previously. Remind them corpses cannot play games.
+	if(record_found)
+		var/answer = tgui_alert(src,"You seem to have previously joined this round. If you are currently dead, you should not enter VR as this character. Would you still like to proceed?","Previously spawned",list("Yes","No"))
+		if(answer != "Yes")
+			return
+
+	var/S = null
+	var/list/vr_landmarks = list()
+	for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+		vr_landmarks += sloc.name
+	if(!LAZYLEN(vr_landmarks))
+		to_chat(src, "There are no available spawn locations in virtual reality.")
+		return
+	S = tgui_input_list(usr, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
+	if(!S)
+		return 0
+	for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
+		if(i.name == S)
+			S = i
+			break
+
+	var/mob/living/carbon/human/avatar = new(get_turf(S), client.prefs.species)
+	if(!avatar)
+		to_chat(src, "Something went wrong and spawning failed.")
+		return
+
+	//Write the appearance and whatnot out to the character
+	var/client/C = client
+	C.prefs.copy_to(avatar) // Unfortunately the cascade of procs this calls will add the body to the transcore body DB. Don't see a simple way to prevent that.
+	avatar.key = key
+	for(var/lang in C.prefs.alternate_languages)
+		var/datum/language/chosen_language = GLOB.all_languages[lang]
+		if(chosen_language)
+			if(is_lang_whitelisted(usr,chosen_language) || (avatar.species && (chosen_language.name in avatar.species.secondary_langs)))
+				avatar.add_language(lang)
+
+	avatar.regenerate_icons()
+	avatar.update_transform()
+	job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
+	add_verb(avatar,/mob/living/carbon/human/proc/fake_exit_vr)
+	add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
+	add_verb(avatar,/mob/living/proc/set_size)
+	avatar.virtual_reality_mob = TRUE
+	log_and_message_admins("[key_name_admin(avatar)] joined virtual reality from the ghost menu.")
+
+	var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	if(newname)
+		avatar.real_name = newname
