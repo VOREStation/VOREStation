@@ -1,0 +1,13 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Makes mouse rays no longer crash the server under certain circumstances"
+  - bugfix: "Makes VR pods no longer crash the server"
+  - bugfix: "Updates TF and makes it no longer cause runtimes & crashes."
+  - bugfix: "Makes it so you can no longer repeatedly spawn in VR and clog up the server with hundreds of yourself (humanoids are expensive!)"
+  - bugfix: "You can no longer escape VR and enter the Real World"
+  - qol: "Adds a greyscale / glowing effect for TF rays"
+  - code_imp: "Added a toggle for VR pods to spawn people with clothing or not"
+  - rscadd: "Ghosts now have a button to enter the VR space if it's spawned in!"
+  - rscadd: "Ghosts can now enter VR if it's spawned in!"
+  - rscadd: "Adds the ability to TF into different creatures while in VR"
