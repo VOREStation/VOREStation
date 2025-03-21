@@ -133,7 +133,7 @@
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
-		INVOKE_ASYNC(src, PROC_REF(custom_emote),1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 
 		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove), 5, TIMER_DELETE_ME)
 
@@ -148,7 +148,7 @@
 		var/list/potentials = living_mobs(0)
 		if(potentials.len)
 			var/mob/living/target = pick(potentials)
-			if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
+			if(istype(target) && target.devourable && target.can_be_drop_prey && target.phase_vore && vore_selected && phase_vore)
 				target.forceMove(vore_selected)
 				to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
@@ -184,7 +184,7 @@
 		ability_flags |= AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
 		throwpass = TRUE
-		custom_emote(1,"phases out!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		name = get_visible_name()
 
 		for(var/obj/belly/B as anything in vore_organs)

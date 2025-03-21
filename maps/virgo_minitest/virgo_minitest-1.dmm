@@ -3242,7 +3242,6 @@
 	id = "EngineEmitterPortWest";
 	name = "Engine Room Blast Doors";
 	pixel_y = 25;
-	req_access = null;
 	req_one_access = list(11,24)
 	},
 /obj/effect/floor_decal/industrial/outline,
@@ -4123,7 +4122,6 @@
 /area/engineering/workshop)
 "sA" = (
 /obj/structure/shuttle/engine/heater,
-/turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/multidemo)
 "sB" = (
@@ -6129,7 +6127,6 @@
 /area/engineering/engine_room)
 "Pg" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/multidemo)
 "Pk" = (

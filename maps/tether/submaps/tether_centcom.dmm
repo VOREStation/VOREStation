@@ -357,9 +357,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "aX" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
@@ -446,9 +444,7 @@
 /area/centcom/terminal)
 "bk" = (
 /turf/simulated/wall/r_wall,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "bl" = (
 /turf/simulated/wall/r_wall,
 /area/centcom/restaurant)
@@ -479,9 +475,7 @@
 /area/centcom/bar)
 "bq" = (
 /turf/simulated/wall/r_wall,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "br" = (
 /obj/structure/sign/warning/docking_area,
 /turf/simulated/wall/r_wall,
@@ -586,9 +580,7 @@
 /obj/item/stack/medical/ointment,
 /obj/item/stack/medical/splint,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "bF" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -924,9 +916,7 @@
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "cI" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -1614,9 +1604,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "eZ" = (
 /obj/item/stool/padded,
 /obj/effect/floor_decal/corner/yellow/diagonal,
@@ -1631,9 +1619,7 @@
 	},
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "fg" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -2001,9 +1987,7 @@
 	},
 /obj/effect/floor_decal/corner/blue/bordercorner2,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "gm" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/shuttle/plating/carry,
@@ -2162,9 +2146,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "gP" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/green,
@@ -2473,9 +2455,7 @@
 	},
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "hQ" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
@@ -2491,9 +2471,7 @@
 	},
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "hV" = (
 /obj/machinery/shield_capacitor,
 /turf/simulated/floor/tiled{
@@ -2743,9 +2721,7 @@
 /obj/structure/table/standard,
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "iR" = (
 /obj/structure/bed{
 	desc = "This is a bed..It says something close to the bottom 'I fuck the cat here too'."
@@ -2789,9 +2765,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "iV" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -3000,9 +2974,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "jK" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -3052,9 +3024,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "kd" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomehea";
@@ -3347,9 +3317,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "lb" = (
 /obj/item/storage/box/donkpockets{
 	pixel_x = 3;
@@ -3822,9 +3790,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "mR" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/red,
@@ -3955,9 +3921,7 @@
 /obj/machinery/light,
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "nA" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ccshuttleshutter";
@@ -4105,9 +4069,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "ok" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -4321,9 +4283,7 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "oS" = (
 /obj/structure/sink{
 	dir = 4;
@@ -4401,9 +4361,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "pr" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -4675,9 +4633,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "qT" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -4687,9 +4643,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "qU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass,
@@ -4744,9 +4698,7 @@
 "rg" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "ri" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
@@ -5298,9 +5250,7 @@
 	},
 /obj/structure/closet/walllocker_double/hydrant/west,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "uL" = (
 /turf/unsimulated/wall,
 /area/centcom/control)
@@ -5315,9 +5265,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "uV" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -5330,9 +5278,7 @@
 	name = "Shuttle Hatch"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "va" = (
 /obj/machinery/light/floortube{
 	dir = 1;
@@ -5439,9 +5385,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "vq" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
@@ -5456,9 +5400,7 @@
 "vw" = (
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "vy" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/centcom/simulated/evac;
@@ -5566,9 +5508,7 @@
 	req_one_access = list(1)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "wf" = (
 /obj/item/clothing/glasses/sunglasses/sechud/tactical,
 /obj/item/clothing/gloves/tactical,
@@ -5753,9 +5693,7 @@
 	},
 /obj/machinery/computer/skills,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "wY" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -5861,9 +5799,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "xz" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -5943,9 +5879,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "xR" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -5963,9 +5897,7 @@
 	name = "Security"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "xY" = (
 /obj/machinery/computer/card{
 	dir = 4
@@ -5983,9 +5915,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "ya" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
@@ -6018,9 +5948,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "yj" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/table/rack,
@@ -6280,9 +6208,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "zJ" = (
 /obj/structure/table/standard,
 /obj/item/stack/cable_coil,
@@ -6433,9 +6359,7 @@
 	},
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Au" = (
 /turf/simulated/floor/lino,
 /area/centcom/restaurant)
@@ -6620,9 +6544,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "BR" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/pump,
@@ -6700,9 +6622,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "CF" = (
 /obj/structure/window/reinforced,
 /obj/structure/reagent_dispensers/peppertank{
@@ -6748,9 +6668,7 @@
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "CS" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -6764,9 +6682,7 @@
 	},
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "CV" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Virology Laboratory"
@@ -6797,9 +6713,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Dd" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6824,9 +6738,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Dh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor{
@@ -6854,9 +6766,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Di" = (
 /obj/machinery/telecomms/receiver/preset_cent,
 /turf/unsimulated/floor/steel,
@@ -7224,9 +7134,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Eg" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/green/border,
@@ -7371,9 +7279,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "EG" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
@@ -7633,9 +7539,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "FC" = (
 /obj/structure/table/standard,
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
@@ -7733,9 +7637,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "FS" = (
 /obj/structure/closet/l3closet/virology,
 /obj/item/clothing/mask/gas,
@@ -8089,9 +7991,7 @@
 /turf/simulated/wall/fancy_shuttle/window{
 	fancy_shuttle_tag = "tram"
 	},
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "GO" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -8143,9 +8043,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "GW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -8384,9 +8282,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "HE" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor{
@@ -8701,9 +8597,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "In" = (
 /obj/machinery/optable,
 /obj/effect/floor_decal/corner_steel_grid{
@@ -8950,9 +8844,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "IY" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -9433,9 +9325,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Kh" = (
 /obj/machinery/vending/wallmed1{
 	pixel_y = -32
@@ -9505,9 +9395,7 @@
 	},
 /obj/structure/closet/walllocker_double/hydrant/east,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Kn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -9534,9 +9422,7 @@
 	},
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Kp" = (
 /obj/item/stool/padded,
 /obj/effect/floor_decal/borderfloor{
@@ -9623,9 +9509,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Kz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -9709,9 +9593,7 @@
 	},
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "KL" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -10074,9 +9956,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "LD" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	name = "NanoTrasen Offices";
@@ -10205,9 +10085,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "LS" = (
 /obj/structure/table/glass,
 /obj/structure/flora/pottedplant{
@@ -10252,9 +10130,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "LZ" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -10270,9 +10146,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Mb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -10574,9 +10448,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "MM" = (
 /obj/structure/table/glass{
 	desc = "It's a table, it has some scracthes..they say 'Mlem'."
@@ -11018,9 +10890,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "NT" = (
 /obj/machinery/atm{
 	pixel_y = 30
@@ -11192,9 +11062,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "On" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/freezer,
@@ -11268,9 +11136,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Ow" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/ids,
@@ -11324,9 +11190,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "OE" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
@@ -11555,9 +11419,7 @@
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Pq" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/orange,
@@ -11761,9 +11623,7 @@
 	padding_color = "#99AAFF"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "PK" = (
 /obj/structure/closet/l3closet/security,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -12012,24 +11872,18 @@
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Qm" = (
 /obj/machinery/porta_turret/crescent{
 	density = 1
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Qn" = (
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Qp" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/glass,
@@ -12238,9 +12092,7 @@
 	opacity = 0
 	},
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Rb" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/armor/riot,
@@ -12404,9 +12256,7 @@
 /area/centcom)
 "Rt" = (
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Rv" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -12453,9 +12303,7 @@
 	req_one_access = list(1)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "RC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -12467,9 +12315,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "RD" = (
 /obj/machinery/computer/security{
 	dir = 8
@@ -12482,9 +12328,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "RF" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
@@ -12675,9 +12519,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Sc" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/window/reinforced,
@@ -12700,9 +12542,7 @@
 /obj/item/camera,
 /obj/item/storage/box/ids,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Se" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
@@ -12804,16 +12644,12 @@
 /obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Su" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Sv" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full{
@@ -12864,9 +12700,7 @@
 /area/centcom/security)
 "SB" = (
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "SC" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
@@ -12877,9 +12711,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "SD" = (
 /obj/machinery/turretid/stun{
 	check_access = 0;
@@ -12891,9 +12723,7 @@
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "SF" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor/carpet,
@@ -13003,9 +12833,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "SU" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/floor_decal/borderfloorblack{
@@ -13039,9 +12867,7 @@
 	name = "Security"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "SZ" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/hotdog,
@@ -13179,9 +13005,7 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Tv" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -13194,9 +13018,7 @@
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Tw" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -13245,9 +13067,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "TG" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -13258,9 +13078,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "TJ" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -13486,9 +13304,7 @@
 	name = "Shuttle Hatch"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Uh" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2
@@ -13541,9 +13357,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Up" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -13567,9 +13381,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Uq" = (
 /obj/structure/table/standard,
 /obj/item/soap,
@@ -13636,9 +13448,7 @@
 /obj/item/melee/baton/loaded,
 /obj/item/gun/energy/taser,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Ux" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -13663,9 +13473,7 @@
 /obj/item/gun/energy/gun,
 /obj/item/shield/riot,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "UA" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
@@ -13680,9 +13488,7 @@
 /obj/item/gun/energy/gun,
 /obj/item/shield/riot,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "UB" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/grass,
@@ -13789,9 +13595,7 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "UO" = (
 /obj/machinery/camera/network/crescent{
 	dir = 4
@@ -13911,9 +13715,7 @@
 	},
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Vg" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -14037,9 +13839,7 @@
 /area/centcom/medical)
 "Vu" = (
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Vv" = (
 /obj/structure/table/reinforced,
 /obj/item/material/minihoe,
@@ -14463,9 +14263,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Wq" = (
 /obj/structure/table/rack,
 /obj/item/ammo_magazine/ammo_box/b12g/flash,
@@ -14665,9 +14463,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "WM" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
@@ -14937,9 +14733,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "XB" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/bottle/cola,
@@ -15027,9 +14821,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "XR" = (
 /obj/machinery/porta_turret/crescent{
 	density = 1
@@ -15097,9 +14889,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "Ya" = (
 /obj/machinery/porta_turret/crescent{
 	density = 1
@@ -15350,9 +15140,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "YI" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 6
@@ -15423,9 +15211,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "YT" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 1
@@ -15448,9 +15234,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "YX" = (
 /obj/structure/table/rack,
 /obj/item/clothing/gloves/arm_guard/laserproof,
@@ -15727,9 +15511,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "ZQ" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/centcom)
@@ -15759,9 +15541,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/shuttle/escape/techfloor_grid_base)
 "ZW" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,

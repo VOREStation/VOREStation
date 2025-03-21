@@ -146,7 +146,7 @@
 /obj/machinery/power/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
-	..()
+	. = ..()
 
 //stealth direct power usage
 /obj/machinery/power/singularity_beacon/process()

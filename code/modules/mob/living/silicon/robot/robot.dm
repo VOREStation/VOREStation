@@ -7,6 +7,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
+	nutrition = 0
 
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ~HEAVY
@@ -474,6 +475,22 @@
 		robotdecal_on += decal_to_toggle
 		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
 	update_icon()
+
+/mob/living/silicon/robot/verb/flick_robot_animation()
+	set category = "Abilities.Settings"
+	set name = "Flick Animation"
+
+	if(!sprite_datum)
+		return
+	if(!LAZYLEN(sprite_datum.sprite_animations))
+		to_chat(src, span_warning("This module does not support animations."))
+		return
+
+	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
+	if(!animation_to_play)
+		return
+
+	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
 
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
@@ -1456,6 +1473,13 @@
 			undeploy()
 	..()
 
+/mob/living/silicon/robot/use_power()
+	if(cell && cell.charge < cell.maxcharge)
+		if(nutrition >= 1 * CYBORG_POWER_USAGE_MULTIPLIER)
+			adjust_nutrition(-(1 * CYBORG_POWER_USAGE_MULTIPLIER))
+			cell.charge += 10 * CYBORG_POWER_USAGE_MULTIPLIER
+	..()
+
 // Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
 /mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
 	if(given_type == /obj/item/borg/upgrade/basic/vtec)
@@ -1563,3 +1587,14 @@
 	if(issilicon(user))
 		return TRUE
 	return FALSE
+
+/mob/living/silicon/robot/verb/purge_nutrition()
+	set name = "Purge Nutrition"
+	set category = "Abilities.Vore"
+	set desc = "Allows you to clear out most of your nutrition if needed."
+
+	if (stat != CONSCIOUS || nutrition <= 1000)
+		return
+	nutrition = 1000
+	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
+	return TRUE

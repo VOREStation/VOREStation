@@ -6,8 +6,8 @@
 	var/datum/effect/effect/system/spark_spread/sparks
 	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
-/obj/item/antag_spawner/New()
-	..()
+/obj/item/antag_spawner/Initialize(mapload)
+	. = ..()
 	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)

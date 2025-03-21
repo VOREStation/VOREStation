@@ -8,7 +8,8 @@
 	anchored = TRUE
 	var/lastuser = null
 
-/obj/machinery/scanner/New()
+/obj/machinery/scanner/Initialize(mapload)
+	. = ..()
 	if(!outputdir)
 		switch(dir)
 			if(1)

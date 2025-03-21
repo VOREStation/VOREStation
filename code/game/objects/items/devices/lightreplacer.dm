@@ -56,9 +56,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/lightreplacer/New()
+/obj/item/lightreplacer/Initialize(mapload)
+	. = ..()
 	failmsg = "The [name]'s refill light blinks red."
-	..()
 
 /obj/item/lightreplacer/examine(mob/user)
 	. = ..()
@@ -240,10 +240,6 @@
 	var/resetmode = 1
 
 	var/dimming = 0.7 // multiply value to dim lights from setcolor to nightcolor
-
-
-/obj/item/lightpainter/New()
-	. = ..()
 
 /obj/item/lightpainter/examine(mob/user)
 	. = ..()

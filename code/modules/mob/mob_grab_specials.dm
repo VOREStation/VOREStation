@@ -147,27 +147,3 @@
 	step_to(attacker, target)
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
-
-/obj/item/grab/proc/devour(mob/target, mob/user)
-	var/can_eat
-	if((FAT in user.mutations) && ismini(target))
-		can_eat = 1
-	else
-		var/mob/living/carbon/human/H = user
-		if(istype(H) && H.species.gluttonous)
-			if(H.species.gluttonous == 2)
-				can_eat = 2
-			else if((H.mob_size > target.mob_size) && !ishuman(target) && ismini(target))
-				can_eat = 1
-
-	if(can_eat)
-		var/mob/living/carbon/attacker = user
-		user.visible_message(span_vdanger("[user] is attempting to devour [target]!"))
-		if(can_eat == 2)
-			if(!do_mob(user, target)||!do_after(user, 30)) return
-		else
-			if(!do_mob(user, target)||!do_after(user, 70)) return
-		user.visible_message(span_vdanger("[user] devours [target]!"))
-		target.loc = user
-		attacker.stomach_contents.Add(target)
-		qdel(src)

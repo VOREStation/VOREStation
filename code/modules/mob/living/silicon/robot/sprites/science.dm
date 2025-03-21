@@ -220,17 +220,23 @@
 	has_eye_light_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
 
 /datum/robot_sprite/dogborg/tall/science/dullahan/scialt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahansci_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/science/dullahan/scialt2
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'
 	sprite_icon_state = "dullahanscience"
 	sprite_decals = list("decals")
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/science/cat
 	name = "Cat"

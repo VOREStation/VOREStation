@@ -1512,6 +1512,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "narrowtail_2color-1"
 
+/datum/sprite_accessory/tail/demi_tesh_feathered
+	name = "Demi-Teshari tail"
+	desc = ""
+	icon_state = "demi-tesh-kit-tail"
+	do_colouration = 1
+	extra_overlay = "demi-tesh-kit-tail_floof"
+	color_blend_mode = ICON_MULTIPLY
+
 // Dino Tails
 
 /datum/sprite_accessory/tail/clubtail
@@ -1590,6 +1598,31 @@
 	extra_overlay2 = "kaiju_long_a_spikes_glow"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/longflufftail
+	name = "Long fluffy tail"
+	icon_state = "longflufftail"
+
+/datum/sprite_accessory/tail/longtail/ringtailbig
+	name = "Long ring tail"
+	icon_state = "bigringtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "bigringtail_markings"
+
+/datum/sprite_accessory/tail/longtail/desert_nightstalker
+	name = "Desert Nightstalker Tail (vwag)"
+	icon_state = "nightstalker_desert"
+	ani_state = "nightstalker_desert_w"
+	do_colouration = 0 // We're not coloring this, these are pre-colored
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/tail/longtail/diamondback_nightstalker
+	name = "Diamondback Nightstalker Tail (dual-color, vwag)"
+	icon_state = "nightstalker_diamondback"
+	ani_state = "nightstalker_diamondback_w"
+	extra_overlay = "nightstalker_diamondback_markings"
+	extra_overlay_w = "nightstalker_diamondback_markings_w"
 
 //RS backport tails
 
@@ -1718,28 +1751,3 @@
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
-
-/datum/sprite_accessory/tail/longtail/longflufftail
-	name = "Long fluffy tail"
-	icon_state = "longflufftail"
-
-/datum/sprite_accessory/tail/longtail/ringtailbig
-	name = "Long ring tail"
-	icon_state = "bigringtail"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "bigringtail_markings"
-
-/datum/sprite_accessory/tail/longtail/desert_nightstalker
-	name = "Desert Nightstalker Tail (vwag)"
-	icon_state = "nightstalker_desert"
-	ani_state = "nightstalker_desert_w"
-	do_colouration = 0 // We're not coloring this, these are pre-colored
-	color_blend_mode = ICON_ADD
-
-/datum/sprite_accessory/tail/longtail/diamondback_nightstalker
-	name = "Diamondback Nightstalker Tail (dual-color, vwag)"
-	icon_state = "nightstalker_diamondback"
-	ani_state = "nightstalker_diamondback_w"
-	extra_overlay = "nightstalker_diamondback_markings"
-	extra_overlay_w = "nightstalker_diamondback_markings_w"
