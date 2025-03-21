@@ -393,3 +393,56 @@
 2025-03-20:
   Kashargul:
   - bugfix: tgui asset loading retries
+2025-03-21:
+  Cameron-The-Raven:
+  - code_imp: Removes accidental glass endurance duplicate
+  - bugfix: Makes toxins no longer infinitely multiply  in strength
+  - bugfix: Makes Sensitive Biochemistry make you WEAKER to stoxin and chloralhydrate
+      instead of making you STRONGER against it, like it was intended to do.
+  - rscadd: Adds a moderate and major version of sensitive biochemistry.
+  - rscadd: Makes some drugs like ambrosia extract have stronger negative effects
+      if you have sensitive biochemistry.
+  - qol: Clamps the strength of mindbreaker. No more infinite hallucinations.
+  Diana:
+  - bugfix: Replicant pods now let you be NOT just a human! You can be yourself!
+  - bugfix: Replicant pods will no longer break movement related things.
+  - code_imp: VR pods and Replicant pods work a bit better on the backend
+  - rscadd: Zaddat now have security and Engineering specific subtypes they can choose
+      in the xenowear loadout...We have Zaddat players...Right?
+  - bugfix: Voidsuits can now properly integrate oxygen tanks into them
+  - qol: Voidsuit oxygentanks now no longer deploy into your suit storage slot, but
+      are integrated.
+  - qol: Vox can put phoron tanks into voidsuits
+  - spellcheck: Adjusts the fluff text you get when pushing someone onto the floor
+      while you're on the floor.
+  - bugfix: You can no longer grab/disarm/do cpr while restrained (or pinned)
+  - rscdel: Removes vore. (The old, unused version.)
+  - balance: You can no longer buckle/have someone buckle you to break free from grabs.
+  - balance: You can no longer crawl while grabbed
+  - bugfix: Sci borg baton no longer looks like a normal baton
+  - bugfix: Peacekeeper borgs have their shield sprite enabled now
+  - balance: sci borg baton now does ONE EXTRA DAMAGE. 9->10
+  Kashargul:
+  - qol: updates server logs verbs
+  - rscadd: item muffling in bellies
+  - bugfix: belly liquids
+  - bugfix: hiding layer properly set after movement
+  - bugfix: incorp pushing
+  - bugfix: changeling extract dna proc
+  - rscadd: animation flick support to robot sprites
+  SatinIsle:
+  - rscadd: Added a new subtype of maint lurker spawns to each redgate map. These
+      ghost pods spawn you in a similar way, but because they are guaranteed spawns,
+      they do not allow you to use the redgate to leave. Any person with redgate access
+      can give permission to these people simply by clicking on the redgate with an
+      empty hand when they are nearby. This is explained to the redgate inhabitant
+      on spawn and when they try to use the redgate.
+  TankTheBirb:
+  - rscadd: Added human compatible tesh ears and tail
+  - image: added new sprite states to tails.dmi and ears.dmi
+  Will:
+  - bugfix: The flamethrower UI now works properly.
+  - rscadd: Flamethrower now is more useful than spawning a few fire tiles. It's now
+      an actual threat!
+  Willburd:
+  - rscadd: Added Antimatter core RTG for POIs
