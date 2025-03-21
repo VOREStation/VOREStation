@@ -57,7 +57,7 @@ List of things solar grubs should be able to do:
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
 	var/shock_chance = 10 // Beware
-	var/powerdraw = 150000
+	var/powerdraw = 100000
 	var/tracked = FALSE
 
 	allow_mind_transfer = TRUE
