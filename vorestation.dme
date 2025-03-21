@@ -1150,6 +1150,7 @@
 #include "code\game\machinery\telecomms\traffic_control.dm"
 #include "code\game\machinery\virtual_reality\ar_console.dm"
 #include "code\game\machinery\virtual_reality\vr_console.dm"
+#include "code\game\machinery\virtual_reality\vr_procs.dm"
 #include "code\game\magic\Uristrunes.dm"
 #include "code\game\mecha\mech_bay.dm"
 #include "code\game\mecha\mech_fabricator.dm"
@@ -4559,6 +4560,7 @@
 #include "maps\tether\tether_phoronlock.dm"
 #include "maps\tether\tether_shuttle_defs.dm"
 #include "maps\tether\tether_telecomm_defs.dm"
+#include "maps\virtual_reality\constructVR.dm"
 #include "maps\~map_system\_map_selection.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
