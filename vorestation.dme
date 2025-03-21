@@ -167,6 +167,7 @@
 #include "code\__defines\verb_manager.dm"
 #include "code\__defines\visualnet.dm"
 #include "code\__defines\vore.dm"
+#include "code\__defines\vore_prefs.dm"
 #include "code\__defines\vote.dm"
 #include "code\__defines\vv.dm"
 #include "code\__defines\webhooks.dm"
