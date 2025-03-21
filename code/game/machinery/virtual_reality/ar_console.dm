@@ -63,12 +63,15 @@
 		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 			return
 
-	avatar.exit_vr() //We don't poof! We're a actual, living entity that isn't restrained by VR zones!
 
+	avatar.exit_vr() //We don't poof! We're a actual, living entity that isn't restrained by VR zones!
+	if(!occupant) //This whole thing needs cleaned up later, but this works for now.
+		return
 	if(occupant && occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_turf(src))
+	occupant.vr_link = null //The machine remembers the avatar. 1 avatar per machine. So the vr_link isn't needed anymore.
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
@@ -120,6 +123,7 @@
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
 			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
 		avatar.virtual_reality_mob = FALSE //THIS IS THE BIG DIFFERENCE WITH ALIEN VR PODS. THEY ARE NOT VR, THEY ARE REAL.
 
 		//This handles all the 'We make it look like ourself' code.
