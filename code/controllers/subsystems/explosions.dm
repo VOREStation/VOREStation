@@ -97,6 +97,7 @@ SUBSYSTEM_DEF(explosions)
 /datum/controller/subsystem/explosions/proc/fire_prepare_explosions(var/list/data)
 	var/pwr = data[4]
 	var/direction = data[5]
+	var/starting_power = data[6]
 	if(pwr <= 0)
 		return
 	//This step handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
@@ -116,13 +117,13 @@ SUBSYSTEM_DEF(explosions)
 			// Fan outward from the original explosion
 			var/turf/T = get_step(epicenter, direction)
 			if(T)
-				append_currentrun(T.x,T.y,T.z,spread_power,direction)
+				append_currentrun(T.x,T.y,T.z,spread_power,direction,starting_power)
 				T = get_step(epicenter, turn(direction,90))
 				if(T)
-					append_currentrun(T.x,T.y,T.z,spread_power,direction)
+					append_currentrun(T.x,T.y,T.z,spread_power,direction,starting_power)
 				T = get_step(src, turn(direction,-90))
 				if(T)
-					append_currentrun(T.x,T.y,T.z,spread_power,direction)
+					append_currentrun(T.x,T.y,T.z,spread_power,direction,starting_power)
 			// Make these feel a little more flashy
 			if(spread_power > 3 && spread_power < max_explosion_range && prob(6)) // bombs above maxcap are probably badmins, lets not make 10000 effects
 				if(prob(30))
@@ -134,17 +135,18 @@ SUBSYSTEM_DEF(explosions)
 					P.set_up(2,epicenter,direction)
 					P.start()
 	// Build the final explosion list, will be processed when we get to final resolution
-	finalize_explosion(data[1],data[2],data[3],pwr)
+	finalize_explosion(data[1],data[2],data[3],pwr,starting_power)
 
 /datum/controller/subsystem/explosions/proc/fire_resolve_explosions(var/list/data)
 	var/pwr = data[4]
+	var/starting_power = data[5]
 	if(pwr <= 0)
 		return
 	var/turf/T = locate(data[1],data[2],data[3])
 	if(!T)
 		return
 	//Wow severity looks confusing to calculate... Fret not, I didn't leave you with any additional instructions or help. (just kidding, see the line under the calculation)
-	var/severity = 4 - round(max(min( 3, ((pwr - T.explosion_resistance) / (max(3,(pwr/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
+	var/severity = 4 - round(max(min( 3, ((pwr - T.explosion_resistance) / (max(3,(starting_power/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
 							//															One third because there are three power levels and I
 							//															want each one to take up a third of the crater
 	T.ex_act(severity)
@@ -173,7 +175,7 @@ SUBSYSTEM_DEF(explosions)
 	currentrun[key] = data
 
 // INTERNAL explosion proc, meant for GROWING a currently processing blast.
-/datum/controller/subsystem/explosions/proc/append_currentrun(var/x0,var/y0,var/z0,var/pwr,var/direction)
+/datum/controller/subsystem/explosions/proc/append_currentrun(var/x0,var/y0,var/z0,var/pwr,var/direction,var/starting_power)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(pwr <= 0)
@@ -187,9 +189,12 @@ SUBSYSTEM_DEF(explosions)
 	if(pwr <= final_power)
 		return
 	// Update data at position for next run. Floodfill until the current_run is empty of new explosions!
+	var/max_starting = starting_power
 	var/list/dat = currentrun["[x0].[y0].[z0]"]
+	if(!isnull(dat) && dat[6] > max_starting)
+		max_starting = dat[6]
 	if(isnull(dat) || pwr >= dat[4])
-		currentrun["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,direction)
+		currentrun["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,direction,max_starting)
 
 // Queue explosion event, call this from explosion() ONLY
 /datum/controller/subsystem/explosions/proc/append_explosion(var/turf/epicenter,var/pwr,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/flash_range)
@@ -200,18 +205,24 @@ SUBSYSTEM_DEF(explosions)
 	var/y0 = epicenter.y
 	var/z0 = epicenter.z
 	// actual explosion. Do not allow multiple, just take the highest power explosion hitting that turf
+	var/max_starting = pwr
 	var/list/dat = pending_explosions["[x0].[y0].[z0]"]
+	if(!isnull(dat) && dat[6] > max_starting)
+		max_starting = dat[6]
 	if(isnull(dat) || pwr >= dat[4])
 		// primary explosion
-		pending_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,0)
+		pending_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,0,max_starting)
 		// outward radiating explosions
 		var/rad_power = pwr - epicenter.explosion_resistance
 		for(var/direction in cardinal)
 			var/turf/T = get_step(epicenter, direction)
 			if(T)
 				dat = pending_explosions["[T.x].[T.y].[T.z]"]
+				max_starting = pwr
+				if(!isnull(dat) && dat[6] > max_starting)
+					max_starting = dat[6]
 				if(isnull(dat) || rad_power >= dat[4])
-					pending_explosions["[T.x].[T.y].[T.z]"] = list(T.x,T.y,T.z,rad_power,direction)
+					pending_explosions["[T.x].[T.y].[T.z]"] = list(T.x,T.y,T.z,rad_power,direction,max_starting)
 
 	// send signals to dopplers
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
@@ -221,14 +232,14 @@ SUBSYSTEM_DEF(explosions)
 		next_fire = 0 // waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
 
 // Collect prepared explosions for BLAST PROCESSING
-/datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr)
+/datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr,var/max_starting)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(pwr <= 0)
 		return
 	var/list/dat = pending_explosions["[x0].[y0].[z0]"]
 	if(isnull(dat) || pwr >= dat[4])
-		resolving_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr)
+		resolving_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,max_starting)
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
 	// Lets assume recursive prey has happened...
@@ -296,7 +307,7 @@ SUBSYSTEM_DEF(explosions)
 		log_game("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
 
 	// Large enough explosion. For performance reasons, powernets will be rebuilt manually
-	if((devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range > 25)
+	if((devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range > 5)
 		defer_powernet_rebuild = TRUE
 		SSair.suspend() // we're gonna be making a bit of a mess, lets wait till we're done
 
