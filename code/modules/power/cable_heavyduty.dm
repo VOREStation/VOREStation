@@ -28,7 +28,7 @@
 
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(2, user)) // Takes lots of fuel and time...
-			to_chat(user, "The welding tool must be on to complete this task.")
+			to_chat(user, infoplain("The welding tool must be on to complete this task."))
 			return
 
 		playsound(src, WT.usesound, 50, 1)
@@ -54,7 +54,7 @@
 
 /obj/item/stack/cable_coil/heavyduty/turf_place(turf/simulated/F, mob/user)
 	if(istype(F, /turf/simulated/open))
-		to_chat(user, "\The [src] isn't flexible enough to do this!")
+		to_chat(user, infoplain("\The [src] isn't flexible enough to do this!"))
 		return
 	. = ..()
 
