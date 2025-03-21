@@ -217,7 +217,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.forceMove(src.loc)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
