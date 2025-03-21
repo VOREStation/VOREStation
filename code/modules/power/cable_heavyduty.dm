@@ -19,7 +19,7 @@
 		return
 
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
-		to_chat(user, span_blue("These cables are too tough to be cut with those [W.name]."))
+		to_chat(user, span_notice("These cables are too tough to be cut with those [W.name]."))
 		return
 	else if(W.has_tool_quality(TOOL_WELDER))
 		if(!allow_cutting)
@@ -28,7 +28,7 @@
 
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(2, user)) // Takes lots of fuel and time...
-			to_chat(user, infoplain("The welding tool must be on to complete this task."))
+			to_chat(user, span_infoplain("The welding tool must be on to complete this task."))
 			return
 
 		playsound(src, WT.usesound, 50, 1)
@@ -47,14 +47,14 @@
 			qdel(src)
 		return
 	else if(istype(W, /obj/item/stack/cable_coil) && !istype(W, /obj/item/stack/cable_coil/heavyduty))
-		to_chat(user, span_blue("You will need heavier cables to connect to these."))
+		to_chat(user, span_notice("You will need heavier cables to connect to these."))
 		return
 	else
 		..()
 
 /obj/item/stack/cable_coil/heavyduty/turf_place(turf/simulated/F, mob/user)
 	if(istype(F, /turf/simulated/open))
-		to_chat(user, infoplain("\The [src] isn't flexible enough to do this!"))
+		to_chat(user, span_infoplain("\The [src] isn't flexible enough to do this!"))
 		return
 	. = ..()
 
