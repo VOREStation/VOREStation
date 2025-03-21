@@ -7,7 +7,7 @@
 	icon_state = "jelly"
 	icon = 'icons/mob/vore.dmi'
 
-	swallowTime = 1 SECONDS
+	swallowTime = 1 SECOND
 	vore_active = 1
 	vore_capacity = 3
 	vore_default_mode = DM_DIGEST
