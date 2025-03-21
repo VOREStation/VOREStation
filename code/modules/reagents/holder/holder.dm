@@ -101,6 +101,9 @@
 	while(reaction_occurred)
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
+		#ifdef UNIT_TEST
+		SEND_SIGNAL(src, COMSIG_UNITTEST_DATA, list(C))
+		#endif
 	update_total()
 
 /* Holder-to-chemical */
