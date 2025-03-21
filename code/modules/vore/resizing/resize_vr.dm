@@ -140,7 +140,7 @@
 			animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
 	else
 		update_transform() //Lame way
-
+//#undef USE_DIRECT_MULTIPLIERS //Uncomment to use old resize calculations.
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!resizable && !ignore_prefs)
 		return 1
