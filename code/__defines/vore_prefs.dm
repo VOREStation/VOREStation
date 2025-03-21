@@ -57,4 +57,4 @@
 	target.vore_sprite_color = source.vore_sprite_color;								\
 	target.belly_rub_target = source.belly_rub_target;									\
 																						\
-	target.soulcatcher_pref_flags = source.soulcatcher_pref_flags;						\
+	target.soulcatcher_pref_flags = source.soulcatcher_pref_flags;
