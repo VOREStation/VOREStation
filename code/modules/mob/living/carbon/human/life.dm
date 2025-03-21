@@ -569,7 +569,7 @@
 		if(Rig)
 			suit_supply = Rig.air_supply
 		else if(Void)
-			suit_supply = Void.tank //We just piggyback off the
+			suit_supply = Void.tank
 
 		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
