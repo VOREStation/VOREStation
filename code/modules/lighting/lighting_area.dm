@@ -2,7 +2,7 @@
 	luminosity           = TRUE
 	var/dynamic_lighting = TRUE
 
-/area/New()
+/area/Initialize(mapload)
 	. = ..()
 
 	if(dynamic_lighting)

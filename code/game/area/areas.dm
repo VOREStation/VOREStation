@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 	var/debug = 0
 	var/requires_power = 1
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/Initialize(mapload)
 
 	// Power channel status - Is it currently energized?
 	var/power_equip = TRUE
@@ -52,12 +52,9 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 
-/area/New()
-	// Used by the maploader, this must be done in New, not init
-	GLOB.areas_by_type[type] = src
-	return ..()
-
+INITIALIZE_IMMEDIATE(/area)
 /area/Initialize(mapload)
+	GLOB.areas_by_type[type] = src
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
