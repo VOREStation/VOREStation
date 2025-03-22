@@ -700,7 +700,11 @@ var/list/possible_cable_coil_colours = list(
 	if(!istype(F))
 		return
 
-	var/obj/structure/cable/C = new(F)
+	var/obj/structure/cable/C
+	if(istype(src,/obj/item/stack/cable_coil/heavyduty)) // this is the only cable that does this, not worth an override
+		C = new /obj/structure/cable/heavyduty(F)
+	else
+		C = new /obj/structure/cable(F)
 	C.cableColor(color)
 	C.d1 = d1
 	C.d2 = d2

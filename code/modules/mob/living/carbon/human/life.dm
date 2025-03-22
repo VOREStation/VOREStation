@@ -562,13 +562,16 @@
 	if(internal)
 		//Because rigs store their tanks out of reach of contents.Find(), a check has to be made to make
 		//sure the rig is still worn, still online, and that its air supply still exists.
-		var/obj/item/tank/rig_supply
+		var/obj/item/tank/suit_supply
 		var/obj/item/rig/Rig = get_rig()
+		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
 
 		if(Rig)
-			rig_supply = Rig.air_supply
+			suit_supply = Rig.air_supply
+		else if(Void)
+			suit_supply = Void.tank
 
-		if ((!rig_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
