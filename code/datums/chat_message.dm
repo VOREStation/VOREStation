@@ -211,7 +211,7 @@ var/list/runechat_image_cache = list()
 
 			// When choosing to update the remaining time we have to be careful not to update the
 			// scheduled time once the EOL has been executed.
-			var/continuing = 0
+			var/continuing = NONE
 			if (time_spent >= time_before_fade)
 				if(m.message.pixel_y < starting_height)
 					var/max_height = m.message.pixel_y + m.approx_lines * CHAT_MESSAGE_APPROX_LHEIGHT - starting_height

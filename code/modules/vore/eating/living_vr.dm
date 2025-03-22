@@ -250,59 +250,7 @@
 
 	var/datum/vore_preferences/P = client.prefs_vr
 
-	P.digestable = src.digestable
-	P.devourable = src.devourable
-	P.feeding = src.feeding
-	P.absorbable = src.absorbable
-	P.resizable = src.resizable
-	P.digest_leave_remains = src.digest_leave_remains
-	P.allowmobvore = src.allowmobvore
-	P.vore_taste = src.vore_taste
-	P.vore_smell = src.vore_smell
-	P.permit_healbelly = src.permit_healbelly
-	P.noisy = src.noisy
-	P.selective_preference = src.selective_preference
-	P.show_vore_fx = src.show_vore_fx
-	P.can_be_drop_prey = src.can_be_drop_prey
-	P.can_be_drop_pred = src.can_be_drop_pred
-	P.allow_spontaneous_tf = src.allow_spontaneous_tf
-	P.step_mechanics_pref = src.step_mechanics_pref
-	P.pickup_pref = src.pickup_pref
-	P.drop_vore = src.drop_vore
-	P.slip_vore = src.slip_vore
-	P.throw_vore = src.throw_vore
-	P.food_vore = src.food_vore
-	P.consume_liquid_belly = src.consume_liquid_belly
-	P.digest_pain = src.digest_pain
-	P.stumble_vore = src.stumble_vore
-	P.eating_privacy_global = src.eating_privacy_global
-	P.allow_mimicry = src.allow_mimicry
-
-	P.nutrition_message_visible = src.nutrition_message_visible
-	P.nutrition_messages = src.nutrition_messages
-	P.weight_message_visible = src.weight_message_visible
-	P.weight_messages = src.weight_messages
-	P.vore_sprite_color = src.vore_sprite_color
-	P.allow_mind_transfer = src.allow_mind_transfer
-
-	P.phase_vore = src.phase_vore
-	P.noisy_full = src.noisy_full
-	P.latejoin_vore = src.latejoin_vore
-	P.latejoin_prey = src.latejoin_prey
-	P.receive_reagents = src.receive_reagents
-	P.give_reagents = src.give_reagents
-	P.apply_reagents = src.apply_reagents
-	P.autotransferable = src.autotransferable
-	P.strip_pref = src.strip_pref
-	P.vore_sprite_multiply = src.vore_sprite_multiply
-	P.no_latejoin_vore_warning = src.no_latejoin_vore_warning
-	P.no_latejoin_prey_warning = src.no_latejoin_prey_warning
-	P.no_latejoin_vore_warning_time = src.no_latejoin_vore_warning_time
-	P.no_latejoin_prey_warning_time = src.no_latejoin_prey_warning_time
-	P.no_latejoin_vore_warning_persists = src.no_latejoin_vore_warning_persists
-	P.no_latejoin_prey_warning_persists = src.no_latejoin_prey_warning_persists
-	P.belly_rub_target = src.belly_rub_target
-	P.soulcatcher_pref_flags = src.soulcatcher_pref_flags
+	VORE_PREF_TRANSFER(P, src)
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -323,59 +271,7 @@
 
 	var/datum/vore_preferences/P = client.prefs_vr
 
-	digestable = P.digestable
-	devourable = P.devourable
-	feeding = P.feeding
-	absorbable = P.absorbable
-	resizable = P.resizable
-	digest_leave_remains = P.digest_leave_remains
-	allowmobvore = P.allowmobvore
-	vore_taste = P.vore_taste
-	vore_smell = P.vore_smell
-	permit_healbelly = P.permit_healbelly
-	selective_preference = P.selective_preference
-	noisy = P.noisy
-	show_vore_fx = P.show_vore_fx
-	can_be_drop_prey = P.can_be_drop_prey
-	can_be_drop_pred = P.can_be_drop_pred
-	allow_spontaneous_tf = P.allow_spontaneous_tf
-	step_mechanics_pref = P.step_mechanics_pref
-	pickup_pref = P.pickup_pref
-	drop_vore = P.drop_vore
-	slip_vore = P.slip_vore
-	throw_vore = P.throw_vore
-	stumble_vore = P.stumble_vore
-	food_vore = P.food_vore
-	consume_liquid_belly = P.consume_liquid_belly
-	digest_pain = P.digest_pain
-	eating_privacy_global = P.eating_privacy_global
-	allow_mimicry = P.allow_mimicry
-
-	nutrition_message_visible = P.nutrition_message_visible
-	nutrition_messages = P.nutrition_messages
-	weight_message_visible = P.weight_message_visible
-	weight_messages = P.weight_messages
-	vore_sprite_color = P.vore_sprite_color
-	allow_mind_transfer = P.allow_mind_transfer
-
-	phase_vore = P.phase_vore
-	noisy_full = P.noisy_full
-	latejoin_vore = P.latejoin_vore
-	latejoin_prey = P.latejoin_prey
-	receive_reagents = P.receive_reagents
-	give_reagents = P.give_reagents
-	apply_reagents = P.apply_reagents
-	autotransferable = P.autotransferable
-	strip_pref = P.strip_pref
-	vore_sprite_multiply = P.vore_sprite_multiply
-	no_latejoin_vore_warning = P.no_latejoin_vore_warning
-	no_latejoin_prey_warning = P.no_latejoin_prey_warning
-	no_latejoin_vore_warning_time = P.no_latejoin_vore_warning_time
-	no_latejoin_prey_warning_time = P.no_latejoin_prey_warning_time
-	no_latejoin_vore_warning_persists = P.no_latejoin_vore_warning_persists
-	no_latejoin_prey_warning_persists = P.no_latejoin_prey_warning_persists
-	belly_rub_target = P.belly_rub_target
-	soulcatcher_pref_flags = P.soulcatcher_pref_flags
+	VORE_PREF_TRANSFER(src, P)
 
 	if(bellies)
 		if(isliving(src))
