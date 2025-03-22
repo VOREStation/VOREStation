@@ -19082,11 +19082,11 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     tgui: "workspace:*"
-    tgui-core: "npm:^1.8.2"
+    tgui-core: "npm:^1.8.4"
   languageName: unknown
   linkType: soft
 
-"tgui-core@npm:^1.8.2":
+"tgui-core@npm:^1.8.4":
   version: 1.8.4
   resolution: "tgui-core@npm:1.8.4"
   peerDependencies:
@@ -19120,7 +19120,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     tgui: "workspace:*"
-    tgui-core: "npm:^1.8.2"
+    tgui-core: "npm:^1.8.4"
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown
@@ -19147,7 +19147,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     tgui: "workspace:*"
-    tgui-core: "npm:^1.8.2"
+    tgui-core: "npm:^1.8.4"
     tgui-polyfill: "workspace:*"
   languageName: unknown
   linkType: soft
@@ -19187,7 +19187,7 @@ __metadata:
     sass-loader: "npm:^16.0.3"
     style-loader: "npm:^4.0.0"
     swc-loader: "npm:^0.2.6"
-    tgui-core: "npm:^1.8.2"
+    tgui-core: "npm:^1.8.4"
     typescript: "npm:5.6.3"
     url-loader: "npm:^4.1.1"
     webpack: "npm:^5.96.1"
@@ -19215,7 +19215,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-popper: "npm:^2.3.0"
-    tgui-core: "npm:^1.8.2"
+    tgui-core: "npm:^1.8.4"
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown
