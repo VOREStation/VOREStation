@@ -381,7 +381,7 @@
 	var/mob/living/protie = src
 	if(temporary_form)
 		protie = temporary_form
-	//VoreStation Note: Catslug through Dullahan are commented out (Disabled) intentionally, as the ability to have mob icons as a protean is unwanted as of 19-3-2025. Nonetheless, the sprites have been tested and are completely functional at the current moment. If desired to re-enable downstream or at a later time, simply remove the comment tags starting at catslug and ending at Dullahan. These should honestly be split into two lists ('basic_forms' and 'advanced_forms') with a proper toggle instead of commenting it out, but that's for a later date.  
+	//VOREStation Note: Catslug through Dullahan are commented out (Disabled) intentionally, as the ability to have mob icons as a protean is unwanted as of 19-3-2025. Nonetheless, the sprites have been tested and are completely functional at the current moment. If desired to re-enable downstream or at a later time, simply remove the comment tags starting at catslug and ending at Dullahan. These should honestly be split into two lists ('basic_forms' and 'advanced_forms') with a proper toggle instead of commenting it out, but that's for a later date.
 	var/list/icon_choices = list(
 			"Primary" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "primary"),
 			"Highlight" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "highlight"),
