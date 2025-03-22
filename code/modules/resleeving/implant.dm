@@ -30,9 +30,9 @@
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat
 
-/obj/item/implant/backup/New(newloc, db_key)
+/obj/item/implant/backup/Initialize(mapload, db_key)
 	. = ..()
-	src.db_key = db_key
+	db_key = db_key
 
 /obj/item/implant/backup/Initialize(mapload)
 	. = ..()
@@ -66,8 +66,8 @@
 
 	var/db_key // To give to the baby implants
 
-/obj/item/backup_implanter/New()
-	..()
+/obj/item/backup_implanter/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to max_implants)
 		var/obj/item/implant/backup/imp = new(src, db_key)
 		imps |= imp
@@ -134,10 +134,9 @@
 	desc = "A case containing a backup implant."
 	icon_state = "implantcase-b"
 
-/obj/item/implantcase/backup/New()
-	src.imp = new /obj/item/implant/backup(src)
-	..()
-	return
+/obj/item/implantcase/backup/Initialize(mapload)
+	. = ..()
+	imp = new /obj/item/implant/backup(src)
 
 //The box of backup implants
 /obj/item/storage/box/backup_kit
@@ -146,8 +145,8 @@
 	icon_state = "implant"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
-/obj/item/storage/box/backup_kit/New()
-	..()
+/obj/item/storage/box/backup_kit/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to 7)
 		new /obj/item/implantcase/backup(src)
 	new /obj/item/implanter(src)

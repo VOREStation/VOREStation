@@ -540,10 +540,10 @@
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter_broken"
 
-/obj/item/broken_sm/New()
+/obj/item/broken_sm/Initialize(mapload)
+	. = ..()
 	message_admins("Broken SM shard created at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	START_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/item/broken_sm/process()
 	SSradiation.radiate(src, 50)

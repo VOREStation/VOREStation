@@ -17,8 +17,8 @@
 	max_level = 5
 	full_override = TRUE
 
-/obj/item/multitool/hacktool/New()
-	..()
+/obj/item/multitool/hacktool/Initialize(mapload)
+	. = ..()
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)
 	supported_types = list(/obj/machinery/door/airlock,/obj/structure/closet/crate/secure,/obj/structure/closet/secure_closet)

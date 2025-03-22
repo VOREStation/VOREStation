@@ -53,8 +53,8 @@ var/global/list/grub_machine_overlays = list()
 
 	glow_override = TRUE
 
-/mob/living/simple_mob/animal/solargrub_larva/New()
-	..()
+/mob/living/simple_mob/animal/solargrub_larva/Initialize(mapload)
+	. = ..()
 	existing_solargrubs += src
 	powermachine = new(src)
 	sparks = new(src)

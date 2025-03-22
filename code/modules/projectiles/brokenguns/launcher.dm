@@ -1,3 +1,3 @@
 
-/obj/item/broken_gun/grenadelauncher/New(var/newloc)
-	..(newloc, /obj/item/gun/launcher/grenade)
+/obj/item/broken_gun/grenadelauncher/Initialize(mapload)
+	. = ..(mapload, /obj/item/gun/launcher/grenade)

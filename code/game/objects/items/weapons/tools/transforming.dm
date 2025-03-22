@@ -6,8 +6,8 @@
 	var/obj/item/weldingtool/welder
 	var/weldertype = /obj/item/weldingtool/dummy
 
-/obj/item/tool/transforming/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/tool/transforming/Initialize(mapload, no_counterpart = TRUE)
+	. = ..()
 	if(TOOL_WELDER in possible_tooltypes)
 		welder = new weldertype(src)
 	on_tool_switch()

@@ -9,10 +9,10 @@
 	var/datum/effect/effect/system/confetti_spread
 	var/confetti_strength = 8
 
-/obj/item/grenade/confetti/New()
-	..()
-	src.confetti_spread = new /datum/effect/effect/system/confetti_spread()
-	src.confetti_spread.attach(src)
+/obj/item/grenade/confetti/Initialize(mapload)
+	. = ..()
+	confetti_spread = new /datum/effect/effect/system/confetti_spread()
+	confetti_spread.attach(src)
 
 /obj/item/grenade/confetti/Destroy()
 	qdel(confetti_spread)

@@ -24,7 +24,8 @@
 	var/max_ore			= 5
 	var/list/resource_list	=	list(/obj/item/ore/glass,/obj/item/ore/coal,/obj/item/ore/iron,/obj/item/ore/lead,/obj/item/ore/marble,/obj/item/ore/phoron,/obj/item/ore/silver,/obj/item/ore/gold)
 
-/obj/item/research_sample/New()
+/obj/item/research_sample/Initialize(mapload)
+	. = ..()
 	var/tech_mod = rand(0,rand_level)
 	var/tech_value = tech_level+tech_mod
 	if(fixed_tech)
@@ -261,8 +262,8 @@
 	max_ore			= 1
 	resource_list	=	list(/obj/item/bluespace_crystal)
 
-/obj/item/research_sample/bluespace/New()
-	..()
+/obj/item/research_sample/bluespace/Initialize(mapload)
+	. = ..()
 	set_light(1, 3, lightcolor)
 
 //catalogue data

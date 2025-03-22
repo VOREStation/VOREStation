@@ -24,10 +24,9 @@
 	var/grip_safety = TRUE
 	var/taped_safety = FALSE
 
-/obj/item/melee/baton/New()
-	..()
+/obj/item/melee/baton/Initialize(mapload)
+	. = ..()
 	update_icon()
-	return
 
 /obj/item/melee/baton/get_cell()
 	return bcell
@@ -64,11 +63,9 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/melee/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
+/obj/item/melee/baton/loaded/Initialize(mapload) //this one starts with a cell pre-installed.
 	bcell = new/obj/item/cell/device/weapon(src)
-	update_icon()
-	return
+	. = ..()
 
 /obj/item/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on

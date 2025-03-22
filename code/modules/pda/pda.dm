@@ -510,8 +510,8 @@ var/global/list/obj/item/pda/PDAs = list()
 	icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 	icon_state = "pdabox"
 
-/obj/item/storage/box/PDAs/New()
-	..()
+/obj/item/storage/box/PDAs/Initialize(mapload)
+	. = ..()
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)

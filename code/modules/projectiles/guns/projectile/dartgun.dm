@@ -7,7 +7,8 @@
 
 	muzzle_type = null
 
-/obj/item/projectile/bullet/chemdart/New()
+/obj/item/projectile/bullet/chemdart/Initialize(mapload)
+	. = ..()
 	reagents = new/datum/reagents(reagent_amount)
 	reagents.my_atom = src
 
@@ -69,8 +70,8 @@
 	var/container_type = /obj/item/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
-/obj/item/gun/projectile/dartgun/New()
-	..()
+/obj/item/gun/projectile/dartgun/Initialize(mapload)
+	. = ..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
 			var/obj/B = new container_type(src)

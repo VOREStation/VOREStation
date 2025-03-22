@@ -11,10 +11,10 @@
 	var/smoke_color
 	var/smoke_strength = 8
 
-/obj/item/grenade/smokebomb/New()
-	..()
-	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
-	src.smoke.attach(src)
+/obj/item/grenade/smokebomb/Initialize(mapload)
+	. = ..()
+	smoke = new /datum/effect/effect/system/smoke_spread/bad()
+	smoke.attach(src)
 
 /obj/item/grenade/smokebomb/Destroy()
 	qdel(smoke)

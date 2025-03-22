@@ -8,8 +8,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/pipe_painter/New()
-	..()
+/obj/item/pipe_painter/Initialize(mapload)
+	. = ..()
 	modes = new()
 	for(var/C in pipe_colors)
 		modes += "[C]"

@@ -152,7 +152,7 @@
 	desc = "Neutralizes toxins and provides a mild analgesic effect."
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/airlock/New()
-	..()
+/obj/item/reagent_containers/pill/airlock/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 15)
 	reagents.add_reagent(REAGENT_ID_PARACETAMOL, 5)

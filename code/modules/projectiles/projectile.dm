@@ -149,10 +149,10 @@
 	var/obj/item/ammo_casing/my_case = null
 
 
-/obj/item/projectile/New()
+/obj/item/projectile/Initialize(mapload)
+	. = ..()
 	if(istype(loc, /obj/item/ammo_casing))
 		my_case = loc
-	. = ..()
 
 /obj/item/projectile/proc/Range()
 	range--

@@ -226,8 +226,8 @@
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/multitool/uplink/New()
-	..()
+/obj/item/multitool/uplink/Initialize(mapload)
+	. = ..()
 	hidden_uplink = new(src)
 
 /obj/item/multitool/uplink/attack_self(mob/user as mob)
