@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - config: "contaminates set to FALSE to prevent new bellies from having contamination. Shouldn't affect existing bellies."
