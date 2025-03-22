@@ -2226,7 +2226,7 @@
 	},
 /area/redgate/train/helipad)
 "Ho" = (
-/obj/structure/ladder{
+/obj/structure/ladder/updown{
 	pixel_y = 19
 	},
 /turf/simulated/floor{
