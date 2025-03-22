@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - code_imp: "fixed various issues related to placing and cutting heavy cables"
+  - code_imp: "added option in code to allow players to cut heavy cables with a welder"
