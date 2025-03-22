@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixed train redgate top layer using updown ladders rather than just down ladders."
