@@ -142,7 +142,7 @@
 						new goodmeal.package_trash(src)
 					if(goodmeal.trash)
 						new goodmeal.trash(src)
-			if(B.item_digest_logs)
+			if(istype(B) && B.item_digest_logs)
 				to_chat(B.owner,span_notice("[src] was digested inside your [lowertext(B.name)]."))
 			qdel(src)
 	if(g_damage > w_class)
