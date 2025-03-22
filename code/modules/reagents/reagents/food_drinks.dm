@@ -356,6 +356,7 @@
 		effective_dose *= 2
 
 	if(alien == IS_UNATHI)
+		var/datum/species/S = M.get_species()
 		if(effective_dose < 2)
 			if(effective_dose == metabolism * 2 || prob(5))
 				M.emote("yawn")
@@ -366,7 +367,10 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.Sleeping(20)
+			if(S && S.reduced_negative_chem_reaction)
+				M.Weaken(10)
+			else
+				M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/mayo
@@ -1079,6 +1083,7 @@
 
 	if(alien == IS_UNATHI)
 		if(sugary == TRUE)
+			var/datum/species/S = M.get_species()
 			if(effective_dose < 2)
 				if(effective_dose == metabolism * 2 || prob(5))
 					M.emote("yawn")
@@ -1089,7 +1094,10 @@
 					M.Weaken(2)
 				M.drowsyness = max(M.drowsyness, 20)
 			else
-				M.Sleeping(20)
+				if(S && S.reduced_negative_chem_reaction)
+					M.Weaken(10)
+				else
+					M.Sleeping(20)
 				M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
@@ -2049,6 +2057,7 @@
 		effective_dose *= 2
 
 	if(alien == IS_UNATHI)
+		var/datum/species/S = M.get_species()
 		if(effective_dose < 2)
 			if(effective_dose == metabolism * 2 || prob(5))
 				M.emote("yawn")
@@ -2059,7 +2068,10 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.Sleeping(20)
+			if(S && S.reduced_negative_chem_reaction)
+				M.Weaken(10)
+			else
+				M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/milkshake/chocoshake

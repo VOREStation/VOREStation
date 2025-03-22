@@ -1415,6 +1415,13 @@
 	var_changes = list("mudking" = TRUE)
 	custom_only = FALSE
 
+/datum/trait/neutral/reduced_neg_reaction
+	name = "Reduced Natural Chem Reaction"
+	desc = "Certain natural negative reactions of your species to chemicals are reduced. You're hardier than average in that regard!"
+	cost = 0
+	var_changes = list("reduced_negative_chem_reaction" = TRUE)
+	allowed_species = list(SPECIES_UNATHI)
+
 /datum/trait/neutral/patting_defence
 	name = "Reflexive Biting"
 	desc = "You will reflexively bite hands that attempt to pat your head or boop your nose, this can be toggled off."
