@@ -105,15 +105,29 @@ fi
 
 section "code issues"
 
-part "indentation"
-echo -e "${RED}DISABLED"
-#Check for weird indentation in any .dm files
-# awk -f tools/indentation.awk $code_files
-# retVal=$?
-# if [ $retVal -ne 0 ]; then
-#	 echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
-#	 FAILED=1
-# fi
+# No longer in use, see below
+#part "indentation"
+##check for weird indentation in any .dm files
+#awk -f tools/indentation.awk $code_files
+#retVal=$?
+#if [ $retVal -ne 0 ]; then
+#	echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
+#	FAILED=1
+#fi
+
+part "space indentation"
+if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: space indentation detected.${NC}"
+	FAILED=1
+fi;
+
+part "mixed tab/space indentation"
+if grep -P '^\t+ [^ *]' $code_files; then
+	echo
+	echo -e "${RED}ERROR: mixed <tab><space> indentation detected.${NC}"
+	FAILED=1
+fi;
 
 part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
@@ -196,6 +210,20 @@ if $grep '\.proc/' $code_x_515 ; then
     echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
     FAILED=1
 fi;
+
+#part "var in proc args"
+#if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
+#	echo
+#	echo -e "${RED}ERROR: changed files contains proc argument starting with 'var'.${NC}"
+#	FAILED=1
+#fi;
+
+#part "unmanaged global vars"
+#if grep -P '^/*var/' $code_files; then
+#	echo
+#	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
+#	FAILED=1
+#fi;
 
 part "ambiguous bitwise or"
 if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
