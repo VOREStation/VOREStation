@@ -67,6 +67,7 @@
 	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
+	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
 
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
