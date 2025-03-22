@@ -1,5 +1,5 @@
 import { SoulcatcherSettingsFlag } from './constants';
-import { Soulcatcher } from './types';
+import type { Soulcatcher } from './types';
 
 // prettier-ignore
 export const generateSoulcatcherString = (soulcatcher: Soulcatcher) => {
