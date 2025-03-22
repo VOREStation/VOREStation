@@ -220,7 +220,7 @@
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm1)
 "dW" = (
-/obj/structure/ladder/updown,
+/obj/structure/ladder,
 /turf/simulated/floor{
 	outdoors = 1
 	},
