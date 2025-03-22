@@ -1,0 +1,5 @@
+author: "SpadesNeil"
+delete-after: True
+changes:
+  - bugfix: "Missing internal overlays on grubs and jelly blobs are restored."
+  - code_imp: "Fleshed out grubs and jelly blobs."
