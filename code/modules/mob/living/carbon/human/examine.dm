@@ -438,6 +438,7 @@
 
 	var/flavor_text = print_flavor_text()
 	if(flavor_text)
+		flavor_text = replacetext(flavor_text, "||", "")
 		msg += "[flavor_text]"
 
 	// VOREStation Start

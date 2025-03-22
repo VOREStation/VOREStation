@@ -180,5 +180,8 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 
 .pnarrate				{color: #009AB2;}
 
+.spoiler				{background-color: gray;color: transparent;user-select: none;}
+
+.spoiler:hover			{background-color: inherit;color: inherit;}
 
 </style>"}
