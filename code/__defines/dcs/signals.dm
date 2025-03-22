@@ -185,6 +185,8 @@
 #define COMSIG_ATOM_START_PULL "movable_start_pull"
 ///called on /living when someone starts pulling it (atom/movable/puller, state, force)
 #define COMSIG_LIVING_START_PULL "living_start_pull"
+///from base atom/Exited(): (mob/user, obj/item/extrapolator/extrapolator, dry_run, list/result)
+#define COMSIG_ATOM_EXTRAPOLATOR_ACT "atom_extrapolator_act"
 
 /////////////////
 
