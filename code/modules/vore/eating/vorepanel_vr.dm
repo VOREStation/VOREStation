@@ -196,6 +196,7 @@
 			"ref" = "\ref[B]",
 			"digest_mode" = B.digest_mode,
 			"contents" = LAZYLEN(B.contents),
+			"prevent_saving" = B.prevent_saving,
 		)))
 	data["our_bellies"] = our_bellies
 

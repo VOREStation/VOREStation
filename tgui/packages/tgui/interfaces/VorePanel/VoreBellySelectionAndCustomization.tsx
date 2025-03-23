@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Divider, Icon, Section, Tabs } from 'tgui-core/components';
+import { Divider, Icon, Section, Tabs, Tooltip } from 'tgui-core/components';
 import { Stack } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
@@ -50,16 +50,30 @@ export const VoreBellySelectionAndCustomization = (props: {
                 selected={!!belly.selected}
                 textColor={digestModeToColor[belly.digest_mode]}
                 onClick={() => act('bellypick', { bellypick: belly.ref })}
+                backgroundColor={belly.prevent_saving ? '#180000' : undefined}
               >
-                <Box
-                  inline
+                <Stack
+                  fill
                   textColor={
                     (belly.selected && digestModeToColor[belly.digest_mode]) ||
                     null
                   }
                 >
-                  {belly.name} ({belly.contents})
-                </Box>
+                  <Stack.Item grow>
+                    {belly.name} ({belly.contents})
+                  </Stack.Item>
+                  <Stack.Item>
+                    {!!belly.prevent_saving && (
+                      <Tooltip position="right" content="Temporary belly">
+                        <Icon
+                          name="triangle-exclamation"
+                          mr={0.5}
+                          color="red"
+                        />
+                      </Tooltip>
+                    )}
+                  </Stack.Item>
+                </Stack>
               </Tabs.Tab>
             ))}
           </Tabs>

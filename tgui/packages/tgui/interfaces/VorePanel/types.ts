@@ -55,6 +55,7 @@ export type bellyData = {
   ref: string;
   digest_mode: string;
   contents: number;
+  prevent_saving: BooleanLike;
 };
 
 export type selectedData = {
