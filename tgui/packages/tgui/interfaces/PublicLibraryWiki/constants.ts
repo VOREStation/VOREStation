@@ -41,4 +41,5 @@ export const WikiAdColors = [
   'brown',
   'grey',
   'light-grey',
+  '',
 ];
