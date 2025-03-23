@@ -14,6 +14,7 @@ export const WikiSearchPage = (props: {
 }) => {
   const { act } = useBackend();
   const [searchText, setSearchText] = useState('');
+  const [activeEntry, setactiveEntry] = useState('');
 
   const { onUpdateAds, updateAds, title, searchmode, body, search, print } =
     props;
@@ -53,9 +54,13 @@ export const WikiSearchPage = (props: {
               {toDisplay.map((Key) => (
                 <Stack.Item key={Key}>
                   <Button
+                    selected={Key === activeEntry}
                     fluid
                     ellipsis
-                    onClick={() => act('search', { data: Key })}
+                    onClick={() => {
+                      act('search', { data: Key });
+                      setactiveEntry(Key);
+                    }}
                   >
                     {Key}
                   </Button>

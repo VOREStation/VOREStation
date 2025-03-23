@@ -5,6 +5,7 @@ import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
 
 import { WikiAdColors, wikiAds } from './constants';
 import type { Data } from './types';
+import { WikiLoadingPage } from './WikiPages/WikiLoadingPage';
 import { WikiMainPage } from './WikiPages/WikiMainPage';
 import { WikiSearchPage } from './WikiPages/WikiSearchPage';
 
@@ -13,6 +14,16 @@ export const PublicLibraryWiki = (props) => {
   const { errorText, searchmode, search, title, body, print, appliance } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
   const [updateAds, setUpdateAds] = useState(false);
+  const [loadTime, setLoadTime] = useState(
+    Math.floor(Math.random() * 2000) + 2000,
+  );
+  const [activeTab, setactiveTab] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setactiveTab(1);
+    }, loadTime);
+  }, []);
 
   useEffect(() => {
     const shownAds: string[] = [];
@@ -37,6 +48,26 @@ export const PublicLibraryWiki = (props) => {
     setDisplayedAds(shownAds);
   }, [updateAds]);
 
+  const tabs: React.JSX.Element[] = [];
+  tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
+  tabs[1] = (
+    <Section fill title="Bingle Search">
+      {searchmode ? (
+        <WikiSearchPage
+          onUpdateAds={setUpdateAds}
+          updateAds={updateAds}
+          title={title}
+          searchmode={searchmode}
+          body={body}
+          search={search}
+          print={print}
+        />
+      ) : (
+        <WikiMainPage displayedAds={displayedAds} />
+      )}
+    </Section>
+  );
+
   return (
     <Window width={900} height={600}>
       <Window.Content>
@@ -48,23 +79,8 @@ export const PublicLibraryWiki = (props) => {
               </NoticeBox>
             )}
           </Stack.Item>
-          <Stack.Item grow>
-            <Section fill title="Bingle Search">
-              {searchmode ? (
-                <WikiSearchPage
-                  onUpdateAds={setUpdateAds}
-                  updateAds={updateAds}
-                  title={title}
-                  searchmode={searchmode}
-                  body={body}
-                  search={search}
-                  print={print}
-                />
-              ) : (
-                <WikiMainPage displayedAds={displayedAds} />
-              )}
-            </Section>
-          </Stack.Item>
+          <Stack.Item grow />
+          {tabs[activeTab]}
         </Stack>
       </Window.Content>
     </Window>
