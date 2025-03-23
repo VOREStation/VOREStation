@@ -50,9 +50,9 @@ export const WikiErrorPage = (props) => {
         <Stack.Item>
           <Box textAlign="center" fontSize="8px">
             {'>:( This is your fault stupid. Why did you you do that? You caused a FAULT ID: #' +
-              Math.floor(Math.random() * 99999)
+              Math.floor(Math.random() * 99999999)
                 .toString()
-                .padStart(5, '0')}
+                .padStart(8, '0')}
           </Box>
         </Stack.Item>
       </Stack>
