@@ -2,7 +2,6 @@ export const wikiAds = [
   'Inferior ears? Teshari enhancement surgeries might be for you!',
   'Phoron huffers anonymous group chat. Join Today!',
   'Hot and single Vox raiders near your system!',
-
   'Need company? Holographic NIF friends! FREE DOWNLOAD!',
   'LostSpagetti.sol your one stop SYNX DATING website!',
   'HONK.bonk clown-only social media. Sign up TODAY!',
