@@ -45,6 +45,7 @@ export const WikiSearchPage = (props: {
             <Stack vertical fill>
               <Stack.Item>
                 <Input
+                  mr="10px"
                   fluid
                   value={searchText}
                   placeholder={'Search for ' + searchmode + '...'}
