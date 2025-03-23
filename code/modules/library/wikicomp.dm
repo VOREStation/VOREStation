@@ -88,7 +88,7 @@
 		else
 			// intentional TGUI crash, amazingly awful
 			data["searchmode"] = "Error"
-			data["search"] = -1
+			data["search"] = null
 	else
 		data["errorText"] = "Database unreachable."
 	return data
@@ -154,9 +154,8 @@
 				ui.user.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, rand(4,10))
 			if(!crash)
 				crash = TRUE
-				spawn(rand(1000,4000))
-					// crashes till it fixes itself
-					crash = FALSE
+				// crashes till it fixes itself
+				VARSET_IN(src, crash, FALSE, rand(1000, 4000))
 			. = TRUE
 
 		if("print")

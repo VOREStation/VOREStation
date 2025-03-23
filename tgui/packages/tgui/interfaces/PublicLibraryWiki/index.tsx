@@ -5,6 +5,7 @@ import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
 
 import { WikiAdColors, wikiAds } from './constants';
 import type { Data } from './types';
+import { WikiErrorPage } from './WikiPages/WikiErrorPage';
 import { WikiLoadingPage } from './WikiPages/WikiLoadingPage';
 import { WikiMainPage } from './WikiPages/WikiMainPage';
 import { WikiSearchPage } from './WikiPages/WikiSearchPage';
@@ -50,9 +51,11 @@ export const PublicLibraryWiki = (props) => {
 
   const tabs: React.JSX.Element[] = [];
   tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
-  tabs[1] = (
+  tabs[1] = !search ? (
+    <WikiErrorPage />
+  ) : (
     <Section fill title="Bingle Search">
-      {searchmode ? (
+      {searchmode && search ? (
         <WikiSearchPage
           onUpdateAds={setUpdateAds}
           updateAds={updateAds}
