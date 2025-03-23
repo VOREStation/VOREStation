@@ -202,7 +202,7 @@
 	var/bootcolor = "white"
 	name = "ranger boots"
 	desc = "The Rangers special lightweight hybrid magboots-jetboots perfect for EVA. If only these functions were so easy to copy in reality.\
-	 These ones are just a well-made pair of boots in appropriate colours."
+		These ones are just a well-made pair of boots in appropriate colours."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_boots"
 
