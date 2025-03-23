@@ -17,13 +17,8 @@
 	VAR_PRIVATE/appliance = null //sublists for food menu
 	VAR_PRIVATE/crash = FALSE
 
-	VAR_PRIVATE/current_ad1 = ""
-	VAR_PRIVATE/current_ad2 = ""
-
 /obj/machinery/librarywikicomp/Initialize(mapload)
 	. = ..()
-	current_ad1 = get_ad()
-	current_ad2 = get_ad()
 
 /obj/machinery/librarywikicomp/attack_hand(mob/user)
 	if(..())
@@ -49,8 +44,6 @@
 			// search page
 			data["errorText"] = ""
 			data["searchmode"] = searchmode
-			data["ad_string1"] = current_ad1
-			data["ad_string2"] = current_ad2
 			data["appliance"] = appliance
 			// get searches
 			switch(searchmode)
@@ -100,14 +93,11 @@
 		data["errorText"] = "Database unreachable."
 	return data
 
-/obj/machinery/librarywikicomp/tgui_act(action, params)
+/obj/machinery/librarywikicomp/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
 	playsound(src, "keyboard", 40) // into console
-
-	current_ad1 = get_ad()
-	current_ad2 = get_ad()
 
 	switch(action)
 		if("closesearch")
@@ -160,8 +150,8 @@
 
 		if("crash")
 			// intentional TGUI crash, amazingly awful
-			if(issilicon(usr) && usr.client)
-				usr.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, rand(4,10))
+			if(issilicon(ui.user) && ui.user.client)
+				ui.user.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, rand(4,10))
 			if(!crash)
 				crash = TRUE
 				spawn(rand(1000,4000))
@@ -215,48 +205,6 @@
 						doc_body = "Invalid data."
 			. = TRUE
 
-/obj/machinery/librarywikicomp/proc/get_ad()
-	switch(rand(1,20))
-		if(1)
-			return "Inferior ears? Teshari enhancement surgeries might be for you!"
-		if(2)
-			return "Phoron huffers anonymous group chat. Join Today!"
-		if(3)
-			return "Hot and single Vox raiders near your system!"
-		if(4)
-			return "Need company? Holographic NIF friends! FREE DOWNLOAD!"
-		if(5)
-			return "LostSpagetti.sol your one stop SYNX DATING website!"
-		if(6)
-			return "HONK.bonk clown-only social media. Sign up TODAY!"
-		if(7)
-			return "FREE ORGANS! FREE ORGANS! FREE ORGANS! Terms apply."
-		if(8)
-			return "Smile.me.com.net.skrell.node.exe.js DOWNLOAD NOW!"
-		if(9)
-			return "Bankrupt? We can help! Buy uranium coins today!"
-		if(10)
-			return "CONGRATULATIONS, you're our [rand(1,10000)]TH visitor! DOWNLOAD!"
-		if(11)
-			return "Your system is out of date, DOWNLOAD DRIVERS!"
-		if(12)
-			return "Ms.Kitty can't hang in there long, click here to support FELINE INDEPENDENCE!"
-		if(13)
-			return "Cortical borer therapy! Treats anxiety, stress, and impending sense of univeral collapse!"
-		if(14)
-			return "Help I licked the supermatter! And other strange stories from Nanotrasen. FREE PDF!"
-		if(15)
-			return "TIME IS COMING TO AN END, BUY GOLD NOW!"
-		if(16)
-			return "Your own pet clown? It sounds too REAL to be TRUE! VIEW ARTICLE!"
-		if(17)
-			return "Are you a BIGSHOT? Investment opportunities inside!"
-		if(18)
-			return "Spacestation13.exe FREE DOWNLOAD NOW!"
-		if(19)
-			return "Bored and alone? Date a wizard today! WIZZBIZZ.KAZAM!"
-		else
-			return "Hot skrell babes in your area!"
 
 // mapper varient for dorms and residences
 /obj/machinery/librarywikicomp/personal

@@ -1,4 +1,4 @@
-/* eslint react/no-danger: "off" */
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -9,31 +9,31 @@ import {
   Section,
 } from 'tgui-core/components';
 
-type Data = {
-  errorText: string;
-  searchmode: string;
-  search: string[];
-  title: string;
-  body: string;
-  ad_string1: string;
-  ad_string2: string;
-  print: string;
-  appliance: string;
-};
+import { wikiAds } from './constants';
+import type { Data } from './types';
 
 export const PublicLibraryWiki = (props) => {
   const { act, data } = useBackend<Data>();
-  const {
-    errorText,
-    searchmode,
-    search,
-    title,
-    body,
-    ad_string1,
-    ad_string2,
-    print,
-    appliance,
-  } = data;
+  const { errorText, searchmode, search, title, body, print, appliance } = data;
+  const [displayedAds, setDisplayedAds] = useState<string[]>([]);
+  const [updateAds, setUpdateAds] = useState(false);
+
+  useEffect(() => {
+    const shownAds: string[] = [];
+    const range = wikiAds.length;
+    const firstEntry = Math.floor(Math.random() * range);
+    let secondEntry = Math.floor(Math.random() * range);
+    if (firstEntry === secondEntry) {
+      if (secondEntry === range) {
+        secondEntry--;
+      } else {
+        secondEntry++;
+      }
+    }
+    shownAds.push(wikiAds[firstEntry]);
+    shownAds.push(wikiAds[secondEntry]);
+    setDisplayedAds(shownAds);
+  }, [updateAds]);
 
   return (
     <Window width={900} height={600}>
@@ -46,7 +46,13 @@ export const PublicLibraryWiki = (props) => {
         <Section title="Bingle Search">
           {(!!searchmode && (
             <Section>
-              <Button icon="arrow-left" onClick={() => act('closesearch')}>
+              <Button
+                icon="arrow-left"
+                onClick={() => {
+                  act('closesearch');
+                  setUpdateAds(!updateAds);
+                }}
+              >
                 Back
               </Button>
               {!!print && (
@@ -55,6 +61,7 @@ export const PublicLibraryWiki = (props) => {
                 </Button>
               )}
               <Section title={title}>
+                {/* eslint-disable-next-line react/no-danger */}
                 <div dangerouslySetInnerHTML={{ __html: body }} />
               </Section>
               <Section title={searchmode}>
@@ -115,12 +122,12 @@ export const PublicLibraryWiki = (props) => {
                 <LabeledList.Item />
                 <LabeledList.Item>
                   <Button icon="download" onClick={() => act('crash')}>
-                    {ad_string1}
+                    {displayedAds[0]}
                   </Button>
                 </LabeledList.Item>
                 <LabeledList.Item>
                   <Button icon="download" onClick={() => act('crash')}>
-                    {ad_string2}
+                    {displayedAds[1]}
                   </Button>
                 </LabeledList.Item>
               </LabeledList>
