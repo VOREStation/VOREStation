@@ -9,9 +9,8 @@ export const wikiAds = [
   'Smile.me.com.net.skrell.node.exe.js DOWNLOAD NOW!',
   'Bankrupt? We can help! Buy uranium coins today!',
   "CONGRATULATIONS, you're our " +
-    Math.floor(Math.random() * 100000) +
-    1 +
-    'TH visitor! DOWNLOAD!',
+    Math.floor(Math.random() * 1000 + 1) * 1000 +
+    'th visitor! DOWNLOAD!',
   'Your system is out of date, DOWNLOAD DRIVERS!',
   "Ms.Kitty can't hang in there long, click here to support FELINE INDEPENDENCE!",
   'Cortical borer therapy! Treats anxiety, stress, and impending sense of univeral collapse!',
