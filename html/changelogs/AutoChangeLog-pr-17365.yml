@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - rscadd: "admin verb to modify the shift end"

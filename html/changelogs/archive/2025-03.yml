@@ -470,3 +470,29 @@
   - bugfix: vaccine -> antibody reaction fixed
   - code_imp: Backend stuff to ensure broken chemical reactions will never happen
       again.
+2025-03-23:
+  BigBababooey:
+  - balance: Adjusted cost and wear of Mass Alteration
+  Kashargul:
+  - rscadd: admin verb to modify the shift end
+  - code_imp: tgui core to 1.8.4
+  - rscdel: vchat
+  - rscadd: option to export and import the soulcatcher settings
+  - code_imp: adjust the im and export for the new additions VRDB 0.1 -> VRDB 0.2
+  KillianKirilenko:
+  - qol: changing your scale under the VORE tab will autofill your *current* scale
+      instead of defaulting to the minimum of 25
+  SatinIsle:
+  - bugfix: Fixed train redgate top layer using updown ladders rather than just down
+      ladders.
+  SpadesNeil:
+  - bugfix: Missing internal overlays on grubs and jelly blobs are restored.
+  - code_imp: Fleshed out grubs and jelly blobs.
+  TankTheBirb:
+  - config: contaminates set to FALSE to prevent new bellies from having contamination.
+      Shouldn't affect existing bellies.
+  TheGreatKitsune:
+  - bugfix: Fixes how the teshari radiation hood appears when on the ground.
+  Willburd:
+  - code_imp: fixed various issues related to placing and cutting heavy cables
+  - code_imp: added option in code to allow players to cut heavy cables with a welder
