@@ -476,6 +476,22 @@
 		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
 	update_icon()
 
+/mob/living/silicon/robot/verb/flick_robot_animation()
+	set category = "Abilities.Settings"
+	set name = "Flick Animation"
+
+	if(!sprite_datum)
+		return
+	if(!LAZYLEN(sprite_datum.sprite_animations))
+		to_chat(src, span_warning("This module does not support animations."))
+		return
+
+	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
+	if(!animation_to_play)
+		return
+
+	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
+
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
 	set name = "Toggle Glowing Stomach & Accents"

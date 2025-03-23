@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - rscadd: "text surrounded by || text || will now be spoilered in the statpanel"
+  - bugfix: "examine will be auto focussed again if the setting is enabled"

@@ -1421,12 +1421,12 @@
 				drop.drips |= drips
 
 			// Update appearance.
+			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
+			drop.update_icon()
 			drop.name = "drips of something"
 			drop.desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 			drop.dryname = "dried something"
 			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
-			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
-			drop.update_icon()
 			drop.fluorescent  = 0
 			drop.invisibility = 0
 	//else

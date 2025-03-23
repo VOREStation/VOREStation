@@ -104,7 +104,7 @@
 			playsound(src, W.usesound, 100, 1)
 			anchored = !anchored
 			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
-								 span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor."))
+									span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor."))
 			return
 
 	//window placing begin //TODO CONVERT PROPERLY TO MATERIAL DATUM

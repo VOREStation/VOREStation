@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - spellcheck: "Adjusts the fluff text you get when pushing someone onto the floor while you're on the floor."
-  - bugfix: "You can no longer grab/disarm/do cpr while restrained (or pinned)"
-  - rscdel: "Removes vore. (The old, unused version.)"
-  - balance: "You can no longer buckle/have someone buckle you to break free from grabs."
-  - balance: "You can no longer crawl while grabbed"

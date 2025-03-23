@@ -500,7 +500,7 @@
 /*
 /datum/map_template/gb_lateload/wilds/south/type3/on_map_loaded(z)
 	. = ..()
-	 Using landmarks for this now.
+	Using landmarks for this now.
 	seed_submaps(list(z), 6, /area/submap/groundbase/poi/wildvillage/plot/square, /datum/map_template/groundbase/wildvillage/square)	//POI seeding
 	seed_submaps(list(z), 2, /area/submap/groundbase/poi/wildvillage/plot/wide, /datum/map_template/groundbase/wildvillage/wide)
 	seed_submaps(list(z), 1, /area/submap/groundbase/poi/wildvillage/plot/long, /datum/map_template/groundbase/wildvillage/long)

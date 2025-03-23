@@ -1,0 +1,10 @@
+author: "Vorestation Staff Consensus (VORESTATION ONLY)"
+delete-after: True
+changes:
+  - rscdel: "Tourettes disabled"
+  - rscdel: "Rotting Genetics Disabled"
+  - rscdel: "Xray disabled"
+  - spellcheck: "Anxiety Disorder name changed to Nervousness"
+  - balance: "Censored move to Neutral (RP trait)"
+  - balance: "Nervousness moved to Neutral (RP Trait)"
+  - bugfix: "FBP dionas will no longer explode"
