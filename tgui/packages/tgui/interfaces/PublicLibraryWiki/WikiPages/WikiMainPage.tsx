@@ -32,7 +32,7 @@ export const WikiMainPage = (props: { displayedAds: string[] }) => {
         </Stack.Item>
         <Divider />
         <Stack.Item>
-          <Stack fill vertical m="100px">
+          <Stack fill vertical mt="50px" ml="100px" mr="100px">
             <Stack.Item>
               <Button fluid icon="search" onClick={() => act('foodsearch')}>
                 Food Recipes
