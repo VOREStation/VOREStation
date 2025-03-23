@@ -72,7 +72,7 @@ export const PublicLibraryWiki = (props) => {
   );
 
   return (
-    <Window width={900} height={600} theme="abstract">
+    <Window width={900} height={600} theme="bingle">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
