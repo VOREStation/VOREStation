@@ -34,22 +34,22 @@
 			</head>"}
 
 	dat += {"<body><table>"}
-	if(user == src)
-		dat += {"
-			<td class="button">
-				<a href='byond://?src=\ref[src];save_private_notes=1' class='button'>Save Character Preferences</a>
-			</td>
-			"}
 
-	if(user == src)
-		dat += {"
-				<br>
-				<table>
-					<td class="button">
-						<a href='byond://?src=\ref[src];edit_private_notes=1' class='button'>Edit</a>
-					</td>
-				</table>
-				"}
+	dat += {"
+		<td class="button">
+			<a href='byond://?src=\ref[src];save_private_notes=1' class='button'>Save Character Preferences</a>
+		</td>
+		"}
+
+
+	dat += {"
+			<br>
+			<table>
+				<td class="button">
+					<a href='byond://?src=\ref[src];edit_private_notes=1' class='button'>Edit</a>
+				</td>
+			</table>
+			"}
 
 	dat += {"
 		<br>
