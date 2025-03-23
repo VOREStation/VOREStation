@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - rscadd: "option to export and import the soulcatcher settings"
-  - code_imp: "adjust the im and export for the new additions VRDB 0.1 -> VRDB 0.2"

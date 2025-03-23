@@ -1,4 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - qol: "changing your scale under the VORE tab will autofill your *current* scale instead of defaulting to the minimum of 25"
