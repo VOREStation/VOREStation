@@ -191,7 +191,7 @@
 			continue
 
 		if(istype(CR, /decl/chemical_reaction/instant/slime))
-		 	// slime time
+		// slime time
 			var/decl/chemical_reaction/instant/slime/SR = CR
 			if(!SR.required)
 				continue

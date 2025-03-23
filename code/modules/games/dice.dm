@@ -111,8 +111,8 @@
 			comment = "Ouch, bad luck."
 
 		user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
-							 span_notice("You throw [src]. It lands on a [result]. [comment]"), \
-							 span_notice("You hear [src] landing on a [result]. [comment]"))
+								span_notice("You throw [src]. It lands on a [result]. [comment]"), \
+								span_notice("You hear [src] landing on a [result]. [comment]"))
 
 /*
  * Dice packs
@@ -166,8 +166,8 @@
 
 /obj/item/storage/dicecup/attack_self(mob/user as mob)
 	user.visible_message(span_notice("[user] shakes [src]."), \
-							 span_notice("You shake [src]."), \
-							 span_notice("You hear dice rolling."))
+							span_notice("You shake [src]."), \
+							span_notice("You hear dice rolling."))
 	rollCup(user)
 
 /obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
