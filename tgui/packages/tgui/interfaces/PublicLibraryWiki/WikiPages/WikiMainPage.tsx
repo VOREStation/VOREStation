@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Divider,
-  LabeledList,
   Section,
   Stack,
   Tooltip,
@@ -33,67 +32,69 @@ export const WikiMainPage = (props: { displayedAds: string[] }) => {
         </Stack.Item>
         <Divider />
         <Stack.Item>
-          <LabeledList>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('foodsearch')}>
+          <Stack fill vertical m="100px">
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('foodsearch')}>
                 Food Recipes
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('drinksearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('drinksearch')}>
                 Drink Recipes
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('chemsearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('chemsearch')}>
                 Chemistry
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('botsearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('botsearch')}>
                 Botany
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('oresearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('oresearch')}>
                 Ores
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('matsearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('matsearch')}>
                 Materials
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('smashsearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('smashsearch')}>
                 Particle Physics
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <Button icon="search" onClick={() => act('catalogsearch')}>
+            </Stack.Item>
+            <Stack.Item>
+              <Button fluid icon="search" onClick={() => act('catalogsearch')}>
                 Catalogs
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item />
-            <LabeledList.Item>
+            </Stack.Item>
+            <Stack.Item />
+            <Stack.Item>
               <Button
+                fluid
                 icon="download"
                 onClick={() => act('crash')}
                 color={displayedAds[2]}
               >
                 {displayedAds[0]}
               </Button>
-            </LabeledList.Item>
-            <LabeledList.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
+                fluid
                 icon="download"
                 onClick={() => act('crash')}
                 color={displayedAds[3]}
               >
                 {displayedAds[1]}
               </Button>
-            </LabeledList.Item>
-          </LabeledList>
+            </Stack.Item>
+          </Stack>
         </Stack.Item>
       </Stack>
     </Section>
