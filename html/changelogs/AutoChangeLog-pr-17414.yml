@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixed a bug with the private notes panel that showed it in right click menus of other mobs (forcing them to see your notes)."
