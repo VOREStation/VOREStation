@@ -1,6 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Divider, Icon, Section, Tabs, Tooltip } from 'tgui-core/components';
-import { Stack } from 'tgui-core/components';
+import {
+  Divider,
+  Icon,
+  Section,
+  Stack,
+  Tabs,
+  Tooltip,
+} from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from './constants';
