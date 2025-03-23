@@ -9,12 +9,10 @@
 /obj/belly/special/teleporter
 	var/atom/movable/target = null
 	var/target_turf = TRUE
-	var/list/tele_queue = list()
 	var/teleport_delay = 3 SECONDS
 
 /obj/belly/special/teleporter/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
-	tele_queue.Add(thing)
 	if(teleport_delay <= 0) //just try to teleport immediately.
 		try_tele(thing)
 		return
@@ -24,9 +22,7 @@
 	if(istype(target))
 		return ..()
 	for(var/atom/movable/AM in contents)
-		if(!(AM in tele_queue))
-			if(try_tele(AM))
-				return
+		try_tele(AM)
 	. = ..()
 
 /obj/belly/special/teleporter/proc/try_tele(atom/movable/thing)
