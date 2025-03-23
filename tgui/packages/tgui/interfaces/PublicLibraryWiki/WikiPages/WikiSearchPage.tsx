@@ -41,7 +41,7 @@ export const WikiSearchPage = (props: {
       <Divider />
       <Stack fill>
         <Stack.Item basis="30%">
-          <Section fill scrollable title={searchmode}>
+          <Section fill title={searchmode}>
             <Stack vertical fill>
               <Stack.Item>
                 <Input
@@ -51,21 +51,28 @@ export const WikiSearchPage = (props: {
                   onInput={(e, value: string) => setSearchText(value)}
                 />
               </Stack.Item>
-              {toDisplay.map((Key) => (
-                <Stack.Item key={Key}>
-                  <Button
-                    selected={Key === activeEntry}
-                    fluid
-                    ellipsis
-                    onClick={() => {
-                      act('search', { data: Key });
-                      setactiveEntry(Key);
-                    }}
-                  >
-                    {Key}
-                  </Button>
-                </Stack.Item>
-              ))}
+              <Divider />
+              <Stack.Item grow>
+                <Section fill scrollable>
+                  <Stack vertical fill>
+                    {toDisplay.map((Key) => (
+                      <Stack.Item key={Key}>
+                        <Button
+                          selected={Key === activeEntry}
+                          fluid
+                          ellipsis
+                          onClick={() => {
+                            act('search', { data: Key });
+                            setactiveEntry(Key);
+                          }}
+                        >
+                          {Key}
+                        </Button>
+                      </Stack.Item>
+                    ))}
+                  </Stack>
+                </Section>
+              </Stack.Item>
             </Stack>
           </Section>
         </Stack.Item>
