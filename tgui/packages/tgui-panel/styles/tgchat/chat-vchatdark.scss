@@ -1429,10 +1429,21 @@ $border-width-px: $border-width * 1px;
 }
 
 .psionic {
-  color: #993399;
+  color: hsl(300, 50%, 40%);
 }
 
 .wingdings {
-  color: #0077ff;
+  color: hsl(212, 100%, 50%);
   font-family: Wingdings, Webdings;
+}
+
+.spoiler {
+  background-color: hsl(0, 0%, 50%);
+  color: transparent;
+  user-select: none;
+}
+
+.spoiler:hover {
+  background-color: inherit;
+  color: inherit;
 }
