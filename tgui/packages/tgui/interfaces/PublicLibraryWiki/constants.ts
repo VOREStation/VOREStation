@@ -24,3 +24,21 @@ export const wikiAds = [
   'Bored and alone? Date a wizard today! WIZZBIZZ.KAZAM!',
   'Hot skrell babes in your area!',
 ];
+
+export const WikiAdColors = [
+  'black',
+  'white',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'light-grey',
+];
