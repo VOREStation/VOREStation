@@ -1,4 +1,6 @@
 /mob/living/proc/private_notes_window(mob/user)
+	if(user != src)
+		return
 	if(!private_notes)
 		private_notes = " "
 		return
