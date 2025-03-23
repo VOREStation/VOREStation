@@ -60,3 +60,17 @@ export const AutotransferFlagIcon = {
   'Clothes and Bags': '',
   Food: '',
 };
+
+export const SoulcatcherSettingsFlag = {
+  '1': 'Catch User',
+  '2': 'Catch Prey',
+  '4': 'Ext. hearing',
+  '8': 'Ext. Vision',
+  '16': 'Mind Backup',
+  '32': 'SR Projecting',
+  '64': 'Catch Ghost',
+  '128': 'Soulcatcher On',
+  '256': 'Show SFX',
+  '512': 'Catch Drain',
+  '1024': 'SR Vision',
+};
