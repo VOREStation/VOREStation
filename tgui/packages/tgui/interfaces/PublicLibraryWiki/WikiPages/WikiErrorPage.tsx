@@ -1,37 +1,13 @@
 import { Box, Divider, Section, Stack } from 'tgui-core/components';
 
+import { WikiLogo } from '../WikiCommon/WikiLogo';
+
 export const WikiErrorPage = (props) => {
   return (
     <Section backgroundColor="#0000dd" fill>
       <Stack vertical fill>
         <Stack.Item>
-          <Box
-            textAlign="center"
-            fontSize="128px"
-            italic
-            style={{
-              textShadow: '1px 1px 20px #fc4103',
-            }}
-          >
-            <Box textColor="green" inline>
-              B
-            </Box>
-            <Box textColor="red" inline>
-              i
-            </Box>
-            <Box textColor="blue" inline>
-              n
-            </Box>
-            <Box textColor="orange" inline>
-              g
-            </Box>
-            <Box textColor="yellow" inline>
-              l
-            </Box>
-            <Box textColor="teal" inline>
-              e
-            </Box>
-          </Box>
+          <WikiLogo />
         </Stack.Item>
         <Divider />
         <Stack.Item grow />
