@@ -18,7 +18,7 @@
 	icon_state = "rig-vintagecrew"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_MINING)
+	allowed = list(POCKET_ALL_TANKS, POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_MINING)
 
 //Engineering Crewsuit (ORANGE, RING)
 //This is probably the most appealing to get your hands on for basic protection and the specialist stuff
@@ -162,7 +162,7 @@
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 25, bullet = 10, laser = 10, energy = 50, bomb = 10, bio = 100, rad = 100)
 	siemens_coefficient = 0.8
-	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_XENOARC, /obj/item/storage/firstaid)
+	allowed = list(POCKET_ALL_TANKS, POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_XENOARC, /obj/item/storage/firstaid)
 
 //Miner's Crewsuit (BROWN)
 //Basically just the basic suit, but with brown markings. If anyone wants to tweak this, go wild.
@@ -180,7 +180,7 @@
 	icon_state = "rig-vintageminer"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_MINING)
+	allowed = list(POCKET_ALL_TANKS, POCKET_GENERIC, POCKET_EMERGENCY, POCKET_MINING)
 
 //Mercenary Crewsuit (RED, CROSS)
 //The best of the best, this should be ultra-rare
@@ -202,4 +202,4 @@
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.05 //Military Armor
 	siemens_coefficient = 0.6
-	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_SECURITY)
+	allowed = list(POCKET_ALL_TANKS, POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_SECURITY)

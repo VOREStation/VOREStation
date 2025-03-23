@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/wood,
+/area/redgate/jungle/aboveground)
 "ac" = (
 /obj/structure/bed/bath,
 /turf/simulated/floor/tiled/yellow,
@@ -18285,7 +18289,7 @@ zU
 zU
 ZM
 Mo
-wP
+aa
 wP
 ZM
 zU

@@ -709,3 +709,13 @@
 		if("Simple Mob")
 			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
+
+/client/proc/modify_shift_end()
+	set name = "Modify Shift End"
+	set desc = "Modifies the hard shift end time."
+	set category = "Server.Game"
+
+	if(!check_rights_for(src, R_ADMIN|R_EVENT|R_SERVER))
+		return
+
+	transfer_controller.modify_hard_end(src)

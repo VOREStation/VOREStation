@@ -28,7 +28,12 @@
 /*
 /obj/item/storage/backpack/dropped(mob/user)
 	if (loc == user && src.use_sound)
-		playsound(src, src.use_sound, 50, 1, -5)
+		if(isbelly(user.loc))
+			var/obj/belly/B = user.loc
+			if(B.mode_flags & DM_FLAG_MUFFLEITEMS)
+				return
+		else
+			playsound(src, src.use_sound, 50, 1, -5)
 	..(user)
 */
 

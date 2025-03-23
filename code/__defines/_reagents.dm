@@ -83,10 +83,6 @@
 #define REAGENT_ID_TUNGSTEN "tungsten"
 #define REAGENT_NUTRIMENT "Nutriment"
 #define REAGENT_ID_NUTRIMENT "nutriment"
-#define REAGENT_STEEL "Liquid Steel"
-#define REAGENT_ID_STEEL "steel"
-#define REAGENT_PLASTEEL "Liquid Plasteel"
-#define REAGENT_ID_PLASTEEL "plasteel"
 
 
 // Xeno chem react

@@ -562,13 +562,16 @@
 	if(internal)
 		//Because rigs store their tanks out of reach of contents.Find(), a check has to be made to make
 		//sure the rig is still worn, still online, and that its air supply still exists.
-		var/obj/item/tank/rig_supply
+		var/obj/item/tank/suit_supply
 		var/obj/item/rig/Rig = get_rig()
+		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
 
 		if(Rig)
-			rig_supply = Rig.air_supply
+			suit_supply = Rig.air_supply
+		else if(Void)
+			suit_supply = Void.tank
 
-		if ((!rig_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
@@ -1860,23 +1863,6 @@
 					playsound_local(src,pick(scawwySownds),50, 0)
 					return
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-
-/mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
-				stomach_contents.Remove(M)
-				continue
-			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(SSair.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjust_nutrition(10)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
