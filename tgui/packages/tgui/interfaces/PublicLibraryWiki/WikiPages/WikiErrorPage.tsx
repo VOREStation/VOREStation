@@ -2,7 +2,7 @@ import { Box, Divider, Section, Stack } from 'tgui-core/components';
 
 export const WikiErrorPage = (props) => {
   return (
-    <Section backgroundColor="#0000ff" fill>
+    <Section backgroundColor="#0000dd" fill>
       <Stack vertical fill>
         <Stack.Item>
           <Box
