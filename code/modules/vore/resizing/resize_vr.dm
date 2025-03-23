@@ -175,7 +175,7 @@
 */
 
 /**
- * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
+ * Attempt to scoop up this mob up into M's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G, ignore_size = FALSE) //second one is for the Grabber, only exists for animals to self-grab

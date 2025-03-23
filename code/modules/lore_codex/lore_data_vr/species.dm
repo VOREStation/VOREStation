@@ -24,15 +24,15 @@
 	name = "Human"
 	keywords += list("Humanity")
 	data = "Humanity, everything and nothing can be said about them. As diverse is their thinking, as fractured is their society. \
-	 Intrepid and mercantile, brutal if needed to, Humanity has formed a great diaspora among the stars primarily driven by their innate curiosity and love for adventure and exploration.\
-	 While a good half of them live under the wing of the Sol-Procyon Commonwealth, centered around their home planet Earth,\
-	 the extremely diverse political theory they have accumulated over the centuries led to many splits, arguments and secessions.\
-	 <br><br>\
-	 While most humans are accepting of other species and simply want to earn an honest paycheck, the best and worst are found among them. \
-	  You never know what a human is going to be like when you first meet them.\
-	 <br><br>\
-	 Humans are most well-known for the stalemate and eventual peace with the Unathi during the Hegemony War, \
-	  firmly cementing them as one of the major species in the Orion Spur."
+	Intrepid and mercantile, brutal if needed to, Humanity has formed a great diaspora among the stars primarily driven by their innate curiosity and love for adventure and exploration.\
+	While a good half of them live under the wing of the Sol-Procyon Commonwealth, centered around their home planet Earth,\
+	the extremely diverse political theory they have accumulated over the centuries led to many splits, arguments and secessions.\
+	<br><br>\
+	While most humans are accepting of other species and simply want to earn an honest paycheck, the best and worst are found among them. \
+	You never know what a human is going to be like when you first meet them.\
+	<br><br>\
+	Humans are most well-known for the stalemate and eventual peace with the Unathi during the Hegemony War, \
+	firmly cementing them as one of the major species in the Orion Spur."
 
 /datum/lore/codex/page/skrell/add_content()
 	name = "Skrell"

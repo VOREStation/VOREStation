@@ -2,12 +2,13 @@ import { useBackend } from 'tgui/backend';
 
 import { Data } from './types';
 import { generateBellyString } from './VorePanelExportBellyString';
+import { generateSoulcatcherString } from './VorePanelExportSoulcatcherString';
 import { getCurrentTimestamp } from './VorePanelExportTimestamp';
 
 export const downloadPrefs = (extension: string) => {
   const { data } = useBackend<Data>();
 
-  const { db_version, db_repo, mob_name, bellies } = data;
+  const { db_version, db_repo, mob_name, bellies, soulcatcher } = data;
 
   if (!bellies) {
     return;
@@ -51,6 +52,11 @@ export const downloadPrefs = (extension: string) => {
         type: 'text/html',
       });
     });
+    if (soulcatcher) {
+      blob = new Blob([blob, generateSoulcatcherString(soulcatcher)], {
+        type: 'text/html',
+      });
+    }
     blob = new Blob(
       [
         blob,
@@ -63,7 +69,12 @@ export const downloadPrefs = (extension: string) => {
   }
 
   if (extension === '.vrdb') {
-    blob = new Blob([JSON.stringify(bellies)], { type: 'application/json' });
+    blob = new Blob(
+      [JSON.stringify({ bellies: bellies, soulcatcher: soulcatcher })],
+      {
+        type: 'application/json',
+      },
+    );
   }
 
   Byond.saveBlob(blob, filename, extension);

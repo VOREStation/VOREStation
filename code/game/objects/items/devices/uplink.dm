@@ -133,8 +133,8 @@
 		for(var/datum/data/record/L in data_core.locked)
 			if(L.fields["id"] == exploit_id)
 				data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
-								 // We trade off being able to automatically add shit for more control over what gets passed to json
-								 // and if it's sanitized for html.
+								// We trade off being able to automatically add shit for more control over what gets passed to json
+								// and if it's sanitized for html.
 				data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
 				data["exploit"]["nanoui_exploit_record"] = replacetext(data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
 				data["exploit"]["name"] =  html_encode(L.fields["name"])

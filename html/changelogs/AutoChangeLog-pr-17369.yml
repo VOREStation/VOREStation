@@ -1,7 +1,0 @@
-author: "Kash, Diana"
-delete-after: True
-changes:
-  - bugfix: "some protean rig issues"
-  - bugfix: "Your DNA will no longer randomly eat itself under certain circumstances"
-  - bugfix: "Protean rigs no longer delete theirselves"
-  - bugfix: "Protean rigs no longer delete clothing blocking their deployment"

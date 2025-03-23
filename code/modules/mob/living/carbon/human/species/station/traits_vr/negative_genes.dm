@@ -59,25 +59,12 @@
 	cost = -2
 	custom_only = FALSE
 
-	is_genetrait = TRUE
-	hidden = FALSE
+	is_genetrait = FALSE 	//VOREStation Note: TRAITGENETICS - Disabled on VS
+	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
 	disability=TOURETTES
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
-
-/datum/trait/negative/disability_anxiety
-	name = "Anxiety Disorder"
-	desc = "You have extreme anxiety, often stuttering words."
-	cost = -1
-	custom_only = FALSE
-
-	is_genetrait = TRUE
-	hidden = FALSE
-
-	disability=NERVOUS
-	activation_message="You feel nervous."
-	primitive_expression_messages=list("anxiously chitters.")
 
 /* Replaced by /datum/trait/negative/blindness
 /datum/trait/negative/disability_blind
@@ -175,8 +162,8 @@
 	cost = -4
 	custom_only = FALSE
 
-	is_genetrait = TRUE
-	hidden = FALSE
+	is_genetrait = FALSE	//VOREStation Note: TRAITGENETICS - Disabled on VS
+	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
 	disability=DETERIORATE
 	activation_message="You feel sore..."
@@ -194,19 +181,6 @@
 	disability=GIBBING
 	activation_message="You feel bloated..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
-
-/datum/trait/negative/disability_censored
-	name = "Censored"
-	desc = "You are unable to speak profanity. To an excessive degree..."
-	cost = -1
-	custom_only = FALSE
-
-	is_genetrait = TRUE
-	hidden = FALSE
-
-	disability=CENSORED
-	activation_message="You feel less rude..."
-	primitive_expression_messages=list("BEEPS!")
 
 /datum/trait/negative/disability_damagedspine
 	name = "Lumbar Impairment"

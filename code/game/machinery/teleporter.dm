@@ -9,8 +9,8 @@
 	circuit = /obj/item/circuitboard/teleporter
 	dir = 4
 	var/id = null
-	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
-						 //Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
+	var/one_time_use = 0	//Used for one-time-use teleport cards (such as clown planet coordinates.)
+							//Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
 	var/datum/tgui_module/teleport_control/teleport_control
 
 /obj/machinery/computer/teleporter/Initialize(mapload)

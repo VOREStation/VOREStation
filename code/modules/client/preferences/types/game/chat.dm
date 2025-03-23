@@ -44,12 +44,6 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
-/datum/preference/toggle/vore_health_bars
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "VORE_HEALTH_BARS"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
 /datum/preference/toggle/show_lore_news
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "NEWS_POPUP"

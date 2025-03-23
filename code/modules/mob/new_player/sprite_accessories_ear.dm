@@ -1131,6 +1131,29 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "angler_bulb"
 
+/datum/sprite_accessory/ears/demi_tesh_ears
+	name = "Demi-Teshari ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/demi_tesh_ears_female
+	name = "Demi-Teshari female pattern ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demi-tesh-kit-ears_female"
+
+/datum/sprite_accessory/ears/demi_tesh_ears_male
+	name = "Demi-Teshari male pattern ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demi-tesh-kit-ears_male"
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"
