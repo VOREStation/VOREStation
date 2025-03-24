@@ -128,7 +128,7 @@ const JanicartIcon = (props: { iconkey: string }) => {
   if (iconkey in icons) {
     return (
       <Image
-        src={icons[iconkey].substr(1, icons[iconkey].length - 1)}
+        src={icons[iconkey].substring(1, icons[iconkey].length - 1)}
         style={{
           position: 'absolute',
           left: '0',
