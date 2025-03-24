@@ -64,6 +64,8 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 /datum/symptom/proc/Activate(datum/disease/advance/A)
 	if(!A)
 		return FALSE
+	if(isbelly(A.affected_mob.loc)) // So you can eat people to "isolate" them. Or get eaten by a macrophage.
+		return FALSE
 	if(neutered || stopped)
 		return FALSE
 	if(world.time < next_activaction)

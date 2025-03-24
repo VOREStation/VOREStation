@@ -121,10 +121,10 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(affected_mob.stat == DEAD && !spread_dead && !force_spread)
 		return
 
-	if(affected_mob.bloodstr.has_reagent(REAGENT_ID_SPACEACILLIN) || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
+	if(affected_mob.reagents.has_reagent(REAGENT_ID_SPACEACILLIN) || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
 		return
 
-	var/spread_range = 1
+	var/spread_range = 2
 
 	if(force_spread)
 		spread_range = force_spread

@@ -975,8 +975,6 @@
 			else if(T)
 				T.add_vomit_floor(src, vomit_type, purge)
 			T = get_step(T, dir)
-			if (!CanPass(src, T))
-				break
 	return TRUE
 
 /mob/living/proc/check_vomit_goal()

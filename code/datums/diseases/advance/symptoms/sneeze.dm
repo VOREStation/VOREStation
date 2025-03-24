@@ -95,7 +95,6 @@ Bonus
 			if(!supress_warning)
 				M.emote("sniff")
 		else
-			M.emote("sneeze")
 			SneezeTeleport(A, A.affected_mob)
 
 /datum/symptom/bsneeze/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/mob)

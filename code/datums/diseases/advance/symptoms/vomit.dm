@@ -29,7 +29,7 @@ Bonus
 	symptom_delay_max = 60 SECONDS
 
 	var/vomit_blood = FALSE
-	var/proj_vomit = 0
+	var/proj_vomit = 1
 
 	threshold_descs = list(
 		"Stage Speed 5" = "Host will vomit blood.",
