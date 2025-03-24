@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Temperature artifacts can no longer randomly spawn active."
+  - balance: "Laser gun artifacts can spawn with pulse beams if you are lucky."
