@@ -1167,7 +1167,7 @@
 	var/next_use = 0
 	var/registered_mob //On request, only one person is able to use it at a time.
 
-/obj/item/toy/acorn_branch/attack_self(mob/user as mob)
+/obj/item/toy/acorn_branch/attack_self(mob/user)
 	if(user.stat)
 		return
 	if(world.time < next_use)
