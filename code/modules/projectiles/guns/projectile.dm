@@ -33,8 +33,8 @@
 
 	var/random_start_ammo = FALSE	//randomize amount of starting ammo
 
-/obj/item/gun/projectile/New(loc, var/starts_loaded = 1)
-	..()
+/obj/item/gun/projectile/Initialize(mapload, var/starts_loaded = 1)
+	. = ..()
 	if(starts_loaded)
 		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
 			for(var/i in 1 to max_shells)

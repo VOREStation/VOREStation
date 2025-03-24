@@ -50,6 +50,20 @@ part() {
 
 section "map issues"
 
+part "TGM"
+if grep -El '^\".+\" = \(.+\)' $map_files;	then
+	echo
+	echo -e "${RED}ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!${NC}"
+	FAILED=1
+fi;
+
+part "iconstate tags"
+if grep -P '^\ttag = \"icon' $map_files;	then
+	echo
+	echo -e "${RED}ERROR: tag vars from icon state generation detected in maps, please remove them.${NC}"
+	FAILED=1
+fi;
+
 part "step_[xy]"
 #Checking for step_x/step_y defined in any maps anywhere.
 (! $grep 'step_[xy]' $map_files)
@@ -58,6 +72,20 @@ if [ $retVal -ne 0 ]; then
 	echo -e "${RED}The variables 'step_x' and 'step_y' are present on a map, and they 'break' movement ingame.${NC}"
 	FAILED=1
 fi
+
+part "wrongly offset APCs"
+if grep -Pzo '/obj/structure/machinery/power/apc[/\w]*?\{\n[^}]*?pixel_[xy] = -?[013-9]\d*?[^\d]*?\s*?\},?\n' $map_files ||
+	grep -Pzo '/obj/structure/machinery/power/apc[/\w]*?\{\n[^}]*?pixel_[xy] = -?\d+?[0-46-9][^\d]*?\s*?\},?\n' $map_files ||
+	grep -Pzo '/obj/structure/machinery/power/apc[/\w]*?\{\n[^}]*?pixel_[xy] = -?\d{3,1000}[^\d]*?\s*?\},?\n' $map_files ;	then
+	echo -e "${RED}ERROR: found an APC with a manually set pixel_x or pixel_y that is not +-25.${NC}"
+	FAILED=1
+fi;
+
+part "vareditted areas"
+if grep -P '^/area/.+[\{]' $map_files;	then
+	echo -e "${RED}ERROR: Vareditted /area path use detected in maps, please replace with proper paths.${NC}"
+	FAILED=1
+fi;
 
 part "base /turf usage"
 if grep -P '\W\/turf\s*[,\){]' $map_files; then
@@ -77,8 +105,8 @@ fi
 
 section "code issues"
 
-part "indentation"
-echo -e "${RED}DISABLED"
+#part "indentation"
+#echo -e "${RED}DISABLED"
 #Check for weird indentation in any .dm files
 # awk -f tools/indentation.awk $code_files
 # retVal=$?
@@ -86,6 +114,13 @@ echo -e "${RED}DISABLED"
 #	 echo -e "${RED}Indention testing failed. Please see results and fix indentation.${NC}"
 #	 FAILED=1
 # fi
+
+part "mixed tab/space indentation"
+if grep -P '^\t+ [^ *]' $code_files; then
+	echo
+	echo -e "${RED}ERROR: mixed <tab><space> indentation detected.${NC}"
+	FAILED=1
+fi;
 
 part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
@@ -161,6 +196,20 @@ if [ $retVal -ne 0 ]; then
 	echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
 	FAILED=1
 fi
+
+part "proc ref syntax"
+if $grep '\.proc/' $code_x_515 ; then
+    echo
+    echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
+    FAILED=1
+fi;
+
+part "ambiguous bitwise or"
+if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: Likely operator order mistake with bitwise OR. Use parentheses to specify intention.${NC}"
+	FAILED=1
+fi;
 
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"

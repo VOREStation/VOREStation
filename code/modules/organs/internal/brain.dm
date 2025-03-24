@@ -203,7 +203,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/slime/LateInitialize()
 	. = ..()
-	 //Match the core to the Promethean's starting color.
+	//Match the core to the Promethean's starting color.
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
