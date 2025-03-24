@@ -3177,6 +3177,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\traits\negative.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits\negative_genes.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits\neutral.dm"
+#include "code\modules\mob\living\carbon\human\species\station\traits\neutral_genes.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits\positive.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits\positive_genes.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits\trait.dm"
