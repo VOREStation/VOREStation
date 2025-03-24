@@ -1054,7 +1054,6 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/proc/assemble_reaction_data(var/list/data, var/datum/reagent/R, var/list/reaction_list, var/list/distilled_list)
 	PROTECTED_PROC(TRUE)
 	data["instant_reactions"] = null
-	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
 	if(reaction_list != null && reaction_list.len > 0)
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/CR in reaction_list)
@@ -1094,7 +1093,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			data["instant_reactions"] = reactions
 
 	data["distilled_reactions"] = null
-	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
 	if(distilled_list != null && distilled_list.len > 0)
 		var/list/display_reactions = list()
 		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
