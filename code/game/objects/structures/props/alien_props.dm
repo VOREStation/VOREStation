@@ -54,7 +54,7 @@
 	<br>\
 	<ul>\
 		<li>* These objects do, in fact, power themselves for free, and the modern understanding of the physical world \
-		 is in fact incorrect. This is the most obvious answer, but it is very unlikely to be true.</li>\
+		is in fact incorrect. This is the most obvious answer, but it is very unlikely to be true.</li>\
 		<li>* The objects draw from an unknown source of energy that exists at all points in space, or at least where the \
 		void powered machine was found, that presently cannot be detected or determined, and converts that energy into electrical energy \
 		to drive the machine it is inside of.</li>\

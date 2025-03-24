@@ -204,7 +204,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			to_chat(user, "You cannot refit a customised voidsuit.")
 			return
 
-		//VOREStation Edit BEGINS
 		//Make it so autolok suits can't be refitted in a cycler
 		if(istype(I,/obj/item/clothing/head/helmet/space/void/autolok))
 			to_chat(user, "You cannot refit an autolok helmet. In fact you shouldn't even be able to remove it in the first place. Inform an admin!")
@@ -214,7 +213,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		if(istype(I,/obj/item/clothing/head/helmet/space/void/responseteam))
 			to_chat(user, "The cycler indicates that the Mark VII Emergency Response Helmet is not compatible with the refitting system. How did you manage to detach it anyway? Inform an admin!")
 			return
-		//VOREStation Edit ENDS
 
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
@@ -536,12 +534,12 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(target_department.can_refit_suit(suit))
 		target_department.do_refit_suit(suit)
 	// Attached voidsuit helmet to new paint
-	if(target_department.can_refit_helmet(suit?.helmet))
-		target_department.do_refit_helmet(suit.helmet)
+	if(target_department.can_refit_helmet(suit?.hood))
+		target_department.do_refit_helmet(suit.hood)
 
 	// Species fitting for all 3 potential changes
-	if(target_species.can_refit_to(helmet, suit, suit?.helmet))
-		target_species.do_refit_to(helmet, suit, suit?.helmet)
+	if(target_species.can_refit_to(helmet, suit, suit?.hood))
+		target_species.do_refit_to(helmet, suit, suit?.hood)
 	else
 		visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected."))
 		return

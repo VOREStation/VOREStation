@@ -1,180 +1,2619 @@
-"aa" = (/turf/space,/area)
-"ab" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 2},/area/shuttle/overmap_examples/outpost)
-"ac" = (/obj/structure/shuttle/window{ icon_state = "3"},/turf/simulated/shuttle/floor,/area/shuttle/overmap_examples/outpost)
-"ad" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 2},/area/shuttle/overmap_examples/outpost)
-"ae" = (/turf/simulated/shuttle/wall{ icon_state = "swall_straight"; dir = 1},/area/shuttle/overmap_examples/outpost)
-"af" = (/obj/machinery/computer/shuttle_control/explore{landing_type = /area/shuttle/overmap_examples/outpost},/turf/simulated/shuttle/floor,/area/shuttle/overmap_examples/outpost)
-"ag" = (/obj/effect/mapinfo/sector{icon = 'icons/obj/mining.dmi'; icon_state = "ore2"; landing_area = /area/shuttle/escape_pod2/centcom; name = "Abandoned Outpost"},/turf/space,/area)
-"ah" = (/turf/simulated/shuttle/floor,/area/shuttle/overmap_examples/outpost)
-"ai" = (/turf/space,/area/shuttle/escape_pod2/centcom)
-"aj" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 1},/area/shuttle/overmap_examples/outpost)
-"ak" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/shuttle/floor,/area/shuttle/overmap_examples/outpost)
-"al" = (/turf/simulated/shuttle/wall{ icon_state = "swall_s"; dir = 8},/area/shuttle/overmap_examples/outpost)
-"am" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
-"an" = (/turf/simulated/floor,/area/mine/abandoned)
-"ao" = (/obj/structure/lattice,/turf/space,/area)
-"ap" = (/obj/structure/window/reinforced{dir = 4},/obj/item/shard{icon_state = "small"},/turf/simulated/floor/plating,/area/mine/abandoned)
-"aq" = (/obj/item/stack/rods,/obj/structure/door_assembly/door_assembly_ext{name = "Broken External Airlock"},/turf/simulated/floor,/area/mine/abandoned)
-"ar" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/mine/abandoned)
-"as" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/mine/abandoned)
-"at" = (/obj/item/stack/rods,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"au" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"av" = (/turf/simulated/mineral,/area/mine/unexplored)
-"aw" = (/obj/item/shard{icon_state = "medium"},/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"ax" = (/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"ay" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/mine/abandoned)
-"az" = (/turf/simulated/mineral/random,/area/mine/unexplored)
-"aA" = (/obj/item/shard,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"aB" = (/turf/simulated/wall,/area/mine/abandoned)
-"aC" = (/obj/item/stack/rods,/obj/structure/window/reinforced{dir = 4},/obj/item/shard,/turf/simulated/floor/plating,/area/mine/abandoned)
-"aD" = (/obj/item/stack/rods,/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"aE" = (/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"aF" = (/obj/structure/lattice,/obj/item/shard{icon_state = "medium"},/turf/space,/area)
-"aG" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/mine/abandoned)
-"aH" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"aI" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"aJ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aK" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aL" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aM" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"aN" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"aO" = (/obj/item/stack/rods,/obj/structure/lattice,/turf/space,/area)
-"aP" = (/obj/item/shard,/obj/item/stack/rods,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aQ" = (/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aR" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aS" = (/obj/structure/table/standard,/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"aT" = (/obj/structure/table/standard,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"aU" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
-"aV" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor,/area/mine/abandoned)
-"aW" = (/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/mine/abandoned)
-"aX" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/plating,/area/mine/abandoned)
-"aY" = (/obj/item/stack/rods,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"aZ" = (/obj/item/shard{icon_state = "small"},/obj/item/clothing/suit/space/syndicate,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"ba" = (/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"bb" = (/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"bc" = (/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"bd" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"be" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bf" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"bg" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bh" = (/obj/item/shard,/obj/structure/lattice,/turf/space,/area)
-"bi" = (/obj/item/shard{icon_state = "small"},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bj" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"bk" = (/obj/effect/gibspawner/human,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"bl" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/obj/effect/decal/remains/xeno,/turf/simulated/floor/plating,/area/mine/abandoned)
-"bm" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bn" = (/obj/item/shard,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bo" = (/obj/structure/lattice,/obj/item/shard{icon_state = "small"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/space,/area/mine/abandoned)
-"bp" = (/obj/structure/lattice,/turf/space,/area/mine/abandoned)
-"bq" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"br" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/mine/abandoned)
-"bs" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"bt" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"bu" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bv" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bw" = (/turf/simulated/floor/airless{icon_state = "damaged4"},/area/mine/abandoned)
-"bx" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"by" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"bz" = (/turf/simulated/floor/airless,/area/mine/abandoned)
-"bA" = (/obj/effect/alien/weeds,/turf/simulated/floor,/area/mine/abandoned)
-"bB" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"bC" = (/obj/structure/table/standard,/turf/simulated/floor,/area/mine/abandoned)
-"bD" = (/turf/simulated/floor{icon_state = "floorgrime"},/area/mine/abandoned)
-"bE" = (/obj/structure/rack,/turf/simulated/floor,/area/mine/abandoned)
-"bF" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"bG" = (/obj/effect/decal/remains/human,/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"bH" = (/obj/effect/alien/weeds,/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bI" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"bJ" = (/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"bK" = (/obj/structure/table/standard,/turf/simulated/floor/airless,/area/mine/abandoned)
-"bL" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"bM" = (/obj/item/shard,/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"bN" = (/obj/item/shard{icon_state = "small"},/turf/simulated/floor/airless,/area/mine/abandoned)
-"bO" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"bP" = (/obj/machinery/hydroponics,/turf/simulated/floor{icon_state = "dark"},/area/mine/abandoned)
-"bQ" = (/obj/structure/table/standard,/obj/item/paper/crumpled,/turf/simulated/floor/airless{icon_state = "floorscorched2"},/area/mine/abandoned)
-"bR" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bS" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/item/shard{icon_state = "medium"},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bT" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bU" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bV" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bW" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/mine/abandoned)
-"bX" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor,/area/mine/abandoned)
-"bY" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"bZ" = (/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"ca" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-"cb" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor,/area/mine/abandoned)
-"cc" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"cd" = (/turf/simulated/floor{icon_state = "green"; dir = 8},/area/mine/abandoned)
-"ce" = (/obj/effect/gibspawner/human,/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"cf" = (/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor,/area/mine/abandoned)
-"cg" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"ch" = (/obj/effect/decal/remains/human,/turf/simulated/floor{icon_state = "green"; dir = 8},/area/mine/abandoned)
-"ci" = (/obj/item/stack/material/resin,/turf/simulated/floor/airless{icon_state = "floorgrime"},/area/mine/abandoned)
-"cj" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
-"ck" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/mine/abandoned)
-"cl" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"cm" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
-"cn" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/item/shard,/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/abandoned)
-"co" = (/obj/machinery/door/airlock/glass{name = "Glass Airlock"; req_access_txt = "0"},/turf/simulated/floor/airless{dir = 5; icon_state = "asteroidfloor"},/area/mine/abandoned)
-"cp" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/mine/abandoned)
-"cq" = (/obj/effect/decal/remains/human,/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor,/area/mine/abandoned)
-"cr" = (/obj/structure/table,/turf/simulated/floor,/area/mine/abandoned)
-"cs" = (/turf/simulated/floor/airless{dir = 5; icon_state = "asteroidfloor"},/area/mine/abandoned)
-"ct" = (/obj/structure/rack,/turf/simulated/floor/airless{dir = 5; icon_state = "asteroidfloor"},/area/mine/abandoned)
-"cu" = (/turf/simulated/floor/plating/airless/asteroid,/area/mine/unexplored)
-"cv" = (/obj/item/rack_parts,/turf/simulated/floor/airless{dir = 5; icon_state = "asteroidfloor"},/area/mine/abandoned)
-"cw" = (/obj/structure/girder/displaced,/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/abandoned)
-"cx" = (/obj/structure/girder,/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/abandoned)
-"cy" = (/obj/machinery/door/airlock/external{name = "External Airlock"; req_access_txt = "0"},/turf/simulated/floor/airless{dir = 5; icon_state = "asteroidfloor"},/area/mine/abandoned)
-"cz" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/item/shard{icon_state = "small"},/obj/item/stack/rods,/turf/simulated/floor/plating,/area/mine/abandoned)
-"cA" = (/turf/simulated/floor/airless{icon_state = "asteroidwarning"; dir = 2},/area/mine/abandoned)
-"cB" = (/obj/item/shard{icon_state = "medium"},/turf/simulated/floor/airless{icon_state = "asteroidwarning"; dir = 2},/area/mine/abandoned)
-"cC" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/item/stack/rods,/obj/item/shard,/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/abandoned)
-"cD" = (/turf/simulated/floor/airless{icon_state = "asteroidwarning"; dir = 10},/area/mine/unexplored)
-"cE" = (/turf/simulated/floor/airless{icon_state = "asteroidwarning"; dir = 2},/area/mine/unexplored)
-"cF" = (/turf/simulated/floor/airless{icon_state = "asteroidwarning"; dir = 6},/area/mine/unexplored)
-"cG" = (/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/unexplored)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/space,
+/area)
+"ab" = (
+/turf/simulated/shuttle/wall{
+	dir = 2
+	},
+/area/shuttle/overmap_examples/outpost)
+"ac" = (
+/obj/structure/shuttle/window,
+/turf/simulated/shuttle/floor,
+/area/shuttle/overmap_examples/outpost)
+"af" = (
+/obj/machinery/computer/shuttle_control/explore{
+	landing_type = /area/shuttle/overmap_examples/outpost
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/overmap_examples/outpost)
+"ag" = (
+/obj/effect/mapinfo/sector{
+	icon = 'icons/obj/mining.dmi';
+	icon_state = "ore2";
+	landing_area = /area/shuttle/escape_pod2/centcom;
+	name = "Abandoned Outpost"
+	},
+/turf/space,
+/area)
+"ah" = (
+/turf/simulated/shuttle/floor,
+/area/shuttle/overmap_examples/outpost)
+"ai" = (
+/turf/space,
+/area/shuttle/escape_pod2/centcom)
+"aj" = (
+/turf/simulated/shuttle/wall{
+	dir = 1
+	},
+/area/shuttle/overmap_examples/outpost)
+"ak" = (
+/obj/machinery/door/unpowered/shuttle,
+/turf/simulated/shuttle/floor,
+/area/shuttle/overmap_examples/outpost)
+"al" = (
+/turf/simulated/shuttle/wall{
+	dir = 8
+	},
+/area/shuttle/overmap_examples/outpost)
+"am" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"an" = (
+/turf/simulated/floor,
+/area/mine/abandoned)
+"ao" = (
+/obj/structure/lattice,
+/turf/space,
+/area)
+"ap" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aq" = (
+/obj/item/stack/rods,
+/obj/structure/door_assembly/door_assembly_ext{
+	name = "Broken External Airlock"
+	},
+/turf/simulated/floor,
+/area/mine/abandoned)
+"ar" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"as" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"at" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"au" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"av" = (
+/turf/simulated/mineral,
+/area/mine/unexplored)
+"aw" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"ax" = (
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"ay" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"az" = (
+/turf/simulated/mineral/random,
+/area/mine/unexplored)
+"aA" = (
+/obj/item/shard,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"aB" = (
+/turf/simulated/wall,
+/area/mine/abandoned)
+"aC" = (
+/obj/item/stack/rods,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/shard,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aD" = (
+/obj/item/stack/rods,
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"aE" = (
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"aF" = (
+/obj/structure/lattice,
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/turf/space,
+/area)
+"aG" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aH" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"aI" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"aJ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aL" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aM" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"aN" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"aO" = (
+/obj/item/stack/rods,
+/obj/structure/lattice,
+/turf/space,
+/area)
+"aP" = (
+/obj/item/shard,
+/obj/item/stack/rods,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aQ" = (
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aR" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aS" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"aT" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"aU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aV" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor,
+/area/mine/abandoned)
+"aW" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aX" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"aY" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"aZ" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/obj/item/clothing/suit/space/syndicate,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"ba" = (
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"bb" = (
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"bc" = (
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"bd" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"be" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bf" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"bg" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bh" = (
+/obj/item/shard,
+/obj/structure/lattice,
+/turf/space,
+/area)
+"bi" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bj" = (
+/obj/effect/gibspawner/robot,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"bk" = (
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"bl" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/obj/effect/decal/remains/xeno,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bm" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bn" = (
+/obj/item/shard,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bo" = (
+/obj/structure/lattice,
+/obj/item/shard{
+	icon_state = "small"
+	},
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/space,
+/area/mine/abandoned)
+"bp" = (
+/obj/structure/lattice,
+/turf/space,
+/area/mine/abandoned)
+"bq" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"br" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"bs" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"bt" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"bu" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bv" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bw" = (
+/turf/simulated/floor/airless{
+	icon_state = "damaged4"
+	},
+/area/mine/abandoned)
+"bx" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds1"
+	},
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"by" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"bz" = (
+/turf/simulated/floor/airless,
+/area/mine/abandoned)
+"bA" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"bB" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"bC" = (
+/obj/structure/table/standard,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"bD" = (
+/turf/simulated/floor{
+	icon_state = "floorgrime"
+	},
+/area/mine/abandoned)
+"bE" = (
+/obj/structure/rack,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"bF" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"bG" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"bH" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/plating/airless,
+/area/mine/abandoned)
+"bI" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"bJ" = (
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"bK" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/airless,
+/area/mine/abandoned)
+"bL" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"bM" = (
+/obj/item/shard,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"bN" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/simulated/floor/airless,
+/area/mine/abandoned)
+"bO" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"bP" = (
+/obj/machinery/hydroponics,
+/turf/simulated/floor{
+	icon_state = "dark"
+	},
+/area/mine/abandoned)
+"bQ" = (
+/obj/structure/table/standard,
+/obj/item/paper/crumpled,
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched2"
+	},
+/area/mine/abandoned)
+"bR" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bS" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bT" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bV" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bW" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"bX" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor,
+/area/mine/abandoned)
+"bY" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"bZ" = (
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"ca" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/mine/abandoned)
+"cb" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"cc" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"cd" = (
+/turf/simulated/floor{
+	icon_state = "green";
+	dir = 8
+	},
+/area/mine/abandoned)
+"ce" = (
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"cf" = (
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor,
+/area/mine/abandoned)
+"cg" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "floorscorched1"
+	},
+/area/mine/abandoned)
+"ch" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor{
+	icon_state = "green";
+	dir = 8
+	},
+/area/mine/abandoned)
+"ci" = (
+/obj/item/stack/material/resin,
+/turf/simulated/floor/airless{
+	icon_state = "floorgrime"
+	},
+/area/mine/abandoned)
+"cj" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"ck" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"cl" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged5"
+	},
+/area/mine/abandoned)
+"cm" = (
+/obj/effect/alien/weeds{
+	icon_state = "weeds2"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "damaged3"
+	},
+/area/mine/abandoned)
+"cn" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/shard,
+/turf/simulated/floor/plating/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/abandoned)
+"co" = (
+/obj/machinery/door/airlock/glass{
+	name = "Glass Airlock";
+	req_access_txt = "0"
+	},
+/turf/simulated/floor/airless{
+	dir = 5;
+	icon_state = "asteroidfloor"
+	},
+/area/mine/abandoned)
+"cp" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"cq" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/mask/facehugger{
+	icon_state = "facehugger_dead";
+	stat = 2
+	},
+/turf/simulated/floor,
+/area/mine/abandoned)
+"cr" = (
+/obj/structure/table,
+/turf/simulated/floor,
+/area/mine/abandoned)
+"cs" = (
+/turf/simulated/floor/airless{
+	dir = 5;
+	icon_state = "asteroidfloor"
+	},
+/area/mine/abandoned)
+"ct" = (
+/obj/structure/rack,
+/turf/simulated/floor/airless{
+	dir = 5;
+	icon_state = "asteroidfloor"
+	},
+/area/mine/abandoned)
+"cu" = (
+/turf/simulated/floor/plating/airless/asteroid,
+/area/mine/unexplored)
+"cv" = (
+/obj/item/rack_parts,
+/turf/simulated/floor/airless{
+	dir = 5;
+	icon_state = "asteroidfloor"
+	},
+/area/mine/abandoned)
+"cw" = (
+/obj/structure/girder/displaced,
+/turf/simulated/floor/plating/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/abandoned)
+"cx" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/abandoned)
+"cy" = (
+/obj/machinery/door/airlock/external{
+	name = "External Airlock";
+	req_access_txt = "0"
+	},
+/turf/simulated/floor/airless{
+	dir = 5;
+	icon_state = "asteroidfloor"
+	},
+/area/mine/abandoned)
+"cz" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
+/obj/item/shard{
+	icon_state = "small"
+	},
+/obj/item/stack/rods,
+/turf/simulated/floor/plating,
+/area/mine/abandoned)
+"cA" = (
+/turf/simulated/floor/airless{
+	icon_state = "asteroidwarning";
+	dir = 2
+	},
+/area/mine/abandoned)
+"cB" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/turf/simulated/floor/airless{
+	icon_state = "asteroidwarning";
+	dir = 2
+	},
+/area/mine/abandoned)
+"cC" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
+/obj/item/stack/rods,
+/obj/item/shard,
+/turf/simulated/floor/plating/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/abandoned)
+"cD" = (
+/turf/simulated/floor/airless{
+	icon_state = "asteroidwarning";
+	dir = 10
+	},
+/area/mine/unexplored)
+"cE" = (
+/turf/simulated/floor/airless{
+	icon_state = "asteroidwarning";
+	dir = 2
+	},
+/area/mine/unexplored)
+"cF" = (
+/turf/simulated/floor/airless{
+	icon_state = "asteroidwarning";
+	dir = 6
+	},
+/area/mine/unexplored)
+"cG" = (
+/turf/simulated/floor/plating/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/unexplored)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeafaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeahaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaajakalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaamanamaoaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaapaqarasaoaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaaaatauamaoaaaaavavavaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaaaawaxayaoaoazazavavaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiaiaiaaaaaaaAauaBazazazazazazazaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaoaoaCaDaEaBazazazazazazazaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaoaoaFaGaHaIaBazazazazazazazazaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaoaoaJaKaLaBaMaNaBaBaBaBazazazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaoaOaPaQaRaSaTaUaxaVaBaWaXaBazazazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaoaYaZaPbabbbcbdbeaVbfaXbgaWaBazazazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaabhaYbiaYaQaQaMbjbbaBaIbkaBaXblaBazazazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaoaobmbnaQbobpaQaEbqbcbrbsbtaBaBaBaBaBaBazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaoaobubvbwaQbpbxbabybbbzaBbAbBaBbCaVbDbEaBazazazazaaaaaaaaaa
-aaaaaaaaaaaaaaaoaoaoazazaBaTbFbGbHbwbIbJbcbKaUaxbLaBbCaIaVbEaBazazazaaaaaaaaaaaa
-aaaaaaaaaaaaaoaBaBaBaBaBaBaSbbbMbFbbbqbNbKbKbeaVbAaBbCaEbObEaBazazaaaaaaaaaaaaaa
-aaaaaaaaaaaaaoaBbPaxbcbQaBbRbSbTaBbraBbUbVbWaBaxbXanbYaEaHanaBazaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaazaBbPaEaxbabrbXbFbZbFcaaxaxcbaVaxaEaEaBanccaEaxaBazazaaaaaaaaaaaaaa
-aaaaaaaaaaazazaBbPcdaEaEbraEbOaMaEcecabObLcfaEcgaIaBbFanbXaxaBazazazaaaaaaaaaaaa
-aaaaaaaaazazazaBbPchbaaSaBciaBcjckaBbcaBcjckaBbbbXaBcbclanbAaBazazazaaaaaaaaaaaa
-aaaaaaazazazazaBaBaBaBaBaBciaBcmaVbcbAaIbbbIbbbtbaaBcjcncocpaBazazazazaaaaaaaaaa
-aaaaaaazazazazazazazazazaBciaBaVbAcqbqaubaaVaBbbaIaBcrcscsctaBcuazazazaaaaaaaaaa
-aaaaaaazazazazazazazazazaBciaBbAaxbtaVbbaIbtaBciaBaBbCancscvcwcucuazazaaaaaaaaaa
-aaaaazazazazazazazazazazaBciaBaBaBaBaBaBaBaBaBciaBbCanbDanctcxcucuazazaaaaaaaaaa
-aaaaazazazazazazazazazazaBciciciciciciciciciciciaBbCbDbDbDbEaBcucucuazaaaaaaaaaa
-aaaaazazazazazazazazazazaBaBaBaBaBaBaBaBaBaBaBaBaBaBcpcyczaBaBcucucucuaaaaaaaaaa
-aaaaaaazazazazazazazazazazazazazazazazazazazcucucuaBcscsbDaBcucucucuaaaaaaaaaaaa
-aaaaazazazazazazazazazazazazazazazazazazazazcucucuaBcAcBcAaBcucucucucuaaaaaaaaaa
-aaaaazazazazazazazazazazazazazazazazazazazazazcucuaBcCcycpaBcucucucuaaaaaaaaaaaa
-aaaaazazazazazazazazazazazazazazazazazazazazazcucucucDcEcFcucucucuazaaaaaaaaaaaa
-aaaaaaaaazazazazazazazazazazazazazazazazazazazcucucucucucGcucucucuazaaaaaaaaaaaa
-aaaaaaaaaaazazazazazazazazazazazazazazazazazcucucucucucucucGcucuazazaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaazazazazazazazazaaaaaaaaaaaacucucucucGcucucucuaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaazazazaaaaaaaaaaaaaaaacucucucucucuaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaazazaaaaaaaaaaaaaaaaaaaacucucuaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+ag
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+aa
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aB
+aB
+aB
+aB
+aB
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aB
+bP
+bP
+bP
+bP
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aB
+ax
+aE
+cd
+ch
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+az
+aB
+bc
+ax
+aE
+ba
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+az
+aB
+bQ
+ba
+aE
+aS
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+bu
+aB
+aB
+aB
+br
+br
+aB
+aB
+aB
+aB
+aB
+aB
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bh
+bm
+bv
+aT
+aS
+bR
+bX
+aE
+ci
+ci
+ci
+ci
+ci
+ci
+aB
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aY
+bn
+bw
+bF
+bb
+bS
+bF
+bO
+aB
+aB
+aB
+aB
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aY
+bi
+aQ
+aQ
+bG
+bM
+bT
+bZ
+aM
+cj
+cm
+aV
+bA
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+ai
+ai
+ai
+ai
+ai
+ai
+aa
+aa
+aa
+aO
+aZ
+aY
+bo
+bp
+bH
+bF
+aB
+bF
+aE
+ck
+aV
+bA
+ax
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+ai
+ai
+ai
+ai
+ai
+ai
+aa
+aa
+ao
+aP
+aP
+aQ
+bp
+bx
+bw
+bb
+br
+ca
+ce
+aB
+bc
+cq
+bt
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+ai
+ai
+ai
+ai
+ai
+ai
+aa
+aa
+ao
+aQ
+ba
+aQ
+aQ
+ba
+bI
+bq
+aB
+ax
+ca
+bc
+bA
+bq
+aV
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+ai
+ai
+ai
+ai
+ai
+ai
+aa
+ao
+aJ
+aR
+bb
+aM
+aE
+by
+bJ
+bN
+bU
+ax
+bO
+aB
+aI
+au
+bb
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+aK
+aS
+bc
+bj
+bq
+bb
+bc
+bK
+bV
+cb
+bL
+cj
+bb
+ba
+aI
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aF
+aL
+aT
+bd
+bb
+bc
+bz
+bK
+bK
+bW
+aV
+cf
+ck
+bI
+aV
+bt
+aB
+ci
+aB
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+ab
+aj
+aj
+aj
+am
+ap
+aa
+aa
+aa
+aC
+aG
+aB
+aU
+be
+aB
+br
+aB
+aU
+be
+aB
+ax
+aE
+aB
+bb
+aB
+aB
+aB
+ci
+aB
+cu
+cu
+az
+az
+az
+cu
+cu
+cu
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+ac
+af
+ah
+ak
+an
+aq
+at
+aw
+aA
+aD
+aH
+aM
+ax
+aV
+aI
+bs
+bA
+ax
+aV
+ax
+aE
+cg
+bb
+bt
+bb
+ci
+ci
+ci
+aB
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+ab
+aj
+aj
+al
+am
+ar
+au
+ax
+au
+aE
+aI
+aN
+aV
+bf
+bk
+bt
+bB
+bL
+bA
+bX
+aE
+aI
+bX
+ba
+aI
+aB
+aB
+aB
+aB
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+ao
+as
+am
+ay
+aB
+aB
+aB
+aB
+aB
+aX
+aB
+aB
+aB
+aB
+aB
+an
+aB
+aB
+aB
+aB
+aB
+aB
+bC
+bC
+aB
+aB
+aB
+aB
+cu
+cu
+cu
+cu
+cu
+cu
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+az
+az
+az
+aB
+aW
+bg
+aX
+aB
+bC
+bC
+bC
+bY
+an
+bF
+cb
+cj
+cr
+bC
+an
+bD
+cp
+cs
+cA
+cC
+cD
+cu
+cu
+cG
+cu
+cu
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+az
+az
+az
+aB
+aX
+aW
+bl
+aB
+aV
+aI
+aE
+aE
+cc
+an
+cl
+cn
+cs
+an
+bD
+bD
+cy
+cs
+cB
+cy
+cE
+cu
+cu
+cu
+cu
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+aB
+aB
+aB
+aB
+aB
+bD
+aV
+bO
+aH
+aE
+bX
+an
+co
+cs
+cs
+an
+bD
+cz
+bD
+cA
+cp
+cF
+cG
+cu
+cu
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+av
+az
+az
+az
+az
+az
+az
+az
+az
+aB
+bE
+bE
+bE
+an
+ax
+ax
+bA
+cp
+ct
+cv
+ct
+bE
+aB
+aB
+aB
+aB
+cu
+cu
+cG
+cu
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+av
+av
+az
+az
+az
+az
+az
+az
+az
+aB
+aB
+aB
+aB
+aB
+aB
+aB
+aB
+aB
+aB
+cw
+cx
+aB
+aB
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+av
+av
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+aa
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+az
+az
+az
+az
+az
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+cu
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+cu
+cu
+cu
+cu
+cu
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+az
+aa
+aa
+aa
+aa
+aa
+aa
+az
+az
+az
+az
+az
+cu
+aa
+cu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(40,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}

@@ -110,7 +110,7 @@
 
 	var/chem_strength_heal =    1						// Multiplier to most beneficial chem strength
 	var/chem_strength_pain =    1						// Multiplier to painkiller strength (could be used in a negative trait to simulate long-term addiction reducing effects, etc.)
-	var/chem_strength_tox =	    1						// Multiplier to toxic chem strength (inc. chloral/sopo/mindbreaker/etc. thresholds)
+	var/chem_strength_tox =	    1						// Multiplier to the strength of toxic or deabilitating chemicals (inc. chloral/sopo/mindbreaker/ambrosia/etc. thresholds)
 	var/chem_strength_alcohol = 1						// Multiplier to alcohol effect thresholds; higher means more is needed to reach a given effect tier
 
 	var/chemOD_threshold =		1						// Multiplier to overdose threshold; lower = easier overdosing
@@ -392,7 +392,6 @@
 	if(gluttonous)
 		if(!inherent_verbs)
 			inherent_verbs = list()
-		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
 	update_sort_hint()
 
@@ -512,19 +511,44 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
+
+	if(target.touch_reaction_flags & SPECIES_TRAIT_PERSONAL_BUBBLE)
+		H.visible_message( \
+			span_notice("[target] moves to avoid being touched by [H]!"), \
+			span_notice("[target] moves to avoid being touched by you!"), )
+		return
+
 	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
-		H.visible_message( \
-			span_notice("[H] pats [target] on the head."), \
-			span_notice("You pat [target] on the head."), )
+		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+			H.visible_message( \
+				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
+				span_warning("[target] reflexively bites your hand!"), )
+			if(H.hand)
+				H.apply_damage(1, BRUTE, BP_L_HAND)
+			else
+				H.apply_damage(1, BRUTE, BP_R_HAND)
+		else
+			H.visible_message( \
+				span_notice("[H] pats [target] on the head."), \
+				span_notice("You pat [target] on the head."), )
 	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
 		H.visible_message( \
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
-		H.visible_message( \
-			span_notice("[H] boops [target]'s nose."), \
-			span_notice("You boop [target] on the nose."), )
+		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+			H.visible_message( \
+				span_warning("[target] reflexively bites the hand of [H] to prevent nose booping!"), \
+				span_warning("[target] reflexively bites your hand!"), )
+			if(H.hand)
+				H.apply_damage(1, BRUTE, BP_L_HAND)
+			else
+				H.apply_damage(1, BRUTE, BP_R_HAND)
+		else
+			H.visible_message( \
+				span_notice("[H] boops [target]'s nose."), \
+				span_notice("You boop [target] on the nose."), )
 	//VOREStation Edit End
 	else
 		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \

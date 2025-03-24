@@ -324,7 +324,7 @@
 			usr.m_int = "13,14"
 		if("Reset Machine")
 			usr.unset_machine()
-		if("internal")
+		if("internal") //dear god this entire thing needs to be rewritten this is literally assaulting my eyes with how awful it is. FUCK.
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
@@ -367,6 +367,12 @@
 									from = "in"
 									nicename |= "hardsuit"
 									tankcheck |= Rig.air_supply
+
+							var/obj/item/clothing/suit/space/void/Void = C.get_voidsuit()
+							if(Void && Void.tank)
+								from = "in"
+								nicename |= "hardsuit"
+								tankcheck |= Void.tank
 
 							for(var/i=1, i<tankcheck.len+1, ++i)
 								if(istype(tankcheck[i], /obj/item/tank))
@@ -707,17 +713,20 @@
 	plane = PLANE_PLAYER_HUD_ABOVE
 	var/client/holder
 
-/obj/screen/splash/New(client/C, visible)
+INITIALIZE_IMMEDIATE(/obj/screen/splash)
+/obj/screen/splash/Initialize(mapload, visible)
 	. = ..()
 
-	holder = C
+	if(!isclient(loc))
+		return INITIALIZE_HINT_QDEL
+
+	holder = loc
 
 	if(!visible)
 		alpha = 0
 
 	if(!lobby_image)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	icon = lobby_image.icon
 	icon_state = lobby_image.icon_state

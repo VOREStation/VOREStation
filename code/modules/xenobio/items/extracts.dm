@@ -17,9 +17,9 @@
 	flags = OPENCONTAINER
 
 
-/obj/item/slime_extract/New()
-	..()
+/obj/item/slime_extract/Initialize(mapload)
 	create_reagents(60)
+	. = ..()
 
 /obj/item/slime_extract/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/slimepotion/enhancer))

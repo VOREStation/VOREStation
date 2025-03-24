@@ -122,7 +122,7 @@
 					var/message = pick(message_options)
 					say(message)
 					playsound(src, message_options[message], 50, 0)
-				custom_emote(1, "points at [H.name].")
+				automatic_custom_emote(VISIBLE_MESSAGE, "points at [H.name].")
 				last_newpatient_speak = world.time
 			break
 

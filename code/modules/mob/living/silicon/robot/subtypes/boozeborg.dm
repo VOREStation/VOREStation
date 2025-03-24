@@ -135,7 +135,7 @@ What Borgs are available is sadly handled in the above file in the proc
 
 /mob/living/silicon/robot/proc/reskin_booze()
 	set name = "Change Drink Color"
-	set category = "Abilities.Silicon" //TGPanel
+	set category = "Abilities.Settings"
 	set desc = "Choose the color of drink displayed inside you."
 
 	var/mob/M = usr

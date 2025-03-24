@@ -226,14 +226,7 @@
 	desc = "A body-hugging mass of nanomachines."
 	can_breach = 0
 	species_restricted = list(SPECIES_PROTEAN, SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_XENOHYBRID, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_XENOMORPH_HYBRID)
-	allowed = list(
-		/obj/item/gun,
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/melee/baton,
-		/obj/item/storage/backpack,
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_EXPLO, /obj/item/storage/backpack)
 	sprite_sheets = list(
 		SPECIES_TESHARI 		 = 'icons/mob/species/teshari/suit.dmi',
 		SPECIES_VOX				 = 'icons/mob/species/vox/suit.dmi',
@@ -253,7 +246,7 @@
 	if(dead)
 		switch(dead)
 			if(1)
-				if(W.is_screwdriver())
+				if(W.has_tool_quality(TOOL_SCREWDRIVER))
 					playsound(src, W.usesound, 50, 1)
 					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
 						to_chat(user, span_notice("You unscrew the maintenace panel on the [src]."))
@@ -328,7 +321,7 @@
 		mod.installed(src)
 		update_icon()
 		return 1
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(!air_supply)
 			to_chat(user, "There is no tank to remove.")
 			return
@@ -340,7 +333,7 @@
 		to_chat(user, "You detach and remove \the [air_supply].")
 		air_supply = null
 		return
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		var/list/possible_removals = list()
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.permanent)
@@ -372,7 +365,6 @@
 	else
 		if(istype(W,/obj/item/storage/backpack))
 			AssimilateBag(user,0,W)
-	..()
 
 /obj/item/rig/protean/proc/make_alive(var/mob/living/carbon/human/H, var/partial)
 	if(H)

@@ -72,7 +72,7 @@
 					if(T.primitive_expression_messages.len)
 						geneexpression = pick(T.primitive_expression_messages)
 					if(geneexpression)
-						H.custom_emote(VISIBLE_MESSAGE, "[geneexpression]")
+						H.automatic_custom_emote(VISIBLE_MESSAGE, "[geneexpression]", check_stat = TRUE)
 					else
 						H.emote(pick("scratch","jump","roll","tail"))
 		// More... intense, expressions...

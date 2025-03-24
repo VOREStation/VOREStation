@@ -5,9 +5,9 @@ var/global/list/latejoin_talon = list()
 	name = "JoinLateTalon"
 	delete_me = 1
 
-/obj/effect/landmark/talon/New()
+/obj/effect/landmark/talon/Initialize(mapload)
 	latejoin_talon += loc // Register this turf as tram latejoin.
-	..()
+	. = ..()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
@@ -284,8 +284,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	. = ..()
 	access = list(access_talon, access_synth)
 
-/obj/machinery/power/smes/buildable/offmap_spawn/New()
-	..(1)
+/obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload)
+	. = ..()
 	charge = 1e7
 	RCon = TRUE
 	input_level = input_level_max

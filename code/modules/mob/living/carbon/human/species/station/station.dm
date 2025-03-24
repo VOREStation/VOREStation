@@ -617,8 +617,8 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT | NO_DEFIB
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
+	flags = NO_DNA | NO_SLEEVE | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT | NO_DEFIB
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -1322,7 +1322,7 @@
 	heat_level_2 = 1000
 	heat_level_3 = 1150
 
-	flags =  NO_SCAN
+	flags =  NO_DNA | NO_SLEEVE
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 
 	reagent_tag = IS_SHADEKIN		// for shadekin-unqiue chem interactions
@@ -1709,7 +1709,7 @@
 	//primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
-	flags = NO_SCAN | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
+	flags = NO_SLEEVE | NO_DNA | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)

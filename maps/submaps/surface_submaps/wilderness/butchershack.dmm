@@ -1,36 +1,236 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/wall/log_sif,/area/submap/ButcherShack)
-"c" = (/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"d" = (/obj/structure/closet,/obj/effect/decal/cleanable/cobweb,/obj/item/beartrap,/obj/item/beartrap,/obj/item/packageWrap,/obj/item/material/knife/hook,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"e" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"f" = (/obj/structure/closet/crate/freezer,/obj/effect/decal/cleanable/blood/gibs,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"g" = (/obj/machinery/gibber/autogibber,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"h" = (/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"i" = (/obj/structure/window/basic,/obj/structure/curtain,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"j" = (/turf/template_noop,/area/submap/ButcherShack)
-"k" = (/obj/structure/simple_door/sifwood,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"l" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/outdoors/dirt,/area/submap/ButcherShack)
-"m" = (/obj/structure/kitchenspike,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"n" = (/obj/structure/kitchenspike,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"o" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"p" = (/obj/structure/table/standard,/obj/item/clothing/suit/chef/classic,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"q" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/blood,/obj/item/material/knife/butch,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"r" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/sausage,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"s" = (/obj/structure/coatrack,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"t" = (/obj/structure/bed/padded,/obj/item/bedsheet/brown,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"u" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"v" = (/turf/simulated/floor/outdoors/dirt,/area/submap/ButcherShack)
-"w" = (/obj/structure/window/basic,/obj/structure/curtain,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall/log_sif,
+/area/submap/ButcherShack)
+"c" = (
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"d" = (
+/obj/structure/closet,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/item/packageWrap,
+/obj/item/material/knife/hook,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"e" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"f" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/turf/simulated/floor/wood/sif/broken,
+/area/submap/ButcherShack)
+"g" = (
+/obj/machinery/gibber/autogibber,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"h" = (
+/turf/simulated/floor/wood/sif/broken,
+/area/submap/ButcherShack)
+"i" = (
+/obj/structure/window/basic,
+/obj/structure/curtain,
+/turf/simulated/floor/wood/sif/broken,
+/area/submap/ButcherShack)
+"j" = (
+/turf/template_noop,
+/area/submap/ButcherShack)
+"k" = (
+/obj/structure/simple_door/sifwood,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"l" = (
+/obj/structure/loot_pile/maint/trash,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/ButcherShack)
+"m" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"n" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"o" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"p" = (
+/obj/structure/table/standard,
+/obj/item/clothing/suit/chef/classic,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"q" = (
+/obj/structure/table/standard,
+/obj/effect/decal/cleanable/blood,
+/obj/item/material/knife/butch,
+/turf/simulated/floor/wood/sif/broken,
+/area/submap/ButcherShack)
+"r" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/food/snacks/cutlet,
+/obj/item/reagent_containers/food/snacks/cutlet,
+/obj/item/reagent_containers/food/snacks/cutlet,
+/obj/item/reagent_containers/food/snacks/sausage,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"s" = (
+/obj/structure/coatrack,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"t" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet/brown,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
+"u" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/wood/sif/broken,
+/area/submap/ButcherShack)
+"v" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/ButcherShack)
+"w" = (
+/obj/structure/window/basic,
+/obj/structure/curtain,
+/turf/simulated/floor/wood/sif,
+/area/submap/ButcherShack)
 
 (1,1,1) = {"
-aaaaaaaaaa
-abbbbbbbba
-abdmnefgba
-abhcccocba
-abcpqrccba
-absocchtba
-abbubiwbba
-ajbkbllvja
-ajvvvvvjja
-aaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+j
+j
+a
+"}
+(3,1,1) = {"
+a
+b
+d
+h
+c
+s
+b
+b
+v
+a
+"}
+(4,1,1) = {"
+a
+b
+m
+c
+p
+o
+u
+k
+v
+a
+"}
+(5,1,1) = {"
+a
+b
+n
+c
+q
+c
+b
+b
+v
+a
+"}
+(6,1,1) = {"
+a
+b
+e
+c
+r
+c
+i
+l
+v
+a
+"}
+(7,1,1) = {"
+a
+b
+f
+o
+c
+h
+w
+l
+v
+a
+"}
+(8,1,1) = {"
+a
+b
+g
+c
+c
+t
+b
+v
+j
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+j
+j
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}
