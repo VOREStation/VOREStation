@@ -94,8 +94,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(OR.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(OR.type)
 			continue
-		var/datum/internal_wiki/page/P = new()
-		P.ore_assemble(OR)
+		var/datum/internal_wiki/page/ore/P = new()
+		P.assemble(OR)
 		ores["[OR.display_name]"] = P
 		searchcache_ore.Add("[OR.display_name]")
 		pages.Add(P)
@@ -106,9 +106,9 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(M.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(M.type)
 			continue
-		var/datum/internal_wiki/page/P = new()
+		var/datum/internal_wiki/page/material/P = new()
 		var/id = "[M.display_name]"
-		P.material_assemble(M)
+		P.assemble(M)
 		materials[id] = P
 		searchcache_material.Add(id)
 		pages.Add(P)
@@ -119,34 +119,34 @@ SUBSYSTEM_DEF(internal_wiki)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/particle_smasher_recipe/R = new D()
-		var/datum/internal_wiki/page/P = new()
-		var/res_path = new R.result;
-		var/res_name = initial(res_path:name)
-		if(res_name)
-			var/id = "[res_name]"
-			P.smasher_assemble(R,res_name)
-			smashers[id] = P
-			searchcache_smasher.Add(id)
-			pages.Add(P)
+		var/datum/internal_wiki/page/smasher/P = new()
+		var/id = "[initial(D:display_name)]"
+		P.assemble(R)
+		smashers[id] = P
+		searchcache_smasher.Add(id)
+		pages.Add(P)
 		qdel(R)
 
 	// assemble chemical reactions wiki
 	for(var/reagent in SSchemistry.chemical_reagents)
 		if(allow_reagent(reagent))
-			var/datum/internal_wiki/page/P = new()
+			var/datum/internal_wiki/page/P = null
 			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
 			if(R.wiki_flag & WIKI_SPOILER)
 				spoiler_entries.Add(R.type)
 				continue
 			var/id = "[R.name]"
 			if(R.wiki_flag & WIKI_FOOD)
-				P.food_assemble(R)
+				P = new /datum/internal_wiki/page/food()
+				P.assemble(R)
 				foodreact[id] = P
 			else if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
-				P.drink_assemble(R)
+				P = new /datum/internal_wiki/page/drink()
+				P.assemble(R)
 				drinkreact[id] = P
 			else
-				P.chemical_assemble(R)
+				P = new /datum/internal_wiki/page/chemical()
+				P.assemble(R)
 				searchcache_chemreact.Add(id)
 				chemreact[id] = P
 			pages.Add(P)
@@ -162,8 +162,8 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(S.wiki_flag & WIKI_SPOILER)
 				spoiler_entries.Add(S.type)
 				continue
-			var/datum/internal_wiki/page/P = new()
-			P.seed_assemble(S)
+			var/datum/internal_wiki/page/seed/P = new()
+			P.assemble(S)
 			searchcache_botseeds.Add("[S.display_name]")
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
@@ -344,8 +344,8 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(food_recipes[Rp]["Flags"] & WIKI_SPOILER)
 				spoiler_entries.Add(Rp)
 				continue
-			var/datum/internal_wiki/page/P = new()
-			P.recipe_assemble(food_recipes[Rp])
+			var/datum/internal_wiki/page/recipe/P = new()
+			P.assemble(food_recipes[Rp])
 			foodrecipe["[P.title]"] = P
 			// organize into sublists
 			var/app = food_recipes[Rp]["Appliance"]
@@ -361,8 +361,8 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(drink_recipes[Rp]["Flags"] & WIKI_SPOILER)
 				spoiler_entries.Add(Rp)
 				continue
-			var/datum/internal_wiki/page/P = new()
-			P.recipe_assemble(drink_recipes[Rp])
+			var/datum/internal_wiki/page/recipe/P = new()
+			P.assemble(drink_recipes[Rp])
 			drinkrecipe["[P.title]"] = P
 			searchcache_drinkrecipe.Add("[P.title]")
 			pages.Add(P)
@@ -402,93 +402,131 @@ SUBSYSTEM_DEF(internal_wiki)
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/internal_wiki/page
 	var/title = ""
-	var/body = ""
+	var/list/data = list()
+
+/datum/internal_wiki/page/proc/assemble()
+	return
 
 /datum/internal_wiki/page/proc/get_data()
-	return body
+	return
 
-/datum/internal_wiki/page/proc/ore_assemble(var/ore/O)
+/datum/internal_wiki/page/proc/get_print()
+	return
+
+
+// ORES
+////////////////////////////////////////////
+/datum/internal_wiki/page/ore/assemble(var/ore/O)
 	title = O.display_name
+	data["title"] = title
+	// Get internal data
+	data["smelting"] = null
 	if(O.smelts_to)
 		var/datum/material/S = get_material_by_name(O.smelts_to)
-		body += "<b>Smelting: [S.display_name]</b><br>"
+		data["smelting"] = S.display_name
+
+	data["compressing"] = null
 	if(O.compresses_to)
 		var/datum/material/C = get_material_by_name(O.compresses_to)
-		body += "<b>Compressing: [C.display_name]</b><br>"
+		data["compressing"] = C.display_name
+
+	data["alloys"] = null
 	if(O.alloy)
-		body += "<br>"
-		body += "<b>Alloy Component of: </b><br>"
-		// Assemble what alloys this ore can make
+		var/list/alloy_list = list()
 		for(var/datum/alloy/A in GLOB.alloy_data)
 			for(var/req in A.requires)
 				if(O.name == req )
 					var/datum/material/M = get_material_by_name(A.metaltag)
-					body += "<b>-[M.display_name]</b><br>"
+					alloy_list.Add(M.display_name)
 					break
-	else
-		body += "<br>"
-		body += "<b>No known Alloys</b><br>"
+		data["alloys"] = alloy_list
 
+	data["pump_reagent"] = null
 	if(O.reagent)
-		body += "<br>"
 		var/datum/reagent/REG = SSchemistry.chemical_reagents[O.reagent]
-		if(REG)
-			body += "<b>Fluid Pump Results:</b><br>"
-			body += "<b>-[REG.name]</b><br>"
-		else
-			log_runtime(EXCEPTION("Invalid reagent id: [O.reagent] in pump results for ore [title]"))
+		data["pump_reagent"] = REG.name
 
+	data["grind_reagents"] = null
 	if(global.ore_reagents[O.ore])
-		body += "<br>"
-		body += "<b>Ore Grind Results: </b><br>"
 		var/list/output = global.ore_reagents[O.ore]
 		var/list/collect = list()
 		var/total_parts = 0
 		for(var/Rid in output)
 			var/datum/reagent/CBR = SSchemistry.chemical_reagents[Rid]
-			if(CBR)
-				if(!collect[CBR.name])
-					collect[CBR.name] = 0
-				collect[CBR.name] += 1
-				total_parts += 1
-			else
-				log_runtime(EXCEPTION("Invalid reagent id: [Rid] in grind results for ore [title]"))
-		var/per_part = REAGENTS_PER_SHEET / total_parts
-		for(var/N in collect)
-			body += "<b>-[N]: [collect[N] * per_part]u</b><br>"
+			if(!collect[CBR.name])
+				collect[CBR.name] = 0
+			collect[CBR.name] += 1
+			total_parts += 1
 
-/datum/internal_wiki/page/proc/material_assemble(var/datum/material/M)
+		var/per_part = REAGENTS_PER_SHEET / total_parts
+		var/list/grind_list = list()
+		for(var/N in collect)
+			grind_list[N] = "[collect[N] * per_part]"
+		data["grind_reagents"] = grind_list
+	return data
+
+/datum/internal_wiki/page/ore/get_print()
+	var/body = ""
+	if(data["smelting"])
+		body += "<b>Smelting: [ data["smelting"] ]</b><br>"
+
+	if(data["compressing"])
+		body += "<b>Compressing: [ data["compressing"] ]</b><br>"
+
+	if(data["alloys"])
+		body += "<br>"
+		body += "<b>Alloy Component of: </b><br>"
+		// Assemble what alloys this ore can make
+		var/list/alloy_list = data["alloys"]
+		for(var/A in alloy_list)
+			body += "<b>-[A]</b><br>"
+	else
+		body += "<br>"
+		body += "<b>No known Alloys</b><br>"
+
+	if(data["pump_reagent"])
+		body += "<br>"
+		body += "<b>Fluid Pump Results:</b><br>"
+		body += "<b>-[ data["pump_reagent"] ]</b><br>"
+
+	if(data["grind_reagents"])
+		body += "<br>"
+		body += "<b>Ore Grind Results: </b><br>"
+		var/list/grind_list = data["grind_reagents"]
+		for(var/A in grind_list)
+			body += "<b>-[A]: [grind_list[A]]u</b><br>"
+	return body
+
+// MATERIALS
+////////////////////////////////////////////
+/datum/internal_wiki/page/material/assemble(var/datum/material/M)
 	title = M.display_name
-	body  = "<b>Integrity: [M.integrity]</b><br>"
-	body += "<b>Hardness: [M.hardness]</b><br>"
-	body += "<b>Weight: [M.weight]</b><br>"
-	var/stack_size = 50
-	body += "<b>Supply Points: [M.supply_conversion_value] per sheet, [M.supply_conversion_value * stack_size] per stack of [stack_size]</b><br>"
+	data["title"] = title
+	// Get internal data
+	data["integrity"] = M.integrity
+	data["hardness"] = M.hardness
+	data["weight"] = M.weight
+
+	var/stack_size = 50 // If there are ever stacks that aren't limited by 50.... Is there? Is this a define?
+	data["stack_size"] = stack_size
+	data["supply_points"] = M.supply_conversion_value
 	var/value = M.supply_conversion_value * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
-	if(value > 0)
-		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"] per sheet  |  [(value*stack_size)] [(value*stack_size) > 1 ? "thalers" : "thaler"] per stack of [stack_size]</b><br>"
-	body += "<br>"
-	body += "<b>Transparent: [M.opacity >= 0.5 ? "No" : "Yes"]</b><br>"
-	body += "<b>Conductive: [M.conductive ? "Yes" : "No"]</b><br>"
-	body += "<b>Stability: [M.protectiveness]</b><br>"
-	body += "<b>Blast Res.: [M.explosion_resistance]</b><br>"
-	body += "<b>Radioactivity: [M.radioactivity]</b><br>"
-	body += "<b>Reflectivity: [M.reflectivity * 100]%</b><br>"
-	body += "<br>"
-	if(M.melting_point != null)
-		body += "<b>Melting Point: [M.melting_point]K ([M.melting_point - T0C]C)</b><br>"
-	else
-		body += "<b>Melting Point: --- </b><br>"
-	if(M.ignition_point != null)
-		body += "<b>Ignition Point: [M.ignition_point]K ([M.ignition_point - T0C]C)</b><br>"
-	else
-		body += "<b>Ignition Point: --- </b><br>"
+	data["market_price"] = value
+
+	data["opacity"] = M.opacity
+	data["conductive"] = M.conductive
+	data["protectiveness"] = M.protectiveness
+	data["explosion_resistance"] = M.explosion_resistance
+	data["radioactivity"] = M.radioactivity
+	data["reflectivity"] = M.reflectivity
+	data["melting_point"] = M.melting_point
+	data["ignition_point"] = M.ignition_point
+
+	data["grind_reagents"] = null
 	if(global.sheet_reagents[M.stack_type])
-		body += "<br>"
 		var/list/output = global.sheet_reagents[M.stack_type]
 		if(output && output.len > 0)
-			body += "<b>Sheet Grind Results: </b><br>"
 			var/list/collect = list()
 			var/total_parts = 0
 			for(var/Rid in output)
@@ -502,18 +540,71 @@ SUBSYSTEM_DEF(internal_wiki)
 					log_runtime(EXCEPTION("Invalid reagent id: [Rid] in grind results for sheet [title]"))
 			if(total_parts > 0)
 				var/per_part = REAGENTS_PER_SHEET / total_parts
+				var/list/grind_list = list()
 				for(var/N in collect)
-					body += "<b>-[N]: [collect[N] * per_part]u</b><br>"
+					grind_list[N] = "[collect[N] * per_part]"
+				data["grind_reagents"] = grind_list
+
+	data["recipies"] = null
 	M.get_recipes() // generate if not already
 	if(M.recipes != null && M.recipes.len > 0)
-		body += "<br>"
-		body += "<b>Recipies: </b><br>"
+		var/list/recipie_list = list()
 		for(var/datum/stack_recipe/R in M.recipes)
-			body += "<b>-[R.title]</b><br>"
+			recipie_list.Add(R.title)
+		data["recipies"] = recipie_list
+	return data
 
-/datum/internal_wiki/page/proc/seed_assemble(var/datum/seed/S)
+/datum/internal_wiki/page/material/get_print()
+	var/body = ""
+	body += "<b>Integrity: [ data["integrity"] ]</b><br>"
+	body += "<b>Hardness: [ data["hardness"] ]</b><br>"
+	body += "<b>Weight: [ data["weight"] ]</b><br>"
+	var/points = data["supply_points"]
+	var/stack_size = data["stack_size"]
+	body += "<b>Supply Points: [points] per sheet, [points * stack_size] per stack of [stack_size]</b><br>"
+	var/value = data["market_price"]
+	body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"] per sheet  |  [(value*stack_size)] [(value*stack_size) > 1 ? "thalers" : "thaler"] per stack of [stack_size]</b><br>"
+	body += "<br>"
+	body += "<b>Transparent: [ data["opacity"] >= 0.5 ? "No" : "Yes"]</b><br>"
+	body += "<b>Conductive: [ data["conductive"] ? "Yes" : "No"]</b><br>"
+	body += "<b>Stability: [ data["protectiveness"] ]</b><br>"
+	body += "<b>Blast Res.: [ data["explosion_resistance"] ]</b><br>"
+	body += "<b>Radioactivity: [ data["radioactivity"] ]</b><br>"
+	body += "<b>Reflectivity: [ data["reflectivity"] * 100 ]%</b><br>"
+	body += "<br>"
+
+	if(data["melting_point"] > 0)
+		body += "<b>Melting Point: [ data["melting_point"] ]K ([data["melting_point"] - T0C]C)</b><br>"
+	else
+		body += "<b>Melting Point: --- </b><br>"
+
+	if(data["ignition_point"] > 0)
+		body += "<b>Ignition Point: [ data["ignition_point"] ]K ([data["ignition_point"] - T0C]C)</b><br>"
+	else
+		body += "<b>Ignition Point: --- </b><br>"
+
+	if(data["grind_reagents"])
+		body += "<br>"
+		var/list/grind_list = data["grind_reagents"]
+		if(grind_list && grind_list.len > 0)
+			body += "<b>Sheet Grind Results: </b><br>"
+			for(var/N in grind_list)
+				body += "<b>-[N]: [grind_list[N]]u</b><br>"
+
+	if(data["recipies"])
+		body += "<br>"
+		var/list/recipie_list = data["recipies"]
+		body += "<b>Recipies: </b><br>"
+		for(var/R in recipie_list)
+			body += "<b>-[R]</b><br>"
+	return body
+
+// SEEDS
+////////////////////////////////////////////
+/datum/internal_wiki/page/seed/assemble(var/datum/seed/S)
 	title = S.display_name
-	body  =  "<b>Requires Feeding: [S.get_trait(TRAIT_REQUIRES_NUTRIENTS) ? "YES" : "NO"]</b><br>"
+	var/body = ""
+	body  += "<b>Requires Feeding: [S.get_trait(TRAIT_REQUIRES_NUTRIENTS) ? "YES" : "NO"]</b><br>"
 	body  += "<b>Requires Watering: [S.get_trait(TRAIT_REQUIRES_WATER) ? "YES" : "NO"]</b><br>"
 	body  += "<b>Requires Light: [S.get_trait(TRAIT_IDEAL_LIGHT)] lumen[S.get_trait(TRAIT_IDEAL_LIGHT) == 1 ? "" : "s"]</b><br>"
 	if(S.get_trait(TRAIT_YIELD) > 0)
@@ -607,9 +698,13 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(mut)
 				body  += "<b>-[mut.display_name]</b><br>"
 
-/datum/internal_wiki/page/proc/smasher_assemble(var/datum/particle_smasher_recipe/M, var/resultname)
+
+// PARTICLE SMASHER
+////////////////////////////////////////////
+/datum/internal_wiki/page/smasher/assemble(var/datum/particle_smasher_recipe/M)
 	var/req_mat = M.required_material
-	title = resultname
+	title = M.display_name
+	var/body = ""
 	if(req_mat != null)
 		body += "<b>Target Sheet: [initial(req_mat:name)]</b><br>"
 	if(M.items != null && M.items.len > 0)
@@ -633,12 +728,17 @@ SUBSYSTEM_DEF(internal_wiki)
 			else
 				log_runtime(EXCEPTION("Invalid reagent id: [Rd] in inducer for atom smasher [title]"))
 	body += "<br>"
-	body += "<b>Results: [resultname]</b><br>"
+	var/result_path = M.result
+	body += "<b>Results: [initial(result_path:name)]</b><br>"
 	body += "<b>Probability: [M.probability]%</b><br>"
 
-/datum/internal_wiki/page/proc/chemical_assemble(var/datum/reagent/R)
+
+// CHEMICALS
+////////////////////////////////////////////
+/datum/internal_wiki/page/chemical/assemble(var/datum/reagent/R)
 	title = R.name
-	body  = "<b>Description: </b>[R.description]<br>"
+	var/body = ""
+	body += "<b>Description: </b>[R.description]<br>"
 	/* Downstream features
 	if(R.id in addictives)
 		body  += "<b>DANGER, [(R.id in fast_addictives) ? "highly " : ""]addictive.</b><br>"
@@ -670,7 +770,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Overdose: </b>[R.overdose]U<br>"
 	body += "<b>Flavor: </b>[R.taste_description]<br>"
 	body += "<br>"
-	body += allergen_assemble(R.allergen_type)
+	body += get_allergen(R.allergen_type)
 	body += "<br>"
 	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
 	if(reaction_list != null && reaction_list.len > 0)
@@ -755,11 +855,15 @@ SUBSYSTEM_DEF(internal_wiki)
 					continue
 				body += " <b>-Catalyst: </b>[r_CL.name]<br>"
 
-/datum/internal_wiki/page/proc/food_assemble(var/datum/reagent/R)
+
+// FOOD REAGENTS
+////////////////////////////////////////////
+/datum/internal_wiki/page/food/assemble(var/datum/reagent/R)
 	title = R.name
-	body  = "<b>Description: </b>[R.description]<br>"
+	var/body = ""
+	body += "<b>Description: </b>[R.description]<br>"
 	body += "<br>"
-	body += allergen_assemble(R.allergen_type)
+	body += get_allergen(R.allergen_type)
 	body += "<br>"
 	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
 	if(reaction_list != null && reaction_list.len > 0)
@@ -797,12 +901,16 @@ SUBSYSTEM_DEF(internal_wiki)
 	else
 		body += "<b>Recipe: </b>UNKNOWN<br>"
 
-/datum/internal_wiki/page/proc/drink_assemble(var/datum/reagent/R)
+
+// DRINK REAGENTS
+////////////////////////////////////////////
+/datum/internal_wiki/page/drink/assemble(var/datum/reagent/R)
 	title = R.name
-	body  = "<b>Description: </b>[R.description]<br>"
+	var/body = ""
+	body += "<b>Description: </b>[R.description]<br>"
 	body += "<b>Flavor: </b>[R.taste_description]<br>"
 	body += "<br>"
-	body += allergen_assemble(R.allergen_type)
+	body += get_allergen(R.allergen_type)
 	body += "<br>"
 	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
 	if(reaction_list != null && reaction_list.len > 0)
@@ -840,50 +948,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	else
 		body += "<b>Mix: </b>UNKNOWN<br>"
 
-/datum/internal_wiki/page/proc/allergen_assemble(var/allergens)
-	PRIVATE_PROC(TRUE)
-	var/AG = ""
-	if(allergens > 0)
-		AG += "<b>Allergens: </b><br>"
-		if(allergens & ALLERGEN_MEAT)
-			AG += "-Meat protein<br>"
-		if(allergens & ALLERGEN_FISH)
-			AG += "-Fish protein<br>"
-		if(allergens & ALLERGEN_FRUIT)
-			AG += "-Fruit<br>"
-		if(allergens & ALLERGEN_VEGETABLE)
-			AG += "-Vegetable<br>"
-		if(allergens & ALLERGEN_GRAINS)
-			AG += "-Grain<br>"
-		if(allergens & ALLERGEN_BEANS)
-			AG += "-Bean<br>"
-		if(allergens & ALLERGEN_SEEDS)
-			AG += "-Nut<br>"
-		if(allergens & ALLERGEN_DAIRY)
-			AG += "-Dairy<br>"
-		if(allergens & ALLERGEN_FUNGI)
-			AG += "-Fungi<br>"
-		if(allergens & ALLERGEN_COFFEE)
-			AG += "-Caffeine<br>"
-		if(allergens & ALLERGEN_SUGARS)
-			AG += "-Sugar<br>"
-		if(allergens & ALLERGEN_EGGS)
-			AG += "-Egg<br>"
-		if(allergens & ALLERGEN_STIMULANT)
-			AG += "-Stimulant<br>"
-		/* Downstream features
-		if(allergens & ALLERGEN_POLLEN)
-			AG += "-Pollen<br>"
-		if(allergens & ALLERGEN_SALT)
-			AG += "-Salt<br>"
-		*/
-		AG += "<br>"
-	return AG
 
-/datum/internal_wiki/page/proc/recipe_assemble(var/list/recipe)
+// FOOD RECIPIE
+////////////////////////////////////////////
+/datum/internal_wiki/page/recipe/assemble(var/list/recipe)
 	title = recipe["Result"]
+	var/body = ""
 	if(recipe["Desc"])
-		body  += "<b>Description: </b>[recipe["Desc"]]<br>"
+		body += "<b>Description: </b>[recipe["Desc"]]<br>"
 	if(length(recipe["Flavor"]) > 0)
 		body += "<b>Flavor: </b>[recipe["Flavor"]]<br>"
 	if(recipe["Price"] > 0)
@@ -893,7 +965,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		value *= SSsupply.points_per_money
 		value = FLOOR(value * 100,1) / 100 // Truncate decimals
 		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"]</b><br>"
-	body += allergen_assemble(recipe["Allergens"])
+	body += get_allergen(recipe["Allergens"])
 	body += "<br>"
 	if(recipe["Appliance"])
 		body += "<b>Appliance: </b>[recipe["Appliance"]]<br><br>"
@@ -946,8 +1018,54 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(pretty_cat != "")
 		body += "<b>Catalysts: </b> [pretty_cat]<br>"
 
+
+// CATALOG
+////////////////////////////////////////////
 /datum/internal_wiki/page/catalog
 	var/datum/category_item/catalogue/catalog_record = null
 
 /datum/internal_wiki/page/catalog/get_data()
 	return catalog_record.desc
+
+
+// MISC HELPERS
+////////////////////////////////////////////
+/datum/internal_wiki/page/proc/get_allergen(var/allergens)
+	PROTECTED_PROC(TRUE)
+	var/AG = ""
+	if(allergens > 0)
+		AG += "<b>Allergens: </b><br>"
+		if(allergens & ALLERGEN_MEAT)
+			AG += "-Meat protein<br>"
+		if(allergens & ALLERGEN_FISH)
+			AG += "-Fish protein<br>"
+		if(allergens & ALLERGEN_FRUIT)
+			AG += "-Fruit<br>"
+		if(allergens & ALLERGEN_VEGETABLE)
+			AG += "-Vegetable<br>"
+		if(allergens & ALLERGEN_GRAINS)
+			AG += "-Grain<br>"
+		if(allergens & ALLERGEN_BEANS)
+			AG += "-Bean<br>"
+		if(allergens & ALLERGEN_SEEDS)
+			AG += "-Nut<br>"
+		if(allergens & ALLERGEN_DAIRY)
+			AG += "-Dairy<br>"
+		if(allergens & ALLERGEN_FUNGI)
+			AG += "-Fungi<br>"
+		if(allergens & ALLERGEN_COFFEE)
+			AG += "-Caffeine<br>"
+		if(allergens & ALLERGEN_SUGARS)
+			AG += "-Sugar<br>"
+		if(allergens & ALLERGEN_EGGS)
+			AG += "-Egg<br>"
+		if(allergens & ALLERGEN_STIMULANT)
+			AG += "-Stimulant<br>"
+		/* Downstream features
+		if(allergens & ALLERGEN_POLLEN)
+			AG += "-Pollen<br>"
+		if(allergens & ALLERGEN_SALT)
+			AG += "-Salt<br>"
+		*/
+		AG += "<br>"
+	return AG
