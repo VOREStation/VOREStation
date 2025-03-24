@@ -1,0 +1,4 @@
+author: "xnqm8h"
+delete-after: True
+changes:
+  - bugfix: "Fixes demuxer output not pushing to other circuits."
