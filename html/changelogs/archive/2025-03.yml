@@ -496,3 +496,23 @@
   Willburd:
   - code_imp: fixed various issues related to placing and cutting heavy cables
   - code_imp: added option in code to allow players to cut heavy cables with a welder
+2025-03-24:
+  Kashargul:
+  - rscadd: text surrounded by || text || will now be spoilered in the statpanel
+  - bugfix: examine will be auto focussed again if the setting is enabled
+  - code_imp: enables tab only indentation test
+  PastelPrinceDan:
+  - maptweak: added xenoarch storage to the stellar delight
+  SatinIsle:
+  - bugfix: Fixed a bug with the private notes panel that showed it in right click
+      menus of other mobs (forcing them to see your notes).
+  Vorestation Staff Consensus (VORESTATION ONLY):
+  - rscdel: Tourettes disabled
+  - rscdel: Rotting Genetics Disabled
+  - rscdel: Xray disabled
+  - spellcheck: Anxiety Disorder name changed to Nervousness
+  - balance: Censored move to Neutral (RP trait)
+  - balance: Nervousness moved to Neutral (RP Trait)
+  - bugfix: FBP dionas will no longer explode
+  xnqm8h:
+  - bugfix: Fixes demuxer output not pushing to other circuits.
