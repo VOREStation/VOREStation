@@ -469,26 +469,21 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/body = ""
 	if(data["smelting"])
 		body += "<b>Smelting: [ data["smelting"] ]</b><br>"
-
 	if(data["compressing"])
 		body += "<b>Compressing: [ data["compressing"] ]</b><br>"
-
 	if(data["alloys"])
 		body += "<br>"
 		body += "<b>Alloy Component of: </b><br>"
-		// Assemble what alloys this ore can make
 		var/list/alloy_list = data["alloys"]
 		for(var/A in alloy_list)
 			body += "<b>-[A]</b><br>"
 	else
 		body += "<br>"
 		body += "<b>No known Alloys</b><br>"
-
 	if(data["pump_reagent"])
 		body += "<br>"
 		body += "<b>Fluid Pump Results:</b><br>"
 		body += "<b>-[ data["pump_reagent"] ]</b><br>"
-
 	if(data["grind_reagents"])
 		body += "<br>"
 		body += "<b>Ore Grind Results: </b><br>"
@@ -572,7 +567,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Radioactivity: [ data["radioactivity"] ]</b><br>"
 	body += "<b>Reflectivity: [ data["reflectivity"] * 100 ]%</b><br>"
 	body += "<br>"
-
 	if(data["melting_point"] > 0)
 		body += "<b>Melting Point: [ data["melting_point"] ]K ([data["melting_point"] - T0C]C)</b><br>"
 	else
@@ -582,7 +576,6 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Ignition Point: [ data["ignition_point"] ]K ([data["ignition_point"] - T0C]C)</b><br>"
 	else
 		body += "<b>Ignition Point: --- </b><br>"
-
 	if(data["grind_reagents"])
 		body += "<br>"
 		var/list/grind_list = data["grind_reagents"]
@@ -590,7 +583,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Sheet Grind Results: </b><br>"
 			for(var/N in grind_list)
 				body += "<b>-[N]: [grind_list[N]]u</b><br>"
-
 	if(data["recipies"])
 		body += "<br>"
 		var/list/recipie_list = data["recipies"]
@@ -603,134 +595,188 @@ SUBSYSTEM_DEF(internal_wiki)
 ////////////////////////////////////////////
 /datum/internal_wiki/page/seed/assemble(var/datum/seed/S)
 	title = S.display_name
-	var/body = ""
-	body  += "<b>Requires Feeding: [S.get_trait(TRAIT_REQUIRES_NUTRIENTS) ? "YES" : "NO"]</b><br>"
-	body  += "<b>Requires Watering: [S.get_trait(TRAIT_REQUIRES_WATER) ? "YES" : "NO"]</b><br>"
-	body  += "<b>Requires Light: [S.get_trait(TRAIT_IDEAL_LIGHT)] lumen[S.get_trait(TRAIT_IDEAL_LIGHT) == 1 ? "" : "s"]</b><br>"
-	if(S.get_trait(TRAIT_YIELD) > 0)
-		body  += "<b>Yield: [S.get_trait(TRAIT_YIELD)]</b><br>"
-	body  += "<br>"
+	data["title"] = title
+	// Get internal data
+	data["feeding"] = S.get_trait(TRAIT_REQUIRES_NUTRIENTS)
+	data["watering"] = S.get_trait(TRAIT_REQUIRES_WATER)
+	data["lighting"] = S.get_trait(TRAIT_IDEAL_LIGHT)
+	data["yield"] = S.get_trait(TRAIT_YIELD)
 
-	var/traits = FALSE
-	body  += "<b>Traits:</b><br>"
+	var/list/traits = list()
 	if(S.has_item_product)
-		body  += "<b>-Grown Byproducts</b><br>"
-		traits = TRUE
+		traits.Add("Grown Byproducts")
 	if(S.chems && !isnull(S.chems["woodpulp"]))
-		body  += "<b>-Wooden Growths</b><br>"
-		traits = TRUE
+		traits.Add("Wooden Growths")
 	if(S.get_trait(TRAIT_FLESH_COLOUR))
-		body  += "<b>-Choppable</b><br>"
-		traits = TRUE
+		traits.Add("Choppable")
 	if(S.kitchen_tag == "pumpkin")
-		body  += "<b>-Carvable</b><br>"
-		traits = TRUE
+		traits.Add("Carvable")
 	if(S.kitchen_tag == "potato")
-		body  += "<b>-Sliceable</b><br>"
-		traits = TRUE
+		traits.Add("Sliceable")
 	if(S.get_trait(TRAIT_JUICY))
-		body  += "<b>-Juicy</b><br>"
-		traits = TRUE
+		traits.Add("Juicy")
 	if(S.get_trait(TRAIT_IMMUTABLE))
-		body  += "<b>-Stable Genome</b><br>"
-		traits = TRUE
+		traits.Add("Stable Genome")
 	if(S.get_trait(TRAIT_PRODUCES_POWER))
-		body  += "<b>-Voltaic</b><br>"
-		traits = TRUE
+		traits.Add("Voltaic")
 	if(S.get_trait(TRAIT_BIOLUM))
-		body  += "<b>-Bioluminescence</b><br>"
-		traits = TRUE
+		traits.Add("Bioluminescence")
 	if(S.get_trait(TRAIT_STINGS))
-		body  += "<b>-Stings</b><br>"
-		traits = TRUE
+		traits.Add("Stings")
 	if(S.get_trait(TRAIT_SPORING))
-		body  += "<b>-Produces Spores</b><br>"
-		traits = TRUE
+		traits.Add("Produces Spores")
 	if(S.get_trait(TRAIT_CARNIVOROUS))
-		body  += "<b>-Carnivorous</b><br>"
-		traits = TRUE
+		traits.Add("Carnivorous")
 	if(S.get_trait(TRAIT_PARASITE))
-		body  += "<b>-Parasitic</b><br>"
-		traits = TRUE
+		traits.Add("Parasitic")
 	if(S.get_trait(TRAIT_SPREAD))
-		body  += "<b>-Spreading</b><br>"
-		traits = TRUE
+		traits.Add("Spreading")
 	if(S.get_trait(TRAIT_EXPLOSIVE))
-		body  += "<b>-Explosive</b><br>"
-		traits = TRUE
-	if(!traits)
-		body  += "<b>-None</b><br>"
-	body  += "<br>"
+		traits.Add("Explosive")
+	if(!traits.len)
+		traits.Add("None")
+	data["traits"] = traits
+	data["mob_product"] = S.has_mob_product
 
-	if(S.has_mob_product)
-		body += "<b>DANGER - MAY BE MOBILE</b><br>"
-	body  += "<br>"
-
+	data["chem_breakdown"] = null
 	if(S.chems && S.chems.len > 0)
-		body  += "<b>Chemical Breakdown: </b><br>"
+		var/list/chems = list()
 		for(var/CB in S.chems)
 			var/datum/reagent/CBR = SSchemistry.chemical_reagents[CB]
 			if(CBR)
-				body  += "<b>-[CBR.name]</b><br>"
+				chems.Add(CBR.name)
 			else
 				log_runtime(EXCEPTION("Invalid reagent id: [CB] in chemical breakdown for seed [title]"))
-		body  += "<br>"
+		data["chem_breakdown"] = chems
+
+	data["gas_consumed"] = null
 	if(S.consume_gasses && S.consume_gasses.len > 0)
-		body  += "<b>Gasses Consumed: </b><br>"
+		var/list/consumed = list()
 		for(var/CG in S.consume_gasses)
-			var/amount = "[gas_data.name[CG]]"
-			if (S.consume_gasses[CG] < 5)
-				amount = "[gas_data.name[CG]] (trace amounts)"
-			body  += "<b>-[amount]</b><br>"
-		body  += "<br>"
+			consumed["[gas_data.name[CG]]"] = S.consume_gasses[CG]
+		data["gas_consumed"] = consumed
+
+	data["gas_exuded"] = null
 	if(S.exude_gasses && S.exude_gasses.len > 0)
-		body  += "<b>Gasses Produced: </b><br>"
+		var/list/exude = list()
 		for(var/EG in S.exude_gasses)
-			var/amount = "[gas_data.name[EG]]"
-			if (S.exude_gasses[EG] < 5)
-				amount = "[gas_data.name[EG]] (trace amounts)"
-			body  += "<b>-[amount]</b><br>"
-		body  += "<br>"
+			exude["[gas_data.name[EG]]"] = S.exude_gasses[EG]
+		data["gas_exuded"] = exude
+
+	data["mutations"] = null
 	if(S.mutants && S.mutants.len > 0)
-		body  += "<b>Mutant Strains: </b><br>"
+		var/list/mutations = list()
 		for(var/MS in S.mutants)
 			var/datum/seed/mut = SSplants.seeds[MS]
 			if(mut)
-				body  += "<b>-[mut.display_name]</b><br>"
+				mutations.Add(mut.display_name)
+		data["mutations"] = mutations
+	return data
 
+/datum/internal_wiki/page/seed/get_print()
+	var/body = ""
+	body  += "<b>Requires Feeding: [ data["feeding"] ? "YES" : "NO"]</b><br>"
+	body  += "<b>Requires Watering: [ data["watering"] ? "YES" : "NO"]</b><br>"
+	body  += "<b>Requires Light: [ data["lighting"] ] lumen[ data["lighting"] == 1 ? "" : "s"]</b><br>"
+	if(data["yield"] > 0)
+		body  += "<b>Yield: [ data["yield"] ]</b><br>"
+	body  += "<br>"
+	body  += "<b>Traits:</b><br>"
+	var/list/traits = data["traits"]
+	for(var/A in traits)
+		body  += "<b>-[A]</b><br>"
+	body  += "<br>"
+	if(data["mob_product"])
+		body += "<b>DANGER - MAY BE MOBILE</b><br>"
+	body  += "<br>"
+	var/list/chem_list = data["chem_breakdown"]
+	if(chem_list && chem_list.len > 0)
+		body  += "<b>Chemical Breakdown: </b><br>"
+		for(var/CB in chem_list)
+			body  += "<b>-[CB]</b><br>"
+		body  += "<br>"
+	var/list/consumed_list = data["gas_consumed"]
+	if(consumed_list && consumed_list.len > 0)
+		body  += "<b>Gasses Consumed: </b><br>"
+		for(var/CG in consumed_list)
+			var/amount = "[consumed_list[CG]]"
+			if (consumed_list[CG] < 5)
+				amount = "[CG] (trace amounts)"
+			body  += "<b>-[amount]</b><br>"
+		body  += "<br>"
+	var/list/exuded_list = data["gas_exuded"]
+	if(exuded_list && exuded_list.len > 0)
+		body  += "<b>Gasses Produced: </b><br>"
+		for(var/EG in exuded_list)
+			var/amount = "[exuded_list[EG]]"
+			if (exuded_list[EG] < 5)
+				amount = "[EG] (trace amounts)"
+			body  += "<b>-[amount]</b><br>"
+		body  += "<br>"
+	var/list/mutations = data["mutations"]
+	if(mutations && mutations.len > 0)
+		body += "<b>Mutant Strains: </b><br>"
+		for(var/MS in mutations)
+			body  += "<b>-[MS]</b><br>"
+	return body
 
 // PARTICLE SMASHER
 ////////////////////////////////////////////
 /datum/internal_wiki/page/smasher/assemble(var/datum/particle_smasher_recipe/M)
-	var/req_mat = M.required_material
 	title = M.display_name
-	var/body = ""
+	data["title"] = title
+	// Get internal data
+	var/req_mat = M.required_material
+	data["req_mat"] = null
 	if(req_mat != null)
-		body += "<b>Target Sheet: [initial(req_mat:name)]</b><br>"
-	if(M.items != null && M.items.len > 0)
-		if( M.items.len == 1)
-			var/Ir = M.items[1]
-			body += "<b>Target Item: [initial(Ir:name)]</b><br>"
-		else
-			body += "<b>Target Item: </b><br>"
-			for(var/Ir in M.items)
-				body += "<b>-[initial(Ir:name)]</b><br>"
-	body += "<b>Threshold Energy: [M.required_energy_min] - [M.required_energy_max]</b><br>"
-	body += "<b>Threshold Temp: [M.required_atmos_temp_min]k - [M.required_atmos_temp_max]k | ([M.required_atmos_temp_min - T0C]C - [M.required_atmos_temp_max - T0C]C)</b><br>"
+		data["req_mat"] = initial(req_mat:name)
+
+	data["target_items"] = null
+	if(M.items && M.items.len > 0)
+		var/list/targs = list()
+		for(var/Ir in M.items)
+			targs.Add(initial(Ir:name))
+		data["target_items"] = targs
+
+	data["required_energy_min"] = M.required_energy_min
+	data["required_energy_max"] = M.required_energy_max
+	data["required_atmos_temp_min"] = M.required_atmos_temp_min
+	data["required_atmos_temp_max"] = M.required_atmos_temp_max
+
+	data["inducers"] = null
 	if(M.reagents != null && M.reagents.len > 0)
-		body += "<br>"
-		body += "<b>Inducers: </b><br>"
+		var/list/inducers = list()
 		for(var/R in M.reagents)
 			var/amnt = M.reagents[R]
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[R]
 			if(Rd)
-				body += "<b>-[Rd.name] [amnt]u</b><br>"
+				inducers["[Rd.name]"] = amnt
 			else
 				log_runtime(EXCEPTION("Invalid reagent id: [Rd] in inducer for atom smasher [title]"))
-	body += "<br>"
 	var/result_path = M.result
-	body += "<b>Results: [initial(result_path:name)]</b><br>"
-	body += "<b>Probability: [M.probability]%</b><br>"
+	data["result"] = initial(result_path:name)
+	data["probability"] = M.probability
+	return data
+
+/datum/internal_wiki/page/smasher/get_print()
+	var/body = ""
+	if(data["req_mat"] != null)
+		body += "<b>Target Sheet: [data["req_mat"]]</b><br>"
+	var/list/targ_items = data["target_items"]
+	if(targ_items && targ_items.len > 0)
+		for(var/Ir in targ_items)
+			body += "<b>-[Ir]</b><br>"
+	body += "<b>Threshold Energy: [ data["required_energy_min"] ] - [ data["required_energy_max"] ]</b><br>"
+	body += "<b>Threshold Temp: [ data["required_atmos_temp_min"] ]k - [ data["required_atmos_temp_max"] ]k | ([data["required_atmos_temp_min"] - T0C]C - [data["required_atmos_temp_max"] - T0C]C)</b><br>"
+	var/list/inducers = data["inducers"]
+	if(inducers && inducers.len > 0)
+		body += "<br>"
+		body += "<b>Inducers: </b><br>"
+		for(var/R in inducers)
+			body += "<b>-[R] [inducers[R]]u</b><br>"
+	body += "<br>"
+	body += "<b>Results: [ data["result"] ]</b><br>"
+	body += "<b>Probability: [ data["probability"] ]%</b><br>"
 
 
 // CHEMICALS
