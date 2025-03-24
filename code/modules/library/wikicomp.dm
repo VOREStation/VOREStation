@@ -198,7 +198,7 @@
 				if(setpage)
 					if(P)
 						doc_title = P.title
-						doc_body = P.get_data()
+						doc_body = P.get_print() // TODO - pass get_data() instead, as only printing should use get_print()
 					else
 						doc_title = "Error"
 						doc_body = "Invalid data."

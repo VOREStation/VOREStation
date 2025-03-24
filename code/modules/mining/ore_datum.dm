@@ -66,6 +66,7 @@
 	display_name = ORE_SAND
 	smelts_to = MAT_GLASS
 	alloy = 1
+	ore = /obj/item/ore/glass
 	compresses_to = MAT_SANDSTONE
 
 /ore/phoron
@@ -141,6 +142,7 @@
 	display_name = "metallic hydrogen"
 	smelts_to = MAT_TRITIUM
 	compresses_to = MAT_METALHYDROGEN
+	ore = /obj/item/ore/hydrogen
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_HYDROGEN
 

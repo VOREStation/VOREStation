@@ -195,6 +195,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			var/res = R.result
 			food_recipes[Rp] = list(
 						"Result" = "[initial(res:name)]",
+						"ResultPath" = res,
 						"Desc" = "[initial(res:desc)]",
 						"Flavor" = "",
 						"ResAmt" = "1",
@@ -212,6 +213,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// basically condiments, tofu, cheese, soysauce, etc
 	for(var/decl/chemical_reaction/instant/food/CR in SSchemistry.chemical_reactions)
 		food_recipes[CR.type] = list("Result" = CR.name,
+								"ResultPath" = null,
 								"ResAmt" = CR.result_amount,
 								"Reagents" = CR.required_reagents ? CR.required_reagents.Copy() : list(),
 								"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list(),
@@ -419,6 +421,8 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/ore/assemble(var/ore/O)
 	title = O.display_name
 	data["title"] = title
+	var/ore_path = O.ore
+	add_icon(data, initial(ore_path:icon), initial(ore_path:icon_state), "#ffffff")
 	// Get internal data
 	data["smelting"] = null
 	if(O.smelts_to)
@@ -463,14 +467,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/N in collect)
 			grind_list[N] = "[collect[N] * per_part]"
 		data["grind_reagents"] = grind_list
-	return data
 
 /datum/internal_wiki/page/ore/get_print()
 	var/body = ""
 	if(data["smelting"])
-		body += "<b>Smelting: [ data["smelting"] ]</b><br>"
+		body += "<b>Smelting: [data["smelting"]]</b><br>"
 	if(data["compressing"])
-		body += "<b>Compressing: [ data["compressing"] ]</b><br>"
+		body += "<b>Compressing: [data["compressing"]]</b><br>"
 	if(data["alloys"])
 		body += "<br>"
 		body += "<b>Alloy Component of: </b><br>"
@@ -483,7 +486,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["pump_reagent"])
 		body += "<br>"
 		body += "<b>Fluid Pump Results:</b><br>"
-		body += "<b>-[ data["pump_reagent"] ]</b><br>"
+		body += "<b>-[data["pump_reagent"]]</b><br>"
 	if(data["grind_reagents"])
 		body += "<br>"
 		body += "<b>Ore Grind Results: </b><br>"
@@ -497,13 +500,13 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/material/assemble(var/datum/material/M)
 	title = M.display_name
 	data["title"] = title
+	var/stack_path = M.stack_type
+	add_icon(data, initial(stack_path:icon), initial(stack_path:icon_state), "#ffffff")
 	// Get internal data
 	data["integrity"] = M.integrity
 	data["hardness"] = M.hardness
 	data["weight"] = M.weight
-
-	var/stack_size = 50 // If there are ever stacks that aren't limited by 50.... Is there? Is this a define?
-	data["stack_size"] = stack_size
+	data["stack_size"] = initial(stack_path:max_amount)
 	data["supply_points"] = M.supply_conversion_value
 	var/value = M.supply_conversion_value * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
@@ -547,33 +550,32 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/datum/stack_recipe/R in M.recipes)
 			recipie_list.Add(R.title)
 		data["recipies"] = recipie_list
-	return data
 
 /datum/internal_wiki/page/material/get_print()
 	var/body = ""
-	body += "<b>Integrity: [ data["integrity"] ]</b><br>"
-	body += "<b>Hardness: [ data["hardness"] ]</b><br>"
-	body += "<b>Weight: [ data["weight"] ]</b><br>"
+	body += "<b>Integrity: [data["integrity"]]</b><br>"
+	body += "<b>Hardness: [data["hardness"]]</b><br>"
+	body += "<b>Weight: [data["weight"]]</b><br>"
 	var/points = data["supply_points"]
 	var/stack_size = data["stack_size"]
 	body += "<b>Supply Points: [points] per sheet, [points * stack_size] per stack of [stack_size]</b><br>"
 	var/value = data["market_price"]
 	body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"] per sheet  |  [(value*stack_size)] [(value*stack_size) > 1 ? "thalers" : "thaler"] per stack of [stack_size]</b><br>"
 	body += "<br>"
-	body += "<b>Transparent: [ data["opacity"] >= 0.5 ? "No" : "Yes"]</b><br>"
-	body += "<b>Conductive: [ data["conductive"] ? "Yes" : "No"]</b><br>"
-	body += "<b>Stability: [ data["protectiveness"] ]</b><br>"
-	body += "<b>Blast Res.: [ data["explosion_resistance"] ]</b><br>"
-	body += "<b>Radioactivity: [ data["radioactivity"] ]</b><br>"
-	body += "<b>Reflectivity: [ data["reflectivity"] * 100 ]%</b><br>"
+	body += "<b>Transparent: [data["opacity"] >= 0.5 ? "No" : "Yes"]</b><br>"
+	body += "<b>Conductive: [data["conductive"] ? "Yes" : "No"]</b><br>"
+	body += "<b>Stability: [data["protectiveness"]]</b><br>"
+	body += "<b>Blast Res.: [data["explosion_resistance"]]</b><br>"
+	body += "<b>Radioactivity: [data["radioactivity"]]</b><br>"
+	body += "<b>Reflectivity: [data["reflectivity"] * 100]%</b><br>"
 	body += "<br>"
 	if(data["melting_point"] > 0)
-		body += "<b>Melting Point: [ data["melting_point"] ]K ([data["melting_point"] - T0C]C)</b><br>"
+		body += "<b>Melting Point: [data["melting_point"]]K ([data["melting_point"] - T0C]C)</b><br>"
 	else
 		body += "<b>Melting Point: --- </b><br>"
 
 	if(data["ignition_point"] > 0)
-		body += "<b>Ignition Point: [ data["ignition_point"] ]K ([data["ignition_point"] - T0C]C)</b><br>"
+		body += "<b>Ignition Point: [data["ignition_point"]]K ([data["ignition_point"] - T0C]C)</b><br>"
 	else
 		body += "<b>Ignition Point: --- </b><br>"
 	if(data["grind_reagents"])
@@ -596,6 +598,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/seed/assemble(var/datum/seed/S)
 	title = S.display_name
 	data["title"] = title
+	add_icon(data, 'icons/obj/hydroponics_growing.dmi', "[S.get_trait(TRAIT_PLANT_ICON)]-[S.growth_stages]", S.get_trait(TRAIT_PLANT_COLOUR))
 	// Get internal data
 	data["feeding"] = S.get_trait(TRAIT_REQUIRES_NUTRIENTS)
 	data["watering"] = S.get_trait(TRAIT_REQUIRES_WATER)
@@ -671,15 +674,14 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(mut)
 				mutations.Add(mut.display_name)
 		data["mutations"] = mutations
-	return data
 
 /datum/internal_wiki/page/seed/get_print()
 	var/body = ""
-	body  += "<b>Requires Feeding: [ data["feeding"] ? "YES" : "NO"]</b><br>"
-	body  += "<b>Requires Watering: [ data["watering"] ? "YES" : "NO"]</b><br>"
-	body  += "<b>Requires Light: [ data["lighting"] ] lumen[ data["lighting"] == 1 ? "" : "s"]</b><br>"
+	body  += "<b>Requires Feeding: [data["feeding"] ? "YES" : "NO"]</b><br>"
+	body  += "<b>Requires Watering: [data["watering"] ? "YES" : "NO"]</b><br>"
+	body  += "<b>Requires Light: [data["lighting"]] lumen[data["lighting"] == 1 ? "" : "s"]</b><br>"
 	if(data["yield"] > 0)
-		body  += "<b>Yield: [ data["yield"] ]</b><br>"
+		body  += "<b>Yield: [data["yield"]]</b><br>"
 	body  += "<br>"
 	body  += "<b>Traits:</b><br>"
 	var/list/traits = data["traits"]
@@ -725,6 +727,8 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/smasher/assemble(var/datum/particle_smasher_recipe/M)
 	title = M.display_name
 	data["title"] = title
+	var/result_path = M.result
+	add_icon(data, initial(result_path:icon), initial(result_path:icon_state), "#ffffff")
 	// Get internal data
 	var/req_mat = M.required_material
 	data["req_mat"] = null
@@ -753,10 +757,8 @@ SUBSYSTEM_DEF(internal_wiki)
 				inducers["[Rd.name]"] = amnt
 			else
 				log_runtime(EXCEPTION("Invalid reagent id: [Rd] in inducer for atom smasher [title]"))
-	var/result_path = M.result
 	data["result"] = initial(result_path:name)
 	data["probability"] = M.probability
-	return data
 
 /datum/internal_wiki/page/smasher/get_print()
 	var/body = ""
@@ -766,8 +768,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(targ_items && targ_items.len > 0)
 		for(var/Ir in targ_items)
 			body += "<b>-[Ir]</b><br>"
-	body += "<b>Threshold Energy: [ data["required_energy_min"] ] - [ data["required_energy_max"] ]</b><br>"
-	body += "<b>Threshold Temp: [ data["required_atmos_temp_min"] ]k - [ data["required_atmos_temp_max"] ]k | ([data["required_atmos_temp_min"] - T0C]C - [data["required_atmos_temp_max"] - T0C]C)</b><br>"
+	body += "<b>Threshold Energy: [data["required_energy_min"]] - [data["required_energy_max"]]</b><br>"
+	body += "<b>Threshold Temp: [data["required_atmos_temp_min"]]k - [data["required_atmos_temp_max"]]k | ([data["required_atmos_temp_min"] - T0C]C - [data["required_atmos_temp_max"] - T0C]C)</b><br>"
 	var/list/inducers = data["inducers"]
 	if(inducers && inducers.len > 0)
 		body += "<br>"
@@ -775,29 +777,51 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/R in inducers)
 			body += "<b>-[R] [inducers[R]]u</b><br>"
 	body += "<br>"
-	body += "<b>Results: [ data["result"] ]</b><br>"
-	body += "<b>Probability: [ data["probability"] ]%</b><br>"
+	body += "<b>Results: [data["result"]]</b><br>"
+	body += "<b>Probability: [data["probability"]]%</b><br>"
+	return body
 
 
 // CHEMICALS
 ////////////////////////////////////////////
 /datum/internal_wiki/page/chemical/assemble(var/datum/reagent/R)
 	title = R.name
-	var/body = ""
-	body += "<b>Description: </b>[R.description]<br>"
+	data["title"] = title
+	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+	// Get internal data
+	data["description"] = R.description
 	/* Downstream features
+	data["addictive"] = 0
 	if(R.id in addictives)
-		body  += "<b>DANGER, [(R.id in fast_addictives) ? "highly " : ""]addictive.</b><br>"
-	var/tank_size = CARGOTANKER_VOLUME
-	if(R.industrial_use)
-		body  += "<b>Industrial Use: </b>[R.industrial_use]<br>"
-	body += "<b>Supply Points: [R.supply_conversion_value] per unit, [R.supply_conversion_value * tank_size] per [tank_size] tank</b><br>"
+		data["addictive"] = (R.id in fast_addictives) ? 2 : 1
+	data["industrial_use"] = R.industrial_use
+	data["supply_points"] = R.supply_conversion_value
 	var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
+	data["market_price"] = value
+	data["sintering"] = global.reagent_sheets[R.id]
+	*/
+	data["overdose"] = R.overdose
+	data["flavor"] = R.taste_description
+	data["allergen"] = R.allergen_type
+	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+
+/datum/internal_wiki/page/chemical/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	/* Downstream features
+	if(data["addictive"])
+		body += "<b>DANGER, [data["addictive"] > 1 ? "highly " : ""]addictive.</b><br>"
+	if(data["industrial_use"])
+		body  += "<b>Industrial Use: </b>[data["industrial_use"]]<br>"
+	var/tank_size = CARGOTANKER_VOLUME
+	body += "<b>Supply Points: [data["supply_points"]] per unit, [data["supply_points"] * tank_size] per [tank_size] tank</b><br>"
+	var/value = data["market_price"]
 	if(value > 0)
 		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"] per [REAGENTS_PER_SHEET] units  |  [(value*tank_size)] [(value*tank_size) > 1 ? "thalers" : "thaler"] per [tank_size] unit tank</b><br>"
-	if(global.reagent_sheets[R.id])
-		var/mat_id = global.reagent_sheets[R.id]
+	if(data["sintering"])
+		var/mat_id = data["sintering"]
 		switch(mat_id)
 			if("FLAG_SMOKE")
 				body += "<b>Sintering Results: COMBUSTION</b><br>"
@@ -806,264 +830,176 @@ SUBSYSTEM_DEF(internal_wiki)
 			if("FLAG_SPIDERS")
 				body += "<b>Sintering Results: DO NOT EVER</b><br>"
 			else
-				var/datum/material/C = get_material_by_name(global.reagent_sheets[R.id])
-				if(C)
-					body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
-				else
-					log_runtime(EXCEPTION("Invalid sintering result id: [global.reagent_sheets[R.id]] in reagent [title]"))
+				var/datum/material/C = get_material_by_name(data["sintering"])
+				body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
 	*/
-	if(R.overdose > 0)
-		body += "<b>Overdose: </b>[R.overdose]U<br>"
-	body += "<b>Flavor: </b>[R.taste_description]<br>"
+	if(data["overdose"] > 0)
+		body += "<b>Overdose: </b>[data["overdose"]]u<br>"
+	body += "<b>Flavor: </b>[data["flavor"]]<br>"
 	body += "<br>"
-	body += get_allergen(R.allergen_type)
+	body += print_allergens(data["allergen"])
 	body += "<br>"
-	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
-	if(reaction_list != null && reaction_list.len > 0)
-		var/segment = 1
-
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-		for(var/decl/chemical_reaction/CR in display_reactions)
-			if(display_reactions.len == 1)
-				body += "<b>Potential Chemical breakdown: </b><br>"
-			else
-				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
-			segment += 1
-
-			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
-				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical instant component for [title]"))
-					continue
-				body += " <b>-Component: </b>[r_RQ.name]<br>"
-			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
-				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical instant inhibitor for [title]"))
-					continue
-				body += " <b>-Inhibitor: </b>[r_IH.name]<br>"
-			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
-				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical instant catalyst for [title]"))
-					continue
-				body += " <b>-Catalyst: </b>[r_CL.name]<br>"
-	else
-		body += "<b>Potential Chemical breakdown: </b><br>UNKNOWN OR BASE-REAGENT<br>"
-
-	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
-	if(distilled_list != null && distilled_list.len > 0)
-		body += "<br>"
-		var/segment = 1
-
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-
-		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
-			if(display_reactions.len == 1)
-				body += "<b>Potential Chemical Distillation: </b><br>"
-			else
-				body += "<b>Potential Chemical Distillation [segment]: </b><br>"
-			segment += 1
-
-			body += " <b>-Temperature: </b> [CR.temp_range[1]]K - [CR.temp_range[2]]K | ([CR.temp_range[1] - T0C]C - [CR.temp_range[2] - T0C]C)<br>"
-			/* Downstream features
-			body += " <b>-Pressure: </b> [isnull(CR.minimum_xgm_pressure) ? 0 : CR.minimum_xgm_pressure]kpa to [isnull(CR.maximum_xgm_pressure) ? "~" : CR.maximum_xgm_pressure]kpa<br>"
-			if(CR.require_xgm_gas)
-				body += " <b>-Requires Gas: </b> [CR.require_xgm_gas]<br>"
-			if(CR.rejects_xgm_gas)
-				body += " <b>-Rejects Gas: </b> [CR.rejects_xgm_gas]<br>"
-			*/
-
-			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
-				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical distilation component for [title]"))
-					continue
-				body += " <b>-Component: </b>[r_RQ.name]<br>"
-			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
-				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical distilation inhibitor for [title]"))
-					continue
-				body += " <b>-Inhibitor: </b>[r_IH.name]<br>"
-			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
-				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical distilation catalyst for [title]"))
-					continue
-				body += " <b>-Catalyst: </b>[r_CL.name]<br>"
-
+	body += print_reaction_data(data)
+	return body
 
 // FOOD REAGENTS
 ////////////////////////////////////////////
 /datum/internal_wiki/page/food/assemble(var/datum/reagent/R)
 	title = R.name
+	data["title"] = title
+	// Get internal data
+	data["description"] = R.description
+	data["allergen"] = R.allergen_type
+	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+
+/datum/internal_wiki/page/food/get_print()
 	var/body = ""
-	body += "<b>Description: </b>[R.description]<br>"
+	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
-	body += get_allergen(R.allergen_type)
+	body += print_allergens(data["allergen"])
 	body += "<br>"
-	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
-	if(reaction_list != null && reaction_list.len > 0)
-		var/segment = 1
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-		for(var/decl/chemical_reaction/CR in display_reactions)
-			if(display_reactions.len == 1)
-				body += "<b>Recipe: </b><br>"
-			else
-				body += "<b>Recipe </b>[segment]: <br>"
-			segment += 1
-
-			for(var/RQ in CR.required_reagents)
-				var/datum/reagent/RQ_A = SSchemistry.chemical_reagents[RQ]
-				if(!RQ_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in food instant component for [title]"))
-					continue
-				body += " <b>-Component: </b>[RQ_A.name]<br>"
-			for(var/IH in CR.inhibitors)
-				var/datum/reagent/IH_A = SSchemistry.chemical_reagents[IH]
-				if(!IH_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in food instant inhibitor for [title]"))
-					continue
-				body += " <b>-Inhibitor: </b>[IH_A.name]<br>"
-			for(var/CL in CR.catalysts)
-				var/datum/reagent/CL_A = SSchemistry.chemical_reagents[CL]
-				if(!CL_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in food instant catalyst for [title]"))
-					continue
-				body += " <b>-Catalyst: </b>[CL_A.name]<br>"
-	else
-		body += "<b>Recipe: </b>UNKNOWN<br>"
-
+	body += print_reaction_data(data)
 
 // DRINK REAGENTS
 ////////////////////////////////////////////
 /datum/internal_wiki/page/drink/assemble(var/datum/reagent/R)
 	title = R.name
+	data["title"] = title
+	// Use beaker by default, otherwise try metamorphic glass for icon
+	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	var/ico = initial(beaker_path:icon)
+	if(R.glass_icon_file)
+		ico = R.glass_icon_file
+	var/sta = initial(beaker_path:icon_state)
+	if(R.glass_icon_state)
+		sta = R.glass_icon_file
+	add_icon(data, ico, sta, R.color)
+	// Get internal data
+	data["description"] = R.description
+	data["flavor"] = R.taste_description
+	data["allergen"] = R.allergen_type
+	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+
+/datum/internal_wiki/page/drink/get_print()
 	var/body = ""
-	body += "<b>Description: </b>[R.description]<br>"
-	body += "<b>Flavor: </b>[R.taste_description]<br>"
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<b>Flavor: </b>[data["flavor"]]<br>"
 	body += "<br>"
-	body += get_allergen(R.allergen_type)
+	body += print_allergens(data["allergen"])
 	body += "<br>"
-	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
-	if(reaction_list != null && reaction_list.len > 0)
-		var/segment = 1
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-		for(var/decl/chemical_reaction/CR in display_reactions)
-			if(display_reactions.len == 1)
-				body += "Mix: <br>"
-			else
-				body += "Mix [segment]: <br>"
-			segment += 1
-
-			for(var/RQ in CR.required_reagents)
-				var/datum/reagent/RQ_A = SSchemistry.chemical_reagents[RQ]
-				if(!RQ_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in drink instant component for [title]"))
-					continue
-				body += " <b>-Component: </b>[RQ_A.name]<br>"
-			for(var/IH in CR.inhibitors)
-				var/datum/reagent/IH_A = SSchemistry.chemical_reagents[IH]
-				if(!IH_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in drink instant inhibitor for [title]"))
-					continue
-				body += " <b>-Inhibitor: </b>[IH_A.name]<br>"
-			for(var/CL in CR.catalysts)
-				var/datum/reagent/CL_A = SSchemistry.chemical_reagents[CL]
-				if(!CL_A)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in drink instant catalyst for [title]"))
-					continue
-				body += " <b>-Catalyst: </b>[CL_A.name]<br>"
-	else
-		body += "<b>Mix: </b>UNKNOWN<br>"
-
+	body += print_reaction_data(data)
 
 // FOOD RECIPIE
 ////////////////////////////////////////////
 /datum/internal_wiki/page/recipe/assemble(var/list/recipe)
 	title = recipe["Result"]
-	var/body = ""
-	if(recipe["Desc"])
-		body += "<b>Description: </b>[recipe["Desc"]]<br>"
-	if(length(recipe["Flavor"]) > 0)
-		body += "<b>Flavor: </b>[recipe["Flavor"]]<br>"
-	if(recipe["Price"] > 0)
-		var/value = recipe["Price"]
-		body += "<b>Supply Points: </b>[value]<br>"
-		// convert to cash
-		value *= SSsupply.points_per_money
-		value = FLOOR(value * 100,1) / 100 // Truncate decimals
-		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"]</b><br>"
-	body += get_allergen(recipe["Allergens"])
-	body += "<br>"
-	if(recipe["Appliance"])
-		body += "<b>Appliance: </b>[recipe["Appliance"]]<br><br>"
-
-	var/count //For those commas. Not sure of a great other way to do it.
-	//For each large ingredient
-	var/pretty_ing = ""
-	count = 0
-	for(var/ing in recipe["Ingredients"])
-		pretty_ing += "[count == 0 ? "" : ", "][recipe["Ingredients"][ing]]x [ing]"
-		count++
-	if(pretty_ing != "")
-		body +=  "<b>Ingredients: </b>[pretty_ing]<br>"
-
-	//Coating
-	if(!recipe["has_coatable_items"])
-		body += "<b>Coating: </b>N/A, no coatable items<br>"
-	else if(recipe["Coating"] == -1)
-		body += "<b>Coating: </b>Optionally, any coating<br>"
-	else if(isnull(recipe["Coating"]))
-		body += "<b>Coating: </b> Must be uncoated<br>"
+	data["title"] = title
+	var/path = recipe["ResultPath"]
+	if(path)
+		add_icon(data, initial(path:icon), initial(path:icon_state), "#ffffff")
 	else
+		var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+		add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), "#ffffff")
+	// Get internal data
+	data["description"] = recipe["Desc"]
+	data["flavor"] = null
+	if(length(recipe["Flavor"]))
+		data["flavor"] = recipe["Flavor"]
+	var/value = recipe["Price"]
+	data["supply_points"] = value
+	value *= SSsupply.points_per_money // convert to cash
+	value = FLOOR(value * 100,1) / 100 // Truncate decimals
+	data["market_price"] = value
+	data["allergen"] = recipe["Allergens"]
+	data["appliance"] = recipe["Appliance"]
+	data["has_coating"] = recipe["has_coatable_items"]
+	data["coating"] = recipe["Coating"]
+	if(!isnull(data["coating"]) && data["coating"] != -1) // Null is no coatings, -1 is any coating, otherwise specifies the name of coating
 		var/coatingtype = recipe["Coating"]
-		body += "<b>Coating: </b> [initial(coatingtype:name)]<br>"
-
-	//For each fruit... why are they named this when it can be vegis too?
-	var/pretty_fru = ""
-	count = 0
+		data["coating"] = initial(coatingtype:name)
+	var/list/ingred = list()
+	for(var/ing in recipe["Ingredients"])
+		ingred["[ing]"] = recipe["Ingredients"][ing]
+	data["ingredients"] = ingred
+	var/list/fruits = list()
 	for(var/fru in recipe["Fruit"])
-		pretty_fru += "[count == 0 ? "" : ", "][recipe["Fruit"][fru]]x [fru]"
-		count++
-	if(pretty_fru != "")
-		body += "<b>Components: </b> [pretty_fru]<br>"
-
-	//For each reagent
-	var/pretty_rea = ""
-	count = 0
+		fruits["[fru]"] = recipe["Fruit"][fru]
+	data["fruits"] = fruits
+	var/list/reagents = list()
 	for(var/rea in recipe["Reagents"])
-		pretty_rea += "[count == 0 ? "" : ", "][recipe["Reagents"][rea]]u [rea]"
-		count++
-	if(pretty_rea != "")
-		body += "<b>Mix in: </b> [pretty_rea]<br>"
-
-	//For each catalyst
-	var/pretty_cat = ""
-	count = 0
+		reagents["[rea]"] = recipe["Reagents"][rea]
+	data["reagents"] = reagents
+	var/list/catalysts = list()
 	for(var/cat in recipe["Catalysts"])
-		pretty_cat += "[count == 0 ? "" : ", "][recipe["Catalysts"][cat]]u [cat]"
-		count++
-	if(pretty_cat != "")
-		body += "<b>Catalysts: </b> [pretty_cat]<br>"
+		catalysts["[cat]"] = recipe["Catalysts"][cat]
+	data["catalysts"] = catalysts
 
+/datum/internal_wiki/page/recipe/get_print()
+	var/body = ""
+	if(data["description"])
+		body += "<b>Description: </b>[data["description"]]<br>"
+	if(data["flavor"])
+		body += "<b>Flavor: </b>[data["flavor"]]<br>"
+	if(data["supply_points"] > 0)
+		var/value = data["supply_points"]
+		body += "<b>Supply Points: </b>[value]<br>"
+	if(data["market_price"] > 0)
+		var/value = data["market_price"]
+		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"]</b><br>"
+	body += print_allergens(data["allergen"])
+	body += "<br>"
+	if(data["appliance"])
+		body += "<b>Appliance: </b>[data["appliance"]]<br><br>"
+	// ingredients
+	var/list/ingreds = data["ingredients"]
+	if(ingreds.len)
+		var/count = 0
+		var/pretty_ing = ""
+		for(var/ing in ingreds)
+			pretty_ing += "[count == 0 ? "" : ", "][ing]x [ingreds[ing]]"
+			count++
+		if(pretty_ing != "")
+			body +=  "<b>Ingredients: </b>[pretty_ing]<br>"
+	// Coatings
+	if(!data["has_coating"])
+		body += "<b>Coating: </b>N/A, no coatable items<br>"
+	else if(isnull(data["coating"]))
+		body += "<b>Coating: </b> Must be uncoated<br>"
+	else if(data["coating"] == -1)
+		body += "<b>Coating: </b>Optionally, any coating<br>"
+	else
+		body += "<b>Coating: </b> [data["coating"]]<br>"
+	// Fruits/Veggis
+	var/list/fruits = data["fruits"]
+	if(fruits.len)
+		var/count = 0
+		var/pretty_fru = ""
+		for(var/fru in fruits)
+			pretty_fru += "[count == 0 ? "" : ", "][fru]x [fruits[fru]]"
+			count++
+		if(pretty_fru != "")
+			body += "<b>Components: </b> [pretty_fru]<br>"
+	//For each reagent
+	var/list/reags = data["reagents"]
+	if(reags.len)
+		var/count = 0
+		var/pretty_rea = ""
+		for(var/reg in reags)
+			pretty_rea += "[count == 0 ? "" : ", "][reg] [reags[reg]]u"
+			count++
+		if(pretty_rea != "")
+			body += "<b>Mix in: </b> [pretty_rea]<br>"
+	//For each catalyst
+	var/list/catalis = data["catalysts"]
+	if(catalis.len)
+		var/count = 0
+		var/pretty_cat = ""
+		for(var/cat in catalis)
+			pretty_cat += "[count == 0 ? "" : ", "][cat] [catalis[cat]]u"
+			count++
+		if(pretty_cat != "")
+			body += "<b>Catalysts: </b> [pretty_cat]<br>"
+	return body
 
 // CATALOG
 ////////////////////////////////////////////
@@ -1073,10 +1009,9 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/catalog/get_data()
 	return catalog_record.desc
 
-
 // MISC HELPERS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/proc/get_allergen(var/allergens)
+/datum/internal_wiki/page/proc/print_allergens(var/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
 	if(allergens > 0)
@@ -1115,3 +1050,144 @@ SUBSYSTEM_DEF(internal_wiki)
 		*/
 		AG += "<br>"
 	return AG
+
+/datum/internal_wiki/page/proc/assemble_reaction_data(var/list/data, var/datum/reagent/R, var/list/reaction_list, var/list/distilled_list)
+	PROTECTED_PROC(TRUE)
+	data["instant_reactions"] = null
+	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
+	if(reaction_list != null && reaction_list.len > 0)
+		var/list/display_reactions = list()
+		for(var/decl/chemical_reaction/CR in reaction_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
+			display_reactions.Add(CR)
+
+		var/reactions = list()
+		for(var/decl/chemical_reaction/CR in display_reactions)
+			var/list/assemble_reaction = list()
+			var/list/reqs = list()
+			for(var/RQ in CR.required_reagents)
+				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				if(!r_RQ)
+					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical instant component for [title]"))
+					continue
+				reqs.Add("[r_RQ.name]")
+			assemble_reaction["required"] = reqs
+			var/list/inhib = list()
+			for(var/IH in CR.inhibitors)
+				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				if(!r_IH)
+					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical instant inhibitor for [title]"))
+					continue
+				inhib.Add("[r_IH.name]")
+			assemble_reaction["inhibitor"] = inhib
+			var/list/catal = list()
+			for(var/CL in CR.catalysts)
+				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				if(!r_CL)
+					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical instant catalyst for [title]"))
+					continue
+				catal.Add("[r_CL.name]")
+			assemble_reaction["catalysts"] = catal
+			reactions["[CR.type]"] = assemble_reaction
+		if(display_reactions.len)
+			data["instant_reactions"] = reactions
+
+	data["distilled_reactions"] = null
+	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
+	if(distilled_list != null && distilled_list.len > 0)
+		var/list/display_reactions = list()
+		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
+			display_reactions.Add(CR)
+
+		var/reactions = list()
+		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
+			var/list/assemble_reaction = list()
+			assemble_reaction["temp_min"] = CR.temp_range[1]
+			assemble_reaction["temp_max"] = CR.temp_range[2]
+			/* Downstream features
+			assemble_reaction["xgm_min"] = CR.minimum_xgm_pressure
+			assemble_reaction["xgm_max"] = CR.maximum_xgm_pressure
+			assemble_reaction["require_xgm_gas"] = CR.require_xgm_gas
+			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas
+			*/
+			var/list/reqs = list()
+			for(var/RQ in CR.required_reagents)
+				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				if(!r_RQ)
+					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical distilation component for [title]"))
+					continue
+				reqs.Add("[r_RQ.name]")
+			assemble_reaction["required"] = reqs
+			var/list/inhib = list()
+			for(var/IH in CR.inhibitors)
+				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				if(!r_IH)
+					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical distilation inhibitor for [title]"))
+					continue
+				inhib.Add("[r_IH.name]")
+			assemble_reaction["inhibitor"] = inhib
+			var/list/catal = list()
+			for(var/CL in CR.catalysts)
+				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				if(!r_CL)
+					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical distilation catalyst for [title]"))
+					continue
+				catal.Add("[r_CL.name]")
+			assemble_reaction["catalysts"] = catal
+			reactions["[CR.type]"] = assemble_reaction
+		if(display_reactions.len)
+			data["distilled_reactions"] = reactions
+
+/datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
+	var/body = ""
+	var/list/instant = data["instant_reactions"]
+	if(instant && instant.len > 0)
+		var/segment = 1
+		for(var/path in instant)
+			if(instant.len == 1)
+				body += "<b>Potential Chemical breakdown: </b><br>"
+			else
+				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
+				segment++
+			for(var/RQ in instant[path]["required"])
+				body += " <b>-Component: </b>[RQ]<br>"
+			for(var/IH in instant[path]["inhibitor"])
+				body += " <b>-Inhibitor: </b>[IH]<br>"
+			for(var/CL in instant[path]["catalysts"])
+				body += " <b>-Catalyst: </b>[CL]<br>"
+	else
+		body += "<b>Potential Chemical breakdown: </b><br>UNKNOWN OR BASE-REAGENT<br>"
+
+	var/list/distilled = data["distilled_reactions"]
+	if(distilled && distilled.len > 0)
+		var/segment = 1
+		for(var/path in distilled)
+			if(distilled.len == 1)
+				body += "<b>Potential Chemical breakdown: </b><br>"
+			else
+				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
+				segment++
+			/* Downstream features
+			body += " <b>-Temperature: </b> [distilled[path]["xgm_min"]]K - [distilled[path]["xgm_max"]]K | ([distilled[path]["xgm_min"] - T0C]C - [distilled[path]["xgm_max"] - T0C]C)<br>"
+			if(distilled[path]["require_xgm_gas"])
+				body += " <b>-Requires Gas: </b> [distilled[path]["require_xgm_gas"])]<br>"
+			if(distilled[path]["rejects_xgm_gas"])
+				body += " <b>-Rejects Gas: </b> [distilled[path]["rejects_xgm_gas"]]<br>"
+			*/
+			for(var/RQ in distilled[path]["required"])
+				body += " <b>-Component: </b>[RQ]<br>"
+			for(var/IH in distilled[path]["inhibitor"])
+				body += " <b>-Inhibitor: </b>[IH]<br>"
+			for(var/CL in distilled[path]["catalysts"])
+				body += " <b>-Catalyst: </b>[CL]<br>"
+	return body
+
+/datum/internal_wiki/page/proc/add_icon(var/list/data, var/ic, var/is, var/col)
+	var/load_data = list()
+	load_data["icon"] = ic // dmi path
+	load_data["state"] = is // string
+	load_data["color"] = col // html color
+	data["icon_data"] = load_data
