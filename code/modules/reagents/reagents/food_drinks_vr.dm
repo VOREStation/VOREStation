@@ -109,8 +109,6 @@
 
 /datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
@@ -476,8 +474,6 @@
 
 /datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)
@@ -900,12 +896,12 @@
 
 /datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold *= 0.15 //~1/6
 
 	M.druggy = max(M.druggy, 30)
 	M.adjust_nutrition(-10 * removed)

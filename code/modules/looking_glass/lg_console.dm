@@ -155,7 +155,7 @@
 //This could all be done better, but it works for now.
 /obj/machinery/computer/looking_glass/Destroy()
 	unload_program()
-	..()
+	. = ..()
 
 /obj/machinery/computer/looking_glass/ex_act(severity)
 	unload_program()

@@ -1487,20 +1487,6 @@
 	else
 		return ..()
 
-/mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	if(isSynthetic())
-		return
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
-		return
-	if(isSynthetic())
-		return
-	..()
-
 /mob/living/carbon/human/has_brain()
 	if(internal_organs_by_name[O_BRAIN])
 		var/obj/item/organ/brain = internal_organs_by_name[O_BRAIN]

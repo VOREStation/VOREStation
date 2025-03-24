@@ -66,7 +66,8 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 		return
 	icon_state = "offcenter"
 /* VOREStation Removal - Doesn't do anything
-/obj/machinery/gateway/centerstation/New()
+/obj/machinery/gateway/centerstation/Initialize(mapload)
+	. = ..()
 	density = TRUE
 */ //VOREStation Removal End
 
@@ -249,7 +250,8 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	var/ready = 0
 	var/obj/machinery/gateway/centerstation/stationgate = null
 
-/obj/machinery/gateway/centeraway/New()
+/obj/machinery/gateway/centeraway/Initialize(mapload)
+	. = ..()
 	density = TRUE
 
 /obj/machinery/gateway/centeraway/Initialize(mapload)

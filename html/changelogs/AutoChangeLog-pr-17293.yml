@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - code_imp: "Consolidates a bunch of species files for backend cleanup."
+  - bugfix: "Gets rid of an override that overrode tajaran being able to lick wounds"
+  - bugfix: "Xenochimera brains will no longer runtime under certain circumstances."

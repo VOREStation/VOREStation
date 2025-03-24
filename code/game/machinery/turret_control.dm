@@ -51,7 +51,7 @@
 		var/area/A = control_area
 		if(A && istype(A))
 			A.turret_controls -= src
-	..()
+	. = ..()
 
 /obj/machinery/turretid/Initialize(mapload)
 	if(!control_area)

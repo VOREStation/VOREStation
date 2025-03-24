@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { SYNTAX_COLOR, SYNTAX_REGEX } from '../constants';
-import type { Data, selectedData } from '../types';
+import type { selectedData } from '../types';
 import { VoreSelectedBellyDescriptionsBellymode } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsBellymode';
 import { VoreSelectedBellyDescriptionsEscape } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsEscape';
 import { VoreSelectedBellyDescriptionsIdle } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsIdle';
@@ -53,11 +53,12 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
 
 export const VoreSelectedBellyDescriptions = (props: {
   belly: selectedData;
+  vore_words: Record<string, string[]>;
 }) => {
-  const { act, data } = useBackend<Data>();
+  const { act } = useBackend();
   const [showFormatHelp, setShowFormatHelp] = useState(false);
 
-  const { belly } = props;
+  const { belly, vore_words } = props;
   const {
     verb,
     release_verb,
@@ -67,6 +68,8 @@ export const VoreSelectedBellyDescriptions = (props: {
     message_mode,
     escapable,
     interacts,
+    autotransfer_enabled,
+    autotransfer,
     emote_active,
   } = belly;
 
@@ -117,7 +120,7 @@ export const VoreSelectedBellyDescriptions = (props: {
               <LabeledList.Item label="%dest">
                 Only used in transfer messages - belly prey is going to.
               </LabeledList.Item>
-              {Object.entries(data.vore_words).map(([word, options]) => (
+              {Object.entries(vore_words).map(([word, options]) => (
                 <LabeledList.Item key={word} label={word}>
                   Replaces self with one of these options: {options.join(', ')}
                 </LabeledList.Item>
@@ -126,6 +129,33 @@ export const VoreSelectedBellyDescriptions = (props: {
           </Section>
         </Dimmer>
       )}
+      <Box color="label" mt={1} mb={1}>
+        Description:{' '}
+        <Button
+          icon="pencil"
+          onClick={() => act('set_attribute', { attribute: 'b_desc' })}
+        >
+          Edit
+        </Button>
+        <Button
+          icon="question"
+          tooltip="Formatting help"
+          onClick={() => setShowFormatHelp(!showFormatHelp)}
+          selected={showFormatHelp}
+        />
+      </Box>
+      <DescriptionSyntaxHighlighting desc={desc} />
+      <Box color="label" mt={2} mb={1}>
+        Description (Absorbed):{' '}
+        <Button
+          icon="pencil"
+          onClick={() => act('set_attribute', { attribute: 'b_absorbed_desc' })}
+        >
+          Edit
+        </Button>
+      </Box>
+      <DescriptionSyntaxHighlighting desc={absorbed_desc} />
+      <Box mb={2} />
       <LabeledList>
         <LabeledList.Item label="Vore Verb">
           <Button onClick={() => act('set_attribute', { attribute: 'b_verb' })}>
@@ -177,23 +207,32 @@ export const VoreSelectedBellyDescriptions = (props: {
               message_mode={message_mode}
               interacts={interacts}
             />
-            {(message_mode ||
-              !!interacts.transferlocation ||
-              !!interacts.transferlocation_secondary) && (
-              <VoreSelectedBellyDescriptionsTransfer
-                message_mode={message_mode}
-                interacts={interacts}
-              />
-            )}
-            {(message_mode ||
-              interacts.digestchance > 0 ||
-              interacts.absorbchance > 0) && (
-              <VoreSelectedBellyDescriptionsInteractionChance
-                message_mode={message_mode}
-                interacts={interacts}
-              />
-            )}
           </>
+        ) : (
+          ''
+        )}
+        {message_mode ||
+        (escapable &&
+          (!!interacts.transferlocation ||
+            !!interacts.transferlocation_secondary)) ||
+        (autotransfer_enabled &&
+          (!!autotransfer.autotransferlocation ||
+            !!autotransfer.autotransferlocation_secondary)) ? (
+          <VoreSelectedBellyDescriptionsTransfer
+            message_mode={message_mode}
+            interacts={interacts}
+            autotransfer={autotransfer}
+          />
+        ) : (
+          ''
+        )}
+        {message_mode ||
+        (escapable &&
+          (interacts.digestchance > 0 || interacts.absorbchance > 0)) ? (
+          <VoreSelectedBellyDescriptionsInteractionChance
+            message_mode={message_mode}
+            interacts={interacts}
+          />
         ) : (
           ''
         )}
@@ -226,33 +265,6 @@ export const VoreSelectedBellyDescriptions = (props: {
           </Button>
         </LabeledList.Item>
       </LabeledList>
-      <Box color="label" mt={1} mb={1}>
-        Description:{' '}
-        <Button
-          icon="pencil"
-          onClick={() => act('set_attribute', { attribute: 'b_desc' })}
-        >
-          Edit
-        </Button>
-        <Button
-          icon="question"
-          tooltip="Formatting help"
-          onClick={() => setShowFormatHelp(!showFormatHelp)}
-          selected={showFormatHelp}
-        />
-      </Box>
-      <DescriptionSyntaxHighlighting desc={desc} />
-      <Box color="label" mt={2} mb={1}>
-        Description (Absorbed):{' '}
-        <Button
-          icon="pencil"
-          onClick={() => act('set_attribute', { attribute: 'b_absorbed_desc' })}
-        >
-          Edit
-        </Button>
-      </Box>
-      <DescriptionSyntaxHighlighting desc={absorbed_desc} />
-      <Box mb={2} />
     </Box>
   );
 };

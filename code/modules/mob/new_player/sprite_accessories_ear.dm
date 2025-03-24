@@ -1131,6 +1131,29 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "angler_bulb"
 
+/datum/sprite_accessory/ears/demi_tesh_ears
+	name = "Demi-Teshari ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/demi_tesh_ears_female
+	name = "Demi-Teshari female pattern ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demi-tesh-kit-ears_female"
+
+/datum/sprite_accessory/ears/demi_tesh_ears_male
+	name = "Demi-Teshari male pattern ears"
+	desc = ""
+	icon_state = "demi-tesh-kit-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demi-tesh-kit-ears_male"
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"
@@ -1228,13 +1251,13 @@
 	ckeys_allowed = list("natje")
 
 /datum/sprite_accessory/ears/frost
-    name = "Frost antenna"
-    desc = ""
-    icon_state = "frosted_tips"
-    ckeys_allowed = list("tucker0666")
+	name = "Frost antenna"
+	desc = ""
+	icon_state = "frosted_tips"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/ears/sylv_pip
-    name = "sylveon ears and ribbons (Pip Shyner)"
-    desc = ""
-    icon_state = "pipears"
-    ckeys_allowed = list("phoaly")
+	name = "sylveon ears and ribbons (Pip Shyner)"
+	desc = ""
+	icon_state = "pipears"
+	ckeys_allowed = list("phoaly")

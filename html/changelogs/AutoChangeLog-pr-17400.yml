@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "next set of NEW to INIT"

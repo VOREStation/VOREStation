@@ -15,7 +15,7 @@
 		spellremove(src)
 	if(!istype(src,/mob/observer))
 		ghostize()
-	// QDEL_NULL(soulgem) //Soulcatcher. Needs to be ported sometime.
+	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
@@ -517,8 +517,19 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
+		var/examine_text = splittext(flavor_text, "||")
+		var/index = 0
+		var/rendered_text = ""
+		for(var/part in examine_text)
+			if(index % 2)
+				rendered_text += span_spoiler("[part]")
+			else
+				rendered_text += "[part]"
+			index++
+		examine_text = replacetext(rendered_text, "\n", "<BR>")
+		var/datum/browser/popup = new(usr, "[name]", "[name]", 500, 300, src)
+		popup.set_content(examine_text)
+		popup.open()
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()

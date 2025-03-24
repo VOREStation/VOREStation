@@ -46,6 +46,8 @@
 	var/turf/simulated/our_turf = src.loc
 	if(our_turf && istype(our_turf) && our_turf.can_dirty)
 		our_turf.dirt = clamp(max(age ? (dirt ? dirt : 101) : our_turf.dirt, our_turf.dirt), 0, 101)
+		if(mapload && !our_turf.dirt)
+			our_turf.dirt = rand(51, 100)
 		var/calcalpha = our_turf.dirt > 50 ? min((our_turf.dirt - 50) * 5, 255) : 0
 		var/alreadyfound = FALSE
 		for (var/obj/effect/decal/cleanable/dirt/alreadythere in our_turf) //in case of multiple

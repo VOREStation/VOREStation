@@ -10,15 +10,16 @@
 	icon = 'icons/obj/flora/pumpkins.dmi'
 	icon_state = "spawner-jackolantern"
 
-/obj/effect/landmark/carved_pumpkin_spawn/New()
-    var/new_pumpkin = pick(
+/obj/effect/landmark/carved_pumpkin_spawn/Initialize(mapload)
+	..()
+	var/new_pumpkin = pick(
 		prob(70);/obj/structure/flora/pumpkin,
-        prob(60);/obj/structure/flora/pumpkin/carved,
-        prob(30);/obj/structure/flora/pumpkin/carved/scream,
-        prob(30);/obj/structure/flora/pumpkin/carved/girly,
-        prob(10);/obj/structure/flora/pumpkin/carved/owo)
-    new new_pumpkin(src.loc)
-    ..()
+		prob(60);/obj/structure/flora/pumpkin/carved,
+		prob(30);/obj/structure/flora/pumpkin/carved/scream,
+		prob(30);/obj/structure/flora/pumpkin/carved/girly,
+		prob(10);/obj/structure/flora/pumpkin/carved/owo)
+	new new_pumpkin(src.loc)
+	return INITIALIZE_HINT_QDEL
 
 /obj/structure/flora/pumpkin/carved
 	name = "jack o'lantern"
