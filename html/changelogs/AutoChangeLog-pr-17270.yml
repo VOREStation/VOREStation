@@ -1,8 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "The CHEM ANALYZER has been COMPLETELY reworked. Give it a look!"
-  - qol: "Chem analyzer will give you MUCH more information now."
-  - bugfix: "frostoil reaction for steel+plasteel now works properly"
-  - bugfix: "vaccine -> antibody reaction fixed"
-  - code_imp: "Backend stuff to ensure broken chemical reactions will never happen again."

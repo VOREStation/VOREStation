@@ -446,3 +446,73 @@
       an actual threat!
   Willburd:
   - rscadd: Added Antimatter core RTG for POIs
+2025-03-22:
+  Cameron-The-Raven:
+  - qol: Teshari no longer have double slowdown from radsuits
+  - bugfix: Liquid bellies won't create nonexistent chems
+  Diana:
+  - bugfix: Makes mouse rays no longer crash the server under certain circumstances
+  - bugfix: Makes VR pods no longer crash the server
+  - bugfix: Updates TF and makes it no longer cause runtimes & crashes.
+  - bugfix: Makes it so you can no longer repeatedly spawn in VR and clog up the server
+      with hundreds of yourself (humanoids are expensive!)
+  - bugfix: You can no longer escape VR and enter the Real World
+  - qol: Adds a greyscale / glowing effect for TF rays
+  - code_imp: Added a toggle for VR pods to spawn people with clothing or not
+  - rscadd: Ghosts now have a button to enter the VR space if it's spawned in!
+  - rscadd: Ghosts can now enter VR if it's spawned in!
+  - rscadd: Adds the ability to TF into different creatures while in VR
+  - bugfix: Internals will now not randomly turn off
+  Will:
+  - rscadd: The CHEM ANALYZER has been COMPLETELY reworked. Give it a look!
+  - qol: Chem analyzer will give you MUCH more information now.
+  - bugfix: frostoil reaction for steel+plasteel now works properly
+  - bugfix: vaccine -> antibody reaction fixed
+  - code_imp: Backend stuff to ensure broken chemical reactions will never happen
+      again.
+2025-03-23:
+  BigBababooey:
+  - balance: Adjusted cost and wear of Mass Alteration
+  Kashargul:
+  - rscadd: admin verb to modify the shift end
+  - code_imp: tgui core to 1.8.4
+  - rscdel: vchat
+  - rscadd: option to export and import the soulcatcher settings
+  - code_imp: adjust the im and export for the new additions VRDB 0.1 -> VRDB 0.2
+  KillianKirilenko:
+  - qol: changing your scale under the VORE tab will autofill your *current* scale
+      instead of defaulting to the minimum of 25
+  SatinIsle:
+  - bugfix: Fixed train redgate top layer using updown ladders rather than just down
+      ladders.
+  SpadesNeil:
+  - bugfix: Missing internal overlays on grubs and jelly blobs are restored.
+  - code_imp: Fleshed out grubs and jelly blobs.
+  TankTheBirb:
+  - config: contaminates set to FALSE to prevent new bellies from having contamination.
+      Shouldn't affect existing bellies.
+  TheGreatKitsune:
+  - bugfix: Fixes how the teshari radiation hood appears when on the ground.
+  Willburd:
+  - code_imp: fixed various issues related to placing and cutting heavy cables
+  - code_imp: added option in code to allow players to cut heavy cables with a welder
+2025-03-24:
+  Kashargul:
+  - rscadd: text surrounded by || text || will now be spoilered in the statpanel
+  - bugfix: examine will be auto focussed again if the setting is enabled
+  - code_imp: enables tab only indentation test
+  PastelPrinceDan:
+  - maptweak: added xenoarch storage to the stellar delight
+  SatinIsle:
+  - bugfix: Fixed a bug with the private notes panel that showed it in right click
+      menus of other mobs (forcing them to see your notes).
+  Vorestation Staff Consensus (VORESTATION ONLY):
+  - rscdel: Tourettes disabled
+  - rscdel: Rotting Genetics Disabled
+  - rscdel: Xray disabled
+  - spellcheck: Anxiety Disorder name changed to Nervousness
+  - balance: Censored move to Neutral (RP trait)
+  - balance: Nervousness moved to Neutral (RP Trait)
+  - bugfix: FBP dionas will no longer explode
+  xnqm8h:
+  - bugfix: Fixes demuxer output not pushing to other circuits.

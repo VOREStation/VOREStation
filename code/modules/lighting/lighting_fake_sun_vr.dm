@@ -92,12 +92,9 @@ var/static/list/fake_sunlight_zs = list()
 	var/weather_visuals_icon = 'icons/effects/weather.dmi'
 	var/weather_visuals_icon_state = null
 
-/obj/effect/fake_sun/New(loc, ...)
+/obj/effect/fake_sun/Initialize(mapload)
 	. = ..()
 	world_suns += src
-
-/obj/effect/fake_sun/Initialize(mapload)
-	..()
 	if(!advanced_lighting)
 		return INITIALIZE_HINT_LATELOAD
 	do_sun = FALSE
