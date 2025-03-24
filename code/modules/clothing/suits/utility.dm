@@ -109,11 +109,12 @@
 	icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 	icon_state = "rad_fitted"
 	species_restricted = list(SPECIES_TESHARI)
+	slowdown = 0.5
 
 /obj/item/clothing/head/radiation/teshari
 	name = "Small radiation hood"
 	desc = "A specialist hood with radiation protective properties, designed specifically for use by Teshari. Made to order by Aether."
-	icon = 'icons/inventory/suit/item_teshari.dmi'
+	icon = 'icons/inventory/head/item_teshari.dmi'
 	icon_override = 'icons/inventory/head/mob_teshari.dmi'
 	icon_state = "rad_fitted"
 	species_restricted = list(SPECIES_TESHARI)

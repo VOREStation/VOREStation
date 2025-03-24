@@ -50,12 +50,12 @@
 
 		// Every time Vender Zero infects, it says something.
 		vender_zero.speak(pick("Try our aggressive new marketing strategies!", \
-								 "You should buy products to feed your lifestyle obsession!", \
-								 "Consume!", \
-								 "Your money can buy happiness!", \
-								 "Engage direct marketing!", \
-								 "Advertising is legalized lying! But don't let that put you off our great deals!", \
-								 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
+									"You should buy products to feed your lifestyle obsession!", \
+									"Consume!", \
+									"Your money can buy happiness!", \
+									"Engage direct marketing!", \
+									"Advertising is legalized lying! But don't let that put you off our great deals!", \
+									"You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
 
 
 /datum/event2/event/brand_intelligence/should_end()

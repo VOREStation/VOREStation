@@ -1084,14 +1084,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if (href_list["ears_alpha"])
 		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
-			 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+			pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
 		if(new_ear_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if (href_list["secondary_ears_alpha"])
 		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
-		 	pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+			pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
 		if(new_ear_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -1151,7 +1151,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["tail_alpha"])
 		var/new_tail_alpha = tgui_input_number(user, "Choose how transparent your character's tail is.", "Character Preference",
-		 pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
+			pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
 		if(new_tail_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -1185,7 +1185,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	else if(href_list["wing_alpha"])
 		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
-		 pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+			pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
 		if(new_wing_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW

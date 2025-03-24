@@ -305,7 +305,8 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	goal: RETURN HOME status: Successful \n \
 	goal: PRO-PRO"
 
-/obj/item/poi/broken_drone_circuit/phoron_tanker/New()
+/obj/item/poi/broken_drone_circuit/phoron_tanker/Initialize(mapload)
+	. = ..()
 	drone_name = "NED-[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]]"
 	tanker = locate("POI_NT_TANKER_BOAT")	//actual .dmm area has this
 	var/tankername = "Unknown Ship"

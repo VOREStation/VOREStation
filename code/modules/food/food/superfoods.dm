@@ -293,10 +293,10 @@
 	var/slicetime = 15 SECONDS
 
 	var/slicelist = list(/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita/bigslice,
-						 /obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple/bigslice,
-						 /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza/bigslice,
-						 /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza/bigslice,
-						 /obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza/bigslice)
+							/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple/bigslice,
+							/obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza/bigslice,
+							/obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza/bigslice,
+							/obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza/bigslice)
 
 /obj/structure/theonepizza/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W,/obj/item/material/knife))

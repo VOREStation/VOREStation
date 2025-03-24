@@ -15,7 +15,8 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 
-/obj/item/aliencoin/New()
+/obj/item/aliencoin/Initialize(mapload)
+	. = ..()
 	randpixel_xy()
 
 /obj/item/aliencoin/basic
