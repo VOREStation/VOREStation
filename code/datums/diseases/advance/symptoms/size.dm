@@ -26,8 +26,8 @@ BONUS
 	severity = 0
 	symptom_delay_min = 20 SECONDS
 	symptom_delay_max = 60 SECONDS
-	var/min_size = 25
-	var/max_size = 200
+	var/min_size = RESIZE_MINIMUM
+	var/max_size = RESIZE_MAXIMUM
 
 /datum/symptom/size/Activate(datum/disease/advance/A)
 	if(!..())
@@ -36,17 +36,14 @@ BONUS
 	switch(A.stage)
 		if(4, 5)
 			M.emote("twitch")
-			Resize(M, rand(min_size, max_size))
-
-/datum/symptom/size/proc/Resize(mob/living/M, var/size)
-	M.resize(size/100)
+			M.resize(pick(min_size, max_size))
 
 /datum/symptom/size/grow
 	name = "Enlargement Disorder"
-	min_size = 100
-	max_size = 200
+	min_size = RESIZE_NORMAL
+	max_size = RESIZE_MAXIMUM
 
 /datum/symptom/size/shrink
 	name = "Dwindling Malady"
-	min_size = 25
-	max_size = 100
+	min_size = RESIZE_MINIMUM
+	max_size = RESIZE_NORMAL
