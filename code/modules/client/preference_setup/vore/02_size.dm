@@ -92,13 +92,13 @@
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
-		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Set Size", pref.size_multiplier*100, 200, 25)
-		if (!ISINRANGE(new_size,25,200))
+		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from [RESIZE_MINIMUM * 100]% to [RESIZE_MAXIMUM * 100]%", "Set Size", pref.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+		if (!ISINRANGE(new_size, RESIZE_MINIMUM * 100, RESIZE_MAXIMUM * 100))
 			pref.size_multiplier = 1
 			to_chat(user, span_notice("Invalid size."))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)
-			pref.size_multiplier = (new_size/100)
+			pref.size_multiplier = (new_size / 100)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["toggle_fuzzy"])
