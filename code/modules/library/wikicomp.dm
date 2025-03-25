@@ -104,6 +104,7 @@
 	switch(action)
 		if("closesearch")
 			if(!crash)
+				P = null
 				searchmode = null
 				appliance = null
 				doc_title = "Click a search entry!"
@@ -175,6 +176,7 @@
 			if(!crash)
 				var/search = params["data"]
 				var/setpage = TRUE
+				P = null
 				if(searchmode == "Food Recipes")
 					if(!appliance)
 						appliance = params["data"] // have not selected it yet
