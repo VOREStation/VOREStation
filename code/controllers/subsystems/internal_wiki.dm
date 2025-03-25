@@ -1112,7 +1112,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			assemble_reaction["is_slime"] = null
 			if(istype(CR,/decl/chemical_reaction/instant/slime))
 				var/decl/chemical_reaction/instant/slime/CRS = CR
-				var/slime_path = CRS.required
+				var/obj/item/slime_extract/slime_path = CRS.required
 				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions["[CR.type]"] = assemble_reaction
 		if(display_reactions.len)
