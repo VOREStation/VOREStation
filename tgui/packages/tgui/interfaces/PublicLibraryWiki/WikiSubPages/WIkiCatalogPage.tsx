@@ -9,7 +9,10 @@ export const WikiCatalogPage = (props: { catalog: CatalogData }) => {
   return (
     <Section fill scrollable title={capitalize(catalog.name)}>
       <Stack vertical fill>
-        <Stack.Item grow>adawdwd</Stack.Item>
+        <Stack.Item grow>
+          {/* eslint-disable-next-line react/no-danger */}
+          <div dangerouslySetInnerHTML={{ __html: catalog.desc }} />
+        </Stack.Item>
       </Stack>
     </Section>
   );

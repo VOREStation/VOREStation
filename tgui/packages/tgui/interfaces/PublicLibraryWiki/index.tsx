@@ -20,6 +20,7 @@ export const PublicLibraryWiki = (props) => {
     print,
     sub_categories,
     material_data,
+    catalog_data,
   } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
   const [updateAds, setUpdateAds] = useState(false);
@@ -80,11 +81,12 @@ export const PublicLibraryWiki = (props) => {
         <WikiSearchPage
           onUpdateAds={setUpdateAds}
           updateAds={updateAds}
-          material_data={material_data}
           searchmode={searchmode}
           search={search}
           print={print}
           subCats={sub_categories}
+          material_data={material_data}
+          catalog_data={catalog_data}
         />
       ) : (
         <WikiMainPage displayedAds={displayedAds} />

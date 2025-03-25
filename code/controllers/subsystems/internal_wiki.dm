@@ -388,6 +388,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			var/datum/internal_wiki/page/catalog/P = new()
 			P.title = item.name
 			P.catalog_record = item
+			P.assemble()
 			catalogs["[item.name]"] = P
 			if(!searchcache_catalogs[G.name])
 				searchcache_catalogs[G.name] = list()
@@ -1014,11 +1015,9 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/catalog
 	var/datum/category_item/catalogue/catalog_record = null
 
-/datum/internal_wiki/page/catalog/get_data()
-	var/list/data = list()
+/datum/internal_wiki/page/catalog/assemble()
 	data["name"] = catalog_record.name
 	data["desc"] = catalog_record.desc
-	return data
 
 // MISC HELPERS
 ////////////////////////////////////////////
