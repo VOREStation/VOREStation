@@ -5,6 +5,7 @@ import { createSearch } from 'tgui-core/string';
 
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
+import { WikiBotanyPage } from '../WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
 import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
 import { WikiOrePage } from '../WikiSubPages/WikiOrePare';
@@ -30,6 +31,7 @@ export const WikiSearchPage = (
     onUpdateAds,
     updateAds,
     searchmode,
+    botany_data,
     ore_data,
     material_data,
     particle_data,
@@ -46,7 +48,7 @@ export const WikiSearchPage = (
   tabs['Food Recipes'] = null;
   tabs['Drink Recipes'] = null;
   tabs['Chemistry'] = null;
-  tabs['Botany'] = null;
+  tabs['Botany'] = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
   tabs['Ores'] = !!ore_data && <WikiOrePage ores={ore_data} />;
   tabs['Materials'] = !!material_data && (
     <WikiMaterialPage materials={material_data} />

@@ -15,7 +15,23 @@ export type PageData = {
   particle_data: ParticleData | null;
   catalog_data: CatalogData | null;
   ore_data: OreData | null;
+  botany_data: BotanyData | null;
 };
+
+export type BotanyData = {
+  title: string;
+  o;
+  feeding: number | null;
+  watering: number | null;
+  lighting: number | null;
+  crop_yield: number | null;
+  traits: string[] | null;
+  mob_product: string;
+  chem_breakdown: string[] | null;
+  gas_consumed: Record<string, number> | null;
+  gas_exuded: Record<string, number> | null;
+  mutations: string[] | null;
+} & Icon;
 
 export type OreData = {
   title: string;

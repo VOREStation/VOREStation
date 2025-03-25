@@ -12,7 +12,11 @@ export const WikiSpoileredList = (props: {
       <>
         <LabeledList.Divider />
         <LabeledList.Item label={title}>
-          <Collapsible color="transparent" title={'Reveal ' + title}>
+          <Collapsible
+            key={title}
+            color="transparent"
+            title={'Reveal ' + title}
+          >
             {entries.map((entry) => (
               <Box key={capitalize(entry)}>- {entry}</Box>
             ))}
@@ -25,7 +29,7 @@ export const WikiSpoileredList = (props: {
   return (
     <>
       <LabeledList.Divider />
-      <LabeledList.Item label={title}>
+      <LabeledList.Item key={title} label={title}>
         <Collapsible color="transparent" title={'Reveal ' + title}>
           {Object.keys(entries).map((entry) => (
             <Box key={entry}>

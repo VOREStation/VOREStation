@@ -49,9 +49,11 @@
 	var/data = list()
 	if(SSinternal_wiki)
 		data["crash"] = crash
+		data["botany_data"] = null
 		data["material_data"] = null
 		data["particle_data"] = null
 		data["catalog_data"] = null
+		data["ore_data"] = null
 		data["sub_categories"] = null
 		if(!crash)
 			// search page
@@ -73,6 +75,8 @@
 
 				if("Botany")
 					data["search"] = SSinternal_wiki.get_searchcache_seed()
+					if(P)
+						data["botany_data"] = P.get_data()
 
 				if("Catalogs")
 					data["sub_categories"] = SSinternal_wiki.get_catalogs()

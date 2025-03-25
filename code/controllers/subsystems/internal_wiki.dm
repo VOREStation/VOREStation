@@ -612,7 +612,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["feeding"] = S.get_trait(TRAIT_REQUIRES_NUTRIENTS)
 	data["watering"] = S.get_trait(TRAIT_REQUIRES_WATER)
 	data["lighting"] = S.get_trait(TRAIT_IDEAL_LIGHT)
-	data["yield"] = S.get_trait(TRAIT_YIELD)
+	data["crop_yield"] = S.get_trait(TRAIT_YIELD)
 
 	var/list/traits = list()
 	if(S.has_item_product)
@@ -689,8 +689,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	body  += "<b>Requires Feeding: [data["feeding"] ? "YES" : "NO"]</b><br>"
 	body  += "<b>Requires Watering: [data["watering"] ? "YES" : "NO"]</b><br>"
 	body  += "<b>Requires Light: [data["lighting"]] lumen[data["lighting"] == 1 ? "" : "s"]</b><br>"
-	if(data["yield"] > 0)
-		body  += "<b>Yield: [data["yield"]]</b><br>"
+	if(data["crop_yield"] > 0)
+		body  += "<b>Yield: [data["crop_yield"]]</b><br>"
 	body  += "<br>"
 	body  += "<b>Traits:</b><br>"
 	var/list/traits = data["traits"]
