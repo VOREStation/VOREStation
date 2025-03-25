@@ -1085,8 +1085,6 @@
 
 	male_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
 	female_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
-	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
-	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
 	center_offset = 0
 
 	blood_color = "#D514F7"
