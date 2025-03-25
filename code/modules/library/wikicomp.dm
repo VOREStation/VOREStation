@@ -72,6 +72,8 @@
 
 				if("Chemistry")
 					data["search"] = SSinternal_wiki.get_searchcache_chem()
+					if(P)
+						data["chemistry_data"] = P.get_data()
 
 				if("Botany")
 					data["search"] = SSinternal_wiki.get_searchcache_seed()

@@ -60,7 +60,11 @@ export const WikiBotanyPage = (props: { seeds: BotanyData }) => {
               {!!crop_yield && crop_yield > 0 ? crop_yield : <NotAvilableBox />}
             </LabeledList.Item>
             {!!traits && (
-              <WikiSpoileredList entries={traits} title={'Traits'} />
+              <WikiSpoileredList
+                ourKey={title}
+                entries={traits}
+                title={'Traits'}
+              />
             )}
             {!!mob_product && (
               <>
@@ -74,21 +78,31 @@ export const WikiBotanyPage = (props: { seeds: BotanyData }) => {
             )}
             {!!chem_breakdown && (
               <WikiSpoileredList
+                ourKey={title}
                 entries={chem_breakdown}
                 title={'Chemical Breakdown'}
               />
             )}
             {!!gas_consumed && (
               <WikiSpoileredList
+                ourKey={title}
                 entries={gas_consumed}
                 title={'Gas Consumed'}
               />
             )}
             {!!gas_exuded && (
-              <WikiSpoileredList entries={gas_exuded} title={'Gas Exuded'} />
+              <WikiSpoileredList
+                ourKey={title}
+                entries={gas_exuded}
+                title={'Gas Exuded'}
+              />
             )}
             {!!mutations && (
-              <WikiSpoileredList entries={mutations} title={'Mutations'} />
+              <WikiSpoileredList
+                ourKey={title}
+                entries={mutations}
+                title={'Mutations'}
+              />
             )}
           </LabeledList>
         </Stack.Item>

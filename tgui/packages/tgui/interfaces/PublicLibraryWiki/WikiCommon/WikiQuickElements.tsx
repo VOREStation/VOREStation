@@ -1,4 +1,4 @@
-import { Box } from 'tgui-core/components';
+import { Box, LabeledList } from 'tgui-core/components';
 
 import { zeroC } from '../constants';
 
@@ -99,4 +99,55 @@ export const ProbabilityBox = (props: { chance: number }) => {
     return <Box color="olive">{chance}%</Box>;
   }
   return <Box color="green">{chance}%</Box>;
+};
+
+export const TierdBox = (props: { level: number; label: string }) => {
+  const { level, label } = props;
+
+  if (level >= 1) {
+    return <Box color="yellow">WARNING, {label}</Box>;
+  }
+  if (level >= 2) {
+    return <Box color="red">DANGE, highly {label}</Box>;
+  }
+  return <NotAvilableBox />;
+};
+
+export const SupplyEntry = (props: {
+  supply_points?: number;
+  market_price?: number;
+  stack_size?: number;
+}) => {
+  const { supply_points, market_price, stack_size } = props;
+
+  return (
+    <>
+      <LabeledList.Item label="Supply Points">
+        {supply_points ? (
+          supply_points +
+          ' per sheet, ' +
+          (!!stack_size &&
+            supply_points * stack_size + ' per stack of ' + stack_size)
+        ) : (
+          <NotAvilableBox />
+        )}
+      </LabeledList.Item>
+      <LabeledList.Item label="Market Price">
+        {market_price ? (
+          market_price +
+          ' thaler' +
+          (market_price > 1 ? 's' : '') +
+          ' per sheet  |  ' +
+          (!!stack_size &&
+            market_price * stack_size +
+              ' thaler' +
+              (market_price * stack_size > 1 ? 's' : '') +
+              ' per stack of ' +
+              stack_size)
+        ) : (
+          <NotAvilableBox />
+        )}
+      </LabeledList.Item>
+    </>
+  );
 };

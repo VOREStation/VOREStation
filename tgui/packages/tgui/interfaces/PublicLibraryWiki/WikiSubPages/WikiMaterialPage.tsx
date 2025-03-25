@@ -7,6 +7,7 @@ import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
 import {
   NoBox,
   NotAvilableBox,
+  SupplyEntry,
   TemperatureBox,
   YesBox,
 } from '../WikiCommon/WikiQuickElements';
@@ -50,24 +51,11 @@ export const WikiMaterialPage = (props: { materials: MaterialData }) => {
             <LabeledList.Item label="Hardness">{hardness}</LabeledList.Item>
             <LabeledList.Item label="Weight">{weight}</LabeledList.Item>
             <LabeledList.Divider />
-            <LabeledList.Item label="Supply Points">
-              {supply_points +
-                ' per sheet, ' +
-                supply_points * stack_size +
-                ' per stack of ' +
-                stack_size}
-            </LabeledList.Item>
-            <LabeledList.Item label="Market Price">
-              {market_price +
-                ' thaler' +
-                (market_price > 1 ? 's' : '') +
-                ' per sheet  |  ' +
-                market_price * stack_size +
-                ' thaler' +
-                (market_price * stack_size > 1 ? 's' : '') +
-                ' per stack of ' +
-                stack_size}
-            </LabeledList.Item>
+            <SupplyEntry
+              supply_points={supply_points}
+              market_price={market_price}
+              stack_size={stack_size}
+            />
             <LabeledList.Divider />
             <LabeledList.Item label="Transparent">
               {opacity > 0.5 ? <YesBox /> : <NoBox />}
@@ -113,12 +101,17 @@ export const WikiMaterialPage = (props: { materials: MaterialData }) => {
             </LabeledList.Item>
             {grind_reagents && (
               <WikiSpoileredList
+                ourKey={title}
                 title="Sheet Grind Result"
                 entries={grind_reagents}
               />
             )}
             {recipies && (
-              <WikiSpoileredList title="Recipes" entries={recipies} />
+              <WikiSpoileredList
+                ourKey={title}
+                title="Recipes"
+                entries={recipies}
+              />
             )}
           </LabeledList>
         </Stack.Item>

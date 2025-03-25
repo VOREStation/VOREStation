@@ -7,6 +7,7 @@ import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiBotanyPage } from '../WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
+import { WikiChemistryPage } from '../WikiSubPages/WikiChemistryPage';
 import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
 import { WikiOrePage } from '../WikiSubPages/WikiOrePare';
 import { WikiParticlePage } from '../WikiSubPages/WikiParticlePage';
@@ -33,6 +34,7 @@ export const WikiSearchPage = (
     searchmode,
     botany_data,
     ore_data,
+    chemistry_data,
     material_data,
     particle_data,
     catalog_data,
@@ -47,7 +49,9 @@ export const WikiSearchPage = (
   const tabs: React.JSX.Element[] = [];
   tabs['Food Recipes'] = null;
   tabs['Drink Recipes'] = null;
-  tabs['Chemistry'] = null;
+  tabs['Chemistry'] = !!chemistry_data && (
+    <WikiChemistryPage chems={chemistry_data} />
+  );
   tabs['Botany'] = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
   tabs['Ores'] = !!ore_data && <WikiOrePage ores={ore_data} />;
   tabs['Materials'] = !!material_data && (
