@@ -797,7 +797,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(R.id in addictives)
 		data["addictive"] = (R.id in fast_addictives) ? 2 : 1
 	data["industrial_use"] = R.industrial_use
-	data["supply_points"] = R.supply_conversion_value
+	data["supply_points"] = R.supply_conversion_value ? R.supply_conversion_value : 0
 	var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
 	data["market_price"] = value
@@ -906,7 +906,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["flavor"] = null
 	if(length(recipe["Flavor"]))
 		data["flavor"] = recipe["Flavor"]
-	var/value = recipe["Price"]
+	var/value = recipe["Price"] ? recipe["Price"] : 0
 	data["supply_points"] = value
 	value *= SSsupply.points_per_money // convert to cash
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
