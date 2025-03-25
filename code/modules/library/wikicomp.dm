@@ -38,10 +38,18 @@
 		ui = new(user, src, "PublicLibraryWiki", name)
 		ui.open()
 
+
+/obj/machinery/librarywikicomp/tgui_close(mob/user)
+	. = ..()
+	P = null
+	appliance= null
+	searchmode = null
+
 /obj/machinery/librarywikicomp/tgui_data(mob/user)
 	var/data = list()
 	if(SSinternal_wiki)
 		data["crash"] = crash
+		data["material_data"] = null
 		if(!crash)
 			// search page
 			data["errorText"] = ""

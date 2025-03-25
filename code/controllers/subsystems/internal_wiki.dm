@@ -501,7 +501,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = M.display_name
 	data["title"] = title
 	var/obj/item/stack/stack_path = M.stack_type
-	add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), "#ffffff")
+	add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), initial(M.icon_colour))
 	// Get internal data
 	data["integrity"] = M.integrity
 	data["hardness"] = M.hardness

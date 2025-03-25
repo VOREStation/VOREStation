@@ -10,7 +10,7 @@ export type Data = {
   appliance: string;
 } & Partial<PageData>;
 
-export type PageData = { material_data: MaterialData };
+export type PageData = { material_data: MaterialData | null };
 
 export type MaterialData = {
   title: string;
