@@ -389,9 +389,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			P.title = item.name
 			P.catalog_record = item
 			catalogs["[item.name]"] = P
-			if(!searchcache_catalogs[name])
-				searchcache_catalogs[name] = list()
-			var/list/SC = searchcache_catalogs[name]
+			if(!searchcache_catalogs[G.name])
+				searchcache_catalogs[G.name] = list()
+			var/list/SC = searchcache_catalogs[G.name]
 			SC.Add(P.title)
 			pages.Add(P)
 		catalog_list.Add(G.name)
