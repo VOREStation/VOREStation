@@ -736,19 +736,20 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/smasher/assemble(var/datum/particle_smasher_recipe/M)
 	title = M.display_name
 	data["title"] = title
-	var/result_path = M.result
-	add_icon(data, initial(result_path:icon), initial(result_path:icon_state), "#ffffff")
+	var/obj/item/stack/material/result_path = M.result
+	var/datum/material/result_mat = get_material_by_name(initial(result_path.default_type))
+	add_icon(data, initial(result_path.icon), initial(result_path.icon_state), initial(result_mat.icon_colour))
 	// Get internal data
-	var/req_mat = M.required_material
+	var/obj/item/stack/req_mat = M.required_material
 	data["req_mat"] = null
 	if(req_mat != null)
-		data["req_mat"] = initial(req_mat:name)
+		data["req_mat"] = initial(req_mat.name)
 
 	data["target_items"] = null
 	if(M.items && M.items.len > 0)
 		var/list/targs = list()
-		for(var/Ir in M.items)
-			targs.Add(initial(Ir:name))
+		for(var/obj/Ir as anything in M.items)
+			targs.Add(initial(Ir.name))
 		data["target_items"] = targs
 
 	data["required_energy_min"] = M.required_energy_min
@@ -766,7 +767,8 @@ SUBSYSTEM_DEF(internal_wiki)
 				inducers["[Rd.name]"] = amnt
 			else
 				log_runtime(EXCEPTION("Invalid reagent id: [Rd] in inducer for atom smasher [title]"))
-	data["result"] = initial(result_path:name)
+		data["inducers"] = inducers
+	data["result"] = initial(result_path.name)
 	data["probability"] = M.probability
 
 /datum/internal_wiki/page/smasher/get_print()

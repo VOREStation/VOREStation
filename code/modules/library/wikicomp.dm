@@ -50,6 +50,7 @@
 	if(SSinternal_wiki)
 		data["crash"] = crash
 		data["material_data"] = null
+		data["particle_data"] = null
 		data["catalog_data"] = null
 		data["sub_categories"] = null
 		if(!crash)
@@ -88,6 +89,8 @@
 
 				if("Particle Physics")
 					data["search"] = SSinternal_wiki.get_searchcache_particle()
+					if(P)
+						data["particle_data"] = P.get_data()
 
 				if("Ores")
 					data["search"] = SSinternal_wiki.get_searchcache_ore()

@@ -12,10 +12,22 @@ export type Data = {
 
 export type PageData = {
   material_data: MaterialData | null;
+  particle_data: ParticleData | null;
   catalog_data: CatalogData | null;
 };
 
-export type CatalogData = { name: string; desc: string };
+export type ParticleData = {
+  title: string;
+  req_mat: string | null;
+  target_items: string[] | null;
+  required_energy_min: number;
+  required_energy_max: number;
+  required_atmos_temp_min: number;
+  required_atmos_temp_max: number;
+  inducers: Record<string, number> | null;
+  result: string;
+  probability: number;
+} & Icon;
 
 export type MaterialData = {
   title: string;
@@ -36,6 +48,8 @@ export type MaterialData = {
   grind_reagents: Record<string, string> | null;
   recipies: string[] | null;
 } & Icon;
+
+export type CatalogData = { name: string; desc: string };
 
 type Icon = {
   icon_data: { icon: string; state: string; color: string; dat: string };

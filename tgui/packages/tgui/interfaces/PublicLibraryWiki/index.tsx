@@ -20,6 +20,7 @@ export const PublicLibraryWiki = (props) => {
     print,
     sub_categories,
     material_data,
+    particle_data,
     catalog_data,
   } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
@@ -86,6 +87,7 @@ export const PublicLibraryWiki = (props) => {
           print={print}
           subCats={sub_categories}
           material_data={material_data}
+          particle_data={particle_data}
           catalog_data={catalog_data}
         />
       ) : (

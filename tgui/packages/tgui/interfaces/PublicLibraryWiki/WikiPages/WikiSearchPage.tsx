@@ -7,6 +7,7 @@ import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
 import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
+import { WikiParticlePage } from '../WikiSubPages/WikiParticlePage';
 
 export const WikiSearchPage = (
   props: {
@@ -16,7 +17,7 @@ export const WikiSearchPage = (
     search: string[];
     print: string;
     subCats: string[] | null;
-  } & Partial<PageData>,
+  } & Required<PageData>,
 ) => {
   const { act } = useBackend();
   const [subCatSearchText, setSubCatSearchText] = useState('');
@@ -29,6 +30,7 @@ export const WikiSearchPage = (
     updateAds,
     searchmode,
     material_data,
+    particle_data,
     catalog_data,
     search,
     print,
@@ -46,7 +48,9 @@ export const WikiSearchPage = (
   tabs['Catalogs'] = !!catalog_data && (
     <WikiCatalogPage catalog={catalog_data} />
   );
-  tabs['Particle Physics'] = null;
+  tabs['Particle Physics'] = !!particle_data && (
+    <WikiParticlePage smasher={particle_data} />
+  );
   tabs['Materials'] = !!material_data && (
     <WikiMaterialPage materials={material_data} />
   );
