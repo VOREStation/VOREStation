@@ -47,7 +47,7 @@ export const ColoredIcon = (props: {
 
   return (
     <Box width={4} height={4}>
-      <canvas ref={canvasRef} width={64} height={64} />
+      <canvas key={icon_state} ref={canvasRef} width={64} height={64} />
     </Box>
   );
 };
