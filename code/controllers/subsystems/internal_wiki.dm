@@ -815,7 +815,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	*/
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
-	data["allergen"] = R.allergen_type
+	data["allergen"] = assemble_allergens(R.allergen_type)
 	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
 
 /datum/internal_wiki/page/chemical/get_print()
@@ -860,7 +860,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["title"] = title
 	// Get internal data
 	data["description"] = R.description
-	data["allergen"] = R.allergen_type
+	data["allergen"] = assemble_allergens(R.allergen_type)
 	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
 
 /datum/internal_wiki/page/food/get_print()
@@ -888,7 +888,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = R.allergen_type
+	data["allergen"] = assemble_allergens(R.allergen_type)
 	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
 
 /datum/internal_wiki/page/drink/get_print()
@@ -921,7 +921,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	value *= SSsupply.points_per_money // convert to cash
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
 	data["market_price"] = value
-	data["allergen"] = recipe["Allergens"]
+	data["allergen"] = assemble_allergens(recipe["Allergens"])
 	data["appliance"] = recipe["Appliance"]
 	data["has_coating"] = recipe["has_coatable_items"]
 	data["coating"] = recipe["Coating"]
@@ -1023,43 +1023,51 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // MISC HELPERS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/proc/print_allergens(var/allergens)
+/datum/internal_wiki/page/proc/assemble_allergens(var/allergens)
 	PROTECTED_PROC(TRUE)
-	var/AG = ""
+	var/list/allergies = list()
 	if(allergens > 0)
-		AG += "<b>Allergens: </b><br>"
 		if(allergens & ALLERGEN_MEAT)
-			AG += "-Meat protein<br>"
+			allergies.Add("Meat protein")
 		if(allergens & ALLERGEN_FISH)
-			AG += "-Fish protein<br>"
+			allergies.Add("Fish protein")
 		if(allergens & ALLERGEN_FRUIT)
-			AG += "-Fruit<br>"
+			allergies.Add("Fruit")
 		if(allergens & ALLERGEN_VEGETABLE)
-			AG += "-Vegetable<br>"
+			allergies.Add("Vegetable")
 		if(allergens & ALLERGEN_GRAINS)
-			AG += "-Grain<br>"
+			allergies.Add("Grain")
 		if(allergens & ALLERGEN_BEANS)
-			AG += "-Bean<br>"
+			allergies.Add("Bean")
 		if(allergens & ALLERGEN_SEEDS)
-			AG += "-Nut<br>"
+			allergies.Add("Nut")
 		if(allergens & ALLERGEN_DAIRY)
-			AG += "-Dairy<br>"
+			allergies.Add("Dairy")
 		if(allergens & ALLERGEN_FUNGI)
-			AG += "-Fungi<br>"
+			allergies.Add("Fungi")
 		if(allergens & ALLERGEN_COFFEE)
-			AG += "-Caffeine<br>"
+			allergies.Add("Caffeine")
 		if(allergens & ALLERGEN_SUGARS)
-			AG += "-Sugar<br>"
+			allergies.Add("Sugar")
 		if(allergens & ALLERGEN_EGGS)
-			AG += "-Egg<br>"
+			allergies.Add("Egg")
 		if(allergens & ALLERGEN_STIMULANT)
-			AG += "-Stimulant<br>"
+			allergies.Add("Stimulant")
 		/* Downstream features
 		if(allergens & ALLERGEN_POLLEN)
-			AG += "-Pollen<br>"
+			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
-			AG += "-Salt<br>"
+			allergies.Add("Salt")
 		*/
+	return allergies
+
+/datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
+	PROTECTED_PROC(TRUE)
+	var/AG = ""
+	if(allergens.len > 0)
+		AG += "<b>Allergens: </b><br>"
+		for(var/ALGY in allergens)
+			AG += "-[ALGY]<br>"
 		AG += "<br>"
 	return AG
 
