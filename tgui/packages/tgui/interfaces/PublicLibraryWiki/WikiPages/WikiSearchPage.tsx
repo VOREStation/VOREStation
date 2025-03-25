@@ -60,11 +60,16 @@ export const WikiSearchPage = (
           act('closesearch');
           onUpdateAds(!updateAds);
         }}
+        tooltip="Return to main menu"
       >
         Back
       </Button>
       {!!print && (
-        <Button icon="print" onClick={() => act('print')}>
+        <Button
+          icon="print"
+          onClick={() => act('print')}
+          tooltip="Print current page"
+        >
           Print
         </Button>
       )}
@@ -76,6 +81,7 @@ export const WikiSearchPage = (
               <Button
                 icon="arrow-right"
                 onClick={() => setHideGroup(!hideGroup)}
+                tooltip="Show group categories"
               />
             </Stack.Item>
           ) : (
@@ -92,6 +98,7 @@ export const WikiSearchPage = (
                 <Button
                   icon="arrow-left"
                   onClick={() => setHideGroup(!hideGroup)}
+                  tooltip="Hide group categories"
                 />
               }
             />
