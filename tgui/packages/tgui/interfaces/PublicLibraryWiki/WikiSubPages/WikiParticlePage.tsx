@@ -32,7 +32,11 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
           <LabeledList>
             <LabeledList.Item label="Target Sheet">{req_mat}</LabeledList.Item>
             {target_items && (
-              <WikiSpoileredList title="Target Items" entries={target_items} />
+              <WikiSpoileredList
+                ourKey={title}
+                title="Target Items"
+                entries={target_items}
+              />
             )}
             <LabeledList.Divider />
             <LabeledList.Item label="Threshold Energy">
@@ -52,7 +56,11 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
               />
             </LabeledList.Item>
             {inducers && (
-              <WikiSpoileredList title="Inducers" entries={inducers} />
+              <WikiSpoileredList
+                ourKey={title}
+                title="Inducers"
+                entries={inducers}
+              />
             )}
             <LabeledList.Divider />
             <LabeledList.Item label="Result">{result}</LabeledList.Item>

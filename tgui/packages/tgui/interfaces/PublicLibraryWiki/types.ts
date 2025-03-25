@@ -16,11 +16,25 @@ export type PageData = {
   catalog_data: CatalogData | null;
   ore_data: OreData | null;
   botany_data: BotanyData | null;
+  chemistry_data: ReagentData | null;
 };
+
+export type ReagentData = {
+  title: string;
+  description: string | null;
+  addictive?: number;
+  industrial_use?: string;
+  supply_points?: number;
+  market_price?: number;
+  sintering?: string | null;
+  overdose: number;
+  flavor: string | null;
+  allergen: string[] | null;
+} & ReactionData &
+  Icon;
 
 export type BotanyData = {
   title: string;
-  o;
   feeding: number | null;
   watering: number | null;
   lighting: number | null;
@@ -80,3 +94,33 @@ export type CatalogData = { name: string; desc: string };
 type Icon = {
   icon_data: { icon: string; state: string; color: string; dat: string };
 };
+
+type ReactionData = {
+  instant_reactions: InstantReactions;
+  distilled_reactions: DistilledReactions;
+};
+
+export type InstantReactions = Record<
+  string,
+  ReactionComponent | ReactionComponent[]
+> | null;
+export type DistilledReactions = Record<
+  string,
+  DistillComponent | DistillComponent[]
+> | null;
+
+export type DistillComponent = ReactionComponent & {
+  temp_min: number;
+  temp_max: number;
+  xgm_min: number;
+  xgm_max: number;
+  require_xgm_gas: string;
+  rejects_xgm_gas: string;
+};
+
+export type ReactionComponent = {
+  is_slime: BooleanLike;
+  required: string[] | null;
+  inhibitor: string[] | null;
+  catalysts: string[] | null;
+} | null;
