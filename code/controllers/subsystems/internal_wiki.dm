@@ -117,13 +117,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		pages.Add(P)
 
 	// assemble particle smasher wiki
-	for(var/D in subtypesof(/datum/particle_smasher_recipe))
-		if(initial(D:wiki_flag) & WIKI_SPOILER)
+	for(var/datum/particle_smasher_recipe/D  as anything in subtypesof(/datum/particle_smasher_recipe))
+		if(initial(D.wiki_flag) & WIKI_SPOILER)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/particle_smasher_recipe/R = new D()
 		var/datum/internal_wiki/page/smasher/P = new()
-		var/id = "[initial(D:display_name)]"
+		var/id = "[initial(D.display_name)]"
 		P.assemble(R)
 		smashers[id] = P
 		searchcache_smasher.Add(id)
@@ -191,15 +191,15 @@ SUBSYSTEM_DEF(internal_wiki)
 			log_runtime(EXCEPTION("Invalid reagent result id: [CR.result] in instant drink reaction id: [CR.id]"))
 	// Build the kitchen recipe lists
 	var/list/food_recipes = subtypesof(/datum/recipe)
-	for(var/Rp in food_recipes)
+	for(var/datum/recipe/Rp as anything in food_recipes)
 		//Lists don't work with datum-stealing no-instance initial() so we have to.
 		var/datum/recipe/R = new Rp()
 		if(!isnull(R.result))
-			var/res = R.result
+			var/obj/item/res = R.result
 			food_recipes[Rp] = list(
-						"Result" = "[initial(res:name)]",
+						"Result" = "[initial(res.name)]",
 						"ResultPath" = res,
-						"Desc" = "[initial(res:desc)]",
+						"Desc" = "[initial(res.desc)]",
 						"Flavor" = "",
 						"ResAmt" = "1",
 						"Reagents" = R.reagents ? R.reagents.Copy() : list(),
@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(internal_wiki)
 						"Coating" = R.coating,
 						"Appliance" = R.appliance,
 						"Allergens" = 0,
-						"Price" = initial(res:price_tag),
+						"Price" = initial(res.price_tag),
 						"Flags" = R.wiki_flag
 						)
 		qdel(R)
@@ -429,8 +429,8 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/ore/assemble(var/ore/O)
 	title = O.display_name
 	data["title"] = title
-	var/ore_path = O.ore
-	add_icon(data, initial(ore_path:icon), initial(ore_path:icon_state), "#ffffff")
+	var/obj/item/ore/ore_path = O.ore
+	add_icon(data, initial(ore_path.icon), initial(ore_path.icon_state), "#ffffff")
 	// Get internal data
 	data["smelting"] = null
 	if(O.smelts_to)
@@ -877,11 +877,11 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = R.name
 	data["title"] = title
 	// Use beaker by default, otherwise try metamorphic glass for icon
-	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	var/ico = initial(beaker_path:icon)
+	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	var/ico = initial(beaker_path.icon)
 	if(R.glass_icon_file)
 		ico = R.glass_icon_file
-	var/sta = initial(beaker_path:icon_state)
+	var/sta = initial(beaker_path.icon_state)
 	if(R.glass_icon_state)
 		sta = R.glass_icon_file
 	add_icon(data, ico, sta, R.color)
@@ -905,12 +905,12 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/recipe/assemble(var/list/recipe)
 	title = recipe["Result"]
 	data["title"] = title
-	var/path = recipe["ResultPath"]
+	var/obj/item/path = recipe["ResultPath"]
 	if(path)
-		add_icon(data, initial(path:icon), initial(path:icon_state), "#ffffff")
+		add_icon(data, initial(path.icon), initial(path.icon_state), "#ffffff")
 	else
-		var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-		add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), "#ffffff")
+		var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+		add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
 	// Get internal data
 	data["description"] = recipe["Desc"]
 	data["flavor"] = null
