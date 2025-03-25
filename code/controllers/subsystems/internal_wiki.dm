@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			spoiler_entries.Add(M.type)
 			continue
 		var/datum/internal_wiki/page/material/P = new()
-		var/id = "[M.display_name]"
+		var/id = "[M.display_name] [M.sheet_singular_name]"
 		P.assemble(M)
 		materials[id] = P
 		searchcache_material.Add(id)
@@ -498,7 +498,7 @@ SUBSYSTEM_DEF(internal_wiki)
 // MATERIALS
 ////////////////////////////////////////////
 /datum/internal_wiki/page/material/assemble(var/datum/material/M)
-	title = M.display_name
+	title = M.display_name + " "  + M.sheet_singular_name
 	data["title"] = title
 	var/obj/item/stack/stack_path = M.stack_type
 	add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), initial(M.icon_colour))
