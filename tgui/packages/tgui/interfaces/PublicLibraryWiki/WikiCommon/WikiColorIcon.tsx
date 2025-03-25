@@ -67,13 +67,11 @@ export const renderImage = (
   const color_rgb = Color.fromHex(color);
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-  let i = 0;
   const recolor = () => {
-    while (i < imageData.data.length) {
-      imageData.data[i + 0] *= color_rgb.r / 255;
-      imageData.data[i + 1] *= color_rgb.g / 255;
-      imageData.data[i + 2] *= color_rgb.b / 255;
-      i += 4;
+    for (let j = 0; j < imageData.data.length; j += 4) {
+      imageData.data[j + 0] *= color_rgb.r / 255;
+      imageData.data[j + 1] *= color_rgb.g / 255;
+      imageData.data[j + 2] *= color_rgb.b / 255;
     }
 
     context.putImageData(imageData, 0, 0);
