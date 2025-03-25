@@ -1114,7 +1114,7 @@ SUBSYSTEM_DEF(internal_wiki)
 				var/decl/chemical_reaction/instant/slime/CRS = CR
 				var/obj/item/slime_extract/slime_path = CRS.required
 				assemble_reaction["is_slime"] = initial(slime_path.name)
-			reactions["[CR.type]"] = assemble_reaction
+			reactions += list(assemble_reaction)
 		if(display_reactions.len)
 			data["instant_reactions"] = reactions
 
@@ -1161,7 +1161,7 @@ SUBSYSTEM_DEF(internal_wiki)
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
-			reactions["[CR.type]"] = assemble_reaction
+			reactions += list(assemble_reaction)
 		if(display_reactions.len)
 			data["distilled_reactions"] = reactions
 
@@ -1170,21 +1170,21 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/instant = data["instant_reactions"]
 	if(instant && instant.len > 0)
 		var/segment = 1
-		for(var/path in instant)
+		for(var/list/react in instant)
 			if(instant.len == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			if(instant[path]["is_slime"])
-				for(var/RQ in instant[path]["required"])
-					body += " <b>-[instant[path]["is_slime"]] Injection: </b>[RQ]<br>"
+			if(react["is_slime"])
+				for(var/RQ in react["required"])
+					body += " <b>-[react["is_slime"]] Injection: </b>[RQ]<br>"
 			else
-				for(var/RQ in instant[path]["required"])
+				for(var/RQ in react["required"])
 					body += " <b>-Component: </b>[RQ]<br>"
-			for(var/IH in instant[path]["inhibitor"])
+			for(var/IH in react["inhibitor"])
 				body += " <b>-Inhibitor: </b>[IH]<br>"
-			for(var/CL in instant[path]["catalysts"])
+			for(var/CL in react["catalysts"])
 				body += " <b>-Catalyst: </b>[CL]<br>"
 	else
 		body += "<b>Potential Chemical breakdown: </b><br>UNKNOWN OR BASE-REAGENT<br>"
@@ -1192,24 +1192,24 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/distilled = data["distilled_reactions"]
 	if(distilled && distilled.len > 0)
 		var/segment = 1
-		for(var/path in distilled)
+		for(var/list/react in distilled)
 			if(distilled.len == 1)
 				body += "<b>Potential Chemical breakdown: </b><br>"
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
 			/* Downstream features
-			body += " <b>-Temperature: </b> [distilled[path]["xgm_min"]]K - [distilled[path]["xgm_max"]]K | ([distilled[path]["xgm_min"] - T0C]C - [distilled[path]["xgm_max"] - T0C]C)<br>"
-			if(distilled[path]["require_xgm_gas"])
-				body += " <b>-Requires Gas: </b> [distilled[path]["require_xgm_gas"])]<br>"
-			if(distilled[path]["rejects_xgm_gas"])
-				body += " <b>-Rejects Gas: </b> [distilled[path]["rejects_xgm_gas"]]<br>"
+			body += " <b>-Temperature: </b> [react["xgm_min"]]K - [react["xgm_max"]]K | ([react["xgm_min"] - T0C]C - [react["xgm_max"] - T0C]C)<br>"
+			if(react["require_xgm_gas"])
+				body += " <b>-Requires Gas: </b> [react["require_xgm_gas"])]<br>"
+			if(react["rejects_xgm_gas"])
+				body += " <b>-Rejects Gas: </b> [react["rejects_xgm_gas"]]<br>"
 			*/
-			for(var/RQ in distilled[path]["required"])
+			for(var/RQ in react["required"])
 				body += " <b>-Component: </b>[RQ]<br>"
-			for(var/IH in distilled[path]["inhibitor"])
+			for(var/IH in react["inhibitor"])
 				body += " <b>-Inhibitor: </b>[IH]<br>"
-			for(var/CL in distilled[path]["catalysts"])
+			for(var/CL in react["catalysts"])
 				body += " <b>-Catalyst: </b>[CL]<br>"
 	return body
 
