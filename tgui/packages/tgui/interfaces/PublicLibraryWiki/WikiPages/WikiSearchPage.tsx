@@ -1,26 +1,41 @@
 import { type Dispatch, type SetStateAction, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Input, Section, Stack } from 'tgui-core/components';
-import { createSearch } from 'tgui-core/string';
+import { capitalize, createSearch } from 'tgui-core/string';
 
-export const WikiSearchPage = (props: {
-  onUpdateAds: Dispatch<SetStateAction<boolean>>;
-  updateAds: boolean;
-  title: string;
-  searchmode: string;
-  body: string;
-  search: string[];
-  print: string;
-}) => {
+import { PageData } from '../types';
+import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
+
+export const WikiSearchPage = (
+  props: {
+    onUpdateAds: Dispatch<SetStateAction<boolean>>;
+    updateAds: boolean;
+    searchmode: string;
+    search: string[];
+    print: string;
+  } & Partial<PageData>,
+) => {
   const { act } = useBackend();
   const [searchText, setSearchText] = useState('');
   const [activeEntry, setactiveEntry] = useState('');
 
-  const { onUpdateAds, updateAds, title, searchmode, body, search, print } =
+  const { onUpdateAds, updateAds, searchmode, material_data, search, print } =
     props;
 
   const customSearch = createSearch(searchText, (search: string) => search);
   const toDisplay = search.filter(customSearch);
+
+  const tabs: React.JSX.Element[] = [];
+  tabs['Food Recipes'] = null;
+  tabs['Drink Recipes'] = null;
+  tabs['Chemistry'] = null;
+  tabs['Botany'] = null;
+  tabs['Catalogs'] = null;
+  tabs['Particle Physics'] = null;
+  tabs['Materials'] = !!material_data && (
+    <WikiMaterialPage materials={material_data} />
+  );
+  tabs['Ores'] = null;
 
   return (
     <Section fill>
@@ -56,18 +71,18 @@ export const WikiSearchPage = (props: {
               <Stack.Item grow>
                 <Section fill scrollable>
                   <Stack vertical fill>
-                    {toDisplay.map((Key) => (
-                      <Stack.Item key={Key}>
+                    {toDisplay.map((entry) => (
+                      <Stack.Item key={entry}>
                         <Button
-                          selected={Key === activeEntry}
+                          selected={entry === activeEntry}
                           fluid
                           ellipsis
                           onClick={() => {
-                            act('search', { data: Key });
-                            setactiveEntry(Key);
+                            act('search', { data: entry });
+                            setactiveEntry(entry);
                           }}
                         >
-                          {Key}
+                          {capitalize(entry)}
                         </Button>
                       </Stack.Item>
                     ))}
@@ -77,12 +92,7 @@ export const WikiSearchPage = (props: {
             </Stack>
           </Section>
         </Stack.Item>
-        <Stack.Item grow>
-          <Section fill scrollable title={title}>
-            {/* eslint-disable-next-line react/no-danger */}
-            <div dangerouslySetInnerHTML={{ __html: body }} />
-          </Section>
-        </Stack.Item>
+        <Stack.Item grow>{tabs[searchmode]}</Stack.Item>
       </Stack>
     </Section>
   );

@@ -12,7 +12,8 @@ import { WikiSearchPage } from './WikiPages/WikiSearchPage';
 
 export const PublicLibraryWiki = (props) => {
   const { act, data } = useBackend<Data>();
-  const { errorText, searchmode, search, title, body, print, appliance } = data;
+  const { errorText, searchmode, search, print, appliance, material_data } =
+    data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
@@ -59,9 +60,8 @@ export const PublicLibraryWiki = (props) => {
         <WikiSearchPage
           onUpdateAds={setUpdateAds}
           updateAds={updateAds}
-          title={title}
+          material_data={material_data}
           searchmode={searchmode}
-          body={body}
           search={search}
           print={print}
         />

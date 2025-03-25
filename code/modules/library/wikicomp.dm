@@ -16,6 +16,7 @@
 	VAR_PRIVATE/searchmode = null
 	VAR_PRIVATE/appliance = null //sublists for food menu
 	VAR_PRIVATE/crash = FALSE
+	VAR_PRIVATE/datum/internal_wiki/page/P
 
 /obj/machinery/librarywikicomp/Initialize(mapload)
 	. = ..()
@@ -71,6 +72,8 @@
 
 				if("Materials")
 					data["search"] = SSinternal_wiki.get_searchcache_material()
+					if(P)
+						data["material_data"] = P.get_data()
 
 				if("Particle Physics")
 					data["search"] = SSinternal_wiki.get_searchcache_particle()
@@ -82,8 +85,6 @@
 					data["search"] = list()
 
 			// display message
-			data["title"] = doc_title
-			data["body"] = doc_body
 			data["print"] = (doc_body && length(doc_body) > 0)
 		else
 			// intentional TGUI crash, amazingly awful
@@ -163,16 +164,15 @@
 				visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
 				// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, 1)
 
-				var/obj/item/paper/P = new /obj/item/paper(loc)
-				P.name = doc_title
-				P.info = doc_body
+				var/obj/item/paper/paper = new /obj/item/paper(loc)
+				paper.name = doc_title
+				paper.info = doc_body
 			. = TRUE
 
 		// final search
 		if("search")
 			if(!crash)
 				var/search = params["data"]
-				var/datum/internal_wiki/page/P
 				var/setpage = TRUE
 				if(searchmode == "Food Recipes")
 					if(!appliance)
