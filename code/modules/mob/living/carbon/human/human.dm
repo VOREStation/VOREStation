@@ -34,6 +34,8 @@
 	var/gutdeathpressure = 0			//For GIBBING trait
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
+	var/corpse_spawned = FALSE			//If we were spawned via a corpse spawner or not.
+
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -76,6 +78,13 @@
 	var/image/img = image('icons/mob/animal.dmi', src, animal)
 	img.override = TRUE
 	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
+
+	if(corpse_spawned)
+		return INITIALIZE_HINT_LATELOAD
+
+/mob/living/carbon/human/LateInitialize()
+	if(corpse_spawned) //Doing this check here in case other things end up having to be moved to human LateInit...Hopefully they don't, but just in case.
+		death(1) //Kills the new mob
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src

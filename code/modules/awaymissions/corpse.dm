@@ -32,14 +32,12 @@
 
 /obj/effect/landmark/corpse/Initialize(mapload)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/effect/landmark/corpse/LateInitialize()
 	createCorpse()
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	M.low_sorting_priority = TRUE
+	M.corpse_spawned = TRUE
 	if(random_species)
 		var/random_pick = pick(random_species_list)
 		M.set_species(random_pick)
@@ -48,7 +46,6 @@
 		M.set_species(species)
 	//TODO: insert appearance randomization, needs to be species-based
 	M.real_name = src.name
-	M.death(1) //Kills the new mob
 	//TODO: insert cause of death handling/wound simulation here
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
