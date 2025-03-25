@@ -41,3 +41,5 @@ export const WikiAdColors = [
   'light-grey',
   '',
 ];
+
+export const zeroC = 273.15;
