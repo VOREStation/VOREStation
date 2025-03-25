@@ -42,6 +42,10 @@
 			for(var/decal in RS.sprite_decals)
 				if(check_state(RS,"-[decal]"))
 					failed = TRUE
+		if(LAZYLEN(RS.sprite_animations))
+			for(var/animation in RS.sprite_animations)
+				if(check_state(RS,"-[animation]"))
+					failed = TRUE
 		// Control panel
 		if(RS.has_custom_open_sprites)
 			if(check_state(RS,"-openpanel_nc"))

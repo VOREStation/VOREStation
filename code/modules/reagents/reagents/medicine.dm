@@ -57,7 +57,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(4 * removed * chem_effective, 0) //VOREStation Edit
+		M.heal_organ_damage(4 * removed * chem_effective, 0)
 
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -139,7 +139,7 @@
 		chem_effective = 0.5
 		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 4 * removed * chem_effective) //VOREStation edit
+		M.heal_organ_damage(0, 4 * removed * chem_effective)
 
 /datum/reagent/dermaline
 	name = REAGENT_DERMALINE
@@ -158,7 +158,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
+		M.heal_organ_damage(0, 8 * removed * chem_effective)
 
 /datum/reagent/dermaline/topical
 	name = REAGENT_DERMALAZE
@@ -254,21 +254,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
-	metabolism = REM * 0.25 //VOREStation Edit
+	metabolism = REM * 0.25
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 24) //VOREStation Edit
+		M.adjustToxLoss(removed * 24)
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15 * M.species.chem_strength_pain)
 		if(prob(15))
 			to_chat(M, span_notice("You have a moment of clarity as you collapse."))
-			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
+			M.adjustBrainLoss(-20 * removed)
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-15 * removed * M.species.chem_strength_heal)
 
-	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed) //VOREStation Edit
+	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed)
 
 /datum/reagent/dexalinp
 	name = REAGENT_DEXALINP
@@ -641,7 +641,7 @@
 			M.Weaken(5)
 		if(dose >= 10 && M.paralysis < 40)
 			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
-	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
+	M.adjustBrainLoss(-8 * removed * chem_effective)
 	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective * M.species.chem_strength_pain)
 
 /datum/reagent/imidazoline
@@ -928,9 +928,6 @@
 	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
 		strength_mod = 1.3
 
-	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
-		strength_mod = 0.66
-
 	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
 		strength_mod = 0.6
 
@@ -979,9 +976,6 @@
 
 /datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 0.5 * M.species.chem_strength_heal
-
-	if(alien == IS_SKRELL)
-		strength_mod = 1
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -1281,11 +1275,9 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
-	//VOREstation edit. Floor polishing.
 	if(istype(T, /turf/simulated))
 		var/turf/simulated/S = T
 		S.dirt = -50
-	//VOREstation edit end
 
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
 	..()

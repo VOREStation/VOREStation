@@ -158,7 +158,7 @@ var/list/possible_cable_coil_colours = list(
 	return 1
 
 /obj/structure/cable/update_icon()
-	 // We rely on the icon state for the wire Initialize(), prevent any updates to the icon before init passed
+	// We rely on the icon state for the wire Initialize(), prevent any updates to the icon before init passed
 	if(!(flags & ATOM_INITIALIZED))
 		return
 	icon_state = "[d1]-[d2]"
@@ -700,7 +700,11 @@ var/list/possible_cable_coil_colours = list(
 	if(!istype(F))
 		return
 
-	var/obj/structure/cable/C = new(F)
+	var/obj/structure/cable/C
+	if(istype(src,/obj/item/stack/cable_coil/heavyduty)) // this is the only cable that does this, not worth an override
+		C = new /obj/structure/cable/heavyduty(F)
+	else
+		C = new /obj/structure/cable(F)
 	C.cableColor(color)
 	C.d1 = d1
 	C.d2 = d2

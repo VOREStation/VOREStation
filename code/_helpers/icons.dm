@@ -663,8 +663,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 
 	if (!isicon(icon2collapse))
 		if (isfile(thing)) //special snowflake
-			//var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
-			var/name = "[generate_asset_name(thing)].png"
+			var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
 			if (!SSassets.cache[name])
 				SSassets.transport.register_asset(name, thing)
 			for (var/thing2 in targets)

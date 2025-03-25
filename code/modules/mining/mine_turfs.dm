@@ -669,7 +669,7 @@ var/list/mining_overlay_cache = list()
 	if(is_clean)
 		X = new /obj/item/archaeological_find(src, F.find_type)
 	else
-		X = new /obj/item/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/strangerock(src, F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		var/obj/item/strangerock/SR = X
 		SR.geologic_data = geologic_data

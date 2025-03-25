@@ -86,19 +86,19 @@
 /datum/surgery_step/robotics/insertion_preparation/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts to modify the wiring in [target]'s [affected.name] with \the [tool]."),
-	span_filter_notice("You start to modify the wiring in [target]'s [affected.name] with \the [tool]."))
+		span_filter_notice("You start to modify the wiring in [target]'s [affected.name] with \the [tool]."))
 	..()
 
 /datum/surgery_step/robotics/insertion_preparation/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] modifies the wiring in [target]'s [affected.name] with \the [tool]."), \
-	 span_notice("You modify the wiring in [target]'s [affected.name] with \the [tool]."))
+		span_notice("You modify the wiring in [target]'s [affected.name] with \the [tool]."))
 	affected.open = 2
 
 /datum/surgery_step/robotics/insertion_preparation/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to modify the wiring in [target]'s [affected.name]."),
-	span_warning("Your [tool] slips, failing to modify the wiring in [target]'s [affected.name]."))
+		span_warning("Your [tool] slips, failing to modify the wiring in [target]'s [affected.name]."))
 
 ///////////////////////////////////////////////////////////////
 // Open Hatch Surgery
@@ -124,19 +124,19 @@
 /datum/surgery_step/robotics/open_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts to pry open the maintenance hatch on [target]'s [affected.name] with \the [tool]."),
-	span_filter_notice("You start to pry open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
+		span_filter_notice("You start to pry open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
 	..()
 
 /datum/surgery_step/robotics/open_hatch/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] opens the maintenance hatch on [target]'s [affected.name] with \the [tool]."), \
-	 span_notice("You open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
+		span_notice("You open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
 	affected.open = 3
 
 /datum/surgery_step/robotics/open_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to open the hatch on [target]'s [affected.name]."),
-	span_warning("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
+		span_warning("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
 
 ///////////////////////////////////////////////////////////////
 // Close Hatch Surgery

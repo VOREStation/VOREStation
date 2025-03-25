@@ -21,10 +21,10 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/healthanalyzer/New()
+/obj/item/healthanalyzer/Initialize(mapload)
+	. = ..()
 	if(advscan >= 1)
 		verbs += /obj/item/healthanalyzer/proc/toggle_adv
-	..()
 
 /obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
