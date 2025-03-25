@@ -1025,8 +1025,8 @@ SUBSYSTEM_DEF(internal_wiki)
 ////////////////////////////////////////////
 /datum/internal_wiki/page/proc/assemble_allergens(var/allergens)
 	PROTECTED_PROC(TRUE)
-	var/list/allergies = list()
 	if(allergens > 0)
+		var/list/allergies = list()
 		if(allergens & ALLERGEN_MEAT)
 			allergies.Add("Meat protein")
 		if(allergens & ALLERGEN_FISH)
@@ -1059,12 +1059,13 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
 		*/
-	return allergies
+		return allergies
+	return null
 
 /datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
-	if(allergens.len > 0)
+	if(allergens && allergens.len > 0)
 		AG += "<b>Allergens: </b><br>"
 		for(var/ALGY in allergens)
 			AG += "-[ALGY]<br>"
