@@ -1,4 +1,4 @@
-import { Box, Collapsible, LabeledList } from 'tgui-core/components';
+import { Box } from 'tgui-core/components';
 
 import { zeroC } from '../constants';
 
@@ -99,41 +99,4 @@ export const ProbabilityBox = (props: { chance: number }) => {
     return <Box color="olive">{chance}%</Box>;
   }
   return <Box color="green">{chance}%</Box>;
-};
-
-export const WikiSpoileredList = (props: {
-  entries: string[] | Record<string, string> | Record<string, number>;
-  title: string;
-}) => {
-  const { entries, title } = props;
-
-  if (Array.isArray(entries)) {
-    return (
-      <>
-        <LabeledList.Divider />
-        <LabeledList.Item label={title}>
-          <Collapsible color="transparent" title={'Reveal ' + title}>
-            {entries.map((entry) => (
-              <Box key={entry}>- {entry}</Box>
-            ))}
-          </Collapsible>
-        </LabeledList.Item>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <LabeledList.Divider />
-      <LabeledList.Item label={title}>
-        <Collapsible color="transparent" title={'Reveal ' + title}>
-          {Object.keys(entries).map((entry) => (
-            <Box key={entry}>
-              - {entry}: {entries[entry]}
-            </Box>
-          ))}
-        </Collapsible>
-      </LabeledList.Item>
-    </>
-  );
 };

@@ -94,6 +94,8 @@
 
 				if("Ores")
 					data["search"] = SSinternal_wiki.get_searchcache_ore()
+					if(P)
+						data["ore_data"] = P.get_data()
 
 				else
 					data["search"] = list()

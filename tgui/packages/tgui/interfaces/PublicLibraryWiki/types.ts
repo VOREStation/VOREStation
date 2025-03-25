@@ -14,7 +14,17 @@ export type PageData = {
   material_data: MaterialData | null;
   particle_data: ParticleData | null;
   catalog_data: CatalogData | null;
+  ore_data: OreData | null;
 };
+
+export type OreData = {
+  title: string;
+  smelting: string | null;
+  compressing: string | null;
+  alloys: string[];
+  pump_reagent: string | null;
+  grind_reagents: Record<string, string>;
+} & Icon;
 
 export type ParticleData = {
   title: string;

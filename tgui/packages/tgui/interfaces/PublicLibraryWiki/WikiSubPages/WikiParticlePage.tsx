@@ -3,11 +3,11 @@ import { capitalize } from 'tgui-core/string';
 
 import type { ParticleData } from '../types';
 import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
 import {
   MinMaxBox,
   MinMaxBoxTemperature,
   ProbabilityBox,
-  WikiSpoileredList,
 } from '../WikiCommon/WikiQuickElements';
 
 export const WikiParticlePage = (props: { smasher: ParticleData }) => {
@@ -39,16 +39,16 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
               <MinMaxBox
                 min={required_energy_min}
                 max={required_energy_max}
-                minColor="green"
-                maxColor="red"
+                minColor="blue"
+                maxColor="orange"
               />
             </LabeledList.Item>
             <LabeledList.Item label="Threshold Temperature">
               <MinMaxBoxTemperature
                 min={required_atmos_temp_min}
                 max={required_atmos_temp_max}
-                minColor="green"
-                maxColor="red"
+                minColor="blue"
+                maxColor="orange"
               />
             </LabeledList.Item>
             {inducers && (

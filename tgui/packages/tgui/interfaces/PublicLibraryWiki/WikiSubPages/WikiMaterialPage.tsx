@@ -3,11 +3,11 @@ import { capitalize } from 'tgui-core/string';
 
 import type { MaterialData } from '../types';
 import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
 import {
   NoBox,
   NotAvilableBox,
   TemperatureBox,
-  WikiSpoileredList,
   YesBox,
 } from '../WikiCommon/WikiQuickElements';
 

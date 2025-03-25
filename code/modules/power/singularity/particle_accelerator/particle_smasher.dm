@@ -283,6 +283,7 @@
 	var/required_atmos_temp_max = 600	// The maximum ambient atmospheric temperature required, in kelvin.
 	var/probability = 0					// The probability for the recipe to be produced. 0 will make it impossible.
 	var/item_consume_chance = 100		// The probability for the items (not materials) used in the recipe to be consume.
+	var/wiki_flag = NONE
 
 /datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
 	. = 1

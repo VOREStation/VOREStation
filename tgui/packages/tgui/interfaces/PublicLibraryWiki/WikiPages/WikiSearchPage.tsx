@@ -7,6 +7,7 @@ import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
 import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
+import { WikiOrePage } from '../WikiSubPages/WikiOrePare';
 import { WikiParticlePage } from '../WikiSubPages/WikiParticlePage';
 
 export const WikiSearchPage = (
@@ -29,6 +30,7 @@ export const WikiSearchPage = (
     onUpdateAds,
     updateAds,
     searchmode,
+    ore_data,
     material_data,
     particle_data,
     catalog_data,
@@ -45,16 +47,16 @@ export const WikiSearchPage = (
   tabs['Drink Recipes'] = null;
   tabs['Chemistry'] = null;
   tabs['Botany'] = null;
-  tabs['Catalogs'] = !!catalog_data && (
-    <WikiCatalogPage catalog={catalog_data} />
+  tabs['Ores'] = !!ore_data && <WikiOrePage ores={ore_data} />;
+  tabs['Materials'] = !!material_data && (
+    <WikiMaterialPage materials={material_data} />
   );
   tabs['Particle Physics'] = !!particle_data && (
     <WikiParticlePage smasher={particle_data} />
   );
-  tabs['Materials'] = !!material_data && (
-    <WikiMaterialPage materials={material_data} />
+  tabs['Catalogs'] = !!catalog_data && (
+    <WikiCatalogPage catalog={catalog_data} />
   );
-  tabs['Ores'] = null;
 
   return (
     <Section fill>
