@@ -7,10 +7,15 @@ export type Data = {
   search: string[] | null;
   title: string;
   print: string;
-  appliance: string;
-} & Partial<PageData>;
+  sub_categories: string[] | null;
+} & Required<PageData>;
 
-export type PageData = { material_data: MaterialData | null };
+export type PageData = {
+  material_data: MaterialData | null;
+  catalog_data: CatalogData | null;
+};
+
+export type CatalogData = { name: string; desc: string };
 
 export type MaterialData = {
   title: string;

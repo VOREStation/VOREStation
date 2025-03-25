@@ -43,3 +43,5 @@ export const WikiAdColors = [
 ];
 
 export const zeroC = 273.15;
+
+export const groupList = ['15%', '5%'];

@@ -7,7 +7,7 @@ import {
 } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import { MaterialData } from '../types';
+import type { MaterialData } from '../types';
 import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
 import {
   NoBox,

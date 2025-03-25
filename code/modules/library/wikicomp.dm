@@ -14,7 +14,7 @@
 	VAR_PRIVATE/doc_title = "Click a search entry!"
 	VAR_PRIVATE/doc_body = ""
 	VAR_PRIVATE/searchmode = null
-	VAR_PRIVATE/appliance = null //sublists for food menu
+	VAR_PRIVATE/sub_category = null //sublists for food menu
 	VAR_PRIVATE/crash = FALSE
 	VAR_PRIVATE/datum/internal_wiki/page/P
 
@@ -42,7 +42,7 @@
 /obj/machinery/librarywikicomp/tgui_close(mob/user)
 	. = ..()
 	P = null
-	appliance= null
+	sub_category= null
 	searchmode = null
 
 /obj/machinery/librarywikicomp/tgui_data(mob/user)
@@ -50,22 +50,19 @@
 	if(SSinternal_wiki)
 		data["crash"] = crash
 		data["material_data"] = null
+		data["catalog_data"] = null
+		data["sub_categories"] = null
 		if(!crash)
 			// search page
 			data["errorText"] = ""
 			data["searchmode"] = searchmode
-			data["appliance"] = appliance
 			// get searches
 			switch(searchmode)
 				if("Food Recipes")
-					if(appliance)
-						data["search"] = SSinternal_wiki.get_searchcache_food(appliance)
-					else
-						var/list/options = list()
-						for(var/app in SSinternal_wiki.get_appliances())
-							if(!isnull(SSinternal_wiki.get_searchcache_food("[app]")))
-								options.Add("[app]")
-						data["search"] = options
+					data["sub_categories"] = SSinternal_wiki.get_appliances()
+					data["search"] = list()
+					if(sub_category)
+						data["search"] = SSinternal_wiki.get_searchcache_food(sub_category)
 
 				if("Drink Recipes")
 					data["search"] = SSinternal_wiki.get_searchcache_drink()
@@ -77,7 +74,12 @@
 					data["search"] = SSinternal_wiki.get_searchcache_seed()
 
 				if("Catalogs")
-					data["search"] = SSinternal_wiki.get_searchcache_catalog()
+					data["sub_categories"] = SSinternal_wiki.get_catalogs()
+					data["search"] = list()
+					if(sub_category)
+						data["search"] = SSinternal_wiki.get_searchcache_catalog(sub_category)
+						if(P)
+							data["catalog_data"] = P.get_data()
 
 				if("Materials")
 					data["search"] = SSinternal_wiki.get_searchcache_material()
@@ -114,7 +116,7 @@
 			if(!crash)
 				P = null
 				searchmode = null
-				appliance = null
+				sub_category = null
 				doc_title = "Click a search entry!"
 				doc_body = ""
 			. = TRUE
@@ -179,6 +181,10 @@
 				paper.info = doc_body
 			. = TRUE
 
+		if("setsubcat")
+			if(!crash)
+				sub_category = params["data"] // have not selected it yet
+			. = TRUE
 		// final search
 		if("search")
 			if(!crash)
@@ -186,11 +192,7 @@
 				var/setpage = TRUE
 				P = null
 				if(searchmode == "Food Recipes")
-					if(!appliance)
-						appliance = params["data"] // have not selected it yet
-						setpage = FALSE
-					else
-						P = SSinternal_wiki.get_page_food(search)
+					P = SSinternal_wiki.get_page_food(search)
 				if(searchmode == "Drink Recipes")
 					P = SSinternal_wiki.get_page_drink(search)
 				if(searchmode == "Chemistry")

@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/smashers = list()
 
 	VAR_PRIVATE/list/appliance_list = list("Simple","Microwave","Fryer","Oven","Grill","Candy Maker","Cereal Maker")
+	VAR_PRIVATE/list/catalog_list = list()
 	VAR_PRIVATE/list/foodreact = list()
 	VAR_PRIVATE/list/drinkreact = list()
 	VAR_PRIVATE/list/chemreact = list()
@@ -75,8 +76,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	return searchcache_chemreact
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_seed()
 	return searchcache_botseeds
-/datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog()
-	return searchcache_catalogs
+/datum/controller/subsystem/internal_wiki/proc/get_catalogs()
+	return catalog_list
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
+	return searchcache_catalogs[section]
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_material()
 	return searchcache_material
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_particle()
@@ -386,8 +389,12 @@ SUBSYSTEM_DEF(internal_wiki)
 			P.title = item.name
 			P.catalog_record = item
 			catalogs["[item.name]"] = P
-			searchcache_catalogs.Add("[item.name]")
+			if(!searchcache_catalogs[name])
+				searchcache_catalogs[name] = list()
+			var/list/SC = searchcache_catalogs[name]
+			SC.Add(P.title)
 			pages.Add(P)
+		catalog_list.Add(G.name)
 
 /datum/controller/subsystem/internal_wiki/proc/allow_reagent(var/reagent_id)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -1008,7 +1015,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/datum/category_item/catalogue/catalog_record = null
 
 /datum/internal_wiki/page/catalog/get_data()
-	return catalog_record.desc
+	var/list/data = list()
+	data["name"] = catalog_record.name
+	data["desc"] = catalog_record.desc
+	return data
 
 // MISC HELPERS
 ////////////////////////////////////////////
