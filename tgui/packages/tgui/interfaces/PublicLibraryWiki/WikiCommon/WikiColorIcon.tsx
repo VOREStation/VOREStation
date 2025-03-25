@@ -1,80 +1,104 @@
-import { useEffect, useRef } from 'react';
-import { Color } from 'tgui-core/color';
-import { Box, Icon } from 'tgui-core/components';
+import React, { useCallback, useEffect, useState } from 'react';
 
-export const ColoredIcon = (props: {
-  icon: string | null;
-  icon_state: string | null;
-  color: string | null;
-}) => {
-  const { icon, icon_state, color } = props;
-
-  const iconRef = icon ? Byond.iconRefMap?.[icon] : null;
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (!iconRef) {
-      return;
-    }
-    const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
-    const context = canvas.getContext('2d');
-    if (!context) {
-      return;
-    }
-
-    const src = `${iconRef}?state=${icon_state}`;
-
-    const image = document.createElement('img');
-    document.body.appendChild(image);
-    image.setAttribute('style', 'display:none');
-    image.src = src;
+export const getImage = async (url: string): Promise<HTMLImageElement> => {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
     image.onload = () => {
-      renderImage(image, canvas, context, color);
+      resolve(image);
     };
-    image.onerror = () => {
-      context.fillStyle = 'red';
-      context.fillText('Error', 0, 0, 64);
-    };
-  }, [icon, icon_state, color]);
-
-  if (!iconRef) {
-    return <Icon size={4} name="spinner" />;
-  }
-
-  return (
-    <Box width={4} height={4}>
-      <canvas key={icon_state} ref={canvasRef} width={64} height={64} />
-    </Box>
-  );
+    image.src = url;
+  });
 };
 
-export const renderImage = (
-  image: HTMLImageElement,
-  canvas: HTMLCanvasElement,
-  context: CanvasRenderingContext2D,
-  color: string | null,
-) => {
-  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+// This component
+export const CanvasBackedImage = (props: {
+  render: (
+    canvas: OffscreenCanvas,
+    ctx: OffscreenCanvasRenderingContext2D,
+  ) => Promise<void>;
+}) => {
+  const [bitmap, setBitmap] = useState<string>('');
 
-  if (!color) {
-    return;
-  }
+  useEffect(() => {
+    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(64, 64);
 
-  const color_rgb = Color.fromHex(color);
-  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-
-  const recolor = () => {
-    for (let j = 0; j < imageData.data.length; j += 4) {
-      imageData.data[j + 0] *= color_rgb.r / 255;
-      imageData.data[j + 1] *= color_rgb.g / 255;
-      imageData.data[j + 2] *= color_rgb.b / 255;
+    const ctx = offscreenCanvas.getContext('2d');
+    if (!ctx) {
+      return;
     }
 
-    context.putImageData(imageData, 0, 0);
-  };
-  recolor();
+    setBitmap('');
+
+    const drawImage = async () => {
+      // Render
+      await props.render(offscreenCanvas, ctx);
+
+      // Convert to a blob and put in our <img> tag
+      const bitmap = await offscreenCanvas.convertToBlob();
+      setBitmap(URL.createObjectURL(bitmap));
+    };
+
+    drawImage();
+
+    return () => {
+      if (bitmap !== '') {
+        URL.revokeObjectURL(bitmap);
+      }
+    };
+  }, [props.render]);
+
+  return <img src={bitmap} width={64} height={64} />;
+};
+
+export const ColorizedImage = (props: {
+  icon: string | null;
+  iconState: string | null;
+  color?: string | null;
+}) => {
+  const { icon, iconState, color } = props;
+
+  const iconRef = icon ? Byond.iconRefMap?.[icon] : null;
+  const render = useCallback(
+    async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
+      // Pixel art please
+      ctx.imageSmoothingEnabled = false;
+
+      // Load the image from the server
+      const image = await getImage(`${iconRef}?state=${iconState}`);
+
+      // Draw the image on top
+      ctx.drawImage(image, 0, 0, 64, 64);
+
+      // Draw a square over the image with the color
+      ctx.globalCompositeOperation = 'multiply';
+      ctx.fillStyle = color || '#ffffff';
+      ctx.fillRect(0, 0, 64, 64);
+
+      // Use the image as a mask
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.drawImage(image, 0, 0, 64, 64);
+
+      // Colour it white for the outline
+      ctx.globalCompositeOperation = 'destination-over';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, 64, 64);
+
+      // Draw an outline
+      const factor = 1.1;
+      const scaleX = image.width * factor;
+      const scaleY = image.height * factor;
+      ctx.scale(factor, factor);
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.drawImage(
+        image,
+        -(scaleX - image.width) / factor,
+        -(scaleY - image.height) / factor,
+        64,
+        64,
+      );
+    },
+    [iconRef, iconState, color],
+  );
+
+  return <CanvasBackedImage render={render} />;
 };
