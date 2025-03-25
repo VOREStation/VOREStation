@@ -3,7 +3,6 @@ import { useBackend } from 'tgui/backend';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import { groupList } from '../constants';
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
@@ -24,7 +23,7 @@ export const WikiSearchPage = (
   const [subCatActiveEntry, setSubCatActiveEntry] = useState('');
   const [searchText, setSearchText] = useState('');
   const [activeEntry, setactiveEntry] = useState('');
-  const [hideGroup, setHideGroup] = useState(0);
+  const [hideGroup, setHideGroup] = useState(false);
   const {
     onUpdateAds,
     updateAds,
@@ -71,24 +70,32 @@ export const WikiSearchPage = (
       )}
       <Divider />
       <Stack fill>
-        {!!subCats && (
-          <WikiSearchList
-            title="Group"
-            searchText={subCatSearchText}
-            onSearchText={setSubCatSearchText}
-            onActiveEntry={setSubCatActiveEntry}
-            listEntries={subCats}
-            activeEntry={subCatActiveEntry}
-            basis={groupList[hideGroup]}
-            action="setsubcat"
-            button={
+        {!!subCats &&
+          (hideGroup ? (
+            <Stack.Item>
               <Button
-                icon={hideGroup === 0 ? 'arrow-left' : 'arrow-right'}
-                onClick={() => setHideGroup(hideGroup > 0 ? 0 : 1)}
+                icon="arrow-right"
+                onClick={() => setHideGroup(!hideGroup)}
               />
-            }
-          />
-        )}
+            </Stack.Item>
+          ) : (
+            <WikiSearchList
+              title="Group"
+              searchText={subCatSearchText}
+              onSearchText={setSubCatSearchText}
+              onActiveEntry={setSubCatActiveEntry}
+              listEntries={subCats}
+              activeEntry={subCatActiveEntry}
+              basis="15%"
+              action="setsubcat"
+              button={
+                <Button
+                  icon="arrow-left"
+                  onClick={() => setHideGroup(!hideGroup)}
+                />
+              }
+            />
+          ))}
         <WikiSearchList
           title={searchmode}
           searchText={searchText}
