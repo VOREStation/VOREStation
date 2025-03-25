@@ -12,8 +12,15 @@ import { WikiSearchPage } from './WikiPages/WikiSearchPage';
 
 export const PublicLibraryWiki = (props) => {
   const { act, data } = useBackend<Data>();
-  const { errorText, searchmode, search, print, appliance, material_data } =
-    data;
+  const {
+    crash,
+    errorText,
+    searchmode,
+    search,
+    print,
+    appliance,
+    material_data,
+  } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
@@ -26,6 +33,15 @@ export const PublicLibraryWiki = (props) => {
       setactiveTab(1);
     }, loadTime);
   }, []);
+
+  useEffect(() => {
+    if (!crash) {
+      setactiveTab(0);
+      setTimeout(() => {
+        setactiveTab(1);
+      }, loadTime);
+    }
+  }, [crash]);
 
   useEffect(() => {
     const shownAds: string[] = [];

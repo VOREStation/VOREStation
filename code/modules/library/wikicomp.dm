@@ -41,6 +41,7 @@
 /obj/machinery/librarywikicomp/tgui_data(mob/user)
 	var/data = list()
 	if(SSinternal_wiki)
+		data["crash"] = crash
 		if(!crash)
 			// search page
 			data["errorText"] = ""

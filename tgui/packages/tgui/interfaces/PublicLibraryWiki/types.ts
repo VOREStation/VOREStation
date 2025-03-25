@@ -1,6 +1,7 @@
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
+  crash: BooleanLike;
   errorText: string;
   searchmode: string;
   search: string[] | null;
