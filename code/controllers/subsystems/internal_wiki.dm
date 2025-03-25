@@ -1109,8 +1109,11 @@ SUBSYSTEM_DEF(internal_wiki)
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
-			// slime reactions are strange
-			assemble_reaction["is_slime"] = istype(CR,/decl/chemical_reaction/slime)
+			assemble_reaction["is_slime"] = null
+			if(istype(CR,/decl/chemical_reaction/instant/slime))
+				var/decl/chemical_reaction/instant/slime/CRS = CR
+				var/slime_path = CRS.required
+				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions["[CR.type]"] = assemble_reaction
 		if(display_reactions.len)
 			data["instant_reactions"] = reactions
@@ -1175,7 +1178,7 @@ SUBSYSTEM_DEF(internal_wiki)
 				segment++
 			if(instant[path]["is_slime"])
 				for(var/RQ in instant[path]["required"])
-					body += " <b>-Slime Injection: </b>[RQ]<br>"
+					body += " <b>-[instant[path]["is_slime"]] Injection: </b>[RQ]<br>"
 			else
 				for(var/RQ in instant[path]["required"])
 					body += " <b>-Component: </b>[RQ]<br>"
