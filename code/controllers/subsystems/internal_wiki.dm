@@ -410,7 +410,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	return
 
 /datum/internal_wiki/page/proc/get_data()
-	return
+	return data
 
 /datum/internal_wiki/page/proc/get_print()
 	return
