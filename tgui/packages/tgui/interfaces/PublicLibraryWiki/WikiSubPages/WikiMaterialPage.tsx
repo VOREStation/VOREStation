@@ -1,7 +1,6 @@
 import {
   Box,
   Collapsible,
-  DmIcon,
   LabeledList,
   Section,
   Stack,
@@ -9,6 +8,7 @@ import {
 import { capitalize } from 'tgui-core/string';
 
 import { MaterialData } from '../types';
+import { ColoredIcon } from '../WikiCommon/WikiColorIcon';
 import {
   NoBox,
   NotAvilableBox,
@@ -44,12 +44,10 @@ export const WikiMaterialPage = (props: { materials: MaterialData }) => {
         <Stack.Item grow>
           <LabeledList>
             <LabeledList.Item label="Icon">
-              <DmIcon
+              <ColoredIcon
                 icon={icon_data.icon}
                 icon_state={icon_data.state}
                 color={icon_data.color}
-                width="64px"
-                height="64px"
               />
             </LabeledList.Item>
             <LabeledList.Divider />
