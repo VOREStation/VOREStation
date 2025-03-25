@@ -1,10 +1,4 @@
-import {
-  Box,
-  Collapsible,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
 import type { ParticleData } from '../types';
@@ -13,6 +7,7 @@ import {
   MinMaxBox,
   MinMaxBoxTemperature,
   ProbabilityBox,
+  WikiSpoileredList,
 } from '../WikiCommon/WikiQuickElements';
 
 export const WikiParticlePage = (props: { smasher: ParticleData }) => {
@@ -37,16 +32,7 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
           <LabeledList>
             <LabeledList.Item label="Target Sheet">{req_mat}</LabeledList.Item>
             {target_items && (
-              <>
-                <LabeledList.Divider />
-                <LabeledList.Item label="Target Items">
-                  <Collapsible color="transparent" title="Reveal Target Items">
-                    {target_items.map((item) => (
-                      <Box key={item}>- {item}</Box>
-                    ))}
-                  </Collapsible>
-                </LabeledList.Item>
-              </>
+              <WikiSpoileredList title="Target Items" entries={target_items} />
             )}
             <LabeledList.Divider />
             <LabeledList.Item label="Threshold Energy">
@@ -66,18 +52,7 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
               />
             </LabeledList.Item>
             {inducers && (
-              <>
-                <LabeledList.Divider />
-                <LabeledList.Item label="Inducers">
-                  <Collapsible color="transparent" title="Reveal Inducers">
-                    {Object.keys(inducers).map((inducer) => (
-                      <Box key={inducer}>
-                        - {inducer} {inducers[inducer]}
-                      </Box>
-                    ))}
-                  </Collapsible>
-                </LabeledList.Item>
-              </>
+              <WikiSpoileredList title="Inducers" entries={inducers} />
             )}
             <LabeledList.Divider />
             <LabeledList.Item label="Result">{result}</LabeledList.Item>

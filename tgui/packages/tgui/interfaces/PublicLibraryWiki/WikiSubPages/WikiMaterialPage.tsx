@@ -1,10 +1,4 @@
-import {
-  Box,
-  Collapsible,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
 import type { MaterialData } from '../types';
@@ -13,6 +7,7 @@ import {
   NoBox,
   NotAvilableBox,
   TemperatureBox,
+  WikiSpoileredList,
   YesBox,
 } from '../WikiCommon/WikiQuickElements';
 
@@ -117,30 +112,13 @@ export const WikiMaterialPage = (props: { materials: MaterialData }) => {
               )}
             </LabeledList.Item>
             {grind_reagents && (
-              <>
-                <LabeledList.Divider />
-                <LabeledList.Item label="Sheet Grind Result">
-                  <Collapsible color="transparent" title="Reveal Grind Results">
-                    {Object.keys(grind_reagents).map((reagent) => (
-                      <Box key={reagent}>
-                        - {reagent}: {grind_reagents[reagent]}
-                      </Box>
-                    ))}
-                  </Collapsible>
-                </LabeledList.Item>
-              </>
+              <WikiSpoileredList
+                title="Sheet Grind Result"
+                entries={grind_reagents}
+              />
             )}
             {recipies && (
-              <>
-                <LabeledList.Divider />
-                <LabeledList.Item label="Recipes">
-                  <Collapsible color="transparent" title="Reveal Recipes">
-                    {recipies.map((recipe) => (
-                      <Box key={recipe}>- {recipe}</Box>
-                    ))}
-                  </Collapsible>
-                </LabeledList.Item>
-              </>
+              <WikiSpoileredList title="Recipes" entries={recipies} />
             )}
           </LabeledList>
         </Stack.Item>
