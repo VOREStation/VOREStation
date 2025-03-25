@@ -29,9 +29,13 @@ export const PublicLibraryWiki = (props) => {
   const [activeTab, setactiveTab] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
+    if (!crash) {
+      setTimeout(() => {
+        setactiveTab(1);
+      }, loadTime);
+    } else {
       setactiveTab(1);
-    }, loadTime);
+    }
   }, []);
 
   useEffect(() => {
@@ -68,7 +72,7 @@ export const PublicLibraryWiki = (props) => {
 
   const tabs: React.JSX.Element[] = [];
   tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
-  tabs[1] = !search ? (
+  tabs[1] = crash ? (
     <WikiErrorPage />
   ) : (
     <Section fill title="Bingle Search">
