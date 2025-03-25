@@ -1163,6 +1163,7 @@ SUBSYSTEM_DEF(internal_wiki)
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
+			assemble_reaction["is_slime"] = null
 			reactions += list(assemble_reaction)
 		if(display_reactions.len)
 			data["distilled_reactions"] = reactions
