@@ -1111,6 +1111,11 @@ SUBSYSTEM_DEF(internal_wiki)
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
+			assemble_reaction["is_slime"] = null
+			if(istype(CR,/decl/chemical_reaction/instant/slime))
+				var/decl/chemical_reaction/instant/slime/CRS = CR
+				var/obj/item/slime_extract/slime_path = CRS.required
+				assemble_reaction["is_slime"] = initial(slime_path.name)
 			reactions["[CR.type]"] = assemble_reaction
 		if(display_reactions.len)
 			data["instant_reactions"] = reactions
@@ -1173,8 +1178,12 @@ SUBSYSTEM_DEF(internal_wiki)
 			else
 				body += "<b>Potential Chemical breakdown [segment]: </b><br>"
 				segment++
-			for(var/RQ in instant[path]["required"])
-				body += " <b>-Component: </b>[RQ]<br>"
+			if(instant[path]["is_slime"])
+				for(var/RQ in instant[path]["required"])
+					body += " <b>-[instant[path]["is_slime"]] Injection: </b>[RQ]<br>"
+			else
+				for(var/RQ in instant[path]["required"])
+					body += " <b>-Component: </b>[RQ]<br>"
 			for(var/IH in instant[path]["inhibitor"])
 				body += " <b>-Inhibitor: </b>[IH]<br>"
 			for(var/CL in instant[path]["catalysts"])
