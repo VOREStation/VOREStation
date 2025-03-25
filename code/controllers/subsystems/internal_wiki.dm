@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/controller/subsystem/internal_wiki/proc/get_appliances()
 	return appliance_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_food(var/appliance)
-	return searchcache_foodrecipe[appliance]
+	return searchcache_foodrecipe[appliance] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_drink()
 	return searchcache_drinkrecipe
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_chem()
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
 	return catalog_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
-	return searchcache_catalogs[section]
+	return searchcache_catalogs[section] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_material()
 	return searchcache_material
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_particle()
