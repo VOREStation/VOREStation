@@ -500,16 +500,17 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/material/assemble(var/datum/material/M)
 	title = M.display_name
 	data["title"] = title
-	var/stack_path = M.stack_type
-	add_icon(data, initial(stack_path:icon), initial(stack_path:icon_state), "#ffffff")
+	var/obj/item/stack/stack_path = M.stack_type
+	add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), "#ffffff")
 	// Get internal data
 	data["integrity"] = M.integrity
 	data["hardness"] = M.hardness
 	data["weight"] = M.weight
-	data["stack_size"] = initial(stack_path:max_amount)
-	data["supply_points"] = M.supply_conversion_value
-	var/value = M.supply_conversion_value * SSsupply.points_per_money
-	value = FLOOR(value * 100,1) / 100 // Truncate decimals
+	data["stack_size"] = initial(stack_path.max_amount) ? initial(stack_path.max_amount) : 0
+	var/supply_value = M.supply_conversion_value ? M.supply_conversion_value : 0
+	data["supply_points"] = supply_value
+	var/value = supply_value * SSsupply.points_per_money
+	value = FLOOR(value * 100, 1) / 100 // Truncate decimals
 	data["market_price"] = value
 
 	data["opacity"] = M.opacity
