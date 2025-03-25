@@ -516,3 +516,15 @@
   - bugfix: FBP dionas will no longer explode
   xnqm8h:
   - bugfix: Fixes demuxer output not pushing to other circuits.
+2025-03-25:
+  Cameron-The-Raven:
+  - qol: Xenobio monkey gun (bio6 bluespace5) now only requires gold and silver.
+  - qol: Portable slime processor (magnet 4 bio 5) now only requires  silver and gold.
+  Diana:
+  - qol: Temperature artifacts can no longer randomly spawn active.
+  - balance: Laser gun artifacts can spawn with pulse beams if you are lucky.
+  - code_imp: Consolidates a bunch of species files for backend cleanup.
+  - bugfix: Gets rid of an override that overrode tajaran being able to lick wounds
+  - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
+  Kashargul:
+  - code_imp: next set of NEW to INIT
