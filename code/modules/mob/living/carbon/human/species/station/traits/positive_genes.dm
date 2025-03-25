@@ -106,7 +106,7 @@
 	cost = 5
 	custom_only = FALSE
 
-	is_genetrait = TRUE
+	is_genetrait = FALSE //VOREStation Note: TRAITGENETICS - Disabled on VS
 	activity_bounds = DNA_HARDER_BOUNDS
 	hidden = TRUE // Cannot start with superpowers
 

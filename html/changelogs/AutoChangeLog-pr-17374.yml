@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "hiding layer properly set after movement"
-  - bugfix: "incorp pushing"
-  - bugfix: "changeling extract dna proc"

@@ -126,8 +126,8 @@
 	update_icon()
 //VOREStation Add End
 
-/obj/item/gun/New()
-	..()
+/obj/item/gun/Initialize(mapload)
+	. = ..()
 	for(var/i in 1 to firemodes.len)
 		firemodes[i] = new /datum/firemode(src, firemodes[i])
 
