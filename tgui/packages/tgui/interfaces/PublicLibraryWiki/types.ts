@@ -31,7 +31,7 @@ export type DrinkData = BasicFood & Icon & Partial<ReactionData>;
 type BasicFood = {
   title: string;
   description: string;
-  flavor: string;
+  flavor?: string;
   allergen: string[];
 };
 

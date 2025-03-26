@@ -1052,7 +1052,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Coating: </b> [data["recipe"]["coating"]]<br>"
 	// Fruits/Veggis
 	var/list/fruits = data["recipe"]["fruits"]
-	if(fruits && fruits.len)
+	if(LAZYLEN(fruits))
 		var/count = 0
 		var/pretty_fru = ""
 		for(var/fru in fruits)
@@ -1062,7 +1062,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Components: </b> [pretty_fru]<br>"
 	//For each reagent
 	var/list/reags = data["recipe"]["reagents"]
-	if(reags && reags.len)
+	if(LAZYLEN(reags))
 		var/count = 0
 		var/pretty_rea = ""
 		for(var/reg in reags)
@@ -1072,7 +1072,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
 	var/list/catalis = data["recipe"]["catalysts"]
-	if(catalis && catalis.len)
+	if(LAZYLEN(catalis)
 		var/count = 0
 		var/pretty_cat = ""
 		for(var/cat in catalis)
