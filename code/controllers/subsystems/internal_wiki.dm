@@ -933,7 +933,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
 	add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
 	// Get internal data
-	data["flavor"] = R.flavor
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
 	data["allergen"] = assemble_allergens(R.allergen_type)
