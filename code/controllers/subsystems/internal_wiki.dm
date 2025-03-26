@@ -1001,8 +1001,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	recipe_data["has_coating"] = recipe["has_coatable_items"]
 	recipe_data["coating"] = recipe["Coating"]
 	if(!isnull(recipe_data["coating"]) && recipe_data["coating"] != -1) // Null is no coatings, -1 is any coating, otherwise specifies the name of coating
-		var/coatingtype = recipe["Coating"]
-		recipe_data["coating"] = initial(coatingtype:name)
+		var/datum/reagent/nutriment/coating/coatingtype = recipe["Coating"]
+		recipe_data["coating"] = initial(coatingtype.name)
 	var/list/ingred = list()
 	for(var/ing in recipe["Ingredients"])
 		ingred["[ing]"] = recipe["Ingredients"][ing]
