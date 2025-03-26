@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, NoticeBox, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
@@ -9,8 +10,10 @@ export function WikiDonationBanner(props: {
   goal: number;
   displayedMessage: string;
   hasDonated: BooleanLike;
+  onDisplayedDonations: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { donated, goal, displayedMessage, hasDonated } = props;
+  const { donated, goal, displayedMessage, hasDonated, onDisplayedDonations } =
+    props;
 
   const progress = donated / goal;
 
@@ -20,6 +23,7 @@ export function WikiDonationBanner(props: {
         donated={donated}
         goal={goal}
         message={displayedMessage}
+        onDisplayedDonations={onDisplayedDonations}
       />
     </NoticeBox>;
   }
@@ -31,6 +35,7 @@ export function WikiDonationBanner(props: {
           donated={donated}
           goal={goal}
           message={displayedMessage}
+          onDisplayedDonations={onDisplayedDonations}
         />
       </NoticeBox>
     );
@@ -43,6 +48,7 @@ export function WikiDonationBanner(props: {
           donated={donated}
           goal={goal}
           message={displayedMessage}
+          onDisplayedDonations={onDisplayedDonations}
         />
       </NoticeBox>
     );
@@ -55,6 +61,7 @@ export function WikiDonationBanner(props: {
           donated={donated}
           goal={goal}
           message={displayedMessage}
+          onDisplayedDonations={onDisplayedDonations}
         />
       </NoticeBox>
     );
@@ -66,6 +73,7 @@ export function WikiDonationBanner(props: {
         donated={donated}
         goal={goal}
         message={'Thank you for your AWESOME support!'}
+        onDisplayedDonations={onDisplayedDonations}
       />
     </NoticeBox>
   );
@@ -75,49 +83,60 @@ const WikiDonationContent = (props: {
   donated: number;
   goal: number;
   message: string;
+  onDisplayedDonations: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { donated, goal, message } = props;
+  const { donated, goal, message, onDisplayedDonations } = props;
 
   return (
-    <Stack vertical fill textAlign="center">
-      <Stack.Item>
-        <Box>{message}</Box>
-      </Stack.Item>
-      <Stack.Item>
-        <Box>
-          {donated} / {goal}
-        </Box>
-      </Stack.Item>
-      {donated < goal && (
+    <>
+      <Button
+        position="absolut"
+        right="4px"
+        color="transparent"
+        onClick={() => onDisplayedDonations(false)}
+      >
+        X
+      </Button>
+      <Stack vertical fill textAlign="center">
         <Stack.Item>
-          <Stack fill>
-            <Stack.Item grow />
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
-            <Stack.Item grow />
-          </Stack>
+          <Box>{message}</Box>
         </Stack.Item>
-      )}
-    </Stack>
+        <Stack.Item>
+          <Box>
+            {donated} / {goal}
+          </Box>
+        </Stack.Item>
+        {donated < goal && (
+          <Stack.Item>
+            <Stack fill>
+              <Stack.Item grow />
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item>
+                <DonationButtons />
+              </Stack.Item>
+              <Stack.Item grow />
+            </Stack>
+          </Stack.Item>
+        )}
+      </Stack>
+    </>
   );
 };
 

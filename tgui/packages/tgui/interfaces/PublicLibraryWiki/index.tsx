@@ -166,6 +166,7 @@ export const PublicLibraryWiki = (props) => {
                   has_donated ? displayedDonated : displayedDonations
                 }
                 hasDonated={has_donated}
+                onDisplayedDonations={setDislayDonation}
               />
             </Stack.Item>
           )}
