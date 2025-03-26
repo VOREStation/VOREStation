@@ -62,3 +62,10 @@ export const WikiDonationMessages = [
   'Opersating and upkeeping trustworthy information since 1990.',
   'Suport or information revolution. From bluespace right into your brain.',
 ];
+
+export const wikiDonatedMessages = [
+  'You are awesome!',
+  'Your support is appreciated!',
+  "We'll do our best to improve your experience!",
+  'Thank you! Thank you! Thank you!',
+];

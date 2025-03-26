@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, NoticeBox, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { WikiAdColors, WikiDonIcons } from '../constants';
 
@@ -7,10 +8,21 @@ export function WikiDonationBanner(props: {
   donated: number;
   goal: number;
   displayedMessage: string;
+  hasDonated: BooleanLike;
 }) {
-  const { donated, goal, displayedMessage } = props;
+  const { donated, goal, displayedMessage, hasDonated } = props;
 
   const progress = donated / goal;
+
+  if (hasDonated) {
+    <NoticeBox success>
+      <WikiDonationContent
+        donated={donated}
+        goal={goal}
+        message={displayedMessage}
+      />
+    </NoticeBox>;
+  }
 
   if (progress < 0.33) {
     return (

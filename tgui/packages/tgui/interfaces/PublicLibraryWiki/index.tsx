@@ -3,7 +3,12 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
 
-import { WikiAdColors, wikiAds, WikiDonationMessages } from './constants';
+import {
+  WikiAdColors,
+  wikiAds,
+  wikiDonatedMessages,
+  WikiDonationMessages,
+} from './constants';
 import type { Data } from './types';
 import { WikiDonationBanner } from './WikiPages/WIkiDonationbanner';
 import { WikiErrorPage } from './WikiPages/WikiErrorPage';
@@ -26,10 +31,14 @@ export const PublicLibraryWiki = (props) => {
     particle_data,
     catalog_data,
     ore_data,
+    has_donated,
+    donated,
+    goal,
   } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
   const [displayDonation, setDislayDonation] = useState(false);
   const [displayedDonations, setDisplayedDonations] = useState<string>('');
+  const [displayedDonated, setDisplayDonated] = useState<string>('');
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
     Math.floor(Math.random() * 2000) + 2000,
@@ -92,6 +101,14 @@ export const PublicLibraryWiki = (props) => {
     }
   }, [displayDonation]);
 
+  useEffect(() => {
+    setDisplayDonated(
+      wikiDonatedMessages[
+        Math.floor(Math.random() * wikiDonatedMessages.length)
+      ],
+    );
+  }, [has_donated]);
+
   const tabs: React.JSX.Element[] = [];
   tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
   tabs[1] = crash ? (
@@ -135,7 +152,10 @@ export const PublicLibraryWiki = (props) => {
               <WikiDonationBanner
                 donated={0}
                 goal={1000}
-                displayedMessage={displayedDonations}
+                displayedMessage={
+                  has_donated ? displayedDonated : displayedDonations
+                }
+                hasDonated={has_donated}
               />
             </Stack.Item>
           )}

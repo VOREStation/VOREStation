@@ -8,6 +8,9 @@ export type Data = {
   title: string;
   print: string;
   sub_categories: string[] | null;
+  has_donated: BooleanLike;
+  donated: number;
+  goal: number;
 } & Required<PageData>;
 
 export type PageData = {
