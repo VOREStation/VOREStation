@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { Box, Collapsible, LabeledList } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
