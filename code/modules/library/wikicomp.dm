@@ -16,6 +16,7 @@
 	VAR_PRIVATE/searchmode = null
 	VAR_PRIVATE/sub_category = null //sublists for food menu
 	VAR_PRIVATE/crash = FALSE
+	VAR_PRIVATE/just_donated = FALSE
 	VAR_PRIVATE/datum/internal_wiki/page/P
 
 /obj/machinery/librarywikicomp/Initialize(mapload)
@@ -35,6 +36,7 @@
 /obj/machinery/librarywikicomp/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		just_donated = FALSE
 		ui = new(user, src, "PublicLibraryWiki", name)
 		ui.open()
 
@@ -55,9 +57,9 @@
 		data["catalog_data"] = null
 		data["ore_data"] = null
 		data["sub_categories"] = null
-		data["donated"] = 0
-		data["goal"] = 100000
-		data["has_donated"] = FALSE
+		data["donated"] = SSinternal_wiki.get_highest_donor_value()
+		data["goal"] = SSinternal_wiki.get_donation_goal()
+		data["has_donated"] = just_donated
 		if(!crash)
 			// search page
 			data["errorText"] = ""
@@ -122,7 +124,7 @@
 /obj/machinery/librarywikicomp/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	playsound(src, "keyboard", 40) // into console
 
 	switch(action)
@@ -234,6 +236,11 @@
 		if("donate")
 			if(!crash)
 				var/amount = params["donate"]
+				var/mob/living/carbon/human/H = ui.user
+				if(!ishuman(H) || !H.IsAdvancedToolUser(TRUE))
+					to_chat(ui.user,"Donating to Bingle.exo is Byond your comprehension!")
+				else if(amount)
+					pay_donation(H.GetIdCard(),ui.user,amount)
 			. = TRUE
 
 /obj/machinery/librarywikicomp/proc/pay_donation( var/obj/item/card/id/I, var/mob/user, var/amount )
@@ -241,6 +248,7 @@
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(SSinternal_wiki.pay_with_card( I, user, src, amount))
 		playsound(src, 'sound/machines/ping.ogg', 50, 1)
+		just_donated = TRUE
 
 // mapper varient for dorms and residences
 /obj/machinery/librarywikicomp/personal
