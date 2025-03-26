@@ -103,58 +103,76 @@ SUBSYSTEM_DEF(internal_wiki)
 ///////////////////////////////////////////////////////////////////////////////////
 // get a page from a search
 /datum/controller/subsystem/internal_wiki/proc/get_page_food(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/food)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return foodrecipe[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_drink(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/drink)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return drinkrecipe[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_chem(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/chemical)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return chemreact[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_seed(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/seed)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalogs[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_material(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/material)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return materials[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_particle(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/smasher)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return smashers[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_ore(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/ore)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return ores[search]
 // Search lists
 /datum/controller/subsystem/internal_wiki/proc/get_appliances()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return appliance_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_food(var/appliance)
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_foodrecipe[appliance] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_drink()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_drinkrecipe
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_chem()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_chemreact
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_seed()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_botseeds
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalog_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_catalogs[section] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_material()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_material
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_particle()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_smasher
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_ore()
+	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_ore
 
@@ -493,6 +511,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	return
 
 /datum/internal_wiki/page/proc/get_data()
+	RETURN_TYPE(/list)
 	return data
 
 /datum/internal_wiki/page/proc/get_print()
