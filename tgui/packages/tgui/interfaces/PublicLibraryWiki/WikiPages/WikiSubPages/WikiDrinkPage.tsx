@@ -37,7 +37,6 @@ export const WikiDrinkPage = (props: { drinks: DrinkData }) => {
             <LabeledList.Item label="Flavor">
               {flavor ? flavor : <NotAvilableBox />}
             </LabeledList.Item>
-            <LabeledList.Divider />
             {!!allergen && (
               <WikiSpoileredList
                 ourKey={title}

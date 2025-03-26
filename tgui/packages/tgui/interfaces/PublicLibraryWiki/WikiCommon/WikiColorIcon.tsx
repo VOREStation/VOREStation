@@ -12,15 +12,20 @@ export const getImage = async (url: string): Promise<HTMLImageElement> => {
 
 // This component
 export const CanvasBackedImage = (props: {
+  dimension: number;
   render: (
     canvas: OffscreenCanvas,
     ctx: OffscreenCanvasRenderingContext2D,
   ) => Promise<void>;
 }) => {
+  const { dimension } = props;
   const [bitmap, setBitmap] = useState<string>('');
 
   useEffect(() => {
-    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(64, 64);
+    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(
+      dimension,
+      dimension,
+    );
 
     const ctx = offscreenCanvas.getContext('2d');
     if (!ctx) {
@@ -47,7 +52,7 @@ export const CanvasBackedImage = (props: {
     };
   }, [props.render]);
 
-  return <img src={bitmap} width={64} height={64} />;
+  return <img src={bitmap} width={dimension} height={dimension} />;
 };
 
 export const ColorizedImage = (props: {
@@ -105,5 +110,5 @@ export const ColorizedImage = (props: {
     [iconRef, iconState, color],
   );
 
-  return <CanvasBackedImage render={render} />;
+  return <CanvasBackedImage render={render} dimension={iconSize} />;
 };
