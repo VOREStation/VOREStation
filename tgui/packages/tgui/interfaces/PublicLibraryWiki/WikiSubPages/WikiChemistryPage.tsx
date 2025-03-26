@@ -2,11 +2,9 @@ import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
 import type { ReagentData } from '../types';
+import { ChemicalReactionList } from '../WikiCommon/WikiChemList';
 import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import {
-  ChemicalReactionList,
-  WikiSpoileredList,
-} from '../WikiCommon/WikiListElements';
+import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
 import {
   NotAvilableBox,
   SupplyEntry,
