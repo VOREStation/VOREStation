@@ -1072,7 +1072,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
 	var/list/catalis = data["recipe"]["catalysts"]
-	if(LAZYLEN(catalis)
+	if(LAZYLEN(catalis))
 		var/count = 0
 		var/pretty_cat = ""
 		for(var/cat in catalis)
