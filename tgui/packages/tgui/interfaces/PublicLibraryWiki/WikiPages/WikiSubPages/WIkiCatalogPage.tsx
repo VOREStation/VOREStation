@@ -1,7 +1,7 @@
 import { Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { CatalogData } from '../types';
+import type { CatalogData } from '../../types';
 
 export const WikiCatalogPage = (props: { catalog: CatalogData }) => {
   const { catalog } = props;

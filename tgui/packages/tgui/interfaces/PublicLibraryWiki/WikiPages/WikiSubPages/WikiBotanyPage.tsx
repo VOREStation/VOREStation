@@ -1,10 +1,10 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { BotanyData } from '../types';
-import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
-import { NotAvilableBox } from '../WikiCommon/WikiQuickElements';
+import type { BotanyData } from '../../types';
+import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
+import { NotAvilableBox } from '../../WikiCommon/WikiQuickElements';
 
 export const WikiBotanyPage = (props: { seeds: BotanyData }) => {
   const {

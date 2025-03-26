@@ -1,16 +1,16 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { MaterialData } from '../types';
-import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
+import type { MaterialData } from '../../types';
+import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
 import {
   NoBox,
   NotAvilableBox,
   SupplyEntry,
   TemperatureBox,
   YesBox,
-} from '../WikiCommon/WikiQuickElements';
+} from '../../WikiCommon/WikiQuickElements';
 
 export const WikiMaterialPage = (props: { materials: MaterialData }) => {
   const {

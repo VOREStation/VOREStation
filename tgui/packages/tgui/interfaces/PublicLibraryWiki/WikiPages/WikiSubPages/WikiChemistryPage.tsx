@@ -1,15 +1,15 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { ReagentData } from '../types';
-import { ChemicalReactionList } from '../WikiCommon/WikiChemList';
-import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
+import type { ReagentData } from '../../types';
+import { ChemicalReactionList } from '../../WikiCommon/WikiChemList';
+import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
 import {
   NotAvilableBox,
   SupplyEntry,
   TierdBox,
-} from '../WikiCommon/WikiQuickElements';
+} from '../../WikiCommon/WikiQuickElements';
 
 export const WikiChemistryPage = (props: { chems: ReagentData }) => {
   const {

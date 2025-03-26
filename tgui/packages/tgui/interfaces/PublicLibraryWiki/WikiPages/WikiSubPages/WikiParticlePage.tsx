@@ -1,14 +1,14 @@
 import { LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { ParticleData } from '../types';
-import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import { WikiSpoileredList } from '../WikiCommon/WikiListElements';
+import type { ParticleData } from '../../types';
+import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
 import {
   MinMaxBox,
   MinMaxBoxTemperature,
   ProbabilityBox,
-} from '../WikiCommon/WikiQuickElements';
+} from '../../WikiCommon/WikiQuickElements';
 
 export const WikiParticlePage = (props: { smasher: ParticleData }) => {
   const {

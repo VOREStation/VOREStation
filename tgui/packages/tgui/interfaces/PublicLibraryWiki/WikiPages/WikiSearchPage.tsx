@@ -5,12 +5,12 @@ import { createSearch } from 'tgui-core/string';
 
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
-import { WikiBotanyPage } from '../WikiSubPages/WikiBotanyPage';
-import { WikiCatalogPage } from '../WikiSubPages/WIkiCatalogPage';
-import { WikiChemistryPage } from '../WikiSubPages/WikiChemistryPage';
-import { WikiMaterialPage } from '../WikiSubPages/WikiMaterialPage';
-import { WikiOrePage } from '../WikiSubPages/WikiOrePare';
-import { WikiParticlePage } from '../WikiSubPages/WikiParticlePage';
+import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
+import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
+import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
+import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
+import { WikiOrePage } from './WikiSubPages/WikiOrePare';
+import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
 
 export const WikiSearchPage = (
   props: {

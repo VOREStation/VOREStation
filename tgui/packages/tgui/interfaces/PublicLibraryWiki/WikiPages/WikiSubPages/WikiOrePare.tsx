@@ -1,10 +1,10 @@
 import { LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { OreData } from '../types';
-import { ColorizedImage } from '../WikiCommon/WikiColorIcon';
-import { WikiList } from '../WikiCommon/WikiListElements';
-import { NotAvilableBox } from '../WikiCommon/WikiQuickElements';
+import type { OreData } from '../../types';
+import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { WikiList } from '../../WikiCommon/WikiListElements';
+import { NotAvilableBox } from '../../WikiCommon/WikiQuickElements';
 
 export const WikiOrePage = (props: { ores: OreData }) => {
   const {
