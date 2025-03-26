@@ -20,7 +20,7 @@
 										"vox",
 										"zaddat",
 										"diona",
-										"zoren",
+										"zorren",
 										"goth",
 										"catgirl",
 										"catgirl (male)",
@@ -95,4 +95,25 @@
 										"Great time to learn a bit about their culture!",
 										"They really are, truly, very appreciated.",
 										"They're just rad."
+	)
+
+	var/list/terrible_factoids = list(
+									"They are well known for their diverse modes of expression, which is said to be the cornerstone of their creative arts.",
+									"They're known for their strong connection to their herritage, and their passing on of knowledge from one generation to the next.",
+									"Their customs and rituals are renowned across the galaxy, and are the foundation of their society.",
+									"Once tied to their homeworld(s), they are now proud spacefarers and an essential part of the greater galactic diaspora.",
+									"Adaptability is said to be a fundamental strength found amongst every one of them.",
+									"Known for their forward thinking mindset and interspecies empathy, they hold seats in intergalactic politics.",
+									"The producers of many great technology that are proudly shared with the galactic community.",
+									"NanoTrasen is proud to have strong relationships with them, intergrating them well in our many workplaces.",
+									"Famous for their excellent culinary utility, they leave many an employee watering at the mouth.",
+									"Kinship is a dominant trait amongst them, each of us would be lucky to hold their friendship.",
+									"There are rumours that they are the direct inheritors of a precursor species.",
+									"They have mastered the art of problem solving, particularly in respect to the unique challenges that they face.",
+									"Unfortunately, they do not have any inherent magical ability, having to get by on their mundane skill.",
+									"They have a biology not entirely unlike others that you might encounter here, whilst still retaining many distinct features that set them apart.",
+									"It is said that they have evolved around an innate sense of social networking.",
+									"Did you know that whilst they might seem to have a specific naming scheme, this is actually as varied as any other within their native tongue.",
+									"To be honest, they're just, like, really neat.",
+									"Whilst it is easy to think that you know them from their outward appearance, you should really consider getting beyond the surface, see who they are on the inside."
 	)

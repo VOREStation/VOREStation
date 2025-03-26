@@ -56,7 +56,8 @@ SUBSYSTEM_DEF(appreciation)
 					else
 						appreciated = H.species.name
 	var/appreciation_message = pick(loremaster.appreciation_messages)
-	msg("Today is [appreciated] appreciation day! [appreciation_message]")
+	var/terrible_factoid = pick(loremaster.terrible_factoids)
+	msg("Today is [appreciated] appreciation day! [terrible_factoid] [appreciation_message]")
 
 /datum/controller/subsystem/appreciation/proc/msg(var/message,var/sender)
 	ASSERT(message)
