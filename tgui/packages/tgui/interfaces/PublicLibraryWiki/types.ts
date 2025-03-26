@@ -20,7 +20,16 @@ export type PageData = {
   ore_data: OreData | null;
   botany_data: BotanyData | null;
   chemistry_data: ReagentData | null;
+  drink_data: DrinkData | null;
 };
+
+export type DrinkData = {
+  title: string;
+  description: string;
+  flavor: string;
+  allergen: string[];
+} & ReactionData &
+  Icon;
 
 export type ReagentData = {
   title: string;

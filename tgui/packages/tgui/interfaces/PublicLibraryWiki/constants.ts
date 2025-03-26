@@ -105,3 +105,39 @@ export const wikiDonatedMessages = [
   "We'll do our best to improve your experience!",
   'Thank you! Thank you! Thank you!',
 ];
+
+// Did you know?
+export const WikiTippOfTheDay = [
+  "Bingle wasn't built in typescript, but instead the crystalized tears of our programmers?",
+  'Sleep()ing is illegal!',
+  'Not all spaw()ns are friendly!',
+  'A space carp a day keeps the virus away.',
+  'Who thought two apple trees would be a good idea?',
+  'Chemistry used to work on a trust based system? Where recipes had each chemical written down on their own post-it note per reaction!',
+  'A toss to a wall once made everyone sprawl.',
+  'New... New... New... why is it everywhere?',
+  'Do we?',
+  'Investments in books are so past century. Invest in bingle today!',
+  'We can see the future!',
+  'The code that runs Bingle is byond most mortal comprehension!',
+  'You could just go on, milk that synx for inaprovaline!',
+  "Appendicitis is actually contagious, don't listen to medical's lies!",
+  'Bingle is more trustworthy then books written 200 years ago!',
+  'Did you know, you can a hallucinate forever?',
+  'The pain never ends!',
+  'Did you know? Skrell are 40% more likely to donate their bodies for research?',
+  'You can do it all yourself, go on fork the code again, I dare you!',
+  'Ceilings are a myth made to sell you roofs!',
+  "It's illegal to turn elevators into showers in Solgov space!",
+  'Supermatter, everywhere supermatter!',
+  'You can live forever!',
+  'Baits might have a telepathic side effect.',
+  'There have been [' +
+    Math.random() * 1000 +
+    '] runtimes recorded by Bingle today!',
+  '9 out of 10 doctors agree the supermatter tastes like ranch dressing!',
+  'Some oceans have infinite gravity!',
+  "Solgov has never said why it's illegal to have both a singularity and supermatter engine on the same station!",
+  'Lead has the highest radiation resistance of all materials? Perfect for engine walls!',
+  'In some regions of space, magic is illegal. Go on, try it nerd, your funny words have no power here!',
+];

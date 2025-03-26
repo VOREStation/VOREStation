@@ -9,8 +9,8 @@ import {
 
 import { WikiLogo } from '../WikiCommon/WikiLogo';
 
-export const WikiLoadingPage = (props: { endTime: number }) => {
-  const { endTime } = props;
+export const WikiLoadingPage = (props: { endTime: number; tipp: string }) => {
+  const { endTime, tipp } = props;
 
   const [ourProgress, setOurProgress] = useState(0);
   const [updateProgress, setUpdateProgress] = useState(false);
@@ -37,6 +37,16 @@ export const WikiLoadingPage = (props: { endTime: number }) => {
           <ProgressBar value={ourProgress} maxValue={endTime} />
         </Stack.Item>
         <Divider />
+        <Stack.Item>
+          <Box textAlign="center" color="label">
+            Did you know?
+          </Box>
+        </Stack.Item>
+        <Stack.Item>
+          <Box textAlign="center" color="red">
+            {tipp}
+          </Box>
+        </Stack.Item>
         <Stack.Item grow />
         <Stack.Item>
           <Box textAlign="center" fontSize="64px">

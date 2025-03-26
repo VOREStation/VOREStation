@@ -18,14 +18,17 @@ export function WikiDonationBanner(props: {
   const progress = donated / goal;
 
   if (hasDonated) {
-    <NoticeBox success>
-      <WikiDonationContent
-        donated={donated}
-        goal={goal}
-        message={displayedMessage}
-        onDisplayedDonations={onDisplayedDonations}
-      />
-    </NoticeBox>;
+    return (
+      <NoticeBox success>
+        <WikiDonationContent
+          hideButtons
+          donated={donated}
+          goal={goal}
+          message={displayedMessage}
+          onDisplayedDonations={onDisplayedDonations}
+        />
+      </NoticeBox>
+    );
   }
 
   if (progress < 0.33) {
@@ -83,9 +86,10 @@ const WikiDonationContent = (props: {
   donated: number;
   goal: number;
   message: string;
+  hideButtons?: boolean;
   onDisplayedDonations: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { donated, goal, message, onDisplayedDonations } = props;
+  const { donated, goal, message, onDisplayedDonations, hideButtons } = props;
 
   return (
     <>
@@ -106,7 +110,7 @@ const WikiDonationContent = (props: {
             {donated} / {goal}₮
           </Box>
         </Stack.Item>
-        {donated < goal && (
+        {!hideButtons && donated < goal && (
           <Stack.Item>
             <Stack fill>
               <Stack.Item grow />
@@ -143,7 +147,8 @@ const WikiDonationContent = (props: {
 const DonationButtons = (props) => {
   const { act } = useBackend();
 
-  const donation = (Math.random() * 100 + 10).toFixed();
+  const donation = Math.round(Math.random() * 100 + 10);
+
   return (
     <Button
       color={WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)]}

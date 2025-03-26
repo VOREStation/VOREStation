@@ -8,6 +8,7 @@ import {
   wikiAds,
   wikiDonatedMessages,
   WikiDonationMessages,
+  WikiTippOfTheDay,
 } from './constants';
 import type { Data } from './types';
 import { WikiDonationBanner } from './WikiPages/WIkiDonationbanner';
@@ -25,6 +26,7 @@ export const PublicLibraryWiki = (props) => {
     search,
     print,
     sub_categories,
+    drink_data,
     chemistry_data,
     botany_data,
     material_data,
@@ -39,6 +41,9 @@ export const PublicLibraryWiki = (props) => {
   const [displayDonation, setDislayDonation] = useState(false);
   const [displayedDonations, setDisplayedDonations] = useState<string>('');
   const [displayedDonated, setDisplayDonated] = useState<string>('');
+  const [tippOfTheDay, setTipOfTheDay] = useState<string>(
+    WikiTippOfTheDay[Math.floor(Math.random() * WikiTippOfTheDay.length)],
+  );
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
     Math.floor(Math.random() * 2000) + 2000,
@@ -61,6 +66,8 @@ export const PublicLibraryWiki = (props) => {
       setTimeout(() => {
         setactiveTab(1);
       }, loadTime);
+    } else {
+      setLoadTime(Math.floor(Math.random() * 2000) + 2000);
     }
   }, [crash]);
 
@@ -106,18 +113,20 @@ export const PublicLibraryWiki = (props) => {
   }, [displayDonation]);
 
   useEffect(() => {
-    setDisplayDonated(
-      wikiDonatedMessages[
-        Math.floor(Math.random() * wikiDonatedMessages.length)
-      ],
-    );
-    setTimeout(() => {
-      setDislayDonation(false);
-    }, 5000);
+    if (has_donated) {
+      setDisplayDonated(
+        wikiDonatedMessages[
+          Math.floor(Math.random() * wikiDonatedMessages.length)
+        ],
+      );
+      setTimeout(() => {
+        setDislayDonation(false);
+      }, 5000);
+    }
   }, [has_donated]);
 
   const tabs: React.JSX.Element[] = [];
-  tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
+  tabs[0] = <WikiLoadingPage endTime={loadTime - 500} tipp={tippOfTheDay} />;
   tabs[1] = crash ? (
     <WikiErrorPage />
   ) : (
@@ -130,6 +139,7 @@ export const PublicLibraryWiki = (props) => {
           search={search}
           print={print}
           subCats={sub_categories}
+          drink_data={drink_data}
           chemistry_data={chemistry_data}
           botany_data={botany_data}
           ore_data={ore_data}
@@ -157,7 +167,7 @@ export const PublicLibraryWiki = (props) => {
               </NoticeBox>
             </Stack.Item>
           )}
-          {displayDonation && (
+          {!crash && displayDonation && !!activeTab && (
             <Stack.Item>
               <WikiDonationBanner
                 donated={donated}
