@@ -90,8 +90,8 @@ export const PublicLibraryWiki = (props) => {
     addEntries.push([...shownAds]);
     setDisplayedAds(addEntries);
 
-    if (Math.random() < 0.1) {
-      setDislayDonation(!displayDonation);
+    if (Math.random() < 0.2 && !displayDonation) {
+      setDislayDonation(true);
     }
   }, [updateAds]);
 
@@ -113,7 +113,7 @@ export const PublicLibraryWiki = (props) => {
     );
     setTimeout(() => {
       setDislayDonation(false);
-    }, 30000);
+    }, 5000);
   }, [has_donated]);
 
   const tabs: React.JSX.Element[] = [];
