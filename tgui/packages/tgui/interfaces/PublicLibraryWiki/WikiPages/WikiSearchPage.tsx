@@ -9,6 +9,7 @@ import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiDrinkPage } from './WikiSubPages/WikiDrinkPage';
+import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
 import { WikiOrePage } from './WikiSubPages/WikiOrePare';
 import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
@@ -35,6 +36,7 @@ export const WikiSearchPage = (
     searchmode,
     botany_data,
     ore_data,
+    food_data,
     drink_data,
     chemistry_data,
     material_data,
@@ -49,7 +51,7 @@ export const WikiSearchPage = (
   const toDisplay = search.filter(customSearch);
 
   const tabs: React.JSX.Element[] = [];
-  tabs['Food Recipes'] = null;
+  tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
   tabs['Drink Recipes'] = !!drink_data && <WikiDrinkPage drinks={drink_data} />;
   tabs['Chemistry'] = !!chemistry_data && (
     <WikiChemistryPage chems={chemistry_data} />

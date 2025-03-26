@@ -21,15 +21,24 @@ export type PageData = {
   botany_data: BotanyData | null;
   chemistry_data: ReagentData | null;
   drink_data: DrinkData | null;
+  food_data: FoodData | null;
 };
 
-export type DrinkData = {
+export type FoodData = BasicFood &
+  Icon &
+  Partial<ReactionData> &
+  Partial<RedipeData>;
+
+export type DrinkData = BasicFood & ReactionData & Icon;
+
+type BasicFood = {
   title: string;
   description: string;
   flavor: string;
   allergen: string[];
-} & ReactionData &
-  Icon;
+};
+
+type RedipeData = {};
 
 export type ReagentData = {
   title: string;

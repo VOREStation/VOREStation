@@ -26,6 +26,7 @@ export const PublicLibraryWiki = (props) => {
     search,
     print,
     sub_categories,
+    food_data,
     drink_data,
     chemistry_data,
     botany_data,
@@ -139,6 +140,7 @@ export const PublicLibraryWiki = (props) => {
           search={search}
           print={print}
           subCats={sub_categories}
+          food_data={food_data}
           drink_data={drink_data}
           chemistry_data={chemistry_data}
           botany_data={botany_data}
