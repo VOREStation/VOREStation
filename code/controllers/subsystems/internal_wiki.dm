@@ -308,7 +308,6 @@ SUBSYSTEM_DEF(internal_wiki)
 						"Result" = "[initial(res.name)]",
 						"ResultPath" = res,
 						"Desc" = "[initial(res.desc)]",
-						"Flavor" = "",
 						"ResAmt" = "1",
 						"Reagents" = R.reagents ? R.reagents.Copy() : list(),
 						"Catalysts" = list(),
@@ -987,9 +986,6 @@ SUBSYSTEM_DEF(internal_wiki)
 		add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
 	// Get internal data
 	data["description"] = recipe["Desc"]
-	data["flavor"] = null
-	if(length(recipe["Flavor"]))
-		data["flavor"] = recipe["Flavor"]
 	data["allergen"] = assemble_allergens(recipe["Allergens"])
 	var/list/recipe_data = list()
 	var/value = recipe["Price"] ? recipe["Price"] : 0
@@ -1006,27 +1002,25 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/list/ingred = list()
 	for(var/ing in recipe["Ingredients"])
 		ingred["[ing]"] = recipe["Ingredients"][ing]
-	recipe_data["ingredients"] = ingred
+	recipe_data["ingredients"] = ingred.len ? ingred : null
 	var/list/fruits = list()
 	for(var/fru in recipe["Fruit"])
 		fruits["[fru]"] = recipe["Fruit"][fru]
-	recipe_data["fruits"] = fruits
+	recipe_data["fruits"] = fruits.len ? fruits : null
 	var/list/reagents = list()
 	for(var/rea in recipe["Reagents"])
 		reagents["[rea]"] = recipe["Reagents"][rea]
-	recipe_data["reagents"] = reagents
+	recipe_data["reagents"] = reagents.len ? reagents : null
 	var/list/catalysts = list()
 	for(var/cat in recipe["Catalysts"])
 		catalysts["[cat]"] = recipe["Catalysts"][cat]
-	recipe_data["catalysts"] = catalysts
+	recipe_data["catalysts"] = catalysts.len ? catalysts : null
 	data["recipe"] = recipe_data
 
 /datum/internal_wiki/page/recipe/get_print()
 	var/body = ""
 	if(data["description"])
 		body += "<b>Description: </b>[data["description"]]<br>"
-	if(data["recipe"]["flavor"])
-		body += "<b>Flavor: </b>[data["flavor"]]<br>"
 	if(data["recipe"]["supply_points"] > 0)
 		var/value = data["recipe"]["supply_points"]
 		body += "<b>Supply Points: </b>[value]<br>"
@@ -1039,7 +1033,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Appliance: </b>[data["recipe"]["appliance"]]<br><br>"
 	// ingredients
 	var/list/ingreds = data["recipe"]["ingredients"]
-	if(ingreds.len)
+	if(ingreds && ingreds.len)
 		var/count = 0
 		var/pretty_ing = ""
 		for(var/ing in ingreds)
@@ -1058,7 +1052,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Coating: </b> [data["recipe"]["coating"]]<br>"
 	// Fruits/Veggis
 	var/list/fruits = data["recipe"]["fruits"]
-	if(fruits.len)
+	if(fruits && fruits.len)
 		var/count = 0
 		var/pretty_fru = ""
 		for(var/fru in fruits)
@@ -1068,7 +1062,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Components: </b> [pretty_fru]<br>"
 	//For each reagent
 	var/list/reags = data["recipe"]["reagents"]
-	if(reags.len)
+	if(reags && reags.len)
 		var/count = 0
 		var/pretty_rea = ""
 		for(var/reg in reags)
@@ -1078,7 +1072,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
 	var/list/catalis = data["recipe"]["catalysts"]
-	if(catalis.len)
+	if(catalis && catalis.len)
 		var/count = 0
 		var/pretty_cat = ""
 		for(var/cat in catalis)
