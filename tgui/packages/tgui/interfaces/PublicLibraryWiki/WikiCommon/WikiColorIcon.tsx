@@ -53,11 +53,16 @@ export const CanvasBackedImage = (props: {
 export const ColorizedImage = (props: {
   icon: string | null;
   iconState: string | null;
+  fillLevel?: number;
   color?: string | null;
 }) => {
-  const { icon, iconState, color } = props;
+  const { icon, iconState, color, fillLevel = 1 } = props;
 
   const iconRef = icon ? Byond.iconRefMap?.[icon] : null;
+
+  const iconSize = 64;
+  const realFill = iconSize * (1 - fillLevel);
+
   const render = useCallback(
     async (canvas: OffscreenCanvas, ctx: OffscreenCanvasRenderingContext2D) => {
       // Pixel art please
@@ -67,21 +72,21 @@ export const ColorizedImage = (props: {
       const image = await getImage(`${iconRef}?state=${iconState}`);
 
       // Draw the image on top
-      ctx.drawImage(image, 0, 0, 64, 64);
+      ctx.drawImage(image, 0, 0, iconSize, iconSize);
 
       // Draw a square over the image with the color
       ctx.globalCompositeOperation = 'multiply';
       ctx.fillStyle = color || '#ffffff';
-      ctx.fillRect(0, 0, 64, 64);
+      ctx.fillRect(0, realFill, iconSize, iconSize);
 
       // Use the image as a mask
       ctx.globalCompositeOperation = 'destination-in';
-      ctx.drawImage(image, 0, 0, 64, 64);
+      ctx.drawImage(image, 0, 0, iconSize, iconSize);
 
       // Colour it white for the outline
       ctx.globalCompositeOperation = 'destination-over';
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, 64, 64);
+      ctx.fillRect(0, 0, iconSize, iconSize);
 
       // Draw an outline
       const factor = 1.1;
@@ -93,8 +98,8 @@ export const ColorizedImage = (props: {
         image,
         -(scaleX - image.width) / factor,
         -(scaleY - image.height) / factor,
-        64,
-        64,
+        iconSize,
+        iconSize,
       );
     },
     [iconRef, iconState, color],

@@ -3,15 +3,16 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
 
-import { WikiAdColors, wikiAds } from './constants';
+import { WikiAdColors, wikiAds, WikiDonationMessages } from './constants';
 import type { Data } from './types';
+import { WikiDonationBanner } from './WikiPages/WIkiDonationbanner';
 import { WikiErrorPage } from './WikiPages/WikiErrorPage';
 import { WikiLoadingPage } from './WikiPages/WikiLoadingPage';
 import { WikiMainPage } from './WikiPages/WikiMainPage';
 import { WikiSearchPage } from './WikiPages/WikiSearchPage';
 
 export const PublicLibraryWiki = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const {
     crash,
     errorText,
@@ -27,6 +28,8 @@ export const PublicLibraryWiki = (props) => {
     ore_data,
   } = data;
   const [displayedAds, setDisplayedAds] = useState<string[]>([]);
+  const [displayDonation, setDislayDonation] = useState(false);
+  const [displayedDonations, setDisplayedDonations] = useState<string>('');
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
     Math.floor(Math.random() * 2000) + 2000,
@@ -73,6 +76,17 @@ export const PublicLibraryWiki = (props) => {
       WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)],
     );
     setDisplayedAds(shownAds);
+
+    if (Math.random() < 0.1) {
+      setDislayDonation(!displayDonation);
+    }
+    if (displayDonation) {
+      setDisplayedDonations(
+        WikiDonationMessages[
+          Math.floor(Math.random() * WikiDonationMessages.length)
+        ],
+      );
+    }
   }, [updateAds]);
 
   const tabs: React.JSX.Element[] = [];
@@ -106,13 +120,22 @@ export const PublicLibraryWiki = (props) => {
     <Window width={900} height={600} theme="bingle">
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item>
-            {errorText && (
+          {!!errorText && (
+            <Stack.Item>
               <NoticeBox warning>
-                <Box verticalAlign="middle">{errorText}</Box>
+                <Box textAlign="center">{errorText}</Box>
               </NoticeBox>
-            )}
-          </Stack.Item>
+            </Stack.Item>
+          )}
+          {displayDonation && (
+            <Stack.Item>
+              <WikiDonationBanner
+                donated={0}
+                goal={0}
+                displayedMessage={displayedDonations}
+              />
+            </Stack.Item>
+          )}
           <Stack.Item grow />
           {tabs[activeTab]}
         </Stack>

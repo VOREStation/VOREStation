@@ -38,6 +38,7 @@ export const WikiChemistryPage = (props: { chems: ReagentData }) => {
                 icon={icon_data.icon}
                 iconState={icon_data.state}
                 color={icon_data.color}
+                fillLevel={0.5}
               />
             </LabeledList.Item>
             <LabeledList.Divider />
