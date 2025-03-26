@@ -100,26 +100,23 @@ type ReactionData = {
   distilled_reactions: DistilledReactions;
 };
 
-export type InstantReactions = Record<
-  string,
-  ReactionComponent | ReactionComponent[]
-> | null;
-export type DistilledReactions = Record<
-  string,
-  DistillComponent | DistillComponent[]
-> | null;
+export type InstantReactions = ReactionComponent | ReactionComponent[] | null;
+export type DistilledReactions = DistillComponent | DistillComponent[] | null;
 
-export type DistillComponent = ReactionComponent & {
-  temp_min: number;
-  temp_max: number;
-  xgm_min: number;
-  xgm_max: number;
-  require_xgm_gas: string;
-  rejects_xgm_gas: string;
-};
+export type DistillComponent =
+  | (ReactionComponent &
+      Partial<{
+        temp_min: number;
+        temp_max: number;
+        xgm_min: number;
+        xgm_max: number;
+        require_xgm_gas: string;
+        rejects_xgm_gas: string;
+      }>)
+  | null;
 
 export type ReactionComponent = {
-  is_slime: BooleanLike;
+  is_slime: string | null;
   required: string[] | null;
   inhibitor: string[] | null;
   catalysts: string[] | null;

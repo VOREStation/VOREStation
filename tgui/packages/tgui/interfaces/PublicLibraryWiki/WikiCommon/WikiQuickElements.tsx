@@ -31,23 +31,26 @@ export const NotAvilableBox = (props) => {
 };
 
 export const MinMaxBox = (props: {
-  min: number;
-  max: number;
+  min: number | null;
+  max: number | null;
   minColor?: string;
   maxColor?: string;
   unit?: string;
 }) => {
   const { min, max, minColor, maxColor, unit } = props;
 
+  const realMin = typeof min === 'number' ? min.toFixed(2) : -Infinity;
+  const realMax = typeof max === 'number' ? max.toFixed(2) : Infinity;
+
   return (
     <>
       <Box color={minColor} inline>
-        {min.toFixed(2)}
+        {realMin}
         {unit}
       </Box>
       {' - '}
       <Box color={maxColor} inline>
-        {max.toFixed(2)}
+        {realMax}
         {unit}
       </Box>
     </>
@@ -55,26 +58,29 @@ export const MinMaxBox = (props: {
 };
 
 export const MinMaxBoxTemperature = (props: {
-  min: number;
-  max: number;
+  min: number | null;
+  max: number | null;
   minColor?: string;
   maxColor?: string;
 }) => {
   const { min, max, minColor, maxColor } = props;
 
+  const realMin = min ? min : 0;
+  const realMax = max ? max : Infinity;
+
   return (
     <>
       <MinMaxBox
-        min={min}
-        max={max}
+        min={realMin}
+        max={realMax}
         minColor={minColor}
         maxColor={maxColor}
         unit="K"
       />
       {' | '}
       <MinMaxBox
-        min={min - zeroC}
-        max={max - zeroC}
+        min={realMin - zeroC}
+        max={realMax}
         minColor={minColor}
         maxColor={maxColor}
         unit="°C"
