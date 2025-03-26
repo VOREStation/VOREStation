@@ -207,8 +207,8 @@
 	w_class = ITEMSIZE_NORMAL
 
 /obj/item/debris_pack/Initialize(mapload, list/matter)
-	. = ..()
 	matter = matter.Copy()
+	. = ..()
 
 /obj/item/material_dust
 	name = "dust"
@@ -219,8 +219,8 @@
 	var/material_name
 
 /obj/item/material_dust/Initialize(mapload, mat)
-	. = ..()
 	material_name = mat
 	name = "[material_name] [initial(name)]"
 	var/datum/material/M = get_material_by_name(material_name)
 	color = M?.icon_colour
+	. = ..()
