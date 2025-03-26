@@ -916,6 +916,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = R.name
 	data["title"] = title
 	// Get internal data
+	data["flavor"] = R.flavor
 	data["description"] = R.description
 	data["allergen"] = assemble_allergens(R.allergen_type)
 	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
@@ -972,53 +973,55 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["flavor"] = null
 	if(length(recipe["Flavor"]))
 		data["flavor"] = recipe["Flavor"]
+	data["allergen"] = assemble_allergens(recipe["Allergens"])
+	var/list/recipe_data = list()
 	var/value = recipe["Price"] ? recipe["Price"] : 0
-	data["supply_points"] = value
+	recipe_data["supply_points"] = value
 	value *= SSsupply.points_per_money // convert to cash
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
-	data["market_price"] = value
-	data["allergen"] = assemble_allergens(recipe["Allergens"])
-	data["appliance"] = recipe["Appliance"]
-	data["has_coating"] = recipe["has_coatable_items"]
-	data["coating"] = recipe["Coating"]
-	if(!isnull(data["coating"]) && data["coating"] != -1) // Null is no coatings, -1 is any coating, otherwise specifies the name of coating
+	recipe_data["market_price"] = value
+	recipe_data["appliance"] = recipe["Appliance"]
+	recipe_data["has_coating"] = recipe["has_coatable_items"]
+	recipe_data["coating"] = recipe["Coating"]
+	if(!isnull(recipe_data["coating"]) && recipe_data["coating"] != -1) // Null is no coatings, -1 is any coating, otherwise specifies the name of coating
 		var/coatingtype = recipe["Coating"]
-		data["coating"] = initial(coatingtype:name)
+		recipe_data["coating"] = initial(coatingtype:name)
 	var/list/ingred = list()
 	for(var/ing in recipe["Ingredients"])
 		ingred["[ing]"] = recipe["Ingredients"][ing]
-	data["ingredients"] = ingred
+	recipe_data["ingredients"] = ingred
 	var/list/fruits = list()
 	for(var/fru in recipe["Fruit"])
 		fruits["[fru]"] = recipe["Fruit"][fru]
-	data["fruits"] = fruits
+	recipe_data["fruits"] = fruits
 	var/list/reagents = list()
 	for(var/rea in recipe["Reagents"])
 		reagents["[rea]"] = recipe["Reagents"][rea]
-	data["reagents"] = reagents
+	recipe_data["reagents"] = reagents
 	var/list/catalysts = list()
 	for(var/cat in recipe["Catalysts"])
 		catalysts["[cat]"] = recipe["Catalysts"][cat]
-	data["catalysts"] = catalysts
+	recipe_data["catalysts"] = catalysts
+	data["recipe"] = recipe_data
 
 /datum/internal_wiki/page/recipe/get_print()
 	var/body = ""
 	if(data["description"])
 		body += "<b>Description: </b>[data["description"]]<br>"
-	if(data["flavor"])
+	if(data["recipe"]["flavor"])
 		body += "<b>Flavor: </b>[data["flavor"]]<br>"
-	if(data["supply_points"] > 0)
-		var/value = data["supply_points"]
+	if(data["recipe"]["supply_points"] > 0)
+		var/value = data["recipe"]["supply_points"]
 		body += "<b>Supply Points: </b>[value]<br>"
-	if(data["market_price"] > 0)
-		var/value = data["market_price"]
+	if(data["recipe"]["market_price"] > 0)
+		var/value = data["recipe"]["market_price"]
 		body += "<b>Market Price: [value] [value > 1 ? "thalers" : "thaler"]</b><br>"
 	body += print_allergens(data["allergen"])
 	body += "<br>"
-	if(data["appliance"])
-		body += "<b>Appliance: </b>[data["appliance"]]<br><br>"
+	if(data["recipe"]["appliance"])
+		body += "<b>Appliance: </b>[data["recipe"]["appliance"]]<br><br>"
 	// ingredients
-	var/list/ingreds = data["ingredients"]
+	var/list/ingreds = data["recipe"]["ingredients"]
 	if(ingreds.len)
 		var/count = 0
 		var/pretty_ing = ""
@@ -1028,16 +1031,16 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(pretty_ing != "")
 			body +=  "<b>Ingredients: </b>[pretty_ing]<br>"
 	// Coatings
-	if(!data["has_coating"])
+	if(!data["recipe"]["has_coating"])
 		body += "<b>Coating: </b>N/A, no coatable items<br>"
-	else if(isnull(data["coating"]))
+	else if(isnull(data["recipe"]["coating"]))
 		body += "<b>Coating: </b> Must be uncoated<br>"
-	else if(data["coating"] == -1)
+	else if(data["recipe"]["coating"] == -1)
 		body += "<b>Coating: </b>Optionally, any coating<br>"
 	else
-		body += "<b>Coating: </b> [data["coating"]]<br>"
+		body += "<b>Coating: </b> [data["recipe"]["coating"]]<br>"
 	// Fruits/Veggis
-	var/list/fruits = data["fruits"]
+	var/list/fruits = data["recipe"]["fruits"]
 	if(fruits.len)
 		var/count = 0
 		var/pretty_fru = ""
@@ -1047,7 +1050,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(pretty_fru != "")
 			body += "<b>Components: </b> [pretty_fru]<br>"
 	//For each reagent
-	var/list/reags = data["reagents"]
+	var/list/reags = data["recipe"]["reagents"]
 	if(reags.len)
 		var/count = 0
 		var/pretty_rea = ""
@@ -1057,7 +1060,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(pretty_rea != "")
 			body += "<b>Mix in: </b> [pretty_rea]<br>"
 	//For each catalyst
-	var/list/catalis = data["catalysts"]
+	var/list/catalis = data["recipe"]["catalysts"]
 	if(catalis.len)
 		var/count = 0
 		var/pretty_cat = ""
