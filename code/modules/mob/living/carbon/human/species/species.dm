@@ -209,6 +209,7 @@
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
 	var/slowdown = 0										// Passive movement speed malus (or boost, if negative)
+	var/unusual_running = 0									// Trait var to change movement speed in human_movement.dm when nothing in hands
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0								// Whether the eyes can be shown above other icons

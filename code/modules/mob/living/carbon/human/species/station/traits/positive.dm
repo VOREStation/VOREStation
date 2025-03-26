@@ -15,6 +15,17 @@
 
 	activation_message="Your leg muscles pulsate."
 	primitive_expression_messages=list("dances around.")
+	excludes = list(/datum/trait/positive/unusual_running) // you best not be naruto running in this house
+
+/datum/trait/positive/unusual_running
+	name = "Unusual Gait"
+	desc = "Your method of running is unorthodox, you move faster when not holding things in your hands."
+	cost = 2
+	var_changes = list("unusual_running" = 1)
+
+	custom_only = FALSE //I think this is probably fine since it's half RP trait and half mechanical trait. also you can't have speed and use your hands so this is kinda niche outside of travel time reduction.
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA) //i assume if a dev made your base slowdown different then you shouldn't have this.
+	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
 
 /datum/trait/positive/hardy
 	name = "Hardy"
