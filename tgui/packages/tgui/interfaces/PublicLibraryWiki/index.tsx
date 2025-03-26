@@ -150,8 +150,8 @@ export const PublicLibraryWiki = (props) => {
           {displayDonation && (
             <Stack.Item>
               <WikiDonationBanner
-                donated={0}
-                goal={1000}
+                donated={donated}
+                goal={goal}
                 displayedMessage={
                   has_donated ? displayedDonated : displayedDonations
                 }
