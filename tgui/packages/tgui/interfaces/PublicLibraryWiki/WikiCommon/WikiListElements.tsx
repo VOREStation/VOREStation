@@ -19,7 +19,7 @@ export const WikiSpoileredList = (props: {
             title={'Reveal ' + title}
           >
             {entries.map((entry) => (
-              <Box key={capitalize(entry)}>- {entry}</Box>
+              <Box key={entry}>- {capitalize(entry)}</Box>
             ))}
           </Collapsible>
         </LabeledList.Item>
