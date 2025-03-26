@@ -90,8 +90,8 @@ const WikiDonationContent = (props: {
   return (
     <>
       <Button
-        position="absolut"
-        right="4px"
+        position="absolute"
+        right="6px"
         color="transparent"
         onClick={() => onDisplayedDonations(false)}
       >
