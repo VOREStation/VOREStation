@@ -33,6 +33,8 @@
 										"big cat",
 										"bear",
 										"bunny",
+										"squirrel",
+										"otter",
 										"sheep",
 										"scel",
 										"fish",
