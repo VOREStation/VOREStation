@@ -3982,7 +3982,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/pizzacrunchslice
-	name = "pizza crunch"
+	name = "pizza crunch slice"
 	desc = "A little piece of a heart attack. It's toppings are a mystery, hidden under batter"
 	icon_state = "pizzacrunchslice"
 	filling_color = "#BAA14C"

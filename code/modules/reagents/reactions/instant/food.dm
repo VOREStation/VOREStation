@@ -30,7 +30,7 @@
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar
-	name = "Chocolate Bar"
+	name = "Chocolate Bar Soy"
 	id = "chocolate_bar_soy"
 	result = null
 	required_reagents = list(REAGENT_ID_SOYMILK = 2, REAGENT_ID_COCO = 2, REAGENT_ID_SUGAR = 2)
@@ -44,7 +44,7 @@
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar2
-	name = "Chocolate Bar"
+	name = "Chocolate Bar Milk"
 	id = "chocolate_bar_milk"
 	result = null
 	required_reagents = list(REAGENT_ID_MILK = 2, REAGENT_ID_COCO = 2, REAGENT_ID_SUGAR = 2)
