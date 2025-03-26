@@ -42,13 +42,23 @@ export const WikiAdColors = [
   '',
 ];
 
+export const WikiDonIcons = [
+  'dollar-sign',
+  'sack-dollar',
+  'money-check-dollar',
+  'file-invoice-dollar',
+  'circle-dollar-to-slot',
+  'hand-holding-dollar',
+  'credit-card',
+];
+
 export const zeroC = 273.15;
 
 export const WikiDonationMessages = [
   'Become a bingler today!',
   'Enjoying our content? Your donation keeps us in business!',
   'We all would love an ad free experience... Make it possible!',
-  'Better us than the Vox!',
+  'Better to us than the Vox!',
   'Opersating and upkeeping trustworthy information since 1990.',
   'Suport or information revolution. From bluespace right into your brain.',
 ];

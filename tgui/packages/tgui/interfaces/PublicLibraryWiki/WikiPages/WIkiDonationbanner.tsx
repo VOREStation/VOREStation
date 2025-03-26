@@ -1,5 +1,7 @@
 import { useBackend } from 'tgui/backend';
-import { Box, NoticeBox, Stack } from 'tgui-core/components';
+import { Box, Button, NoticeBox, Stack } from 'tgui-core/components';
+
+import { WikiAdColors, WikiDonIcons } from '../constants';
 
 export function WikiDonationBanner(props: {
   donated: number;
@@ -62,7 +64,6 @@ const WikiDonationContent = (props: {
   goal: number;
   message: string;
 }) => {
-  const { act } = useBackend();
   const { donated, goal, message } = props;
 
   return (
@@ -75,6 +76,58 @@ const WikiDonationContent = (props: {
           {donated} / {goal}
         </Box>
       </Stack.Item>
+      {donated < goal && (
+        <Stack.Item>
+          <Stack fill>
+            <Stack.Item grow />
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item>
+              <DonationButtons />
+            </Stack.Item>
+            <Stack.Item grow />
+          </Stack>
+        </Stack.Item>
+      )}
     </Stack>
+  );
+};
+
+const DonationButtons = (props) => {
+  const { act } = useBackend();
+
+  const donation = (Math.random() * 100 + 10).toFixed();
+  return (
+    <Button
+      color={WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)]}
+      icon={WikiDonIcons[Math.floor(Math.random() * WikiDonIcons.length)]}
+      iconSpin={Math.random() > 0.5}
+      onClick={() =>
+        act('donate', {
+          donate: donation,
+        })
+      }
+    >
+      {'Donate ' + donation}
+    </Button>
   );
 };

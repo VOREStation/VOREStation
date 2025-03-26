@@ -80,6 +80,9 @@ export const PublicLibraryWiki = (props) => {
     if (Math.random() < 0.1) {
       setDislayDonation(!displayDonation);
     }
+  }, [updateAds]);
+
+  useEffect(() => {
     if (displayDonation) {
       setDisplayedDonations(
         WikiDonationMessages[
@@ -87,7 +90,7 @@ export const PublicLibraryWiki = (props) => {
         ],
       );
     }
-  }, [updateAds]);
+  }, [displayDonation]);
 
   const tabs: React.JSX.Element[] = [];
   tabs[0] = <WikiLoadingPage endTime={loadTime - 500} />;
@@ -131,7 +134,7 @@ export const PublicLibraryWiki = (props) => {
             <Stack.Item>
               <WikiDonationBanner
                 donated={0}
-                goal={0}
+                goal={1000}
                 displayedMessage={displayedDonations}
               />
             </Stack.Item>
