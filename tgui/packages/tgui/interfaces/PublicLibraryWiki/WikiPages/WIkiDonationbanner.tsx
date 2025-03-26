@@ -113,9 +113,6 @@ const WikiDonationContent = (props: {
             <Stack.Item>
               <DonationButtons />
             </Stack.Item>
-            <Stack.Item>
-              <DonationButtons />
-            </Stack.Item>
             <Stack.Item grow />
           </Stack>
         </Stack.Item>
