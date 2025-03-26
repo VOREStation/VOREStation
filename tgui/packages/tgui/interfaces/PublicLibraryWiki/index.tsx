@@ -35,7 +35,7 @@ export const PublicLibraryWiki = (props) => {
     donated,
     goal,
   } = data;
-  const [displayedAds, setDisplayedAds] = useState<string[]>([]);
+  const [displayedAds, setDisplayedAds] = useState<string[][]>([]);
   const [displayDonation, setDislayDonation] = useState(false);
   const [displayedDonations, setDisplayedDonations] = useState<string>('');
   const [displayedDonated, setDisplayDonated] = useState<string>('');
@@ -65,7 +65,7 @@ export const PublicLibraryWiki = (props) => {
   }, [crash]);
 
   useEffect(() => {
-    const shownAds: string[] = [];
+    let shownAds: string[] = [];
     const range = wikiAds.length;
     const firstEntry = Math.floor(Math.random() * range);
     let secondEntry = Math.floor(Math.random() * range);
@@ -76,15 +76,19 @@ export const PublicLibraryWiki = (props) => {
         secondEntry++;
       }
     }
+    const addEntries: string[][] = [];
     shownAds.push(wikiAds[firstEntry]);
+    shownAds.push(
+      WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)],
+    );
+    addEntries.push([...shownAds]);
+    shownAds = [];
     shownAds.push(wikiAds[secondEntry]);
     shownAds.push(
       WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)],
     );
-    shownAds.push(
-      WikiAdColors[Math.floor(Math.random() * WikiAdColors.length)],
-    );
-    setDisplayedAds(shownAds);
+    addEntries.push([...shownAds]);
+    setDisplayedAds(addEntries);
 
     if (Math.random() < 0.1) {
       setDislayDonation(!displayDonation);
@@ -92,7 +96,7 @@ export const PublicLibraryWiki = (props) => {
   }, [updateAds]);
 
   useEffect(() => {
-    if (displayDonation) {
+    if (displayDonation && !has_donated) {
       setDisplayedDonations(
         WikiDonationMessages[
           Math.floor(Math.random() * WikiDonationMessages.length)
@@ -107,6 +111,9 @@ export const PublicLibraryWiki = (props) => {
         Math.floor(Math.random() * wikiDonatedMessages.length)
       ],
     );
+    setTimeout(() => {
+      setDislayDonation(false);
+    }, 30000);
   }, [has_donated]);
 
   const tabs: React.JSX.Element[] = [];
@@ -131,7 +138,10 @@ export const PublicLibraryWiki = (props) => {
           catalog_data={catalog_data}
         />
       ) : (
-        <WikiMainPage displayedAds={displayedAds} />
+        <WikiMainPage
+          displayedAds={displayedAds}
+          donationSuccess={donated >= goal}
+        />
       )}
     </Section>
   );

@@ -8,10 +8,13 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
-export const WikiMainPage = (props: { displayedAds: string[] }) => {
+export const WikiMainPage = (props: {
+  displayedAds: string[][];
+  donationSuccess: boolean;
+}) => {
   const { act } = useBackend();
 
-  const { displayedAds } = props;
+  const { displayedAds, donationSuccess } = props;
 
   return (
     <Section fill>
@@ -74,26 +77,19 @@ export const WikiMainPage = (props: { displayedAds: string[] }) => {
               </Button>
             </Stack.Item>
             <Stack.Item />
-            <Stack.Item>
-              <Button
-                fluid
-                icon="download"
-                onClick={() => act('crash')}
-                color={displayedAds[2]}
-              >
-                {displayedAds[0]}
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                fluid
-                icon="download"
-                onClick={() => act('crash')}
-                color={displayedAds[3]}
-              >
-                {displayedAds[1]}
-              </Button>
-            </Stack.Item>
+            {!donationSuccess &&
+              displayedAds.map((ad, index) => (
+                <Stack.Item key={index}>
+                  <Button
+                    fluid
+                    icon="download"
+                    onClick={() => act('crash')}
+                    color={ad[1]}
+                  >
+                    {ad[0]}
+                  </Button>
+                </Stack.Item>
+              ))}
           </Stack>
         </Stack.Item>
       </Stack>

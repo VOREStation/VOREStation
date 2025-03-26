@@ -55,6 +55,9 @@
 		data["catalog_data"] = null
 		data["ore_data"] = null
 		data["sub_categories"] = null
+		data["donated"] = 0
+		data["goal"] = 100000
+		data["has_donated"] = FALSE
 		if(!crash)
 			// search page
 			data["errorText"] = ""
@@ -226,6 +229,11 @@
 					else
 						doc_title = "Error"
 						doc_body = "Invalid data."
+			. = TRUE
+		// Support the wiki
+		if("donate")
+			if(!crash)
+				var/amount = params["donate"]
 			. = TRUE
 
 /obj/machinery/librarywikicomp/proc/pay_donation( var/obj/item/card/id/I, var/mob/user, var/amount )
