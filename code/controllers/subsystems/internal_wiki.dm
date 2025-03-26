@@ -17,13 +17,11 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	VAR_PRIVATE/list/appliance_list = list("Simple","Microwave","Fryer","Oven","Grill","Candy Maker","Cereal Maker")
 	VAR_PRIVATE/list/catalog_list = list()
-	VAR_PRIVATE/list/foodreact = list()
 	VAR_PRIVATE/list/drinkreact = list()
 	VAR_PRIVATE/list/chemreact = list()
 	VAR_PRIVATE/list/botseeds = list()
 
 	VAR_PRIVATE/list/foodrecipe = list()
-	VAR_PRIVATE/list/drinkrecipe = list()
 
 	VAR_PRIVATE/list/catalogs = list()
 
@@ -31,7 +29,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_material = list()
 	VAR_PRIVATE/list/searchcache_smasher = list()
 	VAR_PRIVATE/list/searchcache_foodrecipe = list()
-	VAR_PRIVATE/list/searchcache_drinkrecipe = list()
+	VAR_PRIVATE/list/searchcache_drinkreact = list()
 	VAR_PRIVATE/list/searchcache_chemreact = list()
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
@@ -46,7 +44,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkrecipe.len]  | C: [chemreact.len]  | B: [botseeds.len] "
+	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -115,7 +113,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/controller/subsystem/internal_wiki/proc/get_page_drink(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/drink)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return drinkrecipe[search]
+	return drinkreact[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_chem(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/chemical)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -152,7 +150,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_drink()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return searchcache_drinkrecipe
+	return searchcache_drinkreact
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_chem()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -247,27 +245,26 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	// assemble chemical reactions wiki
 	for(var/reagent in SSchemistry.chemical_reagents)
-		if(allow_reagent(reagent))
-			var/datum/internal_wiki/page/P = null
-			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
-			if(R.wiki_flag & WIKI_SPOILER)
-				spoiler_entries.Add(R.type)
-				continue
-			var/id = "[R.name]"
-			if(R.wiki_flag & WIKI_FOOD)
-				P = new /datum/internal_wiki/page/food()
-				P.assemble(R)
-				foodreact[id] = P
-			else if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
-				P = new /datum/internal_wiki/page/drink()
-				P.assemble(R)
-				drinkreact[id] = P
-			else
-				P = new /datum/internal_wiki/page/chemical()
-				P.assemble(R)
-				searchcache_chemreact.Add(id)
-				chemreact[id] = P
-			pages.Add(P)
+		if(!allow_reagent(reagent))
+			continue
+		var/datum/internal_wiki/page/P = null
+		var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
+		if(R.wiki_flag & WIKI_SPOILER)
+			spoiler_entries.Add(R.type)
+			continue
+		var/id = "[R.name]"
+		if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
+			P = new /datum/internal_wiki/page/drink()
+			P.assemble(R)
+			drinkreact[id] = P
+			searchcache_drinkreact.Add("[P.title]")
+			drinkreact["[P.title]"] = P
+		else
+			P = new /datum/internal_wiki/page/chemical()
+			P.assemble(R)
+			searchcache_chemreact.Add(id)
+			chemreact[id] = P
+		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -286,24 +283,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
 
-	// this is basically a clone of code\modules\food\recipe_dump.dm
-	// drinks
-	var/list/drink_recipes = list()
-	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
-		if(isnull(CR.result))
-			continue // Probably explodes instead
-		var/datum/reagent/Rd = SSchemistry.chemical_reagents[CR.result]
-		if(!isnull(Rd))
-			drink_recipes[CR.type] = list("Result" = "[CR.name]",
-									"Desc" = "[Rd.description]",
-									"Flavor" = "[Rd.taste_description]",
-									"ResAmt" = CR.result_amount,
-									"Reagents" = CR.required_reagents ? CR.required_reagents.Copy() : list(),
-									"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list(),
-									"Flags" = CR.wiki_flag
-									)
-		else
-			log_runtime(EXCEPTION("Invalid reagent result id: [CR.result] in instant drink reaction id: [CR.id]"))
 	// Build the kitchen recipe lists
 	var/list/food_recipes = subtypesof(/datum/recipe)
 	for(var/datum/recipe/Rp as anything in food_recipes)
@@ -329,7 +308,9 @@ SUBSYSTEM_DEF(internal_wiki)
 						)
 		qdel(R)
 	// basically condiments, tofu, cheese, soysauce, etc
-	for(var/decl/chemical_reaction/instant/food/CR in SSchemistry.chemical_reactions)
+	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
+		if(!(CR.wiki_flag & WIKI_FOOD))
+			continue
 		food_recipes[CR.type] = list("Result" = CR.name,
 								"ResultPath" = null,
 								"ResAmt" = CR.result_amount,
@@ -400,26 +381,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			var/amt = food_recipes[Rp]["Catalysts"][rid]
 			food_recipes[Rp]["Catalysts"] -= rid
 			food_recipes[Rp]["Catalysts"][R_name] = amt
-	for(var/Rp in drink_recipes)
-		for(var/rid in drink_recipes[Rp]["Reagents"])
-			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
-			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
-				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
-				continue // This allows the dump to still continue, and it will skip the invalid recipes.
-			var/R_name = Rd.name
-			var/amt = drink_recipes[Rp]["Reagents"][rid]
-			drink_recipes[Rp]["Reagents"] -= rid
-			drink_recipes[Rp]["Reagents"][R_name] = amt
-			drink_recipes[Rp]["Allergens"] |= Rd.allergen_type
-		for(var/rid in drink_recipes[Rp]["Catalysts"])
-			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
-			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
-				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
-				continue // This allows the dump to still continue, and it will skip the invalid recipes.
-			var/R_name = Rd.name
-			var/amt = drink_recipes[Rp]["Catalysts"][rid]
-			drink_recipes[Rp]["Catalysts"] -= rid
-			drink_recipes[Rp]["Catalysts"][R_name] = amt
 
 	//We can also change the appliance to its proper name.
 	for(var/Rp in food_recipes)
@@ -439,24 +400,14 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	//////////////////////// SORTING
 	var/list/foods_to_paths = list()
-	var/list/drinks_to_paths = list()
 	for(var/Rp in food_recipes) // "Appliance" will sort the list by APPLIANCES first. Items without an appliance will append to the top of the list. The old method was "Result", which sorts the list by the name of the result.
 		foods_to_paths["[food_recipes[Rp]["Appliance"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
-	for(var/Rp in drink_recipes)
-		drinks_to_paths["[drink_recipes[Rp]["Result"]] [Rp]"] = Rp
 	foods_to_paths = sortAssoc(foods_to_paths)
-	drinks_to_paths = sortAssoc(drinks_to_paths)
-
 	var/list/foods_newly_sorted = list()
-	var/list/drinks_newly_sorted = list()
 	for(var/Rr in foods_to_paths)
 		var/Rp = foods_to_paths[Rr]
 		foods_newly_sorted[Rp] = food_recipes[Rp]
-	for(var/Rr in drinks_to_paths)
-		var/Rp = drinks_to_paths[Rr]
-		drinks_newly_sorted[Rp] = drink_recipes[Rp]
 	food_recipes = foods_newly_sorted
-	drink_recipes = drinks_newly_sorted
 
 	// assemble output pages
 	for(var/Rp in food_recipes)
@@ -475,16 +426,6 @@ SUBSYSTEM_DEF(internal_wiki)
 				searchcache_foodrecipe[app] = list()
 			var/list/FL = searchcache_foodrecipe[app]
 			FL.Add("[P.title]")
-			pages.Add(P)
-	for(var/Rp in drink_recipes)
-		if(drink_recipes[Rp] && !isnull(drink_recipes[Rp]["Result"]))
-			if(drink_recipes[Rp]["Flags"] & WIKI_SPOILER)
-				spoiler_entries.Add(Rp)
-				continue
-			var/datum/internal_wiki/page/recipe/P = new()
-			P.assemble(drink_recipes[Rp])
-			drinkrecipe["[P.title]"] = P
-			searchcache_drinkrecipe.Add("[P.title]")
 			pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_lore_data()
@@ -517,7 +458,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 
 	// This is used to filter out some of the base reagent types, such as admin only reagents
-	if(!reagent_id || reagent_id == "" || reagent_id == DEVELOPER_WARNING_NAME || reagent_id == REAGENT_ID_ADMINORDRAZINE)
+	if(!reagent_id || reagent_id == "" || reagent_id == REAGENT_ID_DEVELOPER_WARNING || reagent_id == REAGENT_ID_ADMINORDRAZINE)
 		return FALSE
 	return TRUE
 
