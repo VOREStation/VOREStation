@@ -993,11 +993,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = R.name
 	data["title"] = title
 	// Use beaker by default, otherwise try metamorphic glass for icon
-	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	var/ico = initial(beaker_path.icon)
+	var/ico = 'icons/obj/drinks.dmi'
 	if(R.glass_icon_file)
 		ico = R.glass_icon_file
-	var/sta = initial(beaker_path.icon_state)
+	var/sta = "glass_empty"
 	if(R.glass_icon_state)
 		sta = R.glass_icon_file
 	add_icon(data, ico, sta, R.color)
