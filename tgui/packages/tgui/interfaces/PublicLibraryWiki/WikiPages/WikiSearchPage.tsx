@@ -8,7 +8,6 @@ import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
-import { WikiDrinkPage } from './WikiSubPages/WikiDrinkPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
 import { WikiOrePage } from './WikiSubPages/WikiOrePare';
@@ -52,7 +51,7 @@ export const WikiSearchPage = (
 
   const tabs: React.JSX.Element[] = [];
   tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
-  tabs['Drink Recipes'] = !!drink_data && <WikiDrinkPage drinks={drink_data} />;
+  tabs['Drink Recipes'] = !!drink_data && <WikiFoodPage food={drink_data} />;
   tabs['Chemistry'] = !!chemistry_data && (
     <WikiChemistryPage chems={chemistry_data} />
   );
