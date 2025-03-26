@@ -133,11 +133,15 @@ export const WikiTippOfTheDay = [
   'You can live forever!',
   'Baits might have a telepathic side effect.',
   'There have been [' +
-    Math.random() * 1000 +
+    Math.floor(Math.random() * 1000) +
     '] runtimes recorded by Bingle today!',
   '9 out of 10 doctors agree the supermatter tastes like ranch dressing!',
   'Some oceans have infinite gravity!',
   "Solgov has never said why it's illegal to have both a singularity and supermatter engine on the same station!",
   'Lead has the highest radiation resistance of all materials? Perfect for engine walls!',
   'In some regions of space, magic is illegal. Go on, try it nerd, your funny words have no power here!',
+  'Forget who you are and summon the old gods.',
+  "Who's that initialize and why do they always call their parents?",
+  "Did you know? New isn't new anymore! It's so past century!",
+  'Your kitchen is a chemistry set too!',
 ];
