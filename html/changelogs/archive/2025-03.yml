@@ -528,3 +528,6 @@
   - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
   Kashargul:
   - code_imp: next set of NEW to INIT
+2025-03-26:
+  Cameron-The-Raven:
+  - bugfix: Proteans can select icon base again
