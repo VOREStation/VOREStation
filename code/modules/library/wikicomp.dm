@@ -228,6 +228,11 @@
 						doc_body = "Invalid data."
 			. = TRUE
 
+/obj/machinery/librarywikicomp/proc/pay_donation( var/obj/item/card/id/I, var/mob/user, var/amount )
+	visible_message(span_info("[user] swipes a card through [src]."))
+	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
+	if(SSinternal_wiki.pay_with_card( I, user, src, amount))
+		playsound(src, 'sound/machines/ping.ogg', 50, 1)
 
 // mapper varient for dorms and residences
 /obj/machinery/librarywikicomp/personal

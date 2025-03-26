@@ -38,6 +38,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	VAR_PRIVATE/list/spoiler_entries = list()
 
+	VAR_PRIVATE/max_donation = 100000
+	VAR_PRIVATE/min_donation = 50000
+	VAR_PRIVATE/donation_goal = 0
+	VAR_PRIVATE/cur_donation = 0
+	VAR_PRIVATE/list/dono_list = list()
+
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
 	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkrecipe.len]  | C: [chemreact.len]  | B: [botseeds.len] "
 	return ..()
@@ -46,47 +52,116 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_mining_data()
 	init_kitchen_data()
 	init_lore_data()
+	// Donation gag
+	donation_goal = rand(min_donation,max_donation)
+	donation_goal = round(donation_goal,1)
+	cur_donation = rand(0,donation_goal * 0.95)
+	cur_donation = round(cur_donation,1)
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/internal_wiki/proc/pay_with_card( var/obj/item/card/id/I, var/mob/M, var/obj/device, var/paying_amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!purchase_with_id_card(I, M, "Bingle.Co.LLC.UK.M.XM.WMP.AVI.COM", device.name, "Donation", paying_amount))
+		return FALSE
+	// Keep tabs on donations
+	var/datum/money_account/customer_account = get_account(I.associated_account_number)
+	if(isnull(dono_list[customer_account.owner_name]))
+		dono_list[customer_account.owner_name] = 0
+	dono_list[customer_account.owner_name] += paying_amount
+	donation_add(paying_amount)
+	return TRUE
 
+
+///////////////////////////////////////////////////////////////////////////////////
+// Donation system, for the joke of course
+///////////////////////////////////////////////////////////////////////////////////
+/datum/controller/subsystem/internal_wiki/proc/donation_add(var/paying_amount)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/old_dono = cur_donation
+	cur_donation += paying_amount
+	if(old_dono < donation_goal && cur_donation >= donation_goal)
+		// Reached goal!
+		message_admins("BINGLE DONATION GOAL REACHED") // TODO - Removed me for something actually interesting
+
+/datum/controller/subsystem/internal_wiki/proc/highest_donator()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/highest = "noone!"
+	var/val = 0
+	for(var/donor in dono_list)
+		if(dono_list[donor] > val)
+			val = dono_list[donor]
+			highest = donor
+	return highest
+
+/datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return dono_list[key]
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// Accessors for safely talking with the subsystem
+///////////////////////////////////////////////////////////////////////////////////
+// get a page from a search
 /datum/controller/subsystem/internal_wiki/proc/get_page_food(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return foodrecipe[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_drink(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return drinkrecipe[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_chem(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return chemreact[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_seed(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalogs[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_material(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return materials[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_particle(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return smashers[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_ore(var/search)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return ores[search]
-
+// Search lists
 /datum/controller/subsystem/internal_wiki/proc/get_appliances()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return appliance_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_food(var/appliance)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_foodrecipe[appliance] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_drink()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_drinkrecipe
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_chem()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_chemreact
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_seed()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_botseeds
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalog_list
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_catalogs[section] || list()
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_material()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_material
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_particle()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_smasher
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_ore()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_ore
 
+
+///////////////////////////////////////////////////////////////////////////////////
+// Initilizing data and creating wiki pages
+///////////////////////////////////////////////////////////////////////////////////
 /datum/controller/subsystem/internal_wiki/proc/init_mining_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
