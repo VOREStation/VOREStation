@@ -69,6 +69,8 @@
 										"loser",
 										"politician",
 										"employee",
+										"somebody",
+										"NanoTrasen",
 										"INSERT SPECIES HERE"
 	)
 
