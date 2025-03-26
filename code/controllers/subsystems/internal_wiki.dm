@@ -48,7 +48,11 @@ SUBSYSTEM_DEF(internal_wiki)
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
-	init_mining_data()
+	init_ore_data()
+	init_material_data()
+	init_particle_smasher_data()
+	init_reagent_data()
+	init_seed_data()
 	init_kitchen_data()
 	init_lore_data()
 	// Donation gag
@@ -200,10 +204,9 @@ SUBSYSTEM_DEF(internal_wiki)
 ///////////////////////////////////////////////////////////////////////////////////
 // Initilizing data and creating wiki pages
 ///////////////////////////////////////////////////////////////////////////////////
-/datum/controller/subsystem/internal_wiki/proc/init_mining_data()
+/datum/controller/subsystem/internal_wiki/proc/init_ore_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-
 	// assemble ore wiki
 	for(var/N in GLOB.ore_data)
 		var/ore/OR = GLOB.ore_data[N]
@@ -216,6 +219,9 @@ SUBSYSTEM_DEF(internal_wiki)
 		searchcache_ore.Add("[OR.display_name]")
 		pages.Add(P)
 
+/datum/controller/subsystem/internal_wiki/proc/init_material_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// assemble material wiki
 	for(var/mat in name_to_material)
 		var/datum/material/M = name_to_material[mat]
@@ -229,6 +235,9 @@ SUBSYSTEM_DEF(internal_wiki)
 		searchcache_material.Add(id)
 		pages.Add(P)
 
+/datum/controller/subsystem/internal_wiki/proc/init_particle_smasher_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// assemble particle smasher wiki
 	for(var/datum/particle_smasher_recipe/D  as anything in subtypesof(/datum/particle_smasher_recipe))
 		if(initial(D.wiki_flag) & WIKI_SPOILER)
@@ -243,6 +252,9 @@ SUBSYSTEM_DEF(internal_wiki)
 		pages.Add(P)
 		qdel(R)
 
+/datum/controller/subsystem/internal_wiki/proc/init_reagent_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// assemble chemical reactions wiki
 	for(var/reagent in SSchemistry.chemical_reagents)
 		if(!allow_reagent(reagent))
@@ -266,10 +278,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			chemreact[id] = P
 		pages.Add(P)
 
-/datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
+/datum/controller/subsystem/internal_wiki/proc/init_seed_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-
 	// seeds and plants
 	for(var/SN in SSplants.seeds)
 		var/datum/seed/S = SSplants.seeds[SN]
@@ -283,6 +294,9 @@ SUBSYSTEM_DEF(internal_wiki)
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
 
+/datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// Build the kitchen recipe lists
 	var/list/food_recipes = subtypesof(/datum/recipe)
 	for(var/datum/recipe/Rp as anything in food_recipes)
@@ -318,6 +332,7 @@ SUBSYSTEM_DEF(internal_wiki)
 								"Catalysts" = CR.catalysts ? CR.catalysts.Copy() : list(),
 								"Fruit" = list(),
 								"Ingredients" = list(),
+								"Appliance" = 0,
 								"Allergens" = 0,
 								"Flags" = CR.wiki_flag
 								)
@@ -385,6 +400,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	//We can also change the appliance to its proper name.
 	for(var/Rp in food_recipes)
 		switch(food_recipes[Rp]["Appliance"])
+			if(0)
+				food_recipes[Rp]["Appliance"] = "Simple"
 			if(1)
 				food_recipes[Rp]["Appliance"] = "Microwave"
 			if(2)
@@ -420,8 +437,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			foodrecipe["[P.title]"] = P
 			// organize into sublists
 			var/app = food_recipes[Rp]["Appliance"]
-			if(!app || app == "")
-				app = "Simple"
 			if(!searchcache_foodrecipe[app])
 				searchcache_foodrecipe[app] = list()
 			var/list/FL = searchcache_foodrecipe[app]
@@ -915,9 +930,12 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/food/assemble(var/datum/reagent/R)
 	title = R.name
 	data["title"] = title
+	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
 	// Get internal data
 	data["flavor"] = R.flavor
 	data["description"] = R.description
+	data["flavor"] = R.taste_description
 	data["allergen"] = assemble_allergens(R.allergen_type)
 	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
 
