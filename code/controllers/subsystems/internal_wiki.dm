@@ -43,6 +43,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/donation_goal = 0
 	VAR_PRIVATE/cur_donation = 0
 	VAR_PRIVATE/list/dono_list = list()
+	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
 	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkrecipe.len]  | C: [chemreact.len]  | B: [botseeds.len] "
@@ -59,6 +60,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	cur_donation = round(cur_donation,1)
 	return SS_INIT_SUCCESS
 
+
+///////////////////////////////////////////////////////////////////////////////////
+// Donation system, for the joke of course
+///////////////////////////////////////////////////////////////////////////////////
 /datum/controller/subsystem/internal_wiki/proc/pay_with_card( var/obj/item/card/id/I, var/mob/M, var/obj/device, var/paying_amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!purchase_with_id_card(I, M, "Bingle.Co.LLC.UK.M.XM.WMP.AVI.COM", device.name, "Donation", paying_amount))
@@ -71,20 +76,25 @@ SUBSYSTEM_DEF(internal_wiki)
 	donation_add(paying_amount)
 	return TRUE
 
-
-///////////////////////////////////////////////////////////////////////////////////
-// Donation system, for the joke of course
-///////////////////////////////////////////////////////////////////////////////////
 /datum/controller/subsystem/internal_wiki/proc/donation_add(var/paying_amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	var/old_dono = cur_donation
 	cur_donation += paying_amount
-	if(old_dono < donation_goal && cur_donation >= donation_goal)
-		// Reached goal!
-		message_admins("BINGLE DONATION GOAL REACHED") // TODO - Removed me for something actually interesting
+	if(old_dono < donation_goal)
+		// If donation goal was not yet met upon donation, recalculate leader on donate
+		highest_cached_donator = update_highest_donator(TRUE)
+		if(cur_donation >= donation_goal) // Reached goal!
+			message_admins("Bingle donation goal reached! Winner was [get_highest_donor_name()] with [get_highest_donor_value()]") // TODO - Removed me for something actually interesting
 
-/datum/controller/subsystem/internal_wiki/proc/highest_donator()
+/datum/controller/subsystem/internal_wiki/proc/update_highest_donator(var/no_cache = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(no_cache)
+		highest_cached_donator = null
+	if(highest_cached_donator)
+		return highest_cached_donator
+	// Search through the donated names for a winner
 	var/highest = "noone!"
 	var/val = 0
 	for(var/donor in dono_list)
@@ -92,10 +102,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			val = dono_list[donor]
 			highest = donor
 	return highest
-
-/datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	return dono_list[key]
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -175,7 +181,23 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_ore
-
+// Donating
+/datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!dono_list.len || isnull(dono_list[key]))
+		return 0
+	return dono_list[key]
+/datum/controller/subsystem/internal_wiki/proc/get_donation_goal(var/key)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return donation_goal
+/datum/controller/subsystem/internal_wiki/proc/get_highest_donor_name()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	highest_cached_donator = update_highest_donator(FALSE)
+	return highest_cached_donator
+/datum/controller/subsystem/internal_wiki/proc/get_highest_donor_value()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	highest_cached_donator = update_highest_donator(FALSE)
+	return get_donor_value(highest_cached_donator)
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Initilizing data and creating wiki pages
