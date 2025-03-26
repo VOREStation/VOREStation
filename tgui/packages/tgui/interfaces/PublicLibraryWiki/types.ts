@@ -24,12 +24,9 @@ export type PageData = {
   food_data: FoodData | null;
 };
 
-export type FoodData = BasicFood &
-  Icon &
-  Partial<ReactionData> &
-  Partial<RedipeData>;
+export type FoodData = DrinkData & Partial<{ recipe: RedipeData }>;
 
-export type DrinkData = BasicFood & ReactionData & Icon;
+export type DrinkData = BasicFood & Icon & Partial<ReactionData>;
 
 type BasicFood = {
   title: string;
@@ -38,7 +35,17 @@ type BasicFood = {
   allergen: string[];
 };
 
-type RedipeData = {};
+export type RedipeData = {
+  supply_points: number;
+  market_price: number;
+  appliance: string;
+  has_coating: BooleanLike;
+  coating: number | string | null;
+  ingredients: Record<string, number> | null;
+  fruits: Record<string, number> | null;
+  reagents: Record<string, number> | null;
+  catalysts: Record<string, number> | null;
+};
 
 export type ReagentData = {
   title: string;

@@ -71,6 +71,8 @@
 					data["search"] = list()
 					if(sub_category)
 						data["search"] = SSinternal_wiki.get_searchcache_food(sub_category)
+					if(P)
+						data["food_data"] = P.get_data()
 
 				if("Drink Recipes")
 					data["search"] = SSinternal_wiki.get_searchcache_drink()

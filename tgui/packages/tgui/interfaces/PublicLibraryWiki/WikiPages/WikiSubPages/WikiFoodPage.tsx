@@ -4,6 +4,7 @@ import { capitalize } from 'tgui-core/string';
 import type { FoodData } from '../../types';
 import { ChemicalReactionList } from '../../WikiCommon/WikiChemList';
 import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
+import { RecipeList } from '../../WikiCommon/WikiFoodList';
 import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
 import { NotAvilableBox } from '../../WikiCommon/WikiQuickElements';
 
@@ -16,6 +17,7 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
     instant_reactions,
     distilled_reactions,
     icon_data,
+    recipe,
   } = props.food;
 
   return (
@@ -44,6 +46,7 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
                 title={'Allergens'}
               />
             )}
+            {!!recipe && <RecipeList title={title} recipe={recipe} />}
             {!!instant_reactions && !!distilled_reactions && (
               <ChemicalReactionList
                 ourKey={title}
