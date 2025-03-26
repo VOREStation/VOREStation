@@ -998,7 +998,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		ico = R.glass_icon_file
 	var/sta = "glass_empty"
 	if(R.glass_icon_state)
-		sta = R.glass_icon_file
+		sta = R.glass_icon_state
 	add_icon(data, ico, sta, R.color)
 	// Get internal data
 	data["description"] = R.description
