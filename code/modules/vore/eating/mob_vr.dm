@@ -30,17 +30,18 @@
 	var/allow_mimicry = TRUE 	// Allows mimicking their character
 	var/allow_mind_transfer = FALSE			//Allows ones mind to be taken over or swapped
 	var/nutrition_message_visible = TRUE
-	var/list/nutrition_messages = list(
-							"They are starving! You can hear their stomach snarling from across the room!",
-							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
+	var/list/nutrition_messages = list( // Someday I would like for it to be possible to name the character or refer to specific pronouns... but that is out of scope for me. -Ace
+							"You can hear their empty stomach snarling from across the room. They must be starving!",
+							"You notice a faint growling occasionally rumble from their hungry gut.",
 							"",
-							"They have a stuffed belly, bloated fat and round from eating too much.",
-							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
-							"They are sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.",
-							"They are engorged with a huge stomach that sags and wobbles as they move. They must have consumed at least twice their body weight. It looks incredibly soft.",
-							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
-							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
-							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+							"They seem quite content, if perhaps a little stuffed. Their stomach gurgles with a little more food than is necessary at the moment.",
+							"They look very satisfied, subconsciously licking their lips as their digestive system churns along an excessively rich meal.",
+							"Their face is pleasantly flushed, breathing a bit more heavily than usual as their belly works some mighty feast into soupy nutrients. There's enough sloshing around in there to leave them feeling bloated for hours.",
+							"Their face looks a little woozy while their breathing is somewhat panting. If you listen closely, you can hear a series of lurid wet blorps as their body works down what would have been enough calories to feed a small party.",
+							"Their expression looks dazed and maybe a little uncomfortable while their breathing consists of deep, long, queasy-sounding gasps. If you pay attention, you can make out the constant gushing from their insides as digestion struggles to cope with a whole buffet worth of mush.",
+							"Their expression looks downright hedonistic while their breathing is slow and lethargic. You can plainly hear a series of thick, lurid glorps as their gut strains to process nearly its limit worth of densely packed chyme.",
+							"Their drooling expression looks pale and clammy, their breathing is weak and heaving, and you vividly overhear the emulsion of calorie-dense foodstuff working slowly through their guts with awful, bubbling GROANS... Maybe they don't consciously realize it, but they are definitely at their limit. Eating more won't make a difference at this point; their body couldn't soak up any more nutrients even if they want it to."
+							)
 	var/weight_message_visible = TRUE
 	var/list/weight_messages = list(
 							"They are terribly lithe and frail!",
