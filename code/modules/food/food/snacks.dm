@@ -825,6 +825,7 @@
 	reagents.add_reagent(REAGENT_ID_POISONBERRYJUICE, 5)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
+	name = "slime jelly donut"
 	filling_color = "#ED1169"
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly/Initialize(mapload)
@@ -832,6 +833,7 @@
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
+	name = "cherry jelly donut"
 	filling_color = "#ED1169"
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly/Initialize(mapload)
@@ -1468,6 +1470,7 @@
 	nutriment_desc = list("sweetness" = 2, "pie" = 3)
 	bitesize = 3
 
+/obj/item/reagent_containers/food/snacks/ber
 /obj/item/reagent_containers/food/snacks/berryclafoutis/berry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BERRYJUICE, 5)
@@ -2117,6 +2120,12 @@
 	nutriment_desc = list("toasted bread" = 2)
 	bitesize = 3
 
+/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
+	name = "Cherry Jellied Toast"
+
+/obj/item/reagent_containers/food/snacks/jelliedtoast/slime
+	name = "Slime Jellied Toast"
+
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CHERRYJELLY, 5)
@@ -2414,6 +2423,15 @@
 	nutriment_amt = 2
 	nutriment_desc = list("bread" = 2)
 	bitesize = 3
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/slime
+	name = "Slime Jelly Sandwich"
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/slime
+	name = "Cherry Jelly Sandwich"
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/peanutbutter
+	name = "Peanut Butter Jelly Sandwich"
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime/Initialize(mapload)
 	. = ..()
@@ -3649,11 +3667,13 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/reagent_containers/food/snacks/gigapuddi/happy
+	name = "Astro-Pudding (Happy)"
 	desc = "A crème caramel of astronomical size, made with extra love."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "happypuddi"
 
 /obj/item/reagent_containers/food/snacks/gigapuddi/anger
+	name = "Astro-Pudding (Angry)"
 	desc = "A crème caramel of astronomical size, made with extra hate."
 	icon_state = "angerpuddi"
 
@@ -4497,8 +4517,8 @@
 	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/roastedsunflower
-	name = "sunflower seeds"
-	desc = "Sunflower seeds!"
+	name = "roasted sunflower seeds"
+	desc = "Roasted sunflower seeds!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "sunflowerseed"
 	bitesize = 1
