@@ -11,7 +11,11 @@ import {
   TierdBox,
 } from '../../WikiCommon/WikiQuickElements';
 
-export const WikiChemistryPage = (props: { chems: ReagentData }) => {
+export const WikiChemistryPage = (props: {
+  chems: ReagentData;
+  beakerFill: number;
+}) => {
+  const { beakerFill, chems } = props;
   const {
     title,
     description,
@@ -27,7 +31,7 @@ export const WikiChemistryPage = (props: { chems: ReagentData }) => {
     instant_reactions,
     distilled_reactions,
     icon_data,
-  } = props.chems;
+  } = chems;
 
   return (
     <Section fill scrollable title={capitalize(title)}>
@@ -39,7 +43,7 @@ export const WikiChemistryPage = (props: { chems: ReagentData }) => {
                 icon={icon_data.icon}
                 iconState={icon_data.state}
                 color={icon_data.color}
-                fillLevel={0.5}
+                fillLevel={beakerFill}
               />
             </LabeledList.Item>
             <LabeledList.Divider />

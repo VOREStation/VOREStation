@@ -53,7 +53,7 @@ export const WikiSearchPage = (
   tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
   tabs['Drink Recipes'] = !!drink_data && <WikiFoodPage food={drink_data} />;
   tabs['Chemistry'] = !!chemistry_data && (
-    <WikiChemistryPage chems={chemistry_data} />
+    <WikiChemistryPage chems={chemistry_data} beakerFill={0.5} />
   );
   tabs['Botany'] = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
   tabs['Ores'] = !!ore_data && <WikiOrePage ores={ore_data} />;
