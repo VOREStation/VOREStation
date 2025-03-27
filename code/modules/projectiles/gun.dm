@@ -341,12 +341,9 @@
 		src.add_fingerprint(usr)
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	to_world("fire check target = [target] user = [user]")
 	if(!user || !target)
-		to_world("no user/target.")
 		return
 	if(target.z != user.z)
-		to_world("target.z != user.z")
 		return
 
 	add_fingerprint(user)
@@ -354,13 +351,11 @@
 	user.break_cloak()
 
 	if(!special_check(user))
-		to_world("special_check failed")
 		return
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
 			to_chat(user, span_warning("[src] is not ready to fire again!"))
-		to_world("world time fail")
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
