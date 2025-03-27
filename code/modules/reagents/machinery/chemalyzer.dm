@@ -157,6 +157,20 @@
 					final_message += grind_results
 					final_message += "<br>"
 
+				grind_results = ""
+				for(var/SN in SSplants.seeds)
+					var/datum/seed/S = SSplants.seeds[SN]
+					if(S && S.roundstart && !S.mysterious)
+						if(!S.chems || !S.chems.len)
+							continue
+						if(!(R.id in S.chems))
+							continue
+						grind_results += " -grind [span_info(S.display_name)]<br>"
+				if(grind_results != "")
+					final_message += span_underline("Organic Sources: <br>")
+					final_message += grind_results
+					final_message += "<br>"
+
 				// The long forgotten fluid pumps!
 				// TODO : Update turfs to provide what their fluidpump outputs are too
 				var/pump_results = ""

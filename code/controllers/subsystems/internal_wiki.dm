@@ -461,8 +461,6 @@ SUBSYSTEM_DEF(internal_wiki)
 				continue // lets always consider these spoilers
 			if(istype(item,/datum/category_item/catalogue/fauna/catslug/custom))
 				continue // too many silly entries
-			if(item.value > CATALOGUER_REWARD_TRIVIAL)
-				continue
 			var/datum/internal_wiki/page/catalog/P = new()
 			P.title = item.name
 			P.catalog_record = item
@@ -1247,6 +1245,42 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(display_reactions.len)
 			data["distilled_reactions"] = reactions
 
+	var/grind_list = list()
+	var/list/display_reactions = list()
+	for(var/ore_type in ore_reagents)
+		var/obj/item/ore/O = ore_type
+		if(R.id in ore_reagents[ore_type])
+			display_reactions.Add(initial(O.name))
+	grind_list["ore"] = null
+	if(display_reactions.len > 0)
+		grind_list["ore"] = display_reactions
+
+	display_reactions = list()
+	for(var/sheet_type in sheet_reagents)
+		var/obj/item/stack/material/M = sheet_type
+		if(R.id in sheet_reagents[sheet_type])
+			display_reactions.Add(initial(M.name))
+	grind_list["material"] = null
+	if(display_reactions.len > 0)
+		grind_list["material"] = display_reactions
+
+	display_reactions = list()
+	for(var/SN in SSplants.seeds)
+		var/datum/seed/S = SSplants.seeds[SN]
+		if(S && S.roundstart && !S.mysterious)
+			if(S.wiki_flag & WIKI_SPOILER)
+				continue
+			if(!S.chems || !S.chems.len)
+				continue
+			if(!(R.id in S.chems))
+				continue
+			display_reactions.Add(S.display_name)
+	grind_list["plant"] = null
+	if(display_reactions.len > 0)
+		grind_list["plant"] = display_reactions
+
+	data["grinding"] = grind_list
+
 /datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
 	var/body = ""
 	var/list/instant = data["instant_reactions"]
@@ -1293,6 +1327,28 @@ SUBSYSTEM_DEF(internal_wiki)
 				body += " <b>-Inhibitor: </b>[IH]<br>"
 			for(var/CL in react["catalysts"])
 				body += " <b>-Catalyst: </b>[CL]<br>"
+
+	var/list/grind_ore = data["grinding"]["ore"]
+	if(grind_ore && grind_ore.len)
+		body += "<br>"
+		body += "<b>Ore processing results: </b><br>"
+		for(var/PL in grind_ore)
+			body += " <b>-Grind: </b>[PL]<br>"
+
+	var/list/grind_mats = data["grinding"]["material"]
+	if(grind_mats && grind_mats.len)
+		body += "<br>"
+		body += "<b>Material processing results: </b><br>"
+		for(var/PL in grind_mats)
+			body += " <b>-Grind: </b>[PL]<br>"
+
+	var/list/grind_plants = data["grinding"]["plant"]
+	if(grind_plants && grind_plants.len)
+		body += "<br>"
+		body += "<b>Organic processing results: </b><br>"
+		for(var/PL in grind_plants)
+			body += " <b>-Grind: </b>[PL]<br>"
+
 	return body
 
 /datum/internal_wiki/page/proc/add_icon(var/list/data, var/ic, var/is, var/col)
