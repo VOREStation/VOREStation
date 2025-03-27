@@ -185,7 +185,7 @@
 	spark_system = null
 	return ..()
 
-/obj/item/rig/MouseDrop(obj/over_object as obj)
+/obj/item/rig/MouseDrop(obj/over_object)
 	if(unremovable)
 		return
 	..()
