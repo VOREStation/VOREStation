@@ -189,7 +189,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(!dono_list.len || isnull(dono_list[key]))
 		return 0
 	return dono_list[key]
-/datum/controller/subsystem/internal_wiki/proc/get_donation_goal(var/key)
+/datum/controller/subsystem/internal_wiki/proc/get_donation_current()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return cur_donation
+/datum/controller/subsystem/internal_wiki/proc/get_donation_goal()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return donation_goal
 /datum/controller/subsystem/internal_wiki/proc/get_highest_donor_name()
