@@ -84,7 +84,7 @@ const MiningVendorItems = (props: {
   );
 
   let has_contents = false;
-  let contents = Object.entries(items).map((kv, _i) => {
+  const contents = Object.entries(items).map((kv, _i) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {

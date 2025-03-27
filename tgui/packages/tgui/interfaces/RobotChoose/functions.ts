@@ -17,7 +17,7 @@ export function robotSpriteSearcher(
   if (!sprites) {
     return [];
   }
-  let subtypes: string[] = [];
+  const subtypes: string[] = [];
   if (includeDefault) {
     subtypes.push('def');
   }

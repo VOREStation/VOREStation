@@ -14,13 +14,13 @@ export const downloadPrefs = (extension: string) => {
     return;
   }
 
-  let datesegment = getCurrentTimestamp();
+  const datesegment = getCurrentTimestamp();
 
-  let filename = mob_name + datesegment + extension;
+  const filename = mob_name + datesegment + extension;
   let blob;
 
   if (extension === '.html') {
-    let style = '<style>' + '</style>';
+    const style = '<style>' + '</style>';
 
     blob = new Blob(
       [

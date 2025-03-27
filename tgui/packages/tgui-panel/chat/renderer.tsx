@@ -350,7 +350,7 @@ class ChatRenderer {
       let blacklistWords;
       let blacklistregex;
       if (highlightBlacklist && blacklistLines.length > 0) {
-        let blacklistRegexExpressions: string[] = [];
+        const blacklistRegexExpressions: string[] = [];
         for (let line of blacklistLines) {
           // Regex expression syntax is /[exp]/
           if (line.charAt(0) === '/' && line.charAt(line.length - 1) === '/') {
@@ -383,7 +383,7 @@ class ChatRenderer {
           blacklistregex = null;
         }
       }
-      let regexExpressions: string[] = [];
+      const regexExpressions: string[] = [];
       // Organize each highlight entry into regex expressions and words
       for (let line of lines) {
         // Regex expression syntax is /[exp]/
@@ -489,7 +489,7 @@ class ChatRenderer {
     // Re-add message nodes
     const fragment = document.createDocumentFragment();
     let node;
-    for (let message of this.messages) {
+    for (const message of this.messages) {
       if (
         canPageAcceptType(page, message.type) &&
         !(
@@ -560,7 +560,7 @@ class ChatRenderer {
     const fragment = document.createDocumentFragment();
     const countByType = {};
     let node;
-    for (let payload of batch) {
+    for (const payload of batch) {
       const message = createMessage(payload);
       // Combine messages
       const combinable = this.getCombinableMessage(message);
@@ -602,7 +602,7 @@ class ChatRenderer {
           const childNode = nodes[i];
           const targetName = childNode.getAttribute('data-component');
           // Let's pull out the attibute info we need
-          let outputProps = {};
+          const outputProps = {};
           for (let j = 0; j < childNode.attributes.length; j++) {
             const attribute = childNode.attributes[j];
 
@@ -807,7 +807,7 @@ class ChatRenderer {
     const fromIndex = Math.max(0, this.messages.length - rebuildLimit);
     const messages = this.messages.slice(fromIndex);
     // Remove existing nodes
-    for (let message of messages) {
+    for (const message of messages) {
       message.node = undefined;
     }
     // Fast clear of the root node
@@ -897,7 +897,7 @@ class ChatRenderer {
       }
 
       // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-      for (let message of tmpMsgArray) {
+      for (const message of tmpMsgArray) {
         // Filter messages according to active tab for export
         if (this.page && canPageAcceptType(this.page, message.type)) {
           messagesHtml += message.html + '\n';

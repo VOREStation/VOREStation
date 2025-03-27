@@ -76,7 +76,7 @@ export const PartLists = (props: {
   let partsObj: { Parts: internalPart[] } = {
     Parts: [],
   };
-  let partsList: internalPart[] = [];
+  const partsList: internalPart[] = [];
   // Build list of sub-categories if not using a search filter.
   if (!searchText) {
     partsObj = { Parts: [] };

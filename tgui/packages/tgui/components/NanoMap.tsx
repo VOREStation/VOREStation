@@ -64,12 +64,12 @@ export class NanoMap extends Component<Props, State> {
   setZoom(zoom: number) {
     const newZoom = Math.min(Math.max(zoom, 1), 8);
     this.setState((state) => {
-      let zoomDifference = -(state.zoom - newZoom);
+      const zoomDifference = -(state.zoom - newZoom);
 
-      let newOffsetX =
+      const newOffsetX =
         state.offsetX - (this.props.zoomScale / 2) * zoomDifference;
 
-      let newOffsetY =
+      const newOffsetY =
         state.offsetY - (this.props.zoomScale / 2) * zoomDifference;
 
       return {

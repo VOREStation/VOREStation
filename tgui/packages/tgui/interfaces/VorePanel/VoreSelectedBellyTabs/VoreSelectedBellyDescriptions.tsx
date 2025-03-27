@@ -27,7 +27,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
       return;
     }
 
-    let elements: ReactNode[] = [];
+    const elements: ReactNode[] = [];
 
     const regexCopy = new RegExp(SYNTAX_REGEX);
 

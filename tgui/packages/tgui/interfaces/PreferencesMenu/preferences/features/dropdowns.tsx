@@ -37,7 +37,7 @@ export function FeatureDropdownInput(props: DropdownInputProps) {
   const { choices, display_names } = serverData;
 
   const dropdownOptions = choices.map((choice) => {
-    let displayText: ReactNode = display_names
+    const displayText: ReactNode = display_names
       ? display_names[choice]
       : capitalizeFirst(choice);
 

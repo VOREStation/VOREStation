@@ -102,8 +102,8 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     e.preventDefault();
 
     const { screenZoomX, screenZoomY, screenX, screenY } = e;
-    let xPos = screenZoomX || screenX;
-    let yPos = screenZoomY || screenY;
+    const xPos = screenZoomX || screenX;
+    const yPos = screenZoomY || screenY;
 
     if (lastMousePos) {
       this.setState({
