@@ -95,6 +95,7 @@
 
 	var/last_shot = 0			//records the last shot fired
 	var/recoil_mode = 0			//If the gun will hurt micros if shot or not. Disabled on Virgo, used downstream.
+	var/mounted_gun = 0				//If the gun is mounted within a rigsuit or elsewhere. This makes it so the gun can be shot even if it's loc != a mob
 
 //VOREStation Add - /tg/ icon system
 	var/charge_sections = 4
@@ -340,19 +341,26 @@
 		src.add_fingerprint(usr)
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
-	if(target.z != user.z) return
+	to_world("fire check target = [target] user = [user]")
+	if(!user || !target)
+		to_world("no user/target.")
+		return
+	if(target.z != user.z)
+		to_world("target.z != user.z")
+		return
 
 	add_fingerprint(user)
 
 	user.break_cloak()
 
 	if(!special_check(user))
+		to_world("special_check failed")
 		return
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
 			to_chat(user, span_warning("[src] is not ready to fire again!"))
+		to_world("world time fail")
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
@@ -369,7 +377,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
 		return //we're done here
-	if(!ismob(loc)) //We've been dropped.
+	if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
 		return
 	if(user.stat) //We've been KO'd or have died. No shooting while dead.
 		return
