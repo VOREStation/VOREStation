@@ -48,6 +48,7 @@ export const WikiSearchPage = (
     subCats,
   } = props;
 
+  // Intentionally bad for the effect
   useEffect(() => {
     setNoData(false);
     if (!search.length) {

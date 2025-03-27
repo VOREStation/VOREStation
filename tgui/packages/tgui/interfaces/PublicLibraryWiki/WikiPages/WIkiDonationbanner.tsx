@@ -144,6 +144,7 @@ const WikiDonationContent = (props: {
   );
 };
 
+// Intentionally not state safe
 const DonationButtons = (props) => {
   const { act } = useBackend();
 
