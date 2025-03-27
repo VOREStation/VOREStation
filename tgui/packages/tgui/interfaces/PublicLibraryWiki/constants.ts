@@ -123,7 +123,7 @@ export const WikiTippOfTheDay = [
   'You could just go on, milk that synx for inaprovaline!',
   "Appendicitis is actually contagious, don't listen to medical's lies!",
   'Bingle is more trustworthy then books written 200 years ago!',
-  'Did you know, you can a hallucinate forever?',
+  'Did you know, you can hallucinate forever?',
   'The pain never ends!',
   'Did you know? Skrell are 40% more likely to donate their bodies for research?',
   'You can do it all yourself, go on fork the code again, I dare you!',
