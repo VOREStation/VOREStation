@@ -52,7 +52,7 @@
 	if(stat & (BROKEN) || (eject_dead && occupant && occupant.stat == DEAD))
 		forced = TRUE
 
-	go_out(forced)
+	perform_exit()
 	add_fingerprint(usr)
 
 /obj/machinery/vr_sleeper/alien/go_out(var/forced = TRUE)
@@ -103,7 +103,7 @@
 		to_chat(occupant,span_alien("\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you."))
 		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) != "Yes")
 			visible_message(span_alien("\The [src] pulses!"))
-			go_out(TRUE)
+			perform_exit()
 			return
 
 	to_chat(occupant,span_alien("Your mind blurs as information bombards you."))

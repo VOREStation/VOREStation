@@ -149,7 +149,7 @@
 	if(stat & (BROKEN|NOPOWER) || occupant && occupant.stat == DEAD)
 		forced = TRUE
 
-	go_out(forced)
+	perform_exit()
 	add_fingerprint(usr)
 
 /obj/machinery/vr_sleeper/verb/climb_in()
@@ -165,7 +165,7 @@
 /obj/machinery/vr_sleeper/relaymove(mob/user as mob)
 	if(user.incapacitated())
 		return 0 //maybe they should be able to get out with cuffs, but whatever
-	go_out(TRUE)
+	perform_exit()
 
 /obj/machinery/vr_sleeper/proc/go_in(var/mob/M, var/mob/user)
 	if(!M)
@@ -211,6 +211,13 @@
 	if(!forced && avatar)
 		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 			return
+
+	perform_exit()
+
+//The actual bulk of the exit code.
+/obj/machinery/vr_sleeper/proc/perform_exit()
+	if(!occupant)
+		return
 
 	avatar = null
 
