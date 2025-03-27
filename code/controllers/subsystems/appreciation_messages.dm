@@ -28,18 +28,19 @@ SUBSYSTEM_DEF(appreciation)
 	if(times_fired == 1)
 		next_tick = world.time + initial_delay
 		return
-	if(world.time < next_tick)
-		return
-	if(squelched)
-		next_tick = world.time + backoff_delay
-		return
-	next_tick = world.time + rand(delay_min,delay_max)
-
-	if(appreciated)
-		do_appreciate()
-		return
 
 	if(!resumed)
+		if(world.time < next_tick)
+			return
+		if(squelched)
+			next_tick = world.time + backoff_delay
+			return
+		next_tick = world.time + rand(delay_min,delay_max)
+
+		if(appreciated)
+			do_appreciate()
+			return
+
 		current_player_list = player_list.Copy()
 
 	while(current_player_list.len)
@@ -56,6 +57,11 @@ SUBSYSTEM_DEF(appreciation)
 	current_player_list.Cut()
 	build_appreciation()
 	human_list.Cut()
+
+	if(squelched)
+		next_tick = world.time + backoff_delay
+		return
+
 	do_appreciate()
 
 
