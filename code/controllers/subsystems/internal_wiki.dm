@@ -264,6 +264,8 @@ SUBSYSTEM_DEF(internal_wiki)
 			continue
 		var/datum/internal_wiki/page/P = null
 		var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
+		if((R.wiki_flag & WIKI_FOOD)) // Processed later
+			continue
 		if(R.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(R.type)
 			continue
@@ -325,6 +327,10 @@ SUBSYSTEM_DEF(internal_wiki)
 		qdel(R)
 	// basically condiments, tofu, cheese, soysauce, etc
 	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
+		if(!allow_reagent(CR.result))
+			continue
+		if(CR.wiki_flag & WIKI_SPOILER)
+			continue
 		if(!(CR.wiki_flag & WIKI_FOOD))
 			continue
 		food_recipes[CR.type] = list("Result" = CR.name,

@@ -1,5 +1,6 @@
 /decl/chemical_reaction/instant/food
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+	wiki_flag = WIKI_FOOD
 
 /decl/chemical_reaction/instant/food/hot_ramen
 	name = REAGENT_HOTRAMEN
@@ -58,7 +59,7 @@
 	return
 
 /decl/chemical_reaction/instant/food/cookingoilcorn
-	name = REAGENT_COOKINGOIL
+	name = "corn " + REAGENT_COOKINGOIL
 	id = "cookingoilcorn"
 	result = REAGENT_ID_COOKINGOIL
 	required_reagents = list(REAGENT_ID_CORNOIL = 10)
@@ -66,7 +67,7 @@
 	result_amount = 10
 
 /decl/chemical_reaction/instant/food/cookingoilpeanut
-	name = REAGENT_COOKINGOIL
+	name = "peanut " + REAGENT_ID_COOKINGOIL
 	id = "cookingoilpeanut"
 	result = REAGENT_ID_COOKINGOIL
 	required_reagents = list(REAGENT_ID_PEANUTOIL = 10)
