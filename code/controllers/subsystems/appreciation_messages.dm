@@ -53,8 +53,10 @@ SUBSYSTEM_DEF(appreciation)
 		if (MC_TICK_CHECK)
 			return
 
-	build_appreciation()
 	current_player_list.Cut()
+	build_appreciation()
+	human_list.Cut()
+	do_appreciate()
 
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
