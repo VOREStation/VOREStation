@@ -361,6 +361,14 @@
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
 
+	var/bite_mod = 1 //NYI - Used Downstream
+	var/grab_resist_divisor_victims = 1 //NYI - Used Downstream
+	var/grab_resist_divisor_self = 1 //NYI - Used Downstream
+	var/grab_power_victims = 0 //NYI - Used Downstream
+	var/grab_power_self = 0 //NYI - Used Downstream
+	var/waking_speed = 1 //NYI - Used Downstream
+	var/lightweight_light = 0 //NYI - Used Downstream
+
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
@@ -576,8 +584,10 @@
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Only used for alien plasma weeds atm, but could be used for Dionaea later.
+// Used for traits and species that have special environmental effects.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
+	for(var/datum/trait/env_trait in env_traits)
+		env_trait.handle_environment_special(H)
 	return
 
 // Used to update alien icons for aliens.
