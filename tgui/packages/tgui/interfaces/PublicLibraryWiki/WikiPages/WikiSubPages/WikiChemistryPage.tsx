@@ -23,6 +23,7 @@ export const WikiChemistryPage = (props: { chems: ReagentData }) => {
     overdose,
     flavor,
     allergen,
+    grinding,
     instant_reactions,
     distilled_reactions,
     icon_data,
@@ -79,6 +80,7 @@ export const WikiChemistryPage = (props: { chems: ReagentData }) => {
             )}
             <ChemicalReactionList
               ourKey={title}
+              grinding={grinding}
               instant_reactions={instant_reactions}
               distilled_reactions={distilled_reactions}
             />

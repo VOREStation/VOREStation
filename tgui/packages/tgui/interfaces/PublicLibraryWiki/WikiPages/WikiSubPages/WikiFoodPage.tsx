@@ -14,6 +14,7 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
     description,
     flavor,
     allergen,
+    grinding,
     instant_reactions,
     distilled_reactions,
     icon_data,
@@ -50,6 +51,7 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
             {!recipe && (
               <ChemicalReactionList
                 ourKey={title}
+                grinding={grinding || null}
                 instant_reactions={instant_reactions || null}
                 distilled_reactions={distilled_reactions || null}
               />

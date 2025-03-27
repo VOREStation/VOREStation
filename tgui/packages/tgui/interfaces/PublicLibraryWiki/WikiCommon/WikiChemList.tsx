@@ -5,8 +5,10 @@ import { capitalize } from 'tgui-core/string';
 import type {
   DistillComponent,
   DistilledReactions,
+  GroundMaterial,
   InstantReactions,
 } from '../types';
+import { WikiSpoileredList } from './WikiListElements';
 import { MinMaxBox, MinMaxBoxTemperature } from './WikiQuickElements';
 
 const BaseChem = (props) => {
@@ -15,10 +17,11 @@ const BaseChem = (props) => {
 
 export const ChemicalReactionList = (props: {
   ourKey: string;
+  grinding: GroundMaterial | null;
   instant_reactions: InstantReactions | null;
   distilled_reactions: DistilledReactions | null;
 }) => {
-  const { ourKey, instant_reactions, distilled_reactions } = props;
+  const { ourKey, grinding, instant_reactions, distilled_reactions } = props;
 
   return (
     <>
@@ -77,6 +80,16 @@ export const ChemicalReactionList = (props: {
           </LabeledList.Item>
         </>
       )}
+      {!!grinding &&
+        Object.keys(grinding).map((entry) => {
+          !!entry && (
+            <WikiSpoileredList
+              ourKey={entry + ourKey}
+              entries={grinding[entry]}
+              title={capitalize(entry) + ' Grinding'}
+            />
+          );
+        })}
     </>
   );
 };

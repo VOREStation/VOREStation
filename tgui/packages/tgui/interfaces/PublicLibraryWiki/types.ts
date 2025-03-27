@@ -124,10 +124,16 @@ type Icon = {
 };
 
 type ReactionData = {
+  grinding: GroundMaterial;
   instant_reactions: InstantReactions;
   distilled_reactions: DistilledReactions;
 };
 
+export type GroundMaterial = {
+  ore: String[] | null;
+  plant: string[] | null;
+  material: string[] | null;
+} | null;
 export type InstantReactions = ReactionComponent | ReactionComponent[] | null;
 export type DistilledReactions = DistillComponent | DistillComponent[] | null;
 
