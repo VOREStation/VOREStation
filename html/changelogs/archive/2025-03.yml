@@ -531,3 +531,8 @@
 2025-03-26:
   Cameron-The-Raven:
   - bugfix: Proteans can select icon base again
+2025-03-27:
+  Kashargul:
+  - bugfix: missing spawn datum handling
+  SatinIsle:
+  - rscadd: Added mail options for entrepreneurs.
