@@ -35,12 +35,12 @@ SUBSYSTEM_DEF(appreciation)
 		return
 	next_tick = world.time + rand(delay_min,delay_max)
 
-	if (!resumed)
-		current_player_list = player_list
-
 	if(appreciated)
 		do_appreciate()
 		return
+
+	if(!resumed)
+		current_player_list = player_list
 
 	while(current_player_list.len)
 		var/mob/M = current_player_list[current_player_list.len]
