@@ -144,8 +144,6 @@
 	if(usr.incapacitated())
 		return
 
-	var/forced = FALSE
-
 	if(stat & (BROKEN|NOPOWER) || occupant && occupant.stat == DEAD)
 		forced = TRUE
 
