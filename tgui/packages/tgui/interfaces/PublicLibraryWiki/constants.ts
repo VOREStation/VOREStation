@@ -144,4 +144,5 @@ export const WikiTippOfTheDay = [
   "Who's that initialize and why do they always call their parents?",
   "Did you know? New isn't new anymore! It's so past century!",
   'Your kitchen is a chemistry set too!',
+  'With Bingle, no sin will remain hidden from sight!',
 ];
