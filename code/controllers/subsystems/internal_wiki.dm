@@ -273,9 +273,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
 			P = new /datum/internal_wiki/page/drink()
 			P.assemble(R)
+			searchcache_drinkreact.Add(id)
 			drinkreact[id] = P
-			searchcache_drinkreact.Add("[P.title]")
-			drinkreact["[P.title]"] = P
 		else
 			P = new /datum/internal_wiki/page/chemical()
 			P.assemble(R)
