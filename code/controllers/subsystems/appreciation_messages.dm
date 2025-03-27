@@ -45,29 +45,37 @@ SUBSYSTEM_DEF(appreciation)
 
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				human_list += H
+				human_list += HAIR_LAYER
 
 			if (MC_TICK_CHECK)
 				return
 
-	build_appreciation()
+		build_appreciation()
+	do_appreciate()
+
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
-	if(!appreciated)
-		if(human_list.len < required_humans)
-			appreciated = pick(loremaster.appreciation_targets)
-		else
-			if(prob(50))
-				appreciated = pick(loremaster.appreciation_targets)
-			else
-				var/mob/living/carbon/human/H = pick(human_list)
-				if(!istype(H))
-					appreciated = pick(loremaster.appreciation_targets)
-				else
-					if(H.custom_species)
-						appreciated = H.custom_species
-					else
-						appreciated = H.species.name
+	if(human_list.len < required_humans)
+		appreciated = pick(loremaster.appreciation_targets)
+		return
+
+	if(prob(50))
+		appreciated = pick(loremaster.appreciation_targets)
+		return
+
+	var/mob/living/carbon/human/H = pick(human_list)
+	if(!istype(H))
+		appreciated = pick(loremaster.appreciation_targets)
+		return
+
+	if(H.custom_species)
+		appreciated = H.custom_species
+		return
+
+	appreciated = H.species.name
+
+
+/datum/controller/subsystem/appreciation/proc/do_appreciate()
 	var/appreciation_message = pick(loremaster.appreciation_messages)
 	var/terrible_factoid = pick(loremaster.terrible_factoids)
 	msg("Today is [appreciated] appreciation day! [terrible_factoid] [appreciation_message]")
@@ -84,7 +92,8 @@ SUBSYSTEM_DEF(appreciation)
 		if(!squelched && !silent)
 			msg("Today's appreciation day has been suspended.")
 		squelched = 1
-	else
-		if(squelched && !silent)
-			msg("Appreciation day has been resumed, get appreciating!")
-		squelched = 0
+		return
+
+	if(squelched && !silent)
+		msg("Appreciation day has been resumed, get appreciating!")
+	squelched = 0
