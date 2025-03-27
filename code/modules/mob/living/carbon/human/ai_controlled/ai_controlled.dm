@@ -113,7 +113,8 @@
 			return INITIALIZE_HINT_LATELOAD
 
 /mob/living/carbon/human/ai_controlled/LateInitialize()
-	death()
+	if(generate_dead)
+		death()
 
 /*
  * Subtypes.
