@@ -584,6 +584,11 @@
 		to_chat(usr, "[src] has not assimilated a RIG. Use one on it to assimilate.")
 
 /obj/item/rig/protean/MouseDrop(obj/over_object as obj)
+	if(dead) //We adjust our unremovable upon being attempted to be moved via checking if we are dead or not.
+		unremovable = FALSE
+	else
+		unremovable = TRUE
+
 	if(unremovable)
 		return
 
