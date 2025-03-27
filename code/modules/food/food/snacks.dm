@@ -2167,6 +2167,12 @@
 	nutriment_desc = list("buns" = 5)
 	bitesize = 2
 
+/obj/item/reagent_containers/food/snacks/jellyburger/slime
+	name = "Slime Jelly Burger"
+
+/obj/item/reagent_containers/food/snacks/jellyburger/cherry
+	name = "Cherry Jelly Burger"
+
 /obj/item/reagent_containers/food/snacks/jellyburger/slime/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
@@ -6406,10 +6412,12 @@
 	bitesize = 1
 
 /obj/item/reagent_containers/food/snacks/omurice/heart
+	name = "omelette rice (Love)"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "omuriceheart"
 
 /obj/item/reagent_containers/food/snacks/omurice/face
+	name = "omelette rice (Cute)"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "omuriceface"
 
