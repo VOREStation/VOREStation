@@ -15,8 +15,8 @@ const BaseChem = (props) => {
 
 export const ChemicalReactionList = (props: {
   ourKey: string;
-  instant_reactions: InstantReactions;
-  distilled_reactions: DistilledReactions;
+  instant_reactions: InstantReactions | null;
+  distilled_reactions: DistilledReactions | null;
 }) => {
   const { ourKey, instant_reactions, distilled_reactions } = props;
 
@@ -58,27 +58,21 @@ export const ChemicalReactionList = (props: {
               color="transparent"
               title={'Reveal Potential Distillery Reactions'}
             >
-              {distilled_reactions ? (
-                Array.isArray(distilled_reactions) ? (
-                  distilled_reactions.map((reactionTypes, index) =>
+              {Array.isArray(distilled_reactions)
+                ? distilled_reactions.map((reactionTypes, index) =>
                     getReactionComponents(
                       reactionTypes,
                       'Destillation',
                       index + 1,
                     ),
                   )
-                ) : (
-                  Object.keys(distilled_reactions).map((reaction) =>
+                : Object.keys(distilled_reactions).map((reaction) =>
                     getReactionComponents(
                       distilled_reactions[reaction],
                       'Destillation',
                       1,
                     ),
-                  )
-                )
-              ) : (
-                <BaseChem />
-              )}
+                  )}
             </Collapsible>
           </LabeledList.Item>
         </>

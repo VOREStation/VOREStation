@@ -4,7 +4,12 @@
  * @license MIT
  */
 
-import { type ComponentProps, type PropsWithChildren, type ReactNode, useEffect } from 'react';
+import {
+  type ComponentProps,
+  type PropsWithChildren,
+  type ReactNode,
+  useEffect,
+} from 'react';
 import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui/constants';
 import { useDebug } from 'tgui/debug';

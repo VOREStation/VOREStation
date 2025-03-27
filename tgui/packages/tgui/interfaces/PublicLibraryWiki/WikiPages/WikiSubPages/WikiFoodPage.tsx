@@ -47,11 +47,11 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
               />
             )}
             {!!recipe && <RecipeList title={title} recipe={recipe} />}
-            {!!instant_reactions && !!distilled_reactions && (
+            {!recipe && (
               <ChemicalReactionList
                 ourKey={title}
-                instant_reactions={instant_reactions}
-                distilled_reactions={distilled_reactions}
+                instant_reactions={instant_reactions || null}
+                distilled_reactions={distilled_reactions || null}
               />
             )}
           </LabeledList>

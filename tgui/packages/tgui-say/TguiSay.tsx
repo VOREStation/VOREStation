@@ -1,6 +1,12 @@
 import './styles/main.scss';
 
-import { type FormEvent, type KeyboardEvent, useEffect, useRef, useState } from 'react';
+import {
+  type FormEvent,
+  type KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
