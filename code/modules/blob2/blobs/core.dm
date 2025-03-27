@@ -154,7 +154,8 @@ var/list/blob_cores = list()
 		if(prob(5))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 
-	overmind.blob_type.on_core_process(src)
+	if(overmind) //Doing this as we might be alive for a bit before a ghost possesses us.
+		overmind.blob_type.on_core_process(src)
 
 /obj/structure/blob/core/proc/create_overmind(client/new_overmind, override_delay)
 	if(overmind_get_delay > world.time && !override_delay)
