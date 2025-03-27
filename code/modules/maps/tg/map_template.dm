@@ -56,7 +56,7 @@
 			else if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
 	atoms |= areas
-	for(var/list/obj/machinery/atmospherics/atmos_to_reenable in atmos_machines)
+	for(var/list/obj/machinery/atmospherics/atmos_to_reenable as anything in atmos_machines)
 		atmos_to_reenable.being_loaded = TRUE
 
 	admin_notice(span_danger("Initializing newly created atom(s) in submap."), R_DEBUG)
