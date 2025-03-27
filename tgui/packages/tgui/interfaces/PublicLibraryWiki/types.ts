@@ -119,11 +119,11 @@ export type MaterialData = {
 
 export type CatalogData = { name: string; desc: string };
 
-type Icon = {
+export type Icon = {
   icon_data: { icon: string; state: string; color: string; dat: string };
 };
 
-type ReactionData = {
+export type ReactionData = {
   grinding: GroundMaterial;
   instant_reactions: InstantReactions;
   distilled_reactions: DistilledReactions;
