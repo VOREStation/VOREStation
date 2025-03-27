@@ -31,7 +31,7 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
         <Stack.Item grow>
           <LabeledList>
             <LabeledList.Item label="Target Sheet">{req_mat}</LabeledList.Item>
-            {target_items && (
+            {!!target_items && (
               <WikiSpoileredList
                 ourKey={title}
                 title="Target Items"
@@ -55,7 +55,7 @@ export const WikiParticlePage = (props: { smasher: ParticleData }) => {
                 maxColor="orange"
               />
             </LabeledList.Item>
-            {inducers && (
+            {!!inducers && (
               <WikiSpoileredList
                 ourKey={title}
                 title="Inducers"
