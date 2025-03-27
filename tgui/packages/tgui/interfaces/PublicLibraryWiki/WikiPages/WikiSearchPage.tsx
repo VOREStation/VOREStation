@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction, useState } from 'react';
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
@@ -10,6 +10,7 @@ import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
+import { WikiNoDataPage } from './WikiSubPages/WikiNoDataPage';
 import { WikiOrePage } from './WikiSubPages/WikiOrePare';
 import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
 
@@ -27,8 +28,9 @@ export const WikiSearchPage = (
   const [subCatSearchText, setSubCatSearchText] = useState('');
   const [subCatActiveEntry, setSubCatActiveEntry] = useState('');
   const [searchText, setSearchText] = useState('');
-  const [activeEntry, setactiveEntry] = useState('');
+  const [activeEntry, setActiveEntry] = useState('');
   const [hideGroup, setHideGroup] = useState(false);
+  const [noData, setNoData] = useState(false);
   const {
     onUpdateAds,
     updateAds,
@@ -46,8 +48,25 @@ export const WikiSearchPage = (
     subCats,
   } = props;
 
+  useEffect(() => {
+    setNoData(false);
+    if (!search.length) {
+      setTimeout(() => {
+        if (!search.length && subCatActiveEntry && !noData) {
+          setNoData(true);
+        }
+      }, 200);
+    }
+  }, [search || subCatActiveEntry]);
+
   const customSearch = createSearch(searchText, (search: string) => search);
   const toDisplay = search.filter(customSearch);
+
+  const customSubSearch = createSearch(
+    subCatSearchText,
+    (search: string) => search,
+  );
+  const subToDisplay = subCats?.filter(customSubSearch);
 
   const tabs: React.JSX.Element[] = [];
   tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
@@ -90,7 +109,7 @@ export const WikiSearchPage = (
       )}
       <Divider />
       <Stack fill>
-        {!!subCats &&
+        {!!subToDisplay &&
           (hideGroup ? (
             <Stack.Item>
               <Button
@@ -105,7 +124,7 @@ export const WikiSearchPage = (
               searchText={subCatSearchText}
               onSearchText={setSubCatSearchText}
               onActiveEntry={setSubCatActiveEntry}
-              listEntries={subCats}
+              listEntries={subToDisplay}
               activeEntry={subCatActiveEntry}
               basis="15%"
               action="setsubcat"
@@ -122,13 +141,15 @@ export const WikiSearchPage = (
           title={searchmode}
           searchText={searchText}
           onSearchText={setSearchText}
-          onActiveEntry={setactiveEntry}
+          onActiveEntry={setActiveEntry}
           listEntries={toDisplay}
           activeEntry={activeEntry}
           basis="30%"
           action="search"
         />
-        <Stack.Item grow>{tabs[searchmode]}</Stack.Item>
+        <Stack.Item grow>
+          {noData ? <WikiNoDataPage /> : tabs[searchmode]}
+        </Stack.Item>
       </Stack>
     </Section>
   );
