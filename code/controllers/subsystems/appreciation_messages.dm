@@ -38,20 +38,22 @@ SUBSYSTEM_DEF(appreciation)
 	if (!resumed)
 		current_player_list = player_list
 
-	if(!appreciated)
-		while(current_player_list.len)
-			var/mob/M = current_player_list[current_player_list.len]
-			current_player_list.len--
+	if(appreciated)
+		do_appreciate()
+		return
 
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				human_list += HAIR_LAYER
+	while(current_player_list.len)
+		var/mob/M = current_player_list[current_player_list.len]
+		current_player_list.len--
 
-			if (MC_TICK_CHECK)
-				return
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			human_list += HAIR_LAYER
 
-		build_appreciation()
-	do_appreciate()
+		if (MC_TICK_CHECK)
+			return
+
+	build_appreciation()
 
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
