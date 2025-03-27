@@ -962,7 +962,6 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
-	result
 	result = /obj/item/reagent_containers/food/snacks/burrito_hell
 	reagent_mix = RECIPE_REAGENT_REPLACE //Already hot sauce
 
