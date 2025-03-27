@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(appreciation)
 		return
 
 	if(!resumed)
-		current_player_list = player_list
+		current_player_list = player_list.Copy()
 
 	while(current_player_list.len)
 		var/mob/M = current_player_list[current_player_list.len]
