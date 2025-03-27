@@ -260,10 +260,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 	// assemble chemical reactions wiki
 	for(var/reagent in SSchemistry.chemical_reagents)
-		if(!allow_reagent(reagent))
-			continue
 		var/datum/internal_wiki/page/P = null
 		var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
+		if(!allow_reagent(R.id))
+			continue
 		if((R.wiki_flag & WIKI_FOOD)) // Processed later
 			continue
 		if(R.wiki_flag & WIKI_SPOILER)
@@ -480,7 +480,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 
 	// This is used to filter out some of the base reagent types, such as admin only reagents
-	if(!reagent_id || reagent_id == "" || reagent_id == REAGENT_ID_DEVELOPER_WARNING || reagent_id == REAGENT_ID_ADMINORDRAZINE)
+	if(!reagent_id || reagent_id == "" || reagent_id == REAGENT_ID_DEVELOPER_WARNING || reagent_id == REAGENT_ID_DRINK || reagent_id == REAGENT_ID_ADMINORDRAZINE)
 		return FALSE
 	return TRUE
 
