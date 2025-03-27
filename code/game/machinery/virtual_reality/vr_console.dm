@@ -145,9 +145,9 @@
 		return
 
 	if(stat & (BROKEN|NOPOWER) || occupant && occupant.stat == DEAD)
-		forced = TRUE
-
-	perform_exit()
+		perform_exit()
+	else
+		go_out()
 	add_fingerprint(usr)
 
 /obj/machinery/vr_sleeper/verb/climb_in()
