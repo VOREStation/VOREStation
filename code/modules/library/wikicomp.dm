@@ -57,7 +57,7 @@
 		data["catalog_data"] = null
 		data["ore_data"] = null
 		data["sub_categories"] = null
-		data["donated"] = SSinternal_wiki.get_highest_donor_value()
+		data["donated"] = SSinternal_wiki.get_donation_current()
 		data["goal"] = SSinternal_wiki.get_donation_goal()
 		data["has_donated"] = just_donated
 		if(!crash)
