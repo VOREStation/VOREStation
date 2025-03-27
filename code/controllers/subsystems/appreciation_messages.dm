@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(appreciation)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			human_list += HAIR_LAYER
+			human_list += H
 
 		if (MC_TICK_CHECK)
 			return
