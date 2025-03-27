@@ -54,6 +54,7 @@ SUBSYSTEM_DEF(appreciation)
 			return
 
 	build_appreciation()
+	current_player_list.Cut()
 
 
 /datum/controller/subsystem/appreciation/proc/build_appreciation()
