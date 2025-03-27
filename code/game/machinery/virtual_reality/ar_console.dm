@@ -26,12 +26,12 @@
 /obj/machinery/vr_sleeper/alien/process()
 	if(stat & (BROKEN))
 		if(occupant)
-			go_out()
+			perform_exit()
 			visible_message(span_infoplain(span_bold("\The [src]") + " emits a low droning sound, before the pod door clicks open."))
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD)
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
-		go_out()
+		perform_exit()
 
 /obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
@@ -47,15 +47,13 @@
 	if(usr.incapacitated())
 		return
 
-	var/forced = FALSE
-
 	if(stat & (BROKEN) || (eject_dead && occupant && occupant.stat == DEAD))
-		forced = TRUE
-
-	perform_exit()
+		perform_exit()
+	else
+		go_out()
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/alien/go_out(var/forced = TRUE)
+/obj/machinery/vr_sleeper/alien/go_out()
 	if(!occupant)
 		return
 
