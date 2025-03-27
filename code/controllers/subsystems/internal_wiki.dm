@@ -203,6 +203,186 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	highest_cached_donator = update_highest_donator(FALSE)
 	return get_donor_value(highest_cached_donator)
+// Helpers for formatting wiki data for tgui pages
+/datum/controller/subsystem/internal_wiki/proc/assemble_reaction_data(var/list/data, var/datum/reagent/R)
+	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
+	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
+
+	data["instant_reactions"] = null
+	if(reaction_list != null && reaction_list.len > 0)
+		var/list/display_reactions = list()
+		for(var/decl/chemical_reaction/CR in reaction_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
+			display_reactions.Add(CR)
+
+		var/reactions = list()
+		for(var/decl/chemical_reaction/CR in display_reactions)
+			var/list/assemble_reaction = list()
+			var/list/reqs = list()
+			for(var/RQ in CR.required_reagents)
+				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				if(!r_RQ)
+					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
+					continue
+				reqs.Add("[r_RQ.name]")
+			assemble_reaction["required"] = reqs
+			var/list/inhib = list()
+			for(var/IH in CR.inhibitors)
+				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				if(!r_IH)
+					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
+					continue
+				inhib.Add("[r_IH.name]")
+			assemble_reaction["inhibitor"] = inhib
+			var/list/catal = list()
+			for(var/CL in CR.catalysts)
+				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				if(!r_CL)
+					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
+					continue
+				catal.Add("[r_CL.name]")
+			assemble_reaction["catalysts"] = catal
+			assemble_reaction["is_slime"] = null
+			if(istype(CR,/decl/chemical_reaction/instant/slime))
+				var/decl/chemical_reaction/instant/slime/CRS = CR
+				var/obj/item/slime_extract/slime_path = CRS.required
+				assemble_reaction["is_slime"] = initial(slime_path.name)
+			reactions += list(assemble_reaction)
+		if(display_reactions.len)
+			data["instant_reactions"] = reactions
+
+	data["distilled_reactions"] = null
+	if(distilled_list != null && distilled_list.len > 0)
+		var/list/display_reactions = list()
+		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
+			if(CR.wiki_flag & WIKI_SPOILER)
+				continue
+			display_reactions.Add(CR)
+
+		var/reactions = list()
+		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
+			var/list/assemble_reaction = list()
+			assemble_reaction["temp_min"] = CR.temp_range[1]
+			assemble_reaction["temp_max"] = CR.temp_range[2]
+			/* Downstream features
+			assemble_reaction["xgm_min"] = CR.minimum_xgm_pressure
+			assemble_reaction["xgm_max"] = CR.maximum_xgm_pressure
+			assemble_reaction["require_xgm_gas"] = CR.require_xgm_gas
+			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas
+			*/
+			var/list/reqs = list()
+			for(var/RQ in CR.required_reagents)
+				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+				if(!r_RQ)
+					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
+					continue
+				reqs.Add("[r_RQ.name]")
+			assemble_reaction["required"] = reqs
+			var/list/inhib = list()
+			for(var/IH in CR.inhibitors)
+				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+				if(!r_IH)
+					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
+					continue
+				inhib.Add("[r_IH.name]")
+			assemble_reaction["inhibitor"] = inhib
+			var/list/catal = list()
+			for(var/CL in CR.catalysts)
+				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+				if(!r_CL)
+					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
+					continue
+				catal.Add("[r_CL.name]")
+			assemble_reaction["catalysts"] = catal
+			assemble_reaction["is_slime"] = null
+			reactions += list(assemble_reaction)
+		if(display_reactions.len)
+			data["distilled_reactions"] = reactions
+
+	var/grind_list = list()
+	var/list/display_reactions = list()
+	for(var/ore_type in ore_reagents)
+		var/obj/item/ore/O = ore_type
+		if(R.id in ore_reagents[ore_type])
+			display_reactions.Add(initial(O.name))
+	grind_list["ore"] = null
+	if(display_reactions.len > 0)
+		grind_list["ore"] = display_reactions
+
+	display_reactions = list()
+	for(var/sheet_type in sheet_reagents)
+		var/obj/item/stack/material/M = sheet_type
+		if(R.id in sheet_reagents[sheet_type])
+			display_reactions.Add(initial(M.name))
+	grind_list["material"] = null
+	if(display_reactions.len > 0)
+		grind_list["material"] = display_reactions
+
+	display_reactions = list()
+	for(var/SN in SSplants.seeds)
+		var/datum/seed/S = SSplants.seeds[SN]
+		if(S && S.roundstart && !S.mysterious)
+			if(S.wiki_flag & WIKI_SPOILER)
+				continue
+			if(!S.chems || !S.chems.len)
+				continue
+			if(!(R.id in S.chems))
+				continue
+			display_reactions.Add(S.display_name)
+	grind_list["plant"] = null
+	if(display_reactions.len > 0)
+		grind_list["plant"] = display_reactions
+
+	data["grinding"] = grind_list
+
+/datum/controller/subsystem/internal_wiki/proc/assemble_allergens(var/allergens)
+	if(allergens > 0)
+		var/list/allergies = list()
+		if(allergens & ALLERGEN_MEAT)
+			allergies.Add("Meat protein")
+		if(allergens & ALLERGEN_FISH)
+			allergies.Add("Fish protein")
+		if(allergens & ALLERGEN_FRUIT)
+			allergies.Add("Fruit")
+		if(allergens & ALLERGEN_VEGETABLE)
+			allergies.Add("Vegetable")
+		if(allergens & ALLERGEN_GRAINS)
+			allergies.Add("Grain")
+		if(allergens & ALLERGEN_BEANS)
+			allergies.Add("Bean")
+		if(allergens & ALLERGEN_SEEDS)
+			allergies.Add("Nut")
+		if(allergens & ALLERGEN_DAIRY)
+			allergies.Add("Dairy")
+		if(allergens & ALLERGEN_FUNGI)
+			allergies.Add("Fungi")
+		if(allergens & ALLERGEN_COFFEE)
+			allergies.Add("Caffeine")
+		if(allergens & ALLERGEN_SUGARS)
+			allergies.Add("Sugar")
+		if(allergens & ALLERGEN_EGGS)
+			allergies.Add("Egg")
+		if(allergens & ALLERGEN_STIMULANT)
+			allergies.Add("Stimulant")
+		if(allergens & ALLERGEN_CHOCOLATE)
+			allergies.Add("Chocolate")
+		/* Downstream features
+		if(allergens & ALLERGEN_POLLEN)
+			allergies.Add("Pollen")
+		if(allergens & ALLERGEN_SALT)
+			allergies.Add("Salt")
+		*/
+		return allergies
+	return null
+
+/datum/controller/subsystem/internal_wiki/proc/add_icon(var/list/data, var/ic, var/is, var/col)
+	var/load_data = list()
+	load_data["icon"] = ic // dmi path
+	load_data["state"] = is // string
+	load_data["color"] = col // html color
+	data["icon_data"] = load_data
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Initilizing data and creating wiki pages
@@ -507,7 +687,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = O.display_name
 	data["title"] = title
 	var/obj/item/ore/ore_path = O.ore
-	add_icon(data, initial(ore_path.icon), initial(ore_path.icon_state), "#ffffff")
+	SSinternal_wiki.add_icon(data, initial(ore_path.icon), initial(ore_path.icon_state), "#ffffff")
 	// Get internal data
 	data["smelting"] = null
 	if(O.smelts_to)
@@ -586,7 +766,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = M.display_name + " "  + M.sheet_singular_name
 	data["title"] = title
 	var/obj/item/stack/stack_path = M.stack_type
-	add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), initial(M.icon_colour))
+	SSinternal_wiki.add_icon(data, initial(stack_path.icon), initial(stack_path.icon_state), initial(M.icon_colour))
 	// Get internal data
 	data["integrity"] = M.integrity
 	data["hardness"] = M.hardness
@@ -684,7 +864,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/seed/assemble(var/datum/seed/S)
 	title = S.display_name
 	data["title"] = title
-	add_icon(data, 'icons/obj/hydroponics_growing.dmi', "[S.get_trait(TRAIT_PLANT_ICON)]-[S.growth_stages]", S.get_trait(TRAIT_PLANT_COLOUR))
+	SSinternal_wiki.add_icon(data, 'icons/obj/hydroponics_growing.dmi', "[S.get_trait(TRAIT_PLANT_ICON)]-[S.growth_stages]", S.get_trait(TRAIT_PLANT_COLOUR))
 	// Get internal data
 	data["feeding"] = S.get_trait(TRAIT_REQUIRES_NUTRIENTS)
 	data["watering"] = S.get_trait(TRAIT_REQUIRES_WATER)
@@ -815,7 +995,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["title"] = title
 	var/obj/item/stack/material/result_path = M.result
 	var/datum/material/result_mat = get_material_by_name(initial(result_path.default_type))
-	add_icon(data, initial(result_path.icon), initial(result_path.icon_state), initial(result_mat.icon_colour))
+	SSinternal_wiki.add_icon(data, initial(result_path.icon), initial(result_path.icon_state), initial(result_mat.icon_colour))
 	// Get internal data
 	var/obj/item/stack/req_mat = M.required_material
 	data["req_mat"] = null
@@ -876,7 +1056,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = R.name
 	data["title"] = title
 	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+	SSinternal_wiki.add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
 	// Get internal data
 	data["description"] = R.description
 	/* Downstream features
@@ -892,8 +1072,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	*/
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
-	data["allergen"] = assemble_allergens(R.allergen_type)
-	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/chemical/get_print()
 	var/body = ""
@@ -936,12 +1116,12 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = R.name
 	data["title"] = title
 	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+	SSinternal_wiki.add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = assemble_allergens(R.allergen_type)
-	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/food/get_print()
 	var/body = ""
@@ -963,12 +1143,12 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/sta = "glass_empty"
 	if(R.glass_icon_state)
 		sta = R.glass_icon_state
-	add_icon(data, ico, sta, R.color)
+	SSinternal_wiki.add_icon(data, ico, sta, R.color)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = assemble_allergens(R.allergen_type)
-	assemble_reaction_data(data, R, SSchemistry.chemical_reactions_by_product[R.id], SSchemistry.distilled_reactions_by_product[R.id])
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/drink/get_print()
 	var/body = ""
@@ -987,13 +1167,13 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["title"] = title
 	var/obj/item/path = recipe["ResultPath"]
 	if(path)
-		add_icon(data, initial(path.icon), initial(path.icon_state), "#ffffff")
+		SSinternal_wiki.add_icon(data, initial(path.icon), initial(path.icon_state), "#ffffff")
 	else
 		var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-		add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
+		SSinternal_wiki.add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
 	// Get internal data
 	data["description"] = recipe["Desc"]
-	data["allergen"] = assemble_allergens(recipe["Allergens"])
+	data["allergen"] = SSinternal_wiki.assemble_allergens(recipe["Allergens"])
 	var/list/recipe_data = list()
 	var/value = recipe["Price"] ? recipe["Price"] : 0
 	recipe_data["supply_points"] = value
@@ -1100,47 +1280,6 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // MISC HELPERS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/proc/assemble_allergens(var/allergens)
-	PROTECTED_PROC(TRUE)
-	if(allergens > 0)
-		var/list/allergies = list()
-		if(allergens & ALLERGEN_MEAT)
-			allergies.Add("Meat protein")
-		if(allergens & ALLERGEN_FISH)
-			allergies.Add("Fish protein")
-		if(allergens & ALLERGEN_FRUIT)
-			allergies.Add("Fruit")
-		if(allergens & ALLERGEN_VEGETABLE)
-			allergies.Add("Vegetable")
-		if(allergens & ALLERGEN_GRAINS)
-			allergies.Add("Grain")
-		if(allergens & ALLERGEN_BEANS)
-			allergies.Add("Bean")
-		if(allergens & ALLERGEN_SEEDS)
-			allergies.Add("Nut")
-		if(allergens & ALLERGEN_DAIRY)
-			allergies.Add("Dairy")
-		if(allergens & ALLERGEN_FUNGI)
-			allergies.Add("Fungi")
-		if(allergens & ALLERGEN_COFFEE)
-			allergies.Add("Caffeine")
-		if(allergens & ALLERGEN_SUGARS)
-			allergies.Add("Sugar")
-		if(allergens & ALLERGEN_EGGS)
-			allergies.Add("Egg")
-		if(allergens & ALLERGEN_STIMULANT)
-			allergies.Add("Stimulant")
-		if(allergens & ALLERGEN_CHOCOLATE)
-			allergies.Add("Chocolate")
-		/* Downstream features
-		if(allergens & ALLERGEN_POLLEN)
-			allergies.Add("Pollen")
-		if(allergens & ALLERGEN_SALT)
-			allergies.Add("Salt")
-		*/
-		return allergies
-	return null
-
 /datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
@@ -1150,136 +1289,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			AG += "-[ALGY]<br>"
 		AG += "<br>"
 	return AG
-
-/datum/internal_wiki/page/proc/assemble_reaction_data(var/list/data, var/datum/reagent/R, var/list/reaction_list, var/list/distilled_list)
-	PROTECTED_PROC(TRUE)
-	data["instant_reactions"] = null
-	if(reaction_list != null && reaction_list.len > 0)
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/CR in reaction_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-
-		var/reactions = list()
-		for(var/decl/chemical_reaction/CR in display_reactions)
-			var/list/assemble_reaction = list()
-			var/list/reqs = list()
-			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
-				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical instant component for [title]"))
-					continue
-				reqs.Add("[r_RQ.name]")
-			assemble_reaction["required"] = reqs
-			var/list/inhib = list()
-			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
-				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical instant inhibitor for [title]"))
-					continue
-				inhib.Add("[r_IH.name]")
-			assemble_reaction["inhibitor"] = inhib
-			var/list/catal = list()
-			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
-				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical instant catalyst for [title]"))
-					continue
-				catal.Add("[r_CL.name]")
-			assemble_reaction["catalysts"] = catal
-			assemble_reaction["is_slime"] = null
-			if(istype(CR,/decl/chemical_reaction/instant/slime))
-				var/decl/chemical_reaction/instant/slime/CRS = CR
-				var/obj/item/slime_extract/slime_path = CRS.required
-				assemble_reaction["is_slime"] = initial(slime_path.name)
-			reactions += list(assemble_reaction)
-		if(display_reactions.len)
-			data["instant_reactions"] = reactions
-
-	data["distilled_reactions"] = null
-	if(distilled_list != null && distilled_list.len > 0)
-		var/list/display_reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in distilled_list)
-			if(CR.wiki_flag & WIKI_SPOILER)
-				continue
-			display_reactions.Add(CR)
-
-		var/reactions = list()
-		for(var/decl/chemical_reaction/distilling/CR in display_reactions)
-			var/list/assemble_reaction = list()
-			assemble_reaction["temp_min"] = CR.temp_range[1]
-			assemble_reaction["temp_max"] = CR.temp_range[2]
-			/* Downstream features
-			assemble_reaction["xgm_min"] = CR.minimum_xgm_pressure
-			assemble_reaction["xgm_max"] = CR.maximum_xgm_pressure
-			assemble_reaction["require_xgm_gas"] = CR.require_xgm_gas
-			assemble_reaction["rejects_xgm_gas"] = CR.rejects_xgm_gas
-			*/
-			var/list/reqs = list()
-			for(var/RQ in CR.required_reagents)
-				var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
-				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ] in chemical distilation component for [title]"))
-					continue
-				reqs.Add("[r_RQ.name]")
-			assemble_reaction["required"] = reqs
-			var/list/inhib = list()
-			for(var/IH in CR.inhibitors)
-				var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
-				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH] in chemical distilation inhibitor for [title]"))
-					continue
-				inhib.Add("[r_IH.name]")
-			assemble_reaction["inhibitor"] = inhib
-			var/list/catal = list()
-			for(var/CL in CR.catalysts)
-				var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
-				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL] in chemical distilation catalyst for [title]"))
-					continue
-				catal.Add("[r_CL.name]")
-			assemble_reaction["catalysts"] = catal
-			assemble_reaction["is_slime"] = null
-			reactions += list(assemble_reaction)
-		if(display_reactions.len)
-			data["distilled_reactions"] = reactions
-
-	var/grind_list = list()
-	var/list/display_reactions = list()
-	for(var/ore_type in ore_reagents)
-		var/obj/item/ore/O = ore_type
-		if(R.id in ore_reagents[ore_type])
-			display_reactions.Add(initial(O.name))
-	grind_list["ore"] = null
-	if(display_reactions.len > 0)
-		grind_list["ore"] = display_reactions
-
-	display_reactions = list()
-	for(var/sheet_type in sheet_reagents)
-		var/obj/item/stack/material/M = sheet_type
-		if(R.id in sheet_reagents[sheet_type])
-			display_reactions.Add(initial(M.name))
-	grind_list["material"] = null
-	if(display_reactions.len > 0)
-		grind_list["material"] = display_reactions
-
-	display_reactions = list()
-	for(var/SN in SSplants.seeds)
-		var/datum/seed/S = SSplants.seeds[SN]
-		if(S && S.roundstart && !S.mysterious)
-			if(S.wiki_flag & WIKI_SPOILER)
-				continue
-			if(!S.chems || !S.chems.len)
-				continue
-			if(!(R.id in S.chems))
-				continue
-			display_reactions.Add(S.display_name)
-	grind_list["plant"] = null
-	if(display_reactions.len > 0)
-		grind_list["plant"] = display_reactions
-
-	data["grinding"] = grind_list
 
 /datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
 	var/body = ""
@@ -1350,10 +1359,3 @@ SUBSYSTEM_DEF(internal_wiki)
 			body += " <b>-Grind: </b>[PL]<br>"
 
 	return body
-
-/datum/internal_wiki/page/proc/add_icon(var/list/data, var/ic, var/is, var/col)
-	var/load_data = list()
-	load_data["icon"] = ic // dmi path
-	load_data["state"] = is // string
-	load_data["color"] = col // html color
-	data["icon_data"] = load_data
