@@ -585,7 +585,7 @@
 	return
 
 // Used for traits and species that have special environmental effects.
-/datum/species/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	for(var/datum/trait/env_trait in env_traits)
 		env_trait.handle_environment_special(H)
 	return
