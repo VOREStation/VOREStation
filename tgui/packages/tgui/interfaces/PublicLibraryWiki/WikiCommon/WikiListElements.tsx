@@ -31,7 +31,7 @@ export const WikiSpoileredList = (props: {
     <>
       <LabeledList.Divider />
       <LabeledList.Item label={title}>
-        <Collapsible color="transparent" title={'Reveal ' + title}>
+        <Collapsible key={ourKey} color="transparent" title={'Reveal ' + title}>
           {Object.keys(entries).map((entry) => (
             <Box key={entry}>
               - {capitalize(entry)}: {entries[entry]}
