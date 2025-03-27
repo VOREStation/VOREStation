@@ -10,17 +10,17 @@ SUBSYSTEM_DEF(appreciation)
 	flags = SS_NO_INIT | SS_BACKGROUND
 
 	VAR_PRIVATE/next_tick = 0
-	VAR_PRIVATE/delay_min = 90 SECONDS				//How long between announcements, minimum
-	VAR_PRIVATE/delay_max = 180 SECONDS				//Ditto, maximum
+	VAR_PRIVATE/delay_min = 90 MINUTES				//How long between announcements, minimum
+	VAR_PRIVATE/delay_max = 180 MINUTES				//Ditto, maximum
 							//Shorter delays are probably too spammy, 90-180 minutes means a message every two hours or so, which shouldn't be too intrusive.
-	VAR_PRIVATE/backoff_delay = 5 SECONDS			//How long to back off if we can't talk and want to.  Default is 5 mins.
-	VAR_PRIVATE/initial_delay = 90 SECONDS			//How long to wait before sending the first message of the shift.
+	VAR_PRIVATE/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
+	VAR_PRIVATE/initial_delay = 90 MINUTES			//How long to wait before sending the first message of the shift.
 	VAR_PRIVATE/squelched = FALSE					//If appreciation messages are squelched currently
 
 	var/list/current_player_list = list()
 	var/list/human_list = list()
 	var/appreciated
-	var/required_humans = 1							//The minimum number of humans in the list needed to allow it to choose one of their species.
+	var/required_humans = 5							//The minimum number of humans in the list needed to allow it to choose one of their species.
 
 /datum/controller/subsystem/appreciation/fire(resumed = FALSE)
 	if(times_fired < 1)
