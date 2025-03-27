@@ -102,7 +102,8 @@
 										"Funny seeing those all the way out here, right?",
 										"Great time to learn a bit about their culture!",
 										"They really are, truly, very appreciated.",
-										"They're just rad."
+										"They're just rad.",
+										"They are JUST like me!"
 	)
 
 	var/list/terrible_factoids = list(
