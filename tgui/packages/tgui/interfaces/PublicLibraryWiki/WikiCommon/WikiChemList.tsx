@@ -81,15 +81,17 @@ export const ChemicalReactionList = (props: {
         </>
       )}
       {!!grinding &&
-        Object.keys(grinding).map((entry) => {
-          !!entry && (
-            <WikiSpoileredList
-              ourKey={entry + ourKey}
-              entries={grinding[entry]}
-              title={capitalize(entry) + ' Grinding'}
-            />
-          );
-        })}
+        Object.keys(grinding).map(
+          (entry) =>
+            !!grinding[entry] && (
+              <WikiSpoileredList
+                key={entry}
+                ourKey={ourKey}
+                entries={grinding[entry]}
+                title={capitalize(entry) + ' Grinding'}
+              />
+            ),
+        )}
     </>
   );
 };
