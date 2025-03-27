@@ -7,7 +7,7 @@
 import {
   colorList,
   hexToHsva,
-  HsvaColor,
+  type HsvaColor,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -16,7 +16,7 @@ import {
 } from 'common/colorpicker';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pointer } from 'tgui/components';
-import { Interaction, Interactive } from 'tgui/components/Interactive';
+import { type Interaction, Interactive } from 'tgui/components/Interactive';
 import {
   Autofocus,
   Box,

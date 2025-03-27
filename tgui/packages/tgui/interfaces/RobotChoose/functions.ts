@@ -1,7 +1,7 @@
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
-import { spriteOption } from './types';
+import type { spriteOption } from './types';
 
 export function robotSpriteSearcher(
   searchText: string,

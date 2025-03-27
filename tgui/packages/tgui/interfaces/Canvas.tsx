@@ -1,4 +1,4 @@
-import { Component, createRef, RefObject, useState } from 'react';
+import { Component, createRef, type RefObject, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Stack } from 'tgui-core/components';

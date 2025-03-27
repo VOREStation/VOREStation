@@ -1,10 +1,10 @@
-import { Component, ComponentProps } from 'react';
+import { Component, type ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 import { shallowDiffers } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Port, PortProps } from './Port';
+import { Port, type PortProps } from './Port';
 import {
   type CircuitData,
   PortTypesToColor as PORT_TYPES_TO_COLOR,

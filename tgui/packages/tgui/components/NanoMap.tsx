@@ -1,4 +1,4 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { Component, type PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { KeyListener } from 'tgui-core/components';
@@ -10,7 +10,7 @@ import {
   Slider,
   Tooltip,
 } from 'tgui-core/components';
-import { KeyEvent } from 'tgui-core/events';
+import type { KeyEvent } from 'tgui-core/events';
 import { KEY } from 'tgui-core/keys';
 
 import { logger } from '../logging';

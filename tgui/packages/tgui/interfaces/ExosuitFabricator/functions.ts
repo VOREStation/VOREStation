@@ -2,7 +2,7 @@ import { uniqBy } from 'common/collections';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
-import { material, part, queueFormat } from './types';
+import type { material, part, queueFormat } from './types';
 
 export function materialArrayToObj(
   materials: material[],

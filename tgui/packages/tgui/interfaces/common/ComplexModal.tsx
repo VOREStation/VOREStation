@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react';
+import type { KeyboardEvent } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Modal } from 'tgui-core/components';
 import {
