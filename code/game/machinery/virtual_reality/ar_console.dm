@@ -57,7 +57,7 @@
 	if(!occupant)
 		return
 
-	if(!forced && avatar)
+	if(avatar)
 		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 			return
 
