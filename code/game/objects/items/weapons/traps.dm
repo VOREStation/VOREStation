@@ -85,7 +85,7 @@
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_foot", "r_foot", "l_leg", "r_leg")
+		target_zone = pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
@@ -333,7 +333,7 @@
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_foot", "r_foot", "l_leg", "r_leg")
+		target_zone = pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
@@ -370,7 +370,7 @@
 
 		to_chat(H, span_danger("You step directly on \the [src]!"))
 
-		var/list/check = list("l_foot", "r_foot")
+		var/list/check = list(BP_L_FOOT, BP_R_FOOT)
 		while(check.len)
 			var/picked = pick(check)
 			var/obj/item/organ/external/affecting = H.get_organ(picked)

@@ -41,9 +41,9 @@
 
 	var/has_hands = TRUE
 	if(istype(H))
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if(H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(!temp || !temp.is_usable())
 			has_hands = FALSE
 		for(var/thing in GetViruses()) //This is intentionally not having a has_hands check. If you are clicking on someone next to them, you're close enough to sneeze/cough on them!

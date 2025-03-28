@@ -527,8 +527,8 @@ var/global/datum/controller/occupations/job_master
 				to_chat(H, span_danger("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."))
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
-		var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
-		var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
+		var/obj/item/organ/external/l_foot = H.get_organ(BP_L_FOOT)
+		var/obj/item/organ/external/r_foot = H.get_organ(BP_R_FOOT)
 		var/obj/item/storage/S = locate() in H.contents
 		var/obj/item/wheelchair/R
 		if(S)

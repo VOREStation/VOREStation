@@ -376,7 +376,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
-		def_zone = pick("l_hand", "r_hand")
+		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
 		if(stored_shock_by_ref["\ref[src]"])
@@ -1634,7 +1634,7 @@
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
 		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list("l_leg","r_leg"))
+		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
 			var/obj/item/organ/affecting = get_organ(limbcheck)
 			if(!affecting)
 				return 0

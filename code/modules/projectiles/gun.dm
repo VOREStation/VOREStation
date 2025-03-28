@@ -203,7 +203,7 @@
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
 				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 				user.visible_message(
@@ -726,7 +726,7 @@
 		in_chamber.on_hit(M)
 		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
 			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", sharp = TRUE, used_weapon = src)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
 			to_chat(user, span_notice("Ow..."))
