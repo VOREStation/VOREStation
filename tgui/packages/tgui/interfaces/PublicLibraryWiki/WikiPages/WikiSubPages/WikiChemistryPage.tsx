@@ -52,7 +52,7 @@ export const WikiChemistryPage = (props: {
                 fillLevel={beakerFill}
               />
             </LabeledList.Item>
-            {beakerAmount && (
+            {!!beakerAmount && (
               <LabeledList.Item label="Contains">
                 {beakerAmount}u
               </LabeledList.Item>
