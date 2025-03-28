@@ -180,8 +180,8 @@
 	power_draw_per_use = 20
 	var/list/sounds = list()
 
-/obj/item/integrated_circuit/output/sound/New()
-	..()
+/obj/item/integrated_circuit/output/sound/Initialize(mapload)
+	. = ..()
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used. The choices are; "
 	extended_desc += jointext(sounds, ", ")

@@ -1,4 +1,4 @@
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const stats: string[][] = [
   ['good', 'Alive'],

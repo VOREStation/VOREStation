@@ -129,13 +129,13 @@
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] at [M]'s face."), \
-								 	 span_notice("You direct [src] at [M]'s face."))
+										span_notice("You direct [src] at [M]'s face."))
 				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
 				return
 
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] to [M]'s eyes."), \
-							 	 span_notice("You direct [src] to [M]'s eyes."))
+									span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))

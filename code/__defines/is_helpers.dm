@@ -50,6 +50,7 @@
 #define isalien(A)		istype(A, /mob/living/carbon/alien)
 #define isbrain(A)		istype(A, /mob/living/carbon/brain)
 #define ishuman(A)		istype(A, /mob/living/carbon/human)
+#define ismannequin(A)	istype(A, /mob/living/carbon/human/dummy/mannequin)
 
 #define issilicon(A)	istype(A, /mob/living/silicon)
 #define isAI(A)			istype(A, /mob/living/silicon/ai)

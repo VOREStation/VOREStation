@@ -22,6 +22,20 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
+#define pronoun_set_to_genders list(\
+            "He/Him" = MALE,\
+            "She/Her" = FEMALE,\
+            "It/Its" = NEUTER,\
+            "They/Them" = PLURAL,\
+            "Shi/Hir" = HERM\
+            )
+#define genders_to_pronoun_set list(\
+            MALE = "He/Him",\
+            FEMALE = "She/Her",\
+            NEUTER = "It/Its",\
+            PLURAL = "They/Them",\
+            HERM = "Shi/Hir"\
+        )
 
 var/list/mannequins_
 

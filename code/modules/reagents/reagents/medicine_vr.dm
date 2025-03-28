@@ -28,6 +28,7 @@
 	mrate_static = TRUE
 	overdose = 20 //High OD. This is to make numbing bites have somewhat of a downside if you get bit too much. Have to go to medical for dialysis.
 	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)

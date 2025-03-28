@@ -78,7 +78,7 @@
 	var/output_index = get_pin_data(IC_INPUT, 1)
 	for(var/i = 1 to outputs.len)
 		set_pin_data(IC_OUTPUT, i, i == output_index ? get_pin_data(IC_INPUT, 2) : null)
-
+	push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/transfer/demultiplexer/medium

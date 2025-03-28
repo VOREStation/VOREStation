@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 
-import { Data } from './types';
+import type { Data } from './types';
 import { generateBellyString } from './VorePanelExportBellyString';
 import { generateSoulcatcherString } from './VorePanelExportSoulcatcherString';
 import { getCurrentTimestamp } from './VorePanelExportTimestamp';
@@ -16,13 +16,13 @@ export const downloadPrefs = (extension: string) => {
 
   const validBellies = bellies.filter((belly) => !belly.prevent_saving);
 
-  let datesegment = getCurrentTimestamp();
+  const datesegment = getCurrentTimestamp();
 
-  let filename = mob_name + datesegment + extension;
+  const filename = mob_name + datesegment + extension;
   let blob;
 
   if (extension === '.html') {
-    let style = '<style>' + '</style>';
+    const style = '<style>' + '</style>';
 
     blob = new Blob(
       [

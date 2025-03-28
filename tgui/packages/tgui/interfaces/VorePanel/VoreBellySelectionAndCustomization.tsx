@@ -7,10 +7,10 @@ import {
   Tabs,
   Tooltip,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from './constants';
-import { bellyData, hostMob, selectedData } from './types';
+import type { bellyData, hostMob, selectedData } from './types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {

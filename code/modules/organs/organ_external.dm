@@ -508,9 +508,9 @@
 	if(user == src.owner)
 		var/grasp
 		if(user.l_hand == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
-			grasp = "l_hand"
+			grasp = BP_L_HAND
 		else if(user.r_hand == tool && (src.body_part & (ARM_RIGHT|HAND_RIGHT)))
-			grasp = "r_hand"
+			grasp = BP_R_HAND
 
 		if(grasp)
 			to_chat(user, span_warning("You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)]."))

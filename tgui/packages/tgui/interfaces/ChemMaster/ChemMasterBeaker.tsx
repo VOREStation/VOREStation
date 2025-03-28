@@ -15,7 +15,7 @@ export const ChemMasterBeaker = (props: {
   const { act } = useBackend();
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
-  let headerButton = bufferNonEmpty ? (
+  const headerButton = bufferNonEmpty ? (
     <Button.Confirm
       icon="eject"
       disabled={!beaker}

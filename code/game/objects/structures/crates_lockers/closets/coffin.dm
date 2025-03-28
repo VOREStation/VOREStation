@@ -70,16 +70,16 @@
 	if(src.opened)
 		if(istype(W, /obj/item/shovel))
 			user.visible_message(span_notice("[user] piles dirt into \the [src.name]."), \
-								 span_notice("You start to pile dirt into \the [src.name]."), \
-								 span_notice("You hear dirt being moved."))
+									span_notice("You start to pile dirt into \the [src.name]."), \
+									span_notice("You hear dirt being moved."))
 			if(do_after(user, 40 * W.toolspeed))
 				user.visible_message(span_notice("[user] pats down the dirt on top of \the [src.name]."), \
-								 span_notice("You finish filling in \the [src.name]."))
+									span_notice("You finish filling in \the [src.name]."))
 				close()
 				return
 			else
 				user.visible_message(span_notice("[user] stops filling in \the [src.name]."), \
-								 span_notice("You change your mind and stop filling in \the [src.name]."))
+									span_notice("You change your mind and stop filling in \the [src.name]."))
 				return
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -93,8 +93,8 @@
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
 			user.visible_message(span_notice("[user] empties \the [LB] into \the [src]."), \
-								 span_notice("You empty \the [LB] into \the [src]."), \
-								 span_notice("You hear rustling of clothes."))
+									span_notice("You empty \the [LB] into \the [src]."), \
+									span_notice("You hear rustling of clothes."))
 			return
 		if(isrobot(user))
 			return
@@ -107,11 +107,11 @@
 		if(istype(W, /obj/item/shovel))
 			if(user.a_intent == I_HURT)	// Hurt intent means you're trying to kill someone, or just get rid of the grave
 				user.visible_message(span_notice("[user] begins to smoothe out the dirt of \the [src.name]."), \
-									 span_notice("You start to smoothe out the dirt of \the [src.name]."), \
-									 span_notice("You hear dirt being moved."))
+										span_notice("You start to smoothe out the dirt of \the [src.name]."), \
+										span_notice("You hear dirt being moved."))
 				if(do_after(user, 40 * W.toolspeed))
 					user.visible_message(span_notice("[user] finishes smoothing out \the [src.name]."), \
-										 span_notice("You finish smoothing out \the [src.name]."))
+											span_notice("You finish smoothing out \the [src.name]."))
 					if(LAZYLEN(contents))
 						alpha = 40	// If we've got stuff inside, like maybe a person, just make it hard to see us
 					else
@@ -119,20 +119,20 @@
 					return
 				else
 					user.visible_message(span_notice("[user] stops concealing \the [src.name]."), \
-										 span_notice("You stop concealing \the [src.name]."))
+											span_notice("You stop concealing \the [src.name]."))
 					return
 			else
 				user.visible_message(span_notice("[user] begins to unearth \the [src.name]."), \
-									 span_notice("You start to unearth \the [src.name]."), \
-									 span_notice("You hear dirt being moved."))
+										span_notice("You start to unearth \the [src.name]."), \
+										span_notice("You hear dirt being moved."))
 				if(do_after(user, 40 * W.toolspeed))
 					user.visible_message(span_notice("[user] reaches the bottom of \the [src.name]."), \
-										 span_notice("You finish digging out \the [src.name]."))
+											span_notice("You finish digging out \the [src.name]."))
 					break_open()
 					return
 				else
 					user.visible_message(span_notice("[user] stops digging out \the [src.name]."), \
-										 span_notice("You stop digging out \the [src.name]."))
+											span_notice("You stop digging out \the [src.name]."))
 					return
 	return
 
