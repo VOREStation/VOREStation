@@ -58,7 +58,7 @@
 
 /datum/material/cloth/teal
 	name = MAT_CLOTH_TEAL
-	display_name =MAT_CLOTH_TEAL
+	display_name = MAT_CLOTH_TEAL
 	use_name = "teal cloth"
 	icon_colour = "#00EAFA"
 	wiki_flag = WIKI_SPOILER
