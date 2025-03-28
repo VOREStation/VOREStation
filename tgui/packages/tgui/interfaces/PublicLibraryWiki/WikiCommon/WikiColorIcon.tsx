@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { Box, Icon } from 'tgui-core/components';
 
 export const getImage = async (url: string): Promise<HTMLImageElement> => {
   return new Promise((resolve, reject) => {
@@ -110,5 +111,17 @@ export const ColorizedImage = (props: {
     [iconRef, iconState, color],
   );
 
-  return <CanvasBackedImage render={render} dimension={iconSize} />;
+  return iconRef ? (
+    <CanvasBackedImage render={render} dimension={iconSize} />
+  ) : (
+    <Box height="64px">
+      <Icon
+        position="absolute"
+        name="question"
+        size={4}
+        width="64px"
+        height="64px"
+      />
+    </Box>
+  );
 };
