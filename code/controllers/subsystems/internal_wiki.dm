@@ -170,7 +170,14 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return searchcache_catalogs[section] || list()
+	var/list/known_entries = list()
+	var/list/section_data = searchcache_catalogs[section] || list()
+	for(var/PG in section_data)
+		var/datum/internal_wiki/page/catalog/P = catalogs["[PG]"]
+		var/datum/category_item/catalogue/C = P.catalog_record
+		if(C.visible || C.value <= CATALOGUER_REWARD_TRIVIAL)
+			known_entries.Add(PG)
+	return known_entries
 /datum/controller/subsystem/internal_wiki/proc/get_searchcache_material()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)

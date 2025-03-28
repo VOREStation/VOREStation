@@ -27,7 +27,6 @@
 		return
 	if(default_deconstruction_crowbar(user, I))
 		return
-
 	if(istype(I,/obj/item/reagent_containers))
 		analyzing = TRUE
 		update_icon()
@@ -56,10 +55,14 @@
 		else
 			to_chat(user, span_warning("Nothing detected in [I]"))
 
-	analyzing = FALSE
-	update_icon()
-	return
+		analyzing = FALSE
+		update_icon()
+		return
 
+/obj/machinery/chemical_analyzer/attack_hand(mob/user)
+	if(!found_reagents.len)
+		return ..()
+	tgui_interact(user) // Show last analysis
 
 /obj/machinery/chemical_analyzer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
