@@ -909,6 +909,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"bJ" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
 "bL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -16041,11 +16046,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
-"Sw" = (
-/obj/structure/table/woodentable,
-/obj/machinery/librarywikicomp,
-/turf/simulated/floor/carpet,
-/area/groundbase/civilian/library)
 "Sy" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -23117,7 +23117,7 @@ rP
 rP
 rP
 rP
-Sw
+bJ
 cX
 cX
 MY

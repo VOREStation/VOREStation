@@ -377,6 +377,12 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
+"aaH" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/library)
 "aaI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -39022,12 +39028,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppernorthstairwell)
-"iPM" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/library)
 "iQr" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/landmark/start{
@@ -56887,7 +56887,7 @@ aBv
 azT
 aXC
 aFe
-iPM
+aaH
 aBq
 axg
 axg
