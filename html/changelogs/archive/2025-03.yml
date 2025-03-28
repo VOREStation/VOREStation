@@ -516,3 +516,33 @@
   - bugfix: FBP dionas will no longer explode
   xnqm8h:
   - bugfix: Fixes demuxer output not pushing to other circuits.
+2025-03-25:
+  Cameron-The-Raven:
+  - qol: Xenobio monkey gun (bio6 bluespace5) now only requires gold and silver.
+  - qol: Portable slime processor (magnet 4 bio 5) now only requires  silver and gold.
+  Diana:
+  - qol: Temperature artifacts can no longer randomly spawn active.
+  - balance: Laser gun artifacts can spawn with pulse beams if you are lucky.
+  - code_imp: Consolidates a bunch of species files for backend cleanup.
+  - bugfix: Gets rid of an override that overrode tajaran being able to lick wounds
+  - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
+  Kashargul:
+  - code_imp: next set of NEW to INIT
+2025-03-26:
+  Cameron-The-Raven:
+  - bugfix: Proteans can select icon base again
+2025-03-27:
+  Kashargul:
+  - bugfix: missing spawn datum handling
+  SatinIsle:
+  - rscadd: Added mail options for entrepreneurs.
+2025-03-28:
+  Diana:
+  - bugfix: Environmental traits now work properly
+  - bugfix: Lightning strikes will no longer strike people in nullspace
+  - bugfix: Humans now have their proper skin color selection back
+  TankTheBirb:
+  - rscadd: Unusual gait positive trait for 2 points. This trait makes you move faster
+      when your hands are empty.
+  Tost:
+  - bugfix: You can now see what pronouns you are choosing for your character on setup.
