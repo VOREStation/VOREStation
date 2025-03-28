@@ -559,11 +559,11 @@ class ChatRenderer {
       }
       return;
     }
-    // Insert messages
-
+    // Store last scroll position
     if (this.scrollNode) {
       this.lastScrollHeight = this.scrollNode.scrollHeight;
     }
+    // Insert messages
     const fragment = document.createDocumentFragment();
     const countByType = {};
     let node;
