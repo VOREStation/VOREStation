@@ -72,13 +72,13 @@
 
 	var/total_vol = 0
 	var/list/reagents_sent = list()
+	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
 	for(var/ID in found_reagents)
 		var/datum/reagent/R = SSchemistry.chemical_reagents[ID]
 		if(!R)
 			continue
 		var/list/subdata = list()
 		subdata["title"] = R.name
-		var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
 		SSinternal_wiki.add_icon(subdata, initial(beaker_path.icon), initial(beaker_path.icon_state), R.color)
 		// Get internal data
 		subdata["description"] = R.description
@@ -91,5 +91,6 @@
 		reagents_sent += list(subdata)
 	data["scannedReagents"] = reagents_sent
 	data["beakerTotal"] = total_vol
+	data["beakerMax"] = initial(beaker_path.volume)
 
 	return data

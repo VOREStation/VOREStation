@@ -61,7 +61,7 @@ export const ChemAnalyzerPro = () => {
                   key={selectedReagent.title}
                   chems={selectedReagent}
                   beakerFill={
-                    !beakerMax
+                    !beakerMax || selectedReagent.beakerAmount < 10
                       ? 0
                       : Math.max(
                           (selectedReagent.beakerAmount / beakerMax) * 0.85,
@@ -116,38 +116,40 @@ export const AnalyzerSearchList = (props: {
           <Stack.Item grow>
             <Section fill scrollable>
               <Stack vertical fill>
-                {listEntries.map((entry) => (
-                  <Stack.Item key={entry.title}>
-                    <ProgressBar
-                      color="blue"
-                      value={!total ? 0 : entry.beakerAmount / total}
-                    >
-                      <Button
-                        tooltip={capitalize(entry.title)}
-                        textColor="white"
-                        color={
-                          activeEntry && entry.title === activeEntry.title
-                            ? 'green'
-                            : 'transparent'
-                        }
-                        fluid
-                        onClick={() => {
-                          onActiveEntry(entry);
-                        }}
+                {listEntries
+                  .sort((a, b) => b.beakerAmount - a.beakerAmount)
+                  .map((entry) => (
+                    <Stack.Item key={entry.title}>
+                      <ProgressBar
+                        color="blue"
+                        value={!total ? 0 : entry.beakerAmount / total}
                       >
-                        <Stack fill>
-                          <Stack.Item>{capitalize(entry.title)}</Stack.Item>
-                          <Stack.Item grow />
-                          <Stack.Item>
-                            {(
-                              (!total ? 0 : entry.beakerAmount / total) * 100
-                            ).toFixed() + '%'}
-                          </Stack.Item>
-                        </Stack>
-                      </Button>
-                    </ProgressBar>
-                  </Stack.Item>
-                ))}
+                        <Button
+                          tooltip={capitalize(entry.title)}
+                          textColor="white"
+                          color={
+                            activeEntry && entry.title === activeEntry.title
+                              ? 'green'
+                              : 'transparent'
+                          }
+                          fluid
+                          onClick={() => {
+                            onActiveEntry(entry);
+                          }}
+                        >
+                          <Stack fill>
+                            <Stack.Item>{capitalize(entry.title)}</Stack.Item>
+                            <Stack.Item grow />
+                            <Stack.Item>
+                              {(
+                                (!total ? 0 : entry.beakerAmount / total) * 100
+                              ).toFixed() + '%'}
+                            </Stack.Item>
+                          </Stack>
+                        </Button>
+                      </ProgressBar>
+                    </Stack.Item>
+                  ))}
               </Stack>
             </Section>
           </Stack.Item>
