@@ -18122,6 +18122,8 @@
 	name = "Bridge RC";
 	pixel_y = 32
 	},
+/obj/structure/table/hardwoodtable,
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "aGc" = (
