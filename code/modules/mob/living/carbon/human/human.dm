@@ -138,7 +138,7 @@
 		L[++L.len] = list("Suit charge: [cell_status]", null, null, null, null)
 		for(var/obj/item/rig_module/module in R.installed_modules)
 		{
-			for(var/stat_rig_module/SRM in module.stat_modules)
+			for(var/atom/movable/stat_rig_module/SRM in module.stat_modules)
 				if(SRM.CanUse())
 					L[++L.len] = list(SRM.module.interface_name,null,null,SRM.name,REF(SRM))
 		}
