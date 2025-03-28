@@ -5,6 +5,7 @@
 	name = "nanosuit control cluster"
 	suit_type = "nanomachine"
 	icon = 'icons/obj/rig_modules_vr.dmi'
+	unremovable = TRUE //Can not be removed. At least, not initially.
 	default_mob_icon = null	//Actually having a forced sprite for Proteans is ugly af. I'm not gonna make this a toggle
 	icon_state = "nanomachine_rig"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
@@ -19,14 +20,13 @@
 	boot_type = /obj/item/clothing/shoes/magboots/rig/protean
 	chest_type = /obj/item/clothing/suit/space/rig/protean
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/protean
-	protean = 1
-	offline_vision_restriction = 0
-	open = 1
+	protean = TRUE
+	offline_vision_restriction = FALSE
+	open = TRUE
 	cell_type =  /obj/item/cell/protean
-	var/dead = 0
+	var/dead = 0 //This can be greater than 1.
 	//interface_path = "RIGSuit_protean"
 	//ai_interface_path = "RIGSuit_protean"
-	var/sealed = 0
 	var/assimilated_rig
 	var/can_assimilate_rig = FALSE
 
@@ -37,11 +37,11 @@
 
 /obj/item/rig/protean/check_suit_access(mob/living/user)
 	if(user == myprotean)
-		return 1
+		return TRUE
 	return ..()
 
 /obj/item/rig/protean/digest_act(atom/movable/item_storage = null)
-	return 0
+	return FALSE
 
 /obj/item/rig/protean/ex_act(severity)
 	return
@@ -452,9 +452,9 @@
 /obj/item/rig/protean/equipped(mob/living/carbon/human/M)
 	..()
 	if(dead)
-		canremove = 1
+		unremovable = FALSE
 	else
-		canremove = 0
+		unremovable = TRUE //It's like glue! If you put them on your back, YOU can't take them off!
 
 /obj/item/rig/protean/ai_can_move_suit(mob/user, check_user_module = 0, check_for_ai = 0)
 	if(check_for_ai)
@@ -584,7 +584,12 @@
 		to_chat(usr, "[src] has not assimilated a RIG. Use one on it to assimilate.")
 
 /obj/item/rig/protean/MouseDrop(obj/over_object as obj)
-	if(!canremove)
+	if(dead) //We adjust our unremovable upon being attempted to be moved via checking if we are dead or not.
+		unremovable = FALSE
+	else
+		unremovable = TRUE
+
+	if(unremovable)
 		return
 
 	if (isliving(usr) || isobserver(usr))

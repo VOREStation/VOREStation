@@ -69,6 +69,7 @@
 	// Rig status vars.
 	var/open = 0                                              // Access panel status.
 	var/locked = 1                                            // Lock status.
+	var/unremovable = FALSE											//If the rig can be removed or not. Used for protean rigs.
 	var/subverted = 0
 	var/interface_locked = 0
 	var/control_overridden = 0
@@ -183,6 +184,11 @@
 	qdel(spark_system)
 	spark_system = null
 	return ..()
+
+/obj/item/rig/MouseDrop(obj/over_object)
+	if(unremovable)
+		return
+	..()
 
 /obj/item/rig/examine(mob/user)
 	. = ..()
