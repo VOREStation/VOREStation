@@ -108,12 +108,13 @@ export const AnalyzerSearchList = (props: {
                 {listEntries.map((entry) => (
                   <Stack.Item key={entry.title}>
                     <ProgressBar
+                      color="white"
                       position="absolute"
                       value={!total ? 0 : entry.beakerAmount / total}
                     >
                       <Button
                         color="transparent"
-                        selected={entry === activeEntry}
+                        textColor={entry === activeEntry ? 'green' : 'red'}
                         fluid
                         onClick={() => {
                           onActiveEntry(entry);
