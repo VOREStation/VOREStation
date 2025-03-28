@@ -45,25 +45,27 @@ export const WikiSearchList = (props: {
           <Stack.Item grow>
             <Section fill scrollable>
               <Stack vertical fill>
-                {listEntries.map((entry) => (
-                  <Stack.Item key={entry}>
-                    <Button
-                      selected={entry === activeEntry}
-                      fluid
-                      ellipsis
-                      onClick={() => {
-                        if (action) {
-                          act(action, { data: entry });
-                        }
-                        if (onActiveEntry) {
-                          onActiveEntry(entry);
-                        }
-                      }}
-                    >
-                      {capitalize(entry)}
-                    </Button>
-                  </Stack.Item>
-                ))}
+                {listEntries
+                  .sort((a, b) => a.localeCompare(b))
+                  .map((entry) => (
+                    <Stack.Item key={entry}>
+                      <Button
+                        selected={entry === activeEntry}
+                        fluid
+                        ellipsis
+                        onClick={() => {
+                          if (action) {
+                            act(action, { data: entry });
+                          }
+                          if (onActiveEntry) {
+                            onActiveEntry(entry);
+                          }
+                        }}
+                      >
+                        {capitalize(entry)}
+                      </Button>
+                    </Stack.Item>
+                  ))}
               </Stack>
             </Section>
           </Stack.Item>
