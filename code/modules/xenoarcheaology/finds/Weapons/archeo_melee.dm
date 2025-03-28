@@ -89,7 +89,7 @@
 /obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(M == user) //No accidentally hitting yourself and exploding.
 		return
-	var/zone = (user.hand ? "l_arm":"r_arm") //Which arm we're in!
+	var/zone = (user.hand ? BP_L_ARM:BP_R_ARM) //Which arm we're in!
 	var/prior_force = force
 	if(empowered)
 		force = force*2

@@ -383,7 +383,7 @@
 	if(!subject.has_brain())
 		if(ishuman(subject))
 			var/mob/living/carbon/human/H = subject
-			if(H.should_have_organ("brain"))
+			if(H.should_have_organ(O_BRAIN))
 				set_scan_temp("No brain detected in subject.", "bad")
 		else
 			set_scan_temp("No brain detected in subject.", "bad")

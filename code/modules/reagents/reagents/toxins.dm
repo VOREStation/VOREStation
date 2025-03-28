@@ -73,6 +73,7 @@
 	color = "#005555"
 	strength = 8
 	skin_danger = 0.4
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/toxin/neurotoxic_protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_CHIMERA)
@@ -201,6 +202,7 @@
 	taste_description = "mold"
 	reagent_state = SOLID
 	strength = 5
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/toxin/mold/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -215,6 +217,7 @@
 	reagent_state = LIQUID
 	strength = 5
 	filtered_organs = list(O_SPLEEN)
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/toxin/expired_medicine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -484,6 +487,7 @@
 	color = "#664330"
 	power = 2
 	meltdose = 30
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/acid/diet_digestive
 	name = REAGENT_DIETSTOMACID
@@ -494,6 +498,7 @@
 	color = "#664330"
 	power = 0.4
 	meltdose = 150
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/thermite/venom
 	name = REAGENT_THERMITEV
@@ -503,6 +508,7 @@
 	reagent_state = SOLID
 	color = "#673910"
 	touch_met = 50
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/thermite/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustFireLoss(3 * removed)
@@ -524,6 +530,7 @@
 	taste_description = "fire"
 	color = "#B31008"
 	filtered_organs = list(O_SPLEEN)
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/condensedcapsaicin/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -635,6 +642,7 @@
 	taste_mult = 1.3
 	reagent_state = LIQUID
 	color = "#801E28"
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -760,6 +768,7 @@
 
 	glass_name = REAGENT_ID_BEER
 	glass_desc = "A freezing pint of beer"
+	wiki_flag = WIKI_SPOILER
 
 /* Drugs */
 
@@ -772,6 +781,7 @@
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/serotrotium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -874,6 +884,7 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic())
@@ -900,6 +911,7 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#FF69B4"
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic())
@@ -933,6 +945,7 @@
 	color = "#555555"
 	metabolism = REM * 4 // Nanomachines. Fast.
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/shredding_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBruteLoss(4 * removed)
@@ -947,6 +960,7 @@
 	color = "#555555"
 	metabolism = REM * 4
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/irradiated_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	SSradiation.radiate(get_turf(M), 20)	// Irradiate people around you.
@@ -962,6 +976,7 @@
 	metabolism = REM * 4
 	filtered_organs = list(O_SPLEEN)
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/neurophage_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBrainLoss(2 * removed)	// Their job is to give you a bad time.
@@ -974,6 +989,7 @@
 	reagent_state = LIQUID
 	color = "#1E4600"
 	taste_mult = 0
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/salmonella/on_mob_life(mob/living/carbon/M)
 	M.ForceContractDisease(new /datum/disease/food_poisoning(0))

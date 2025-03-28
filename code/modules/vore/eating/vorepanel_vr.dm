@@ -1536,7 +1536,7 @@
 							holder = holdertmp
 						else
 							holder = new(body_backup, 1)
-						body_backup.internal_organs_by_name["brain"] = holder
+						body_backup.internal_organs_by_name[O_BRAIN] = holder
 						MMI.loc = holder
 						holder.stored_mmi = MMI
 						holder.update_from_mmi()

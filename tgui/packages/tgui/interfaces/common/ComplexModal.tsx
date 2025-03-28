@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react';
+import type { KeyboardEvent } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Modal } from 'tgui-core/components';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
-let bodyOverrides = {};
+const bodyOverrides = {};
 
 /**
  * Sends a call to BYOND to open a modal
@@ -105,8 +105,10 @@ export const ComplexModal = (props) => {
 
   const { id, text, type } = modal;
 
+  const modalOnEscape:
+    | ((e: KeyboardEvent<HTMLDivElement>) => void)
+    | undefined = (e) => modalClose(id);
   let modalOnEnter: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
-  let modalOnEscape: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
   let modalBody: React.JSX.Element | undefined;
   let modalFooter: React.JSX.Element = (
     <Button icon="arrow-left" color="grey" onClick={() => modalClose(null)}>
@@ -114,7 +116,6 @@ export const ComplexModal = (props) => {
     </Button>
   );
 
-  modalOnEscape = (e) => modalClose(id);
   // Different contents depending on the type
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
