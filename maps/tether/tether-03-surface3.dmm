@@ -17875,7 +17875,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/bookcase/bookcart,
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/library)
 "aEI" = (
@@ -17984,6 +17985,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
+/obj/structure/bookcase/bookcart,
 /turf/simulated/floor/wood,
 /area/library)
 "aER" = (
@@ -39020,6 +39022,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppernorthstairwell)
+"iPM" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/library)
 "iQr" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/landmark/start{
@@ -56879,7 +56887,7 @@ aBv
 azT
 aXC
 aFe
-azT
+iPM
 aBq
 axg
 axg

@@ -8602,6 +8602,11 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"rx" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
+/turf/simulated/floor/wood,
+/area/library)
 "ry" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/table/reinforced,
@@ -36206,7 +36211,7 @@ FL
 iq
 Ck
 AH
-iq
+rx
 mo
 FT
 kM
