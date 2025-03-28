@@ -7,11 +7,11 @@ export const WikiSearchList = (props: {
   title: string;
   searchText: string;
   onSearchText: Dispatch<SetStateAction<string>>;
-  onActiveEntry: Dispatch<SetStateAction<string>>;
   listEntries: string[];
-  activeEntry: string;
   basis: string;
-  action: string;
+  activeEntry: string;
+  onActiveEntry?: Dispatch<SetStateAction<string>>;
+  action?: string;
   button?: React.JSX.Element;
 }) => {
   const { act } = useBackend();
@@ -52,8 +52,12 @@ export const WikiSearchList = (props: {
                       fluid
                       ellipsis
                       onClick={() => {
-                        act(action, { data: entry });
-                        onActiveEntry(entry);
+                        if (action) {
+                          act(action, { data: entry });
+                        }
+                        if (onActiveEntry) {
+                          onActiveEntry(entry);
+                        }
                       }}
                     >
                       {capitalize(entry)}

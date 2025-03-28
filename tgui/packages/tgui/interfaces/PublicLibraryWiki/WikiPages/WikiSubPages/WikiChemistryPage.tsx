@@ -12,13 +12,13 @@ import {
 } from '../../WikiCommon/WikiQuickElements';
 
 export const WikiChemistryPage = (props: {
-  chems: ReagentData & Partial<{ amount: number }>;
+  chems: ReagentData & Partial<{ beakerAmount: number }>;
   beakerFill: number;
 }) => {
   const { beakerFill, chems } = props;
   const {
     title,
-    amount,
+    beakerAmount,
     description,
     addictive,
     industrial_use,
@@ -35,7 +35,7 @@ export const WikiChemistryPage = (props: {
   } = chems;
 
   const capitalizedTitle = capitalize(title);
-  const pageTitle = amount
+  const pageTitle = beakerAmount
     ? 'Detected Reagent: ' + capitalizedTitle
     : capitalizedTitle;
 
@@ -52,8 +52,10 @@ export const WikiChemistryPage = (props: {
                 fillLevel={beakerFill}
               />
             </LabeledList.Item>
-            {amount && (
-              <LabeledList.Item label="Contains">{amount}u</LabeledList.Item>
+            {beakerAmount && (
+              <LabeledList.Item label="Contains">
+                {beakerAmount}u
+              </LabeledList.Item>
             )}
             <LabeledList.Divider />
             <LabeledList.Item label="Description">
