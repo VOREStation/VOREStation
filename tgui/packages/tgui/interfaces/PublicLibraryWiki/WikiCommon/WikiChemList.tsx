@@ -20,8 +20,17 @@ export const ChemicalReactionList = (props: {
   grinding: GroundMaterial | null;
   instant_reactions: InstantReactions | null;
   distilled_reactions: DistilledReactions | null;
+  fluid: string[] | null;
+  produces: string[] | null;
 }) => {
-  const { ourKey, grinding, instant_reactions, distilled_reactions } = props;
+  const {
+    ourKey,
+    grinding,
+    instant_reactions,
+    distilled_reactions,
+    fluid,
+    produces,
+  } = props;
 
   return (
     <>
@@ -92,6 +101,20 @@ export const ChemicalReactionList = (props: {
               />
             ),
         )}
+      {!!fluid && (
+        <WikiSpoileredList
+          ourKey={ourKey}
+          entries={fluid}
+          title={'Fluid Pumping'}
+        />
+      )}
+      {!!produces && (
+        <WikiSpoileredList
+          ourKey={ourKey}
+          entries={produces}
+          title={'Used To Produce'}
+        />
+      )}
     </>
   );
 };

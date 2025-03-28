@@ -127,6 +127,8 @@ export type ReactionData = {
   grinding: GroundMaterial;
   instant_reactions: InstantReactions;
   distilled_reactions: DistilledReactions;
+  fluid: string[] | null;
+  produces: string[] | null;
 };
 
 export type GroundMaterial = {

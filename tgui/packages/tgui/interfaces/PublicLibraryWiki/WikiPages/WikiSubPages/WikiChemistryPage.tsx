@@ -31,6 +31,8 @@ export const WikiChemistryPage = (props: {
     grinding,
     instant_reactions,
     distilled_reactions,
+    fluid,
+    produces,
     icon_data,
   } = chems;
 
@@ -98,6 +100,8 @@ export const WikiChemistryPage = (props: {
               grinding={grinding}
               instant_reactions={instant_reactions}
               distilled_reactions={distilled_reactions}
+              fluid={fluid}
+              produces={produces}
             />
           </LabeledList>
         </Stack.Item>

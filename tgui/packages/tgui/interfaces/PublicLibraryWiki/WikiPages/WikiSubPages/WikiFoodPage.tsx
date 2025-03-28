@@ -17,6 +17,8 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
     grinding,
     instant_reactions,
     distilled_reactions,
+    fluid,
+    produces,
     icon_data,
     recipe,
   } = props.food;
@@ -54,6 +56,8 @@ export const WikiFoodPage = (props: { food: FoodData }) => {
                 grinding={grinding || null}
                 instant_reactions={instant_reactions || null}
                 distilled_reactions={distilled_reactions || null}
+                fluid={fluid || null}
+                produces={produces || null}
               />
             )}
           </LabeledList>
