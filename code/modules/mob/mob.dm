@@ -132,7 +132,7 @@
 /atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
 	return -1
 
- // used for petrification machines
+// used for petrification machines
 /atom/proc/get_ultimate_mob()
 	var/mob/ultimate_mob
 	var/atom/to_check = loc
