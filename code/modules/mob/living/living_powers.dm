@@ -58,7 +58,7 @@
 /mob/living/proc/toggle_sparkles()
 	set name = "Toggle Sparkles"
 	set desc = "Toggle fancy glowing sparkles!"
-	set category = "Abilities.General"
+	set category = "Abilities.Sparkledog"
 
 	if(!glow_toggle)
 		glow_range = 3
@@ -83,7 +83,7 @@
 /mob/living/proc/healing_rainbows()
 	set name = "Firin Mah Lazor"
 	set desc = "Fire a glowing beam of rainbows at another person to heal them!"
-	set category = "Abilities.General"
+	set category = "Abilities.Sparkledog"
 
 	if(src.stat)
 		to_chat(src, span_warning("You can't vomit rainbows in this condition!"))

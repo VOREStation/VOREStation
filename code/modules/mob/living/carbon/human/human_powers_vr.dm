@@ -257,3 +257,17 @@
 			player1.visible_message(span_notice("After a gruelling battle, [player1] eventually manages to subdue the thumb of [player2]!"))
 		else
 			player2.visible_message(span_notice("After a gruelling battle, [player2] eventually manages to subdue the thumb of [player1]!"))
+
+///Play dead for sparkledog memes
+
+/mob/living/carbon/human/proc/play_dead()
+	set name = "Play Dead"
+	set desc = "Literally just die on the spot. It's okay, you can get better."
+	set category = "Abilities.Sparkledog"
+
+	if(!status_flags & FAKEDEATH)
+		visible_message(span_warning("\The [src] literally just dies!"))
+		status_flags |= FAKEDEATH
+	else
+		status_flags &= ~FAKEDEATH
+		visible_message(span_notice("\The [src] got better from dying!"))
