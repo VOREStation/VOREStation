@@ -1,3 +1,13 @@
+export const WikiPages = [
+  'Food Recipes',
+  'Drink Recipes',
+  'Ores',
+  'Materials',
+  'Particle Physics',
+  'Botany',
+  'Catalogs',
+];
+
 export const wikiAds = [
   'Inferior ears? Teshari enhancement surgeries might be for you!',
   'Phoron huffers anonymous group chat. Join Today!',

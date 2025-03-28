@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
+import { WikiPages } from '../constants';
+
 export const WikiMainPage = (props: {
   displayedAds: string[][];
   donationSuccess: boolean;
@@ -36,47 +38,17 @@ export const WikiMainPage = (props: {
         <Divider />
         <Stack.Item>
           <Stack fill vertical mt="50px" ml="100px" mr="100px">
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('foodsearch')}>
-                Food Recipes
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('drinksearch')}>
-                Drink Recipes
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('chemsearch')}>
-                Chemistry
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('botsearch')}>
-                Botany
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('oresearch')}>
-                Ores
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('matsearch')}>
-                Materials
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('smashsearch')}>
-                Particle Physics
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button fluid icon="search" onClick={() => act('catalogsearch')}>
-                Catalogs
-              </Button>
-            </Stack.Item>
-            <Stack.Item />
+            {WikiPages.map((title) => (
+              <Stack.Item key={title}>
+                <Button
+                  fluid
+                  icon="search"
+                  onClick={() => act('swapsearch', { data: title })}
+                >
+                  {title}
+                </Button>
+              </Stack.Item>
+            ))}
             {!donationSuccess &&
               displayedAds.map((ad, index) => (
                 <Stack.Item key={index}>

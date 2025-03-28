@@ -1,6 +1,6 @@
 /*
  * Library Public Computer
- * Outpost 21 edit - Complete recode of this into a search engine for recipes and reagents
+ * Complete recode of this into a search engine for recipes and reagents
  */
 /obj/machinery/librarywikicomp
 	name = "datacore computer"
@@ -141,44 +141,15 @@
 				doc_body = ""
 			. = TRUE
 
-		if("foodsearch")
+		if("swapsearch")
 			if(!crash)
-				searchmode = "Food Recipes"
-			. = TRUE
-
-		if("drinksearch")
-			if(!crash)
-				searchmode = "Drink Recipes"
-			. = TRUE
-
-		if("oresearch")
-			if(!crash)
-				searchmode = "Ores"
-			. = TRUE
-
-		if("matsearch")
-			if(!crash)
-				searchmode = "Materials"
-			. = TRUE
-
-		if("smashsearch")
-			if(!crash)
-				searchmode = "Particle Physics"
-			. = TRUE
-
-		if("chemsearch")
-			if(!crash)
-				searchmode = "Chemistry"
-			. = TRUE
-
-		if("botsearch")
-			if(!crash)
-				searchmode = "Botany"
-			. = TRUE
-
-		if("catalogsearch")
-			if(!crash)
-				searchmode = "Catalogs"
+				var/new_mode = params["data"]
+				if(searchmode == new_mode)
+					return FALSE
+				P = null
+				doc_title = null
+				doc_body = null
+				searchmode = new_mode
 			. = TRUE
 
 		if("crash")
@@ -203,38 +174,47 @@
 
 		if("setsubcat")
 			if(!crash)
-				sub_category = params["data"] // have not selected it yet
+				var/new_subcat = params["data"]
+				if(sub_category == new_subcat)
+					return FALSE
+				P = null
+				doc_title = null
+				doc_body = null
+				sub_category = new_subcat
 			. = TRUE
 		// final search
 		if("search")
 			if(!crash)
 				var/search = params["data"]
-				var/setpage = TRUE
-				P = null
+				var/datum/internal_wiki/page/new_page = null
 				if(searchmode == "Food Recipes")
-					P = SSinternal_wiki.get_page_food(search)
+					new_page = SSinternal_wiki.get_page_food(search)
 				if(searchmode == "Drink Recipes")
-					P = SSinternal_wiki.get_page_drink(search)
+					new_page = SSinternal_wiki.get_page_drink(search)
 				if(searchmode == "Chemistry")
-					P = SSinternal_wiki.get_page_chem(search)
+					new_page = SSinternal_wiki.get_page_chem(search)
 				if(searchmode == "Botany")
-					P = SSinternal_wiki.get_page_seed(search)
+					new_page = SSinternal_wiki.get_page_seed(search)
 				if(searchmode == "Catalogs")
-					P = SSinternal_wiki.get_page_catalog(search)
+					new_page = SSinternal_wiki.get_page_catalog(search)
 				if(searchmode == "Materials")
-					P = SSinternal_wiki.get_page_material(search)
+					new_page = SSinternal_wiki.get_page_material(search)
 				if(searchmode == "Particle Physics")
-					P = SSinternal_wiki.get_page_particle(search)
+					new_page = SSinternal_wiki.get_page_particle(search)
 				if(searchmode == "Ores")
-					P = SSinternal_wiki.get_page_ore(search)
+					new_page = SSinternal_wiki.get_page_ore(search)
 
-				if(setpage)
-					if(P)
-						doc_title = P.title
-						doc_body = P.get_print() // TODO - pass get_data() instead, as only printing should use get_print()
-					else
-						doc_title = "Error"
-						doc_body = "Invalid data."
+				if(new_page == P)
+					return FALSE
+
+				P = new_page
+
+				if(P)
+					doc_title = P.title
+					doc_body = P.get_print() // TODO - pass get_data() instead, as only printing should use get_print()
+				else
+					doc_title = "Error"
+					doc_body = "Invalid data."
 			. = TRUE
 		// Support the wiki
 		if("donate")
