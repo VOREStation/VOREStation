@@ -49,7 +49,7 @@
 	if(!job.minimum_character_age && !job.min_age_by_species)
 		return TRUE
 
-	var/min_age = job.get_min_age(prefs.species, prefs.organ_data["brain"])
+	var/min_age = job.get_min_age(prefs.species, prefs.organ_data[O_BRAIN])
 	if(prefs.read_preference(/datum/preference/numeric/human/age) >= min_age)
 		return TRUE
 	return FALSE
