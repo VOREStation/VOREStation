@@ -51,7 +51,7 @@
 			for(var/datum/reagent/R in I.reagents.reagent_list)
 				if(!R.name)
 					continue
-				found_reagents.Add(R.id)
+				found_reagents[R.id] = R.volume
 			tgui_interact(user)
 		else
 			to_chat(user, span_warning("Nothing detected in [I]"))
@@ -73,17 +73,19 @@
 	var/total_vol = 0
 	var/list/reagents_sent = list()
 	for(var/ID in found_reagents)
-		var/list/subdata = list()
 		var/datum/reagent/R = SSchemistry.chemical_reagents[ID]
+		if(!R)
+			continue
+		var/list/subdata = list()
 		subdata["title"] = R.name
-		var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-		SSinternal_wiki.add_icon(subdata, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+		var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+		SSinternal_wiki.add_icon(subdata, initial(beaker_path.icon), initial(beaker_path.icon_state), R.color)
 		// Get internal data
 		subdata["description"] = R.description
 		subdata["flavor"] = R.taste_description
 		subdata["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
-		subdata["beakerAmount"] = R.volume
-		total_vol += R.volume
+		subdata["beakerAmount"] = found_reagents[ID]
+		total_vol += found_reagents[ID]
 		SSinternal_wiki.assemble_reaction_data(subdata, R)
 		// Send as a big list of lists
 		reagents_sent += list(subdata)

@@ -1055,8 +1055,8 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/chemical/assemble(var/datum/reagent/R)
 	title = R.name
 	data["title"] = title
-	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	SSinternal_wiki.add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	SSinternal_wiki.add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), R.color)
 	// Get internal data
 	data["description"] = R.description
 	/* Downstream features
@@ -1115,8 +1115,8 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/food/assemble(var/datum/reagent/R)
 	title = R.name
 	data["title"] = title
-	var/beaker_path = /obj/item/reagent_containers/glass/beaker/large
-	SSinternal_wiki.add_icon(data, initial(beaker_path:icon), initial(beaker_path:icon_state), R.color)
+	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
+	SSinternal_wiki.add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), R.color)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
