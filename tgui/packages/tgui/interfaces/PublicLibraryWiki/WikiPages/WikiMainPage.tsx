@@ -38,7 +38,7 @@ export const WikiMainPage = (props: {
         <Divider />
         <Stack.Item>
           <Stack fill vertical mt="50px" ml="100px" mr="100px">
-            {WikiPages.map((title) => (
+            {WikiPages.sort((a, b) => a.localeCompare(b)).map((title) => (
               <Stack.Item key={title}>
                 <Button
                   fluid
