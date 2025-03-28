@@ -2006,7 +2006,7 @@
 	secondary_langs = list(LANGUAGE_SPARKLE, LANGUAGE_SOL_COMMON)
 	color_mult = 1
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN)
-	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/proc/toggle_sparkles, /mob/living/proc/healing_rainbows)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/proc/toggle_sparkles, /mob/living/proc/healing_rainbows, /mob/living/carbon/human/proc/play_dead)
 	min_age = 18
 	max_age = 21
 	digi_allowed = FALSE //No time for making rainbow legs for the meme, sorry!
