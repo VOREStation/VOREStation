@@ -16,11 +16,15 @@ import { WikiChemistryPage } from './PublicLibraryWiki/WikiPages/WikiSubPages/Wi
 
 type AnalyzerData = ReagentData & { beakerAmount: number };
 
-type Data = { scannedReagents: AnalyzerData[]; beakerTotal: number };
+type Data = {
+  scannedReagents: AnalyzerData[];
+  beakerTotal: number;
+  beakerMax: number;
+};
 
 export const ChemAnalyzerPro = () => {
   const { data } = useBackend<Data>();
-  const { scannedReagents, beakerTotal } = data;
+  const { scannedReagents, beakerTotal, beakerMax } = data;
 
   const [selectedReagent, setSelectedReagent] = useState<AnalyzerData | null>(
     null,
@@ -34,7 +38,7 @@ export const ChemAnalyzerPro = () => {
   const toDisplay = scannedReagents.filter(customSearch);
 
   return (
-    <Window width={400} height={700}>
+    <Window width={900} height={700}>
       <Window.Content>
         <Section
           fill
@@ -46,7 +50,7 @@ export const ChemAnalyzerPro = () => {
               searchText={searchText}
               onSearchText={setSearchText}
               listEntries={toDisplay}
-              basis={'35%'}
+              basis={'20%'}
               activeEntry={selectedReagent}
               onActiveEntry={setSelectedReagent}
               total={beakerTotal}
@@ -56,7 +60,14 @@ export const ChemAnalyzerPro = () => {
                 <WikiChemistryPage
                   key={selectedReagent.title}
                   chems={selectedReagent}
-                  beakerFill={0.25}
+                  beakerFill={
+                    !beakerMax
+                      ? 0
+                      : Math.max(
+                          (selectedReagent.beakerAmount / beakerMax) * 0.85,
+                          0.3,
+                        )
+                  }
                 />
               )}
             </Stack.Item>
@@ -108,24 +119,31 @@ export const AnalyzerSearchList = (props: {
                 {listEntries.map((entry) => (
                   <Stack.Item key={entry.title}>
                     <ProgressBar
-                      color="white"
-                      position="absolute"
+                      color="blue"
                       value={!total ? 0 : entry.beakerAmount / total}
                     >
                       <Button
-                        color="transparent"
-                        textColor={entry === activeEntry ? 'green' : 'red'}
+                        tooltip={capitalize(entry.title)}
+                        textColor="white"
+                        color={
+                          activeEntry && entry.title === activeEntry.title
+                            ? 'green'
+                            : 'transparent'
+                        }
                         fluid
                         onClick={() => {
                           onActiveEntry(entry);
                         }}
                       >
-                        {capitalize(entry.title) +
-                          ' ' +
-                          (
-                            (!total ? 0 : entry.beakerAmount / total) * 100
-                          ).toFixed() +
-                          '%'}
+                        <Stack fill>
+                          <Stack.Item>{capitalize(entry.title)}</Stack.Item>
+                          <Stack.Item grow />
+                          <Stack.Item>
+                            {(
+                              (!total ? 0 : entry.beakerAmount / total) * 100
+                            ).toFixed() + '%'}
+                          </Stack.Item>
+                        </Stack>
                       </Button>
                     </ProgressBar>
                   </Stack.Item>
