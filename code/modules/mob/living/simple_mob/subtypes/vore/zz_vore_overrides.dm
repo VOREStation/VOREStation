@@ -2,22 +2,22 @@
 //	This file overrides settings on upstream simple animals to turn on vore behavior
 //
 
-/*
-## For anything that previously inhertited from: /mob/living/simple_mob/hostile/vore ##
-
-  	vore_active = 1
-  	icon = 'icons/mob/vore.dmi'
-
-## For anything that previously inhertied from: /mob/living/simple_mob/hostile/vore/large ##
-
-	vore_active = 1
-	icon = 'icons/mob/vore64x64.dmi'
-	old_x = -16
-	old_y = -16
-	pixel_x = -16
-	pixel_y = -16
-	vore_pounce_chance = 50
-*/
+/**
+ * ## For anything that previously inhertited from: /mob/living/simple_mob/hostile/vore ##
+ *
+ *	vore_active = 1
+ *	icon = 'icons/mob/vore.dmi'
+ *
+ * ## For anything that previously inhertied from: /mob/living/simple_mob/hostile/vore/large ##
+ *
+ *	vore_active = 1
+ *	icon = 'icons/mob/vore64x64.dmi'
+ *	old_x = -16
+ *	old_y = -16
+ *	pixel_x = -16
+ *	pixel_y = -16
+ *	vore_pounce_chance = 50
+ */
 
 //
 // Okay! Here we go!
