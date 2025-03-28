@@ -343,6 +343,32 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	data["grinding"] = grind_list
 
+	display_reactions = list()
+	for(var/O in GLOB.ore_data)
+		var/ore/OR = GLOB.ore_data[O]
+		if(OR.reagent == R.id)
+			display_reactions.Add(OR.name)
+	data["fluid"] = null
+	if(display_reactions.len > 0)
+		data["fluid"] = display_reactions
+
+	display_reactions = list()
+	var/list/instant_by_reagent = SSchemistry.instant_reactions_by_reagent["[R.id]"]
+	if(instant_by_reagent && instant_by_reagent.len)
+		for(var/i = 1, i <= instant_by_reagent.len, i++)
+			var/decl/chemical_reaction/OR = instant_by_reagent[i]
+			if(istype(OR,/decl/chemical_reaction/instant/slime)) // very bloated and meant to be a mystery
+				continue
+			display_reactions.Add(OR.name)
+	var/list/distilled_by_reagent = SSchemistry.distilled_reactions_by_reagent["[R.id]"]
+	if(distilled_by_reagent && distilled_by_reagent.len)
+		for(var/i = 1, i <= distilled_by_reagent.len, i++)
+			var/decl/chemical_reaction/OR = distilled_by_reagent[i]
+			display_reactions.Add(OR.name)
+	data["produces"] = null
+	if(display_reactions.len > 0)
+		data["produces"] = display_reactions
+
 /datum/controller/subsystem/internal_wiki/proc/assemble_allergens(var/allergens)
 	if(allergens > 0)
 		var/list/allergies = list()
@@ -1365,4 +1391,17 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/PL in grind_plants)
 			body += " <b>-Grind: </b>[PL]<br>"
 
+	var/list/fluid_pumping = data["fluid"]
+	if(fluid_pumping && fluid_pumping.len)
+		body += "<br>"
+		body += "<b>Fluid pump results: </b><br>"
+		for(var/PL in fluid_pumping)
+			body += " <b>-Erosion: </b>[PL]<br>"
+
+	body += "<br>"
+	var/list/produces = data["produces"]
+	if(produces && produces.len)
+		body += "<b>Is a component of: </b><br>"
+		for(var/PL in produces)
+			body += "-[PL]<br>"
 	return body
