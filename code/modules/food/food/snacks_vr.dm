@@ -1221,3 +1221,17 @@
 /obj/item/reagent_containers/food/snacks/packaged/porkpie/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 2)
+
+/obj/item/reagent_containers/food/snacks/acorn
+	name = "acorn"
+	desc = "A small nut that could potentially grow into a beautiful oak tree! Or, just get eaten by squirrels."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "acorn"
+	w_class = ITEMSIZE_TINY
+	nutriment_amt = 1
+	bitesize = 2
+	nutriment_desc = list("earthy goodness" = 6)
+
+/obj/item/reagent_containers/food/snacks/acorn/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PEANUTBUTTER, 2) //Just to make it so people can be allergic to it without making a new reagent
