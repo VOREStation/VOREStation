@@ -31,11 +31,11 @@
 	var/allow_mind_transfer = FALSE			//Allows ones mind to be taken over or swapped
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list( // Someday I would like to incorporate a way for these descriptions to respect specific pronouns. -Ace
-							"They are starving! You can hear their stomach snarling from across the room!",
-							"They are very hungry. A deep growl occasionally rumbles from their empty belly.",
+							"They must be starving! You can hear their stomach snarling from across the room!",
+							"They must be hungry. A deep growl occasionally rumbles from their empty belly.",
 							"",
 							"They look full and satisfied from having plenty to eat.",
-							"Their look pretty stuffed from eating too much.",
+							"They look pretty stuffed from eating, maybe a little too much.",
 							"Their gut looks pretty packed with far too much food being digested.",
 							"They are engorged with a food-bloated stomach that sags and wobbles as they move. It looks incredibly soft.",
 							"Their stomach is firmly crammed with digesting food. It looks hard for them to stand, and their gut jiggles when they move.",
