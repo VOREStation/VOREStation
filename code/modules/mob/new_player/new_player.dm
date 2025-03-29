@@ -190,7 +190,6 @@
 			client.prefs.dress_preview_mob(mannequin)
 			var/mob/observer/dead/observer = new(mannequin)
 			observer.moveToNullspace() //Let's not stay in our doomed mannequin
-			qdel(mannequin) //We're not used anymore, so goodbye!
 
 			spawning = 1
 			if(client.media)

@@ -2,11 +2,11 @@
 
 ### This file contains a list of all the areas in your station. Format is as follows:
 
-/area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can make as many subdivisions as you want)
-	name = "NICE NAME" 				(not required but makes things really nice)
-	icon = "ICON FILENAME" 			(defaults to areas.dmi)
-	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
-	requires_power = 0 				(defaults to 1)
+/area/CATEGORY/OR/DESCRIPTOR/NAME	(you can make as many subdivisions as you want)
+	name = "NICE NAME"				(not required but makes things really nice)
+	icon = "ICON FILENAME"			(defaults to areas.dmi)
+	icon_state = "NAME OF ICON"		(defaults to "unknown" (blank))
+	requires_power = 0				(defaults to 1)
 	music = "music/music.ogg"		(defaults to "music/music.ogg")
 
 NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
@@ -1263,26 +1263,26 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_env = LARGE_SOFTFLOOR
 
 /area/crew_quarters/visitor_lodging
- 	name = "\improper Visitor Lodging"
- 	icon_state = "visitor_lodging"
+	name = "\improper Visitor Lodging"
+	icon_state = "visitor_lodging"
 
 /area/crew_quarters/visitor_dining
- 	name = "\improper Visitor Dining"
- 	icon_state = "visitor_dinning"
+	name = "\improper Visitor Dining"
+	icon_state = "visitor_dinning"
 
 /area/crew_quarters/visitor_laundry
- 	name = "\improper Visitor Laundry"
- 	icon_state = "visitor_laundry"
+	name = "\improper Visitor Laundry"
+	icon_state = "visitor_laundry"
 
 /area/library
- 	name = "\improper Library"
- 	icon_state = "library"
- 	sound_env = LARGE_SOFTFLOOR
- 	lightswitch = 0 // VOREStation Edit - We like dark libraries
+	name = "\improper Library"
+	icon_state = "library"
+	sound_env = LARGE_SOFTFLOOR
+	lightswitch = 0 // VOREStation Edit - We like dark libraries
 
 /area/library_conference_room
- 	name = "\improper Library Conference Room"
- 	icon_state = "library_conference_room"
+	name = "\improper Library Conference Room"
+	icon_state = "library_conference_room"
 
 /area/chapel
 	ambience = AMBIENCE_CHAPEL
@@ -2585,8 +2585,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /////////////////////////////////////////////////////////////////////
 /*
- Lists of areas to be used with is_type_in_list.
- Used in gamemodes code at the moment. --rastaf0
+ * Lists of areas to be used with is_type_in_list.
+ * Used in gamemodes code at the moment. --rastaf0
 */
 
 // CENTCOM

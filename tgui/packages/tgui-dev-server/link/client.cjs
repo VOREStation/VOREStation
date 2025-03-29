@@ -25,7 +25,7 @@ const ensureConnection = () => {
       };
       socket.onmessage = (event) => {
         const msg = JSON.parse(event.data);
-        for (let subscriber of subscribers) {
+        for (const subscriber of subscribers) {
           subscriber(msg);
         }
       };

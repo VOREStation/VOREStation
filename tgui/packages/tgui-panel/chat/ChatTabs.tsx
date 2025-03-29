@@ -10,7 +10,7 @@ import { Box, Button, Stack, Tabs } from 'tgui-core/components';
 import { openChatSettings } from '../settings/actions';
 import { addChatPage, changeChatPage } from './actions';
 import { selectChatPages, selectCurrentChatPage } from './selectors';
-import { Page } from './types';
+import type { Page } from './types';
 
 const UnreadCountWidget = ({ value }: { value: number }) => (
   <Box

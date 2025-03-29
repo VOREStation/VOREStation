@@ -18,6 +18,7 @@
 /obj/item/rig_module/mounted/Initialize(mapload)
 	. = ..()
 	gun = new gun_type(src)
+	gun.mounted_gun = TRUE
 
 /obj/item/rig_module/mounted/engage(atom/target)
 
