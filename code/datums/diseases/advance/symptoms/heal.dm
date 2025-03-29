@@ -149,23 +149,6 @@
 				to_chat(H, span_notice(pick("You feel bloated.", "The station seems small.", "You are the strongest.")))
 	return
 
-/*
-//////////////////////////////////////
-
-Metabolism
-
-	Little bit hidden.
-	Lowers resistance.
-	Decreases stage speed.
-	Decreases transmittablity temrendously.
-	High Level.
-
-Bonus
-	Cures all diseases (except itself) and creates anti-bodies for them until the symptom dies.
-
-//////////////////////////////////////
-
-*/
 /datum/symptom/heal/metabolism
 	name = "Metabolic Boost"
 	desc = "The virus causes the host's metabolism to accelerate rapidly, making them process chemicals twice as fast, but also causing increased hunger."
@@ -202,6 +185,38 @@ Bonus
 	if(prob(2) && H.stat != DEAD)
 		to_chat(H, span_notice("You feel an odd gurgle in your stomach, as if it was working much faster than normal."))
 	return TRUE
+
+/datum/symptom/heal/oxygen
+	name = "Oxygenation"
+	desc = "The virus causes the host's body to produce oxygen, allowing self-respiration."
+	stealth = 1
+	resistance = -3
+	stage_speed = -3
+	transmission = -4
+	level = 8
+	base_message_chance = 5
+	symptom_delay_min = 5 SECONDS
+	symptom_delay_max = 20 SECONDS
+	var/regenerate_blood = FALSE
+
+	threshold_descs = list(
+		"Resistance 8" = "Additionally regenerates lost blood."
+	)
+
+/datum/symptom/heal/oxygen/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.resistance >= 8)
+		regenerate_blood = TRUE
+
+/datum/symptom/heal/oxygen/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
+	if(!istype(H))
+		return
+	if(H.getOxyLoss() > 0)
+		H.adjustOxyLoss(3 * power)
+	if(regenerate_blood && H.vessel.get_reagent_amount(REAGENT_ID_BLOOD) < H.species.blood_volume)
+		H.add_chemical_effect(CE_BLOODRESTORE, 1)
+
 
 /*
 //////////////////////////////////////
