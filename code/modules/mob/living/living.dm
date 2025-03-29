@@ -978,20 +978,20 @@
 	return TRUE
 
 /mob/living/proc/check_vomit_goal()
-    PRIVATE_PROC(TRUE)
-    var/obj_list = list(/obj/machinery/disposal,/obj/structure/toilet,/obj/structure/sink,/obj/structure/urinal)
-    for(var/type in obj_list)
-        // check standing on
-        var/turf/T = get_turf(src)
-        var/obj/O = locate(type) in T
-        if(O)
-            return O
-        // check ahead of us
-        T = get_turf(get_step(T,dir))
-        O = locate(type) in T
-        if(O && O.Adjacent(src))
-            return O
-    return null
+	PRIVATE_PROC(TRUE)
+	var/obj_list = list(/obj/machinery/disposal,/obj/structure/toilet,/obj/structure/sink,/obj/structure/urinal)
+	for(var/type in obj_list)
+		// check standing on
+		var/turf/T = get_turf(src)
+		var/obj/O = locate(type) in T
+		if(O)
+			return O
+		// check ahead of us
+		T = get_turf(get_step(T,dir))
+		O = locate(type) in T
+		if(O && O.Adjacent(src))
+			return O
+	return null
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())
