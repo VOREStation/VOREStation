@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - rscadd: "next grep check to ensure space / tab sanity"

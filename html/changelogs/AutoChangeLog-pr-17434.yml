@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Mounted rigsuit guns now properly work"
-  - bugfix: "Protean rigs can no longer be removed by proteans"
-  - bugfix: "Protean rigs can no longer be removed if one is on your back and the protean is dead"
-  - bugfix: "Protean rigs no longer be in a 'limbo state' of being enabled but not enabled."
