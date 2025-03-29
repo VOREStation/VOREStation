@@ -577,3 +577,19 @@ Talon pin
 /datum/gear/accessory/bunny_tail/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+
+/datum/gear/accessory/legwarmers_thigh
+	display_name = "Legwarmers"
+	path = /obj/item/clothing/accessory/legwarmers
+	description = "A comfy pair of legwarmers. These are excessively long."
+
+/datum/gear/accessory/legwarmers_medium
+	display_name = "Legwarmers, medium"
+	path = /obj/item/clothing/accessory/legwarmersmedium
+	description = "A comfy pair of legwarmers. For those unfortunate enough to wear shorts in the cold."
+
+/datum/gear/accessory/legwarmers_short
+	display_name = "Legwarmers, short"
+	path = /obj/item/clothing/accessory/legwarmersshort
+	description = "A comfy pair of legwarmers. For those better in the cold than others."
