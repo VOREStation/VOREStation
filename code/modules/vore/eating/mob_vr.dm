@@ -31,16 +31,16 @@
 	var/allow_mind_transfer = FALSE			//Allows ones mind to be taken over or swapped
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list( // Someday I would like to incorporate a way for these descriptions to respect specific pronouns. -Ace
-							"They must be starving! You can hear their stomach snarling from across the room!",
-							"They must be hungry. A deep growl occasionally rumbles from their empty belly.",
-							"",
-							"They look full and satisfied from having plenty to eat.",
-							"They look pretty stuffed from eating, maybe a little too much.",
-							"Their gut looks pretty packed with far too much food being digested.",
-							"They are engorged with a food-bloated stomach that jiggles when they move. It looks incredibly soft.",
-							"Their stomach is firmly crammed full of way too much food. It heavily wobbles and sags as they move.",
-							"They are so incredibly stuffed that they look as though they will reach their limit soon.",
-							"They are so absolutely stuffed that they look as though they are either at their limit, or very close to it. You can't imagine them eating anything more!")
+							"They must be starving! You can hear their stomach snarling from across the room!", // Red hunger
+							"They must be hungry. A deep growl occasionally rumbles from their empty belly.", // Orange hunger
+							"", // No hunger status, ideal level, blank on purpose.
+							"They look full and satisfied from having plenty to eat.", // Gray hunger, which normally gives a minor slowdown to movement.
+							"They look pretty stuffed from eating, maybe a little too much.", // Gray hunger
+							"Their gut looks pretty packed with far too much food being digested.", // Gray hunger
+							"They are engorged with a food-bloated stomach that jiggles when they move. It looks incredibly soft.", // Gray hunger
+							"Their stomach is firmly crammed full of way too much food. It heavily wobbles and sags as they move.", // Gray hunger
+							"They are so incredibly stuffed that they look as though they will reach their limit soon.", // Gray hunger
+							"They are so absolutely stuffed that they look as though they are either at their limit, or very close to it. You can't imagine them eating anything more!")  // Gray hunger but also the game WON'T LET YOU eat any more unless you bypass the limit using vore.
 	var/weight_message_visible = TRUE
 	var/list/weight_messages = list(
 							"They are terribly lithe and frail!",
