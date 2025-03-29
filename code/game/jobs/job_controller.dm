@@ -969,11 +969,11 @@ var/global/datum/controller/occupations/job_master
 				return
 			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
 			var/spawning = pick(latejoin)
-			.["turf"] = get_turf(spawning)
+			.["turf"] = spawning
 			.["msg"] = "will arrive at the station shortly"
 	else if(!fail_deadly)
 		var/spawning = pick(latejoin)
-		.["turf"] = get_turf(spawning)
+		.["turf"] = spawning
 		.["msg"] = "has arrived on the station"
 
 /datum/controller/occupations/proc/m_backup_client(var/client/C)	//Same as m_backup, but takes a client entry. Used for vore late joining.
