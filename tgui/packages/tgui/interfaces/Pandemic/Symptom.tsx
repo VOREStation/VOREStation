@@ -41,7 +41,7 @@ export const SymptomDisplay = (props) => {
 
 const Thresholds = (props) => {
   const { thresholds = [] } = props;
-  let convertedThresholds = Object.entries<Threshold>(thresholds);
+  const convertedThresholds = Object.entries<Threshold>(thresholds);
 
   return (
     <Section mt={1} title="Thresholds">
@@ -64,7 +64,7 @@ const Thresholds = (props) => {
 
 const Traits = (props) => {
   const {
-    symptom: { level, weight, resistance, stage_speed, stealth, transmission },
+    symptom: { level, resistance, stage_speed, stealth, transmission },
   } = props;
 
   return (
