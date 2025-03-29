@@ -171,6 +171,7 @@
 		sprite_type = sprite_datum.name
 
 /mob/living/silicon/robot/proc/transform_module()
+	resize(size_multiplier, animate = FALSE) //Gets the size down to a normal size.
 	transform_with_anim()
 	var/tempheight = vis_height
 	update_icon()
