@@ -417,7 +417,8 @@
 				if(one_handed_penalty >= 20)
 					to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
 
-			accuracy = initial(accuracy) //Reset our accuracy
+			if(!zoom) //If we're not zoomed, reset our accuracy to our initial accuracy.
+				accuracy = initial(accuracy) //Reset our accuracy
 			last_shot = world.time
 			user.hud_used.update_ammo_hud(user, src)
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -742,7 +743,7 @@
 		mouthshoot = 0
 		return
 
-/obj/item/gun/proc/toggle_scope(var/zoom_amount=2.0)
+/obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	var/zoom_offset = round(world.view * zoom_amount)

@@ -131,11 +131,22 @@
 
 	return ran_zone
 
-// Emulates targetting a specific body part, and miss chances
-// May return null if missed
-// miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0, var/force_hit = FALSE)
+/// Hit and miss chance is calculated here.
+/// Returns: null(miss) or zone(hit)
+/// Has a variety of toggles. In short:
+/// always_hit: Miss chance is not calculateed. Always hit the zone it's targeting. (Default: FALSE)
+/// user_misses: If Player Characters are subjected to RNG hitchance on other Player Characters (Default: FALSE)
+/// mob_misses: If mobs are subjected to RNG hitchance on Player Characters (Default: TRUE)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, mob/living/attacker)
 	zone = check_zone(zone)
+
+
+	/// Toggle for servers that desire to have attacks ALWAYS hit, since force_hit isn't always its default.
+	/// NOTE: This means that mobs will ALWAYS hit players and leads to much more punishing combat.
+	/// The system as is gives players an edge in PvE, while enabling always_hit gives mobs an edge in PvE.
+	var/always_hit = FALSE
+	if(always_hit)
+		return zone
 
 	if(!ranged_attack)
 		// you cannot miss if your target is prone or restrained
@@ -149,16 +160,66 @@
 	if(force_hit)
 		return zone
 
-	var/miss_chance = 10
-	if (zone in base_miss_chance)
-		miss_chance = base_miss_chance[zone]
-	if (zone == "eyes" || zone == "mouth")
-		miss_chance = base_miss_chance["head"]
-	miss_chance = max(miss_chance + miss_chance_mod, 0)
-	if(prob(miss_chance))
-		if(prob(70))
-			return null
-		return pick(base_miss_chance)
+	//This is done here now, since previously it was just done in a dumb spot that made no sense.
+	//Even if you were Neo, anyone could land a blow on you.
+	var/has_evasion_chance = FALSE
+	if(isliving(target))
+		var/mob/living/our_target = target
+		var/evasion_chance = our_target.get_evasion()
+
+		if(!evasion_chance && !target.client) //If our target HAS no evasion chance and they're an NPC, we hit.
+			return zone
+		if(evasion_chance)
+			has_evasion_chance = TRUE
+			miss_chance_mod += evasion_chance
+	//However, get_accuracy_penalty() is also used in eyestab, open-hand clicking someone, and resolve_item_attack()
+	//The big one is resolve_item_attack(). It's the 'we are hit in melee combat'
+	//We are unable to include it here as it is dependent on the attacker, so we'll let it just continue being calculated where it is.
+
+	if(has_evasion_chance && miss_chance_mod > 0 && prob(miss_chance_mod))
+		return null
+
+	if(!target.client) //If the target is an NPC, we will always hit (barring extreme circumstances like mobs having modified evasion, handled above). Removes baymiss against mobs.
+		return zone
+
+	/// Toggle for servers that desire to have players able to miss each other.
+	/// This is if users are subjected to the same RNG hitchance against other players as mobs are.
+	/// By default, this is set to off, as evasion being calculated is (in my eyes) enough for PvP combat.
+	/// However, if you wish to enable it so there's miss chance, flip this FALSE to TRUE
+	var/user_misses = FALSE
+	if(!user_misses && attacker.client)
+		return zone
+
+	/// Toggle for servers that desire to have mobs able to miss players.
+	/// If toggled on, mobs will have chances to miss players.
+	/// If toggled off, mobs will always hit each players, evasion-not-withstanding
+	/// This can make PvE combat feel better for players or introduce some randomization with PvP.
+	var/mob_misses = TRUE //Toggle to enable mob missing or not.
+	if(!mob_misses && !attacker.client) //If mob_misses is disabled, they land their blow on the zone they're targeting.
+		return zone
+
+	//However, if a mob IS attacking a player, let's throw in some RNG into the mix to make it feel better for players.
+	//If a mob eats hits and dies, people are happy.
+	//If you shoot a mob point blank 10 times and every hit misses, people are upset (and rightfully so)
+
+
+
+	var/randomization_chance = 10 //This can also be set to 0 to ensure mobs ALWAYS target the limb they're originally targeting.
+	/// First, we roll to see if we're going to target a random limb.
+	if(randomization_chance) //We got a 10% chance! Randomize where we're targeting!
+		zone = pick(base_miss_chance)
+
+	// Second, we make sure to see if the place we are attacking is a valid area.
+	if(zone in base_miss_chance)
+		randomization_chance = base_miss_chance[zone]
+
+	// Eyes and mouth can be targeted (although typically not by mobs) so we set it to the head.
+	else if (zone == "eyes" || zone == "mouth")
+		randomization_chance = base_miss_chance["head"]
+
+	// Finally, now that we have our newfound zone, we see if we miss it or not!
+	if(prob(randomization_chance)) //If the mob rolled a miss chance?
+		return null //No hit! Player escapes unscathed!
 	return zone
 
 
