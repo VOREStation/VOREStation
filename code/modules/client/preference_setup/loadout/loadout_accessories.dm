@@ -578,18 +578,16 @@ Talon pin
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-
-/datum/gear/accessory/legwarmers_thigh
-	display_name = "Legwarmers"
+/datum/gear/accessory/legwarmer_selection
+	display_name = "legwarmers (selection, colorable)"
 	path = /obj/item/clothing/accessory/legwarmers
-	description = "A comfy pair of legwarmers. These are excessively long."
 
-/datum/gear/accessory/legwarmers_medium
-	display_name = "Legwarmers, medium"
-	path = /obj/item/clothing/accessory/legwarmersmedium
-	description = "A comfy pair of legwarmers. For those unfortunate enough to wear shorts in the cold."
-
-/datum/gear/accessory/legwarmers_short
-	display_name = "Legwarmers, short"
-	path = /obj/item/clothing/accessory/legwarmersshort
-	description = "A comfy pair of legwarmers. For those better in the cold than others."
+/datum/gear/accessory/legwarmer_selection/New()
+	..()
+	var/list/legwarmer_lists = list(
+	"Legwarmers, thigh" = /obj/item/clothing/accessory/legwarmers,
+	"Legwarmers, medium" = /obj/item/clothing/accessory/legwarmersmedium,
+	"Legwarmers, short" = /obj/item/clothing/accessory/legwarmersshort
+	)
+	gear_tweaks += new/datum/gear_tweak/path(legwarmer_lists)
+	gear_tweaks += gear_tweak_free_color_choice
