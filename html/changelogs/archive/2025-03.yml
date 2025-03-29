@@ -546,3 +546,23 @@
       when your hands are empty.
   Tost:
   - bugfix: You can now see what pronouns you are choosing for your character on setup.
+2025-03-29:
+  Cerami:
+  - rscadd: Adds a vore belly to kururak
+  Diana:
+  - bugfix: Mounted rigsuit guns now properly work
+  - bugfix: Protean rigs can no longer be removed by proteans
+  - bugfix: Protean rigs can no longer be removed if one is on your back and the protean
+      is dead
+  - bugfix: Protean rigs no longer be in a 'limbo state' of being enabled but not
+      enabled.
+  Kashargul:
+  - rscadd: next grep check to ensure space / tab sanity
+  SatinIsle:
+  - rscadd: Added a new system for announcing horribly corporate appreciation days.
+  - rscadd: Added a bingle computer to each library and command briefing room.
+  Will, Kash:
+  - rscadd: Bingle
+  - qol: ChemAnalyser Pro now uses tgui
+  - bugfix: chat scroll tracking failing on large displayed count when huge messages
+      blocks were sent
