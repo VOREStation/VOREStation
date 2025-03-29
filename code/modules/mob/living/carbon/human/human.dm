@@ -138,7 +138,7 @@
 		L[++L.len] = list("Suit charge: [cell_status]", null, null, null, null)
 		for(var/obj/item/rig_module/module in R.installed_modules)
 		{
-			for(var/stat_rig_module/SRM in module.stat_modules)
+			for(var/atom/movable/stat_rig_module/SRM in module.stat_modules)
 				if(SRM.CanUse())
 					L[++L.len] = list(SRM.module.interface_name,null,null,SRM.name,REF(SRM))
 		}
@@ -376,7 +376,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
-		def_zone = pick("l_hand", "r_hand")
+		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
 		if(stored_shock_by_ref["\ref[src]"])
@@ -812,7 +812,7 @@
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
 
 	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
 
@@ -1634,7 +1634,7 @@
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
 		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list("l_leg","r_leg"))
+		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
 			var/obj/item/organ/affecting = get_organ(limbcheck)
 			if(!affecting)
 				return 0

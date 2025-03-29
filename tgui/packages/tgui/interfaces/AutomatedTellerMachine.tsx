@@ -281,7 +281,7 @@ const CustomWithdrawal = (props: {
                 value={money}
                 maxLength={10}
                 onInput={(e, val) => {
-                  let value = parseInt(val, 10);
+                  const value = parseInt(val, 10);
                   if (isNaN(value)) {
                     setMoney(0);
                   } else {
@@ -289,7 +289,7 @@ const CustomWithdrawal = (props: {
                   }
                 }}
                 onChange={(e, val) => {
-                  let value = parseInt(val, 10);
+                  const value = parseInt(val, 10);
                   if (isNaN(value)) {
                     setMoney(0);
                   } else {
@@ -437,7 +437,7 @@ const TransferMenu = (props: {
   const { act, data } = useBackend<AutomatedTellerMachineData>();
   const [accountNum, setAccountNum] = useState(100000);
   const updateAccountNum = (val) => {
-    let newVal = parseInt(val, 10);
+    const newVal = parseInt(val, 10);
     if (isNaN(newVal)) {
       setAccountNum(100000);
     } else {
@@ -447,7 +447,7 @@ const TransferMenu = (props: {
 
   const [money, setMoney] = useState(0);
   const updateMoney = (val) => {
-    let newVal = parseInt(val, 10);
+    const newVal = parseInt(val, 10);
     if (isNaN(newVal)) {
       setMoney(0);
     } else {

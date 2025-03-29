@@ -1325,14 +1325,14 @@
 	result_amount = 15
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_radium
-	name = REAGENT_NUCLEARWASTE
+	name = REAGENT_NUCLEARWASTE + " 226"
 	id = "nuclearwasterad"
 	result = REAGENT_ID_NUCLEARWASTE
 	required_reagents = list(REAGENT_ID_OILSLICK = 1, REAGENT_ID_RADIUM = 1, REAGENT_ID_LIMEJUICE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_uranium
-	name = REAGENT_NUCLEARWASTE
+	name = REAGENT_NUCLEARWASTE + " 238"
 	id = "nuclearwasteuran"
 	result = REAGENT_ID_NUCLEARWASTE
 	required_reagents = list(REAGENT_ID_OILSLICK = 2, REAGENT_ID_URANIUM = 1)

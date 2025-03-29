@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -27,7 +27,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
       return;
     }
 
-    let elements: ReactNode[] = [];
+    const elements: ReactNode[] = [];
 
     const regexCopy = new RegExp(SYNTAX_REGEX);
 

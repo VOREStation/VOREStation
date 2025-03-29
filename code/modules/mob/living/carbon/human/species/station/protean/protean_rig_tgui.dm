@@ -22,7 +22,7 @@ So here it sits, snowflake code for a single item.
 		data["ai"] = FALSE
 
 	data["cooling"] = cooling_on
-	data["sealed"] = !sealed
+	data["sealed"] = !canremove
 	data["sealing"] = sealing
 	data["helmet"] = (helmet ? "[helmet.name]" : "None.")
 	data["gauntlets"] = (gloves ? "[gloves.name]" : "None.")

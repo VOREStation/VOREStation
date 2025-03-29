@@ -324,12 +324,12 @@
 	. = ..()
 
 /**
-  * Called when someone slaps the machine with a mining voucher
-  *
-  * Arguments:
-  * * voucher - The voucher card item
-  * * redeemer - The person holding it
-  */
+ * Called when someone slaps the machine with a mining voucher
+ *
+ * Arguments:
+ * * voucher - The voucher card item
+ * * redeemer - The person holding it
+ */
 /obj/machinery/mineral/equipment_vendor/proc/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/selection = tgui_input_list(redeemer, "Pick your equipment", "Mining Voucher Redemption", list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher"))
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)

@@ -119,3 +119,11 @@ var/global/list/latejoin_tram   = list()
 /datum/spawnpoint/vore/pred
 	display_name = "Vorespawn - Pred"
 	msg = "has arrived on the station"
+
+/datum/spawnpoint/vore/itemtf
+	display_name = "Item TF spawn"
+	msg = "has arrived on the station"
+
+/datum/spawnpoint/vore/New()
+	..()
+	turfs = latejoin

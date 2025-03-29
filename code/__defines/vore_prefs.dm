@@ -1,4 +1,4 @@
-#define VORE_PREF_TRANSFER(target, source) 												\
+#define VORE_PREF_TRANSFER(target, source)												\
 	target.digestable = source.digestable;												\
 	target.devourable = source.devourable;												\
 	target.feeding = source.feeding;													\

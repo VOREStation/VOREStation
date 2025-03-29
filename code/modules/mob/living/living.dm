@@ -943,7 +943,7 @@
 						if(ishuman(src))
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 								if(!L || L.is_broken())
 									blood_vomit = 1
 

@@ -528,3 +528,41 @@
   - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
   Kashargul:
   - code_imp: next set of NEW to INIT
+2025-03-26:
+  Cameron-The-Raven:
+  - bugfix: Proteans can select icon base again
+2025-03-27:
+  Kashargul:
+  - bugfix: missing spawn datum handling
+  SatinIsle:
+  - rscadd: Added mail options for entrepreneurs.
+2025-03-28:
+  Diana:
+  - bugfix: Environmental traits now work properly
+  - bugfix: Lightning strikes will no longer strike people in nullspace
+  - bugfix: Humans now have their proper skin color selection back
+  TankTheBirb:
+  - rscadd: Unusual gait positive trait for 2 points. This trait makes you move faster
+      when your hands are empty.
+  Tost:
+  - bugfix: You can now see what pronouns you are choosing for your character on setup.
+2025-03-29:
+  Cerami:
+  - rscadd: Adds a vore belly to kururak
+  Diana:
+  - bugfix: Mounted rigsuit guns now properly work
+  - bugfix: Protean rigs can no longer be removed by proteans
+  - bugfix: Protean rigs can no longer be removed if one is on your back and the protean
+      is dead
+  - bugfix: Protean rigs no longer be in a 'limbo state' of being enabled but not
+      enabled.
+  Kashargul:
+  - rscadd: next grep check to ensure space / tab sanity
+  SatinIsle:
+  - rscadd: Added a new system for announcing horribly corporate appreciation days.
+  - rscadd: Added a bingle computer to each library and command briefing room.
+  Will, Kash:
+  - rscadd: Bingle
+  - qol: ChemAnalyser Pro now uses tgui
+  - bugfix: chat scroll tracking failing on large displayed count when huge messages
+      blocks were sent

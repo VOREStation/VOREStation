@@ -209,6 +209,7 @@
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
 	var/slowdown = 0										// Passive movement speed malus (or boost, if negative)
+	var/unusual_running = 0									// Trait var to change movement speed in human_movement.dm when nothing in hands
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0								// Whether the eyes can be shown above other icons
@@ -360,6 +361,14 @@
 	// For Lleill and Hanner
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
+
+	var/bite_mod = 1 //NYI - Used Downstream
+	var/grab_resist_divisor_victims = 1 //NYI - Used Downstream
+	var/grab_resist_divisor_self = 1 //NYI - Used Downstream
+	var/grab_power_victims = 0 //NYI - Used Downstream
+	var/grab_power_self = 0 //NYI - Used Downstream
+	var/waking_speed = 1 //NYI - Used Downstream
+	var/lightweight_light = 0 //NYI - Used Downstream
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
@@ -519,7 +528,7 @@
 		return
 
 	//VOREStation Edit Start - Headpats and Handshakes.
-	if(H.zone_sel.selecting == "head")
+	if(H.zone_sel.selecting == BP_HEAD)
 		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
@@ -532,7 +541,7 @@
 			H.visible_message( \
 				span_notice("[H] pats [target] on the head."), \
 				span_notice("You pat [target] on the head."), )
-	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
+	else if(H.zone_sel.selecting == BP_R_HAND || H.zone_sel.selecting == BP_L_HAND)
 		H.visible_message( \
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
@@ -576,8 +585,10 @@
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Only used for alien plasma weeds atm, but could be used for Dionaea later.
+// Used for traits and species that have special environmental effects.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
+	for(var/datum/trait/env_trait in env_traits)
+		env_trait.handle_environment_special(H)
 	return
 
 // Used to update alien icons for aliens.
