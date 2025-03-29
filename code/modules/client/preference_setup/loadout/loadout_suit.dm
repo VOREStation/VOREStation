@@ -137,7 +137,8 @@
 	"Purple labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/purple,
 	"Pink labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/pink,
 	"Red labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/red,
-	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow,
+	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
