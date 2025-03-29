@@ -26,16 +26,27 @@
 	var/species = SPECIES_HUMAN	//defaults to generic-ass humans
 	var/random_species = FALSE	//flip to TRUE to randomize species from the list below
 	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJARAN,SPECIES_UNATHI,SPECIES_SKRELL)	//preset list that can be overriden downstream. only includes common humanoids for voidsuit compatibility's sake.
+	var/mob/living/carbon/human/spawned_corpse = null //The corpse we have just spawned.
 //	var/random_appearance = FALSE	//TODO: make this work
 //	var/cause_of_death = null //TODO: set up a cause-of-death system. needs to support both damage types and actual wound types, so a body can have been bitten/stabbed/clawed/shot/burned/lasered/etc. to death
-	delete_me = TRUE
+	delete_me = FALSE //We don't do delete_me, we do our deletion in late_init
 
 /obj/effect/landmark/corpse/Initialize(mapload)
 	. = ..()
-	createCorpse()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/corpse/LateInitialize()
+	createCorpse() //This is done because
+	spawned_corpse.death(1)
+	qdel(src)
+
+/obj/effect/landmark/corpse/Destroy(force)
+	spawned_corpse = null
+	. = ..()
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+	spawned_corpse = M
 	M.low_sorting_priority = TRUE
 	if(random_species)
 		var/random_pick = pick(random_species_list)
@@ -45,7 +56,6 @@
 		M.set_species(species)
 	//TODO: insert appearance randomization, needs to be species-based
 	M.real_name = src.name
-	M.death(1) //Kills the new mob
 	//TODO: insert cause of death handling/wound simulation here
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)

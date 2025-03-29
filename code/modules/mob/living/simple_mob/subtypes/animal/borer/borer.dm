@@ -62,11 +62,13 @@
 	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+	..()
 
 	if(!roundstart && antag)
-		request_player()
+		return INITIALIZE_HINT_LATELOAD
 
-	return ..()
+/mob/living/simple_mob/animal/borer/LateInitialize()
+	request_player()
 
 /mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)

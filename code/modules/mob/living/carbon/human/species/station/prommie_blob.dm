@@ -221,11 +221,7 @@
 		return ..()
 
 /mob/living/simple_mob/slime/promethean/death(gibbed, deathmessage = "rapidly loses cohesion, splattering across the ground...")
-	if(humanform)
-		humanform.death(gibbed, deathmessage)
-	else
-		animate(src, alpha = 0, time = 2 SECONDS)
-		sleep(2 SECONDS)
+	humanform.death(gibbed, deathmessage)
 
 	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
 		qdel(src)

@@ -23,7 +23,6 @@
 
 	//Fired processing vars
 	var/fired = FALSE	//Have we been fired yet
-	var/paused = FALSE	//for suspending the projectile midair
 	var/last_projectile_move = 0
 	var/last_process = 0
 	var/time_offset = 0
@@ -195,9 +194,6 @@
 	var/safety = range * 3
 	record_hitscan_start(RETURN_POINT_VECTOR_INCREMENT(src, Angle, MUZZLE_EFFECT_PIXEL_INCREMENT, 1))
 	while(loc && !QDELETED(src))
-		if(paused)
-			stoplag(1)
-			continue
 		if(safety-- <= 0)
 			if(loc)
 				Bump(loc)
@@ -281,8 +277,8 @@
 	if(!loc || !fired || !trajectory)
 		fired = FALSE
 		return PROCESS_KILL
-	if(paused || !isturf(loc))
-		last_projectile_move += world.time - last_process		//Compensates for pausing, so it doesn't become a hitscan projectile when unpaused from charged up ticks.
+	if(!isturf(loc))
+		last_projectile_move += world.time - last_process
 		return
 	var/elapsed_time_deciseconds = (world.time - last_projectile_move) + time_offset
 	time_offset = 0

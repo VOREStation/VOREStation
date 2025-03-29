@@ -56,12 +56,12 @@
 /obj/machinery/vr_sleeper/process()
 	if(stat & (NOPOWER|BROKEN))
 		if(occupant)
-			go_out()
+			perform_exit()
 			visible_message(span_infoplain(span_bold("\The [src]") + " emits a low droning sound, before the pod door clicks open."))
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD) // If someone dies somehow while inside, spit them out.
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
-		go_out()
+		perform_exit()
 
 /obj/machinery/vr_sleeper/update_icon()
 	icon_state = "[base_state][occupant ? "1" : "0"]"
@@ -99,7 +99,7 @@
 		if(occupant && avatar)
 			avatar.exit_vr()
 			avatar = null
-			go_out()
+			perform_exit()
 		return
 
 
@@ -132,7 +132,7 @@
 			visible_message(span_danger("\The [src]'s internal lighting flashes rapidly, before the hatch swings open with a cloud of smoke."))
 			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
-		go_out()
+		perform_exit()
 
 	..(severity)
 
@@ -144,12 +144,10 @@
 	if(usr.incapacitated())
 		return
 
-	var/forced = FALSE
-
 	if(stat & (BROKEN|NOPOWER) || occupant && occupant.stat == DEAD)
-		forced = TRUE
-
-	go_out(forced)
+		perform_exit()
+	else
+		go_out()
 	add_fingerprint(usr)
 
 /obj/machinery/vr_sleeper/verb/climb_in()
@@ -165,7 +163,7 @@
 /obj/machinery/vr_sleeper/relaymove(mob/user as mob)
 	if(user.incapacitated())
 		return 0 //maybe they should be able to get out with cuffs, but whatever
-	go_out(TRUE)
+	perform_exit()
 
 /obj/machinery/vr_sleeper/proc/go_in(var/mob/M, var/mob/user)
 	if(!M)
@@ -204,13 +202,20 @@
 			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
 	return
 
-/obj/machinery/vr_sleeper/proc/go_out(var/forced = TRUE)
+/obj/machinery/vr_sleeper/proc/go_out()
 	if(!occupant)
 		return
 
-	if(!forced && avatar)
+	if(avatar)
 		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 			return
+
+	perform_exit()
+
+//The actual bulk of the exit code.
+/obj/machinery/vr_sleeper/proc/perform_exit()
+	if(!occupant)
+		return
 
 	avatar = null
 

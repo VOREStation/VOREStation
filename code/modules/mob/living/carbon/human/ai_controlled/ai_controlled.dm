@@ -109,7 +109,10 @@
 			W.assignment = to_wear_id_job
 		W.registered_name = real_name
 		equip_to_slot_or_del(W, slot_wear_id)
+		if(generate_dead)
+			return INITIALIZE_HINT_LATELOAD
 
+/mob/living/carbon/human/ai_controlled/LateInitialize()
 	if(generate_dead)
 		death()
 

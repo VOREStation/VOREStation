@@ -122,7 +122,7 @@
 
 	if(istype(vr_holder.loc, /obj/machinery/vr_sleeper))
 		var/obj/machinery/vr_sleeper/V = vr_holder.loc
-		V.go_out(TRUE)
+		V.perform_exit()
 
 	if(died_in_vr)
 		addtimer(CALLBACK(src, PROC_REF(cleanup_vr)), 3000, TIMER_DELETE_ME) //Delete the body after 5 minutes
