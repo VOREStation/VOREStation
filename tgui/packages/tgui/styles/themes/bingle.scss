@@ -1,0 +1,24 @@
+/**
+ * Copyright (c) 2025 Kashargul
+ * SPDX-License-Identifier: MIT
+ */
+
+@use 'sass:color';
+@use 'sass:meta';
+
+.theme-bingle {
+  // Components
+  @include meta.load-css(
+    '~tgui-core/styles/components/Button.scss',
+    $with: ('color-selected': hsl(227, 100%, 26%))
+  );
+  @include meta.load-css(
+    '~tgui-core/styles/components/ProgressBar.scss',
+    $with: ('color-default-fill': hsl(15, 98%, 50%))
+  );
+
+  // Layouts
+  .Layout__content {
+    background-image: url('../../assets/bg-neutral.svg');
+  }
+}

@@ -1,9 +1,12 @@
 /datum/species/vox
 	name = SPECIES_VOX
 	name_plural = "Vox"
-	icobase = 'icons/mob/human_races/r_vox.dmi'
-	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = LANGUAGE_VOX
+	icobase = 'icons/mob/human_races/r_vox_old.dmi'
+	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
+	tail = "voxtail"
+	tail_animation = 'icons/mob/species/vox/tail.dmi'
+	default_language = LANGUAGE_GALCOM
+	secondary_langs = list(LANGUAGE_VOX)
 	language = LANGUAGE_GALCOM
 	species_language = LANGUAGE_VOX
 	num_alternate_languages = 3
@@ -16,13 +19,15 @@
 	refer to them as 'shitbirds' for their violent and offensive nature, as well as their horrible \
 	smell.<br/><br/>Most humans will never meet a Vox raider, instead learning of this insular species through \
 	dealing with their traders and merchants; those that do rarely enjoy the experience."
+	wikilink="https://wiki.vore-station.net/Vox"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vox)
 
 //	taste_sensitivity = TASTE_DULL
+	min_age = 18
 
 	slowdown = -0.5
 
-	speech_sounds = list('sound/voice/shriek1.ogg')
+	speech_sounds = list()
 	speech_chance = 20
 
 	scream_verb_1p = "shriek"
@@ -41,19 +46,18 @@
 	cold_level_2 = 50
 	cold_level_3 = 0
 
-	gluttonous = 1
-
 	breath_type = GAS_PHORON
 	poison_type = GAS_O2
 	ideal_air_type = /datum/gas_mixture/belly_air/vox
 	siemens_coefficient = 0.2
 
 	flags = NO_DNA | NO_SLEEVE | NO_DEFIB
-	spawn_flags = SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_SKIN_COLOR
 
 	blood_color = "#9066BD"
 	flesh_color = "#808D11"
+	color_mult = 1
 
 	reagent_tag = IS_VOX
 
@@ -84,15 +88,10 @@
 
 	genders = list(NEUTER)
 
-	descriptors = list(
-		/datum/mob_descriptor/height = -1,
-		/datum/mob_descriptor/build = 1,
-		/datum/mob_descriptor/vox_markings = 0
-	)
-
 	default_emotes = list(
 		/decl/emote/audible/vox_shriek
 	)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 
 /datum/species/vox/get_random_name(var/gender)
 	var/datum/language/species_language = GLOB.all_languages[default_language]

@@ -27,6 +27,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 5
 	color = "#fff200"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -543,6 +544,7 @@
 	id = REAGENT_ID_BRAINPROTEIN
 	taste_description = "fatty, mushy meat and allspice"
 	color = "#caa3c9"
+	wiki_flag = WIKI_FOOD|WIKI_SPOILER
 
 /datum/reagent/nutriment/protein/brainzsnax/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -580,6 +582,7 @@
 	description = "A mixture of water and protein commonly used as a meal supplement."
 	taste_description = "pure protein"
 	color = "#ebd8cb"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/protein_powder/vanilla
 	name = REAGENT_VANILLAPROTEINPOWDER

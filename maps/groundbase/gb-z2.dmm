@@ -909,6 +909,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"bJ" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
 "bL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -16222,12 +16227,10 @@
 /area/groundbase/civilian/chapel)
 "SX" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant/small{
-	pixel_y = 12
-	},
 /obj/structure/sign/painting/library_secure{
 	pixel_x = -30
 	},
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "SY" = (
@@ -23114,7 +23117,7 @@ rP
 rP
 rP
 rP
-cX
+bJ
 cX
 cX
 MY

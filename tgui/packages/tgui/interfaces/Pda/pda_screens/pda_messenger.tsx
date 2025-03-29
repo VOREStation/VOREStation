@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
 import { fetchRetry } from 'tgui-core/http';
@@ -47,7 +47,7 @@ const CopyToClipboardButton = (props: { messages: message[] }) => {
 
   useEffect(() => {
     if (showCompletion) {
-      let timeout = setTimeout(() => {
+      const timeout = setTimeout(() => {
         setShowCompletion(false);
       }, 1000);
       return () => clearTimeout(timeout);
@@ -72,7 +72,7 @@ const CopyToClipboardButton = (props: { messages: message[] }) => {
 const copyToClipboard = (messages: message[]) => {
   let string = '';
 
-  for (let message of messages) {
+  for (const message of messages) {
     if (message.sent) {
       string += `You: ${message.message}\n`;
     } else {
@@ -81,7 +81,7 @@ const copyToClipboard = (messages: message[]) => {
   }
 
   if (Byond.TRIDENT) {
-    let ie_window = window as IeWindow;
+    const ie_window = window as IeWindow;
     ie_window.clipboardData.setData('Text', string);
   } else {
     navigator.clipboard.writeText(string);
@@ -312,7 +312,7 @@ const findClassMessage = (im, lastIndex, filterArray) => {
       : 'TinderMessage_First_Received';
   }
 
-  let lastSent = filterArray[lastIndex].sent;
+  const lastSent = filterArray[lastIndex].sent;
   if (im.sent && lastSent) {
     return 'TinderMessage_Subsequent_Sent';
   } else if (!im.sent && !lastSent) {
@@ -370,7 +370,7 @@ const TinderMessageEmbedAttempt = (props: {
   const [elem, setElem] = useState<ReactNode>(null);
 
   useEffect(() => {
-    let link = decodeHtmlEntities(im.message.trim());
+    const link = decodeHtmlEntities(im.message.trim());
 
     // Early easy check
     if (!link.startsWith('https://')) {
@@ -406,7 +406,7 @@ const TinderMessageEmbedAttempt = (props: {
         return null;
       }
 
-      let type = response.headers.get('Content-Type');
+      const type = response.headers.get('Content-Type');
 
       // If we just fetched an image, use it!
       if (

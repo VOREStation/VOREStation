@@ -2,12 +2,12 @@ import { uniqBy } from 'common/collections';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
-import { material, part, queueFormat } from './types';
+import type { material, part, queueFormat } from './types';
 
 export function materialArrayToObj(
   materials: material[],
 ): Record<string, number> {
-  let materialObj = {};
+  const materialObj = {};
 
   materials.forEach((m) => {
     materialObj[m.name] = m.amount;
@@ -41,7 +41,7 @@ export function partCondFormat(
   tally: Record<string, number>,
   part: part,
 ) {
-  let format = { textColor: COLOR_NONE };
+  const format = { textColor: COLOR_NONE };
 
   Object.keys(part.cost).forEach((mat) => {
     format[mat] = partBuildColor(part.cost[mat], tally[mat], materials[mat]);
@@ -58,10 +58,10 @@ export function queueCondFormat(
   materials: material | {},
   queue: part[] | null,
 ): queueFormat {
-  let materialTally = {};
-  let matFormat = {};
-  let missingMatTally = {};
-  let textColors = {};
+  const materialTally = {};
+  const matFormat = {};
+  const missingMatTally = {};
+  const textColors = {};
 
   queue &&
     queue.forEach((part, i) => {
@@ -121,7 +121,7 @@ export function getFirstValidPartSet(
   sets: string[],
   buildableParts: Record<string, part[]> | [],
 ): string | null {
-  for (let set of sets) {
+  for (const set of sets) {
     if (buildableParts[set]) {
       return set;
     }

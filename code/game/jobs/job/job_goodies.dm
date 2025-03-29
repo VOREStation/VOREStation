@@ -295,7 +295,19 @@
 	)
 /datum/job/entrepreneur // Same for these guys! What could they get?
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 1000, // For now, they'll get extra on coffee.
+		/obj/item/entrepreneur/crystal_ball = 40,
+		/obj/item/entrepreneur/horoscope = 40,
+		/obj/random/plushie = 40,
+		/obj/item/entrepreneur/dumbbell = 40,
+		/obj/item/entrepreneur/emf = 40,
+		/obj/item/entrepreneur/spirit_board = 40,
+		/obj/item/reagent_containers/glass/bottle/essential_oil = 40,
+		/obj/random/nukies_can_legal = 100,
+		/obj/random/mega_nukies = 20,
+		/obj/item/bikehorn/rubberducky = 50,
+		/obj/random/cash = 100,
+		/obj/item/pen/fountain7 = 50,
+		/obj/item/megaphone = 10
 	)
 	mail_color = COMMS_COLOR_SERVICE
 
