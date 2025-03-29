@@ -37,8 +37,8 @@
 							"They look full and satisfied from having plenty to eat.",
 							"They look pretty stuffed from eating, maybe a little too much.",
 							"Their gut looks pretty packed with far too much food being digested.",
-							"They are engorged with a food-bloated stomach that sags and wobbles as they move. It looks incredibly soft.",
-							"Their stomach is firmly crammed with digesting food. It looks hard for them to stand, and their gut jiggles when they move.",
+							"They are engorged with a food-bloated stomach that jiggles when they move. It looks incredibly soft.",
+							"Their stomach is firmly crammed full of way too much food. It heavily wobbles and sags as they move.",
 							"They are so incredibly stuffed that they look as though they will reach their limit soon.",
 							"They are so absolutely stuffed that they look as though they are either at their limit, or very close to it. You can't imagine them eating anything more!")
 	var/weight_message_visible = TRUE
