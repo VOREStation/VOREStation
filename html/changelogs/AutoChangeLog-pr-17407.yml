@@ -1,0 +1,6 @@
+author: "Will, Kash"
+delete-after: True
+changes:
+  - rscadd: "Bingle"
+  - qol: "ChemAnalyser Pro now uses tgui"
+  - bugfix: "chat scroll tracking failing on large displayed count when huge messages blocks were sent"

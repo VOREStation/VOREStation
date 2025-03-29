@@ -536,3 +536,13 @@
   - bugfix: missing spawn datum handling
   SatinIsle:
   - rscadd: Added mail options for entrepreneurs.
+2025-03-28:
+  Diana:
+  - bugfix: Environmental traits now work properly
+  - bugfix: Lightning strikes will no longer strike people in nullspace
+  - bugfix: Humans now have their proper skin color selection back
+  TankTheBirb:
+  - rscadd: Unusual gait positive trait for 2 points. This trait makes you move faster
+      when your hands are empty.
+  Tost:
+  - bugfix: You can now see what pronouns you are choosing for your character on setup.

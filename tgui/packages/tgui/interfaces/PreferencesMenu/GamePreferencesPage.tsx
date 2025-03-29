@@ -1,5 +1,5 @@
 import { binaryInsertWith } from 'common/collections';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,

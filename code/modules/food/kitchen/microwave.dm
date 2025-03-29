@@ -603,6 +603,7 @@
 		/obj/item/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))

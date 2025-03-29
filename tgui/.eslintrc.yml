@@ -15,6 +15,7 @@ plugins:
   - react
   - unused-imports
   - simple-import-sort
+  - "@typescript-eslint"
 settings:
   react:
     version: '18.2'
@@ -552,7 +553,7 @@ rules:
   prefer-arrow-callback: error
   ## Require const declarations for variables that are never reassigned after
   ## declared
-  # prefer-const: error
+  prefer-const: error
   ## Require destructuring from arrays and/or objects
   # prefer-destructuring: error
   ## Disallow parseInt() and Number.parseInt() in favor of binary, octal, and
@@ -768,3 +769,6 @@ rules:
   ## https://github.com/lydell/eslint-plugin-simple-import-sort/
   simple-import-sort/imports: error
   simple-import-sort/exports: error
+
+  ## Typescript
+  "@typescript-eslint/consistent-type-imports": [error, { fixStyle: inline-type-imports }]

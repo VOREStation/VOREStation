@@ -18731,9 +18731,7 @@
 /obj/machinery/firealarm/angled{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant/smallcactus{
-	pixel_y = 14
-	},
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)
 "Pm" = (

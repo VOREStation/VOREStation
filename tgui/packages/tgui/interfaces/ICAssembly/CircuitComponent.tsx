@@ -1,10 +1,10 @@
-import { Component, ComponentProps } from 'react';
+import { Component, type ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 import { shallowDiffers } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Port, PortProps } from './Port';
+import { Port, type PortProps } from './Port';
 import {
   type CircuitData,
   PortTypesToColor as PORT_TYPES_TO_COLOR,
@@ -102,8 +102,8 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     e.preventDefault();
 
     const { screenZoomX, screenZoomY, screenX, screenY } = e;
-    let xPos = screenZoomX || screenX;
-    let yPos = screenZoomY || screenY;
+    const xPos = screenZoomX || screenX;
+    const yPos = screenZoomY || screenY;
 
     if (lastMousePos) {
       this.setState({
