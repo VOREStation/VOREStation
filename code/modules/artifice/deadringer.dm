@@ -52,9 +52,11 @@
 
 /obj/item/deadringer/process()
 	if(activated)
-		if (ismob(src.loc))
+		if(ishuman(src.loc))
 			var/mob/living/carbon/human/H = src.loc
 			watchowner = H
+			if(isbelly(watchowner.loc)) //No spawning people in bellies.
+				return
 			if(H.getBruteLoss() > bruteloss_prev || H.getFireLoss() > fireloss_prev)
 				deathprevent()
 				activated = 0
@@ -81,7 +83,7 @@
 		if(!D.has_AI())
 			continue
 		D.ai_holder.lose_target()
-	watchowner.alpha = 15
+	watchowner.alpha = 7 //10 is too visible, 5 is too in-visible... 7 is difficult to see but manageable.
 	makeacorpse(watchowner)
 	return
 
@@ -96,8 +98,6 @@
 		return
 	corpse = new /mob/living/carbon/human(H.loc)
 	qdel_swap(corpse.dna,H.dna.Clone())
-	corpse.emote("deathgasp")
-	corpse.death(1) //Kills the new mob
 	var/obj/item/clothing/temp = null
 	if(H.get_equipped_item(slot_w_uniform))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/under/chameleon/changeling(corpse), slot_w_uniform)
@@ -162,6 +162,8 @@
 	corpse.flavor_texts = H.flavor_texts.Copy()
 	corpse.real_name = H.real_name
 	corpse.name = H.name
+	corpse.emote("deathgasp") //Done after the name is set.
+	corpse.death(1) //Kills the new mob
 	corpse.set_species(corpse.dna.species)
 	corpse.change_hair(H.h_style)
 	corpse.change_facial_hair(H.f_style)
