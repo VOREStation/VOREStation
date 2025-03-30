@@ -157,9 +157,9 @@
 				A = cur_turf.loc
 				if(is_open && !A.isAlwaysIndoors())
 					cur_turf.make_outdoors()
+					cur_turf.propogate_sunlight_changes(oldtype, old_density, W, above = TRUE)
 				else
 					cur_turf.make_indoors()
-				cur_turf.propogate_sunlight_changes(oldtype, old_density, W, above = TRUE)
 			while(istype(cur_turf,/turf/simulated/open) && HasBelow(cur_turf.z))
 
 	if(old_shandler) old_shandler.holder_change()
