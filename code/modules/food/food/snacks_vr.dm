@@ -15,6 +15,7 @@
 	bitesize = 5
 
 /obj/item/reagent_containers/food/snacks/slice/sushi/filled
+	name = "stuffed sushi roll"
 	name = "piece of sushi"
 	desc = "A slice of a larger sushi roll, ready to devour."
 	icon = 'icons/obj/food_vr.dmi'
@@ -649,7 +650,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/grub_purple
-	name = "pink candy grub"
+	name = "purple candy grub"
 	desc = "A thoroughly candied grub, it smells of grape."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_purple"
@@ -661,7 +662,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/grub_blue
-	name = "pink candy grub"
+	name = "blue candy grub"
 	desc = "A thoroughly candied grub, it smells of blueberry."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_blue"

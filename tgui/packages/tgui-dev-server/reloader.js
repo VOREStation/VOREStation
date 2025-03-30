@@ -37,7 +37,7 @@ export const findCacheRoot = async () => {
   }
   logger.log('looking for byond cache');
   // Find BYOND cache folders
-  for (let pattern of SEARCH_LOCATIONS) {
+  for (const pattern of SEARCH_LOCATIONS) {
     if (!pattern) {
       continue;
     }
@@ -51,7 +51,10 @@ export const findCacheRoot = async () => {
   // Query the Windows Registry
   if (process.platform === 'win32') {
     logger.log('querying windows registry');
-    let userpath = await regQuery('HKCU\\Software\\Dantom\\BYOND', 'userpath');
+    const userpath = await regQuery(
+      'HKCU\\Software\\Dantom\\BYOND',
+      'userpath',
+    );
     if (userpath) {
       // prettier-ignore
       cacheRoot = userpath
@@ -92,7 +95,7 @@ export const reloadByondCache = async (bundleDir) => {
     bundleDir,
     './*.+(bundle|chunk|hot-update).*',
   );
-  for (let cacheDir of cacheDirs) {
+  for (const cacheDir of cacheDirs) {
     // Clear garbage
     const garbage = await resolveGlob(
       cacheDir,
@@ -102,11 +105,11 @@ export const reloadByondCache = async (bundleDir) => {
       // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 515.
       fs.closeSync(fs.openSync(cacheDir + '/dummy', 'w'));
 
-      for (let file of garbage) {
+      for (const file of garbage) {
         fs.unlinkSync(file);
       }
       // Copy assets
-      for (let asset of assets) {
+      for (const asset of assets) {
         const destination = resolvePath(cacheDir, basename(asset));
         fs.writeFileSync(destination, fs.readFileSync(asset));
       }
@@ -120,7 +123,7 @@ export const reloadByondCache = async (bundleDir) => {
   const dss = await dssPromise;
   if (dss.length > 0) {
     logger.log(`notifying dreamseeker`);
-    for (let dreamseeker of dss) {
+    for (const dreamseeker of dss) {
       dreamseeker.topic({
         tgui: 1,
         type: 'cacheReloaded',

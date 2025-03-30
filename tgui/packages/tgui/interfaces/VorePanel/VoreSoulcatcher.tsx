@@ -8,7 +8,12 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { abilities, bellyData, DropdownEntry, soulcatcherData } from './types';
+import type {
+  abilities,
+  bellyData,
+  DropdownEntry,
+  soulcatcherData,
+} from './types';
 import { VoreAbilities } from './VoreAbilities';
 import { CatchSettings } from './VoreSoulcatcherSettings/CatchSettings';
 import { GlobalOptions } from './VoreSoulcatcherSettings/GlobalOptions';

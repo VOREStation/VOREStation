@@ -71,7 +71,7 @@ export const Materials = (props: {
 
   const { materials = [] } = data;
 
-  let display_materials = materials.filter(
+  const display_materials = materials.filter(
     (mat) => displayAllMat || mat.amount > 0,
   );
 
