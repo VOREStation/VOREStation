@@ -1,6 +1,6 @@
-/*
- proteans
-*/
+/**
+ * proteans
+ */
 /obj/item/rig/protean
 	name = "nanosuit control cluster"
 	suit_type = "nanomachine"

@@ -221,7 +221,7 @@
  * * user - the mob who is interacting with the wires.
  */
 /datum/wires/proc/can_see_wire_info(mob/user)
- 	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
+	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
 	// if(user.can_admin_interact())
 		// return TRUE
 	var/obj/item/I = user.get_active_hand()

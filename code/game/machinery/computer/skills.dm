@@ -266,12 +266,12 @@
 				return FALSE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/skills/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -323,8 +323,8 @@
 			return FALSE
 
 /**
-  * Called when the print timer finishes
-  */
+ * Called when the print timer finishes
+ */
 /obj/machinery/computer/skills/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
@@ -355,12 +355,12 @@
 	SStgui.update_uis(src)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/computer/skills/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)

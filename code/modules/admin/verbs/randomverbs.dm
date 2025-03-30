@@ -493,7 +493,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(src, "This map has no latejoin spawnpoint.")
 				return
 
-
 		else //I have no idea how you're here
 			to_chat(src, "Invalid spawn location choice.")
 			return
