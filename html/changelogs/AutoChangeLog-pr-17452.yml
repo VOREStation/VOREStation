@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Changed the default setting for Save Organs and Save Markings to No in character setup"

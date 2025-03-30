@@ -170,7 +170,7 @@
 
 		// Place plating over a wall
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+			if(isopenturf(T))
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
