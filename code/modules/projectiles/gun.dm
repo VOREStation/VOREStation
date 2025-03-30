@@ -95,6 +95,7 @@
 
 	var/last_shot = 0			//records the last shot fired
 	var/recoil_mode = 0			//If the gun will hurt micros if shot or not. Disabled on Virgo, used downstream.
+	var/mounted_gun = 0				//If the gun is mounted within a rigsuit or elsewhere. This makes it so the gun can be shot even if it's loc != a mob
 
 //VOREStation Add - /tg/ icon system
 	var/charge_sections = 4
@@ -203,7 +204,7 @@
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
 				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 				user.visible_message(
@@ -340,8 +341,10 @@
 		src.add_fingerprint(usr)
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
-	if(target.z != user.z) return
+	if(!user || !target)
+		return
+	if(target.z != user.z)
+		return
 
 	add_fingerprint(user)
 
@@ -369,7 +372,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
 		return //we're done here
-	if(!ismob(loc)) //We've been dropped.
+	if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
 		return
 	if(user.stat) //We've been KO'd or have died. No shooting while dead.
 		return
@@ -726,7 +729,7 @@
 		in_chamber.on_hit(M)
 		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
 			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", sharp = TRUE, used_weapon = src)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
 			to_chat(user, span_notice("Ow..."))

@@ -686,6 +686,8 @@
 		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
+			if(marking_style == DEVELOPER_WARNING_NAME)
+				continue
 			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
 			var/our_iconstate = S.icon_state
 			if(LAZYLEN(S.body_parts))

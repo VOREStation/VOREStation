@@ -47,8 +47,8 @@
 	if(stat)
 		return
 
-	var/obj/item/organ/external/l_hand = get_organ("l_hand")
-	var/obj/item/organ/external/r_hand = get_organ("r_hand")
+	var/obj/item/organ/external/l_hand = get_organ(BP_L_HAND)
+	var/obj/item/organ/external/r_hand = get_organ(BP_R_HAND)
 	if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 		to_chat(src, span_warning("You have no hands to play games with!"))
 		return
@@ -59,8 +59,8 @@
 			continue
 		if(H == src)
 			continue
-		var/obj/item/organ/external/l_hand2 = H.get_organ("l_hand")
-		var/obj/item/organ/external/r_hand2 = H.get_organ("r_hand")
+		var/obj/item/organ/external/l_hand2 = H.get_organ(BP_L_HAND)
+		var/obj/item/organ/external/r_hand2 = H.get_organ(BP_R_HAND)
 		if((!l_hand2 || l_hand2.is_stump()) && (!r_hand2 || r_hand2.is_stump()))
 			continue
 		nearby |= H
@@ -70,8 +70,8 @@
 				continue
 			if(H == src)
 				continue
-			var/obj/item/organ/external/l_hand2 = H.get_organ("l_hand")
-			var/obj/item/organ/external/r_hand2 = H.get_organ("r_hand")
+			var/obj/item/organ/external/l_hand2 = H.get_organ(BP_L_HAND)
+			var/obj/item/organ/external/r_hand2 = H.get_organ(BP_R_HAND)
 			if((!l_hand2 || l_hand2.is_stump()) && (!r_hand2 || r_hand2.is_stump()))
 				continue
 			nearby |= H

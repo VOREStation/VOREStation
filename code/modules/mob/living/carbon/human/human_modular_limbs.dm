@@ -1,10 +1,10 @@
-/*
-  A system for easily and quickly removing your own bodyparts, with a view towards
-  swapping them out for new ones, or just doing it as a party trick to horrify an
-  audience. Current implementation only supports robolimbs and uses a modular_bodypart
-  value on the manufacturer datum, but I have tried to keep it generic for future work.
-  PS. jesus christ this was meant to be a half an hour port
-*/
+/**
+ * A system for easily and quickly removing your own bodyparts, with a view towards
+ * swapping them out for new ones, or just doing it as a party trick to horrify an
+ * audience. Current implementation only supports robolimbs and uses a modular_bodypart
+ * value on the manufacturer datum, but I have tried to keep it generic for future work.
+ * PS. jesus christ this was meant to be a half an hour port
+ */
 
 // External organ procs:
 // Does this bodypart count as a modular limb, and if so, what kind?

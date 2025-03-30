@@ -12,6 +12,7 @@
 	var/injectable = 0
 	color = "#664330"
 	affects_robots = 1	//VOREStation Edit
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
@@ -411,6 +412,7 @@
 	nutriment_factor = 1
 	color = "#482000"
 	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Again, coffee contains coffee
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/tea
 	name = REAGENT_TEAPOWDER
@@ -421,6 +423,7 @@
 	nutriment_factor = 1
 	color = "#101000"
 	allergen_type = ALLERGEN_STIMULANT //Strong enough to contain caffeine
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/decaf_tea
 	name = REAGENT_DECAFTEAPOWDER
@@ -430,6 +433,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	color = "#101000"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/coco
 	name = REAGENT_COCO
@@ -461,6 +465,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	allergen_type = ALLERGEN_FRUIT //I suppose it's implied here that the juice is from dehydrated fruit.
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/instantjuice/grape
 	name = REAGENT_INSTANTGRAPE
@@ -691,6 +696,7 @@
 	ingest_met = REM
 	color = "#000000"
 	cup_prefix = "peppery"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/enzyme
 	name = REAGENT_ENZYME
@@ -701,6 +707,7 @@
 	reagent_state = LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/spacespice
 	name = REAGENT_SPACESPICE
@@ -709,6 +716,7 @@
 	reagent_state = SOLID
 	color = "#e08702"
 	cup_prefix = "spicy"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/browniemix
 	name = REAGENT_BROWNIEMIX
@@ -717,6 +725,7 @@
 	reagent_state = SOLID
 	color = "#441a03"
 	allergen_type = ALLERGEN_CHOCOLATE
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/cakebatter
 	name = REAGENT_CAKEBATTER
@@ -724,6 +733,7 @@
 	description = "A batter for making delicious cakes."
 	reagent_state = LIQUID
 	color = "#F0EDDA"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/frostoil
 	name = REAGENT_FROSTOIL
@@ -734,6 +744,7 @@
 	reagent_state = LIQUID
 	ingest_met = REM
 	color = "#B31008"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -783,6 +794,7 @@
 	ingest_met = REM
 	color = "#B31008"
 	cup_prefix = "hot"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -969,6 +981,7 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 	var/water_based = TRUE
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 1
