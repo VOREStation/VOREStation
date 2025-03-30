@@ -26,7 +26,7 @@
 
 		// Patch holes in the ceiling
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+			if(isopenturf(T))
 				// Must be build adjacent to an existing floor/wall, no floating floors
 				var/list/cardinalTurfs = list() // Up a Z level
 				for(var/dir in cardinal)
