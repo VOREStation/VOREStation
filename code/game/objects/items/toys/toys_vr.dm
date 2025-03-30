@@ -709,8 +709,8 @@
 	var/bullets_left = 0
 	var/max_shots = 6
 
-/obj/item/toy/russian_revolver/New()
-	..()
+/obj/item/toy/russian_revolver/Initialize(mapload)
+	. = ..()
 	spin_cylinder()
 
 /obj/item/toy/russian_revolver/attack_self(mob/user)
@@ -747,7 +747,7 @@
 		return FALSE
 	if(bullets_left == 1)
 		bullets_left = 0
-		var/zone = "head"
+		var/zone = BP_HEAD
 		if(!(user.has_organ(zone))) // If they somehow don't have a head.
 			zone = "chest"
 		playsound(src, 'sound/effects/snap.ogg', 50, 1)
@@ -771,8 +771,8 @@
 	max_shots = 1
 	var/fake_bullets = 0
 
-/obj/item/toy/russian_revolver/trick_revolver/New()
-	..()
+/obj/item/toy/russian_revolver/trick_revolver/Initialize(mapload)
+	. = ..()
 	fake_bullets = rand(2, 7)
 
 /obj/item/toy/russian_revolver/trick_revolver/examine(mob/user)
@@ -839,8 +839,8 @@
 	var/popped = 0
 	var/real = 0
 
-/obj/item/toy/snake_popper/New()
-	..()
+/obj/item/toy/snake_popper/Initialize(mapload)
+	. = ..()
 	if(prob(0.1))
 		real = 1
 
@@ -1035,10 +1035,10 @@
 		if(!isanimal(user))
 			if(!user.get_active_hand())		//if active hand is empty
 				var/mob/living/carbon/human/H = user
-				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 
 				if (H.hand)
-					temp = H.organs_by_name["l_hand"]
+					temp = H.organs_by_name[BP_L_HAND]
 				if(temp && !temp.is_usable())
 					to_chat(user,span_notice("You try to move your [temp.name], but cannot!"))
 					return

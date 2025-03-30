@@ -1,9 +1,9 @@
 import {
   Component,
-  ComponentProps,
+  type ComponentProps,
   createRef,
-  ReactNode,
-  RefObject,
+  type ReactNode,
+  type RefObject,
 } from 'react';
 import { Button, Section, Stack } from 'tgui-core/components';
 

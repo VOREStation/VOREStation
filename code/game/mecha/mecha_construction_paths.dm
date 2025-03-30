@@ -556,7 +556,7 @@
 	return
 
 
- //////////////////////
+//////////////////////
 //		Serenity
 //////////////////////
 /datum/construction/mecha/serenity_chassis
@@ -679,7 +679,7 @@
 	if(!..())
 		return 0
 
- 	//TODO: better messages.
+	//TODO: better messages.
 	switch(index)
 		if(20)
 			user.visible_message(span_infoplain("[user] connects [holder] hydraulic systems"), span_infoplain("You connect [holder] hydraulic systems."))

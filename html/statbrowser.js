@@ -89,6 +89,9 @@ function removeStatusTab(name) {
 			verb_tabs.splice(i, 1);
 		}
 	}
+	if(current_tab == name) {
+		tab_change("Status");
+	}
 	menu.removeChild(document.getElementById(name));
 	TakeTabFromByond(name);
 }
