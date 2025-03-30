@@ -1168,24 +1168,23 @@
 	var/registered_mob //On request, only one person is able to use it at a time.
 
 /obj/item/toy/acorn_branch/attack_self(mob/user)
-	if(user.stat)
+	if(user.stat || !ishuman(user))
 		return
 	if(world.time < next_use)
 		to_chat(user, span_notice("You need to wait a bit longer before you can pull out another acorn!"))
 		return
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(registered_mob)
-			if(registered_mob != H)
-				to_chat(user, span_notice("It's a lovely branch!"))
-				return
-		else
-			registered_mob = H
-		if(H.get_inactive_hand())
-			to_chat(user, span_notice("You need to have a free hand to pick an acorn out!"))
+	var/mob/living/carbon/human/H = user
+	if(registered_mob)
+		if(registered_mob != H)
+			to_chat(user, span_notice("It's a lovely branch!"))
 			return
-		var/spawnloc = get_turf(H)
-		var/obj/item/I = new /obj/item/reagent_containers/food/snacks/acorn(spawnloc)
-		H.put_in_inactive_hand(I)
-		next_use = (world.time + 30 SECONDS)
-		H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))
+	else
+		registered_mob = H
+	if(H.get_inactive_hand())
+		to_chat(user, span_notice("You need to have a free hand to pick an acorn out!"))
+		return
+	var/spawnloc = get_turf(H)
+	var/obj/item/I = new /obj/item/reagent_containers/food/snacks/acorn(spawnloc)
+	H.put_in_inactive_hand(I)
+	next_use = (world.time + 30 SECONDS)
+	H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))
