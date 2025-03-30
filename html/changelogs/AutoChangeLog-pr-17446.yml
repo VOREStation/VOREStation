@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - admin: "fix spawn at arrivals will not either pick from the secondary list or sanely fail\nfix latespawn loc code"
