@@ -298,8 +298,14 @@
 		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
 			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin manual repair before further attempts futile.\""
 
-	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead) || (HUSK in H.mutations) || !H.can_defib)
-		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
+	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead)) //They need to be healed first.
+		return "buzzes, \"Resuscitation failed - Severe tissue damage detected. Repair of anatomical damage required.\""
+
+	else if(HUSK in H.mutations) //Husked! Need to fix their husk status first.
+		return "buzzes, \"Resuscitation failed - Anatomical structure malformation detected. 'De-Husk' surgery required.\""
+
+	else if(!H.can_defib) //We can frankensurgery them! Let's tell the user.
+		return "buzzes, \"Resuscitation failed - Severe neurological deformation detected. Brain-stem reattachment surgery required.\""
 
 	var/bad_vital_organ = check_vital_organs(H)
 	if(bad_vital_organ)
