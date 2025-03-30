@@ -146,7 +146,7 @@
 
 	var/turf/simulated/cur_turf = src
 	if(istype(cur_turf))
-		if(is_outdoors())
+		if(is_outdoors() && !A.isAlwaysIndoors())
 			propogate_sunlight_changes(oldtype, old_density, W)
 		if(is_open != was_open)
 			do
