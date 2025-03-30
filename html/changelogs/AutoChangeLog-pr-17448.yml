@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "useless light recalcs, which might even have caused darker than supposed areas"
+  - bugfix: "multiple bugs in outdoor and turf open / space handling"
