@@ -566,3 +566,9 @@
   - qol: ChemAnalyser Pro now uses tgui
   - bugfix: chat scroll tracking failing on large displayed count when huge messages
       blocks were sent
+2025-03-30:
+  Kashargul:
+  - admin: 'fix spawn at arrivals will not either pick from the secondary list or
+      sanely fail
+
+      fix latespawn loc code'
