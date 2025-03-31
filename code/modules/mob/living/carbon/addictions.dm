@@ -30,16 +30,16 @@
 	var/list/addict = list()
 	for(var/datum/reagent/R in bloodstr.reagent_list)
 		var/reagentid = R.id
-		if(istype( SSchemistry.chemical_reagents[reagentid], /datum/reagent/ethanol))
-			reagentid = "ethanol"
-		if(reagentid in addictives)
+		if(istype(SSchemistry.chemical_reagents[reagentid], /datum/reagent/ethanol))
+			reagentid = REAGENT_ID_ETHANOL
+		if(reagentid in get_addictive_reagents(ADDICT_ALL))
 			addict.Add(reagentid)
 	// Only needed for alcohols, will interfere with pills if you detect other things!
 	for(var/datum/reagent/R in ingested.reagent_list)
 		var/reagentid = R.id
-		if(istype( SSchemistry.chemical_reagents[reagentid], /datum/reagent/ethanol))
-			reagentid = "ethanol"
-		if(reagentid in addictives)
+		if(istype(SSchemistry.chemical_reagents[reagentid], /datum/reagent/ethanol))
+			reagentid = REAGENT_ID_ETHANOL
+		if(reagentid in get_addictive_reagents(ADDICT_ALL))
 			addict.Add(reagentid)
 
 	for(var/A in addict)
@@ -52,11 +52,11 @@
 			if(addiction_counters < SLOWADDICT_PROC)
 				addiction_counters = SLOWADDICT_PROC
 			// Check for addition
-			if(A in slow_addictives)
+			if(A in get_addictive_reagents(ADDICT_SLOW))
 				// Slowest addictions for some medications
 				if(addiction_counters[A] <= SLOWADDICT_PROC)
 					addict_to_reagent(A, FALSE)
-			if(A in fast_addictives)
+			if(A in get_addictive_reagents(ADDICT_FAST))
 				// quickly addict to these drugs, bliss, oxyco etc
 				if(addiction_counters[A] <= FASTADDICT_PROC)
 					addict_to_reagent(A, FALSE)
@@ -88,7 +88,6 @@
 		// remove if finished
 		if(addiction_counters[C] == 0)
 			addictions.Remove(C)
-
 
 /mob/living/carbon/proc/addict_to_reagent(var/reagentid, var/round_start)
 	PRIVATE_PROC(TRUE)
