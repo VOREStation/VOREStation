@@ -23,7 +23,7 @@
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
 			simulated = TRUE
-			//delete_me = TRUE
+			//delete_me = TRUE // see above, moving, always use this list with get_turf
 		if("JoinLateGateway")
 			latejoin_gateway += loc
 			latejoin += loc				//VOREStation Addition
