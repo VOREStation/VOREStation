@@ -52,6 +52,7 @@
 #define     TOTAL_HUDS 14 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
+#define CKEY_FROM_VAR(I) ((ismob(I) || isclient(I)) ? I:ckey : null)
 
 //	Shuttles.
 
@@ -115,6 +116,10 @@
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
+
+#define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
+#define AREA_LIMIT_DARK_RESPITE		0x200000 // Shadekin will die normally in those areas //VOREStation Note: Not implemented on VS. Used downstream.
+#define AREA_ALLOW_CLOCKOUT			0x400000 // The PDA timeclock app can only be used in these areas //VOREStation Note: Not implemented on VS. Used downstream.
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
@@ -208,9 +213,10 @@
 #define DEPARTMENT_RESEARCH			"Research"
 #define DEPARTMENT_CARGO			"Cargo"
 #define DEPARTMENT_CIVILIAN			"Civilian"
-#define DEPARTMENT_PLANET			"Exploration" //VOREStation Edit // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
+#define DEPARTMENT_PLANET			"Exploration" // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
 #define DEPARTMENT_SYNTHETIC		"Synthetic"
 
+#define DEPARTMENT_NONCREW			"Non crew"
 // These are mostly for the department guessing code and event system.
 #define DEPARTMENT_UNKNOWN			"Unknown"
 #define DEPARTMENT_EVERYONE			"Everyone"
@@ -333,6 +339,11 @@ var/global/list/##LIST_NAME = list();\
 #define JOB_SILICON_ROBOT	0x2
 #define JOB_SILICON_AI		0x4
 #define JOB_SILICON			0x6 // 2|4, probably don't set jobs to this, but good for checking
+
+//Job defines
+#define JOB_OUTSIDER	"Outsider" //VOREStation Note: Not implemented on VS. Used downstream.
+#define JOB_ANOMALY 	"Anomaly" //VOREStation Note: Not implemented on VS. Used downstream.
+#define JOB_VR			"VR Avatar"
 
 #define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
 

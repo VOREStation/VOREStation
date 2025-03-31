@@ -29,7 +29,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/skills/Initialize()
+/obj/machinery/computer/skills/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -216,13 +216,13 @@
 				set_temp("All employment records deleted.")
 			if("sync_r")
 				if(active1)
-					set_temp(client_update_record(src,active1,usr))
+					set_temp(client_update_record(src,active1,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
-				var/new_notes = strip_html_simple(tgui_input_text(usr,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-				if(usr.Adjacent(src))
-					if(new_notes != "" || tgui_alert(usr, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
-						if(usr.Adjacent(src))
+				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+				if(ui.user.Adjacent(src))
+					if(new_notes != "" || tgui_alert(ui.user, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
+						if(ui.user.Adjacent(src))
 							active1.fields["notes"] = new_notes
 			if("del_r")
 				if(PDA_Manifest)
@@ -266,12 +266,12 @@
 				return FALSE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/skills/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -323,8 +323,8 @@
 			return FALSE
 
 /**
-  * Called when the print timer finishes
-  */
+ * Called when the print timer finishes
+ */
 /obj/machinery/computer/skills/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
@@ -355,12 +355,12 @@
 	SStgui.update_uis(src)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/computer/skills/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)

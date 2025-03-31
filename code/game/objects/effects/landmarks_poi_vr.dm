@@ -9,10 +9,9 @@ var/global/list/global_used_pois = list()
 	var/poi_type = null
 	var/remove_from_pool = TRUE
 
-/obj/effect/landmark/poi_loader/New()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
-/obj/effect/landmark/poi_loader/Initialize()
+/obj/effect/landmark/poi_loader/Initialize(mapload)
 	src.load_poi()
 	return ..()
 

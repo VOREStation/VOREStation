@@ -239,7 +239,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	// Other animals just need to be injured.
 	return (friend.health < friend.maxHealth)
 
-/mob/living/simple_mob/animal/sif/grafadreka/Initialize()
+/mob/living/simple_mob/animal/sif/grafadreka/Initialize(mapload)
 
 	charisma = rand(5, 15)
 	stored_sap = rand(20, 30)

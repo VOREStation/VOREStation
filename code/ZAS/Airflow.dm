@@ -123,15 +123,15 @@ Contains helper procs for airflow, handled in /connection_group.
 
 	var/blocked = run_armor_check(BP_HEAD,"melee")
 	var/soaked = get_armor_soak(BP_HEAD,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, soaked, 0, "Airflow")
+	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, soaked, 0)
 
 	blocked = run_armor_check(BP_TORSO,"melee")
 	soaked = get_armor_soak(BP_TORSO,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_TORSO, blocked, soaked, 0, "Airflow")
+	apply_damage(b_loss/3, BRUTE, BP_TORSO, blocked, soaked, 0)
 
 	blocked = run_armor_check(BP_GROIN,"melee")
 	soaked = get_armor_soak(BP_GROIN,"melee")
-	apply_damage(b_loss/3, BRUTE, BP_GROIN, blocked, soaked, 0, "Airflow")
+	apply_damage(b_loss/3, BRUTE, BP_GROIN, blocked, soaked, 0)
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))

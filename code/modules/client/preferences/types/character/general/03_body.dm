@@ -97,6 +97,19 @@
 	target.g_tail3 = hex2num(copytext(value, 4, 6))
 	target.b_tail3 = hex2num(copytext(value, 6, 8))
 
+/datum/preference/numeric/human/tail_alpha
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "tail_alpha"
+	can_randomize = FALSE
+	minimum = 0
+	maximum = 255
+
+/datum/preference/numeric/human/tail_alpha/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_tail = value
+
+/datum/preference/numeric/human/tail_alpha/create_default_value()
+	return 255 //nada.
 
 /datum/preference/color/human/wing_color1
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -131,6 +144,20 @@
 	target.g_wing3 = hex2num(copytext(value, 4, 6))
 	target.b_wing3 = hex2num(copytext(value, 6, 8))
 
+/datum/preference/numeric/human/wing_alpha
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "wing_alpha"
+	can_randomize = FALSE
+	minimum = 0
+	maximum = 255 //while it'd be dumb to have fully transparent wings, I'm not your mom.
+
+/datum/preference/numeric/human/wing_alpha/create_default_value()
+	return 255 //no randomization here.
+
+/datum/preference/numeric/human/wing_alpha/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_wing = value
+
 
 /datum/preference/color/human/ears_color1
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -164,3 +191,23 @@
 	target.r_ears3 = hex2num(copytext(value, 2, 4))
 	target.g_ears3 = hex2num(copytext(value, 4, 6))
 	target.b_ears3 = hex2num(copytext(value, 6, 8))
+
+/datum/preference/numeric/human/ears_alpha
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "ears_alpha"
+	can_randomize = FALSE
+	minimum = 0
+	maximum = 255
+
+/datum/preference/numeric/human/ears_alpha/secondary
+	savefile_key = "secondary_ears_alpha"
+
+/datum/preference/numeric/human/ears_alpha/secondary/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_ears2 = value;
+
+/datum/preference/numeric/human/ears_alpha/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_ears = value
+
+/datum/preference/numeric/human/ears_alpha/create_default_value()
+	return 255 //no randomization here.

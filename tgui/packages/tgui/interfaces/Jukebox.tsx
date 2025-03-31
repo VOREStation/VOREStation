@@ -54,10 +54,10 @@ export const Jukebox = (props) => {
     admin,
   } = data;
 
-  let genre_songs =
+  const genre_songs =
     tracks.length &&
     tracks.reduce((acc, obj) => {
-      let key = obj.genre || 'Uncategorized';
+      const key = obj.genre || 'Uncategorized';
       if (!acc[key]) {
         acc[key] = [];
       }
@@ -65,7 +65,7 @@ export const Jukebox = (props) => {
       return acc;
     }, {});
 
-  let true_genre = playing && (current_genre || 'Uncategorized');
+  const true_genre = playing && (current_genre || 'Uncategorized');
 
   const [newTitle, setNewTitle] = useState<string>('Unknown');
   const [newUrl, setNewUrl] = useState<string>('');

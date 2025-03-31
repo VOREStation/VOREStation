@@ -32,7 +32,7 @@
 
 /datum/event2/event/gravity/end()
 	gravity_is_on = 1
-	
+
 	var/did_anything = FALSE
 	for(var/obj/machinery/gravity_generator/main/GG in generators)
 		if(!GG.on)

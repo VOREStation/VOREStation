@@ -18,6 +18,7 @@
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/radio/headset/mmi_radio/radio = null//Let's give it a radio.
+	var/mob/living/body_backup = null //add reforming
 
 /obj/item/mmi/New()
 	radio = new(src)//Spawns a radio inside the MMI.
@@ -146,6 +147,8 @@
 			rig.forced_move(direction, user)
 
 /obj/item/mmi/Destroy()
+	if(body_backup)
+		qdel(body_backup)
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
@@ -180,6 +183,7 @@
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
 /obj/item/mmi/digital/New()
 	src.brainmob = new(src)
@@ -245,13 +249,18 @@
 		return
 	searching = 1
 
-	var/datum/ghost_query/Q = new ghost_query_type()
-	var/list/winner = Q.query()
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new ghost_query_type()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query()
+
+/obj/item/mmi/digital/proc/get_winner()
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)
 	else
 		reset_search()
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
 
 /obj/item/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	if(src.brainmob && src.brainmob.key)

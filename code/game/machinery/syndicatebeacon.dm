@@ -18,17 +18,17 @@
 
 /obj/machinery/syndicate_beacon/attack_hand(var/mob/user as mob)
 	user.set_machine(src)
-	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
+	var/dat = span_darkgreen(span_italics("Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br>"))
 	if(ishuman(user) || isAI(user))
 		if(is_special_character(user))
-			dat += "<font color=#07700><i>Operative record found. Greetings, Agent [user.name].</i></font><br>"
+			dat += span_darkgreen(span_italics("Operative record found. Greetings, Agent [user.name].<br>"))
 		else if(charges < 1)
 			dat += "<TT>Connection severed.</TT><BR>"
 		else
 			var/honorific = "Mr."
 			if(user.gender == FEMALE)
 				honorific = "Ms."
-			dat += "<font color=red><i>Identity not found in operative database. What can the Syndicate do for you today, [honorific] [user.name]?</i></font><br>"
+			dat += span_red(span_italics("Identity not found in operative database. What can the Syndicate do for you today, [honorific] [user.name]?<br>"))
 			if(!selfdestructing)
 				dat += "<br><br><A href='byond://?src=\ref[src];betraitor=1;traitormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
 	dat += temptext
@@ -44,13 +44,13 @@
 			return
 		var/mob/M = locate(href_list["traitormob"])
 		if(M.mind.special_role || jobban_isbanned(M, JOB_SYNDICATE))
-			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
+			temptext = span_italics("We have no need for you at this time. Have a pleasant day.") + "<br>"
 			updateUsrDialog(usr)
 			return
 		charges -= 1
 		switch(rand(1,2))
 			if(1)
-				temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
+				temptext = span_red(span_italics(span_bold("Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.")))
 				updateUsrDialog(usr)
 				spawn(rand(50,200)) selfdestruct()
 				return
@@ -146,7 +146,7 @@
 /obj/machinery/power/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
-	..()
+	. = ..()
 
 //stealth direct power usage
 /obj/machinery/power/singularity_beacon/process()

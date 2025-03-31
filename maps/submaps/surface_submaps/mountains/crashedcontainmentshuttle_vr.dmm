@@ -280,7 +280,6 @@
 "bj" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/yellow,
 /area/submap/crashedcontainmentshuttle)
 "bk" = (
@@ -301,11 +300,6 @@
 	},
 /obj/effect/decal/remains/human,
 /turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
-"bn" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/black,
 /area/submap/crashedcontainmentshuttle)
 "bo" = (
 /obj/structure/extinguisher_cabinet,
@@ -329,15 +323,10 @@
 /area/submap/crashedcontainmentshuttle)
 "bt" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)
 "bu" = (
 /obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
-"bv" = (
-/obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)
 "bw" = (
@@ -368,7 +357,6 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor/white,
 /area/submap/crashedcontainmentshuttle)
@@ -638,7 +626,7 @@ an
 ak
 ak
 ak
-bn
+aF
 aD
 ak
 ak
@@ -884,7 +872,7 @@ ak
 ak
 ak
 bq
-bv
+bt
 bC
 aq
 ah

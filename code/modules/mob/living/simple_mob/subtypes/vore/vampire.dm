@@ -30,8 +30,8 @@
 
 	faction = FACTION_VAMPIRE
 
-/mob/living/simple_mob/vore/vampire/New()
-	..()
+/mob/living/simple_mob/vore/vampire/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"
@@ -56,6 +56,8 @@
 
 /mob/living/simple_mob/vore/vampire/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected
@@ -113,6 +115,6 @@
 	health = 350
 	vore_pounce_chance = 75
 
-/mob/living/simple_mob/vore/vampire/queen/New()
+/mob/living/simple_mob/vore/vampire/queen/Initialize(mapload)
+	. = ..()
 	resize(2)
-	..()

@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
 
-/obj/item/reagent_containers/glass/replenishing/Initialize()
+/obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
@@ -35,7 +35,8 @@
 	var/last_twitch = 0
 	var/max_stored_messages = 100
 
-/obj/item/clothing/mask/gas/poltergeist/New()
+/obj/item/clothing/mask/gas/poltergeist/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/gas/poltergeist/process()
@@ -68,15 +69,15 @@
 	var/wight_check_index = 1
 	var/list/shadow_wights = list()
 
-/obj/item/vampiric/New()
-	..()
+/obj/item/vampiric/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()
 	//see if we've identified anyone nearby
 	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
 		var/mob/living/carbon/human/M = pop(nearby_mobs)
-		if(M in view(7,src) && M.health > 20)
+		if((M in view(7,src)) && M.health > 20)
 			if(prob(50))
 				bloodcall(M)
 				nearby_mobs.Add(M)
@@ -96,7 +97,7 @@
 	//use up stored charges
 	if(charges >= 10)
 		charges -= 10
-		var/new_object = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
+		var/new_object = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell, /obj/item/clothing/shoes/cult)
 		new new_object(pick(RANGE_TURFS(1,src)))
 		playsound(src, 'sound/effects/ghost.ogg', 50, 1, -3)
 
@@ -157,8 +158,8 @@
 	var/turf/target_turf
 	var/loc_last_process
 
-/obj/effect/decal/cleanable/blood/splatter/animated/New()
-	..()
+/obj/effect/decal/cleanable/blood/splatter/animated/Initialize(mapload, _age)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = src.loc
 
@@ -188,7 +189,8 @@
 	icon_state = "shade"
 	density = TRUE
 
-/obj/effect/shadow_wight/New()
+/obj/effect/shadow_wight/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()

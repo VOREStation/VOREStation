@@ -12,13 +12,13 @@ var/global/list/minor_air_alarms = list()
 	icon_screen = "alert:0"
 	light_color = "#e6ffff"
 
-/obj/machinery/computer/atmos_alert/New()
-	..()
+/obj/machinery/computer/atmos_alert/Initialize(mapload)
+	. = ..()
 	atmosphere_alarm.register_alarm(src, /atom/proc/update_icon)
 
 /obj/machinery/computer/atmos_alert/Destroy()
 	atmosphere_alarm.unregister_alarm(src)
-	..()
+	. = ..()
 
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
 	tgui_interact(user)

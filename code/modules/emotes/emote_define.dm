@@ -30,8 +30,8 @@ var/global/list/emotes_by_key
 	var/emote_message_muffled                           // A message to show if the emote is audible and the user is muzzled.
 
 	var/list/emote_sound                                // A sound for the emote to play.
-	                                                    // Can either be a single sound, a list of sounds to pick from, or an
-	                                                    // associative array of gender to single sounds/a list of sounds.
+														// Can either be a single sound, a list of sounds to pick from, or an
+														// associative array of gender to single sounds/a list of sounds.
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
@@ -46,7 +46,7 @@ var/global/list/emotes_by_key
 	var/sound_preferences = list(/datum/preference/toggle/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
 
-/decl/emote/Initialize()
+/decl/emote/Initialize(mapload)
 	. = ..()
 	if(key)
 		LAZYSET(global.emotes_by_key, key, src)

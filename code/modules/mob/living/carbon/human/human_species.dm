@@ -4,7 +4,7 @@
 	has_huds = FALSE
 	blocks_emissive = FALSE
 
-/mob/living/carbon/human/dummy/Initialize()
+/mob/living/carbon/human/dummy/Initialize(mapload)
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src
@@ -18,7 +18,7 @@
 	human_mob_list -= src
 	return
 
-/mob/living/carbon/human/dummy/mannequin/Initialize()
+/mob/living/carbon/human/dummy/mannequin/Initialize(mapload)
 	. = ..()
 	delete_inventory()
 
@@ -27,7 +27,7 @@
 	icon_state = "preview"
 	var/autorotate = TRUE
 
-/mob/living/carbon/human/dummy/mannequin/autoequip/Initialize()
+/mob/living/carbon/human/dummy/mannequin/autoequip/Initialize(mapload)
 	icon = null
 	icon_state = ""
 	. = ..()

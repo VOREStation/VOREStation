@@ -85,7 +85,7 @@
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_foot", "r_foot", "l_leg", "r_leg")
+		target_zone = pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
@@ -131,6 +131,7 @@
 				span_danger("You step on \the [src]!"),
 				span_infoplain(span_bold("You hear a loud metallic snap!"))
 				)
+			SSmotiontracker.ping(src,100) // Clunk!
 			attack_mob(L)
 			if(!has_buckled_mobs())
 				anchored = FALSE
@@ -332,7 +333,7 @@
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_foot", "r_foot", "l_leg", "r_leg")
+		target_zone = pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")
@@ -351,7 +352,7 @@
 
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
 
-	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, soaked, src, sharp, edge))
+	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, soaked, sharp, edge, src))
 		return
 
 	playsound(src, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
@@ -369,7 +370,7 @@
 
 		to_chat(H, span_danger("You step directly on \the [src]!"))
 
-		var/list/check = list("l_foot", "r_foot")
+		var/list/check = list(BP_L_FOOT, BP_R_FOOT)
 		while(check.len)
 			var/picked = pick(check)
 			var/obj/item/organ/external/affecting = H.get_organ(picked)

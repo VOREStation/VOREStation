@@ -20,12 +20,9 @@ var/global/list/micro_tunnels = list()
 		/mob/living/simple_mob/slime
 	)
 
-/obj/structure/micro_tunnel/New()
+/obj/structure/micro_tunnel/Initialize(mapload)
 	. = ..()
 	micro_tunnels.Add(src)
-
-/obj/structure/micro_tunnel/Initialize()
-	. = ..()
 	if(name == initial(name))
 		var/area/our_area = get_area(src)
 		name = "[our_area.name] [name]"
@@ -70,7 +67,6 @@ var/global/list/micro_tunnels = list()
 	for(var/datum/planet/P in SSplanets.planets)
 		if(myturf.z in P.expected_z_levels)
 			planet = P
-		else
 	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
 		if(t == src)
 			continue
@@ -85,7 +81,6 @@ var/global/list/micro_tunnels = list()
 			if(targetturf.z in planet.expected_z_levels)
 				destinations |= t
 				continue
-			else
 		var/above = GetAbove(myturf)
 		if(above && t.z == z + 1)
 			destinations |= t
@@ -457,7 +452,7 @@ var/global/list/micro_tunnels = list()
 
 	var/chance_to_spawn = 25
 
-/obj/effect/mouse_hole_spawner/Initialize()
+/obj/effect/mouse_hole_spawner/Initialize(mapload)
 	. = ..()
 
 	if(prob(chance_to_spawn))

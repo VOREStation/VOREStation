@@ -15,16 +15,14 @@
 	var/obj/machinery/power/am_engine/injector/connected_I = null
 	var/state = STATE_DEFAULT
 
-/obj/machinery/computer/am_engine/New()
-	..()
-	spawn( 24 )
-		for(var/obj/machinery/power/am_engine/engine/E in world)
-			if(E.engine_id == src.engine_id)
-				src.connected_E = E
-		for(var/obj/machinery/power/am_engine/injector/I in world)
-			if(I.engine_id == src.engine_id)
-				src.connected_I = I
-	return
+/obj/machinery/computer/am_engine/Initialize(mapload)
+	. = ..()
+	for(var/obj/machinery/power/am_engine/engine/E in world)
+		if(E.engine_id == src.engine_id)
+			src.connected_E = E
+	for(var/obj/machinery/power/am_engine/injector/I in world)
+		if(I.engine_id == src.engine_id)
+			src.connected_I = I
 
 /obj/machinery/computer/am_engine/Topic(href, href_list)
 	if(..())
@@ -57,9 +55,6 @@
 	src.updateUsrDialog(usr)
 
 /obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/am_engine/attack_paw(var/mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)

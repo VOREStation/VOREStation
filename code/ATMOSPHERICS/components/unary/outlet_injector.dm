@@ -24,7 +24,7 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/unary/outlet_injector/Initialize()
+/obj/machinery/atmospherics/unary/outlet_injector/Initialize(mapload)
 	. = ..()
 
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
@@ -119,7 +119,7 @@
 		"power" = use_power,
 		"volume_rate" = volume_rate,
 		"sigtype" = "status"
-	 )
+	)
 
 	radio_connection.post_signal(src, signal)
 

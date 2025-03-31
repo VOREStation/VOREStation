@@ -46,8 +46,7 @@
 /spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultfloor"
 	flick("cultfloor",animation)
-	spawn(10)
-		qdel(animation)
+	QDEL_IN(animation, 1 SECOND)
 
 /spell/aoe_turf/conjure/wall
 	name = "Lesser Construction"
@@ -65,8 +64,7 @@
 /spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultwall"
 	flick("cultwall",animation)
-	spawn(10)
-		qdel(animation)
+	QDEL_IN(animation, 1 SECOND)
 
 /spell/aoe_turf/conjure/wall/reinforced
 	name = "Greater Construction"
@@ -194,15 +192,14 @@
 	return */
 	for(var/turf/T in targets)
 		for(var/obj/machinery/door/door in T.contents)
-			spawn(1)
-				if(istype(door,/obj/machinery/door/airlock))
-					var/obj/machinery/door/airlock/AL = door
-					AL.locked = 0 //The spirits of the damned care not for your locks.
-					AL.welded = 0 //Or your welding tools.
-				else if(istype(door, /obj/machinery/door/firedoor))
-					var/obj/machinery/door/firedoor/FD = door
-					FD.blocked = 0
-				door.open(1)
+			if(istype(door,/obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/AL = door
+				AL.locked = 0 //The spirits of the damned care not for your locks.
+				AL.welded = 0 //Or your welding tools.
+			else if(istype(door, /obj/machinery/door/firedoor))
+				var/obj/machinery/door/firedoor/FD = door
+				FD.blocked = 0
+			door.open(1)
 	return
 
 /*
@@ -441,13 +438,10 @@
 	cast_sound = null			// Sound file played when this is used.
 	var/last_castcheck = null	// The last time this spell was cast.
 
-/obj/item/spell/construct/New()
-	//..() //This kills the spell, because super on this calls the default spell's New, which checks for a core. Can't have that.
-	if(isliving(loc))
-		owner = loc
+/obj/item/spell/construct/Initialize(mapload)
+	. = ..(mapload, TRUE)
 	if(!owner)
-		qdel(src)
-	update_icon()
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/spell/construct/adjust_instability(var/amount) //The only drawback to the boons of the geometer is the use of a mortal's blood as fuel. Constructs have already paid that price long ago.
 	return
@@ -523,19 +517,23 @@
 	return P
 
 /obj/item/spell/construct/projectile/proc/set_up(atom/hit_atom, mob/living/user)
-	if(spell_projectile)
-		if(pay_energy(energy_cost_per_shot))
-			if(pre_shot_delay)
-				var/image/target_image = image(icon = 'icons/obj/spells.dmi', loc = get_turf(hit_atom), icon_state = "target")
-				user << target_image
-				user.Stun(pre_shot_delay / 10)
-				sleep(pre_shot_delay)
-				qdel(target_image)
-				if(owner)
-					return TRUE
-				return FALSE // We got dropped before the firing occured.
-			return TRUE // No delay, no need to check.
-	return FALSE
+	if(!spell_projectile || !pay_energy(energy_cost_per_shot) || !owner)
+		return FALSE
+	if(!pre_shot_delay)
+		return TRUE
+	var/succeeded = FALSE
+
+	var/turf/T = get_turf(hit_atom)
+	var/image/target_image = image(icon = 'icons/obj/spells.dmi', icon_state = "target")
+
+	T.add_overlay(target_image)
+
+	if(do_after(user, pre_shot_delay))
+		succeeded = TRUE
+
+	T.cut_overlay(target_image)
+	qdel(target_image)
+	return succeeded
 
 /obj/item/spell/construct/spawner
 	name = "spawner template"

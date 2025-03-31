@@ -81,11 +81,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
-"ar" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood/virgo3b,
-/area/submap/lonehome)
 "as" = (
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
@@ -121,11 +116,6 @@
 /turf/simulated/floor/tiled,
 /area/submap/lonehome)
 "aw" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/virgo3b,
-/area/submap/lonehome)
-"ax" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
@@ -407,7 +397,6 @@
 	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bm" = (
@@ -448,11 +437,6 @@
 	id = "h_kitchen"
 	},
 /turf/simulated/floor/wood/virgo3b,
-/area/submap/lonehome)
-"br" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
 "bs" = (
 /obj/item/pen,
@@ -520,7 +504,6 @@
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
@@ -601,7 +584,6 @@
 	name = "Stained sheet of paper"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bN" = (
@@ -640,12 +622,6 @@
 /area/submap/lonehome)
 "bS" = (
 /obj/random/trash,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/carpet/sblucarpet/virgo3b,
-/area/submap/lonehome)
-"bT" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
@@ -952,17 +928,11 @@
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
-"cM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating/external/virgo3b,
-/area/submap/lonehome)
 "cN" = (
 /obj/item/flashlight{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
@@ -970,7 +940,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
@@ -1168,7 +1137,7 @@ ab
 ab
 ae
 aj
-ar
+aq
 aE
 aQ
 aQ
@@ -1226,11 +1195,11 @@ aJ
 as
 aR
 aZ
-ar
+aq
 ad
 aq
 bM
-bT
+aZ
 aZ
 ck
 ct
@@ -1256,7 +1225,7 @@ ba
 bj
 ad
 bB
-br
+aj
 bU
 cd
 cl
@@ -1305,14 +1274,14 @@ af
 ad
 av
 ES
-ar
-ar
+aq
+aq
 bl
-br
+aj
 bC
 bN
-ar
-ar
+aq
+aq
 aq
 as
 ES
@@ -1370,7 +1339,7 @@ aj
 ak
 cv
 cC
-cM
+cv
 ad
 cy
 cU
@@ -1384,7 +1353,7 @@ aa
 aa
 ag
 am
-ax
+aw
 aH
 aq
 bc
@@ -1397,7 +1366,7 @@ ce
 cm
 ad
 cD
-cM
+cv
 ad
 cy
 cT
@@ -1438,7 +1407,7 @@ aa
 aa
 ad
 ao
-ax
+aw
 aw
 aT
 as

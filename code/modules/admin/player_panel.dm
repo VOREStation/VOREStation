@@ -38,7 +38,7 @@
 								}
 								var ltd = tr.getElementsByTagName("td");
 								var td = ltd\[0\];
-								var lsearch = td.getElementsByTagName("b");
+								var lsearch = td.getElementsByClassName("bold");
 								var search = lsearch\[0\];
 								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
 								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
@@ -97,6 +97,8 @@
 						var span = spans\[i\];
 
 						var id = span.getAttribute("id");
+						if(!id)
+							continue;
 
 						if(!(id.indexOf("item")==0))
 							continue;
@@ -193,14 +195,14 @@
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					<font size='5'><b>Player panel</b></font><br>
+					"} + span_giant(span_bold("Player panel")) + {"<br>
 					Hover over a line to see more information - <a href='byond://?src=\ref[src];[HrefToken()];check_antagonist=1'>Check antagonists</a>
 					<p>
 				</td>
 			</tr>
 			<tr id='search_tr'>
 				<td align='center'>
-					<b>Search:</b> <input type='text' id='filter' value='' style='width:300px;'>
+					"} + span_bold("Search:") + {" <input type='text' id='filter' value='' style='width:300px;'>
 				</td>
 			</tr>
 	</table>
@@ -290,7 +292,7 @@
 						<a id='link[i]'
 						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
 						>
-						<span id='search[i]'><b>[M_name] - [M_rname] - [M_key] ([M_job])</b></span>
+						<span id='search[i]'>"} + span_bold("[M_name] - [M_rname] - [M_key] ([M_job])") + {"</span>
 						</a>
 						<br><span id='item[i]'></span>
 					</td>
@@ -321,7 +323,7 @@
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
-	dat += "<body><table border=1 cellspacing=5><B><tr><th>Name</th><th>Real Name</th><th>Assigned Job</th><th>Key</th><th>Options</th><th>PM</th><th>Traitor?</th></tr></B>"
+	dat += "<body><table border=1 cellspacing=5>" + span_bold("<tr><th>Name</th><th>Real Name</th><th>Assigned Job</th><th>Key</th><th>Options</th><th>PM</th><th>Traitor?</th></tr>")
 	//add <th>IP:</th> to this if wanting to add back in IP checking
 	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
 	var/list/mobs = sortmobs()
@@ -368,9 +370,9 @@
 				if(0)
 					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>Traitor?</A></td>"}
 				if(1)
-					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'><font color=red>Traitor?</font></A></td>"}
+					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>"} + span_red("Traitor?") + {"</A></td>"}
 				if(2)
-					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'><font color=red><b>Traitor?</b></font></A></td>"}
+					dat += {"<td align=center><A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>"} + span_red(span_bold("Traitor?")) + {"</A></td>"}
 		else
 			dat += {"<td align=center> N/A </td>"}
 
@@ -384,9 +386,9 @@
 
 /datum/admins/proc/check_antagonists()
 	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
-		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
-		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
-		dat += "Round Duration: <B>[roundduration2text()]</B><BR>"
+		var/dat = "<html><head><title>Round Status</title></head><body><h1>" + span_bold("Round Status") + "</h1>"
+		dat += "Current Game Mode: " + span_bold("[ticker.mode.name]") + "<BR>"
+		dat += "Round Duration: " + span_bold("[roundduration2text()]") + "<BR>"
 		dat += span_bold("Emergency shuttle") + "<BR>"
 		if (!emergency_shuttle.online())
 			dat += "<a href='byond://?src=\ref[src];[HrefToken()];call_shuttle=1'>Call Shuttle</a><br>"

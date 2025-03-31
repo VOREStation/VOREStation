@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	GLOB.areas_by_type[type] = src
 	return ..()
 
-/area/Initialize()
+/area/Initialize(mapload)
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
@@ -445,7 +445,7 @@ var/list/mob/living/forced_ambiance_list = new
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-		if(H.incorporeal_move) // VOREstation edit - Phaseshifted beings should not be affected by gravity
+		if(H.is_incorporeal()) // VOREstation edit - Phaseshifted beings should not be affected by gravity
 			return
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
@@ -552,13 +552,13 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
 /area/proc/flag_check(var/flag, var/match_all = FALSE)
-    if(match_all)
-        return (flags & flag) == flag
-    return flags & flag
+	if(match_all)
+		return (flags & flag) == flag
+	return flags & flag
 
 // RS Port #658 Start
 /area/proc/check_phase_shift(var/mob/ourmob)
-	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.incorporeal_move)
+	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.is_incorporeal())
 		return
 	if(!isliving(ourmob))
 		return
@@ -573,3 +573,12 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		if(SK.ability_flags & AB_PHASE_SHIFTED)
 			SK.phase_in(SK.loc)
 // RS Port #658 End
+
+/area/proc/isAlwaysIndoors()
+	return FALSE
+
+/area/shuttle/isAlwaysIndoors()
+	return TRUE
+
+/area/turbolift/isAlwaysIndoors()
+	return TRUE

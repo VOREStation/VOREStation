@@ -192,7 +192,7 @@
 					to_chat(usr, "Cancelled")
 					return
 
-			var/datum/db_query/update_query = SSdbcore.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
+			var/datum/db_query/update_query = SSdbcore.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite>" + span_bold("\\\"[reason]\\\"") + "</cite> to <cite>" + span_bold("\\\"[value]\\\"") + "</cite><BR>') WHERE id = [banid]")
 			update_query.Execute()
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 			qdel(update_query)
@@ -290,18 +290,18 @@
 	output += span_bold("Add custom ban:") + " (ONLY use this if you can't ban through any other method)"
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
 	output += "<table width='100%'><tr>"
-	output += "<td width='50%' align='right'><b>Ban type:</b><select name='dbbanaddtype'>"
+	output += "<td width='50%' align='right'>" + span_bold("Ban type:") + "<select name='dbbanaddtype'>"
 	output += "<option value=''>--</option>"
 	output += "<option value='[BANTYPE_PERMA]'>PERMABAN</option>"
 	output += "<option value='[BANTYPE_TEMP]'>TEMPBAN</option>"
 	output += "<option value='[BANTYPE_JOB_PERMA]'>JOB PERMABAN</option>"
 	output += "<option value='[BANTYPE_JOB_TEMP]'>JOB TEMPBAN</option>"
 	output += "</select></td>"
-	output += "<td width='50%' align='right'><b>Ckey:</b> <input type='text' name='dbbanaddckey'></td></tr>"
-	output += "<tr><td width='50%' align='right'><b>IP:</b> <input type='text' name='dbbanaddip'></td>"
-	output += "<td width='50%' align='right'><b>CID:</b> <input type='text' name='dbbanaddcid'></td></tr>"
-	output += "<tr><td width='50%' align='right'><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
-	output += "<td width='50%' align='right'><b>Job:</b><select name='dbbanaddjob'>"
+	output += "<td width='50%' align='right'>" + span_bold("Ckey:") + " <input type='text' name='dbbanaddckey'></td></tr>"
+	output += "<tr><td width='50%' align='right'>" + span_bold("IP:") + " <input type='text' name='dbbanaddip'></td>"
+	output += "<td width='50%' align='right'>" + span_bold("CID:") + " <input type='text' name='dbbanaddcid'></td></tr>"
+	output += "<tr><td width='50%' align='right'>" + span_bold("Duration:") + " <input type='text' name='dbbaddduration'></td>"
+	output += "<td width='50%' align='right'>" + span_bold("Job:") + "<select name='dbbanaddjob'>"
 	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
@@ -323,13 +323,13 @@
 	output += "</table>"
 
 	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
-	output += "<table width='60%'><tr><td colspan='2' align='left'><b>Search:</b>"
+	output += "<table width='60%'><tr><td colspan='2' align='left'>" + span_bold("Search:") + ""
 	output += "<input type='hidden' name='src' value='\ref[src]'></td></tr>"
-	output += "<tr><td width='50%' align='right'><b>Ckey:</b> <input type='text' name='dbsearchckey' value='[playerckey]'></td>"
-	output += "<td width='50%' align='right'><b>Admin ckey:</b> <input type='text' name='dbsearchadmin' value='[adminckey]'></td></tr>"
-	output += "<tr><td width='50%' align='right'><b>IP:</b> <input type='text' name='dbsearchip' value='[playerip]'></td>"
-	output += "<td width='50%' align='right'><b>CID:</b> <input type='text' name='dbsearchcid' value='[playercid]'></td></tr>"
-	output += "<tr><td width='50%' align='right' colspan='2'><b>Ban type:</b><select name='dbsearchbantype'>"
+	output += "<tr><td width='50%' align='right'>" + span_bold("Ckey:") + " <input type='text' name='dbsearchckey' value='[playerckey]'></td>"
+	output += "<td width='50%' align='right'>" + span_bold("Admin ckey:") + " <input type='text' name='dbsearchadmin' value='[adminckey]'></td></tr>"
+	output += "<tr><td width='50%' align='right'>" + span_bold("IP:") + " <input type='text' name='dbsearchip' value='[playerip]'></td>"
+	output += "<td width='50%' align='right'>" + span_bold("CID:") + " <input type='text' name='dbsearchcid' value='[playercid]'></td></tr>"
+	output += "<tr><td width='50%' align='right' colspan='2'>" + span_bold("Ban type:") + "<select name='dbsearchbantype'>"
 	output += "<option value=''>--</option>"
 	output += "<option value='[BANTYPE_PERMA]'>PERMABAN</option>"
 	output += "<option value='[BANTYPE_TEMP]'>TEMPBAN</option>"
@@ -360,11 +360,11 @@
 
 			output += "<table width='90%' bgcolor='#e3e3e3' cellpadding='5' cellspacing='0' align='center'>"
 			output += "<tr>"
-			output += "<th width='25%'><b>TYPE</b></th>"
-			output += "<th width='20%'><b>CKEY</b></th>"
-			output += "<th width='20%'><b>TIME APPLIED</b></th>"
-			output += "<th width='20%'><b>ADMIN</b></th>"
-			output += "<th width='15%'><b>OPTIONS</b></th>"
+			output += "<th width='25%'>" + span_bold("TYPE") + "</th>"
+			output += "<th width='20%'>" + span_bold("CKEY") + "</th>"
+			output += "<th width='20%'>" + span_bold("TIME APPLIED") + "</th>"
+			output += "<th width='20%'>" + span_bold("ADMIN") + "</th>"
+			output += "<th width='15%'>" + span_bold("OPTIONS") + "</th>"
 			output += "</tr>"
 
 			var/adminsearch = ""
@@ -442,42 +442,42 @@
 				var/typedesc =""
 				switch(bantype)
 					if("PERMABAN")
-						typedesc = "<font color='red'><b>PERMABAN</b></font>"
+						typedesc = span_red(span_bold("PERMABAN"))
 					if("TEMPBAN")
-						typedesc = span_bold("TEMPBAN") + "<br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
+						typedesc = span_bold("TEMPBAN") + "<br>" + span_normal("([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]")
 					if("JOB_PERMABAN")
-						typedesc = span_bold("JOBBAN") + "<br><font size='2'>([job])</font>"
+						typedesc = span_bold("JOBBAN") + "<br>" + span_normal("([job])")
 					if("JOB_TEMPBAN")
-						typedesc = span_bold("TEMP JOBBAN") + "<br><font size='2'>([job])<br>([duration] minutes<br>Expires [expiration]</font>"
+						typedesc = span_bold("TEMP JOBBAN") + "<br>" + span_normal("([job])<br>([duration] minutes<br>Expires [expiration]")
 
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center'>[typedesc]</td>"
-				output += "<td align='center'><b>[ckey]</b></td>"
+				output += "<td align='center'>" + span_bold("[ckey]") + "</td>"
 				output += "<td align='center'>[bantime]</td>"
-				output += "<td align='center'><b>[ackey]</b></td>"
+				output += "<td align='center'>" + span_bold("[ackey]") + "</td>"
 				output += "<td align='center'>[(unbanned || auto) ? "" : span_bold("<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a>")]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
-				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
-				output += "<td align='center' colspan='3' bgcolor=''><b>CIP:</b> [cid]</td>"
+				output += "<td align='center' colspan='2' bgcolor=''>" + span_bold("IP:") + " [ip]</td>"
+				output += "<td align='center' colspan='3' bgcolor=''>" + span_bold("CIP:") + " [cid]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[lcolor]'>"
-				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
+				output += "<td align='center' colspan='5'>" + span_bold("Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]") + " <cite>\"[reason]\"</cite></td>"
 				output += "</tr>"
 				if(edits)
 					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5'><b>EDITS</b></td>"
+					output += "<td align='center' colspan='5'>" + span_bold("EDITS") + "</td>"
 					output += "</tr>"
 					output += "<tr bgcolor='[lcolor]'>"
-					output += "<td align='center' colspan='5'><font size='2'>[edits]</font></td>"
+					output += "<td align='center' colspan='5'>" + span_normal("[edits]") + "</td>"
 					output += "</tr>"
 				if(unbanned)
 					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanckey] on [unbantime]</b></td>"
+					output += "<td align='center' colspan='5' bgcolor=''>" + span_bold("UNBANNED by admin [unbanckey] on [unbantime]") + "</td>"
 					output += "</tr>"
 				else if(auto)
 					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5' bgcolor=''><b>EXPIRED at [expiration]</b></td>"
+					output += "<td align='center' colspan='5' bgcolor=''>" + span_bold("EXPIRED at [expiration]") + "</td>"
 					output += "</tr>"
 				output += "<tr>"
 				output += "<td colspan='5' bgcolor='white'>&nbsp</td>"

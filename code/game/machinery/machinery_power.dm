@@ -71,7 +71,7 @@
 	return 0
 
 // Do not do power stuff in New/Initialize until after ..()
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(update_power_on_move))
 	AddComponent(/datum/component/recursive_move)

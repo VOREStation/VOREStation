@@ -45,7 +45,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	var/is_double_cliff = FALSE // Set to true when making the two-tile cliffs, used for projectile checks.
 	var/uphill_penalty = 30 // Odds of a projectile not making it up the cliff.
 
-/obj/structure/cliff/Initialize()
+/obj/structure/cliff/Initialize(mapload)
 	. = ..()
 	register_dangerous_to_step()
 
@@ -83,7 +83,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/bottom
 	bottom = TRUE
 
-/obj/structure/cliff/automatic/Initialize()
+/obj/structure/cliff/automatic/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

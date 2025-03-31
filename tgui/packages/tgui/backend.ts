@@ -66,7 +66,7 @@ export const backendReducer = (state = initialState, action) => {
     // Merge shared states
     const shared = { ...state.shared };
     if (payload.shared) {
-      for (let key of Object.keys(payload.shared)) {
+      for (const key of Object.keys(payload.shared)) {
         const value = payload.shared[key];
         if (value === '') {
           shared[key] = undefined;

@@ -126,7 +126,7 @@
 	// Multiply this and the hits var to get a rough idea of how penetrating a meteor is.
 	var/wall_power = 100
 
-/obj/effect/meteor/Initialize()
+/obj/effect/meteor/Initialize(mapload)
 	. = ..()
 	z_original = z
 	GLOB.meteor_list += src
@@ -151,8 +151,8 @@
 	GLOB.meteor_list -= src
 	return ..()
 
-/obj/effect/meteor/New()
-	..()
+/obj/effect/meteor/Initialize(mapload)
+	. = ..()
 	SpinAnimation()
 
 /obj/effect/meteor/Bump(atom/A)

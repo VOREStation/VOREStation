@@ -1,10 +1,10 @@
-/*
-  A system for easily and quickly removing your own bodyparts, with a view towards
-  swapping them out for new ones, or just doing it as a party trick to horrify an
-  audience. Current implementation only supports robolimbs and uses a modular_bodypart
-  value on the manufacturer datum, but I have tried to keep it generic for future work.
-  PS. jesus christ this was meant to be a half an hour port
-*/
+/**
+ * A system for easily and quickly removing your own bodyparts, with a view towards
+ * swapping them out for new ones, or just doing it as a party trick to horrify an
+ * audience. Current implementation only supports robolimbs and uses a modular_bodypart
+ * value on the manufacturer datum, but I have tried to keep it generic for future work.
+ * PS. jesus christ this was meant to be a half an hour port
+ */
 
 // External organ procs:
 // Does this bodypart count as a modular limb, and if so, what kind?
@@ -58,7 +58,7 @@
 // Checks the organ list for limbs meeting a predicate. Way overengineered for such a limited use
 // case but I can see it being expanded in the future if meat limbs or doona limbs use it.
 /mob/living/carbon/human/proc/get_modular_limbs(var/return_first_found = FALSE, var/validate_proc)
-	for(var/obj/item/organ/external/E as anything in organs)
+	for(var/obj/item/organ/external/E in organs)
 		if(!validate_proc || call(E, validate_proc)(src) > MODULAR_BODYPART_INVALID)
 			LAZYADD(., E)
 			if(return_first_found)
@@ -66,7 +66,7 @@
 	// Prune children so we can't remove every individual component of an entire prosthetic arm
 	// piece by piece. Technically a circular dependency here would remove the limb entirely but
 	// if there's a parent whose child is also its parent, there's something wrong regardless.
-	for(var/obj/item/organ/external/E as anything in .)
+	for(var/obj/item/organ/external/E in .)
 		if(length(E.children))
 			. -= E.children
 

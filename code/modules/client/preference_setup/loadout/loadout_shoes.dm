@@ -78,12 +78,12 @@
 	path = /obj/item/clothing/shoes/laceup
 
 /datum/gear/shoes/lacey/New()
-    ..()
-    var/list/laces = list()
-    for(var/lace in typesof(/obj/item/clothing/shoes/laceup))
-        var/obj/item/clothing/shoes/laceup/lace_type = lace
-        laces[initial(lace_type.name)] = lace_type
-    gear_tweaks += new/datum/gear_tweak/path(sortAssoc(laces))
+	..()
+	var/list/laces = list()
+	for(var/lace in typesof(/obj/item/clothing/shoes/laceup))
+		var/obj/item/clothing/shoes/laceup/lace_type = lace
+		laces[initial(lace_type.name)] = lace_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(laces))
 
 /datum/gear/shoes/green
 	display_name = "shoes, green"
@@ -118,12 +118,12 @@
 	path = /obj/item/clothing/shoes/hitops/
 
 /datum/gear/shoes/hitops/New()
-    ..()
-    var/list/hitops = list()
-    for(var/hitop in typesof(/obj/item/clothing/shoes/hitops))
-        var/obj/item/clothing/shoes/hitops/hitop_type = hitop
-        hitops[initial(hitop_type.name)] = hitop_type
-    gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hitops))
+	..()
+	var/list/hitops = list()
+	for(var/hitop in typesof(/obj/item/clothing/shoes/hitops))
+		var/obj/item/clothing/shoes/hitops/hitop_type = hitop
+		hitops[initial(hitop_type.name)] = hitop_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hitops))
 
 /datum/gear/shoes/flipflops
 	display_name = "flip flops"
@@ -171,9 +171,9 @@
 		"cowboy boots, black"=/obj/item/clothing/shoes/boots/cowboy/black,
 		"cowboy boots, white"=/obj/item/clothing/shoes/boots/cowboy/white,
 		"cowboy boots, fancy"=/obj/item/clothing/shoes/boots/cowboy/fancy,
-		"cowboy boots, snakeskin"=/obj/item/clothing/shoes/boots/cowboy/snakeskin,
-		"cowboy boots, green"=/obj/item/clothing/shoes/boots/cowboy/green,
-		"cowboy boots, blue"=/obj/item/clothing/shoes/boots/cowboy/blue
+		"cowboy boots, snakeskin"=/obj/item/clothing/shoes/boots/cowboy/snakeskin
+		//"cowboy boots, green"=/obj/item/clothing/shoes/boots/cowboy/green,
+		//"cowboy boots, blue"=/obj/item/clothing/shoes/boots/cowboy/blue
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 

@@ -23,7 +23,7 @@
 	icon_state = "cespace_suit"
 	item_state = "cespace_suit"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/pickaxe)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_MINING)
 	slowdown = 1
 	// Pressure protection inherited from space suits
 
@@ -34,11 +34,10 @@
 	item_state = "cespace_helmet"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
 
-//VOREStation Add Start
 /obj/item/clothing/suit/space/anomaly/heat
 	name = "Heat Adapted Excavation suit"
 	desc = "A pressure resistant excavation suit partially capable of insulating against exotic alien energies and heat."
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE+1000
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 5* ONE_ATMOSPHERE
@@ -46,8 +45,7 @@
 /obj/item/clothing/head/helmet/space/anomaly/heat
 	name = "Heat Adapted Excavation hood"
 	desc = "A pressure resistant excavation hood partially capable of insulating against exotic alien energies and heat."
-	heat_protection = HEAD|FACE|EYES
+	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE+1000
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 5* ONE_ATMOSPHERE
-//VOREStation Add End

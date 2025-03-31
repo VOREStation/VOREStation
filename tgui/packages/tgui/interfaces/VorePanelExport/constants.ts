@@ -17,6 +17,8 @@ export const ItemModeSpan = {
   'Digest (Food Only)':
     '<span class="badge text-bg-danger">Item: Digest (Food Only)</span>',
   Digest: '<span class="badge text-bg-danger">Item: Digest</span>',
+  'Digest (Dispersed Damage)':
+    '<span class="badge text-bg-danger">Item: Digest (Dispersed Damage)</span>',
 };
 
 export const AddonIcon = {
@@ -27,4 +29,48 @@ export const AddonIcon = {
   'Affect Worn Items': '',
   'Jams Sensors': 'bi-wifi-off',
   'Complete Absorb': '',
+};
+
+export const ReagentAddonIcon = {
+  'Produce Liquids': '',
+  'Digestion Liquids': '',
+  'Absorption Liquids': '',
+  'Draining Liquids': '',
+};
+
+export const AutotransferFlagIcon = {
+  Creatures: '',
+  Absorbed: '',
+  Carbon: '',
+  Silicon: '',
+  Mobs: '',
+  Animals: '',
+  Mice: '',
+  Dead: '',
+  'Digestable Creatures': '',
+  'Absorbable Creatures': '',
+  'Full Health': '',
+  Items: '',
+  Trash: '',
+  Eggs: '',
+  Remains: '',
+  'Indigestible Items': '',
+  'Recyclable Items': '',
+  Ores: '',
+  'Clothes and Bags': '',
+  Food: '',
+};
+
+export const SoulcatcherSettingsFlag = {
+  '1': 'Catch User',
+  '2': 'Catch Prey',
+  '4': 'Ext. hearing',
+  '8': 'Ext. Vision',
+  '16': 'Mind Backup',
+  '32': 'SR Projecting',
+  '64': 'Catch Ghost',
+  '128': 'Soulcatcher On',
+  '256': 'Show SFX',
+  '512': 'Catch Drain',
+  '1024': 'SR Vision',
 };

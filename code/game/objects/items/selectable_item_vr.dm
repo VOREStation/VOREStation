@@ -8,7 +8,7 @@
 	var/selection_string = "Select an item:"
 	var/selection_title = "Item Selection"
 	var/list/item_options = list("Gift" = /obj/item/a_gift,
-								 "Health Analyzer" = /obj/item/healthanalyzer)
+									"Health Analyzer" = /obj/item/healthanalyzer)
 
 /obj/item/selectable_item/attack_self(mob/user as mob)
 	tgui_alert(user, {"[preface_string]"}, preface_title)

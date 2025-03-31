@@ -1,7 +1,7 @@
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
-import { spriteOption } from './types';
+import type { spriteOption } from './types';
 
 export function robotSpriteSearcher(
   searchText: string,
@@ -17,7 +17,7 @@ export function robotSpriteSearcher(
   if (!sprites) {
     return [];
   }
-  let subtypes: string[] = [];
+  const subtypes: string[] = [];
   if (includeDefault) {
     subtypes.push('def');
   }

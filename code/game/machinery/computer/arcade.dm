@@ -25,7 +25,7 @@
 							)
 	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.
 
-/obj/machinery/computer/arcade/Initialize()
+/obj/machinery/computer/arcade/Initialize(mapload)
 	. = ..()
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
@@ -101,7 +101,7 @@
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/battle/Initialize()
+/obj/machinery/computer/arcade/battle/Initialize(mapload)
 	. = ..()
 	randomize_characters()
 
@@ -351,8 +351,8 @@
 	var/gameStatus = ORION_STATUS_START
 	var/canContinueEvent = 0
 
-/obj/machinery/computer/arcade/orion_trail/New()
-	..()
+/obj/machinery/computer/arcade/orion_trail/Initialize(mapload)
+	. = ..()
 	// Sets up the main trail
 	stops = list("Pluto","Asteroid Belt","Proxima Centauri","Dead Space","Rigel Prime","Tau Ceti Beta","Black Hole","Space Outpost Beta-9","Orion Prime")
 	stopblurbs = list(
@@ -409,18 +409,18 @@
 				dat += "<br>You ran out of food and starved."
 				if(emagged)
 					user.nutrition = 0 //yeah you pretty hongry
-					to_chat(user, span_danger("<font size=3>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</font>"))
+					to_chat(user, span_danger(span_large("Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.")))
 			if(fuel <= 0)
 				dat += "<br>You ran out of fuel, and drift, slowly, into a star."
 				if(emagged)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
 					M.IgniteMob() //flew into a star, so you're on fire
-					to_chat(user,span_danger("<font size=3>You feel an immense wave of heat emanate from \the [src]. Your skin bursts into flames.</font>"))
+					to_chat(user,span_danger(span_large("You feel an immense wave of heat emanate from \the [src]. Your skin bursts into flames.")))
 		dat += "<br><P ALIGN=Right><a href='byond://?src=\ref[src];menu=1'>OK...</a></P>"
 
 		if(emagged)
-			to_chat(user, span_danger("<font size=3>You're never going to make it to Orion...</font>"))
+			to_chat(user, span_danger(span_large("You're never going to make it to Orion...")))
 			user.death()
 			emagged = 0 //removes the emagged status after you lose
 			gameStatus = ORION_STATUS_START
@@ -1240,10 +1240,6 @@
 	vendor_account.transaction_log.Add(T)
 
 /// End Payment
-
-/obj/machinery/computer/arcade/clawmachine/New()
-	..()
-
 /obj/machinery/computer/arcade/clawmachine/attack_hand(mob/living/user)
 	if(..())
 		return

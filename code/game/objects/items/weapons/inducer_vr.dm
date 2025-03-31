@@ -23,7 +23,7 @@
 	cell_type = null
 	opened = TRUE
 
-/obj/item/inducer/Initialize()
+/obj/item/inducer/Initialize(mapload)
 	. = ..()
 	if(!cell && cell_type)
 		cell = new cell_type
@@ -224,7 +224,7 @@
 	powertransfer = 500
 	opened = TRUE
 
-/obj/item/inducer/sci/Initialize()
+/obj/item/inducer/sci/Initialize(mapload)
 	. = ..()
 	update_icon() //To get the 'open' state applied
 
@@ -257,8 +257,10 @@
 
 	var/mob/living/carbon/human/hume
 
-/obj/item/cell/standin/New(newloc, var/mob/living/carbon/human/H)
-	..()
+/obj/item/cell/standin/Initialize(mapload, var/mob/living/carbon/human/H)
+	. = ..()
+	if(!istype(H))
+		return INITIALIZE_HINT_QDEL
 	hume = H
 	charge = H.nutrition
 	maxcharge = initial(H.nutrition)

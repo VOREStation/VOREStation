@@ -428,7 +428,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 			if(amount_soaked >= damage)
 				continue // No need to apply damage.
 
-			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked)
 			if(show_message)
 				to_chat(H, effect_message)
 

@@ -113,7 +113,7 @@
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
 
-/obj/effect/meatgrinder/New()
+/obj/effect/meatgrinder/Initialize(mapload)
 	icon_state = "blob"
 
 /obj/effect/meatgrinder/HasEntered(AM as mob|obj)
@@ -125,7 +125,7 @@
 
 	if(ishuman(M) || istype(M, /mob/living/carbon/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the [icon2html(src)] [src]</font>")
+			to_chat(O, span_red("[M] triggered the [icon2html(src)] [src]"))
 		triggered = 1
 		call(src,triggerproc)(M)
 

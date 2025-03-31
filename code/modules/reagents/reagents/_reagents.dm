@@ -44,6 +44,9 @@
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
 
+	var/from_belly = FALSE
+	var/wiki_flag = 0 // Bitflags for secret/food/drink reagent sorting
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)

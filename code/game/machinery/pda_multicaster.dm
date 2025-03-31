@@ -12,8 +12,8 @@
 	var/toggle = 1	// If we /should/ be active or not,
 	var/list/internal_PDAs = list() // Assoc list of PDAs inside of this, with the department name being the index,
 
-/obj/machinery/pda_multicaster/New()
-	..()
+/obj/machinery/pda_multicaster/Initialize(mapload)
+	. = ..()
 	internal_PDAs = list("command" = new /obj/item/pda/multicaster/command(src),
 		"security" = new /obj/item/pda/multicaster/security(src),
 		"engineering" = new /obj/item/pda/multicaster/engineering(src),
@@ -23,14 +23,14 @@
 		"cargo" = new /obj/item/pda/multicaster/cargo(src),
 		"civilian" = new /obj/item/pda/multicaster/civilian(src))
 
-/obj/machinery/pda_multicaster/prebuilt/Initialize()
+/obj/machinery/pda_multicaster/prebuilt/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
 /obj/machinery/pda_multicaster/Destroy()
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	..()
+	. = ..()
 
 /obj/machinery/pda_multicaster/update_icon()
 	if(on)
