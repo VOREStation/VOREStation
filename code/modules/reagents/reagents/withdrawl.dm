@@ -1,5 +1,4 @@
-
-/datum/reagent/proc/withdrawl(var/mob/living/carbon/M, var/alien)
+/datum/reagent/proc/handle_addiction(var/mob/living/carbon/M, var/alien)
 	// overridable proc for custom withdrawl behaviors, standard is chills, cravings, vomiting, weakness and CE_WITHDRAWL organ damage
 	if(alien == IS_DIONA)
 		return 0
@@ -16,11 +15,11 @@
 			if(prob(1))
 				switch(rand(1,3))
 					if(1)
-						to_chat(M, "<span class='danger'>You feel sluggish.</span>")
+						to_chat(M, span_notice("You feel sluggish."))
 					if(2)
-						to_chat(M, "<span class='danger'>You feel awful.</span>")
+						to_chat(M, span_notice("You feel awful."))
 					if(3)
-						to_chat(M, "<span class='danger'>Everything feels sore</span>")
+						to_chat(M, span_notice("Everything feels sore."))
 				// effects
 				if(current_addiction < 100 && prob(10))
 					M.emote(pick("pale","shiver","twitch"))
@@ -33,11 +32,11 @@
 			// send a message to notify players
 			if(prob(2))
 				if(current_addiction <= 40)
-					to_chat(M, "<span class='danger'>You're dying for some [name]!</span>")
+					to_chat(M, span_danger("You're dying for some [name]!"))
 				else if(current_addiction <= 60)
-					to_chat(M, "<span class='warning'>You're really craving some [name].</span>")
+					to_chat(M, span_warning("You're really craving some [name]."))
 				else if(current_addiction <= 100)
-					to_chat(M, "<span class='notice'>You're feeling the need for some [name].</span>")
+					to_chat(M, span_notice("You're feeling the need for some [name]."))
 				// effects
 				if(current_addiction < 100 && prob(20))
 					M.emote(pick("pale","shiver","twitch"))
@@ -54,7 +53,10 @@
 			else if(current_addiction <= 70)
 				if(prob(2))
 					M.emote("vomit")
-	// end addiction with a clear message!
-	if(current_addiction == 0)
-		to_chat(M, "<span class='notice'>You feel your symptoms end, you no longer feel the craving for [name].</span>")
 	return current_addiction
+
+/datum/reagent/proc/addiction_cure_message()
+	return span_notice("You feel your symptoms end, you no longer feel the craving for [name].")
+
+/datum/reagent/proc/addiction_refresh_message()
+	return span_notice("You feel rejuvenated as the [name] rushes through you.")

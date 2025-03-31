@@ -1,8 +1,20 @@
-// addictions
-#define ADDICTION_PROC -4000 // point where addiction triggers, starts counting down from 0 to here!
-#define SLOWADDICT_PROC -8000 // point where certain chems with barely addictive traits will kick in
-#define FASTADDICT_PROC -1000 // point where certain chems with super addictive traits will kick in
-#define ADDICTION_PEAK 300 // point where addicted mobs reset to upon getting their addiction satiated... Decays over time,triggering messages and sideeffects if under 80. Most cure at 0.
+// Addictions
+//
+// Addictions work using a combined counter var. If a reagent is in the list returned by get_addictive_reagents(), it will be added to the addiction_counters[] assoc list by its id.
+// If it is present in your body, and you are NOT addicted, it will count DOWNWARD. When it reaches the "addiction proc" you will become addicted. By default you will become addicted at
+// ADDICTION_PROC negative points. FASTADDICT_PROC and SLOWADDICT_PROC are also used depending on the reagent's addiction speed. This is to prevent booze being as addictive as bliss.
+// If you are addicted to a chem, and have it present in your body, the counter will quickly climb back up to ADDICTION_PEAK. Refreshing your addiction entirely.
+
+// Once the addiction proc is reached you will become addicted. The counter will be set to ADDICTION_PEAK and begin counting DOWNWARD. Each addicted reagent has a handle_addiction() proc. The default
+// implimentation of it will perform various effects once you are under 100 points of addiction. Such as vomiting, organ damage, and other bad effects for not feeding the addiction. Check that
+// code for exact logic. Inaprovaline is intended to suppress withdrawl effects. Reagents may override the handle_addiction proc to have their own special handling. Like reagents that kill you if you
+// do not feed their withdrawls. The handle_addiction proc also handles if you become cured of your addiction! If it returns 0, it will end your addiction.
+
+#define ADDICTION_PROC -4000
+#define SLOWADDICT_PROC -8000
+#define FASTADDICT_PROC -1000
+#define POISONADDICT_PROC -100
+#define ADDICTION_PEAK 300
 
 /mob/living/carbon/proc/sync_addictions()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -70,7 +82,9 @@
 				if(addiction_counters[A] < 100)
 					addiction_counters[A] = 100
 					var/datum/reagent/RR = SSchemistry.chemical_reagents[A]
-					to_chat(src, span_notice("You feel rejuvenated as the [RR.name] rushes through you."))
+					var/message = RR.addiction_refresh_message()
+					if(message)
+						to_chat(src, message)
 				addiction_counters[A] += rand(8,13)
 
 	// For all counters above 100, count down
@@ -82,11 +96,14 @@
 			if(prob(15))
 				addiction_counters[C] += 1
 		// proc reagent's withdrawl
+		var/datum/reagent/RE = SSchemistry.chemical_reagents[C]
 		if(addiction_counters[C] > 0)
-			var/datum/reagent/RE = SSchemistry.chemical_reagents[C]
-			addiction_counters[C] = RE.withdrawl(src,species.reagent_tag) // withdrawl can modify the value however it deems fit as you are affected by it
+			addiction_counters[C] = RE.handle_addiction(src,species.reagent_tag) // withdrawl can modify the value however it deems fit as you are affected by it
 		// remove if finished
 		if(addiction_counters[C] == 0)
+			var/message = RE.addiction_cure_message()
+			if(message)
+				to_chat(src, message)
 			addictions.Remove(C)
 
 /mob/living/carbon/proc/addict_to_reagent(var/reagentid, var/round_start)
@@ -100,9 +117,12 @@
 	addiction_counters[reagentid] = ADDICTION_PEAK
 
 /mob/living/carbon/proc/get_addiction_to_reagent(var/reagentid) // returns counter's value or 0
+	SHOULD_NOT_OVERRIDE(TRUE)
 	return addiction_counters ? addiction_counters[reagentid] : 0
 
 /mob/living/carbon/proc/get_all_addictions()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/list/addict = list()
 	for(var/key in addiction_counters)
 		addict.Add(key)
@@ -111,4 +131,5 @@
 #undef ADDICTION_PROC
 #undef SLOWADDICT_PROC
 #undef FASTADDICT_PROC
+#undef POISONADDICT_PROC
 #undef ADDICTION_PEAK

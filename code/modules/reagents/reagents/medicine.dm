@@ -1433,7 +1433,7 @@
 	// Continue to acid damage, no changes on injection or splashing, as this is meant to be edible only to those pre-addicted to it! Not a snowflake acid that doesn't hurt you!
 	. = ..()
 
-/datum/reagent/acid/artificial_sustenance/withdrawl(var/mob/living/carbon/M, var/alien)
+/datum/reagent/acid/artificial_sustenance/handle_addiction(var/mob/living/carbon/M, var/alien)
 	// A copy of the base with withdrawl, but with death, and different messages
 	var/current_addiction = M.get_addiction_to_reagent(id)
 	// slow degrade
@@ -1444,11 +1444,11 @@
 		// send a message to notify players
 		if(prob(2))
 			if(current_addiction <= 40)
-				to_chat(M, "<span class='danger'>You're dying for some [name]!</span>")
+				to_chat(M, span_danger("You're dying for some [name]!"))
 			else if(current_addiction <= 60)
-				to_chat(M, "<span class='warning'>You're really craving some [name].</span>")
+				to_chat(M, span_warning("You're really craving some [name]."))
 			else if(current_addiction <= 100)
-				to_chat(M, "<span class='notice'>You're feeling the need for some [name].</span>")
+				to_chat(M, span_notice("You're feeling the need for some [name]."))
 			// effects
 			if(current_addiction < 60 && prob(20))
 				M.emote(pick("pale","shiver","twitch"))
@@ -1471,7 +1471,7 @@
 		else if(current_addiction <= 50)
 			if(prob(2))
 				M.emote("vomit")
-	// end addiction with a clear message!
+	// Sustenance requirements cannot be escaped!
 	if(current_addiction == 0)
-		current_addiction = 40 // Sustinance requirements cannot be escaped!
+		current_addiction = 40
 	return current_addiction
