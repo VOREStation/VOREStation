@@ -7,6 +7,7 @@ export type Data = {
 
 export type occupant = {
   name: string;
+  species: string;
   stat: number;
   health: number;
   maxHealth: number;
