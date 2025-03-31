@@ -1,5 +1,5 @@
 // Addictions
-//
+
 // Addictions work using a combined counter var. If a reagent is in the list returned by get_addictive_reagents(), it will be added to the addiction_counters[] assoc list by its id.
 // If it is present in your body, and you are NOT addicted, it will count DOWNWARD. When it reaches the "addiction proc" you will become addicted. By default you will become addicted at
 // ADDICTION_PROC negative points. FASTADDICT_PROC and SLOWADDICT_PROC are also used depending on the reagent's addiction speed. This is to prevent booze being as addictive as bliss.
@@ -22,6 +22,9 @@
 		return
 	if(!species.traits)
 		return
+	// Rebuild addictions from traits
+	addictions.Cut()
+	addiction_counters.Cut()
 	for(var/TR in species.traits)
 		var/datum/trait/T = all_traits[TR]
 		if(!T)
@@ -35,8 +38,8 @@
 	// Empty so it can be overridden
 
 /mob/living/carbon/handle_addictions()
-	// Don't process this if we're part of someone else
-	if(absorbed)
+	// Don't process during vore stuff... It was originally just absorbed, but lets give some mercy to rp focused servers.
+	if(isbelly(loc))
 		return
 	// All addictions start at 0.
 	var/list/addict = list()
@@ -61,8 +64,8 @@
 		if(addiction_counters[A] <= 0)
 			// Build addiction until it procs
 			addiction_counters[A] -= rand(1,3)
-			if(addiction_counters < SLOWADDICT_PROC)
-				addiction_counters = SLOWADDICT_PROC
+			if(addiction_counters[A] < SLOWADDICT_PROC)
+				addiction_counters[A] = SLOWADDICT_PROC
 			// Check for addition
 			if(A in get_addictive_reagents(ADDICT_SLOW))
 				// Slowest addictions for some medications
@@ -109,8 +112,11 @@
 /mob/living/carbon/proc/addict_to_reagent(var/reagentid, var/round_start)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	round_start = TRUE // Comment this out to make addictions ONLY affect roundstart traits
-	if(isSynthetic() || !round_start) // Should this be allowed? I guess you can roleplay Bender as an FBP?
+	if(isSynthetic()) // Should this be allowed? I guess you can roleplay Bender as an FBP? Trait in the future?
+		return
+	// Check if serverconfig allows addiction during the round. Otherwise only allow spawning with addictions
+	var/allow_addiction = round_start || CONFIG_GET(flag/can_addict_during_round)
+	if(!allow_addiction)
 		return
 	if(!(reagentid in addictions))
 		addictions.Add(reagentid)
@@ -125,7 +131,7 @@
 	for(var/reagentid in addiction_counters)
 		addiction_counters[reagentid] = ADDICTION_PEAK
 
-/mob/living/carbon/proc/clear_all_addictions()
+/mob/living/carbon/proc/clear_all_addictions() // This is probably not a good idea to call as some addictions are intended to be uncurable, like artificial sustenance.
 	SHOULD_NOT_OVERRIDE(TRUE)
 	addictions.Cut()
 	addiction_counters.Cut()
