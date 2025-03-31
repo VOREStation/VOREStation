@@ -52,6 +52,7 @@ export type internalOrgan = {
   robotic: BooleanLike;
   dead: BooleanLike;
   inflamed: BooleanLike;
+  missing: BooleanLike;
 };
 
 export type externalOrgan = {

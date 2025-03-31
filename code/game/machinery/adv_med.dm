@@ -56,7 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
-		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+		update_icon()
 		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 		add_fingerprint(user)
 		qdel(G)
@@ -101,7 +101,7 @@
 
 	O.forceMove(src)
 	occupant = O
-	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+	update_icon()
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
 	SStgui.update_uis(src)
@@ -262,7 +262,6 @@
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
 				var/obj/item/implant/I = thing
-			//VOREStation Block Edit Start
 				var/obj/item/nif/N = thing
 				if(istype(I))
 					implantSubData["name"] =  I.name
@@ -272,7 +271,6 @@
 					implantSubData["name"] =  N.name
 					implantSubData["known"] = istype(N) && N.known_implant
 					implantData.Add(list(implantSubData))
-			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -306,6 +304,24 @@
 		occupantData["extOrgan"] = extOrganData
 
 		var/intOrganData[0]
+		for(var/organ_tag in H.species.has_organ) //Check to see if we are missing any vital organs
+			var/organData[0]
+			var/obj/item/organ/O = H.species.has_organ[organ_tag]
+			var/name = initial(O.name)
+			organData["name"] = name
+			O = H.internal_organs_by_name[organ_tag]
+			if(!O)
+				organData["desc"] = ""
+				organData["germ_level"] = 0
+				organData["damage"] = 0
+				organData["maxHealth"] = 0
+				organData["bruised"] = 0
+				organData["broken"] = 0
+				organData["robotic"] = 0
+				organData["dead"] = 0
+				organData["missing"] = TRUE
+				intOrganData.Add(list(organData))
+
 		for(var/obj/item/organ/I in H.internal_organs)
 			var/organData[0]
 			organData["name"] = I.name
