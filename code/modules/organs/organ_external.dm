@@ -1141,18 +1141,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
 
-	if(owner)	//VOREStation Edit Start
+	playsound(src, "fracture", 10, 1, -2)
+	status |= ORGAN_BROKEN
+	broken_description = pick("broken","fracture","hairline fracture")
+	if(owner)
 		if(organ_can_feel_pain() && !isbelly(owner.loc) && !isliving(owner.loc))
 			owner.visible_message(\
 				span_danger("You hear a loud cracking sound coming from \the [owner]."),\
 				span_danger("Something feels like it shattered in your [name]!"),\
 				span_danger("You hear a sickening crack."))
 			owner.emote("scream")
-		jostle_bone()	//VOREStation Edit End
-
-	playsound(src, "fracture", 10, 1, -2)
-	status |= ORGAN_BROKEN
-	broken_description = pick("broken","fracture","hairline fracture")
+		jostle_bone()
 
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
