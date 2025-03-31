@@ -1155,3 +1155,36 @@
 		return
 	user.visible_message(span_danger("\The [user] waves \the [src] in front of the [M]!"))
 	M.PounceTarget(user,100)
+
+/// Fluff item for digitalsquirrel
+
+/obj/item/toy/acorn_branch
+	name = "oak staff"
+	desc = "A branch of oak wood bearing a collection of still living leaves, and many acorns hanging among them."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "acorn_branch"
+	w_class = ITEMSIZE_SMALL
+	var/next_use = 0
+	var/registered_mob //On request, only one person is able to use it at a time.
+
+/obj/item/toy/acorn_branch/attack_self(mob/user)
+	if(user.stat || !ishuman(user))
+		return
+	if(world.time < next_use)
+		to_chat(user, span_notice("You need to wait a bit longer before you can pull out another acorn!"))
+		return
+	var/mob/living/carbon/human/H = user
+	if(registered_mob)
+		if(registered_mob != H)
+			to_chat(user, span_notice("It's a lovely branch!"))
+			return
+	else
+		registered_mob = H
+	if(H.get_inactive_hand())
+		to_chat(user, span_notice("You need to have a free hand to pick an acorn out!"))
+		return
+	var/spawnloc = get_turf(H)
+	var/obj/item/I = new /obj/item/reagent_containers/food/snacks/acorn(spawnloc)
+	H.put_in_inactive_hand(I)
+	next_use = (world.time + 30 SECONDS)
+	H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))
