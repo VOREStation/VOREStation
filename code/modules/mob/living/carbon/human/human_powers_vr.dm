@@ -266,7 +266,7 @@
 	set category = "Abilities.Sparkledog"
 
 	if(stat)
-		to_chat(span_warning("You're too messed up right now to act all messed up, it's, like, for real."))
+		to_chat(src, span_warning("You're too messed up right now to act all messed up, it's, like, for real."))
 		return
 
 	if(!resting)
