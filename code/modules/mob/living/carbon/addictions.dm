@@ -120,6 +120,16 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return addiction_counters ? addiction_counters[reagentid] : 0
 
+/mob/living/carbon/proc/refresh_all_addictions()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	for(var/reagentid in addiction_counters)
+		addiction_counters[reagentid] = ADDICTION_PEAK
+
+/mob/living/carbon/proc/clear_all_addictions()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	addictions.Cut()
+	addiction_counters.Cut()
+
 /mob/living/carbon/proc/get_all_addictions()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
