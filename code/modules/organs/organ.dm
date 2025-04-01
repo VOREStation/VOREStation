@@ -23,8 +23,7 @@ var/list/organ_cache = list()
 	var/list/transplant_data			// Transplant match data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
-	var/datum/organ_data/data = new()		// Stores data for appearance and investigation
-	var/datum/species/species			// Original species.
+	var/datum/organ_data/data = new()	// Stores data for appearance and investigation
 
 	// Damage vars.
 	var/min_bruised_damage = 10			// Damage before considered bruised
@@ -55,7 +54,6 @@ var/list/organ_cache = list()
 	if(autopsy_data)    autopsy_data.Cut()
 	if(trace_chemicals) trace_chemicals.Cut()
 	QDEL_NULL(data)
-	species = null
 
 	return ..()
 
@@ -91,10 +89,11 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
-		species = GLOB.all_species[SPECIES_HUMAN]
+		if(!C.species)
+			data.setup_from_species(GLOB.all_species[SPECIES_HUMAN])
 		if(owner.dna)
 			data.setup_from_dna(C.dna)
-			species = C.species
+			data.setup_from_species(C.species)
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
@@ -110,7 +109,7 @@ var/list/organ_cache = list()
 					blood_DNA = list()
 				blood_DNA[data.unique_enzymes] = data.b_type
 	else
-		species = GLOB.all_species["Human"]
+		data.setup_from_species(GLOB.all_species["Human"])
 
 	handle_organ_mod_special()
 
@@ -261,7 +260,7 @@ var/list/organ_cache = list()
 	// immunosuppressant that changes transplant data to make it match.
 	if(data && can_reject)
 		if(!rejecting)
-			if(blood_incompatible(data.b_type, owner.dna.b_type, species.name, owner.species.name)) //VOREStation Edit - Process species by name.
+			if(blood_incompatible(data.b_type, owner.dna.b_type, data.species.name, owner.species.name)) //VOREStation Edit - Process species by name.
 				rejecting = 1
 		else
 			rejecting++ //Rejection severity increases over time.
@@ -519,7 +518,7 @@ var/list/organ_cache = list()
 	qdel(src)
 
 /obj/item/organ/proc/organ_can_feel_pain()
-	if(species.flags & NO_PAIN)
+	if(data.species.flags & NO_PAIN)
 		return 0
 	if(status & ORGAN_DESTROYED)
 		return 0

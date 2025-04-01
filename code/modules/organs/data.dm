@@ -1,6 +1,9 @@
 // Data written to each organ on creation for appearance and blood, this WAS originally done by sending the full dna datum.
 // However sending the whole dna datum through Clone() is extremely expensive, and a memory leak if its a hardref instead.
 /datum/organ_data
+	// Species
+	var/datum/species/species
+	// Dna
 	var/unique_enzymes
 	var/b_type
 	var/body_gender
@@ -10,7 +13,14 @@
 	var/list/skin_color
 	var/list/hair_color
 
-/datum/organ_data/setup_from_dna(var/datum/dna/dna)
+/datum/organ_data/proc/setup_from_species(var/datum/species/S) // This needs a full rework, but can't be done unless all of transformating species code is refactored
+	species = S
+
+/datum/organ_data/Destroy(force)
+	species = null
+	. = ..()
+
+/datum/organ_data/proc/setup_from_dna(var/datum/dna/dna)
 	// Prosfab uses default dna to get vars, lets respect that still
 	var/self_clear = FALSE
 	if(!dna)

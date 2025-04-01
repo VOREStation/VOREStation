@@ -22,7 +22,7 @@ var/global/list/limb_icon_cache = list()
 			if(human.synth_color)
 				s_col = list(human.r_synth, human.g_synth, human.b_synth)
 			return
-	if(species && human.species && species.name != human.species.name)
+	if(data.species && human.species && data.species.name != human.species.name)
 		return
 	if(!isnull(human.s_tone) && (human.species.appearance_flags & HAS_SKIN_TONE))
 		s_tone = human.s_tone
@@ -38,9 +38,9 @@ var/global/list/limb_icon_cache = list()
 		var/datum/robolimb/franchise = all_robolimbs[model]
 		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			return
-	if(!isnull(data.skin_tone) && (species.appearance_flags & HAS_SKIN_TONE))
+	if(!isnull(data.skin_tone) && (data.species.appearance_flags & HAS_SKIN_TONE))
 		s_tone = data.skin_tone
-	if(species.appearance_flags & HAS_SKIN_COLOR)
+	if(data.species.appearance_flags & HAS_SKIN_COLOR)
 		s_col = data.skin_color.Copy()
 	h_col = data.hair_color.Copy()
 
@@ -56,7 +56,7 @@ var/global/list/limb_icon_cache = list()
 	//Facial hair
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (data.species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), facial_hair_style.color_blend_mode)
@@ -69,7 +69,7 @@ var/global/list/limb_icon_cache = list()
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
 				hair_style = hair_styles_list["Short Hair"]
-		if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
+		if(hair_style && (data.species.get_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
@@ -125,7 +125,7 @@ var/global/list/limb_icon_cache = list()
 	var/should_apply_transparency = FALSE
 
 	if(!force_icon_key)
-		icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
+		icon_cache_key = "[icon_name]_[data.species ? data.species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
 	else
 		icon_cache_key = "[icon_name]_[force_icon_key]"
 
@@ -155,7 +155,7 @@ var/global/list/limb_icon_cache = list()
 				should_apply_transparency = TRUE
 			else
 				//Use digi icon if digitigrade, otherwise use regular icon. Ternary operator is based.
-				mob_icon = new /icon(digitigrade ? species.icodigi : species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
+				mob_icon = new /icon(digitigrade ? data.species.icodigi : data.species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				should_apply_transparency = TRUE
 				apply_colouration(mob_icon)
 
@@ -174,7 +174,7 @@ var/global/list/limb_icon_cache = list()
 			if(body_hair && islist(h_col) && h_col.len >= 3)
 				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
 				if(!limb_icon_cache[cache_key])
-					var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
+					var/icon/I = icon(data.species.get_icobase(owner), "[icon_name]_[body_hair]")
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
@@ -206,7 +206,7 @@ var/global/list/limb_icon_cache = list()
 		if(body_hair && islist(h_col) && h_col.len >= 3)
 			var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
 			if(!limb_icon_cache[cache_key])
-				var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
+				var/icon/I = icon(data.species.get_icobase(owner), "[icon_name]_[body_hair]")
 				I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
 				limb_icon_cache[cache_key] = I
 			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
@@ -223,7 +223,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(transparent) //VOREStation edit
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
+		if(data.species && data.species.get_bodytype(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1) // Unathi, Taj and Skrell have -very- dark base icons. VOREStation edit fixes this and brings the number back to 1
 		else
 			applying.SetIntensity(1) //VOREStation edit to make Prometheans not look like shit with mob coloring.
@@ -241,7 +241,7 @@ var/global/list/limb_icon_cache = list()
 		icon_cache_key += "_tone_[s_tone]"
 	else if(s_col && s_col.len >= 3)
 		//VOREStation Edit - Support for species.color_mult
-		if(species && species.color_mult)
+		if(data.species && data.species.color_mult)
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
 			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_MULTIPLY]"
 		else
@@ -281,11 +281,11 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 		if(!icon_cache_key || !limb_icon_cache[cache_key])
 			limb_icon_cache[cache_key] = icon(get_icon(), null, SOUTH)
 		var/image/temp = image(limb_icon_cache[cache_key])
-		if((robotic < ORGAN_ROBOT) && species)
+		if((robotic < ORGAN_ROBOT) && data.species)
 			// Calculate the required colour matrix.
-			var/r = 0.30 * species.health_hud_intensity
-			var/g = 0.59 * species.health_hud_intensity
-			var/b = 0.11 * species.health_hud_intensity
+			var/r = 0.30 * data.species.health_hud_intensity
+			var/g = 0.59 * data.species.health_hud_intensity
+			var/b = 0.11 * data.species.health_hud_intensity
 			temp.color = list(r, r, r, g, g, g, b, b, b)
 		else if(model)
 			var/datum/robolimb/R = all_robolimbs[model]
