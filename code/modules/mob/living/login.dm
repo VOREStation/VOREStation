@@ -38,13 +38,12 @@
 	add_verb(src,/mob/proc/nme_vore_ch)
 	add_verb(src,/mob/proc/enter_soulcatcher)
 
-	//VOREStation Add Start
 	if(!voice_sounds_list.len || !voice_sounds_list)
 		if(client.prefs.voice_sound)
 			var/prefsound = client.prefs.voice_sound
 			voice_sounds_list = get_talk_sound(prefsound)
 		else
 			voice_sounds_list = talk_sound
-	//VOREStation Add End
+	resize(size_multiplier, animate = FALSE, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE, aura_animation = FALSE)
 
 	return .
