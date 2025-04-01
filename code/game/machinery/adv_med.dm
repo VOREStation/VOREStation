@@ -319,14 +319,6 @@
 			organData["name"] = name
 			O = H.internal_organs_by_name[organ_tag]
 			if(!O)
-				organData["desc"] = ""
-				organData["germ_level"] = 0
-				organData["damage"] = 0
-				organData["maxHealth"] = 0
-				organData["bruised"] = 0
-				organData["broken"] = 0
-				organData["robotic"] = 0
-				organData["dead"] = 0
 				organData["missing"] = TRUE
 				intOrganData.Add(list(organData))
 

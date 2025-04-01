@@ -33,19 +33,19 @@ export const BodyScannerMainOrgansInternal = (props: {
               {!o.missing && (
                 <ProgressBar
                   minValue={0}
-                  maxValue={o.maxHealth / 100}
-                  value={o.damage / 100}
+                  maxValue={o.maxHealth ? o.maxHealth / 100 : 0}
+                  value={o.damage ? o.damage / 100 : 0}
                   mt={i > 0 && '0.5rem'}
                   ranges={damageRange}
                 >
-                  {toFixed(o.damage)}
+                  {!!o.damage && toFixed(o.damage)}
                 </ProgressBar>
               )}
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">
               <Box color="average" inline>
                 {reduceOrganStatus([
-                  germStatus(o.germ_level),
+                  !!o.germ_level && germStatus(o.germ_level),
                   !!o.inflamed && 'Appendicitis detected.',
                 ])}
               </Box>
