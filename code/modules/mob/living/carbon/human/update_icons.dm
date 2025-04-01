@@ -226,7 +226,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			continue
 		if(part)
 			wholeicontransparent &&= part.transparent //VORESTATION EDIT: transparent instead of nonsolid
-			icon_key += "[part.data.species.get_race_key(part.owner)]"
+			var/datum/species/SP = part.data.get_species_datum()
+			icon_key += "[SP.get_race_key(part.owner)]"
 			icon_key += "[part.data.body_gender]"
 			icon_key += "[part.s_tone]"
 			if(part.s_col && part.s_col.len >= 3)

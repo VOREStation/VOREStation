@@ -1,8 +1,8 @@
 // Data written to each organ on creation for appearance and blood, this WAS originally done by sending the full dna datum.
 // However sending the whole dna datum through Clone() is extremely expensive, and a memory leak if its a hardref instead.
 /datum/organ_data
-	// Species
-	var/datum/species/species
+	VAR_PRIVATE/datum/weakref/species
+	VAR_PRIVATE/species_name // Fallback
 	// Dna
 	var/unique_enzymes
 	var/b_type
@@ -14,13 +14,22 @@
 	var/list/hair_color
 
 /datum/organ_data/proc/setup_from_species(var/datum/species/S) // This needs a full rework, but can't be done unless all of transformating species code is refactored
-	species = S
+	SHOULD_NOT_OVERRIDE(TRUE)
+	species = WEAKREF(S)
+	species_name = S.name
 
-/datum/organ_data/Destroy(force)
-	species = null
-	. = ..()
+/datum/organ_data/proc/get_species_datum()
+	RETURN_TYPE(/datum/species)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/datum/species/S = species?.resolve()
+	if(!S)
+		S = GLOB.all_species[species_name]
+	if(!S)
+		S = GLOB.all_species[SPECIES_HUMAN]
+	return S
 
 /datum/organ_data/proc/setup_from_dna(var/datum/dna/dna)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	// Prosfab uses default dna to get vars, lets respect that still
 	var/self_clear = FALSE
 	if(!dna)

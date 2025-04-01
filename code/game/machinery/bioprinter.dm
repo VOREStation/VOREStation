@@ -248,7 +248,8 @@
 
 	if(O.data)
 		// This is a very hacky way of doing of what organ/New() does if it has an owner
-		O.w_class = max(O.w_class + mob_size_difference(O.data.species.mob_size, MOB_MEDIUM), 1)
+		var/datum/species/SP = O.data.get_species_datum()
+		O.w_class = max(O.w_class + mob_size_difference(SP, MOB_MEDIUM), 1)
 
 	return O
 // END GENERIC PRINTER
