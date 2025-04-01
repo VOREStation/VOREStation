@@ -38,11 +38,11 @@ var/global/list/limb_icon_cache = list()
 		var/datum/robolimb/franchise = all_robolimbs[model]
 		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			return
-	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
-		s_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
+	if(!isnull(data.skin_tone) && (species.appearance_flags & HAS_SKIN_TONE))
+		s_tone = data.skin_tone
 	if(species.appearance_flags & HAS_SKIN_COLOR)
-		s_col = list(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
-	h_col = list(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
+		s_col = data.skin_color.Copy()
+	h_col = data.hair_color.Copy()
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
@@ -89,8 +89,8 @@ var/global/list/limb_icon_cache = list()
 	var/check_digi = istype(src,/obj/item/organ/external/leg) || istype(src,/obj/item/organ/external/foot)
 	if(owner)
 		digitigrade = check_digi && owner.digitigrade
-	else if(dna)
-		digitigrade = check_digi && dna.digitigrade
+	else if(data)
+		digitigrade = check_digi && data.digitigrade
 
 	for(var/M in markings)
 		if (!markings[M]["on"])
@@ -132,14 +132,14 @@ var/global/list/limb_icon_cache = list()
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
 	else
-		if(!dna)
+		if(!data)
 			mob_icon = new /icon('icons/mob/human_races/r_human.dmi', "[icon_name][gendered_icon ? "_[gender]" : ""]")
 		else
 
 			if(!gendered_icon)
 				gender = null
 			else
-				if(dna.GetUIState(DNA_UI_GENDER))
+				if(data.body_gender)
 					gender = "f"
 				else
 					gender = "m"

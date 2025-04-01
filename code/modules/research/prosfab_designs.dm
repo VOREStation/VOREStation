@@ -27,9 +27,6 @@
 		else
 			O.species = GLOB.all_species["Human"]
 		O.robotize(prosfab.manufacturer)
-		qdel_swap(O.dna, new/datum/dna()) //Uuughhhh... why do I have to do this?
-		O.dna.ResetUI()
-		O.dna.ResetSE()
 		return O
 	return ..()
 
@@ -66,9 +63,7 @@
 				manf = all_robolimbs["Unbranded"]
 
 			O.robotize(manf.company)
-			qdel_swap(O.dna, new/datum/dna())
-			O.dna.ResetUI()
-			O.dna.ResetSE()
+			O.data.setup_from_dna()
 
 			// Skincolor weirdness.
 			O.s_col[1] = 0
