@@ -37,3 +37,6 @@
 
 /mob/living/carbon/human/hanner/New(var/new_loc)
 	..(new_loc, SPECIES_HANNER)
+
+/mob/living/carbon/human/sparkledog/New(var/new_loc)
+	..(new_loc, SPECIES_SPARKLE)

@@ -40,6 +40,7 @@ jobs:
           ${{ runner.os }}-spacemandmm-
     - name: Install Tools
       run: |
+        sudo apt update
         bash tools/ci/install_spaceman_dmm.sh dmm-tools
         sudo apt install -y imagemagick
     - name: Ensure +x on github-actions directory

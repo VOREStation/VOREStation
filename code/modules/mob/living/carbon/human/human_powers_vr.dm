@@ -257,3 +257,37 @@
 			player1.visible_message(span_notice("After a gruelling battle, [player1] eventually manages to subdue the thumb of [player2]!"))
 		else
 			player2.visible_message(span_notice("After a gruelling battle, [player2] eventually manages to subdue the thumb of [player1]!"))
+
+///Play dead for sparkledog memes
+
+/mob/living/carbon/human/proc/play_dead()
+	set name = "Play Dead"
+	set desc = "Literally just die on the spot. It's okay, you can get better."
+	set category = "Abilities.Sparkledog"
+
+	if(stat)
+		to_chat(src, span_warning("You're too messed up right now to act all messed up, it's, like, for real."))
+		return
+
+	if(!resting)
+		SetResting(1)
+		add_modifier(/datum/modifier/play_dead, null, src) //Tracks whether they are still resting to remove the status indicator
+		add_status_indicator("dead")
+		visible_message(span_warning("\The [src] literally just dies!"))
+	else
+		SetResting(0)
+
+/datum/modifier/play_dead
+	name = "playing dead"
+	desc = "You are are pretending to be dead, you aren't very convincing!"
+	on_created_text = span_notice("You begin to play dead!")
+	on_expired_text = span_notice("You got better.")
+
+/datum/modifier/play_dead/tick()
+	if(!holder.resting)
+		expire()
+
+/datum/modifier/play_dead/expire()
+	holder.remove_status_indicator("dead")
+	holder.visible_message(span_warning("\The [src] literally just dies!"))
+	..()

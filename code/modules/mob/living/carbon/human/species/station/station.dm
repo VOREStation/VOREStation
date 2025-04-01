@@ -1982,3 +1982,48 @@
 	name = "danger level"
 	icon_state = "danger00"		//first number is bool of whether or not we're in danger, second is whether or not we're feral
 	alpha = 200
+
+/datum/species/sparkledog //Exists primarily as an april fools joke, along with everything tied to it!
+	name = SPECIES_SPARKLE
+	name_plural = "Sparklies"
+	icobase = 'icons/mob/human_races/r_sparkle.dmi'
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	slowdown = -0.5
+	brute_mod = 1.5
+	burn_mod =  1.5
+	bloodloss_rate = 1.5
+	toxins_mod =    0.5
+	radiation_mod = 0
+	flash_mod =     2
+	siemens_coefficient = 10
+
+	darksight = 2
+
+	num_alternate_languages = 3
+	language = LANGUAGE_SPARKLE
+	species_language = LANGUAGE_SPARKLE
+	secondary_langs = list(LANGUAGE_SPARKLE, LANGUAGE_SOL_COMMON)
+	color_mult = 1
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/proc/toggle_sparkles, /mob/living/proc/healing_rainbows, /mob/living/carbon/human/proc/play_dead)
+	min_age = 18
+	max_age = 21
+	digi_allowed = FALSE //No time for making rainbow legs for the meme, sorry!
+
+	pass_flags = PASSTABLE
+
+	blurb = "Th3 ultimate lifeform, th3 l@st of th3 sp@rkl3 d0gg0s. M0r3 p0w3rful th@nn @ny 0th3r sp3ci3s in th3 3ntir3 un1v3rs3!!! When 3v3ryth1ng is crashing d0wn, y0u c@nn always r3ly 0n th3m to s@v3 th3 d@y. N0 0n3 3ls3 h@s th@t k1nd of str3ngth. R@wr XD #sp@rkl3d0gg0 #s@v1ngth3d@y #n0b0dyc@r3s"
+
+	wikilink="https://wiki.vore-station.net/"
+
+	primitive_form = SPECIES_MONKEY_VULPKANIN
+
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+
+	flesh_color = "#ffffff"
+	base_color = "#ffffff"
+	blood_color = "#ff00d9"
