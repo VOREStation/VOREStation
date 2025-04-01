@@ -572,3 +572,19 @@
       sanely fail
 
       fix latespawn loc code'
+2025-03-31:
+  Kashargul:
+  - bugfix: useless light recalcs, which might even have caused darker than supposed
+      areas
+  - bugfix: multiple bugs in outdoor and turf open / space handling
+  SatinIsle:
+  - rscadd: Added a treadmill fitness machine.
+  - rscadd: Added a non-alcohol version of the booze-o-mat, the virgin-o-mat!
+  - maptweak: Major changes to the pool area to include a poolside bar, new gym, locker
+      room, sauna and massage room.
+  - maptweak: Added a designated smoking area to the stellar delight.
+  - qol: Changed the default setting for Save Organs and Save Markings to No in character
+      setup
+  Tost:
+  - rscadd: Adds modern labcoat to loadout, under the public labcoat selector.
+  - rscadd: Adds 3 different leg warmers accessories.

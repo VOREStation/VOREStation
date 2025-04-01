@@ -595,3 +595,20 @@
 	name = "white ranger poncho"
 	icon_state = "rangerponcho_snow"
 	item_state = "rangerponcho_snow"
+
+// leg warmers
+
+/obj/item/clothing/accessory/legwarmers
+	name = "thigh-length legwarmers"
+	desc = "A comfy pair of legwarmers. These are excessively long."
+	icon_state = "legwarmers_thigh"
+
+/obj/item/clothing/accessory/legwarmersmedium
+	name = "medium-length legwarmers"
+	desc = "A comfy pair of legwarmers. For those unfortunate enough to wear shorts in the cold."
+	icon_state = "legwarmers_medium"
+
+/obj/item/clothing/accessory/legwarmersshort
+	name = "short legwarmers"
+	desc = "A comfy pair of legwarmers. For those better in the cold than others."
+	icon_state = "legwarmers_short"
