@@ -52,79 +52,55 @@
 
 // All accessed vars need to be cached during read.
 // Get data from species, if this fails use cached data
+#define SETUP_SPECIES_CHECK(p,x)\
+var/datum/species/SP = get_species_datum();\
+if(SP)\
+	cached_species_vars[p] = x;\
+return cached_species_vars[p];
+
+
 /datum/organ_data/proc/get_species_name()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["name"] = SP.name
-	return cached_species_vars["name"]
+	SETUP_SPECIES_CHECK("name",SP.name)
 
 /datum/organ_data/proc/get_species_race_key(var/owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["race_key"] = SP.get_race_key(owner)
-	return cached_species_vars["race_key"]
+	SETUP_SPECIES_CHECK("race_key",SP.get_race_key(owner))
 
 /datum/organ_data/proc/get_species_bodytype(var/mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["bodytype"] = SP.get_bodytype(H)
-	return cached_species_vars["bodytype"]
+	SETUP_SPECIES_CHECK("bodytype",SP.get_bodytype(H))
 
 /datum/organ_data/proc/get_species_icobase(var/mob/living/carbon/human/H, var/get_deform)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["icobase"] = SP.get_icobase(H,get_deform)
-	return cached_species_vars["icobase"]
+	SETUP_SPECIES_CHECK("icobase",SP.get_icobase(H,get_deform))
 
 /datum/organ_data/proc/get_species_appearance_flags()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["appearance_flags"] = SP.appearance_flags
-	return cached_species_vars["appearance_flags"]
+	SETUP_SPECIES_CHECK("appearance_flags",SP.appearance_flags)
 
 /datum/organ_data/proc/get_species_health_hud_intensity()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["health_hud_intensity"] = SP.health_hud_intensity
-	return cached_species_vars["health_hud_intensity"]
+	SETUP_SPECIES_CHECK("health_hud_intensity",SP.health_hud_intensity)
 
 /datum/organ_data/proc/get_species_color_mult()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["color_mult"] = SP.color_mult
-	return cached_species_vars["color_mult"]
+	SETUP_SPECIES_CHECK("color_mult",SP.color_mult)
 
 /datum/organ_data/proc/get_species_mob_size()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["mob_size"] = SP.mob_size
-	return cached_species_vars["mob_size"]
+	SETUP_SPECIES_CHECK("mob_size",SP.mob_size)
 
 /datum/organ_data/proc/get_species_flesh_colour(var/owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["flesh_colour"] = SP.get_flesh_colour(owner) || "#C80000"
-	return cached_species_vars["flesh_colour"]
+	SETUP_SPECIES_CHECK("flesh_colour",SP.get_flesh_colour(owner) || "#C80000")
 
 /datum/organ_data/proc/get_species_blood_colour(var/owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["blood_colour"] = SP.get_blood_colour(owner) || "#C80000"
-	return cached_species_vars["blood_colour"]
+	SETUP_SPECIES_CHECK("blood_colour",SP.get_blood_colour(owner) || "#C80000")
 
 /datum/organ_data/proc/get_species_icodigi()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/species/SP = get_species_datum()
-	if(SP)
-		cached_species_vars["icodigi"] = SP.icodigi
-	return cached_species_vars["icodigi"]
+	SETUP_SPECIES_CHECK("icodigi",SP.icodigi)
+
+#undef SETUP_SPECIES_CHECK
