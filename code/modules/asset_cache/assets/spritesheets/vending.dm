@@ -1,7 +1,7 @@
-/datum/asset/spritesheet/vending
+/datum/asset/spritesheet_batched/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/create_spritesheets()
+/datum/asset/spritesheet_batched/vending/create_spritesheets()
 	populate_vending_products()
 	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
@@ -17,15 +17,17 @@
 			icon_state = initial(G.base_icon)
 		if(ispath(item, /obj/item/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
+		if(ispath(item, /obj/item/melee/shock_maul))
+			icon_state += "0"
 
-		var/icon/I
+		var/datum/universal_icon/I
 
 		var/icon_states_list = icon_states(icon_file)
 		if(icon_state in icon_states_list)
-			I = icon(icon_file, icon_state, SOUTH)
+			I = uni_icon(icon_file, icon_state, SOUTH)
 			var/c = initial(item.color)
 			if(!isnull(c) && c != "#FFFFFF")
-				I.Blend(c, ICON_MULTIPLY)
+				I.blend_color(c, ICON_MULTIPLY)
 		else
 			var/icon_states_string
 			for(var/an_icon_state in icon_states_list)
@@ -34,11 +36,11 @@
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-			I = icon('icons/turf/floors.dmi', "", SOUTH)
+			I = uni_icon('icons/turf/floors.dmi', "", SOUTH)
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
-		Insert(imgid, I)
+		insert_icon(imgid, I)
 
 // this is cursed but necessary or else vending product icons can be missing
 // basically, if there's any vending machines that aren't already mapped in, our register() will not know
@@ -47,7 +49,7 @@
 // is populated with every single type of vending machine
 // As this is only done at runtime, we have to create all the vending machines in existence and force them
 // to register their products when this asset initializes.
-/datum/asset/spritesheet/vending/proc/populate_vending_products()
+/datum/asset/spritesheet_batched/vending/proc/populate_vending_products()
 	SSatoms.map_loader_begin()
 	for(var/path in subtypesof(/obj/machinery/vending))
 		var/obj/machinery/vending/x = new path(null)
