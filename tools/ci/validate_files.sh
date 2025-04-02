@@ -115,6 +115,13 @@ section "code issues"
 #	 FAILED=1
 # fi
 
+part "space indentation"
+if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: space indentation detected.${NC}"
+	FAILED=1
+fi;
+
 part "mixed tab/space indentation"
 if grep -P '^\t+ [^ *]' $code_files; then
 	echo

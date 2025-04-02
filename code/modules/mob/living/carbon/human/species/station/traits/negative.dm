@@ -738,3 +738,14 @@
 	custom_only = TRUE
 	var_changes = list("flags" = NO_SLEEVE | NO_DEFIB)
 	excludes = list(/datum/trait/negative/nodefib, /datum/trait/negative/noresleeve)
+
+// Why put this on Xenochimera of all species? I have no idea, but someone may be enough of a lunatic to take it.
+/datum/trait/negative/neural_hypersensitivity/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Neural Hypersensitivity"
+	desc = "Despite your evolutionary efforts, you are unusually sensitive to pain. \
+	Given your species' typical reactions to pain, this can only end well for you!"
+	cost = 0
+	category = 0
+	custom_only = FALSE

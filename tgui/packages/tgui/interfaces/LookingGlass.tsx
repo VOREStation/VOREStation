@@ -15,7 +15,7 @@ export const LookingGlass = (props) => {
 
   const { supportedPrograms, currentProgram, immersion, gravity } = data;
 
-  let height = Math.min(180 + supportedPrograms.length * 23, 600);
+  const height = Math.min(180 + supportedPrograms.length * 23, 600);
 
   return (
     <Window width={300} height={height}>

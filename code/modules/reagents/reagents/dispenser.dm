@@ -104,6 +104,7 @@
 	allergen_factor = 1	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
 	affects_robots = 1 //kiss my shiny metal ass
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	..()

@@ -62,6 +62,8 @@
 	// This is a bitfield, more than one type can be used
 	// Grill is presently unused and not listed
 
+	var/wiki_flag = 0
+
 /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = FALSE)
 	if(!reagents || !reagents.len)
 		return TRUE

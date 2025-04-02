@@ -25,10 +25,10 @@
 		if(!isanimal(user))
 			if( !user.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
-				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 
 				if (H.hand)
-					temp = H.organs_by_name["l_hand"]
+					temp = H.organs_by_name[BP_L_HAND]
 				if(temp && !temp.is_usable())
 					to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 					return
@@ -41,9 +41,9 @@
 /obj/item/paper_bin/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return

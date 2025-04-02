@@ -125,7 +125,7 @@ const CasinoPrizeDispenserItems = (props: {
   );
 
   let has_contents = false;
-  let contents = Object.entries(items).map((kv) => {
+  const contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {

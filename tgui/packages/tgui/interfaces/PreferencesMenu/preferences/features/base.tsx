@@ -1,12 +1,12 @@
 import {
-  ComponentType,
+  type ComponentType,
   createElement,
-  ReactNode,
+  type ReactNode,
   useEffect,
   useState,
 } from 'react';
 import React from 'react';
-import { sendAct, useBackend } from 'tgui/backend';
+import { type sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
