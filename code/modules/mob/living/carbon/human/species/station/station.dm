@@ -2021,7 +2021,7 @@
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	spawn_flags = SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 	flesh_color = "#ffffff"
