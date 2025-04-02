@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - qol: "spawning carbon mobs is less laggy"
+  - refactor: "dna datum cloning per organ removed in favor of a organ_data datum"
