@@ -195,14 +195,13 @@
 	qdel_null(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
-	if(!candidate || !candidate.mind)
+	if(!candidate)
 		return
-
-	src.mind = candidate.mind
-	candidate.mind.current = src
 	ckey = candidate.ckey
 
-	if(mind)
+	if(candidate.mind)
+		src.mind = candidate.mind
+		candidate.mind.current = src
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 
