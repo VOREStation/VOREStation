@@ -267,18 +267,6 @@ class ChatRenderer {
     else {
       this.rootNode = node;
     }
-    // Find scrollable parent
-    if (this.rootNode) {
-      this.scrollNode = findNearestScrollableParent(
-        this.rootNode,
-      ) as HTMLElement;
-    }
-    if (this.scrollNode) {
-      this.scrollNode.addEventListener('scroll', this.handleScroll);
-    }
-    setTimeout(() => {
-      this.scrollToBottom();
-    });
     // Flush the queue
     this.tryFlushQueue();
   }
