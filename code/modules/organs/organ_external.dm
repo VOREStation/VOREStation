@@ -30,8 +30,6 @@
 	var/burn_dam = 0                   // Actual current burn damage.
 	var/last_dam = -1                  // used in healing/processing calculations.
 	var/spread_dam = 0
-	var/thick_skin = 0                 // If a needle has a chance to fail to penetrate.
-
 	// Appearance vars.
 	var/nonsolid                       // Snowflake warning, reee. Used for slime limbs.
 	var/transparent                    // As above, so below. Used for transparent limbs.
@@ -40,7 +38,6 @@
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
 	var/force_icon                     // Used to force override of species-specific limb icons (for prosthetics). Also used for any limbs chopped from a simple mob, and then attached to humans.
-	var/force_icon_key                 // Used to force the override of the icon-key generated using the species. Must be used in tandem with the above.
 	var/icon/mob_icon                  // Cached icon for use in mob overlays.
 	var/gendered_icon = 0              // Whether or not the icon state appends a gender.
 	var/s_tone                         // Skin tone.
@@ -257,7 +254,8 @@
 
 /obj/item/organ/external/LateInitialize()
 	. = ..()
-	get_icon()
+	if(!QDELETED(src))
+		get_icon()
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -595,7 +593,7 @@ This function completely restores a damaged organ to perfect condition.
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + damage
-	if((damage > 15) && (type != BURN) && (local_damage > 30) && prob(damage) && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD))
+	if((damage > 15) && (type != BURN) && (local_damage > 30) && prob(damage) && (robotic < ORGAN_ROBOT) && !(data.get_species_appearance_flags() & NO_BLOOD))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
 		owner.custom_pain("Something ruptures inside of your [name]. You get the feeling you'll need more than just a bandage to fix it.", 15, TRUE)
@@ -603,7 +601,7 @@ This function completely restores a damaged organ to perfect condition.
 
 //Burn damage can cause fluid loss due to blistering and cook-off
 
-	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD))
+	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT) && !(data.get_species_appearance_flags() & NO_BLOOD))
 		var/fluid_loss = 0.4 * (damage/(owner.getMaxHealth() - CONFIG_GET(number/health_threshold_dead))) * owner.species.blood_volume*(1 - owner.species.blood_level_fatal)
 		owner.remove_blood(fluid_loss)
 
@@ -792,8 +790,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()
-
-	if((robotic >= ORGAN_ROBOT) || (species.flags & UNDEAD)) //Robotic and dead limbs don't heal or get worse.
+	if((robotic >= ORGAN_ROBOT) || (data.get_species_appearance_flags() & UNDEAD)) //Robotic and dead limbs don't heal or get worse.
 		for(var/datum/wound/W in wounds) //Repaired wounds disappear though
 			if(W.damage <= 0)  //and they disappear right away
 				wounds -= W    //TODO: robot wounds for robot limbs
@@ -964,8 +961,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 
-	var/use_flesh_colour = species?.get_flesh_colour(owner) ? species.get_flesh_colour(owner) : "#C80000"
-	var/use_blood_colour = species?.get_blood_colour(owner) ? species.get_blood_colour(owner) : "#C80000"
+	var/use_flesh_colour = data.get_species_flesh_colour(owner)
+	var/use_blood_colour = data.get_species_blood_colour(owner)
 
 	removed(null, ignore_children)
 	victim?.traumatic_shock += 60
@@ -1018,10 +1015,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(droploc)
 			else
 				gore = new /obj/effect/decal/cleanable/blood/gibs(droploc)
-				if(species)
-					gore.fleshcolor = use_flesh_colour
-					gore.basecolor =  use_blood_colour
-					gore.update_icon()
+				gore.fleshcolor = use_flesh_colour
+				gore.basecolor = use_blood_colour
+				gore.update_icon()
 
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 
@@ -1205,7 +1201,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(company)
 		model = company
 		var/datum/robolimb/R = all_robolimbs[company]
-		if(!R || (species && (species.name in R.species_cannot_use)))
+		if(!R || (data.get_species_name() in R.species_cannot_use))
 			R = basic_robolimb
 		if(R)
 			force_icon = R.icon

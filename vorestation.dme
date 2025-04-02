@@ -3655,6 +3655,7 @@
 #include "code\modules\nifsoft\software\14_commlink.dm"
 #include "code\modules\nifsoft\software\15_misc.dm"
 #include "code\modules\organs\blood.dm"
+#include "code\modules\organs\data.dm"
 #include "code\modules\organs\misc.dm"
 #include "code\modules\organs\organ.dm"
 #include "code\modules\organs\organ_external.dm"

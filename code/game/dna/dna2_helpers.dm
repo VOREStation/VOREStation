@@ -301,12 +301,10 @@
 	else
 		return 0
 
-//VOREStation Add
 /mob/living/carbon/human/proc/force_update_organs()
 	for(var/obj/item/organ/O as anything in organs + internal_organs)
-		O.species = species
+		O.data.setup_from_species(species)
 	species.post_spawn_special(src)
-//VOREStation Add End
 
 // Used below, simple injection modifier.
 /proc/probinj(var/pr, var/inj)
