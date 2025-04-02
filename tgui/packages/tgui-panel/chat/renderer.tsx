@@ -231,17 +231,18 @@ class ChatRenderer {
     this.lastScrollHeight = 0;
     this.handleScroll = (type) => {
       const node = this.scrollNode;
-      if (node) {
-        const height = node.scrollHeight;
-        const bottom = node.scrollTop + node.offsetHeight;
-        const scrollTracking =
-          Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE ||
-          this.lastScrollHeight === 0;
-        if (scrollTracking !== this.scrollTracking) {
-          this.scrollTracking = scrollTracking;
-          this.events.emit('scrollTrackingChanged', scrollTracking);
-          logger.debug('tracking', this.scrollTracking);
-        }
+      if (!node) {
+        return;
+      }
+      const height = node.scrollHeight;
+      const bottom = node.scrollTop + node.offsetHeight;
+      const scrollTracking =
+        Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE ||
+        this.lastScrollHeight === 0;
+      if (scrollTracking !== this.scrollTracking) {
+        this.scrollTracking = scrollTracking;
+        this.events.emit('scrollTrackingChanged', scrollTracking);
+        logger.debug('tracking', this.scrollTracking);
       }
     };
     this.ensureScrollTracking = () => {
@@ -291,6 +292,7 @@ class ChatRenderer {
     if (this.isReady() && this.queue.length > 0) {
       this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
+      this.scrollToBottom();
     }
   }
 
@@ -442,10 +444,26 @@ class ChatRenderer {
   }
 
   scrollToBottom() {
+    this.tryFindScrollable();
     // scrollHeight is always bigger than scrollTop and is
     // automatically clamped to the valid range.
     if (this.scrollNode) {
       this.scrollNode.scrollTop = this.scrollNode.scrollHeight;
+    }
+  }
+
+  tryFindScrollable() {
+    // Find scrollable parent
+    if (this.rootNode) {
+      if (!this.scrollNode || this.scrollNode.scrollHeight === undefined) {
+        this.scrollNode = findNearestScrollableParent(
+          this.rootNode,
+        ) as HTMLElement;
+        if (this.scrollNode) {
+          this.scrollNode.addEventListener('scroll', this.handleScroll);
+        }
+        logger.debug(`reset scrollNode to ${this.scrollNode}`);
+      }
     }
   }
 
