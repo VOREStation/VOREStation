@@ -291,6 +291,7 @@ class ChatRenderer {
     if (this.isReady() && this.queue.length > 0) {
       this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
+      this.scrollToBottom();
     }
   }
 
@@ -442,10 +443,26 @@ class ChatRenderer {
   }
 
   scrollToBottom() {
+    this.tryFindScrollable();
     // scrollHeight is always bigger than scrollTop and is
     // automatically clamped to the valid range.
     if (this.scrollNode) {
       this.scrollNode.scrollTop = this.scrollNode.scrollHeight;
+    }
+  }
+
+  tryFindScrollable() {
+    // Find scrollable parent
+    if (this.rootNode) {
+      if (!this.scrollNode || this.scrollNode.scrollHeight === undefined) {
+        this.scrollNode = findNearestScrollableParent(
+          this.rootNode,
+        ) as HTMLElement;
+        if (this.scrollNode) {
+          this.scrollNode.addEventListener('scroll', this.handleScroll);
+        }
+        logger.debug(`reset scrollNode to ${this.scrollNode}`);
+      }
     }
   }
 
