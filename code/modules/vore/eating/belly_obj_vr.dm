@@ -1213,7 +1213,7 @@
 	else
 		log_debug("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
 		var/fallback = pick(latejoin)
-		return fallback
+		return get_turf(fallback)
 
 //Yes, it's ""safe"" to drop items here
 /obj/belly/AllowDrop()

@@ -180,3 +180,16 @@
 	partial_understanding = list(LANGUAGE_TRADEBAND = 30, LANGUAGE_SOL_COMMON = 10)
 /datum/language/human/animal
 	flags = RESTRICTED
+
+/datum/language/sparkle
+	name = LANGUAGE_SPARKLE
+	desc = "Eeeeeeeeeeeeee."
+	speech_verb = "says"
+	ask_verb = "asks"
+	exclaim_verb = "squeals"
+	colour = "rainbow"
+	key = "Z"
+	syllables = list(
+		"lol", "lmao", "rofl", "rawr", "XD", "eeeee", "hehe", "lolz", "0_o", ":>", "l1k3", "mudk1pz", "l33t", "br00tal", "hXc", "wtf", "pwn"
+	)
+	flags = WHITELISTED

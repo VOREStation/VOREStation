@@ -1,5 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - rscadd: "Adds modern labcoat to loadout, under the public labcoat selector."
-  - rscadd: "Adds 3 different leg warmers accessories."
