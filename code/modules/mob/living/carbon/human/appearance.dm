@@ -197,8 +197,7 @@
 
 	var/use_species = species.get_bodytype(src)
 	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
-	var/datum/species/SP = H.data.get_species_datum()
-	if(H) use_species = SP.get_bodytype(src)
+	if(H) use_species = H.data.get_species_bodytype(src)
 
 	var/list/valid_hairstyles = new()
 	for(var/hairstyle in hair_styles_list)
@@ -224,8 +223,7 @@
 
 	var/use_species = species.get_bodytype(src)
 	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
-	var/datum/species/SP = H.data.get_species_datum()
-	if(H) use_species = SP.get_bodytype(src)
+	if(H) use_species = H.data.get_species_bodytype(src)
 
 	var/list/valid_facial_hairstyles = new()
 	for(var/facialhairstyle in facial_hair_styles_list)

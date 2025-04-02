@@ -260,8 +260,7 @@ var/list/organ_cache = list()
 	// immunosuppressant that changes transplant data to make it match.
 	if(data && can_reject)
 		if(!rejecting)
-			var/datum/species/SP = data.get_species_datum()
-			if(blood_incompatible(data.b_type, owner.dna.b_type, SP.name, owner.species.name)) //VOREStation Edit - Process species by name.
+			if(blood_incompatible(data.b_type, owner.dna.b_type, data.get_species_name(), owner.species.name)) //VOREStation Edit - Process species by name.
 				rejecting = 1
 		else
 			rejecting++ //Rejection severity increases over time.
@@ -519,8 +518,7 @@ var/list/organ_cache = list()
 	qdel(src)
 
 /obj/item/organ/proc/organ_can_feel_pain()
-	var/datum/species/SP = data.get_species_datum()
-	if(SP.flags & NO_PAIN)
+	if(data.get_species_appearance_flags() & NO_PAIN)
 		return 0
 	if(status & ORGAN_DESTROYED)
 		return 0

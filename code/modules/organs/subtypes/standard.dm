@@ -389,8 +389,7 @@
 			icon_cache_key += "[eye_icon]"
 
 	//Lip color/icon
-	var/datum/species/SP = data.get_species_datum()
-	if(owner.lip_style && (SP.appearance_flags & HAS_LIPS))
+	if(owner.lip_style && (data.get_species_appearance_flags() & HAS_LIPS))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
 		add_overlay(lip_icon)
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
