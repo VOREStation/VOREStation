@@ -23,8 +23,7 @@ var/list/organ_cache = list()
 	var/list/transplant_data			// Transplant match data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
-	var/datum/dna/dna					// Original DNA.
-	var/datum/species/species			// Original species.
+	var/datum/organ_data/data = new()	// Stores data for appearance and investigation
 
 	// Damage vars.
 	var/min_bruised_damage = 10			// Damage before considered bruised
@@ -54,8 +53,7 @@ var/list/organ_cache = list()
 	if(transplant_data) transplant_data.Cut()
 	if(autopsy_data)    autopsy_data.Cut()
 	if(trace_chemicals) trace_chemicals.Cut()
-	QDEL_NULL(dna)
-	species = null
+	QDEL_NULL(data)
 
 	return ..()
 
@@ -91,10 +89,11 @@ var/list/organ_cache = list()
 		max_damage = min_broken_damage * 2
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
-		species = GLOB.all_species[SPECIES_HUMAN]
+		if(!C.species)
+			data.setup_from_species(GLOB.all_species[SPECIES_HUMAN])
 		if(owner.dna)
-			qdel_swap(dna, C.dna.Clone())
-			species = C.species
+			data.setup_from_dna(C.dna)
+			data.setup_from_species(C.species)
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
@@ -105,12 +104,12 @@ var/list/organ_cache = list()
 					if(E.internal_organs == null)
 						E.internal_organs = list()
 					E.internal_organs |= src
-			if(dna)
+			if(data)
 				if(!blood_DNA)
 					blood_DNA = list()
-				blood_DNA[dna.unique_enzymes] = dna.b_type
+				blood_DNA[data.unique_enzymes] = data.b_type
 	else
-		species = GLOB.all_species["Human"]
+		data.setup_from_species(GLOB.all_species["Human"])
 
 	handle_organ_mod_special()
 
@@ -131,10 +130,10 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
-		qdel_swap(dna, new_dna.Clone())
+		data.setup_from_dna(new_dna)
 		if(blood_DNA)
 			blood_DNA.Cut()
-			blood_DNA[dna.unique_enzymes] = dna.b_type
+			blood_DNA[data.unique_enzymes] = data.b_type
 
 /obj/item/organ/proc/die()
 	if(robotic < ORGAN_ROBOT)
@@ -259,9 +258,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
-	if(dna && can_reject)
+	if(data && can_reject)
 		if(!rejecting)
-			if(blood_incompatible(dna.b_type, owner.dna.b_type, species.name, owner.species.name)) //VOREStation Edit - Process species by name.
+			if(blood_incompatible(data.b_type, owner.dna.b_type, data.get_species_name(), owner.species.name)) //VOREStation Edit - Process species by name.
 				rejecting = 1
 		else
 			rejecting++ //Rejection severity increases over time.
@@ -519,7 +518,7 @@ var/list/organ_cache = list()
 	qdel(src)
 
 /obj/item/organ/proc/organ_can_feel_pain()
-	if(species.flags & NO_PAIN)
+	if(data.get_species_appearance_flags() & NO_PAIN)
 		return 0
 	if(status & ORGAN_DESTROYED)
 		return 0

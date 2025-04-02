@@ -180,7 +180,7 @@
 		add_overlay(image('icons/obj/pipes.dmi', "comp-o2", FLY_LAYER))
 	else if(rpm>500)
 		add_overlay(image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER))
-	 //TODO: DEFERRED
+	//TODO: DEFERRED
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

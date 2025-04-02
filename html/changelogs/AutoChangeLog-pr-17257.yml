@@ -1,9 +1,0 @@
-author: "Cameron-The-Raven"
-delete-after: True
-changes:
-  - code_imp: "Removes accidental glass endurance duplicate"
-  - bugfix: "Makes toxins no longer infinitely multiply  in strength"
-  - bugfix: "Makes Sensitive Biochemistry make you WEAKER to stoxin and chloralhydrate instead of making you STRONGER against it, like it was intended to do."
-  - rscadd: "Adds a moderate and major version of sensitive biochemistry."
-  - rscadd: "Makes some drugs like ambrosia extract have stronger negative effects if you have sensitive biochemistry."
-  - qol: "Clamps the strength of mindbreaker. No more infinite hallucinations."

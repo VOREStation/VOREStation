@@ -1,7 +1,7 @@
 import { Box, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesSoulcatcher = (props: {

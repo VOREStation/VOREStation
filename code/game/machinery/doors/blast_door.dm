@@ -396,8 +396,8 @@
 // SUBTYPE: Multi-tile
 // Pod doors ported from Paradise
 
- // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
- // Wise words. - Bxil
+// Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
+// Wise words. - Bxil
 /obj/machinery/door/blast/multi_tile
 	name = "large blast door"
 

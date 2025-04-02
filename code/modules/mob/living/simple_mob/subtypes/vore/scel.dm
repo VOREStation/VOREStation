@@ -58,8 +58,8 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/simple_mob/vore/scel/New()
-	..()
+/mob/living/simple_mob/vore/scel/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]-rest"

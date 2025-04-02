@@ -164,7 +164,8 @@
 #define ui_genetic_master "EAST-1:16,NORTH-3:16"
 
 // Ghost ones
-#define ui_ghost_returntomenu "SOUTH:6,CENTER-3:24"
+#define ui_ghost_returntomenu "SOUTH:6,CENTER-4:24"
+#define ui_ghost_vr "SOUTH: 6,CENTER-3:24"
 #define ui_ghost_jumptomob "SOUTH:6,CENTER-2:24"
 #define ui_ghost_orbit "SOUTH:6,CENTER-1:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER:24"

@@ -120,6 +120,55 @@
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
 
+/obj/machinery/vending/boozeomat/virgin
+	name = "Virgin-O-Mat"
+	products = list(/obj/item/reagent_containers/food/drinks/glass2/square = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/rocks = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/shake = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/cocktail = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/shot = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/pint = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/mug = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/carafe = 2,	//VOREStation Add - Carafes and Pitchers
+					/obj/item/reagent_containers/food/drinks/glass2/pitcher = 2,	//VOREStation Add - Carafes and Pitchers
+					/obj/item/reagent_containers/food/drinks/glass2/wine = 10,
+					/obj/item/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/grapejuice = 5,
+					/obj/item/reagent_containers/food/drinks/metaglass = 10,
+					/obj/item/reagent_containers/food/drinks/metaglass/metapint = 10,
+					/obj/item/reagent_containers/glass/beaker/stopperedbottle = 10,
+					/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5,
+					/obj/item/reagent_containers/food/condiment/cookingoil = 5,
+					/obj/item/reagent_containers/food/condiment/cornoil = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/orangejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/limejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/lemonjuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/applejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/milk = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/cream = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/cola = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/decaf_cola = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/space_up = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/dr_gibb = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/small/cola = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/space_up = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb = 15,
+					/obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
+					/obj/item/reagent_containers/food/drinks/cans/tonic = 15,
+					/obj/item/reagent_containers/food/drinks/cans/gingerale = 15,
+					/obj/item/reagent_containers/food/drinks/flask/barflask = 5,
+					/obj/item/reagent_containers/food/drinks/flask/vacuumflask = 5,
+					/obj/item/reagent_containers/food/drinks/ice = 10,
+					/obj/item/reagent_containers/food/drinks/tea = 15,
+					/obj/item/glass_extra/stick = 30,
+					/obj/item/glass_extra/straw = 30)
+
+	product_slogans = "I hope hope someone asks me for a cup o' tea...;Alcohol is humanity's enemy. Would you join a foe?;Quite delighted to serve you!;Is nobody thirsty on this station?"
+	product_ads = "Drink up responsibly!;Booze is bad for you!;Alcohol is humanity's worst enemy.;Quite delighted to serve you!;Care for a nice, cold ginger ale?;Nothing cures you like tea!;Have a sip!;Have a drink!;Have a water!;Beer is not good for you!;Only the finest non-alcoholic beverages!;Best quality soft drinks since 2053!;Award-winning lemonade!;Minimum alcohol!;Man loathes beer.;A toast for sobriety!"
+
 /obj/machinery/vending/assist
 	products = list(	/obj/item/assembly/prox_sensor = 5,
 						/obj/item/assembly/igniter = 3,

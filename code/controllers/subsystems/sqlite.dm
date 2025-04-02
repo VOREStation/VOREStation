@@ -33,14 +33,14 @@ SUBSYSTEM_DEF(sqlite)
 	// Note that this is for direct feedback from players using the in-game feedback system and NOT for stat tracking.
 	// Player ckeys are not stored in this table as a unique key due to a config option to hash the keys to encourage more honest feedback.
 	/*
-	 * id			- Primary unique key to ID a specific piece of feedback.
-	 					NOT used to id people submitting feedback.
-	 * author		- The person who submitted it. Will be the ckey, or a hash of the ckey,
-	 					if both the config supports it, and the user wants it.
-	 * topic		- A specific category to organize feedback under. Options are defined in the config file.
-	 * content		- What the author decided to write to the staff. Limited to MAX_FEEDBACK_LENGTH.
-	 * datetime		- When the author submitted their feedback, acts as a timestamp.
-	 */
+		* id			- Primary unique key to ID a specific piece of feedback.
+							NOT used to id people submitting feedback.
+		* author		- The person who submitted it. Will be the ckey, or a hash of the ckey,
+							if both the config supports it, and the user wants it.
+		* topic		- A specific category to organize feedback under. Options are defined in the config file.
+		* content		- What the author decided to write to the staff. Limited to MAX_FEEDBACK_LENGTH.
+		* datetime		- When the author submitted their feedback, acts as a timestamp.
+	*/
 	var/database/query/init_schema = new(
 		{"
 		CREATE TABLE IF NOT EXISTS [SQLITE_TABLE_FEEDBACK]

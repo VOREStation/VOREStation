@@ -34,6 +34,7 @@
 	var/reaction_sound = 'sound/effects/bubbles.ogg'
 
 	var/log_is_important = 0 // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
+	var/wiki_flag = 0
 
 /decl/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
@@ -102,6 +103,9 @@
 	var/amt_produced = result_amount * reaction_progress
 	if(result)
 		holder.add_reagent(result, amt_produced, data, safety = 1, was_from_belly = belly_reagent)
+		// #ifdef UNIT_TEST
+		// log_unit_test("[name] - Reagent reaction result: [result] [amt_produced]") // Uncomment for UNIT_TEST debug assistance
+		// #endif
 
 	on_reaction(holder, amt_produced)
 

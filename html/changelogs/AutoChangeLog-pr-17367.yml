@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Sci borg baton no longer looks like a normal baton"
-  - bugfix: "Peacekeeper borgs have their shield sprite enabled now"
-  - balance: "sci borg baton now does ONE EXTRA DAMAGE. 9->10"

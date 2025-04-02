@@ -99,6 +99,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/sushi
+	wiki_flag = WIKI_SPOILER // Secretish? Just assume carp is fish anyway
 
 /datum/recipe/lobster
 	fruit = list(PLANT_LEMON = 1, PLANT_LETTUCE = 1)
