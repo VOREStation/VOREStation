@@ -257,7 +257,8 @@
 
 /obj/item/organ/external/LateInitialize()
 	. = ..()
-	get_icon()
+	if(!QDELETED(src))
+		get_icon()
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -1017,8 +1018,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(droploc)
 			else
 				gore = new /obj/effect/decal/cleanable/blood/gibs(droploc)
-				gore.fleshcolor = data.get_species_flesh_colour(owner)
-				gore.basecolor =  data.get_species_blood_colour(owner)
+				gore.fleshcolor = use_flesh_colour
+				gore.basecolor = use_blood_colour
 				gore.update_icon()
 
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
