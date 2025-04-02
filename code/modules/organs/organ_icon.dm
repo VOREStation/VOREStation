@@ -124,10 +124,7 @@ var/global/list/limb_icon_cache = list()
 
 	var/should_apply_transparency = FALSE
 
-	if(!force_icon_key)
 		icon_cache_key = "[icon_name]_[data.get_species_bodytype(owner)]"
-	else
-		icon_cache_key = "[icon_name]_[force_icon_key]"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
