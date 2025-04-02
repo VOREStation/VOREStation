@@ -2,16 +2,17 @@
 // However sending the whole dna datum through Clone() is extremely expensive, and a memory leak if its a hardref instead.
 /datum/organ_data
 	VAR_PRIVATE/datum/weakref/species
-	VAR_PRIVATE/species_name // Fallback
 	// Species currently uses a cache system, if the species datum deletes, these are used as fallbacks for the last obtained state from the species datum
 	// In the future, transforming species need to be refactored to not need this, as it's the only thing holding it back from proper isolation.
+
+	// Species
 	VAR_PRIVATE/cached_species_vars = list()
+
 	// Dna
 	var/unique_enzymes
 	var/b_type
 	var/body_gender
 	var/digitigrade
-	// Colorsets
 	var/skin_tone
 	var/list/skin_color
 	var/list/hair_color
@@ -41,19 +42,11 @@
 /datum/organ_data/proc/setup_from_species(var/datum/species/S) // This needs a full rework, but can't be done unless all of transformating species code is refactored
 	SHOULD_NOT_OVERRIDE(TRUE)
 	species = WEAKREF(S)
-	species_name = S.name
-
-/datum/organ_data/proc/get_species_datum()
-	RETURN_TYPE(/datum/species)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	return species?.resolve()
-
 
 // All accessed vars need to be cached during read.
 // Get data from species, if this fails use cached data
 #define SETUP_SPECIES_CHECK(p,x)\
-var/datum/species/SP = get_species_datum();\
+var/datum/species/SP = species?.resolve();\
 if(SP)\
 	cached_species_vars[p] = x;\
 return cached_species_vars[p];
