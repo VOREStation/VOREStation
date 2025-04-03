@@ -68,6 +68,10 @@ return cached_species_vars[p];
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("icobase",SP.get_icobase(H,get_deform))
 
+/datum/organ_data/proc/get_species_flags()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	SETUP_SPECIES_CHECK("flags",SP.flags)
+
 /datum/organ_data/proc/get_species_appearance_flags()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("appearance_flags",SP.appearance_flags)
