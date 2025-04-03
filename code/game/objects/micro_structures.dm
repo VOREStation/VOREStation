@@ -65,7 +65,7 @@ var/global/list/micro_tunnels = list()
 	var/turf/myturf = get_turf(src.loc)
 	var/datum/planet/planet
 	for(var/datum/planet/P in SSplanets.planets)
-		if(myturf.z in P.expected_z_levels)
+		if(myturf.z in P.get_real_z_levels())
 			planet = P
 	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
 		if(t == src)
@@ -78,7 +78,7 @@ var/global/list/micro_tunnels = list()
 			continue
 		var/turf/targetturf = get_turf(t.loc)
 		if(planet)
-			if(targetturf.z in planet.expected_z_levels)
+			if(targetturf.z in planet.get_real_z_levels())
 				destinations |= t
 				continue
 		var/above = GetAbove(myturf)

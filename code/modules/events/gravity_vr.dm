@@ -8,7 +8,7 @@
 	// Setup which levels we will disrupt gravit on.
 	zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
-		zLevels -= P.expected_z_levels
+		zLevels -= P.get_real_z_levels()
 
 /datum/event/gravity/announce()
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")

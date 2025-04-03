@@ -51,7 +51,7 @@
 
 	var/datum/planet/impacted
 	for(var/datum/planet/P in SSplanets.planets)
-		if(current.z in P.expected_z_levels)
+		if(current.z in P.get_real_z_levels())
 			impacted = P
 			break
 	if(impacted)
@@ -59,7 +59,7 @@
 			if(!istype(L))
 				continue
 			var/turf/mob_turf = get_turf(L)
-			if(!mob_turf || !(mob_turf.z in impacted.expected_z_levels))
+			if(!mob_turf || !(mob_turf.z in impacted.get_real_z_levels()))
 				continue
 			if(L.client)
 				to_chat(L, span_danger("The ground lurches beneath you!"))

@@ -66,3 +66,12 @@
 	sun["brightness"] = CLAMP01(new_brightness)
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
+
+/datum/planet/proc/get_real_z_levels()
+	var/list/real_z = list()
+	for(var/entry in expected_z_levels)
+		if(!isnum(entry))
+			real_z += GLOB.map_templates_loaded[entry]
+			continue
+		real_z += entry
+	return real_z

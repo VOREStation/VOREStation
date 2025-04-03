@@ -277,7 +277,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_flags  = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo3c/rain/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to rain on them.
@@ -330,7 +330,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_flags  = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo3c/storm/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to rain on them.
@@ -389,7 +389,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_HUMANS
 
 /datum/weather/virgo3c/hail/planet_effect(mob/living/carbon/H)
-	if(H.z in holder.our_planet.expected_z_levels)
+	if(H.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(H)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to pelt them with ice.
@@ -517,7 +517,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_flags  = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo3c/ash_storm/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to burn them with ash.
@@ -580,7 +580,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_flags  = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo3c/fallout/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		irradiate_nearby_turf(L)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())

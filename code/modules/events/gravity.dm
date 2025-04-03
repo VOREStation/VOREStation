@@ -7,7 +7,7 @@
 	// Setup which levels we will disrupt gravit on.
 	zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
-		zLevels -= P.expected_z_levels
+		zLevels -= P.get_real_z_levels()
 
 	for(var/obj/machinery/gravity_generator/main/GG in machines)
 		if((GG.z in zLevels) && GG.on)

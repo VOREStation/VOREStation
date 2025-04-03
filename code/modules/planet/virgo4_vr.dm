@@ -201,7 +201,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 /datum/weather/virgo4/snow/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
-		if(S.z in holder.our_planet.expected_z_levels)
+		if(S.z in holder.our_planet.get_real_z_levels())
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
@@ -235,7 +235,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 /datum/weather/virgo4/blizzard/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
-		if(S.z in holder.our_planet.expected_z_levels)
+		if(S.z in holder.our_planet.get_real_z_levels())
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
@@ -267,7 +267,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_flags  = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo4/rain/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to rain on them.
@@ -316,7 +316,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo4/storm/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to rain on them.
@@ -373,7 +373,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_HUMANS
 
 /datum/weather/virgo4/hail/planet_effect(mob/living/carbon/H)
-	if(H.z in holder.our_planet.expected_z_levels)
+	if(H.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(H)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to pelt them with ice.
@@ -492,7 +492,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo4/ash_storm/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to burn them with ash.
@@ -551,7 +551,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo4/fallout/planet_effect(mob/living/L)
-	if(L.z in holder.our_planet.expected_z_levels)
+	if(L.z in holder.our_planet.get_real_z_levels())
 		irradiate_nearby_turf(L)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
