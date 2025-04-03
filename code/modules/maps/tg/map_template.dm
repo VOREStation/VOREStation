@@ -39,7 +39,7 @@
 
 	var/prev_shuttle_queue_state = SSshuttles.block_init_queue
 	SSshuttles.block_init_queue = TRUE
-	var/machinery_was_awake = SSmachines.suspend() // Suspend machinery (if it was not already suspended)
+	//var/machinery_was_awake = SSmachines.suspend() // Suspend machinery (if it was not already suspended) //Old way to keep atmos machines from processing while being loaded. This killed ALL machines in the world...not good.
 
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
@@ -56,6 +56,8 @@
 			else if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
 	atoms |= areas
+	for(var/obj/machinery/atmospherics/atmos_to_reenable as anything in atmos_machines)
+		atmos_to_reenable.being_loaded = TRUE
 
 	admin_notice(span_danger("Initializing newly created atom(s) in submap."), R_DEBUG)
 	SSatoms.InitializeAtoms(areas + turfs + atoms)
@@ -70,8 +72,13 @@
 	for(var/area/A as anything in areas)
 		A.power_change()
 
+	for(var/obj/machinery/atmospherics/atmos_to_reenable as anything in atmos_machines)
+		atmos_to_reenable.being_loaded = FALSE
+
+	/*//Old way to keep atmos machines from processing while being loaded. This killed ALL machines in the world...not good.
 	if(machinery_was_awake)
 		SSmachines.wake() // Wake only if it was awake before we tried to suspended it.
+	*///Old way to keep atmos machines from processing while being loaded. This killed ALL machines in the world...not good.
 	SSshuttles.block_init_queue = prev_shuttle_queue_state
 	SSshuttles.process_init_queues() // We will flush the queue unless there were other blockers, in which case they will do it.
 

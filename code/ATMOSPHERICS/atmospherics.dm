@@ -28,6 +28,8 @@ Pipelines + Other Objects -> Pipe network
 	var/construction_type = null // Type path of the pipe item when this is deconstructed.
 	var/pipe_state // icon_state as a pipe item
 
+	var/being_loaded = FALSE //If the atmos machinery is currently being loaded via a map_template
+
 	var/initialize_directions = 0
 	var/pipe_color
 
@@ -121,6 +123,8 @@ Pipelines + Other Objects -> Pipe network
 	return node.pipe_color
 
 /obj/machinery/atmospherics/process()
+	if(being_loaded) //If we're being maploaded, don't build the network just yet.
+		return
 	last_flow_rate = 0
 	last_power_draw = 0
 

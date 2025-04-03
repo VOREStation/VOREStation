@@ -85,7 +85,7 @@
 	to_chat(avatar, span_notice(" You black out for a moment, and wake to find yourself in a new body in virtual reality.")) // So this is what VR feels like?
 
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
-/mob/living/carbon/human/proc/exit_vr()
+/mob/living/carbon/human/proc/exit_vr(player_initated = TRUE)
 	set name = "Exit Virtual Reality"
 	set category = "Abilities.VR"
 
@@ -120,9 +120,9 @@
 	vr_holder.vr_link = src
 	vr_holder.teleop = null
 
-	if(istype(vr_holder.loc, /obj/machinery/vr_sleeper))
+	if(player_initated && istype(vr_holder.loc, /obj/machinery/vr_sleeper))
 		var/obj/machinery/vr_sleeper/V = vr_holder.loc
-		V.go_out(TRUE)
+		V.perform_exit()
 
 	if(died_in_vr)
 		addtimer(CALLBACK(src, PROC_REF(cleanup_vr)), 3000, TIMER_DELETE_ME) //Delete the body after 5 minutes

@@ -62,11 +62,13 @@
 	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+	..()
 
 	if(!roundstart && antag)
-		request_player()
+		return INITIALIZE_HINT_LATELOAD
 
-	return ..()
+/mob/living/simple_mob/animal/borer/LateInitialize()
+	request_player()
 
 /mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)
@@ -193,14 +195,13 @@
 	qdel_null(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
-	if(!candidate || !candidate.mind)
+	if(!candidate)
 		return
-
-	src.mind = candidate.mind
-	candidate.mind.current = src
 	ckey = candidate.ckey
 
-	if(mind)
+	if(candidate.mind)
+		src.mind = candidate.mind
+		candidate.mind.current = src
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 
