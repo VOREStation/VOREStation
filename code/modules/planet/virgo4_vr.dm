@@ -270,7 +270,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	if(L.z in holder.our_planet.expected_z_levels)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
-			continue // They're indoors, so no need to rain on them.
+			return // They're indoors, so no need to rain on them.
 
 		// If they have an open umbrella, it'll guard from rain
 		var/obj/item/melee/umbrella/U = L.get_active_hand()
@@ -280,7 +280,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		if(istype(U) && U.open)
 			if(show_message)
 				to_chat(L, span_notice("Rain patters softly onto your umbrella."))
-			continue
+			return
 
 		L.water_act(1)
 		if(show_message)
@@ -313,13 +313,13 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		WEATHER_STORM = 10,
 		WEATHER_RAIN = 80
 		)
-	planet_effect = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
+	effect_flags = HAS_PLANET_EFFECT | EFFECT_ONLY_LIVING
 
 /datum/weather/virgo4/storm/planet_effect(mob/living/L)
 	if(L.z in holder.our_planet.expected_z_levels)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
-			continue // They're indoors, so no need to rain on them.
+			return // They're indoors, so no need to rain on them.
 
 		// If they have an open umbrella, it'll guard from rain
 		var/obj/item/melee/umbrella/U = L.get_active_hand()
@@ -329,7 +329,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		if(istype(U) && U.open)
 			if(show_message)
 				to_chat(L, span_notice("Rain showers loudly onto your umbrella!"))
-			continue
+			return
 
 
 		L.water_act(2)
@@ -376,7 +376,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	if(H.z in holder.our_planet.expected_z_levels)
 		var/turf/T = get_turf(H)
 		if(!T.is_outdoors())
-			continue // They're indoors, so no need to pelt them with ice.
+			return // They're indoors, so no need to pelt them with ice.
 
 		// If they have an open umbrella, it'll guard from hail
 		var/obj/item/melee/umbrella/U = H.get_active_hand()
@@ -386,7 +386,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		if(istype(U) && U.open)
 			if(show_message)
 				to_chat(H, span_notice("Hail patters onto your umbrella."))
-			continue
+			return
 
 		var/target_zone = pick(BP_ALL)
 		var/amount_blocked = H.run_armor_check(target_zone, "melee")
@@ -395,11 +395,11 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		var/damage = rand(1,3)
 
 		if(amount_blocked >= 30)
-			continue // No need to apply damage. Hardhats are 30. They should probably protect you from hail on your head.
+			return // No need to apply damage. Hardhats are 30. They should probably protect you from hail on your head.
 			//Voidsuits are likewise 40, and riot, 80. Clothes are all less than 30.
 
 		if(amount_soaked >= damage)
-			continue // No need to apply damage.
+			return // No need to apply damage.
 
 		H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked)
 		if(show_message)
@@ -495,7 +495,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	if(L.z in holder.our_planet.expected_z_levels)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
-			continue // They're indoors, so no need to burn them with ash.
+			return // They're indoors, so no need to burn them with ash.
 
 		L.inflict_heat_damage(rand(1, 3))
 
@@ -555,7 +555,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		irradiate_nearby_turf(L)
 		var/turf/T = get_turf(L)
 		if(!T.is_outdoors())
-			continue // They're indoors, so no need to irradiate them with fallout.
+			return // They're indoors, so no need to irradiate them with fallout.
 
 		L.rad_act(rand(direct_rad_low, direct_rad_high))
 
