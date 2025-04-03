@@ -170,6 +170,7 @@
 #include "code\__defines\vore_prefs.dm"
 #include "code\__defines\vote.dm"
 #include "code\__defines\vv.dm"
+#include "code\__defines\weather.dm"
 #include "code\__defines\webhooks.dm"
 #include "code\__defines\wiki.dm"
 #include "code\__defines\wires.dm"
