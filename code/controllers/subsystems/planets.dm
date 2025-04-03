@@ -24,7 +24,9 @@ SUBSYSTEM_DEF(planets)
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
 		planets.Add(NP)
-		for(var/Z in NP.get_real_z_levels())
+		for(var/Z in NP.expected_z_levels)
+			if(!isnum(Z))
+				Z = GLOB.map_templates_loaded[Z]
 			if(Z > length(z_to_planet))
 				z_to_planet.len = Z
 			if(z_to_planet[Z])
