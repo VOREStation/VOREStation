@@ -450,7 +450,6 @@ class ChatRenderer {
         if (this.scrollNode) {
           this.scrollNode.addEventListener('scroll', this.handleScroll);
         }
-        logger.debug(`reset scrollNode to ${this.scrollNode}`);
       }
     }
   }
