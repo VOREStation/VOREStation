@@ -267,6 +267,8 @@ class ChatRenderer {
     else {
       this.rootNode = node;
     }
+    // Attempts to find the scroll node on mount
+    this.tryFindScrollable();
     // Flush the queue
     this.tryFlushQueue();
   }
@@ -280,7 +282,11 @@ class ChatRenderer {
     if (this.isReady() && this.queue.length > 0) {
       this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
-      this.scrollToBottom();
+      // In case we had no vaclid scroll node before
+      setTimeout(() => {
+        this.tryFindScrollable();
+        this.scrollToBottom();
+      });
     }
   }
 
@@ -432,7 +438,6 @@ class ChatRenderer {
   }
 
   scrollToBottom() {
-    this.tryFindScrollable();
     // scrollHeight is always bigger than scrollTop and is
     // automatically clamped to the valid range.
     if (this.scrollNode) {
