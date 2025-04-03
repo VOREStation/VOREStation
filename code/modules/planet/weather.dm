@@ -155,7 +155,7 @@
 
 /datum/weather_holder/proc/message_all_outdoor_players(message)
 	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
-		if(M.z in our_planet.get_real_z_levels())
+		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
 			if(!T.is_outdoors())
 				continue
@@ -244,7 +244,7 @@
 		for(var/mob/M as anything in GLOB.players_by_zlevel[z_level])
 
 			// Check if the mob left the z-levels we control. If so, make the sounds stop for them.
-			if(!(z_level in holder.our_planet.get_real_z_levels()))
+			if(!(z_level in holder.our_planet.expected_z_levels))
 				hear_indoor_sounds(M, FALSE)
 				hear_outdoor_sounds(M, FALSE)
 				continue

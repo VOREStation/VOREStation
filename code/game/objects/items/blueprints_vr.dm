@@ -534,7 +534,7 @@
 
 	var/list/zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
-		zLevels -= P.get_real_z_levels()
+		zLevels -= P.expected_z_levels
 	for(var/obj/machinery/gravity_generator/main/GG in machines)
 		if(GG.z in zLevels)
 			GG.update_areas()
@@ -935,7 +935,7 @@
 
 	var/list/zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
-		zLevels -= P.get_real_z_levels()
+		zLevels -= P.expected_z_levels
 	for(var/obj/machinery/gravity_generator/main/GG in machines)
 		if(GG.z in zLevels)
 			GG.update_areas()
