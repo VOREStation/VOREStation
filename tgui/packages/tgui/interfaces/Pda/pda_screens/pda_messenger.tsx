@@ -7,15 +7,15 @@ import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   active_conversation: string;
-  convo_name: string;
-  convo_job: string;
-  messages: message[];
+  convo_name?: string;
+  convo_job?: string;
+  messages?: message[];
   toff: BooleanLike;
   silent: BooleanLike;
-  convopdas: pda[];
-  pdas: pda[];
-  charges: number;
-  plugins: { name: string; icon: string; ref: string }[];
+  convopdas?: pda[];
+  pdas?: pda[];
+  charges?: number;
+  plugins?: { name: string; icon: string; ref: string }[];
   enable_message_embeds: BooleanLike;
 };
 
@@ -102,7 +102,7 @@ export const pda_messenger = (props) => {
 const MessengerList = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { convopdas, pdas, charges, silent, toff } = data;
+  const { convopdas = [], pdas = [], charges, silent, toff } = data;
 
   return (
     <Box>
@@ -164,7 +164,7 @@ const PDAList = (props) => {
 
   const { pdas, title, msgAct } = props;
 
-  const { charges, plugins } = data;
+  const { charges, plugins = [] } = data;
 
   if (!pdas || !pdas.length) {
     return <Section title={title}>No PDAs found.</Section>;
@@ -203,7 +203,7 @@ const PDAList = (props) => {
 
 const ActiveConversation = (props) => {
   const { act, data } = useBackend<Data>();
-  const { convo_name, convo_job, messages, active_conversation } = data;
+  const { convo_name, convo_job, messages = [], active_conversation } = data;
   const [asciiMode, setAsciiMode] = useState(false);
 
   return (
