@@ -2,3 +2,22 @@
   Kashargul:
   - bugfix: xenoarch organ spawn
   - bugfix: CI nanomap rendering
+2025-04-03:
+  Diana & Kash:
+  - balance: Monkey gun adjusted to be mid-tier material cost.
+  - bugfix: Blood runtime fix
+  - bugfix: Deadringer runtime fix
+  - bugfix: Deadringer duplication fix
+  - bugfix: Deadringer now properly deathgasps at the right time
+  - balance: Deadringer slightly more invisible\
+  - bugfix: 'Spawn: Arrivals will no longer make you spawn inside the landmark itself.
+      (Removes landmark vore)'
+  - bugfix: Transit tubes properly spawn with air in them.
+  - bugfix: Bingle properly shows the Ore Page now
+  - bugfix: Talon spawn no longer runtimes
+  Kashargul:
+  - code_imp: update browser window
+  - code_imp: migrate vendor icons to icon forge
+  Willburd:
+  - qol: spawning carbon mobs is less laggy
+  - refactor: dna datum cloning per organ removed in favor of a organ_data datum
