@@ -227,6 +227,10 @@
 	var/obj/item/I = user.get_active_hand()
 	if(istype(I, /obj/item/multitool/alien))
 		return TRUE
+	if(HAS_TRAIT(user, TRAIT_CAN_SEE_WIRES))
+		return TRUE
+	if(user.mind && HAS_TRAIT(user.mind, TRAIT_CAN_SEE_WIRES))
+		return TRUE
 	return FALSE
 
 /**
