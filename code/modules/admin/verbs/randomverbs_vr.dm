@@ -42,6 +42,8 @@
 	if(vorgans == "No")
 		organs = 0
 
+	var/flavor = tgui_alert(src, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "Cancel"))
+
 	var/spawnloc
 	if(!src.mob)
 		to_chat(src, "Can't spawn them in unless you're in a valid spawn location!")
@@ -61,10 +63,18 @@
 
 
 	new_mob.key = picked_client.key //Finally put them in the mob
+	if(flavor == "General")
+		new_mob.flavor_text = new_mob?.client?.prefs?.flavor_texts["general"]
+	if(flavor == "Robot")
+		new_mob.flavor_text = new_mob?.client?.prefs?.flavour_texts_robot["Default"]
 	if(organs)
 		new_mob.copy_from_prefs_vr()
 		if(LAZYLEN(new_mob.vore_organs))
 			new_mob.vore_selected = new_mob.vore_organs[1]
+			if(isanimal(new_mob))
+				var/mob/living/simple_mob/Sm = new_mob
+				Sm.vore_active = TRUE
+				Sm.voremob_loaded = TRUE
 
 	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
 	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)

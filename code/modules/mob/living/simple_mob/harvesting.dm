@@ -25,6 +25,13 @@
 		else
 			. += span_notice("It can be [harvest_verb] now.")
 
+	. += attempt_vr(src,"examine_reagent_bellies",args)
+
+	. += attempt_vr(src,"examine_bellies",args)
+	. += ""
+
+	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
+
 /mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.
 		harvest_recent = world.time

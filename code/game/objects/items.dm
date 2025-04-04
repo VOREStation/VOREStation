@@ -588,14 +588,14 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr) || usr.is_incorporeal())
 		return
 	if(isanimal(usr))	//VOREStation Edit Start - Allows simple mobs with hands to use the pickup verb
 		var/mob/living/simple_mob/s = usr
 		if(!s.has_hands)
 			to_chat(usr, span_warning("You can't pick things up!"))
 			return
-	else if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	else if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, span_warning("You can't pick things up!"))
 		return
 	var/mob/living/L = usr
@@ -608,7 +608,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(L.get_active_hand()) //Hand is not full	//VOREStation Edit End
 		to_chat(usr, span_warning("Your hand is full."))
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!isturf(src.loc)) //Object is on a turf
 		to_chat(usr, span_warning("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
@@ -632,7 +632,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
-	while(L && !istype(L, /turf/))
+	while(L && !isturf(L))
 		L = L.loc
 	return loc
 

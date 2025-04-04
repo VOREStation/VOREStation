@@ -54,6 +54,8 @@
 
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
+	if(mob_radio)
+		QDEL_NULL(mob_radio)
 	release_vore_contents()
 	LAZYCLEARLIST(prey_excludes)
 	return ..()
