@@ -87,7 +87,7 @@
 				H.update_inv_wear_mask()
 				playsound(src, 'sound/effects/tape.ogg',25)
 
-			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+			else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 				if(!can_place(H, user))
 					return
 
@@ -119,12 +119,9 @@
 	plane = MOB_PLANE
 	anchored = FALSE
 	drop_sound = null
+	flags = NOBLUDGEON
 
 	var/obj/item/stuck = null
-
-/obj/item/ducttape/New()
-	..()
-	flags |= NOBLUDGEON
 
 /obj/item/ducttape/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)

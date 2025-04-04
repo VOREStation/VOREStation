@@ -2839,7 +2839,7 @@
 	},
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "ft" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2920,6 +2920,17 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/stellardelight/deck1/starboard)
+"fA" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
 "fB" = (
 /obj/structure/table/rack,
 /obj/random/maintenance,
@@ -2929,6 +2940,10 @@
 /obj/random/snack,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
+"fC" = (
+/obj/effect/landmark/stardog,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
 "fD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/computer/ship/navigation/telescreen{
@@ -3143,6 +3158,11 @@
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/angled,
 /obj/machinery/librarypubliccomp,
+/turf/simulated/floor/wood,
+/area/library)
+"fY" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/library)
 "fZ" = (
@@ -4508,14 +4528,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/door/airlock/angled_bay/hatch{
-	dir = 4;
+/obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#ffffff";
-	name = "maintenance access";
-	stripe_color = "#5a19a8"
+	fill_color = "#ead9ff";
+	name = "Xenoarcheology Storage";
+	req_access = list(7);
+	stripe_color = "#5a19a8";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "iN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -6795,9 +6817,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "nH" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -6807,8 +6826,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/closet/walllocker_double/science/north,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "nI" = (
 /obj/effect/floor_decal/milspec/color/emerald,
 /turf/simulated/floor/tiled/techmaint,
@@ -10188,8 +10214,12 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "uY" = (
 /obj/structure/closet/radiation,
 /obj/structure/cable/green{
@@ -10698,9 +10728,12 @@
 /turf/simulated/floor,
 /area/maintenance/security_port)
 "wg" = (
-/obj/structure/closet/emcloset,
+/obj/machinery/suspension_gen,
+/obj/machinery/firealarm/angled{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "wh" = (
 /obj/machinery/light{
 	dir = 8
@@ -10738,11 +10771,6 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "wm" = (
-/obj/machinery/power/apc/angled{
-	dir = 4;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
 /obj/structure/cable/green{
 	color = "#42038a"
 	},
@@ -11709,14 +11737,16 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/angled_bay/hatch{
-	dir = 4;
+/obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#ffffff";
-	name = "maintenance access";
-	stripe_color = "#5a19a8"
+	fill_color = "#ead9ff";
+	name = "Xenoarcheology Storage";
+	req_access = list(7);
+	stripe_color = "#5a19a8";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "yq" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
@@ -11725,11 +11755,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yr" = (
-/obj/machinery/power/apc/angled{
-	dir = 4;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -12499,9 +12524,13 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/entrepreneur)
 "Ab" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light,
+/obj/structure/closet/excavation,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Ac" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
@@ -12719,6 +12748,11 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = -24;
+	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = -19;
 	pixel_y = -24
 	},
 /turf/simulated/floor/carpet,
@@ -13466,6 +13500,11 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 25;
+	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = 20;
 	pixel_y = -24
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -15336,9 +15375,15 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Go" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/closet/secure_closet/xenoarchaeologist,
+/obj/machinery/power/apc/angled{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	color = "#42038a"
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Gp" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -16767,6 +16812,11 @@
 	pixel_y = -8;
 	specialfunctions = 4
 	},
+/obj/structure/privacyswitch{
+	pixel_y = 5;
+	pixel_x = -32;
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/exam_room)
 "Js" = (
@@ -17301,6 +17351,10 @@
 	pixel_x = 25;
 	pixel_y = 25
 	},
+/obj/structure/privacyswitch{
+	pixel_y = 25;
+	pixel_x = 20
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm1)
 "KH" = (
@@ -17368,6 +17422,11 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = -24;
+	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = -19;
 	pixel_y = -24
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -17771,7 +17830,7 @@
 /area/stellardelight/deck1/starboard)
 "LF" = (
 /turf/simulated/wall/bay/purple,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "LG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/angled/open{
@@ -18328,6 +18387,11 @@
 	pixel_x = 25;
 	pixel_y = -24
 	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = 20;
+	pixel_y = -24
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm4)
 "MR" = (
@@ -18525,6 +18589,10 @@
 /obj/machinery/light_switch{
 	pixel_x = 25;
 	pixel_y = 25
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 25;
+	pixel_x = 20
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm2)
@@ -19964,7 +20032,7 @@
 	color = "#42038a";
 	icon_state = "1-4"
 	},
-/obj/effect/landmark/stardog,
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "QA" = (
@@ -20102,8 +20170,21 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
 "QR" = (
+/obj/machinery/light,
+/obj/structure/table/rack,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/item/clothing/suit/space/anomaly,
+/obj/item/clothing/suit/space/anomaly,
+/obj/item/clothing/head/helmet/space/anomaly/heat,
+/obj/item/clothing/head/helmet/space/anomaly/heat,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/science,
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "QS" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -20290,8 +20371,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Rm" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -20781,10 +20865,10 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Sc" = (
 /turf/simulated/wall/bay/r_wall/purple,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Sd" = (
 /obj/structure/cable/orange{
 	icon_state = "1-4"
@@ -20884,12 +20968,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/door/airlock/angled_bay/standard/glass{
@@ -21050,6 +21128,10 @@
 /obj/machinery/light_switch{
 	pixel_x = -24;
 	pixel_y = 25
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 25;
+	pixel_x = -19
 	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm8)
@@ -21238,6 +21320,10 @@
 	pixel_x = -24;
 	pixel_y = 25
 	},
+/obj/structure/privacyswitch{
+	pixel_y = 25;
+	pixel_x = -19
+	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm7)
 "SZ" = (
@@ -21307,16 +21393,20 @@
 	color = "#42038a";
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/stellardelight/deck1/starboardaft)
+/area/rnd/xenoarch_storage)
 "Tg" = (
 /obj/structure/closet/emergsuit_wall{
 	dir = 4;
@@ -36121,7 +36211,7 @@ FL
 iq
 Ck
 AH
-iq
+fY
 mo
 FT
 kM
@@ -37286,7 +37376,7 @@ OR
 CY
 Lf
 Qz
-Dv
+fA
 Dv
 bB
 kq
@@ -37428,7 +37518,7 @@ Lu
 oe
 oe
 KY
-oe
+fC
 oe
 QU
 PR

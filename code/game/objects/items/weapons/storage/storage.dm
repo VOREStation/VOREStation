@@ -237,7 +237,9 @@
 
 /obj/item/storage/proc/open(mob/user as mob)
 	if (use_sound)
-		playsound(src, src.use_sound, 50, 0, -5)
+		var/obj/belly/B = user.loc
+		if(isliving(user) && (!isbelly(B) || !(B.mode_flags & DM_FLAG_MUFFLEITEMS)))
+			playsound(src, src.use_sound, 50, 0, -5)
 
 	orient2hud(user)
 	if(user.s_active)
@@ -304,7 +306,7 @@
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
+			ND.sample_object.maptext = span_white("[(ND.number > 1)? "[ND.number]" : ""]")
 			ND.sample_object.hud_layerise()
 			var/atom/movable/storage_slot/SS = new(null, ND.sample_object)
 			SS.screen_loc = ND.sample_object.screen_loc
@@ -812,12 +814,12 @@
 	else
 		icon_state = closed_state
 
-/obj/item/storage/trinketbox/New()
+/obj/item/storage/trinketbox/Initialize(mapload)
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
+	. = ..()
 
 /obj/item/storage/trinketbox/attack_self()
 	open = !open
@@ -852,14 +854,15 @@
 	alpha = 200
 	var/datum/weakref/held_item
 
-/atom/movable/storage_slot/New(newloc, obj/item/held_item)
+/atom/movable/storage_slot/Initialize(mapload, obj/item/held_item)
+	. = ..()
 	ASSERT(held_item)
 	name += held_item.name
 	src.held_item = WEAKREF(held_item)
 
 /atom/movable/storage_slot/Destroy()
 	held_item = null
-	..()
+	. = ..()
 
 /// Has to be this way. The fact that the overlays will be constantly mutated by other storage means we can't wait.
 /atom/movable/storage_slot/add_overlay(list/somethings)

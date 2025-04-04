@@ -92,13 +92,13 @@
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
-		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Set Size", null, 200, 25)
-		if (!ISINRANGE(new_size,25,200))
+		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from [RESIZE_MINIMUM * 100]% to [RESIZE_MAXIMUM * 100]%", "Set Size", pref.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+		if (!ISINRANGE(new_size, RESIZE_MINIMUM * 100, RESIZE_MAXIMUM * 100))
 			pref.size_multiplier = 1
 			to_chat(user, span_notice("Invalid size."))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)
-			pref.size_multiplier = (new_size/100)
+			pref.size_multiplier = (new_size / 100)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["toggle_fuzzy"])
@@ -111,9 +111,9 @@
 
 	else if(href_list["weight"])
 		var/new_weight = tgui_input_number(user, "Choose your character's relative body weight.\n\
-			This measurement should be set relative to a normal 5'10'' person's body and not the actual size of your character.\n\
-			If you set your weight to 500 because you're a naga or have metal implants then complain that you're a blob I\n\
-			swear to god I will find you and I will punch you for not reading these directions!\n\
+			Note: Scifi characters come in all shapes and sizes in this game, and not all follow the traditional shape of a human. Like a naga or a taur or a giant will weigh a\n\
+			lot more than what this allows, or a micro will weigh a lot less. Just ignore all of that for a second and PRETEND the weight you're setting is visually for an \n\
+			average human. This is the best solution we have at the moment.!\n\
 			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference", null, WEIGHT_MAX, WEIGHT_MIN, round_value=FALSE)
 		if(new_weight)
 			var/unit_of_measurement = tgui_alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))

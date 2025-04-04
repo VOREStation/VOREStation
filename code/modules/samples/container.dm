@@ -36,24 +36,24 @@
 			to_chat(user, span_notice("You scoop \the [S] into \the [src]."))
 
 //Splice research sample containers into the list of valid items for these belts *without* overriding the lists entirely
-/obj/item/storage/belt/explorer/New()
+/obj/item/storage/belt/explorer/Initialize(mapload)
 	. = ..()
 	can_hold.Add(/obj/item/storage/sample_container)
 
-/obj/item/storage/belt/miner/New()
+/obj/item/storage/belt/miner/Initialize(mapload)
 	. = ..()
 	can_hold.Add(/obj/item/storage/sample_container)
 
-/obj/item/storage/belt/archaeology/New()
+/obj/item/storage/belt/archaeology/Initialize(mapload)
 	. = ..()
 	can_hold.Add(/obj/item/storage/sample_container)
 
 //ditto, lockers and redemption machines
-/obj/structure/closet/secure_closet/miner/Initialize()
+/obj/structure/closet/secure_closet/miner/Initialize(mapload)
 	. = ..()
 	starts_with += /obj/item/storage/sample_container
 
-/obj/structure/closet/secure_closet/xenoarchaeologist/Initialize()
+/obj/structure/closet/secure_closet/xenoarchaeologist/Initialize(mapload)
 	. = ..()
 	starts_with += /obj/item/storage/sample_container
 

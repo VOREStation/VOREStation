@@ -10,9 +10,9 @@
 	var/wax = 2000
 	var/icon_type = "candle"
 
-/obj/item/flame/candle/New()
+/obj/item/flame/candle/Initialize(mapload)
+	. = ..()
 	wax -= rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
-	..()
 
 /obj/item/flame/candle/update_icon()
 	var/i
@@ -112,13 +112,13 @@
 /obj/item/flame/candle/everburn
 	wax = 99999
 
-/obj/item/flame/candle/everburn/Initialize()
+/obj/item/flame/candle/everburn/Initialize(mapload)
 	. = ..()
 	light(span_notice("\The [src] mysteriously lights itself!."))
 
 /obj/item/flame/candle/candelabra/everburn
 	wax = 99999
 
-/obj/item/flame/candle/candelabra/everburn/Initialize()
+/obj/item/flame/candle/candelabra/everburn/Initialize(mapload)
 	. = ..()
 	light(span_notice("\The [src] mysteriously lights itself!."))

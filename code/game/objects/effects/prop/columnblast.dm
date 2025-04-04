@@ -16,7 +16,7 @@
 
 	..()
 
-/obj/effect/temporary_effect/eruption/Initialize()
+/obj/effect/temporary_effect/eruption/Initialize(mapload)
 	. = ..()
 	flick("[icon_state]_create",src)
 

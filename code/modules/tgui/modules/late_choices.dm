@@ -49,7 +49,7 @@
 	if(!job.minimum_character_age && !job.min_age_by_species)
 		return TRUE
 
-	var/min_age = job.get_min_age(prefs.species, prefs.organ_data["brain"])
+	var/min_age = job.get_min_age(prefs.species, prefs.organ_data[O_BRAIN])
 	if(prefs.read_preference(/datum/preference/numeric/human/age) >= min_age)
 		return TRUE
 	return FALSE
@@ -126,7 +126,7 @@
 				return
 
 			var/datum/species/S = GLOB.all_species[new_user.client.prefs.species]
-			if(!is_alien_whitelisted(new_user, S))
+			if(!is_alien_whitelisted(new_user.client, S))
 				tgui_alert(new_user, "You are currently not whitelisted to play [new_user.client.prefs.species].")
 				return 0
 

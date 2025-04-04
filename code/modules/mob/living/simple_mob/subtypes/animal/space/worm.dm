@@ -109,7 +109,7 @@
 	if(stat)
 		icon_state = "[icon_state]_dead"
 
-/mob/living/simple_mob/animal/space/space_worm/head/Initialize()
+/mob/living/simple_mob/animal/space/space_worm/head/Initialize(mapload)
 	. = ..()
 
 	var/mob/living/simple_mob/animal/space/space_worm/current = src
@@ -266,7 +266,7 @@
 						objectOrMob = null
 						break
 
-					if(D && (D.stat & BROKEN|NOPOWER))
+					if(D && (D.stat & (BROKEN|NOPOWER)))
 						D.open(TRUE)
 						break
 

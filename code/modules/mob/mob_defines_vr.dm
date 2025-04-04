@@ -1,6 +1,5 @@
 /mob
 	var/vantag_hud = 0			// Do I have the HUD enabled?
-	var/stomach_vision = 1		// By default, you will see stomachs.
 	var/mob/temporary_form		// For holding onto a temporary form
 
 	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping

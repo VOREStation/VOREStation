@@ -73,6 +73,8 @@
 /mob/living/simple_mob/vore/vore_hostile/abyss_lurker/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "interior"
@@ -193,6 +195,8 @@
 /mob/living/simple_mob/vore/vore_hostile/leaper/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -311,6 +315,8 @@
 /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "interior"
@@ -329,7 +335,7 @@
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 3
 
-/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize()
+/mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/Initialize(mapload)
 	. = ..()
 	color = random_color(TRUE)
 

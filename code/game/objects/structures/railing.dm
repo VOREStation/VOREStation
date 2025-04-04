@@ -30,7 +30,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/Initialize()
+/obj/structure/railing/Initialize(mapload)
 	. = ..()
 	if(src.anchored)
 		update_icon(0)
@@ -277,7 +277,6 @@
 		if(3.0)
 			qdel(src)
 			return
-		else
 	return
 
 // Duplicated from structures.dm, but its a bit different.

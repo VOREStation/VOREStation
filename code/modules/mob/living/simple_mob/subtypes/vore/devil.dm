@@ -1,5 +1,5 @@
 /mob/living/simple_mob/vore/devil
-	name = "Statue of Temptation"
+	name = "statue of temptation"
 	desc = "A tall statue made of red-tinted metal in the shape of some sort of demon or devil."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/devil)
 	tt_desc = "Metal Statue"
@@ -44,6 +44,8 @@
 
 /mob/living/simple_mob/vore/devil/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

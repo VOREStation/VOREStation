@@ -278,37 +278,37 @@
 	dat += "<div class='statusDisplay'>"
 
 	if(!delivery && compactor && length(contents))//garbage counter for trashpup
-		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
-		dat += "<font color='gray'>([contents.Join(", ")])</font><BR><BR>"
+		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
+		dat += span_gray("([contents.Join(", ")])") + "<BR><BR>"
 
 	if(delivery && length(contents))
-		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 1.</font><BR>"
+		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 1.") + "<BR>"
 		if(length(deliveryslot_1))
-			dat += "<font color='gray'>([deliveryslot_1.Join(", ")])</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 2.</font><BR>"
+			dat += span_gray("([deliveryslot_1.Join(", ")])") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 2.") + "<BR>"
 		if(length(deliveryslot_2))
-			dat += "<font color='gray'>([deliveryslot_2.Join(", ")])</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 3.</font><BR>"
+			dat += span_gray("([deliveryslot_2.Join(", ")])") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 3.") + "<BR>"
 		if(length(deliveryslot_3))
-			dat += "<font color='gray'>([deliveryslot_3.Join(", ")])</font><BR>"
-		dat += "<font color='red'>Cargo compartment slot: Fuel.</font><BR>"
-		dat += "<font color='red'>([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
+			dat += span_gray("([deliveryslot_3.Join(", ")])") + "<BR>"
+		dat += span_red("Cargo compartment slot: Fuel.") + "<BR>"
+		dat += span_red("([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])") + "<BR><BR>"
 
 	if(analyzer && !synced)
 		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
-		dat += "<font color='red'><B>Self-cleaning mode.</B> [length(contents - items_preserved)] object(s) remaining.</font><BR>"
+		dat += span_red(span_bold("Self-cleaning mode.") + " [length(contents - items_preserved)] object(s) remaining.") + "<BR>"
 
 	//There are no items to be processed other than un-preserved items
 	else if(cleaning && length(items_preserved))
-		dat += "<font color='red'><B>Self-cleaning done. Eject remaining objects now.</B></font><BR>"
+		dat += span_red(span_bold("Self-cleaning done. Eject remaining objects now.")) + "<BR>"
 
 	//Preserved items count when the list is populated
 	if(length(items_preserved))
-		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
+		dat += span_red("[length(items_preserved)] uncleanable object(s).") + "<BR>"
 
 	if(!patient)
 		dat += "[src.name] Unoccupied"
@@ -462,7 +462,7 @@
 
 /obj/item/dogborg/sleeper/proc/inject_chem(mob/user, chem)
 	if(patient && patient.reagents)
-		if(chem in injection_chems + REAGENT_ID_INAPROVALINE)
+		if(chem in (injection_chems + REAGENT_ID_INAPROVALINE))
 			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
 				to_chat(hound, span_notice("You don't have enough power to synthesize fluids."))
 				return
@@ -594,7 +594,7 @@
 				var/actual_brute = T.getBruteLoss() - old_brute
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
-				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
+				hound.adjust_nutrition(2.5 * damage_gain) //drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -643,6 +643,7 @@
 			//Handle the target being anything but a /mob/living
 			var/obj/item/T = target
 			if(istype(T))
+				var/is_trash = istype(T, /obj/item/trash)
 				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
@@ -667,10 +668,13 @@
 									plastic.add_charge(total_material)
 								if(material == MAT_WOOD && wood)
 									wood.add_charge(total_material)
-					drain(-50 * digested)
+					if(is_trash)
+						hound.adjust_nutrition(digested)
+					else
+						hound.adjust_nutrition(5 * digested)  //drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
-				drain(-100)
+				hound.adjust_nutrition(10) //drain(-100)
 			else
 				items_preserved |= target
 		update_patient()
@@ -812,5 +816,31 @@
 	icon_state = "sleepersyndieeng"
 	max_item_count = 35
 	digest_multiplier = 3
+
+/obj/item/dogborg/sleeper/command //Command borg belly
+	name = "Bluespace Filing Belly"
+	desc = "A mounted bluespace storage unit for carrying paperwork"
+	icon_state = "sleeperd"
+	injection_chems = null
+	compactor = TRUE
+	recycles = FALSE
+	max_item_count = 25
+	medsensor = FALSE
+
+/obj/item/dogborg/sleeper/compactor/honkborg
+	name = "Jiggles Von Hungertron"
+	desc = "You've heard of Giggles Von Honkerton for the back, now get ready for Jiggles Von Hungertron for the front."
+	icon_state = "clowngut"
+	recycles = FALSE
+
+/obj/item/dogborg/sleeper/exploration
+	name = "Store-Belly"
+	desc = "Equipment for a ExploreHound unit. A mounted portable-storage device that holds supplies/person."
+	icon_state = "sleeperlost"
+	injection_chems = list(REAGENT_ID_INAPROVALINE) // Only to stabilize during extractions
+	compactor = TRUE
+	max_item_count = 4
+	medsensor = FALSE
+	recycles = TRUE
 
 #undef SLEEPER_INJECT_COST

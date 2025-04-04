@@ -4,12 +4,17 @@
  * @license MIT
  */
 
-import { ComponentProps, PropsWithChildren, ReactNode, useEffect } from 'react';
+import {
+  type ComponentProps,
+  type PropsWithChildren,
+  type ReactNode,
+  useEffect,
+} from 'react';
 import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui/constants';
 import { useDebug } from 'tgui/debug';
 import { toggleKitchenSink } from 'tgui/debug/actions';
-import { Box, Icon } from 'tgui-core/components';
+import { type Box, Icon } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 

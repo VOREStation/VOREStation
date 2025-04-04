@@ -1,5 +1,5 @@
 export type message = {
-  node?: Element | string;
+  node?: HTMLElement | string;
   type: string;
   text?: string;
   html?: string;

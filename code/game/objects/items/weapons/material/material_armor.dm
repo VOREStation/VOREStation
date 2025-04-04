@@ -35,16 +35,12 @@ Protectiveness | Armor %
 	var/material_slowdown_modifier = 0
 	var/material_slowdown_multiplier = 0.5
 
-/obj/item/clothing/New(var/newloc, var/material_key)
-	..(newloc)
+/obj/item/clothing/Initialize(mapload, var/material_key)
+	. = ..()
 	if(!material_key)
 		material_key = default_material
 	if(material_key) // May still be null if a material was not specified as a default.
 		set_material(material_key)
-
-/obj/item/clothing/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/item/clothing/get_material()
 	return material
@@ -214,7 +210,7 @@ Protectiveness | Armor %
 	desc = "A thin plate of padded material, designed to fit into a plate carrier. Attaches to a plate carrier."
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	icon_state = "armor_light"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 0.8
 	material_slowdown_modifier = 0.5 //Subtracted from total slowdown
@@ -225,7 +221,7 @@ Protectiveness | Armor %
 	desc = "A thick plate of padded material, designed to fit into a plate carrier. Attaches to a plate carrier."
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	icon_state = "armor_medium"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 1.2
 	material_slowdown_modifier = 0
@@ -236,7 +232,7 @@ Protectiveness | Armor %
 	desc = "A composite plate of custom machined material, designed to fit into a plate carrier. Attaches to a plate carrier."
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	icon_state = "armor_tactical"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 1.2
 	material_slowdown_modifier = 0.5

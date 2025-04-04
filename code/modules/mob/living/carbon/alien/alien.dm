@@ -22,7 +22,7 @@
 	var/adult_name
 	var/instance_num
 
-/mob/living/carbon/alien/Initialize()
+/mob/living/carbon/alien/Initialize(mapload)
 	. = ..()
 
 	time_of_birth = world.time

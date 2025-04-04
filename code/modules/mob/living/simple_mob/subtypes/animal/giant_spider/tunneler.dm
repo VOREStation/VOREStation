@@ -155,6 +155,8 @@
 
 		// Update T.
 		T = get_step(src, get_dir(src, destination))
+		if(!T) //There is no turf in that direction.
+			return FALSE //Hit a non-existant turf.
 		if(T.check_density(ignore_mobs = TRUE))
 			to_chat(src, span_critical("You hit something really solid!"))
 			playsound(src, "punch", 75, 1)

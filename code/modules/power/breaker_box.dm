@@ -29,7 +29,7 @@
 	for(var/datum/tgui_module/rcon/R in world)
 		R.FindDevices()
 
-/obj/machinery/power/breakerbox/Initialize()
+/obj/machinery/power/breakerbox/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -37,7 +37,7 @@
 	icon_state = "bbox_on"
 
 // Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/Initialize()
+/obj/machinery/power/breakerbox/activated/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

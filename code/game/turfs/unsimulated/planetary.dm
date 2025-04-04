@@ -18,7 +18,7 @@
 	temperature = T20C
 	skip_init = FALSE
 
-/turf/unsimulated/wall/planetary/Initialize()
+/turf/unsimulated/wall/planetary/Initialize(mapload)
 	. = ..()
 	SSplanets.addTurf(src)
 

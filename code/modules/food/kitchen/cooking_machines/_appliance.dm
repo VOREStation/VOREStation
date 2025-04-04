@@ -48,7 +48,7 @@
 	var/static/radial_safety = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_safety")
 	var/static/radial_output = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_change_output")
 
-/obj/machinery/appliance/Initialize()
+/obj/machinery/appliance/Initialize(mapload)
 	. = ..()
 
 	default_apply_parts()
@@ -537,8 +537,8 @@
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
 	var/obj/item/reagent_containers/food/snacks/result = new cook_path(CI.container)
-	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
-																 //just call trans_to_holder instead
+	buffer.trans_to_holder(result.reagents, buffer.total_volume)	//trans_to doesn't handle food items well, so
+																	//just call trans_to_holder instead
 
 	// Reagent-only foods.
 	if(reagents_determine_color)

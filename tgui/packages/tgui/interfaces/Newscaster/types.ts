@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   temp: { text: string; style: string } | null;

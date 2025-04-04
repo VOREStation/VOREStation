@@ -8,10 +8,10 @@
 	w_class = ITEMSIZE_NORMAL
 	plane = PLATING_PLANE
 
-/obj/structure/lattice/Initialize()
+/obj/structure/lattice/Initialize(mapload)
 	. = ..()
 
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral) || istype(src.loc, /turf/simulated/shuttle/plating/airless/carry)))
+	if(!(isopenturf(src.loc) || istype(src.loc, /turf/simulated/mineral) || istype(src.loc, /turf/simulated/shuttle/plating/airless/carry)))
 		return INITIALIZE_HINT_QDEL
 
 	for(var/obj/structure/lattice/LAT in src.loc)
@@ -50,7 +50,6 @@
 			return
 		if(3.0)
 			return
-		else
 	return
 
 /obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)

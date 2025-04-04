@@ -440,7 +440,6 @@
 "jR" = (
 /obj/machinery/light/small/torch,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/crypt)
 "kc" = (
@@ -1912,6 +1911,11 @@
 "MO" = (
 /turf/simulated/floor/bmarble,
 /area/redgate/fantasy/dungeon)
+"MQ" = (
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
+/area/redgate/fantasy/caves)
 "MR" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/alienbasement)
@@ -2073,11 +2077,6 @@
 "PY" = (
 /turf/simulated/floor/weird_things/dark,
 /area/redgate/fantasy/dark)
-"Qb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wmarble,
-/area/redgate/fantasy/dungeon)
 "Qm" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/mines)
@@ -2234,7 +2233,6 @@
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/crypt)
@@ -7215,7 +7213,7 @@ tV
 Iq
 Iq
 Iq
-Iq
+MQ
 Iq
 Hz
 RZ
@@ -17007,7 +17005,7 @@ KA
 cK
 xO
 Aj
-Qb
+Aj
 Aj
 Aj
 cK
@@ -17149,7 +17147,7 @@ cK
 Aj
 cK
 cK
-Qb
+Aj
 cK
 cK
 cK

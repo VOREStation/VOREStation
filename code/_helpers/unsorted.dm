@@ -9,10 +9,10 @@
 
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 #define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
+	block( \
+		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
+		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+	)
 
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
@@ -566,13 +566,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //returns random gauss number
 /proc/GaussRand(var/sigma)
-  var/x,y,rsq
-  do
-    x=2*rand()-1
-    y=2*rand()-1
-    rsq=x*x+y*y
-  while(rsq>1 || !rsq)
-  return sigma*y*sqrt(-2*log(rsq)/rsq)
+	var/x,y,rsq
+	do
+		x=2*rand()-1
+		y=2*rand()-1
+		rsq=x*x+y*y
+	while(rsq>1 || !rsq)
+	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
 /proc/GaussRandRound(var/sigma,var/roundto)
@@ -1002,18 +1002,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
+	if(zone == BP_R_HAND) return "right hand"
+	else if (zone == BP_L_HAND) return "left hand"
+	else if (zone == BP_L_ARM) return "left arm"
+	else if (zone == BP_R_ARM) return "right arm"
+	else if (zone == BP_L_LEG) return "left leg"
+	else if (zone == BP_R_LEG) return "right leg"
+	else if (zone == BP_L_FOOT) return "left foot"
+	else if (zone == BP_R_FOOT) return "right foot"
+	else if (zone == BP_L_HAND) return "left hand"
+	else if (zone == BP_R_HAND) return "right hand"
+	else if (zone == BP_L_FOOT) return "left foot"
+	else if (zone == BP_R_FOOT) return "right foot"
 	else return zone
 
 /proc/get(atom/loc, type)
@@ -1248,7 +1248,7 @@ var/mob/dview/dview_mob = new
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/Initialize()
+/mob/dview/Initialize(mapload)
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
 	mob_list -= src
@@ -1499,6 +1499,10 @@ var/mob/dview/dview_mob = new
 		return !QDELETED(D)
 	return FALSE
 
+/// No op
+/proc/pass(...)
+	return
+
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
@@ -1580,6 +1584,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	. += new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
+	. += new /obj/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
 	//VOREStation Add End
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE

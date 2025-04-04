@@ -49,6 +49,7 @@
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
+	rest_sprite_options = list("Default", "Bellyup")
 
 
 // Gravekeeper
@@ -82,3 +83,4 @@
 	name = "Raptor V-4"
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
+	rest_sprite_options = list("Default", "Bellyup")

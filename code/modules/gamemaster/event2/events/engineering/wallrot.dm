@@ -41,6 +41,3 @@
 					rot_count++
 			if(rot_count >= target_rot)
 				break
-
-
-

@@ -30,7 +30,7 @@
 	var/hudmode = null
 
 /mob/living/silicon/New()
-	silicon_mob_list |= src
+	silicon_mob_list += src
 	..()
 	add_language(LANGUAGE_GALCOM)
 	apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])

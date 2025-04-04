@@ -59,7 +59,6 @@ var/global/list/all_exonet_connections = list()
 
 			new_address = "[addr_0]:[addr_1]"
 			string = "[string]0" //If we did get a collision, this should make the next attempt not have one.
-			sleep(1)
 		address = new_address
 		all_exonet_connections |= src
 

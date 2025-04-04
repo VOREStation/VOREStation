@@ -1,0 +1,2 @@
+/obj/item/stack/material/cyborg:
+  banned: true

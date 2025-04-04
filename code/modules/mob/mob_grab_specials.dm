@@ -101,7 +101,7 @@
 	var/armor = target.run_armor_check(BP_HEAD, "melee")
 	var/soaked = target.get_armor_soak(BP_HEAD, "melee")
 	target.apply_damage(damage, BRUTE, BP_HEAD, armor, soaked)
-	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD), attacker.get_armor_soak(BP_HEAD), "melee")
+	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD), attacker.get_armor_soak(BP_HEAD))
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
@@ -147,27 +147,3 @@
 	step_to(attacker, target)
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
-
-/obj/item/grab/proc/devour(mob/target, mob/user)
-	var/can_eat
-	if((FAT in user.mutations) && ismini(target))
-		can_eat = 1
-	else
-		var/mob/living/carbon/human/H = user
-		if(istype(H) && H.species.gluttonous)
-			if(H.species.gluttonous == 2)
-				can_eat = 2
-			else if((H.mob_size > target.mob_size) && !ishuman(target) && ismini(target))
-				can_eat = 1
-
-	if(can_eat)
-		var/mob/living/carbon/attacker = user
-		user.visible_message(span_vdanger("[user] is attempting to devour [target]!"))
-		if(can_eat == 2)
-			if(!do_mob(user, target)||!do_after(user, 30)) return
-		else
-			if(!do_mob(user, target)||!do_after(user, 70)) return
-		user.visible_message(span_vdanger("[user] devours [target]!"))
-		target.loc = user
-		attacker.stomach_contents.Add(target)
-		qdel(src)

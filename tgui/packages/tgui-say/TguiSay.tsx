@@ -1,12 +1,18 @@
 import './styles/main.scss';
 
-import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import {
+  type FormEvent,
+  type KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
 import { type BooleanLike, classes } from 'tgui-core/react';
 
-import { Channel, ChannelIterator } from './ChannelIterator';
+import { type Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
 import {
@@ -20,6 +26,8 @@ import { byondMessages } from './timers';
 
 type ByondOpen = {
   channel: Channel;
+  minimumWidth: number;
+  minimumHeight: number;
 };
 
 type ByondProps = {
@@ -57,6 +65,7 @@ export function TguiSay() {
   const [lightMode, setLightMode] = useState(false);
   const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
+  const [rescale, setRescale] = useState(false);
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
     const chat = chatHistory.current;
@@ -179,7 +188,7 @@ export function TguiSay() {
     const iterator = channelIterator.current;
     let newValue = event.currentTarget.value;
 
-    let newPrefix = getPrefix(newValue) || currentPrefix;
+    const newPrefix = getPrefix(newValue) || currentPrefix;
     // Handles switching prefixes
     if (newPrefix && newPrefix !== currentPrefix) {
       setButtonContent(RADIO_PREFIXES[newPrefix]);
@@ -204,7 +213,7 @@ export function TguiSay() {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
-      case 'u': // replace with tgui core 1.8.x
+      case 'u':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -217,7 +226,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'i': // replace with tgui core 1.8.x
+      case 'i':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -230,7 +239,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'b': // replace with tgui core 1.8.x
+      case 'b':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -287,8 +296,6 @@ export function TguiSay() {
   function handleOpen(data: ByondOpen): void {
     setTimeout(() => {
       innerRef.current?.focus();
-      windowSet(WindowSize.Width, WindowSize.Small);
-      setSize(WindowSize.Width);
     }, 1);
 
     const { channel } = data;
@@ -300,6 +307,7 @@ export function TguiSay() {
 
     setButtonContent(iterator.current());
     windowOpen(iterator.current());
+    setRescale(true);
   }
 
   function handleProps(data: ByondProps): void {
@@ -318,7 +326,13 @@ export function TguiSay() {
     setCurrentPrefix(null);
     setButtonContent(channelIterator.current.current());
     setValue('');
+    setRescale(false);
   }
+
+  useEffect(() => {
+    setSize(minimumHeight);
+    windowSet(minimumWidth, minimumHeight);
+  }, [rescale]);
 
   /** Subscribe to Byond messages */
   useEffect(() => {
@@ -339,7 +353,7 @@ export function TguiSay() {
     } else {
       newSize = WindowSize.Small;
     }
-    newSize = clamp(newSize, minimumHeight * 20 + 10, WindowSize.Max);
+    newSize = clamp(newSize, minimumHeight, WindowSize.Max);
 
     if (size !== newSize) {
       setSize(newSize);
@@ -370,16 +384,24 @@ export function TguiSay() {
           {buttonContent}
         </button>
         <textarea
+          spellCheck
           autoCorrect="off"
           className={`textarea textarea-${theme}`}
           maxLength={maxLength}
           onInput={handleInput}
           onKeyDown={handleKeyDown}
           ref={innerRef}
-          spellCheck={false}
           rows={ROWS[size] || 1}
           value={value}
         />
+        <button
+          key="escape"
+          className={`button button-${theme}`}
+          onClick={handleClose}
+          type="submit"
+        >
+          X
+        </button>
       </div>
     </>
   );

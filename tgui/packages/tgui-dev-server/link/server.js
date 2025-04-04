@@ -91,7 +91,7 @@ class LinkServer {
       return;
     }
     if (type === 'relay') {
-      for (let client of this.wss.clients) {
+      for (const client of this.wss.clients) {
         if (client === ws) {
           continue;
         }
@@ -112,7 +112,7 @@ class LinkServer {
       return;
     }
     logger.log(`broadcasting ${msg.type} to ${clients.length} clients`);
-    for (let client of clients) {
+    for (const client of clients) {
       const json = JSON.stringify(msg);
       client.send(json);
     }

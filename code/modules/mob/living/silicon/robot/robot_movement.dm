@@ -25,7 +25,7 @@
 
 	return 0
 
- //No longer needed, but I'll leave it here incase we plan to re-use it.
+//No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
 	. = speed
 
