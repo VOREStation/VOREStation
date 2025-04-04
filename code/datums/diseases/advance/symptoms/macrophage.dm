@@ -97,4 +97,4 @@ BONUS
 				continue
 			phage.infections += D
 	M.visible_message(span_danger("A strange creature burst out of [M]!"), span_userdanger("A slimy creature bursts forth from your flesh!"))
-	addtimer(CALLBACK(phage, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
+	addtimer(CALLBACK(phage, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3 MINUTES)
