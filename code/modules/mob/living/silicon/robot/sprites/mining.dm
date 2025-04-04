@@ -213,19 +213,15 @@
 	icon_x = 64
 	pixel_x = -16
 
-/datum/robot_sprite/dogborg/tall/mining/dullahancarg
-	name = "Dullahan Cargo"
+/datum/robot_sprite/dogborg/tall/mining/dullahancargo
+	name = "Dullahan Cargo v1"
 	sprite_icon_state = "dullahancargo"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_cargo.dmi'
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	icon_x = 32
-	pixel_x = 0
-
-/datum/robot_sprite/dogborg/tall/mining/dullahancarg/cargoalt
-	name = "Dullahan Cargo v2"
-	sprite_icon_state = "dullahancargo_alt"
+	sprite_decals = list("breastplate")
 	icon_x = 32
 	pixel_x = 0
 

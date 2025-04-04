@@ -139,12 +139,16 @@
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-eyes"
+	else if(ourborg.resting && has_rest_sprites)
+		return "[sprite_icon_state]-eyes-rest"
 	else
 		return
 
 /datum/robot_sprite/proc/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-lights"
+	else if(ourborg.resting && has_rest_sprites)
+		return "[sprite_icon_state]-lights-rest"
 	else
 		return
 

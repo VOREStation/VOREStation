@@ -147,6 +147,7 @@
 	sprite_icon_state = "dullahanmed"
 	has_vore_belly_sprites = TRUE
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	sprite_decals = list("breastplate")
 	icon_x = 32
 	pixel_x = 0
