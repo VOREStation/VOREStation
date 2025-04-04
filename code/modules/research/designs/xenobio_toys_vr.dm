@@ -3,7 +3,7 @@
 	desc = "An Advanced monkey teleportation and rehydration system. For serious monkey business."
 	id = "monkey_gun"
 	req_tech = list(TECH_BIO = 6, TECH_BLUESPACE = 5)
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_GOLD = 500, MAT_SILVER = 350)
+	materials = list(MAT_STEEL = 3500, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500)
 	build_path = /obj/item/xenobio/monkey_gun
 	sort_string = "HBBA"
 

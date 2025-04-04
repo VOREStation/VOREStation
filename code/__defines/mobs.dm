@@ -328,6 +328,7 @@
 #define SPECIES_CUSTOM			"Custom Species"
 #define SPECIES_LLEILL			"Lleill"
 #define SPECIES_HANNER			"Hanner"
+#define SPECIES_SPARKLE			"Sparkle Dog"
 
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"

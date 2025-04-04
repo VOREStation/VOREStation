@@ -215,7 +215,7 @@
 			var/blood_volume = round(H.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			var/blood_max = H.species.blood_volume
 			bloodData["volume"] = blood_volume
-			bloodData["percent"] = round(((blood_volume / blood_max)*100))
+			bloodData["percent"] = blood_max ? round(((blood_volume / blood_max)*100)) : 0
 
 		occupantData["blood"] = bloodData
 
