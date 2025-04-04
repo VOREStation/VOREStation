@@ -21,3 +21,8 @@
   Willburd:
   - qol: spawning carbon mobs is less laggy
   - refactor: dna datum cloning per organ removed in favor of a organ_data datum
+2025-04-04:
+  Kashargul:
+  - code_imp: update dependencies
+  Willburd:
+  - code_imp: Fixes incorrectly checked flags in organ_data
