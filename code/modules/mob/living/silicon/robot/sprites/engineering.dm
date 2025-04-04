@@ -225,6 +225,7 @@
 	sprite_icon_state = "dullahaneng"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_eng.dmi'
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("decals")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	icon_x = 32
