@@ -253,7 +253,7 @@ emp_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty())
+	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty(), attacker = user)
 
 	if(!hit_zone)
 		user.do_attack_animation(src)
@@ -460,7 +460,7 @@ emp_act
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
 			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
+		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = O.thrower)
 
 		if(zone && O.thrower != src)
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
