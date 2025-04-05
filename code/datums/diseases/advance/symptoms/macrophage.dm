@@ -74,14 +74,14 @@ BONUS
 	var/mob/living/simple_mob/vore/aggressive/macrophage/phage
 
 	if(gigagerms)
-		phage = new /mob/living/simple_mob/vore/aggressive/macrophage/giant(M.loc)
+		phage = new /mob/living/simple_mob/vore/aggressive/macrophage/giant(get_turf((M.loc)))
 		phage.melee_damage_lower = rand(10, 15)
 		phage.melee_damage_upper = rand(15, 20)
 		M.apply_damage(rand(10, 20))
 		playsound(M, 'sound/effects/splat.ogg', 50, 1)
 		M.emote("scream")
 	else
-		phage = new(M.loc)
+		phage = new(get_turf((M.loc)))
 		M.apply_damage(rand(1, 7))
 
 	phage.health += A.resistance
