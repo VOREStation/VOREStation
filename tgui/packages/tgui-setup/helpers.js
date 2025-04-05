@@ -127,7 +127,7 @@
       path,
       assign({}, params, {
         callback: 'Byond.__callbacks__[' + index + ']',
-      }),
+      })
     );
     return promise;
   };
@@ -311,7 +311,7 @@
           options.attempt += 1;
           loadAsset(options);
         },
-        RETRY_WAIT_INITIAL + attempt * RETRY_WAIT_INCREMENT,
+        RETRY_WAIT_INITIAL + attempt * RETRY_WAIT_INCREMENT
       );
     };
     // JS specific code
@@ -568,6 +568,6 @@ window.replaceHtml = function (inline_html) {
     'afterbegin',
     '<!-- tgui:inline-html-start -->' +
       inline_html +
-      '<!-- tgui:inline-html-end -->',
+      '<!-- tgui:inline-html-end -->'
   );
 };
