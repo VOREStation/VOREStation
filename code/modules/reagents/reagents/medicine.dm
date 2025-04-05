@@ -413,18 +413,14 @@
 	color = "#6b4de3"
 	metabolism = REM * 0.5
 	mrate_static = TRUE
+	affects_dead = FALSE //Clarifying this here since the original intent was this ONLY works on people that have the bloodpump_corpse modifier.
 	scannable = 1
 
 /datum/reagent/mortiferin/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
-	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
-		affects_dead = TRUE
-	else
-		affects_dead = FALSE
-
 	. = ..(M, alien, location)
 
 /datum/reagent/mortiferin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
+	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD))
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))

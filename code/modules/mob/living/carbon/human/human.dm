@@ -1680,6 +1680,23 @@
 		return 0
 	return (species && species.has_organ[organ_check])
 
+/// Checks our organs and sees if we are missing anything vital, or if it is too heavily damaged
+/// Returns two values:
+/// FALSE if all our vital organs are intact
+/// Or the name of the organ if we are missing a vital organ / it is damaged beyond repair.
+/mob/living/carbon/human/proc/check_vital_organs()
+	for(var/organ_tag in species.has_organ)
+		var/obj/item/organ/O = species.has_organ[organ_tag]
+		var/name = initial(O.name)
+		var/vital = initial(O.vital) //check for vital organs
+		if(vital)
+			O = internal_organs_by_name[organ_tag]
+			if(!O)
+				return name
+			if(O.damage > O.max_damage)
+				return name
+	return FALSE
+
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
