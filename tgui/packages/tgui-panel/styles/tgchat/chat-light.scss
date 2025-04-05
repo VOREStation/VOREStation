@@ -1463,6 +1463,37 @@ $border-width-px: $border-width * 1px;
   font-family: Wingdings, Webdings;
 }
 
+.rainbow {
+  font-family: monospace;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    hsl(300, 76%, 72%),
+    hsl(275, 100%, 25%),
+    hsl(240, 100%, 50%),
+    hsl(120, 100%, 25%),
+    hsl(60, 100%, 50%),
+    hsl(39, 100%, 50%),
+    hsl(0, 100%, 50%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
 .spoiler {
   background-color: hsl(0, 0%, 50%);
   color: transparent;

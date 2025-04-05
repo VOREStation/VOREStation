@@ -276,7 +276,7 @@ var/list/wrapped_species_by_ref = list()
 	for(var/limb in organs_by_name)
 		var/obj/item/organ/external/O = organs_by_name[limb]
 		if(limb_exists[O.organ_tag])
-			O.species = GLOB.all_species[new_species]
+			O.data.setup_from_species(GLOB.all_species[new_species])
 			O.wounds = wounds_by_limb[O.organ_tag]
 			// sync the organ's damage with its wounds
 			O.update_damages()
