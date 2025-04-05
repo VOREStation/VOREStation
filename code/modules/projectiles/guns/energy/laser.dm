@@ -160,7 +160,7 @@
 	var/remainingshots = 0 //you may get a limited number of shots regardless of the charge
 	var/failurechance = 0 //chance per shot of something going awry
 
-/obj/item/gun/energy/captain/Initialize()
+/obj/item/gun/energy/captain/Initialize(mapload)
 	//it's an antique and it's been sitting in a case, unmaintained, for who the hell knows how long - who knows what'll happen when you pull it out?
 	..()
 	//first, we decide, does it have a different type of beam? 75% of just being a 40-damage laser, 15% of being less or 0, 10% of being better

@@ -36,8 +36,8 @@
 	var/expended
 	var/drop_type
 
-/obj/machinery/power/supply_beacon/New()
-	..()
+/obj/machinery/power/supply_beacon/Initialize(mapload)
+	. = ..()
 	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
 
 /obj/machinery/power/supply_beacon/supermatter
@@ -97,7 +97,7 @@
 /obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)
 		deactivate()
-	..()
+	. = ..()
 
 /obj/machinery/power/supply_beacon/process()
 	if(expended)

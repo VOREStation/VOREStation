@@ -30,7 +30,7 @@
 
 	faction = FACTION_VAMPIRE
 
-/mob/living/simple_mob/vore/vampire/Initialize()
+/mob/living/simple_mob/vore/vampire/Initialize(mapload)
 	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
@@ -56,6 +56,8 @@
 
 /mob/living/simple_mob/vore/vampire/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

@@ -235,6 +235,8 @@ var/list/name_to_material
 	// Wallrot crumble message.
 	var/rotting_touch_message = "crumbles under your touch"
 
+	var/wiki_flag = 0
+
 // Placeholders for light tiles and rglass.
 /datum/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
@@ -306,6 +308,7 @@ var/list/name_to_material
 // Used by walls when qdel()ing to avoid neighbor merging.
 /datum/material/placeholder
 	name = "placeholder"
+	wiki_flag = WIKI_SPOILER
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
 /datum/material/proc/place_dismantled_girder(var/turf/target, var/datum/material/reinf_material, var/datum/material/girder_material)

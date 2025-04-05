@@ -17,7 +17,7 @@
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 
-/obj/machinery/bodyscanner/Initialize()
+/obj/machinery/bodyscanner/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -215,7 +215,7 @@
 			var/blood_volume = round(H.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			var/blood_max = H.species.blood_volume
 			bloodData["volume"] = blood_volume
-			bloodData["percent"] = round(((blood_volume / blood_max)*100))
+			bloodData["percent"] = blood_max ? round(((blood_volume / blood_max)*100)) : 0
 
 		occupantData["blood"] = bloodData
 
@@ -333,8 +333,9 @@
 
 		occupantData["blind"] = (H.sdisabilities & BLIND)
 		occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
-		occupantData["husked"] = (HUSK in H.mutations) // VOREstation edit
-		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H)) //VOREStation Insert
+		occupantData["brokenspine"] = (H.disabilities & SPINE)
+		occupantData["husked"] = (HUSK in H.mutations)
+		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H))
 	data["occupant"] = occupantData
 
 	return data

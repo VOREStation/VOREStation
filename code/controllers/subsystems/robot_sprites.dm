@@ -157,6 +157,12 @@ SUBSYSTEM_DEF(robot_sprites)
 				decals -= "decals"
 				RS.sprite_decals |= decals
 				continue
+			// special overlays that also can be used as animations, as some names have - in them, seperated by _
+			if(findtext(icon, regex("^animations")))
+				var/list/animations = splittext(icon, "_")
+				animations -= "animations"
+				RS.sprite_animations |= animations
+				continue
 			// Check for all the possible overlays
 			if(findtext(icon, regex("-roll")))
 				RS.sprite_flags |= ROBOT_HAS_SPEED_SPRITE
@@ -202,6 +208,9 @@ SUBSYSTEM_DEF(robot_sprites)
 				continue
 			if(findtext(icon, regex("-openpanel_w")))
 				RS.has_custom_open_sprites = TRUE
+				continue
+			if(findtext(icon, regex("-glow")))
+				RS.has_glow_sprites = TRUE
 				continue
 			if(findtext(icon, regex("-\\d-rest")))
 				RS.has_vore_belly_resting_sprites = TRUE

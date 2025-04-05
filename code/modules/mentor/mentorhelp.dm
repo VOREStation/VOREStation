@@ -105,9 +105,10 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 /obj/effect/statclick/mticket_list
 	var/current_state
 
-/obj/effect/statclick/mticket_list/New(loc, name, state)
+INITIALIZE_IMMEDIATE(/obj/effect/statclick/mticket_list)
+/obj/effect/statclick/mticket_list/Initialize(mapload, name, state)
+	. = ..()
 	current_state = state
-	..()
 
 /obj/effect/statclick/mticket_list/Click()
 	GLOB.mhelp_tickets.BrowseTickets(current_state)
@@ -398,9 +399,10 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 /obj/effect/statclick/mhelp
 	var/datum/mentor_help/mhelp_datum
 
-/obj/effect/statclick/mhelp/New(loc, datum/mentor_help/MH)
+INITIALIZE_IMMEDIATE(/obj/effect/statclick/mhelp)
+/obj/effect/statclick/mhelp/Initialize(mapload, datum/mentor_help/MH)
 	mhelp_datum = MH
-	..(loc)
+	. = ..()
 
 /obj/effect/statclick/mhelp/update()
 	return ..(mhelp_datum.name)

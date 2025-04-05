@@ -192,7 +192,7 @@
 		/datum/matter_synth/wire
 		)
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize()
+/obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize(mapload)
 	. = ..()
 
 	if(integrated_object)

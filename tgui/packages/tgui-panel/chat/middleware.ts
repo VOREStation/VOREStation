@@ -11,6 +11,7 @@ import DOMPurify from 'dompurify';
 import { selectGame } from '../game/selectors';
 import {
   addHighlightSetting,
+  importSettings,
   loadSettings,
   removeHighlightSetting,
   updateHighlightSetting,
@@ -22,6 +23,7 @@ import {
   addChatPage,
   changeChatPage,
   changeScrollTracking,
+  clearChat,
   getChatData,
   loadChat,
   moveChatPageLeft,
@@ -75,7 +77,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
     return;
   }
   if (messages) {
-    for (let message of messages) {
+    for (const message of messages) {
       if (message.html) {
         message.html = DOMPurify.sanitize(message.html, {
           FORBID_TAGS: blacklisted_tags,
@@ -93,7 +95,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
     });
   }
   if (archivedMessages) {
-    for (let archivedMessage of archivedMessages as message[]) {
+    for (const archivedMessage of archivedMessages as message[]) {
       if (archivedMessage.html) {
         archivedMessage.html = DOMPurify.sanitize(archivedMessage.html, {
           FORBID_TAGS: blacklisted_tags,
@@ -113,7 +115,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
       settings.exportStart = 0;
       settings.exportEnd = 0;
 
-      for (let message of archivedMessages as message[]) {
+      for (const message of archivedMessages as message[]) {
         const currentId = message.roundId || 0;
         if (currentId !== oldId) {
           const round = currentId;
@@ -189,7 +191,7 @@ const loadChatFromDBStorage = async (
         );
 
         if (messages) {
-          for (let message of messages) {
+          for (const message of messages) {
             if (message.html) {
               message.html = DOMPurify.sanitize(message.html, {
                 FORBID_TAGS: blacklisted_tags,
@@ -254,7 +256,7 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (!initialized && (settings.initialized || settings.firstLoad)) {
+    if (!initialized && settings.initialized) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);
@@ -338,12 +340,14 @@ export const chatMiddleware = (store) => {
       type === loadSettings.type ||
       type === addHighlightSetting.type ||
       type === removeHighlightSetting.type ||
-      type === updateHighlightSetting.type
+      type === updateHighlightSetting.type ||
+      type === importSettings.type
     ) {
       next(action);
+      const nextSettings = selectSettings(store.getState());
       chatRenderer.setHighlight(
-        settings.highlightSettings,
-        settings.highlightSettingById,
+        nextSettings.highlightSettings,
+        nextSettings.highlightSettingById,
       );
 
       return;
@@ -365,6 +369,10 @@ export const chatMiddleware = (store) => {
         settings.exportStart,
         settings.exportEnd,
       );
+      return;
+    }
+    if (type === clearChat.type) {
+      chatRenderer.clearChat();
       return;
     }
     if (type === purgeChatMessageArchive.type) {

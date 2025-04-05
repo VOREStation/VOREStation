@@ -46,7 +46,7 @@
 /obj/item/uav/loaded
 	cell_type = /obj/item/cell/high
 
-/obj/item/uav/Initialize()
+/obj/item/uav/Initialize(mapload)
 	. = ..()
 
 	if(!cell && cell_type)

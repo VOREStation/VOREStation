@@ -17,7 +17,7 @@
 	circuit = /obj/item/circuitboard/artifact_harvester
 
 /// If you want it to load smoothly, set it's dir to wherever the scanpad is!
-/obj/machinery/artifact_harvester/Initialize()
+/obj/machinery/artifact_harvester/Initialize(mapload)
 	. = ..()
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)
@@ -27,12 +27,12 @@
 
 /obj/machinery/artifact_harvester/RefreshParts(var/limited = 0)
 	harvesting_speed = 0
-	 // Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
-	 // Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
-	 // Tier 3 is commonly availabe. Tier 4/5 is much harder to get.
-	 // Applying a straight rating * X resultes in either being too strong early or too weak late. So we do a switch depending on rating.
-	 // This means for a base 500 battery: Tier 1 takes 100 seconds, tier 2 takes 40 seconds, tier 3 takes 20 seconds, tier 4 takes 4 seconds, tier 5 takes 1 second.
-	 // Tier 4 and 5 may seem overkill, but when you get to the REALLY strong batteries, you'll want them.
+	// Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
+	// Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
+	// Tier 3 is commonly availabe. Tier 4/5 is much harder to get.
+	// Applying a straight rating * X resultes in either being too strong early or too weak late. So we do a switch depending on rating.
+	// This means for a base 500 battery: Tier 1 takes 100 seconds, tier 2 takes 40 seconds, tier 3 takes 20 seconds, tier 4 takes 4 seconds, tier 5 takes 1 second.
+	// Tier 4 and 5 may seem overkill, but when you get to the REALLY strong batteries, you'll want them.
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/stock_parts/capacitor))
 			switch(P.rating)

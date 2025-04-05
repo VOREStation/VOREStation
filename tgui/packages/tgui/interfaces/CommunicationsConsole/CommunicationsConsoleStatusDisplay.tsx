@@ -8,7 +8,7 @@ export const CommunicationsConsoleStatusDisplay = (props) => {
 
   const { stat_display, authenticated } = data;
 
-  let presetButtons = stat_display['presets'].map((pb) => {
+  const presetButtons = stat_display['presets'].map((pb) => {
     return (
       <Button
         key={pb.name}

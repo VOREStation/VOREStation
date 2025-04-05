@@ -26,20 +26,12 @@
 	var/icon_update = 0									// Timer in ticks for icon update.
 	var/ui_tick = 0
 	should_be_mapped = TRUE
+	circuit = /obj/item/circuitboard/batteryrack
 
 
-/obj/machinery/power/smes/batteryrack/New()
-	..()
-	add_parts()
-	RefreshParts()
-
-/obj/machinery/power/smes/batteryrack/proc/add_parts()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/batteryrack
-	component_parts += new /obj/item/stock_parts/capacitor				// Capacitors: Maximal I/O
-	component_parts += new /obj/item/stock_parts/capacitor
-	component_parts += new /obj/item/stock_parts/capacitor
-	component_parts += new /obj/item/stock_parts/matter_bin				// Matter Bin: Max. amount of cells.
+/obj/machinery/power/smes/batteryrack/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
 	var/capacitor_efficiency = 0

@@ -24,11 +24,11 @@
 	//	var/value = null
 
 		if (pos)
-            // No, don't do lowertext here, that breaks paths on linux
+			// No, don't do lowertext here, that breaks paths on linux
 			name = copytext(t, 1, pos)
 		//	value = copytext(t, pos + 1)
 		else
-            // No, don't do lowertext here, that breaks paths on linux
+			// No, don't do lowertext here, that breaks paths on linux
 			name = t
 
 		if (!name)
@@ -62,7 +62,7 @@
 //VOREStation Add - This landmark type so it's not so ghetto.
 /obj/effect/landmark/gateway_scatter
 	name = "uncalibrated gateway destination"
-/obj/effect/landmark/gateway_scatter/Initialize()
+/obj/effect/landmark/gateway_scatter/Initialize(mapload)
 	. = ..()
 	awaydestinations += src
 
@@ -72,7 +72,7 @@
 
 /obj/effect/landmark/event_scatter
 	name = "uncalibrated event destination"
-/obj/effect/landmark/event_scatter/Initialize()
+/obj/effect/landmark/event_scatter/Initialize(mapload)
 	. = ..()
 	eventdestinations += src
 
@@ -82,13 +82,13 @@
 
 /obj/effect/landmark/gateway_abduct_dest
 	name = "abductor gateway destination"
-/obj/effect/landmark/gateway_abduct_dest/Initialize()
+/obj/effect/landmark/gateway_abduct_dest/Initialize(mapload)
 	. = ..()
 	awayabductors += src
 
 /obj/effect/landmark/event_abduct_dest
 	name = "abductor event destination"
-/obj/effect/landmark/event_abduct_dest/Initialize()
+/obj/effect/landmark/event_abduct_dest/Initialize(mapload)
 	. = ..()
 	eventabductors += src
 //VOREStation Add End

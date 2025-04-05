@@ -84,6 +84,8 @@
 	var/list/RGB2 = ReadRGB(rgb2)
 
 	// add missing alpha if needed
+	if(!RGB1 || !RGB2) //Don't blend if we don't two! No use blending what we don't have!
+		return
 	if(RGB1.len < RGB2.len) RGB1 += 255
 	else if(RGB2.len < RGB1.len) RGB2 += 255
 	var/usealpha = RGB1.len > 3
@@ -661,8 +663,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 
 	if (!isicon(icon2collapse))
 		if (isfile(thing)) //special snowflake
-			//var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
-			var/name = "[generate_asset_name(thing)].png"
+			var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
 			if (!SSassets.cache[name])
 				SSassets.transport.register_asset(name, thing)
 			for (var/thing2 in targets)

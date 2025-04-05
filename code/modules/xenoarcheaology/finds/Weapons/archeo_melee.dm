@@ -36,7 +36,7 @@
 	var/consecration_cost = 10 //Ten stored_blood per use!
 	var/empowered = FALSE //If our next atack is empowered (2x damage)
 
-/obj/item/melee/artifact_blade/Initialize() //We will never spawn without xenoarch or SOMEONE unearthing us.
+/obj/item/melee/artifact_blade/Initialize(mapload) //We will never spawn without xenoarch or SOMEONE unearthing us.
 	. = ..()
 	//START_PROCESSING(SSobj, src) //We could start processing here, but let's wait until someone touches us. Uncomment this if more stuff is added and you want it to do spooky passive things.
 
@@ -75,7 +75,9 @@
 		if(last_touched.loc)
 			conjure_animation(last_touched.loc)
 	visible_message(span_cult("\The [src] screeches as it's destroyed"))
-	lightning_strike(last_touched.loc, TRUE)
+	var/turf/T = get_turf(last_touched)
+	if(istype(T))
+		lightning_strike(T, TRUE)
 	playsound(src, 'sound/goonstation/spooky/creepyshriek.ogg', 100, 1, 75) //It plays VERY far.
 	last_touched = null //Get rid of the reference to our owner.
 	..()
@@ -87,7 +89,7 @@
 /obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(M == user) //No accidentally hitting yourself and exploding.
 		return
-	var/zone = (user.hand ? "l_arm":"r_arm") //Which arm we're in!
+	var/zone = (user.hand ? BP_L_ARM:BP_R_ARM) //Which arm we're in!
 	var/prior_force = force
 	if(empowered)
 		force = force*2

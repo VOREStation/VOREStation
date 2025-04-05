@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
-  FeatureNumeric,
+  type FeatureNumeric,
   FeatureSliderInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {

@@ -249,7 +249,7 @@
 
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
-	stat_panel.subscribe(src, .proc/on_stat_panel_message)
+	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
 
 	// Instantiate tgui panel
 	tgui_say = new(src, "tgui_say")
@@ -260,7 +260,7 @@
 	GLOB.mhelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
-	holder = admin_datums[ckey]
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
 		GLOB.admins += src
 		holder.owner = src
@@ -465,7 +465,7 @@
 
 	var/admin_rank = "Player"
 	if(src.holder)
-		admin_rank = src.holder.rank
+		admin_rank = src.holder.rank_names()
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
@@ -475,7 +475,7 @@
 
 	//Panic bunker code
 	if (isnum(player_age) && player_age == 0) //first connection
-		if (CONFIG_GET(flag/panic_bunker) && !holder && !deadmin_holder)
+		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[key])
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
 			disconnect_with_message("Sorry but the server is currently not accepting connections from never before seen players.")

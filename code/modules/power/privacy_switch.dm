@@ -5,7 +5,7 @@
 	icon_state = "privacy0"
 	var/nextUse = 0
 
-/obj/structure/privacyswitch/Initialize()
+/obj/structure/privacyswitch/Initialize(mapload)
 	var/area/A = get_area(src)
 	if(A?.flag_check(AREA_BLOCK_GHOST_SIGHT))
 		icon_state = "privacy1"

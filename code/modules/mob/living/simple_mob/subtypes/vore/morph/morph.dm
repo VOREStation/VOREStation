@@ -61,7 +61,7 @@
 	/mob/living/simple_mob/vore/morph,
 	/obj/effect))
 
-/mob/living/simple_mob/vore/morph/Initialize()
+/mob/living/simple_mob/vore/morph/Initialize(mapload)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/simple_mob/vore/morph/proc/take_over_prey)
 	if(!istype(src, /mob/living/simple_mob/vore/morph/dominated_prey))

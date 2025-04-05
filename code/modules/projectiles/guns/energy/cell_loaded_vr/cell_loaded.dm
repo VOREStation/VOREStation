@@ -221,7 +221,7 @@
 	var/type_name = null
 	projectile_type = /obj/item/projectile/beam
 
-/obj/item/ammo_casing/microbattery/Initialize()
+/obj/item/ammo_casing/microbattery/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
@@ -246,8 +246,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
@@ -268,8 +268,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)

@@ -145,5 +145,3 @@
 	if(!AA)
 		return
 	AA.hide(hideFrom)
-
-

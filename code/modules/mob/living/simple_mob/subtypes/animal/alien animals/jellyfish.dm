@@ -25,6 +25,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	icon_dead = "space_jellyfish_dead"
 	has_eye_glow = TRUE
 	hovering = TRUE
+	density = FALSE
 
 
 	faction = FACTION_JELLYFISH
@@ -80,12 +81,24 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/reproduction_cooldown = 0
 
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/swarming)
+
+// Allows this mob to swarm
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/CanPass(atom/movable/mover, turf/target)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/vore/alienanimals/space_jellyfish) && mover.density == TRUE)
+		return FALSE
+	return ..()
+
 /datum/say_list/jellyfish
 	emote_see = list("flickers", "flashes", "looms","pulses","sways","shimmers hypnotically")
 
 
 /mob/living/simple_mob/vore/alienanimals/space_jellyfish/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected
@@ -167,7 +180,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	inherited_nutriment	= inherit
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize()
+/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize(mapload)
 	nutriment_amt += inherited_nutriment
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, nutriment_amt, nutriment_desc)

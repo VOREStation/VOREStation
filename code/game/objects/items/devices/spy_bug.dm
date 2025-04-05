@@ -20,8 +20,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/camerabug/New()
-	..()
+/obj/item/camerabug/Initialize(mapload)
+	. = ..()
 //	radio = new(src)
 	camera = new camtype(src)
 
@@ -168,7 +168,7 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 
 /*
-/obj/item/bug_monitor/New()
+/obj/item/bug_monitor/Initialize(mapload)
 	radio = new(src)
 */
 /obj/item/bug_monitor/attack_self(mob/user)
@@ -252,8 +252,8 @@
 /obj/machinery/camera/bug
 	network = list(NETWORK_SECURITY)
 
-/obj/machinery/camera/bug/New()
-	..()
+/obj/machinery/camera/bug/Initialize(mapload)
+	. = ..()
 	name = "Camera #[rand(1000,9999)]"
 	c_tag = name
 
@@ -261,8 +261,8 @@
 	// These cheap toys are accessible from the mercenary camera console as well - only the antag ones though!
 	network = list(NETWORK_MERCENARY)
 
-/obj/machinery/camera/bug/spy/New()
-	..()
+/obj/machinery/camera/bug/spy/Initialize(mapload)
+	. = ..()
 	name = "DV-136ZB #[rand(1000,9999)]"
 	c_tag = name
 

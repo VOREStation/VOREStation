@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 	anchored = TRUE
 	state = 2
 
-/obj/machinery/power/emitter/gyrotron/Initialize()
+/obj/machinery/power/emitter/gyrotron/Initialize(mapload)
 	GLOB.gyrotrons += src
 	default_apply_parts()
 	return ..()

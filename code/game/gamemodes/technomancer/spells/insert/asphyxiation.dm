@@ -18,26 +18,34 @@
 // maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
 /obj/item/inserted_spell/asphyxiation/on_insert()
-	spawn(1)
-		if(ishuman(host))
-			var/mob/living/carbon/human/H = host
-			if(H.isSynthetic() || H.does_not_breathe) // It's hard to choke a robot or something that doesn't breathe.
-				on_expire()
-				return
-			to_chat(H, span_warning("You are having difficulty breathing!"))
-			var/pulses = 3
-			var/warned_victim = 0
-			while(pulses)
-				if(!warned_victim)
-					warned_victim = predict_crit(pulses, H, 0)
-				sleep(4 SECONDS)
-				H.adjustOxyLoss(5)
-				var/health_lost = H.getMaxHealth() - H.getOxyLoss() + H.getToxLoss() + H.getFireLoss() + H.getBruteLoss() + H.getCloneLoss()
-				H.adjustOxyLoss(round(abs(health_lost * 0.25)))
-				//to_world("Inflicted [round(abs(health_lost * 0.25))] damage!")
-				pulses--
-			if(src) //We might've been dispelled at this point and deleted, better safe than sorry.
-				on_expire()
+	if(ishuman(host))
+		var/mob/living/carbon/human/H = host
+		if(H.isSynthetic() || H.does_not_breathe) // It's hard to choke a robot or something that doesn't breathe.
+			on_expire()
+			return
+		to_chat(H, span_warning("You are having difficulty breathing!"))
+		var/pulses = 3
+		var/warned_victim = 0
+		if(!warned_victim)
+			warned_victim = predict_crit(pulses, H, 0)
+
+		looped_insert(3, H, warned_victim)
+
+
+/obj/item/inserted_spell/mend_wires/looped_insert(remaining_callbacks, mob/living/carbon/human/H, var/warned)
+	if(H)
+		remaining_callbacks --
+		H.adjustOxyLoss(5)
+		var/health_lost = H.getMaxHealth() - H.getOxyLoss() + H.getToxLoss() + H.getFireLoss() + H.getBruteLoss() + H.getCloneLoss()
+		H.adjustOxyLoss(round(abs(health_lost * 0.25)))
+
+		if(remaining_callbacks > 0)
+			if(!warned)
+				warned = predict_crit(pulses, H, 0)
+			addtimer(CALLBACK(src, PROC_REF(looped_insert), remaining_callbacks, H, warned), 4 SECONDS, TIMER_DELETE_ME)
+			return
+
+	on_expire()
 
 /obj/item/inserted_spell/asphyxiation/on_expire()
 	..()
