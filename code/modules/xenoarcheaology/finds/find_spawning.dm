@@ -343,7 +343,7 @@
 			possible_laser_paths += /obj/item/projectile/ion
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			// THE BLACKLIST
-			possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy)
+			// possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy, /obj/item/projectile/beam/final_option) //These are very very rare...Disabling the blacklist for now because the chance of finding them is so low that it feels like a nice treat when you DO find them. If it ends up being problemmatic, just reenable this line.
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun

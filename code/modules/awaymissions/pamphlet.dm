@@ -10,7 +10,7 @@
 	info = "They don't make you kill people. There, we said it. Now get back to work!"
 
 /obj/item/paper/pamphlet/gateway
-	info = "<b>Welcome to the Nanotrasen Gateway project...</b><br>\
+	info = 	span_bold("Welcome to the Nanotrasen Gateway project...") + "<br>\
 			Congratulations! If you're reading this, you and your superiors have decided that you're \
 			ready to commit to a life spent colonising the rolling hills of far away worlds. You \
 			must be ready for a lifetime of adventure, a little bit of hard work, and an award \
@@ -20,7 +20,7 @@
 			been fully scanned by a Nanotrasen expeditionary team, and are certified to be 100% safe. \
 			We've even left a case of space beer along with the basic materials you'll need to expand \
 			Nanotrasen's operational area and start your new life.<br><br>\
-			<b>Gateway Operation Basics</b><br>\
+			" + span_bold("Gateway Operation Basics") + "<br>\
 			All Nanotrasen approved Gateways operate on the same basic principals. They operate off \
 			area equipment power as you would expect, and without this supply, it cannot safely function, \
 			causinng it to reject all attempts at operation.<br><br>\
@@ -29,14 +29,14 @@
 			interface will give you an estimate accurate to the minute. Power loss will not interrupt the \
 			searching process. Influenza will not interrupt the searching process. Temporal anomalies \
 			may cause the estimate to be inaccurate, but will not interrupt the searching process.<br><br> \
-			<b>Life On The Other Side</b><br>\
+			" + span_bold("Life On The Other Side") + "<br>\
 			Once you have traversed the Gateway, you may experience some disorientation. Do not panic. \
 			This is a normal side effect of travelling vast distances in a short period of time. You should \
 			survey the immediate area, and attempt to locate your complimentary case of space beer. Our \
 			expeditionary teams have ensured the complete safety of all away locations, but in a small \
 			number of cases, the Gateway they have established may not be immediately obvious. \
 			Do not panic if you cannot locate the return Gateway. Begin colonisation of the destination. \
-			<br><br><b>A New World</b><br>\
+			<br><br>" + span_bold("A New World") + "<br>\
 			As a participant in the Nanotrasen Gateway Project, you will be on the frontiers of space. \
 			Though complete safety is assured, participants are advised to prepare for inhospitable \
 			environs."

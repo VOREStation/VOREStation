@@ -65,8 +65,8 @@
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to snap up"
 
-/mob/living/simple_mob/vore/raptor/New()
-	..()
+/mob/living/simple_mob/vore/raptor/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		initial_icon = icon_living
@@ -84,6 +84,8 @@
 
 /mob/living/simple_mob/vore/raptor/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

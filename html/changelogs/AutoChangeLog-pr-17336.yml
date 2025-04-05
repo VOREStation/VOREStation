@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Plushies will no longer lose their loadout name"
-  - bugfix: "Plushies will speak in their given name in the chat properly."
