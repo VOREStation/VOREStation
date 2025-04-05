@@ -195,13 +195,8 @@
 	has_vore_belly_sprites = TRUE
 	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
+	sprite_decals = list("breastplate")
 	rest_sprite_options = list("Default", "sit")
-	icon_x = 32
-	pixel_x = 0
-
-/datum/robot_sprite/dogborg/tall/mining/dullahan/mineralt
-	name = "Dullahan Mining unit v2"
-	sprite_icon_state = "dullahanmine_alt"
 	icon_x = 32
 	pixel_x = 0
 

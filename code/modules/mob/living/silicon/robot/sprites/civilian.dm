@@ -320,13 +320,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	pixel_x = 0
-	icon_x = 32
-
-
-/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahanserv_alt"
+	sprite_decals = list("breastplate", "loincloth","loinclothbreastplate")
 	pixel_x = 0
 	icon_x = 32
 
@@ -446,11 +440,12 @@
 	icon_x = 32
 
 /datum/robot_sprite/dogborg/tall/clown/dullahan
-	name = "Dullahan Clown"
+	name = "Dullahan"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_clown.dmi'
 	sprite_icon_state = "dullahanclown"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	sprite_decals = list("breastplate")
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = 0
 	icon_x = 32
