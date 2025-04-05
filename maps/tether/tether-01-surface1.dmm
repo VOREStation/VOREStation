@@ -34903,12 +34903,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "nMH" = (
@@ -37437,6 +37432,11 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+/obj/item/extrapolator{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/extrapolator,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "vBy" = (
