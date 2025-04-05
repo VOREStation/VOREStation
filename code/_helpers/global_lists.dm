@@ -23,6 +23,21 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
+#define genders_to_pronoun_set list(\
+			"he/him" = MALE,\
+			"she/her" = FEMALE,\
+			"it/it is" = NEUTER,\
+			"they/them" = PLURAL,\
+			"shi/hir" = HERM\
+			)
+#define pronoun_set_to_genders list(\
+			MALE = "he/him",\
+			FEMALE = "she/her",\
+			NEUTER = "it/it is",\
+			PLURAL = "they/them",\
+			HERM = "shi/hir"\
+		)
+
 var/list/mannequins_
 
 // Times that players are allowed to respawn ("ckey" = world.time)

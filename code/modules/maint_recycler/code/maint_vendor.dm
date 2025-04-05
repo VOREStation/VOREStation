@@ -2,7 +2,7 @@
 	name = "decrepit machine"
 	desc = "A long since abandoned \"trash 4 cash\" rewards kiosk. Now featuring a state of the art, monochrome holographic tube display!"
 	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
-	icon_state = 'default'
+	icon_state = "default"
 
 	anchored = TRUE
 	density = TRUE
@@ -47,9 +47,7 @@
 	add_fingerprint(user)
 	tgui_interact(user)
 
-/obj/machinery/maint_vendor/tgui_act(action,params,datum/tgui/ui)
-	if(..())
-		return TRUE
+
 
 /obj/machinery/maint_vendor/proc/attempt_purchase(var/mob/user)
 
@@ -61,3 +59,27 @@
 	return TRUE //TODO
 
 /obj/machinery/maint_vendor/proc/set_screen_state(var/newstate, var/duration)
+
+
+//TGUI junk
+
+/obj/machinery/maint_vendor/tgui_act(action,params,datum/tgui/ui)
+	if(..())
+		return TRUE
+
+/obj/machinery/maint_vendor/tgui_interact(mob/user,datum/tgui/ui)
+	ui = SStgui.try_update_ui(user,src,ui)
+	if(!ui)
+		ui = new(user,src,"RecyclerVendor")
+		ui.open()
+
+/obj/machinery/maint_vendor/tgui_data(mob/user)
+	var/list/data = list()
+	var/list/items = list()
+	for(var/datum/maint_recycler_vendor_entry/entry in product_datums)
+		UNTYPED_LIST_ADD(items,list(
+			"category" = entry.vendor_category,
+			"name" = entry.name,
+			"cost" = entry.item_cost,
+			"desc" = entry.desc
+		))
