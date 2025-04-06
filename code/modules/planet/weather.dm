@@ -217,6 +217,11 @@
 			last_message = world.time	// Reset the timer
 			show_message = TRUE			// Tell the rest of the process that we need to make a message
 	if(effect_flags & HAS_PLANET_EFFECT)
+		if(effect_flags & EFFECT_ALL_MOBS)
+			for(var/mob/M as anything in mob_list)
+				if(M.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
+					continue
+				planet_effect(M)
 		if(effect_flags & EFFECT_ONLY_LIVING)
 			for(var/mob/living/L as anything in living_mob_list)
 				if(L.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
