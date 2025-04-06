@@ -320,7 +320,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("breastplate", "loincloth","loinclothbreastplate")
+	sprite_decals = list("breastplate", "loincloth","loinclothbreastplate","eyecover")
 	pixel_x = 0
 	icon_x = 32
 

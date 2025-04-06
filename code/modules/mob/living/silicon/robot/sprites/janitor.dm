@@ -211,17 +211,13 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_jani.dmi'
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("breastplate", "eyecover")
 	icon_x = 32
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahanjani_alt"
-	icon_x = 32
-	pixel_x = 0
-
-/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt2
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/janitor.dmi'
 	sprite_icon_state = "dullahanjanitor"

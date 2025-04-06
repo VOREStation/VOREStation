@@ -220,17 +220,12 @@
 	name = "Dullahan"
 	sprite_icon_state = "dullahansec"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
-
+	sprite_decals = list("breastplate","loincloth","eyecover")
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	icon_x = 32
-	pixel_x = 0
-
-/datum/robot_sprite/dogborg/tall/security/dullahan/secalt
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahansec_alt"
 	icon_x = 32
 	pixel_x = 0
 
