@@ -29,6 +29,7 @@
 				. += "It appears to be in stand-by mode." //afk
 		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
 		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
+	. += attempt_vr(src,"examine_reagent_bellies",args) // reagent bellies
 
 	// VOREStation Edit: Start
 	. += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
