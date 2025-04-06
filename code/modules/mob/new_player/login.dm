@@ -49,8 +49,9 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 	created_for = ckey
 
-	new_player_panel()
-	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+	if(!QDELETED(src))
+		new_player_panel()
+		addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
 
 /mob/new_player/proc/do_after_login()
 	PRIVATE_PROC(TRUE)

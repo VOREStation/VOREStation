@@ -148,6 +148,7 @@
 	has_vore_belly_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_rest_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","loincloth","eyecover")
 	icon_x = 32
 	pixel_x = 0
