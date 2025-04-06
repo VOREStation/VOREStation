@@ -1134,6 +1134,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		item_tf_spawn_allowed = FALSE
 		item_tf_spawnpoints -= src
 
+// Ported from TG, used when dropping items on tables/closets.
 /obj/item/proc/do_drop_animation(atom/moving_from)
 	if(!istype(loc, /turf))
 		return
