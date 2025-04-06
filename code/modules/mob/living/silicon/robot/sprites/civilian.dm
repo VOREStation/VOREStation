@@ -324,11 +324,15 @@
 	pixel_x = 0
 	icon_x = 32
 
-/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt2
+/datum/robot_sprite/dogborg/tall/service/dullahanv3
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/service.dmi'
 	sprite_icon_state = "dullahanservice"
 	sprite_decals = list("decals")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
 	icon_x = 64
 	pixel_x = -16
 

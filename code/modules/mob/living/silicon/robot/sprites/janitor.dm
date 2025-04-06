@@ -217,10 +217,14 @@
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt
+/datum/robot_sprite/dogborg/tall/janitor/dullahanv3
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/janitor.dmi'
 	sprite_icon_state = "dullahanjanitor"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16

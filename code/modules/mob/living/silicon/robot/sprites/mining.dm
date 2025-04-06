@@ -200,10 +200,14 @@
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/mining/dullahan/miningdully
+/datum/robot_sprite/dogborg/tall/mining/dullahanv3
 	name = "Dullahan mining v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/mining.dmi'
 	sprite_icon_state = "dullahanmining"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
