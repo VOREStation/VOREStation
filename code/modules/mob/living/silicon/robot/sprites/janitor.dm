@@ -205,7 +205,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan
-	name = "Dullahan v1"
+	name = "Dullahan"
 	sprite_icon_state = "dullahanjani"
 	module_type = "Janitor"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_jani.dmi'

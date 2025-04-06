@@ -209,7 +209,7 @@
 	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancargo
-	name = "Dullahan Cargo v1"
+	name = "Dullahan Cargo unit"
 	sprite_icon_state = "dullahancargo"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_cargo.dmi'
 	has_eye_light_sprites = TRUE

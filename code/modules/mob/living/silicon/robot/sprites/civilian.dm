@@ -314,7 +314,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/service/dullahan
-	name = "Dullahan v1"
+	name = "Dullahan"
 	sprite_icon_state = "dullahanserv"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_serv.dmi'
 	rest_sprite_options = list("Default", "Sit")
