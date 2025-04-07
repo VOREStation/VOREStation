@@ -26,3 +26,19 @@
   - code_imp: update dependencies
   Willburd:
   - code_imp: Fixes incorrectly checked flags in organ_data
+2025-04-07:
+  Asher-42:
+  - rscadd: explo chassis 'bulwark'
+  Kashargul:
+  - bugfix: phased entities are no longer effected by weather effects
+  - bugfix: planetary weather effects
+  - bugfix: examine on admin spawned mobs
+  - bugfix: liquid examine
+  TankTheBirb:
+  - bugfix: added vox to the unusual gait species exclude list (they were supposed
+      to be there but I forgor)
+  TheCaramelion:
+  - bugfix: Fixed mail thinking you're a different person after resleeving
+  - bugfix: Fixed mail being sent to various crewmember's bodyparts
+  - bugfix: Fixed mail containing power tools disguised as common tools
+  - refactor: Refactored some of the mail code, using mind instead of mob
