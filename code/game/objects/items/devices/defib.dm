@@ -289,21 +289,30 @@
 
 /obj/item/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
 	var/obj/item/organ/internal/brain/brain = H.internal_organs_by_name[O_BRAIN]
-	if(H.should_have_organ(O_BRAIN) && (!brain || brain.defib_timer <= 0 ) )
-		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
+	if(H.should_have_organ(O_BRAIN))
+		if(!brain)
+			return "buzzes, \"Resuscitation failed - Patient lacks a brain. Further attempts futile without replacement.\""
+		if(brain.defib_timer <= 0)
+			return "buzzes, \"Resuscitation failed - Patient's brain has naturally degraded past a recoverable state. Further attempts futile.\""
 
 	H.updatehealth()
 
 	if(H.isSynthetic())
 		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
-			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin manual repair before further attempts futile.\""
+			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin damage restoration before further attempts.\""
 
-	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead) || (HUSK in H.mutations) || !H.can_defib)
-		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
+	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead)) //They need to be healed first.
+		return "buzzes, \"Resuscitation failed - Severe tissue damage detected. Repair of anatomical damage required.\""
 
-	var/bad_vital_organ = check_vital_organs(H)
+	else if(HUSK in H.mutations) //Husked! Need to fix their husk status first.
+		return "buzzes, \"Resuscitation failed - Anatomical structure malformation detected. 'De-Husk' surgery required.\""
+
+	else if(!H.can_defib) //We can frankensurgery them! Let's tell the user.
+		return "buzzes, \"Resuscitation failed - Severe neurological deformation detected. Brain-stem reattachment surgery required.\""
+
+	var/bad_vital_organ = H.check_vital_organs() //CONTRARY to what you may think, your HEART AND LUNGS ARE NOT VITAL. Only the brain is. This is here in case a species has a special vital organ they need to survive in addiition to their brain.
 	if(bad_vital_organ)
-		return bad_vital_organ
+		return "buzzes, \"Resuscitation failed - Patient's ([bad_vital_organ]) is missing / suffering extensive damage. Further attempts futile without surgical intervention.\""
 
 	//this needs to be last since if any of the 'other conditions are met their messages take precedence
 	if(!H.client && !H.teleop)
@@ -319,17 +328,11 @@
 	return TRUE
 
 /obj/item/shockpaddles/proc/check_vital_organs(mob/living/carbon/human/H)
-	for(var/organ_tag in H.species.has_organ)
-		var/obj/item/organ/O = H.species.has_organ[organ_tag]
-		var/name = initial(O.name)
-		var/vital = initial(O.vital) //check for vital organs
-		if(vital)
-			O = H.internal_organs_by_name[organ_tag]
-			if(!O)
-				return "buzzes, \"Resuscitation failed - Patient is missing vital organ ([name]). Further attempts futile.\""
-			if(O.damage > O.max_damage)
-				return "buzzes, \"Resuscitation failed - Excessive damage to vital organ ([name]). Further attempts futile.\""
-	return null
+	var/bad_vital = H.check_vital_organs()
+	if(!bad_vital) //All organs are A-OK. Let's go!
+		return null
+	//Otherwise, we have a bad vital organ, return a message to the user
+	return "buzzes, \"Resuscitation failed - Patient is vital organ ([bad_vital]) is missing / suffering extensive damage. Further attempts futile without surgical intervention.\""
 
 /obj/item/shockpaddles/proc/check_blood_level(mob/living/carbon/human/H)
 	if(!H.should_have_organ(O_HEART))

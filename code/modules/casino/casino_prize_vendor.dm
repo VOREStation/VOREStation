@@ -227,7 +227,7 @@
 
 /obj/machinery/casino_prize_dispenser/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/vending),
+		get_asset_datum(/datum/asset/spritesheet_batched/vending),
 	)
 
 /obj/machinery/casino_prize_dispenser/tgui_data(mob/user)

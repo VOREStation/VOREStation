@@ -67,23 +67,24 @@
 	emote_see = list("shifts wetly","undulates placidly")
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/protean_blob/New(var/newloc, var/mob/living/carbon/human/H)
-	..()
-	if(H)
-		humanform = H
-		updatehealth()
-		refactory = locate() in humanform.internal_organs
-		add_verb(src,/mob/living/proc/ventcrawl)
-		add_verb(src,/mob/living/proc/usehardsuit)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_partswap)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_regenerate)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_metalnom)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_blobform)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_rig_transform)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/appearance_switch)
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_latch)
-	else
-		update_icon()
+/mob/living/simple_mob/protean_blob/Initialize(mapload, var/mob/living/carbon/human/H)
+	. = ..()
+	if(!H)
+		stack_trace("URGENT: A protean blob was created without a humanform! src = [src] ckey = [ckey]! The blob has been deleted.")
+		return INITIALIZE_HINT_QDEL
+
+	humanform = H
+	updatehealth()
+	refactory = locate() in humanform.internal_organs
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/proc/usehardsuit)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_partswap)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_regenerate)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_metalnom)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_blobform)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_rig_transform)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/appearance_switch)
+	add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_latch)
 	add_verb(src,/mob/living/simple_mob/proc/animal_mount)
 	add_verb(src,/mob/living/proc/toggle_rider_reins)
 
@@ -198,7 +199,10 @@
 
 /mob/living/simple_mob/protean_blob/updatehealth()
 	if(!humanform)
-		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
+		to_chat(src, span_giant(span_boldwarning("You are currently a blob without a humanform and should be deleted shortly Please report what you were doing when this error occurred to the admins.")))
+		stack_trace("URGENT, SERVER-CRASHING ISSUE: A protean blob does not have a humanform! src = [src] ckey = [ckey]! The blob has been deleted.")
+		qdel(src)
+		return
 	if(humanform.nano_dead_check(src))
 		return
 
@@ -325,7 +329,10 @@
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
 	if(!humanform)
-		CRASH("A protean_blob calling Life() has no humanform! Src = [src] ckey = [ckey]")
+		to_chat(src, span_giant(span_boldwarning("You are currently a blob without a humanform and should be deleted shortly Please report what you were doing when this error occurred to the admins.")))
+		stack_trace("URGENT, SERVER-CRASHING ISSUE: A protean blob does not have a humanform! src = [src] ckey = [ckey]!")
+		qdel(src)
+		return
 	if(!humanform.nano_dead_check(src))
 		if(. && istype(refactory) && humanform)
 			if(!healing && (human_brute || human_burn) && refactory.get_stored_material(MAT_STEEL) >= 100)
@@ -661,7 +668,10 @@
 
 /mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
 	if(!humanform)
-		CRASH("A protean blob does not have a humanform! src = [src] ckey = [ckey]")
+		to_chat(src, span_giant(span_boldwarning("You are currently a blob without a humanform and should be deleted shortly Please report what you were doing when this error occurred to the admins.")))
+		stack_trace("URGENT, SERVER-CRASHING ISSUE: A protean blob does not have a humanform! src = [src] ckey = [ckey]! The blob has been deleted.")
+		qdel(src)
+		return
 	humanform.handle_mutations_and_radiation()
 
 /mob/living/simple_mob/protean_blob/update_icon()
