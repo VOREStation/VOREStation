@@ -116,7 +116,7 @@
 		return FALSE;
 
 	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
-	if(istype(H) && (health < CONFIG_GET(number/health_threshold_crit)) || stat == DEAD) && !on_fire) //Only humans can do CPR.
+	if((istype(H) && (health < CONFIG_GET(number/health_threshold_crit)) || stat == DEAD) && !on_fire) //Only humans can do CPR.
 		if(!H.check_has_mouth())
 			to_chat(H, span_danger("You don't have a mouth, you cannot perform CPR!"))
 			return FALSE
