@@ -18,7 +18,7 @@ export const ChemDispenserChemicals = (props) => {
       scrollable
       buttons={<RecordingBlinker />}
     >
-      <Stack direction="row" wrap="wrap" align="flex-start">
+      <Stack direction="row" wrap="wrap" align="flex-start" g={0.3}>
         {chemicals.map((c, i) => (
           <Stack.Item key={i} basis="40%" grow height="20px">
             <Button
