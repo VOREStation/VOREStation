@@ -145,7 +145,6 @@
 	vore_default_mode = DM_HOLD
 
 	var/turns_since_scan = 0
-	var/obj/movement_target
 
 /mob/living/simple_mob/animal/passive/snake/python/noodle/Life()
 	..()
@@ -159,36 +158,15 @@
 			turns_since_scan = 0
 			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 				movement_target = null
-			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
+			if(!movement_target || !(movement_target.loc in oview(src, 7)) )
 				movement_target = null
-				for(var/obj/item/reagent_containers/food/snacks/snakesnack/S in oview(src,3))
+				for(var/obj/item/reagent_containers/food/snacks/snakesnack/S in oview(src,7))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						visible_emote("turns towards \the [movement_target] and slithers towards it.")
 						break
 			if(movement_target)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-
-				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
-						set_dir(NORTH)
-					else
-						set_dir(SOUTH)
-
-					if(isturf(movement_target.loc) )
-						UnarmedAttack(movement_target)
-					else if(ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
+				chase_target()
 
 /mob/living/simple_mob/animal/passive/snake/python/noodle/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
@@ -202,6 +180,7 @@
 /mob/living/simple_mob/animal/passive/snake/python/noodle/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/snakesnack))
 		visible_message(span_notice("[user] feeds \the [O] to [src]."))
+		adjust_nutrition(100) //It's sugar!
 		qdel(O)
 	else
 		return ..()
