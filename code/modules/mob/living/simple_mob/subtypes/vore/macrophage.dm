@@ -142,6 +142,7 @@
 
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
+	. = ..()
 
 /datum/ai_holder/simple_mob/melee/macrophage
 	var/datum/disease/virus = null
