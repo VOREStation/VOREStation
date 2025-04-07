@@ -63,7 +63,7 @@
 	// Should this all be in Touch()?
 	if(istype(H) && has_hands)
 		if(H.get_accuracy_penalty() && H != src)	//Should only trigger if they're not aiming well
-			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, H.get_accuracy_penalty())
+			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, H.get_accuracy_penalty(), attacker = H)
 			if(!hit_zone)
 				H.do_attack_animation(src)
 				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
