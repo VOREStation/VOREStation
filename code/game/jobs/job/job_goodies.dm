@@ -371,12 +371,11 @@
 		/obj/item/stack/material/steel{amount = 10} = 235,
 		/obj/item/stack/material/lead{amount = 10} = 235,
 		/obj/item/stack/material/glass/reinforced{amount = 10} = 235,
-		/obj/item/rcd_ammo = 155,
+		/obj/item/rcd_ammo = 165,
 		/obj/item/stack/material/plasteel{amount = 10} = 100,
-		/obj/item/tool/screwdriver/power = 10,
-		/obj/item/tool/wirecutters/power = 10,
+		/obj/item/tool/transforming/jawsoflife = 10,
+		/obj/item/tool/transforming/powerdrill = 10,
 		/obj/item/weldingtool/experimental = 10,
-		/obj/item/tool/wrench/power = 10,
 	)
 	mail_color = COMMS_COLOR_ENGINEER
 
@@ -384,12 +383,11 @@
 	mail_goodies = list(
 		/obj/item/storage/box/lights/mixed = 250,
 		/obj/item/stack/cable_coil = 250,
-		/obj/item/clothing/gloves/yellow = 200,
+		/obj/item/clothing/gloves/yellow = 210,
 		/obj/item/stack/cable_coil/heavyduty = 210,
-		/obj/item/tool/screwdriver/power = 10,
-		/obj/item/tool/wirecutters/power = 10,
+		/obj/item/tool/transforming/jawsoflife = 10,
+		/obj/item/tool/transforming/powerdrill = 10,
 		/obj/item/weldingtool/experimental = 10,
-		/obj/item/tool/wrench/power = 10,
 	)
 
 /datum/job/atmos
@@ -398,8 +396,8 @@
 		/obj/item/analyzer = 300,
 		/obj/item/holosign_creator/combifan = 230,
 		/obj/item/pipe_dispenser = 130,
-		/obj/item/tool/screwdriver/power = 10,
-		/obj/item/tool/wirecutters/power = 10,
+		/obj/item/tool/transforming/jawsoflife = 10,
+		/obj/item/tool/transforming/powerdrill = 10,
 		/obj/item/weldingtool/experimental = 10,
 	)
 	mail_color = COMMS_COLOR_ENGINEER
@@ -632,8 +630,8 @@
 		/obj/item/kit/paint/ripley/flames_red = 30,
 		/obj/item/kit/paint/gygax/recitence = 25,
 		/obj/item/kit/paint/ripley/flames_blue = 25,
-		/obj/item/tool/screwdriver/power = 10,
-		/obj/item/tool/wirecutters/power = 10,
+		/obj/item/tool/transforming/jawsoflife = 10,
+		/obj/item/tool/transforming/powerdrill = 10,
 		/obj/item/weldingtool/experimental = 10,
 	)
 	mail_color = COMMS_COLOR_SCIENCE
