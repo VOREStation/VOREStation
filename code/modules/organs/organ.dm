@@ -518,7 +518,7 @@ var/list/organ_cache = list()
 	qdel(src)
 
 /obj/item/organ/proc/organ_can_feel_pain()
-	if(data.get_species_appearance_flags() & NO_PAIN)
+	if(data.get_species_flags() & NO_PAIN)
 		return 0
 	if(status & ORGAN_DESTROYED)
 		return 0

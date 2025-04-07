@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "update browser window"
-  - code_imp: "migrate vendor icons to icon forge"
