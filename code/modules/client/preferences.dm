@@ -314,8 +314,7 @@ var/list/preferences_datums = list()
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
-		if(GLOB.mannequins[client_ckey])
-			qdel_null(GLOB.mannequins[client_ckey])
+		//Mannequin removal code needed here...For the far future once harddels are solved.
 		return 1
 	else
 		return 0
