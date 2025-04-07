@@ -19,3 +19,5 @@
 
 #define LANGUAGE_SHADEKIN "Shadekin Empathy"
 #define LANGUAGE_LLEILL "Glamour Speak"
+
+#define LANGUAGE_SPARKLE "Sparkle"

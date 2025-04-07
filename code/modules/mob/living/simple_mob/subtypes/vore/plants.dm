@@ -82,10 +82,7 @@
 			return
 		if(L.devourable && L.allowmobvore && (src.vore_fullness < src.vore_capacity))
 			perform_the_nom(src,L,src,src.vore_selected,1)
-			L |= eaten_mobs
-			return
-		else
-			return
+			eaten_mobs += L
 
 
 ////////////////////////////PITCHER PLANT////////////////////////////////////////////////

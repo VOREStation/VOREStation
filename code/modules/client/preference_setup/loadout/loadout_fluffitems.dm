@@ -363,6 +363,12 @@
 	ckeywhitelist = list("dickfreedomjohnson")
 	character_name = list("Elliot Richards")
 
+/datum/gear/fluff/acorn_branch
+	path = /obj/item/toy/acorn_branch
+	display_name = "Oak Staff"
+	ckeywhitelist = list("digitalsquirrel95")
+	character_name = list("Tilly Reed")
+
 /datum/gear/fluff/donald_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Donald's Conduct Medal"

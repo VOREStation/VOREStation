@@ -1,10 +1,10 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Divider, Icon, Section, Tabs } from 'tgui-core/components';
 import { Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from './constants';
-import { bellyData, hostMob, selectedData } from './types';
+import type { bellyData, hostMob, selectedData } from './types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {

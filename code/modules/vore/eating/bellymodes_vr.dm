@@ -109,7 +109,7 @@
 						M.playsound_local(get_turf(owner), play_sound, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq)
 					else
 						M.playsound_local(get_turf(owner), play_sound, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq)
-					 //these are all external sound triggers now, so it's ok.
+				//these are all external sound triggers now, so it's ok.
 		return
 
 ///////////////////// Prey Loop Refresh/hack //////////////////////
@@ -136,7 +136,7 @@
 					M.playsound_local(get_turf(owner), play_sound, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq)
 				else
 					M.playsound_local(get_turf(owner), play_sound, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq)
-				 //these are all external sound triggers now, so it's ok.
+				//these are all external sound triggers now, so it's ok.
 
 	if(emote_active)
 		// emote_lists can be = ""

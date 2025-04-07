@@ -226,8 +226,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			continue
 		if(part)
 			wholeicontransparent &&= part.transparent //VORESTATION EDIT: transparent instead of nonsolid
-			icon_key += "[part.species.get_race_key(part.owner)]"
-			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
+			icon_key += "[part.data.get_species_race_key(part.owner)]"
+			icon_key += "[part.data.body_gender]"
 			icon_key += "[part.s_tone]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
@@ -1111,8 +1111,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	remove_layer(WING_LOWER_LAYER)
 
 	var/image/wing_image = get_wing_image(FALSE)
-
-	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER

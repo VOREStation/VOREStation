@@ -65,7 +65,7 @@ export const SecureSafe = (props) => {
   const { act, data } = useBackend<Data>();
   const { code, l_setshort, l_set, emagged, locked } = data;
 
-  let new_code: boolean = !(!!l_set || !!l_setshort);
+  const new_code: boolean = !(!!l_set || !!l_setshort);
 
   return (
     <Window width={250} height={380}>

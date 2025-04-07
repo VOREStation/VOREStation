@@ -336,11 +336,11 @@
 			else
 				t_him = "them"
 
-	if(H.zone_sel.selecting == "head")
+	if(H.zone_sel.selecting == BP_HEAD)
 		H.visible_message( \
 			span_notice("[H] pats [target] on the head."), \
 			span_notice("You pat [target] on the head."), )
-	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
+	else if(H.zone_sel.selecting == BP_R_HAND || H.zone_sel.selecting == BP_L_HAND)
 		H.visible_message( \
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )

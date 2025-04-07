@@ -35,7 +35,8 @@
 	var/last_twitch = 0
 	var/max_stored_messages = 100
 
-/obj/item/clothing/mask/gas/poltergeist/New()
+/obj/item/clothing/mask/gas/poltergeist/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/gas/poltergeist/process()
@@ -68,8 +69,8 @@
 	var/wight_check_index = 1
 	var/list/shadow_wights = list()
 
-/obj/item/vampiric/New()
-	..()
+/obj/item/vampiric/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()
@@ -157,8 +158,8 @@
 	var/turf/target_turf
 	var/loc_last_process
 
-/obj/effect/decal/cleanable/blood/splatter/animated/New()
-	..()
+/obj/effect/decal/cleanable/blood/splatter/animated/Initialize(mapload, _age)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = src.loc
 
@@ -188,7 +189,8 @@
 	icon_state = "shade"
 	density = TRUE
 
-/obj/effect/shadow_wight/New()
+/obj/effect/shadow_wight/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()

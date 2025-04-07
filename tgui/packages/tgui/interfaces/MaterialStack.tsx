@@ -81,7 +81,7 @@ const RecipeList = (props: {
     //     </Box>
     //   );
     // }
-    let recipe = recipes[title];
+    const recipe = recipes[title];
     if (recipe.ref === undefined) {
       return (
         <Collapsible key={index} ml={1} mb={-0.7} color="label" title={title}>
@@ -109,7 +109,7 @@ const Multipliers = (props) => {
 
   const { recipe, maxMultiplier } = props;
 
-  let maxM = Math.min(
+  const maxM = Math.min(
     maxMultiplier,
     Math.floor(recipe.max_res_amount / recipe.res_amount),
   );
@@ -118,7 +118,7 @@ const Multipliers = (props) => {
 
   const finalResult: React.JSX.Element[] = [];
 
-  for (let multiplier of multipliers) {
+  for (const multiplier of multipliers) {
     if (maxM >= multiplier) {
       finalResult.push(
         <Button
@@ -172,7 +172,7 @@ const Recipe = (props: { recipe: recipe; title: string }) => {
     buttonName = res_amount + 'x ' + buttonName;
   }
 
-  let maxMultiplier = buildMultiplier(recipe, amount);
+  const maxMultiplier = buildMultiplier(recipe, amount);
 
   return (
     <Box>

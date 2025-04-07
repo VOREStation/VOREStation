@@ -40,11 +40,16 @@
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
 	. = ..()
-	for(var/obj/belly in owner.vore_organs)
-		if(belly.name == data["linked_belly"])
-			update_linked_belly(belly, TRUE)
-			return
+	if(apply_stored_belly(data["linked_belly"], TRUE))
+		return
 	linked_belly = null
+
+/obj/soulgem/proc/apply_stored_belly(var/belly_string, var/skip_unreg = FALSE)
+	for(var/obj/belly in owner.vore_organs)
+		if(belly.name == belly_string)
+			update_linked_belly(belly, TRUE)
+			return TRUE
+	return FALSE
 
 // Allows to transfer the soulgem to the given mob
 /obj/soulgem/proc/transfer_self(var/mob/target)
@@ -159,7 +164,7 @@
 	//If they have these values, apply them
 	if(isliving(M))
 		var/mob/living/L = M
-		brainmob.dna = L.dna
+		brainmob.dna = L.dna.Clone()
 		brainmob.ooc_notes = L.ooc_notes
 		brainmob.ooc_notes_likes = L.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = L.ooc_notes_dislikes

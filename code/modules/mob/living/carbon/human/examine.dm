@@ -279,6 +279,7 @@
 	var/list/vorestrings = list()
 	vorestrings += examine_weight()
 	vorestrings += examine_nutrition()
+	vorestrings += examine_reagent_bellies() // reagent bellies
 	vorestrings += examine_bellies()
 	vorestrings += examine_pickup_size()
 	vorestrings += examine_step_size()
@@ -312,7 +313,7 @@
 		msg += span_warning("[T.He] [T.is] on fire!.")
 
 	var/ssd_msg = species.get_ssd(src)
-	if(ssd_msg && (!should_have_organ("brain") || has_brain()) && stat != DEAD)
+	if(ssd_msg && (!should_have_organ(O_BRAIN) || has_brain()) && stat != DEAD)
 		if(!key)
 			msg += span_deadsay("[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.")
 		else if(!client)
@@ -438,6 +439,7 @@
 
 	var/flavor_text = print_flavor_text()
 	if(flavor_text)
+		flavor_text = replacetext(flavor_text, "||", "")
 		msg += "[flavor_text]"
 
 	// VOREStation Start

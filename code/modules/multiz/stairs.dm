@@ -86,9 +86,9 @@
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
-											 var/obj/structure/stairs/middle/M = null,
-											 var/obj/structure/stairs/top/T = null,
-											 var/turf/simulated/open/O = null)
+												var/obj/structure/stairs/middle/M = null,
+												var/obj/structure/stairs/top/T = null,
+												var/turf/simulated/open/O = null)
 
 	// In the case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
@@ -260,9 +260,9 @@
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
-											 var/obj/structure/stairs/middle/M = null,
-											 var/obj/structure/stairs/top/T = null,
-											 var/turf/simulated/open/O = null)
+												var/obj/structure/stairs/middle/M = null,
+												var/obj/structure/stairs/top/T = null,
+												var/turf/simulated/open/O = null)
 
 	// In the  case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
