@@ -144,10 +144,7 @@
 		H.visible_message(span_danger("\The [H] performs CPR on \the [src]!"))
 		to_chat(H, span_warning("Repeat at least every 7 seconds."))
 
-		if(istype(H) && health > CONFIG_GET(number/health_threshold_dead))
-			adjustOxyLoss(-(min(getOxyLoss(), 5)))
-			updatehealth()
-			to_chat(src, span_notice("You feel a breath of fresh air enter your lungs. It feels good."))
+		perform_cpr(H)
 
 	else if(!(M == src && apply_pressure(M, M.zone_sel.selecting)))
 		help_shake_act(M)
@@ -556,3 +553,81 @@
 
 /mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
 	default_attack = u_attack
+
+
+/mob/living/carbon/human/proc/perform_cpr(var/mob/living/carbon/human/reviver)
+	// Check for sanity
+	if(!istype(reviver,/mob/living/carbon/human))
+		return
+	//The below is what actually allows metabolism.
+	add_modifier(/datum/modifier/bloodpump_corpse/cpr, 2 SECONDS)
+
+	// Toggle for 'realistic' CPR. Use this if you want a more grim CPR approach that mimicks the damage that CPR can do to someone. This means more extensive internal damage, almost guaranteed rib breakage, etc.
+	// DEFAULT: FALSE
+	var/realistic_cpr = FALSE
+
+	// brute damage
+	if(prob(3))
+		apply_damage(1, BRUTE, BP_TORSO)
+		if(prob(25) || (realistic_cpr)) //This being a 25% chance on top of the 3% chance means you have a 0.75% chance every compression to break ribs (and do minor internal damage). Realism mode means it's a 100% chance every time that 3% procs.
+			var/obj/item/organ/external/chest = get_organ(BP_TORSO)
+			if(chest)
+				chest.fracture()
+
+	// standard CPR ahead, adjust oxy and refresh health
+	if(health > CONFIG_GET(number/health_threshold_crit) && prob(10))
+		if(istype(species, /datum/species/xenochimera))
+			visible_message(span_danger("\The [src]'s body twitches and gurgles a bit."))
+			to_chat(reviver, span_danger("You get the feeling [src] can't be revived by CPR alone."))
+			return // Handle xenochim, can't cpr them back to life
+		if(HUSK in mutations)
+			visible_message(span_danger("\The [src]'s body crunches and snaps."))
+			to_chat(reviver, span_danger("You get the feeling [src] is going to need surgical intervention to be revived."))
+			return // Handle husked, cure it before you can revive
+		if(!can_defib)
+			visible_message(span_danger("\The [src]'s neck shifts and cracks!"))
+			to_chat(reviver, span_danger("You get the feeling [src] is going to need surgical intervention to be revived."))
+			return // Handle broken neck/no attached brain
+		var/bad_vital_organ = check_vital_organs()
+		if(bad_vital_organ)
+			visible_message(span_danger("\The [src]'s body lays completely limp and lifeless!"))
+			to_chat(reviver, span_danger("You get the feeling [src] is missing something vital."))
+			return // Handle vital organs being missing.
+
+		// allow revive chance
+		var/mob/observer/dead/ghost = get_ghost()
+		if(ghost)
+			ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = src)
+		visible_message(span_warning("\The [src]'s body convulses a bit."))
+
+		// REVIVE TIME, basically stolen from defib.dm
+		dead_mob_list.Remove(src)
+		if((src in living_mob_list) || (src in dead_mob_list))
+			WARNING("Mob [src] was cpr revived by [reviver], but already in the living or dead list still!")
+		living_mob_list += src
+
+		timeofdeath = 0
+		set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
+		failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
+		reload_fullscreen()
+
+		emote("gasp")
+		Weaken(rand(10,25))
+		updatehealth()
+		//SShaunting.influence(HAUNTING_RESLEEVE) // Used for the Haunting module downstream. Not implemented upstream.
+
+		// This is measures in `Life()` ticks. E.g. 10 minute defib timer = 300 `Life()` ticks.				// Original math was VERY off. Life() tick occurs every ~2 seconds, not every 2 world.time ticks.
+		var/brain_damage_timer = ((CONFIG_GET(number/defib_timer) MINUTES) / 20) - ((CONFIG_GET(number/defib_braindamage_timer) MINUTES) / 20)
+		var/obj/item/organ/internal/brain/brain = internal_organs_by_name[O_BRAIN]
+		if(should_have_organ(O_BRAIN) && brain && brain.defib_timer <= brain_damage_timer)
+			// As the brain decays, this will be between 0 and 1, with 1 being the most fresh.
+			var/brain_death_scale = brain.defib_timer / brain_damage_timer
+			// This is backwards from what you might expect, since 1 = fresh and 0 = rip.
+			var/damage_calc = LERP(brain.max_damage, getBrainLoss(), brain_death_scale)
+			// A bit of sanity.
+			var/brain_damage = between(getBrainLoss(), damage_calc, brain.max_damage)
+			setBrainLoss(brain_damage)
+	else if(health > CONFIG_GET(number/health_threshold_dead))
+		adjustOxyLoss(-(min(getOxyLoss(), 5)))
+		updatehealth()
+		to_chat(src, span_notice("You feel a breath of fresh air enter your lungs. It feels good."))
