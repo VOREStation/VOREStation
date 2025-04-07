@@ -26,8 +26,6 @@ import { byondMessages } from './timers';
 
 type ByondOpen = {
   channel: Channel;
-  minimumWidth: number;
-  minimumHeight: number;
 };
 
 type ByondProps = {
@@ -51,6 +49,8 @@ export function TguiSay() {
   const channelIterator = useRef(new ChannelIterator());
   const chatHistory = useRef(new ChatHistory());
   const messages = useRef(byondMessages);
+  const minimumHeight = useRef(WindowSize.Small);
+  const minimumWidth = useRef(WindowSize.Width);
 
   // I initially wanted to make these an object or a reducer, but it's not really worth it.
   // You lose the granulatity and add a lot of boilerplate.
@@ -60,12 +60,9 @@ export function TguiSay() {
   >(null);
   const [size, setSize] = useState(WindowSize.Small);
   const [maxLength, setMaxLength] = useState(4096);
-  const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
-  const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
   const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
-  const [rescale, setRescale] = useState(false);
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
     const chat = chatHistory.current;
@@ -296,6 +293,8 @@ export function TguiSay() {
   function handleOpen(data: ByondOpen): void {
     setTimeout(() => {
       innerRef.current?.focus();
+      setSize(minimumHeight.current);
+      windowSet(minimumWidth.current, minimumHeight.current);
     }, 1);
 
     const { channel } = data;
@@ -307,18 +306,17 @@ export function TguiSay() {
 
     setButtonContent(iterator.current());
     windowOpen(iterator.current());
-    setRescale(true);
   }
 
   function handleProps(data: ByondProps): void {
     setMaxLength(data.maxLength);
-    setMinimumHeight(data.minimumHeight);
     const minWidth = clamp(
       data.minimumWidth,
       WindowSize.Width,
       WindowSize.MaxWidth,
     );
-    setMinimumWidth(minWidth);
+    minimumHeight.current = data.minimumHeight;
+    minimumWidth.current = minWidth;
     setLightMode(!!data.lightMode);
   }
 
@@ -326,13 +324,7 @@ export function TguiSay() {
     setCurrentPrefix(null);
     setButtonContent(channelIterator.current.current());
     setValue('');
-    setRescale(false);
   }
-
-  useEffect(() => {
-    setSize(minimumHeight);
-    windowSet(minimumWidth, minimumHeight);
-  }, [rescale]);
 
   /** Subscribe to Byond messages */
   useEffect(() => {
@@ -353,11 +345,11 @@ export function TguiSay() {
     } else {
       newSize = WindowSize.Small;
     }
-    newSize = clamp(newSize, minimumHeight, WindowSize.Max);
+    newSize = clamp(newSize, minimumHeight.current, WindowSize.Max);
 
     if (size !== newSize) {
       setSize(newSize);
-      windowSet(minimumWidth, newSize);
+      windowSet(minimumWidth.current, newSize);
     }
   }, [value]);
 
