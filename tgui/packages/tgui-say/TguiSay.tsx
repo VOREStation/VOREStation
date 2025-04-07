@@ -33,6 +33,7 @@ type ByondProps = {
   minimumHeight: number;
   minimumWidth: number;
   lightMode: BooleanLike;
+  scale: BooleanLike;
 };
 
 const ROWS: Record<keyof typeof WindowSize, number> = {
@@ -49,6 +50,7 @@ export function TguiSay() {
   const channelIterator = useRef(new ChannelIterator());
   const chatHistory = useRef(new ChatHistory());
   const messages = useRef(byondMessages);
+  const scale = useRef(true);
   const minimumHeight = useRef(WindowSize.Small);
   const minimumWidth = useRef(WindowSize.Width);
 
@@ -110,7 +112,7 @@ export function TguiSay() {
 
   function handleClose(): void {
     innerRef.current?.blur();
-    windowClose();
+    windowClose(minimumWidth.current, minimumHeight.current, scale.current);
 
     setTimeout(() => {
       chatHistory.current.reset();
@@ -291,10 +293,9 @@ export function TguiSay() {
   }
 
   function handleOpen(data: ByondOpen): void {
+    setSize(minimumHeight.current);
     setTimeout(() => {
       innerRef.current?.focus();
-      setSize(minimumHeight.current);
-      windowSet(minimumWidth.current, minimumHeight.current);
     }, 1);
 
     const { channel } = data;
@@ -305,7 +306,12 @@ export function TguiSay() {
     }
 
     setButtonContent(iterator.current());
-    windowOpen(iterator.current());
+    windowOpen(
+      iterator.current(),
+      minimumWidth.current,
+      minimumHeight.current,
+      scale.current,
+    );
   }
 
   function handleProps(data: ByondProps): void {
@@ -318,6 +324,7 @@ export function TguiSay() {
     minimumHeight.current = data.minimumHeight;
     minimumWidth.current = minWidth;
     setLightMode(!!data.lightMode);
+    scale.current = !!data.scale;
   }
 
   function unloadChat(): void {
@@ -349,7 +356,7 @@ export function TguiSay() {
 
     if (size !== newSize) {
       setSize(newSize);
-      windowSet(minimumWidth.current, newSize);
+      windowSet(minimumWidth.current, newSize, scale.current);
     }
   }, [value]);
 
@@ -366,7 +373,12 @@ export function TguiSay() {
       >
         {!lightMode && <div className={`shine shine-${theme}`} />}
       </div>
-      <div className={classes(['content', lightMode && 'content-lightMode'])}>
+      <div
+        className={classes(['content', lightMode && 'content-lightMode'])}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
+      >
         <button
           className={`button button-${theme}`}
           onClick={handleIncrementChannel}

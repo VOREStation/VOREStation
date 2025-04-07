@@ -54,7 +54,7 @@
     "sass-loader": "^16.0.3",
     "style-loader": "^4.0.0",
     "swc-loader": "^0.2.6",
-    "tgui-core": "^2.0.0",
+    "tgui-core": "^2.0.4",
     "typescript": "5.8.2",
     "typescript-eslint": "^8.28.0",
     "url-loader": "^4.1.1",
