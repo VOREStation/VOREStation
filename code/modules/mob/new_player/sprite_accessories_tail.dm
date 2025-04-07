@@ -1624,6 +1624,12 @@
 	extra_overlay = "nightstalker_diamondback_markings"
 	extra_overlay_w = "nightstalker_diamondback_markings_w"
 
+/datum/sprite_accessory/tail/longtail/demitesh_fluffytail
+
+	name = "demi-teshari tail, alternative"
+	icon_state = "demitesh_fluffytail"
+	extra_overlay = "demitesh_fluffytail_marks"
+
 //RS backport tails
 
 /datum/sprite_accessory/tail/longtail/flagtail
