@@ -44,7 +44,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 	var/mode_index = RMS_STEEL //start at steel creation
 	var/list/modes = list(RMS_STEEL, RMS_GLASS, RMS_CLOTH, RMS_PLASTIC, RMS_STONE, RMS_RAND)
 	var/stored_charge = 0
-	var/max_charge = 1000000 //large storage, equivalent to a little over 3 GIGA batteries.
+	var/max_charge = 1000000 //large storage, equivalent to a little over 33 GIGA batteries.
 	var/charge_cost = 1000
 	/// Cost of 'basic' things such as glass or steel. Un-upgraded chargers charge at ~40 charge a second, meaning 15 seconds per sheet. 22.5 for 'advanced' sheets (overcharged). This becomes ~10 seconds and ~15 seconds with a heavily upgraded charger.
 	var/charge_cost_basic = 1000
