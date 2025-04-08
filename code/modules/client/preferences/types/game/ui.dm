@@ -119,7 +119,7 @@
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "ui_scale"
 	savefile_identifier = PREFERENCE_PLAYER
-	default_value = TRUE
+	default_value = FALSE // Set to true once lobby screen is migrated to tgui and browse are replaced with datum browser
 
 /datum/preference/toggle/ui_scale/apply_to_client(client/client, value)
 	if(!istype(client))
