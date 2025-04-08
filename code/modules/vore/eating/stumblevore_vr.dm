@@ -26,7 +26,7 @@
 	if(isliving(AM) && isturf(loc) && AM != src)
 		var/mob/living/AMV = AM
 		if(AMV.buckled != src && (((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent==I_RUN) || AMV.flying && AMV.flight_vore))
-			stumble_into(AMV)
+			INVOKE_ASYNC(src,TYPE_PROC_REF(/atom/movable, stumble_into), AMV)
 	..()
 
 /mob/living/stumble_into(mob/living/M)
@@ -43,6 +43,7 @@
 
 	if(M.CanStumbleVore(src)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
+		M.forceMove(get_turf(src))
 		perform_the_nom(M,src,M,M.vore_selected,0,TRUE)
 		return
 
