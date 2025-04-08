@@ -30,7 +30,7 @@ export const SpaceHeater = (props) => {
         <Section title="Status">
           <LabeledList>
             <LabeledList.Item label="Target Temperature">
-              {temp} K ({temp - T0C}&deg; C)
+              {toFixed(temp, 2)} K ({toFixed(temp - T0C, 2)}&deg; C)
             </LabeledList.Item>
             <LabeledList.Item label="Current Charge">
               {power}% {!cell && '(No Cell Inserted)'}
