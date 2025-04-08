@@ -42,3 +42,48 @@
   - bugfix: Fixed mail being sent to various crewmember's bodyparts
   - bugfix: Fixed mail containing power tools disguised as common tools
   - refactor: Refactored some of the mail code, using mind instead of mob
+2025-04-08:
+  Cameron-The-Raven:
+  - code_imp: Sprites no longer break the resize cap when resized, unless uncapped
+      is set to TRUE
+  - code_imp: Robot sprite_decals are now generated before stomachs
+  - bugfix: Runechat will properly appear above sprites.
+  - bugfix: You will no longer pick up burning micros, or try to do CPR on someone
+      that is on fire
+  Diana:
+  - rscdel: bad code
+  - rscadd: good code (questionable)
+  - bugfix: VR Sleepers properly exit you if EMP'd, depowered, or someone tries to
+      pull you out of it
+  - bugfix: Ghostspawns no longer multiply SECONDS by SECONDS
+  - rscdel: missing every other shot you made against mobs
+  - rscadd: hitting every shot you make against mobs
+  - bugfix: Evasion now properly is calculated and doesn't have a 30% chance of being
+      nullified.
+  - bugfix: Scoped weapons now have their accuracy stat properly applied.
+  - balance: Bad Shot/Eagle Eye work by increasing/decreasing the target's evasion.
+      Only applies if the target HAS evasion in the first place.
+  - balance: Evasion now works in PvP melee. (Blue-Grabbing or making a high evasion
+      target prone nullifies their evasion)
+  - balance: Mobs now have chances to randomize/miss the zone they were shooting for
+      on Player Characters
+  - balance: Point blank shots will still always 100% hit Player Characters no matter
+      your evasion. Just a reminder!
+  - qol: Defib now informs you WHY it's failing, so you can properly fix the problem.
+  - balance: CPR can now REVIVE people if their HP is above a threshold with a 10%
+      chance per CPR usage.
+  - balance: CPR will cause the recipient to metabolize reagents.
+  - balance: CPR now has a small chance of causing brute damage and rib fractures
+      to the chest.
+  - balance: Patient Stabilizer will cause the patient to metabolize reagents if dead.
+  - bugfix: Breaking a bone now has its random chance to jostle when broken for the
+      first time.
+  - bugfix: Shadekin no longer runtime if created (mannequins) during pre-init.
+  - bugfix: ore bag can fit on the mining satchel
+  - bugfix: You can no longer double-leave on the tram
+  - bugfix: Vital organs now properly calculate drop chance. Chance goes UP the more
+      damaged you are, not DOWN
+  TankTheBirb:
+  - rscadd: teshari alternative tail (the fluffy one) has been converted to be used
+      with demi-teshari or really anyone human shaped
+  - image: added the demitesh flufftail sprite states to taurs.dmi
