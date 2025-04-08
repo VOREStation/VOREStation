@@ -10,7 +10,10 @@
 /obj/item/organ/internal/eyes/robotize()
 	..()
 	name = "optical sensor"
+	innate_flash_protection = FLASH_PROTECTION_MAJOR
 	verbs |= /obj/item/organ/internal/eyes/proc/change_eye_color
+	organ_verbs = list(/obj/item/organ/internal/eyes/proc/change_eye_color)
+	handle_organ_mod_special()
 
 /obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
