@@ -105,7 +105,7 @@
 		O.key = key
 
 	//Languages
-	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_ROBOT_TALK, 1)
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_SOL_COMMON, 1)
 	add_language(LANGUAGE_UNATHI, 1)
