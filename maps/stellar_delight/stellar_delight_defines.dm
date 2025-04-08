@@ -24,8 +24,8 @@
 
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("youcanttaketheskyfromme")
+	lobby_icon = 'icons/misc/title_vr.dmi' //remove the _2 after the event
+	lobby_screens = list("youcanttaketheskyfromme") //set back to youcanttaketheskyfromme
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 

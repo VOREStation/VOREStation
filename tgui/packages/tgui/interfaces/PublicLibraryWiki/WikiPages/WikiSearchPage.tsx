@@ -11,7 +11,7 @@ import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
 import { WikiNoDataPage } from './WikiSubPages/WikiNoDataPage';
-import { WikiOrePage } from './WikiSubPages/WikiOrePare';
+import { WikiOrePage } from './WikiSubPages/WikiOrePage';
 import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
 
 export const WikiSearchPage = (
