@@ -63,4 +63,5 @@
 		return
 
 	visible_message(span_vwarning("[M] trips over [src]!"))
+	M.forceMove(get_turf(src))
 	M.apply_damage(1, BRUTE)
