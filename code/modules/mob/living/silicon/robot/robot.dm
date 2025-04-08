@@ -993,12 +993,12 @@
 		add_overlay(mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
 		add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
 
-		if(robotdecal_on.len && LAZYLEN(sprite_datum.sprite_decals))
-			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-				for(var/enabled_decal in robotdecal_on)
-					var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src, enabled_decal)
-					if(robotdecal_overlay)
-						add_overlay(robotdecal_overlay)
+	if(LAZYLEN(robotdecal_on) && LAZYLEN(sprite_datum.sprite_decals))
+		if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+			for(var/enabled_decal in robotdecal_on)
+				var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src, enabled_decal)
+				if(robotdecal_overlay)
+					add_overlay(robotdecal_overlay)
 
 	if(stat == CONSCIOUS)
 		update_fullness()
