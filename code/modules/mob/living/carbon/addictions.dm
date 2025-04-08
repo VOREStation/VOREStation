@@ -54,6 +54,8 @@
 		var/reagentid = R.id
 		if(istype(SSchemistry.chemical_reagents[reagentid], /datum/reagent/ethanol))
 			reagentid = REAGENT_ID_ETHANOL
+		if(istype(SSchemistry.chemical_reagents[reagentid], /datum/reagent/drink/coffee))
+			reagentid = REAGENT_ID_COFFEE
 		if(reagentid in get_addictive_reagents(ADDICT_ALL))
 			addict.Add(reagentid)
 
