@@ -35,14 +35,15 @@
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
 	M.stop_flying()
-	if(CanStumbleVore(M))
+	if(CanStumbleVore(M)) //This is if the person stumbling into us is able to eat us!
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
-		perform_the_nom(src,M,src,src.vore_selected,1)
+		M.forceMove(get_turf(src))
+		perform_the_nom(src,M,src,src.vore_selected,0,TRUE)
 		return
 
-	if(M.CanStumbleVore(src))
+	if(M.CanStumbleVore(src)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
-		perform_the_nom(M,src,M,M.vore_selected,1)
+		perform_the_nom(M,src,M,M.vore_selected,0,TRUE)
 		return
 
 	if(istype(S) && S.species.lightweight == 1)
@@ -57,9 +58,8 @@
 	if(round(weight) > 474)
 		var/throwtarget = get_edge_target_turf(M, reverse_direction(M.dir))
 		visible_message(span_vwarning("[M] bounces backwards off of [src]'s plush body!"))
-		M.throw_at(throwtarget, 2, 1)
+		M.throw_at(throwtarget, 5, 1) //it's funny and nobdy ever takes weight >474 so this is extremely rare
 		return
 
 	visible_message(span_vwarning("[M] trips over [src]!"))
-	M.forceMove(get_turf(src))
 	M.apply_damage(1, BRUTE)
