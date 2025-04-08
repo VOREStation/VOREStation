@@ -1717,7 +1717,7 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/featheredraptor/twotone
-	name = "feathered Raptor, duel colorable"
+	name = "feathered Raptor, dual colorable"
 	extra_overlay = "feather_raptor-overlay"
 
 /datum/sprite_accessory/tail/wolf_tail

@@ -12,6 +12,8 @@
 
 		prefs["tail_style"] = replacetext(prefs["tail_style"], "Male teshari tail(Pattern, Alt.)", "Teshari male tail alt. pattern")
 		prefs["tail_style"] = replacetext(prefs["tail_style"], "Female teshari tail(Pattern, Alt.)", "Teshari fem tail alt. pattern")
+
+		prefs["tail_style"] = replacetext(prefs["tail_style"], "feathered Raptor, duel colorable", "feathered Raptor, dual colorable")
 		S.set_entry("character[slot]", prefs)
 
 	S.save()
