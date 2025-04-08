@@ -4,7 +4,7 @@ import { RCONContent } from './RCONContent';
 
 export const RCON = (props) => {
   return (
-    <Window width={630} height={540}>
+    <Window width={630} height={580}>
       <Window.Content scrollable>
         <RCONContent />
       </Window.Content>
