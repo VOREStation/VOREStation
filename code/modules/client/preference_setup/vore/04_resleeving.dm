@@ -29,13 +29,14 @@
 		spawn(50)
 			if(QDELETED(character) || QDELETED(pref))
 				return // They might have been deleted during the wait
-			if(pref.resleeve_scan)
-				var/datum/transhuman/body_record/BR = new()
-				BR.init_from_mob(character, pref.resleeve_scan, pref.resleeve_lock)
-			if(pref.mind_scan)
-				var/datum/transcore_db/our_db = SStranscore.db_by_key(null)
-				if(our_db)
-					our_db.m_backup(character.mind,character.nif,one_time = TRUE)
+			if(!character.virtual_reality_mob && !(/mob/living/carbon/human/proc/exit_vr in character.verbs)) //Janky fix to prevent resleeving VR avatars but beats refactoring transcore
+				if(pref.resleeve_scan)
+					var/datum/transhuman/body_record/BR = new()
+					BR.init_from_mob(character, pref.resleeve_scan, pref.resleeve_lock)
+				if(pref.mind_scan)
+					var/datum/transcore_db/our_db = SStranscore.db_by_key(null)
+					if(our_db)
+						our_db.m_backup(character.mind,character.nif,one_time = TRUE)
 			if(pref.resleeve_lock)
 				character.resleeve_lock = character.ckey
 			character.original_player = character.ckey

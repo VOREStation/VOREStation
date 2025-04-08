@@ -111,6 +111,11 @@
 
 	if(istype(M, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
+
+		if(!M.consume_liquid_belly)
+			if(liquid_belly_check())
+				to_chat(user, span_infoplain("[user == M ? "You can't" : "\The [M] can't"] consume that, it contains something produced from a belly!"))
+				return FALSE
 		var/swallow_whole = FALSE
 		var/obj/belly/belly_target				// These are surprise tools that will help us later
 
@@ -398,7 +403,7 @@
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
-			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
+			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
 	On_Consume(user)
 
@@ -820,6 +825,7 @@
 	reagents.add_reagent(REAGENT_ID_POISONBERRYJUICE, 5)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
+	name = "slime jelly donut"
 	filling_color = "#ED1169"
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly/Initialize(mapload)
@@ -827,6 +833,7 @@
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
+	name = "cherry jelly donut"
 	filling_color = "#ED1169"
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly/Initialize(mapload)
@@ -1463,6 +1470,7 @@
 	nutriment_desc = list("sweetness" = 2, "pie" = 3)
 	bitesize = 3
 
+/obj/item/reagent_containers/food/snacks/ber
 /obj/item/reagent_containers/food/snacks/berryclafoutis/berry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BERRYJUICE, 5)
@@ -2112,6 +2120,12 @@
 	nutriment_desc = list("toasted bread" = 2)
 	bitesize = 3
 
+/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
+	name = "Cherry Jellied Toast"
+
+/obj/item/reagent_containers/food/snacks/jelliedtoast/slime
+	name = "Slime Jellied Toast"
+
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CHERRYJELLY, 5)
@@ -2152,6 +2166,12 @@
 	nutriment_amt = 5
 	nutriment_desc = list("buns" = 5)
 	bitesize = 2
+
+/obj/item/reagent_containers/food/snacks/jellyburger/slime
+	name = "Slime Jelly Burger"
+
+/obj/item/reagent_containers/food/snacks/jellyburger/cherry
+	name = "Cherry Jelly Burger"
 
 /obj/item/reagent_containers/food/snacks/jellyburger/slime/Initialize(mapload)
 	. = ..()
@@ -2409,6 +2429,15 @@
 	nutriment_amt = 2
 	nutriment_desc = list("bread" = 2)
 	bitesize = 3
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/slime
+	name = "Slime Jelly Sandwich"
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/slime
+	name = "Cherry Jelly Sandwich"
+
+/obj/item/reagent_containers/food/snacks/jellysandwich/peanutbutter
+	name = "Peanut Butter Jelly Sandwich"
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime/Initialize(mapload)
 	. = ..()
@@ -3644,11 +3673,13 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/reagent_containers/food/snacks/gigapuddi/happy
+	name = "Astro-Pudding (Happy)"
 	desc = "A crème caramel of astronomical size, made with extra love."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "happypuddi"
 
 /obj/item/reagent_containers/food/snacks/gigapuddi/anger
+	name = "Astro-Pudding (Angry)"
 	desc = "A crème caramel of astronomical size, made with extra hate."
 	icon_state = "angerpuddi"
 
@@ -3977,7 +4008,7 @@
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/pizzacrunchslice
-	name = "pizza crunch"
+	name = "pizza crunch slice"
 	desc = "A little piece of a heart attack. It's toppings are a mystery, hidden under batter"
 	icon_state = "pizzacrunchslice"
 	filling_color = "#BAA14C"
@@ -4492,8 +4523,8 @@
 	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/roastedsunflower
-	name = "sunflower seeds"
-	desc = "Sunflower seeds!"
+	name = "roasted sunflower seeds"
+	desc = "Roasted sunflower seeds!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "sunflowerseed"
 	bitesize = 1
@@ -6381,10 +6412,12 @@
 	bitesize = 1
 
 /obj/item/reagent_containers/food/snacks/omurice/heart
+	name = "omelette rice (Love)"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "omuriceheart"
 
 /obj/item/reagent_containers/food/snacks/omurice/face
+	name = "omelette rice (Cute)"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "omuriceface"
 

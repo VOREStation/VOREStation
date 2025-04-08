@@ -54,10 +54,6 @@
 /obj/structure/bonfire/permanent,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
-"p" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/mine/explored/underdark)
 "q" = (
 /obj/effect/decal/remains/tajaran,
 /obj/effect/decal/cleanable/blood,
@@ -106,7 +102,7 @@ g
 g
 g
 g
-p
+l
 m
 c
 "}
@@ -121,7 +117,7 @@ g
 g
 k
 g
-p
+l
 c
 "}
 (4,1,1) = {"
@@ -288,7 +284,7 @@ g
 g
 h
 g
-p
+l
 m
 c
 "}

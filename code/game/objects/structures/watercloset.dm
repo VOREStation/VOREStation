@@ -12,7 +12,8 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/New()
+/obj/structure/toilet/Initialize(mapload)
+	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
 
@@ -516,9 +517,9 @@
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return

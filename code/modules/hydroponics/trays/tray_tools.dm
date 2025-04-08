@@ -179,7 +179,7 @@
 	data["name"] = seed_name
 	data["uid"] = uid
 	data["endurance"] = get_trait(TRAIT_ENDURANCE)
-	data["yield"] = get_trait(TRAIT_YIELD)
+	data["crop_yield"] = get_trait(TRAIT_YIELD)
 	data["maturation_time"] = get_trait(TRAIT_MATURATION)
 	data["production_time"] = get_trait(TRAIT_PRODUCTION)
 	data["potency"] = get_trait(TRAIT_POTENCY)

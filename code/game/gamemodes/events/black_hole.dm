@@ -17,6 +17,11 @@
 		qdel(src)
 		return
 
+	if(prob(5))
+		visible_message(span_warning("\The [src] fizzles out and collapses."))
+		qdel(src)
+		return
+
 	//DESTROYING STUFF AT THE EPICENTER
 	for(var/mob/living/M in orange(1,src))
 		qdel(M)
@@ -105,3 +110,6 @@
 		var/base_turf = get_base_turf_by_area(src)
 		if(ST.type != base_turf)
 			ST.ChangeTurf(base_turf)
+
+/obj/effect/bhole/ex_act(strength) // Don't get destroyed by explosions. Why would we?
+	return

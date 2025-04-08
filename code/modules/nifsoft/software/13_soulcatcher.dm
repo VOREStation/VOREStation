@@ -1,12 +1,3 @@
-//These two also have NIF FLAG representations. These are the local setting representations.
-#define NIF_SC_CATCHING_ME			0x1
-#define NIF_SC_CATCHING_OTHERS		0x2
-//These are purely local setings flags, without global representation.
-#define NIF_SC_ALLOW_EARS			0x4
-#define NIF_SC_ALLOW_EYES			0x8
-#define NIF_SC_BACKUPS				0x10
-#define NIF_SC_PROJECTING			0x20
-
 ///////////
 // Soulcatcher - Like a posibrain, sorta!
 /datum/nifsoft/soulcatcher
@@ -237,6 +228,7 @@
 //Complex version for catching in-round characters
 /datum/nifsoft/soulcatcher/proc/catch_mob(var/mob/M)
 	if(!M.mind)	return
+	if(!(M.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE)) return
 
 	//Create a new brain mob
 	var/mob/living/carbon/brain/caught_soul/brainmob = new(nif)
@@ -267,6 +259,11 @@
 		brainmob.ooc_notes = H.ooc_notes
 		brainmob.ooc_notes_likes = H.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
+		/* Not implemented on virgo
+		brainmob.ooc_notes_favs = H.ooc_notes_favs
+		brainmob.ooc_notes_maybes = H.ooc_notes_maybes
+		brainmob.ooc_notes_style = H.ooc_notes_style
+		*/
 		brainmob.timeofhostdeath = H.timeofdeath
 		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
@@ -311,6 +308,7 @@
 /mob/living/carbon/brain/caught_soul/Login()
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
+	plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
 	identifying_gender = client.prefs.identifying_gender
 
 /mob/living/carbon/brain/caught_soul/Destroy()
@@ -332,7 +330,7 @@
 
 	. = ..()
 
-	if(!parent_mob && !transient &&(life_tick % 150 == 0) && soulcatcher.setting_flags & NIF_SC_BACKUPS)
+	if(!parent_mob && !transient &&(life_tick % 150 == 0) && soulcatcher?.setting_flags & NIF_SC_BACKUPS)
 		SStranscore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
 
 	life_tick++
@@ -347,20 +345,23 @@
 	if(parent_mob) return
 
 	//If they're blinded
-	if(ext_blind)
-		eye_blind = 5
-		client.screen.Remove(global_hud.whitense)
-		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-	else
-		eye_blind = 0
-		clear_fullscreens()
-		client.screen.Add(global_hud.whitense)
+	if(soulcatcher) // needs it's own handling to allow vore_fx
+		if(ext_blind)
+			eye_blind = 5
+			client.screen.Remove(global_hud.whitense)
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+		else
+			eye_blind = 0
+			clear_fullscreens()
+			client.screen.Add(global_hud.whitense)
 
 	//If they're deaf
 	if(ext_deaf)
 		ear_deaf = 5
+		//deaf_loop.start(skip_start_sound = TRUE) // Not implemented on Virgo
 	else
 		ear_deaf = 0
+		//deaf_loop.stop()  // Not implemented on Virgo
 
 /mob/living/carbon/brain/caught_soul/hear_say()
 	if(ext_deaf || !client)
@@ -429,7 +430,7 @@
 	plane = PLANE_AUGMENTED
 	icon = 'icons/obj/machines/ar_elements.dmi'
 	icon_state = "beacon"
-	var/mob/living/carbon/human/parent_human
+	var/mob/living/parent_human
 
 /mob/observer/eye/ar_soul/New(var/mob/brainmob, var/human)
 	ASSERT(brainmob && brainmob.client)
@@ -490,19 +491,38 @@
 
 ///////////////////
 //The catching hook
-/hook/death/proc/nif_soulcatcher(var/mob/living/carbon/human/H)
-	if(!istype(H) || !H.mind) return TRUE //Hooks must return TRUE
+/hook/death/proc/nif_soulcatcher(var/mob/living/L)
+	if(!istype(L) || !L.mind) return TRUE //Hooks must return TRUE
 
-	if(isbelly(H.loc)) //Died in someone
-		var/obj/belly/B = H.loc
+	if(isbelly(L.loc)) //Died in someone
+		var/obj/belly/B = L.loc
+		var/mob/living/owner = B.owner
+		var/obj/soulgem/gem = owner.soulgem
+		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_OTHERS, TRUE))
+			var/to_use_custom_name = null
+			if(isanimal(L))
+				to_use_custom_name = L.name
+			gem.catch_mob(L, to_use_custom_name)
+			return TRUE
 		var/mob/living/carbon/human/HP = B.owner
+		var/mob/living/carbon/human/H = L
+		if(!istype(H)) return TRUE
 		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
-	else if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
-		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
-		SC.catch_mob(H)
-
+	else
+		var/obj/soulgem/gem = L.soulgem
+		if(gem && gem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_ME, TRUE))
+			var/to_use_custom_name = null
+			if(isanimal(L))
+				to_use_custom_name = L.name
+			gem.catch_mob(L, to_use_custom_name)
+			return TRUE
+		var/mob/living/carbon/human/H = L
+		if(!istype(H)) return TRUE
+		if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
+			var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
+			SC.catch_mob(H)
 	return TRUE
 
 ///////////////////
@@ -571,7 +591,7 @@
 ///////////////////
 //Verbs for soulbrains
 /mob/living/carbon/brain/caught_soul/verb/ar_project()
-	set name = "AR Project"
+	set name = "AR/SR Project"
 	set desc = "Project your form into Augmented Reality for those around your predator with the appearance of your loaded character."
 	set category = "Soulcatcher"
 
@@ -633,10 +653,3 @@
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)
-
-#undef NIF_SC_CATCHING_ME
-#undef NIF_SC_CATCHING_OTHERS
-#undef NIF_SC_ALLOW_EARS
-#undef NIF_SC_ALLOW_EYES
-#undef NIF_SC_BACKUPS
-#undef NIF_SC_PROJECTING

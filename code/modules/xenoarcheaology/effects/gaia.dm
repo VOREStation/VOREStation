@@ -19,8 +19,8 @@
 
 		if(!Tray.dead)
 			if((Tray.age > Tray.seed.get_trait(TRAIT_MATURATION)) && \
-			 ((Tray.age - Tray.lastproduce) > Tray.seed.get_trait(TRAIT_PRODUCTION)) && \
-			 (!Tray.harvest && !Tray.dead))
+			((Tray.age - Tray.lastproduce) > Tray.seed.get_trait(TRAIT_PRODUCTION)) && \
+			(!Tray.harvest && !Tray.dead))
 				Tray.harvest = 1
 				Tray.lastproduce = Tray.age
 

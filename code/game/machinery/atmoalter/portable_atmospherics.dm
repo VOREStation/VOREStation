@@ -2,7 +2,7 @@
 	name = "atmoalter"
 	use_power = USE_POWER_OFF
 	layer = OBJ_LAYER // These are mobile, best not be under everything.
-	var/datum/gas_mixture/air_contents = new
+	var/datum/gas_mixture/air_contents
 
 	var/obj/machinery/atmospherics/portables_connector/connected_port
 	var/obj/item/tank/holding
@@ -15,9 +15,9 @@
 
 /obj/machinery/portable_atmospherics/Initialize(mapload)
 	..()
-	if(air_contents)
-		air_contents.volume = volume
-		air_contents.temperature = T20C
+	air_contents = new
+	air_contents.volume = volume
+	air_contents.temperature = T20C
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/LateInitialize()

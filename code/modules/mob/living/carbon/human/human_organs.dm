@@ -74,7 +74,7 @@
 		return
 
 	var/limb_pain = FALSE
-	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
+	for(var/limb_tag in list(BP_L_LEG,BP_R_LEG,BP_L_FOOT,BP_R_FOOT))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || !E.is_usable())
 			stance_damage += 2 // let it fail even if just foot&leg
@@ -110,7 +110,7 @@
 		if(!(lying || resting) && !isbelly(loc))
 			if(limb_pain)
 				emote("scream")
-			custom_emote(1, "collapses!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
 		if(!(lying || resting)) // stops permastun with SPINE sdisability
 			Weaken(5) //can't emote while weakened, apparently.
 
@@ -155,7 +155,7 @@
 
 			if(!isbelly(loc))
 				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-				custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!", check_stat = TRUE)
 				if(can_feel_pain())
 					emote("pain")
 
@@ -171,7 +171,7 @@
 					drop_from_inventory(r_hand)
 
 			if(!isbelly(loc))
-				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!", check_stat = TRUE)
 
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)

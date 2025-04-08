@@ -1,6 +1,6 @@
 import { flow } from 'tgui-core/fp';
 
-import { crewmember } from './types';
+import type { crewmember } from './types';
 
 export function getStatText(cm: crewmember) {
   if (cm.dead) {

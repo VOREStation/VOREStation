@@ -19,7 +19,7 @@
 	if(((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || SSlighting.get_pshandler_z(z)) && has_dynamic_lighting()) //Only for planet turfs or fakesuns that specify they want to use this system
 		if(is_outdoors())
 			var/turf/T = GetAbove(src)
-			if(T && !istype(T,/turf/simulated/open))
+			if(T && !isopenturf(T) && (SSplanets.z_to_planet.len >= T.z && SSplanets.z_to_planet[T.z]))
 				make_indoors()
 		if(!shandler_noinit)
 			shandler = new(src)

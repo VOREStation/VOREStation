@@ -23,7 +23,7 @@
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
 	var/scannable = 0 // Shows up on health analyzers.
 
-	var/affects_dead = 0	// Does this chem process inside a corpse?
+	var/affects_dead = 0	// Does this chem process inside a corpse without outside intervention required?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 
 	var/allergen_type		// What potential allergens does this contain?
@@ -43,6 +43,9 @@
 	var/glass_name = "something"
 	var/glass_desc = "It's a glass of... what, exactly?"
 	var/list/glass_special = null // null equivalent to list()
+
+	var/from_belly = FALSE
+	var/wiki_flag = 0 // Bitflags for secret/food/drink reagent sorting
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
@@ -64,7 +67,7 @@
 /datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
 		return
-	if(!affects_dead && M.stat == DEAD)
+	if(!affects_dead && M.stat == DEAD && !M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
 		return
 	if(!affects_robots && M.isSynthetic())
 		return

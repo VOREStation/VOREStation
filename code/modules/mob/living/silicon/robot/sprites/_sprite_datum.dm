@@ -34,6 +34,7 @@
 	var/list/belly_light_list = list() // Support multiple sleepers with r/g light "sleeper"
 	var/list/belly_capacity_list = list() //Support multiple bellies with multiple sizes, default: "sleeper" = 1
 	var/list/sprite_decals = list() // Allow extra decals
+	var/list/sprite_animations = list() // Allows to flick animations
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
@@ -133,7 +134,7 @@
 /datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!ourborg.resting)
 		return "[sprite_icon_state]-glow"
-	return "[get_rest_sprite(ourborg.rest_style)]-glow"
+	return "[get_rest_sprite(ourborg)]-glow"
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
