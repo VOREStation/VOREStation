@@ -1,3 +1,4 @@
+import React from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -49,7 +50,7 @@ export const PanDEMIC = () => {
     resistances,
   } = data;
 
-  let emptyPlaceholder: JSX.Element | null = null;
+  let emptyPlaceholder: React.JSX.Element | null = null;
   if (!beakerLoaded) {
     emptyPlaceholder = <>No container loaded.</>;
   } else if (!beakerContainsBlood) {
