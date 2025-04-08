@@ -50,15 +50,12 @@ export const WikiSearchPage = (
 
   // Intentionally bad for the effect
   useEffect(() => {
-    setNoData(false);
-    if (!search.length) {
-      setTimeout(() => {
-        if (!search.length && subCatActiveEntry && !noData) {
-          setNoData(true);
-        }
-      }, 200);
+    if (!search.length && !noData) {
+      setNoData(true);
+    } else if (search.length) {
+      setNoData(false);
     }
-  }, [search || subCatActiveEntry]);
+  }, [search]);
 
   function handleActiveEntry(neWEntry: string) {
     if (activeEntry !== neWEntry) {
