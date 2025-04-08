@@ -6,7 +6,7 @@
 	has_sensor = 0
 	species_restricted = list("Monkey")
 
-/mob/living/carbon/human/monkey/punpun/Initialize()
+/mob/living/carbon/human/monkey/punpun/Initialize(mapload)
 	. = ..()
 	name = "Pun Pun"
 	real_name = name

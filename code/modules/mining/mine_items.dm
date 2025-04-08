@@ -30,6 +30,8 @@
 
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
+	var/borg_flags = COUNTS_AS_ROBOTIC_MELEE //The ONLY reason this gets this here is because pickaxes are SO hardcoded that it's easier to add it here than everywhere else. Please do not attach this to everything that you desire. Only VERY SPECIFIC THINGS under CERTAIN CIRCUMSTANCES, PLEASE. 99% of things can be added to code\modules\projectiles\guns\energy\cyborg.dm
+
 
 /obj/item/pickaxe/silver
 	name = "silver pickaxe"
@@ -161,7 +163,7 @@
 	item_state = "whiteshovel"
 	var/datum/material/material
 
-/obj/item/shovel/wood/Initialize(var/ml, var/_mat)
+/obj/item/shovel/wood/Initialize(mapload, var/_mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))
@@ -209,7 +211,7 @@
 	var/upright = 0
 	var/base_state
 
-/obj/item/stack/flag/Initialize()
+/obj/item/stack/flag/Initialize(mapload)
 	. = ..()
 	base_state = icon_state
 	update_icon()

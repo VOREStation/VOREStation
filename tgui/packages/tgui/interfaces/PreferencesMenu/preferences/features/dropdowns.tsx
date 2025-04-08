@@ -1,9 +1,13 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
 
-import { Feature, FeatureChoicedServerData, FeatureValueProps } from './base';
+import type {
+  Feature,
+  FeatureChoicedServerData,
+  FeatureValueProps,
+} from './base';
 
 type DropdownInputProps = FeatureValueProps<
   string,
@@ -33,7 +37,7 @@ export function FeatureDropdownInput(props: DropdownInputProps) {
   const { choices, display_names } = serverData;
 
   const dropdownOptions = choices.map((choice) => {
-    let displayText: ReactNode = display_names
+    const displayText: ReactNode = display_names
       ? display_names[choice]
       : capitalizeFirst(choice);
 

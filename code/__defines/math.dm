@@ -4,6 +4,8 @@
 
 #define NUM_E 2.71828183
 
+#define SQRT_2 (1.41421356237)
+#define ONE_OVER_SQRT_2 (0.707106781188095) // not 1/sqrt(2), instead it is 1/SQRT_2 (1/1.41421356237)
 #define M_PI						(3.14159265)
 #define INFINITY				(1.#INF)	//closer then enough
 
@@ -226,3 +228,10 @@
 	if(num < 0)
 		return 0
 	return sqrt(num)
+
+//Proc to check if a flag is active to use in universal math
+/proc/global_flag_check(element, flag)
+	if(element & flag)
+		return 1
+	else
+		return 0

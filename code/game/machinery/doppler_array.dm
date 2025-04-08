@@ -9,13 +9,13 @@ var/list/doppler_arrays = list()
 
 	icon_state = "doppler"
 
-/obj/machinery/doppler_array/New()
-	..()
+/obj/machinery/doppler_array/Initialize(mapload)
+	. = ..()
 	doppler_arrays += src
 
 /obj/machinery/doppler_array/Destroy()
 	doppler_arrays -= src
-	..()
+	. = ..()
 
 /obj/machinery/doppler_array/proc/sense_explosion(var/x0,var/y0,var/z0,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/took)
 	if(stat & NOPOWER)	return

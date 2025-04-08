@@ -107,14 +107,14 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/proc/dump_mob()
 	if(!held_mob)
 		return
-	if (held_mob.loc == src || isnull(held_mob.loc)) //VOREStation edit
+	if (held_mob.loc == src || isnull(held_mob.loc))
 		held_mob.transform = original_transform
-		held_mob.update_transform() //VOREStation edit
+		held_mob.update_transform()
 		held_mob.vis_flags = original_vis_flags
-		held_mob.forceMove(get_turf(src))
 		held_mob.reset_view(null)
+		held_mob.forceMove(get_turf(src))
 		held_mob = null
-	invisibility = INVISIBILITY_ABSTRACT //VOREStation edit
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)
@@ -311,7 +311,7 @@ var/list/holder_mob_icon_cache = list()
 	item_icons = null
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/holder/bird/Initialize()
+/obj/item/holder/bird/Initialize(mapload)
 	. = ..()
 	held_mob?.lay_down()
 
@@ -388,7 +388,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/protoblob
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER | SLOT_ICLOTHING | SLOT_ID | SLOT_EARS
 	w_class = ITEMSIZE_TINY
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/melee/baton)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_EXPLO, /obj/item/storage/backpack)
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/righthand_holder.dmi',

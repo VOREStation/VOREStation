@@ -76,11 +76,11 @@
 // Yes this doesn't align correctly on anything other than 4 width tabs.
 // If you want it to go switch everybody to elastic tab stops.
 // Actually that'd be great if you could!
-#define EFFECT_UPDATE(level)                \
+#define EFFECT_UPDATE(level)				\
 	if (needs_update == LIGHTING_NO_UPDATE) \
-		SSlighting.sources_queue += src; \
-	if (needs_update < level)               \
-		needs_update            = level;    \
+		SSlighting.sources_queue += src; 	\
+	if (needs_update < level)				\
+		needs_update = level;				\
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
@@ -133,33 +133,48 @@
 
 #define LUM_FALLOFF(C) (1 - CLAMP01(sqrt((C.x - _turf_x) ** 2 + (C.y - _turf_y) ** 2 + LIGHTING_HEIGHT) / _range_divisor))
 
-#define APPLY_CORNER(C)                          \
-	. = LUM_FALLOFF(C);                          \
-	. *= _light_power;                           \
-	var/OLD = effect_str[C];                     \
-	                                             \
-	C.update_lumcount                            \
-	(                                            \
-		(. * _lum_r) - (OLD * _applied_lum_r),     \
-		(. * _lum_g) - (OLD * _applied_lum_g),     \
-		(. * _lum_b) - (OLD * _applied_lum_b)      \
-	);                                           \
+#define APPLY_CORNER(C)							\
+	. = LUM_FALLOFF(C);							\
+	. *= _light_power;							\
+	var/OLD = effect_str[C];					\
+												\
+	C.update_lumcount							\
+	(											\
+		(. * _lum_r) - (OLD * _applied_lum_r),	\
+		(. * _lum_g) - (OLD * _applied_lum_g),	\
+		(. * _lum_b) - (OLD * _applied_lum_b)	\
+	);											\
 
-#define REMOVE_CORNER(C)                         \
-	. = -effect_str[C];                          \
-	C.update_lumcount                            \
-	(                                            \
-		. * _applied_lum_r,                      \
-		. * _applied_lum_g,                      \
-		. * _applied_lum_b                       \
+#define APPLY_CORNER_NEW(C)						\
+	. = LUM_FALLOFF(C);							\
+	. *= _light_power;							\
+	var/OLD = effect_str[C];					\
+	if (. != 0){								\
+		LAZYADD(C.affecting, src);				\
+		effect_str[C] = .;						\
+	}											\
+	C.update_lumcount							\
+	(											\
+		(. * _lum_r) - (OLD * _applied_lum_r),	\
+		(. * _lum_g) - (OLD * _applied_lum_g),	\
+		(. * _lum_b) - (OLD * _applied_lum_b)	\
+	);											\
+
+#define REMOVE_CORNER(C)						\
+	. = -effect_str[C];							\
+	C.update_lumcount							\
+	(											\
+		. * _applied_lum_r,						\
+		. * _applied_lum_g,						\
+		. * _applied_lum_b						\
 	);
 
 /datum/light_source/proc/remove_lum()
 	SETUP_CORNERS_REMOVAL_CACHE(src)
 	applied = FALSE
 	for (var/datum/lighting_corner/corner as anything in effect_str)
-		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
+		REMOVE_CORNER(corner)
 
 	effect_str = null
 
@@ -175,22 +190,6 @@
 
 /datum/light_source/proc/get_turfs_in_range()
 	return view(CEILING(light_range, 1), source_turf)
-
-// Keep in mind. Lighting corners accept the bottom left (northwest) set of cords to them as input
-#define GENERATE_MISSING_CORNERS(gen_for) \
-	if (!gen_for.lighting_corner_NE) { \
-		gen_for.lighting_corner_NE = new /datum/lighting_corner(gen_for.x, gen_for.y, gen_for.z); \
-	} \
-	if (!gen_for.lighting_corner_SE) { \
-		gen_for.lighting_corner_SE = new /datum/lighting_corner(gen_for.x, gen_for.y - 1, gen_for.z); \
-	} \
-	if (!gen_for.lighting_corner_SW) { \
-		gen_for.lighting_corner_SW = new /datum/lighting_corner(gen_for.x - 1, gen_for.y - 1, gen_for.z); \
-	} \
-	if (!gen_for.lighting_corner_NW) { \
-		gen_for.lighting_corner_NW = new /datum/lighting_corner(gen_for.x - 1, gen_for.y, gen_for.z); \
-	} \
-	gen_for.lighting_corners_initialised = TRUE;
 
 /datum/light_source/proc/update_corners()
 	var/update = FALSE
@@ -276,32 +275,33 @@
 	LAZYINITLIST(src.effect_str)
 	var/list/effect_str = src.effect_str
 	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (var/datum/lighting_corner/corner as anything in new_corners)
-			APPLY_CORNER(corner)
-			if (. != 0)
-				LAZYADD(corner.affecting, src)
-				effect_str[corner] = .
+		for (var/datum/lighting_corner/corner in new_corners)
+			APPLY_CORNER_NEW(corner)
 	else
-		for (var/datum/lighting_corner/corner as anything in new_corners)
-			APPLY_CORNER(corner)
-			if (. != 0)
-				LAZYADD(corner.affecting, src)
-				effect_str[corner] = .
+		for (var/datum/lighting_corner/corner in new_corners)
+			APPLY_CORNER_NEW(corner)
 
-		// New corners are a subset of corners. so if they're both the same length, there are NO old corners!
-		if(length(corners) != length(new_corners))
-			for (var/datum/lighting_corner/corner as anything in corners - new_corners) // Existing corners
-				APPLY_CORNER(corner)
-				if (. != 0)
-					effect_str[corner] = .
-				else
-					LAZYREMOVE(corner.affecting, src)
-					effect_str -= corner
+		for (var/datum/lighting_corner/corner in corners - new_corners) // Existing corners
+			. = LUM_FALLOFF(corner);
+			. *= _light_power;
+			var/OLD = effect_str[corner];
+			if (. != 0)
+				effect_str[corner] = .
+			else
+				LAZYREMOVE(corner.affecting, src)
+				effect_str -= corner
+			corner.update_lumcount						\
+			(											\
+				(. * _lum_r) - (OLD * _applied_lum_r),	\
+				(. * _lum_g) - (OLD * _applied_lum_g),	\
+				(. * _lum_b) - (OLD * _applied_lum_b)	\
+			);
+#undef APPLY_CORNER_NEW
 
 	var/list/datum/lighting_corner/gone_corners = effect_str - corners
 	for (var/datum/lighting_corner/corner as anything in gone_corners)
-		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
+		REMOVE_CORNER(corner)
 	effect_str -= gone_corners
 
 	applied_lum_r = lum_r
@@ -316,4 +316,3 @@
 #undef APPLY_CORNER
 #undef SETUP_CORNERS_REMOVAL_CACHE
 #undef SETUP_CORNERS_CACHE
-#undef GENERATE_MISSING_CORNERS

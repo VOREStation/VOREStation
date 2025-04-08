@@ -16,8 +16,8 @@ import { capitalizeAll } from 'tgui-core/string';
 
 import { PaginationChevrons } from '..';
 import {
-  ConstructorDesign,
-  ConstructorEnum,
+  type ConstructorDesign,
+  type ConstructorEnum,
   constructorEnumToBuild,
   constructorEnumToBuildFive,
   constructorEnumToData,
@@ -26,8 +26,8 @@ import {
   constructorEnumToEjectReagentAllAction,
   constructorEnumToName,
   constructorEnumToRemoveQueue,
-  Data,
-  LinkedConstructor,
+  type Data,
+  type LinkedConstructor,
 } from '../data';
 
 enum ConstructorTabEnum {
@@ -46,11 +46,7 @@ export const Constructor = (props: {
   const our_name = constructorEnumToName[type];
 
   if (!linked_data) {
-    return (
-      <Section title={`ERROR: Cannot Find ${our_name}`} fill>
-        Meow
-      </Section>
-    );
+    return <Section title={`ERROR: Cannot Find ${our_name}`} fill />;
   }
 
   return (

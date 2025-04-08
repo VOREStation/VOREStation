@@ -74,7 +74,7 @@
 
 	var/obj/mecha/my_mech = null
 
-/obj/item/shield_projector/rectangle/mecha/Initialize()
+/obj/item/shield_projector/rectangle/mecha/Initialize(mapload)
 	. = ..()
 	my_mech = loc
 	RegisterSignal(my_mech, COMSIG_OBSERVER_MOVED, /obj/item/shield_projector/proc/update_shield_positions)

@@ -75,7 +75,7 @@
 	var/scan_level
 	var/precision_coeff
 
-/obj/machinery/dna_scannernew/Initialize()
+/obj/machinery/dna_scannernew/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	RefreshParts()
@@ -115,7 +115,7 @@
 	return
 
 /obj/machinery/dna_scannernew/proc/eject_occupant()
-	var/mob/living/carbon/WC = occupant.resolve()
+	var/mob/living/carbon/WC = occupant?.resolve()
 	go_out()
 	for(var/obj/O in src)
 		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
@@ -298,7 +298,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/computer/scan_consolenew
@@ -356,10 +355,9 @@
 			if(prob(50))
 				qdel(src)
 				return
-		else
 	return
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 	for(var/i=0;i<3;i++)
 		// Traitgenes Use bodyrecords
@@ -469,13 +467,13 @@
 		occupantData["name"] = WC.real_name
 		occupantData["stat"] = WC.stat
 		occupantData["isViableSubject"] = 1
-		// Traitgenes NO_SCAN and Synthetics cannot be mutated
+		// Traitgenes NO_DNA and Synthetics cannot be mutated
 		var/allowed = TRUE
 		if(WC.isSynthetic())
 			allowed = FALSE
 		if(ishuman(WC))
 			var/mob/living/carbon/human/H = WC
-			if(!H.species || (H.species.flags & NO_SCAN))
+			if(!H.species || (H.species.flags & NO_DNA))
 				allowed = FALSE
 		if(!allowed || (NOCLONE in WC.mutations) || !WC.dna)
 			occupantData["isViableSubject"] = 0
@@ -698,12 +696,12 @@
 			return TRUE
 
 /**
-  * Creates a blank injector with the name of the buffer at the given buffer_id
-  *
-  * Arguments:
-  * * buffer_id - The ID of the buffer
-  * * copy_buffer - Whether the injector should copy the buffer contents
-  */
+ * Creates a blank injector with the name of the buffer at the given buffer_id
+ *
+ * Arguments:
+ * * buffer_id - The ID of the buffer
+ * * copy_buffer - Whether the injector should copy the buffer contents
+ */
 /obj/machinery/computer/scan_consolenew/proc/create_injector(buffer_id, copy_buffer = FALSE)
 	if(buffer_id < 1 || buffer_id > length(buffers))
 		return
@@ -723,18 +721,18 @@
 	return I
 
 /**
-  * Called when the injector creation cooldown finishes
-  */
+ * Called when the injector creation cooldown finishes
+ */
 /obj/machinery/computer/scan_consolenew/proc/injector_cooldown_finish()
 	injector_ready = TRUE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/scan_consolenew/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -765,11 +763,11 @@
 
 
 /**
-  * Triggers sleeve growing in a clonepod within the area
-  *
-  * Arguments:
-  * * active_br - Body record to print
-  */
+ * Triggers sleeve growing in a clonepod within the area
+ *
+ * Arguments:
+ * * active_br - Body record to print
+ */
 /obj/machinery/computer/scan_consolenew/proc/print_sleeve(var/mob/user, var/datum/transhuman/body_record/active_br)
 	//deleted record
 	if(!istype(active_br))
@@ -836,6 +834,8 @@
 		if	(prob(80-radiation_duration))
 			//testing("Random bad mut!")
 			randmutb(WC)
+			domutcheck(WC,null,MUTCHK_FORCED)
+			WC.UpdateAppearance()
 	// Traitgenes Do gene updates here, and more comprehensively
 	if(ishuman(WC))
 		var/mob/living/carbon/human/H = WC
@@ -858,6 +858,8 @@
 		else
 			if(prob(95))
 				randmutg(WC)
+		domutcheck(WC,null,MUTCHK_FORCED)
+		WC.UpdateAppearance()
 	// Traitgenes Do gene updates here, and more comprehensively
 	if(ishuman(WC))
 		var/mob/living/carbon/human/H = WC
@@ -883,6 +885,7 @@
 		WC.dna.SE = buf.mydna.dna.SE.Copy()
 		WC.dna.UpdateSE()
 		domutcheck(WC,connected, MUTCHK_FORCED | MUTCHK_HIDEMSG) // TOO MANY MUTATIONS FOR MESSAGES
+		WC.UpdateAppearance()
 		to_chat(WC, span_warning("Your body stings as it wildly changes!"))
 
 		// apply genes

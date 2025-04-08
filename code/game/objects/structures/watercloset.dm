@@ -12,7 +12,8 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/New()
+/obj/structure/toilet/Initialize(mapload)
+	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
 
@@ -164,7 +165,7 @@
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 	var/datum/looping_sound/showering/soundloop
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	create_reagents(50)
 	soundloop = new(list(src), FALSE)
 	return ..()
@@ -220,21 +221,30 @@
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
-			spawn(50)
-				if(src && on)
-					ismist = 1
-					mymist = new /obj/effect/mist(loc)
+			addtimer(CALLBACK(src, PROC_REF(spawn_mist)), 50, TIMER_DELETE_ME)
 		else
 			ismist = 1
 			mymist = new /obj/effect/mist(loc)
 	else if(ismist)
 		ismist = 1
 		mymist = new /obj/effect/mist(loc)
-		spawn(250)
-			if(src && !on)
-				qdel(mymist)
-				mymist = null
-				ismist = 0
+		addtimer(CALLBACK(src, PROC_REF(remove_mist)), 250, TIMER_DELETE_ME)
+
+/obj/machinery/shower/proc/spawn_mist()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(on)
+		ismist = 1
+		mymist = new /obj/effect/mist(loc)
+
+/obj/machinery/shower/proc/remove_mist()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!on)
+		qdel(mymist)
+		mymist = null
+		ismist = 0
+
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
@@ -273,8 +283,7 @@
 	is_washing = 1
 	var/turf/T = get_turf(src)
 	T.clean(src)
-	spawn(100)
-		is_washing = 0
+	addtimer(VARSET_CALLBACK(src, is_washing, 0), 100, TIMER_DELETE_ME)
 
 /obj/machinery/shower/proc/process_heat(mob/living/M)
 	if(!on || !istype(M)) return
@@ -310,8 +319,7 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
 	return
 
 //Admin spawn duckies
@@ -327,7 +335,7 @@
 
 /obj/item/bikehorn/rubberducky/red/attack_self(mob/user as mob)
 	if(honk_count >= 3)
-		var/turf/epicenter = src.loc
+		var/turf/epicenter = get_turf(src)
 		explosion(epicenter, 0, 0, 1, 3)
 		qdel(src)
 		return
@@ -338,8 +346,7 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		honk_count ++
-		spawn(20)
-			spam_flag = 0
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
 	return
 
 /obj/item/bikehorn/rubberducky/blue
@@ -360,8 +367,7 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
 	return
 
 /obj/item/bikehorn/rubberducky/pink
@@ -386,8 +392,7 @@
 		user.drop_item()
 		user.forceMove(src)
 		to_chat(user, span_vnotice("You have been swallowed alive by the rubber ducky. Your entire body compacted up and squeezed into the tiny space that makes up the oddly realistic and not at all rubbery stomach. The walls themselves are kneading over you, grinding some sort of fluids into your trapped body. You can even hear the sound of bodily functions echoing around you..."))
-		spawn(20)
-			spam_flag = 0
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
 	return
 
 /obj/item/bikehorn/rubberducky/pink/container_resist(var/mob/living/escapee)
@@ -455,8 +460,7 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
 	return
 
 /obj/item/bikehorn/rubberducky/white
@@ -476,8 +480,6 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0 //leaving this in incase it doesn't qdel somehow
 		qdel(src)
 	return
 
@@ -487,25 +489,8 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_black"
 	item_state = "rubberducky_black"
-	det_time = 20
-	var/honk_text = 0
-
-/obj/item/grenade/anti_photon/rubberducky/black/detonate()
-	playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
-	set_light(10, -10, "#FFFFFF")
-
-	var/extra_delay = rand(0,90)
-
-	spawn(extra_delay)
-		spawn(200)
-			if(prob(10+extra_delay))
-				set_light(10, 10, "#[num2hex(rand(64,255))][num2hex(rand(64,255))][num2hex(rand(64,255))]")
-		spawn(210)
-			..()
-			playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
-			if(honk_text)
-				audible_message(span_maroon("[honk_text]"))
-			qdel(src)
+	light_sound = 'sound/voice/quack.ogg'
+	blast_sound = 'sound/voice/quack.ogg'
 
 /obj/structure/sink
 	name = "sink"
@@ -532,9 +517,9 @@
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return

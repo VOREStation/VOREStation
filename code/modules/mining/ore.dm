@@ -148,7 +148,7 @@
 	icon_state = "slag"
 	material = null
 
-/obj/item/ore/Initialize()
+/obj/item/ore/Initialize(mapload)
 	. = ..()
 	randpixel_xy()
 

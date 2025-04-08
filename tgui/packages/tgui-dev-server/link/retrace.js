@@ -27,7 +27,7 @@ export const loadSourceMaps = async (bundleDir) => {
   }
   // Load new sourcemaps
   const paths = await resolveGlob(bundleDir, '*.map');
-  for (let path of paths) {
+  for (const path of paths) {
     try {
       const file = basename(path).replace('.map', '');
       const consumer = await new SourceMapConsumer(

@@ -21,6 +21,19 @@ AI MODULES
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/ai_laws/laws = null
 
+/obj/item/aiModule/examine(mob/user)
+	. = ..()
+	if(!laws)
+		return
+	laws.sort_laws()
+	for(var/datum/ai_law/law in laws.sorted_laws)
+		if(law == laws.zeroth_law_borg)
+			continue
+		if(law == laws.zeroth_law)
+			. += span_info(span_red("[law.get_index()]. [law.law]"))
+		else
+			. += span_infoplain("[law.get_index()]. [law.law]")
+
 /obj/item/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
 	if(!user.IsAdvancedToolUser() && isanimal(user))
 		var/mob/living/simple_mob/S = user
@@ -270,7 +283,7 @@ AI MODULES
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
 
 // VOREstation edit: use map default laws
-/obj/item/aiModule/reset/Initialize()
+/obj/item/aiModule/reset/Initialize(mapload)
 	. = ..()
 	laws = new global.using_map.default_law_type // Pull from loaded map
 

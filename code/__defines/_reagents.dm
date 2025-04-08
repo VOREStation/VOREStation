@@ -1,11 +1,17 @@
-// Gasses
+// Dev
+#define REAGENT_ID_DEVELOPER_WARNING "reagent"
+#define REAGENT_DEVELOPER_WARNING "Reagent"
+#define REAGENT_DESC_DEVELOPER_WARNING "A non-descript chemical."
 
+
+// Gasses
 #define GAS_CO2 "carbon_dioxide"
 #define GAS_N2 "nitrogen"
 #define GAS_N2O "nitrous_oxide"
 #define GAS_O2 "oxygen"
 #define GAS_PHORON "phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+
 
 // Gas Reagents
 #define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
@@ -63,6 +69,8 @@
 #define REAGENT_ID_POTASSIUM "potassium"
 #define REAGENT_RADIUM "Radium"
 #define REAGENT_ID_RADIUM "radium"
+#define REAGENT_CONCENTRATEDRADIUM "Concentrated Radium"
+#define REAGENT_ID_CONCENTRATEDRADIUM "concentrated_radium"
 #define REAGENT_SILICON "Silicon"
 #define REAGENT_ID_SILICON "silicon"
 #define REAGENT_SODIUM "Sodium"
@@ -75,10 +83,6 @@
 #define REAGENT_ID_TUNGSTEN "tungsten"
 #define REAGENT_NUTRIMENT "Nutriment"
 #define REAGENT_ID_NUTRIMENT "nutriment"
-#define REAGENT_STEEL "Liquid Steel"
-#define REAGENT_ID_STEEL "steel"
-#define REAGENT_PLASTEEL "Liquid Plasteel"
-#define REAGENT_ID_PLASTEEL "plasteel"
 
 
 // Xeno chem react
@@ -675,6 +679,8 @@
 #define REAGENT_ID_CAPSAICIN "capsaicin"
 #define REAGENT_CONDENSEDCAPSAICIN "Condensed Capsaicin"
 #define REAGENT_ID_CONDENSEDCAPSAICIN "condensedcapsaicin"
+#define REAGENT_GELATIN "Gelatin"
+#define REAGENT_ID_GELATIN "gelatin"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"
@@ -896,7 +902,7 @@
 #define REAGENT_ID_NUCLEARWASTE "nuclearwaste"
 #define REAGENT_SODAOIL "Soda Oil"
 #define REAGENT_ID_SODAOIL "sodaoil"
-#define REAGENT_VIRGINMOJITO "Mojito"
+#define REAGENT_VIRGINMOJITO "Virgin Mojito"
 #define REAGENT_ID_VIRGINMOJITO "virginmojito"
 #define REAGENT_VIRGINSEXONTHEBEACH "Virgin Sex On The Beach"
 #define REAGENT_ID_VIRGINSEXONTHEBEACH "virginsexonthebeach"
@@ -982,8 +988,8 @@
 #define REAGENT_ID_SAKE "sake"
 #define REAGENT_SEXONTHEBEACH "Sex On The Beach"
 #define REAGENT_ID_SEXONTHEBEACH "sexonthebeach"
-#define REAGENT_TEQUILLA "Tequila"
-#define REAGENT_ID_TEQUILLA "tequilla"
+#define REAGENT_TEQUILA "Tequila"
+#define REAGENT_ID_TEQUILA "tequila"
 #define REAGENT_THIRTEENLOKO "Thirteen Loko"
 #define REAGENT_ID_THIRTEENLOKO "thirteenloko"
 #define REAGENT_VERMOUTH "Vermouth"
@@ -1112,8 +1118,8 @@
 #define REAGENT_ID_SUIDREAM "suidream"
 #define REAGENT_SYNDICATEBOMB "Syndicate Bomb"
 #define REAGENT_ID_SYNDICATEBOMB "syndicatebomb"
-#define REAGENT_TEQUILLASUNRISE "Tequila Sunrise"
-#define REAGENT_ID_TEQUILLASUNRISE "tequillasunrise"
+#define REAGENT_TEQUILASUNRISE "Tequila Sunrise"
+#define REAGENT_ID_TEQUILASUNRISE "tequilasunrise"
 #define REAGENT_THREEMILEISLAND "Three Mile Island Iced Tea"
 #define REAGENT_ID_THREEMILEISLAND "threemileisland"
 #define REAGENT_PHORONSPECIAL "Toxins Special"
@@ -1238,7 +1244,8 @@
 #define REAGENT_ID_KOMPOT "kompot"
 #define REAGENT_KVASS "Kvass"
 #define REAGENT_ID_KVASS "kvass"
-
+#define REAGENT_CINNAMONPOWDER "Cinnamon powder"
+#define REAGENT_ID_CINNAMONPOWDER "cinnamonpowder"
 
 // Toxins
 #define REAGENT_TOXIN "Toxin"
@@ -1293,6 +1300,8 @@
 #define REAGENT_ID_SIFSAP "sifsap"
 #define REAGENT_STOMACID "Digestive acid"
 #define REAGENT_ID_STOMACID "stomacid"
+#define REAGENT_DIETSTOMACID "Diluted digestive acid"
+#define REAGENT_ID_DIETSTOMACID "diet_stomacid"
 #define REAGENT_THERMITEV "Pyrotoxin"
 #define REAGENT_ID_THERMITEV "thermite_v"
 #define REAGENT_CONDENSEDCAPSAICINV "Irritant toxin"
@@ -1344,3 +1353,18 @@
 #define REAGENT_ID_SLIMEBONEFIXER "slime_bone_fixer"
 #define REAGENT_SLIMEORGANFIXER "Agent C"
 #define REAGENT_ID_SLIMEORGANFIXER "slime_organ_fixer"
+
+// Vore Belly Options
+
+#define REAGENT_ID_WATER_BELLY "water_liquidbelly"
+#define REAGENT_ID_MILK_BELLY "milk_liquidbelly"
+#define REAGENT_ID_CREAM_BELLY "cream_liquidbelly"
+#define REAGENT_ID_HONEY_BELLY "honey_liquidbelly"
+#define REAGENT_ID_CHERRYJELLY_BELLY "cherry_liquidbelly"
+#define REAGENT_ID_STOMACID_BELLY "stomacid_liquidbelly"
+#define REAGENT_ID_DIETSTOMACID_BELLY "diet_stomacid_liquidbelly"
+#define REAGENT_ID_CLEANER_BELLY "cleaner_liquidbelly"
+#define REAGENT_ID_LUBE_BELLY "lube_liquidbelly"
+#define REAGENT_ID_BIOMASS_BELLY "biomass_liquidbelly"
+#define REAGENT_ID_CONCENTRATEDRADIUM_BELLY "cradium_liquidbelly"
+#define REAGENT_ID_TRICORDRAZINE_BELLY "tricordrazine_liquidbelly"

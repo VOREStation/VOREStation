@@ -86,9 +86,19 @@
  * * ignore_prefs - CHANGE_ME. Default: FALSE
  * * aura_animation - CHANGE_ME. Default: TRUE
  */
+//#define USE_DIRECT_MULTIPLIERS //Uncomment to use old resize calculations.
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
+		#ifdef USE_DIRECT_MULTIPLIERS
 		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
+		#else
+		var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
+		var/size_cap = world.icon_size * (RESIZE_MAXIMUM+(ishuman(src)?0:0.5)) //Grace for non-humanoids so they don't get forcibly shrunk.
+		if(size_diff - size_cap  > 0)
+			var/real_diff = size_cap / size_diff // Returns our diff based on the offset to world size
+			new_size *= real_diff // Applies our diff to the new size
+			new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM) //If the sprite is below 32, we clamp it to only go to the resize max.
+		#endif
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 		if(guard)
 			qdel(guard)
@@ -130,7 +140,7 @@
 			animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
 	else
 		update_transform() //Lame way
-
+//#undef USE_DIRECT_MULTIPLIERS //Uncomment to use old resize calculations.
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!resizable && !ignore_prefs)
 		return 1
@@ -175,7 +185,7 @@
 */
 
 /**
- * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
+ * Attempt to scoop up this mob up into M's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G, ignore_size = FALSE) //second one is for the Grabber, only exists for animals to self-grab
@@ -212,6 +222,8 @@
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(mob/living/tmob)
+	if(is_incorporeal() || tmob.is_incorporeal())
+		return FALSE
 	//Riding and being moved to us or something similar
 	if(tmob in buckled_mobs)
 		return TRUE
@@ -270,6 +282,8 @@
 		return
 	//We can't be stepping on anyone
 	if(!canmove || buckled)
+		return
+	if(is_incorporeal() || tmob.is_incorporeal())
 		return
 
 	//Riding and being moved to us or something similar

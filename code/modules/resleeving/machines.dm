@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/transhuman_clonepod
 
 //A full version of the pod
-/obj/machinery/clonepod/transhuman/full/Initialize()
+/obj/machinery/clonepod/transhuman/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
@@ -103,6 +103,7 @@
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
 	H.regenerate_icons()
+	H.initialize_vessel()
 
 	// Traitgenes Moved breathing equipment to AFTER the genes set it
 	//Give breathing equipment if needed
@@ -158,7 +159,7 @@
 
 		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
 
-			 //Slowly get that clone healed and finished.
+			//Slowly get that clone healed and finished.
 			occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
@@ -220,11 +221,11 @@
 	var/max_res_amount = 30000 //Max the thing can hold
 	var/datum/transhuman/body_record/current_project
 	var/broken = 0
-	var/burn_value = 45
-	var/brute_value = 60
+	var/burn_value = 0 //Setting these to 0, if resleeving as organic with unupgraded sleevers gives them no damage, resleeving synths with unupgraded synthfabs should not give them potentially 105 damage.
+	var/brute_value = 0
 
-/obj/machinery/transhuman/synthprinter/New()
-	..()
+/obj/machinery/transhuman/synthprinter/Initialize(mapload)
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
@@ -358,6 +359,7 @@
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
 	H.regenerate_icons()
+	H.initialize_vessel()
 
 	//Basically all the VORE stuff
 	H.ooc_notes = current_project.body_oocnotes
@@ -459,8 +461,8 @@
 
 	var/sleevecards = 2
 
-/obj/machinery/transhuman/resleever/New()
-	..()
+/obj/machinery/transhuman/resleever/Initialize(mapload)
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)

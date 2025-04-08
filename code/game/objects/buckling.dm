@@ -42,9 +42,7 @@
 /atom/movable/proc/has_buckled_mobs()
 	return LAZYLEN(buckled_mobs)
 
-/atom/movable/Destroy()
-	unbuckle_all_mobs()
-	return ..()
+
 
 
 /atom/movable/proc/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
@@ -209,6 +207,9 @@
 		return FALSE
 
 	if((!can_buckle && !forced) || M.buckled || M.pinned.len || (max_buckled_mobs == 0) || (buckle_require_restraints && !M.restrained()))
+		return FALSE
+	if(LAZYLEN(M.grabbed_by) && !forced)
+		to_chat(M, span_boldwarning("You can not buckle while grabbed!"))
 		return FALSE
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it

@@ -407,6 +407,10 @@
 /obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/kitchihome/den)
+"bh" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/wood,
+/area/redgate/eggnogtown/alipad)
 "bk" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
@@ -1794,7 +1798,7 @@
 "rz" = (
 /obj/item/trash/candle,
 /obj/structure/cable/yellow{
-	dir = 1
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating{
 	temperature = 258.15
@@ -2860,9 +2864,7 @@
 /area/redgate/eggnogtown/loniabode)
 "GQ" = (
 /obj/structure/barricade/cutout,
-/obj/structure/cable/yellow{
-	dir = 1
-	},
+/obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -18945,7 +18947,7 @@ dN
 dN
 dN
 dN
-dN
+bh
 dN
 dN
 QM

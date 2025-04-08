@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const CHAT_SHOWICONS: FeatureToggle = {
   name: 'Chat Tags',
@@ -47,14 +47,6 @@ export const CHAT_MENTION: FeatureToggle = {
   category: 'CHAT',
   description:
     'Makes messages containing your name or nickname appear larger to get your attention.',
-  component: CheckboxInput,
-};
-
-export const VORE_HEALTH_BARS: FeatureToggle = {
-  name: 'Vore Health Bars',
-  category: 'CHAT',
-  description:
-    'Periodically shows status health bars in chat occasionally during vore absorption/digestion.',
   component: CheckboxInput,
 };
 

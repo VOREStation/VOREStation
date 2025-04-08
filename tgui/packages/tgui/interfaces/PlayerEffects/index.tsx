@@ -9,7 +9,7 @@ import { ControlFixes } from './PlayerEffectsTabs/ControlFixes';
 import { ControlInventory } from './PlayerEffectsTabs/ControlInventory';
 import { ControlMedical } from './PlayerEffectsTabs/ControlMedical';
 import { ControlSmites } from './PlayerEffectsTabs/ControlSmites';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const PlayerEffects = (props) => {
   const { data } = useBackend<Data>();

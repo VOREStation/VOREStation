@@ -1,13 +1,21 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
-import { selectedData } from '../types';
+import type { selectedData } from '../types';
 
 export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
   const { act } = useBackend();
 
   const { belly } = props;
-  const { is_wet, wet_loop, fancy, sound, release_sound } = belly;
+  const {
+    is_wet,
+    wet_loop,
+    fancy,
+    sound,
+    release_sound,
+    sound_volume,
+    noise_freq,
+  } = belly;
 
   return (
     <Stack wrap="wrap">
@@ -65,6 +73,24 @@ export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
               }
               icon="volume-up"
             />
+          </LabeledList.Item>
+          <LabeledList.Item label="Sound Volume">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_sound_volume' })
+              }
+            >
+              {sound_volume + '%'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Noise Frequency">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_noise_freq' })
+              }
+            >
+              {noise_freq}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Stack.Item>

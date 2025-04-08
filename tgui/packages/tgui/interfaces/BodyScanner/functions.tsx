@@ -1,10 +1,10 @@
 import { Box } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 /*
  */
 export function mapTwoByTwo(a: any[][], c: any) {
-  let result: any[] = [];
+  const result: any[] = [];
   for (let i = 0; i < a.length; i += 2) {
     result.push(c(a[i], a[i + 1], i));
   }

@@ -12,7 +12,7 @@ import {
   VirtualList,
 } from 'tgui-core/components';
 import { formatSiUnit } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 import { Materials } from './ExosuitFabricator/Material';
@@ -71,7 +71,7 @@ const Designs = (props) => {
   const [searchText, setSearchText] = useSharedState('search_text', '');
 
   const materials = useMemo(() => {
-    let materials = {};
+    const materials = {};
     for (const material of data.materials) {
       materials[material.name] = material.amount;
     }
@@ -159,7 +159,7 @@ const canBeMade = (
   available: Record<string, number>,
   multiplier: number = 1,
 ): boolean => {
-  for (let [id, amt] of Object.entries(required)) {
+  for (const [id, amt] of Object.entries(required)) {
     if ((available[id] || 0) < amt * multiplier) {
       return false;
     }

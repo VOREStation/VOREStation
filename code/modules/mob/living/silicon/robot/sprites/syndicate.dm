@@ -69,15 +69,26 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
+/datum/robot_sprite/dogborg/tall/combat_medic/dullahancombatmedic
+	name = "Dullahan Combat Medic"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_syndie.dmi'
+	sprite_icon_state = "dullahansyndi"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
+
 /datum/robot_sprite/dogborg/tall/syndie/dullahanv3syndi
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	sprite_icon = 'icons/mob/robot/dullahan/v3/syndi.dmi'
 	sprite_icon_state = "dullahansyndi"
 	name = "Dullahan syndie v3"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	sprite_decals = list("decals")
+	rest_sprite_options = list("Default", "Sit")
+
 
 // Protector
 
@@ -168,14 +179,14 @@
 	sprite_hud_icon_state = "malf"
 
 /datum/robot_sprite/dogborg/tall/mechanist/dullahanv3mech
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	sprite_icon = 'icons/mob/robot/dullahan/v3/mechanist.dmi'
 	sprite_icon_state = "dullahanmechanist"
 	name = "Dullahan mechanist v3"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	sprite_decals = list("decals")
+	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
 	name = "Raptor V-4"

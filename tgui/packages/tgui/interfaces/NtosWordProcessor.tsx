@@ -2,9 +2,9 @@
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Box, Button, Section, Table } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { file } from './NtosFileManager';
+import type { file } from './NtosFileManager';
 
 type Data = {
   PC_device_theme: string;

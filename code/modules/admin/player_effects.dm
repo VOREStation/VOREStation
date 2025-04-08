@@ -652,7 +652,7 @@
 			if(Tar.nif)
 				to_chat(user,span_warning("Target already has a NIF."))
 				return
-			if(Tar.species.flags & NO_SCAN)
+			if(Tar.species.flags & NO_DNA)
 				var/obj/item/nif/S = /obj/item/nif/bioadap
 				input_NIF = initial(S.name)
 				new /obj/item/nif/bioadap(Tar)
@@ -776,8 +776,8 @@
 			log_and_message_admins("replied to [user]'s message: [reply].", target)
 
 		if("stop-orbits")
-			for(var/datum/orbit/X in target.orbiters)
-				X.orbiter.stop_orbit()
+			if(target.orbiters)
+				qdel(target.orbiters)
 
 		if("revert-mob-tf")
 			var/mob/living/Tar = target

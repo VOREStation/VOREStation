@@ -9,7 +9,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 
 import { stats, tempColors } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SleeperOccupant = (props) => {
   const { act, data } = useBackend<Data>();

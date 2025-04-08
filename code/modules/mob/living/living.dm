@@ -19,6 +19,26 @@
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
+	SSradiation.listeners -= src
+	remove_all_modifiers(TRUE)
+	QDEL_NULL(say_list)
+
+	for(var/datum/soul_link/S as anything in owned_soul_links)
+		S.owner_died(FALSE)
+		qdel(S) // If the owner is destroy()'d, the soullink is destroy()'d.
+	owned_soul_links = null
+	for(var/datum/soul_link/S as anything in shared_soul_links)
+		S.sharer_died(FALSE)
+		S.remove_soul_sharer(src) // If a sharer is destroy()'d, they are simply removed.
+	shared_soul_links = null
+
+	if(ai_holder)
+		ai_holder.holder = null
+		ai_holder.UnregisterSignal(src,COMSIG_MOB_STATCHANGE)
+		if(ai_holder.faction_friends && ai_holder.faction_friends.len) //This list is shared amongst the faction
+			ai_holder.faction_friends -= src
+			ai_holder.faction_friends = null
+		QDEL_NULL(ai_holder)
 	if(dsoverlay)
 		dsoverlay.loc = null //I'll take my coat with me
 		dsoverlay = null
@@ -29,6 +49,9 @@
 		if(istype(nest, /obj/structure/blob/factory))
 			var/obj/structure/blob/factory/F = nest
 			F.spores -= src
+		if(istype(nest, /obj/structure/mob_spawner))
+			var/obj/structure/mob_spawner/S = nest
+			S.get_death_report(src)
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
@@ -78,7 +101,14 @@
 			internal_organs -= OR
 			qdel(OR)
 
-	return ..()
+	cultnet.updateVisibility(src, 0)
+
+	if(aiming)
+		qdel(aiming)
+		aiming = null
+	aimed.Cut()
+
+	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
@@ -91,16 +121,18 @@
 	return
 
 //mob verbs are faster than object verbs. See above.
-/mob/living/pointed(atom/A as mob|obj|turf in view())
+/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
 	if(src.stat || src.restrained())
-		return 0
+		return FALSE
 	if(src.status_flags & FAKEDEATH)
-		return 0
-	if(!..())
-		return 0
+		return FALSE
+	return ..()
 
-	src.visible_message(span_filter_notice(span_bold("[src]") + " points to [A]."))
-	return 1
+/mob/living/_pointed(atom/pointing_at)
+	if(!..())
+		return FALSE
+
+	visible_message(span_info(span_bold("[src]") + " points at [pointing_at]."), span_info("You point at [pointing_at]."))
 
 /mob/living/verb/succumb()
 	set name = "Succumb to death"
@@ -914,7 +946,7 @@
 						if(ishuman(src))
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 								if(!L || L.is_broken())
 									blood_vomit = 1
 
@@ -1261,16 +1293,15 @@
 /mob/living/vv_get_header()
 	. = ..()
 	. += {"
-		<a href='byond://?_src_=vars;[HrefToken()];rename=\ref[src]'><b>[src]</b></a><font size='1'>
-		<br><a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>
-		<br>
-		BRUTE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>
-		FIRE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>
-		TOXIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>
-		OXY:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>
-		CLONE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>
-		BRAIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
-		</font>
+		<a href='byond://?_src_=vars;[HrefToken()];rename=\ref[src]'>"} + span_bold("[src]") + {"</a>
+		"} + span_small("<br><a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>") + {"
+		"} + span_small("<br>") + {"
+		"} + span_small("BRUTE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>") + {"
+		"} + span_small("FIRE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>") + {"
+		"} + span_small("TOXIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>") + {"
+		"} + span_small("OXY:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>") + {"
+		"} + span_small("CLONE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>") + {"
+		"} + span_small("BRAIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>") + {"
 		"}
 
 /mob/living/update_gravity(has_gravity)
@@ -1393,12 +1424,12 @@
 				drop.drips |= drips
 
 			// Update appearance.
+			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
+			drop.update_icon()
 			drop.name = "drips of something"
 			drop.desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 			drop.dryname = "dried something"
 			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
-			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
-			drop.update_icon()
 			drop.fluorescent  = 0
 			drop.invisibility = 0
 	//else

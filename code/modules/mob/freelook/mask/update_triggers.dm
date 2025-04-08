@@ -22,10 +22,6 @@
 	..()
 	cultnet.updateVisibility(src, 0)
 
-/mob/living/Destroy()
-	cultnet.updateVisibility(src, 0)
-	return ..()
-
 /mob/living/rejuvenate()
 	var/was_dead = stat == DEAD
 	..()

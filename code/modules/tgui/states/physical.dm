@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: physical_state
-  *
-  * Short-circuits the default state to only check physical distance.
+/**
+ * tgui state: physical_state
+ *
+ * Short-circuits the default state to only check physical distance.
  **/
 
 GLOBAL_DATUM_INIT(tgui_physical_state, /datum/tgui_state/physical, new)
@@ -53,11 +53,11 @@ GLOBAL_DATUM_INIT(tgui_physical_obscured_state, /datum/tgui_state/physical_obscu
 /mob/living/silicon/ai/physical_obscured_can_use_topic(src_object)
 	return STATUS_UPDATE // AIs are not physical.
 
- /**
-  * tgui state: physical_state_bigscreen
-  *
-  * Short-circuits the default state to only check physical distance,
-  * but allows updates out to the full size of the screen.
+/**
+ * tgui state: physical_state_bigscreen
+ *
+ * Short-circuits the default state to only check physical distance,
+ * but allows updates out to the full size of the screen.
  **/
 
 GLOBAL_DATUM_INIT(tgui_physical_state_bigscreen, /datum/tgui_state/physical_bigscreen, new)

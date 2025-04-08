@@ -14,14 +14,12 @@
 	var/active = 0//Just tells us that it was clicked on so we should start shooting
 	var/delay_del = 0//Delays the del if we retarget without shooting
 
-/obj/screen/auto_target/New(loc, var/obj/item/gun/G)
-		..()
-		gun = G
-		var/image/I = image('icons/effects/Targeted.dmi', src, "locked")
-		I.override = 1
-		usr << I
-		//autodel() //Currently doesn't really work right.
-		return
+/obj/screen/auto_target/Initialize(mapload, var/obj/item/gun/G)
+	. = ..()
+	gun = G
+	var/image/I = image('icons/effects/Targeted.dmi', src, "locked")
+	I.override = 1
+	usr << I
 
 /obj/screen/auto_target/CanPass()//Everything should ignore this guy and just pass by
 		return 1

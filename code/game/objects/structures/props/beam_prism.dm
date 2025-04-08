@@ -26,7 +26,7 @@
 
 	interaction_message = span_notice("The prismatic turret seems to be able to rotate.")
 
-/obj/structure/prop/prism/Initialize()
+/obj/structure/prop/prism/Initialize(mapload)
 	. = ..()
 	if(degrees_from_north)
 		animate(src, transform = turn(NORTH, degrees_from_north), time = 3)
@@ -197,7 +197,7 @@
 	for(var/obj/structure/prop/prism/P in my_turrets)
 		P.rotate_auto(new_bearing)
 
-/obj/structure/prop/prismcontrol/Initialize()
+/obj/structure/prop/prismcontrol/Initialize(mapload)
 	. = ..()
 	if(my_turrets.len) //Preset controls.
 		for(var/obj/structure/prop/prism/P in my_turrets)

@@ -15,8 +15,8 @@
 
 	var/obj/item/voice_changer/voice_holder
 
-/obj/item/rig_module/voice/New()
-	..()
+/obj/item/rig_module/voice/Initialize(mapload)
+	. = ..()
 	voice_holder = new(src)
 	voice_holder.active = 0
 

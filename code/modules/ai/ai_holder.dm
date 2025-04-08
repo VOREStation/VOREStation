@@ -14,19 +14,9 @@
 	var/datum/ai_holder/ai_holder = null
 	var/ai_holder_type = null // Which ai_holder datum to give to the mob when initialized. If null, nothing happens.
 
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	if(!ai_holder)
 		initialize_ai_holder()
-	return ..()
-
-/mob/living/Destroy()
-	if(ai_holder)
-		ai_holder.holder = null
-		ai_holder.UnregisterSignal(src,COMSIG_MOB_STATCHANGE)
-		if(ai_holder.faction_friends && ai_holder.faction_friends.len) //This list is shared amongst the faction
-			ai_holder.faction_friends -= src
-			ai_holder.faction_friends = null
-		QDEL_NULL(ai_holder)
 	return ..()
 
 /mob/living/Login()
@@ -39,7 +29,7 @@
 		ai_holder.manage_processing(AI_PROCESSING)
 	return ..()
 
-//Extracted from mob/living/Initialize() so that we may call it at any time after a mob was created
+//Extracted from mob/living/Initialize(mapload) so that we may call it at any time after a mob was created
 /mob/living/proc/initialize_ai_holder()
 	if(ai_holder)	//Making double sure we clean up and properly GC the original ai_holder
 		var/old_holder = ai_holder

@@ -314,8 +314,7 @@ var/list/preferences_datums = list()
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
-		if(GLOB.mannequins[client_ckey])
-			qdel_null(GLOB.mannequins[client_ckey])
+		//Mannequin removal code needed here...For the far future once harddels are solved.
 		return 1
 	else
 		return 0
@@ -532,6 +531,9 @@ var/list/preferences_datums = list()
 
 	var/datum/preference/color/wing_color3 = GLOB.preference_entries[/datum/preference/color/human/wing_color3]
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
+
+	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
+	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
 
 	character.set_gender(biological_gender)
 

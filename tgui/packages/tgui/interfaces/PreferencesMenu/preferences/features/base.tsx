@@ -1,12 +1,12 @@
 import {
-  ComponentType,
+  type ComponentType,
   createElement,
-  ReactNode,
+  type ReactNode,
   useEffect,
   useState,
 } from 'react';
 import React from 'react';
-import { sendAct, useBackend } from 'tgui/backend';
+import { type sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -16,9 +16,9 @@ import {
   Slider,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { createSetPreference, PreferencesMenuData } from '../../data';
+import { createSetPreference, type PreferencesMenuData } from '../../data';
 import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 
 function sortNode(...node: [string, ReactNode][]) {

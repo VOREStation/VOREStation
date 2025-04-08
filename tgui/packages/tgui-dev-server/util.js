@@ -23,7 +23,7 @@ export const resolveGlob = (...sections) => {
     windowsPathsNoEscape: true,
   });
   const safePaths = [];
-  for (let path of unsafePaths) {
+  for (const path of unsafePaths) {
     try {
       fs.statSync(path);
       safePaths.push(path);

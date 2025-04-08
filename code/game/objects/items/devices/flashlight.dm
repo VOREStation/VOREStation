@@ -36,7 +36,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 
 	if(power_use && cell_type)
@@ -129,13 +129,13 @@
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] at [M]'s face."), \
-								 	 span_notice("You direct [src] at [M]'s face."))
+										span_notice("You direct [src] at [M]'s face."))
 				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
 				return
 
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] to [M]'s eyes."), \
-							 	 span_notice("You direct [src] to [M]'s eyes."))
+									span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
@@ -367,9 +367,9 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize(mapload)
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	. = ..()
 
 /obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
@@ -430,9 +430,9 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/flashlight/glowstick/New()
+/obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
-	..()
+	. = ..()
 
 /obj/item/flashlight/glowstick/process()
 	fuel = max(fuel - 1, 0)

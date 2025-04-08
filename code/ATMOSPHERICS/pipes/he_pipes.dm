@@ -23,7 +23,7 @@
 	buckle_lying = 1
 
 	// BubbleWrap
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/Initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/Initialize(mapload)
 	. = ..()
 // BubbleWrap END
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
@@ -118,7 +118,7 @@
 					heat_limit = H.species.heat_level_3
 
 				if(pipe_air.temperature > heat_limit + 1)
-					L.apply_damage(4 * log(pipe_air.temperature - heat_limit), BURN, BP_TORSO, used_weapon = "Excessive Heat")
+					L.apply_damage(4 * log(pipe_air.temperature - heat_limit), BURN, BP_TORSO)
 
 		//fancy radiation glowing
 		if(pipe_air.temperature && (icon_temperature > 500 || pipe_air.temperature > 500)) //start glowing at 500K

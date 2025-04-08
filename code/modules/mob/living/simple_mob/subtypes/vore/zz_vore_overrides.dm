@@ -2,22 +2,22 @@
 //	This file overrides settings on upstream simple animals to turn on vore behavior
 //
 
-/*
-## For anything that previously inhertited from: /mob/living/simple_mob/hostile/vore ##
-
-  	vore_active = 1
-  	icon = 'icons/mob/vore.dmi'
-
-## For anything that previously inhertied from: /mob/living/simple_mob/hostile/vore/large ##
-
-	vore_active = 1
-	icon = 'icons/mob/vore64x64.dmi'
-	old_x = -16
-	old_y = -16
-	pixel_x = -16
-	pixel_y = -16
-	vore_pounce_chance = 50
-*/
+/**
+ * ## For anything that previously inhertited from: /mob/living/simple_mob/hostile/vore ##
+ *
+ *	vore_active = 1
+ *	icon = 'icons/mob/vore.dmi'
+ *
+ * ## For anything that previously inhertied from: /mob/living/simple_mob/hostile/vore/large ##
+ *
+ *	vore_active = 1
+ *	icon = 'icons/mob/vore64x64.dmi'
+ *	old_x = -16
+ *	old_y = -16
+ *	pixel_x = -16
+ *	pixel_y = -16
+ *	vore_pounce_chance = 50
+ */
 
 //
 // Okay! Here we go!
@@ -118,21 +118,6 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 15
 	attack_armor_pen = 0
-
-/mob/living/simple_mob/animal/space/carp
-	icon = 'icons/mob/vore.dmi'
-	vore_active = 1
-	vore_icons = SA_ICON_LIVING
-	response_help = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-/mob/living/simple_mob/animal/space/carp/large
-	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/large/huge
-	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/holodeck
-	vore_icons = 0
 
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/hostile/creature/vore
@@ -238,6 +223,8 @@
 // Override stuff for holodeck carp to make them not digest when set to safe!
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/safe = (faction == FACTION_NEUTRAL)

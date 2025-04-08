@@ -11,7 +11,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { CrewManifestContent } from './CrewManifest';
@@ -278,7 +278,7 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
   if (regions) {
     regions.sort((a, b) => a.name.localeCompare(b.name));
 
-    for (let region of regions) {
+    for (const region of regions) {
       region.accesses.sort((a, b) => a.desc.localeCompare(b.desc));
     }
   }

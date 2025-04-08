@@ -8,7 +8,7 @@
 	delete_me = TRUE
 	var/platform_type
 
-/obj/effect/landmark/robot_platform/Initialize()
+/obj/effect/landmark/robot_platform/Initialize(mapload)
 	if(platform_type)
 		new platform_type(get_turf(src))
 	return ..()
@@ -64,7 +64,7 @@
 	if(mind)
 		mind.name = real_name
 
-/mob/living/silicon/robot/platform/Initialize(var/mapload)
+/mob/living/silicon/robot/platform/Initialize(mapload)
 	. = ..()
 	if(!mmi)
 		mmi = new /obj/item/mmi/digital/robot(src)

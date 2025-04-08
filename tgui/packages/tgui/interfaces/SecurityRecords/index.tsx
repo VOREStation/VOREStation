@@ -12,7 +12,7 @@ import {
   SecurityRecordsNavigation,
   SecurityRecordsView,
 } from './SecurityRecordsOptions';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SecurityRecords = (props) => {
   const { data } = useBackend<Data>();

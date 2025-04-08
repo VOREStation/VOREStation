@@ -1,6 +1,7 @@
 /datum/reagent/vaccine
 	name = REAGENT_VACCINE
 	id = REAGENT_ID_VACCINE
+	description = "Liquid vaccine against some type of virus."
 	color = "#C81040"
 	taste_description = "antibodies"
 
@@ -29,6 +30,9 @@
 	color = "#41B0C0"
 	taste_mult = 1.5
 
+/datum/reagent/medicine
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /datum/reagent/medicine/adranol/adranolvirusfood
 	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_ADRANOLVIRUSFOOD
@@ -36,7 +40,7 @@
 	color = "#D18AA5"
 
 /datum/reagent/toxin/phoron/phoronvirusfood
-	name = REAGENT_ADRANOLVIRUSFOOD
+	name = REAGENT_PHORONVIRUSFOOD
 	id = REAGENT_ID_PHORONVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems to be the strongest."
 	color = "#A69DA9"

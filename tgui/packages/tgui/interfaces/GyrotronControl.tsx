@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Knob, Section, Table } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export const GyrotronControl = () => (
   <Window width={627} height={700}>
@@ -32,6 +32,8 @@ export const GyrotronControlContent = (props) => {
 
   return (
     <Section
+      fill
+      scrollable
       title="Gyrotrons"
       buttons={
         <Button icon="pencil-alt" onClick={() => act('set_tag')}>

@@ -11,7 +11,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   owner: string;
@@ -67,7 +67,7 @@ export const Pda = (props) => {
     );
   }
 
-  let App = getPdaApp(app.template);
+  const App = getPdaApp(app.template);
 
   const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 

@@ -8,7 +8,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   locked: BooleanLike;
@@ -65,7 +65,7 @@ export const SecureSafe = (props) => {
   const { act, data } = useBackend<Data>();
   const { code, l_setshort, l_set, emagged, locked } = data;
 
-  let new_code: boolean = !(!!l_set || !!l_setshort);
+  const new_code: boolean = !(!!l_set || !!l_setshort);
 
   return (
     <Window width={250} height={380}>

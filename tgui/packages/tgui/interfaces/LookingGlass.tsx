@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, LabeledList, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   supportedPrograms: string[];
@@ -15,7 +15,7 @@ export const LookingGlass = (props) => {
 
   const { supportedPrograms, currentProgram, immersion, gravity } = data;
 
-  let height = Math.min(180 + supportedPrograms.length * 23, 600);
+  const height = Math.min(180 + supportedPrograms.length * 23, 600);
 
   return (
     <Window width={300} height={height}>

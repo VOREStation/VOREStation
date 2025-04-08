@@ -106,12 +106,10 @@
 		else
 			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News<br>(NEW!)</A></b></p>"
 
-	/* //TODO: Actually add the fukin changelog. We need it DESPERATELY but this isn't the PR for it.
-	if(client.prefs.lastchangelog == changelog_hash)
+	if(read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash)
 		output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br><i>No Changes</i></p>"
 	else
 		output += "<p><b><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br>(NEW!)</b></p>"
-	*/
 
 	output += "</div>"
 
@@ -181,6 +179,9 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
+		if(!SSticker || SSticker.current_state == GAME_STATE_INIT)
+			to_chat(src, span_warning("The game is still setting up, please try again later."))
+			return 0
 		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 
@@ -354,7 +355,9 @@
 			client.feedback_form = new(client)
 
 	if(href_list["open_changelog"])
-		src << link("https://wiki.vore-station.net/Changelog")
+		write_preference_directly(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
+		client.changes()
+		return
 
 /mob/new_player/proc/handle_server_news()
 	if(!client)
@@ -524,7 +527,7 @@
 
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_alien_whitelisted(chosen_species))
+		if(is_alien_whitelisted(src.client, chosen_species))
 			new_character = new(T, use_species_name)
 
 	if(!new_character)
@@ -553,6 +556,7 @@
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 	new_character.sync_organ_dna()
+	new_character.initialize_vessel()
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
@@ -599,9 +603,6 @@
 	src << browse(null, "window=News") //closes news window
 	panel.close()
 
-/mob/new_player/proc/has_admin_rights()
-	return check_rights(R_ADMIN, 0, src)
-
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
@@ -610,7 +611,7 @@
 	if(!chosen_species)
 		return SPECIES_HUMAN
 
-	if(is_alien_whitelisted(chosen_species))
+	if(is_alien_whitelisted(src.client, chosen_species))
 		return chosen_species.name
 
 	return SPECIES_HUMAN

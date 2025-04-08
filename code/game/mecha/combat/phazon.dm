@@ -39,7 +39,7 @@
 	switch_dmg_type_possible = TRUE
 	var/list/inherent_damage_absorption = list("brute"=0.7,"fire"=0.7,"bullet"=0.7,"laser"=0.7,"energy"=0.7,"bomb"=0.7)
 
-/obj/mecha/combat/phazon/equipped/Initialize()
+/obj/mecha/combat/phazon/equipped/Initialize(mapload)
 	. = ..()
 	starting_equipment = list(
 		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
@@ -160,8 +160,8 @@
 /obj/mecha/combat/phazon/old
 	desc = "An exosuit which can only be described as 'WTF?'. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/phazon/old/New()
-	..()
+/obj/mecha/combat/phazon/old/Initialize(mapload)
+	. = ..()
 	health = 25
 	maxhealth = 150	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

@@ -7,13 +7,13 @@
 	layer = BELOW_MOB_LAYER
 
 //Vorestation addition, to override the New() proc further below, since this is a lamp.
-/obj/machinery/light/flamp/New()
-	..()
+/obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct)
 	layer = initial(layer)
+	. = ..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
-	..()
+/obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct)
+	. = ..()
 	//Vorestation addition, so large mobs stop looking stupid in front of lights.
 	if (dir == SOUTH) // Lights are backwards, SOUTH lights face north (they are on south wall)
 		layer = ABOVE_MOB_LAYER
@@ -76,24 +76,24 @@
 	sheets_refunded = 2
 
 /obj/machinery/light_construct/floortube/verb/rotate_clockwise()
-    set name = "Rotate Fixture Clockwise"
-    set category = "Object"
-    set src in view(1)
+	set name = "Rotate Fixture Clockwise"
+	set category = "Object"
+	set src in view(1)
 
-    if (usr.stat || usr.restrained() || anchored)
-        return
+	if (usr.stat || usr.restrained() || anchored)
+		return
 
-    src.set_dir(turn(src.dir, 270))
+	src.set_dir(turn(src.dir, 270))
 
 /obj/machinery/light_construct/floortube/verb/rotate_counterclockwise()
-    set name = "Rotate Fixture Counter-Clockwise"
-    set category = "Object"
-    set src in view(1)
+	set name = "Rotate Fixture Counter-Clockwise"
+	set category = "Object"
+	set src in view(1)
 
-    if (usr.stat || usr.restrained() || anchored)
-        return
+	if (usr.stat || usr.restrained() || anchored)
+		return
 
-    src.set_dir(turn(src.dir, 90))
+	src.set_dir(turn(src.dir, 90))
 
 /obj/machinery/light_construct/floortube/update_icon()
 	switch(stage)
@@ -260,13 +260,13 @@
 /obj/machinery/light/broken
 	icon_state = "tube-broken"
 
-/obj/machinery/light/broken/Initialize()
+/obj/machinery/light/broken/Initialize(mapload)
 	. = ..()
 	broken()
 
 /obj/machinery/light/broken/small
 	icon_state = "bulb-broken"
 
-/obj/machinery/light/broken/small/Initialize()
+/obj/machinery/light/broken/small/Initialize(mapload)
 	. = ..()
 	broken()

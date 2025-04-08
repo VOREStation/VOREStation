@@ -33,14 +33,15 @@
 	unacidable = TRUE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+	var/delete_me
 
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/static/list/weedImageCache
 
-/obj/effect/alien/weeds/Initialize(var/mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/Initialize(mapload, var/node, var/newcolor)
 	. = ..()
-	if(isspace(loc))
+	if(isspace(loc) || delete_me)
 		return INITIALIZE_HINT_QDEL
 
 	linked_node = node
@@ -75,13 +76,16 @@
 	var/node_range = NODERANGE
 	var/set_color = "#321D37"
 
-/obj/effect/alien/weeds/node/Initialize(var/mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/node/Initialize(mapload, var/node, var/newcolor)
 	. = ..()
 
 	for(var/obj/effect/alien/weeds/existing in loc)
 		if(existing == src)
 			continue
 		else
+			if(!(existing.flags & ATOM_INITIALIZED))
+				existing.delete_me = TRUE
+				continue
 			qdel(existing)
 
 	linked_node = src
@@ -248,8 +252,8 @@
 	var/ticks = 0
 	var/target_strength = 0
 
-/obj/effect/alien/acid/New(loc, target)
-	..(loc)
+/obj/effect/alien/acid/Initialize(mapload, target)
+	. = ..()
 	src.target = target
 
 	if(isturf(target)) // Turf take twice as long to take down.

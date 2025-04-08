@@ -36,7 +36,7 @@ var/world_time_day
 	var/tree_types = list()
 	var/snow_chance = 10
 
-/turf/simulated/floor/outdoors/grass/seasonal/Initialize()
+/turf/simulated/floor/outdoors/grass/seasonal/Initialize(mapload)
 
 	switch(world_time_season)
 		if("spring")
@@ -263,14 +263,14 @@ var/world_time_day
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow
 	snow_chance = 1
 
-/turf/simulated/floor/water/seasonal/Initialize()
+/turf/simulated/floor/water/seasonal/Initialize(mapload)
 	. = ..()
 	switch(world_time_season)
 		if("winter")
 			if(prob(99))
 				ChangeTurf(/turf/simulated/floor/outdoors/ice)
 
-/turf/simulated/floor/water/deep/seasonal/Initialize()
+/turf/simulated/floor/water/deep/seasonal/Initialize(mapload)
 	. = ..()
 	switch(world_time_season)
 		if("winter")

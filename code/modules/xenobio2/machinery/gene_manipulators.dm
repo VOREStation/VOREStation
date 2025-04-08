@@ -34,8 +34,8 @@
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
-/obj/item/storage/box/xenobiodisk/New()
-	..()
+/obj/item/storage/box/xenobiodisk/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/xenobio(src)
 
@@ -123,7 +123,7 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/xenobio/extractor/Initialize()
+/obj/machinery/xenobio/extractor/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -258,7 +258,7 @@
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
-/obj/machinery/xenobio/editor/Initialize()
+/obj/machinery/xenobio/editor/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

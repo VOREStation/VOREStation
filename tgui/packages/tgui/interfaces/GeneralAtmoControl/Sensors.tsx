@@ -1,6 +1,6 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { sensor } from './types';
+import type { sensor } from './types';
 
 export const AtmoControlSensors = (props: { sensors: sensor[] }) => {
   const { sensors } = props;
@@ -34,7 +34,7 @@ const AtmoSensor = (props: { sensor: sensor }) => {
   const { pressure, temperature, oxygen, nitrogen, carbon_dioxide, phoron } =
     sensor.sensor_data;
 
-  let labeledListContents: React.JSX.Element[] = [];
+  const labeledListContents: React.JSX.Element[] = [];
   if (pressure) {
     labeledListContents.push(
       <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>,

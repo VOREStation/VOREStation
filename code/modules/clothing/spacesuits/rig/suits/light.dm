@@ -4,17 +4,7 @@
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
-	allowed = list(
-		/obj/item/gun,
-		/obj/item/ammo_magazine,
-		/obj/item/ammo_casing,
-		/obj/item/melee/baton,
-		/obj/item/handcuffs,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/cell,
-		/obj/item/storage
-		)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_EXPLO, POCKET_SUIT_REGULATORS, POCKET_STORAGE)
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	emp_protection = 10
 	slowdown = 0
@@ -30,18 +20,18 @@
 	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
 
 /obj/item/clothing/suit/space/rig/light
-	name = "suit"
+	name = DEVELOPER_WARNING_NAME // "suit"
 	breach_threshold = 18 //comparable to voidsuits
 
 /obj/item/clothing/gloves/gauntlets/rig/light
-	name = "gloves"
+	name = DEVELOPER_WARNING_NAME // "gloves"
 
 /obj/item/clothing/shoes/magboots/rig/light
-	name = "shoes"
+	name = DEVELOPER_WARNING_NAME // "shoes"
 	step_volume_mod = 0.8
 
 /obj/item/clothing/head/helmet/space/rig/light
-	name = "hood"
+	name = DEVELOPER_WARNING_NAME // "hood"
 
 /obj/item/rig/light/hacker
 	name = "cybersuit control module"

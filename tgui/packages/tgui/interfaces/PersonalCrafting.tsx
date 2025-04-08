@@ -12,7 +12,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
@@ -40,10 +40,10 @@ type uiRecipe = Required<recipe & { category: string }>;
 function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
   const categories: uiCategory[] = [];
   const recipes: uiRecipe[] = [];
-  for (let category of Object.keys(crafting_recipes)) {
+  for (const category of Object.keys(crafting_recipes)) {
     const subcategories = crafting_recipes[category];
     if ('has_subcats' in subcategories) {
-      for (let subcategory of Object.keys(subcategories)) {
+      for (const subcategory of Object.keys(subcategories)) {
         if (subcategory === 'has_subcats') {
           continue;
         }
@@ -55,7 +55,7 @@ function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
         });
         // Push recipes
         const _recipes = subcategories[subcategory];
-        for (let recipe of _recipes) {
+        for (const recipe of _recipes) {
           recipes.push({
             ...recipe,
             category: subcategory,
@@ -71,7 +71,7 @@ function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
     });
     // Push recipes
     const _recipes = crafting_recipes[category];
-    for (let recipe of _recipes) {
+    for (const recipe of _recipes) {
       recipes.push({
         ...recipe,
         category,
@@ -136,6 +136,7 @@ export const PersonalCrafting = (props) => {
           <Input
             fluid
             value={searchText}
+            mb={1}
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />

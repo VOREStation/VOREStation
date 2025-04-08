@@ -7,9 +7,9 @@
  * @license MIT
  */
 
-import { vecLength, vecSubtract } from 'common/vector';
 import { focusMap } from 'tgui/focus';
 import { canStealFocus, globalEvents } from 'tgui-core/events';
+import { vecLength, vecSubtract } from 'tgui-core/vector';
 
 // Empyrically determined number for the smallest possible
 // text you can select with the mouse.
@@ -31,6 +31,9 @@ export const setupPanelFocusHacks = () => {
       const clickEndPos = [e.screenX, e.screenY];
       const dist = vecLength(vecSubtract(clickEndPos, clickStartPos));
       if (dist >= MIN_SELECTION_DISTANCE) {
+        focusStolen = true;
+      }
+      if (document.activeElement?.className.includes('Button')) {
         focusStolen = true;
       }
     }

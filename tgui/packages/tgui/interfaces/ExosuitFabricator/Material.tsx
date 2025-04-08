@@ -13,7 +13,7 @@ import { classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 import { MATERIAL_KEYS } from './constants';
-import { Data, material } from './types';
+import type { Data, material } from './types';
 
 const EjectMaterial = (props: { material: material }) => {
   const { act } = useBackend();
@@ -71,7 +71,7 @@ export const Materials = (props: {
 
   const { materials = [] } = data;
 
-  let display_materials = materials.filter(
+  const display_materials = materials.filter(
     (mat) => displayAllMat || mat.amount > 0,
   );
 

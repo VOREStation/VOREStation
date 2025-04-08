@@ -95,6 +95,7 @@
 		EQUIPMENT("Mini-Translocator",							/obj/item/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
 		EQUIPMENT("Mining Satchel of Holding",					/obj/item/storage/bag/ore/holding,							1500),
+		EQUIPMENT("Sheet Snatcher of Holding",					/obj/item/storage/bag/sheetsnatcher/holding,				1000),
 		EQUIPMENT("Advanced Ore Scanner",						/obj/item/mining_scanner/advanced,							500),
 	)
 	prize_list["Consumables"] = list(
@@ -323,12 +324,12 @@
 	. = ..()
 
 /**
-  * Called when someone slaps the machine with a mining voucher
-  *
-  * Arguments:
-  * * voucher - The voucher card item
-  * * redeemer - The person holding it
-  */
+ * Called when someone slaps the machine with a mining voucher
+ *
+ * Arguments:
+ * * voucher - The voucher card item
+ * * redeemer - The person holding it
+ */
 /obj/machinery/mineral/equipment_vendor/proc/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/selection = tgui_input_list(redeemer, "Pick your equipment", "Mining Voucher Redemption", list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher"))
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)

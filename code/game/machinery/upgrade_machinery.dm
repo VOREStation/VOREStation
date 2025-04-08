@@ -1,5 +1,5 @@
 // Handles automagically upgrades to machines based on components placed on a machine during map init
-/obj/machinery/Initialize(var/mapload)
+/obj/machinery/Initialize(mapload)
 	. = ..()
 	// Handles automagically upgrades to machines based on components placed on a machine during map init
 	if(mapload)

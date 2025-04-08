@@ -12,7 +12,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 
 import { damageTypes, statNames } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CryoContent = (props) => {
   const { act, data } = useBackend<Data>();

@@ -1,7 +1,7 @@
 /datum/find
 	var/find_type = 0				//random according to the digsite type
 	var/excavation_required = 0		//random 10 - 190
-	var/view_range = 40				//how close excavation has to come to show an overlay on the turf
+	var/view_range = 200			//how close excavation has to come to show an overlay on the turf
 	var/prob_delicate = 0			//probability it requires an active suspension field to not insta-crumble. Set to 0 to nullify the need for suspension field.
 
 /datum/find/New(var/digsite, var/exc_req)
@@ -17,7 +17,8 @@
 	origin_tech = list(TECH_MATERIAL = 5)
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/strangerock/New(loc, var/inside_item_type = 0)
+/obj/item/strangerock/Initialize(mapload, var/inside_item_type = 0)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 	var/d100 = rand(1,100)

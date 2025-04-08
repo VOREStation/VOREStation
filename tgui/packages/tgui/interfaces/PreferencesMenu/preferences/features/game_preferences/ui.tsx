@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
-  FeatureNumeric,
+  type FeatureNumeric,
   FeatureSliderInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {
@@ -80,5 +80,12 @@ export const tgui_say_height: FeatureNumeric = {
   name: 'Say: TGUI Height (Lines)',
   category: 'UI',
   description: 'Amount of lines to show in the tgui say input.',
+  component: FeatureSliderInput,
+};
+
+export const tgui_say_width: FeatureNumeric = {
+  name: 'Say: TGUI Width (Pixel)',
+  category: 'UI',
+  description: 'The width to show in the tgui say input.',
   component: FeatureSliderInput,
 };

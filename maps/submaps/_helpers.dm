@@ -6,7 +6,7 @@
 	density = 1
 	blocks_air = TRUE
 
-/turf/space/internal_edge/Initialize()
+/turf/space/internal_edge/Initialize(mapload)
 	. = ..()
 	opacity = 1 // This will get reset due to using appearances that are precreated in SSskybox, and apps have opacity = 0
 	density = 1
@@ -54,7 +54,7 @@
 	var/obj/structure/fake_stairs/target //Don't set this manually, let it do it!
 	var/stepoff_dir
 
-/obj/structure/fake_stairs/Initialize(var/mapload)
+/obj/structure/fake_stairs/Initialize(mapload)
 	. = ..()
 
 	for(var/obj/structure/fake_stairs/FS in world)

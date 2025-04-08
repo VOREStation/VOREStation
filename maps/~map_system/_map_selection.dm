@@ -1,4 +1,4 @@
-#if !defined(CITESTING) && !defined(SPACEMAN_DMM)
+#if !defined(CITESTING)
 
 /*********************/
 /* MAP SELECTION     */
@@ -33,6 +33,7 @@
 #include "../groundbase/groundbase.dm"
 #endif
 
+// Debug: Minitest
 #ifdef USE_MAP_MINITEST
 #include "../virgo_minitest/virgo_minitest.dm"
 #endif

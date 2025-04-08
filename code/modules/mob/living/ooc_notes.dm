@@ -42,7 +42,7 @@
 			"}
 	dat += {"
 			<td class="button">
-				<a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1' class='button'>Print to chat</a>
+				<a href='byond://?src=\ref[src];print_ooc_notes_chat=1' class='button'>Print to chat</a>
 			</td>
 			</table>
 			"}

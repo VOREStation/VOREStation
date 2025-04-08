@@ -65,7 +65,7 @@
 	return
 
 // register for radio system
-/obj/machinery/status_display/Initialize()
+/obj/machinery/status_display/Initialize(mapload)
 	. = ..()
 	if(radio_controller)
 		radio_controller.add_object(src, frequency)

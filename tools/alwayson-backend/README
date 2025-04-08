@@ -1,0 +1,12 @@
+The libvchatlog.so/vchatlog.dll file will fetch the required database credentials automatically from the
+config/dbconfig.txt if the chatlogging database backend was enabled.
+
+For the alwayson-backend you will have to create some kind of service to keep it running. With the supplied
+.env.example you are able to set the port of the API. The configured chatlogging API URL (where you also turn it on)
+you will have to supply the correct ip-address/domain and port on where this API is reachable.
+
+For this you can set the DBCONFIG_PATH environment variable (or use the .env.example) to the exact path of the config/dbconfig.txt.
+
+
+
+Do not forget to rename .env.example to .env of course, if you want to use a file.

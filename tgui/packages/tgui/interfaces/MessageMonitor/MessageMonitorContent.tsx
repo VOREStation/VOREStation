@@ -8,7 +8,7 @@ import {
   MessageMonitorMain,
   MessageMonitorSpamFilter,
 } from './MessageMonitorTabs';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const MessageMonitorContent = (props) => {
   const { act, data } = useBackend<Data>();
@@ -17,7 +17,7 @@ export const MessageMonitorContent = (props) => {
 
   const [tabIndex, setTabIndex] = useState<number>(0);
 
-  let tab: React.JSX.Element[] = [];
+  const tab: React.JSX.Element[] = [];
 
   tab[0] = <MessageMonitorMain />;
   tab[1] = <MessageMonitorLogs logs={linkedServer.pda_msgs} pda />;

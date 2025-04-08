@@ -6,7 +6,7 @@
 	armor = list(melee = 90, bullet = 80, laser = 10, energy = 10, bomb = 80, bio = 0, rad = 0)
 	w_class = ITEMSIZE_HUGE // massively bulky item
 	gas_transfer_coefficient = 0.90
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	slowdown = 5 // If you're a tank you're gonna move like a tank.
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0
@@ -57,7 +57,7 @@
 	icon_state = "unsc_armor"
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO // ToDo: Break up the armor into smaller bits.
+	body_parts_covered = CHEST // ToDo: Break up the armor into smaller bits.
 
 /obj/item/clothing/suit/armor/combat/imperial
 	name = "imperial soldier armor"
@@ -65,7 +65,7 @@
 	icon_state = "ge_armor"
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/suit/armor/combat/imperial/centurion
 	name = "imperial centurion armor"
@@ -87,7 +87,7 @@
 	icon_state = "crusader"
 	icon = 'icons/obj/clothing/knights_vr.dmi'
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
 
@@ -95,7 +95,7 @@
 	name = "bedevere's armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "bedevere"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 // Costume Versions Here
 /obj/item/clothing/suit/armor/combat/crusader_costume
@@ -104,7 +104,7 @@
 	icon_state = "crusader"
 	icon = 'icons/obj/clothing/knights_vr.dmi'
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 1
 
@@ -112,7 +112,7 @@
 	name = "bedevere's costume armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "bedevere"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 //Deluxe explorer suit
 /obj/item/clothing/suit/armor/pcarrier/explorer/deluxe
@@ -147,22 +147,13 @@
 	icon = 'icons/obj/clothing/knights_vr.dmi'
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
 	flags = THICKMATERIAL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = CHEST|LEGS|ARMS
 	slowdown=0
 	siemens_coefficient = 0.9
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/gun,
-		/obj/item/ammo_magazine,
-		/obj/item/melee,
-		/obj/item/material/knife,
-		/obj/item/tank,
-		/obj/item/radio,
-		/obj/item/pickaxe
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_EXPLO, POCKET_ALL_TANKS, POCKET_MINING)
 
 /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	name = "field medic low tech suit"

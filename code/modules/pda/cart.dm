@@ -150,7 +150,7 @@ var/list/civilian_cartridges = list(
 	desc = "A data cartridge with an integrated radio signaler module."
 	programs = list(new/datum/data/pda/app/signaller)
 
-/obj/item/cartridge/signal/Initialize()
+/obj/item/cartridge/signal/Initialize(mapload)
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 
@@ -236,7 +236,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/cartridge/rd/Initialize()
+/obj/item/cartridge/rd/Initialize(mapload)
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 

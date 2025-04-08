@@ -5,20 +5,6 @@
 ***********************************************************************/
 //Might want to move this into several files later but for now it works here
 
-/obj/item/melee/baton/robot/arm
-	name = "electrified arm"
-	icon = 'icons/obj/decals.dmi'
-	icon_state = "shock"
-
-	hitcost = 750
-	agonyforce = 70
-
-/obj/item/melee/baton/robot/arm/update_icon()
-	if(status)
-		set_light(1.5, 1, lightcolor)
-	else
-		set_light(0)
-
 /obj/item/borg/overdrive
 	name = "overdrive"
 	icon = 'icons/obj/decals.dmi'
@@ -81,10 +67,9 @@
 	icon_state = "healthhud"
 	icon = 'icons/inventory/eyes/item.dmi'
 
-/obj/item/borg/sight/hud/med/New()
-	..()
+/obj/item/borg/sight/hud/med/Initialize(mapload)
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health(src)
-	return
 
 
 /obj/item/borg/sight/hud/sec
@@ -92,7 +77,6 @@
 	icon_state = "securityhud"
 	icon = 'icons/inventory/eyes/item.dmi'
 
-/obj/item/borg/sight/hud/sec/New()
-	..()
+/obj/item/borg/sight/hud/sec/Initialize(mapload)
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
-	return

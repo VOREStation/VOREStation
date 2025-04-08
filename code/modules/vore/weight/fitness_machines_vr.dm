@@ -82,6 +82,14 @@
 	weightloss_power = 2
 	cooldown = 40
 
+/obj/machinery/fitness/heavy/treadmill
+	name = "treadmill"
+	desc = "A treadmill for running on! Often used with the goal of losing weight."
+	icon_state = "treadmill"
+	messages = list("You run for a while")
+	weightloss_power = 2
+	cooldown = 40
+
 /obj/machinery/scale
 	name = "scale"
 	icon = 'icons/obj/machines/fitness_machines_vr.dmi'

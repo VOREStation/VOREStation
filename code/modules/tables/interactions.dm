@@ -61,6 +61,8 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
+	if(user.is_incorporeal())
+		return
 	if(ismob(O.loc)) //If placing an item
 		if(!isitem(O) || user.get_active_hand() != O)
 			return ..()
@@ -114,7 +116,7 @@
 					for(var/obj/item/material/shard/S in L)
 						if(prob(50))
 							M.visible_message(span_danger("\The [S] slices [M]'s face messily!"),
-							                   span_danger("\The [S] slices your face messily!"))
+												span_danger("\The [S] slices your face messily!"))
 							M.apply_damage(10, def_zone = BP_HEAD)
 							if(prob(2))
 								M.embed(S, def_zone = BP_HEAD)

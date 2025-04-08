@@ -26,7 +26,6 @@
 	var/area_uid
 	var/id_tag = null
 
-	var/hibernate = 0 //Do we even process?
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 
 	var/external_pressure_bound = EXTERNAL_PRESSURE_BOUND
@@ -79,7 +78,7 @@
 	pressure_checks = 2
 	pressure_checks_default = 2
 
-/obj/machinery/atmospherics/unary/vent_pump/Initialize()
+/obj/machinery/atmospherics/unary/vent_pump/Initialize(mapload)
 	. = ..()
 
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
@@ -99,6 +98,7 @@
 
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
+	SSmachines.wake_vent(WEAKREF(src)) // So we are removed from hibernating list
 	unregister_radio(src, frequency)
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
@@ -116,7 +116,7 @@
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
 
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/Initialize()
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
@@ -141,7 +141,7 @@
 	power_channel = ENVIRON
 	power_rating = 30000	//15 kW ~ 20 HP
 
-/obj/machinery/atmospherics/unary/vent_pump/engine/Initialize()
+/obj/machinery/atmospherics/unary/vent_pump/engine/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500 //meant to match air injector
 
@@ -204,9 +204,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
 
-	if (hibernate)
-		return 1
-
 	if (!node)
 		update_use_power(USE_POWER_OFF)
 	if(!can_pump())
@@ -235,12 +232,9 @@
 		//If we're in an area that is fucking ideal, and we don't have to do anything, chances are we won't next tick either so why redo these calculations?
 		//JESUS FUCK.  THERE ARE LITERALLY 250 OF YOU MOTHERFUCKERS ON ZLEVEL ONE AND YOU DO THIS SHIT EVERY TICK WHEN VERY OFTEN THERE IS NO REASON TO
 
-		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && controller_iteration > 10)	//99% of all vents
+		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && Master.iteration > 10)	//99% of all vents
 			//Fucking hibernate because you ain't doing shit.
-			hibernate = 1
-			spawn(rand(100,200))	//hibernate for 10 or 20 seconds randomly
-				hibernate = 0
-
+			SSmachines.hibernate_vent(src)
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
@@ -319,7 +313,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	hibernate = 0
+	SSmachines.wake_vent(WEAKREF(src))
 
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/unary/vent_pump/receive_signal([signal.debug_print()])")
 	if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
@@ -380,13 +374,11 @@
 		return
 
 	if(signal.data["status"] != null)
-		spawn(2)
-			broadcast_status()
+		addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2, TIMER_DELETE_ME)
 		return //do not update_icon
 
 		//log_admin("DEBUG \[[world.timeofday]\]: vent_pump/receive_signal: unknown command \"[signal.data["command"]]\"\n[signal.debug_print()]")
-	spawn(2)
-		broadcast_status()
+	addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2, TIMER_DELETE_ME)
 	update_icon()
 	return
 

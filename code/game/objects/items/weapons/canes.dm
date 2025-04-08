@@ -22,7 +22,7 @@
 /obj/item/cane/concealed
 	var/concealed_blade
 
-/obj/item/cane/concealed/Initialize()
+/obj/item/cane/concealed/Initialize(mapload)
 	. = ..()
 	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
 	concealed_blade = temp_blade
@@ -72,11 +72,11 @@
 	icon_state = "whitecane"
 
 /obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
-    if(user.a_intent == I_HELP)
-        user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
-        return TRUE
-    else
-        . = ..()
+	if(user.a_intent == I_HELP)
+		user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
+		return TRUE
+	else
+		. = ..()
 
 
 //Code for Telescopic White Cane writen by Gozulio

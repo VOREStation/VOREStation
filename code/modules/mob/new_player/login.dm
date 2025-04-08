@@ -9,7 +9,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	icon = 'icons/misc/loading.dmi'
 	icon_state = "loading"
 
-/obj/effect/lobby_image/Initialize()
+/obj/effect/lobby_image/Initialize(mapload)
 	icon = using_map.lobby_icon
 	var/known_icon_states = cached_icon_states(icon)
 	for(var/lobby_screen in using_map.lobby_screens)
@@ -50,18 +50,18 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	created_for = ckey
 
 	new_player_panel()
-	client.init_verbs()
-	spawn(40)
-		if(client)
-			handle_privacy_poll()
-			client.playtitlemusic()
-			version_warnings()
+	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+
+/mob/new_player/proc/do_after_login()
+	PRIVATE_PROC(TRUE)
+	if(client)
+		handle_privacy_poll()
+		client.playtitlemusic()
+		version_warnings()
 
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem
 
-	if(client.byond_version < 516) // Temporary warning whilst we transition to byond 516.
-		problems = "The server is currently transitioning to BYOND 516, and you are currently on version [client.byond_version]. If you continue to use your current version, you WILL experience UI issues, and very soon older clients will not be able to connect at all. You can update BYOND on the client homepage by switching from stable to beta, just above either the update button or where it says that you are currently up to date. For more information how to update byond, please check the wiki."
 	// TODO: Move this to a config file at some point maybe? What would the structure of that look like?
 	switch(client.byond_build)
 		// http://www.byond.com/forum/post/2711510

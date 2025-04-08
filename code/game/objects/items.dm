@@ -112,6 +112,9 @@
 
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
+	var/digestable = TRUE
+	var/item_tf_spawn_allowed = FALSE
+	var/list/ckeys_allowed_itemspawn = list()
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -136,6 +139,8 @@
 	M.update_held_icons()
 
 /obj/item/Destroy()
+	if(item_tf_spawn_allowed)
+		item_tf_spawnpoints -= src
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
@@ -284,9 +289,9 @@
 		return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
@@ -366,7 +371,7 @@
 
 /obj/item/throw_impact(atom/hit_atom)
 	..()
-	if(isliving(hit_atom)) //Living mobs handle hit sounds differently.
+	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()
 		if (throwforce > 0)
 			if (mob_throw_hit_sound)
@@ -583,14 +588,14 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr) || usr.is_incorporeal())
 		return
 	if(isanimal(usr))	//VOREStation Edit Start - Allows simple mobs with hands to use the pickup verb
 		var/mob/living/simple_mob/s = usr
 		if(!s.has_hands)
 			to_chat(usr, span_warning("You can't pick things up!"))
 			return
-	else if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	else if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, span_warning("You can't pick things up!"))
 		return
 	var/mob/living/L = usr
@@ -603,7 +608,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(L.get_active_hand()) //Hand is not full	//VOREStation Edit End
 		to_chat(usr, span_warning("Your hand is full."))
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!isturf(src.loc)) //Object is on a turf
 		to_chat(usr, span_warning("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
@@ -627,7 +632,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
-	while(L && !istype(L, /turf/))
+	while(L && !isturf(L))
 		L = L.loc
 	return loc
 
@@ -905,6 +910,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				state2use += "_l"
 
 	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	// Send icon data to unit test when it is running, hello old testing(). I'm like, your great great grandkid! THE FUTURE IS NOW OLD MAN!
+	#ifdef UNIT_TEST
+	var/mob/living/carbon/human/H = loc
+	if(ishuman(H))
+		SEND_SIGNAL(H, COMSIG_UNITTEST_DATA, list("set_slot",slot_name,icon2use,state2use,inhands,type,H.species?.name))
+	#endif
 
 	//Generate the base onmob icon
 	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
@@ -1104,3 +1115,21 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/proc/get_welder()
 	return
+
+/obj/item/verb/toggle_digestable()
+	set category = "Object"
+	set name = "Toggle Digestable"
+	set desc = "Toggle item's digestability."
+	digestable = !digestable
+	if(!digestable)
+		to_chat(usr, span_notice("[src] is now protected from digestion."))
+
+/obj/item/proc/item_tf_spawnpoint_set()
+	if(!item_tf_spawn_allowed)
+		item_tf_spawn_allowed = TRUE
+		item_tf_spawnpoints += src
+
+/obj/item/proc/item_tf_spawnpoint_used()
+	if(item_tf_spawn_allowed)
+		item_tf_spawn_allowed = FALSE
+		item_tf_spawnpoints -= src

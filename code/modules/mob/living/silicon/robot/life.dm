@@ -38,7 +38,6 @@
 
 /mob/living/silicon/robot/proc/use_power()
 	// Debug only
-	// to_world("DEBUG: life.dm line 35: cyborg use_power() called at tick [controller_iteration]")
 	used_power_this_tick = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
@@ -205,7 +204,7 @@
 		sight &= ~SEE_OBJS
 		see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so, tajaran have it at 8
 		see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
-							 // has a "invisible" value of 15
+											// has a "invisible" value of 15
 
 	if(plane_holder)
 		plane_holder.set_vis(VIS_FULLBRIGHT,fullbright)

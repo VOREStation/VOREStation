@@ -168,6 +168,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /mob/living/simple_mob/vore/alienanimals/teppi/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -328,7 +330,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 ///////////////////////////////////////Other stuff///////////////////////////////////////////
 
-/mob/living/simple_mob/vore/alienanimals/teppi/Initialize()
+/mob/living/simple_mob/vore/alienanimals/teppi/Initialize(mapload)
 	. = ..()
 
 	if(name == initial(name))
@@ -666,7 +668,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Life()
 	. =..()
-	if(!.)
+	if(!. || QDELETED(src))
 		return
 	wantpet += rand(0,2) * affection_factor
 	amount_grown += rand(1,5)
@@ -814,7 +816,9 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	ai_holder.set_busy(FALSE)
 
 
-/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly, delay)
+/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+	if(!pred)
+		pred = user
 	if(client)
 		return ..()
 	var/current_affinity = affinity[prey.real_name]

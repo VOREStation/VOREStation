@@ -29,6 +29,8 @@
 
 	var/cloaked = FALSE //If we're cloaked or not
 	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
+	var/belly_cycles = 0 // Counting current belly process cycles for autotransfer.
+	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -62,6 +64,9 @@
 		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(em_block)
 	. = ..()
+
+	unbuckle_all_mobs()
+
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 
@@ -223,7 +228,7 @@
 
 	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct, FALSE, movetime ? movetime : ( (TICKS2DS(WORLD_ICON_SIZE/glide_size)) * (moving_diagonally ? (0.5) : 1) ) )
+		Moved(oldloc, direct, FALSE, movetime ? movetime : MOVE_GLIDE_CALC(glide_size, moving_diagonally) )
 
 	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
@@ -417,9 +422,14 @@
 /atom/movable/proc/hit_check(var/speed)
 	if(src.throwing)
 		for(var/atom/A in get_turf(src))
-			if(A == src) continue
+			if(A == src)
+				continue
+			if(A.is_incorporeal())
+				continue
 			if(isliving(A))
-				if(A:lying) continue
+				var/mob/living/M = A
+				if(M.lying)
+					continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
 				if(!A.density || A.throwpass)
@@ -458,10 +468,10 @@
 	var/atom/master = null
 	anchored = TRUE
 
-/atom/movable/overlay/New()
+/atom/movable/overlay/Initialize(mapload)
+	. = ..()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)
@@ -651,3 +661,16 @@
 	cut_overlay(source)
 	if(em_block == source)
 		em_block = null
+
+/atom/movable/proc/abstract_move(atom/new_loc)
+	var/atom/old_loc = loc
+	var/direction = get_dir(old_loc, new_loc)
+	loc = new_loc
+	Moved(old_loc, direction, TRUE)
+
+// Helper procs called on entering/exiting a belly. Does nothing by default, override on children for special behavior.
+/atom/movable/proc/enter_belly(obj/belly/B)
+	return
+
+/atom/movable/proc/exit_belly(obj/belly/B)
+	return

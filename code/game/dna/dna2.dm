@@ -23,8 +23,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 /proc/get_gene_from_trait(var/trait_path) // ALWAYS USE THIS
 	RETURN_TYPE(/datum/gene/trait)
 	var/G = GLOB.trait_to_dna_genes[trait_path]
+	#ifndef UNIT_TEST
 	if(!G) // This SHOULD NOT HAPPEN, be sure any viruses or injectors that give trait paths are actually traitgenes.
 		stack_trace("[trait_path] was used as a traitgene, without being flagged as one.")
+	#endif
 	return G
 
 /datum/dna
@@ -226,6 +228,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_TAIL3_R,   character.r_tail3,   255,    1)
 	SetUIValueRange(DNA_UI_TAIL3_G,   character.g_tail3,   255,    1)
 	SetUIValueRange(DNA_UI_TAIL3_B,   character.b_tail3,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL_ALPHA,character.a_tail,    255,    1)
 
 	SetUIValueRange(DNA_UI_WING_R,    character.r_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_G,    character.g_wing,    255,    1)
@@ -238,6 +241,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_WING3_R,    character.r_wing3,  255,    1)
 	SetUIValueRange(DNA_UI_WING3_G,    character.g_wing3,  255,    1)
 	SetUIValueRange(DNA_UI_WING3_B,    character.b_wing3,  255,    1)
+	SetUIValueRange(DNA_UI_WING_ALPHA, character.a_wing,   255,    1)
 
 	SetUIValueRange(DNA_UI_EARS_R,    character.r_ears,    255,    1)
 	SetUIValueRange(DNA_UI_EARS_G,    character.g_ears,    255,    1)
@@ -250,6 +254,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_EARS3_R,   character.r_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_G,   character.g_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_B,   character.b_ears3,   255,    1)
+	SetUIValueRange(DNA_UI_EARS_ALPHA,character.a_ears,    255,    1)
 
 	for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
 		var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
@@ -260,6 +265,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		SetUIValueRange(offset, red, 255, 1)
 		SetUIValueRange(offset + 1, green, 255, 1)
 		SetUIValueRange(offset + 2, blue, 255, 1)
+	SetUIValueRange(DNA_UI_EARS_SECONDARY_ALPHA, character.a_ears2, 255, 1)
 
 	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
 	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)

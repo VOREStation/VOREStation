@@ -8,7 +8,7 @@
 /obj/item/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// Sec
-	src.modules += new /obj/item/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 
@@ -47,7 +47,7 @@
 /obj/item/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
-	src.modules += new /obj/item/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 
 	// For repairing gravemarkers

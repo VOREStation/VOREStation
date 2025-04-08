@@ -66,20 +66,33 @@
 		dna.real_name = real_name
 		sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 		sync_organ_dna()
+	initialize_vessel()
+	regenerate_icons()
 
 	AddComponent(/datum/component/personal_crafting)
+
+	// Chicken Stuff
+	var/animal = pick("cow","chicken_brown", "chicken_black", "chicken_white", "chick", "mouse_brown", "mouse_gray", "mouse_white", "lizard", "cat2", "goose", "penguin")
+	var/image/img = image('icons/mob/animal.dmi', src, animal)
+	img.override = TRUE
+	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
 	QDEL_NULL_LIST(organs)
 	if(nif)
 		QDEL_NULL(nif)
+	alt_farmanimals -= src
 	worn_clothing.Cut()
 
+	if(stored_blob)
+		stored_blob.drop_l_hand()
+		stored_blob.drop_r_hand()
+		QDEL_NULL(stored_blob)
 
 	if(vessel)
 		QDEL_NULL(vessel)
-	return ..()
+	. = ..()
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
@@ -125,7 +138,7 @@
 		L[++L.len] = list("Suit charge: [cell_status]", null, null, null, null)
 		for(var/obj/item/rig_module/module in R.installed_modules)
 		{
-			for(var/stat_rig_module/SRM in module.stat_modules)
+			for(var/atom/movable/stat_rig_module/SRM in module.stat_modules)
 				if(SRM.CanUse())
 					L[++L.len] = list(SRM.module.interface_name,null,null,SRM.name,REF(SRM))
 		}
@@ -363,7 +376,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
-		def_zone = pick("l_hand", "r_hand")
+		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
 		if(stored_shock_by_ref["\ref[src]"])
@@ -799,7 +812,7 @@
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
 
 	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
 
@@ -1068,6 +1081,7 @@
 			dna.ResetUIFrom(src)
 			sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 			sync_organ_dna()
+	initialize_vessel()
 
 	losebreath = 0
 
@@ -1077,11 +1091,14 @@
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 	return L && L.is_bruised()
 
-/mob/living/carbon/human/proc/rupture_lung()
+/mob/living/carbon/human/proc/rupture_lung(var/gradual)
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 
 	if(L)
-		L.rupture()
+		if(gradual && (L.damage < (L.min_bruised_damage-1))) //We do slow ticking damage up to 9. After 9, we rupture completely.
+			L.damage++
+		else
+			L.rupture()
 
 /*
 /mob/living/carbon/human/verb/simulate()
@@ -1312,7 +1329,8 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
+	if(vessel)
+		initialize_vessel()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
@@ -1326,9 +1344,7 @@
 		return 0
 
 /mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
-	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	regenerate_icons()
 	make_blood()
 	if(vessel.total_volume < species.blood_volume)
 		vessel.maximum_volume = species.blood_volume
@@ -1415,7 +1431,7 @@
 	else if (affecting.robotic >= ORGAN_LIFELIKE)
 		. = 0
 		fail_msg = "Your needle refuses to penetrate more than a short distance..."
-	else if (affecting.thick_skin && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
+	else if ((species.flags & THICK_SKIN) && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
 		. = 0
 		fail_msg = "Your needle fails to penetrate \the [affecting]'s thick hide..."
 	else
@@ -1470,20 +1486,6 @@
 		return flavor_text
 	else
 		return ..()
-
-/mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	if(isSynthetic())
-		return
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
-		return
-	if(isSynthetic())
-		return
-	..()
 
 /mob/living/carbon/human/has_brain()
 	if(internal_organs_by_name[O_BRAIN])
@@ -1632,7 +1634,7 @@
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
 		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list("l_leg","r_leg"))
+		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
 			var/obj/item/organ/affecting = get_organ(limbcheck)
 			if(!affecting)
 				return 0
@@ -1677,6 +1679,23 @@
 	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
 		return 0
 	return (species && species.has_organ[organ_check])
+
+/// Checks our organs and sees if we are missing anything vital, or if it is too heavily damaged
+/// Returns two values:
+/// FALSE if all our vital organs are intact
+/// Or the name of the organ if we are missing a vital organ / it is damaged beyond repair.
+/mob/living/carbon/human/proc/check_vital_organs()
+	for(var/organ_tag in species.has_organ)
+		var/obj/item/organ/O = species.has_organ[organ_tag]
+		var/name = initial(O.name)
+		var/vital = initial(O.vital) //check for vital organs
+		if(vital)
+			O = internal_organs_by_name[organ_tag]
+			if(!O)
+				return name
+			if(O.damage > O.max_damage)
+				return name
+	return FALSE
 
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
@@ -1788,7 +1807,7 @@
 			var/obj/item/organ/external/e = organs_by_name[name]
 			if(!e)
 				continue
-			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+			if((e.status & ORGAN_BROKEN && (!e.splinted || ((e.splinted in e.contents) && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
 				return 1
 	else
 		return ..()
@@ -1833,18 +1852,22 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
-/mob/living/carbon/human/verb/lay_down_left()
-	set name = "Rest-Left"
+/mob/living/carbon/human/verb/flip_lying()
+	set name = "Flip Resting Direction"
+	set category = "Abilities.General"
+	set desc = "Switch your horizontal direction while prone."
 
-	rest_dir = 1
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
-/mob/living/carbon/human/verb/lay_down_right()
-	set name = "Rest-Right"
+	if(isnull(rest_dir))
+		rest_dir = FALSE
+	rest_dir = !rest_dir
+	update_transform(TRUE)
 
-	rest_dir = 0
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+/mob/living/carbon/human/get_digestion_nutrition_modifier()
+	return species.digestion_nutrition_modifier
+
+/mob/living/carbon/human/get_digestion_efficiency_modifier()
+	return species.digestion_efficiency

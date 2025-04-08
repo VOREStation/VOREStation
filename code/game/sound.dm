@@ -10,7 +10,7 @@
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || SSsounds.random_available_channel()
 
- 	// Looping through the player list has the added bonus of working for mobs inside containers
+	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
 	var/list/listeners = player_list.Copy()
@@ -32,6 +32,7 @@
 		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
 			continue
 
+		SSmotiontracker.ping(source,vol) // Nearly everything pings this, the quieter the less likely
 		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
 /mob/proc/check_sound_preference(list/preference)

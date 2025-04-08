@@ -15,13 +15,13 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/Initialize()
+/obj/machinery/r_n_d/server/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
-	..()
+	. = ..()
 
 /obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
@@ -29,7 +29,7 @@
 		tot_rating += SP.rating
 	update_idle_power_usage(initial(idle_power_usage) / max(1, tot_rating))
 
-/obj/machinery/r_n_d/server/Initialize()
+/obj/machinery/r_n_d/server/Initialize(mapload)
 	. = ..()
 	if(!files)
 		files = new /datum/research(src)

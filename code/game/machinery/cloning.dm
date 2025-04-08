@@ -49,7 +49,7 @@
 	var/speed_coeff
 	var/efficiency
 
-/obj/machinery/clonepod/Initialize()
+/obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_icon()
@@ -136,6 +136,7 @@
 	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
+	H.initialize_vessel()
 
 	H.set_cloned_appearance()
 	update_icon()
@@ -185,7 +186,7 @@
 		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
 			occupant.Paralyse(4)
 
-			 //Slowly get that clone healed and finished.
+			//Slowly get that clone healed and finished.
 			occupant.adjustCloneLoss(-2 * heal_rate)
 
 			//Premature clones may have brain damage.
@@ -334,8 +335,9 @@
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
 		var/mob/living/carbon/human/patient = occupant
-		if(!(patient.species.flags & NO_SCAN)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
+		if(!(patient.species.flags & NO_DNA)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
 			domutcheck(occupant) //Waiting until they're out before possible transforming.
+			occupant.UpdateAppearance()
 	occupant = null
 
 	update_icon()
@@ -438,7 +440,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/clonepod/update_icon()
@@ -450,7 +451,7 @@
 		icon_state = "pod_g"
 
 
-/obj/machinery/clonepod/full/Initialize()
+/obj/machinery/clonepod/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
@@ -483,9 +484,8 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/New()
-	..()
-	// Traitgenes edit begin - Use body record disks instead of a unique one
+/obj/item/storage/box/disks/Initialize(mapload)
+	. = ..()
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
@@ -493,7 +493,6 @@
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
-	// Traitgenes edit end
 
 /*
  *	Manual -- A big ol' manual.
@@ -520,8 +519,7 @@
 	These diskettes are used to transfer genetic information between machines and profiles.
 	A load/save dialog will become available in each profile if a disk is inserted.</p><br>
 	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
-	<br>
-	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
+	<br>"} + span_small("This technology produced under license from Thinktronic Systems, LTD.")
 
 //SOME SCRAPS I GUESS
 /* EMP grenade/spell effect

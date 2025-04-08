@@ -26,7 +26,7 @@
 			return TRUE
 	return FALSE
 
-/obj/item/refill_cartridge/autoname/Initialize()
+/obj/item/refill_cartridge/autoname/Initialize(mapload)
 	. = ..()
 	if(refill_type && ispath(refill_type))
 		var/atom/tmp = refill_type

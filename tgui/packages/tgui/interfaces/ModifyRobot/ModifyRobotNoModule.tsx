@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { RankIcon } from '../common/RankIcon';
-import { Target } from './types';
+import type { Target } from './types';
 
 export const ModifyRobotNoModule = (props: { target: Target }) => {
   const { target } = props;

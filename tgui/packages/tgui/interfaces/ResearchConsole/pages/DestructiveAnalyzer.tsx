@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Section, Stack, Table } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
-import { Data, LinkedDestroyer } from '../data';
+import type { Data, LinkedDestroyer } from '../data';
 
 export const DestructiveAnalyzer = (props) => {
   const { act, data } = useBackend<Data>();
@@ -29,7 +29,7 @@ const DestroyButton = (props: { destroyer: LinkedDestroyer }) => {
   const { act } = useBackend();
   const { destroyer } = props;
 
-  let [buttonPressed, setButtonPressed] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   return (
     <Stack fill>

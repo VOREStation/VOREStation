@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/wood/alt,
+/area/redgate/fantasy/tavern)
 "ab" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/wood/alt/panel,
@@ -13585,7 +13589,7 @@ US
 uu
 He
 RO
-US
+aa
 US
 He
 RO

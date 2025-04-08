@@ -109,7 +109,7 @@
 	desc = "Produces electricity from chemicals."
 	icon_state = "chemical_cell"
 	extended_desc = "This is effectively an internal beaker. It will consume and produce power from phoron, slime jelly, welding fuel, carbon,\
-	 ethanol, nutriments and blood, in order of decreasing efficiency. It will consume fuel only if the battery can take more energy."
+		ethanol, nutriments and blood, in order of decreasing efficiency. It will consume fuel only if the battery can take more energy."
 	flags = OPENCONTAINER
 	complexity = 4
 	inputs = list()
@@ -189,7 +189,7 @@
 	var/obj/machinery/power/circuit_io/IO = null // Dummy power machine to move energy in/out without a bunch of code duplication.
 	var/throughput = 10000 // Give/take up to 10kW.
 
-/obj/item/integrated_circuit/passive/power/powernet/Initialize()
+/obj/item/integrated_circuit/passive/power/powernet/Initialize(mapload)
 	IO = new(src)
 	return ..()
 

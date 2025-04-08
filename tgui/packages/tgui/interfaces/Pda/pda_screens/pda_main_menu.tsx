@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, LabeledList, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   owner: string;
@@ -76,7 +76,7 @@ export const pda_main_menu = (props) => {
       <Section title="Functions">
         <LabeledList>
           {categories.map((name) => {
-            let valid_apps = apps[name];
+            const valid_apps = apps[name];
 
             if (!valid_apps || !valid_apps.length) {
               return null;

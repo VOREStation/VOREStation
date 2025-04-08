@@ -7,7 +7,7 @@ import {
 } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { single_scrubber, single_vent } from './CommonTypes';
+import type { single_scrubber, single_vent } from './CommonTypes';
 
 type vent = { vent: single_vent };
 type scrubber = { scrubber: single_scrubber };
