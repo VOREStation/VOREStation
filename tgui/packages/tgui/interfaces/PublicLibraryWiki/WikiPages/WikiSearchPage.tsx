@@ -60,6 +60,13 @@ export const WikiSearchPage = (
     }
   }, [search || subCatActiveEntry]);
 
+  function handleActiveEntry(neWEntry: string) {
+    if (activeEntry !== neWEntry) {
+      setActiveEntry(neWEntry);
+      setSubCatActiveEntry('');
+    }
+  }
+
   const customSearch = createSearch(searchText, (search: string) => search);
   const toDisplay = search.filter(customSearch);
 
@@ -142,7 +149,7 @@ export const WikiSearchPage = (
           title={searchmode}
           searchText={searchText}
           onSearchText={setSearchText}
-          onActiveEntry={setActiveEntry}
+          onActiveEntry={handleActiveEntry}
           listEntries={toDisplay}
           activeEntry={activeEntry}
           basis="30%"
