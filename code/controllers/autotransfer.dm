@@ -5,6 +5,7 @@ var/datum/controller/transfer_controller/transfer_controller
 	var/currenttick = 0
 	var/shift_hard_end = 0 //VOREStation Edit
 	var/shift_last_vote = 0 //VOREStation Edit
+
 /datum/controller/transfer_controller/New()
 	timerbuffer = CONFIG_GET(number/vote_autotransfer_initial)
 	shift_hard_end = CONFIG_GET(number/vote_autotransfer_initial) + (CONFIG_GET(number/vote_autotransfer_interval) * 0) //VOREStation Edit //Change this "1" to how many extend votes you want there to be.
@@ -29,3 +30,14 @@ var/datum/controller/transfer_controller/transfer_controller
 		SSvote.start_vote(new /datum/vote/crew_transfer)
 	//VOREStation Edit END
 		timerbuffer = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval)
+
+/datum/controller/transfer_controller/proc/modify_hard_end(client/user)
+	var/new_shift_end = tgui_input_number(user, "Modify the shift end timer (Input in Minutes)", "Shift End", shift_hard_end / 600)
+
+	if(!new_shift_end)
+		return
+
+	var/calculated_end = new_shift_end * 600
+
+	shift_hard_end = calculated_end
+	shift_last_vote = calculated_end

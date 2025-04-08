@@ -18,14 +18,14 @@
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 	fire_sound_text = "a strange noise"
 
-/obj/item/gun/launcher/spikethrower/New()
-	..()
+/obj/item/gun/launcher/spikethrower/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 
 /obj/item/gun/launcher/spikethrower/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/gun/launcher/spikethrower/process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)

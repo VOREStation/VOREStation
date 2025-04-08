@@ -8,6 +8,7 @@ import {
   ImageButton,
   Input,
   LabeledList,
+  NumberInput,
   Section,
   Stack,
   Tabs,
@@ -37,12 +38,16 @@ export const AppearanceChangerColors = (props) => {
     facial_hair_color,
     ears_color,
     ears2_color,
+    ears_alpha,
+    secondary_ears_alpha,
     tail_color,
     tail2_color,
     tail3_color,
+    tail_alpha,
     wing_color,
     wing2_color,
     wing3_color,
+    wing_alpha,
     ear_secondary_colors,
     hair_grads,
   } = data;
@@ -108,6 +113,16 @@ export const AppearanceChangerColors = (props) => {
               Change Ears Color (Secondary)
             </Button>
           </Box>
+          <Box>
+            Ears Alpha:{' '}
+            <NumberInput
+              step={1}
+              minValue={0}
+              value={ears_alpha}
+              maxValue={255}
+              onDrag={(val: number) => act('ears_alpha', { ears_alpha: val })}
+            />
+          </Box>
           {ear_secondary_colors.map((color, index) => (
             <Box key={index}>
               <ColorBox color={color} mr={1} />
@@ -121,6 +136,18 @@ export const AppearanceChangerColors = (props) => {
               </Button>
             </Box>
           ))}
+          <Box>
+            Horns Alpha:{' '}
+            <NumberInput
+              step={1}
+              minValue={0}
+              value={ears_alpha}
+              maxValue={255}
+              onDrag={(val: number) =>
+                act('secondary_ears_alpha', { secondary_ears_alpha: val })
+              }
+            />
+          </Box>
           <Box>
             <ColorBox color={tail_color} mr={1} />
             <Button onClick={() => act('tail_color')}>Change Tail Color</Button>
@@ -138,6 +165,16 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           <Box>
+            Tail Alpha:{' '}
+            <NumberInput
+              step={1}
+              minValue={0}
+              value={tail_alpha}
+              maxValue={255}
+              onDrag={(val: number) => act('tail_alpha', { tail_alpha: val })}
+            />
+          </Box>
+          <Box>
             <ColorBox color={wing_color} mr={1} />
             <Button onClick={() => act('wing_color')}>Change Wing Color</Button>
           </Box>
@@ -152,6 +189,16 @@ export const AppearanceChangerColors = (props) => {
             <Button onClick={() => act('wing3_color')}>
               Change Tertiary Wing Color
             </Button>
+          </Box>
+          <Box>
+            Wing Alpha:{' '}
+            <NumberInput
+              step={1}
+              minValue={0}
+              value={wing_alpha}
+              maxValue={255}
+              onDrag={(val: number) => act('wing_alpha', { wing_alpha: val })}
+            />
           </Box>
         </>
       ) : null}

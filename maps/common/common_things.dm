@@ -48,9 +48,6 @@
 	invisibility = 0
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
-	icon_state = ""
-	invisibility = 0
 
 /obj/effect/step_trigger/lost_in_space
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
@@ -154,13 +151,12 @@
 	return ..()
 
 /obj/machinery/cryopod/robot/door/tram/Bumped(var/atom/movable/AM)
-	if(!ishuman(AM))
+	if(!isliving(AM))
 		return
 
-	var/mob/living/carbon/human/user = AM
-
-	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
-	if(user && Adjacent(user) && choice == "Yes")
+	var/mob/living/user = AM
+	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"), timeout = 5 SECONDS)
+	if(!QDELETED(user) && Adjacent(user) && choice == "Yes")
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time
 		despawn_occupant(user)
@@ -257,9 +253,6 @@
 	item_state = "newscodex"
 	author = "Central Command"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Stellar Delight User's Guide"
-
-/obj/item/book/manual/sd_guide/New()
-	..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -334,7 +327,7 @@
 
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
-    height = 5
+	height = 5
 
 /obj/turbolift_map_holder/tether
 	name = "Tether Climber"

@@ -28,8 +28,8 @@
 					H = HS
 					break
 
-			 // Either we found a valid stack, in which case increment amount,
-			 // Or we need to make a new stack
+			// Either we found a valid stack, in which case increment amount,
+			// Or we need to make a new stack
 			if(istype(H))
 				H.add(1)
 			else

@@ -11,10 +11,10 @@ export BYOND_MINOR=1657
 export MACRO_COUNT=8
 
 #rust_g git tag
-export RUST_G_VERSION=3.6.0
+export RUST_G_VERSION=3.8.0
 
 #node version
-export NODE_VERSION_LTS=22.11.0
+export NODE_VERSION_LTS=22.14.0
 # compatiblility mode MUST work with windows 7
 export NODE_VERSION_COMPAT=20.2.0
 
@@ -28,7 +28,7 @@ export PYTHON_VERSION=3.11.9
 export DREAMLUAU_REPO="tgstation/dreamluau"
 
 #dreamluau git tag
-export DREAMLUAU_VERSION=0.1.2
+export DREAMLUAU_VERSION=0.1.4
 
 #hypnagogic repo
 export CUTTER_REPO=spacestation13/hypnagogic

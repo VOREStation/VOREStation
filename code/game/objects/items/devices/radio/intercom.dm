@@ -211,7 +211,7 @@
 		to_chat(user, span_notice("\The [src]'s frequency is now set to [span_pink(span_bold("AI Private"))]."))
 //VOREStation Add End
 /obj/item/radio/intercom/locked
-    var/locked_frequency
+	var/locked_frequency
 
 /obj/item/radio/intercom/locked/set_frequency(var/frequency)
 	if(frequency == locked_frequency)

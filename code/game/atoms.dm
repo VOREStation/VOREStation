@@ -240,13 +240,12 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", get_examine_desc())
+	var/examine_text = replacetext(get_examine_desc(), "||", "")
+	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", examine_text)
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
-	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
-		user.client.statpanel = "Examine" // Switch to stat panel
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
@@ -831,14 +830,14 @@
 GLOBAL_LIST_EMPTY(icon_dimensions)
 
 /atom/proc/get_oversized_icon_offsets()
-    if (pixel_x == 0 && pixel_y == 0)
-        return list("x" = 0, "y" = 0)
-    var/list/icon_dimensions = get_icon_dimensions(icon)
-    var/icon_width = icon_dimensions["width"]
-    var/icon_height = icon_dimensions["height"]
-    return list(
-        "x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
-        "y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
+	if (pixel_x == 0 && pixel_y == 0)
+		return list("x" = 0, "y" = 0)
+	var/list/icon_dimensions = get_icon_dimensions(icon)
+	var/icon_width = icon_dimensions["width"]
+	var/icon_height = icon_dimensions["height"]
+	return list(
+		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
+		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
 
 /// Returns a list containing the width and height of an icon file

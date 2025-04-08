@@ -104,8 +104,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/computer/rdconsole/New()
-	..()
+/obj/machinery/computer/rdconsole/Initialize(mapload)
+	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in machines)

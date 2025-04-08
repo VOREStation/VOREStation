@@ -87,7 +87,7 @@
 	"silver" = "#fdfbf3", \
 	)
 
-/mob/living/simple_mob/animal/space/carp/Initialize()
+/mob/living/simple_mob/animal/space/carp/Initialize(mapload)
 	. = ..()
 	carp_randomify(rarechance)
 	update_icons()
@@ -95,7 +95,7 @@
 
 // This is so carps can swarm
 /mob/living/simple_mob/animal/space/carp/CanPass(atom/movable/mover, turf/target)
-	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE && stat != DEAD)
 		return FALSE
 	return ..()
 
@@ -231,6 +231,8 @@
 
 /mob/living/simple_mob/animal/space/carp/large/huge/vorny/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

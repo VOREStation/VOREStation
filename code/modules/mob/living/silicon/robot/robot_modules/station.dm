@@ -81,7 +81,6 @@ var/global/list/robot_modules = list(
 		R.radio.recalculateChannels()
 
 	R.set_default_module_icon()
-	R.pick_module()
 	if(!R.client)
 		R.icon_selected = FALSE			// It wasnt a player selecting icon? Let them do it later!
 
@@ -420,7 +419,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/floor_painter(src)
 	src.modules += new /obj/item/rms(src)
 	src.modules += new /obj/item/inflatable_dispenser/robot(src)
-	src.emag += new /obj/item/melee/baton/robot/arm(src)
+	src.emag += new /obj/item/melee/robotic/baton/arm(src)
 	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/gripper/no_use/loader(src)
@@ -512,7 +511,7 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/security/general/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/handcuffs/cyborg(src)
-	src.modules += new /obj/item/melee/baton/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton(src)
 	src.modules += new /obj/item/gun/energy/robotic/taser(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/reagent_containers/spray/pepper(src)
@@ -787,7 +786,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/reagent_containers/glass/beaker/large/borg(src)
 	src.modules += new /obj/item/storage/part_replacer(src)
 	src.modules += new /obj/item/shockpaddles/robot/jumper(src)
-	src.modules += new /obj/item/melee/baton/slime/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton/slime(src)
 	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src)
 	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)

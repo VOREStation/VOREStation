@@ -3,6 +3,7 @@
 	desc = "This shouldn't appear"
 	density = FALSE
 	vis_flags = NONE
+	var/mob/living/body_backup = null //add reforming
 
 /mob/observer/dead
 	name = "ghost"
@@ -131,7 +132,7 @@
 		default_pixel_x = body.default_pixel_x
 		default_pixel_y = body.default_pixel_y
 	if(!T && length(latejoin))
-		T = pick(latejoin)			//Safety in case we cannot find the body's position
+		T = get_turf(pick(latejoin))			//Safety in case we cannot find the body's position
 	if(T)
 		forceMove(T, just_spawned = TRUE)
 	else
@@ -582,6 +583,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/following_mobs = list()
 
 /mob/observer/dead/Destroy()
+	if(body_backup)
+		body_backup.moveToNullspace() //YEET
+		qdel(body_backup)
+		body_backup = null
 	visualnet.addVisibility(src, src.client)
 	visualnet = null
 	if(ismob(following))

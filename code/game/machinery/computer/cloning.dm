@@ -383,7 +383,7 @@
 	if(!subject.has_brain())
 		if(ishuman(subject))
 			var/mob/living/carbon/human/H = subject
-			if(H.should_have_organ("brain"))
+			if(H.should_have_organ(O_BRAIN))
 				set_scan_temp("No brain detected in subject.", "bad")
 		else
 			set_scan_temp("No brain detected in subject.", "bad")
@@ -461,24 +461,24 @@
 	return (scanner && scanner.scan_level > 3)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger
+ */
 /obj/machinery/computer/cloning/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
 
 /**
-  * Sets a temporary scan message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * color - The color of the message: (color name)
-  */
+ * Sets a temporary scan message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * color - The color of the message: (color name)
+ */
 /obj/machinery/computer/cloning/proc/set_scan_temp(text = "", color = "", update_now = FALSE)
 	scantemp = list(text = text, color = color)
 	if(update_now)

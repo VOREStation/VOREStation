@@ -81,7 +81,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/reproduction_cooldown = 0
 
-/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize()
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
@@ -97,6 +97,8 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 /mob/living/simple_mob/vore/alienanimals/space_jellyfish/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

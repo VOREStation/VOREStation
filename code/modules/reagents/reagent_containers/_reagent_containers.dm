@@ -101,6 +101,11 @@
 		to_chat(user, span_notice("\The [src] is empty."))
 		return TRUE
 
+	if(!target.consume_liquid_belly)
+		if(liquid_belly_check())
+			to_chat(user, span_infoplain("[user == target ? "You can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+			return FALSE
+
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.check_has_mouth())
@@ -145,3 +150,9 @@
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
 	return 1
+
+/obj/item/reagent_containers/proc/liquid_belly_check()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.from_belly)
+			return TRUE
+	return FALSE

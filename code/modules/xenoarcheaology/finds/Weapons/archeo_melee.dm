@@ -75,7 +75,9 @@
 		if(last_touched.loc)
 			conjure_animation(last_touched.loc)
 	visible_message(span_cult("\The [src] screeches as it's destroyed"))
-	lightning_strike(last_touched.loc, TRUE)
+	var/turf/T = get_turf(last_touched)
+	if(istype(T))
+		lightning_strike(T, TRUE)
 	playsound(src, 'sound/goonstation/spooky/creepyshriek.ogg', 100, 1, 75) //It plays VERY far.
 	last_touched = null //Get rid of the reference to our owner.
 	..()
@@ -87,7 +89,7 @@
 /obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(M == user) //No accidentally hitting yourself and exploding.
 		return
-	var/zone = (user.hand ? "l_arm":"r_arm") //Which arm we're in!
+	var/zone = (user.hand ? BP_L_ARM:BP_R_ARM) //Which arm we're in!
 	var/prior_force = force
 	if(empowered)
 		force = force*2

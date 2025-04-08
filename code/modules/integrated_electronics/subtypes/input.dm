@@ -284,11 +284,11 @@
 	complexity = 6
 	name = "advanced locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
-	that is standing in given radius of up to 7 meters"
+		that is standing in given radius of up to 7 meters"
 	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire. This means that it will \
-	give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
-	 item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
-	random. The second pin is a radius."
+		give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
+		item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
+		random. The second pin is a radius."
 	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
 	outputs = list("located ref")
 	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)

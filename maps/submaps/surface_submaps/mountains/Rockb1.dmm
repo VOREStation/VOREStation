@@ -138,7 +138,6 @@
 /area/submap/Rockb1)
 "D" = (
 /obj/structure/cable/green{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{

@@ -16,8 +16,8 @@ import { capitalizeAll } from 'tgui-core/string';
 
 import { PaginationChevrons } from '..';
 import {
-  ConstructorDesign,
-  ConstructorEnum,
+  type ConstructorDesign,
+  type ConstructorEnum,
   constructorEnumToBuild,
   constructorEnumToBuildFive,
   constructorEnumToData,
@@ -26,8 +26,8 @@ import {
   constructorEnumToEjectReagentAllAction,
   constructorEnumToName,
   constructorEnumToRemoveQueue,
-  Data,
-  LinkedConstructor,
+  type Data,
+  type LinkedConstructor,
 } from '../data';
 
 enum ConstructorTabEnum {

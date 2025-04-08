@@ -271,7 +271,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/admin = FALSE
 	if(C.holder)
-		if(C.holder.rights & R_ADMIN|R_EVENT)
+		if(C.holder.rights & (R_ADMIN|R_EVENT))
 			admin = TRUE
 
 	. = "<html><head><title>Voting Panel</title></head><body>"

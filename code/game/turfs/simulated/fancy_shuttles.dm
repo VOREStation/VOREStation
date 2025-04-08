@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 /**
  * Shuttle Glass
  */
- //OLD GLASS - USE NEW GLASS
+//OLD GLASS - USE NEW GLASS
 /turf/simulated/wall/fancy_shuttle/window
 	opacity = FALSE
 	icon_state = "hull_transparent"
