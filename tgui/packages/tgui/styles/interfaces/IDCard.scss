@@ -2,14 +2,12 @@
 @use '../base.scss';
 @use '../colors.scss';
 
-$color-separator: colors.$primary !default;
-
 .IDCard__NamePlate {
   margin-left: -6px;
   margin-right: -6px;
   margin-top: 6px;
   padding: 0.5em;
-  border-top: base.em(2px) solid $color-separator;
+  border-top: base.em(2px) solid var(--id-separator-color);
   font-size: base.em(14px);
   font-weight: bold;
 }

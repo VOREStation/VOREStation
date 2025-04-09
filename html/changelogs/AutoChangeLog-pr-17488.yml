@@ -1,0 +1,4 @@
+author: "Cerami"
+delete-after: True
+changes:
+  - balance: "Venom bite now warns players that it is being used."

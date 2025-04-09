@@ -210,8 +210,8 @@ export const ModifyRobot = (props) => {
               )}
             </Stack>
           </LabeledList.Item>
-          <LabeledList.Item label="AI Selection">
-            {!!target?.module && (
+          {!!target?.module && (
+            <LabeledList.Item label="AI Selection">
               <Stack align="baseline">
                 <Stack.Item>
                   <Dropdown
@@ -247,8 +247,8 @@ export const ModifyRobot = (props) => {
                   </Button>
                 </Stack.Item>
               </Stack>
-            )}
-          </LabeledList.Item>
+            </LabeledList.Item>
+          )}
         </LabeledList>
         <Divider />
         {!!target &&

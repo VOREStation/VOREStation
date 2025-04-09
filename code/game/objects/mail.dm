@@ -386,29 +386,27 @@
 		saved = A
 		return
 	if(isliving(A))
-		var/mob/living/M = A
-
 		if(!saved)
 			to_chat(user, span_danger("No logged mail!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
-		var/mob/living/recipient
+		var/datum/mind/recipient
 		if(saved.recipient_ref)
 			recipient = saved.recipient_ref.resolve()
 
-		if(isnull(recipient))
+		if(isnull(recipient) || isnull(recipient.current))
 			return
 
-		if(M.stat == DEAD)
+		if(recipient.current.stat == DEAD)
 			to_chat(user, span_warning("Consent Verification failed: You can't deliver mail to a corpse!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		if(M.real_name != recipient.real_name)
+		if(recipient.current.dna.unique_enzymes != recipient.current.dna.unique_enzymes)
 			to_chat(user, span_warning("Identity Verification failed: Target is not authorized recipient of this envelope!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		if(!M.client)
+		if(!recipient.current.client)
 			to_chat(user, span_warning("Consent Verification failed: The scanner does not accept orders from SSD crewmemmbers!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
