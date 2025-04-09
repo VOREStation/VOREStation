@@ -6,7 +6,7 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-.theme-abstract {
+.theme-abstract:root {
   .TitleBar__statusIcon {
     display: none;
   }

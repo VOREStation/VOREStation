@@ -112,11 +112,11 @@
 		return FALSE
 	if(!has_hands) //This is here so if you WANT to do special code for 'if we don't have hands, do stuff' it can be done here!
 		return FALSE
-	if(istype(M) && attempt_to_scoop(M))
+	if(istype(M) && attempt_to_scoop(M) && !on_fire)
 		return FALSE;
 
 	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
-	if(istype(H) && health < CONFIG_GET(number/health_threshold_crit)) //Only humans can do CPR.
+	if((istype(H) && (health < CONFIG_GET(number/health_threshold_crit)) || stat == DEAD) && !on_fire) //Only humans can do CPR.
 		if(!H.check_has_mouth())
 			to_chat(H, span_danger("You don't have a mouth, you cannot perform CPR!"))
 			return FALSE
