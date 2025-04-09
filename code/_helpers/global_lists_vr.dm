@@ -1059,3 +1059,130 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/area/submap/event,
 	/area/submap/casino_event
 	))
+
+//GRIPPERS!!!
+#define BASIC_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/airlock_electronics, \
+	/obj/item/tracker_electronics, \
+	/obj/item/module/power_control, \
+	/obj/item/stock_parts, \
+	/obj/item/frame, \
+	/obj/item/camera_assembly, \
+	/obj/item/tank, \
+	/obj/item/circuitboard, \
+	/obj/item/smes_coil, \
+	/obj/item/fuel_assembly
+
+#define OMNI_GRIPPER \
+	/obj/item
+
+#define MINER_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/stock_parts
+
+#define SECURITY_GRIPPER \
+	/obj/item/paper, \
+	/obj/item/paper_bundle, \
+	/obj/item/pen, \
+	/obj/item/sample, \
+	/obj/item/forensics/sample_kit, \
+	/obj/item/taperecorder, \
+	/obj/item/rectape, \
+	/obj/item/uv_light
+
+#define PAPERWORK_GRIPPER \
+	/obj/item/clipboard, \
+	/obj/item/paper, \
+	/obj/item/paper_bundle, \
+	/obj/item/card/id, \
+	/obj/item/book, \
+	/obj/item/newspaper
+
+#define MEDICAL_GRIPPER \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/storage/pill_bottle, \
+	/obj/item/reagent_containers/pill, \
+	/obj/item/reagent_containers/blood, \
+	/obj/item/stack/material/phoron, \
+	/obj/item/tank/anesthetic, \
+	/obj/item/disk/body_record
+
+#define RESEARCH_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/stock_parts, \
+	/obj/item/mmi, \
+	/obj/item/robot_parts, \
+	/obj/item/borg/upgrade, \
+	/obj/item/flash, \
+	/obj/item/disk, \
+	/obj/item/circuitboard, \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/assembly/prox_sensor, \
+	/obj/item/healthanalyzer, \
+	/obj/item/slime_cube, \
+	/obj/item/slime_crystal, \
+	/obj/item/disposable_teleporter/slime, \
+	/obj/item/slimepotion, \
+	/obj/item/slime_extract, \
+	/obj/item/reagent_containers/food/snacks/monkeycube
+
+#define CIRCUIT_GRIPPER \
+	/obj/item/cell/device, \
+	/obj/item/electronic_assembly, \
+	/obj/item/assembly/electronic_assembly, \
+	/obj/item/clothing/under/circuitry, \
+	/obj/item/clothing/gloves/circuitry, \
+	/obj/item/clothing/glasses/circuitry, \
+	/obj/item/clothing/shoes/circuitry, \
+	/obj/item/clothing/head/circuitry, \
+	/obj/item/clothing/ears/circuitry, \
+	/obj/item/clothing/suit/circuitry, \
+	/obj/item/implant/integrated_circuit, \
+	/obj/item/integrated_circuit
+
+#define SERVICE_GRIPPER \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/reagent_containers/food, \
+	/obj/item/seeds, \
+	/obj/item/grown, \
+	/obj/item/trash, \
+	/obj/item/reagent_containers/cooking_container
+
+#define GRAVEYARD_GRIPPER \
+	/obj/item/seeds, \
+	/obj/item/grown, \
+	/obj/item/material/gravemarker
+
+#define SCENE_GRIPPER \
+	/obj/item/capture_crystal, \
+	/obj/item/clothing, \
+	/obj/item/implanter, \
+	/obj/item/disk/nifsoft/compliance, \
+	/obj/item/handcuffs, \
+	/obj/item/toy, \
+	/obj/item/petrifier, \
+	/obj/item/dice, \
+	/obj/item/casino_platinum_chip, \
+	/obj/item/spacecasinocash
+
+#define ORGAN_GRIPPER \
+	/obj/item/organ, \
+	/obj/item/nif
+
+#define ROBOTICS_ORGAN_GRIPPER \
+	/obj/item/organ/external, \
+	/obj/item/organ/internal/brain, \
+	/obj/item/organ/internal/cell, \
+	/obj/item/organ/internal/eyes/robot, \
+	/obj/item/nif
+
+#define EXOSUIT_GRIPPER \
+	/obj/item/mecha_parts/part, \
+	/obj/item/mecha_parts/micro/part, \
+	/obj/item/mecha_parts/mecha_equipment, \
+	/obj/item/mecha_parts/mecha_tracking, \
+	/obj/item/mecha_parts/component
+
+#define SHEET_GRIPPER \
+	/obj/item/stack/material

@@ -143,19 +143,11 @@
 
 	// Surgery things.
 	src.modules += new /obj/item/autopsy_scanner(src)
-	src.modules += new /obj/item/surgical/scalpel/cyborg(src)
-	src.modules += new /obj/item/surgical/hemostat/cyborg(src)
-	src.modules += new /obj/item/surgical/retractor/cyborg(src)
-	src.modules += new /obj/item/surgical/cautery/cyborg(src)
-	src.modules += new /obj/item/surgical/bonegel/cyborg(src)
-	src.modules += new /obj/item/surgical/FixOVein/cyborg(src)
-	src.modules += new /obj/item/surgical/bonesetter/cyborg(src)
-	src.modules += new /obj/item/surgical/circular_saw/cyborg(src)
-	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src)
-	src.modules += new /obj/item/gripper/no_use/organ(src)
+	src.modules += new /obj/item/robotic_multibelt/medical(src)
+	src.modules += new /obj/item/robotic_multibelt/medical(src)
+	src.modules += new /obj/item/gripper/medical(src)
 
 	// General healing.
-	src.modules += new /obj/item/gripper/medical(src)
 	src.modules += new /obj/item/shockpaddles/robot/combat(src)
 	src.modules += new /obj/item/reagent_containers/dropper(src) // Allows borg to fix necrosis apparently
 	src.modules += new /obj/item/reagent_containers/syringe(src)
