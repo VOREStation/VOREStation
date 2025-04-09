@@ -29,12 +29,7 @@ export const VoreUserPreferencesSpontaneous = (props: {
     >
       {can_be_drop_prey || can_be_drop_pred ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item
-            basis="32%"
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.toggle_drop_vore}
               tooltipPosition="right"
