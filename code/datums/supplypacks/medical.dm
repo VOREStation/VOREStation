@@ -148,7 +148,8 @@
 			/obj/item/clothing/gloves/sterile/latex,
 			/obj/item/healthanalyzer,
 			/obj/item/flashlight/pen,
-			/obj/item/reagent_containers/syringe
+			/obj/item/reagent_containers/syringe,
+			/obj/item/personal_shield_generator/belt/medical/loaded
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanomed
