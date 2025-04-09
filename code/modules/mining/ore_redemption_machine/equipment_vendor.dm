@@ -84,7 +84,7 @@
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-hasnded so whatever, same price for slight dmg increase!
-		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				2500),
+		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				350),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/material/fishing_net,								500),
