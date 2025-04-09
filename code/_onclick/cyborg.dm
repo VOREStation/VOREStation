@@ -57,6 +57,10 @@
 	*/
 
 	var/obj/item/W = get_active_hand()
+	if(istype(W, /obj/item/robotic_multibelt))
+		var/obj/item/robotic_multibelt/belt = W
+		if(belt.selected_item)
+			W = belt.selected_item
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)

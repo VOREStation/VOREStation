@@ -1,5 +1,5 @@
 // Robot toolbelts, such as screwdrivers and the like. All contained in one neat little package.
-
+// The code for actually 'how these use the item inside of them instead of
 /*
  * Engineering Tools
  */
@@ -13,7 +13,6 @@
 	w_class = ITEMSIZE_HUGE
 
 	var/obj/item/selected_item = null
-	var/obj/item/weldingtool/welder
 
 	var/list/cyborg_integrated_tools = list(
 		/obj/item/tool/screwdriver/cyborg = null,
@@ -21,7 +20,7 @@
 		/obj/item/tool/crowbar/cyborg = null,
 		/obj/item/tool/wirecutters/cyborg = null,
 		/obj/item/multitool/cyborg = null,
-		/obj/item/weldingtool/largetank/cyborg = null,
+		/obj/item/weldingtool/electric/mounted/cyborg = null,
 		)
 
 	var/list/integrated_tools_by_name
@@ -42,9 +41,6 @@
 				cyborg_integrated_tools[path] = new path(src)
 			var/obj/item/I = cyborg_integrated_tools[path]
 			I.canremove = FALSE
-			if(I.tool_qualities && (I.tool_qualities[1] == TOOL_WELDER))
-				var/obj/item/weldingtool/our_welder = I
-				welder = our_welder
 
 		for(var/tool in cyborg_integrated_tools)
 			var/obj/item/Tool = cyborg_integrated_tools[tool]
@@ -53,7 +49,6 @@
 
 /obj/item/robotic_multibelt/Destroy()
 	selected_item = null
-	welder = null
 	for(var/tool in cyborg_integrated_tools)
 		qdel_null(tool)
 	qdel_null(cyborg_integrated_tools)
@@ -86,13 +81,6 @@
 	icon = chosen_item.icon
 	icon_state = chosen_item.icon_state
 	selected_item = chosen_item
-	force = chosen_item.force
-	toolspeed = chosen_item.toolspeed
-	tool_qualities = chosen_item.tool_qualities
-	usesound = chosen_item.usesound
-
-/obj/item/robotic_multibelt/get_welder()
-	return welder
 
 /obj/item/robotic_multibelt/dropped(mob/user)
 	..()
@@ -102,8 +90,6 @@
 /obj/item/robotic_multibelt/proc/original_state(mob/user)
 	cut_overlays()
 	selected_item = null
-	force = initial(force)
-	tool_qualities = null
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 
@@ -125,8 +111,8 @@
 	force = 10
 	toolspeed = 0.5
 
-/obj/item/weldingtool/largetank/cyborg
-	name = "integrated welding tool"
+/obj/item/weldingtool/electric/mounted/cyborg
+	name = "integrated electric welding tool"
 	desc = "An advanced welder designed to be used in robotic systems."
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "indwelder_cyborg"

@@ -632,6 +632,10 @@
 		..()
 
 /obj/item/weldingtool/electric/proc/get_external_power_supply()
+	if(istype(src.loc, /obj/item/robotic_multibelt)) //We are in a multibelt
+		if(istype(src.loc.loc, /mob/living/silicon/robot))  //We are in a multibelt that is in a robot! This is sanity in case someone spawns a multibelt in via admin commands.
+			var/mob/living/silicon/robot/R = src.loc.loc
+			return R.cell
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -651,9 +655,6 @@
 
 /obj/item/weldingtool/electric/mounted
 	use_external_power = 1
-
-/obj/item/weldingtool/electric/mounted/cyborg
-	toolspeed = 0.5
 
 /obj/item/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
