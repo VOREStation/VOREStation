@@ -1247,3 +1247,10 @@
 	result = REAGENT_ID_PROTEIN
 	required_reagents = list(REAGENT_ID_ENZYME = 1, REAGENT_ID_SPIDERTOXIN = 1, REAGENT_ID_SIFSAP = 1)
 	result_amount = 1
+
+/decl/chemical_reaction/instant/artificial_sustenance
+	name = REAGENT_ASUSTENANCE
+	id = REAGENT_ID_ASUSTENANCE
+	result = REAGENT_ID_ASUSTENANCE
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_MUTAGEN = 1, REAGENT_ID_PHORON = 1)
+	result_amount = 1

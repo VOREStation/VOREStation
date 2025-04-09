@@ -40,6 +40,11 @@
 		if(src.damage < 0)
 			src.damage = 0
 
+		// General organ damage from withdraw
+		if(prob(20) && owner.chem_effects[CE_WITHDRAWL])
+			take_damage(owner.chem_effects[CE_WITHDRAWL] * 0.05 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
+			owner.adjustToxLoss(owner.chem_effects[CE_WITHDRAWL] * 0.2 * PROCESS_ACCURACY)
+
 /obj/item/organ/internal/spleen/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return
