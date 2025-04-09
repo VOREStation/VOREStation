@@ -30,12 +30,7 @@ export const VoreUserPreferencesDevouring = (props: {
     >
       {devourable ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item
-            basis="32%"
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.healbelly}
               tooltipPosition="right"

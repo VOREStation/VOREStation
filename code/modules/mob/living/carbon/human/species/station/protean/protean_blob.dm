@@ -320,11 +320,7 @@
 		return ..()
 
 /mob/living/simple_mob/protean_blob/death(gibbed, deathmessage = "Coalesces inwards, retreating into their core componants")
-	if(humanform)
-		humanform.death(gibbed, deathmessage)
-	else
-		animate(src, alpha = 0, time = 2 SECONDS)
-		sleep(2 SECONDS)
+	humanform.death(gibbed, deathmessage)
 
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()

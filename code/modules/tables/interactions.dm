@@ -158,6 +158,7 @@
 
 // Placing stuff on tables
 	if(user.unEquip(W, 0, src.loc) && user.client?.prefs?.read_preference(/datum/preference/toggle/precision_placement))
+		W.do_drop_animation(user)
 		auto_align(W, click_parameters)
 		return 1
 

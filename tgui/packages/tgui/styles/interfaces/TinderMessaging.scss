@@ -3,9 +3,6 @@
 
 @use '../base.scss';
 
-$color-sent: #4d9121 !default;
-$color-received: #cd7a0d !default;
-
 .TinderMessage_First_Sent,
 .TinderMessage_Subsequent_Sent,
 .TinderMessage_First_Received,
@@ -19,7 +16,7 @@ $color-received: #cd7a0d !default;
 .TinderMessage_First_Sent,
 .TinderMessage_Subsequent_Sent {
   text-align: right;
-  background-color: $color-sent;
+  background-color: var(--tinder-sent-color);
 }
 
 .TinderMessage_First_Sent {
@@ -33,7 +30,7 @@ $color-received: #cd7a0d !default;
 .TinderMessage_First_Received,
 .TinderMessage_Subsequent_Received {
   text-align: left;
-  background-color: $color-received;
+  background-color: var(--tinder-received-color);
 }
 
 .TinderMessage_First_Received {
@@ -50,9 +47,9 @@ $color-received: #cd7a0d !default;
 }
 
 .ClassicMessage_Sent {
-  color: $color-sent;
+  color: var(--tinder-sent-color);
 }
 
 .ClassicMessage_Received {
-  color: $color-received;
+  color: var(--tinder-received-color);
 }

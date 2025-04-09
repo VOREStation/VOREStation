@@ -105,40 +105,46 @@ const ConstructorPage = (props: {
 
   return (
     <Section title={our_name} fill>
-      <MaterialBars linked_data={linked_data} />
-      <Tabs>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.Build}
-          onClick={() => setTab(ConstructorTabEnum.Build)}
-          icon="wrench"
-        >
-          Build
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.Queue}
-          onClick={() => setTab(ConstructorTabEnum.Queue)}
-          color={queueColor}
-          icon={queueIcon}
-          iconSpin={queueSpin}
-        >
-          Queue
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.MatStorage}
-          onClick={() => setTab(ConstructorTabEnum.MatStorage)}
-          icon="cookie"
-        >
-          Mat Storage
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.ChemStorage}
-          onClick={() => setTab(ConstructorTabEnum.ChemStorage)}
-          icon="flask"
-        >
-          Chem Storage
-        </Tabs.Tab>
-      </Tabs>
-      {tabElement}
+      <Stack vertical fill>
+        <Stack.Item>
+          <MaterialBars linked_data={linked_data} />
+        </Stack.Item>
+        <Stack.Item>
+          <Tabs>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.Build}
+              onClick={() => setTab(ConstructorTabEnum.Build)}
+              icon="wrench"
+            >
+              Build
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.Queue}
+              onClick={() => setTab(ConstructorTabEnum.Queue)}
+              color={queueColor}
+              icon={queueIcon}
+              iconSpin={queueSpin}
+            >
+              Queue
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.MatStorage}
+              onClick={() => setTab(ConstructorTabEnum.MatStorage)}
+              icon="cookie"
+            >
+              Mat Storage
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.ChemStorage}
+              onClick={() => setTab(ConstructorTabEnum.ChemStorage)}
+              icon="flask"
+            >
+              Chem Storage
+            </Tabs.Tab>
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item grow>{tabElement}</Stack.Item>
+      </Stack>
     </Section>
   );
 };
@@ -184,9 +190,7 @@ const BuildTab = (props: {
     <Section
       title={`Designs (Page ${data.builder_page + 1})`}
       fill
-      height="85%"
       buttons={<PaginationChevrons target="builder_page" />}
-      scrollable
     >
       <Input
         fluid
@@ -196,51 +200,54 @@ const BuildTab = (props: {
         onInput={(e, v: string) => act('search', { search: v })}
         mb={1}
       />
-      {designs?.length ? (
-        designs.map((design) => (
-          <Fragment key={design.id}>
-            <Stack justify="space-between" align="center">
-              <Stack.Item grow>{design.name}</Stack.Item>
-              <Stack.Item>
-                <Box inline color="label">
-                  {design.mat_list.join(' ')}
-                </Box>
-                <Box inline color="average" ml={1}>
-                  {design.chem_list.join(' ')}
-                </Box>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  icon="wrench"
-                  onClick={() =>
-                    act(buildAct, { build: design.id, imprint: design.id })
-                  }
-                >
-                  Build
-                </Button>
-                {!!buildActFive && (
+      <Divider />
+      <Section fill scrollable>
+        {designs?.length ? (
+          designs.map((design) => (
+            <Fragment key={design.id}>
+              <Stack justify="space-between" align="center">
+                <Stack.Item grow>{design.name}</Stack.Item>
+                <Stack.Item>
+                  <Box inline color="label">
+                    {design.mat_list.join(' ')}
+                  </Box>
+                  <Box inline color="average" ml={1}>
+                    {design.chem_list.join(' ')}
+                  </Box>
+                </Stack.Item>
+                <Stack.Item>
                   <Button
                     icon="wrench"
                     onClick={() =>
-                      act(buildActFive, {
-                        build: design.id,
-                        imprint: design.id,
-                      })
+                      act(buildAct, { build: design.id, imprint: design.id })
                     }
                   >
-                    5
+                    Build
                   </Button>
-                )}
-              </Stack.Item>
-            </Stack>
-            <Divider />
-          </Fragment>
-        ))
-      ) : (
-        <Box>
-          No items could be found matching the parameters (page or search).
-        </Box>
-      )}
+                  {!!buildActFive && (
+                    <Button
+                      icon="wrench"
+                      onClick={() =>
+                        act(buildActFive, {
+                          build: design.id,
+                          imprint: design.id,
+                        })
+                      }
+                    >
+                      5
+                    </Button>
+                  )}
+                </Stack.Item>
+              </Stack>
+              <Divider />
+            </Fragment>
+          ))
+        ) : (
+          <Box>
+            No items could be found matching the parameters (page or search).
+          </Box>
+        )}
+      </Section>
     </Section>
   );
 };

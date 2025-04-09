@@ -17,7 +17,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
   }
 
   return (
-    <Section scrollable fill height="290px">
+    <Section scrollable fill>
       {mode === 'Requested' && order_auth ? (
         <Button
           mt={-1}
