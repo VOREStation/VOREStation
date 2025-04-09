@@ -405,7 +405,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/robotic_multibelt(src)
 	src.modules += new /obj/item/robotic_multibelt(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/analyzer(src)
 	src.modules += new /obj/item/geiger(src)
