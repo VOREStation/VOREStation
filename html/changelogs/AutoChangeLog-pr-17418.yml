@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscdel: "bad code"
-  - rscadd: "good code (questionable)"
-  - bugfix: "VR Sleepers properly exit you if EMP'd, depowered, or someone tries to pull you out of it"
-  - bugfix: "Ghostspawns no longer multiply SECONDS by SECONDS"
