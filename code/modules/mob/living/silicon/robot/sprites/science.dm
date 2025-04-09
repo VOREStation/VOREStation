@@ -216,8 +216,10 @@
 	name = "Dullahan"
 	sprite_icon_state = "dullahansci"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sci.dmi'
-	has_vore_belly_sprites = TRUE
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","loincloth","eyecover")

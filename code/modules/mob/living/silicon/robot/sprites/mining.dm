@@ -192,9 +192,10 @@
 	name = "Dullahan Mining unit"
 	sprite_icon_state = "dullahanmine"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
-	has_vore_belly_sprites = TRUE
-	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	sprite_decals = list("breastplate","loincloth","eyecover")
 	rest_sprite_options = list("Default", "sit")
 	icon_x = 32
@@ -217,8 +218,9 @@
 	sprite_icon_state = "dullahancargo"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_cargo.dmi'
 	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = TRUE
 	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","eyecover")
 	icon_x = 32

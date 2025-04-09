@@ -229,6 +229,7 @@
 	has_eye_light_sprites = TRUE
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	icon_x = 32
 	pixel_x = 0
 

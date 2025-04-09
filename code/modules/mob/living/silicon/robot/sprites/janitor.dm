@@ -210,8 +210,9 @@
 	module_type = "Janitor"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_jani.dmi'
 	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = TRUE
 	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate", "eyecover")
 	icon_x = 32

@@ -319,7 +319,9 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_serv.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	sprite_decals = list("breastplate", "loincloth","loinclothbreastplate","eyecover")
 	pixel_x = 0
 	icon_x = 32
