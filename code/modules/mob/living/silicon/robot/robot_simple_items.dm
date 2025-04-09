@@ -296,6 +296,9 @@
 	drop_item()
 	return
 
+
+//This is the code that updates our pockets and decides if they should have icons or not.
+//This should be called every time we use the gripper and our wrapped item is used up.
 /obj/item/gripper/proc/generate_icons()
 	if(LAZYLEN(pockets))
 
