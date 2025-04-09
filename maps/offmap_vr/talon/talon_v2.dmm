@@ -10193,20 +10193,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/hangar)
-"IO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/maintenance/aft_port)
 "IP" = (
 /turf/simulated/wall/shull,
 /area/talon_v2/maintenance/aft_port)
@@ -23179,7 +23165,7 @@ Zc
 uG
 vK
 vK
-IO
+DN
 tC
 uL
 tC

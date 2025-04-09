@@ -27,7 +27,7 @@
 		to_chat(src, span_warning("\The [T] is not compatible with our biology."))
 		return 0
 
-	if(T.species.flags & NO_SCAN)
+	if(T.species.flags & (NO_DNA|NO_SLEEVE))
 		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return 0
 
@@ -38,7 +38,7 @@
 	add_attack_logs(src,T,"DNA extraction sting (changeling)")
 
 	var/saved_dna = T.dna.Clone() /// Prevent transforming bugginess.
-	var/datum/absorbed_dna/newDNA = new(T.real_name, saved_dna, T.species.name, T.languages, T.identifying_gender, T.flavor_text, T.modifiers)
+	var/datum/absorbed_dna/newDNA = new(T.real_name, saved_dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts, T.modifiers)
 	absorbDNA(newDNA)
 
 	feedback_add_details("changeling_powers","ED")

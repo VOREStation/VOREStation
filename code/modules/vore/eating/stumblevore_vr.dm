@@ -38,21 +38,28 @@
 	if(CanStumbleVore(M))
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
 		perform_the_nom(src,M,src,src.vore_selected,1)
-	else if(M.CanStumbleVore(src))
+		return
+
+	if(M.CanStumbleVore(src))
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
 		perform_the_nom(M,src,M,M.vore_selected,1)
-	else if(istype(S) && S.species.lightweight == 1)
+		return
+
+	if(istype(S) && S.species.lightweight == 1)
 		visible_message(span_vwarning("[M] carelessly bowls [src] over!"))
 		M.forceMove(get_turf(src))
 		M.apply_damage(0.5, BRUTE)
 		Weaken(4)
 		stop_flying()
 		apply_damage(0.5, BRUTE)
-	else if(round(weight) > 474)
+		return
+
+	if(round(weight) > 474)
 		var/throwtarget = get_edge_target_turf(M, reverse_direction(M.dir))
 		visible_message(span_vwarning("[M] bounces backwards off of [src]'s plush body!"))
 		M.throw_at(throwtarget, 2, 1)
-	else
-		visible_message(span_vwarning("[M] trips over [src]!"))
-		M.forceMove(get_turf(src))
-		M.apply_damage(1, BRUTE)
+		return
+
+	visible_message(span_vwarning("[M] trips over [src]!"))
+	M.forceMove(get_turf(src))
+	M.apply_damage(1, BRUTE)

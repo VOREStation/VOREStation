@@ -159,7 +159,7 @@
 
 		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
 
-			 //Slowly get that clone healed and finished.
+			//Slowly get that clone healed and finished.
 			occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
@@ -224,8 +224,8 @@
 	var/burn_value = 0 //Setting these to 0, if resleeving as organic with unupgraded sleevers gives them no damage, resleeving synths with unupgraded synthfabs should not give them potentially 105 damage.
 	var/brute_value = 0
 
-/obj/machinery/transhuman/synthprinter/New()
-	..()
+/obj/machinery/transhuman/synthprinter/Initialize(mapload)
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
@@ -461,8 +461,8 @@
 
 	var/sleevecards = 2
 
-/obj/machinery/transhuman/resleever/New()
-	..()
+/obj/machinery/transhuman/resleever/Initialize(mapload)
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)

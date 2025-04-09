@@ -195,7 +195,7 @@
 ///Will first check based on brain type, then based on species.
 /datum/job/proc/get_min_age(species_name, brain_type)
 	return minimum_character_age // VOREStation Edit - Minimum character age by rules is 18, return default which is standard for all species
-    //return (brain_type && LAZYACCESS(min_age_by_species, brain_type)) || LAZYACCESS(min_age_by_species, species_name) || minimum_character_age //VOREStation Removal
+	//return (brain_type && LAZYACCESS(min_age_by_species, brain_type)) || LAZYACCESS(min_age_by_species, species_name) || minimum_character_age //VOREStation Removal
 
 /datum/job/proc/get_ideal_age(species_name, brain_type)
 	return ideal_character_age // VOREStation Edit - Minimum character age by rules is 18, return default which is standard for all species
@@ -212,6 +212,8 @@
 		return TRUE
 	*/
 
+/datum/job/proc/update_limit(var/comperator)
+	return
 
 // Check client-specific availability rules.
 /datum/job/proc/player_has_enough_pto(client/C)

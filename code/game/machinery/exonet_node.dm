@@ -20,11 +20,12 @@
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
-/obj/machinery/exonet_node/map/Initialize(mapload)
+/obj/machinery/exonet_node/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
-	desc = "This machine is one of many, many nodes inside [using_map.starsys_name]'s section of the Exonet, connecting the [using_map.station_short] to the rest of the system, at least \
-	electronically."
+	if(mapload)
+		desc = "This machine is one of many, many nodes inside [using_map.starsys_name]'s section of the Exonet, connecting the [using_map.station_short] to the rest of the system, at least \
+		electronically."
 
 // Proc: update_icon()
 // Parameters: None

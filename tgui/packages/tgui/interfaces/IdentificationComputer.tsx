@@ -278,7 +278,7 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
   if (regions) {
     regions.sort((a, b) => a.name.localeCompare(b.name));
 
-    for (let region of regions) {
+    for (const region of regions) {
       region.accesses.sort((a, b) => a.desc.localeCompare(b.desc));
     }
   }

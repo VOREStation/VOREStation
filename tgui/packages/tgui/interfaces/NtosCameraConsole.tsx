@@ -3,9 +3,9 @@ import { NtosWindow } from 'tgui/layouts';
 import { Button, ByondUi } from 'tgui-core/components';
 
 import {
-  camera,
+  type camera,
   CameraConsoleContent,
-  Data,
+  type Data,
   prevNextCamera,
   selectCameras,
 } from './CameraConsole';

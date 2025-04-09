@@ -14,8 +14,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/tvcamera/New()
-	..()
+/obj/item/tvcamera/Initialize(mapload)
+	. = ..()
 	listening_objects += src
 
 /obj/item/tvcamera/Destroy()
@@ -24,7 +24,7 @@
 	qdel(radio)
 	camera = null
 	radio = null
-	..()
+	. = ..()
 
 /obj/item/tvcamera/examine()
 	. = ..()

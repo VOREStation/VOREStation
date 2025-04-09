@@ -52,7 +52,7 @@ class WebpackCompiler {
     compiler.hooks.watchRun.tapPromise('tgui-dev-server', async () => {
       const files = await resolveGlob(this.bundleDir, './*.hot-update.*');
       logger.log(`clearing garbage (${files.length} files)`);
-      for (let file of files) {
+      for (const file of files) {
         fs.unlinkSync(file);
       }
       logger.log('compiling');

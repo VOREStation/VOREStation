@@ -17,7 +17,7 @@
 	var/static/list/cutout_types
 	var/static/list/painters = list(/obj/item/reagent_containers/glass/paint, /obj/item/floor_painter)//, /obj/item/closet_painter)
 
-/obj/structure/barricade/cutout/New()
+/obj/structure/barricade/cutout/Initialize(mapload)
 	. = ..()
 	color = null
 	if(human_name)

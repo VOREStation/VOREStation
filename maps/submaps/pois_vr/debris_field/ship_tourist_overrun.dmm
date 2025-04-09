@@ -466,7 +466,6 @@
 /obj/structure/cable/green{
 	icon_state = "2-8"
 	},
-/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/milspec,
 /area/submap/debrisfield/luxury_boat/bridge)
 "mT" = (
@@ -872,12 +871,6 @@
 /area/submap/debrisfield/luxury_boat/bridge)
 "yl" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood{
-	pixel_y = 11
-	},
-/obj/effect/decal/cleanable/blood{
-	pixel_x = 10
-	},
 /obj/item/material/shard{
 	pixel_x = -9
 	},
