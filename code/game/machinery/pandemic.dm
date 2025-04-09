@@ -134,6 +134,10 @@
 
 /obj/machinery/computer/pandemic/proc/print_form(datum/disease/advance/D, mob/living/user)
 	D = GLOB.archive_diseases[D.GetDiseaseID()]
+	if(!istype(D))
+		visible_message(span_warning("ERROR: Unable to print form."))
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		return
 	if(!(printing) && D)
 		var/reason = tgui_input_text(user,"Enter a reason for the release", "Write", multiline = TRUE)
 		if(!reason)
@@ -143,7 +147,7 @@
 		for(var/I in D.symptoms)
 			var/datum/symptom/S = I
 			english_symptoms += S.name
-		var/symtoms = english_list(english_symptoms)
+		var/symptoms = english_list(english_symptoms)
 
 		var/signature
 		if(tgui_alert(user, "Would you like to add your signature?", "Signature", list("Yes","No")) == "Yes")
@@ -159,7 +163,7 @@
 		P.info = span_underline(span_huge(span_bold("<center> Releasing Virus </center>")))
 		P.info += "<HR>"
 		P.info += span_underline("Name of the Virus:") + " [D.name] <BR>"
-		P.info += span_underline("Symptoms:") + " [symtoms]<BR>"
+		P.info += span_underline("Symptoms:") + " [symptoms]<BR>"
 		P.info += span_underline("Spreads by:") + " [D.spread_text]<BR>"
 		P.info += span_underline("Cured by:") + " [D.cure_text]<BR>"
 		P.info += "<BR>"

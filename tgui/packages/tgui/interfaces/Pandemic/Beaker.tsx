@@ -42,30 +42,36 @@ export const BeakerDisplay = (props) => {
     <Section
       title="Container"
       buttons={
-        <>
-          <Button
-            icon="times"
-            color="bad"
-            disabled={cant_empty}
-            onClick={() => act('destroy_eject_beaker')}
-          >
-            Empty and Eject
-          </Button>
-          <Button
-            icon="trash"
-            disabled={cant_empty}
-            onClick={() => act('empty_beaker')}
-          >
-            Empty
-          </Button>
-          <Button
-            icon="eject"
-            disabled={!has_beaker}
-            onClick={() => act('eject_beaker')}
-          >
-            Eject
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="times"
+              color="bad"
+              disabled={cant_empty}
+              onClick={() => act('destroy_eject_beaker')}
+            >
+              Empty and Eject
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="trash"
+              disabled={cant_empty}
+              onClick={() => act('empty_beaker')}
+            >
+              Empty
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="eject"
+              disabled={!has_beaker}
+              onClick={() => act('eject_beaker')}
+            >
+              Eject
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {content}
