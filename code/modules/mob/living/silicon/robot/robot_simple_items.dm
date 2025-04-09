@@ -27,6 +27,8 @@
 
 	var/list/integrated_tool_images
 
+
+
 /obj/item/robotic_multibelt/Initialize(mapload)
 	. = ..()
 
@@ -77,7 +79,6 @@
 	..()
 
 /obj/item/robotic_multibelt/proc/assume_selected_item(obj/item/chosen_item)
-	cut_overlays()
 	icon = chosen_item.icon
 	icon_state = chosen_item.icon_state
 	selected_item = chosen_item
@@ -88,7 +89,6 @@
 	original_state()
 
 /obj/item/robotic_multibelt/proc/original_state(mob/user)
-	cut_overlays()
 	selected_item = null
 	icon = initial(icon)
 	icon_state = initial(icon_state)
