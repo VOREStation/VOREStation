@@ -22,7 +22,7 @@
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/multitool/cyborg(src)
 
 	// Sci
 	src.modules += new /obj/item/robotanalyzer(src)

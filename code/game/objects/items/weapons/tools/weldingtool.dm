@@ -360,11 +360,6 @@
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
 
-/obj/item/weldingtool/largetank/cyborg
-	name = "integrated welding tool"
-	desc = "An advanced welder designed to be used in robotic systems."
-	toolspeed = 0.5
-
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."

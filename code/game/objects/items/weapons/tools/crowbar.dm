@@ -64,13 +64,6 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 3)
 	reach = 2
 
-/obj/item/tool/crowbar/cyborg
-	name = "hydraulic crowbar"
-	desc = "A hydraulic prying tool, compact but powerful. Designed to replace crowbars in industrial synthetics."
-	usesound = 'sound/items/jaws_pry.ogg'
-	force = 10
-	toolspeed = 0.5
-
 /obj/item/tool/crowbar/power
 	name = "power pryer"
 	desc = "You shouldn't see this."
