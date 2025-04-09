@@ -102,21 +102,18 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	shell_accessories = list("eyes-miningdrone")
 
-/mob/living/silicon/robot/drone/New()
-	..()
+/mob/living/silicon/robot/drone/Initialize(mapload, is_decoy)
+	. = ..(mapload, is_decoy, FALSE, TRUE)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
-	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
-	add_language("Drone Talk", 1)
+	remove_language(LANGUAGE_ROBOT_TALK)
+	add_language(LANGUAGE_ROBOT_TALK, 0)
+	add_language(LANGUAGE_DRONE_TALK, 1)
 	serial_number = rand(0,999)
 
 	//They are unable to be upgraded, so let's give them a bit of a better battery.
 	cell.maxcharge = 10000
 	cell.charge = 10000
-
-	// NO BRAIN.
-	mmi = null
 
 	//We need to screw with their HP a bit. They have around one fifth as much HP as a full borg.
 	for(var/V in components) if(V != "power cell")
