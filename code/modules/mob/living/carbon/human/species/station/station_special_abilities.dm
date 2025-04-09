@@ -1583,7 +1583,7 @@
 		to_chat(src, span_notice("You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]"))
 		return
 	if(choice == "Change verb")
-		var/verb_choice = tgui_input_text(src, "Choose the percieved manner of injection, such as 'bites' or 'stings', don't be misleading or abusive. This will show up in game as ('X' 'Verb' 'Y'. Example: X bites Y.)", "How are you injecting?", trait_injection_verb, max_length = 60) //Whoaa there cowboy don't put a novel in there.
+		var/verb_choice = tgui_input_text(src, "Choose the percieved manner of injection, such as 'bite' or 'sting', don't be misleading or abusive. This will show up in game as ('X' manages to 'Verb' 'Y'. Example: X manages to bite Y.)", "How are you injecting?", trait_injection_verb, max_length = 60) //Whoaa there cowboy don't put a novel in there.
 		if(verb_choice)
 			trait_injection_verb = verb_choice
 		to_chat(src, span_notice("You will [trait_injection_verb] your targets."))
@@ -1660,11 +1660,13 @@
 			to_chat(src, span_notice("Somehow, you forgot your means of injecting. (Select a verb!)"))
 			return
 
+
+		visible_message(span_warning("[src] is preparing to [trait_injection_verb] [target]!"))
 		if(do_after(src, 50, target)) //A decent enough timer.
 			add_attack_logs(src,target,"Injection trait ([trait_injection_selected], [trait_injection_amount])")
 			if(target.reagents && (trait_injection_amount > 0) && !synth)
 				target.reagents.add_reagent(trait_injection_selected, trait_injection_amount)
-			var/ourmsg = "[src] [trait_injection_verb] [target] "
+			var/ourmsg = "[src] manages to [trait_injection_verb] [target] "
 			switch(zone_sel.selecting)
 				if(BP_HEAD)
 					ourmsg += "on the head!"
