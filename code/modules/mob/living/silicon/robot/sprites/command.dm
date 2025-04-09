@@ -117,15 +117,3 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-
-/datum/robot_sprite/dogborg/command/dullahancommand
-	name = "Dullahan"
-	sprite_icon = 'icons/mob/robot/dullahan/v3/command.dmi'
-	sprite_icon_state = "dullahancommand"
-	rest_sprite_options = list("Default", "Sit")
-	has_eye_light_sprites = TRUE
-	has_rest_sprites = TRUE
-	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
-	icon_x = 64
-	pixel_x = -16
