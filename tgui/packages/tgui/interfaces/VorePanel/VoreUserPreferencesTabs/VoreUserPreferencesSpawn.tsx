@@ -44,12 +44,7 @@ export const VoreUserPreferencesSpawn = (props: {
       <Stack wrap="wrap" justify="center">
         {latejoin_vore ? (
           <>
-            <Stack.Item
-              basis="31%"
-              style={{
-                marginLeft: '0.5em', // Remove if tgui core implements gap
-              }}
-            >
+            <Stack.Item basis="31%">
               <VoreUserPreferenceItem
                 spec={preferences.no_spawnpred_warning}
                 tooltipPosition="top"

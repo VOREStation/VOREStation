@@ -24,12 +24,7 @@ export const VoreUserPreferencesSoulcatcher = (props: {
     >
       {soulcatcher_allow_capture ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item
-            basis="32%"
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.soulcatcher_transfer}
               tooltipPosition="right"

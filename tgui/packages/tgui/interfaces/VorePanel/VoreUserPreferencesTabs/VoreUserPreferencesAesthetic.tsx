@@ -15,13 +15,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   return (
     <Section title="Aesthetic Preferences">
       <Stack wrap="wrap" justify="center">
-        <Stack.Item
-          basis="49%"
-          grow
-          style={{
-            marginLeft: '0.5em', // Remove if tgui core implements gap
-          }}
-        >
+        <Stack.Item basis="49%" grow>
           <Button fluid icon="grin-tongue" onClick={() => act('setflavor')}>
             Set Taste
           </Button>
