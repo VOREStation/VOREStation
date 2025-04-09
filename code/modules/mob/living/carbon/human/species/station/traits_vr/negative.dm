@@ -702,3 +702,13 @@
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
 	cost = -5
 	var_changes = list("dirtslip" = TRUE)
+
+/datum/trait/negative/thick_digits
+	name = "Thick Digits"
+	desc = "Your hands are not shaped in a way that allows useage of guns."
+	cost = -4
+	custom_only = FALSE
+
+/datum/trait/negative/thick_digits/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.add_modifier(/datum/modifier/trait/thickdigits)

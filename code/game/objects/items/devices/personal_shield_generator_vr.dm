@@ -536,6 +536,20 @@
 	else
 		icon_state = "shieldpack_security"
 
+//PvE focused belt
+/obj/item/personal_shield_generator/belt/melee
+	name = "PSG variant-M"
+	desc = "A personal shield generator that creates a field that prevents the functionality of firearms in exchange \
+	for enhanceing melee potential. The shield makes its user more resistant to brute and burn, \
+	makes them harder to hit, able to hit harder, able to hit faster, allows faster movement, and \
+	allows the user to get up from disabling strikes faster."
+	damage_cost = 5
+
+	modifier_type = /datum/modifier/shield_projection/melee_focus
+
+/obj/item/personal_shield_generator/belt/melee/loaded
+	bcell = /obj/item/cell/device/shield_generator
+
 //Misc belts. Admin-spawn only atm.
 
 /obj/item/personal_shield_generator/belt/adminbus
