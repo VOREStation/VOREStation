@@ -481,6 +481,7 @@
 			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
+			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
 			for(var/lang in M.languages)
 				new_mob.languages |= lang
 			M.copy_vore_prefs_to_mob(new_mob)
@@ -689,6 +690,7 @@
 			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
+			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
 			new_mob.hasthermals = 0
 			new_mob.health = M.health
 			new_mob.maxHealth = M.health
