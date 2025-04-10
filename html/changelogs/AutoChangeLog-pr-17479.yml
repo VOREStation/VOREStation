@@ -1,7 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - rscadd: "Adds a variant of the roboticist labcoat to Suits and Overwear"
-  - rscadd: "Adds \"traffic officer's jacket\" to Suits and Overwear"
-  - rscadd: "Adds the option to bring a rubber ducky with you to the loadout on General"
-  - rscadd: "Adds the waiter's outfit to the loadout on Casual Dress"
