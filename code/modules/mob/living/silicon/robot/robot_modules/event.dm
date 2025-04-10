@@ -33,10 +33,6 @@
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += wire
 
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
-	C.synths = list(wire)
-	src.modules += C
-
 	src.modules += new /obj/item/dogborg/sleeper/lost(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
 
@@ -56,11 +52,7 @@
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 
 	// For growing flowers
-	src.modules += new /obj/item/material/minihoe(src)
-	src.modules += new /obj/item/material/knife/machete/hatchet(src)
-	src.modules += new /obj/item/analyzer/plant_analyzer(src)
-	src.modules += new /obj/item/storage/bag/plants(src)
-	src.modules += new /obj/item/robot_harvester(src)
+	src.modules += new /obj/item/robotic_multibelt/botanical(src)
 
 	// For digging and beautifying graves
 	src.modules += new /obj/item/shovel(src)

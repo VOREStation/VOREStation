@@ -6,7 +6,7 @@
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt."
+	desc = "An integrated toolbelt. Use ALT-CLICK or CTRL-CLICK"
 
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
@@ -27,27 +27,49 @@
 
 	var/list/integrated_tool_images
 
+	var/requires_first_use_init = FALSE //If our tool REQUIRES us to initialize the integrated tools the FIRST time we use it. Used for things like the material synth.
+	var/has_performed_first_use_init = FALSE
+
+/obj/item/robotic_multibelt/CtrlClick(mob/user)
+	if(selected_item)
+		selected_item.attack_self(user)
+	return
+
+/obj/item/robotic_multibelt/AltClick(mob/user)
+	if(selected_item)
+		selected_item.attack_self(user)
+	return
 
 
-/obj/item/robotic_multibelt/Initialize(mapload)
+//'Alterate Tools' means we do special tool handling in Init
+/obj/item/robotic_multibelt/Initialize(mapload, custom_handling = FALSE)
 	. = ..()
 
-	if(cyborg_integrated_tools && LAZYLEN(cyborg_integrated_tools))
+	if(cyborg_integrated_tools && LAZYLEN(cyborg_integrated_tools) && !requires_first_use_init)
+		generate_tools()
 
-		integrated_tools_by_name = list()
+/obj/item/robotic_multibelt/proc/first_use_generation() //Used for special multibelts, like the material multibelt.
+	has_performed_first_use_init = TRUE
+	return
 
-		integrated_tool_images = list()
+/obj/item/robotic_multibelt/proc/generate_tools()
+	integrated_tools_by_name = list()
 
-		for(var/path in cyborg_integrated_tools)
+	integrated_tool_images = list()
+
+	for(var/path in cyborg_integrated_tools)
+		if(ispath(path)) //Some things like the materials printer makes its own tools and it won't be a path.
 			if(!cyborg_integrated_tools[path])
 				cyborg_integrated_tools[path] = new path(src)
-			var/obj/item/I = cyborg_integrated_tools[path]
-			I.canremove = FALSE
+		else
+			cyborg_integrated_tools[path] = path
+		var/obj/item/I = cyborg_integrated_tools[path]
+		I.canremove = FALSE
 
-		for(var/tool in cyborg_integrated_tools)
-			var/obj/item/Tool = cyborg_integrated_tools[tool]
-			integrated_tools_by_name[Tool.name] = Tool
-			integrated_tool_images[Tool.name] = image(icon = Tool.icon, icon_state = Tool.icon_state)
+	for(var/tool in cyborg_integrated_tools)
+		var/obj/item/Tool = cyborg_integrated_tools[tool]
+		integrated_tools_by_name[Tool.name] = Tool
+		integrated_tool_images[Tool.name] = image(icon = Tool.icon, icon_state = Tool.icon_state)
 
 /obj/item/robotic_multibelt/Destroy()
 	selected_item = null
@@ -60,6 +82,12 @@
 
 
 /obj/item/robotic_multibelt/attack_self(mob/user)
+	if(requires_first_use_init && !has_performed_first_use_init)
+		first_use_generation()
+
+	if(!cyborg_integrated_tools || !LAZYLEN(cyborg_integrated_tools))
+		to_chat(user, "Your multibelt is empty!")
+		return
 
 	var/list/options = list()
 
@@ -227,6 +255,174 @@
 	icon_state = "cyborg_bioregen"
 	toolspeed = 0.5
 
+//Service multibelt!
+/obj/item/robotic_multibelt/service
+	name = "Service multitool"
+	desc = "An integrated service toolbelt."
+	icon_state = "toolkit_medborg"
+
+	cyborg_integrated_tools = list(
+		/obj/item/material/minihoe/cyborg  = null,
+		/obj/item/material/knife/machete/hatchet/cyborg  = null,
+		/obj/item/analyzer/plant_analyzer/cyborg  = null,
+		/obj/item/material/knife/cyborg  = null,
+		/obj/item/robot_harvester = null,
+		/obj/item/material/kitchen/rollingpin/cyborg  = null,
+		/obj/item/tool/wirecutters/cyborg = null,
+		/obj/item/multitool/cyborg = null,
+		)
+
+//Botanical multibelt!
+/obj/item/robotic_multibelt/botanical
+	name = "Botanical multitool"
+	desc = "An integrated botanical toolbelt."
+	icon_state = "toolkit_medborg"
+
+	cyborg_integrated_tools = list(
+		/obj/item/material/minihoe/cyborg  = null,
+		/obj/item/material/knife/machete/hatchet/cyborg  = null,
+		/obj/item/analyzer/plant_analyzer/cyborg = null,
+		/obj/item/robot_harvester = null,
+		/obj/item/tool/wirecutters/cyborg = null,
+		/obj/item/multitool/cyborg = null,
+		)
+
+/obj/item/material/minihoe/cyborg
+	icon = 'icons/obj/tools_robot.dmi'
+	icon_state = "sili_cultivator"
+
+/obj/item/material/knife/machete/hatchet/cyborg
+	icon = 'icons/obj/tools_robot.dmi'
+	icon_state = "sili_hatchet"
+
+/obj/item/analyzer/plant_analyzer/cyborg
+	icon = 'icons/obj/tools_robot.dmi'
+	icon_state = "sili_secateur"
+
+
+/obj/item/material/knife/cyborg
+	icon = 'icons/obj/tools_robot.dmi'
+	icon_state = "sili_knife"
+
+/obj/item/material/kitchen/rollingpin/cyborg
+	icon = 'icons/obj/tools_robot.dmi'
+	icon_state = "sili_rolling_pin"
+
+
+
+
+
+
+
+
+
+
+
+
+//The Material Dispenser Multibelt
+//This thing is uh...Bulky. And took a lot of effort to get to work.
+
+/obj/item/robotic_multibelt/materials
+	name = "Robotic Material Dispenser"
+	desc = "An integrated material dispenser! Click once to select your material. Use Alt, Ctrl, or Doubleclick to open the menu for the selected material."
+	icon_state = "toolkit_material"
+
+	cyborg_integrated_tools = list()
+	requires_first_use_init = TRUE
+
+/obj/item/robotic_multibelt/materials/first_use_generation()
+	..()
+	//First, we see if we spawned inside a robot.
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/our_robot = loc
+		if(our_robot.module)
+			var/obj/item/robot_module/module = our_robot.module
+			to_world("MS = [module.synths] LAZYLEN = [LAZYLEN(module.synths)]")
+			if(module.synths && LAZYLEN(module.synths)) //We have a synths list and it has contents within it!
+				var/datum/matter_synth/has_glass //Glass synth. For generating Rglass
+				var/datum/matter_synth/has_steel //Steel synth. For generating Rglass
+				for(var/datum/matter_synth/our_synths in module.synths)
+					to_world("We have [our_synths]. OSN = [our_synths.name]")
+					var/obj/item/stack/current_stack
+					switch(our_synths.name)
+						if("Metal Synthesizer")
+							to_world("Adding Metal")
+							//Add steel
+							current_stack = new /obj/item/stack/material/cyborg/steel(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Add floor tiless
+							current_stack = new /obj/item/stack/tile/floor/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Add Rods
+							current_stack = new /obj/item/stack/rods/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Add roofing tiles
+							current_stack = new /obj/item/stack/tile/roofing/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Add reinforced glass if we have glass already, OR set our steel var to true (since glass will be checked later)
+							if(has_glass == TRUE)
+								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
+								current_stack.synths = list(our_synths, has_glass)
+								cyborg_integrated_tools += current_stack
+							else
+								has_steel = our_synths
+						if("Plasteel Synthesizer")
+							to_world("Adding Plasteel")
+							current_stack = new /obj/item/stack/material/cyborg/plasteel(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+						if("Glass Synthesizer")
+							to_world("Adding Glass")
+							current_stack = new /obj/item/stack/material/cyborg/glass(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Add reinforced glass if we have steel already, OR set our glass var to true (since steel will be checked later)
+							if(has_steel == TRUE)
+								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
+								current_stack.synths = list(our_synths, has_steel)
+								cyborg_integrated_tools += current_stack
+							else
+								has_glass = our_synths
+						if("Wood Synthesizer")
+							to_world("Adding Wood")
+							//Wood Tiles
+							current_stack = new /obj/item/stack/tile/wood/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+							//Wood planks
+							current_stack = new /obj/item/stack/material/cyborg/wood(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+						if("Plastic Synthesizer")
+							to_world("Adding Plastic")
+							current_stack = new /obj/item/stack/material/cyborg/plastic(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+						if("Wire Synthesizer")
+							to_world("Adding Wire")
+							current_stack = new /obj/item/stack/cable_coil/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+						/* //Kept its own individual item
+						if("Nanite Synthesizer")
+							var/obj/item/stack/nanopaste/nanopaste = new /obj/item/stack/nanopaste(src)
+							nanopaste.uses_charge = 1
+							nanopaste.charge_costs = list(1000)
+							current_stack = nanopaste
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+						*/
+						if("Cloth Synthesizer")
+							current_stack = new /obj/item/stack/sandbags/cyborg(src)
+							current_stack.synths = list(our_synths)
+							cyborg_integrated_tools += current_stack
+
+	generate_tools()
+
 /*
  * Grippers
  */
@@ -240,7 +436,7 @@
 	description_info = "Ctrl-Clicking on the gripper will drop whatever it is holding.<br>\
 	Using an object on the gripper will interact with the item inside it, if it exists, instead."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "gripper-omni"
+	icon_state = "gripper"
 
 	flags = NOBLUDGEON
 
@@ -508,11 +704,13 @@
 /obj/item/gripper/engineering
 	name = "Engineering Gripper"
 	desc = "An integrated Engineering Gripper."
+	icon_state = "gripper-omni"
 	can_hold = list(BASIC_GRIPPER, CIRCUIT_GRIPPER, SHEET_GRIPPER)
 
 /obj/item/gripper/drone
 	name = "Drone Gripper"
 	desc = "An integrated Drone Gripper."
+	icon_state = "gripper-old"
 	can_hold = list(BASIC_GRIPPER, SHEET_GRIPPER)
 
 /obj/item/gripper/omni
@@ -546,6 +744,7 @@
 /obj/item/gripper/medical
 	name = "medical gripper"
 	desc = "A simple grasping tool for medical work."
+	icon_state = "gripper-flesh"
 
 	can_hold = list(BASIC_GRIPPER, ORGAN_GRIPPER, MEDICAL_GRIPPER)
 
@@ -565,14 +764,14 @@
 
 /obj/item/gripper/service //Used to handle food, drinks, and seeds.
 	name = "service gripper"
-	icon_state = "gripper"
+	icon_state = "gripper-sheet"
 	desc = "A simple grasping tool used to perform tasks in the service sector, such as handling food, drinks, and seeds."
 
 	can_hold = list(SERVICE_GRIPPER)
 
 /obj/item/gripper/gravekeeper	//Used for handling grave things, flowers, etc.
 	name = "grave gripper"
-	icon_state = "gripper"
+	icon_state = "gripper-old"
 	desc = "A specialized grasping tool used in the preparation and maintenance of graves."
 
 	can_hold = list(GRAVEYARD_GRIPPER)
@@ -631,3 +830,33 @@
 	icon_state = "gripper-sheet"
 
 	can_hold = list(SHEET_GRIPPER)
+
+/*
+ * Misc tools
+ */
+/obj/item/reagent_containers/glass/bucket/cyborg
+	var/mob/living/silicon/robot/R
+	var/last_robot_loc
+
+/obj/item/reagent_containers/glass/bucket/cyborg/Initialize(mapload)
+	. = ..()
+	R = loc.loc
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+
+/obj/item/reagent_containers/glass/bucket/cyborg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
+	if(old_loc == R || old_loc == R.module)
+		last_robot_loc = old_loc
+	if(!istype(loc, /obj/machinery) && loc != R && loc != R.module)
+		if(last_robot_loc)
+			forceMove(last_robot_loc)
+			last_robot_loc = null
+		else
+			forceMove(R)
+		if(loc == R)
+			hud_layerise()
+
+/obj/item/reagent_containers/glass/bucket/cyborg/Destroy()
+	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	R = null
+	last_robot_loc = null
+	..()

@@ -135,6 +135,9 @@
 		return 0
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
+	var/belt_check = using_multibelt(O)
+	if(belt_check)
+		return belt_check
 	if(module_state_1 == O)
 		return 1
 	else if(module_state_2 == O)
@@ -143,6 +146,12 @@
 		return 1
 	else
 		return 0
+
+/mob/living/silicon/robot/proc/using_multibelt(obj/item/O)
+	for(var/obj/item/robotic_multibelt/materials/material_belt in contents)
+		if(material_belt.selected_item == O)
+			return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/proc/get_active_modules()
 	return list(module_state_1, module_state_2, module_state_3)

@@ -48,7 +48,7 @@ What Borgs are available is sadly handled in the above file in the proc
 				)
 /obj/item/robot_module/robot/booze/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/gripper/service(src)
-	//src.modules += new /obj/item/reagent_containers/glass/bucket(src)
+	//src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src)
 	//src.modules += new /obj/item/material/minihoe(src)
 	//src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	//src.modules += new /obj/item/storage/bag/plants(src)

@@ -29,9 +29,6 @@
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth
 
-	var/obj/item/stack/sandbags/cyborg/SB = new /obj/item/stack/sandbags/cyborg(src)
-	SB.synths += list(cloth)
-
 	var/jetpack = new/obj/item/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
 	robot.internals = jetpack
@@ -101,26 +98,6 @@
 	N.charge_costs = list(1000)
 	N.synths = list(nanite)
 	src.modules += N
-
-	var/obj/item/stack/material/cyborg/steel/M = new (src)
-	M.synths = list(metal)
-	src.modules += M
-
-	var/obj/item/stack/material/cyborg/glass/G = new (src)
-	G.synths = list(glass)
-	src.modules += G
-
-	var/obj/item/stack/rods/cyborg/rods = new /obj/item/stack/rods/cyborg(src)
-	rods.synths = list(metal)
-	src.modules += rods
-
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
-	C.synths = list(wire)
-	src.modules += C
-
-	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
-	RG.synths = list(metal, glass)
-	src.modules += RG
 
 	var/obj/item/dogborg/sleeper/compactor/syndie/MD = new /obj/item/dogborg/sleeper/compactor/syndie(src)
 	MD.metal = metal

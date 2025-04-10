@@ -219,6 +219,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/gripper/scene(src)
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"
@@ -414,55 +415,6 @@ var/global/list/robot_modules = list(
 	synths += plastic
 	synths += wire
 
-	var/obj/item/matter_decompiler/MD = new /obj/item/matter_decompiler(src)
-	MD.metal = metal
-	MD.glass = glass
-	src.modules += MD
-
-	var/obj/item/stack/material/cyborg/steel/M = new (src)
-	M.synths = list(metal)
-	src.modules += M
-
-	var/obj/item/stack/material/cyborg/glass/G = new (src)
-	G.synths = list(glass)
-	src.modules += G
-
-	var/obj/item/stack/rods/cyborg/R = new /obj/item/stack/rods/cyborg(src)
-	R.synths = list(metal)
-	src.modules += R
-
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
-	C.synths = list(wire)
-	src.modules += C
-
-	var/obj/item/stack/material/cyborg/plasteel/PS = new (src)
-	PS.synths = list(plasteel)
-	src.modules += PS
-
-	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
-	S.synths = list(metal)
-	src.modules += S
-
-	var/obj/item/stack/tile/roofing/cyborg/CT = new /obj/item/stack/tile/roofing/cyborg(src)
-	CT.synths = list(metal)
-	src.modules += CT
-
-	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
-	RG.synths = list(metal, glass)
-	src.modules += RG
-
-	var/obj/item/stack/tile/wood/cyborg/WT = new /obj/item/stack/tile/wood/cyborg(src)
-	WT.synths = list(wood)
-	src.modules += WT
-
-	var/obj/item/stack/material/cyborg/wood/W = new (src)
-	W.synths = list(wood)
-	src.modules += W
-
-	var/obj/item/stack/material/cyborg/plastic/PL = new (src)
-	PL.synths = list(plastic)
-	src.modules += PL
-
 	var/obj/item/dogborg/sleeper/compactor/decompiler/BD = new /obj/item/dogborg/sleeper/compactor/decompiler(src)
 	BD.metal = metal
 	BD.glass = glass
@@ -527,7 +479,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/pupscrubber(src)
 	src.modules += new /obj/item/lightreplacer(src)
 	src.modules += new /obj/item/borg/sight/janitor(src)
-	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
+	src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src)
 	var/obj/item/reagent_containers/spray/LS = new /obj/item/reagent_containers/spray(src)
 	src.emag += LS
 	LS.reagents.add_reagent(REAGENT_ID_LUBE, 250)
@@ -617,15 +569,8 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/clerical/butler/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/gripper/service(src)
-	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
-	src.modules += new /obj/item/material/minihoe(src)
-	src.modules += new /obj/item/material/knife/machete/hatchet(src)
-	src.modules += new /obj/item/analyzer/plant_analyzer(src)
+	src.modules += new /obj/item/robotic_multibelt/service(src)
 	src.modules += new /obj/item/storage/bag/serviceborg(src)
-	src.modules += new /obj/item/robot_harvester(src)
-	src.modules += new /obj/item/material/knife(src)
-	src.modules += new /obj/item/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/multitool/cyborg(src) //to freeze trays
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
 	M.stored_matter = 30
@@ -667,12 +612,8 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/clerical/honkborg/create_equipment(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/gripper/service(src)
-	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
-	src.modules += new /obj/item/material/minihoe(src)
-	src.modules += new /obj/item/analyzer/plant_analyzer(src)
-	src.modules += new /obj/item/storage/bag/serviceborg(src)
-	src.modules += new /obj/item/robot_harvester(src)
-	src.modules += new /obj/item/multitool/cyborg(src)
+	src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src)
+	src.modules += new /obj/item/robotic_multibelt/botanical(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
 	src.modules += new /obj/item/bikehorn(src)
 	src.modules += new /obj/item/gun/launcher/confetti_cannon/robot(src)
@@ -748,6 +689,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/gripper/research(src)
 	src.modules += new /obj/item/robotic_multibelt(src)
 	src.modules += new /obj/item/robotic_multibelt(src)
+	src.modules += new /obj/item/robotic_multibelt/botanical(src)
 	src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair
 	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair
 	src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement
@@ -772,10 +714,6 @@ var/global/list/robot_modules = list(
 	N.charge_costs = list(1000)
 	N.synths = list(nanite)
 	src.modules += N
-
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)	//Cable code, taken from engiborg,
-	C.synths = list(wire)
-	src.modules += C
 
 	src.modules += new /obj/item/dogborg/sleeper/compactor/analyzer(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
@@ -864,42 +802,6 @@ var/global/list/robot_modules = list(
 	MD.wood = wood
 	MD.plastic = plastic
 	src.modules += MD
-
-	var/obj/item/stack/material/cyborg/steel/M = new (src)
-	M.synths = list(metal)
-	src.modules += M
-
-	var/obj/item/stack/material/cyborg/glass/G = new (src)
-	G.synths = list(glass)
-	src.modules += G
-
-	var/obj/item/stack/rods/cyborg/R = new /obj/item/stack/rods/cyborg(src)
-	R.synths = list(metal)
-	src.modules += R
-
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
-	C.synths = list(wire)
-	src.modules += C
-
-	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
-	S.synths = list(metal)
-	src.modules += S
-
-	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
-	RG.synths = list(metal, glass)
-	src.modules += RG
-
-	var/obj/item/stack/tile/wood/cyborg/WT = new /obj/item/stack/tile/wood/cyborg(src)
-	WT.synths = list(wood)
-	src.modules += WT
-
-	var/obj/item/stack/material/cyborg/wood/W = new (src)
-	W.synths = list(wood)
-	src.modules += W
-
-	var/obj/item/stack/material/cyborg/plastic/P = new (src)
-	P.synths = list(plastic)
-	src.modules += P
 
 /obj/item/robot_module/drone/construction
 	name = "construction drone module"
