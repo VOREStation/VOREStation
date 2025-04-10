@@ -309,7 +309,7 @@
 		for(var/obj/item/storage/internal/pocket_to_check in pockets)
 			if(!LAZYLEN(pocket_to_check.contents))
 				integrated_tools_by_name[pocket_to_check.name] = pocket_to_check
-				integrated_tool_images[pocket_to_check.name] = image(icon = 'icons/effects/effects.dmi', icon_state = "arrow3")
+				integrated_tool_images[pocket_to_check.name] = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing")
 				continue
 			var/obj/item/pocket_content = pocket_to_check.contents[1]
 			integrated_tools_by_name["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_content
