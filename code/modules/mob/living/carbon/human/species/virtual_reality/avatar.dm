@@ -41,7 +41,7 @@
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/regenerate,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
-		/mob/living/carbon/human/proc/exit_vr
+		/mob/living/carbon/human/proc/perform_exit_vr
 		)
 
 
@@ -85,9 +85,12 @@
 	to_chat(avatar, span_notice(" You black out for a moment, and wake to find yourself in a new body in virtual reality.")) // So this is what VR feels like?
 
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
-/mob/living/carbon/human/proc/exit_vr(player_initated = TRUE)
+/mob/living/carbon/human/proc/perform_exit_vr()
 	set name = "Exit Virtual Reality"
 	set category = "Abilities.VR"
+	exit_vr(TRUE)
+
+/mob/living/carbon/human/proc/exit_vr(player_initated)
 
 	if(!vr_holder)
 		return
