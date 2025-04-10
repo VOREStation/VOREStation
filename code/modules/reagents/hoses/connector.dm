@@ -50,7 +50,7 @@
 		my_hose = null
 	if(carrier)
 		carrier = null
-	..()
+	. = ..()
 
 /obj/item/hose_connector/Initialize(mapload)
 	. = ..()
