@@ -7,8 +7,8 @@
 	name = "Inactive AI Eye"
 	icon_state = "AI-eye"
 
-/mob/observer/eye/aiEye/New()
-	..()
+/mob/observer/eye/aiEye/Initialize(mapload)
+	. = ..()
 	visualnet = cameranet
 
 /mob/observer/eye/aiEye/Destroy()

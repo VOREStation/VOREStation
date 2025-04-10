@@ -22,11 +22,9 @@
 
 	var/created_for
 
-/mob/new_player/New()
-	mob_list += src
+/mob/new_player/Initialize(mapload)
+	. = ..()
 	add_verb(src, /mob/proc/insidePanel)
-	flags |= ATOM_INITIALIZED // Explicitly don't use Initialize().  New players join super early and use New()
-
 
 /mob/new_player/Destroy()
 	if(panel)

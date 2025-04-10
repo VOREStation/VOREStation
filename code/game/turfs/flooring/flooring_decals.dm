@@ -620,9 +620,9 @@ var/list/floor_decals = list()
 	name = "random asteroid rubble"
 	icon_state = "asteroid0"
 
-/obj/effect/floor_decal/asteroid/New()
+/obj/effect/floor_decal/asteroid/Initialize(mapload, newdir, newcolour)
 	icon_state = "asteroid[rand(0,9)]"
-	..()
+	. = ..()
 
 /obj/effect/floor_decal/chapel
 	name = "chapel"
