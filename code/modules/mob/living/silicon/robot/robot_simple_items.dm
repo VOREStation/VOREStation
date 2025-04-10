@@ -233,6 +233,7 @@
 
 //Simple borg hand.
 //Limited use.
+//If you want to add more items to the gripper, add them to the global define list for that gripper.
 /obj/item/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool specialized in construction and engineering work."
@@ -254,9 +255,9 @@
 
 	var/obj/item/current_pocket = null //What pocket (or item!) we currently have selected
 
-	var/list/integrated_tools_by_name
+	var/list/pockets_by_name
 
-	var/list/integrated_tool_images
+	var/list/photo_images
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -302,30 +303,30 @@
 /obj/item/gripper/proc/generate_icons()
 	if(LAZYLEN(pockets))
 
-		integrated_tools_by_name = list()
+		pockets_by_name = list()
 
-		integrated_tool_images = list()
+		photo_images = list()
 
 		for(var/obj/item/storage/internal/pocket_to_check in pockets)
 			if(!LAZYLEN(pocket_to_check.contents))
-				integrated_tools_by_name[pocket_to_check.name] = pocket_to_check
-				integrated_tool_images[pocket_to_check.name] = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing")
+				pockets_by_name[pocket_to_check.name] = pocket_to_check
+				photo_images[pocket_to_check.name] = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing")
 				continue
 			var/obj/item/pocket_content = pocket_to_check.contents[1]
-			integrated_tools_by_name["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_content
-			integrated_tool_images["[pocket_to_check.name]" + "[pocket_content.name]"] = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
+			pockets_by_name["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_content
+			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
 
 /obj/item/gripper/attack_self(mob/user as mob)
 	generate_icons()
 	var/list/options = list()
 
-	for(var/Iname in integrated_tools_by_name)
-		options[Iname] = integrated_tool_images[Iname]
+	for(var/Iname in pockets_by_name)
+		options[Iname] = photo_images[Iname]
 
 	var/list/choice = list()
 	choice = show_radial_menu(user, src, options, radius = 40, require_near = TRUE, autopick_single_option = FALSE)
 	if(choice)
-		current_pocket = integrated_tools_by_name[choice]
+		current_pocket = pockets_by_name[choice]
 		if(!istype(current_pocket,/obj/item/storage/internal/gripper)) //The pocket we're selecting is NOT a gripper storage
 			if(!istype(current_pocket.loc, /obj/item/storage/internal/gripper)) //We kept the radial menu opened, used the item, then selected it again.
 				current_pocket = pick(pockets) //Just pick a random pocket.
