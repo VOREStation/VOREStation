@@ -1045,7 +1045,6 @@
 
 		if(resting && sprite_datum.has_rest_sprites)
 			icon_state = sprite_datum.get_rest_sprite(src)
-		//moved eyes from here
 
 		if(lights_on && sprite_datum.has_eye_light_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
