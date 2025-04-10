@@ -26,7 +26,7 @@
 	spawn(5)
 		if(on_eruption(T))
 			spawn(2)
-				..()
+				. = ..()
 
 /obj/effect/temporary_effect/eruption/proc/on_eruption(var/turf/Target)	// Override for specific functions, as below.
 	return TRUE

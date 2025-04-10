@@ -143,7 +143,7 @@
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()
-	..()
+	. = ..()
 
 /obj/machinery/shieldgen/proc/shields_up()
 	if(active) return 0 //If it's already turned on, how did this get called?

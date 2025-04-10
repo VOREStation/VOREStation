@@ -43,7 +43,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 /obj/effect/landmark/event_trigger/Destroy()
 	if(event_triggers[creator_ckey])
 		event_triggers[creator_ckey] -= src
-	..()
+	. = ..()
 
 /obj/effect/landmark/event_trigger/Crossed(var/atom/movable/AM)
 	if(!isliving(AM))

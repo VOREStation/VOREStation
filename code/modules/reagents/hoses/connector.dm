@@ -102,7 +102,7 @@
 
 /obj/item/hose_connector/input/active/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/hose_connector/input/active/Initialize(mapload)
 	. = ..()
@@ -124,7 +124,7 @@
 
 /obj/item/hose_connector/output/active/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/hose_connector/output/active/Initialize(mapload)
 	. = ..()
