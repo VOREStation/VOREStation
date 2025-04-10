@@ -6,7 +6,7 @@
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt. Use ALT-CLICK or CTRL-CLICK"
+	desc = "An integrated toolbelt. Use CTRL-CLICK to interact with the selected item!"
 
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
@@ -35,10 +35,11 @@
 		selected_item.attack_self(user)
 	return
 
-/obj/item/robotic_multibelt/AltClick(mob/user)
+/obj/item/robotic_multibelt/examine(mob/user)
+	. = ..()
 	if(selected_item)
-		selected_item.attack_self(user)
-	return
+		. += span_notice("\The [src] is currently set to \the [selected_item].")
+		. += selected_item.examine(user)
 
 
 //'Alterate Tools' means we do special tool handling in Init
@@ -270,6 +271,7 @@
 		/obj/item/material/kitchen/rollingpin/cyborg  = null,
 		/obj/item/tool/wirecutters/cyborg = null,
 		/obj/item/multitool/cyborg = null,
+		/obj/item/reagent_containers/spray = null
 		)
 
 //Botanical multibelt!
@@ -285,6 +287,7 @@
 		/obj/item/robot_harvester = null,
 		/obj/item/tool/wirecutters/cyborg = null,
 		/obj/item/multitool/cyborg = null,
+		/obj/item/reagent_containers/spray = null
 		)
 
 /obj/item/material/minihoe/cyborg
@@ -433,7 +436,8 @@
 /obj/item/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool specialized in construction and engineering work."
-	description_info = "Ctrl-Clicking on the gripper will drop whatever it is holding.<br>\
+	description_info = "Ctrl-Clicking on the gripper will interact with whatever it is holding.<br>\
+	Alt-Clicking on the gripper will drop the item it is holding.<br>\
 	Using an object on the gripper will interact with the item inside it, if it exists, instead."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
@@ -486,7 +490,8 @@
 		. += wrapped.examine(user)
 
 /obj/item/gripper/CtrlClick(mob/user)
-	drop_item()
+	if(wrapped)
+		wrapped.attack_self(user)
 	return
 
 /obj/item/gripper/AltClick(mob/user)
@@ -536,17 +541,24 @@
 	return ..()
 
 /obj/item/gripper/attackby(var/obj/item/O, var/mob/user)
-	if(wrapped) // We're interacting with the item inside. If you can hold a cup with 2 fingers and stick a straw in it, you could do that with a gripper and another robotic arm.
-		wrapped.loc = src.loc
+	if(wrapped)
+		wrapped.loc = src.loc //Place it in to the robot.
 		var/resolved = wrapped.attackby(O, user)
-		if(QDELETED(wrapped) || wrapped.loc != src.loc)	 //Juuuust in case.
+		if(QDELETED(wrapped) || (wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))
 			wrapped = null
 		if(!resolved && wrapped && O)
 			O.afterattack(wrapped,user,1)
-			if(QDELETED(wrapped) || wrapped.loc != src.loc)	 // I don't know of a nicer way to do this.
+			if(QDELETED(wrapped) || (wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))	 // I don't know of a nicer way to do this.
 				wrapped = null
-		if(wrapped)
+		if(wrapped && wrapped != current_pocket)
 			wrapped.loc = current_pocket
+		else if(wrapped)
+			for(var/obj/item/storage/internal/gripper/our_pocket in pockets)
+				if(LAZYLEN(our_pocket.contents))
+					continue
+				current_pocket = our_pocket
+				wrapped.loc = current_pocket
+
 		return resolved
 	return ..()
 
@@ -582,12 +594,12 @@
 
 /obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-		if(QDELETED(wrapped) || !istype(wrapped.loc, /obj/item/storage/internal/gripper)) //If our wrapper was deleted OR it's no longer in our internal gripper storage
+		if(QDELETED(wrapped) || (wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
 			wrapped = null //we become null
 		else
 			wrapped.attack(M,user)
 			M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
-			if(QDELETED(wrapped) || !istype(wrapped.loc, /obj/item/storage/internal/gripper))
+			if(QDELETED(wrapped) || (wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
 				wrapped = null
 			if(wrapped) //In the event nothing happened to wrapped, go back into the gripper.
 				wrapped.loc = current_pocket
@@ -598,11 +610,14 @@
 
 	if(!proximity)
 		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
-
+	var/current_pocket_full = FALSE
 	//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
+	if(wrapped == current_pocket)
+		current_pocket_full = TRUE
 	if(!wrapped && current_pocket)
 		if(LAZYLEN(current_pocket.contents))
 			wrapped = current_pocket.contents[1]
+			current_pocket_full = TRUE
 
 	if(current_pocket && !LAZYLEN(current_pocket.contents)) //We have a pocket selected and it has no contents! This means we're an item OR we need to null our wrapper!
 		if(istype(current_pocket.loc,/obj/item/storage/internal/gripper) && !LAZYLEN(current_pocket.loc.contents)) //If our pocket is a gripper, AND we have no contents, wrapped = null
@@ -637,6 +652,9 @@
 		else
 			wrapped = null
 			return
+	else if(current_pocket_full) //Pocket is full. No grabbing more things.
+		to_chat(user, "Your gripper is currently full! You can't pick anything else up!")
+		return
 
 	else if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
 

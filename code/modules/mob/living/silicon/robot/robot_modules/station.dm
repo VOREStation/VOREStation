@@ -617,6 +617,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/dogborg/pounce(src)
 	src.modules += new /obj/item/bikehorn(src)
 	src.modules += new /obj/item/gun/launcher/confetti_cannon/robot(src)
+	src.modules += new /obj/item/reagent_containers/spray/waterflower(src)
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
 	M.stored_matter = 30

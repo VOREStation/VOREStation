@@ -1072,7 +1072,8 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/obj/item/tank, \
 	/obj/item/circuitboard, \
 	/obj/item/smes_coil, \
-	/obj/item/fuel_assembly
+	/obj/item/fuel_assembly, \
+	/obj/item/stack/tile/floor
 
 #define OMNI_GRIPPER \
 	/obj/item
