@@ -1187,3 +1187,30 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 
 #define SHEET_GRIPPER \
 	/obj/item/stack/material
+
+var/global/list/all_borg_multitool_options = list(
+	/obj/item/tool/screwdriver/cyborg,
+	/obj/item/tool/wrench/cyborg,
+	/obj/item/tool/crowbar/cyborg,
+	/obj/item/tool/wirecutters/cyborg,
+	/obj/item/multitool/cyborg,
+	/obj/item/weldingtool/electric/mounted/cyborg,
+	/obj/item/surgical/retractor/cyborg,
+	/obj/item/surgical/hemostat/cyborg,
+	/obj/item/surgical/cautery/cyborg,
+	/obj/item/surgical/surgicaldrill/cyborg,
+	/obj/item/surgical/scalpel/cyborg,
+	/obj/item/surgical/circular_saw/cyborg,
+	/obj/item/surgical/bonegel/cyborg,
+	/obj/item/surgical/FixOVein/cyborg,
+	/obj/item/surgical/bonesetter/cyborg,
+	/obj/item/surgical/bioregen/cyborg,
+	/obj/item/autopsy_scanner,
+	/obj/item/material/minihoe/cyborg,
+	/obj/item/material/knife/machete/hatchet/cyborg,
+	/obj/item/analyzer/plant_analyzer/cyborg,
+	/obj/item/material/knife/cyborg,
+	/obj/item/robot_harvester,
+	/obj/item/material/kitchen/rollingpin/cyborg,
+	/obj/item/reagent_containers/spray,
+)
