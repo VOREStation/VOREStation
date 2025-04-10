@@ -660,7 +660,7 @@
 //
 // Master vore proc that actually does vore procedures
 //
-/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time, no_delay)
+/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
 		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
@@ -717,8 +717,8 @@
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time
-	if(no_delay) //Instant noms! Used for dropnoms/stumblevore
-		swallow_time = 0
+	if(delay_time < 0)
+		swallow_time = 0 //No delay!
 	else if(delay_time)
 		swallow_time = delay_time
 	else
@@ -843,7 +843,7 @@
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	return perform_the_nom(user, prey, user, belly, 0, TRUE) //1/10th of a second is probably fine.
+	return perform_the_nom(user, prey, user, belly, -1)
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
