@@ -90,3 +90,17 @@
 2025-04-09:
   Kashargul:
   - code_imp: tgui core 2.0
+2025-04-10:
+  Cerami:
+  - balance: Venom bite now warns players that it is being used.
+  SatinIsle:
+  - maptweak: Moved the medical kiosk from the west side of the medbay lobby over
+      to the east corner, near chemistry.
+  TheCaramelion:
+  - bugfix: Fixed mail scanner not working
+  - qol: Added an animation when dropping items on tables
+  Tost:
+  - rscadd: Adds a variant of the roboticist labcoat to Suits and Overwear
+  - rscadd: Adds "traffic officer's jacket" to Suits and Overwear
+  - rscadd: Adds the option to bring a rubber ducky with you to the loadout on General
+  - rscadd: Adds the waiter's outfit to the loadout on Casual Dress
