@@ -117,20 +117,24 @@ export const PersonalCrafting = (props) => {
         <Section
           title="Personal Crafting"
           buttons={
-            <>
-              <Button.Checkbox
-                checked={display_compact}
-                onClick={() => act('toggle_compact')}
-              >
-                Compact
-              </Button.Checkbox>
-              <Button.Checkbox
-                checked={display_craftable_only}
-                onClick={() => act('toggle_recipes')}
-              >
-                Craftable Only
-              </Button.Checkbox>
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button.Checkbox
+                  checked={display_compact}
+                  onClick={() => act('toggle_compact')}
+                >
+                  Compact
+                </Button.Checkbox>
+              </Stack.Item>
+              <Stack.Item>
+                <Button.Checkbox
+                  checked={display_craftable_only}
+                  onClick={() => act('toggle_recipes')}
+                >
+                  Craftable Only
+                </Button.Checkbox>
+              </Stack.Item>
+            </Stack>
           }
         >
           <Input

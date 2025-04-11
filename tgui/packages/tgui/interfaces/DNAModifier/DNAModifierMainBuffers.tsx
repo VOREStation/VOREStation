@@ -56,60 +56,68 @@ const DNAModifierMainBuffersElement = (props: {
       mx="0"
       lineHeight="18px"
       buttons={
-        <>
-          <Button.Confirm
-            disabled={!buffer.data || !buffer.owner}
-            icon="trash"
-            onClick={() =>
-              act('bufferOption', {
-                option: 'clear',
-                id: id,
-              })
-            }
-          >
-            Clear
-          </Button.Confirm>
-          <Button
-            disabled={!buffer.data || !buffer.owner}
-            icon="pen"
-            onClick={() =>
-              act('bufferOption', {
-                option: 'changeLabel',
-                id: id,
-              })
-            }
-          >
-            Rename
-          </Button>
-          <Button
-            disabled={!buffer.data || !buffer.owner}
-            icon="user-plus"
-            tooltip="Grow a clone from the buffer's data."
-            tooltipPosition="bottom-end"
-            onClick={() =>
-              act('bufferOption', {
-                option: 'sleeveDisk',
-                id: id,
-              })
-            }
-          >
-            Grow Body
-          </Button>
-          <Button
-            disabled={!buffer.data || !data.hasDisk || !buffer.owner}
-            icon="save"
-            tooltip="Exports this buffer to the currently loaded data disk."
-            tooltipPosition="bottom-end"
-            onClick={() =>
-              act('bufferOption', {
-                option: 'saveDisk',
-                id: id,
-              })
-            }
-          >
-            Export
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button.Confirm
+              disabled={!buffer.data || !buffer.owner}
+              icon="trash"
+              onClick={() =>
+                act('bufferOption', {
+                  option: 'clear',
+                  id: id,
+                })
+              }
+            >
+              Clear
+            </Button.Confirm>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              disabled={!buffer.data || !buffer.owner}
+              icon="pen"
+              onClick={() =>
+                act('bufferOption', {
+                  option: 'changeLabel',
+                  id: id,
+                })
+              }
+            >
+              Rename
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              disabled={!buffer.data || !buffer.owner}
+              icon="user-plus"
+              tooltip="Grow a clone from the buffer's data."
+              tooltipPosition="bottom-end"
+              onClick={() =>
+                act('bufferOption', {
+                  option: 'sleeveDisk',
+                  id: id,
+                })
+              }
+            >
+              Grow Body
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              disabled={!buffer.data || !data.hasDisk || !buffer.owner}
+              icon="save"
+              tooltip="Exports this buffer to the currently loaded data disk."
+              tooltipPosition="bottom-end"
+              onClick={() =>
+                act('bufferOption', {
+                  option: 'saveDisk',
+                  id: id,
+                })
+              }
+            >
+              Export
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Box backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
@@ -220,22 +228,26 @@ const DNAModifierMainBuffersDisk = (props) => {
       fill
       title="Data Disk"
       buttons={
-        <>
-          <Button.Confirm
-            disabled={!hasDisk || !disk.data}
-            icon="trash"
-            onClick={() => act('wipeDisk')}
-          >
-            Wipe
-          </Button.Confirm>
-          <Button
-            disabled={!hasDisk}
-            icon="eject"
-            onClick={() => act('ejectDisk')}
-          >
-            Eject
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button.Confirm
+              disabled={!hasDisk || !disk.data}
+              icon="trash"
+              onClick={() => act('wipeDisk')}
+            >
+              Wipe
+            </Button.Confirm>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              disabled={!hasDisk}
+              icon="eject"
+              onClick={() => act('ejectDisk')}
+            >
+              Eject
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {hasDisk ? (

@@ -6,6 +6,7 @@ import {
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
   Table,
   Tabs,
 } from 'tgui-core/components';
@@ -503,25 +504,29 @@ export const LawManagerLawSets = (props: {
               key={laws.name}
               title={laws.name}
               buttons={
-                <>
-                  <Button
-                    disabled={!isMalf}
-                    icon="sync"
-                    onClick={() =>
-                      act('transfer_laws', { transfer_laws: laws.ref })
-                    }
-                  >
-                    Load Laws
-                  </Button>
-                  <Button
-                    icon="volume-up"
-                    onClick={() =>
-                      act('state_law_set', { state_law_set: laws.ref })
-                    }
-                  >
-                    State Laws
-                  </Button>
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button
+                      disabled={!isMalf}
+                      icon="sync"
+                      onClick={() =>
+                        act('transfer_laws', { transfer_laws: laws.ref })
+                      }
+                    >
+                      Load Laws
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="volume-up"
+                      onClick={() =>
+                        act('state_law_set', { state_law_set: laws.ref })
+                      }
+                    >
+                      State Laws
+                    </Button>
+                  </Stack.Item>
+                </Stack>
               }
             >
               {laws.laws.has_ion_laws ? (
