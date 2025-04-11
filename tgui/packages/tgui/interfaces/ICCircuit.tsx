@@ -62,11 +62,17 @@ export const ICCircuit = (props) => {
         <Section
           title="Stats"
           buttons={
-            <>
-              <Button onClick={() => act('rename')}>Rename</Button>
-              <Button onClick={() => act('scan')}>Scan with Device</Button>
-              <Button onClick={() => act('remove')}>Remove</Button>
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button onClick={() => act('rename')}>Rename</Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button onClick={() => act('scan')}>Scan with Device</Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button onClick={() => act('remove')}>Remove</Button>
+              </Stack.Item>
+            </Stack>
           }
         >
           <LabeledList>

@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
@@ -20,12 +20,10 @@ export const VoreUserPreferencesDevouring = (props: {
     <Section
       title="Devouring Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.devour}
-            tooltipPosition="top"
-          />
-        </Box>
+        <VoreUserPreferenceItem
+          spec={preferences.devour}
+          tooltipPosition="top"
+        />
       }
     >
       {devourable ? (

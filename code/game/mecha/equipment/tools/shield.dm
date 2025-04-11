@@ -34,7 +34,7 @@
 	my_shield.my_mecha = null
 	qdel(my_shield)
 	my_shield = null
-	..()
+	. = ..()
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/add_equip_overlay(obj/mecha/M as obj)
 	..()

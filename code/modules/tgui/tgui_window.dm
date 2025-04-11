@@ -11,6 +11,7 @@
 	var/is_browser = FALSE
 	var/status = TGUI_WINDOW_CLOSED
 	var/locked = FALSE
+	var/visible = FALSE
 	var/datum/tgui/locked_by
 	var/datum/subscriber_object
 	var/subscriber_delegate
@@ -24,6 +25,8 @@
 	var/initial_inline_html
 	var/initial_inline_js
 	var/initial_inline_css
+
+	var/list/oversized_payloads = list()
 	var/mouse_event_macro_set = FALSE
 
 	/**
@@ -53,7 +56,6 @@
 	src.pooled = pooled
 	if(pooled)
 		src.pool_index = TGUI_WINDOW_INDEX(id)
-
 
 /**
  * public
@@ -116,7 +118,7 @@
 	html = replacetextEx(html, "<!-- tgui:assets -->\n", inline_assets_str)
 	// Inject inline HTML
 	if (inline_html)
-		html = replacetextEx(html, "<!-- tgui:inline-html -->", inline_html)
+		html = replacetextEx(html, "<!-- tgui:inline-html -->", isfile(inline_html) ? file2text(inline_html) : inline_html)
 	// Inject inline JS
 	if (inline_js)
 		inline_js = "<script>\n'use strict';\n[isfile(inline_js) ? file2text(inline_js) : inline_js]\n</script>"
@@ -230,7 +232,7 @@
  *
  * optional can_be_suspended bool
  */
-/datum/tgui_window/proc/close(can_be_suspended = TRUE, logout = FALSE)
+/datum/tgui_window/proc/close(can_be_suspended = TRUE)
 	if(!client)
 		return
 	if(mouse_event_macro_set)
@@ -241,25 +243,18 @@
 		#endif
 		status = TGUI_WINDOW_READY
 		send_message("suspend")
-		// You would think that BYOND would null out client or make it stop passing istypes or, y'know, ANYTHING during
-		// logout, but nope! It appears to be perfectly valid to call winset by every means we can measure in Logout,
-		// and yet it causes a bad client runtime. To avoid that happening, we just have to know if we're in Logout or
-		// not.
-		if(!logout && client)
-			winset(client, null, "mapwindow.map.focus=true")
 		return
 	#ifdef TGUI_DEBUGGING
 	log_tgui(client, "[id]/close")
 	#endif
 	release_lock()
+	visible = FALSE
 	status = TGUI_WINDOW_CLOSED
 	message_queue = null
 	// Do not close the window to give user some time
 	// to read the error message.
 	if(!fatally_errored)
 		client << browse(null, "window=[id]")
-		if(!logout && client)
-			winset(client, null, "mapwindow.map.focus=true")
 
 /**
  * public
@@ -388,6 +383,9 @@
 	switch(type)
 		if("ping")
 			send_message("ping/reply", payload)
+		if("visible")
+			visible = TRUE
+			// SEND_SIGNAL(src, COMSIG_TGUI_WINDOW_VISIBLE, client) // Not used yet
 		if("suspend")
 			close(can_be_suspended = TRUE)
 		if("close")
@@ -395,16 +393,54 @@
 		if("openLink")
 			client << link(href_list["url"])
 		if("cacheReloaded")
-			// Reinitialize
 			reinitialize()
-			// Resend the assets
-			for(var/asset in sent_assets)
-				send_asset(asset)
 		if("chat/resend")
 			SSchat.handle_resend(client, payload)
+		/* Does not work with tgui say, so not in use yet
+		if("oversizedPayloadRequest")
+			var/payload_id = payload["id"]
+			var/chunk_count = payload["chunkCount"]
+			var/permit_payload = chunk_count <= CONFIG_GET(number/tgui_max_chunk_count)
+			if(permit_payload)
+				create_oversized_payload(payload_id, payload["type"], chunk_count)
+			send_message("oversizePayloadResponse", list("allow" = permit_payload, "id" = payload_id))
+		if("payloadChunk")
+			var/payload_id = payload["id"]
+			append_payload_chunk(payload_id, payload["chunk"])
+			send_message("acknowlegePayloadChunk", list("id" = payload_id))
+		*/
 
 /datum/tgui_window/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, id) && ..()
+
+/datum/tgui_window/proc/create_oversized_payload(payload_id, message_type, chunk_count)
+	if(oversized_payloads[payload_id])
+		stack_trace("Attempted to create oversized tgui payload with duplicate ID.")
+		return
+	oversized_payloads[payload_id] = list(
+		"type" = message_type,
+		"count" = chunk_count,
+		"chunks" = list(),
+		"timeout" = addtimer(CALLBACK(src, PROC_REF(remove_oversized_payload), payload_id), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	)
+
+/datum/tgui_window/proc/append_payload_chunk(payload_id, chunk)
+	var/list/payload = oversized_payloads[payload_id]
+	if(!payload)
+		return
+	var/list/chunks = payload["chunks"]
+	chunks += chunk
+	if(length(chunks) >= payload["count"])
+		deltimer(payload["timeout"])
+		var/message_type = payload["type"]
+		var/final_payload = chunks.Join()
+		remove_oversized_payload(payload_id)
+		on_message(message_type, json_decode(final_payload), list("type" = message_type, "payload" = final_payload, "tgui" = TRUE, "window_id" = id))
+	else
+		payload["timeout"] = addtimer(CALLBACK(src, PROC_REF(remove_oversized_payload), payload_id), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/datum/tgui_window/proc/remove_oversized_payload(payload_id)
+	oversized_payloads -= payload_id
 
 
 /datum/tgui_window/proc/set_mouse_macro()
