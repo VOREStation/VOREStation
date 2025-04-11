@@ -463,7 +463,7 @@ var/list/runechat_image_cache = list()
 	return ..()*size_multiplier
 
 /mob/living/runechat_y_offset()
-	if(vis_height > world.icon_size)
+	if(vis_height && vis_height > 0)
 		return vis_height * size_multiplier
 	return ..()
 
