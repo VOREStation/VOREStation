@@ -343,7 +343,7 @@
 						m.drop_from_inventory(S.OurRig)
 					if(wearer && devour) //We're being worn. Engulf em', if prefs align.. otherwise just drop off.
 						if(P.can_be_drop_pred && wearer.devourable && wearer.can_be_drop_prey && P.vore_selected)
-							perform_the_nom(P,wearer,P,P.vore_selected,1)
+							perform_the_nom(P,wearer,P,P.vore_selected,-1)
 						else
 							to_chat(P, span_vwarning("You can't assimilate your current host."))
 					P.forceMove(get_turf(S.OurRig))
