@@ -104,3 +104,10 @@
   - rscadd: Adds "traffic officer's jacket" to Suits and Overwear
   - rscadd: Adds the option to bring a rubber ducky with you to the loadout on General
   - rscadd: Adds the waiter's outfit to the loadout on Casual Dress
+2025-04-11:
+  Asher-42:
+  - rscadd: moves eye layer under bellies for borgs
+  Cameron-The-Raven:
+  - rscadd: Space heaters can now be crafted
+  - rscadd: Space heaters can now be upgraded to cool/heat faster (Uses micro_laser,
+      manipulator, and capacitor to upgrade various parts)
