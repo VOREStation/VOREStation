@@ -36,7 +36,7 @@
 	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
 	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
 	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
-	var/trait_injection_verb = "bites"			//RSEdit: Which fluffy manner you're doing the injecting.
+	var/trait_injection_verb = "bite"			//RSEdit: Which fluffy manner you're doing the injecting.
 
 	var/mute_entry = FALSE					//Toggleable vorgan entry logs.
 	var/parasitic = FALSE					//Digestion immunity and nutrition leeching variable
