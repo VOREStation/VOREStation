@@ -452,7 +452,7 @@ var/list/runechat_image_cache = list()
 	return (width - bound_width) * -0.5 + get_oversized_icon_offsets()["x"]
 
 /atom/movable/runechat_y_offset()
-	return ..() + get_oversized_icon_offsets()["y"]
+	return ..() + get_oversized_icon_offsets()["y"] * 2
 
 /* Nothing special
 /mob/runechat_x_offset(width, height)
@@ -463,9 +463,8 @@ var/list/runechat_image_cache = list()
 	return ..()*size_multiplier
 
 /mob/living/runechat_y_offset()
-	var/size_diff = vis_height - world.icon_size
-	if(size_diff > 0)
-		return (maptext_height + size_diff) * size_multiplier
+	if(vis_height > world.icon_size)
+		return vis_height * size_multiplier
 	return ..()
 
 // Allows you to specify a different attachment point for messages from yourself
