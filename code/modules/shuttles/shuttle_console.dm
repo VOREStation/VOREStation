@@ -159,7 +159,7 @@
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 /hook/roundstart/proc/populate_dockingcodes()
-	for(var/obj/item/paper/dockingcodes/dcp as anything in global.papers_dockingcode)
+	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
 		dcp.populate_info()
 	return TRUE
 

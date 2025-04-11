@@ -43,8 +43,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	speech_bubble_appearance = "slime"
 
-	male_cough_sounds = list('sound/effects/slime_squish.ogg')
-	female_cough_sounds = list('sound/effects/slime_squish.ogg')
+	species_sounds = "Slime"
 
 	min_age = 18
 	max_age = 80
