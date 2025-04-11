@@ -31,8 +31,8 @@
 
 	faction = FACTION_SUCCUBUS
 
-/mob/living/simple_mob/vore/succubus/New()
-	..()
+/mob/living/simple_mob/vore/succubus/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"

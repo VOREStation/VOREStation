@@ -99,6 +99,8 @@
 #define LANGUAGE_ZADDAT "Vedahq"
 #define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
 #define LANGUAGE_GIBBERISH "Babel"
+#define LANGUAGE_ROBOT_TALK "Robot Talk"
+#define LANGUAGE_DRONE_TALK "Drone Talk"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

@@ -120,8 +120,8 @@
 	var/volume = 60
 	var/list/fuel = list(REAGENT_ID_PHORON = 50000, REAGENT_ID_SLIMEJELLY = 25000, REAGENT_ID_FUEL = 15000, REAGENT_ID_CARBON = 10000, REAGENT_ID_ETHANOL= 10000, REAGENT_ID_NUTRIMENT = 8000, REAGENT_ID_BLOOD = 5000)
 
-/obj/item/integrated_circuit/passive/power/chemical_cell/New()
-	..()
+/obj/item/integrated_circuit/passive/power/chemical_cell/Initialize(mapload)
+	. = ..()
 	create_reagents(volume)
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/interact(mob/user)

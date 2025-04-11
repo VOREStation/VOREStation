@@ -177,7 +177,8 @@
 	var/ice_creamed = 0
 	var/cone_type
 
-/obj/item/reagent_containers/food/snacks/icecream/New()
+/obj/item/reagent_containers/food/snacks/icecream/Initialize(mapload)
+	. = ..()
 	create_reagents(20)
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5)
 

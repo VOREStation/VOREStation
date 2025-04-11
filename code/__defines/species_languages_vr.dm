@@ -21,3 +21,6 @@
 #define LANGUAGE_LLEILL "Glamour Speak"
 
 #define LANGUAGE_SPARKLE "Sparkle"
+
+#define LANGUAGE_XENOLINGUA "Xenomorph"
+#define LANGUAGE_HIVEMIND "Hivemind"

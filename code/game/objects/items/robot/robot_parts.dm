@@ -192,7 +192,7 @@
 					to_chat(user, span_warning("This [W] does not seem to fit."))
 					return
 
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
+			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), FALSE, TRUE)
 			if(!O)	return
 
 			user.drop_item()

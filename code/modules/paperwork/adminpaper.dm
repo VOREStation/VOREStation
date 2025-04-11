@@ -16,8 +16,8 @@
 	var/footer = null
 	var/footerOn = FALSE
 
-/obj/item/paper/admin/New()
-	..()
+/obj/item/paper/admin/Initialize(mapload, text, title)
+	. = ..()
 	generateInteractions()
 
 

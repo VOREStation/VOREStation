@@ -317,8 +317,6 @@ var/list/name_to_material
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 	if(girder_material)
-		if(istype(girder_material, /datum/material))
-			girder_material = girder_material.name
 		G.set_material(girder_material)
 
 

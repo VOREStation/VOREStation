@@ -93,9 +93,9 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
-/mob/observer/dead/New(mob/body, aghost = FALSE)
+/mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
-	appearance = body
+	appearance = loc
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
@@ -107,30 +107,31 @@
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
 
 	var/turf/T
-	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
-		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
-		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
+	if(ismob(loc))
+		var/mob/M = loc
+		T = get_turf(M)				//Where is the body located?
+		attack_log = M.attack_log	//preserve our attack logs by copying them to our ghost
+		gender = M.gender
+		if(M.mind && M.mind.name)
+			name = M.mind.name
 		else
-			if(body.real_name)
-				name = body.real_name
+			if(M.real_name)
+				name = M.real_name
 			else
 				if(gender == MALE)
 					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 				else
 					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
-		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
+		mind = M.mind	//we don't transfer the mind but we keep a reference to it.
 
 		// Fix for naked ghosts.
 		// Unclear why this isn't being grabbed by appearance.
-		if(ishuman(body))
-			var/mob/living/carbon/human/H = body
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			add_overlay(H.overlays_standing)
-		default_pixel_x = body.default_pixel_x
-		default_pixel_y = body.default_pixel_y
+		default_pixel_x = M.default_pixel_x
+		default_pixel_y = M.default_pixel_y
 	if(!T && length(latejoin))
 		T = get_turf(pick(latejoin))			//Safety in case we cannot find the body's position
 	if(T)
@@ -145,7 +146,7 @@
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	observer_mob_list += src
-	..()
+	. = ..()
 	visualnet = ghostnet
 
 /mob/observer/dead/proc/checkStatic()

@@ -25,7 +25,8 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/icon/split_icon
 	var/fancy_shuttle_tag
 
-/obj/effect/fancy_shuttle/New() // has to be very early so others can grab it
+INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
+/obj/effect/fancy_shuttle/Initialize(mapload) // has to be very early so others can grab it
 	. = ..()
 	if(!fancy_shuttle_tag)
 		error("Fancy shuttle with no tag at [x],[y],[z]! Type is: [type]")

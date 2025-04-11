@@ -13,8 +13,8 @@
 /obj/structure/drop_pod/polite
 	polite = TRUE
 
-/obj/structure/drop_pod/New(newloc, atom/movable/A, auto_open = FALSE)
-	..()
+/obj/structure/drop_pod/Initialize(mapload, atom/movable/A, auto_open = FALSE)
+	. = ..()
 	if(A)
 		A.forceMove(src) // helo
 		podfall(auto_open)
@@ -25,8 +25,6 @@
 	qdel_null(air)
 
 /obj/structure/drop_pod/proc/podfall(auto_open)
-	set waitfor = FALSE // sleeping in new otherwise
-
 	var/turf/T = get_turf(src)
 	if(!T)
 		warning("Drop pod wasn't spawned on a turf")
@@ -40,9 +38,11 @@
 	for(var/turf/TN in turfs_nearby)
 		new /obj/effect/temporary_effect/shuttle_landing(TN)
 
-	// Wait a minute
-	sleep(4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_fall), auto_open, T), 4 SECONDS, TIMER_DELETE_ME)
 
+/obj/structure/drop_pod/proc/do_fall(auto_open, turf/T)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// Wheeeeeee
 	plane = ABOVE_PLANE
 	pixel_y = 300
@@ -53,10 +53,18 @@
 	animate(src, alpha = 255, time = 1 SECOND, flags = ANIMATION_PARALLEL)
 	filters += filter(type="drop_shadow", x=-64, y=100, size=10)
 	animate(filters[filters.len], x=0, y=0, size=0, time=3 SECONDS, flags=ANIMATION_PARALLEL, easing=SINE_EASING|EASE_OUT)
-	sleep(2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(after_fall), auto_open, T), 2 SECONDS, TIMER_DELETE_ME)
+
+/obj/structure/drop_pod/proc/after_fall(auto_open, turf/T)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	new /obj/effect/effect/smoke(T)
 	T.hotspot_expose(900)
-	sleep(1 SECOND)
+	addtimer(CALLBACK(src, PROC_REF(on_impact), auto_open, T), 1 SECOND, TIMER_DELETE_ME)
+
+/obj/structure/drop_pod/proc/on_impact(auto_open, turf/T)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	filters = null
 
 	// CRONCH
@@ -82,14 +90,14 @@
 	icon_state = "[initial(icon_state)]"
 
 	if(auto_open)
-		sleep(2 SECONDS)
-		open_pod()
-		visible_message("\The [src] pops open!")
+		addtimer(CALLBACK(src, PROC_REF(open_pod), TRUE), 2 SECONDS, TIMER_DELETE_ME)
 	else
 		for(var/mob/M in src)
 			to_chat(M, span_danger("You've landed! Open the hatch if you think it's safe! \The [src] has enough air to last for a while..."))
 
-/obj/structure/drop_pod/proc/open_pod()
+/obj/structure/drop_pod/proc/open_pod(dropped)
+	if(dropped)
+		visible_message("\The [src] pops open!")
 	if(finished)
 		return
 	icon_state = "[initial(icon_state)]_open"

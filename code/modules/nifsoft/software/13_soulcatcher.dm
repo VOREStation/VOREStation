@@ -432,9 +432,11 @@
 	icon_state = "beacon"
 	var/mob/living/parent_human
 
-/mob/observer/eye/ar_soul/New(var/mob/brainmob, var/human)
-	ASSERT(brainmob && brainmob.client)
-	..()
+/mob/observer/eye/ar_soul/Initialize(mapload, var/human)
+	. = ..()
+	var/mob/brainmob = loc
+	if(!istype(brainmob) || !brainmob.client)
+		return INITIALIZE_HINT_QDEL
 
 	owner = brainmob				//Set eyeobj's owner
 	parent_human = human			//E-z reference to human
@@ -449,13 +451,12 @@
 
 	//Time to play dressup
 	if(brainmob.client.prefs)
-		var/mob/living/carbon/human/dummy/dummy = new ()
-		brainmob.client.prefs.dress_preview_mob(dummy)
-		sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
-		dummy.regenerate_icons()
+		var/mob/living/carbon/human/dummy/mannequin = get_mannequin(brainmob.client.ckey)
+		mannequin.delete_inventory(TRUE)
+		brainmob.client.prefs.dress_preview_mob(mannequin)
+		mannequin.regenerate_icons()
 
-		var/icon/new_icon = getHologramIcon(getCompoundIcon(dummy))
-		qdel(dummy)
+		var/icon/new_icon = getHologramIcon(getCompoundIcon(mannequin))
 		icon = new_icon
 
 /mob/observer/eye/ar_soul/Destroy()

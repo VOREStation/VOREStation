@@ -106,7 +106,8 @@ var/list/ai_verbs_default = list(
 	remove_verb(src, ai_verbs_default)
 	remove_verb(src, silicon_subsystems)
 
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(mapload, is_decoy, datum/ai_laws/L, obj/item/mmi/B, safety = FALSE)
+
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -128,7 +129,6 @@ var/list/ai_verbs_default = list(
 	anchored = TRUE
 	canmove = 0
 	density = TRUE
-	loc = loc
 
 	if(!is_dummy)
 		aiCommunicator = new /obj/item/communicator/integrated(src)
@@ -156,7 +156,7 @@ var/list/ai_verbs_default = list(
 		add_ai_verbs(src)
 
 	//Languages
-	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_ROBOT_TALK, 1)
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_SOL_COMMON, 1)
 	add_language(LANGUAGE_UNATHI, 1)
@@ -175,20 +175,25 @@ var/list/ai_verbs_default = list(
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
-			qdel(src)//Delete AI.
-			return
-		else
-			if (B.brainmob.mind)
-				B.brainmob.mind.transfer_to(src)
+			return INITIALIZE_HINT_QDEL //Delete AI.
 
-			on_mob_init()
+		if (B.brainmob.mind)
+			B.brainmob.mind.transfer_to(src)
 
-	spawn(5)
-		new /obj/machinery/ai_powersupply(src)
+		on_mob_init()
+
 
 	ai_list += src
-	..()
-	return
+	. = ..()
+
+	new /obj/machinery/ai_powersupply(src)
+
+	if(CONFIG_GET(flag/allow_ai_shells))
+		add_verb(src, /mob/living/silicon/ai/proc/deploy_to_shell_act)
+
+	create_eyeobj()
+	if(eyeobj)
+		eyeobj.loc = src.loc
 
 /mob/living/silicon/ai/proc/on_mob_init()
 	var/init_text = list(span_bold("You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras)."),
@@ -235,6 +240,7 @@ var/list/ai_verbs_default = list(
 	QDEL_NULL(aiCamera)
 	hack = null
 
+	destroy_eyeobj()
 	return ..()
 
 

@@ -119,8 +119,8 @@ var/global/list/alt_farmanimals = list()
 
 	var/datum/entopic/ent_debug
 
-/obj/item/entopic_debug/New()
-	..()
+/obj/item/entopic_debug/Initialize(mapload)
+	. = ..()
 	ent_debug = new(aholder = src, aicon = icon, aicon_state = "holo_Jin")
 
 /proc/entopic_icon_helper(var/atom/A,var/holo = TRUE)

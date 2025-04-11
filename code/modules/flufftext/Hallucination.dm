@@ -259,11 +259,11 @@ Gunshots/explosions/opening doors/less rare audio (done)
 			for(var/mob/O in oviewers(world.view , my_target))
 				to_chat(O, span_bolddanger("[my_target] stumbles around."))
 
-/obj/effect/fake_attacker/New()
-	..()
+/obj/effect/fake_attacker/Initialize(mapload)
+	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 	step_away(src,my_target,2)
-	spawn attack_loop()
+	addtimer(CALLBACK(src, PROC_REF(attack_loop)), rand(5, 10), TIMER_DELETE_ME)
 
 /obj/effect/fake_attacker/Destroy()
 	if(my_target)
@@ -291,35 +291,35 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 
 /obj/effect/fake_attacker/proc/attack_loop()
-	while(1)
-		sleep(rand(5,10))
-		if(src.health < 0)
-			collapse()
-			continue
-		if(get_dist(src,my_target) > 1)
-			src.set_dir(get_dir(src,my_target))
-			step_towards(src,my_target)
-			updateimage()
-		else
-			if(prob(15))
-				if(weapon_name)
-					my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
-					my_target.show_message(span_bolddanger("[my_target] has been attacked with [weapon_name] by [src.name]!"), 1)
-					my_target.halloss += 8
-					if(prob(20)) my_target.eye_blurry += 3
-					if(prob(33))
-						if(!locate(/obj/effect/overlay) in my_target.loc)
-							fake_blood(my_target)
-				else
-					my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
-					my_target.show_message(span_bolddanger("[src.name] has punched [my_target]!"), 1)
-					my_target.halloss += 4
-					if(prob(33))
-						if(!locate(/obj/effect/overlay) in my_target.loc)
-							fake_blood(my_target)
-
+	if(src.health < 0)
+		collapse()
+		addtimer(CALLBACK(src, PROC_REF(attack_loop)), rand(5, 10), TIMER_DELETE_ME)
+		return
+	if(get_dist(src,my_target) > 1)
+		src.set_dir(get_dir(src,my_target))
+		step_towards(src,my_target)
+		updateimage()
+	else
 		if(prob(15))
-			step_away(src,my_target,2)
+			if(weapon_name)
+				my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
+				my_target.show_message(span_bolddanger("[my_target] has been attacked with [weapon_name] by [src.name]!"), 1)
+				my_target.halloss += 8
+				if(prob(20)) my_target.eye_blurry += 3
+				if(prob(33))
+					if(!locate(/obj/effect/overlay) in my_target.loc)
+						fake_blood(my_target)
+			else
+				my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
+				my_target.show_message(span_bolddanger("[src.name] has punched [my_target]!"), 1)
+				my_target.halloss += 4
+				if(prob(33))
+					if(!locate(/obj/effect/overlay) in my_target.loc)
+						fake_blood(my_target)
+
+	if(prob(15))
+		step_away(src,my_target,2)
+	addtimer(CALLBACK(src, PROC_REF(attack_loop)), rand(5, 10), TIMER_DELETE_ME)
 
 /obj/effect/fake_attacker/proc/collapse()
 	collapse = 1
@@ -330,9 +330,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	target << I
-	spawn(300)
-		qdel(O)
-	return
+	QDEL_IN(O, 30 SECONDS)
 
 var/list/non_fakeattack_weapons = list(/obj/item/gun/projectile, /obj/item/ammo_magazine/s357,\
 	/obj/item/gun/energy/crossbow, /obj/item/melee/energy/sword,\

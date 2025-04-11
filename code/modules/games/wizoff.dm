@@ -15,8 +15,8 @@
 	desc = "A Wiz-Off deck. Fight an arcane battle for the fate of the universe: Draw 5! Play 5! Best of 5!"
 	icon_state = "wizoff"
 
-/obj/item/deck/wizoff/New()
-	..()
+/obj/item/deck/wizoff/Initialize(mapload)
+	. = ..()
 	var/datum/playingcard/P
 	for(var/cardtext in card_wiz_list)
 		P = new()
@@ -64,9 +64,6 @@
 	title = "WizOff Guide"
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
-
-/obj/item/book/manual/wizzoffguide/New()
-	..()
 	dat = {"
 
 		<html>

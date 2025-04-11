@@ -60,19 +60,6 @@
 /obj/away_mission_init/beachcave
 	name = "away mission initializer - beachcave"
 
-//In our case, it initializes the ores and random submaps in the beach's cave, then deletes itself
-/obj/away_mission_init/beachcave/Initialize(mapload)
-	// Cave submaps are first.
-	/*seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
-	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
-
-	// Now for the tunnels.
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_NAME_BEACH_CAVE, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_NAME_BEACH_CAVE, 64, 64)*/
-
-	flags |= ATOM_INITIALIZED
-	return INITIALIZE_HINT_QDEL
-
 // Two mob spawners that are placed on the map that spawn some mobs!
 // They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
 // Note that if your map has step teleports, mobs may wander through them accidentally and not know how to get back

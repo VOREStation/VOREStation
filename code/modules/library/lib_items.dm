@@ -127,20 +127,18 @@ Book Cart End
 /obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
 
-/obj/structure/bookcase/manuals/medical/New()
-	..()
+/obj/structure/bookcase/manuals/medical/Initialize(mapload)
 	new /obj/item/book/manual/medical_cloning(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
-	update_icon()
+	. = ..()
 
 
 /obj/structure/bookcase/manuals/engineering
 	name = "Engineering Manuals bookcase"
 
-/obj/structure/bookcase/manuals/engineering/New()
-	..()
+/obj/structure/bookcase/manuals/engineering/Initialize(mapload)
 	new /obj/item/book/manual/wiki/engineering_construction(src)
 	new /obj/item/book/manual/engineering_particle_accelerator(src)
 	new /obj/item/book/manual/wiki/engineering_hacking(src)
@@ -148,15 +146,14 @@ Book Cart End
 	new /obj/item/book/manual/atmospipes(src)
 	new /obj/item/book/manual/engineering_singularity_safety(src)
 	new /obj/item/book/manual/evaguide(src)
-	update_icon()
+	. = ..()
 
 /obj/structure/bookcase/manuals/research_and_development
 	name = "R&D Manuals bookcase"
 
-/obj/structure/bookcase/manuals/research_and_development/New()
-	..()
+/obj/structure/bookcase/manuals/research_and_development/Initialize(mapload)
 	new /obj/item/book/manual/research_and_development(src)
-	update_icon()
+	. = ..()
 
 
 /*
