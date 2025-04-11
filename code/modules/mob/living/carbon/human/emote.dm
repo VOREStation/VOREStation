@@ -215,6 +215,7 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/human/deathgasp,
 	/decl/emote/audible/giggle,
 	/decl/emote/audible/scream,
+	/decl/emote/audible/pain,
 	/decl/emote/visible/airguitar,
 	/decl/emote/visible/blink_r,
 	/decl/emote/visible/bow,
