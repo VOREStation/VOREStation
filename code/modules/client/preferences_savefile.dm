@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	16
+#define SAVEFILE_VERSION_MAX	17
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -79,6 +79,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v16.")
 		to_chat(client, span_danger("v16 savefile migration complete."))
 
+	// Migration for old named tails so downstream doesn't have their savefiles borked
+	if(current_version < 17)
+		log_debug("[client_ckey] preferences migrating from [current_version] to v17....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v17..."))
+
+		migration_17_tails(S)
+
+		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v17.")
+		to_chat(client, span_danger("v17 savefile migration complete."))
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
 	// Migration from BYOND savefiles to JSON: Important milemark.
