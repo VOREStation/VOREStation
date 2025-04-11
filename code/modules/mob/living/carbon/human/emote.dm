@@ -42,6 +42,7 @@ var/list/_human_default_emotes = list(
 	/decl/emote/human/deathgasp,
 	/decl/emote/audible/giggle,
 	/decl/emote/audible/scream,
+	/decl/emote/audible/pain,
 	/decl/emote/visible/airguitar,
 	/decl/emote/visible/blink_r,
 	/decl/emote/visible/bow,

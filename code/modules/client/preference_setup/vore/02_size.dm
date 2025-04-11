@@ -15,6 +15,7 @@
 	var/voice_sound = "beep-boop"
 	var/custom_speech_bubble = "default"
 	var/custom_footstep = "Default"
+	var/species_sound = "Unset"
 
 // Definition of the stuff for Sizing
 /datum/category_item/player_setup_item/vore/size

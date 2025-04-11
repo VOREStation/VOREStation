@@ -40,6 +40,7 @@
 	var/target_patience = 5
 	var/frustration = 0
 	var/max_frustration = 0
+	can_pain_emote = FALSE // Sanity/safety, if bots ever get emotes later, undo this
 
 	allow_mind_transfer = TRUE
 

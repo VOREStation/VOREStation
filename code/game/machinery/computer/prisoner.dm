@@ -33,7 +33,7 @@
 	var/list/chemImplants = list()
 	var/list/trackImplants = list()
 	if(screen)
-		for(var/obj/item/implant/chem/C in all_chem_implants)
+		for(var/obj/item/implant/chem/C in GLOB.all_chem_implants)
 			var/turf/T = get_turf(C)
 			if(!T)
 				continue
@@ -44,7 +44,7 @@
 				"units" = C.reagents.total_volume,
 				"ref" = "\ref[C]"
 			)))
-		for(var/obj/item/implant/tracking/track in all_tracking_implants)
+		for(var/obj/item/implant/tracking/track in GLOB.all_tracking_implants)
 			var/turf/T = get_turf(track)
 			if(!T)
 				continue
