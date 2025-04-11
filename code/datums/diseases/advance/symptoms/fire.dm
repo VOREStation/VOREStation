@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/fire
 	name = "Spontaneous Combustion"
+	desc = "The virus turns fat into an extremely flammable compound, and raises the body's temperature, making the host burst into flames spontaneously."
 	stealth = 1
 	resistance = -1
 	stage_speed = -2
