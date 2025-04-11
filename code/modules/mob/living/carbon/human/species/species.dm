@@ -571,8 +571,8 @@
 			H.visible_message( \
 				span_notice("[H] boops [target]'s nose."), \
 				span_notice("You boop [target] on the nose."), )
-	else if(H.zone_sel.selecting == BP_GROIN)
-		H.vore_bellyrub(target)
+	/*else if(H.zone_sel.selecting == BP_GROIN) //Disabled on Virgo. Used downstream.
+		H.vore_bellyrub(target)*/ //Disabled on Virgo. Used downstream.
 	else
 		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
 						span_notice("You hug [target] to make [t_him] feel better!"))

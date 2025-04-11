@@ -2456,6 +2456,7 @@
 #include "code\modules\emotes\definitions\audible_snap.dm"
 #include "code\modules\emotes\definitions\audible_sneeze.dm"
 #include "code\modules\emotes\definitions\audible_whistle.dm"
+#include "code\modules\emotes\definitions\belly_rub.dm"
 #include "code\modules\emotes\definitions\exertion.dm"
 #include "code\modules\emotes\definitions\helpers_vr.dm"
 #include "code\modules\emotes\definitions\human.dm"
