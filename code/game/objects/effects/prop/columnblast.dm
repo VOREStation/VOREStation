@@ -4,11 +4,11 @@
 	desc = "Oh shit!"
 	icon_state = "pool"
 	icon = 'icons/effects/64x64.dmi'
+	time_to_die = 0.7 SECONDS
 
 	pixel_x = -16
 
 /obj/effect/temporary_effect/eruption/Initialize(mapload, var/ttd = 10 SECONDS, var/newcolor)
-	time_to_die = 0.7 SECONDS
 	if(ttd)
 		time_to_die += ttd
 	addtimer(CALLBACK(src, PROC_REF(on_eruption), get_turf(src)), time_to_die - 0.2 SECONDS, TIMER_DELETE_ME)
