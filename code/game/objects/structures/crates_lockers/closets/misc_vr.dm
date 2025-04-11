@@ -121,7 +121,8 @@
 		/obj/item/reagent_containers/food/snacks/liquidfood,
 		/obj/item/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/cataloguer/compact/pathfinder,
-		/obj/item/mapping_unit)
+		/obj/item/mapping_unit,
+		/obj/item/personal_shield_generator/belt/melee/loaded)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize(mapload)
 	if(prob(50))
@@ -171,7 +172,8 @@
 		/obj/item/gps/medical,
 		/obj/item/geiger,
 		/obj/item/bodybag/cryobag,
-		/obj/item/cataloguer/compact)
+		/obj/item/cataloguer/compact,
+		/obj/item/personal_shield_generator/belt/medical/loaded)
 
 /obj/structure/closet/secure_closet/sar/Initialize(mapload)
 	if(prob(50))

@@ -161,8 +161,9 @@
 		/obj/item/clothing/suit/bio_suit/cmo,
 		/obj/item/clothing/head/bio_hood/cmo,
 		/obj/item/clothing/shoes/white,
-		/obj/item/reagent_containers/glass/beaker/vial, //VOREStation Add
-		/obj/item/storage/belt/medical) //VOREStation Add
+		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/storage/belt/medical,
+		/obj/item/personal_shield_generator/belt/medical/loaded)
 
 /obj/structure/closet/secure_closet/CMO/Initialize(mapload)
 	if(prob(50))

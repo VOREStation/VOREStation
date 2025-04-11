@@ -252,7 +252,8 @@
 					/obj/item/clothing/accessory/holster/machete,
 					/obj/item/storage/box/explorerkeys,
 					/obj/item/mapping_unit,
-					/obj/item/clothing/accessory/watch/survival
+					/obj/item/clothing/accessory/watch/survival,
+					/obj/item/personal_shield_generator/belt/melee/loaded
 					)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion
