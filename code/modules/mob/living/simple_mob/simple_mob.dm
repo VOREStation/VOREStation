@@ -182,6 +182,8 @@
 	//vars for vore_icons toggle control
 	var/vore_icons_cache = null // null by default. Going from ON to OFF should store vore_icons val here, OFF to ON reset as null
 
+	var/obj/movement_target //Used by some mobs to hunt down food. Mainly noodle and Ian.
+
 	//no stripping of simplemobs
 	strip_pref = FALSE
 
@@ -219,6 +221,7 @@
 
 	friends.Cut()
 	languages.Cut()
+	movement_target = null
 
 	if(has_eye_glow)
 		remove_eyes()
@@ -309,6 +312,24 @@
 		icon_state = icon_living
 	update_icon()
 
+/mob/living/simple_mob/proc/chase_target(ticker)
+	if(QDELETED(movement_target))
+		movement_target = null
+		return
+
+	if(ticker < 10 && (get_dist(src, movement_target) > 1)) //We only chase our target for 10 tiles or until we are next to them.
+		step_to(src,movement_target,1)
+		addtimer(CALLBACK(src, PROC_REF(chase_target), ++ticker), 3, TIMER_DELETE_ME)
+		return
+
+	face_atom(movement_target)
+
+	if(isturf(movement_target.loc))
+		UnarmedAttack(movement_target)
+	else if(ishuman(movement_target.loc) && prob(20))
+		visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable gaze.")
+	movement_target = null
+
 
 /mob/living/simple_mob/say_quote(var/message, var/datum/language/speaking = null)
 	if(speak_emote.len)
@@ -330,18 +351,16 @@
 	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
 	add_overlay(hud_list)
 
-//VOREStation Add Start		Makes it so that simplemobs can understand galcomm without being able to speak it.
+//Makes it so that simplemobs can understand galcomm without being able to speak it.
 /mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(understands_common && speaking?.name == LANGUAGE_GALCOM)
 		return TRUE
 	return ..()
-//Vorestation Add End
 
 /decl/mob_organ_names
 	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
 
 /*
- * VOREStation Add
  * How injured are we? Returns a number that is then added to movement cooldown and firing/melee delay respectively.
  * Called by movement_delay and our firing/melee delay checks
 */
@@ -355,8 +374,6 @@
 /mob/living/simple_mob/updatehealth()	// We don't want to fully override the check, just hook our own code in
 	get_injury_level()					// We check how injured we are, then actually update the mob on how hurt we are.
 	. = ..() 							// Calling parent here, actually updating our mob on how hurt we are.
-
-// VOREStation Add End
 
 /mob/living/simple_mob/proc/ColorMate()
 	set name = "Recolour"
