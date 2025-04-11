@@ -64,6 +64,7 @@
 		/obj/item/holder/mouse = 1, //easy to get, and mostly just for comedic effect/justified mouse murder anyway
 		/mob/living = 1, //default for all mobs tbh
 		/obj/item/holder/micro = 1,
+		/obj/item/holder/bird = 1, //fuck u poly
 		/obj/item/trash = 5,
 		/obj/item/trash/material = 10, //different price scheme
 		/obj/item/clothing/head/cone = 10,
@@ -175,6 +176,7 @@
 	//ditto for the monitor and door. sure, these COULD be overlays, but that is way more effort
 	. = ..()
 
+
 /obj/machinery/maint_recycler/attackby(obj/item/O, mob/user)
 	if(!door_open)
 		if(O.has_tool_quality(TOOL_CROWBAR))
@@ -238,7 +240,7 @@
 					inserted_item = AM
 					update_icon()
 					playsound(src, 'code/modules/maint_recycler/sfx/voice/a wonderful throw.ogg', 75)
-					setScreenState("screen_happy",10)
+					set_screen_state("screen_happy",10)
 					return
 			else
 				deny_act(AM,null)
@@ -246,7 +248,7 @@
 		visible_message("\The [AM] bounces off of the rim of \the [src]'s processing compartment!")
 
 /obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
-	setScreenState("screen_deny",10)
+	set_screen_state("screen_deny",10)
 	to_chat(user, span_warning("\The [src] rejects \The [O]!"))
 	if(prob(99))
 		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
@@ -269,7 +271,7 @@
 		audible_message("[src] states, \"CRIMINAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
 
 	playsound(src,pick(angry_sounds),80)
-	setScreenState("screen_mad",30)
+	set_screen_state("screen_mad",30)
 
 	addtimer(CALLBACK(src, PROC_REF(shoot_at), user,), 0.3 SECONDS)
 
@@ -321,7 +323,7 @@
 		inserted_item = null;
 		update_icon()
 
-/obj/machinery/maint_recycler/proc/recycleItem(var/mob/user)
+/obj/machinery/maint_recycler/proc/recycle_stored_item(var/mob/user)
 	if(inserted_item)
 		if(door_open)
 			close_door(user)
@@ -330,7 +332,7 @@
 		var/value = try_get_obj_value(inserted_item)
 
 		playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
-		setScreenState("screen_recycle",20)
+		set_screen_state("screen_recycle",20)
 		sleep(20) //time to finish
 		credit_user(user,value)
 		if(istype(inserted_item,/mob))
@@ -338,7 +340,7 @@
 			m.gib() //do we want logs here, or in the mob consent?
 		else
 			qdel(inserted_item)
-		setScreenState("screen_cashout",10)
+		set_screen_state("screen_cashout",10)
 		inserted_item = null
 		door_locked = FALSE
 		open_door(user)
@@ -380,7 +382,7 @@
 	add_fingerprint(user)
 	tgui_interact(user)
 	if(!is_on)
-		setOnState(TRUE)
+		set_on_state(TRUE)
 
 /*
 TGUI PROCS
@@ -424,7 +426,7 @@ TGUI PROCS
 		. = TRUE
 	if(action == "recycle")
 		if(canRecycle(ui.user))
-			recycleItem(ui.user)
+			recycle_stored_item(ui.user)
 		else
 			deny_act(inserted_item,ui.user)
 			to_chat(ui.user,span_warning("You have reached your daily RecyclePoints(tm) Allowance!"))
@@ -438,7 +440,7 @@ TGUI PROCS
 
 /obj/machinery/maint_recycler/tgui_close(mob/user)
 	. = ..()
-	setOnState(FALSE)
+	set_on_state(FALSE)
 
 
 /*
@@ -507,9 +509,9 @@ UTILITY PROCS
 /obj/machinery/maint_recycler/power_change()
 	..()
 	if(stat & NOPOWER)
-		setOnState(FALSE)
+		set_on_state(FALSE)
 
-/obj/machinery/maint_recycler/proc/setScreenState(var/state, var/duration = 10)
+/obj/machinery/maint_recycler/proc/set_screen_state(var/state, var/duration = 10)
 	if(!is_on) return
 	monitor_screen.icon_state = state
 	spawn(duration)
@@ -519,7 +521,7 @@ UTILITY PROCS
 			monitor_screen.icon_state = "screen_default"
 
 
-/obj/machinery/maint_recycler/proc/setOnState(var/state)
+/obj/machinery/maint_recycler/proc/set_on_state(var/state)
 	if(is_on == state) return
 	is_on = state
 	if(is_on)

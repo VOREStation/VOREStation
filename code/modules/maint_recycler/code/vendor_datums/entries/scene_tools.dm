@@ -104,6 +104,7 @@
 /datum/maint_recycler_vendor_entry/NIF_laws
 	name = "COMM4ND UR N1F!"
 	ad_message = "KNEEL!"
+	icon_state = "law"
 	desc = "Unlocks the TRUE potential of your NIF! You set laws, you follow laws! Simple as! (we are not liable for usage on other parties)"
 	object_type_to_spawn = /obj/item/disk/nifsoft/compliance
 	tagline = "You didn't get it from us!"
@@ -112,6 +113,7 @@
 /datum/maint_recycler_vendor_entry/NIFlet_laws
 	name = "Implnt law?"
 	ad_message = "Niflets seething!"
+	icon_state = "law"
 	desc = "Underlings not listening to you? Someone forgetting to do whta you tell them to? No more! this implant WILL make people bend to your will! KNEEL!"
 	object_type_to_spawn = /obj/item/implanter/compliance
 	item_cost = 25
@@ -120,7 +122,7 @@
 	vendor_category = MAINTVENDOR_SCENETOOLS
 
 /datum/maint_recycler_vendor_entry/bluespace_cracker
-	name = "Bluespace Cracker"
+	name = "BLU3SP4C3 P4RTY CR4CK3R"
 	ad_message = "Party!"
 	desc = "Not a teleporting white person, it's a party favor! we've been sued so many times we HAVE to sell it here, which means you get it cheap!"
 	object_type_to_spawn = /obj/item/cracker
@@ -137,11 +139,29 @@
 	vendor_category = MAINTVENDOR_SCENETOOLS
 
 /datum/maint_recycler_vendor_entry/size_gun
-	name = "Size Gun"
+	name = "BIG GUN 4 SMALL PEOPLE OR SMALL GUN 4 BIG PEOPLE"
 	ad_message = "Size Matters!"
 	desc = "Performance issues? Under 5'11? Shoot yourself!"
 	object_type_to_spawn = /obj/item/gun/energy/sizegun
 	item_cost = 30 //kinda pricy, encourage other sources
 	icon_state = "size_gun"
 	tagline = "Size matters!"
+	vendor_category = MAINTVENDOR_SCENETOOLS
+
+/datum/maint_recycler_vendor_entry/voodoo
+	name = "V00D00 CURSE UPON YOU"
+	ad_message = "SPOOKY!"
+	desc = "HELP! I annoyed a SPOOOOKY redspace witch, and she made this doll of me! haha? unless? Farsooth? It works remotely? I can feel it? wow! buy it!"
+	object_type_to_spawn = /obj/item/storage/box/remote_scene_tools/voodoo
+	item_cost = 30
+	tagline = "I know what you are!"
+	vendor_category = MAINTVENDOR_SCENETOOLS
+
+/datum/maint_recycler_vendor_entry/portal_stickers
+	name = "REMOTE HOLE SEEKING GOAL"
+	ad_message = "BLUESPCAE!"
+	desc = "WAOW! A Portable hole! Alas, it's not useful for storage, but it IS useful for uh... um.... wow. no wonder it was surplus, this thing is weird!"
+	object_type_to_spawn = /obj/item/storage/box/remote_scene_tools
+	item_cost = 30
+	tagline = "REMEMBER! YOU CAN'T SPELL BLUESPACE WITHOUT BS!"
 	vendor_category = MAINTVENDOR_SCENETOOLS

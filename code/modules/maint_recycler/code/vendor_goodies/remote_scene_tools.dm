@@ -42,6 +42,7 @@
 
 
 /obj/item/remote_scene_tool/proc/unregister_from_mob(var/mob)
+	if(worn_mob == null) return
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGIN)
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGOUT)
 	worn_mob = null
@@ -131,6 +132,7 @@
 		linked.linked = null //clear out the other side
 		linked = null
 	UnregisterSignal(src, COMSIG_ATOM_ENTERING)
+	unregister_from_mob(worn_mob)
 
 /obj/item/remote_scene_tool/examine(mob/user)
 	. = ..()
@@ -146,10 +148,14 @@
 
 
 /obj/item/storage/box/remote_scene_tools
+	icon = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools.dmi'
+	icon_state = "stickerbox"
 	name = "box of bluespace stickers"
 	desc = "A box containing a few bluespace stickers. Moderately obsolete, limited range dimensional bypass technology that enables remote \"things\" and \"stuff\" as if there were no distance at all between them!"
 	var/primary = /obj/item/remote_scene_tool
 	var/secondary = /obj/item/remote_scene_tool
+	description_info = "These allow you to send emotes (and subtles!) over to the person wearing the other end of it! the only person that'll ever see the emotes is the person wearing it, and you need to be wearing (or holding/in a pocket) it for them to see your emotes!"
+	description_fluff = "A long since discarded prototype of a bag of holding - turns out it's hard to store things securely when the other end's open. too bad NOBODY has EVER found a practical use for them!"
 
 /obj/item/storage/box/remote_scene_tools/Initialize(mapload)
 	. = ..()
@@ -210,7 +216,8 @@
 	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vauge, so use it how you want in RP! Just remember bystander consent!"
 
 /obj/item/storage/box/remote_scene_tools/voodoo
+	icon_state = "voodoobox"
 	name = "Voodoo Supplies Box"
-	desc = "A box with a matching voodoo doll and necklace. it's got that corny costume kind of branding on it."
+	desc = "a horribly dusty box from 'magici-corp' with a ludicrously corny image of a voodoo doll on the front. marketed as part of a DIY magician routine, they stopped making them after someone broke their nose when the doll was dropped."
 	primary = /obj/item/remote_scene_tool/voodoo_doll
 	secondary = /obj/item/remote_scene_tool/voodoo_necklace

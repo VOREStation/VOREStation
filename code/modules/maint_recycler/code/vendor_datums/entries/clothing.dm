@@ -4,7 +4,7 @@
 	object_type_to_spawn = /obj/item/clothing/suit/recycling_shirt
 	item_cost = 15 //not too pricy
 	tagline = "Congratulations on being the ONE. ONE. ONE. ONE. ONE. ONE. Visito-ONE-ONE!"
-	ad_message = "This Person Recycles \[REDACTED\]!"
+	ad_message = "This Person Recycles!"
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
 	vendor_category = MAINTVENDOR_CLOTHING
@@ -14,7 +14,7 @@
 	desc = "L1MP WRIST NO MORE. PIMP IT OUT!"
 	object_type_to_spawn = /obj/item/clothing/head/collectable/petehat
 	item_cost = 15 //not too pricy
-	ad_message = "MMMHMMMMM"
+	ad_message = "MMMhMMMMM"
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
 	vendor_category = MAINTVENDOR_CLOTHING

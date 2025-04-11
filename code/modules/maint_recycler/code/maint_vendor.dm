@@ -48,6 +48,14 @@
 	monitor_screen.icon_state = "screen_off"
 
 	src.vis_contents |= monitor_screen
+	shuffle_inplace(product_datums) //looks weird to have a billion carpet entries right next to eachother
+
+
+/obj/machinery/maint_vendor/Destroy()
+	. = ..()
+	QDEL_LIST(product_datums)
+	qdel(monitor_screen)
+	monitor_screen = null
 
 /obj/machinery/maint_vendor/power_change()
 	update_icon()
@@ -61,7 +69,7 @@
 	tgui_interact(user)
 
 	if(!is_on)
-		setOnState(TRUE)
+		set_on_state(TRUE)
 
 
 
@@ -81,16 +89,22 @@
 	entry.purchased_by[user.client.ckey] += 1
 
 /obj/machinery/maint_vendor/proc/purchase_failed(var/mob/user, var/reason)
-	setScreenState("screen_deny",10)
+	if(prob(95))
+		set_screen_state("screen_deny",10)
+	else
+		set_screen_state("screen_mad",10)
 	audible_message("[src] states, \"PURCHASE DENIED: [reason].\" ", "\The [src]'s screen briefly flashes to an X!" , runemessage = "X")
 	playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
 	return
 
 /obj/machinery/maint_vendor/proc/dispense_item_from_datum(var/mob/user, var/datum/maint_recycler_vendor_entry/used_entry)
-	//TODO: sound. kachunk, visible message, etc.
 	playsound(src, 'code/modules/maint_recycler/sfx/ejectgoodies.ogg', 75, 1)
 	used_entry.spawn_with_delay(src);
-	 //todo! refactor w/ a timer
+	audible_message("[src] states, \"[used_entry.tagline].\" ", "\The [src]'s screen briefly flashes an $!" , runemessage = "$$$")
+	if(prob(95))
+		set_screen_state("screen_cashout",10)
+	else
+		set_screen_state("screen_happy",10)
 
 /obj/machinery/maint_vendor/proc/can_user_purchase(var/mob/user,var/datum/maint_recycler_vendor_entry/attempted_entry)
 	if(!user_balance(user) || user_balance(user) < attempted_entry.item_cost)
@@ -102,7 +116,7 @@
 	if(attempted_entry.per_round_cap > 0 && attempted_entry.getPurchasedCount() >= attempted_entry.per_round_cap)
 		purchase_failed(user, "Out of Stock")
 		return FALSE
-	if(LAZYLEN(attempted_entry.required_access)) //acess check
+	if(LAZYLEN(attempted_entry.required_access)) //access check
 		req_access = attempted_entry.required_access
 		if(!allowed(user))
 			purchase_failed(user, "Access Denied")
@@ -114,7 +128,7 @@
 	. = ..()
 	cut_overlays()
 	if(!(stat & NOPOWER))
-		add_overlay(mutable_appearance(src.icon, "passiveGlow"))
+		add_overlay(mutable_appearance(src.icon, "passiveGlow")) //product display. screen is distinct.
 		add_overlay(emissive_appearance(src.icon, "passiveGlow"))
 
 /obj/machinery/maint_vendor/proc/set_screen_state(var/newstate, var/duration)
@@ -156,7 +170,7 @@
 
 /obj/machinery/maint_vendor/tgui_close(mob/user)
 	. = ..()
-	setOnState(FALSE)
+	set_on_state(FALSE)
 
 /obj/machinery/maint_vendor/tgui_data(mob/user)
 	var/list/data = list()
@@ -187,18 +201,8 @@
 	var/currentValue = 	user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 	user.client?.prefs?.write_preference_by_type(/datum/preference/numeric/recycler_points, currentValue + amount)
 
-//copypasta, screen state stuff from the recycler. if it were more than this & the spawn beacon I'd make them share ancestry.
-/obj/machinery/maint_vendor/proc/setScreenState(var/state, var/duration = 10)
-	if(!is_on) return
-	monitor_screen.icon_state = state
-	spawn(duration)
-		if(!is_on)
-			monitor_screen.icon_state = "screen_off"
-		else
-			monitor_screen.icon_state = "screen_default"
 
-
-/obj/machinery/maint_vendor/proc/setOnState(var/state)
+/obj/machinery/maint_vendor/proc/set_on_state(var/state)
 	if(is_on == state) return
 	is_on = state
 	if(is_on)
@@ -213,7 +217,7 @@
 /obj/machinery/maint_vendor/power_change()
 	..()
 	if(stat & NOPOWER)
-		setOnState(FALSE)
+		set_on_state(FALSE)
 	update_icon()
 
 /obj/machinery/maint_vendor

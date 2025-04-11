@@ -10,7 +10,7 @@
 	name = "DUCK SURPLUS"
 	desc = "RUBBER DUCKY REASONABLE PRICE?"
 	ad_message = "BONUS DUCK!"
-	object_type_to_spawn = /obj/item/random/fromList/ducky
+	object_type_to_spawn = /obj/random/fromList/ducky
 	per_person_cap = 3
 	item_cost = 20
 
@@ -18,5 +18,6 @@
 	name = "MECHHAMMER COLLECTABLE PROXY MODELS"
 	desc = "MECH WORKSHOP'S LAWYERS CAN EAT MY BALLS! THESE PROXY MODELS R BETTER & MORE EPIC & FUCK U MECH WORKSHOP"
 	ad_message = "MY BALLS!"
+	tagline = "I HAVE 8.2 PETABYTES OF MECHHAMMER MODELS!"
 	item_cost = 50 //even discount bin warhammer's comically expensive
-	/obj/item/random/fromList/mechtoys
+	object_type_to_spawn = /obj/random/fromList/mecha_toys
