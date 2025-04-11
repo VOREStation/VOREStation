@@ -17,3 +17,21 @@
 
 /datum/asset/spritesheet_batched/maint_vendor/create_spritesheets()
 	insert_all_icons("", 'code/modules/maint_recycler/icons/vendor_entries.dmi', prefix_with_dirs = FALSE) // OOC, LOOC ect icons
+
+
+/obj/recycler_beacon
+	icon = 'code/modules/maint_recycler/icons/maint_recycler.dmi'
+	icon_state = "marker"
+	invisibility = 101
+	mouse_opacity = 0
+	density = 0
+	anchored = 1
+
+/obj/recycler_vendor_beacon
+	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
+	icon_state = "marker"
+	invisibility = 101
+	pixel_x = -8
+	mouse_opacity = 0
+	density = 0
+	anchored = 1
