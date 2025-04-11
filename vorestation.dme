@@ -4299,6 +4299,8 @@
 #include "code\modules\tgui\states\human_adjacent.dm"
 #include "code\modules\tgui\states\inventory.dm"
 #include "code\modules\tgui\states\inventory_vr.dm"
+#include "code\modules\tgui\states\living.dm"
+#include "code\modules\tgui\states\living_adjacent.dm"
 #include "code\modules\tgui\states\mentor.dm"
 #include "code\modules\tgui\states\not_incapacitated.dm"
 #include "code\modules\tgui\states\notcontained.dm"

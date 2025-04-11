@@ -46,5 +46,5 @@
 	if(arguments)
 		A.arguments_to_use = arguments
 	ability_objects.Add(A)
-	if(my_mob.client)
+	if(my_mob && my_mob.client) //If a shadekin is made (mannequins) prior to initialize being finished, my_mob won't be assigned and this will runtime. Mannequins need massive fixing because they shouldn't be getting all these special huds and overlays when they don't need them.
 		toggle_open(2) //forces the icons to refresh on screen

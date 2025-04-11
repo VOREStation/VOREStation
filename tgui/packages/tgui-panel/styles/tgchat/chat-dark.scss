@@ -27,19 +27,25 @@ img.icon {
 }
 
 a {
-  color: hsl(202, 49%, 44%);
-}
-
-a.visited {
-  color: hsl(272, 100%, 45%);
-}
-
-a:visited {
-  color: hsl(272, 100%, 45%);
-}
-
-a.popt {
+  cursor: var(--cursor-pointer);
+  color: var(--color-hyperlink);
+  transition: color var(--transition-time-medium);
   text-decoration: none;
+
+  &:hover {
+    color: hsl(from var(--color-hyperlink) h s calc(l + var(--adjust-hover)));
+  }
+}
+
+a.visited,
+a:visited {
+  color: var(--color-hyperlink-visited);
+
+  &:hover {
+    color: hsl(
+      from var(--color-hyperlink-visited) h s calc(l + var(--adjust-hover))
+    );
+  }
 }
 
 /* POPUPS */
@@ -1065,7 +1071,6 @@ img.icon.bigicon {
   -moz-transform: scale(-1, -1);
   -webkit-transform: scale(-1, -1);
   -o-transform: scale(-1, -1);
-  -ms-transform: scale(-1, -1);
   transform: scale(-1, -1);
 }
 
