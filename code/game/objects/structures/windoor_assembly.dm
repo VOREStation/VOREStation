@@ -49,7 +49,7 @@
 /obj/structure/windoor_assembly/Destroy()
 	density = FALSE
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/structure/windoor_assembly/update_icon()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
