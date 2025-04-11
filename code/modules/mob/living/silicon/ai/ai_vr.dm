@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Initialize(mapload, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(mapload, is_decoy, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = FALSE)
 	. = ..(mapload, L, B, safety)
 	add_language(LANGUAGE_BIRDSONG,		1)
 	add_language(LANGUAGE_SAGARU,		1)
