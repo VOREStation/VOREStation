@@ -70,11 +70,13 @@
 		/obj/item/toy/plushie = 5, //begone foul beasts
 		/obj/item/toy/plushie/ipc = 20, //heating coils are worth more
 		/obj/item/toy/tennis = 5,
+		/obj/item/toy/figure = 5,
 		/obj/item/toy/monster_bait = 10,
 		/obj/item/flashlight/glowstick = 7,
 		/obj/item/flashlight/flare = 7,
 		/obj/item/soap = 7,
 		/obj/item/aliencoin = 20,
+		/obj/item/card/emag_broken = 15,
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight = 15,
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart = 15,
 		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep = 15,

@@ -1,0 +1,22 @@
+/datum/maint_recycler_vendor_entry/circuit_upgrade_disk //borderline on the threshold. expensive enough that science can just get it easier normally, mostly for the ever cuckolded engineers
+	name = "C1RCUIT PRINT DISK UPGRADE"
+	desc = "A disk with ADVANCED designs LEGALLY pirated from fuckNT.nt/fuckNT"
+	ad_message = "VIRGIN-TACULAR!"
+	object_type_to_spawn = /obj/item/disk/integrated_circuit/upgrade/advanced
+	per_person_cap = 1
+	item_cost = 30
+
+/datum/maint_recycler_vendor_entry/duckies
+	name = "DUCK SURPLUS"
+	desc = "RUBBER DUCKY REASONABLE PRICE?"
+	ad_message = "BONUS DUCK!"
+	object_type_to_spawn = /obj/item/random/fromList/ducky
+	per_person_cap = 3
+	item_cost = 20
+
+/datum/maint_recycler_vendor_entry/mechas
+	name = "MECHHAMMER COLLECTABLE PROXY MODELS"
+	desc = "MECH WORKSHOP'S LAWYERS CAN EAT MY BALLS! THESE PROXY MODELS R BETTER & MORE EPIC & FUCK U MECH WORKSHOP"
+	ad_message = "MY BALLS!"
+	item_cost = 50 //even discount bin warhammer's comically expensive
+	/obj/item/random/fromList/mechtoys

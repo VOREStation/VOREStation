@@ -7,31 +7,45 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-@use '../colors.scss' with ($primary: #00ff00,
+@use '../colors.scss' with (
+  $primary: #00ff00,
   $fg-map-keys: (),
-  $bg-map-keys: ());
-@use '../base.scss' with ($color-bg: #121b12,
-  $color-bg-grad-spread: 0%);
+  $bg-map-keys: ()
+);
+@use '../base.scss' with (
+  $color-bg: #121b12,
+  $color-bg-grad-spread: 0%
+);
 
 .theme-crtsoul {
   // Atomic classes
   @include meta.load-css('../atomic/color.scss');
 
   // Components
-  @include meta.load-css('~tgui-core/styles/components/Button.scss',
-    $with: ('color-default': colors.$primary,
+  @include meta.load-css(
+    '~tgui-core/styles/components/Button.scss',
+    $with: (
+      'color-default': colors.$primary,
       'color-disabled': #4a6a4a,
-      'color-selected': #00ff00));
-  @include meta.load-css('~tgui-core/styles/components/Input.scss',
-    $with: ('border-color': colors.$primary));
+      'color-selected': #00ff00
+    )
+  );
+  @include meta.load-css(
+    '~tgui-core/styles/components/Input.scss',
+    $with: ('border-color': colors.$primary)
+  );
   @include meta.load-css('~tgui-core/styles/components/Modal.scss');
   @include meta.load-css('~tgui-core/styles/components/Section.scss');
 
-  @include meta.load-css('~tgui-core/styles/components/LabeledList.scss'); // Layouts
+  @include meta.load-css(
+    '~tgui-core/styles/components/LabeledList.scss'
+  ); // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss',
-    $with: ('background-color': #223d22));
+  @include meta.load-css(
+    '../layouts/TitleBar.scss',
+    $with: ('background-color': #223d22)
+  );
 
   @import url(//fonts.googleapis.com/css?family=VT323);
   font-family: 'VT323';
@@ -91,7 +105,7 @@
   }
 
   .Layout__content::after {
-    content: " ";
+    content: ' ';
     display: block;
     position: fixed;
     top: 0;
@@ -106,22 +120,30 @@
   }
 
   .Layout__content::before {
-    content: " ";
+    content: ' ';
     display: block;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background:
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+      linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.06),
+        rgba(0, 255, 0, 0.02),
+        rgba(0, 0, 255, 0.06)
+      );
     z-index: 2;
-    background-size: 100% 3px, 5px 100%;
+    background-size:
+      100% 3px,
+      5px 100%;
     pointer-events: none;
   }
 
   .Section__titleText {
     color: #00ff00;
-
   }
 
   /*media all*/
@@ -130,7 +152,16 @@
   }
 
   logo-container {
-    filter: sepia(1) hue-rotate(80deg) saturate(5) drop-shadow(-1px 1px 2px lime);
+    filter: sepia(1) hue-rotate(80deg) saturate(5)
+      drop-shadow(-1px 1px 2px lime);
+  }
+
+  .MaintVendor32x32 {
+    display: block;
+    border-style: dashed;
+    border-width: 1px;
+
+    filter: grayscale(1) sepia(1) hue-rotate(30deg) saturate(5);
   }
 
   image-container {
@@ -140,7 +171,8 @@
 
     img {
       display: block;
-      filter: sepia(1) hue-rotate(80deg) saturate(5) drop-shadow(-1px 1px 3px lime);
+      filter: sepia(1) hue-rotate(80deg) saturate(5)
+        drop-shadow(-1px 1px 3px lime);
       width: 100%;
       border-style: dashed;
       border-width: 2px;
@@ -158,6 +190,4 @@
       pointer-events: none;
     }
   }
-
-
 }

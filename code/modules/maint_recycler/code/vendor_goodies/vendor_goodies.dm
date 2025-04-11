@@ -39,3 +39,92 @@
 
 		to_chat(user, span_notice("Patient is Financially Secure. Provide Care."))
 #undef POOR_PERSON_THRESHOLD
+
+
+/obj/random/fromList
+	var/list/to_spawn
+
+/obj/random/fromList/TFGuns
+ //same weight as the crate
+	to_spawn =	list(
+			/obj/item/gun/energy/mouseray=300,
+			/obj/item/gun/energy/mouseray/corgi=50,
+			/obj/item/gun/energy/mouseray/woof=50,
+			/obj/item/gun/energy/mouseray/cat=50,
+			/obj/item/gun/energy/mouseray/chicken=50,
+			/obj/item/gun/energy/mouseray/lizard =50,
+			/obj/item/gun/energy/mouseray/rabbit =50,
+			/obj/item/gun/energy/mouseray/fennec =50,
+			/obj/item/gun/energy/mouseray/monkey =5,
+			/obj/item/gun/energy/mouseray/wolpin =5,
+			/obj/item/gun/energy/mouseray/otie =5,
+			/obj/item/gun/energy/mouseray/direwolf=5,
+			/obj/item/gun/energy/mouseray/giantrat=5,
+			/obj/item/gun/energy/mouseray/redpanda=50,
+			/obj/item/gun/energy/mouseray/catslug=5,
+			/obj/item/gun/energy/mouseray/teppi=5,
+			/obj/item/gun/energy/mouseray/metamorphosis = 1,
+			/obj/item/gun/energy/mouseray/metamorphosis/advanced/random = 1)
+
+
+/obj/random/fromList/spawn_item()
+	var/type = pickweight(to_spawn)
+	var/obj/item/gun/energy/mouseray/M = new type(loc = get_turf(src))
+	qdel(src)
+	return M
+
+/obj/item/clothing/suit/recycling_shirt
+	name = "recycling shirt"
+	desc = "A shirt with a recycling symbol on it. This person recycles things! So ecological!"
+	icon_override = 'code/modules/maint_recycler/icons/goodies/recyclingshirt.dmi'
+	icon = 'code/modules/maint_recycler/icons/goodies/recyclingshirt.dmi'
+	item_state = "recycle_mob"
+	icon_state = "recycle"
+
+/obj/random/fromList/sexy_costumes //"sexy"
+	to_spawn =	list(
+			/obj/item/clothing/suit/maxman=1,
+			/obj/item/clothing/suit/sexyminer=1,
+			/obj/item/clothing/suit/lumber=1,
+			/obj/item/clothing/suit/shrine_maiden=1,
+			/obj/item/clothing/suit/iasexy=1,
+			/obj/item/clothing/suit/sumo = 1,
+			/obj/item/clothing/under/dress/wench=1,
+			/obj/item/clothing/under/schoolgirl = 1,
+			/obj/item/clothing/suit/stripper/stripper_pink =1,
+			/obj/item/clothing/suit/stripper/stripper_green =1
+
+			)
+
+/obj/random/fromList/ducky
+		to_spawn =	list(
+			/obj/item/bikehorn/rubberducky=100,
+			/obj/item/bikehorn/rubberducky/blue=1, //lube
+			/obj/item/bikehorn/rubberducky/pink=1, //freaky
+			/obj/item/bikehorn/rubberducky/grey=1, //spooky
+			/obj/item/bikehorn/rubberducky/white=1 //zap
+			)
+
+/obj/random/fromList/insuls
+	to_spawn = list(
+		/obj/item/clothing/gloves/yellow = 10,
+		/obj/item/clothing/gloves/fyellow = 1,
+	)
+
+/obj/random/fromList/mecha_toys
+	to_spawn = list(
+		/obj/item/toy/mecha/ripley = 1,
+		/obj/item/toy/mecha/fireripley = 1,
+		/obj/item/toy/mecha/deathripley = 1,
+		/obj/item/toy/mecha/gygax = 1,
+		/obj/item/toy/mecha/durand = 1,
+		/obj/item/toy/mecha/honk = 1,
+		/obj/item/toy/mecha/marauder = 1,
+		/obj/item/toy/mecha/seraph = 1,
+		/obj/item/toy/mecha/mauler = 1,
+		/obj/item/toy/mecha/odysseus = 1,
+		/obj/item/toy/mecha/phazon= 1,
+		/obj/item/toy/mecha/reticence = 1,
+		/obj/item/toy/mecha/clarke = 1,
+		/obj/item/toy/mecha/fivestars = 1
+	)
