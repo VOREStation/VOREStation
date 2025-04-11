@@ -124,7 +124,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/gaycarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
-
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_purple
 	name = "P1MP RUG 4 HARDCOR3 GANGST3RS."
@@ -132,6 +132,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/purcarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_orange
 	name = "BLING BLING CARPET 4 U"
@@ -140,6 +141,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/oracarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_brncarpet
 	name = "yawn.... some brown carpet for boring people i guess...."
@@ -148,6 +150,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/brncarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_blue2
 	name = "BLU 4 U CARPET EXCANGE PROGRAM"
@@ -156,6 +159,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/blucarpet2{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_green
 	name = "CACTUS SKIN LOOKING 4 HOME"
@@ -164,14 +168,16 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/greencarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_purple
-	name = "CACTUS SKIN LOOKING 4 HOME"
-	desc = "SPINES REMOVED FANCY PATTERN 4 HOSERS INSTALLED V FANCY CARPET"
-	ad_message = "CACTUS GREEN!"
+	name = "PURPLE! PURPLE! PURPLE!"
+	desc = "FANCY PATTERN 4 HOSERS PURPLE MEAN RICH UR RICH"
+	ad_message = "ROYAL!"
 	object_type_to_spawn = /obj/item/stack/tile/carpet/purplecarpet{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_geometric
 	name = "FR3AKY FLOOR COVER LOOKING 4 SUITABLE MATH DORK"
@@ -180,6 +186,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/geo{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_retro
 	name = "RETRO. RETRO. RETRO."
@@ -188,6 +195,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/retro{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_retro_red
 	name = "CARPET 4 OLD HOS3RS & OTHER ASSORTED PEOPLE OF BAD TASTE"
@@ -196,6 +204,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/retro_red{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Carpet_happy
 	name = ":D RUG"
@@ -204,6 +213,7 @@
 	object_type_to_spawn = /obj/item/stack/tile/carpet/happy{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_Sandstone
 	name = "S&STON3"
@@ -212,6 +222,7 @@
 	object_type_to_spawn = /obj/item/stack/material/sandstone{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
 
 /datum/maint_recycler_vendor_entry/DIY_marble
 	name = "a dash of marble for my good fellow"
@@ -220,3 +231,4 @@
 	object_type_to_spawn = /obj/item/stack/material/marble{amount = 20}
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	vendor_category = MAINTVENDOR_CONSTRUCTION
