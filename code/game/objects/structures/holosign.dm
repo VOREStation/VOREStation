@@ -102,7 +102,7 @@
 		return FALSE
 	if(H.GetViruses())
 		for(var/datum/disease/D in H.GetViruses())
-			if(D.severity == NONTHREAT)
+			if(D.danger == DISEASE_POSITIVE || D.danger == DISEASE_BENEFICIAL)
 				continue
 			return FALSE
 	return TRUE
