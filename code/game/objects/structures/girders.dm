@@ -30,7 +30,7 @@
 	update_icon()
 
 /obj/structure/girder/Destroy()
-	if(girder_material.products_need_process())
+	if(girder_material && girder_material.products_need_process())
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -48,9 +48,10 @@
 	return total_radiation
 
 
-/obj/structure/girder/proc/set_material(var/datum/material/girder_material)
+/obj/structure/girder/proc/set_material(var/datum/material/new_material)
 	if(!girder_material)
 		qdel(src)
+	girder_material = new_material
 	name = "[girder_material.display_name] [initial(name)]"
 	max_health = round(girder_material.integrity) //Should be 150 with default integrity (steel). Weaker than ye-olden Girders now.
 	health = max_health

@@ -35,6 +35,7 @@
 	energy = 50
 
 /obj/effect/accelerated_particle/Initialize(mapload, dir = 2)
+	. = ..()
 	src.loc = loc
 	src.set_dir(dir)
 	addtimer(CALLBACK(src, PROC_REF(move)), 0.1 SECONDS)

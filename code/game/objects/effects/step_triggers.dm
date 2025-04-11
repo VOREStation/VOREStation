@@ -345,5 +345,6 @@ But for now, for what it's been used for, it works.
 	name = "Autostrip target to send mobs to."
 
 /obj/effect/autostriptarget/mob/Initialize(mapload)
+	. = ..()
 	if(targetid)
 		GLOB.mapped_autostrips_mob[targetid] = src

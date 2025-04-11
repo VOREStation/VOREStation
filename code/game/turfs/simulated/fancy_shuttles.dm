@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/icon/split_icon
 	var/fancy_shuttle_tag
 
+INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
 /obj/effect/fancy_shuttle/Initialize(mapload) // has to be very early so others can grab it
 	. = ..()
 	if(!fancy_shuttle_tag)
