@@ -462,11 +462,6 @@ var/list/runechat_image_cache = list()
 /mob/runechat_y_offset()
 	return ..()*size_multiplier
 
-/mob/living/runechat_y_offset()
-	if(vis_height && vis_height > 0)
-		return vis_height * size_multiplier
-	return ..()
-
 // Allows you to specify a different attachment point for messages from yourself
 /atom/proc/runechat_holder(datum/chatmessage/CM)
 	return src
