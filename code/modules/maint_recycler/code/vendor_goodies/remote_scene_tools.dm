@@ -151,7 +151,7 @@
 	var/primary = /obj/item/remote_scene_tool
 	var/secondary = /obj/item/remote_scene_tool
 
-/obj/item/storage/box/remote_scene_tools/Initialize()
+/obj/item/storage/box/remote_scene_tools/Initialize(mapload)
 	. = ..()
 	//set the contents to be a few remote scene tools
 	var/obj/item/remote_scene_tool/RST = new primary(loc = src)
@@ -191,12 +191,14 @@
 		return
 	if(!ismob(linked.loc))
 		return
+	if(!ismob(loc)) //only show the person's icon if we're holding it. makes "found in the hall" interactions less weird
+		return
 
 	var/mob/M = linked.loc
 	if(ismob(M))
-		src.alpha = 190
+		src.alpha = 190 //make it a bit transparent so it doesn't look like a mob holder.
 		name = "Voodoo doll of " + M.name
-		desc = "A small, marketable doll of [M]. " + M.desc
+		desc = "A small, marketable doll that looks suspiciously like [M]... "
 		overlays |= M.overlays
 
 /obj/item/remote_scene_tool/voodoo_necklace
@@ -205,6 +207,7 @@
 	icon_state = "necklace_inactive"
 	icon_root = "necklace"
 	slot_flags = SLOT_MASK
+	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vauge, so use it how you want in RP! Just remember bystander consent!"
 
 /obj/item/storage/box/remote_scene_tools/voodoo
 	name = "Voodoo Supplies Box"
