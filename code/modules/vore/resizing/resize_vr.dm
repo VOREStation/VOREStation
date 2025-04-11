@@ -14,6 +14,10 @@
 /mob/living/carbon/human
 	holder_type = /obj/item/holder/micro
 
+// Let the robots have some fun too
+/mob/living/silicon/robot
+	holder_type = /obj/item/holder/micro
+
 // The reverse lookup of player_sizes_list, number to name.
 /proc/player_size_name(var/size_multiplier)
 	// (This assumes list is sorted big->small)
