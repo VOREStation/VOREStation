@@ -85,7 +85,7 @@ export const ChemMasterBuffer = (props: {
                     })
                   }
                 >
-                  Custom..
+                  Custom...
                 </Button>
               </Stack.Item>
             </Stack>
