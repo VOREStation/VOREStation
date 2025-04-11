@@ -732,3 +732,6 @@
 /datum/config_entry/string/chatlog_database_api_endpoint
 
 /datum/config_entry/flag/forbid_admin_profiling
+
+/datum/config_entry/flag/pixel_size_limit
+	default = FALSE
