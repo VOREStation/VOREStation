@@ -20,7 +20,7 @@
 
 /datum/ai_holder/simple_mob/xenobio_slime/Destroy()
 	grudges.Cut()
-	..()
+	. = ..()
 
 /datum/ai_holder/simple_mob/xenobio_slime/sapphire
 	always_stun = TRUE // They know that stuns are godly.

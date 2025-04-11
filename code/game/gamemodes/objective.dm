@@ -16,7 +16,7 @@ var/global/list/all_objectives = list()
 
 /datum/objective/Destroy()
 	all_objectives -= src
-	..()
+	. = ..()
 
 /datum/objective/proc/check_completion()
 	return completed

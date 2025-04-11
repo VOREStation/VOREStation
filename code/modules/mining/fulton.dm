@@ -166,7 +166,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/structure/extraction_point/Destroy()
 	global.total_extraction_beacons -= src
-	..()
+	. = ..()
 
 /obj/effect/extraction_holder
 	name = "extraction holder"

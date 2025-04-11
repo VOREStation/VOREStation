@@ -82,7 +82,7 @@
 		top.bottom = null
 	if(middle)
 		middle.bottom = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -256,7 +256,7 @@
 		top.middle = null
 	if(bottom)
 		bottom.middle = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -339,7 +339,7 @@
 		middle.top = null
 	if(bottom)
 		bottom.top = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/top/check_integrity(var/obj/structure/stairs/bottom/B = null,

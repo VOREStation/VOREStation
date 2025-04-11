@@ -421,7 +421,7 @@ var/bomb_set
 		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-	..()
+	. = ..()
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

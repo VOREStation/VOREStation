@@ -202,7 +202,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /obj/fire/Destroy()
 	RemoveFire()
 
-	..()
+	. = ..()
 
 /obj/fire/proc/RemoveFire()
 	var/turf/T = loc

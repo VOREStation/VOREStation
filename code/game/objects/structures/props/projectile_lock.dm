@@ -18,7 +18,7 @@
 				var/obj/machinery/door/blast/puzzle/P = O
 				P.locks -= src
 				linked_objects -= P
-	..()
+	. = ..()
 
 /obj/structure/prop/lock/proc/toggle_lock()
 	enabled = !enabled

@@ -133,7 +133,7 @@
 
 /obj/structure/barricade/sandbag/Destroy()
 	update_connections(1, src)
-	..()
+	. = ..()
 
 /obj/structure/barricade/sandbag/dismantle()
 	update_connections(1, src)

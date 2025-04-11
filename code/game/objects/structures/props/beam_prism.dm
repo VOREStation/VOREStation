@@ -35,7 +35,7 @@
 	if(remote_dial)
 		remote_dial.my_turrets -= src
 		remote_dial = null
-	..()
+	. = ..()
 
 /obj/structure/prop/prism/proc/reset_rotation()
 	var/degrees_to_rotate = -1 * degrees_from_north
@@ -215,4 +215,4 @@
 	for(var/obj/structure/prop/prism/P in my_turrets)
 		P.remote_dial = null
 	my_turrets = list()
-	..()
+	. = ..()

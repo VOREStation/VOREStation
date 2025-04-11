@@ -15,7 +15,7 @@
 /obj/item/tool/transforming/Destroy()
 	if(welder)
 		QDEL_NULL(welder)
-	..()
+	. = ..()
 
 /obj/item/tool/transforming/get_welder()
 	return welder

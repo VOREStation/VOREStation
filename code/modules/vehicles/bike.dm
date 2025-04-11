@@ -258,4 +258,4 @@
 /obj/vehicle/bike/Destroy()
 	qdel(ion)
 
-	..()
+	. = ..()

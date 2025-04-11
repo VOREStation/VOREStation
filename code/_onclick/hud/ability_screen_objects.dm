@@ -210,7 +210,7 @@
 		ability_master.update_icon()
 //		qdel(ability_master)
 	ability_master = null
-	..()
+	. = ..()
 
 /obj/screen/ability/update_icon()
 //	if(!spell)
