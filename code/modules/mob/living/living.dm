@@ -956,10 +956,11 @@
 	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
 	var/turf/T = get_turf(src)
 	var/vomit_type = NONE
+	var/mob/living/carbon/human/H = src
 
 	if(isSynthetic())
 		vomit_type = VOMIT_NANITE
-	else if(reagents.has_reagent(REAGENT_ID_PHORON) && !isSynthetic())
+	else if(ishuman(src) && H.ingested.has_reagent(REAGENT_ID_PHORON) && !isSynthetic())
 		vomit_type = VOMIT_PURPLE
 	else if(toxloss && !isSynthetic())
 		vomit_type = VOMIT_TOXIC
