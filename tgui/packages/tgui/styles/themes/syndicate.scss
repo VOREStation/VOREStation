@@ -3,64 +3,20 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use 'sass:meta';
-
-@use '../colors.scss' with (
-  $primary: hsl(120, 34%, 34%),
-  $fg-map-keys: (),
-  $bg-map-keys: ()
-);
-@use '../base.scss' with (
-  $color-bg: hsl(0, 95%, 17%),
-  $color-bg-grad-spread: 6%
-);
-
-.theme-syndicate {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
-
+.theme-syndicate:root {
+  // Base
+  --color-base: hsl(0, 96%, 17%);
+  --color-primary: hsl(120, 34%, 35%);
+  --secondary-lightness-adjustment: 11.5;
+  --base-gradient-spread: 6;
   // Components
-  @include meta.load-css(
-    '~tgui-core/styles/components/Button.scss',
-    $with: (
-      'color-default': colors.$primary,
-      'color-disabled': hsl(0, 0%, 21%),
-      'color-selected': hsl(0, 90%, 32%),
-      'color-caution': hsl(30, 91%, 39%),
-      'color-danger': hsl(61, 100%, 31%)
-    )
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/Input.scss',
-    $with: ('border-color': hsl(120, 42%, 67%))
-  );
-  @include meta.load-css('../components/NanoMap.scss');
-  @include meta.load-css(
-    '~tgui-core/styles/components/NoticeBox.scss',
-    $with: ('background-color': hsl(0, 99%, 29%))
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/NumberInput.scss',
-    $with: ('border-color': hsl(120, 42%, 67%))
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/ProgressBar.scss',
-    $with: ('background-color': hsla(0, 0%, 0%, 0.5))
-  );
-  @include meta.load-css('~tgui-core/styles/components/Section.scss');
-  @include meta.load-css(
-    '~tgui-core/styles/components/Tooltip.scss',
-    $with: ('background-color': hsl(0, 95%, 15%))
-  );
-
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': hsl(0, 99%, 29%))
-  );
+  --button-background-selected: hsl(0, 90%, 37.5%);
+  --button-background-caution: hsl(28, 87%, 39%);
+  --button-background-danger: hsl(61, 100%, 30%);
+  --notice-box-background: hsl(0, 98%, 28%);
+  --notice-box-color: var(--color-text-fixed-white);
+  --progress-bar-background: hsla(0, 0%, 0%, 0.5);
+  --tooltip-background-lightness: 25;
 
   .Layout__content {
     background-image: url('../../assets/bg-syndicate.svg');

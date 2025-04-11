@@ -69,6 +69,13 @@ export const TGUI_SAY_LIGHT_MODE: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const ui_scale: FeatureToggle = {
+  name: 'Toggle UI scaling',
+  category: 'UI',
+  description: 'If UIs should scale up to match your monitor scaling.',
+  component: CheckboxInput,
+};
+
 export const tgui_say_emotes: FeatureToggle = {
   name: 'Say: Use TGUI For Emotes',
   category: 'UI',

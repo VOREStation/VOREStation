@@ -1002,6 +1002,12 @@
 
 	if(stat == CONSCIOUS)
 		update_fullness()
+		if(sprite_datum.has_eye_sprites)
+			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
+				if(eyes_overlay)
+					add_overlay(eyes_overlay)
+
 		for(var/belly_class in vore_fullness_ex)
 			reset_belly_lights(belly_class)
 			var/vs_fullness = vore_fullness_ex[belly_class]
@@ -1039,11 +1045,6 @@
 
 		if(resting && sprite_datum.has_rest_sprites)
 			icon_state = sprite_datum.get_rest_sprite(src)
-		if(sprite_datum.has_eye_sprites)
-			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
-				if(eyes_overlay)
-					add_overlay(eyes_overlay)
 
 		if(lights_on && sprite_datum.has_eye_light_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
