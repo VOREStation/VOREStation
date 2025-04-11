@@ -1,0 +1,26 @@
+Adding something to the recycling vendor? Cool! Try and abide by the following design rules, though!
+
+* Is it a "gamer tool" that directly helps with station round progression? Probably shouldn't have it! This includes things like diamonds, rare materials, etc.
+	(the materials that ARE in the vendor are the more "useless" ones, with the intended purpose of allowing people to get some materials for hangouts a bit easier if there's no cargo)
+	Steel and Glass are the exception here, because they're common enough that I don't really think people will use metacurrency to get meager amounts. obviously if that's not the case I'll tweak it.
+
+* is it recycleable?
+	If so - make sure it costs more than you can recycle it for.
+
+* Is it something that has huge potential to be annoying when used?
+	Things like Photon nades, voice changers, etc. While they COULD technically be classified as scene tools, in reality, it's just going to result in people being a PITA with them. we don't want to encourage that behaviour!
+
+Basically! does the hypothetical stock addition fall into any of these? if not, put a bit of thought into it!
+
+* Scene tools. Stuff that has minimal impact on the game There's two subcategories of it.
+	* Stuff that explicitly can't interact with people without consent - NIF laws, capture crystals, etc.
+	* Stuff that has potential to. The various spicy chemicals, size guns, the various TF guns, etc.
+	Both of these should be good to go, but, you know. assume the worst. don't make a gas grenade with shrink chems.
+
+* Mischief. Nothing overtly illegal or griefy, but stuff that'd otherwise be slightly inconvienent to get.
+	Insuls (for the hideout), and uhhh....
+
+* Rare stuff
+	Stuff that makes people go "awooga" and want to spend points on it, but can be achieved elsewhere. Stuff like NIFs, Bluespace harpoons, etc. Stuff you can already get on station, just a way to do so more consistently. Note that AT BEST these should be tied with the station version of the item. we still want people to go to science for 90% of the NIFs they get.
+
+* Showoff items. Stuff that makes other people go awooga. this shouldn't be anything actually useful. Just silly stuff akin to the fish hats. Golden tools, etc.
