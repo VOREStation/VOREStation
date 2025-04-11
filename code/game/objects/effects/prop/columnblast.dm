@@ -22,10 +22,6 @@
 	. = ..()
 	flick("[icon_state]_create",src)
 
-/obj/effect/temporary_effect/eruption/Destroy()
-	var/turf/T = get_turf(src)
-	. = ..()
-
 /obj/effect/temporary_effect/eruption/proc/on_eruption(var/turf/Target)	// Override for specific functions, as below.
 	flick("[icon_state]_erupt",src)
 	return TRUE
