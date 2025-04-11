@@ -79,7 +79,7 @@
 
 	if(prob(25))
 		LAZYINITLIST(rat_diseases)
-		rat_diseases += new /datum/disease/advance/random(rand(1, 6), 9, 1)
+		rat_diseases += new /datum/disease/advance/random(rand(1, 3), 9, 1)
 
 /mob/living/simple_mob/animal/passive/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
 	. = ..()

@@ -242,7 +242,7 @@
 		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
 	culture_bottle.name = "[D.name] culture bottle"
-	culture_bottle.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
+	culture_bottle.desc = "A small bottle. Contains a dormant [D.agent] culture in synthblood medium."
 	culture_bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 5, data)
 	user.put_in_hands(culture_bottle)
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE)

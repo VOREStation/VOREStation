@@ -222,9 +222,8 @@
 		traits["name"] = disease.name
 		if(istype(disease, /datum/disease/advance))
 			var/datum/disease/advance/adv_disease = disease
-			var/disease_name = adv_disease.GetDiseaseID()
 			traits["can_rename"] = (adv_disease.name == "Unknown")
-			traits["name"] = disease_name
+			traits["name"] = disease.name
 			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
 			for(var/datum/symptom/symptom as() in adv_disease.symptoms)
@@ -287,6 +286,7 @@
 /obj/machinery/computer/pandemic/proc/create_culture_bottle(index)
 	var/id = get_virus_id_by_index(text2num(index))
 	var/datum/disease/advance/adv_disease = GLOB.archive_diseases[id]
+	var/old_name = adv_disease.name
 
 	if(!istype(adv_disease))
 		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
@@ -294,6 +294,7 @@
 
 	use_power(active_power_usage)
 	adv_disease = adv_disease.Copy()
+	adv_disease.name = old_name
 	var/list/cures = get_beaker_cures(id)
 	if(cures.len)
 		adv_disease.cures = cures[1]

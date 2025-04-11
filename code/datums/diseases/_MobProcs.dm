@@ -202,12 +202,16 @@
 		return FALSE
 
 	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
+
+	if(isnull(disease))
+		return FALSE
+
 	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", "Characters", human_mob_list)
 
-	var/datum/disease/D = new disease
-
-	if(isnull(D) || isnull(H))
+	if(isnull(H))
 		return FALSE
+
+	var/datum/disease/D = new disease
 
 	if(!H.HasDisease(D))
 		H.ForceContractDisease(D)

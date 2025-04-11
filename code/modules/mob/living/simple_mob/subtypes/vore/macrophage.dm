@@ -99,13 +99,39 @@
 /mob/living/simple_mob/vore/aggressive/macrophage/blue
 	icon_state = "macrophage-4"
 
-/mob/living/simple_mob/vore/aggressive/macrophage/do_attack(atom/A, turf/T)
-	. = ..()
-	if(iscarbon(A))
-		var/mob/living/carbon/human/victim = A
-		if((victim.HasDisease(base_disease) || !victim.CanContractDisease(base_disease)) && prob(75))
-			ai_holder.lose_target()
-		victim.ContractDisease(base_disease)
+/mob/living/simple_mob/vore/aggressive/macrophage/apply_melee_effects(atom/A)
+	if(ishuman(A) && prob(25))
+		var/mob/living/carbon/human/H = A
+		H.ContractDisease(base_disease)
+
+/mob/living/simple_mob/vore/aggressive/macrophage/do_special_attack(var/atom/A)
+	. = TRUE
+	set_AI_busy(TRUE)
+	do_windup_animation(A, 20)
+	addtimer(CALLBACK(src, PROC_REF(charge), A), 20, TIMER_STOPPABLE)
+
+/mob/living/simple_mob/vore/aggressive/macrophage/proc/charge(var/atom/A)
+	if(QDELETED(A) || !isturf(get_turf(A)))
+		set_AI_busy(FALSE)
+		return
+	status_flags |= LEAPING
+	flying = TRUE
+	hovering = TRUE
+	visible_message(span_warning("The [src] lunges at \the [A]!"))
+	throw_at(A, 7, 2)
+	if(status_flags & LEAPING)
+		status_flags &= ~LEAPING
+	flying = FALSE
+	hovering = FALSE
+
+	var/mob/living/target = null
+	if(Adjacent(A))
+		target = A
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.ContractDisease(base_disease)
+	set_AI_busy(FALSE)
 
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
 	..()

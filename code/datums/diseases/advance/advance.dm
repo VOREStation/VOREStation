@@ -163,9 +163,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
 		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
 
-	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
-	AssignName(A.name)
-
 /datum/disease/advance/proc/GenerateProperties()
 	resistance = 0
 	stealth = 0
@@ -259,6 +256,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
+		Refresh(TRUE)
 	return
 
 // Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
@@ -266,6 +264,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
+		Refresh(TRUE)
 	return
 
 // Randomly remove a symptom.
@@ -286,8 +285,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			Refresh(TRUE)
 
 // Name the disease.
-/datum/disease/advance/proc/AssignName(name = "Unknown")
-	src.name = name
+/datum/disease/advance/proc/AssignName(new_name = "Unknown")
+	name = new_name
 	return
 
 // Return a unique ID of the disease.
@@ -324,6 +323,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	symptoms -= S
 	return
 
+// Neuters a symptom, allowing it only for stats.
 /datum/disease/advance/proc/NeuterSymptom(datum/symptom/S)
 	if(!S.neutered)
 		S.neutered = TRUE
@@ -406,8 +406,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
-		D.AssignName(new_name)
-		D.Refresh()
+		D.Refresh(new_name)
 		D.Finalize()
 
 		for(var/datum/disease/advance/AD in active_diseases)
