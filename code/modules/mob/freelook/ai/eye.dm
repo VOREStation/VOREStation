@@ -74,17 +74,6 @@
 		client.eye = eyeobj
 	SetName(src.name)
 
-// Intiliaze the eye by assigning it's "ai" variable to us. Then set it's loc to us.
-/mob/living/silicon/ai/Initialize(mapload)
-	. = ..()
-	create_eyeobj()
-	if(eyeobj)
-		eyeobj.loc = src.loc
-
-/mob/living/silicon/ai/Destroy()
-	destroy_eyeobj()
-	return ..()
-
 /atom/proc/move_camera_by_click()
 	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = usr
