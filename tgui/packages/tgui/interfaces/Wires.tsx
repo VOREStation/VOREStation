@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 export type WireData = {
@@ -46,35 +46,41 @@ export const WiresWires = (props) => {
             labelColor={wire.seen_color}
             color={wire.seen_color}
             buttons={
-              <>
-                <Button
-                  onClick={() =>
-                    act('cut', {
-                      wire: wire.color,
-                    })
-                  }
-                >
-                  {wire.cut ? 'Mend' : 'Cut'}
-                </Button>
-                <Button
-                  onClick={() =>
-                    act('pulse', {
-                      wire: wire.color,
-                    })
-                  }
-                >
-                  Pulse
-                </Button>
-                <Button
-                  onClick={() =>
-                    act('attach', {
-                      wire: wire.color,
-                    })
-                  }
-                >
-                  {wire.attached ? 'Detach' : 'Attach'}
-                </Button>
-              </>
+              <Stack>
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('cut', {
+                        wire: wire.color,
+                      })
+                    }
+                  >
+                    {wire.cut ? 'Mend' : 'Cut'}
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('pulse', {
+                        wire: wire.color,
+                      })
+                    }
+                  >
+                    Pulse
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('attach', {
+                        wire: wire.color,
+                      })
+                    }
+                  >
+                    {wire.attached ? 'Detach' : 'Attach'}
+                  </Button>
+                </Stack.Item>
+              </Stack>
             }
           >
             {!!wire.wire && <i>({wire.wire})</i>}

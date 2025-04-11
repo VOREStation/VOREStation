@@ -7,6 +7,7 @@ import {
   Icon,
   LabeledList,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
@@ -68,18 +69,22 @@ export const CharacterDirectory = (props) => {
             <Section
               title="Controls"
               buttons={
-                <>
-                  <Box color="label" inline>
-                    Save to current preferences slot:&nbsp;
-                  </Box>
-                  <Button
-                    icon={overwritePrefs ? 'toggle-on' : 'toggle-off'}
-                    selected={overwritePrefs}
-                    onClick={() => setOverwritePrefs(!overwritePrefs)}
-                  >
-                    {overwritePrefs ? 'On' : 'Off'}
-                  </Button>
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Box color="label" inline>
+                      Save to current preferences slot:&nbsp;
+                    </Box>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon={overwritePrefs ? 'toggle-on' : 'toggle-off'}
+                      selected={overwritePrefs}
+                      onClick={() => setOverwritePrefs(!overwritePrefs)}
+                    >
+                      {overwritePrefs ? 'On' : 'Off'}
+                    </Button>
+                  </Stack.Item>
+                </Stack>
               }
             >
               <LabeledList>
