@@ -17,9 +17,6 @@
 		color = newcolor
 
 	. = ..()
-
-/obj/effect/temporary_effect/eruption/Initialize(mapload)
-	. = ..()
 	flick("[icon_state]_create",src)
 
 /obj/effect/temporary_effect/eruption/proc/on_eruption(var/turf/Target)	// Override for specific functions, as below.
