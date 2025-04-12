@@ -298,7 +298,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 // ------------------------------------------------------------------------
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(station_missed = FALSE, override = null, initiating_entity)
 	if( cinematic )	return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object
@@ -313,29 +313,30 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/obj/structure/bed/temp_buckle = new(src)
 	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
-	if(station_missed)
+	if(station_missed) //0 = Station was directly hit. 1 = Bomb was on borders of the map (glancing blow) 2 = Bomb missed station entirely.
 		for(var/mob/living/M in living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			if(M.client)
 				M.client.screen += cinematic	//show every client the cinematic
 				cinematic.watchers += M
 				temp_buckle.buckled_mobs += M
-	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
+			if(initiating_entity)
+				var/obj/the_entity = initiating_entity
+				if(the_entity.z == M.z) //You're on the Z level that the bomb just went off at.
+					M.health = 0
+					M.set_stat(DEAD)
+	else	//nuke kills everyone on the station Z levels if it's a direct hit
 		for(var/mob/living/M in living_mob_list)
 			M.buckled = temp_buckle
 			if(M.client)
 				M.client.screen += cinematic
 				cinematic.watchers += M
 				temp_buckle.buckled_mobs += M
-			switch(M.z)
-				if(0)	//inside a crate or something
-					var/turf/T = get_turf(M)
-					if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
-						M.health = 0
-						M.set_stat(DEAD)
-				if(1)	//on a z-level 1 turf.
-					M.health = 0
-					M.set_stat(DEAD)
+			var/turf/T = get_turf(M)
+			if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+				M.health = 0
+				M.set_stat(DEAD)
+
 
 	//Now animate the cinematic
 	switch(station_missed)
