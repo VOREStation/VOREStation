@@ -254,6 +254,8 @@
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
+		if(B.prevent_saving) // Dont save bellies marked as unsavable.
+			continue
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
 
 	P.belly_prefs = serialized

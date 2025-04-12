@@ -1,0 +1,5 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - rscadd: "Added Special teleporter vorebellies."
+  - code_imp: "Added support for vorebellies to be marked as unsavable, preventing them from being saved to characters."

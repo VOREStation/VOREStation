@@ -22,18 +22,22 @@ export const MessageMonitorMain = (props) => {
     <Section
       title="Main Menu"
       buttons={
-        <>
-          <Button icon="link" onClick={() => act('find')}>
-            Server Link
-          </Button>
-          <Button
-            icon="power-off"
-            selected={linkedServer.active}
-            onClick={() => act('active')}
-          >
-            {'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button icon="link" onClick={() => act('find')}>
+              Server Link
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="power-off"
+              selected={linkedServer.active}
+              onClick={() => act('active')}
+            >
+              {'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

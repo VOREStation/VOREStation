@@ -84,23 +84,27 @@ const CommonCultureActions = () => {
   const { act, data } = useBackend<Data>();
   const { beakerLoaded } = data;
   return (
-    <>
-      <Button
-        icon="eject"
-        disabled={!beakerLoaded}
-        onClick={() => act('eject_beaker')}
-      >
-        Eject
-      </Button>
-      <Button.Confirm
-        icon="trash-alt"
-        confirmIcon="eraser"
-        disabled={!beakerLoaded}
-        onClick={() => act('destroy_eject_beaker')}
-      >
-        Destroy
-      </Button.Confirm>
-    </>
+    <Stack>
+      <Stack.Item>
+        <Button
+          icon="eject"
+          disabled={!beakerLoaded}
+          onClick={() => act('eject_beaker')}
+        >
+          Eject
+        </Button>
+      </Stack.Item>
+      <Stack.Item>
+        <Button.Confirm
+          icon="trash-alt"
+          confirmIcon="eraser"
+          disabled={!beakerLoaded}
+          onClick={() => act('destroy_eject_beaker')}
+        >
+          Destroy
+        </Button.Confirm>
+      </Stack.Item>
+    </Stack>
   );
 };
 

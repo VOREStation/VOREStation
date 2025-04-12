@@ -5,6 +5,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import type { Data } from './types';
@@ -33,42 +34,52 @@ export const RIGSuitStatus = (props) => {
     <Section
       title="Status"
       buttons={
-        <>
-          <Button
-            icon={sealing ? 'redo' : sealed ? 'power-off' : 'lock-open'}
-            iconSpin={sealing}
-            disabled={sealing}
-            selected={sealed}
-            onClick={() => act('toggle_seals')}
-          >
-            {'Suit ' +
-              (sealing
-                ? 'seals working...'
-                : sealed
-                  ? 'is Active'
-                  : 'is Inactive')}
-          </Button>
-          <Button
-            icon="robot"
-            selected={aioverride}
-            onClick={() => act('toggle_ai_control')}
-            tooltip={'AI Control ' + (aioverride ? 'Enabled' : 'Disabled')}
-            tooltipPosition="bottom-end"
-          />
-          <Button
-            icon="wind"
-            selected={cooling}
-            onClick={() => act('toggle_cooling')}
-            tooltip={'Suit Cooling ' + (cooling ? 'is Active' : 'is Inactive')}
-            tooltipPosition="bottom-end"
-          />
-          <Button
-            icon="lungs"
-            onClick={() => act('tank_settings')}
-            tooltip="Tank Settings"
-            tooltipPosition="bottom-end"
-          />
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon={sealing ? 'redo' : sealed ? 'power-off' : 'lock-open'}
+              iconSpin={sealing}
+              disabled={sealing}
+              selected={sealed}
+              onClick={() => act('toggle_seals')}
+            >
+              {'Suit ' +
+                (sealing
+                  ? 'seals working...'
+                  : sealed
+                    ? 'is Active'
+                    : 'is Inactive')}
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="robot"
+              selected={aioverride}
+              onClick={() => act('toggle_ai_control')}
+              tooltip={'AI Control ' + (aioverride ? 'Enabled' : 'Disabled')}
+              tooltipPosition="bottom-end"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="wind"
+              selected={cooling}
+              onClick={() => act('toggle_cooling')}
+              tooltip={
+                'Suit Cooling ' + (cooling ? 'is Active' : 'is Inactive')
+              }
+              tooltipPosition="bottom-end"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="lungs"
+              onClick={() => act('tank_settings')}
+              tooltip="Tank Settings"
+              tooltipPosition="bottom-end"
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

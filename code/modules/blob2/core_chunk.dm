@@ -34,7 +34,7 @@
 
 	blob_type = null
 
-	..()
+	. = ..()
 
 /obj/item/blobcore_chunk/proc/setup_blobtype(var/datum/blob_type/parentblob = null)
 	if(!parentblob)
