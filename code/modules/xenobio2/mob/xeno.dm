@@ -103,4 +103,4 @@ Also includes Life and New
 
 /mob/living/simple_mob/xeno/Destroy()
 	QDEL_NULL(traitdat)
-	..()
+	. = ..()
