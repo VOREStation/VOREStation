@@ -2832,14 +2832,14 @@
 			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' AND '%item will be replaced with the item's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
 			switch(params["msgtype"])
 				if("in")
-					var/new_message = sanitize(tgui_input_text(user,"This is sent upon eating anything with the trash eater perk. Write them in 3rd person ('%pred demonstrates their voracious capabilities by swallowing %item whole!') Try to keep it brief!"+help,"Trash Eater Insert",host.vore_selected.get_messages("te_in"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
+					var/new_message = sanitize(tgui_input_text(user,"This is sent upon eating anything with the trash eater perk. Write them in 3rd person ('%pred demonstrates their voracious capabilities by swallowing %item whole!') Try to keep it brief!"+help,"Trash Eater Insert",host.vore_selected.get_messages(BELLY_TRASH_EATER_IN), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
-						host.vore_selected.set_messages(new_message,"te_in", limit = MAX_MESSAGE_LEN / 4)
+						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_IN, limit = MAX_MESSAGE_LEN / 4)
 						. = TRUE
 				if("out")
-					var/new_message = sanitize(tgui_input_text(user,"This is sent upon expeling any item in your belly. Write them in 3rd person ('%pred expels %item from their %belly!') Try to keep it brief!"+help,"Item Expel",host.vore_selected.get_messages("te_out"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
+					var/new_message = sanitize(tgui_input_text(user,"This is sent upon expeling any item in your belly. Write them in 3rd person ('%pred expels %item from their %belly!') Try to keep it brief!"+help,"Item Expel",host.vore_selected.get_messages(BELLY_TRASH_EATER_OUT), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
-						host.vore_selected.set_messages(new_message,"te_out", limit = MAX_MESSAGE_LEN / 4)
+						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_OUT, limit = MAX_MESSAGE_LEN / 4)
 						. = TRUE
 
 	if(.)
