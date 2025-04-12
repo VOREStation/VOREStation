@@ -57,7 +57,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
                   key={i}
                   label={field.field}
                   buttons={
-                    order_auth ? (
+                    !!order_auth && (
                       <Button
                         icon="pen"
                         onClick={() => {
@@ -70,8 +70,6 @@ export const SupplyConsoleMenuOrderList = (props) => {
                       >
                         Edit
                       </Button>
-                    ) : (
-                      ''
                     )
                   }
                 >

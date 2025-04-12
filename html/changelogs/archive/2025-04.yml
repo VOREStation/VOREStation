@@ -111,3 +111,18 @@
   - rscadd: Space heaters can now be crafted
   - rscadd: Space heaters can now be upgraded to cool/heat faster (Uses micro_laser,
       manipulator, and capacitor to upgrade various parts)
+2025-04-12:
+  Diana:
+  - bugfix: Exit VR now properly lets you exit vr
+  Drathek:
+  - code_imp: DMI merge hook will now try to retain positioning of sprites when handling
+      some conflicts
+  Kashargul:
+  - bugfix: runechat offset delta being applied twice in some cases
+  SatinIsle:
+  - rscadd: Added the recolour ability to beast form transformations, allowing them
+      to recolour themselves once per transformation.
+  - bugfix: Fixes some bad destroys
+  - rscadd: Added IDs to the list of edible trash eater items. Just like PDA's they
+      require the owner to be watching when they're eaten.
+  - bugfix: Fixed PDA eating warning messages not being visible.
