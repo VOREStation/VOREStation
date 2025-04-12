@@ -220,4 +220,4 @@
 
 	if(isliving(AM) && !isnull(rat_diseases) && prob(20))
 		var/mob/living/L = AM
-		L.ContractDisease(pick(rat_diseases))
+		L.ContractDisease(pick(rat_diseases), BP_R_FOOT)

@@ -97,10 +97,10 @@
 		target_zone = pick(list(
 			BP_HEAD = head_chance,
 			BP_TORSO = body_chance,
-			BP_R_ARM = hands_chance,
-			BP_L_ARM = hands_chance,
-			BP_R_LEG = feet_chance,
-			BP_L_LEG = feet_chance
+			BP_R_HAND = hands_chance,
+			BP_L_HAND = hands_chance,
+			BP_R_FOOT = feet_chance,
+			BP_L_FOOT = feet_chance
 		))
 	else
 		target_zone = check_zone(target_zone)
@@ -123,7 +123,7 @@
 				if(passed && isobj(H.w_uniform))
 					Cl = H.w_uniform
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(BP_L_ARM, BP_R_ARM)
+			if(BP_L_HAND, BP_R_HAND)
 				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered & HANDS)
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
