@@ -1,4 +1,4 @@
-import { Box, Section, Stack } from 'tgui-core/components';
+import { Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { localPrefs } from '../types';
@@ -15,16 +15,20 @@ export const VoreUserPreferencesSpontaneous = (props: {
     <Section
       title="Spontaneous Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.dropnom_prey}
-            tooltipPosition="top"
-          />
-          <VoreUserPreferenceItem
-            spec={preferences.dropnom_pred}
-            tooltipPosition="top"
-          />
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.dropnom_prey}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.dropnom_pred}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       {can_be_drop_prey || can_be_drop_pred ? (

@@ -121,7 +121,7 @@
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
 			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
-		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
+		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		avatar.virtual_reality_mob = FALSE //THIS IS THE BIG DIFFERENCE WITH ALIEN VR PODS. THEY ARE NOT VR, THEY ARE REAL.
 
 		//This handles all the 'We make it look like ourself' code.

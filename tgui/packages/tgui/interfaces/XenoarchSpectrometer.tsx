@@ -8,6 +8,7 @@ import {
   ProgressBar,
   Section,
   Slider,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
@@ -67,22 +68,26 @@ export const XenoarchSpectrometer = (props) => {
         <Section
           title="Status"
           buttons={
-            <>
-              <Button
-                icon="signal"
-                selected={scanning}
-                onClick={() => act('scanItem')}
-              >
-                {scanning ? 'HALT SCAN' : 'Begin Scan'}
-              </Button>
-              <Button
-                icon="eject"
-                disabled={!scanned_item}
-                onClick={() => act('ejectItem')}
-              >
-                Eject Item
-              </Button>
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button
+                  icon="signal"
+                  selected={scanning}
+                  onClick={() => act('scanItem')}
+                >
+                  {scanning ? 'HALT SCAN' : 'Begin Scan'}
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="eject"
+                  disabled={!scanned_item}
+                  onClick={() => act('ejectItem')}
+                >
+                  Eject Item
+                </Button>
+              </Stack.Item>
+            </Stack>
           }
         >
           <LabeledList>

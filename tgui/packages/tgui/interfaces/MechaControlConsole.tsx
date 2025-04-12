@@ -8,6 +8,7 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
@@ -66,27 +67,33 @@ export const MechaControlConsole = (props) => {
               key={beacon.name}
               title={beacon.name}
               buttons={
-                <>
-                  <Button
-                    icon="comment"
-                    onClick={() => act('send_message', { mt: beacon.ref })}
-                  >
-                    Message
-                  </Button>
-                  <Button
-                    icon="eye"
-                    onClick={() => act('get_log', { mt: beacon.ref })}
-                  >
-                    View Log
-                  </Button>
-                  <Button.Confirm
-                    color="red"
-                    icon="bomb"
-                    onClick={() => act('shock', { mt: beacon.ref })}
-                  >
-                    EMP
-                  </Button.Confirm>
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button
+                      icon="comment"
+                      onClick={() => act('send_message', { mt: beacon.ref })}
+                    >
+                      Message
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="eye"
+                      onClick={() => act('get_log', { mt: beacon.ref })}
+                    >
+                      View Log
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button.Confirm
+                      color="red"
+                      icon="bomb"
+                      onClick={() => act('shock', { mt: beacon.ref })}
+                    >
+                      EMP
+                    </Button.Confirm>
+                  </Stack.Item>
+                </Stack>
               }
             >
               <LabeledList>

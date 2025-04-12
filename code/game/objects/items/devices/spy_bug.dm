@@ -148,7 +148,7 @@
 	if(linkedmonitor)
 		linkedmonitor.unpair(src)
 	linkedmonitor = null
-	..()
+	. = ..()
 
 /obj/item/bug_monitor
 	name = "mobile camera pod monitor"

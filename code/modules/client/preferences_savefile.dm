@@ -131,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	savefile.set_entry("lastnews",		lastnews)
 	savefile.set_entry("lastlorenews",	lastlorenews)
 
-/datum/preferences/proc/load_preferences()
+/datum/preferences/proc/load_preferences(skip_client)
 	if(!savefile)
 		stack_trace("Attempted to load the preferences of [client] without a savefile; did you forget to call load_savefile?")
 		load_savefile()
@@ -147,7 +147,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		fcopy(savefile.path, bacpath) //byond helpfully lets you use a savefile for the first arg.
 		return FALSE
 
-	apply_all_client_preferences()
+	if(!skip_client)
+		apply_all_client_preferences()
 
 	load_early_prefs()
 	sanitize_early_prefs()

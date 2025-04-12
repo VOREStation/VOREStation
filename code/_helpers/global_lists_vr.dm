@@ -244,7 +244,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/entrepreneur,
 				/obj/item/capture_crystal,
 				/obj/item/roulette_ball,
-				/obj/item/pizzabox
+				/obj/item/pizzabox,
+				/obj/item/card/id
 				)
 
 var/global/list/contamination_flavors = list(
