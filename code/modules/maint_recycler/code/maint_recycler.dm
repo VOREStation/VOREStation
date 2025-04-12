@@ -148,6 +148,7 @@
 
 
 /obj/machinery/maint_recycler/Initialize(mapload)
+	. = ..()
 	//init hatch
 	hatch = new
 	hatch.icon = 'code/modules/maint_recycler/icons/maint_recycler.dmi'
@@ -177,7 +178,7 @@
 		move_to_marker()
 
 	//ditto for the monitor and door. sure, these COULD be overlays, but that is way more effort
-	. = ..()
+
 
 /obj/machinery/maint_recycler/proc/move_to_marker() //stinky, but we don't have a central "markers" subsystem. yet. refactor one we do
 	var/list/potential_markers = list()
@@ -291,7 +292,7 @@
 	playsound(src,pick(angry_sounds),80)
 	set_screen_state("screen_mad",30)
 
-	addtimer(CALLBACK(src, PROC_REF(shoot_at), user,), 0.3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(shoot_at), user), 0.3 SECONDS)
 
 
 	credit_user(user,-10) //get fucked
@@ -301,31 +302,37 @@
 	door_moving = TRUE
 	flick("door closing",hatch)
 	playsound(src, 'code/modules/maint_recycler/sfx/hatchclose.ogg', 40, 1)
-	spawn(10) //wait a second. TODO: refactor to repo standards.
-	hatch.icon_state = "door closed"
-	door_open = FALSE
-	door_moving = FALSE
+	addtimer(CALLBACK(src, PROC_REF(door_finished_moving), FALSE), 1 SECOND)
+
 
 /obj/machinery/maint_recycler/proc/open_door(var/mob/user)
 	if(door_open || door_locked) return
 	door_moving = TRUE
 	flick("door opening",hatch)
 	playsound(src, 'code/modules/maint_recycler/sfx/hatchopen.ogg', 40, 1)
-	spawn(10) //wait a second. TODO: refactor to repo standards.
-	hatch.icon_state = "door open"
-	door_open = TRUE
+	addtimer(CALLBACK(src, PROC_REF(door_finished_moving), TRUE), 1 SECOND)
+
+
+/obj/machinery/maint_recycler/proc/door_finished_moving(var/open)
 	door_moving = FALSE
+	door_open = open
+	if(open)
+		hatch.icon_state = "door open"
+	else
+		hatch.icon_state = "door closed"
+
 
 /obj/machinery/maint_recycler/proc/shoot_at(var/mob/victim, var/burst = 3)
 	if(victim == null) return
-	var/projectile = /obj/item/projectile/beam/stun
 	for(var/i = 1 to burst)
-		var/obj/item/projectile/P = new projectile(loc)
-		playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
-		P.firer = src
-		P.old_style_target(victim)
-		P.fire()
-		sleep(3)
+		addtimer(CALLBACK(src, PROC_REF(shoot), victim), (0.3 * i SECONDS))
+
+/obj/machinery/maint_recycler/proc/shoot(var/mob/victim)
+	var/projectile = /obj/item/projectile/beam/stun
+	var/obj/item/projectile/P = new projectile(loc)
+	playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
+	P.old_style_target(victim)
+	P.fire()
 
 /obj/machinery/maint_recycler/container_resist(var/mob/living)
 	eject_item(living) //100% chance. don't sweat it.
@@ -334,37 +341,50 @@
 	if(inserted_item)
 		if(!door_open)
 			open_door(user)
-			sleep(10)
-		inserted_item.forceMove(src.loc)
-		visible_message(span_warning("[src] ejects \The [inserted_item] from it's recycling chamber!"))
-		inserted_item.throw_at(get_step(src,SOUTH))
-		inserted_item = null;
-		update_icon()
+			addtimer(CALLBACK(src, PROC_REF(eject_item_act), user), 1 SECOND)
+		else
+			eject_item_act(user)
 
-/obj/machinery/maint_recycler/proc/recycle_stored_item(var/mob/user)
+
+/obj/machinery/maint_recycler/proc/eject_item_act(var/mob/user)
+	inserted_item.forceMove(get_turf(src))
+	visible_message(span_warning("[src] ejects \The [inserted_item] from it's recycling chamber!"))
+	inserted_item.throw_at(get_step(src,SOUTH))
+	inserted_item = null;
+	update_icon()
+
+
+/obj/machinery/maint_recycler/proc/start_recycling(var/mob/user)
 	if(inserted_item)
 		if(door_open)
 			close_door(user)
-			sleep(10)
-		door_locked = TRUE
-		var/value = try_get_obj_value(inserted_item)
-
-		playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
-		set_screen_state("screen_recycle",20)
-		sleep(20) //time to finish
-		credit_user(user,value)
-		if(istype(inserted_item,/mob))
-			var/mob/m = inserted_item
-			m.gib() //do we want logs here, or in the mob consent?
+			addtimer(CALLBACK(src, PROC_REF(recycle_act), user), 1 SECOND)
 		else
-			qdel(inserted_item)
-		set_screen_state("screen_cashout",10)
-		inserted_item = null
-		door_locked = FALSE
-		open_door(user)
-		update_icon()
-	else
+			recycle_act(user)
+
+/obj/machinery/maint_recycler/proc/recycle_act(var/mob/user)
+	if(!inserted_item)
 		to_chat(user, span_warning("\The [src] doesn't have anything to recycle!"))
+		return //sanity check
+	door_locked = TRUE
+	playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
+	set_screen_state("screen_recycle",20)
+	addtimer(CALLBACK(src, PROC_REF(post_recycle), user), 2 SECONDS)
+
+
+/obj/machinery/maint_recycler/proc/post_recycle(var/mob/user)
+	var/value = try_get_obj_value(inserted_item)
+	credit_user(user,value)
+	if(istype(inserted_item,/mob))
+		var/mob/m = inserted_item
+		m.gib() //do we want logs here, or in the mob consent?
+	else
+		qdel(inserted_item)
+	set_screen_state("screen_cashout",10)
+	inserted_item = null
+	door_locked = FALSE
+	open_door(user)
+	update_icon()
 
 
 /obj/machinery/maint_recycler/update_icon()
@@ -444,7 +464,7 @@ TGUI PROCS
 		. = TRUE
 	if(action == "recycle")
 		if(canRecycle(ui.user))
-			recycle_stored_item(ui.user)
+			start_recycling(ui.user)
 		else
 			deny_act(inserted_item,ui.user)
 			to_chat(ui.user,span_warning("You have reached your daily RecyclePoints(tm) Allowance!"))
@@ -532,12 +552,15 @@ UTILITY PROCS
 /obj/machinery/maint_recycler/proc/set_screen_state(var/state, var/duration = 10)
 	if(!is_on) return
 	monitor_screen.icon_state = state
-	spawn(duration)
-		if(!is_on)
-			monitor_screen.icon_state = "screen_off"
-		else
-			monitor_screen.icon_state = "screen_default"
+	addtimer(CALLBACK(src, PROC_REF(reset_screen_state)), duration)
 
+
+
+/obj/machinery/maint_recycler/proc/reset_screen_state()
+	if(!is_on)
+		monitor_screen.icon_state = "screen_off"
+	else
+		monitor_screen.icon_state = "screen_default"
 
 /obj/machinery/maint_recycler/proc/set_on_state(var/state)
 	if(is_on == state) return

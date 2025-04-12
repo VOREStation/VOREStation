@@ -1,5 +1,5 @@
 import { resolveAsset } from 'tgui/assets';
-import { Box, Button, Flex, Image, Section } from 'tgui-core/components';
+import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -26,17 +26,17 @@ export const RecyclerInterface = (props) => {
 
       <Window.Content>
         <Section title="RSG Recycling Interface Input Terminal">
-          <Flex align="center" direction="row">
-            <Flex.Item justify-content="center">
+          <Stack align="center" direction="row">
+            <Stack.Item justify-content="center">
               <Image
                 src={resolveAsset('recycle.gif')}
                 style={{
                   maxWidth: '152px',
                 }}
               />
-            </Flex.Item>
+            </Stack.Item>
 
-            <Flex.Item
+            <Stack.Item
               align="center"
               style={{ width: '100%', maxWidth: '152px', marginTop: '-8vh' }}
             >
@@ -56,14 +56,14 @@ export const RecyclerInterface = (props) => {
                   }}
                 />
               </Box>
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
 
           <Section title=" " style={{}}>
             <h1>Welcome back, {userName}!</h1>
             <h1>Your Balance Is: {userBalance}!</h1>
-            <Flex align="center" direction="Row">
-              <Flex.Item>
+            <Stack align="center" direction="Row">
+              <Stack.Item>
                 <Box
                   as="image-container"
                   inline
@@ -81,41 +81,41 @@ export const RecyclerInterface = (props) => {
                     }}
                   />
                 </Box>
-              </Flex.Item>
-              <Flex.Item>
-                <Flex align="left" direction="column">
-                  <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack align="left" direction="column">
+                  <Stack.Item>
                     {' '}
                     Current Object: {heldItemName || 'Empty'}{' '}
-                  </Flex.Item>
-                  <Flex.Item>
+                  </Stack.Item>
+                  <Stack.Item>
                     {' '}
                     Estimated Recycle Value: {heldItemValue || '???'}{' '}
-                  </Flex.Item>
-                </Flex>
-              </Flex.Item>
-            </Flex>
-            <Flex align="left" direction="row" wrap="wrap-reverse">
-              <Flex.Item>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+            <Stack align="left" direction="row" wrap="wrap-reverse">
+              <Stack.Item>
                 <Button content="Open the door" onClick={() => act('open')} />
-              </Flex.Item>
-              <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
                 <Button content="Close the door" onClick={() => act('close')} />
-              </Flex.Item>
-              <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
                 {' '}
                 <Button
                   content="Eject the current item"
                   onClick={() => act('eject')}
                 />
-              </Flex.Item>
-              <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
                 <Button
                   content="Recycle the current item"
                   onClick={() => act('recycle')}
                 />
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           </Section>
         </Section>
       </Window.Content>

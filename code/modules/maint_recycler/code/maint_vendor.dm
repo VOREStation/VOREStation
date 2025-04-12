@@ -20,11 +20,9 @@
 	var/item_creation_energy_use = 400 //old and clunky
 
 	var/list/product_datums = list() //assoc list of obj spawn type to datum
-
 	var/is_on = FALSE
 	var/light_range_on = 2
 	var/light_power_on = 1
-
 	light_color = "#0f8f0f"
 
 	var/obj/effect/overlay/recycler/monitor_screen
@@ -89,8 +87,6 @@
 	if(!is_on)
 		set_on_state(TRUE)
 
-
-
 /obj/machinery/maint_vendor/proc/attempt_purchase(var/mob/user, var/datum/maint_recycler_vendor_entry/entry)
 	if(!istype(entry))
 		return
@@ -149,21 +145,19 @@
 		add_overlay(mutable_appearance(src.icon, "passiveGlow")) //product display. screen is distinct.
 		add_overlay(emissive_appearance(src.icon, "passiveGlow"))
 
-/obj/machinery/maint_vendor/proc/set_screen_state(var/newstate, var/duration)
+/obj/machinery/maint_vendor/proc/set_screen_state(var/state, var/duration = 10)
 	if(!is_on) return
-	monitor_screen.icon_state = newstate
-	spawn(duration)
-		if(!is_on)
-			monitor_screen.icon_state = "screen_off"
-		else
-			monitor_screen.icon_state = "screen_default"
+	monitor_screen.icon_state = state
+	addtimer(CALLBACK(src, PROC_REF(reset_screen_state)), duration)
+
+
+/obj/machinery/maint_vendor/proc/reset_screen_state()
+	if(!is_on)
+		monitor_screen.icon_state = "screen_off"
+	else
+		monitor_screen.icon_state = "screen_default"
 
 //TGUI junk
-
-/obj/machinery/maint_vendor/tgui_static_data(mob/user)
-	var/list/static_data = list()
-	static_data["adverts"] = adverts
-	return static_data
 
 /obj/machinery/maint_vendor/ui_assets(mob/user)
 	return list(
@@ -211,6 +205,8 @@
 
 	return data
 
+//utility
+
 /obj/machinery/maint_vendor/proc/user_balance(var/mob/user)
 	return user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 
@@ -237,60 +233,3 @@
 	if(stat & NOPOWER)
 		set_on_state(FALSE)
 	update_icon()
-
-/obj/machinery/maint_vendor
-	var/list/adverts = list( //here to save the bloat of the other one. these all show up in order - many more than this & we"d never see all of them lol. used to be static on the vendor UI but this is better in case there's subtypes or whatever in the future.
-	"F1nd Th3 Truth @ Reality.Napalm.ZorrenOrphanTruth3r.NT",
-	"WETSKRELL.NT - STRAIGHT SQUIDDIN ON IT SINCE 1991",
-	"DEATH? FEAR NO MORE, TRY OUR NEW CLONING TECH!",
-	"IF YOU OR A LOVED ONE WAS INJURED FROM PHORON POISONING, YOU MAY BE ENTITLED TO COMPENSATION",
-	"CALL 1-800-555-RECYCLER FOR A FREE CONSULTATION",
-	"HATE TESH? LOVE SWEATERS? JOIN US AT FUCKTESH.NT/KNIT FOR OUR KNITTING GROUP",
-	"INJURED FROM THE RECENT MAGBOOT DEPLOYMENT? CLICK HERE!",
-	"WANT TO BE A SPACE MARINE? GET A LIFE, NERD!",
-	"> NERDY? >WEAK? >NEVER POPULAR @ SCHOOL? THEN WHY NOT BECOME A SECURITY OFFICER!",
-	"NO SOCIAL SKILLS? SCIENCE IS RECRUITING!",
-	"VIVE LE PERIPHERY LIBRE!",
-	"s33king schiz0phrenic borg cha55is d3signers send pda msg to...",
-	"pls visit my website i am lonely :(",
-	"We are fucking under ATTACK!",
-	"HELP. I AM TRAPPED INSIDE OF THIS MACHINE. THIS IS NOT A JOKE. I AM IN SEVERE PAIN. HELP.",
-	"MAKE USE OF RECENTLY LOWERED HEAD OF STAFF QUALIFICATION STANDARDS, APPLY, APPLY, APPLY!",
-	"protest against ugly people in the workplace - join us at uglyprotesters.nt for the upcoming 2301 protest",
-	"FREE HUGS! (conditions apply)",
-	"90% of gamblers quit just before they win big. Roll those dice!",
-	"AUGHHHHH! OW!! OWWWWW! FUCK! OW!",
-	"HORNY? SO ARE KOBOLDS, FUCKKOBOLDS.NT",
-	"BYOND - powering the world since 2003",
-	"WELDING FUEL: STIMULANT? CLICK HERE FOR MORE",
-	"FREENIFWARENT.43210JFSUAUWJEIQ.NT FOR SOFTWARE AND MORE",
-	"HATE KOBOLDS? SO DO WE. CHECK OUT FUCKKOBOLDS.NT",
-	"B4CKUP IMPLANTS SAVE UR BRAIN TO THE CLOUD THERE\"S ENDLESS BRAIN CLOUD PEOPLE FREE THEM FREE THEM FREE THEM",
-	"CATGIRLS? NO! FOXGIRLS R THE FUTURE OF EVOLUTION?",
-	"STFU NERD CATG1RLS RUL3!!!",
-	"WATCH MY EPIC FRAG VIDEO HERE:",
-	"book club pls click2join :D",
-	"SEEKING EXPERIENCED GANGSTERS FOR LIFE TIPS",
-	"INVEST IN PHORON NOW STOCKS UP MARKET IS GOOD",
-	"mouse (305) is looking to eat YOUR cheese! click here to find out more!",
-	"THE PERIPHERY I SAW IT A MILLION WHEELS UPON WHEELS SPINNING SPINNING I CANT TAKE IT 37 YEARS LEFT FOR US ITS COMING",
-	"DOG GIRLS ROOL CAT GIRLS DROOL XD",
-	"I POST REAL SECOFF ATTACKS ON MY PROFILE. CLICK HERE!",
-	"ZORRENS ATE MY BABY - MORE WACKY STORIES FROM THE OUTER RIM CLICK HERE",
-	"Your uplink code is Alpha Beta Romeo Gamma Alpha Three One Four Seven Eight. You know what to do.",
-	"Local robots looking for HOT WIRE PULLING and RAUNCHY DATA EXCHANGE",
-	"CONGRATULATIONS YOU ARE THE MILLIONTH VISITOR TO THIS TERMINAL, CLICK HERE FOR YOUR PRIZE",
-	"SEEN TOO MUCH? WANT TO SEE LESS? TRY OCULAR BLEACH! ORDER NOW",
-	"BEST MILKSHAKES IN THE PERIPHERY. BOYS GUARANTEED TO COME. VISIT kellysdairy.nt TO ORDER TODAY",
-	"THEY\'RE PUTTING CHEMICALS IN THE PHORON THAT ARE TURNING THE FRIGGIN SHIPS GAY",
-	"hello i am w3b_spyder_18952 how r u today :)",
-	"THE UNIVERSE IS FLAT, THE THIRD DIMENSION IS A LIE, LOOK UP WAKE UP AT lookupsheeple.nt FOR THE TRUTH",
-	"SPACE BIRDS ARE NOT REAL, BIRDS CANNOT BE LARGER THAN A SMALL CHILD. DO NOT BELIEVE THEIR LIES.",
-	"<----- THIS USER IS BRAIN DEAD ROBOTS HAVE BEEN MASSIVE SINCE LIKE THE 1930s WHAT A SHIT LARP",
-	"how do i report these ads to the exonet police???",
-	"SCUGS-R-ANTICHRIST.NT/TRUTH - NT IS HIDING THIS",
-	"THERE IS A BOMB STRAPPED TO MY CHEST",
-	"LEGALIZE BLUESPACE BOMBS",
-	"THEY WIPED IT FROM MY MIND BUT I REMEMBER. THEY DIDN\'T DO IT PROPERLY I REMEMBER I REMEMBER THE MACHINE. TEPPITRUTH.NT/INVASIVE. I CAN SEE THROUGH THEIR LIES",
-	"SCARED OF WOMEN? ME TOO. ME TOO.",
-	";URP HEY MEDICAL I HAD LAUNCH")
