@@ -257,7 +257,7 @@ if [ "$pcre2_support" -eq 1 ]; then
 	fi;
 
 	part "improper atom New usage"
-	(num=`$grep -P '^/(obj|mob|turf|area|atom)/.*New\(' $code_files | wc -l`; echo "$num New (expecting 2 or less)"; [ $num -le 1 ])
+	(num=`$grep -Pn '^/(obj|mob|turf|area|atom)/.*New\(' $code_files | wc -l`; echo "$num New (expecting 2 or less)"; [ $num -le 1 ])
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
 		echo -e "${RED}Do not use any New() calls, they've been replaced by Initialize(mapload).${NC}"
