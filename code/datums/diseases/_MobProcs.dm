@@ -32,7 +32,12 @@
 	if(istype(D, /datum/disease/advance) && count_by_type(GetViruses(), /datum/disease/advance) > 0)
 		return FALSE
 
-	if(!(type in D.viable_mobtypes))
+	var/compatible_type = FALSE
+	for(var/type_to_test in D.viable_mobtypes)
+		if(ispath(type, type_to_test))
+			compatible_type = TRUE
+			break
+	if(!compatible_type)
 		return FALSE
 
 	if(isSynthetic())
