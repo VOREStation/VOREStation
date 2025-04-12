@@ -45,7 +45,7 @@
 	var/list/to_spawn
 
 /obj/random/fromList/TFGuns
- //same weight as the crate
+	//same weight as the crate
 	to_spawn =	list(
 			/obj/item/gun/energy/mouseray=300,
 			/obj/item/gun/energy/mouseray/corgi=50,
