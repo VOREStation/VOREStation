@@ -919,7 +919,7 @@
 			//privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(istype(M, /mob/observer))
+	if(!silent && !isobserver(M))
 		silent = TRUE
 	if(!silent)
 		if(isitem(M))

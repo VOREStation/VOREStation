@@ -909,7 +909,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
-		visible_message(span_warning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
+		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 		return
 	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
 	return
