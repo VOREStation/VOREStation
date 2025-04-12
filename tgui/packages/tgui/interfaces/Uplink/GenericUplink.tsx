@@ -56,7 +56,7 @@ export const GenericUplink = (props: {
             <Input
               autoFocus
               value={searchText}
-              onInput={(e, value: string) => setSearchText(value)}
+              onChange={(value: string) => setSearchText(value)}
               mx={1}
             />
           </Stack.Item>
