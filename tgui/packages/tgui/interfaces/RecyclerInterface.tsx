@@ -1,8 +1,7 @@
 import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 type Data = {
   heldItemName: string;
