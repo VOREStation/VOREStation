@@ -1,5 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added IDs to the list of edible trash eater items. Just like PDA's they require the owner to be watching when they're eaten."
-  - bugfix: "Fixed PDA eating warning messages not being visible."
