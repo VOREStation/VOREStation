@@ -349,7 +349,7 @@
 /obj/machinery/maint_recycler/proc/eject_item_act(var/mob/user)
 	inserted_item.forceMove(get_turf(src))
 	visible_message(span_warning("[src] ejects \The [inserted_item] from it's recycling chamber!"))
-	inserted_item.throw_at(get_step(src,SOUTH))
+	inserted_item.throw_at(get_step(src,SOUTH),5,1,src)
 	inserted_item = null;
 	update_icon()
 
