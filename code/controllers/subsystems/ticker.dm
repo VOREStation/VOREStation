@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(ticker)
 
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
+	var/obj/screen/game_end/cinematic = null
 
 	var/round_start_time = 0
 
@@ -311,18 +311,22 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.screen_loc = "1,0"
 
 	var/obj/structure/bed/temp_buckle = new(src)
+	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
 	if(station_missed)
 		for(var/mob/living/M in living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			if(M.client)
 				M.client.screen += cinematic	//show every client the cinematic
+				cinematic.watchers += M
+				temp_buckle.buckled_mobs += M
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
 		for(var/mob/living/M in living_mob_list)
 			M.buckled = temp_buckle
 			if(M.client)
 				M.client.screen += cinematic
-
+				cinematic.watchers += M
+				temp_buckle.buckled_mobs += M
 			switch(M.z)
 				if(0)	//inside a crate or something
 					var/turf/T = get_turf(M)
@@ -392,8 +396,16 @@ var/global/datum/controller/subsystem/ticker/ticker
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
-	if(cinematic)	qdel(cinematic)		//end the cinematic
-	if(temp_buckle)	qdel(temp_buckle)	//release everybody
+	if(temp_buckle)
+		temp_buckle.unbuckle_all_mobs()
+		qdel(temp_buckle)	//release everybody
+
+	if(cinematic)
+		for(var/mob/living/our_watcher in cinematic.watchers)
+			if(our_watcher.client) //If we aren't logged in, we lose the overlay when we log back in anyways.
+				our_watcher.client.screen -= cinematic
+				cinematic.watchers -= our_watcher
+		qdel(cinematic)		//end the cinematic
 	return
 
 
