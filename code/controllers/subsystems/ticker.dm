@@ -310,7 +310,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	var/obj/structure/bed/temp_buckle = new(src)
+	var/obj/structure/bed/chair/temp_buckle = new(src)
+	temp_buckle.dir = 2 //face South.
 	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
 	if(station_missed) //0 = Station was directly hit. 1 = Bomb was on borders of the map (glancing blow) 2 = Bomb missed station entirely.
