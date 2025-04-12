@@ -16,7 +16,7 @@
 			T.pinned_target = null
 			T.density = TRUE
 			break
-	..() // delete target
+	. = ..() // delete target
 
 /obj/item/target/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()

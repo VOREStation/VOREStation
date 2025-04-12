@@ -80,7 +80,7 @@
 		lightning_strike(T, TRUE)
 	playsound(src, 'sound/goonstation/spooky/creepyshriek.ogg', 100, 1, 75) //It plays VERY far.
 	last_touched = null //Get rid of the reference to our owner.
-	..()
+	. = ..()
 
 
 /obj/item/melee/artifact_blade/cultify()

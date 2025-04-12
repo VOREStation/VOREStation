@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList } from 'tgui-core/components';
+import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { digestModeToColor } from '../constants';
 import type { selectedData } from '../types';
@@ -15,20 +15,24 @@ export const VoreSelectedBellyControls = (props: { belly: selectedData }) => {
       <LabeledList.Item
         label="Name"
         buttons={
-          <>
-            <Button
-              icon="arrow-up"
-              tooltipPosition="left"
-              tooltip="Move this belly tab up."
-              onClick={() => act('move_belly', { dir: -1 })}
-            />
-            <Button
-              icon="arrow-down"
-              tooltipPosition="left"
-              tooltip="Move this belly tab down."
-              onClick={() => act('move_belly', { dir: 1 })}
-            />
-          </>
+          <Stack>
+            <Stack.Item>
+              <Button
+                icon="arrow-up"
+                tooltipPosition="left"
+                tooltip="Move this belly tab up."
+                onClick={() => act('move_belly', { dir: -1 })}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="arrow-down"
+                tooltipPosition="left"
+                tooltip="Move this belly tab down."
+                onClick={() => act('move_belly', { dir: 1 })}
+              />
+            </Stack.Item>
+          </Stack>
         }
       >
         <Button onClick={() => act('set_attribute', { attribute: 'b_name' })}>
