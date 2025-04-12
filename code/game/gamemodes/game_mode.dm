@@ -30,8 +30,9 @@ var/global/list/additional_antag_types = list()
 	var/require_all_templates = 0            // Will only start if all templates are checked and can spawn.
 
 	var/station_was_nuked = 0                // See nuclearbomb.dm and malfunction.dm.
-	var/nuke_off_station = FALSE			 //Used for tracking if the syndies actually haul the nuke to the station
+	var/nuke_off_station = FALSE			 // Used for tracking if the syndies actually haul the nuke to the station
 	var/explosion_in_progress = 0            // Sit back and relax
+	var/syndies_didnt_escape = 0			 // Used for tracking if the syndies got the shuttle off of the z-level
 	var/waittime_l = 600                     // Lower bound on time before intercept arrives (in tenths of seconds)
 	var/waittime_h = 1800                    // Upper bound on time before intercept arrives (in tenths of seconds)
 

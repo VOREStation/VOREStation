@@ -314,30 +314,12 @@ var/global/datum/controller/subsystem/ticker/ticker
 	temp_buckle.dir = 2 //face South.
 	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
-	if(station_missed) //0 = Station was directly hit. 1 = Bomb was on borders of the map (glancing blow) 2 = Bomb missed station entirely.
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle				//buckles the mob so it can't do anything
-			if(M.client)
-				M.client.screen += cinematic	//show every client the cinematic
-				cinematic.watchers += M
-				temp_buckle.buckled_mobs += M
-			if(initiating_entity)
-				var/obj/the_entity = initiating_entity
-				if(the_entity.z == M.z) //You're on the Z level that the bomb just went off at.
-					M.health = 0
-					M.set_stat(DEAD)
-	else	//nuke kills everyone on the station Z levels if it's a direct hit
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle
-			if(M.client)
-				M.client.screen += cinematic
-				cinematic.watchers += M
-				temp_buckle.buckled_mobs += M
-			var/turf/T = get_turf(M)
-			if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
-				M.health = 0
-				M.set_stat(DEAD)
-
+	for(var/mob/living/M in living_mob_list)
+		M.buckled = temp_buckle
+		if(M.client)
+			M.client.screen += cinematic
+			cinematic.watchers += M
+			temp_buckle.buckled_mobs += M
 
 	//Now animate the cinematic
 	switch(station_missed)
@@ -388,15 +370,32 @@ var/global/datum/controller/subsystem/ticker/ticker
 				else //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					flick("station_explode_fade_red", cinematic)
+					flick("station_explode_fade_red",cinematic)
 					world << sound('sound/effects/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in living_mob_list)
-				if(M.loc.z in using_map.station_levels)
-					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
+	//this all needs to be moved to its own proc
 	sleep(300)
+
+	if(station_missed) //If it missed the station, we kill everything on the Z level...
+		if(initiating_entity) //But ONLY if there was something to actually CAUSE the explosion.
+			var/obj/the_entity = initiating_entity
+			for(var/mob/living/our_watcher in cinematic.watchers)
+				if(the_entity.z == our_watcher.z && !istype(our_watcher.loc, /obj/structure/closet/secure_closet/freezer)) //You're on the Z level that the bomb just went off at. (And you're not in a fridge)
+					our_watcher.health = 0
+					our_watcher.set_stat(DEAD)
+	else //If it hit the station, EVERYONE in the station dies.
+		for(var/mob/living/M in cinematic.watchers)
+			M.buckled = temp_buckle
+			if(M.client)
+				M.client.screen += cinematic
+				cinematic.watchers += M
+				temp_buckle.buckled_mobs += M
+			var/turf/T = get_turf(M)
+			if(T && (T.z in using_map.station_levels) && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))				//we don't use M.death(0) because it calls a for(/mob) loop and
+				M.health = 0
+				M.set_stat(DEAD)
 
 	if(temp_buckle)
 		temp_buckle.unbuckle_all_mobs()
@@ -407,7 +406,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(our_watcher.client) //If we aren't logged in, we lose the overlay when we log back in anyways.
 				our_watcher.client.screen -= cinematic
 				cinematic.watchers -= our_watcher
-		qdel(cinematic)		//end the cinematic
+		qdel_null(cinematic)
 	return
 
 

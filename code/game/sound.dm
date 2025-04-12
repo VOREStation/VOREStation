@@ -1,3 +1,4 @@
+//is_global has three settings: 0 (Not global) 1 (Global for that Z level) and 2 (Global for everyone in the world)
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null, volume_channel = null)
 	if(Master.current_runlevel < RUNLEVEL_LOBBY)
 		return
@@ -21,15 +22,15 @@
 		if(!T)
 			continue
 		var/area/A = T.loc
-		if((A.flag_check(AREA_SOUNDPROOF) || area_source.flag_check(AREA_SOUNDPROOF)) && (A != area_source))
+		if((A.flag_check(AREA_SOUNDPROOF) || area_source.flag_check(AREA_SOUNDPROOF)) && (A != area_source) && !is_global)
 			continue
 		//var/distance = get_dist(T, turf_source) Save get_dist for later because it's more expensive
 
-		if(!T || T.z != turf_source.z) //^ +1
+		if((!T || T.z != turf_source.z) && is_global < 2) //^ +1
 			continue
-		if(get_dist(T, turf_source) > maxdistance)
+		if(get_dist(T, turf_source) > maxdistance && is_global < 2)
 			continue
-		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
+		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2) && is_global < 2)
 			continue
 
 		SSmotiontracker.ping(source,vol) // Nearly everything pings this, the quieter the less likely
@@ -77,8 +78,8 @@
 
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
-
-		S.volume -= max(distance - world.view, 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
+		if(is_global < 2)
+			S.volume -= max(distance - world.view, 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
 		//Atmosphere affects sound
 		var/pressure_factor = 1
@@ -111,6 +112,9 @@
 		S.x = dx
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
 		S.z = dz
+		if(is_global >= 2) //We have a GLOBAL sound throughout the entire world. Everyone will hear it.
+			S.x = 0
+			S.z = 0
 		// The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)

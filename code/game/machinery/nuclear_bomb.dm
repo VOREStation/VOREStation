@@ -361,8 +361,6 @@ var/bomb_set
 /obj/machinery/nuclearbomb/ex_act(severity)
 	return
 
-
-#define NUKERANGE 80
 /obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
@@ -372,7 +370,7 @@ var/bomb_set
 	safety = 1
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
-	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
+	playsound(src,'sound/machines/Alarm.ogg',100,0,5, is_global = 2, pressure_affected = FALSE) //EVERYONE gets to hear it.
 	if(ticker && ticker.mode)
 		ticker.mode.explosion_in_progress = 1
 	sleep(100)
@@ -380,7 +378,7 @@ var/bomb_set
 	var/off_station = STATION_DIRECT_HIT
 	var/turf/bomb_location = get_turf(src)
 	if(bomb_location && (bomb_location.z in using_map.station_levels))
-		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
+		if((bomb_location.x < 10) || (bomb_location.x > world.maxx-10) || (bomb_location.y < 10) || (bomb_location.y > (world.maxy - 10))) //Putting it on the outskirts of the map.
 			off_station = STATION_GLANCING_BLOW
 	else
 		off_station = STATION_COMPLETELY_MISSED
@@ -389,8 +387,8 @@ var/bomb_set
 		if(ticker.mode && ticker.mode.name == "Mercenary")
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
+				ticker.mode.syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
+			ticker.mode.nuke_off_station = off_station
 		ticker.station_explosion_cinematic(off_station,null, src)
 		if(ticker.mode)
 			ticker.mode.explosion_in_progress = 0
@@ -419,8 +417,6 @@ var/bomb_set
 				return
 	bomb_set = 0 //Bomb has gone kaboom, let's reset it! If there's another nuke ongoing, it'll set bomb_set to 1 in it's processing tick.
 	return
-
-#undef NUKERANGE
 
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
