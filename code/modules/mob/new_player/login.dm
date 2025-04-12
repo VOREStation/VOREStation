@@ -50,12 +50,14 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	created_for = ckey
 
 	new_player_panel()
-	client.init_verbs()
-	spawn(40)
-		if(client)
-			handle_privacy_poll()
-			client.playtitlemusic()
-			version_warnings()
+	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+
+/mob/new_player/proc/do_after_login()
+	PRIVATE_PROC(TRUE)
+	if(client)
+		handle_privacy_poll()
+		client.playtitlemusic()
+		version_warnings()
 
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem

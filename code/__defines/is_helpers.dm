@@ -50,6 +50,7 @@
 #define isalien(A)		istype(A, /mob/living/carbon/alien)
 #define isbrain(A)		istype(A, /mob/living/carbon/brain)
 #define ishuman(A)		istype(A, /mob/living/carbon/human)
+#define ismannequin(A)	istype(A, /mob/living/carbon/human/dummy/mannequin)
 
 #define issilicon(A)	istype(A, /mob/living/silicon)
 #define isAI(A)			istype(A, /mob/living/silicon/ai)
@@ -65,8 +66,8 @@
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
-#define isopenturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space)
-#define isnonsolidturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava)
+#define isopenturf(A)	(istype(A, /turf/simulated/open) || istype(A, /turf/space))
+#define isnonsolidturf(A)	(istype(A, /turf/simulated/open) || istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava))
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)

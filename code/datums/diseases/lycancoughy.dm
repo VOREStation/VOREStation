@@ -28,7 +28,7 @@
 				to_chat(H, span_notice("You itch."))
 				H.adjustBruteLoss(rand(4, 6))
 		if(3)
-			var/obj/item/organ/external/stomach = H.organs_by_name[pick("torso", "groin")]
+			var/obj/item/organ/external/stomach = H.organs_by_name[pick(BP_TORSO, BP_GROIN)]
 
 			if(prob(3))
 				H.emote("cough")
@@ -42,7 +42,7 @@
 				to_chat(H, span_danger("Your stomach growls!"))
 				stomach.take_damage(BRUTE, rand(5, 10))
 		if(4)
-			var/obj/item/organ/external/stomach = H.organs_by_name[pick("torso", "groin")]
+			var/obj/item/organ/external/stomach = H.organs_by_name[pick(BP_TORSO, BP_GROIN)]
 
 			if(prob(5))
 				H.emote("cough")

@@ -25,14 +25,12 @@
 	var/next_record = 0
 	var/is_secret_monitor = FALSE
 
-// Proc: New()
+// Proc: Initialize(mapload)
 // Parameters: None
 // Description: Automatically assigns name according to ID tag.
-/obj/machinery/power/sensor/New()
-	..()
-	auto_set_name()
 /obj/machinery/power/sensor/Initialize(mapload)
 	. = ..()
+	auto_set_name()
 	history["supply"] = list()
 	history["demand"] = list()
 

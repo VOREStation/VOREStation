@@ -39,8 +39,8 @@
 	var/lockdown = 0
 	var/datum/wires/seedstorage/wires = null
 
-/obj/machinery/seed_storage/New()
-	..()
+/obj/machinery/seed_storage/Initialize(mapload)
+	. = ..()
 	wires = new(src)
 	if(!contraband_seeds.len)
 		contraband_seeds = pick( 	/// Some form of ambrosia in all lists.
@@ -83,7 +83,6 @@
 				/obj/item/seeds/deathberryseed = 1 /// Very ow.
 			)
 		)
-	return
 
 /obj/machinery/seed_storage/process()
 	..()

@@ -87,7 +87,7 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/proc/print_ooc_notes_to_chat(mob/user)
+/mob/living/proc/print_ooc_notes_chat(mob/user)
 	if(!ooc_notes)
 		return
 	var/msg = ooc_notes
@@ -155,12 +155,12 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/verb/open_private_notes(mob/user)
+/mob/living/verb/open_private_notes()
 	set name = "Private Notes"
 	set desc = "View and edit your character's private notes, that persist between rounds!"
 	set category = "IC.Notes"
 
-	private_notes_window(user)
+	private_notes_window(src)
 
 /mob/living/proc/set_metainfo_private_notes(mob/user)
 	if(user != src)

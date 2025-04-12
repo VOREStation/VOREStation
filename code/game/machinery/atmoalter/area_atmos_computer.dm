@@ -72,7 +72,7 @@
 			INVOKE_ASYNC(src, PROC_REF(toggle_all), FALSE)
 			. = TRUE
 		if("scan")
-			scanscrubbers(ui.user)
+			scanscrubbers_user(ui.user)
 			. = TRUE
 
 	add_fingerprint(ui.user)
@@ -92,7 +92,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/area_atmos/proc/scanscrubbers(mob/user)
+/obj/machinery/computer/area_atmos/proc/scanscrubbers()
 	connectedscrubbers = list()
 
 	var/found = 0
@@ -103,6 +103,8 @@
 	if(!found)
 		status = "ERROR: No scrubber found!"
 
+/obj/machinery/computer/area_atmos/proc/scanscrubbers_user(mob/user) //Used when the user is in the UI and scans for scrubbers.
+	scanscrubbers()
 	updateUsrDialog(user)
 
 // The one that only works in the same map area
@@ -121,6 +123,8 @@
 	if(!found)
 		status = "ERROR: No scrubber found!"
 
+/obj/machinery/computer/area_atmos/area/scanscrubbers_user(mob/user) //Used when the user is in the UI and scans for scrubbers.
+	scanscrubbers()
 	updateUsrDialog(user)
 
 /obj/machinery/computer/area_atmos/area/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)

@@ -312,8 +312,8 @@
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
 			user.visible_message(span_notice("[user] empties \the [LB] into \the [src]."), \
-								 span_notice("You empty \the [LB] into \the [src]."), \
-								 span_notice("You hear rustling of clothes."))
+									span_notice("You empty \the [LB] into \the [src]."), \
+									span_notice("You hear rustling of clothes."))
 			return
 		if(isrobot(user))
 			return
@@ -321,6 +321,7 @@
 			return
 		user.drop_item()
 		if(W)
+			W.do_drop_animation(user)
 			W.forceMove(loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return

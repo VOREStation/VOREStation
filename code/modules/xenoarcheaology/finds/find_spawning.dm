@@ -343,7 +343,7 @@
 			possible_laser_paths += /obj/item/projectile/ion
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			// THE BLACKLIST
-			possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy)
+			// possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy, /obj/item/projectile/beam/final_option) //These are very very rare...Disabling the blacklist for now because the chance of finding them is so low that it feels like a nice treat when you DO find them. If it ends up being problemmatic, just reenable this line.
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun
@@ -445,8 +445,13 @@
 			possible_object_paths -= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
 			//BLACKLIST ABOVE
 
-			var/new_organ = pick(possible_object_paths)
+			var/obj/item/organ/internal/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_organ = new_item
+			new_organ.can_reject = FALSE
+
 
 		if(ARCHAEO_REMAINS_ROBOT)
 			//robot remains
@@ -476,10 +481,17 @@
 			/obj/item/organ/internal/xenos/hivenode,
 			/obj/item/organ/internal/xenos/resinspinner)
 
-			var/new_vessel = pick(possible_plasma_vessel)
-			var/new_organ = pick(possible_organ)
+			var/obj/item/organ/internal/xenos/plasmavessel/new_vessel = pick(possible_plasma_vessel)
+			var/obj/item/organ/internal/xenos/new_organ = pick(possible_organ)
 			new_item = new new_vessel(src.loc)
 			secondary_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_vessel = new_item
+			new_organ = secondary_item
+			new_vessel.can_reject = FALSE
+			new_organ.can_reject = FALSE
+
 		if(ARCHAEO_GASMASK)
 			//gas mask
 			if(prob(50))

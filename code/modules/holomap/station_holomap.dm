@@ -29,10 +29,7 @@
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
-
-/obj/machinery/station_map/New()
-	..()
-	flags |= ON_BORDER // Why? It doesn't help if its not density
+	flags = ON_BORDER
 
 /obj/machinery/station_map/Initialize(mapload)
 	. = ..()

@@ -237,11 +237,7 @@
 
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
-	var/list/stored_research
-
-/obj/item/rig_module/datajack/New()
-	..()
-	stored_research = list()
+	var/list/stored_research = list()
 
 /obj/item/rig_module/datajack/engage(atom/target)
 

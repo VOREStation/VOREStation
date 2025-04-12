@@ -1,7 +1,7 @@
- /**
-  * tgui state: mentor_state
-  *
-  * Checks that the user is an mentor.
+/**
+ * tgui state: mentor_state
+ *
+ * Checks that the user is an mentor.
  **/
 
 GLOBAL_DATUM_INIT(tgui_mentor_state, /datum/tgui_state/mentor_state, new)

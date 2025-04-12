@@ -167,7 +167,7 @@
 	holder.add_hiddenprint(ui.user)
 
 	switch(action)
-		 // Toggles the cut/mend status.
+		// Toggles the cut/mend status.
 		if("cut")
 			// if(!I.has_tool_quality(TOOL_WIRECUTTER) && !user.can_admin_interact())
 			if(!istype(I) || !I.has_tool_quality(TOOL_WIRECUTTER))
@@ -194,7 +194,7 @@
 
 			return TRUE
 
-		 // Attach a signaler to a wire.
+		// Attach a signaler to a wire.
 		if("attach")
 			if(is_attached(color))
 				var/obj/item/O = detach_assembly(color)
@@ -221,7 +221,7 @@
  * * user - the mob who is interacting with the wires.
  */
 /datum/wires/proc/can_see_wire_info(mob/user)
- 	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
+	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
 	// if(user.can_admin_interact())
 		// return TRUE
 	var/obj/item/I = user.get_active_hand()
