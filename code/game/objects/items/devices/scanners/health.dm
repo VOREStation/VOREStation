@@ -261,15 +261,7 @@
 			for (var/datum/disease/virus in C.GetViruses())
 				if(virus.visibility_flags & HIDDEN_SCANNER || virus.visibility_flags & HIDDEN_PANDEMIC)
 					continue
-				dat += span_alert("<b>Warning: [virus.form] detected in subject's blood.</b>")
-				dat += "<br>"
-				dat += span_alert("Name: [virus.name]")
-				dat += "<br>"
-				dat += span_alert("Type: [virus.spread_text]")
-				dat += "<br>"
-				dat += span_alert("Stage: [virus.stage]/[virus.max_stages]")
-				dat += "<br>"
-				dat += span_alert("Possible Cure: [virus.cure_text]")
+				dat += span_alert(span_bold("Warning: [virus.form] detected in subject's blood."))
 				dat += "<br>"
 	if (M.getCloneLoss())
 		dat += span_warning("Subject appears to have been imperfectly cloned.")
