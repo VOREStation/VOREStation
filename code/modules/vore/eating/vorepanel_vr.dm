@@ -196,6 +196,7 @@
 			"ref" = "\ref[B]",
 			"digest_mode" = B.digest_mode,
 			"contents" = LAZYLEN(B.contents),
+			"prevent_saving" = B.prevent_saving,
 		)))
 	data["our_bellies"] = our_bellies
 
@@ -662,6 +663,15 @@
 					return TRUE
 			else if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
 				var/choice = tgui_alert(ui.user, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
+			// Lets check for unsavable bellies...
+			var/list/unsavable_bellies = list()
+			for(var/obj/belly/B in host.vore_organs)
+				if(B.prevent_saving)
+					unsavable_bellies += B.name
+			if(LAZYLEN(unsavable_bellies))
+				var/choice = tgui_alert(ui.user, "Warning: One or more of your vore organs are unsavable. Saving now will save every vore belly except \[[jointext(unsavable_bellies, ", ")]\]. Are you sure you want to save?", "WARNING!", list("No, abort!", "Yes, save."))
 				if(choice != "Yes, save.")
 					return TRUE
 			if(!host.save_vore_prefs())

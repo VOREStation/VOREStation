@@ -42,6 +42,7 @@
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
+			belly_data["prevent_saving"] = B.prevent_saving
 
 			// Controls
 			belly_data["mode"] = B.digest_mode
