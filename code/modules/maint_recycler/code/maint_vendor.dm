@@ -172,7 +172,7 @@
 	if(action == "purchase")
 		var/datum/maint_recycler_vendor_entry/entry = product_datums[params["index"]]
 		attempt_purchase(ui.user,entry)
-		return
+		return TRUE
 
 
 

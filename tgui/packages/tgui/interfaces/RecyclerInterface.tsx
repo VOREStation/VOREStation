@@ -20,11 +20,6 @@ export const RecyclerInterface = (props) => {
 
   return (
     <Window theme="crtsoul" title="Recycler">
-      <style>
-        @import
-        url(&quot;https://fonts.googleapis.com/css2?family=VT323&display=swap&quot;);
-      </style>
-
       <Window.Content>
         <Section title="RSG Recycling Interface Input Terminal">
           <Stack align="center" direction="row">
@@ -44,7 +39,7 @@ export const RecyclerInterface = (props) => {
             </Stack.Item>
           </Stack>
 
-          <Section title=" " style={{}}>
+          <Section title=" ">
             <h1>Welcome back, {userName}!</h1>
             <h1>Your Balance Is: {userBalance}!</h1>
             <Stack align="center" direction="Row">
