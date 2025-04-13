@@ -1535,7 +1535,7 @@
 						MMI.brainmob.mind.transfer_to(R)
 						MMI.loc = R
 						R.mmi = MMI
-						R.mmi.brainmob.add_language("Robot Talk")
+						R.mmi.brainmob.add_language(LANGUAGE_ROBOT_TALK)
 					else //reference /datum/surgery_step/robotics/install_mmi/end_step
 						var/obj/item/organ/internal/mmi_holder/holder
 						if(istype(MMI, /obj/item/mmi/digital/posibrain))

@@ -8,10 +8,7 @@
 	throwforce = 0
 	attack_verb = list("nuzzled", "nosed", "booped")
 	w_class = ITEMSIZE_TINY
-
-/obj/item/boop_module/New()
-	..()
-	flags |= NOBLUDGEON //No more attack messages
+	flags = NOBLUDGEON //No more attack messages
 
 /obj/item/boop_module/attack_self(mob/user)
 	if (!( istype(user.loc, /turf) ))
@@ -130,10 +127,7 @@
 	hitsound = 'sound/effects/attackblob.ogg'
 	var/emagged = 0
 	var/busy = 0 	//prevents abuse and runtimes
-
-/obj/item/robot_tongue/New()
-	..()
-	flags |= NOBLUDGEON //No more attack messages
+	flags = NOBLUDGEON //No more attack messages
 
 /obj/item/robot_tongue/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
@@ -213,10 +207,7 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "scrub0"
 	var/enabled = FALSE
-
-/obj/item/pupscrubber/New()
-	..()
-	flags |= NOBLUDGEON
+	flags = NOBLUDGEON
 
 /obj/item/pupscrubber/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
@@ -320,10 +311,7 @@
 	force = 0
 	throwforce = 0
 	var/bluespace = FALSE
-
-/obj/item/dogborg/pounce/New()
-	..()
-	flags |= NOBLUDGEON
+	flags = NOBLUDGEON
 
 /obj/item/dogborg/pounce/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
