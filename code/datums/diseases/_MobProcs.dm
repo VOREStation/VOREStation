@@ -20,7 +20,7 @@
 	return TRUE
 
 /mob/proc/CanContractDisease(datum/disease/D)
-	if(stat == DEAD && !D.spread_dead)
+	if(stat == DEAD && !global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 		return FALSE
 
 	if(D.GetDiseaseID() in GetResistances())
@@ -41,7 +41,7 @@
 		return FALSE
 
 	if(isSynthetic())
-		if(D.infect_synthetics)
+		if(global_flag_check(D.virus_modifiers, INFECT_SYNTHETICS))
 			return TRUE
 		return FALSE
 
@@ -166,10 +166,10 @@
 		if(!((locate(organ) in organs) || (locate(organ) in internal_organs)))
 			return FALSE
 
-	if(species.virus_immune && !D.bypasses_immunity)
-		D.carrier = TRUE
+	if(species.virus_immune && !global_flag_check(D.virus_modifiers, BYPASSES_IMMUNITY))
+		D.virus_modifiers |= CARRIER
 	else
-		D.carrier = FALSE
+		D.virus_modifiers &= ~CARRIER
 
 	return ..()
 

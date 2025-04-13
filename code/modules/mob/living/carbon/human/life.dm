@@ -2296,7 +2296,7 @@
 /mob/living/carbon/human/proc/has_virus()
 	for(var/thing in viruses)
 		var/datum/disease/D = thing
-		if(!D.discovered)
+		if(!global_flag_check(D.virus_modifiers, DISCOVERED))
 			continue
 		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.danger != DISEASE_NONTHREAT))
 			return TRUE

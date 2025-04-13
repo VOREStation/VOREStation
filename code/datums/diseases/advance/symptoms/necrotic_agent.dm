@@ -26,7 +26,7 @@ Bonus
 	severity = 3
 
 /datum/symptom/necrotic_agent/OnAdd(datum/disease/advance/A)
-	A.spread_dead = TRUE
+	A.virus_modifiers |= SPREAD_DEAD
 
 /datum/symptom/necrotic_agent/OnRemove(datum/disease/advance/A)
-	A.spread_dead = FALSE
+	A.virus_modifiers &= ~SPREAD_DEAD

@@ -3,17 +3,16 @@
 	name = "Appendicitis"
 	max_stages = 3
 	spread_text = "Non-contagious"
+	disease_flags = CAN_CARRY|CAN_RESIST|CAN_NOT_POPULATE
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
+	virus_modifiers = NEEDS_ALL_CURES | BYPASSES_IMMUNITY
 	cure_text = "Surgery"
 	agent = "Shitty Appendix"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated the subject will become very weak, and may vomit often."
 	danger = DISEASE_MINOR
-	disease_flags = CAN_CARRY|CAN_RESIST|CAN_NOT_POPULATE
 	visibility_flags = HIDDEN_PANDEMIC
 	required_organs = list(/obj/item/organ/internal/appendix)
-	bypasses_immunity = TRUE
-	virus_heal_resistant = TRUE
 
 /datum/disease/appendicitis/stage_act()
 	..()

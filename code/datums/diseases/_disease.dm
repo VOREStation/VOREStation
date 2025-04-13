@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/visibility_flags = 0
 	var/disease_flags = CURABLE|CAN_CARRY|CAN_RESIST
 	var/spread_flags = DISEASE_SPREAD_AIRBORNE
+	var/virus_modifiers = NEEDS_ALL_CURES
 
 	//Fluff
 	/// Used for identification of viruses in the Medical Records Virus Database
@@ -32,24 +33,16 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/cures = list()
 	var/infectivity = 10
 	var/cure_chance = 8
-	var/carrier = FALSE // If the host is only a carrier
 	var/spreading_modifier = 1
-	var/bypasses_immunity = FALSE
-	var/virus_heal_resistant = FALSE
 	var/permeability_mod = 1
 	var/danger = DISEASE_MINOR
 	var/list/required_organs = list()
-	var/needs_all_cures = TRUE
 	var/list/strain_data = list()
-	var/spread_dead = FALSE
-	var/infect_synthetics = FALSE
-	var/processing = FALSE
-	var/has_timer = FALSE
 
 /datum/disease/Destroy()
 	affected_mob = null
 	active_diseases.Remove(src)
-	if(processing)
+	if(global_flag_check(virus_modifiers, PROCESSING))
 		End()
 	return ..()
 
@@ -58,11 +51,11 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		return FALSE
 	var/cure = has_cure()
 
-	if(carrier && !cure)
+	if(global_flag_check(virus_modifiers, CARRIER) && !cure)
 		return FALSE
 
-	if(!processing)
-		processing = TRUE
+	if(!global_flag_check(virus_modifiers, PROCESSING))
+		virus_modifiers |= PROCESSING
 		Start()
 
 	stage = min(stage, max_stages)
@@ -74,8 +67,8 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/handle_stage_advance(has_cure = FALSE)
 	if(!has_cure && prob(stage_prob))
 		stage = min(stage + 1, max_stages)
-		if(!discovered && stage >= CEILING(max_stages * discovery_threshold, 1))
-			discovered = TRUE
+		if(!global_flag_check(virus_modifiers, DISCOVERED) && stage >= CEILING(max_stages * discovery_threshold, 1))
+			virus_modifiers |= DISCOVERED
 
 /datum/disease/proc/handle_cure_testing(has_cure = FALSE)
 	if(has_cure && prob(cure_chance))
@@ -104,7 +97,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		if(affected_mob.bloodstr.has_reagent(C_id) || affected_mob.ingested.has_reagent(C_id))
 			cures_found++
 
-	if(needs_all_cures && cures_found < length(cures))
+	if(global_flag_check(virus_modifiers, NEEDS_ALL_CURES) && cures_found < length(cures))
 		return FALSE
 
 	return cures_found
@@ -118,7 +111,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return
 
-	if(affected_mob.stat == DEAD && !spread_dead && !force_spread)
+	if(affected_mob.stat == DEAD && !global_flag_check(virus_modifiers, SPREAD_DEAD) && !force_spread)
 		return
 
 	if(affected_mob.reagents.has_reagent(REAGENT_ID_SPACEACILLIN) || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
@@ -161,18 +154,18 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	qdel(src)
 
 /datum/disease/proc/start_cure_timer()
-	if(has_timer)
+	if(global_flag_check(virus_modifiers, HAS_TIMER))
 		return
 	if(!(disease_flags & CURABLE))
 		return
-	has_timer = TRUE
+	virus_modifiers |= HAS_TIMER
 	addtimer(CALLBACK(src, PROC_REF(check_natural_immunity)), (1 HOUR) + rand( -20 MINUTES, 30 MINUTES), TIMER_DELETE_ME)
 
 /datum/disease/proc/check_natural_immunity()
 	if(!(disease_flags & CURABLE))
 		return
 	if(prob(rand(10, 15)))
-		has_timer = FALSE
+		virus_modifiers &= ~HAS_TIMER
 		cure()
 		return
 	addtimer(CALLBACK(src, PROC_REF(check_natural_immunity)), rand(5 MINUTES, 10 MINUTES), TIMER_DELETE_ME)

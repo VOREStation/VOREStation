@@ -30,6 +30,16 @@
 #define DISEASE_BIOHAZARD	"BIOHAZARD"
 #define DISEASE_PANDEMIC	"PANDEMIC"
 
+//Various Virus Flags
+#define NEEDS_ALL_CURES			0x1		/// If a virus requires EVERY cure in the cure list to become cured.
+#define SPREAD_DEAD				0x2		/// If a virus spreads to the dead and proceesses in them.
+#define INFECT_SYNTHETICS		0x4		/// If a synthetic can be infected with the virus.
+#define HAS_TIMER				0x8		/// If the cure timer is currently active.
+#define PROCESSING				0x10	/// If stage_act has been called and we are now processing.
+#define CARRIER					0x20	/// If we are a carrier for the virus but we will not be affected by it.
+#define BYPASSES_IMMUNITY 		0x40	/// If this virus bypasses immunity.
+#define DISCOVERED				0x80	/// If applied, this virus will show up on medical HUDs. Automatically set when it reaches mid-stage.
+
 #define EXTRAPOLATOR_RESULT_DISEASES		"extrapolator_result_disease"
 #define EXTRAPOLATOR_RESULT_ACT_PRIORITY	"extrapolator_result_action_priority"
 #define EXTRAPOLATOR_ACT_PRIORITY_SPECIAL	"extrapolator_action_priority_special"

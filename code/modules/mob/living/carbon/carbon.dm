@@ -523,5 +523,5 @@
 		if(prob(D.infectivity))
 			D.spread()
 
-		if(stat != DEAD || D.spread_dead)
+		if(stat != DEAD || global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 			D.stage_act()

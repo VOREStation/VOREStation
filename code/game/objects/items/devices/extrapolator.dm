@@ -164,7 +164,7 @@
 					continue
 				show_message = TRUE
 				var/list/properties
-				if(advance_disease.carrier)
+				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
 				message += "<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], stage [advance_disease.stage]/5"
 				if(extracted_ids[advance_disease.GetDiseaseID()])
