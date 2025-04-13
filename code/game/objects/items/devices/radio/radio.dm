@@ -86,7 +86,7 @@ var/global/list/default_medbay_channels = list(
 	internal_channels = default_internal_channels.Copy()
 	listening_objects += src
 
-	if(bluespace_radio)
+	if(bluespace_radio && (bs_tx_preload_id || bs_rx_preload_id))
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/LateInitialize()
