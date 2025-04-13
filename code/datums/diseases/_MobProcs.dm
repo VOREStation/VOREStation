@@ -68,7 +68,7 @@
 			continue
 		if(istype(DD.vars[V],/list))
 			var/list/L = D.vars[V]
-			if(L)
+			if(islist(L))
 				DD.vars[V] = L.Copy()
 		else
 			DD.vars[V] = D.vars[V]
