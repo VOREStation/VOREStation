@@ -250,11 +250,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		SS_INIT_NO_NEED,
 	)
 
-	if (subsystem.initialized) //Don't init if they already are initialized
+	if (subsystem.subsystem_initialized) //Don't init if they already are initialized
 		return
 
 	if (subsystem.flags & SS_NO_INIT)
-		subsystem.initialized = TRUE
+		subsystem.subsystem_initialized = TRUE
 		return
 
 	current_initializing_subsystem = subsystem
