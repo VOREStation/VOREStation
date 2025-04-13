@@ -24,12 +24,7 @@ export const RecyclerInterface = (props) => {
         <Section title="RSG Recycling Interface Input Terminal">
           <Stack align="center" direction="row">
             <Stack.Item justify-content="center">
-              <Image
-                src={resolveAsset('recycle.gif')}
-                style={{
-                  maxWidth: '152px',
-                }}
-              />
+              <Image src={resolveAsset('recycle.gif')} maxWidth="152px" />
             </Stack.Item>
 
             <Stack.Item align="center">
