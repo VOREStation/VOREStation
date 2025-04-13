@@ -69,8 +69,10 @@ export function NumberInputModal(props) {
               <Stack fill>
                 <Stack.Item>
                   <Button
-                    disabled={value === min_value}
-                    icon="angle-double-left"
+                    disabled={value === min_value || min_value === -Infinity}
+                    icon={
+                      min_value === -Infinity ? 'infinity' : 'angle-double-left'
+                    }
                     onClick={() => setValue(min_value ?? 0)}
                     tooltip={min_value ? `Min (${min_value})` : 'Min'}
                   />
@@ -108,8 +110,10 @@ export function NumberInputModal(props) {
 
                 <Stack.Item>
                   <Button
-                    disabled={value === max_value}
-                    icon="angle-double-right"
+                    disabled={value === max_value || max_value === Infinity}
+                    icon={
+                      max_value === Infinity ? 'infinity' : 'angle-double-right'
+                    }
                     onClick={() => setValue(max_value ?? 10000)}
                     tooltip={max_value ? `Max (${max_value})` : 'Max'}
                   />
