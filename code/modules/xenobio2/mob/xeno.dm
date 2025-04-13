@@ -74,13 +74,13 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
-/mob/living/simple_mob/xeno/New()
+/mob/living/simple_mob/xeno/Initialize(mapload)
 
 	traitdat = new()
 
 	ProcessTraits()
 
-	..()
+	. = ..()
 	if(colored)
 		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)

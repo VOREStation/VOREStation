@@ -1078,7 +1078,7 @@
 					R.mmi.brainmob.languages = MB.original_languages
 				else
 					R.mmi.brainmob.languages = R.languages
-				R.mmi.brainmob.remove_language("Robot Talk")
+				R.mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
 				hasMMI = R.mmi
 				M.mind.transfer_to(hasMMI.brainmob)
 				R.mmi = null

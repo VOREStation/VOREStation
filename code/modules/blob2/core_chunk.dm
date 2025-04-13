@@ -23,8 +23,8 @@
 /obj/item/blobcore_chunk/is_open_container()
 	return 1
 
-/obj/item/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
-	..(newloc)
+/obj/item/blobcore_chunk/Initialize(mapload, var/datum/blob_type/parentblob = null)
+	. = ..()
 
 	create_reagents(120)
 	setup_blobtype(parentblob)

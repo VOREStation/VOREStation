@@ -7,6 +7,7 @@
 	icon_state = "drop_marker"
 
 /obj/effect/calldown_attack/Initialize(mapload)
+	. = ..()
 	var/delay = rand(25, 30)
 	addtimer(CALLBACK(src, PROC_REF(spawn_object)), delay-7)
 
@@ -26,7 +27,7 @@
 	icon = 'icons/effects/random_stuff_vr.dmi'
 
 /obj/effect/illusionary_fall/Initialize(mapload)
-	.=..()
+	. = ..()
 	icon_state = "[rand(1,33)]"
 
 /obj/effect/illusionary_fall/end_fall(var/crushing = FALSE)
