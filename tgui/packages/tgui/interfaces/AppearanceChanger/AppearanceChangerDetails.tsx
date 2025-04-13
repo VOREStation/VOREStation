@@ -300,7 +300,7 @@ export const AppearanceChangerMarkings = (props) => {
             fluid
             placeholder={'Search for markings...'}
             value={searchText}
-            onInput={(e, val) => setSearchText(val)}
+            onChange={(val) => setSearchText(val)}
           />
         </Stack.Item>
         <Stack.Item>
