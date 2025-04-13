@@ -573,3 +573,8 @@ UTILITY PROCS
 		playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
 		set_light(0)
 		monitor_screen.icon_state = "screen_off"
+
+
+#undef RECYCLER_ALLOWED
+#undef RECYCLER_FORBIDDEN
+#undef RECYCLER_EVIL
