@@ -1,12 +1,3 @@
-#define MAINTVENDOR_GENERIC "Unsorted Listings"
-#define MAINTVENDOR_SCENETOOLS "Funky Town Odds & Ends"
-#define MAINTVENDOR_CONSTRUCTION "DIY Construction Supplies"
-#define MAINTVENDOR_SWAG "BlingCo Product Distribution"
-#define MAINTVENDOR_CLOTHING "2P1mpy & BapeCo. Clothing Conglomerate"
-#define MAINTVENDOR_WEAPONS "W3APONS R US"
-
-
-
 /datum/maint_recycler_vendor_entry
 	var/name = "Cool Object to buy" //what it's shown as in the vendor
 	var/ad_message = "" //what comes after the name in the vendor

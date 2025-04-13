@@ -135,14 +135,6 @@
       drop-shadow(-1px 1px 2px lime);
   }
 
-  .MaintVendor32x32 {
-    display: block;
-    border-style: dashed;
-    border-width: 1px;
-
-    filter: grayscale(1) sepia(1) hue-rotate(30deg) saturate(5);
-  }
-
   image-container {
     position: relative;
     display: inline-block;

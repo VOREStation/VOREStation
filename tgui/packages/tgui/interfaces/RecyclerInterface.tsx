@@ -4,8 +4,8 @@ import { Window } from 'tgui/layouts';
 import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
 
 type Data = {
-  heldItemName: string;
-  heldItemValue: string;
+  heldItemName: string | null;
+  heldItemValue: string | null;
   itemIcon: string;
   userName: string;
   userBalance: number;

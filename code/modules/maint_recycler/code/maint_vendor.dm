@@ -166,13 +166,15 @@
 	)
 
 /obj/machinery/maint_vendor/tgui_act(action,params,datum/tgui/ui)
+	if(..())
+		return TRUE
+
 	if(action == "purchase")
 		var/datum/maint_recycler_vendor_entry/entry = product_datums[params["index"]]
 		attempt_purchase(ui.user,entry)
 		return
 
-	if(..())
-		return TRUE
+
 
 /obj/machinery/maint_vendor/tgui_interact(mob/user,datum/tgui/ui)
 	ui = SStgui.try_update_ui(user,src,ui)

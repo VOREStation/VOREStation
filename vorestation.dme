@@ -93,6 +93,7 @@
 #include "code\__defines\logging.dm"
 #include "code\__defines\lum.dm"
 #include "code\__defines\machinery.dm"
+#include "code\__defines\maint_recycler_categories.dm"
 #include "code\__defines\map.dm"
 #include "code\__defines\materials.dm"
 #include "code\__defines\math.dm"

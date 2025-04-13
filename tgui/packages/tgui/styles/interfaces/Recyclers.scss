@@ -1,0 +1,89 @@
+.RecyclerProductEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-color: lime;
+  min-height: 150px; /* Adjust as needed */
+  @import url(//fonts.googleapis.com/css?family=VT323);
+  font-family: 'VT323';
+}
+
+.MaintVendor32x32 {
+  vertical-align: baseline;
+  border-style: dashed;
+  border-width: 1px;
+  transform: scale(2.5);
+  margin-right: 35px;
+  margin-left: 25px;
+  min-width: 32px;
+  max-width: 32px;
+  filter: grayscale(1) sepia(1) hue-rotate(30deg) saturate(5);
+  margin-bottom: 10px;
+}
+
+.SplashBounce {
+  display: inline-block;
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'monospace';
+  animation: bounce 0.5s infinite;
+  transform: rotate(30deg);
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.RecyclerCategoryButton {
+  @import url(//fonts.googleapis.com/css?family=VT323);
+  font-family: 'VT323';
+}
+.Button {
+  margin-top: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0.95) rotate(3deg);
+  }
+  50% {
+    transform: scale(1) rotate(5deg);
+  }
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.carousel-track {
+  display: flex;
+  animation: slide 220s linear infinite;
+}
+
+.carousel-box {
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  margin: 0 10px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: 00ff00;
+  text-align: center;
+  line-height: 40px;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
