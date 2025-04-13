@@ -191,7 +191,7 @@
 /datum/file/program/card_comp/proc/authenticate()
 	if(access_change_ids in reader.GetAccess())
 		return 1
-	if(istype(usr,/mob/living/silicon/ai))
+	if(isAI(usr))
 		return 1
 	return 0
 
