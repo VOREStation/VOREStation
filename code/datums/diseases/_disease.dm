@@ -24,8 +24,6 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 	/// The fraction of stages the virus must at least be at to show up on medical HUDs. Rounded up.
 	var/discovery_threshold = 0.5
-	/// If TRUE, this virus will show up on medical HUDs. Automatically set when it reaches mid-stage.
-	var/discovered = FALSE
 
 	// Other
 	var/list/viable_mobtypes = list()
