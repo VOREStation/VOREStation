@@ -1,4 +1,3 @@
-
 // Robot Weapons
 /obj/item/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
 	name = "disabler"
