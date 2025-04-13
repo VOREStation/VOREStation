@@ -1,4 +1,4 @@
-import type { KeyboardEvent } from 'react';
+import { type KeyboardEvent, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Modal } from 'tgui-core/components';
 import {
@@ -120,19 +120,26 @@ export const ComplexModal = (props) => {
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    let curValue = modal.value;
+    const lastValue = useRef(modal.value);
+    const [curValue, setCurValue] = useState(modal.value);
+
+    if (lastValue.current !== modal.value) {
+      lastValue.current = modal.value;
+      setCurValue(modal.value);
+    }
+
     modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
         key={id}
-        value={modal.value}
+        value={curValue}
         placeholder="ENTER to submit"
         width="100%"
         my="0.5rem"
         autoFocus
         autoSelect
         onChange={(val) => {
-          curValue = val;
+          setCurValue(val);
         }}
       />
     );
