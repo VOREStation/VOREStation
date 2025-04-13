@@ -45,7 +45,7 @@ const Info = (props) => {
           <Input
             placeholder="Input a name"
             value={name === 'Unknown' ? '' : name}
-            onChange={(_, value) =>
+            onChange={(value) =>
               act('rename_disease', {
                 index: index,
                 name: value,
