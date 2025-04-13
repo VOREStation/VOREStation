@@ -478,13 +478,3 @@
 		if(water.energy < 5)
 			. += span_notice("[src] is dry.")
 */
-
-/obj/item/stack/marker_beacon/robot
-	max_amount = 30
-	amount = 15
-
-/obj/item/stack/marker_beacon/robot/use(used)
-	if(amount < used)
-		return FALSE
-	amount -= used
-	return TRUE
