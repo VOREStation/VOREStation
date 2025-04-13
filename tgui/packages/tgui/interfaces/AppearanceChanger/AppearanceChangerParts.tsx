@@ -39,7 +39,7 @@ export const AppearanceChangerParts = (props: {
                 fluid
                 placeholder={'Search for ' + section.toLowerCase() + '...'}
                 value={searchText}
-                onInput={(e, val) => setSearchText(val)}
+                onChange={(val) => setSearchText(val)}
               />
             )}
           </Stack.Item>
@@ -107,7 +107,7 @@ export const AppearanceChangerHair = (props: {
               fluid
               placeholder={'Search for ' + section.toLowerCase() + '...'}
               value={searchText}
-              onInput={(e, val) => setSearchText(val)}
+              onChange={(val) => setSearchText(val)}
             />
           </Stack.Item>
           <Stack.Item grow>

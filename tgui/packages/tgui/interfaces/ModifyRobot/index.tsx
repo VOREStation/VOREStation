@@ -178,7 +178,7 @@ export const ModifyRobot = (props) => {
                     <Input
                       width="200px"
                       value={robotName}
-                      onChange={(e, value) => setRobotName(value)}
+                      onChange={(value) => setRobotName(value)}
                     />
                   </Stack.Item>
                   <Stack.Item>

@@ -816,7 +816,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	ai_holder.set_busy(FALSE)
 
 
-/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	if(!pred)
 		pred = user
 	if(client)
