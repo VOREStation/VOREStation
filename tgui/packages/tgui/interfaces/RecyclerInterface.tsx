@@ -1,3 +1,5 @@
+import 'tgui/styles/interfaces/Recyclers.scss';
+
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -35,25 +37,9 @@ export const RecyclerInterface = (props) => {
               />
             </Stack.Item>
 
-            <Stack.Item
-              align="center"
-              style={{ width: '100%', maxWidth: '152px', marginTop: '-8vh' }}
-            >
-              <Box
-                as="logo-container"
-                inline
-                style={{
-                  width: '100%',
-                  overflow: 'hidden',
-                  // outline: '2px solid #4972a1',
-                }}
-              >
-                <Image
-                  src={resolveAsset('logo.png')}
-                  style={{
-                    width: '100%',
-                  }}
-                />
+            <Stack.Item align="center">
+              <Box as="logo-container" inline>
+                <Image src={resolveAsset('logo.png')} />
               </Box>
             </Stack.Item>
           </Stack>
@@ -63,32 +49,16 @@ export const RecyclerInterface = (props) => {
             <h1>Your Balance Is: {userBalance}!</h1>
             <Stack align="center" direction="Row">
               <Stack.Item>
-                <Box
-                  as="image-container"
-                  inline
-                  style={{
-                    width: '101px',
-                    height: '101px',
-                    overflow: 'hidden',
-                    outline: '2px solidrgb(7, 77, 14)',
-                  }}
-                >
-                  <Image
-                    src={itemIcon.substring(1, itemIcon.length - 1)}
-                    style={{
-                      width: '100%',
-                    }}
-                  />
+                <Box className="image-container" inline>
+                  <Image src={itemIcon.substring(1, itemIcon.length - 1)} />
                 </Box>
               </Stack.Item>
               <Stack.Item>
                 <Stack align="left" direction="column">
                   <Stack.Item>
-                    {' '}
                     Current Object: {heldItemName || 'Empty'}{' '}
                   </Stack.Item>
                   <Stack.Item>
-                    {' '}
                     Estimated Recycle Value: {heldItemValue || '???'}{' '}
                   </Stack.Item>
                 </Stack>
@@ -102,7 +72,6 @@ export const RecyclerInterface = (props) => {
                 <Button content="Close the door" onClick={() => act('close')} />
               </Stack.Item>
               <Stack.Item>
-                {' '}
                 <Button
                   content="Eject the current item"
                   onClick={() => act('eject')}

@@ -134,31 +134,4 @@
     filter: sepia(1) hue-rotate(80deg) saturate(5)
       drop-shadow(-1px 1px 2px lime);
   }
-
-  image-container {
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-
-    img {
-      display: block;
-      filter: sepia(1) hue-rotate(80deg) saturate(5)
-        drop-shadow(-1px 1px 3px lime);
-      width: 100%;
-      border-style: dashed;
-      border-width: 2px;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      mix-blend-mode: multiply; // too bad IE11 SUCKS ASS
-      background-color: rgba(0, 255, 0, 0.1);
-      pointer-events: none;
-    }
-  }
 }
