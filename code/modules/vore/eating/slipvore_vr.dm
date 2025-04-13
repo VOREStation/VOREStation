@@ -44,12 +44,12 @@
 	var/mob/living/target = AM
 	if(istype(target) && !target.is_incorporeal() && !src.is_incorporeal())	//The slip vore begins
 		if(can_slip_vore(target) && !src.slip_vore_in_progress && !target.slip_vore_in_progress)	//If we can vore them go for it
-			perform_the_nom(src,target,src,src.vore_selected,1)
+			perform_the_nom(src,target,src,src.vore_selected,-1)
 			target.slip_vore_in_progress = FALSE
 			target.is_slipping = FALSE
 			return
 		else if(can_be_slip_vored_by(target) && !src.slip_vore_in_progress && !target.slip_vore_in_progress) //Otherwise, if they can vore us, make it happen.
-			perform_the_nom(target,src,target,target.vore_selected,1)
+			perform_the_nom(target,src,target,target.vore_selected,-1)
 			slip_vore_in_progress = FALSE
 			is_slipping = FALSE
 			return

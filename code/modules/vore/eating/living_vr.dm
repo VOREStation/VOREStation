@@ -1,9 +1,9 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
-	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
-	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
-	var/prey_controlled = FALSE			//VOREStation Addition
+	var/list/temp_language_sources = list()	//Absorbs add languages to the pred
+	var/list/temp_languages = list()		// Absorbs add languages to the pred
+	var/prey_controlled = FALSE			// If the mob is currently controlled by their prey.
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -32,11 +32,11 @@
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
-	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
+	var/trash_catching = FALSE					//Toggle for trash throw vore
 	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
-	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
-	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
-	var/trait_injection_verb = "bite"			//RSEdit: Which fluffy manner you're doing the injecting.
+	var/trait_injection_selected = null			//What trait reagent you're injecting.
+	var/trait_injection_amount = 5				//How much you're injecting with traits.
+	var/trait_injection_verb = "bite"			//Which fluffy manner you're doing the injecting.
 
 	var/mute_entry = FALSE					//Toggleable vorgan entry logs.
 	var/parasitic = FALSE					//Digestion immunity and nutrition leeching variable
@@ -662,7 +662,7 @@
 //
 // Master vore proc that actually does vore procedures
 //
-/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
 		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
@@ -699,9 +699,6 @@
 			if("subtle")
 				message_range = 1
 
-
-
-	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
 	if(prey.is_slipping)
 		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!")
@@ -718,14 +715,14 @@
 
 	// Announce that we start the attempt!
 
-
 	user.visible_message(attempt_msg, range = message_range)
-
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time
-	if(delay)
-		swallow_time = delay
+	if(delay_time < 0)
+		swallow_time = 0 //No delay!
+	else if(delay_time)
+		swallow_time = delay_time
 	else
 		swallow_time = ishuman(prey) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
@@ -736,7 +733,7 @@
 	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
 		prey.Stun(min(prey.weakened, 2)) // stop crwaling instantly break swallow attempt for mobvore
 	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Prey escpaed (or user disabled) before timer expired.
+		return FALSE // Prey escaped (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
 	user.visible_message(success_msg, range = message_range)
@@ -848,7 +845,7 @@
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
+	return perform_the_nom(user, prey, user, belly, -1)
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
