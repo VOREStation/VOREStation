@@ -1051,7 +1051,6 @@
 #include "code\game\machinery\teleporter.dm"
 #include "code\game\machinery\transportpod.dm"
 #include "code\game\machinery\turret_control.dm"
-#include "code\game\machinery\upgrade_machinery.dm"
 #include "code\game\machinery\vitals_monitor.dm"
 #include "code\game\machinery\wall_frames.dm"
 #include "code\game\machinery\washing_machine.dm"

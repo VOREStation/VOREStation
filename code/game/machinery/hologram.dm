@@ -40,7 +40,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
 	use_power = USE_POWER_IDLE
-	var/list/mob/living/silicon/ai/masters = new() //List of AIs that use the holopad
+	var/list/mob/living/silicon/ai/masters = list() //List of AIs that use the holopad
 	var/last_request = 0 //to prevent request spam. ~Carn
 	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
 

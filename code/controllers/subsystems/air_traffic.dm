@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(atc)
 	priority = FIRE_PRIORITY_ATC
 	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
+	init_order = INIT_ORDER_ATC
 	flags = SS_BACKGROUND
 
 	VAR_PRIVATE/next_tick = 0

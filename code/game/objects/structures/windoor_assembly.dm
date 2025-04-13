@@ -32,8 +32,8 @@
 	secure = "secure_"
 	icon_state = "l_secure_windoor_assembly01"
 
-/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
-	..()
+/obj/structure/windoor_assembly/Initialize(mapload, start_dir=NORTH, constructed=0)
+	. = ..()
 	if(constructed)
 		state = "01"
 		anchored = FALSE
