@@ -262,7 +262,10 @@ type BackendState<TData> = {
   config: {
     title: string;
     status: number;
-    interface: string;
+    interface: {
+      name: string;
+      layout: string;
+    };
     refreshing: boolean;
     map: string; // Vorestation Add
     mapZLevel: number; // Vorestation Add

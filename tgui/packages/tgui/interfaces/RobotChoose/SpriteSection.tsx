@@ -64,7 +64,7 @@ export const SpriteSection = (props: {
           fluid
           value={searchText}
           placeholder="Search for sprites..."
-          onInput={(e, value: string) => setSearchText(value)}
+          onChange={(value: string) => setSearchText(value)}
         />
       </Stack.Item>
       <Stack.Item>
