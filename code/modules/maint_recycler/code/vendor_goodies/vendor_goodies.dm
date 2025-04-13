@@ -69,9 +69,8 @@
 
 /obj/random/fromList/spawn_item()
 	var/type = pickweight(to_spawn)
-	var/obj/item/gun/energy/mouseray/M = new type(loc = get_turf(src))
+	new type(get_turf(src))
 	qdel(src)
-	return M
 
 /obj/item/clothing/suit/recycling_shirt
 	name = "recycling shirt"
@@ -108,7 +107,7 @@
 /obj/random/fromList/insuls
 	to_spawn = list(
 		/obj/item/clothing/gloves/yellow = 10,
-		/obj/item/clothing/gloves/fyellow = 1,
+		/obj/item/clothing/gloves/fyellow = 1
 	)
 
 /obj/random/fromList/mecha_toys

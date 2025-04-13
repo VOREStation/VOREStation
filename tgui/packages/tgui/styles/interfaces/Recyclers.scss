@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/css?family=VT323);
 .RecyclerProductEntry {
   display: flex;
   align-items: center;
@@ -8,7 +9,6 @@
   border-radius: 5px;
   border-color: lime;
   min-height: 150px; /* Adjust as needed */
-  @import url(//fonts.googleapis.com/css?family=VT323);
   font-family: 'VT323';
 }
 
@@ -38,7 +38,6 @@
 }
 
 .RecyclerCategoryButton {
-  @import url(//fonts.googleapis.com/css?family=VT323);
   font-family: 'VT323';
 }
 .Button {

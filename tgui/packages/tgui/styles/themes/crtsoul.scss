@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+@import url(//fonts.googleapis.com/css?family=VT323);
+
 .theme-crtsoul:root {
   // Base
   --color-base: hsl(120, 20%, 8.8%);
@@ -17,7 +19,6 @@
   --tab-color: hsl(0, 0%, 90%);
   --tab-color-selected: var(--color-primary);
 
-  @import url(//fonts.googleapis.com/css?family=VT323);
   font-family: 'VT323';
   font-size: 15px;
   text-shadow: 0 0 3px #00ff00;
