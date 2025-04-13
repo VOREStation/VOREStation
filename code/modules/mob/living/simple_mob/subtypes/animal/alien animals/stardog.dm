@@ -147,7 +147,7 @@
 		child_om_marker.set_light(0)
 		movement_cooldown = 0
 
-/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	to_chat(src, span_warning("You can't do that."))	//The dog can move back and forth between the overmap.
 	return															//If it can do normal vore mechanics, it can carry players to the OM,
 																	//and release them there. I think that's probably a bad idea.

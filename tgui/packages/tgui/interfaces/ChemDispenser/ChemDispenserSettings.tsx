@@ -43,7 +43,7 @@ export const ChemDispenserSettings = (props) => {
             value={amount}
             minValue={1}
             maxValue={120}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('amount', {
                 amount: value,
               })

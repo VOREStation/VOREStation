@@ -52,7 +52,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             fluid
             placeholder={'Search for category...'}
             value={searchCategory}
-            onInput={(e, val) => setSearchCategory(val)}
+            onChange={(val) => setSearchCategory(val)}
           />
           <Divider />
           <Section scrollable fill>
@@ -75,7 +75,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             fluid
             placeholder={'Search for pack...'}
             value={searchCategory}
-            onInput={(e, val) => setSearchContent(val)}
+            onChange={(val) => setSearchContent(val)}
           />
           <Divider />
           <Section scrollable fill>

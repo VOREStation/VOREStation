@@ -126,3 +126,17 @@
   - rscadd: Added IDs to the list of edible trash eater items. Just like PDA's they
       require the owner to be watching when they're eaten.
   - bugfix: Fixed PDA eating warning messages not being visible.
+2025-04-13:
+  Diana:
+  - bugfix: Stumblevore and flight vore should now work properly.
+  Kashargul:
+  - bugfix: RPD interface
+  - code_imp: tgui-core to 3.0.4
+  - bugfix: chat messages not querying
+  ReoDaProtovali:
+  - rscadd: Added Special teleporter vorebellies.
+  - code_imp: Added support for vorebellies to be marked as unsavable, preventing
+      them from being saved to characters.
+  whooshboom:
+  - rscadd: Silicon are now able to be picked up, with a toggle in their abilities
+      section to preserve petting.
