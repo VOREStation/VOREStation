@@ -38,7 +38,7 @@ export const WikiSearchList = (props: {
               fluid
               value={searchText}
               placeholder={'Search for ' + title + '...'}
-              onInput={(e, value: string) => onSearchText(value)}
+              onChange={(value: string) => onSearchText(value)}
             />
           </Stack.Item>
           <Divider />

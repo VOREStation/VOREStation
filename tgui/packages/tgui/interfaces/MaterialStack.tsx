@@ -37,7 +37,7 @@ export const MaterialStack = (props) => {
                 fluid
                 placeholder="Search for recipe..."
                 value={searchText}
-                onInput={(e, val) => setSearchText(val)}
+                onChange={(val) => setSearchText(val)}
               />
             </Stack.Item>
             <Stack.Item>

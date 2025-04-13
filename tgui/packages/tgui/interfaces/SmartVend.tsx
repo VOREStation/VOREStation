@@ -115,7 +115,7 @@ const SheetSearch = (props: {
             placeholder="Search by item name.."
             value={searchText}
             width="100%"
-            onInput={(_e, value) => onSearchText(value)}
+            onChange={(value) => onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

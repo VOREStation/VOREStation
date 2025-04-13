@@ -31,7 +31,7 @@ export const SpriteSection = (props: {
       scrollable
       width="30%"
       buttons={
-        <Stack>
+        <Stack g={0.2}>
           <Stack.Item>
             <Button.Checkbox
               checked={includeDefault}
@@ -64,7 +64,7 @@ export const SpriteSection = (props: {
           fluid
           value={searchText}
           placeholder="Search for sprites..."
-          onInput={(e, value: string) => setSearchText(value)}
+          onChange={(value: string) => setSearchText(value)}
         />
       </Stack.Item>
       <Stack.Item>
