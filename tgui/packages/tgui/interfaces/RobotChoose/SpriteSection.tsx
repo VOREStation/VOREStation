@@ -31,7 +31,7 @@ export const SpriteSection = (props: {
       scrollable
       width="30%"
       buttons={
-        <Stack>
+        <Stack g={0.2}>
           <Stack.Item>
             <Button.Checkbox
               checked={includeDefault}
