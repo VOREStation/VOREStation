@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/stimulant
 	name = "Hyperactivity"
+	desc = "The virus causes restlessness, nervousness and hyperactivity, increasing the rate at which the host needs to eat, but making them harder to tire out"
 	stealth = -4
 	resistance = 0
 	stage_speed = 2

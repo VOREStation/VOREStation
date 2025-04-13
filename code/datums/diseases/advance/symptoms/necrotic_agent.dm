@@ -17,9 +17,10 @@ Bonus
 
 /datum/symptom/necrotic_agent
 	name = "Necrotic Agent"
-	stealth = -2
-	resistance = -3
-	stage_speed = -3
+	desc = "Allows the virus to infect corpses, and work on the dead."
+	stealth = 2
+	resistance = -2
+	stage_speed = -1
 	transmission = 0
 	level = 6
 	severity = 3
