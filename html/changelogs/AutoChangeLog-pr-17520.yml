@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "RPD interface"
-  - code_imp: "tgui-core to 3.0.4"
