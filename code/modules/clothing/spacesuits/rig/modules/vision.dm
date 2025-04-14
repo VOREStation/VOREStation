@@ -48,12 +48,6 @@
 /datum/rig_vision/medhud/New()
 	glasses = new /obj/item/clothing/glasses/hud/health
 
-/datum/rig_vision/material
-	mode = "material scanner"
-
-/datum/rig_vision/material/New()
-	glasses = new /obj/item/clothing/glasses/material
-
 /obj/item/rig_module/vision
 
 	name = "hardsuit visor"
@@ -115,7 +109,7 @@
 
 	name = "hardsuit material scanner"
 	desc = "A layered, translucent visor system for a hardsuit."
-	icon_state = "material" //VOREStation Edit
+	icon_state = "material"
 
 	usable = 0
 

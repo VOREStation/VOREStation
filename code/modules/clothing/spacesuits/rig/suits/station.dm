@@ -98,7 +98,7 @@
 	slowdown = 0
 	offline_slowdown = 0.5
 	offline_vision_restriction = 1
-	siemens_coefficient= 0.75
+	siemens_coefficient = 0.75
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
