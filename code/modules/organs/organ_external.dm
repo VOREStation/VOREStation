@@ -253,7 +253,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/external/LateInitialize()
-	. = ..()
 	if(!QDELETED(src))
 		get_icon()
 

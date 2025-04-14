@@ -46,7 +46,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/low_wall/LateInitialize()
-	. = ..()
 	update_connections(1)
 	update_icon()
 
@@ -351,7 +350,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/grille/bay/LateInitialize()
-	. = ..()
 	update_connections(1)
 	update_icon()
 
@@ -412,7 +410,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/window/bay/LateInitialize()
-	. = ..()
 	icon_state = ""
 	update_icon()
 
@@ -503,7 +500,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/window/eris/LateInitialize()
-	. = ..()
 	icon_state = ""
 	update_icon()
 

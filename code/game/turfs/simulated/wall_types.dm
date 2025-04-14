@@ -299,7 +299,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/hull_corner/LateInitialize()
-	. = ..()
 	update_look()
 
 /obj/structure/hull_corner/proc/get_dirs_to_test()

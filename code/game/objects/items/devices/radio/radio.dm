@@ -90,7 +90,6 @@ var/global/list/default_medbay_channels = list(
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/LateInitialize()
-	. = ..()
 	if(bs_tx_preload_id)
 		//Try to find a receiver
 		for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)

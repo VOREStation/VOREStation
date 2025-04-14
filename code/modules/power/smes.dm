@@ -81,7 +81,6 @@ GLOBAL_LIST_EMPTY(smeses)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/smes/buildable/LateInitialize()
-	. = ..()
 	// Detect new coils placed by mappers
 	var/list/parts_found = list()
 	for(var/i = 1, i <= loc.contents.len, i++)
