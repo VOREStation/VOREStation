@@ -14,6 +14,6 @@
 
 #elif !defined(MAP_OVERRIDE)
 
-	#warn A map has already been included, ignoring Virgo_minitest
+	#warn A map has already been included, ignoring virgo_minitest
 
 #endif
