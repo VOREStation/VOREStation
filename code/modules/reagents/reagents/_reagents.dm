@@ -220,7 +220,8 @@
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	holder = null
-	data.Cut()
+	if(islist(data))
+		data.Cut()
 	. = ..()
 
 /// Called by [/datum/reagents/proc/conditional_update]
