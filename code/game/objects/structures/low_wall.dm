@@ -409,7 +409,10 @@
 	var/obj/item/stack/material/glass/G = glasstype
 	var/datum/material/M = get_material_by_name(initial(G.default_type))
 	color = M.icon_colour
-	return INITIALIZE_HINT_LATELOAD
+	if(anchored)
+		return INITIALIZE_HINT_LATELOAD
+	icon_state = ""
+	update_icon()
 
 /obj/structure/window/bay/LateInitialize()
 	. = ..()
