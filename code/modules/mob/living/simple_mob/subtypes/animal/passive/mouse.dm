@@ -43,7 +43,7 @@
 	hasthermals = FALSE
 
 	var/body_color //brown, gray, white and black, leave blank for random
-  
+
 	var/list/datum/disease/rat_diseases
 
 /mob/living/simple_mob/animal/passive/mouse/Initialize(mapload, keep_parent_data)
