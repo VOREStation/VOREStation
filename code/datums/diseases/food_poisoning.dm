@@ -3,7 +3,6 @@
 	max_stages = 3
 	stage_prob = 5
 	spread_text = "Non-Contagious"
-	virus_modifiers = NEEDS_ALL_CURES
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = "Sleep"
 	agent = REAGENT_SALMONELLA
