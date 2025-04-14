@@ -5,7 +5,7 @@
 	spread_flags = DISEASE_SPREAD_AIRBORNE
 	cure_text = "Rest & " + REAGENT_SPACEACILLIN
 	cures = list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_CHICKENSOUP)
-	virus_modifiers = 0 //Does NOT have needs_all_cures
+	virus_modifiers = NONE //Does NOT have needs_all_cures
 	agent = "XY-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	permeability_mod = 0.5
