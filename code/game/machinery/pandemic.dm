@@ -292,6 +292,10 @@
 		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
 		return FALSE
 
+	if(!beaker.reagents.has_reagent(REAGENT_ID_BLOOD, 10))
+		to_chat(usr, span_warning("ERROR: Not enough blood in the sample."))
+		return FALSE
+
 	use_power(active_power_usage)
 	adv_disease = adv_disease.Copy()
 	adv_disease.name = old_name
