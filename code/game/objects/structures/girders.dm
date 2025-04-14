@@ -49,8 +49,6 @@
 
 
 /obj/structure/girder/proc/set_material(var/datum/material/new_material)
-	if(!girder_material)
-		qdel(src)
 	girder_material = new_material
 	name = "[girder_material.display_name] [initial(name)]"
 	max_health = round(girder_material.integrity) //Should be 150 with default integrity (steel). Weaker than ye-olden Girders now.
