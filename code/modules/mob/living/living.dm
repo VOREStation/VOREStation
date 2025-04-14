@@ -1,5 +1,5 @@
-/mob/living/New()
-	..()
+/mob/living/Initialize(mapload)
+	. = ..()
 
 	//Prime this list if we need it.
 	if(has_huds)

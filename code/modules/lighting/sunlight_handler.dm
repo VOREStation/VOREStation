@@ -1,17 +1,9 @@
-/turf/New(loc, ..., is_turfchange=FALSE)
-	. = ..(args)
-
 /turf/simulated
 	var/datum/sunlight_handler/shandler
 	var/shandler_noinit = FALSE
 
-/turf/simulated/New(loc, ..., is_turfchange=FALSE) //This is so fucking awful have mercy on my soul for writing this
-	if(is_turfchange)
-		shandler_noinit = TRUE
-	. = ..(args)
-
 /turf/simulated/Initialize(mapload)
-	. = ..(args)
+	. = ..()
 	if(mapload)
 		return INITIALIZE_HINT_LATELOAD
 

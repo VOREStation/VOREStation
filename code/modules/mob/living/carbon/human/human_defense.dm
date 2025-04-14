@@ -400,7 +400,7 @@ emp_act
 	// I put more comments here for ease of reading.
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
-		if(isanimal(thrown_mob) && !allowmobvore) //Is the thrown_mob an animal and we don't allow mobvore?
+		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.

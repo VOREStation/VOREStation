@@ -22,11 +22,9 @@
 
 	var/created_for
 
-/mob/new_player/New()
-	mob_list += src
+/mob/new_player/Initialize(mapload)
+	. = ..()
 	add_verb(src, /mob/proc/insidePanel)
-	flags |= ATOM_INITIALIZED // Explicitly don't use Initialize().  New players join super early and use New()
-
 
 /mob/new_player/Destroy()
 	if(panel)
@@ -249,7 +247,6 @@
 			voted = 1
 			break
 		qdel(query)
-
 		//This is a safety switch, so only valid options pass through
 		var/option = "UNKNOWN"
 		switch(href_list["privacy_poll"])
@@ -447,6 +444,30 @@
 	spawning = 1
 	close_spawn_windows()
 
+	var/obj/item/itemtf = join_props["itemtf"]
+	if(itemtf && istype(itemtf, /obj/item/capture_crystal))
+		var/obj/item/capture_crystal/cryst = itemtf
+		if(cryst.spawn_mob_type)
+			// We want to be a spawned mob instead of a person aaaaa
+			var/mob/living/carrier = join_props["carrier"]
+			var/vorgans = join_props["vorgans"]
+			cryst.bound_mob = new cryst.spawn_mob_type(cryst)
+			cryst.spawn_mob_type = null
+			cryst.bound_mob.ai_holder_type = /datum/ai_holder/simple_mob/inert
+			cryst.bound_mob.key = src.key
+			log_and_message_admins("[key_name_admin(src)] joined [cryst.bound_mob] inside a capture crystal [ADMIN_FLW(cryst.bound_mob)]")
+			if(vorgans)
+				cryst.bound_mob.copy_from_prefs_vr()
+			if(istype(carrier))
+				cryst.capture(cryst.bound_mob, carrier)
+			else
+				//Something went wrong, but lets try to do as much as we can.
+				cryst.bound_mob.capture_caught = TRUE
+				cryst.persist_storable = FALSE
+			cryst.update_icon()
+			qdel(src)
+			return
+
 	job_master.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
@@ -484,7 +505,15 @@
 
 	ticker.mode.latespawn(character)
 
-	if(J.mob_type & JOB_SILICON)
+	if(rank == JOB_OUTSIDER)
+		log_and_message_admins("has joined the round as non-crew. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)",character)
+		if(!(J.mob_type & JOB_SILICON))
+			ticker.minds += character.mind
+	else if(rank == JOB_ANOMALY)
+		log_and_message_admins("has joined the round as anomaly. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)",character)
+		if(!(J.mob_type & JOB_SILICON))
+			ticker.minds += character.mind
+	else if(J.mob_type & JOB_SILICON)
 		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
 	else
 		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
@@ -496,6 +525,41 @@
 
 			if(imp.handle_implant(character,character.zone_sel.selecting))
 				imp.post_implant(character)
+	var/gut = join_props["voreny"]
+	var/start_absorbed = join_props["absorb"]
+	var/mob/living/prey = join_props["prey"]
+	if(itemtf && istype(itemtf, /obj/item/capture_crystal))
+		//We want to be in the crystal, not actually possessing the crystal.
+		var/obj/item/capture_crystal/cryst = itemtf
+		var/mob/living/carrier = join_props["carrier"]
+		cryst.capture(character, carrier)
+		character.forceMove(cryst)
+		cryst.update_icon()
+	else if(itemtf)
+		itemtf.inhabit_item(character, itemtf.name, character)
+		var/mob/living/possessed_voice = itemtf.possessed_voice
+		itemtf.trash_eatable = character.devourable
+		itemtf.unacidable = !character.digestable
+		character.forceMove(possessed_voice)
+	else if(prey)
+		character.copy_from_prefs_vr(1,1) //Yes I know we're reloading these, shut up
+		var/obj/belly/gut_to_enter
+		for(var/obj/belly/B in character.vore_organs)
+			if(B.name == gut)
+				gut_to_enter = B
+				character.vore_selected = B
+		var/datum/effect/effect/system/teleport_greyscale/tele = new /datum/effect/effect/system/teleport_greyscale()
+		tele.set_up("#00FFFF", get_turf(prey))
+		tele.start()
+		character.forceMove(get_turf(prey))
+		if(start_absorbed)
+			prey.absorbed = 1
+		prey.forceMove(gut_to_enter)
+	else
+		if(gut)
+			if(start_absorbed)
+				character.absorbed = 1
+			character.forceMove(gut)
 
 	character.client.init_verbs()
 	qdel(src) // Delete new_player mob

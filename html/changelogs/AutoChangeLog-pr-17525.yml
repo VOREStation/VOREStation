@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - rscadd: "marker beacon to mining robots"
-  - bugfix: "modal inputs"

@@ -140,3 +140,10 @@
   whooshboom:
   - rscadd: Silicon are now able to be picked up, with a toggle in their abilities
       section to preserve petting.
+2025-04-14:
+  Kashargul:
+  - bugfix: color picker layout
+  - qol: we no longer reset the value on blur, we only validate input or onEnter
+  - code_imp: finishes new to init
+  - rscadd: marker beacon to mining robots
+  - bugfix: modal inputs

@@ -29,15 +29,16 @@
 
 	var/hudmode = null
 
-/mob/living/silicon/New()
+/mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
+	. = ..()
 	silicon_mob_list += src
-	..()
-	add_language(LANGUAGE_GALCOM)
-	apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
-	init_id()
-	init_subsystems()
+	if(!is_decoy)
+		add_language(LANGUAGE_GALCOM)
+		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
+		init_id()
+		init_subsystems()
 
-	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
+		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
 
 /mob/living/silicon/Destroy()
 	silicon_mob_list -= src
