@@ -71,7 +71,7 @@ export const CommunicatorPhoneTab = (props) => {
               <Input
                 fluid
                 value={targetAddress}
-                onInput={(e, val) => act('write_target_address', { val: val })}
+                onChange={(val) => act('write_target_address', { val: val })}
               />
             </Stack.Item>
             <Stack.Item>

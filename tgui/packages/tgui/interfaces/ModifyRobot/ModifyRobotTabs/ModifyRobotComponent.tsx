@@ -242,7 +242,7 @@ const ComponentSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for components..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

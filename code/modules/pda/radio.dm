@@ -89,7 +89,7 @@
 			var/list/b = signal.data
 			botstatus = b.Copy()
 
-/obj/item/radio/integrated/proc/add_to_radio(bot_filter) //Master filter control for bots. Must be placed in the bot's local New() to support map spawned bots.
+/obj/item/radio/integrated/proc/add_to_radio(bot_filter) //Master filter control for bots. Must be placed in the bot's local Initialize(mapload) to support map spawned bots.
 	if(radio_controller)
 		radio_controller.add_object(src, control_freq, radio_filter = bot_filter)
 

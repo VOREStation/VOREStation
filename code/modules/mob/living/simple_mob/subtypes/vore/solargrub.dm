@@ -161,7 +161,7 @@ List of things solar grubs should be able to do:
 
 /mob/living/simple_mob/vore/solargrub/Destroy()
 	existing_solargrubs -= src
-	..()
+	. = ..()
 
 /mob/living/simple_mob/vore/solargrub/handle_light()
 	. = ..()

@@ -160,7 +160,7 @@ const SelectionField = (props: {
         fluid
         value={searchText}
         placeholder="Search for modules..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

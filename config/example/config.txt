@@ -589,3 +589,6 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING
+
+## Uncomment to limit resize caps depending on sprite icon height
+#PIXEL_SIZE_LIMIT
