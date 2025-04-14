@@ -4,7 +4,7 @@
 	spread_text = "Airborne"
 	cure_text = REAGENT_SPACEACILLIN
 	cures = list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_CHICKENSOUP)
-	virus_modifiers = 0 //Does NOT have needs_all_cures
+	virus_modifiers = NONE //Does NOT have needs_all_cures
 	cure_chance = 10
 	agent = "H13N1 flu virion"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
