@@ -165,11 +165,12 @@ const TextHighlightSetting = (props) => {
         <Stack.Item shrink={0}>
           <ColorBox mr={1} color={highlightColor} />
           <Input
+            expensive
             width="5em"
             monospace
             placeholder="#ffffff"
             value={highlightColor}
-            onInput={(e, value) =>
+            onChange={(value) =>
               dispatch(
                 updateHighlightSetting({
                   id: id,
@@ -181,10 +182,11 @@ const TextHighlightSetting = (props) => {
         </Stack.Item>
       </Stack>
       <TextArea
+        expensive
         height="3em"
         value={highlightText}
         placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
-        onChange={(e, value) =>
+        onChange={(value) =>
           dispatch(
             updateHighlightSetting({
               id: id,
@@ -195,10 +197,11 @@ const TextHighlightSetting = (props) => {
       />
       {!!highlightBlacklist && (
         <TextArea
+          expensive
           height="3em"
           value={blacklistText}
           placeholder="Put names of senders you don't want highlighted here. Separate names with commas, i.e. (name1, name2, name3)"
-          onChange={(e, value) =>
+          onChange={(value) =>
             dispatch(
               updateHighlightSetting({
                 id: id,

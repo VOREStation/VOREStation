@@ -26,12 +26,12 @@
 /obj/machinery/vr_sleeper/alien/process()
 	if(stat & (BROKEN))
 		if(occupant)
-			go_out()
+			perform_exit()
 			visible_message(span_infoplain(span_bold("\The [src]") + " emits a low droning sound, before the pod door clicks open."))
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD)
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
-		go_out()
+		perform_exit()
 
 /obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
@@ -47,19 +47,17 @@
 	if(usr.incapacitated())
 		return
 
-	var/forced = FALSE
-
 	if(stat & (BROKEN) || (eject_dead && occupant && occupant.stat == DEAD))
-		forced = TRUE
-
-	go_out(forced)
+		perform_exit()
+	else
+		go_out()
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/alien/go_out(var/forced = TRUE)
+/obj/machinery/vr_sleeper/alien/go_out()
 	if(!occupant)
 		return
 
-	if(!forced && avatar)
+	if(avatar)
 		if(tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 			return
 
@@ -103,7 +101,7 @@
 		to_chat(occupant,span_alien("\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you."))
 		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) != "Yes")
 			visible_message(span_alien("\The [src] pulses!"))
-			go_out(TRUE)
+			perform_exit()
 			return
 
 	to_chat(occupant,span_alien("Your mind blurs as information bombards you."))
@@ -123,7 +121,7 @@
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
 			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
-		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
+		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		avatar.virtual_reality_mob = FALSE //THIS IS THE BIG DIFFERENCE WITH ALIEN VR PODS. THEY ARE NOT VR, THEY ARE REAL.
 
 		//This handles all the 'We make it look like ourself' code.

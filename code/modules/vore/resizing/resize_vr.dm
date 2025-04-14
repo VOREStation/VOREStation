@@ -14,6 +14,10 @@
 /mob/living/carbon/human
 	holder_type = /obj/item/holder/micro
 
+// Let the robots have some fun too
+/mob/living/silicon/robot
+	holder_type = /obj/item/holder/micro
+
 // The reverse lookup of player_sizes_list, number to name.
 /proc/player_size_name(var/size_multiplier)
 	// (This assumes list is sorted big->small)
@@ -88,7 +92,15 @@
  */
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!uncapped)
-		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
+		if((z in using_map.station_levels) && CONFIG_GET(flag/pixel_size_limit))
+			var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
+			var/size_cap = world.icon_size * RESIZE_MAXIMUM //Grace for non-humanoids so they don't get forcibly shrunk.
+			if(size_diff - size_cap  > 0)
+				var/real_diff = size_cap / size_diff // Returns our diff based on the offset to world size
+				new_size *= real_diff // Applies our diff to the new size
+				new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM) //If the sprite is below 32, we clamp it to only go to the resize max.
+		else
+			new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
 		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 		if(guard)
 			qdel(guard)

@@ -130,9 +130,9 @@ const Designs = (props) => {
               <Input
                 fluid
                 placeholder="Search all designs..."
-                updateOnPropsChange
+                expensive
                 value={searchText}
-                onChange={(e, val) => setSearchText(val)}
+                onChange={(val) => setSearchText(val)}
               />
             </Stack.Item>
           </Stack>

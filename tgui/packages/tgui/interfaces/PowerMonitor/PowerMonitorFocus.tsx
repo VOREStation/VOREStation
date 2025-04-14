@@ -120,7 +120,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
           </Section>
         </Stack.Item>
         <Stack.Item mx={0.5} grow>
-          <Section position="relative" height="100%">
+          <Section position="relative" fill>
             <Chart.Line
               fillPositionedParent
               data={supplyData}

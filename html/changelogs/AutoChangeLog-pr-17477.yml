@@ -1,7 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - bugfix: "Fixed mail thinking you're a different person after resleeving"
-  - bugfix: "Fixed mail being sent to various crewmember's bodyparts"
-  - bugfix: "Fixed mail containing power tools disguised as common tools"
-  - refactor: "Refactored some of the mail code, using mind instead of mob"

@@ -3,6 +3,7 @@ import './styles/main.scss';
 import {
   type FormEvent,
   type KeyboardEvent,
+  type MouseEvent,
   useEffect,
   useRef,
   useState,
@@ -26,8 +27,6 @@ import { byondMessages } from './timers';
 
 type ByondOpen = {
   channel: Channel;
-  minimumWidth: number;
-  minimumHeight: number;
 };
 
 type ByondProps = {
@@ -35,6 +34,7 @@ type ByondProps = {
   minimumHeight: number;
   minimumWidth: number;
   lightMode: BooleanLike;
+  scale: BooleanLike;
 };
 
 const ROWS: Record<keyof typeof WindowSize, number> = {
@@ -51,6 +51,9 @@ export function TguiSay() {
   const channelIterator = useRef(new ChannelIterator());
   const chatHistory = useRef(new ChatHistory());
   const messages = useRef(byondMessages);
+  const scale = useRef(true);
+  const minimumHeight = useRef(WindowSize.Small);
+  const minimumWidth = useRef(WindowSize.Width);
 
   // I initially wanted to make these an object or a reducer, but it's not really worth it.
   // You lose the granulatity and add a lot of boilerplate.
@@ -60,12 +63,11 @@ export function TguiSay() {
   >(null);
   const [size, setSize] = useState(WindowSize.Small);
   const [maxLength, setMaxLength] = useState(4096);
-  const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
-  const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
-  const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
-  const [rescale, setRescale] = useState(false);
+
+  const position = useRef([window.screenX, window.screenY]);
+  const isDragging = useRef(false);
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
     const chat = chatHistory.current;
@@ -111,9 +113,33 @@ export function TguiSay() {
     }
   }
 
+  function handleButtonClick(event: MouseEvent<HTMLButtonElement>): void {
+    isDragging.current = true;
+
+    setTimeout(() => {
+      // So the button doesn't jump around accidentally
+      if (isDragging.current) {
+        dragStartHandler(event.nativeEvent);
+      }
+    }, 50);
+  }
+
+  // Prevents the button from changing channels if it's dragged
+  function handleButtonRelease(): void {
+    isDragging.current = false;
+    const currentPosition = [window.screenX, window.screenY];
+
+    if (JSON.stringify(position.current) !== JSON.stringify(currentPosition)) {
+      position.current = currentPosition;
+      return;
+    }
+
+    handleIncrementChannel();
+  }
+
   function handleClose(): void {
     innerRef.current?.blur();
-    windowClose();
+    windowClose(minimumWidth.current, minimumHeight.current, scale.current);
 
     setTimeout(() => {
       chatHistory.current.reset();
@@ -158,9 +184,6 @@ export function TguiSay() {
   }
 
   function handleIncrementChannel(): void {
-    const xPos = window.screenX;
-    const yPos = window.screenY;
-    if (JSON.stringify(position) !== JSON.stringify([xPos, yPos])) return;
     const iterator = channelIterator.current;
 
     iterator.next();
@@ -286,18 +309,8 @@ export function TguiSay() {
     }
   }
 
-  function handleButtonDrag(e: React.MouseEvent<Element, MouseEvent>): void {
-    const xPos = window.screenX;
-    const yPos = window.screenY;
-    setPosition([xPos, yPos]);
-    dragStartHandler(e);
-  }
-
   function handleOpen(data: ByondOpen): void {
-    setTimeout(() => {
-      innerRef.current?.focus();
-    }, 1);
-
+    setSize(minimumHeight.current);
     const { channel } = data;
     const iterator = channelIterator.current;
     // Catches the case where the modal is already open
@@ -306,33 +319,36 @@ export function TguiSay() {
     }
 
     setButtonContent(iterator.current());
-    windowOpen(iterator.current());
-    setRescale(true);
+    windowOpen(
+      iterator.current(),
+      minimumWidth.current,
+      minimumHeight.current,
+      scale.current,
+    );
+    const input = innerRef.current;
+    setTimeout(() => {
+      input?.focus();
+    }, 1);
   }
 
   function handleProps(data: ByondProps): void {
     setMaxLength(data.maxLength);
-    setMinimumHeight(data.minimumHeight);
     const minWidth = clamp(
       data.minimumWidth,
       WindowSize.Width,
       WindowSize.MaxWidth,
     );
-    setMinimumWidth(minWidth);
+    minimumHeight.current = data.minimumHeight;
+    minimumWidth.current = minWidth;
     setLightMode(!!data.lightMode);
+    scale.current = !!data.scale;
   }
 
   function unloadChat(): void {
     setCurrentPrefix(null);
     setButtonContent(channelIterator.current.current());
     setValue('');
-    setRescale(false);
   }
-
-  useEffect(() => {
-    setSize(minimumHeight);
-    windowSet(minimumWidth, minimumHeight);
-  }, [rescale]);
 
   /** Subscribe to Byond messages */
   useEffect(() => {
@@ -353,11 +369,11 @@ export function TguiSay() {
     } else {
       newSize = WindowSize.Small;
     }
-    newSize = clamp(newSize, minimumHeight, WindowSize.Max);
+    newSize = clamp(newSize, minimumHeight.current, WindowSize.Max);
 
     if (size !== newSize) {
       setSize(newSize);
-      windowSet(minimumWidth, newSize);
+      windowSet(minimumWidth.current, newSize, scale.current);
     }
   }, [value]);
 
@@ -370,15 +386,23 @@ export function TguiSay() {
     <>
       <div
         className={`window window-${theme} window-${size}`}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
         onMouseDown={dragStartHandler}
       >
         {!lightMode && <div className={`shine shine-${theme}`} />}
       </div>
-      <div className={classes(['content', lightMode && 'content-lightMode'])}>
+      <div
+        className={classes(['content', lightMode && 'content-lightMode'])}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
+      >
         <button
           className={`button button-${theme}`}
-          onClick={handleIncrementChannel}
-          onMouseDown={handleButtonDrag}
+          onMouseDown={handleButtonClick}
+          onMouseUp={handleButtonRelease}
           type="button"
         >
           {buttonContent}

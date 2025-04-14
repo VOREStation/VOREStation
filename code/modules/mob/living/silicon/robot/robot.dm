@@ -16,6 +16,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/lights_on = 0 // Is our integrated light on?
+	var/grabbable = FALSE //disables/enables pick-up mechanics.
 	var/robot_light_col = "#FFFFFF"
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
@@ -139,13 +140,13 @@
 	vore_fullness_ex = list()
 	vore_icon_bellies = list()
 
-/mob/living/silicon/robot/New(loc, var/unfinished = 0)
+/mob/living/silicon/robot/Initialize(mapload, is_decoy, unfinished = FALSE)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	robotact = new(src)
 
-	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_ROBOT_TALK, 1)
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_EAL, 1)
 
@@ -182,7 +183,7 @@
 	else if(ispath(cell))
 		cell = new cell(src)
 
-	..()
+	. = ..()
 
 	if(cell)
 		var/datum/robot_component/cell_component = components["power cell"]
@@ -206,6 +207,7 @@
 
 /mob/living/silicon/robot/LateInitialize()
 	. = ..()
+	pick_module()
 	update_icon()
 
 /mob/living/silicon/robot/rejuvenate()
@@ -313,7 +315,7 @@
 				mmi.brainmob.languages = M.original_languages
 			else
 				mmi.brainmob.languages = languages
-			mmi.brainmob.remove_language("Robot Talk")
+			mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
 			mind.transfer_to(mmi.brainmob)
 		else if(!shell) // Shells don't have brainmbos in their MMIs.
 			to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
@@ -509,6 +511,12 @@
 	to_chat(src, span_filter_notice("You harmlessly spark."))
 	spark_system.start()
 
+/mob/living/silicon/robot/verb/toggle_grabbability() // Grisp the preyborgs with consent (and allows for your borg to still be pet).
+	set category = "Abilities.Silicon"
+	set name = "Toggle Pickup"
+	grabbable = !grabbable
+	to_chat(src, span_filter_notice("You feel [grabbable ? "more" : "less"] grabbable."))
+
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	. = list()
@@ -551,6 +559,7 @@
 	. += show_cell_power()
 	. += show_jetpack_pressure()
 	. += "Lights: [lights_on ? "ON" : "OFF"]"
+	. += "Pickup: [grabbable ? "ENABLED" : "DISABLED"]"
 	if(module)
 		for(var/datum/matter_synth/ms in module.synths)
 			. += "[ms.name]: [ms.energy]/[ms.max_energy]"
@@ -889,12 +898,15 @@
 			//Adding borg petting. Help intent pets if preferences allow, Disarm intent taps and Harm is punching(no damage)
 			switch(H.a_intent)
 				if(I_HELP)
-					if(client && !client.prefs.borg_petting)
-						visible_message(span_notice("[H] reaches out for [src], but quickly refrains from petting."))
-						return
+					if(grabbable)
+						attempt_to_scoop(H)
 					else
-						visible_message(span_notice("[H] pets [src]."))
-						return
+						if(client && !client.prefs.borg_petting)
+							visible_message(span_notice("[H] reaches out for [src], but quickly refrains from petting."))
+							return
+						else
+							visible_message(span_notice("[H] pets [src]."))
+							return
 				if(I_HURT)
 					H.do_attack_animation(src)
 					if(H.species.can_shred(H))
@@ -992,8 +1004,21 @@
 		add_overlay(mutable_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
 		add_overlay(emissive_appearance(sprite_datum.sprite_icon, sprite_datum.get_glow_overlay(src)))
 
+	if(LAZYLEN(robotdecal_on) && LAZYLEN(sprite_datum.sprite_decals))
+		if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+			for(var/enabled_decal in robotdecal_on)
+				var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src, enabled_decal)
+				if(robotdecal_overlay)
+					add_overlay(robotdecal_overlay)
+
 	if(stat == CONSCIOUS)
 		update_fullness()
+		if(sprite_datum.has_eye_sprites)
+			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
+				if(eyes_overlay)
+					add_overlay(eyes_overlay)
+
 		for(var/belly_class in vore_fullness_ex)
 			reset_belly_lights(belly_class)
 			var/vs_fullness = vore_fullness_ex[belly_class]
@@ -1031,18 +1056,6 @@
 
 		if(resting && sprite_datum.has_rest_sprites)
 			icon_state = sprite_datum.get_rest_sprite(src)
-		if(sprite_datum.has_eye_sprites)
-			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
-				if(eyes_overlay)
-					add_overlay(eyes_overlay)
-
-		if(robotdecal_on.len && LAZYLEN(sprite_datum.sprite_decals))
-			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-				for(var/enabled_decal in robotdecal_on)
-					var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src, enabled_decal)
-					if(robotdecal_overlay)
-						add_overlay(robotdecal_overlay)
 
 		if(lights_on && sprite_datum.has_eye_light_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
@@ -1465,6 +1478,18 @@
 		return
 	if(buckle_mob(M))
 		visible_message(span_notice("[M] starts riding [name]!"))
+
+/mob/living/silicon/robot/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
+	if(!istype(H))
+		return
+
+	H.desc = "An all-access ID-card, shaped like a robot!"
+	H.icon_state = "[sprite_name]"
+	grabber.update_inv_l_hand()
+	grabber.update_inv_r_hand()
+	return H
+
 
 /mob/living/silicon/robot/onTransitZ(old_z, new_z)
 	if(shell)

@@ -31,6 +31,9 @@
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
+/obj/machinery/cash_register/Destroy()
+	transaction_devices -= src
+	. = ..()
 
 /obj/machinery/cash_register/examine(mob/user as mob)
 	. = ..(user)

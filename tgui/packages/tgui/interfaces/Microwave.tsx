@@ -97,14 +97,18 @@ const MicrowaveContents = (props) => {
       fill
       title="Ingredients"
       buttons={
-        <>
-          <Button icon="radiation" onClick={() => act('cook')}>
-            Microwave
-          </Button>
-          <Button icon="eject" onClick={() => act('dispose')}>
-            Eject
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button icon="radiation" onClick={() => act('cook')}>
+              Microwave
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button icon="eject" onClick={() => act('dispose')}>
+              Eject
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack fill align="center">

@@ -287,7 +287,7 @@ But for now, for what it's been used for, it works.
 			return
 	if(Mtarget)
 		H.forceMove(Mtarget.loc)
-	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, mind_target = H.mind)
+	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, H.mind)
 	for(var/obj/item/W in H)
 		if(istype(W, /obj/item/implant/backup || istype(W, /obj/item/nif)))
 			continue
@@ -345,5 +345,6 @@ But for now, for what it's been used for, it works.
 	name = "Autostrip target to send mobs to."
 
 /obj/effect/autostriptarget/mob/Initialize(mapload)
+	. = ..()
 	if(targetid)
 		GLOB.mapped_autostrips_mob[targetid] = src

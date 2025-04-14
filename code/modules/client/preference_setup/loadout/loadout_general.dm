@@ -312,6 +312,11 @@
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/ducky
+	display_name = "rubber ducky"
+	description = "A rubbery friend to make your bathtime better."
+	path = /obj/item/bikehorn/rubberducky
+
 /datum/gear/textmug
 	display_name = "mug with text"
 	description = "A mug with something written on it."

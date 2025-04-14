@@ -452,7 +452,7 @@ var/list/runechat_image_cache = list()
 	return (width - bound_width) * -0.5 + get_oversized_icon_offsets()["x"]
 
 /atom/movable/runechat_y_offset()
-	return ..() + get_oversized_icon_offsets()["y"]
+	return ..() + get_oversized_icon_offsets()["y"] * 1.5 // Fix to use 2 if we ever can measure sprites
 
 /* Nothing special
 /mob/runechat_x_offset(width, height)
