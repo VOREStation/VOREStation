@@ -78,7 +78,7 @@
 					food_inserted_micros -= F
 
 	if(!reagents.total_volume)
-		M.balloon_alert_visible("finishes eating \the [src].","finished eating \the [src].")
+		M.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")
 
 		M.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
@@ -96,17 +96,17 @@
 
 /obj/item/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
-		balloon_alert(user, "none of [src] left!")
+		balloon_alert(user, "none of \the [src] left!")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
 
 	if(package)
-		balloon_alert(user, "the package is in the way")
+		balloon_alert(user, "the package is in the way!")
 		return FALSE
 
 	if(canned)
-		balloon_alert(user, "the can is closed")
+		balloon_alert(user, "the can is closed!")
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
