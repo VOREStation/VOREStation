@@ -78,7 +78,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] is beginning to set the bone in [target]'s [affected.name] in place with \the [tool].") , \
 		span_notice("You are beginning to set the bone in [target]'s [affected.name] in place with \the [tool]."))
-	user.balloon_alert_visible("begins to set the bone in place.", "setting the bone in place.")  - Balloon alert
+	user.balloon_alert_visible("begins to set the bone in place.", "setting the bone in place.")
 	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
 	..()
 
@@ -87,12 +87,12 @@
 	if (affected.status & ORGAN_BROKEN)
 		user.visible_message(span_notice("[user] sets the bone in [target]'s [affected.name] in place with \the [tool]."), \
 			span_notice("You set the bone in [target]'s [affected.name] in place with \the [tool]."))
-		user.balloon_alert_visible("sets the bone in place.", "bone set in place.")  - Balloon alert
+		user.balloon_alert_visible("sets the bone in place.", "bone set in place.")
 		affected.stage = 2
 	else
 		user.visible_message("[user] sets the bone in [target]'s [affected.name] " + span_danger("in the WRONG place with \the [tool]."), \
 			"You set the bone in [target]'s [affected.name] " + span_danger("in the WRONG place with \the [tool]."))
-		user.balloon_alert_visible("sets the bone in the WRONG place.", "bone set in the WRONG place.")  - Balloon alert
+		user.balloon_alert_visible("sets the bone in the WRONG place.", "bone set in the WRONG place.")
 		affected.fracture()
 
 /datum/surgery_step/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
