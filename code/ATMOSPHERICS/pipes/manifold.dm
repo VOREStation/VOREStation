@@ -19,7 +19,7 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/manifold/Initialize()
+/obj/machinery/atmospherics/pipe/manifold/Initialize(mapload)
 	. = ..()
 	alpha = 255
 	icon = null

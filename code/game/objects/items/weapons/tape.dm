@@ -87,7 +87,7 @@
 				H.update_inv_wear_mask()
 				playsound(src, 'sound/effects/tape.ogg',25)
 
-			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+			else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 				if(!can_place(H, user))
 					return
 

@@ -330,9 +330,9 @@
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 
-		if(!allowmobvore && isanimal(thrown_mob)) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
+		if(!allowmobvore && isanimal(thrown_mob) && !thrown_mob.ckey) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
 			return
-		if(!thrown_mob.allowmobvore && isanimal(src)) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
+		if(!thrown_mob.allowmobvore && isanimal(src) && !ckey) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
 			return
 
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
@@ -428,7 +428,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-    fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
+	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)

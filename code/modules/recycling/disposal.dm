@@ -29,7 +29,7 @@
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/Initialize()
+/obj/machinery/disposal/Initialize(mapload)
 	. = ..()
 
 	trunk = locate() in loc
@@ -572,7 +572,7 @@
 
 	density = FALSE
 
-/obj/machinery/disposal/wall/Initialize()
+/obj/machinery/disposal/wall/Initialize(mapload)
 	. = ..()
 
 	spawn(1 SECOND)	// Fixfix for weird interaction with buildmode or other late-spawning.
@@ -645,6 +645,10 @@
 		if(istype(AM, /mob/living/silicon/robot/drone))
 			var/mob/living/silicon/robot/drone/drone = AM
 			src.destinationTag = drone.mail_destination
+
+		if(istype(AM, /obj/item/mail) && !hasmob)
+			var/obj/item/mail/T = AM
+			src.destinationTag = T.sortTag
 
 
 // start the movement process
@@ -789,11 +793,9 @@
 	var/subtype = 0
 
 // new pipe, set the icon_state as on map
-/obj/structure/disposalpipe/New()
-	..()
+/obj/structure/disposalpipe/Initialize(mapload)
+	. = ..()
 	base_icon_state = icon_state
-	return
-
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
@@ -817,7 +819,7 @@
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 // returns the direction of the next pipe object, given the entrance dir
 // by default, returns the bitmask of remaining directions
@@ -1080,7 +1082,7 @@
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 /obj/structure/disposalpipe/hides_under_flooring()
 	return 1
@@ -1094,25 +1096,23 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-/obj/structure/disposalpipe/segment/New()
-	..()
+/obj/structure/disposalpipe/segment/Initialize(mapload)
+	. = ..()
 	if(icon_state == "pipe-s")
 		dpdir = dir | turn(dir, 180)
 	else
 		dpdir = dir | turn(dir, -90)
 
 	update()
-	return
 
 ///// Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-/obj/structure/disposalpipe/up/New()
-	..()
+/obj/structure/disposalpipe/up/Initialize(mapload)
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/up/nextdir(var/fromdir)
 	var/nextdir
@@ -1158,11 +1158,10 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-/obj/structure/disposalpipe/down/New()
-	..()
+/obj/structure/disposalpipe/down/Initialize(mapload)
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/down/nextdir(var/fromdir)
 	var/nextdir
@@ -1213,8 +1212,8 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-/obj/structure/disposalpipe/junction/New()
-	..()
+/obj/structure/disposalpipe/junction/Initialize(mapload)
+	. = ..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1271,7 +1270,7 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/New()
+/obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
 	dpdir = dir | turn(dir, 180)
 	if(sort_tag) GLOB.tagger_locations |= list("[sort_tag]" = get_z(src))
@@ -1338,7 +1337,7 @@
 
 	dpdir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/New()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
 	if(sortType) GLOB.tagger_locations |= list("[sortType]" = get_z(src))
 
@@ -1430,7 +1429,7 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/Initialize()
+/obj/structure/disposalpipe/trunk/Initialize(mapload)
 	..()
 	dpdir = dir
 	return INITIALIZE_HINT_LATELOAD
@@ -1528,10 +1527,9 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/New()
-	..()
+/obj/structure/disposalpipe/broken/Initialize(mapload)
+	. = ..()
 	update()
-	return
 
 // called when welded
 // for broken pipe, remove and turn into scrap
@@ -1553,7 +1551,7 @@
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-/obj/structure/disposaloutlet/Initialize()
+/obj/structure/disposaloutlet/Initialize(mapload)
 	. = ..()
 
 	target = get_ranged_target_turf(src, dir, 10)

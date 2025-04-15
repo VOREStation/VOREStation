@@ -54,10 +54,10 @@ export const Jukebox = (props) => {
     admin,
   } = data;
 
-  let genre_songs =
+  const genre_songs =
     tracks.length &&
     tracks.reduce((acc, obj) => {
-      let key = obj.genre || 'Uncategorized';
+      const key = obj.genre || 'Uncategorized';
       if (!acc[key]) {
         acc[key] = [];
       }
@@ -65,7 +65,7 @@ export const Jukebox = (props) => {
       return acc;
     }, {});
 
-  let true_genre = playing && (current_genre || 'Uncategorized');
+  const true_genre = playing && (current_genre || 'Uncategorized');
 
   const [newTitle, setNewTitle] = useState<string>('Unknown');
   const [newUrl, setNewUrl] = useState<string>('');
@@ -252,14 +252,14 @@ export const Jukebox = (props) => {
                     <Input
                       width="100%"
                       value={newTitle}
-                      onChange={(e, val: string) => setNewTitle(val)}
+                      onChange={(val: string) => setNewTitle(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="URL">
                     <Input
                       width="100%"
                       value={newUrl}
-                      onChange={(e, val: string) => setNewUrl(val)}
+                      onChange={(val: string) => setNewUrl(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Playtime">
@@ -276,7 +276,7 @@ export const Jukebox = (props) => {
                     <Input
                       width="100%"
                       value={newArtist}
-                      onChange={(e, val: string) => setNewArtist(val)}
+                      onChange={(val: string) => setNewArtist(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
@@ -286,7 +286,7 @@ export const Jukebox = (props) => {
                           <Input
                             width="100%"
                             value={newGenre}
-                            onChange={(e, val: string) => setNewGenre(val)}
+                            onChange={(val: string) => setNewGenre(val)}
                           />
                         ) : (
                           <Box>{newGenre}</Box>

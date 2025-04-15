@@ -7,7 +7,8 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/machinery/mineral/input/New()
+/obj/machinery/mineral/input/Initialize(mapload)
+	. = ..()
 	icon_state = "blank"
 
 /obj/machinery/mineral/output
@@ -17,5 +18,6 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/machinery/mineral/output/New()
+/obj/machinery/mineral/output/Initialize(mapload)
+	. = ..()
 	icon_state = "blank"

@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	GLOB.areas_by_type[type] = src
 	return ..()
 
-/area/Initialize()
+/area/Initialize(mapload)
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
@@ -552,9 +552,9 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
 /area/proc/flag_check(var/flag, var/match_all = FALSE)
-    if(match_all)
-        return (flags & flag) == flag
-    return flags & flag
+	if(match_all)
+		return (flags & flag) == flag
+	return flags & flag
 
 // RS Port #658 Start
 /area/proc/check_phase_shift(var/mob/ourmob)
@@ -573,3 +573,12 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		if(SK.ability_flags & AB_PHASE_SHIFTED)
 			SK.phase_in(SK.loc)
 // RS Port #658 End
+
+/area/proc/isAlwaysIndoors()
+	return FALSE
+
+/area/shuttle/isAlwaysIndoors()
+	return TRUE
+
+/area/turbolift/isAlwaysIndoors()
+	return TRUE

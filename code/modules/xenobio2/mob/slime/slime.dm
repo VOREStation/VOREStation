@@ -80,8 +80,8 @@ Slime definitions, Life and New live here.
 						REAGENT_ID_WOODPULP = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),
 						REAGENT_ID_MUTATIONTOXIN = list(XENO_CHEM_NUTRI = 0.3)	)
 
-/mob/living/simple_mob/xeno/slime/New()
-	..()
+/mob/living/simple_mob/xeno/slime/Initialize(mapload)
+	. = ..()
 	for(var/datum/language/L in subtypesof(/datum/language))
 		languages += L
 	speak += "[station_name()]?"
@@ -90,4 +90,3 @@ Slime definitions, Life and New live here.
 	resistances[BRUTE] = 0.2
 	resistances[TOX] = 1.5
 	GenerateChild()
-	return 1

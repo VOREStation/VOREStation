@@ -6,7 +6,7 @@
 	var/highlighted = FALSE
 	var/mob/observer/eye/aiEye/pic_in_pic/aiEye
 
-/obj/screen/movable/pic_in_pic/ai/Initialize()
+/obj/screen/movable/pic_in_pic/ai/Initialize(mapload)
 	. = ..()
 	aiEye = new /mob/observer/eye/aiEye/pic_in_pic()
 	aiEye.screen = src
@@ -149,7 +149,7 @@ Whatever you did that made the last camera window disappear-- don't do that agai
 	plane = SPACE_PLANE
 	layer = AREA_LAYER + 0.1
 
-/turf/unsimulated/ai_visible/Initialize()
+/turf/unsimulated/ai_visible/Initialize(mapload)
 	. = ..()
 
 /area/ai_multicam_room
@@ -164,7 +164,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	name = "ai camera room"
 	icon_state = "x"
 
-/obj/effect/landmark/ai_multicam_room/Initialize()
+/obj/effect/landmark/ai_multicam_room/Initialize(mapload)
 	. = ..()
 	qdel(GLOB.ai_camera_room_landmark)
 	GLOB.ai_camera_room_landmark = src

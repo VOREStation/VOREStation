@@ -52,7 +52,7 @@
 	if(istype(H) && H.shoes)
 		return
 	seed.do_thorns(victim,src)
-	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
+	seed.do_sting(victim,src,pick(BP_R_FOOT,BP_L_FOOT,BP_R_LEG,BP_L_LEG))
 
 	if(seed.get_trait(TRAIT_SPORING) && prob(round(seed.get_trait(TRAIT_POTENCY)/2)))
 		seed.create_spores(get_turf(victim))

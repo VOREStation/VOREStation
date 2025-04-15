@@ -117,6 +117,7 @@
 
 /datum/material/wood/log/hard
 	name = MAT_HARDLOG
+	display_name = MAT_HARDWOOD
 	icon_colour = "#6f432a"
 	stack_type = /obj/item/stack/material/log/hard
 

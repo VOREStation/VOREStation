@@ -35,6 +35,11 @@
 			keycheck = FALSE		//we'll allow it
 		else
 			return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.redgate_restricted)
+			to_chat(M, span_warning("You can not walk through the redgate without another character giving you permission (by clicking on the redgate with you nearby)."))
+			return
 
 	if(is_type_in_list(M, restrictions))	//Some stuff we don't want to bring EVEN IF it has a key.
 		return
@@ -103,7 +108,25 @@
 
 /obj/structure/redgate/attack_hand(mob/M as mob)
 	if(density)
-		src.teleport(M)
+		if(ishuman(M))
+			var/mob/living/carbon/human/O = M
+			var/list/nearby_restricted = list()
+			for(var/obj/structure/redgate/g in world)
+				for(var/mob/living/carbon/human/H in oview(7,g))
+					if(H.redgate_restricted && !O.redgate_restricted) //For every restricted human near the redgate, if you aren't restricted yourself, put them in a list.
+						nearby_restricted |= H
+			if(!nearby_restricted.len)
+				teleport(M) //teleport functionality remains if no restricted people are nearby.
+			else
+				var/mob/living/carbon/human/restricted_human = tgui_input_list(M, "Who do you wish to give access through the redgate?", "Nearby Redgate Inhabitants", nearby_restricted)
+				if(!restricted_human)
+					return
+				restricted_human.redgate_restricted = FALSE
+				to_chat(M, span_notice("You have given [restricted_human] permission to use the redgate."))
+				to_chat(restricted_human, span_notice("[M] has given you permission to use the redgate."))
+				log_and_message_admins("[M] has given [restricted_human] permission to use the redgate.")
+		else
+			teleport(M)
 	else
 		if(!find_partner())
 			to_chat(M, span_warning("The [src] remains off... seems like it doesn't have a destination."))
@@ -117,7 +140,7 @@
 	else
 		return ..()
 
-/obj/structure/redgate/away/Initialize()
+/obj/structure/redgate/away/Initialize(mapload)
 	. = ..()
 	if(!find_partner())
 		log_and_message_admins("An away redgate spawned but wasn't able to find a gateway to link to. If this appeared at roundstart, something has gone wrong, otherwise if you spawn another gate they should connect.")
@@ -1483,7 +1506,7 @@
 	var/start_pos
 	var/flag_return_delay = 3 SECONDS	//how long you have to hold onto your team's flag before it returns home
 
-/obj/item/laserdome_flag/Initialize()
+/obj/item/laserdome_flag/Initialize(mapload)
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 
@@ -1618,7 +1641,7 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 	redgate_allowed = FALSE //you can't take the demonstration balls and go home either
 
-/obj/item/laserdome_hyperball/Initialize()
+/obj/item/laserdome_hyperball/Initialize(mapload)
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 

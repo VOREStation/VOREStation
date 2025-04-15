@@ -12,7 +12,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
-/obj/machinery/meter/Initialize()
+/obj/machinery/meter/Initialize(mapload)
 	. = ..()
 	if (!target)
 		target = select_target()

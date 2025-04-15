@@ -60,7 +60,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			"url" = get_world_url()
 		)
 	)
-	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
+	GLOB.autospeaker = new (null, FALSE, null, null, TRUE) //Set up Global Announcer
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)

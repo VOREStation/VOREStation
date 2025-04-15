@@ -25,7 +25,7 @@
 	var/next_shot = 0 //round time where the next shot can start from
 	var/const/coolinterval = 2 MINUTES //time to wait between safe shots in deciseconds
 
-/obj/machinery/computer/ship/disperser/Initialize()
+/obj/machinery/computer/ship/disperser/Initialize(mapload)
 	. = ..()
 	link_parts()
 	reset_calibration()

@@ -24,7 +24,7 @@
 /obj/machinery/atmospherics/pipe/drain_power()
 	return -1
 
-/obj/machinery/atmospherics/pipe/Initialize()
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
 	if(istype(get_turf(src), /turf/simulated/wall) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall))
 		level = 1
 	. = ..()
@@ -79,9 +79,11 @@
 
 	return parent.air
 
-/obj/machinery/atmospherics/pipe/build_network()
+/obj/machinery/atmospherics/pipe/build_network(new_attachment)
 	if(QDELETED(src))
 		return
+	if(new_attachment)
+		QDEL_NULL(parent)
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
@@ -137,13 +139,28 @@
 		to_chat(user, span_warning("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
+
+	//potential yeet
+	var/datum/gas_mixture/int_air = return_air()
+	var/datum/gas_mixture/env_air = loc.return_air()
+	var/unsafe_wrenching = FALSE
+	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
+
+	if (internal_pressure > 2*ONE_ATMOSPHERE)
+		to_chat(user, span_warning("As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?"))
+		unsafe_wrenching = TRUE //here we go
+	else
+		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
+
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
+
 	if (do_after(user, 10 * W.toolspeed))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+			span_hear("You hear a ratchet."))
+		if(unsafe_wrenching)
+			unsafe_pressure_release(user, internal_pressure)
 		deconstruct()
 
 /obj/machinery/atmospherics/pipe/proc/change_color(var/new_color)

@@ -170,11 +170,11 @@ SUBSYSTEM_DEF(statpanels)
 	if(description_holders["antag"])
 		examine_update += span_red(span_bold("[description_holders["antag"]]")) + "<br />" //Red, malicious antag-related text
 
-	target.stat_panel.send_message("update_examine", examine_update)
+	target.stat_panel.send_message("update_examine", list("EX" = examine_update, "UPD" = target.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL))
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/tickets = list()
-	if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,target)) //Prevents non-staff from opening the list of ahelp tickets
+	if(check_rights_for(target, R_ADMIN|R_SERVER|R_MOD)) //Prevents non-staff from opening the list of ahelp tickets
 		tickets += GLOB.ahelp_tickets.stat_entry(target)
 	tickets += GLOB.mhelp_tickets.stat_entry(target)
 	target.stat_panel.send_message("update_tickets", tickets)

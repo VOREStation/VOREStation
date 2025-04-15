@@ -117,9 +117,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ticket_list
 	var/current_state
 
-/obj/effect/statclick/ticket_list/New(loc, name, state)
-	current_state = state
-	..()
+/obj/effect/statclick/ticket_list/Initialize(mapload, text, target)
+	. = ..()
+	current_state = target
 
 /obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
@@ -257,7 +257,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//send this msg to all admins
 
 	for(var/client/X in GLOB.admins)
-		if(!check_rights(R_ADMIN, 0, X))
+		if(!check_rights_for(X, R_ADMIN))
 			continue
 		if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 			X << 'sound/effects/adminhelp.ogg'
@@ -577,9 +577,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ahelp
 	var/datum/admin_help/ahelp_datum
 
-/obj/effect/statclick/ahelp/New(loc, datum/admin_help/AH)
-	ahelp_datum = AH
-	..(loc)
+/obj/effect/statclick/ahelp/Initialize(mapload, text, target)
+	. = ..()
+	ahelp_datum = target
 
 /obj/effect/statclick/ahelp/update()
 	return ..(ahelp_datum.name)
@@ -684,7 +684,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in GLOB.admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X))
+		if(requiredflags != 0 && !check_rights_for(X, requiredflags))
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X

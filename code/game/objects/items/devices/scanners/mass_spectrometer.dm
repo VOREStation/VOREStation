@@ -19,8 +19,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/mass_spectrometer/New()
-	..()
+/obj/item/mass_spectrometer/Initialize(mapload)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src

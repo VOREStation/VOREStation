@@ -6,7 +6,7 @@
 /turf/space/transit/attackby(obj/O as obj, mob/user as mob)
 	return
 
-/turf/space/transit/Initialize()
+/turf/space/transit/Initialize(mapload)
 	. = ..()
 	toggle_transit(GLOB.reverse_dir[pushdirection])
 

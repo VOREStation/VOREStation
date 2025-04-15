@@ -86,7 +86,7 @@ var/list/flesh_overlay_cache = list()
 	hard_corner = 1 //They're all HC
 	true_name = "wall"
 
-/turf/simulated/shuttle/wall/flock/Initialize()
+/turf/simulated/shuttle/wall/flock/Initialize(mapload)
 	. = ..()
 	set_light(3,3,"#26c5a9")
 

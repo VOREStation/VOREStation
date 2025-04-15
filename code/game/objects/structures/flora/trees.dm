@@ -15,7 +15,7 @@
 	var/is_stump = FALSE // If true, suspends damage tracking and most other effects.
 	var/indestructable = FALSE // If true, the tree cannot die.
 
-/obj/structure/flora/tree/Initialize()
+/obj/structure/flora/tree/Initialize(mapload)
 	icon_state = choose_icon_state()
 
 	return ..()
@@ -284,7 +284,7 @@
 	light_shift = rand(0, 5)
 	return "[base_state][light_shift]"
 
-/obj/structure/flora/tree/sif/Initialize()
+/obj/structure/flora/tree/sif/Initialize(mapload)
 	. = ..()
 	update_icon()
 

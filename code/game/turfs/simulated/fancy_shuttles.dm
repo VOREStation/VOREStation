@@ -25,7 +25,8 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/icon/split_icon
 	var/fancy_shuttle_tag
 
-/obj/effect/fancy_shuttle/New() // has to be very early so others can grab it
+INITIALIZE_IMMEDIATE(/obj/effect/fancy_shuttle)
+/obj/effect/fancy_shuttle/Initialize(mapload) // has to be very early so others can grab it
 	. = ..()
 	if(!fancy_shuttle_tag)
 		error("Fancy shuttle with no tag at [x],[y],[z]! Type is: [type]")
@@ -41,7 +42,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	layer = DISPOSAL_LAYER
 	alpha = 90
 
-/obj/effect/fancy_shuttle_floor_preview/Initialize()
+/obj/effect/fancy_shuttle_floor_preview/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -161,7 +162,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/icon_file
 	var/fancy_shuttle_tag
 
-/obj/effect/floor_decal/fancy_shuttle/Initialize()
+/obj/effect/floor_decal/fancy_shuttle/Initialize(mapload)
 	var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
 	if(!F)
 		warning("Fancy shuttle floor decal at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
@@ -180,7 +181,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 /**
  * Shuttle Glass
  */
- //OLD GLASS - USE NEW GLASS
+//OLD GLASS - USE NEW GLASS
 /turf/simulated/wall/fancy_shuttle/window
 	opacity = FALSE
 	icon_state = "hull_transparent"

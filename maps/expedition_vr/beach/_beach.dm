@@ -10,7 +10,7 @@
 	icon_state = "globe"
 	in_space = 0
 	initial_generic_waypoints = list("beach_e", "beach_c", "beach_nw")
-	extra_z_levels = list(Z_LEVEL_BEACH_CAVE)
+	extra_z_levels = list(Z_NAME_BEACH_CAVE)
 	known = TRUE
 	icon_state = "desert"
 
@@ -60,19 +60,6 @@
 /obj/away_mission_init/beachcave
 	name = "away mission initializer - beachcave"
 
-//In our case, it initializes the ores and random submaps in the beach's cave, then deletes itself
-/obj/away_mission_init/beachcave/Initialize()
-	// Cave submaps are first.
-	/*seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
-	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
-
-	// Now for the tunnels.
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_BEACH_CAVE, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_LEVEL_BEACH_CAVE, 64, 64)*/
-
-	flags |= ATOM_INITIALIZED
-	return INITIALIZE_HINT_QDEL
-
 // Two mob spawners that are placed on the map that spawn some mobs!
 // They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
 // Note that if your map has step teleports, mobs may wander through them accidentally and not know how to get back
@@ -118,14 +105,14 @@
 
 // These are step-teleporters, for map edge transitions
 // This top one goes INTO the cave
-/obj/effect/step_trigger/teleporter/away_beach_tocave/Initialize()
+/obj/effect/step_trigger/teleporter/away_beach_tocave/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x //X is horizontal. This is a top of map transition, so you want the same horizontal alignment in the cave as you have on the beach
 	teleport_y = 2 //2 is because it's putting you on row 2 of the map to the north
 	teleport_z = z+1 //The cave is always our Z-level plus 1, because it's loaded after us
 
 //This one goes OUT OF the cave
-/obj/effect/step_trigger/teleporter/away_beach_tobeach/Initialize()
+/obj/effect/step_trigger/teleporter/away_beach_tobeach/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x //Same reason as bove
 	teleport_y = world.maxy - 1 //This means "1 space from the top of the map"
@@ -138,7 +125,7 @@
 	name = "Water"
 	icon_state = "water"
 
-/turf/simulated/floor/beach/coastwater/Initialize()
+/turf/simulated/floor/beach/coastwater/Initialize(mapload)
 	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 

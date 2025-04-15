@@ -167,7 +167,7 @@
 	for(var/org in organ_data)
 		var/obj/item/organ/I = M.internal_organs_by_name[org]
 
-		 //Who knows? Missing lungs maybe on synths, etc.
+		//Who knows? Missing lungs maybe on synths, etc.
 		if(!I)
 			continue
 

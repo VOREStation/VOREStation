@@ -40,7 +40,7 @@
 /turf/simulated/wall/solidrock/Initialize(mapload)
 	. = ..(mapload, "bedrock")
 
-/turf/simulated/wall/solidrock/Initialize()
+/turf/simulated/wall/solidrock/Initialize(mapload)
 	. = ..()
 	update_icon(1)
 

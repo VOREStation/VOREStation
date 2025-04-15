@@ -50,13 +50,10 @@
 		set_light(0)
 
 
-/obj/machinery/power/shield_generator/Initialize()
+/obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
 	if(!wires)
 		wires = new(src)
-	// TODO - Remove this bit once machines are converted to Initialize
-	if(ispath(circuit))
-		circuit = new circuit(src)
 	default_apply_parts()
 	connect_to_network()
 
@@ -654,7 +651,7 @@
 		var/area/TA = null // Variable for area checking. Defining it here so memory does not have to be allocated repeatedly.
 		for(var/turf/T in trange(field_radius, gen_turf))
 			// Don't expand to space or on shuttle areas.
-			if(istype(T, /turf/space) || istype(T, /turf/simulated/open))
+			if(isopenturf(T))
 				continue
 
 			// Find adjacent space/shuttle tiles and cover them. Shuttles won't be blocked if shield diffuser is mapped in and turned on.
@@ -695,12 +692,12 @@
 
 
 // Starts fully charged
-/obj/machinery/power/shield_generator/charged/Initialize()
+/obj/machinery/power/shield_generator/charged/Initialize(mapload)
 	. = ..()
 	current_energy = max_energy
 
 // Starts with the best SMES coil and capacitor (and fully charged)
-/obj/machinery/power/shield_generator/upgraded/Initialize()
+/obj/machinery/power/shield_generator/upgraded/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/smes_coil/sc in component_parts)
 		component_parts -= sc

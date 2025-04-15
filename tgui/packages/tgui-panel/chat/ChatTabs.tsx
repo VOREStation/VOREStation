@@ -10,20 +10,10 @@ import { Box, Button, Stack, Tabs } from 'tgui-core/components';
 import { openChatSettings } from '../settings/actions';
 import { addChatPage, changeChatPage } from './actions';
 import { selectChatPages, selectCurrentChatPage } from './selectors';
+import type { Page } from './types';
 
-const UnreadCountWidget = ({ value }) => (
-  <Box
-    style={{
-      fontSize: '0.7em',
-      borderRadius: '0.25em',
-      width: '1.7em',
-      lineHeight: '1.55em',
-      backgroundColor: 'crimson',
-      color: '#fff',
-    }}
-  >
-    {Math.min(value, 99)}
-  </Box>
+const UnreadCountWidget = ({ value }: { value: number }) => (
+  <Box className="UnreadCount">{Math.min(value, 99)}</Box>
 );
 
 export const ChatTabs = (props) => {
@@ -34,16 +24,10 @@ export const ChatTabs = (props) => {
     <Stack align="center">
       <Stack.Item>
         <Tabs textAlign="center">
-          {pages.map((page) => (
+          {pages.map((page: Page) => (
             <Tabs.Tab
               key={page.id}
               selected={page === currentPage}
-              rightSlot={
-                !page.hideUnreadCount &&
-                page.unreadCount > 0 && (
-                  <UnreadCountWidget value={page.unreadCount} />
-                )
-              }
               onClick={() =>
                 dispatch(
                   changeChatPage({
@@ -53,6 +37,9 @@ export const ChatTabs = (props) => {
               }
             >
               {page.name}
+              {!page.hideUnreadCount && page.unreadCount > 0 && (
+                <UnreadCountWidget value={page.unreadCount} />
+              )}
             </Tabs.Tab>
           ))}
         </Tabs>

@@ -62,6 +62,10 @@
 /datum/config_entry/number/footstep_volume
 	default = 0
 
+/// In future see about making a function to adjust volume serverside in config.txt, easy to do with reenable values. - Jack
+/datum/config_entry/number/vorefootstep_volume
+	default = 75
+
 /datum/config_entry/flag/use_loyalty_implants
 
 /datum/config_entry/flag/show_human_death_message

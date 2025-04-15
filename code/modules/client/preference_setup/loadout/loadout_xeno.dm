@@ -841,3 +841,23 @@
 /datum/gear/suit/taur/colorable_skirt/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/zaddat
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_ZADDAT
+
+/datum/gear/suit/zaddat/security
+	display_name = "Zaddat security shroud"
+	description = "A zaddat shroud with a layer of armor, for security officers"
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_ZADDAT
+	path = /obj/item/clothing/suit/space/void/zaddat/security
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_DETECTIVE,JOB_WARDEN,JOB_SECURITY_OFFICER)
+
+/datum/gear/suit/zaddat/engineer
+	display_name = "Zaddat engineer shroud"
+	description =  "A zaddat shroud with a extra layer of rad-shielding, for engineers"
+	path = /obj/item/clothing/suit/space/void/zaddat/engineer
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_ZADDAT
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)

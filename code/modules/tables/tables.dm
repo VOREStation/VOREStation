@@ -59,7 +59,7 @@ var/list/table_icon_cache = list()
 /obj/structure/table/blob_act()
 	take_damage(100)
 
-/obj/structure/table/Initialize()
+/obj/structure/table/Initialize(mapload)
 	. = ..()
 
 	// One table per turf.
@@ -109,7 +109,7 @@ var/list/table_icon_cache = list()
 
 	if(carpeted && W.has_tool_quality(TOOL_CROWBAR))
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " removes the carpet from \the [src]."),
-		                              span_notice("You remove the carpet from \the [src]."))
+								span_notice("You remove the carpet from \the [src]."))
 		new carpeted_type(loc)
 		carpeted = 0
 		update_icon()
@@ -119,7 +119,7 @@ var/list/table_icon_cache = list()
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \the [C] to \the [src]."),
-			                              span_notice("You add \the [C] to \the [src]."))
+								span_notice("You add \the [C] to \the [src]."))
 			carpeted = 1
 			carpeted_type = W.type
 			update_icon()
@@ -150,7 +150,7 @@ var/list/table_icon_cache = list()
 			if(!do_after(user, 20 * F.toolspeed) || !F.remove_fuel(1, user))
 				return
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."),
-			                              span_notice("You repair some damage to \the [src]."))
+									span_notice("You repair some damage to \the [src]."))
 			health = max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
 
@@ -259,14 +259,14 @@ var/list/table_icon_cache = list()
 	if(manipulating) return M
 	manipulating = 1
 	user.visible_message(span_infoplain(span_bold("\The [user]") + " begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place."),
-	                              span_notice("You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place."))
+								span_notice("You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place."))
 	if(sound)
 		playsound(src, sound, 50, 1)
 	if(!do_after(user, delay))
 		manipulating = 0
 		return M
 	user.visible_message(span_infoplain(span_bold("\The [user]") + " removes the [M.display_name] [what] from \the [src]."),
-	                              span_notice("You remove the [M.display_name] [what] from \the [src]."))
+								span_notice("You remove the [M.display_name] [what] from \the [src]."))
 	new M.stack_type(src.loc)
 	manipulating = 0
 	return null
@@ -281,13 +281,13 @@ var/list/table_icon_cache = list()
 	if(manipulating) return
 	manipulating = 1
 	user.visible_message(span_infoplain(span_bold("\The [user]") + " begins dismantling \the [src]."),
-	                              span_notice("You begin dismantling \the [src]."))
+							span_notice("You begin dismantling \the [src]."))
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
 	user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."),
-	                              span_notice("You dismantle \the [src]."))
+							span_notice("You dismantle \the [src]."))
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)
 	return
@@ -296,8 +296,8 @@ var/list/table_icon_cache = list()
 // Used for !fun! things such as embedding shards in the faces of tableslammed people.
 
 // The repeated
-//     S = [x].place_shard(loc)
-//     if(S) shards += S
+//	S = [x].place_shard(loc)
+//	if(S) shards += S
 // is to avoid filling the list with nulls, as place_shard won't place shards of certain materials (holo-wood, holo-steel)
 
 /obj/structure/table/proc/break_to_parts(full_return = 0)
@@ -445,10 +445,10 @@ var/list/table_icon_cache = list()
 #define CORNER_CLOCKWISE 4
 
 /*
-  turn() is weird:
-    turn(icon, angle) turns icon by angle degrees clockwise
-    turn(matrix, angle) turns matrix by angle degrees clockwise
-    turn(dir, angle) turns dir by angle degrees counter-clockwise
+	turn() is weird:
+		turn(icon, angle) turns icon by angle degrees clockwise
+		turn(matrix, angle) turns matrix by angle degrees clockwise
+		turn(dir, angle) turns dir by angle degrees counter-clockwise
 */
 
 /proc/dirs_to_corner_states(list/dirs)

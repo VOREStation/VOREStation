@@ -49,7 +49,7 @@ var/list/_nymph_default_emotes = list(
 /mob/living/carbon/alien/diona/get_available_emotes()
 	return global._nymph_default_emotes.Copy()
 
-/mob/living/carbon/alien/diona/Initialize()
+/mob/living/carbon/alien/diona/Initialize(mapload)
 	. = ..()
 	species = GLOB.all_species[SPECIES_DIONA]
 	add_language(LANGUAGE_ROOTGLOBAL)

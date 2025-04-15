@@ -149,17 +149,23 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/crisis/dullahan/crisisalt
 	name = "Dullahan v2"
 	sprite_icon_state = "dullahanmed_alt"
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/medical/dullahan/crisisalt2
 	name = "Dullahan medical v3"
 	sprite_decals = list("decals")
 	sprite_icon = 'icons/mob/robot/dullahan/v3/medical.dmi'
 	sprite_icon_state = "dullahanmedical"
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 64
+	pixel_x = -16
 
 // Surgeon
 
@@ -433,6 +439,7 @@
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
+	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/crisis/cat
 	name = "Cat"

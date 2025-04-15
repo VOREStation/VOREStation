@@ -28,15 +28,10 @@
 				H.apply_damage(agony_to_apply, HALLOSS)
 
 	..()
-/obj/item/melee/baton/slime/loaded/Initialize()
+/obj/item/melee/baton/slime/loaded/Initialize(mapload)
 	bcell = new/obj/item/cell/device(src)
 	update_icon()
 	return ..()
-
-// Research borg's version
-/obj/item/melee/baton/slime/robot
-	hitcost = 200
-	use_external_power = TRUE
 
 // Xeno stun gun + projectile
 /obj/item/gun/energy/taser/xeno
@@ -54,10 +49,6 @@
 	ineffective at stunning non-slimy lifeforms such as humanoids."
 	recoil_mode = 0
 
-/obj/item/gun/energy/taser/xeno/robot // Borg version
-	self_recharge = 1
-	use_external_power = 1
-	recharge_time = 3
 /*
 VORESTATION REMOVAL
 /obj/item/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.

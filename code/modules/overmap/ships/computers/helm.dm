@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_screen = "adv_helm_screen"
 	light_color = "#70ffa0"
 
-/obj/machinery/computer/ship/helm/Initialize()
+/obj/machinery/computer/ship/helm/Initialize(mapload)
 	. = ..()
 	get_known_sectors()
 
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	circuit = /obj/item/circuitboard/nav
 	var/datum/tgui_module/ship/nav/nav_tgui
 
-/obj/machinery/computer/ship/navigation/Initialize()
+/obj/machinery/computer/ship/navigation/Initialize(mapload)
 	. = ..()
 	nav_tgui = new(src)
 

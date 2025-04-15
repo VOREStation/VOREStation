@@ -17,7 +17,7 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
 
-/obj/machinery/mineral/processing_unit_console/Initialize()
+/obj/machinery/mineral/processing_unit_console/Initialize(mapload)
 	. = ..()
 	src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5, src)
 	if (machine)
@@ -187,7 +187,7 @@
 		ORE_VERDANTIUM = 60,
 		ORE_RUTILE = 40) //VOREStation Add
 
-/obj/machinery/mineral/processing_unit/Initialize()
+/obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
 	for(var/ore in GLOB.ore_data)
 		var/ore/OD = GLOB.ore_data[ore]

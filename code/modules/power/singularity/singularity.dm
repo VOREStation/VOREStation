@@ -31,12 +31,11 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	var/chained = 0//Adminbus chain-grab
 
-/obj/singularity/New(loc, var/starting_energy = 50)
+/obj/singularity/Initialize(mapload, var/starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
+	. = ..()
 	energy = starting_energy
-
-	..()
 	START_PROCESSING(SSobj, src)
 	for(var/obj/machinery/power/singularity_beacon/singubeacon in GLOB.machines)
 		if(singubeacon.active)
@@ -481,10 +480,10 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	move_self = 1
 
 /obj/singularity/singularity_act(S, size)
-    if(current_size <= size)
-        var/gain = (energy/2)
-        var/dist = max((current_size - 2), 1)
-        explosion(src.loc,(dist),(dist*2),(dist*4))
-        spawn(0)
-            qdel(src)
-        return gain
+	if(current_size <= size)
+		var/gain = (energy/2)
+		var/dist = max((current_size - 2), 1)
+		explosion(src.loc,(dist),(dist*2),(dist*4))
+		spawn(0)
+			qdel(src)
+		return gain

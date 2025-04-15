@@ -147,12 +147,12 @@
 		child_om_marker.set_light(0)
 		movement_cooldown = 0
 
-/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	to_chat(src, span_warning("You can't do that."))	//The dog can move back and forth between the overmap.
 	return															//If it can do normal vore mechanics, it can carry players to the OM,
 																	//and release them there. I think that's probably a bad idea.
 
-/mob/living/simple_mob/vore/overmap/stardog/Initialize()
+/mob/living/simple_mob/vore/overmap/stardog/Initialize(mapload)
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")
 
@@ -429,7 +429,7 @@
 	icon_state = "furX"
 	tree_chance = 0
 
-/turf/simulated/floor/outdoors/fur/Initialize()
+/turf/simulated/floor/outdoors/fur/Initialize(mapload)
 	. = ..()
 	if(tree_chance && prob(tree_chance) && !check_density())
 		var/obj/structure/flora/tree/tree = new tree_type(src)
@@ -1102,14 +1102,14 @@
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "transition"
 
-/obj/effect/landmark/stardog/Initialize()
+/obj/effect/landmark/stardog/Initialize(mapload)
 	. = ..()
 	var/area/a = get_area(src)
 	name = a.name
 
 /obj/effect/landmark/area_gatherer
 	name = "stardog area gatherer"
-/obj/effect/landmark/area_gatherer/Initialize()
+/obj/effect/landmark/area_gatherer/Initialize(mapload)
 	. = ..()
 	LateInitialize()
 
@@ -1246,7 +1246,7 @@
 	if(L.client)
 		to_chat(L, span_notice("A hot breath rushes up from under your feet, before the air rushes back down into the dog's nose as the dog sniffs you! SNEEF SNEEF!!!"))
 
-/obj/effect/dog_eye/Initialize()
+/obj/effect/dog_eye/Initialize(mapload)
 	. = ..()
 	var/area/redgate/stardog/eyes/e = get_area(src)
 	if(istype(e,/area/redgate/stardog/eyes))
@@ -1270,7 +1270,7 @@
 	var/check_keys = FALSE
 	var/check_prefs = TRUE
 
-/obj/effect/dog_teleporter/Initialize()
+/obj/effect/dog_teleporter/Initialize(mapload)
 	. = ..()
 	dog_teleporters |= src
 	do_setup()
@@ -1632,7 +1632,7 @@
 		)
 	var/faction = FACTION_MACROBACTERIA
 
-/obj/structure/auto_flesh_door/Initialize()
+/obj/structure/auto_flesh_door/Initialize(mapload)
 	. = ..()
 	countdown = rand(50,250)
 	START_PROCESSING(SSobj, src)

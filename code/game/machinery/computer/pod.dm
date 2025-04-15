@@ -12,7 +12,7 @@
 	var/time = 30.0
 	var/title = "Mass Driver Controls"
 
-/obj/machinery/computer/pod/Initialize()
+/obj/machinery/computer/pod/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

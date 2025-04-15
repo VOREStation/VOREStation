@@ -8,7 +8,8 @@
 	anchored = TRUE
 	var/lastuser = null
 
-/obj/machinery/scanner/New()
+/obj/machinery/scanner/Initialize(mapload)
+	. = ..()
 	if(!outputdir)
 		switch(dir)
 			if(1)
@@ -60,7 +61,7 @@
 	qdel(cquery)
 	*/
 	var/text = "\
-	" span_huge("center>Report</center>") + "<br>\
+	" span_huge("<center>Report</center>") + "<br>\
 	" + span_bold(span_underline("Name")) + " : [mname]\
 	" + span_bold(span_underline("Age")) + " : [age]\
 	" + span_bold(span_underline("Sex")) + " : [gender]\

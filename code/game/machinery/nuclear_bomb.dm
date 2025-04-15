@@ -22,7 +22,7 @@ var/bomb_set
 	var/safety_wire
 	var/timing_wire
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
-	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
+	  					// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = USE_POWER_OFF
 
 /obj/machinery/nuclearbomb/Initialize(mapload)
@@ -421,7 +421,7 @@ var/bomb_set
 		var/obj/D = new /obj/item/disk/nuclear(pick(GLOB.blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-	..()
+	. = ..()
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

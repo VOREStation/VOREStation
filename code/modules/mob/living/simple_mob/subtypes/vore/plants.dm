@@ -41,6 +41,8 @@
 /mob/living/simple_mob/vore/mantrap/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "trap"
@@ -72,16 +74,15 @@
 /mob/living/simple_mob/vore/mantrap/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
+	if(src.stat)
+		return
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L in eaten_mobs)
 			return
 		if(L.devourable && L.allowmobvore && (src.vore_fullness < src.vore_capacity))
-			perform_the_nom(src,L,src,src.vore_selected,1)
-			L |= eaten_mobs
-			return
-		else
-			return
+			perform_the_nom(src,L,src,src.vore_selected,-1)
+			eaten_mobs += L
 
 
 ////////////////////////////PITCHER PLANT////////////////////////////////////////////////
@@ -132,6 +133,8 @@
 
 /mob/living/simple_mob/vore/pitcher/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	. = ..()
 	var/obj/belly/B = vore_selected

@@ -18,8 +18,8 @@
 	var/dpdir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
-/obj/structure/disposalconstruct/New(var/newturf, var/newtype, var/newdir, var/flipped, var/newsubtype)
-	..(newturf)
+/obj/structure/disposalconstruct/Initialize(mapload, var/newtype, var/newdir, var/flipped, var/newsubtype)
+	. = ..()
 	ptype = newtype
 	dir = newdir
 	// Disposals handle "bent"/"corner" strangely, handle this specially.
@@ -71,7 +71,7 @@
 		if(DISPOSAL_PIPE_TRUNK)
 			base_state = "pipe-t"
 			dpdir = dir
-		 // disposal bin has only one dir, thus we don't need to care about setting it
+		// disposal bin has only one dir, thus we don't need to care about setting it
 		if(DISPOSAL_PIPE_BIN)
 			if(anchored)
 				base_state = "disposal"

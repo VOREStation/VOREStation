@@ -23,7 +23,7 @@
 /obj/screen/alert/starving/synth
 	name = "Low Power"
 	desc = "Your battery is very low! Low power mode makes all movements slower."
-	
+
 /obj/screen/alert/xenochimera/reconstitution
 	name = "Reconstructing Form"
 	desc = "You're still rebuilding your body! Click the alert to find out how long you have left."
@@ -38,7 +38,7 @@
 		else if(H.revive_ready == REVIVING_DONE)
 			to_chat(usr, "You should have a notification + alert for this! Bug report that this is still here!")
 */
-			
+
 /obj/screen/alert/xenochimera/readytohatch
 	name = "Ready to Hatch"
 	desc = "You're done reconstructing your cells! Click me to Hatch!"

@@ -23,6 +23,7 @@ var/global/list/image/splatter_cache=list()
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
+	var/delete_me = FALSE
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -37,8 +38,10 @@ var/global/list/image/splatter_cache=list()
 		amount = 0
 	..(ignore=1)
 
-/obj/effect/decal/cleanable/blood/New()
-	..()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
+	. = ..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -48,7 +51,10 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
+					if(!(B.flags & ATOM_INITIALIZED))
+						B.delete_me = TRUE
+					else
+						qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
 /obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
@@ -81,8 +87,8 @@ var/global/list/image/splatter_cache=list()
 	if(amount < 1)
 		return
 
-	var/obj/item/organ/external/l_foot = perp.get_organ("l_foot")
-	var/obj/item/organ/external/r_foot = perp.get_organ("r_foot")
+	var/obj/item/organ/external/l_foot = perp.get_organ(BP_L_FOOT)
+	var/obj/item/organ/external/r_foot = perp.get_organ(BP_R_FOOT)
 	var/hasfeet = 1
 	if((!l_foot || l_foot.is_stump()) && (!r_foot || r_foot.is_stump()))
 		hasfeet = 0
@@ -151,8 +157,8 @@ var/global/list/image/splatter_cache=list()
 				user.ContractDisease(D)
 
 /obj/effect/decal/cleanable/blood/splatter
-        random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
-        amount = 2
+		random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+		amount = 2
 
 /obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
@@ -164,8 +170,8 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/list/drips = list()
 
-/obj/effect/decal/cleanable/blood/drip/New()
-	..()
+/obj/effect/decal/cleanable/blood/drip/Initialize(mapload)
+	. = ..()
 	drips |= icon_state
 
 /obj/effect/decal/cleanable/blood/writing
@@ -176,8 +182,8 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/New()
-	..()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
+	. = ..()
 	if(random_icon_states.len)
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
 			random_icon_states.Remove(W.icon_state)
@@ -259,12 +265,12 @@ var/global/list/image/splatter_cache=list()
 	var/list/datum/disease/viruses = list()
 	var/dry = 0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/mapped/Initialize(mapload)
 	. = ..()
 	VARSET_IN(src, dry, TRUE, DRYING_TIME * 2)
 
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
-/obj/effect/decal/cleanable/mucus/mapped/Initialize()
+/obj/effect/decal/cleanable/mucus/mapped/Initialize(mapload)
 	. = ..()
 	viruses |= new /datum/disease/advance
 

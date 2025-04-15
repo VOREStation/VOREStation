@@ -12,7 +12,12 @@
  * SOFTWARE.
  */
 
-import React, { Component, createRef, ReactNode, RefObject } from 'react';
+import React, {
+  Component,
+  createRef,
+  type ReactNode,
+  type RefObject,
+} from 'react';
 import { isArrow, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
 
@@ -51,7 +56,7 @@ export interface InteractiveProps {
 }
 
 export class Interactive extends Component<InteractiveProps> {
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement | null>;
 
   constructor(props: InteractiveProps) {
     super(props);

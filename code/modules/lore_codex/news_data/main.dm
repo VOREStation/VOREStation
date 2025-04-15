@@ -754,12 +754,12 @@
 	name = "07/07/63 - Vir Election Results"
 	data = "The results of the 2563 Vir Gubernatorial Elections are as follows:\
 	<br>\
-    Governor of Vir: Lusia Hainirsdottir (Shadow Coalition)\
-    <br>\
-    Vir Colonial Assembly Representative: Vani Jee (Icarus Front)\
-    <br>\
-    Vir Colonial Assembly Representative: Selma Jorg (Shadow Coalition)\
-    <br>\
+	Governor of Vir: Lusia Hainirsdottir (Shadow Coalition)\
+	<br>\
+	Vir Colonial Assembly Representative: Vani Jee (Icarus Front)\
+	<br>\
+	Vir Colonial Assembly Representative: Selma Jorg (Shadow Coalition)\
+	<br>\
 	Other candidates ranked: Sao (4), Zarshir (5), Keldow (6), Singh (7), Moravec (8), Phaedrus (9), Lye (10), Savik (11), Square (12), Wekstrom (13)\
 	<br><br>\
 	Voter turnout: 30,928,287 (63%)\

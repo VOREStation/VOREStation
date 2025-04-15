@@ -114,7 +114,7 @@
 	var/unfoldable = FALSE
 
 
-/obj/structure/picnic_blanket_deployed/for_mapping_use/Initialize()
+/obj/structure/picnic_blanket_deployed/for_mapping_use/Initialize(mapload)
 	. = ..()
 	unfold()
 	if(unfoldable)

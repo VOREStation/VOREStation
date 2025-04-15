@@ -26,7 +26,7 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/simple/Initialize()
+/obj/machinery/atmospherics/pipe/simple/Initialize(mapload)
 	. = ..()
 
 	// Pipe colors and icon states are handled by an image cache - so color and icon should

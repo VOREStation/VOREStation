@@ -1,17 +1,9 @@
-/turf/New(loc, ..., is_turfchange=FALSE)
-	. = ..(args)
-
 /turf/simulated
 	var/datum/sunlight_handler/shandler
 	var/shandler_noinit = FALSE
 
-/turf/simulated/New(loc, ..., is_turfchange=FALSE) //This is so fucking awful have mercy on my soul for writing this
-	if(is_turfchange)
-		shandler_noinit = TRUE
-	. = ..(args)
-
 /turf/simulated/Initialize(mapload)
-	. = ..(args)
+	. = ..()
 	if(mapload)
 		return INITIALIZE_HINT_LATELOAD
 
@@ -19,7 +11,7 @@
 	if(((SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) || SSlighting.get_pshandler_z(z)) && has_dynamic_lighting()) //Only for planet turfs or fakesuns that specify they want to use this system
 		if(is_outdoors())
 			var/turf/T = GetAbove(src)
-			if(T && !istype(T,/turf/simulated/open))
+			if(T && !isopenturf(T) && (SSplanets.z_to_planet.len >= T.z && SSplanets.z_to_planet[T.z]))
 				make_indoors()
 		if(!shandler_noinit)
 			shandler = new(src)

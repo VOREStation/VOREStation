@@ -7,7 +7,7 @@
 	dynamic_lighting = 0
 
 //Pick random sprite states and generate damage decals randomly
-/turf/simulated/floor/atoll/Initialize()
+/turf/simulated/floor/atoll/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,5)]"
 	if(prob(5))
@@ -20,7 +20,7 @@
 	icon_state = "wall"
 	density = 1
 
-/turf/simulated/floor/atoll/vertical/Initialize()
+/turf/simulated/floor/atoll/vertical/Initialize(mapload)
 	. = ..()
 	icon_state = "wall"
 
@@ -41,7 +41,7 @@
 	add_overlay(water_sprite)
 
 //Spawn animated whitecaps around
-/turf/simulated/floor/water/atoll/Initialize()
+/turf/simulated/floor/water/atoll/Initialize(mapload)
 	. = ..()
 	if(prob(25))
 		new /obj/effect/decal/whitecaps(src)

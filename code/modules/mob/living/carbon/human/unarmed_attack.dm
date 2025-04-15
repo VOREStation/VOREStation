@@ -30,11 +30,11 @@ var/global/list/sparring_attack_cache = list()
 		return FALSE
 
 	// Check if they have a functioning hand.
-	var/obj/item/organ/external/E = user.organs_by_name["l_hand"]
+	var/obj/item/organ/external/E = user.organs_by_name[BP_L_HAND]
 	if(E && !E.is_stump())
 		return TRUE
 
-	E = user.organs_by_name["r_hand"]
+	E = user.organs_by_name[BP_R_HAND]
 	if(E && !E.is_stump())
 		return TRUE
 
@@ -79,7 +79,7 @@ var/global/list/sparring_attack_cache = list()
 			if(BP_GROIN)
 				target.visible_message(span_warning("[target] looks like [TT.he] [TT.is] in pain!"), span_warning("[(target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!"]")) // I see no easy way to fix this for non-organic or neuter characters.
 				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3, blocked = armour)
-			if("l_leg", "l_foot", "r_leg", "r_foot")
+			if(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT)
 				if(!target.lying)
 					target.visible_message(span_warning("[target] gives way slightly."))
 					target.apply_effect(attack_damage*3, AGONY, armour)
@@ -199,14 +199,14 @@ var/global/list/sparring_attack_cache = list()
 	if(user.legcuffed || user.buckled)
 		return FALSE
 
-	if(!(zone in list("l_leg", "r_leg", "l_foot", "r_foot", BP_GROIN)))
+	if(!(zone in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_GROIN)))
 		return FALSE
 
-	var/obj/item/organ/external/E = user.organs_by_name["l_foot"]
+	var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]
 	if(E && !E.is_stump())
 		return TRUE
 
-	E = user.organs_by_name["r_foot"]
+	E = user.organs_by_name[BP_R_FOOT]
 	if(E && !E.is_stump())
 		return TRUE
 
@@ -247,14 +247,14 @@ var/global/list/sparring_attack_cache = list()
 	if(!istype(target))
 		return FALSE
 
-	if (!user.lying && (target.lying || (zone in list("l_foot", "r_foot"))))
+	if (!user.lying && (target.lying || (zone in list(BP_L_FOOT, BP_R_FOOT))))
 		if(target.grabbed_by == user && target.lying)
 			return FALSE
-		var/obj/item/organ/external/E = user.organs_by_name["l_foot"]
+		var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]
 		if(E && !E.is_stump())
 			return TRUE
 
-		E = user.organs_by_name["r_foot"]
+		E = user.organs_by_name[BP_R_FOOT]
 		if(E && !E.is_stump())
 			return TRUE
 

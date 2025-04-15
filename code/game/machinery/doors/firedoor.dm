@@ -49,7 +49,7 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
 	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)

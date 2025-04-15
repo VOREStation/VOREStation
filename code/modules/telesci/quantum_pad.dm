@@ -21,7 +21,7 @@
 	var/map_pad_id = "" as text //what's my name
 	var/map_pad_link_id = "" as text //who's my friend
 
-/obj/machinery/power/quantumpad/Initialize()
+/obj/machinery/power/quantumpad/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	connect_to_network()

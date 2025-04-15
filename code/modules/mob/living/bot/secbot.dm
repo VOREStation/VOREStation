@@ -250,7 +250,7 @@
 			target = M
 			awaiting_surrender = 0
 			say("Level [threat] infraction alert!")
-			custom_emote(1, "points at [M.name]!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "points at [M.name]!")
 			playsound(src, pick(threat_found_sounds), 50)
 			return
 

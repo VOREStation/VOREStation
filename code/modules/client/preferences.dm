@@ -292,7 +292,7 @@ var/list/preferences_datums = list()
 			to_chat(usr,span_notice("Character [player_setup?.preferences?.real_name] saved!"))
 		save_preferences()
 	else if(href_list["reload"])
-		load_preferences()
+		load_preferences(TRUE)
 		load_character()
 		attempt_vr(client.prefs_vr,"load_vore","")
 		sanitize_preferences()
@@ -314,8 +314,7 @@ var/list/preferences_datums = list()
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
-		if(GLOB.mannequins[client_ckey])
-			qdel_null(GLOB.mannequins[client_ckey])
+		//Mannequin removal code needed here...For the far future once harddels are solved.
 		return 1
 	else
 		return 0
@@ -391,7 +390,7 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
-	load_preferences()
+	load_preferences(TRUE)
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
@@ -532,6 +531,9 @@ var/list/preferences_datums = list()
 
 	var/datum/preference/color/wing_color3 = GLOB.preference_entries[/datum/preference/color/human/wing_color3]
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
+
+	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
+	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
 
 	character.set_gender(biological_gender)
 

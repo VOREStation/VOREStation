@@ -47,7 +47,7 @@
 	var/obj/effect/overlay/vis/vector
 	render_map = TRUE
 
-/obj/effect/overmap/visitable/ship/Initialize()
+/obj/effect/overmap/visitable/ship/Initialize(mapload)
 	. = ..()
 	min_speed = round(min_speed, SHIP_MOVE_RESOLUTION)
 	max_speed = round(max_speed, SHIP_MOVE_RESOLUTION)

@@ -116,7 +116,7 @@
 					for(var/obj/item/material/shard/S in L)
 						if(prob(50))
 							M.visible_message(span_danger("\The [S] slices [M]'s face messily!"),
-							                   span_danger("\The [S] slices your face messily!"))
+												span_danger("\The [S] slices your face messily!"))
 							M.apply_damage(10, def_zone = BP_HEAD)
 							if(prob(2))
 								M.embed(S, def_zone = BP_HEAD)
@@ -158,6 +158,7 @@
 
 // Placing stuff on tables
 	if(user.unEquip(W, 0, src.loc) && user.client?.prefs?.read_preference(/datum/preference/toggle/precision_placement))
+		W.do_drop_animation(user)
 		auto_align(W, click_parameters)
 		return 1
 

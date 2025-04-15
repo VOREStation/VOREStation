@@ -22,7 +22,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/Destroy()
 	QDEL_NULL(shields)
-	..()
+	. = ..()
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/attach(obj/mecha/M as obj)
 	. = ..()
@@ -74,7 +74,7 @@
 
 	var/obj/mecha/my_mech = null
 
-/obj/item/shield_projector/rectangle/mecha/Initialize()
+/obj/item/shield_projector/rectangle/mecha/Initialize(mapload)
 	. = ..()
 	my_mech = loc
 	RegisterSignal(my_mech, COMSIG_OBSERVER_MOVED, /obj/item/shield_projector/proc/update_shield_positions)
@@ -91,7 +91,7 @@
 /obj/item/shield_projector/rectangle/mecha/Destroy()
 	UnregisterSignal(my_mech, COMSIG_OBSERVER_MOVED)
 	my_mech = null
-	..()
+	. = ..()
 
 /obj/item/shield_projector/rectangle/mecha/create_shield()
 	. = ..()

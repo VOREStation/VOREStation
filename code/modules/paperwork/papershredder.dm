@@ -25,7 +25,7 @@
 		/obj/item/paper_bundle = 3,
 		)
 
-/obj/machinery/papershredder/Initialize()
+/obj/machinery/papershredder/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_icon()
