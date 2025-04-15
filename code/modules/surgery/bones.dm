@@ -99,7 +99,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!") , \
 		span_danger("Your hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!"))
-	user.balloon_alert_visible("slips, damaging the bone.", "your hand slips, damaging the bone")  - Balloon alert
+	user.balloon_alert_visible("slips, damaging the bone.", "your hand slips, damaging the bone")
 	affected.createwound(BRUISE, 5)
 
 ///////////////////////////////////////////////////////////////
