@@ -196,7 +196,7 @@
 	if(recipient_ref)
 		var/datum/mind/recipient = recipient_ref.resolve()
 		if(recipient && recipient.current.dna.unique_enzymes != user.dna.unique_enzymes)
-			balloon_alert(user, "You can't open somebody's mail! That's <em>illegal</em>")
+			balloon_alert(user, "you can't open somebody's mail! That's <em>illegal</em>")
 			return FALSE
 
 	if(opening)
@@ -378,16 +378,16 @@
 	if(istype(A, /obj/item/mail))
 		var/obj/item/mail/saved_mail = A
 		if(saved_mail.scanned)
-			balloon_alert(user, span_danger("already scanned!"))
+			balloon_alert(user, "already scanned!")
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		balloon_alert(user, span_notice("added to database"))
+		balloon_alert(user, "added to database")
 		playsound(loc, 'sound/items/mail/mailscanned.ogg', 50, TRUE)
 		saved = A
 		return
 	if(isliving(A))
 		if(!saved)
-			balloon_alert(user, span_danger("no logged mail!"))
+			balloon_alert(user, "no logged mail!")
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
