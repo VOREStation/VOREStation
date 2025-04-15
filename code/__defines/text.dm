@@ -21,4 +21,8 @@
 
 #define MAPTEXT(text) {"<span class='maptext'>[##text]</span>"}
 
-#define WXH_TO_HEIGHT(measurem) text2num(copytext(x, findtextEx(x, "x") + 1))
+#define WXH_TO_HEIGHT(measurement, return_var) \
+    do { \
+        var/_measurement = measurement; \
+        return_var = text2num(copytext(_measurement, findtextEx(_measurement, "x") + 1)); \
+    } while(FALSE);
