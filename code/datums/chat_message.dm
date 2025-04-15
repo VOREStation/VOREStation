@@ -13,7 +13,6 @@
 
 #define CHAT_MESSAGE_MOB			1
 #define CHAT_MESSAGE_OBJ			2
-#define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
 
 #define CHAT_RUNE_EMOTE				0x1
 #define CHAT_RUNE_RADIO				0x2
@@ -486,7 +485,6 @@ var/list/runechat_image_cache = list()
 
 #undef CHAT_MESSAGE_MOB
 #undef CHAT_MESSAGE_OBJ
-#undef WXH_TO_HEIGHT
 
 #undef CHAT_RUNE_EMOTE
 #undef CHAT_RUNE_RADIO
