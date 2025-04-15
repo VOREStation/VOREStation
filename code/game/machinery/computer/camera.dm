@@ -15,7 +15,7 @@
 	var/datum/tgui_module/camera/camera
 	var/camera_datum_type = /datum/tgui_module/camera
 
-/obj/machinery/computer/security/Initialize()
+/obj/machinery/computer/security/Initialize(mapload)
 	. = ..()
 	if(!LAZYLEN(network))
 		network = get_default_networks()
@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 
 	var/enabled = TRUE // on or off
 
-/obj/machinery/computer/security/telescreen/entertainment/Initialize()
+/obj/machinery/computer/security/telescreen/entertainment/Initialize(mapload)
 	GLOB.entertainment_screens += src
 
 	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")

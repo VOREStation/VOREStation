@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   occupied: BooleanLike;
@@ -31,6 +31,7 @@ export type occupant = {
   intOrgan: internalOrgan[];
   blind: BooleanLike;
   nearsighted: BooleanLike;
+  brokenspine: BooleanLike;
   livingPrey: number;
   humanPrey: number;
   objectPrey: number;

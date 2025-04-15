@@ -5,6 +5,7 @@
 	desc = "to paint your nails with. Or someone else's!"
 	icon = 'icons/obj/nailpolish_vr.dmi'
 	icon_state = "nailpolish"
+	w_class = ITEMSIZE_SMALL
 	var/colour = "#FFFFFF"
 	var/image/top_underlay
 	var/image/color_underlay
@@ -12,7 +13,7 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/nailpolish/Initialize()
+/obj/item/nailpolish/Initialize(mapload)
 	. = ..()
 	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
 	top_underlay = image(icon, "top")

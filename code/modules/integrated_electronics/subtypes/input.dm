@@ -270,6 +270,8 @@
 	for(var/atom/thing in nearby_things)
 		if(thing.type != desired_type)
 			continue
+		if(thing.is_incorporeal())
+			continue
 		valid_things.Add(thing)
 	if(valid_things.len)
 		O.data = WEAKREF(pick(valid_things))
@@ -282,11 +284,11 @@
 	complexity = 6
 	name = "advanced locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
-	that is standing in given radius of up to 7 meters"
+		that is standing in given radius of up to 7 meters"
 	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire. This means that it will \
-	give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
-	 item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
-	random. The second pin is a radius."
+		give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
+		item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
+		random. The second pin is a radius."
 	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
 	outputs = list("located ref")
 	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)
@@ -313,11 +315,15 @@
 			var/desired_type = A.type
 			if(desired_type)
 				for(var/atom/thing in nearby_things)
+					if(thing.is_incorporeal())
+						continue
 					if(thing.type == desired_type)
 						valid_things.Add(thing)
 	else if(istext(I.data))
 		var/DT = I.data
 		for(var/atom/thing in nearby_things)
+			if(thing.is_incorporeal())
+				continue
 			if(findtext(addtext(thing.name," ",thing.desc), DT, 1, 0) )
 				valid_things.Add(thing)
 	if(valid_things.len)
@@ -355,7 +361,7 @@
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/integrated_circuit/input/signaler/Initialize()
+/obj/item/integrated_circuit/input/signaler/Initialize(mapload)
 	. = ..()
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
@@ -449,8 +455,8 @@
 		return can_telecomm(src,node)
 	return 0
 
-/obj/item/integrated_circuit/input/EPv2/New()
-	..()
+/obj/item/integrated_circuit/input/EPv2/Initialize(mapload)
+	. = ..()
 	exonet = new(src)
 	exonet.make_address("EPv2_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
@@ -526,6 +532,7 @@
 	complexity = 8
 	inputs = list()
 	outputs = list(
+	"speaker ref",
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
@@ -533,9 +540,9 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
-/obj/item/integrated_circuit/input/microphone/New()
-	..()
-	listening_objects |= src
+/obj/item/integrated_circuit/input/microphone/Initialize(mapload)
+	. = ..()
+	listening_objects += src
 
 /obj/item/integrated_circuit/input/microphone/Destroy()
 	listening_objects -= src
@@ -551,8 +558,9 @@
 			// as a translation, when it is not.
 			if(S.speaking && !istype(S.speaking, /datum/language/common))
 				translated = TRUE
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+		set_pin_data(IC_OUTPUT , 1, WEAKREF(M))
+		set_pin_data(IC_OUTPUT, 2, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 3, msg)
 
 	push_data()
 	activate_pin(1)
@@ -570,6 +578,7 @@
 	complexity = 12
 	inputs = list()
 	outputs = list(
+	"speaker ref",
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
@@ -587,7 +596,7 @@
 		LANGUAGE_SIGN
 		)
 
-/obj/item/integrated_circuit/input/microphone/sign/Initialize()
+/obj/item/integrated_circuit/input/microphone/sign/Initialize(mapload)
 	. = ..()
 	for(var/lang in readable_langs)
 		var/datum/language/newlang = GLOB.all_languages[lang]
@@ -596,16 +605,14 @@
 /obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/M, list/message_pieces, verb)
 	var/msg = multilingual_to_message(message_pieces)
 
-	var/translated = FALSE
+	var/translated = TRUE
 	if(M && msg)
 		for(var/datum/multilingual_say_piece/S in message_pieces)
-			if(S.speaking)
-				if(!((S.speaking.flags & NONVERBAL) || (S.speaking.flags & SIGNLANG)))
-					translated = TRUE
-					msg = stars(msg)
-					break
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+			if(!((S.speaking.flags & NONVERBAL) || (S.speaking.flags & SIGNLANG))||S.speaking.name == LANGUAGE_ECHOSONG) //Ignore verbal languages
+				return
+		set_pin_data(IC_OUTPUT , 1, WEAKREF(M))
+		set_pin_data(IC_OUTPUT, 2, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 3, msg)
 
 	push_data()
 	if(!translated)
@@ -614,12 +621,11 @@
 		activate_pin(2)
 
 /obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
-	var/translated = FALSE
+	var/translated = TRUE
 	if(M && text)
 		if(speaking)
-			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
-				translated = TRUE
-				text = speaking.scramble(text, my_langs)
+			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG))||speaking.name == LANGUAGE_ECHOSONG)
+				return
 		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
 		set_pin_data(IC_OUTPUT, 2, text)
 

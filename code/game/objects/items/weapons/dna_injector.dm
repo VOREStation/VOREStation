@@ -20,7 +20,7 @@
 	var/has_radiation = TRUE
 	// Traitgenes edit end
 
-/obj/item/dnainjector/Initialize() // Traitgenes edit - Moved to init
+/obj/item/dnainjector/Initialize(mapload) // Traitgenes edit - Moved to init
 	if(datatype && block)
 		buf=new
 		buf.dna=new
@@ -71,16 +71,16 @@
 		L.apply_effect(rand(5,20), IRRADIATE, check_protection = 0)
 		L.apply_damage(max(2,L.getCloneLoss()), CLONE)
 
-	// Traitgenes edit begin - NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes edit begin - NO_DNA and Synthetics cannot be mutated
 	var/allow = TRUE
 	if(M.isSynthetic())
 		allow = FALSE
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!H.species || H.species.flags & NO_SCAN)
+		if(!H.species || H.species.flags & NO_DNA)
 			allow = FALSE
 	// Traitgenes edit end
-	if (!(NOCLONE in M.mutations) && allow) // prevents drained people from having their DNA changed, Traitgenes edit - NO_SCAN and Synthetics cannot be mutated
+	if (!(NOCLONE in M.mutations) && allow) // prevents drained people from having their DNA changed, Traitgenes edit - NO_DNA and Synthetics cannot be mutated
 		if(buf)
 			if (buf.types & DNA2_BUF_UI)
 				if (!block) //isolated block?
@@ -168,54 +168,54 @@
 	desc = "This injects the person with DNA."
 
 // Purely rando
-/obj/item/dnainjector/random/Initialize()
+/obj/item/dnainjector/random/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral + GLOB.dna_genes_bad), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_labeled/Initialize()
+/obj/item/dnainjector/random_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral + GLOB.dna_genes_bad), TRUE, TRUE)
 	. = ..()
 
 // Good/bad but also neutral genes mixed in, less OP selection of genes
-/obj/item/dnainjector/random_good/Initialize()
+/obj/item/dnainjector/random_good/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_good_labeled/Initialize()
+/obj/item/dnainjector/random_good_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_bad/Initialize()
+/obj/item/dnainjector/random_bad/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad + GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_bad_labeled/Initialize()
+/obj/item/dnainjector/random_bad_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad + GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
 // Purely good/bad genes, intended to be usually good rewards or punishments
-/obj/item/dnainjector/random_verygood/Initialize()
+/obj/item/dnainjector/random_verygood/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good), FALSE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verygood_labeled/Initialize()
+/obj/item/dnainjector/random_verygood_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good), TRUE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verybad/Initialize()
+/obj/item/dnainjector/random_verybad/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad), FALSE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verybad_labeled/Initialize()
+/obj/item/dnainjector/random_verybad_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad), TRUE, FALSE)
 	. = ..()
 
 // Random neutral traits
-/obj/item/dnainjector/random_neutral/Initialize()
+/obj/item/dnainjector/random_neutral/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_neutral_labeled/Initialize()
+/obj/item/dnainjector/random_neutral_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
@@ -224,7 +224,7 @@
 	var/trait_path
 	var/disabling = FALSE
 
-/obj/item/dnainjector/set_trait/Initialize()
+/obj/item/dnainjector/set_trait/Initialize(mapload)
 	var/G = get_gene_from_trait(trait_path)
 	if(trait_path && G)
 		pick_block( G, TRUE, FALSE, disabling)
@@ -237,7 +237,7 @@
 
 // Injectors for all original genes and some new ones
 /obj/item/dnainjector/set_trait/anxiety	// stutter
-	trait_path = /datum/trait/negative/disability_anxiety
+	trait_path = /datum/trait/neutral/disability_nervousness
 /obj/item/dnainjector/set_trait/anxiety/disable
 	disabling = TRUE
 
@@ -245,12 +245,12 @@
 	trait_path = /datum/trait/positive/superpower_noprints
 /obj/item/dnainjector/set_trait/noprints/disable
 	disabling = TRUE
-
+/* //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/tourettes // tour
 	trait_path = /datum/trait/negative/disability_tourettes
 /obj/item/dnainjector/set_trait/tourettes/disable
 	disabling = TRUE
-
+*/ //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/cough // cough
 	trait_path = /datum/trait/negative/disability_cough
 /obj/item/dnainjector/set_trait/cough/disable
@@ -290,12 +290,12 @@
 	trait_path = /datum/trait/neutral/coldadapt
 /obj/item/dnainjector/set_trait/coldadapt/disable
 	disabling = TRUE
-
+/* //VOREStation Note: TRAITGENETICS - Disabled on VS
 /obj/item/dnainjector/set_trait/xray // xraymut
 	trait_path = /datum/trait/positive/superpower_xray
 /obj/item/dnainjector/set_trait/xray/disable
 	disabling = TRUE
-
+*/ //VOREStation Note: TRAITGENETICS - Disabled on VS
 /obj/item/dnainjector/set_trait/deaf // deafmut
 	trait_path = /datum/trait/negative/disability_deaf
 /obj/item/dnainjector/set_trait/deaf/disable
@@ -350,3 +350,7 @@
 /obj/item/dnainjector/set_trait/nonconduct/disable
 	disabling = TRUE
 */
+/obj/item/dnainjector/set_trait/damagedspine // brokenspine
+	trait_path = /datum/trait/negative/disability_damagedspine
+/obj/item/dnainjector/set_trait/damagedspine/disable
+	disabling = TRUE

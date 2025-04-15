@@ -163,8 +163,8 @@
 	var/self_del = 1
 	anchored = 0
 
-/obj/structure/closet/secure_closet/mind/New(var/datum/mind/mind_target, var/del_self = 1)
-	.=..()
+/obj/structure/closet/secure_closet/mind/Initialize(mapload, var/datum/mind/mind_target, var/del_self = 1)
+	. = ..()
 	self_del = del_self
 	if(mind_target)
 		owner = mind_target

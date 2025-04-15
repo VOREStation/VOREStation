@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	var/map_is_to_my
 	var/turf/unsimulated/map/edge/wrap_buddy
 
-/turf/unsimulated/map/edge/Initialize()
+/turf/unsimulated/map/edge/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	else
 		. = ..()
 
-/turf/unsimulated/map/Initialize()
+/turf/unsimulated/map/Initialize(mapload)
 	. = ..()
 	name = "[x]-[y]"
 	var/list/numbers = list()

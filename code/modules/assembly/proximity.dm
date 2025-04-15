@@ -32,9 +32,13 @@
 	update_icon()
 	return secured
 
-/obj/item/assembly/prox_sensor/HasProximity(turf/T, atom/movable/AM, old_loc)
-	if(!istype(AM))
-		log_debug("DEBUG: HasProximity called with [AM] on [src] ([usr]).")
+/obj/item/assembly/prox_sensor/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
 		return
 	if (istype(AM, /obj/effect/beam))
 		return

@@ -3,6 +3,7 @@
 	desc = "This shouldn't appear"
 	density = FALSE
 	vis_flags = NONE
+	var/mob/living/body_backup = null //add reforming
 
 /mob/observer/dead
 	name = "ghost"
@@ -92,9 +93,9 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
-/mob/observer/dead/New(mob/body, aghost = FALSE)
+/mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
-	appearance = body
+	appearance = loc
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
@@ -106,32 +107,33 @@
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
 
 	var/turf/T
-	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
-		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
-		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
+	if(ismob(loc))
+		var/mob/M = loc
+		T = get_turf(M)				//Where is the body located?
+		attack_log = M.attack_log	//preserve our attack logs by copying them to our ghost
+		gender = M.gender
+		if(M.mind && M.mind.name)
+			name = M.mind.name
 		else
-			if(body.real_name)
-				name = body.real_name
+			if(M.real_name)
+				name = M.real_name
 			else
 				if(gender == MALE)
 					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 				else
 					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
-		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
+		mind = M.mind	//we don't transfer the mind but we keep a reference to it.
 
 		// Fix for naked ghosts.
 		// Unclear why this isn't being grabbed by appearance.
-		if(ishuman(body))
-			var/mob/living/carbon/human/H = body
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			add_overlay(H.overlays_standing)
-		default_pixel_x = body.default_pixel_x
-		default_pixel_y = body.default_pixel_y
+		default_pixel_x = M.default_pixel_x
+		default_pixel_y = M.default_pixel_y
 	if(!T && length(latejoin))
-		T = pick(latejoin)			//Safety in case we cannot find the body's position
+		T = get_turf(pick(latejoin))			//Safety in case we cannot find the body's position
 	if(T)
 		forceMove(T, just_spawned = TRUE)
 	else
@@ -144,11 +146,11 @@
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	observer_mob_list += src
-	..()
+	. = ..()
 	visualnet = ghostnet
 
 /mob/observer/dead/proc/checkStatic()
-	return !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode) || isbelly(loc))
+	return !(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT|R_SERVER) || (client && client.buildmode) || isbelly(loc))
 
 /mob/observer/dead/Moved(atom/old_loc, direction, forced)
 	. = ..()
@@ -260,7 +262,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(ghostize(1))
 	else
 		var/response
-		if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,src)) //No need to sanity check for client and holder here as that is part of check_rights
+		if(check_rights_for(src.client, R_ADMIN|R_SERVER|R_MOD)) //No need to sanity check for client and holder here as that is part of check_rights
 			response = tgui_alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", list("Admin Ghost", "Ghost", "Stay in body"))
 			if(response == "Admin Ghost")
 				if(!src.client)
@@ -582,6 +584,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/following_mobs = list()
 
 /mob/observer/dead/Destroy()
+	if(body_backup)
+		body_backup.moveToNullspace() //YEET
+		qdel(body_backup)
+		body_backup = null
 	visualnet.addVisibility(src, src.client)
 	visualnet = null
 	if(ismob(following))
@@ -604,7 +610,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/observer/dead/check_holy(var/turf/T)
-	if(check_rights(R_ADMIN|R_FUN|R_EVENT, 0, src))
+	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
 		return 0
 
 	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
@@ -645,7 +651,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, span_filter_notice(span_red("You are dead! You have no mind to store memory!")))
 
 /mob/observer/dead/Post_Incorpmove()
-	stop_following()
+	if(following) //This wasn't here before. It meant that we would do stop_following repeatedly every movement we made...Resulting in a DOS on our client.
+		stop_following()
 
 /mob/observer/dead/verb/analyze_air()
 	set name = "Analyze Air"
@@ -829,11 +836,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message(span_filter_notice(span_red("Invisible fingers crudely paint something in blood on [T]...")))
 
-/mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
+/mob/observer/dead/_pointed(atom/pointed_at)
 	if(!..())
-		return 0
-	src.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
-	return 1
+		return FALSE
+
+	visible_message(span_deadsay(span_bold("[src]") + " points to [pointed_at]."))
 
 /mob/observer/dead/proc/manifest(mob/user)
 	is_manifest = TRUE
@@ -913,7 +920,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/observer/dead/proc/can_admin_interact()
-	return check_rights(R_ADMIN|R_EVENT, 0, src)
+	return check_rights_for(src.client, R_ADMIN|R_EVENT|R_DEBUG)
 
 /mob/observer/dead/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
@@ -1081,7 +1088,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(flashwindow)
 		window_flash(client)
 	if(message)
-		to_chat(src, span_ghostalert("<font size=4>[message]</font>"))
+		to_chat(src, span_ghostalert(span_huge("[message]")))
 		if(source)
 			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, span_ghostalert("<a href='byond://?src=[REF(src)];reenter=1'>(Click to re-enter)</a>"))

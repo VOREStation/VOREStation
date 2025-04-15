@@ -17,7 +17,7 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 
-/obj/machinery/slime/replicator/Initialize()
+/obj/machinery/slime/replicator/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_light_color()

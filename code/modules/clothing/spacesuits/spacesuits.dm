@@ -15,7 +15,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 2 * ONE_ATMOSPHERE
@@ -32,7 +31,7 @@
 	light_overlay = "helmet_light"
 	light_range = 4
 
-/obj/item/clothing/head/helmet/space/Initialize()
+/obj/item/clothing/head/helmet/space/Initialize(mapload)
 	. = ..()
 	if(camera_networks)
 		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
@@ -76,12 +75,13 @@
 	permeability_coefficient = 0.02
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency/oxygen,/obj/item/suit_cooling_unit)
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	cold_protection = CHEST|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 2 * ONE_ATMOSPHERE
@@ -92,7 +92,7 @@
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
 //VOREStation edit start - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
-/obj/item/clothing/suit/space/Initialize()
+/obj/item/clothing/suit/space/Initialize(mapload)
 	. = ..()
 	if(type == /obj/item/clothing/suit/space)
 		LAZYSET(sprite_sheets, SPECIES_TESHARI, 'icons/inventory/suit/mob_vr_teshari.dmi')

@@ -1,4 +1,4 @@
-
+/*
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
 
 /obj/item/contraband
@@ -18,14 +18,14 @@
 
 	var/poster_type = /obj/structure/sign/poster
 
-/obj/item/contraband/poster/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/Initialize(mapload, var/given_serial = 0)
 	if(!serial_number)
 		if(given_serial == 0)
 			serial_number = rand(1, poster_designs.len)
 		else
 			serial_number = given_serial
 	name += " - No. [serial_number]"
-	..(loc)
+	. = ..()
 
 //Places the poster on a wall
 /obj/item/contraband/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
@@ -83,12 +83,12 @@
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/contraband/poster/nanotrasen/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/nanotrasen/Initialize(mapload, var/given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, NT_poster_designs.len)
 	else
 		serial_number = given_serial
-	..(loc)
+	. = ..()
 
 //Selectable subtype
 /obj/item/contraband/poster/custom
@@ -96,12 +96,12 @@
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface. This one is made from some kind of e-paper, and could display almost anything!"
 	poster_type = /obj/structure/sign/poster/custom
 
-/obj/item/contraband/poster/custom/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/custom/Initialize(mapload, var/given_serial = 0)
 	if(given_serial == 0)
 		serial_number = 1 //Decidedly unrandom
 	else
 		serial_number = given_serial
-	..(loc)
+	. = ..()
 
 /obj/item/contraband/poster/custom/verb/select_poster()
 	set name = "Set Poster type"
@@ -137,8 +137,8 @@
 	var/roll_type
 	var/poster_set = FALSE
 
-/obj/structure/sign/poster/New(var/newloc, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster)
-	..(newloc)
+/obj/structure/sign/poster/Initialize(mapload, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster)
+	. = ..()
 
 	if(!serial)
 		serial = rand(1, poster_designs.len) //use a random serial if none is given
@@ -165,7 +165,7 @@
 			pixel_x = -32
 			pixel_y = 0
 
-/obj/structure/sign/poster/Initialize()
+/obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
 	if (poster_type)
 		var/path = text2path(poster_type)
@@ -226,7 +226,7 @@
 /obj/structure/sign/poster/nanotrasen
 	roll_type = /obj/item/contraband/poster/nanotrasen
 
-/obj/structure/sign/poster/nanotrasen/New(var/newloc, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster/nanotrasen)
+/obj/structure/sign/poster/nanotrasen/Initialize(mapload, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster/nanotrasen)
 	if(!serial)
 		serial = rand(1, NT_poster_designs.len)
 
@@ -234,9 +234,37 @@
 	var/datum/poster/design = NT_poster_designs[serial_number]
 	set_poster(design)
 
-	..(newloc, placement_dir, serial, itemtype)
+	. = ..(mapload, placement_dir, serial, itemtype)
 
 //Non-Random Posters
 
 /obj/structure/sign/poster/custom
 	roll_type = /obj/item/contraband/poster/custom
+*/
+/obj/item/contraband/package
+	name = "contraband"
+	desc = "A tightly sealed package. Dare to look inside?"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "deliverycrate5"
+	item_state = "table_parts"
+	w_class = ITEMSIZE_HUGE
+
+/obj/item/contraband/package/attack_self(mob/user)
+	var/contraband = pick(
+		/obj/item/reagent_containers/glass/beaker/vial/macrocillin,
+		/obj/item/reagent_containers/glass/beaker/vial/microcillin,
+		/obj/item/gun/energy/sizegun,
+		/obj/item/clothing/mask/muzzle,
+		/obj/item/pda/clown,
+		/obj/item/pda/mime,
+		/obj/item/storage/fancy/cigar/havana,
+		/obj/item/card/emag_broken,
+		/obj/item/sleevemate,
+		/obj/item/disk/nifsoft/compliance,
+		/obj/item/seeds/ambrosiadeusseed,
+		/obj/item/seeds/ambrosiavulgarisseed,
+		/obj/item/bodysnatcher)
+
+	user.put_in_hands(new contraband(user.loc))
+	to_chat(user, span_notice("You unwrap the package."))
+	qdel(src)

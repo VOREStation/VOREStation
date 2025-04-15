@@ -36,7 +36,7 @@
 	var/suffer_cloneloss = FALSE
 	var/clone_severity = 5
 
-/obj/structure/ghost_pod/manual/survivor/Initialize()
+/obj/structure/ghost_pod/manual/survivor/Initialize(mapload)
 	. = ..()
 
 	handle_clothing_setup()

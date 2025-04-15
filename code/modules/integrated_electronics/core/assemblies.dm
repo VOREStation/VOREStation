@@ -17,14 +17,14 @@
 	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/electronic_assembly/Initialize()
+/obj/item/electronic_assembly/Initialize(mapload)
 	battery = new(src)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/electronic_assembly/Destroy()
-	battery = null // It will be qdel'd by ..() if still in our contents
 	STOP_PROCESSING(SSobj, src)
+	battery = null // It will be qdel'd by ..() if still in our contents
 	return ..()
 
 /obj/item/electronic_assembly/process()

@@ -40,10 +40,10 @@ type uiRecipe = Required<recipe & { category: string }>;
 function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
   const categories: uiCategory[] = [];
   const recipes: uiRecipe[] = [];
-  for (let category of Object.keys(crafting_recipes)) {
+  for (const category of Object.keys(crafting_recipes)) {
     const subcategories = crafting_recipes[category];
     if ('has_subcats' in subcategories) {
-      for (let subcategory of Object.keys(subcategories)) {
+      for (const subcategory of Object.keys(subcategories)) {
         if (subcategory === 'has_subcats') {
           continue;
         }
@@ -55,7 +55,7 @@ function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
         });
         // Push recipes
         const _recipes = subcategories[subcategory];
-        for (let recipe of _recipes) {
+        for (const recipe of _recipes) {
           recipes.push({
             ...recipe,
             category: subcategory,
@@ -71,7 +71,7 @@ function getUiEntries(crafting_recipes: Record<string, recipe[]>) {
     });
     // Push recipes
     const _recipes = crafting_recipes[category];
-    for (let recipe of _recipes) {
+    for (const recipe of _recipes) {
       recipes.push({
         ...recipe,
         category,
@@ -117,20 +117,24 @@ export const PersonalCrafting = (props) => {
         <Section
           title="Personal Crafting"
           buttons={
-            <>
-              <Button.Checkbox
-                checked={display_compact}
-                onClick={() => act('toggle_compact')}
-              >
-                Compact
-              </Button.Checkbox>
-              <Button.Checkbox
-                checked={display_craftable_only}
-                onClick={() => act('toggle_recipes')}
-              >
-                Craftable Only
-              </Button.Checkbox>
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button.Checkbox
+                  checked={display_compact}
+                  onClick={() => act('toggle_compact')}
+                >
+                  Compact
+                </Button.Checkbox>
+              </Stack.Item>
+              <Stack.Item>
+                <Button.Checkbox
+                  checked={display_craftable_only}
+                  onClick={() => act('toggle_recipes')}
+                >
+                  Craftable Only
+                </Button.Checkbox>
+              </Stack.Item>
+            </Stack>
           }
         >
           <Input
@@ -138,7 +142,7 @@ export const PersonalCrafting = (props) => {
             value={searchText}
             mb={1}
             placeholder="Search for recipes..."
-            onInput={(e, value: string) => setSearchText(value)}
+            onChange={(value: string) => setSearchText(value)}
           />
           <Stack>
             <Stack.Item>

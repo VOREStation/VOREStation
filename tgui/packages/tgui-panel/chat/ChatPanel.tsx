@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { Component, createRef, RefObject } from 'react';
+import { Component, createRef, type RefObject } from 'react';
 import { Button } from 'tgui-core/components';
 import { shallowDiffers } from 'tgui-core/react';
 
@@ -16,7 +16,7 @@ type ChatPanelTypes = {
 };
 
 export class ChatPanel extends Component<ChatPanelTypes> {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   handleScrollTrackingChange: (value: any) => void;
   state: { scrollTracking: boolean };
   constructor(props) {

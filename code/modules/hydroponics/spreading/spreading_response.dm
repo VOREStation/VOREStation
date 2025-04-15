@@ -1,10 +1,20 @@
-/obj/effect/plant/HasProximity(turf/T, atom/movable/AM, old_loc)
+/obj/effect/plant/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
 
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
 
 	var/mob/living/M = AM
 	if(!istype(M))
+		return
+
+	if(M.is_incorporeal()) // Don't buckle phased entities.
 		return
 
 	if(!has_buckled_mobs() && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/3))))
@@ -42,7 +52,7 @@
 	if(istype(H) && H.shoes)
 		return
 	seed.do_thorns(victim,src)
-	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
+	seed.do_sting(victim,src,pick(BP_R_FOOT,BP_L_FOOT,BP_R_LEG,BP_L_LEG))
 
 	if(seed.get_trait(TRAIT_SPORING) && prob(round(seed.get_trait(TRAIT_POTENCY)/2)))
 		seed.create_spores(get_turf(victim))

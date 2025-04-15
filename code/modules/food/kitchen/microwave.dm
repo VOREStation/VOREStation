@@ -34,7 +34,7 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/Initialize()
+/obj/machinery/microwave/Initialize(mapload)
 	. = ..()
 
 	reagents = new/datum/reagents(100)
@@ -594,7 +594,7 @@
 	circuit_item_capacity = 100
 	item_level = 1
 
-/obj/machinery/microwave/advanced/Initialize()
+/obj/machinery/microwave/advanced/Initialize(mapload)
 	. = ..()
 	reagents.maximum_volume = 1000
 
@@ -603,6 +603,7 @@
 		/obj/item/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))

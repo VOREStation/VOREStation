@@ -17,7 +17,7 @@
 	passive_power_cost = 0
 	var/obj/item/kinetic_crusher/machete/gauntlets/rig/stored_gauntlets
 
-/obj/item/rig_module/gauntlets/Initialize()
+/obj/item/rig_module/gauntlets/Initialize(mapload)
 	. = ..()
 	stored_gauntlets = new /obj/item/kinetic_crusher/machete/gauntlets/rig(src)
 	stored_gauntlets.storing_module = src

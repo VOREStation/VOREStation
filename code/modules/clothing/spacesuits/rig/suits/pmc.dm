@@ -12,25 +12,8 @@
 	req_access = list(access_cent_specops)
 
 	armor = list(melee = 60, bullet = 50, laser = 35,energy = 15, bomb = 30, bio = 100, rad = 95)
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/t_scanner,
-		/obj/item/rcd,
-		/obj/item/tool/crowbar,
-		/obj/item/tool/screwdriver,
-		/obj/item/weldingtool,
-		/obj/item/tool/wirecutters,
-		/obj/item/tool/wrench,
-		/obj/item/multitool,
-		/obj/item/radio,
-		/obj/item/analyzer,
-		/obj/item/melee/baton,
-		/obj/item/gun,
-		/obj/item/storage,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/roller
-		)
+
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_ENGINEERING, POCKET_HEAVYTOOLS, POCKET_SECURITY, POCKET_SUIT_REGULATORS, POCKET_STORAGE)
 
 /obj/item/rig/pmc/commander
 	name = "PMC-C hardsuit control module"

@@ -50,9 +50,9 @@
 		my_hose = null
 	if(carrier)
 		carrier = null
-	..()
+	. = ..()
 
-/obj/item/hose_connector/Initialize()
+/obj/item/hose_connector/Initialize(mapload)
 	. = ..()
 
 	create_reagents(100)
@@ -65,7 +65,7 @@
 		if(C.my_hose)
 			return FALSE
 
-		if(C.flow_direction in list(HOSE_INPUT, HOSE_OUTPUT) - flow_direction)
+		if(C.flow_direction in (list(HOSE_INPUT, HOSE_OUTPUT) - flow_direction))
 			return TRUE
 
 	return FALSE
@@ -102,9 +102,9 @@
 
 /obj/item/hose_connector/input/active/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
-/obj/item/hose_connector/input/active/Initialize()
+/obj/item/hose_connector/input/active/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -124,9 +124,9 @@
 
 /obj/item/hose_connector/output/active/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
-/obj/item/hose_connector/output/active/Initialize()
+/obj/item/hose_connector/output/active/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

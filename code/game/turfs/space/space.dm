@@ -12,7 +12,7 @@
 	var/edge = FALSE //If we're an edge
 	var/forced_dirs = 0 //Force this one to pretend it's an overedge turf
 
-/turf/space/Initialize()
+/turf/space/Initialize(mapload)
 	if(CONFIG_GET(flag/starlight))
 		update_starlight()
 
@@ -113,8 +113,8 @@
 
 		// Patch holes in the ceiling
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
-			 	// Must be build adjacent to an existing floor/wall, no floating floors
+			if(isopenturf(T))
+				// Must be build adjacent to an existing floor/wall, no floating floors
 				var/turf/simulated/A = locate(/turf/simulated/floor) in T.CardinalTurfs()
 				if(!A)
 					A = locate(/turf/simulated/wall) in T.CardinalTurfs()

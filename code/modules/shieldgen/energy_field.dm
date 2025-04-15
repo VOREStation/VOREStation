@@ -24,8 +24,8 @@
 	var/ticks_recovering = 10
 	var/max_strength = 10
 
-/obj/effect/energy_field/New(var/newloc, var/new_gen)
-	..(newloc)
+/obj/effect/energy_field/Initialize(mapload, var/new_gen)
+	. = ..()
 	my_gen = new_gen
 	update_nearby_tiles()
 
@@ -152,4 +152,3 @@
 					for(var/obj/effect/energy_field/F in T)
 						if(!(F in affected_shields))
 							F.impact_effect(i, affected_shields) // Spread the effect to them.
-

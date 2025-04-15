@@ -91,13 +91,11 @@
 	var/last_strain_increase = 0	// World time of the last increase in strain.
 	var/strain_regen_cooldown = 5 MINUTES
 
-/obj/item/organ/internal/regennetwork/Initialize()
+/obj/item/organ/internal/regennetwork/Initialize(mapload)
 	. = ..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.get_blood_colour(H)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.get_blood_colour(H)
 
 /obj/item/organ/internal/regennetwork/proc/get_strain_percent(var/cost)
 	adjust_strain(cost)

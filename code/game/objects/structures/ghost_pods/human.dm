@@ -24,7 +24,7 @@
 
 	var/list/clothing_possibilities
 
-/obj/structure/ghost_pod/ghost_activated/human/Initialize()
+/obj/structure/ghost_pod/ghost_activated/human/Initialize(mapload)
 	. = ..()
 
 	handle_clothing_setup()
@@ -152,7 +152,7 @@
 
 	var/list/clothing_possibilities
 
-/obj/structure/ghost_pod/manual/human/Initialize()
+/obj/structure/ghost_pod/manual/human/Initialize(mapload)
 	. = ..()
 
 	handle_clothing_setup()

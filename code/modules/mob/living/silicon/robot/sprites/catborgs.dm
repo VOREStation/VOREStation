@@ -42,9 +42,11 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Engineering
@@ -56,6 +58,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -71,6 +75,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -85,6 +91,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_medicat.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -100,6 +108,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -114,6 +124,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -128,6 +140,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -155,6 +169,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -169,6 +184,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -183,6 +199,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_medical.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -199,6 +216,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_science.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -213,6 +231,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_security.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -228,12 +247,27 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Service", "Clerical", "Janitor") //They get Janitor because no specific janitor sprite.
+
+/datum/robot_sprite/dogborg/combat_medic/catborg
+	name = "Catborg"
+	sprite_icon_state = "syndicat"
+	sprite_hud_icon_state = "syndicat"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_combatmed.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_light_list = list("sleeper" = 2)
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 /// CUSTOM
 
@@ -252,7 +286,8 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_glow_sprites = TRUE
+	sprite_decals = list("decals")
 	is_whitelisted = FALSE //Putting this here as a declaration that it is NOT whitelisted.
 	// whitelist_ckey = "cameron653" //The owner of the character.
 	// There is only one version of this borg, so it gets all the departments.

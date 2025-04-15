@@ -129,25 +129,6 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
-// Vorey sounds
-/datum/preference/toggle/belch_noises // Belching noises - pref toggle for 'em
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "BELCH_NOISES"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
-/datum/preference/toggle/eating_noises
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "EATING_NOISES"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
-/datum/preference/toggle/digestion_noises
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "DIGEST_NOISES"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
 /datum/preference/numeric/ambience_freq
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "ambience_freq"

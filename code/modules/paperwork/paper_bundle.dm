@@ -49,7 +49,7 @@
 		if(istype(W, /obj/item/tape_roll))
 			return 0
 		if(istype(W, /obj/item/pen))
-			user << browse("", "window=[name]") //Closes the dialog
+			user << browse(null, "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
 		P.attackby(W, user)
 
@@ -172,7 +172,7 @@
 			to_chat(usr, span_notice("You remove the [W.name] from the bundle."))
 
 			if(pages.len <= 1)
-				var/obj/item/paper/P = src[1]
+				var/obj/item/paper/P = pages[1]
 				usr.drop_from_inventory(src)
 				usr.put_in_hands(P)
 				qdel(src)

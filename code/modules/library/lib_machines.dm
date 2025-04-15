@@ -139,7 +139,7 @@
 
 	var/static/list/base_genre_books
 
-/obj/machinery/librarycomp/Initialize()
+/obj/machinery/librarycomp/Initialize(mapload)
 	. = ..()
 
 	if(!base_genre_books || !base_genre_books.len)

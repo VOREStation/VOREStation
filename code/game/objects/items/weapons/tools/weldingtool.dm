@@ -43,7 +43,7 @@
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	tool_qualities = list(TOOL_WELDER)
 
-/obj/item/weldingtool/Initialize()
+/obj/item/weldingtool/Initialize(mapload)
 	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
@@ -111,32 +111,19 @@
 			to_chat(user, span_notice("You secure the welder."))
 		else
 			to_chat(user, span_notice("The welder can now be attached and modified."))
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
-		src.loc = F
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(get_turf(user))
+		user.drop_from_inventory(src,F)
 		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.remove_from_mob(src)
-		else
-			user.remove_from_mob(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.remove_from_mob(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	..()
-	return
 
 /obj/item/weldingtool/process()
 	if(welding)
@@ -493,13 +480,13 @@
 	always_process = TRUE
 	var/obj/item/weldpack/mounted_pack = null
 
-/obj/item/weldingtool/tubefed/New(location)
-	..()
-	if(istype(location, /obj/item/weldpack))
-		var/obj/item/weldpack/holder = location
+/obj/item/weldingtool/tubefed/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/weldpack))
+		var/obj/item/weldpack/holder = loc
 		mounted_pack = holder
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
@@ -556,11 +543,12 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weldingtool/electric/unloaded/New()
+/obj/item/weldingtool/electric/unloaded/Initialize(mapload)
 	cell_type = null
+	. = ..()
 
-/obj/item/weldingtool/electric/New()
-	..()
+/obj/item/weldingtool/electric/Initialize(mapload)
+	. = ..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)
@@ -678,7 +666,7 @@
 	eye_safety_modifier = 2
 	always_process = TRUE
 
-/obj/item/weldingtool/electric/mounted/exosuit/Initialize()
+/obj/item/weldingtool/electric/mounted/exosuit/Initialize(mapload)
 	. = ..()
 
 	if(istype(loc, /obj/item/mecha_parts/mecha_equipment))

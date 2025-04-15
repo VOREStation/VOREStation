@@ -22,10 +22,7 @@
 .shine {
   animation: shine 15s linear infinite;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-size: 150% 150%;
 }
 
@@ -46,11 +43,79 @@
   height: 70px;
 }
 
+.window-90 {
+  height: 90px;
+}
+
+.window-110 {
+  height: 110px;
+}
+
+.window-130 {
+  height: 130px;
+}
+
+.window-150 {
+  height: 150px;
+}
+
+.window-170 {
+  height: 170px;
+}
+
+.window-190 {
+  height: 190px;
+}
+
+.window-210 {
+  height: 210px;
+}
+
+.window-230 {
+  height: 230px;
+}
+
+.window-250 {
+  height: 250px;
+}
+
+.window-270 {
+  height: 270px;
+}
+
+.window-290 {
+  height: 290px;
+}
+
+.window-310 {
+  height: 310px;
+}
+
+.window-330 {
+  height: 330px;
+}
+
+.window-350 {
+  height: 350px;
+}
+
+.window-370 {
+  height: 370px;
+}
+
+.window-390 {
+  height: 390px;
+}
+
+.window-410 {
+  height: 410px;
+}
+
 .content {
   background-color: black;
   display: grid;
   font: 'tgfont';
-  grid-template-columns: 3.5rem 1fr;
+  grid-template-columns: 7rem 1fr 2rem;
   inset: 2px;
   overflow: hidden;
   padding: 2px;
@@ -101,19 +166,10 @@
   margin: 0.1rem 0 0 0.4rem;
   outline: none;
   resize: none;
-  &::-webkit-scrollbar {
-    width: 0.8rem;
-  }
-  &::-webkit-scrollbar-track {
-    background: color.scale(
+  scrollbar-width: thin;
+  scrollbar-color: color.scale(
       colors.$button,
-      $lightness: -25% * colors.$scrollbar-color-multiplier
-    );
-  }
-  &::-webkit-scrollbar-thumb {
-    background: color.scale(
-      colors.$button,
-      $lightness: 10% * colors.$scrollbar-color-multiplier
-    );
-  }
+      $lightness: 20% * colors.$scrollbar-color-multiplier
+    )
+    transparent;
 }

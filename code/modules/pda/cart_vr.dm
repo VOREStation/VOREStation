@@ -1,8 +1,3 @@
-var/list/exploration_cartridges = list(
-	/obj/item/cartridge/explorer,
-	/obj/item/cartridge/sar
-	)
-
 /obj/item/cartridge
 	slot_flags = SLOT_EARS
 
@@ -31,7 +26,7 @@ var/list/exploration_cartridges = list(
 	var/slots = 1
 	var/obj/item/storage/internal/hold
 
-/obj/item/cartridge/storage/Initialize()
+/obj/item/cartridge/storage/Initialize(mapload)
 	. = ..()
 	hold = new/obj/item/storage/internal(src)
 	hold.max_storage_space = slots * 2

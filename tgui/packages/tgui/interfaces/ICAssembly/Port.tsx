@@ -28,7 +28,7 @@ export type PortProps = {
 };
 
 export type PortState = {
-  portRef: React.RefObject<HTMLSpanElement>;
+  portRef: React.RefObject<HTMLSpanElement | null>;
 };
 
 // eslint-disable-next-line react/prefer-stateless-function

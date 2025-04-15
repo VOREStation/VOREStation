@@ -115,6 +115,14 @@
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
+	if(ishuman(src)) //r u human
+		var/mob/living/carbon/human/H = src //wowie you are, take this badge
+		if(species.unusual_running == 1) // do you have the trait
+			var/obj/item/I = H.get_active_hand() // checking their hand
+			var/obj/item/OH = H.get_inactive_hand() // and their other hand
+			if(!istype(I,/obj/item) && !istype(OH,/obj/item)) //better not have any items on you mfer
+				. -= 0.5 // ok vibe check passed, take this small movement buff and leave
+
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 

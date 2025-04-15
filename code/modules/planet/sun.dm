@@ -79,8 +79,8 @@
 	var/turfs_providing_spreads = list()
 	var/spreads = list()
 
-/atom/movable/sun_visuals/New()
-	..()
+/atom/movable/sun_visuals/Initialize(mapload)
+	. = ..()
 	spreads["1"] = new /atom/movable/sun_visuals_overlap(src, NORTH, "white_gradient")
 	spreads["2"] = new /atom/movable/sun_visuals_overlap(src, SOUTH, "white_gradient")
 	spreads["4"] = new /atom/movable/sun_visuals_overlap(src, EAST, "white_gradient")
@@ -185,7 +185,7 @@
 	alpha = 0
 	color = "#FFFFFF"
 
-/atom/movable/sun_visuals_overlap/New(newloc, newdir, newstate)
-	..()
+/atom/movable/sun_visuals_overlap/Initialize(mapload, newdir, newstate)
+	. = ..()
 	icon_state = newstate
 	dir = newdir

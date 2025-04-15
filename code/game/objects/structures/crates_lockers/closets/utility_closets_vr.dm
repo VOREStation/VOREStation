@@ -1,7 +1,7 @@
-/obj/structure/closet/firecloset/Initialize()
+/obj/structure/closet/firecloset/Initialize(mapload)
 	starts_with += /obj/item/storage/toolbox/emergency
 	return ..()
 
-/obj/structure/closet/hydrant/New()
+/obj/structure/closet/hydrant/Initialize(mapload)
 	starts_with += /obj/item/storage/toolbox/emergency
 	return ..()

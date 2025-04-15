@@ -108,6 +108,8 @@
 	icon_state = "augment_armframe"
 
 	organ_tag = O_AUG_R_UPPERARM
+	parent_organ = BP_R_ARM
+	target_slot = slot_r_hand
 
 	w_class = ITEMSIZE_HUGE
 
@@ -164,8 +166,6 @@
 
 	icon_state = "augment_toolkit"
 
-	organ_tag = O_AUG_R_UPPERARM
-
 	w_class = ITEMSIZE_HUGE
 
 	integrated_object_type = null
@@ -192,7 +192,7 @@
 		/datum/matter_synth/wire
 		)
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize()
+/obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize(mapload)
 	. = ..()
 
 	if(integrated_object)

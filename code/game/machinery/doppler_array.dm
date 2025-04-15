@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 /obj/machinery/doppler_array/Destroy()
 	GLOB.doppler_arrays -= src
-	..()
+	. = ..()
 
 /obj/machinery/doppler_array/proc/sense_explosion(var/x0,var/y0,var/z0,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/took)
 	if(stat & NOPOWER)	return

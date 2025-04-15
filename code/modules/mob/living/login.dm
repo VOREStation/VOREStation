@@ -20,18 +20,30 @@
 	add_verb(src, /mob/living/proc/smell)
 	add_verb(src, /mob/living/proc/switch_scaling)
 	add_verb(src, /mob/living/proc/center_offset)
+	add_verb(src, /mob/living/proc/mute_entry)
+	add_verb(src, /mob/living/proc/liquidbelly_visuals)
+	add_verb(src, /mob/living/proc/fix_vore_effects)
 
 	if(!no_vore)
 		add_verb(src, /mob/living/proc/vorebelly_printout)
 		if(!vorePanel)
 			AddComponent(/datum/component/vore_panel)
-	//VOREStation Add Start
+
+	add_verb(src,/mob/living/proc/vore_transfer_reagents) // If mob doesnt have bellies it cant use this verb for anything
+	add_verb(src,/mob/living/proc/vore_check_reagents) // If mob doesnt have bellies it cant use this verb for anything
+	add_verb(src,/mob/living/proc/vore_bellyrub) // If mob doesnt have bellies it probably won't be needing this anyway
+	add_verb(src,/mob/proc/nsay_vore)
+	add_verb(src,/mob/proc/nme_vore)
+	add_verb(src,/mob/proc/nsay_vore_ch)
+	add_verb(src,/mob/proc/nme_vore_ch)
+	add_verb(src,/mob/proc/enter_soulcatcher)
+
 	if(!voice_sounds_list.len || !voice_sounds_list)
 		if(client.prefs.voice_sound)
 			var/prefsound = client.prefs.voice_sound
 			voice_sounds_list = get_talk_sound(prefsound)
 		else
 			voice_sounds_list = GLOB.talk_sound
-	//VOREStation Add End
+	resize(size_multiplier, animate = FALSE, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE, aura_animation = FALSE)
 
 	return .

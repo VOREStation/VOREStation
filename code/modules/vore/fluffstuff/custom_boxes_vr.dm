@@ -8,14 +8,13 @@
 	storage_slots = 7
 	var/list/has_items = list()
 
-/obj/item/storage/box/fluff/New()
+/obj/item/storage/box/fluff/Initialize(mapload)
 	storage_slots = has_items.len
 	allowed = list()
 	for(var/P in has_items)
 		allowed += P
 		new P(src)
-	..()
-	return
+	. = ..()
 // END - DO NOT EDIT PROTOTYPE
 
 
@@ -100,7 +99,7 @@
 	name = "Ivy's Courier"
 	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
 
-/obj/item/storage/backpack/messenger/sec/fluff/ivymoomoo/Initialize()
+/obj/item/storage/backpack/messenger/sec/fluff/ivymoomoo/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/head/beretg(src)
 	new /obj/item/fluff/id_kit_ivy(src)
@@ -140,7 +139,7 @@
 	slowdown = 0
 	can_tilt = 0
 
-/obj/item/storage/backpack/dufflebag/sec/fluff/joanrisu/Initialize()
+/obj/item/storage/backpack/dufflebag/sec/fluff/joanrisu/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/accessory/holster/hip(src)
 	new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
@@ -157,7 +156,7 @@
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
 
-/obj/item/storage/backpack/dufflebag/sec/fluff/katarina/Initialize()
+/obj/item/storage/backpack/dufflebag/sec/fluff/katarina/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/accessory/holster/hip(src)
 	new /obj/item/clothing/suit/storage/fluff/fedcoat(src)

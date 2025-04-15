@@ -16,8 +16,8 @@
 	var/footer = null
 	var/footerOn = FALSE
 
-/obj/item/paper/admin/New()
-	..()
+/obj/item/paper/admin/Initialize(mapload, text, title)
+	. = ..()
 	generateInteractions()
 
 
@@ -54,8 +54,7 @@
 	//TODO change logo based on who you're contacting.
 	text = "<center><img src = [logo]></br>"
 	text += span_bold("[origin] Quantum Uplink Signed Message") + "<br>"
-	text += "<font size = \"1\">Encryption key: [originhash]<br>"
-	text += "Challenge: [timehash]<br></font></center><hr>"
+	text += span_small("Encryption key: [originhash]<br>Challenge: [timehash]") + "<br></center><hr>"
 
 	header = text
 

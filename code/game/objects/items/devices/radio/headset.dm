@@ -21,7 +21,7 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	. = ..()
 	internal_channels.Cut()
 	if(ks1type)
@@ -50,11 +50,11 @@
 /obj/item/radio/headset/handle_message_mode(mob/living/M as mob, list/message_pieces, channel)
 	if(channel == "special")
 		if(translate_binary)
-			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
+			var/datum/language/binary = GLOB.all_languages[LANGUAGE_ROBOT_TALK]
 			binary.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
 			return RADIO_CONNECTION_NON_SUBSPACE
 		if(translate_hive)
-			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
+			var/datum/language/hivemind = GLOB.all_languages[LANGUAGE_HIVEMIND]
 			hivemind.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
 			return RADIO_CONNECTION_NON_SUBSPACE
 		return RADIO_CONNECTION_FAIL
@@ -607,7 +607,7 @@
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/raider
 
-/obj/item/radio/headset/raider/Initialize()
+/obj/item/radio/headset/raider/Initialize(mapload)
 	. = ..()
 	set_frequency(RAID_FREQ)
 

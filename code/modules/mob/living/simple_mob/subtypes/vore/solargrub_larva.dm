@@ -53,8 +53,8 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 
 	glow_override = TRUE
 
-/mob/living/simple_mob/animal/solargrub_larva/New()
-	..()
+/mob/living/simple_mob/animal/solargrub_larva/Initialize(mapload)
+	. = ..()
 	GLOB.existing_solargrubs += src
 	powermachine = new(src)
 	sparks = new(src)
@@ -253,13 +253,13 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 		ignored_targets += A
 
 
-/obj/machinery/abstract_grub_machine/New()
-	..()
+/obj/machinery/abstract_grub_machine/Initialize(mapload)
+	. = ..()
 	shuffle_power_usages()
 	grub = loc
 	if(!istype(grub))
 		grub = null
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/abstract_grub_machine/Destroy()
 	grub = null

@@ -24,6 +24,22 @@
 	skull_type = /obj/item/digestion_remains/skull/teshari
 /datum/species/vox
 	skull_type = /obj/item/digestion_remains/skull/vox
+/datum/species/monkey
+	skull_type = /obj/item/digestion_remains/skull
+/datum/species/monkey/tajaran
+	skull_type = /obj/item/digestion_remains/skull/tajaran
+/datum/species/monkey/unathi
+	skull_type = /obj/item/digestion_remains/skull/unathi
+/datum/species/monkey/skrell
+	skull_type = /obj/item/digestion_remains/skull/skrell
+/datum/species/monkey/shark
+	skull_type = /obj/item/digestion_remains/skull/akula
+/datum/species/monkey/sparra
+	skull_type = /obj/item/digestion_remains/skull/rapala
+/datum/species/monkey/vulpkanin
+	skull_type = /obj/item/digestion_remains/skull/vulpkanin
+/datum/species/monkey/sergal
+	skull_type = /obj/item/digestion_remains/skull/sergal
 
 /obj/belly/proc/handle_remains_leaving(var/mob/living/M)
 	if(!ishuman(M) && !isrobot(M))	//Are we even humanoid or a borg?
@@ -73,18 +89,18 @@
 		return			// TODO: add synth skulls and remove this.
 	var/skull_amount = 1
 	if(H.species.skull_type)
-		new H.species.skull_type(src, owner)
+		new H.species.skull_type(src, owner, H)
 		skull_amount--
 
 	if(skull_amount && H.species.selects_bodytype)
 		// We still haven't found correct skull...
 		if(H.species.base_species == SPECIES_HUMAN)
-			new /obj/item/digestion_remains/skull/unknown(src,owner)
+			new /obj/item/digestion_remains/skull/unknown(src, owner, H)
 		else
-			new /obj/item/digestion_remains/skull/unknown/anthro(src,owner)
+			new /obj/item/digestion_remains/skull/unknown/anthro(src, owner, H)
 	else if(skull_amount)
 		// Something entirely different...
-		new /obj/item/digestion_remains/skull/unknown(src,owner)
+		new /obj/item/digestion_remains/skull/unknown(src, owner, H)
 
 
 /obj/item/digestion_remains
@@ -108,11 +124,15 @@
 	drop_sound = 'sound/items/drop/device.ogg'   //not organic bones, so they get different sounds
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
-/obj/item/digestion_remains/Initialize(mapload, var/mob/living/pred)
+/obj/item/digestion_remains/Initialize(mapload, var/mob/living/pred, var/mob/living/prey)
 	. = ..()
 	if(!mapload)
 		pred_ckey = pred?.ckey
 		pred_name = pred?.name
+		if(prey && isliving(prey) && prey.size_multiplier != 1)
+			icon_scale_x = prey.size_multiplier
+			icon_scale_y = prey.size_multiplier
+			update_transform()
 
 /obj/item/digestion_remains/attack_self(var/mob/user)
 	if(user.a_intent == I_HURT)

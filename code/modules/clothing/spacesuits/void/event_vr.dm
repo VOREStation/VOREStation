@@ -198,7 +198,7 @@
 
 /obj/item/clothing/head/helmet/space/void/aether/verb/select_color()
 	set name = "Helmet Color"
-	set desc = "Change the color of [src]"
+	set desc = "Change the color of the helmet"
 	set category = "Object"
 
 	var/choice = tgui_input_list(usr, "Select a new color:", "[src] Color", list("White", "Blue", "Purple", "Yellow", "Red", "Green"))
@@ -270,7 +270,7 @@
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)
 	slowdown = 1.5
 	breach_threshold = 14
-	allowed = list(/obj/item/tank,/obj/item/suit_cooling_unit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING)
 
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM

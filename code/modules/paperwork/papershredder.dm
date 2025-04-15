@@ -25,7 +25,7 @@
 		/obj/item/paper_bundle = 3,
 		)
 
-/obj/machinery/papershredder/Initialize()
+/obj/machinery/papershredder/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_icon()
@@ -149,8 +149,8 @@
 	throw_range = 3
 	throw_speed = 1
 
-/obj/item/shreddedp/New()
-	..()
+/obj/item/shreddedp/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 	if(prob(65)) color = pick("#BABABA","#7F7F7F")

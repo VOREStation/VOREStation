@@ -36,15 +36,13 @@
 	destroy_on_drop = TRUE	//VOREStation Edit
 
 
-/obj/item/grab/New(mob/user, mob/victim)
-	..()
-	loc = user
-	assailant = user
+/obj/item/grab/Initialize(mapload, mob/victim)
+	. = ..()
+	assailant = loc
 	affecting = victim
 
-	if(affecting.anchored || !assailant.Adjacent(victim))
-		qdel(src)
-		return
+	if(!istype(assailant) || !istype(affecting) || affecting.anchored || !assailant.Adjacent(victim))
+		return INITIALIZE_HINT_QDEL
 
 	affecting.grabbed_by += src
 	affecting.reveal(span_warning("You are revealed as [assailant] grabs you."))
@@ -342,10 +340,6 @@
 
 				if(I_DISARM)
 					pin_down(affecting, assailant)
-
-	//clicking on yourself while grabbing them
-	if(M == assailant && state >= GRAB_AGGRESSIVE)
-		devour(affecting, assailant)
 
 /obj/item/grab/dropped(mob/user)
 	..()

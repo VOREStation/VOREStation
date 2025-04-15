@@ -44,8 +44,8 @@
 /obj/item/personal_shield_generator/get_cell()
 	return bcell
 
-/obj/item/personal_shield_generator/New()
-	..()
+/obj/item/personal_shield_generator/Initialize(mapload)
+	. = ..()
 	if(ispath(bcell))
 		bcell = new bcell(src)
 
@@ -399,8 +399,8 @@
 	var/cooldown = 0
 	var/busy = 0
 
-/obj/item/gun/energy/gun/generator/New(newloc, obj/item/personal_shield_generator/shield_gen)
-	..(newloc)
+/obj/item/gun/energy/gun/generator/Initialize(mapload, obj/item/personal_shield_generator/shield_gen)
+	. = ..()
 	shield_generator = shield_gen
 	power_supply = shield_generator.bcell
 

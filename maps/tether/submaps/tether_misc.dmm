@@ -28,11 +28,6 @@
 "ae" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
-"af" = (
-/obj/structure/table/woodentable/holotable,
-/turf/space,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_game_room)
 "ag" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -59,16 +54,6 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
-"ai" = (
-/obj/structure/bed/chair/holochair{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_game_room)
 "aj" = (
 /obj/machinery/light{
 	dir = 1
@@ -592,23 +577,8 @@
 "bO" = (
 /obj/structure/table/woodentable/holotable,
 /obj/effect/landmark/costume/elpresidente,
-/turf/space,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
-"bP" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "bQ" = (
 /turf/space/internal_edge/left,
 /area/space)
@@ -708,8 +678,7 @@
 /turf/unsimulated/wall,
 /area/ai_multicam_room)
 "ce" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/space/transit/south,
+/turf/space/transit/south/virgo3b/planet_fall,
 /area/space)
 "cf" = (
 /turf/space/transit/south,
@@ -2349,8 +2318,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "oI" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/space/transit/east,
+/turf/space/transit/east/virgo3b/planet_fall,
 /area/space)
 "oL" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -2739,10 +2707,6 @@
 "Gq" = (
 /turf/unsimulated/wall,
 /area/beach)
-"Gs" = (
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "Gw" = (
 /obj/effect/overlay/palmtree_l,
 /turf/unsimulated/beach/sand,
@@ -2915,8 +2879,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "Lz" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/simulated/sky/virgo3b/south,
+/turf/simulated/sky/virgo3b/south/planet_fall,
 /area/space)
 "Me" = (
 /turf/simulated/floor/smole/desert,
@@ -3013,10 +2976,6 @@
 /turf/space/transit/west,
 /area/space)
 "Pr" = (
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_game_room)
-"Px" = (
-/turf/space,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "PM" = (
@@ -13324,10 +13283,10 @@ Jz
 Jz
 Jz
 Jz
-bP
-bP
-bP
-bP
+Jz
+Jz
+Jz
+Jz
 iO
 El
 El
@@ -13466,10 +13425,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -13608,10 +13567,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -13750,10 +13709,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -13892,10 +13851,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14034,10 +13993,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14176,10 +14135,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14318,10 +14277,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14460,10 +14419,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14602,10 +14561,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14744,10 +14703,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -14886,10 +14845,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15028,10 +14987,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15170,10 +15129,10 @@ JL
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15312,10 +15271,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15454,10 +15413,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15596,10 +15555,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15738,10 +15697,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -15880,10 +15839,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -16022,10 +15981,10 @@ jf
 jf
 jf
 jf
-Gs
-Gs
-Gs
-bP
+jf
+jf
+jf
+Jz
 iO
 El
 El
@@ -16144,30 +16103,30 @@ ap
 ap
 ap
 ap
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
+Jz
 iO
 El
 El
@@ -17369,7 +17328,7 @@ Xs
 vY
 HU
 Pr
-af
+HU
 HU
 Pr
 lX
@@ -17795,11 +17754,11 @@ Pr
 Pr
 gZ
 QU
-ai
+QU
 QU
 QU
 yr
-Px
+Pr
 lA
 fZ
 ap

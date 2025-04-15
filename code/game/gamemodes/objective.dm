@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/Destroy()
 	GLOB.all_objectives -= src
-	..()
+	. = ..()
 
 /datum/objective/proc/check_completion()
 	return completed

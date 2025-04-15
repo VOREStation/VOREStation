@@ -43,7 +43,7 @@ FIRE ALARM
 	. = ..()
 	. += "Current security level: [seclevel]"
 
-/obj/machinery/firealarm/Initialize()
+/obj/machinery/firealarm/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		offset_alarm()
