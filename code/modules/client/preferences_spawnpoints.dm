@@ -126,4 +126,4 @@ GLOBAL_LIST_EMPTY(latejoin_tram)
 
 /datum/spawnpoint/vore/New()
 	..()
-	turfs = latejoin
+	turfs = GLOB.latejoin

@@ -485,7 +485,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					return
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
-			if(LAZYLEN(latejoin))
+			if(LAZYLEN(GLOB.latejoin))
 				spawnloc = get_turf(pick(GLOB.latejoin))
 			else if(LAZYLEN(GLOB.latejoin_tram))
 				spawnloc = pick(GLOB.latejoin_tram)
