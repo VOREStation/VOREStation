@@ -122,13 +122,6 @@ if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
 	FAILED=1
 fi;
 
-part "space indentation"
-if grep -P '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
-	echo
-	echo -e "${RED}ERROR: space indentation detected.${NC}"
-	FAILED=1
-fi;
-
 part "mixed tab/space indentation"
 if grep -P '^\t+ [^ *]' $code_files; then
 	echo
@@ -225,12 +218,12 @@ fi;
 #	FAILED=1
 #fi;
 
-#part "unmanaged global vars"
-#if grep -P '^/*var/' $code_files; then
-#	echo
-#	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
-#	FAILED=1
-#fi;
+part "unmanaged global vars"
+if grep -P '^/*var/' $code_files; then
+	echo
+	echo -e "${RED}ERROR: Unmanaged global var use detected in code, please use the helpers.${NC}"
+	FAILED=1
+fi;
 
 part "ambiguous bitwise or"
 if grep -P '^(?:[^\/\n]|\/[^\/\n])*(&[ \t]*\w+[ \t]*\|[ \t]*\w+)' $code_files; then
