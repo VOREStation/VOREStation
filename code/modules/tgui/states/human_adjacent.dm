@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: human_adjacent_state
-  *
-  * In addition to default checks, only allows interaction for a
-  * human adjacent user.
+/**
+ * tgui state: human_adjacent_state
+ *
+ * In addition to default checks, only allows interaction for a
+ * human adjacent user.
  **/
 
 GLOBAL_DATUM_INIT(tgui_human_adjacent_state, /datum/tgui_state/human_adjacent_state, new)

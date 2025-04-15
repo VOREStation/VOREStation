@@ -27,7 +27,8 @@
 /obj/item/robot_module/robot/exploration
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/exploration/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/exploration/create_equipment(mob/living/silicon/robot/robot)
+	..()
 	src.modules += new /obj/item/dogborg/sleeper/exploration(src)
 	src.modules += new /obj/item/cataloguer(src)
 	src.modules += new /obj/item/gun/energy/robotic/flare(src)
@@ -40,5 +41,3 @@
 	src.modules += new /obj/item/card/id/exploration/borg(src)
 
 	src.emag += new /obj/item/melee/robotic/jaws/big/explojaws(src)
-
-	..()

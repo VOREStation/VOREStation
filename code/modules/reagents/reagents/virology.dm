@@ -40,7 +40,7 @@
 	color = "#D18AA5"
 
 /datum/reagent/toxin/phoron/phoronvirusfood
-	name = REAGENT_ADRANOLVIRUSFOOD
+	name = REAGENT_PHORONVIRUSFOOD
 	id = REAGENT_ID_PHORONVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems to be the strongest."
 	color = "#A69DA9"

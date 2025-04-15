@@ -409,6 +409,10 @@
 /obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
+"aW" = (
+/obj/machinery/vending/cigarette,
+/turf/simulated/floor/airless,
+/area/stellardelight/deck3/exterior)
 "aX" = (
 /obj/structure/sign/deck3{
 	pixel_x = 32
@@ -418,6 +422,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"aY" = (
+/obj/structure/sign/small/nosmoking{
+	pixel_y = 27
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/item/trash/cigbutt,
+/obj/effect/floor_decal/shuttle/blue,
+/turf/simulated/floor/airless,
+/area/stellardelight/deck3/exterior)
 "bb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -27146,7 +27161,7 @@ RK
 hB
 In
 me
-NL
+aW
 NL
 qy
 NL
@@ -27288,7 +27303,7 @@ RE
 me
 me
 me
-NL
+aY
 NL
 we
 NL

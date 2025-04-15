@@ -138,7 +138,7 @@
 		L[++L.len] = list("Suit charge: [cell_status]", null, null, null, null)
 		for(var/obj/item/rig_module/module in R.installed_modules)
 		{
-			for(var/stat_rig_module/SRM in module.stat_modules)
+			for(var/atom/movable/stat_rig_module/SRM in module.stat_modules)
 				if(SRM.CanUse())
 					L[++L.len] = list(SRM.module.interface_name,null,null,SRM.name,REF(SRM))
 		}
@@ -376,7 +376,7 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
-		def_zone = pick("l_hand", "r_hand")
+		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
 		if(stored_shock_by_ref["\ref[src]"])
@@ -812,7 +812,7 @@
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
 
 	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
 
@@ -1431,7 +1431,7 @@
 	else if (affecting.robotic >= ORGAN_LIFELIKE)
 		. = 0
 		fail_msg = "Your needle refuses to penetrate more than a short distance..."
-	else if (affecting.thick_skin && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
+	else if ((species.flags & THICK_SKIN) && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
 		. = 0
 		fail_msg = "Your needle fails to penetrate \the [affecting]'s thick hide..."
 	else
@@ -1634,7 +1634,7 @@
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
 		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list("l_leg","r_leg"))
+		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
 			var/obj/item/organ/affecting = get_organ(limbcheck)
 			if(!affecting)
 				return 0
@@ -1679,6 +1679,23 @@
 	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
 		return 0
 	return (species && species.has_organ[organ_check])
+
+/// Checks our organs and sees if we are missing anything vital, or if it is too heavily damaged
+/// Returns two values:
+/// FALSE if all our vital organs are intact
+/// Or the name of the organ if we are missing a vital organ / it is damaged beyond repair.
+/mob/living/carbon/human/proc/check_vital_organs()
+	for(var/organ_tag in species.has_organ)
+		var/obj/item/organ/O = species.has_organ[organ_tag]
+		var/name = initial(O.name)
+		var/vital = initial(O.vital) //check for vital organs
+		if(vital)
+			O = internal_organs_by_name[organ_tag]
+			if(!O)
+				return name
+			if(O.damage > O.max_damage)
+				return name
+	return FALSE
 
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())

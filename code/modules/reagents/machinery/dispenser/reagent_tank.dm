@@ -26,7 +26,7 @@
 	QDEL_NULL(InputSocket)
 	QDEL_NULL(OutputSocket)
 
-	..()
+	. = ..()
 
 /obj/structure/reagent_dispensers/Initialize(mapload)
 	var/datum/reagents/R = new/datum/reagents(5000)

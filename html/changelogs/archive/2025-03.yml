@@ -516,3 +516,75 @@
   - bugfix: FBP dionas will no longer explode
   xnqm8h:
   - bugfix: Fixes demuxer output not pushing to other circuits.
+2025-03-25:
+  Cameron-The-Raven:
+  - qol: Xenobio monkey gun (bio6 bluespace5) now only requires gold and silver.
+  - qol: Portable slime processor (magnet 4 bio 5) now only requires  silver and gold.
+  Diana:
+  - qol: Temperature artifacts can no longer randomly spawn active.
+  - balance: Laser gun artifacts can spawn with pulse beams if you are lucky.
+  - code_imp: Consolidates a bunch of species files for backend cleanup.
+  - bugfix: Gets rid of an override that overrode tajaran being able to lick wounds
+  - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
+  Kashargul:
+  - code_imp: next set of NEW to INIT
+2025-03-26:
+  Cameron-The-Raven:
+  - bugfix: Proteans can select icon base again
+2025-03-27:
+  Kashargul:
+  - bugfix: missing spawn datum handling
+  SatinIsle:
+  - rscadd: Added mail options for entrepreneurs.
+2025-03-28:
+  Diana:
+  - bugfix: Environmental traits now work properly
+  - bugfix: Lightning strikes will no longer strike people in nullspace
+  - bugfix: Humans now have their proper skin color selection back
+  TankTheBirb:
+  - rscadd: Unusual gait positive trait for 2 points. This trait makes you move faster
+      when your hands are empty.
+  Tost:
+  - bugfix: You can now see what pronouns you are choosing for your character on setup.
+2025-03-29:
+  Cerami:
+  - rscadd: Adds a vore belly to kururak
+  Diana:
+  - bugfix: Mounted rigsuit guns now properly work
+  - bugfix: Protean rigs can no longer be removed by proteans
+  - bugfix: Protean rigs can no longer be removed if one is on your back and the protean
+      is dead
+  - bugfix: Protean rigs no longer be in a 'limbo state' of being enabled but not
+      enabled.
+  Kashargul:
+  - rscadd: next grep check to ensure space / tab sanity
+  SatinIsle:
+  - rscadd: Added a new system for announcing horribly corporate appreciation days.
+  - rscadd: Added a bingle computer to each library and command briefing room.
+  Will, Kash:
+  - rscadd: Bingle
+  - qol: ChemAnalyser Pro now uses tgui
+  - bugfix: chat scroll tracking failing on large displayed count when huge messages
+      blocks were sent
+2025-03-30:
+  Kashargul:
+  - admin: 'fix spawn at arrivals will not either pick from the secondary list or
+      sanely fail
+
+      fix latespawn loc code'
+2025-03-31:
+  Kashargul:
+  - bugfix: useless light recalcs, which might even have caused darker than supposed
+      areas
+  - bugfix: multiple bugs in outdoor and turf open / space handling
+  SatinIsle:
+  - rscadd: Added a treadmill fitness machine.
+  - rscadd: Added a non-alcohol version of the booze-o-mat, the virgin-o-mat!
+  - maptweak: Major changes to the pool area to include a poolside bar, new gym, locker
+      room, sauna and massage room.
+  - maptweak: Added a designated smoking area to the stellar delight.
+  - qol: Changed the default setting for Save Organs and Save Markings to No in character
+      setup
+  Tost:
+  - rscadd: Adds modern labcoat to loadout, under the public labcoat selector.
+  - rscadd: Adds 3 different leg warmers accessories.

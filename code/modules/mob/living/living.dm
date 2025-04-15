@@ -1,5 +1,5 @@
-/mob/living/New()
-	..()
+/mob/living/Initialize(mapload)
+	. = ..()
 
 	//Prime this list if we need it.
 	if(has_huds)
@@ -49,6 +49,9 @@
 		if(istype(nest, /obj/structure/blob/factory))
 			var/obj/structure/blob/factory/F = nest
 			F.spores -= src
+		if(istype(nest, /obj/structure/mob_spawner))
+			var/obj/structure/mob_spawner/S = nest
+			S.get_death_report(src)
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
@@ -943,7 +946,7 @@
 						if(ishuman(src))
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
+								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 								if(!L || L.is_broken())
 									blood_vomit = 1
 

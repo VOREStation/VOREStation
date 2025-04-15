@@ -23,11 +23,11 @@
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
 			simulated = TRUE
-		//	delete_me = TRUE
+			//delete_me = TRUE // see above, moving, always use this list with get_turf
 		if("JoinLateGateway")
 			latejoin_gateway += loc
-			latejoin += src				//VOREStation Addition
-			// delete_me = TRUE
+			latejoin += loc				//VOREStation Addition
+			delete_me = TRUE
 		if("JoinLateElevator")
 			latejoin_elevator += loc
 			delete_me = TRUE
@@ -71,13 +71,13 @@
 			delete_me = TRUE
 		//VORE Station Add End
 
-	landmarks_list += src
-
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
+	else
+		landmarks_list += src
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
-	if(delete_me || force)
+	if(force)
 		landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE

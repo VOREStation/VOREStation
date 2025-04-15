@@ -253,7 +253,7 @@ emp_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty())
+	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty(), attacker = user)
 
 	if(!hit_zone)
 		user.do_attack_animation(src)
@@ -400,7 +400,7 @@ emp_act
 	// I put more comments here for ease of reading.
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
-		if(isanimal(thrown_mob) && !allowmobvore) //Is the thrown_mob an animal and we don't allow mobvore?
+		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
@@ -460,7 +460,7 @@ emp_act
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
 			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
+		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = O.thrower)
 
 		if(zone && O.thrower != src)
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
@@ -541,9 +541,9 @@ emp_act
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
 /mob/living/carbon/human/proc/can_catch(var/obj/O)
 	if(!get_active_hand())	// If active hand is empty
-		var/obj/item/organ/external/temp = organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = organs_by_name[BP_R_HAND]
 		if (hand)
-			temp = organs_by_name["l_hand"]
+			temp = organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			return FALSE	// The hand isn't working in the first place
 

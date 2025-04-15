@@ -30,7 +30,7 @@
 	for(var/datum/beam/B in active_beams)
 		QDEL_NULL(B)
 	active_beams = null
-	..()
+	. = ..()
 
 /obj/structure/cult/pylon/swarm/pylonhit(var/damage)
 	if(!isbroken)

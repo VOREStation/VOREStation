@@ -196,6 +196,7 @@
 			"ref" = "\ref[B]",
 			"digest_mode" = B.digest_mode,
 			"contents" = LAZYLEN(B.contents),
+			"prevent_saving" = B.prevent_saving,
 		)))
 	data["our_bellies"] = our_bellies
 
@@ -662,6 +663,15 @@
 					return TRUE
 			else if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
 				var/choice = tgui_alert(ui.user, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
+			// Lets check for unsavable bellies...
+			var/list/unsavable_bellies = list()
+			for(var/obj/belly/B in host.vore_organs)
+				if(B.prevent_saving)
+					unsavable_bellies += B.name
+			if(LAZYLEN(unsavable_bellies))
+				var/choice = tgui_alert(ui.user, "Warning: One or more of your vore organs are unsavable. Saving now will save every vore belly except \[[jointext(unsavable_bellies, ", ")]\]. Are you sure you want to save?", "WARNING!", list("No, abort!", "Yes, save."))
 				if(choice != "Yes, save.")
 					return TRUE
 			if(!host.save_vore_prefs())
@@ -1478,7 +1488,7 @@
 						if(should_proceed_with_revive)
 							dead_mob_list.Remove(H)
 							if((H in living_mob_list) || (H in dead_mob_list))
-								WARNING("Mob [H] was defibbed but already in the living or dead list still!")
+								WARNING("Mob [H] was reformed but already in the living or dead list still!")
 							living_mob_list += H
 
 							H.timeofdeath = 0
@@ -1525,7 +1535,7 @@
 						MMI.brainmob.mind.transfer_to(R)
 						MMI.loc = R
 						R.mmi = MMI
-						R.mmi.brainmob.add_language("Robot Talk")
+						R.mmi.brainmob.add_language(LANGUAGE_ROBOT_TALK)
 					else //reference /datum/surgery_step/robotics/install_mmi/end_step
 						var/obj/item/organ/internal/mmi_holder/holder
 						if(istype(MMI, /obj/item/mmi/digital/posibrain))
@@ -1536,7 +1546,7 @@
 							holder = holdertmp
 						else
 							holder = new(body_backup, 1)
-						body_backup.internal_organs_by_name["brain"] = holder
+						body_backup.internal_organs_by_name[O_BRAIN] = holder
 						MMI.loc = holder
 						holder.stored_mmi = MMI
 						holder.update_from_mmi()
@@ -2126,48 +2136,50 @@
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
 					if(confirm == "DELETE")
-						host.vore_selected.digest_messages_prey = initial(host.vore_selected.digest_messages_prey)
-						host.vore_selected.digest_messages_owner = initial(host.vore_selected.digest_messages_owner)
-						host.vore_selected.absorb_messages_prey = initial(host.vore_selected.absorb_messages_prey)
-						host.vore_selected.absorb_messages_owner = initial(host.vore_selected.absorb_messages_owner)
-						host.vore_selected.unabsorb_messages_prey = initial(host.vore_selected.unabsorb_messages_prey)
-						host.vore_selected.unabsorb_messages_owner = initial(host.vore_selected.unabsorb_messages_owner)
-						host.vore_selected.struggle_messages_outside = initial(host.vore_selected.struggle_messages_outside)
-						host.vore_selected.struggle_messages_inside = initial(host.vore_selected.struggle_messages_inside)
-						host.vore_selected.absorbed_struggle_messages_outside = initial(host.vore_selected.absorbed_struggle_messages_outside)
-						host.vore_selected.absorbed_struggle_messages_inside = initial(host.vore_selected.absorbed_struggle_messages_inside)
-						host.vore_selected.escape_attempt_messages_owner = initial(host.vore_selected.escape_attempt_messages_owner)
-						host.vore_selected.escape_attempt_messages_prey = initial(host.vore_selected.escape_attempt_messages_prey)
-						host.vore_selected.escape_messages_owner = initial(host.vore_selected.escape_messages_owner)
-						host.vore_selected.escape_messages_prey = initial(host.vore_selected.escape_messages_prey)
-						host.vore_selected.escape_messages_outside = initial(host.vore_selected.escape_messages_outside)
-						host.vore_selected.escape_item_messages_owner = initial(host.vore_selected.escape_item_messages_owner)
-						host.vore_selected.escape_item_messages_prey = initial(host.vore_selected.escape_item_messages_prey)
-						host.vore_selected.escape_item_messages_outside = initial(host.vore_selected.escape_item_messages_outside)
-						host.vore_selected.escape_fail_messages_owner = initial(host.vore_selected.escape_fail_messages_owner)
-						host.vore_selected.escape_fail_messages_prey = initial(host.vore_selected.escape_fail_messages_prey)
-						host.vore_selected.escape_attempt_absorbed_messages_owner = initial(host.vore_selected.escape_attempt_absorbed_messages_owner)
-						host.vore_selected.escape_attempt_absorbed_messages_prey = initial(host.vore_selected.escape_attempt_absorbed_messages_prey)
-						host.vore_selected.escape_absorbed_messages_owner = initial(host.vore_selected.escape_absorbed_messages_owner)
-						host.vore_selected.escape_absorbed_messages_prey = initial(host.vore_selected.escape_absorbed_messages_prey)
-						host.vore_selected.escape_absorbed_messages_outside = initial(host.vore_selected.escape_absorbed_messages_outside)
-						host.vore_selected.escape_fail_absorbed_messages_owner = initial(host.vore_selected.escape_fail_absorbed_messages_owner)
-						host.vore_selected.escape_fail_absorbed_messages_prey = initial(host.vore_selected.escape_fail_absorbed_messages_prey)
-						host.vore_selected.primary_transfer_messages_owner = initial(host.vore_selected.primary_transfer_messages_owner)
-						host.vore_selected.primary_transfer_messages_prey = initial(host.vore_selected.primary_transfer_messages_prey)
-						host.vore_selected.secondary_transfer_messages_owner = initial(host.vore_selected.secondary_transfer_messages_owner)
-						host.vore_selected.secondary_transfer_messages_prey = initial(host.vore_selected.secondary_transfer_messages_prey)
-						host.vore_selected.primary_autotransfer_messages_owner = initial(host.vore_selected.primary_autotransfer_messages_owner)
-						host.vore_selected.primary_autotransfer_messages_prey = initial(host.vore_selected.primary_autotransfer_messages_prey)
-						host.vore_selected.secondary_autotransfer_messages_owner = initial(host.vore_selected.secondary_autotransfer_messages_owner)
-						host.vore_selected.secondary_autotransfer_messages_prey = initial(host.vore_selected.secondary_autotransfer_messages_prey)
-						host.vore_selected.digest_chance_messages_owner = initial(host.vore_selected.digest_chance_messages_owner)
-						host.vore_selected.digest_chance_messages_prey = initial(host.vore_selected.digest_chance_messages_prey)
-						host.vore_selected.absorb_chance_messages_owner = initial(host.vore_selected.absorb_chance_messages_owner)
-						host.vore_selected.absorb_chance_messages_prey = initial(host.vore_selected.absorb_chance_messages_prey)
-						host.vore_selected.examine_messages = initial(host.vore_selected.examine_messages)
-						host.vore_selected.examine_messages_absorbed = initial(host.vore_selected.examine_messages_absorbed)
-						host.vore_selected.emote_lists = initial(host.vore_selected.emote_lists)
+						var/obj/belly/default_belly = new /obj/belly(null)
+						host.vore_selected.digest_messages_prey = default_belly.digest_messages_prey.Copy()
+						host.vore_selected.digest_messages_owner = default_belly.digest_messages_owner.Copy()
+						host.vore_selected.absorb_messages_prey = default_belly.absorb_messages_prey.Copy()
+						host.vore_selected.absorb_messages_owner = default_belly.absorb_messages_owner.Copy()
+						host.vore_selected.unabsorb_messages_prey = default_belly.unabsorb_messages_prey.Copy()
+						host.vore_selected.unabsorb_messages_owner = default_belly.unabsorb_messages_owner.Copy()
+						host.vore_selected.struggle_messages_outside = default_belly.struggle_messages_outside.Copy()
+						host.vore_selected.struggle_messages_inside = default_belly.struggle_messages_inside.Copy()
+						host.vore_selected.absorbed_struggle_messages_outside = default_belly.absorbed_struggle_messages_outside.Copy()
+						host.vore_selected.absorbed_struggle_messages_inside = default_belly.absorbed_struggle_messages_inside.Copy()
+						host.vore_selected.escape_attempt_messages_owner = default_belly.escape_attempt_messages_owner.Copy()
+						host.vore_selected.escape_attempt_messages_prey = default_belly.escape_attempt_messages_prey.Copy()
+						host.vore_selected.escape_messages_owner = default_belly.escape_messages_owner.Copy()
+						host.vore_selected.escape_messages_prey = default_belly.escape_messages_prey.Copy()
+						host.vore_selected.escape_messages_outside = default_belly.escape_messages_outside.Copy()
+						host.vore_selected.escape_item_messages_owner = default_belly.escape_item_messages_owner.Copy()
+						host.vore_selected.escape_item_messages_prey = default_belly.escape_item_messages_prey.Copy()
+						host.vore_selected.escape_item_messages_outside = default_belly.escape_item_messages_outside.Copy()
+						host.vore_selected.escape_fail_messages_owner = default_belly.escape_fail_messages_owner.Copy()
+						host.vore_selected.escape_fail_messages_prey = default_belly.escape_fail_messages_prey.Copy()
+						host.vore_selected.escape_attempt_absorbed_messages_owner = default_belly.escape_attempt_absorbed_messages_owner.Copy()
+						host.vore_selected.escape_attempt_absorbed_messages_prey = default_belly.escape_attempt_absorbed_messages_prey.Copy()
+						host.vore_selected.escape_absorbed_messages_owner = default_belly.escape_absorbed_messages_owner.Copy()
+						host.vore_selected.escape_absorbed_messages_prey = default_belly.escape_absorbed_messages_prey.Copy()
+						host.vore_selected.escape_absorbed_messages_outside = default_belly.escape_absorbed_messages_outside.Copy()
+						host.vore_selected.escape_fail_absorbed_messages_owner = default_belly.escape_fail_absorbed_messages_owner.Copy()
+						host.vore_selected.escape_fail_absorbed_messages_prey = default_belly.escape_fail_absorbed_messages_prey.Copy()
+						host.vore_selected.primary_transfer_messages_owner = default_belly.primary_transfer_messages_owner.Copy()
+						host.vore_selected.primary_transfer_messages_prey = default_belly.primary_transfer_messages_prey.Copy()
+						host.vore_selected.secondary_transfer_messages_owner = default_belly.secondary_transfer_messages_owner.Copy()
+						host.vore_selected.secondary_transfer_messages_prey = default_belly.secondary_transfer_messages_prey.Copy()
+						host.vore_selected.primary_autotransfer_messages_owner = default_belly.primary_autotransfer_messages_owner.Copy()
+						host.vore_selected.primary_autotransfer_messages_prey = default_belly.primary_autotransfer_messages_prey.Copy()
+						host.vore_selected.secondary_autotransfer_messages_owner = default_belly.secondary_autotransfer_messages_owner.Copy()
+						host.vore_selected.secondary_autotransfer_messages_prey = default_belly.secondary_autotransfer_messages_prey.Copy()
+						host.vore_selected.digest_chance_messages_owner = default_belly.digest_chance_messages_owner.Copy()
+						host.vore_selected.digest_chance_messages_prey = default_belly.digest_chance_messages_prey.Copy()
+						host.vore_selected.absorb_chance_messages_owner = default_belly.absorb_chance_messages_owner.Copy()
+						host.vore_selected.absorb_chance_messages_prey = default_belly.absorb_chance_messages_prey.Copy()
+						host.vore_selected.examine_messages = default_belly.examine_messages.Copy()
+						host.vore_selected.examine_messages_absorbed = default_belly.examine_messages_absorbed.Copy()
+						host.vore_selected.emote_lists = default_belly.emote_lists.Copy()
+						qdel(default_belly)
 			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(tgui_input_text(user,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb"))

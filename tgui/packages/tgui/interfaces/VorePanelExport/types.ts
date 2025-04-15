@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   db_version: string;
@@ -16,6 +16,7 @@ export type Belly = {
   absorbed_desc: string;
   vore_verb: string;
   release_verb: string;
+  prevent_saving: BooleanLike;
 
   // Controls
   mode: string;

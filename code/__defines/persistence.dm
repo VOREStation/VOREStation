@@ -4,4 +4,4 @@
 #define PERSIST_MARKINGS	0x08	// Persist markings
 #define PERSIST_SIZE		0x10	// Persist size
 #define PERSIST_COUNT		5		// Number of valid bits in this bitflag.  Keep this updated!
-#define PERSIST_DEFAULT		PERSIST_SPAWN|PERSIST_ORGANS|PERSIST_MARKINGS|PERSIST_SIZE // Default setting for new folks
+#define PERSIST_DEFAULT		PERSIST_SPAWN|PERSIST_SIZE // Default setting for new folks

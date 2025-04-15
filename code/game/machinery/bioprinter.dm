@@ -227,7 +227,7 @@
 	O.status |= ORGAN_CUT_AWAY
 	var/mob/living/carbon/human/C = loaded_dna["donor"]
 	O.set_dna(C.dna)
-	O.species = C.species
+	O.data.setup_from_species(C.species)
 
 	var/malfunctioned = FALSE
 
@@ -237,7 +237,7 @@
 		var/new_species = pick(possible_species)
 		if(!GLOB.all_species[new_species])
 			new_species = SPECIES_HUMAN
-		O.species = GLOB.all_species[new_species]
+		O.data.setup_from_species(GLOB.all_species[new_species])
 
 	if(istype(O, /obj/item/organ/external) && !malfunctioned)
 		var/obj/item/organ/external/E = O
@@ -246,9 +246,9 @@
 	O.pixel_x = rand(-6.0, 6)
 	O.pixel_y = rand(-6.0, 6)
 
-	if(O.species)
+	if(O.data)
 		// This is a very hacky way of doing of what organ/New() does if it has an owner
-		O.w_class = max(O.w_class + mob_size_difference(O.species.mob_size, MOB_MEDIUM), 1)
+		O.w_class = max(O.w_class + mob_size_difference(O.data.get_species_mob_size(), MOB_MEDIUM), 1)
 
 	return O
 // END GENERIC PRINTER

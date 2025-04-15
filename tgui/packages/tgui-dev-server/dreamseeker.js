@@ -47,7 +47,7 @@ DreamSeeker.getInstancesByPids = async (pids) => {
   }
   const instances = [];
   const pidsToResolve = [];
-  for (let pid of pids) {
+  for (const pid of pids) {
     const instance = instanceByPid.get(pid);
     if (instance) {
       instances.push(instance);
@@ -66,7 +66,7 @@ DreamSeeker.getInstancesByPids = async (pids) => {
       // proto addr mask mode pid
       const entries = [];
       const lines = stdout.split('\r\n');
-      for (let line of lines) {
+      for (const line of lines) {
         const words = line.match(/\S+/g);
         if (!words || words.length === 0) {
           continue;
@@ -81,7 +81,7 @@ DreamSeeker.getInstancesByPids = async (pids) => {
       }
       const len = entries.length;
       logger.log('found', len, plural('instance', len));
-      for (let entry of entries) {
+      for (const entry of entries) {
         const { pid, addr } = entry;
         const instance = new DreamSeeker(pid, addr);
         instances.push(instance);

@@ -37,7 +37,8 @@
 	light_impact = 7
 	flash_range = 7
 
-/obj/item/syndie/c4explosive/New()
+/obj/item/syndie/c4explosive/Initialize(mapload)
+	. = ..()
 	var/K = rand(1,2000)
 	K = md5(num2text(K)+name)
 	K = copytext(K,1,7)
@@ -51,8 +52,11 @@
 	playsound(src, 'sound/weapons/armbomb.ogg', 75, 1)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("[icon2html(src, O.client)] " + span_warning(" The [src.name] beeps!"))
-	sleep(50)
-	explosion(get_turf(src), devastate, heavy_impact, light_impact, flash_range)
+	addtimer(CALLBACK(src, PROC_REF(do_detonate)), 5 SECONDS, TIMER_DELETE_ME)
+
+/obj/item/syndie/c4explosive/proc/do_detonate()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
 		var/turf/simulated/wall/T = get_step(src,dirn)
 		if(locate(/obj/machinery/door/airlock) in T)

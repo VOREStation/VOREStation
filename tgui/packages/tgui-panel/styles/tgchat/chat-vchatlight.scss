@@ -45,19 +45,20 @@ img.icon {
 }
 
 a {
-  color: hsl(240, 100%, 50%);
+  color: hsl(from var(--color-hyperlink) h s calc(l - 40));
+
+  &:hover {
+    color: hsl(from var(--color-hyperlink) h s calc(l - 20));
+  }
 }
 
-a.visited {
-  color: hsl(300, 100%, 50%);
-}
-
+a.visited,
 a:visited {
-  color: hsl(300, 100%, 50%);
-}
+  color: hsl(from var(--color-hyperlink-visited) h s calc(l - 40));
 
-a.popt {
-  text-decoration: none;
+  &:hover {
+    color: hsl(from var(--color-hyperlink-visited) h s calc(l - 20));
+  }
 }
 
 /* POPUPS */
@@ -1090,7 +1091,6 @@ h2.alert {
   -moz-transform: scale(-1, -1);
   -webkit-transform: scale(-1, -1);
   -o-transform: scale(-1, -1);
-  -ms-transform: scale(-1, -1);
   transform: scale(-1, -1);
 }
 
@@ -1459,6 +1459,37 @@ $border-width-px: $border-width * 1px;
 .wingdings {
   color: hsl(212, 100%, 50%);
   font-family: Wingdings, Webdings;
+}
+
+.rainbow {
+  font-family: monospace;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    hsl(300, 76%, 72%),
+    hsl(275, 100%, 25%),
+    hsl(240, 100%, 50%),
+    hsl(120, 100%, 25%),
+    hsl(60, 100%, 50%),
+    hsl(39, 100%, 50%),
+    hsl(0, 100%, 50%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
 }
 
 .spoiler {

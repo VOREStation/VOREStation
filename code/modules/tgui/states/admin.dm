@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: admin_state
-  *
-  * Checks that the user is an admin, end-of-story.
+/**
+ * tgui state: admin_state
+ *
+ * Checks that the user is an admin, end-of-story.
  **/
 
 GLOBAL_DATUM_INIT(tgui_admin_state, /datum/tgui_state/admin_state, new)

@@ -41,17 +41,23 @@ export const NtosFileManager = (props) => {
           <Section
             title={'Viewing File ' + filename}
             buttons={
-              <>
-                <Button icon="pen" onClick={() => act('PRG_edit')}>
-                  Edit
-                </Button>
-                <Button icon="print" onClick={() => act('PRG_printfile')}>
-                  Print
-                </Button>
-                <Button icon="times" onClick={() => act('PRG_closefile')}>
-                  Close
-                </Button>
-              </>
+              <Stack>
+                <Stack.Item>
+                  <Button icon="pen" onClick={() => act('PRG_edit')}>
+                    Edit
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button icon="print" onClick={() => act('PRG_printfile')}>
+                    Print
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button icon="times" onClick={() => act('PRG_closefile')}>
+                    Close
+                  </Button>
+                </Stack.Item>
+              </Stack>
             }
           >
             {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
