@@ -7,7 +7,7 @@
 			playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 			user.drop_item()
 			forceMove(H.vore_selected)
-			to_chat(H, span_notice("You can taste the flavor of garbage. Wait what?"))
+			balloon_alert(H, "you can taste the flavor of garbage. Wait what?")
 			return
 
 	if(isrobot(M))
@@ -16,7 +16,7 @@
 			playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 			user.drop_item()
 			forceMove(R.vore_selected)
-			R.visible_message(span_warning("[user] feeds [R] with [src]!"))
+			R.balloon_alert_visible("[user] feeds [R] with [src]!", "you feed [R] \the [src]!")
 			return
 	..()
 

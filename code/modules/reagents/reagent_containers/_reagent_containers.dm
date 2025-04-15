@@ -52,15 +52,15 @@
 		return 0
 
 	if(!target.reagents || !target.reagents.total_volume)
-		to_chat(user, span_notice("[target] is empty."))
+		balloon_alert(user, "[target] is empty.")
 		return 1
 
 	if(reagents && !reagents.get_free_space())
-		to_chat(user, span_notice("[src] is full."))
+		balloon_alert(user, "[src] is full.")
 		return 1
 
 	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
-	to_chat(user, span_notice("You fill [src] with [trans] units of the contents of [target]."))
+	balloon_alert(user, "[trans] units transfered to \the [src]")
 	return 1
 
 /obj/item/reagent_containers/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
@@ -68,27 +68,27 @@
 		return
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_notice("[src] is empty."))
+		balloon_alert(user, "[src] is empty!")
 		return 1
 
 	if(target.reagents && !target.reagents.get_free_space())
-		to_chat(user, span_notice("[target] is full."))
+		balloon_alert(user, "\the [target] is full!")
 		return 1
 
 	var/contained = reagentlist()
 	add_attack_logs(user,target,"Splashed with [src.name] containing [contained]")
-	user.visible_message(span_danger("[target] has been splashed with something by [user]!"), span_notice("You splash the solution onto [target]."))
+	balloon_alert_visible("[target] is splashed with something by [user]!", "splashed the solution onto [target]")
 	reagents.splash(target, reagents.total_volume)
 	return 1
 
 /obj/item/reagent_containers/proc/self_feed_message(var/mob/user)
-	to_chat(user, span_notice("You eat \the [src]"))
+	balloon_alert(user, "you eat \the [src]")
 
 /obj/item/reagent_containers/proc/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message(span_warning("[user] is trying to feed [target] \the [src]!"))
+	balloon_alert_visible(user, "[user] is trying to feed [target] \the [src]!")
 
 /obj/item/reagent_containers/proc/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message(span_warning("[user] has fed [target] \the [src]!"))
+	balloon_alert_visible(user, "[user] has fed [target] \the [src]!")
 
 /obj/item/reagent_containers/proc/feed_sound(var/mob/user)
 	return
@@ -98,22 +98,22 @@
 		return FALSE
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_notice("\The [src] is empty."))
+		balloon_alert(user, "\the [src] is empty.")
 		return TRUE
 
 	if(!target.consume_liquid_belly)
 		if(liquid_belly_check())
-			to_chat(user, span_infoplain("[user == target ? "You can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+			to_chat(user, span_infoplain("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
 			return FALSE
 
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.check_has_mouth())
-			to_chat(user, "Where do you intend to put \the [src]? [user == target ? "You don't" : "\The [H] doesn't"] have a mouth!")
+			balloon_alert(user, "[user == target ? "you don't" : "\the [H] doesn't"] have a mouth!")
 			return FALSE
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
-			to_chat(user, span_warning("\The [blocked] is in the way!"))
+			balloon_alert(user, "\the [blocked] is in the way!")
 			return FALSE
 
 	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
@@ -140,15 +140,15 @@
 		return 0
 
 	if(!reagents || !reagents.total_volume)
-		to_chat(user, span_notice("[src] is empty."))
+		balloon_alert(usr, "[src] is empty!")
 		return 1
 
 	if(!target.reagents.get_free_space())
-		to_chat(user, span_notice("[target] is full."))
+		balloon_alert(usr, "[target] is full!")
 		return 1
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-	to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
+	balloon_alert(user, "transfered [trans] units to [target]")
 	return 1
 
 /obj/item/reagent_containers/proc/liquid_belly_check()

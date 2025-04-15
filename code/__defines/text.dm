@@ -18,3 +18,7 @@
 #define MAX_MESSAGE_CHUNKS 130
 
 #define MAX_TGUI_INPUT (MAX_MESSAGE_CHUNKS * 1024)
+
+#define MAPTEXT(text) {"<span class='maptext'>[##text]</span>"}
+
+#define WXH_TO_HEIGHT(measurem) text2num(copytext(x, findtextEx(x, "x") + 1))

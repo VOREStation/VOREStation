@@ -39,6 +39,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool].") , \
 	span_filter_notice("You start patching the damaged vein in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("starts patching the damaged ven in [target]'s [affected.name]", "patching the damaged vein in \the [affected.name]")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -46,6 +47,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool]."), \
 		span_notice("You have patched the damaged vein in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("patches the damaged vein in [target]'s [affected.name]", "patched the damaged vein in \the [affected.name]")
 
 	for(var/datum/wound/W in affected.wounds) if(W.internal)
 		affected.wounds -= W
@@ -56,6 +58,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!") , \
 	span_danger("Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!"))
+	user.balloon_alert_visible("slips, smearing [tool] in the incision in [target]'s [affected.name]", "your hand slips, smearing [tool] in the incisiom in [affected.name]")
 	affected.take_damage(5, 0)
 
 ///////////////////////////////////////////////////////////////
@@ -93,6 +96,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].") , \
 	span_filter_notice("You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("starts cutting away necrotic tissue in [target]'s [affected.name]", "cutting away necrotic issue in \the [affected.name]")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
@@ -100,12 +104,14 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool]."), \
 		span_notice("You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("cuts away necrotic tissue in [target]'s [affected.name]", "cut away necrotic tissue in \the [affected.name]")
 	affected.open = 3
 
 /datum/surgery_step/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!"), \
 	span_danger("Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!"))
+	user.balloon_alert_visible("slips, slicing an artery inside [target]'s [affected.name]", "your hand slips, slicing an artery inside \the [affected.name]")
 	affected.createwound(CUT, 20, 1)
 
 ///////////////////////////////////////////////////////////////
@@ -151,6 +157,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].") , \
 	span_filter_notice("You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("starts applying medication to the affected tissue in [target]'s [affected.name]", "applying medication to the affected tissue in \the [affected.name]")
 	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
 	..()
 
@@ -169,6 +176,7 @@
 
 		user.visible_message(span_notice("[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name]."), \
 			span_notice("You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool]."))
+		user.balloon_alert_visible("applies [trans] units of the solution to affected tissue in [target]'s [affected.name]", "applied [trans] units of the solution to afected tissue in [affected.name]")
 
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -182,6 +190,8 @@
 
 	user.visible_message(span_danger("[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!") , \
 	span_danger("Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!"))
+	user.balloon_alert_visible("slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name]",
+	"your hand slips, applying [trans] units of the solution to the wrong place in \the [affected.name]")
 
 	//no damage or anything, just wastes medicine
 
@@ -221,6 +231,7 @@
 			return
 	user.visible_message(span_filter_notice("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool].") , \
 	span_filter_notice("You start cutting through the support systems of \the [rig] on [target] with \the [tool]."))
+	user.balloon_alert_visible("starts cutting through the support systems of \the [rig] on [target]", "cutting through the support systems of \the [rig] on [target]")
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -232,10 +243,12 @@
 	rig.cut_suit()
 	user.visible_message(span_notice("[user] has cut through the support systems of \the [rig] on [target] with \the [tool]."), \
 		span_notice("You have cut through the support systems of \the [rig] on [target] with \the [tool]."))
+	user.balloon_alert_visible("cuts through the support systems of \the [rig] on [target]", "cut through the support systems of \the [rig]")
 
 /datum/surgery_step/hardsuit/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_danger("[user]'s [tool] can't quite seem to get through the metal..."), \
 	span_danger("\The [tool] can't quite seem to get through the metal. It's weakening, though - try again."))
+	user.balloon_alert_visible("[tool] can't quite seem to get through the metal", "\the [tool] can't quite seem to get through the metal.")
 
 ///////////////////////////////////////////
 //			De-Husking Surgery			//
@@ -274,11 +287,13 @@
 /datum/surgery_step/dehusk/structinitial/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] begins to create a fleshy but rigid looking mesh over gaps in [target]'s flesh with \the [tool]."), \
 	span_notice("You begin to create a fleshy but rigid looking mesh over gaps in [target]'s flesh with \the [tool]."))
+	user.balloon_alert_visible("begins to create a fleshy mesh over gaps in [target]'s flesh.", "creating a flesh mesh over gaps")
 	..()
 
 /datum/surgery_step/dehusk/structinitial/end_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] creates a fleshy but rigid looking mesh over gaps in [target]'s flesh with \the [tool]."), \
 	span_notice("You create a fleshy but rigid looking mesh over gaps in [target]'s flesh with \the [tool]."))
+	user.balloon_alert_visible("creates a fleshy mesh over gaps in [target]'s flesh", "created a fleshy mesh over gaps in the flesh")
 	target.op_stage.dehusk = 1
 	..()
 
@@ -286,6 +301,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, and the mesh falls, with \the [tool] scraping [target]'s body."), \
 	span_danger("Your hand slips, and the mesh falls, with \the [tool] scraping [target]'s body."))
+	user.balloon_alert_visible("slips, the mesh falls and scrapes [target]'s body", "your hand slips, the mesh falls and scrapes the body")
 	affected.createwound(CUT, 15)
 	affected.createwound(BRUISE, 10)
 	..()
@@ -306,11 +322,13 @@
 /datum/surgery_step/dehusk/relocateflesh/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] begins to relocate some of [target]'s flesh with \the [tool], using it to fill in gaps."), \
 	span_notice("You begin to relocate some of [target]'s flesh with \the [tool], using it to fill in gaps."))
+	user.balloon_alert_visible("begins relocating [target]'s flesh", "relocating the flesh")
 	..()
 
 /datum/surgery_step/dehusk/relocateflesh/end_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] relocates some of [target]'s flesh with \the [tool], using it to fill in gaps."), \
 	span_notice("You relocate some of [target]'s flesh with \the [tool], using it to fill in gaps."))
+	user.balloon_alert_visible("relocates [target]'s flesh", "relocated the flesh")
 	target.op_stage.dehusk = 2
 	..()
 
@@ -318,6 +336,8 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user] accidentally rips a massive chunk out of [target]'s flesh with \the [tool], causing massive damage."), \
 	span_danger("You accidentally rip a massive chunk out of [target]'s flesh with \the [tool], causing massive damage."))
+	user.balloon_alert_visible("accidentally rips a massive chunk out of [target]'s flesh, causing massive damage",
+	"you accidentally rip a massive chunk out of the flesh, causing massive damage")
 	affected.createwound(CUT, 25)
 	affected.createwound(BRUISE, 10)
 	..()
@@ -338,14 +358,17 @@
 	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message(span_notice("[user] begins to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool]."), \
 	span_notice("You begin to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool]."))
+		user.balloon_alert_visible("begins recreating blood vessels and filing gaps in [target]'s flesh", "recreating blood vessels and filling gaps in the flesh")
 	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message(span_notice("[user] attempts to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool]."), \
 	span_notice("You attempt to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool]."))
+		user.balloon_alert_visible("attempts to recreate blood vessesl and fill the gaps in [target]'s flesh", "attempting to recreate blood vessels and fill gaps in the flesh")
 	..()
 
 /datum/surgery_step/dehusk/structfinish/end_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] finishes recreating the missing biological structures and filling in gaps in [target]'s flesh with \the [tool]."), \
 	span_notice("You finish recreating the missing biological structures and filling in gaps in [target]'s flesh with \the [tool]."))
+	user.balloon_alert_visible("recreates the missing biological structures and gaps in [target]'s flesh", "recreated the missing bological structures and gaps in the flesh")
 	target.op_stage.dehusk = 0
 	target.mutations.Remove(HUSK)
 	target.status_flags &= ~DISFIGURED
@@ -357,9 +380,12 @@
 	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message(span_danger("[user]'s hand slips, causing \the [tool] to scrape [target]'s body."), \
 	span_danger("Your hand slips, causing \the [tool] to scrape [target]'s body."))
+		user.balloon_alert_visible("slips, scraping [target]'s body", "you slip, scraping the body.")
 	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message(span_danger("[user] fails to finish the structure over the gaps in [target]'s flesh, doing more damage than good."), \
 	span_danger("You fail to finish the structure over the gaps in [target]'s flesh, doing more damage than good."))
+		user.balloon_alert_visible("fails to finish the structure in [target]'s flesh, doing more damage", "you fail to finish the structur, doing more damage")
+
 	affected.createwound(CUT, 15)
 	affected.createwound(BRUISE, 10)
 	..()
@@ -377,11 +403,13 @@
 /datum/surgery_step/internal/detoxify/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] begins to pull toxins from, and restore oxygen to [target]'s musculature and organs with \the [tool]."), \
 	span_notice("You begin to pull toxins from, and restore oxygen to [target]'s musculature and organs with \the [tool]."))
+	user.balloon_alert_visible("begins pulling from, and restoring oxygen to [target]'s organs", "pulling toxins from and restoring oxygen to the organs")
 	..()
 
 /datum/surgery_step/internal/detoxify/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] finishes pulling toxins from, and restoring oxygen to [target]'s musculature and organs with \the [tool]."), \
 	span_notice("You finish pulling toxins from, and restoring oxygen to [target]'s musculature and organs with \the [tool]."))
+	user.balloon_alert_visible("finishes pulling toxins and restoring oxygen to [target]'s organs", "pulled toxins from and restored oxygen to the organs")
 	if(target.toxloss>25)
 		target.adjustToxLoss(-20)
 	if(target.oxyloss>25)
@@ -392,6 +420,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, failing to finish the surgery, and damaging [target] with \the [tool]."), \
 	span_danger("Your hand slips, failing to finish the surgery, and damaging [target] with \the [tool]."))
+	user.balloon_alert_visible("slips, failing to finish the surgery and damaging [target]", "your hand slips, failing to finish the surgery and damaging [target]")
 	affected.createwound(CUT, 15)
 	affected.createwound(BRUISE, 10)
 	..()

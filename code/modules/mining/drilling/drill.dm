@@ -242,13 +242,13 @@
 
 	if(istype(O, /obj/item/cell))
 		if(cell)
-			to_chat(user, "The drill already has a cell installed.")
+			balloon_alert(user, "the drill already has a cell installed.")
 		else
 			user.drop_item()
 			O.forceMove(src)
 			cell = O
 			component_parts += O
-			to_chat(user, "You install \the [O].")
+			balloon_alert(user, "you install \the [O]")
 		return
 	..()
 
@@ -257,13 +257,13 @@
 	RefreshParts()
 
 	if (panel_open && cell && user.Adjacent(src))
-		to_chat(user, "You take out \the [cell].")
+		balloon_alert(user, "you take out \the [cell]")
 		user.put_in_hands(cell)
 		component_parts -= cell
 		cell = null
 		return
 	else if(need_player_check)
-		to_chat(user, "You hit the manual override and reset the drill's error checking.")
+		balloon_alert(user, "manual override hit, the drill's error checking resets.")
 		need_player_check = 0
 		if(anchored)
 			get_resource_field()
@@ -405,9 +405,9 @@
 				B.stored_ore[ore] += ore_amount 	// Add the ore to the machine.
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				current_capacity = 0				// Set the amount of ore in the drill to 0.
-		to_chat(usr, span_notice("You unload the drill's storage cache into the ore box."))
+		balloon_alert(usr, "onloaded cache into the ore box.")
 	else
-		to_chat(usr, span_notice("You must move an ore box up to the drill before you can unload it."))
+		balloon_alert(usr, "move an ore box to the droll before unloading it.")
 
 
 /obj/machinery/mining/brace
@@ -435,7 +435,7 @@
 
 /obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(connected && connected.active)
-		to_chat(user, span_notice("You can't work with the brace of a running drill!"))
+		balloon_alert(user, "you can't work with the brace of a running drill.")
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -448,11 +448,11 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 
 		if(istype(get_turf(src), /turf/space))
-			to_chat(user, span_notice("You can't anchor something to empty space. Idiot."))
+			balloon_alert(user, "you can't anchor something to empty space. Idiot.")
 			return
 
 		playsound(src, W.usesound, 100, 1)
-		to_chat(user, span_notice("You [anchored ? "un" : ""]anchor the brace."))
+		balloon_alert(user, "[anchored ? "una" : "a"]nchored the brace")
 
 		anchored = !anchored
 		if(anchored)
@@ -500,13 +500,12 @@
 	if(usr.stat) return
 
 	if (src.anchored)
-		to_chat(usr, "It is anchored in place!")
+		balloon_alert(usr, "it is anchored in place!")
 		return 0
 
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
-//VOREstation edit: counter-clockwise rotation
 /obj/machinery/mining/brace/verb/rotate_counterclockwise()
 	set name = "Rotate Brace Counter-Clockwise"
 	set category = "Object"
