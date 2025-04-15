@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(allfaxes, /obj/machinery/photocopier/faxmachine)
-GLOBAL_LIST_INIT(admin_departments, list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply"))
+var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply")
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_VAR(last_fax_role_request)
 
@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 	. = ..()
 	GLOB.allfaxes += src
 	if(!destination) destination = "[using_map.boss_name]"
-	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
+	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in admin_departments)) )
 		GLOB.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 	data["rank"] = rank
 	data["isAI"] = isAI(user)
 	data["isRobot"] = isrobot(user)
-	data["adminDepartments"] = GLOB.admin_departments
+	data["adminDepartments"] = admin_departments
 
 	data["bossName"] = using_map.boss_name
 	data["copyItem"] = copyitem
@@ -236,7 +236,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 				copyitem.name = new_name
 		if("send")
 			if(copyitem)
-				if (destination in GLOB.admin_departments)
+				if (destination in admin_departments)
 					if(check_if_default_title_and_rename(ui.user))
 						return
 					send_admin_fax(ui.user, destination)
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 
 		if("dept")
 			var/lastdestination = destination
-			destination = tgui_input_list(ui.user, "Which department?", "Choose a department", (GLOB.alldepartments + GLOB.admin_departments))
+			destination = tgui_input_list(ui.user, "Which department?", "Choose a department", (GLOB.alldepartments + admin_departments))
 			if(!destination)
 				destination = lastdestination
 
@@ -300,7 +300,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 			to_chat(user, "No input found. Please hang up and try your call again.")
 			return
 		department = input
-		if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) && !(department == "Unknown"))
+		if( !(("[department]" in GLOB.alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
 			GLOB.alldepartments |= department
 	else if(istype(O, /obj/item/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
