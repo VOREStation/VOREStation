@@ -6,6 +6,7 @@ import {
   Input,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { PaginationChevrons } from '..';
@@ -20,20 +21,22 @@ export const DesignList = (props) => {
       fill
       textAlign="center"
       buttons={
-        <>
-          <Button icon="print" onClick={() => act('print', { print: 2 })}>
-            Print This Page
-          </Button>
+        <Stack>
+          <Stack.Item>
+            <Button icon="print" onClick={() => act('print', { print: 2 })}>
+              Print This Page
+            </Button>
+          </Stack.Item>
           <PaginationChevrons target="design_page" />
-        </>
+        </Stack>
       }
     >
       <Input
         fluid
-        updateOnPropsChange
+        expensive
         placeholder="Search for..."
         value={data.search}
-        onInput={(e, v) => act('search', { search: v })}
+        onChange={(v) => act('search', { search: v })}
         mb={1}
       />
       <Divider />

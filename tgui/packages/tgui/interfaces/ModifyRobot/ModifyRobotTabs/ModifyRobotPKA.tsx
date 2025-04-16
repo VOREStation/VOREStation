@@ -36,7 +36,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
               fluid
               value={searchModkitText}
               placeholder="Search for modkits..."
-              onInput={(e, value: string) => setSearchModkitText(value)}
+              onChange={(value: string) => setSearchModkitText(value)}
             />
             <Divider />
             {prepareSearch(target.pka.modkits, searchModkitText).map(
@@ -82,7 +82,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
               fluid
               value={searchInstalledtext}
               placeholder="Search for modkits..."
-              onInput={(e, value: string) => setSearchInstalledtext(value)}
+              onChange={(value: string) => setSearchInstalledtext(value)}
             />
             <Divider />
             {prepareSearch(

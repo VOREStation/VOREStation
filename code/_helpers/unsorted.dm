@@ -757,7 +757,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					if(istype(T,/turf/simulated/shuttle))
 						shuttlework = 1
 						var/turf/simulated/shuttle/SS = T
-						if(!SS.landed_holder) SS.landed_holder = new(turf = SS)
+						if(!SS.landed_holder) SS.landed_holder = new(SS)
 						X = SS.landed_holder.land_on(B)
 
 					//Generic non-shuttle turf move.

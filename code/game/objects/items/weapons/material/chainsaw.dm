@@ -22,7 +22,7 @@
 
 /obj/item/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/chainsaw/proc/turnOn(mob/user as mob)
 	if(on) return

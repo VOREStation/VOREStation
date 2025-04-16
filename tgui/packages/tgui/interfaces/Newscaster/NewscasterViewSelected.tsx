@@ -1,5 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Image,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
@@ -34,26 +41,30 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
     <Section
       title={decodeHtmlEntities(viewing_channel.name)}
       buttons={
-        <>
+        <Stack>
           {!!securityCaster && (
-            <Button.Confirm
-              color="bad"
-              icon="ban"
-              confirmIcon="ban"
-              onClick={() =>
-                act('toggle_d_notice', { ref: viewing_channel.ref })
-              }
-            >
-              Issue D-Notice
-            </Button.Confirm>
+            <Stack.Item>
+              <Button.Confirm
+                color="bad"
+                icon="ban"
+                confirmIcon="ban"
+                onClick={() =>
+                  act('toggle_d_notice', { ref: viewing_channel.ref })
+                }
+              >
+                Issue D-Notice
+              </Button.Confirm>
+            </Stack.Item>
           )}
-          <Button
-            icon="undo"
-            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
-          >
-            Back
-          </Button>
-        </>
+          <Stack.Item>
+            <Button
+              icon="undo"
+              onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
+            >
+              Back
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

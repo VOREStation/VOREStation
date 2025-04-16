@@ -10,14 +10,13 @@
 	var/maxhealth = 100
 	var/datum/material/material
 
-/obj/structure/barricade/New(var/newloc, var/material_name)
-	..(newloc)
+/obj/structure/barricade/Initialize(mapload, var/material_name)
+	. = ..()
 	if(!material_name)
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	name = "[material.display_name] barricade"
 	desc = "This space is blocked off by a barricade made of [material.display_name]."
 	color = material.icon_colour
@@ -116,16 +115,11 @@
 	icon = 'icons/obj/sandbags.dmi'
 	icon_state = "blank"
 
-/obj/structure/barricade/sandbag/New(var/newloc, var/material_name)
+/obj/structure/barricade/sandbag/Initialize(mapload, var/material_name)
 	if(!material_name)
 		material_name = MAT_CLOTH
-	..(newloc, material_name)
-	material = get_material_by_name("[material_name]")
-	if(!material)
-		qdel(src)
-		return
+	. = ..(mapload, material_name)
 	name = "[material.display_name] [initial(name)]"
-	desc = "This space is blocked off by a barricade made of [material.display_name]."
 	color = null
 	maxhealth = material.integrity * 2	// These things are, commonly, used to stop bullets where possible.
 	health = maxhealth
@@ -133,7 +127,7 @@
 
 /obj/structure/barricade/sandbag/Destroy()
 	update_connections(1, src)
-	..()
+	. = ..()
 
 /obj/structure/barricade/sandbag/dismantle()
 	update_connections(1, src)
