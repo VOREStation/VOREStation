@@ -25,8 +25,8 @@
 
 	var/count_plastic = 0 //Given in "units", not sheets
 	var/value_plastic = 2000 //1 sheet translates to 2000 units
-	var/cost_plastic_small = 30
-	var/cost_plastic_large = 300
+	var/cost_plastic_small = 25
+	var/cost_plastic_large = 250
 	var/capacity_plastic = 60000 // 30 sheets of plastic
 
 
