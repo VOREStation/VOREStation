@@ -338,12 +338,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/arithmetic/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/arithmetic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/trig
@@ -355,12 +355,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/trig/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/trig/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/input
@@ -372,12 +372,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/input/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/input/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/output
@@ -389,12 +389,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/output/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/output/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/memory
@@ -406,12 +406,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/memory/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/memory/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/logic
@@ -423,12 +423,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/logic/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/logic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/time
@@ -440,12 +440,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/time/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/time/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/reagents
@@ -457,12 +457,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/reagents/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/reagent/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/transfer
@@ -474,12 +474,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/transfer/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/transfer/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/converter
@@ -491,12 +491,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/converter/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/converter/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 /obj/item/storage/bag/circuits/mini/smart
 	name = "smart box"
@@ -507,12 +507,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/smart/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/smart/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 /obj/item/storage/bag/circuits/mini/manipulation
 	name = "manipulation box"
@@ -523,12 +523,12 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/manipulation/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/manipulation/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()
 
 
 /obj/item/storage/bag/circuits/mini/power
@@ -540,7 +540,6 @@
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/storage/bag/circuits/mini/power/Initialize(mapload)
-	. = ..()
 	for(var/obj/item/integrated_circuit/passive/power/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -550,3 +549,4 @@
 			for(var/i = 1 to 4)
 				new IC.type(src)
 	make_exact_fit()
+	. = ..()

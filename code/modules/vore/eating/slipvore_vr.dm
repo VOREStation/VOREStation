@@ -10,6 +10,8 @@
 		return FALSE
 	if(is_incorporeal())
 		return FALSE
+	if(!target.allowmobvore && isanimal(src) && !ckey)
+		return FALSE
 	if(world.time <= target.slip_protect)
 		return FALSE
 	if(!(src.can_be_drop_pred && target.devourable && target.can_be_drop_prey))	//Make sure both of their prefs align with what we're gonna do.
@@ -26,6 +28,8 @@
 	if(!target.is_slipping)	//Obviously they have to be slipping to get slip vored
 		return FALSE
 	if(is_incorporeal())
+		return FALSE
+	if(!allowmobvore && isanimal(target) && !target.ckey)
 		return FALSE
 	if(world.time <= target.slip_protect)
 		return FALSE
