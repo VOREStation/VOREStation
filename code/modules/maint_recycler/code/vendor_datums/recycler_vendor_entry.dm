@@ -5,7 +5,7 @@
 	var/object_type_to_spawn
 	var/item_cost = 15 //in RP/Recycle Points
 
-	var/tagline = "" //what's said by the vendor upon vending
+	var/tagline = "Thank you for your patronage!" //what's said by the vendor upon vending
 	var/per_person_cap = -1 //-1 for infinite!
 	var/per_round_cap = -1 //ditto. Global. for everyone. etc.
 	var/list/purchased_by //associated list. client.key to amount bought.
@@ -14,8 +14,6 @@
 	// but would be weird to hand out to just anyone.
 	//can technically be cheesed as the source of "money" isn't tied to the ID, so you can borrow someone's access
 	//but if someone's willing to be a big enough nerd, I'm not gonna waste time trying to stop it.
-
-	var/dispense_sound //played on top of the standard vendor one
 
 	var/vendor_category = MAINTVENDOR_GENERIC
 	var/icon_state

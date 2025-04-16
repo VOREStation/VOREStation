@@ -21,3 +21,11 @@
 	tagline = "I HAVE 8.2 PETABYTES OF MECHHAMMER MODELS!"
 	item_cost = 50 //even discount bin warhammer's comically expensive
 	object_type_to_spawn = /obj/random/fromList/mecha_toys
+
+/datum/maint_recycler_vendor_entry/burger //packaged 40 years ago. you should regret this.
+	name = "TRASH 4 BURGER REDEMPTION"
+	desc = "RSG is glad to partner with on-station cooking staff for EXCLUSIVE culinary deals! Packaged daily, stocked daily, always fresh!"
+	item_cost = 5
+	object_type_to_spawn = /obj/item/reagent_containers/food/snacks/packaged/vendburger/ancient
+	ad_message = "Always fresh, the 2285 Guarantee!"
+	tagline = "Tasty! The RSG way!"

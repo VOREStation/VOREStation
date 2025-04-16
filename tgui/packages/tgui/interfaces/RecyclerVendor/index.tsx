@@ -48,7 +48,7 @@ export const RecyclerVendor = (props) => {
       theme="crtsoul"
       title="Recycling Rewards Redemptio n Vendor"
       width={750}
-      height={600}
+      height={700}
     >
       <Window.Content>
         <Stack fill vertical>
