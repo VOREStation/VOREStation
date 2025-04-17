@@ -19,12 +19,6 @@
 	pickup_sound = 'sound/items/pickup/wrench.ogg'
 	tool_qualities = list(TOOL_WRENCH)
 
-/obj/item/tool/wrench/cyborg
-	name = "automatic wrench"
-	desc = "An advanced robotic wrench. Can be found in industrial synthetic shells."
-	usesound = 'sound/items/drill_use.ogg'
-	toolspeed = 0.5
-
 /obj/item/tool/wrench/pipe
 	name = "pipe wrench"
 	desc = "A wrench used for plumbing. Can make a good makeshift weapon."

@@ -36,7 +36,7 @@
 	var/message = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
 	var/choice = tgui_input_list(user, message, "Window Construction",  window_options)
 
-	if(!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
+	if(!choice || !used_stack || !user || (used_stack.loc != user && !isrobot(user)) || user.stat || user.loc != T)
 		return 1
 
 	// Get data for building windows here.
