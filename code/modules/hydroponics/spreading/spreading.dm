@@ -3,8 +3,8 @@
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
-		if(vinestart.len) //Pick a turf to spawn at if we can
-			var/turf/simulated/floor/T = pick(vinestart)
+		if(GLOB.vinestart.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(GLOB.vinestart)
 			var/datum/seed/seed = SSplants.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -206,7 +206,7 @@
 
 	var/direction = 16
 
-	for(var/wallDir in cardinal)
+	for(var/wallDir in GLOB.cardinal)
 		var/turf/newTurf = get_step(T,wallDir)
 		if(newTurf.density)
 			direction |= wallDir

@@ -93,7 +93,7 @@
 	*/
 
 /obj/machinery/button/remote/airlock/trigger()
-	for(var/obj/machinery/door/airlock/D in machines)
+	for(var/obj/machinery/door/airlock/D in GLOB.machines)
 		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
 				if(D.density)
@@ -138,7 +138,7 @@
 	desc = "It controls blast doors, remotely."
 
 /obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
 				spawn(0)
@@ -157,7 +157,7 @@
 	desc = "It controls emitters, remotely."
 
 /obj/machinery/button/remote/emitter/trigger(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in machines)
+	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
 			spawn(0)
 				E.activate(user)
@@ -176,7 +176,7 @@
 	active = 1
 	update_icon()
 
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			spawn(0)
 				M.open()
@@ -184,13 +184,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			spawn(0)
 				M.close()
@@ -216,7 +216,7 @@
 	icon = 'icons/obj/stationobjs_vr.dmi' // VOREStation Edit
 
 /obj/machinery/button/remote/shields/trigger(var/mob/user)
-	for(var/obj/machinery/shield_gen/SG in machines)
+	for(var/obj/machinery/shield_gen/SG in GLOB.machines)
 		if(SG.id == id)
 			spawn(0)
 				if(SG?.anchored)
@@ -232,7 +232,7 @@
 	active_power_usage = 0
 
 /obj/machinery/button/remote/airlock/release/trigger()
-	for(var/obj/machinery/door/airlock/D in machines)
+	for(var/obj/machinery/door/airlock/D in GLOB.machines)
 		if(D.id_tag == id)
 			if(D.locked)
 				D.unlock(1)

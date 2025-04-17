@@ -849,15 +849,15 @@
 		to_chat(user, span_warning("A snake popped out of [src]!"))
 		if(real == 0)
 			var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
-			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+			C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 		if(real == 1)
 			var/mob/living/simple_mob/C = new /mob/living/simple_mob/animal/passive/snake(get_turf(loc))
-			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+			C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 		if(real == 2)
 			var/mob/living/simple_mob/C = new /mob/living/simple_mob/vore/aggressive/giant_snake(get_turf(loc))
-			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+			C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 		playsound(src, 'sound/items/confetti.ogg', 50, 0)
 		icon_state = "tastybread_popped"
@@ -882,15 +882,15 @@
 			to_chat(user, span_warning("A snake popped out of [src]!"))
 			if(real == 0)
 				var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
-				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+				C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 			if(real == 1)
 				var/mob/living/simple_mob/C = new /mob/living/simple_mob/animal/passive/snake(get_turf(loc))
-				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+				C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 			if(real == 2)
 				var/mob/living/simple_mob/C = new /mob/living/simple_mob/vore/aggressive/giant_snake(get_turf(loc))
-				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+				C.throw_at(get_step(src, pick(GLOB.alldirs)), 9, 1, src)
 
 			playsound(src, 'sound/items/confetti.ogg', 50, 0)
 			icon_state = "tastybread_popped"

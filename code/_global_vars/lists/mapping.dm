@@ -30,3 +30,34 @@ GLOBAL_LIST_INIT(cww_dir, list( // cww_dir[dir] = counter-clockwise rotation of 
 	32, 40, 36, 44, 33, 41, 37, 45, 34, 42, 38, 46, 35, 43, 39, 47, // DOWN - Same as first line but +32
 	48, 56, 52, 60, 49, 57, 53, 61, 50, 58, 54, 62, 51, 59, 55, 63  // UP+DOWN - Same as first line but +48
 ))
+
+GLOBAL_LIST_EMPTY(monkeystart)
+GLOBAL_LIST_EMPTY(wizardstart)
+GLOBAL_LIST_EMPTY(newplayer_start)
+
+GLOBAL_LIST_EMPTY(latejoin)
+GLOBAL_LIST_EMPTY(latejoin_gateway)
+GLOBAL_LIST_EMPTY(latejoin_elevator)
+GLOBAL_LIST_EMPTY(latejoin_cryo)
+GLOBAL_LIST_EMPTY(latejoin_cyborg)
+
+GLOBAL_LIST_EMPTY(prisonwarp) // Prisoners go to these
+GLOBAL_LIST_EMPTY(holdingfacility) // Captured people go here
+GLOBAL_LIST_EMPTY(xeno_spawn) // Aliens spawn at at these.
+GLOBAL_LIST_EMPTY(tdome1)
+GLOBAL_LIST_EMPTY(tdome2)
+GLOBAL_LIST_EMPTY(tdomeobserve)
+GLOBAL_LIST_EMPTY(tdomeadmin)
+GLOBAL_LIST_EMPTY(prisonsecuritywarp) // Prison security goes to these.
+GLOBAL_LIST_EMPTY(prisonwarped) // List of players already warped.
+GLOBAL_LIST_EMPTY(blobstart)
+GLOBAL_LIST_EMPTY(ninjastart)
+
+GLOBAL_LIST_EMPTY(awaydestinations) // Away missions. A list of landmarks that the warpgate can take you to.
+
+GLOBAL_LIST_EMPTY(vinestart)
+GLOBAL_LIST_EMPTY(verminstart)
+
+GLOBAL_LIST_EMPTY(awayabductors) // List of scatter landmarks for Abductors in Gateways
+GLOBAL_LIST_EMPTY(eventdestinations) // List of scatter landmarks for VOREStation event portals
+GLOBAL_LIST_EMPTY(eventabductors) // List of scatter landmarks for VOREStation abductor portals

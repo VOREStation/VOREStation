@@ -15,49 +15,49 @@
 
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
-			monkeystart += loc
+			GLOB.monkeystart += loc
 			delete_me = TRUE
 		if("start")
-			newplayer_start += loc
+			GLOB.newplayer_start += loc
 			delete_me = TRUE
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
-			latejoin += src
+			GLOB.latejoin += src
 			simulated = TRUE
 			//delete_me = TRUE // see above, moving, always use this list with get_turf
 		if("JoinLateGateway")
-			latejoin_gateway += loc
-			latejoin += loc				//VOREStation Addition
+			GLOB.latejoin_gateway += loc
+			GLOB.latejoin += loc				//VOREStation Addition
 			delete_me = TRUE
 		if("JoinLateElevator")
-			latejoin_elevator += loc
+			GLOB.latejoin_elevator += loc
 			delete_me = TRUE
 		if("JoinLateCryo")
-			latejoin_cryo += loc
+			GLOB.latejoin_cryo += loc
 			delete_me = TRUE
 		if("JoinLateCyborg")
-			latejoin_cyborg += loc
+			GLOB.latejoin_cyborg += loc
 			delete_me = TRUE
 		if("prisonwarp")
-			prisonwarp += loc
+			GLOB.prisonwarp += loc
 			delete_me = TRUE
 		if("Holding Facility")
-			holdingfacility += loc
+			GLOB.holdingfacility += loc
 		if("tdome1")
-			tdome1 += loc
+			GLOB.tdome1 += loc
 		if("tdome2")
-			tdome2 += loc
+			GLOB.tdome2 += loc
 		if("tdomeadmin")
-			tdomeadmin += loc
+			GLOB.tdomeadmin += loc
 		if("tdomeobserve")
-			tdomeobserve += loc
+			GLOB.tdomeobserve += loc
 		if("prisonsecuritywarp")
-			prisonsecuritywarp += loc
+			GLOB.prisonsecuritywarp += loc
 			delete_me = TRUE
 		if("blobstart")
-			blobstart += loc
+			GLOB.blobstart += loc
 			delete_me = TRUE
 		if("xeno_spawn")
-			xeno_spawn += loc
+			GLOB.xeno_spawn += loc
 			delete_me = TRUE
 		if("endgame_exit")
 			endgame_safespawns += loc
@@ -67,7 +67,7 @@
 			delete_me = TRUE
 		//VOREStation Add Start
 		if("vinestart")
-			vinestart += loc
+			GLOB.vinestart += loc
 			delete_me = TRUE
 		//VORE Station Add End
 

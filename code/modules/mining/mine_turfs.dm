@@ -207,7 +207,7 @@ var/list/mining_overlay_cache = list()
 	if(density && mineral)
 		. = INITIALIZE_HINT_LATELOAD
 	if(random_icon)
-		dir = pick(alldirs)
+		dir = pick(GLOB.alldirs)
 		. = INITIALIZE_HINT_LATELOAD
 
 /turf/simulated/mineral/LateInitialize()
@@ -229,7 +229,7 @@ var/list/mining_overlay_cache = list()
 		icon_state = rock_icon_state
 
 		//Apply overlays if we should have borders
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
 				add_overlay(get_cached_border(rock_side_icon_state,direction,icon,rock_side_icon_state))
@@ -250,7 +250,7 @@ var/list/mining_overlay_cache = list()
 			add_overlay("dug_overlay")
 
 		//Apply overlays if there's space
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
 				add_overlay(get_cached_border("asteroid_edge",direction,icon,"asteroid_edges", 0))
 
@@ -264,7 +264,7 @@ var/list/mining_overlay_cache = list()
 			add_overlay(overlay_detail_icon_path,overlay_detail)
 
 		if(update_neighbors)
-			for(var/direction in alldirs)
+			for(var/direction in GLOB.alldirs)
 				if(istype(get_step(src, direction), /turf/simulated/mineral))
 					var/turf/simulated/mineral/M = get_step(src, direction)
 					M.update_icon()
@@ -336,7 +336,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)
-		for(var/trydir in cardinal)
+		for(var/trydir in GLOB.cardinal)
 			if(prob(mineral.spread_chance))
 				var/turf/simulated/mineral/target_turf = get_step(src, trydir)
 				if(istype(target_turf) && target_turf.density && !target_turf.mineral)

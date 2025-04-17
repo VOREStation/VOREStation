@@ -5,8 +5,8 @@
 	event_type = /datum/event2/event/security_drill
 
 /datum/event2/meta/security_drill/get_weight()
-	var/sec = metric.count_people_in_department(DEPARTMENT_SECURITY)
-	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE)
+	var/sec = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/everyone = GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE)
 
 	if(!sec) // If there's no security, then there is no drill.
 		return 0

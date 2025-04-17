@@ -49,7 +49,7 @@
 				else
 					src.icon_state = "morgue3"
 					if(broadcast)
-						global_announcer.autosay("[src] was able to establish a mental interface with occupant.", "[src]", "Medical")
+						GLOB.global_announcer.autosay("[src] was able to establish a mental interface with occupant.", "[src]", "Medical")
 		else
 			src.icon_state = "morgue1"
 	return

@@ -125,15 +125,15 @@
 	if(authenticated)
 		switch(screen)
 			if(MED_DATA_R_LIST)
-				if(!isnull(data_core.general))
+				if(!isnull(GLOB.data_core.general))
 					var/list/records = list()
 					data["records"] = records
-					for(var/datum/data/record/R in sortRecord(data_core.general))
+					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 						records[++records.len] = list("ref" = "\ref[R]", "id" = R.fields["id"], "name" = R.fields["name"])
 			if(MED_DATA_RECORD)
 				var/list/general = list()
 				data["general"] = general
-				if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+				if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 					var/list/fields = list()
 					general["fields"] = fields
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], null)
@@ -155,7 +155,7 @@
 
 				var/list/medical = list()
 				data["medical"] = medical
-				if(istype(active2, /datum/data/record) && data_core.medical.Find(active2))
+				if(istype(active2, /datum/data/record) && GLOB.data_core.medical.Find(active2))
 					var/list/fields = list()
 					medical["fields"] = fields
 					fields[++fields.len] = MED_FIELD("Gender identity", active2.fields["id_gender"], "id_gender", TRUE)
@@ -172,10 +172,10 @@
 					medical["empty"] = 1
 			if(MED_DATA_V_DATA)
 				data["virus"] = list()
-				for(var/datum/disease/D in active_diseases)
+				for(var/datum/disease/D in GLOB.active_diseases)
 					if(!D.discovered)
 						continue
-					var/datum/data/record/v = active_diseases[D]
+					var/datum/data/record/v = GLOB.active_diseases[D]
 					data["virus"] += list(list("name" = v.fields["name"], "D" = "\ref[v]"))
 			if(MED_DATA_MEDBOT)
 				data["medbots"] = list()
@@ -206,9 +206,9 @@
 	if(..())
 		return TRUE
 
-	if(!data_core.general.Find(active1))
+	if(!GLOB.data_core.general.Find(active1))
 		active1 = null
-	if(!data_core.medical.Find(active2))
+	if(!GLOB.data_core.medical.Find(active2))
 		active2 = null
 
 	. = TRUE
@@ -276,7 +276,7 @@
 					return FALSE
 				tgui_modal_message(src, "virus", "", null, v.fields["tgui_description"])
 			if("del_all")
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					qdel(R)
 				set_temp("All medical records deleted.")
 			if("del_r")
@@ -285,12 +285,12 @@
 					qdel(active2)
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
-				if(!data_core.general.Find(general_record))
+				if(!GLOB.data_core.general.Find(general_record))
 					set_temp("Record not found.", "danger")
 					return
 
 				var/datum/data/record/medical_record
-				for(var/datum/data/record/M in data_core.medical)
+				for(var/datum/data/record/M in GLOB.data_core.medical)
 					if(M.fields["name"] == general_record.fields["name"] && M.fields["id"] == general_record.fields["id"])
 						medical_record = M
 						break
@@ -326,7 +326,7 @@
 					R.fields["cdi"] = "None"
 					R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
 					R.fields["notes"] = "No notes."
-					data_core.medical += R
+					GLOB.data_core.medical += R
 					active2 = R
 					screen = MED_DATA_RECORD
 					set_temp("Medical record created.", "success")
@@ -346,14 +346,14 @@
 				if(!length(t1))
 					return
 
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"]))
 						active2 = R
 						break
 				if(!active2)
 					set_temp("Medical record not found. You must enter the person's exact name, ID or DNA.", "danger")
 					return
-				for(var/datum/data/record/E in data_core.general)
+				for(var/datum/data/record/E in GLOB.data_core.general)
 					if(E.fields["name"] == active2.fields["name"] && E.fields["id"] == active2.fields["id"])
 						active1 = E
 						break
@@ -432,7 +432,7 @@
 /obj/machinery/computer/med_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
-	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+	if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
 		<br>\nSpecies: [active1.fields["species"]]
@@ -442,7 +442,7 @@
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
 		P.info += span_bold("General Record Lost!") + "<br>"
-	if(istype(active2, /datum/data/record) && data_core.medical.Find(active2))
+	if(istype(active2, /datum/data/record) && GLOB.data_core.medical.Find(active2))
 		P.info += {"<br>\n<center><b>Medical Data</b></center>
 		<br>\nGender Identity: [active2.fields["id_gender"]]
 		<br>\nBlood Type: [active2.fields["b_type"]]
@@ -486,7 +486,7 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.data_core.medical)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

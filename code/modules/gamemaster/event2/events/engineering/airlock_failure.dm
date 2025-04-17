@@ -23,15 +23,15 @@
 
 
 /datum/event2/meta/airlock_failure/get_weight()
-	var/engineering = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
+	var/engineering = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 
 	// Synths are good both for fixing the doors and getting blamed for the doors zapping people.
-	var/synths = metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
+	var/synths = GLOB.metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
 	if(!engineering && !synths) // Nobody's around to fix the door.
 		return 0
 
 	// Medical might be needed for some of the more violent airlock failures.
-	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)
+	var/medical = GLOB.metric.count_people_in_department(DEPARTMENT_MEDICAL)
 	if(!medical && needs_medical)
 		return 0
 

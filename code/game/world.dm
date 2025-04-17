@@ -5,13 +5,13 @@
 	to_world_log("Map Loading Complete")
 	//logs
 	//VOREStation Edit Start
-	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = start_log("[log_path].log")
-	href_logfile = start_log("[log_path]-hrefs.htm")
-	error_log = start_log("[log_path]-error.log")
-	sql_error_log = start_log("[log_path]-sql-error.log")
-	query_debug_log = start_log("[log_path]-query-debug.log")
-	debug_log = start_log("[log_path]-debug.log")
+	GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
+	GLOB.diary = start_log("[GLOB.log_directory].log")
+	GLOB.href_logfile = start_log("[GLOB.log_directory]-hrefs.htm")
+	GLOB.error_log = start_log("[GLOB.log_directory]-error.log")
+	GLOB.sql_error_log = start_log("[GLOB.log_directory]-sql-error.log")
+	GLOB.query_debug_log = start_log("[GLOB.log_directory]-query-debug.log")
+	GLOB.debug_log = start_log("[GLOB.log_directory]-debug.log")
 	//VOREStation Edit End
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
@@ -133,7 +133,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = GLOB.game_version
-		s["mode"] = master_mode
+		s["mode"] = GLOB.master_mode
 		s["respawn"] = CONFIG_GET(flag/abandon_allowed)
 		s["persistance"] = CONFIG_GET(flag/persistence_disabled)
 		s["enter"] = CONFIG_GET(flag/enter_allowed)
@@ -200,7 +200,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				"bot" = SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)
 			)
 
-		for(var/datum/data/record/t in data_core.general)
+		for(var/datum/data/record/t in GLOB.data_core.general)
 			var/name = t.fields["name"]
 			var/rank = t.fields["rank"]
 			var/real_rank = make_list_rank(t.fields["real_rank"])
@@ -217,7 +217,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					positions["misc"] = list()
 				positions["misc"][name] = rank
 
-		for(var/datum/data/record/t in data_core.hidden_general)
+		for(var/datum/data/record/t in GLOB.data_core.hidden_general)
 			var/name = t.fields["name"]
 			var/rank = t.fields["rank"]
 			var/real_rank = make_list_rank(t.fields["real_rank"])
@@ -467,8 +467,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_misc("Saved mode is '[master_mode]'")
+			GLOB.master_mode = Lines[1]
+			log_misc("Saved mode is '[GLOB.master_mode]'")
 
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
@@ -481,7 +481,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
+	GLOB.join_motd = file2text("config/motd.txt")
 
 /* Replaced with configuration controller
 /proc/load_configuration()
@@ -569,8 +569,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/list/features = list()
 
 	if(ticker)
-		if(master_mode)
-			features += master_mode
+		if(GLOB.master_mode)
+			features += GLOB.master_mode
 	else
 		features += span_bold("STARTING")
 

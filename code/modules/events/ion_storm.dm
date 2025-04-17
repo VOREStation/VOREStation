@@ -213,7 +213,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 		to_world("Finished processing SMES. Processed: [smesnum]")
 	spawn(0)
 		to_world("Started processing AIRLOCKS")
-		for (var/obj/machinery/door/airlock/D in machines)
+		for (var/obj/machinery/door/airlock/D in GLOB.machines)
 			if(D.z in station_levels)
 				//if(length(D.req_access) > 0 && !(12 in D.req_access)) //not counting general access and maintenance airlocks
 				airlocknum++
@@ -222,7 +222,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 		to_world("Finished processing AIRLOCKS. Processed: [airlocknum]")
 	spawn(0)
 		to_world("Started processing FIREDOORS")
-		for (var/obj/machinery/door/firedoor/D in machines)
+		for (var/obj/machinery/door/firedoor/D in GLOB.machines)
 			if(D.z in station_levels)
 				firedoornum++;
 				spawn(0)

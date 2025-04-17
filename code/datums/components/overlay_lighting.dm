@@ -440,7 +440,7 @@
 /datum/component/overlay_lighting/proc/cast_directional_light()
 	var/final_distance = cast_range
 
-	//Lower the distance by 1 if we're not looking at a cardinal direction, and we're not a short cast
+	//Lower the distance by 1 if we're not looking at a GLOB.cardinal direction, and we're not a short cast
 	if(final_distance > SHORT_CAST && !(ALL_CARDINALS & current_direction))
 		final_distance -= 1
 	var/turf/scanning = get_turf(current_holder)
@@ -448,7 +448,7 @@
 	. = 0
 	for(var/i in 1 to final_distance)
 		var/turf/next_turf = get_step(scanning, current_direction)
-		if(isnull(next_turf) || IS_OPAQUE_TURF_DIR(next_turf, reverse_dir[current_direction]))
+		if(isnull(next_turf) || IS_OPAQUE_TURF_DIR(next_turf, GLOB.reverse_dir[current_direction]))
 			break
 		scanning = next_turf
 		.++
@@ -460,7 +460,7 @@
 /datum/component/overlay_lighting/proc/place_directional_light(turf/target)
 	var/final_distance = round(cast_range*2)
 
-	//Lower the distance by 1 if we're not looking at a cardinal direction, and we're not a short cast
+	//Lower the distance by 1 if we're not looking at a GLOB.cardinal direction, and we're not a short cast
 	if(final_distance > SHORT_CAST && !(ALL_CARDINALS & get_dir(GET_PARENT, target)))
 		final_distance -= 1
 	var/turf/scanning = get_turf(GET_PARENT)

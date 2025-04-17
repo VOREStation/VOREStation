@@ -289,7 +289,7 @@
 	return TRUE
 
 /obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)
-	var/obj/effect/landmark/dest = pick(awaydestinations)
+	var/obj/effect/landmark/dest = pick(GLOB.awaydestinations)
 	if(!dest)
 		to_chat(user, span_warning("Nothing happens... maybe there's no signal to the remote pad?"))
 		return

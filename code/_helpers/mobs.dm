@@ -131,7 +131,7 @@
 		else				return "unknown"
 
 /proc/RoundHealth(health)
-	var/list/icon_states = cached_icon_states(ingame_hud_med)
+	var/list/icon_states = cached_icon_states(GLOB.ingame_hud_med)
 	for(var/icon_state in icon_states)
 		if(health >= text2num(icon_state))
 			return icon_state
@@ -347,11 +347,11 @@ Proc for attack log creation, because really why not
 /proc/cached_character_icon(var/mob/desired)
 	var/cachekey = "\ref[desired][desired.real_name]"
 
-	if(cached_character_icons[cachekey])
-		. = cached_character_icons[cachekey]
+	if(GLOB.cached_character_icons[cachekey])
+		. = GLOB.cached_character_icons[cachekey]
 	else
 		. = getCompoundIcon(desired)
-		cached_character_icons[cachekey] = .
+		GLOB.cached_character_icons[cachekey] = .
 
 /proc/not_has_ooc_text(mob/user)
 	if (CONFIG_GET(flag/allow_metadata) && (!user.client?.prefs?.read_preference(/datum/preference/text/living/ooc_notes) || length(user.client.prefs.read_preference(/datum/preference/text/living/ooc_notes)) < 15))

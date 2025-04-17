@@ -108,8 +108,8 @@
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] cache JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(cache_data, "[log_path]-spritesheet_cache_debug.[name].json")
-		rustg_file_write(entries_json, "[log_path]-spritesheet_debug_[name].json")
+		rustg_file_write(cache_data, "[GLOB.log_directory]-spritesheet_cache_debug.[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] cache check UNKNOWN ERROR: [data_out]")
 	var/result = json_decode(data_out)
 	var/fail = result["fail_reason"]
@@ -200,7 +200,7 @@
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(entries_json, "[log_path]-spritesheet_debug_[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] UNKNOWN ERROR: [data_out]")
 	var/data = json_decode(data_out)
 	sizes = data["sizes"]

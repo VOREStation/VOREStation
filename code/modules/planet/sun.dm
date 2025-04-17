@@ -115,7 +115,7 @@
 
 	var/list/localspreads
 	// Test for corners
-	for(var/direction in cornerdirs)
+	for(var/direction in GLOB.cornerdirs)
 		var/turf/dirturf = get_step(T, direction)
 		if(dirturf && !dirturf.is_outdoors())
 			var/turf/TL = get_step(T, turn(direction, -45))
@@ -138,7 +138,7 @@
 				LAZYADD(localspreads[dirturf], OL)
 
 	// Take all orthagonals
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/turf/dirturf = get_step(T, direction)
 		if(dirturf && !dirturf.is_outdoors())
 			var/turf/TL = get_step(T, turn(direction, -45))
@@ -166,7 +166,7 @@
 		for(var/turf/old as anything in applied)
 			old.vis_contents -= applied[old]
 			var/old_lit = FALSE
-			for(var/direction in alldirs)
+			for(var/direction in GLOB.alldirs)
 				var/turf/CT = get_step(old, direction)
 				if(CT && CT.is_outdoors())
 					old_lit = TRUE

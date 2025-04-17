@@ -73,13 +73,13 @@
 	if(!crystal_found)
 		return
 
-	for(var/obj/machinery/light/L in machines)
+	for(var/obj/machinery/light/L in GLOB.machines)
 		if(L.z != src.z || get_dist(src,L) > 10)
 			continue
 		else
 			L.flicker(10)
 
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
 				spawn(0)
@@ -96,5 +96,5 @@
 	desc = "A switch tied to nearby machinery."
 
 /obj/machinery/button/remote/experimenter/trigger()
-	for(var/obj/machinery/crystalexperimenter/E in machines)
+	for(var/obj/machinery/crystalexperimenter/E in GLOB.machines)
 		E.experiment()

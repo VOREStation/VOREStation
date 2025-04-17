@@ -41,7 +41,7 @@
 			my_gen = null
 	var/turf/current_loc = get_turf(src)
 	. = ..()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/turf/T = get_step(current_loc, direction)
 		if(T)
 			for(var/obj/effect/energy_field/F in T)
@@ -116,7 +116,7 @@
 /obj/effect/energy_field/update_icon(var/update_neightbors = 0)
 	cut_overlays()
 	var/list/adjacent_shields_dir = list()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/turf/T = get_step(src, direction)
 		if(T) // Incase we somehow stepped off the map.
 			for(var/obj/effect/energy_field/F in T)
@@ -146,7 +146,7 @@
 	i--
 	if(i)
 		spawn(2)
-			for(var/direction in cardinal)
+			for(var/direction in GLOB.cardinal)
 				var/turf/T = get_step(src, direction)
 				if(T) // Incase we somehow stepped off the map.
 					for(var/obj/effect/energy_field/F in T)

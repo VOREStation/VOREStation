@@ -81,7 +81,7 @@
 
 /obj/structure/canopy/Initialize(mapload)
 	. = ..()
-	dir = pick(alldirs)
+	dir = pick(GLOB.alldirs)
 
 /obj/structure/canopy/edge
 	icon_state = "left"
@@ -102,7 +102,7 @@
 
 /obj/structure/canopy/edge/south/Initialize(mapload)
 	. = ..()
-	dir = pick(cardinal)
+	dir = pick(GLOB.cardinal)
 
 //Because I'm terrible at planning
 /obj/structure/canopy_corner

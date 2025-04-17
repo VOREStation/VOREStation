@@ -14,9 +14,9 @@
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")
 
 /datum/event/gravity/start()
-	gravity_is_on = 0
+	GLOB.gravity_is_on = FALSE
 
-	for(var/obj/machinery/gravity_generator/main/GG in machines)
+	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
 		if((GG.z in zLevels) && GG.on)
 			generators += GG
 			GG.breaker = FALSE
@@ -24,7 +24,7 @@
 			GG.charge_count = 10
 
 /datum/event/gravity/end()
-	gravity_is_on = 1
+	GLOB.gravity_is_on = TRUE
 
 	var/did_anything = FALSE
 	for(var/obj/machinery/gravity_generator/main/GG in generators)

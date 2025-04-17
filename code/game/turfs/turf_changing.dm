@@ -95,7 +95,7 @@
 		old_fire.RemoveFire()
 
 	if(tell_universe)
-		universe.OnTurfChange(W)
+		GLOB.universe.OnTurfChange(W)
 
 	if(SSair)
 		SSair.mark_for_update(W)
@@ -184,7 +184,7 @@
 
 	//Also need to send signals diagonally too now.
 	var/radius = ONE_OVER_SQRT_2 * SUNLIGHT_RADIUS + 1
-	for(var/dir in cornerdirs)
+	for(var/dir in GLOB.cornerdirs)
 		var/steps = 1
 		var/turf/cur_turf = get_step(src,dir)
 

@@ -377,14 +377,14 @@
 
 /* Etc global procs */
 /proc/enable_prison_shuttle(var/mob/user)
-	for(var/obj/machinery/computer/prison_shuttle/PS in machines)
+	for(var/obj/machinery/computer/prison_shuttle/PS in GLOB.machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 
 /proc/call_shuttle_proc(var/mob/user)
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!universe.OnShuttleCall(user))
+	if(!GLOB.universe.OnShuttleCall(user))
 		to_chat(user, span_notice("Cannot establish a bluespace connection."))
 		return
 

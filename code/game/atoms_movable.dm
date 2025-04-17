@@ -107,7 +107,7 @@
 	if(loc != newloc)
 		if(!direct)
 			direct = get_dir(oldloc, newloc)
-		if (IS_CARDINAL(direct)) //Cardinal move
+		if (IS_CARDINAL(direct)) //GLOB.cardinal move
 			// Track our failure if any in this value
 			. = TRUE
 
@@ -167,7 +167,7 @@
 			else if(. && newloc)
 				. = doMove(newloc)
 
-		//Diagonal move, split it into cardinal moves
+		//Diagonal move, split it into GLOB.cardinal moves
 		else
 			moving_diagonally = FIRST_DIAG_STEP
 			var/first_step_dir

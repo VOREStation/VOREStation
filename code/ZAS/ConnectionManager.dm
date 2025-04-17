@@ -1,13 +1,13 @@
 /*
 
 Overview:
-	The connection_manager class stores connections in each cardinal direction on a turf.
+	The connection_manager class stores connections in each GLOB.cardinal direction on a turf.
 	It isn't always present if a turf has no connections, check if(connections) before using.
 	Contains procs for mass manipulation of connection data.
 
 Class Vars:
 
-	NSEWUD - Connections to this turf in each cardinal direction.
+	NSEWUD - Connections to this turf in each GLOB.cardinal direction.
 
 Class Procs:
 

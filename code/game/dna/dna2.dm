@@ -521,7 +521,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	ResetSE()
 
 	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name
 
 #undef DNA_OFF_LOWERBOUND
 #undef DNA_OFF_UPPERBOUND

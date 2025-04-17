@@ -41,7 +41,7 @@
 	base.plane = PLATING_PLANE
 	base.appearance_flags = PIXEL_SCALE
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/mutable_appearance/dir = new /mutable_appearance(base)
 		dir.dir = direction
 		dir.icon_state = "background_[direction]"

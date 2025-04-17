@@ -33,7 +33,7 @@ var/image/no_ceiling_image = null
 		// Apply edges, corners, and inner corners.
 		var/has_border = 0
 		if(flooring.flags & TURF_HAS_EDGES)
-			for(var/step_dir in cardinal)
+			for(var/step_dir in GLOB.cardinal)
 				var/turf/simulated/floor/T = get_step(src, step_dir)
 				if(!flooring.test_link(src, T))
 					has_border |= step_dir
@@ -103,7 +103,7 @@ var/image/no_ceiling_image = null
 // This updates an edge from an adjacent turf onto us, not our own 'internal' edges.
 // For e.g. we might be outdoor metal plating, and we want to find sand next to us to have it 'spill onto' our turf with an overlay.
 /turf/simulated/proc/update_icon_edge()
-	for(var/checkdir in cardinal) // Check every direction
+	for(var/checkdir in GLOB.cardinal) // Check every direction
 		var/turf/simulated/T = get_step(src, checkdir) // Get the turf in that direction
 		// Our conditions:
 		// Has to be a /turf/simulated

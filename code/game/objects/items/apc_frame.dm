@@ -13,7 +13,7 @@
 	if (get_dist(on_wall, user)>1)
 		return
 	var/ndir = get_dir(user, on_wall)
-	if (!(ndir in cardinal))
+	if (!(ndir in GLOB.cardinal))
 		return
 	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc

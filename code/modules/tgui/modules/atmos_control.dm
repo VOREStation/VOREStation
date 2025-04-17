@@ -12,7 +12,7 @@
 	access.req_one_access = req_one_access
 
 	if(monitored_alarm_ids)
-		for(var/obj/machinery/alarm/alarm in machines)
+		for(var/obj/machinery/alarm/alarm in GLOB.machines)
 			if(alarm.alarm_id && (alarm.alarm_id in monitored_alarm_ids))
 				monitored_alarms += alarm
 		// machines may not yet be ordered at this point
@@ -25,7 +25,7 @@
 	switch(action)
 		if("alarm")
 			if(ui_ref)
-				var/obj/machinery/alarm/alarm = locate(params["alarm"]) in (monitored_alarms.len ? monitored_alarms : machines)
+				var/obj/machinery/alarm/alarm = locate(params["alarm"]) in (monitored_alarms.len ? monitored_alarms : GLOB.machines)
 				if(alarm)
 					var/datum/tgui_state/TS = generate_state(alarm)
 					alarm.tgui_interact(ui.user, parent_ui = ui_ref, state = TS)
@@ -54,7 +54,7 @@
 
 	// TODO: Move these to a cache, similar to cameras
 	var/alarms[0]
-	for(var/obj/machinery/alarm/alarm in (monitored_alarms.len ? monitored_alarms : machines))
+	for(var/obj/machinery/alarm/alarm in (monitored_alarms.len ? monitored_alarms : GLOB.machines))
 		if(!monitored_alarms.len && alarm.alarms_hidden)
 			continue
 		if(!(alarm.z in map_levels))

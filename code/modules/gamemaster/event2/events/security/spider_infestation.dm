@@ -14,8 +14,8 @@
 
 /datum/event2/meta/spider_infestation/get_weight()
 	. = 10
-	. += metric.count_people_in_department(DEPARTMENT_SECURITY) * 20
-	. += metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10
+	. += GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY) * 20
+	. += GLOB.metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10
 
 
 // This isn't a /mob_spawning subtype since spiderlings aren't actually mobs.
@@ -36,7 +36,7 @@
 
 /datum/event2/event/spider_infestation/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in get_location_z_levels()))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent

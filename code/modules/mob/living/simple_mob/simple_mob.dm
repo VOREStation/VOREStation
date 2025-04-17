@@ -347,8 +347,8 @@
 	return span_italics("[tt_desc]")
 
 /mob/living/simple_mob/make_hud_overlays()
-	hud_list[STATUS_HUD]  = gen_hud_image(buildmode_hud, src, "ai_0", plane = PLANE_BUILDMODE)
-	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
+	hud_list[STATUS_HUD]  = gen_hud_image(GLOB.buildmode_hud, src, "ai_0", plane = PLANE_BUILDMODE)
+	hud_list[LIFE_HUD]	  = gen_hud_image(GLOB.buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
 	add_overlay(hud_list)
 
 //Makes it so that simplemobs can understand galcomm without being able to speak it.

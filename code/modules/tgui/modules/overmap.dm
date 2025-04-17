@@ -198,7 +198,7 @@
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
 	// SENSORS
-	for(var/obj/machinery/shipsensors/S in global.machines)
+	for(var/obj/machinery/shipsensors/S in GLOB.machines)
 		if(linked.check_ownership(S))
 			sensors = S
 			break
