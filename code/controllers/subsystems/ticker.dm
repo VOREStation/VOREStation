@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(ticker)
 
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
+	var/obj/screen/game_end/cinematic = null
 
 	var/round_start_time = 0
 
@@ -298,7 +298,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 // ------------------------------------------------------------------------
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(station_missed = FALSE, override = null, initiating_entity)
 	if( cinematic )	return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object
@@ -310,28 +310,16 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	var/obj/structure/bed/temp_buckle = new(src)
+	var/obj/structure/bed/chair/temp_buckle = new(src)
+	temp_buckle.dir = 2 //face South.
+	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
-	if(station_missed)
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle				//buckles the mob so it can't do anything
-			if(M.client)
-				M.client.screen += cinematic	//show every client the cinematic
-	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle
-			if(M.client)
-				M.client.screen += cinematic
-
-			switch(M.z)
-				if(0)	//inside a crate or something
-					var/turf/T = get_turf(M)
-					if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
-						M.health = 0
-						M.set_stat(DEAD)
-				if(1)	//on a z-level 1 turf.
-					M.health = 0
-					M.set_stat(DEAD)
+	for(var/mob/living/M in living_mob_list)
+		M.buckled = temp_buckle
+		if(M.client)
+			M.client.screen += cinematic
+			cinematic.watchers += M
+			temp_buckle.buckled_mobs += M
 
 	//Now animate the cinematic
 	switch(station_missed)
@@ -382,18 +370,43 @@ var/global/datum/controller/subsystem/ticker/ticker
 				else //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					flick("station_explode_fade_red", cinematic)
+					flick("station_explode_fade_red",cinematic)
 					world << sound('sound/effects/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in living_mob_list)
-				if(M.loc.z in using_map.station_levels)
-					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
+	//this all needs to be moved to its own proc
 	sleep(300)
 
-	if(cinematic)	qdel(cinematic)		//end the cinematic
-	if(temp_buckle)	qdel(temp_buckle)	//release everybody
+	if(station_missed) //If it missed the station, we kill everything on the Z level...
+		if(initiating_entity) //But ONLY if there was something to actually CAUSE the explosion.
+			var/obj/the_entity = initiating_entity
+			for(var/mob/living/our_watcher in cinematic.watchers)
+				if(the_entity.z == our_watcher.z && !istype(our_watcher.loc, /obj/structure/closet/secure_closet/freezer)) //You're on the Z level that the bomb just went off at. (And you're not in a fridge)
+					our_watcher.health = 0
+					our_watcher.set_stat(DEAD)
+	else //If it hit the station, EVERYONE in the station dies.
+		for(var/mob/living/M in cinematic.watchers)
+			M.buckled = temp_buckle
+			if(M.client)
+				M.client.screen += cinematic
+				cinematic.watchers += M
+				temp_buckle.buckled_mobs += M
+			var/turf/T = get_turf(M)
+			if(T && (T.z in using_map.station_levels) && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))				//we don't use M.death(0) because it calls a for(/mob) loop and
+				M.health = 0
+				M.set_stat(DEAD)
+
+	if(temp_buckle)
+		temp_buckle.unbuckle_all_mobs()
+		qdel(temp_buckle)	//release everybody
+
+	if(cinematic)
+		for(var/mob/living/our_watcher in cinematic.watchers)
+			if(our_watcher.client) //If we aren't logged in, we lose the overlay when we log back in anyways.
+				our_watcher.client.screen -= cinematic
+				cinematic.watchers -= our_watcher
+		qdel_null(cinematic)
 	return
 
 
