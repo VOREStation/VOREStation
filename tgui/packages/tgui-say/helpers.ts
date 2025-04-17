@@ -13,6 +13,9 @@ export function windowOpen(
 ): void {
   setWindowVisibility(true, width, height, scale);
   Byond.sendMessage('open', { channel });
+  Byond.winset('tgui_say.browser', {
+    focus: true,
+  });
 }
 
 /**

@@ -142,7 +142,7 @@ export const PersonalCrafting = (props) => {
             value={searchText}
             mb={1}
             placeholder="Search for recipes..."
-            onInput={(e, value: string) => setSearchText(value)}
+            onChange={(value: string) => setSearchText(value)}
           />
           <Stack>
             <Stack.Item>
