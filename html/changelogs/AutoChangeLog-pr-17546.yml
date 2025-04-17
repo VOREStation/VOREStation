@@ -1,0 +1,4 @@
+author: "TeleTubby2"
+delete-after: True
+changes:
+  - rscadd: "NIF commlinks auto-initialize if the relevant preference is set in character creation"

@@ -381,7 +381,7 @@ var/list/global_huds = list(
 		UI_style_color_new = hud_used.ui_color
 	hud_used.ui_color = UI_style_color_new
 
-	var/list/icons = hud_used.adding + hud_used.other + hud_used.hotkeybuttons
+	var/list/icons = hud_used.adding + hud_used.other + hud_used.hotkeybuttons + hud_used.other_important
 	icons.Add(zone_sel)
 	icons.Add(gun_setting_icon)
 	icons.Add(item_use_icon)
@@ -402,7 +402,8 @@ var/list/global_huds = list(
 	for(var/obj/screen/I in icons)
 		if(I.name in list(I_HELP, I_HURT, I_DISARM, I_GRAB))
 			continue
-		I.icon = ic
+		if(!(I.name in list("check known languages", "autowhisper", "autowhisper mode", "move downwards", "move upwards", "set pose")))
+			I.icon = ic
 		I.color = UI_style_color_new
 		I.alpha = UI_style_alpha_new
 
