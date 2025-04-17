@@ -69,4 +69,4 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	annihilate_bounds()
 	//CHECK_TICK //Don't let anything else happen for now
 	// Actually load it
-	template_to_use.load(T, poi_related = TRUE)
+	template_to_use.load(T)
