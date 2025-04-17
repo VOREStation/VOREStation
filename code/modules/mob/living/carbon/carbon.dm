@@ -168,7 +168,7 @@
 	if (src.health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()]
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 			src.visible_message( \
 				span_notice("[src] examines [T.himself]."), \
 				span_notice("You check yourself for injuries.") \
@@ -250,7 +250,7 @@
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
 				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
@@ -264,7 +264,7 @@
 									span_notice("You shake [src] trying to wake [T.him] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
-				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
 					M.visible_message(span_notice("[M] grabs onto [src] and pulls [TM.himself] up"), \
 							span_notice("You grip onto [src] and pull yourself up off the ground!"))

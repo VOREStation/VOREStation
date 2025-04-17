@@ -555,7 +555,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(!client && lets_eat(user) && prob(1))
 			visible_message(span_danger("\The [src] scromfs \the [user] along with the food!"))
 			to_chat(user, span_notice("\The [src] leans in close, spreading its jaws in front of you. A hot, humid gust of breath blows over you as the weight of \the [src]'s presses you over, knocking you off of your feet as the warm gooey tough of jaws scromf over your figure, rapidly guzzling you away with the [O], leaving you to tumble down into the depths of its body..."))
-			playsound(src, pick(bodyfall_sound), 75, 1)
+			playsound(src, pick(GLOB.bodyfall_sound), 75, 1)
 			teppi_pounce(user)
 		if(yum && nutrition >= 500)
 			to_chat(user, span_notice("\The [src] seems satisfied."))
@@ -641,7 +641,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		else if(lets_eat(M) && prob(50))
 			to_chat(M, span_notice("\The [src] grumbles a bit... and then bowls you over, pressing their weight into yours to knock you off of your feet! In a rush of chaotic presses and schlorps, the gooey touch of Teppi flesh grinds over you as you're guzzled away! Casually swallowed down in retaliation for all of the pettings. Pumped down deep into the grumbling depths of \the [src]."))
 			visible_message(span_danger("\The [src] scromfs \the [M], before chuffing and settling down again."))
-			playsound(src, pick(bodyfall_sound), 75, 1)
+			playsound(src, pick(GLOB.bodyfall_sound), 75, 1)
 			teppi_pounce(M)
 			wantpet = 100
 	else
@@ -731,7 +731,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	if(resting)
 		return
-	playsound(src, pick(teppi_sound), 75, 1)
+	playsound(src, pick(GLOB.teppi_sound), 75, 1)
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_shear(var/mob/user as mob, tool)
 	var/sheartime = 3 SECONDS
