@@ -106,7 +106,7 @@
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE, poi_related = FALSE)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round((width)/2) , T.y - round((height)/2) , T.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
@@ -133,6 +133,8 @@
 
 	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
 	loaded++
+	if(poi_related)
+		SSpoints_of_interest.runcomplete = TRUE
 	return TRUE
 
 /datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE)

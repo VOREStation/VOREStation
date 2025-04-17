@@ -12,7 +12,7 @@ var/global/list/global_used_pois = list()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 /obj/effect/landmark/poi_loader/Initialize(mapload)
-	src.load_poi()
+	SSpoints_of_interest.poi_queue += src
 	return ..()
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()
@@ -69,4 +69,4 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	annihilate_bounds()
 	//CHECK_TICK //Don't let anything else happen for now
 	// Actually load it
-	template_to_use.load(T)
+	template_to_use.load(T, poi_related = TRUE)
