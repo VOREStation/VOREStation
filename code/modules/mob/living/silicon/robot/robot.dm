@@ -140,13 +140,13 @@
 	vore_fullness_ex = list()
 	vore_icon_bellies = list()
 
-/mob/living/silicon/robot/New(loc, var/unfinished = 0)
+/mob/living/silicon/robot/Initialize(mapload, is_decoy, unfinished = FALSE)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	robotact = new(src)
 
-	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_ROBOT_TALK, 1)
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_EAL, 1)
 
@@ -183,7 +183,7 @@
 	else if(ispath(cell))
 		cell = new cell(src)
 
-	..()
+	. = ..()
 
 	if(cell)
 		var/datum/robot_component/cell_component = components["power cell"]
@@ -315,7 +315,7 @@
 				mmi.brainmob.languages = M.original_languages
 			else
 				mmi.brainmob.languages = languages
-			mmi.brainmob.remove_language("Robot Talk")
+			mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
 			mind.transfer_to(mmi.brainmob)
 		else if(!shell) // Shells don't have brainmbos in their MMIs.
 			to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))

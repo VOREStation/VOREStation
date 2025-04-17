@@ -24,12 +24,17 @@
 
 
 // Claim machine ID
-/obj/item/retail_scanner/New()
+/obj/item/retail_scanner/Initialize(mapload)
+	. = ..()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
+
+/obj/item/retail_scanner/Destroy()
+	transaction_devices -= src
+	. = ..()
 
 // Always face the user when put on a table
 /obj/item/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)

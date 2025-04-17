@@ -55,7 +55,7 @@ const Story = (props) => {
         <TextArea
           width="100%"
           height="10em"
-          onChange={(_, value) => setCode(value)}
+          onChange={(value) => setCode(value)}
         >
           {code}
         </TextArea>

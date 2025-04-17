@@ -198,10 +198,10 @@ const BuildTab = (props: {
     >
       <Input
         fluid
-        updateOnPropsChange
+        expensive
         placeholder="Search for..."
         value={data.search}
-        onInput={(e, v: string) => act('search', { search: v })}
+        onChange={(v: string) => act('search', { search: v })}
         mb={1}
       />
       <Divider />

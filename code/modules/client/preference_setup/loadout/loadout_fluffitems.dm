@@ -1184,6 +1184,12 @@
 	ckeywhitelist = list("silvertalismen")
 	character_name = list("Tasy Ruffles")
 
+/datum/gear/fluff/kintacts_aquamarine
+	path = /obj/item/clothing/glasses/fluff/kintacts_aquamarine
+	display_name = "Aquamarine KINtacts"
+	ckeywhitelist = list("sixberry")
+	character_name = list("Thistle")
+
 /datum/gear/fluff/fortune_backpack
 	path = /obj/item/storage/backpack/satchel/fluff/swat43bag
 	display_name = "Fortune's Backpack"

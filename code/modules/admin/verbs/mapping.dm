@@ -28,7 +28,8 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	icon = 'icons/480x480.dmi'
 	icon_state = "25percent"
 
-/obj/effect/debugging/camera_range/New()
+/obj/effect/debugging/camera_range/Initialize(mapload, ...)
+	. = ..()
 	src.pixel_x = -224
 	src.pixel_y = -224
 
