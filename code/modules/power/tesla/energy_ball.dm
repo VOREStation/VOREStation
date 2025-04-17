@@ -115,7 +115,7 @@
 	if(!loc)
 		return
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
-	all_singularities -= EB //why are these miniballs even singularities in the first place, they don't do anything
+	GLOB.all_singularities -= EB //why are these miniballs even singularities in the first place, they don't do anything
 
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)

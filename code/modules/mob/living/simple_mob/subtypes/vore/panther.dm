@@ -43,7 +43,10 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 	allow_mind_transfer = TRUE
-
+	can_be_drop_prey = FALSE
+	species_sounds = "Feline"
+	pain_emote_1p = list("yowl", "growl")
+	pain_emote_3p = list("yowls", "growls")
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/panther
 	vore_active = 1

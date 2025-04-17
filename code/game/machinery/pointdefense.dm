@@ -22,7 +22,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	. = ..()
 	if(id_tag)
 		//No more than 1 controller please.
-		for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
+		for(var/obj/machinery/pointdefense_control/PC as anything in GLOB.pointdefense_controllers)
 			if(PC != src && PC.id_tag == id_tag)
 				warning("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
@@ -72,8 +72,8 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/list/turrets = list()
 	if(id_tag)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-		for(var/i = 1 to LAZYLEN(pointdefense_turrets))
-			var/obj/machinery/power/pointdefense/PD = pointdefense_turrets[i]
+		for(var/i = 1 to LAZYLEN(GLOB.pointdefense_turrets))
+			var/obj/machinery/power/pointdefense/PD = GLOB.pointdefense_turrets[i]
 			if(!(PD.id_tag == id_tag && (get_z(PD) in connected_z_levels)))
 				continue
 			var/list/turret = list()
@@ -95,7 +95,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
-			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
+			for(var/obj/machinery/pointdefense_control/PC as anything in GLOB.pointdefense_controllers)
 				if(PC != src && PC.id_tag == id_tag)
 					to_chat(user, span_warning("The [new_ident] network already has a controller."))
 					return
@@ -200,7 +200,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(!id_tag)
 		return null
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-	for(var/obj/machinery/pointdefense_control/PDC as anything in pointdefense_controllers)
+	for(var/obj/machinery/pointdefense_control/PDC as anything in GLOB.pointdefense_controllers)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 

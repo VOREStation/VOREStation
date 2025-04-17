@@ -343,7 +343,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	if(..())
 		return
 	if(src.allowed(user))
-		for (var/obj/structure/morgue/crematorium/C in all_crematoriums)
+		for (var/obj/structure/morgue/crematorium/C in GLOB.all_crematoriums)
 			if (C.id == id)
 				if (!C.cremating)
 					C.cremate(user)

@@ -10,6 +10,9 @@
 	icon_state = "brain1"
 	no_vore = TRUE
 
+	can_pain_emote = FALSE
+	low_priority = TRUE
+
 /mob/living/carbon/brain/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
