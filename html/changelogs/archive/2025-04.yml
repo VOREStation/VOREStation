@@ -147,3 +147,7 @@
   - code_imp: finishes new to init
   - rscadd: marker beacon to mining robots
   - bugfix: modal inputs
+2025-04-15:
+  Diana:
+  - bugfix: Shoulder augments can now be installed the first time without having to
+      screwdriver them twice
