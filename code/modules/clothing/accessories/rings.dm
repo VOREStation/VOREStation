@@ -138,7 +138,6 @@
 	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "material"
 	material_slowdown_multiplier = 0 //it's a ring, it's never gonna be heavy enough to matter
-	slowdown = 0
 
 /obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
 	. = ..()
