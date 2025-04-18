@@ -1,6 +1,6 @@
 #define WHITELISTFILE "data/whitelist.txt"
 
-var/list/whitelist = list()
+GLOBAL_LIST_EMPTY(whitelist)
 
 /hook/startup/proc/loadWhitelist()
 	if(CONFIG_GET(flag/usewhitelist))
@@ -8,15 +8,15 @@ var/list/whitelist = list()
 	return 1
 
 /proc/load_whitelist()
-	whitelist = file2list(WHITELISTFILE)
-	if(!whitelist.len)	whitelist = null
+	GLOB.whitelist = file2list(WHITELISTFILE)
+	if(!GLOB.whitelist.len)	GLOB.whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
-	if(!whitelist)
+	if(!GLOB.whitelist)
 		return 0
-	return ("[M.ckey]" in whitelist)
+	return ("[M.ckey]" in GLOB.whitelist)
 
-/var/list/alien_whitelist = list()
+GLOBAL_LIST_EMPTY(alien_whitelist)
 
 /hook/startup/proc/loadAlienWhitelist()
 	if(CONFIG_GET(flag/usealienwhitelist))
@@ -38,10 +38,10 @@ var/list/whitelist = list()
 			if(key != ckey(key))
 				warning("Alien whitelist entry appears to have key, not ckey: [line]") // The key contains invalid ckey characters
 				continue
-			var/list/our_whitelists = alien_whitelist[key] // Try to see if we have one already and add to it
+			var/list/our_whitelists = GLOB.alien_whitelist[key] // Try to see if we have one already and add to it
 			if(!our_whitelists) // Guess this is their first/only whitelist entry
 				our_whitelists = list()
-				alien_whitelist[key] = our_whitelists
+				GLOB.alien_whitelist[key] = our_whitelists
 			our_whitelists += left_and_right[2]
 
 /proc/is_alien_whitelisted(client/C, var/datum/species/species)
@@ -58,7 +58,7 @@ var/list/whitelist = list()
 		return TRUE
 
 	//Search the whitelist
-	var/list/our_whitelists = alien_whitelist[C.ckey]
+	var/list/our_whitelists = GLOB.alien_whitelist[C.ckey]
 	if("All" in our_whitelists)
 		return TRUE
 	if(species.name in our_whitelists)
@@ -81,7 +81,7 @@ var/list/whitelist = list()
 		return TRUE
 
 	//Search the whitelist
-	var/list/our_whitelists = alien_whitelist[M.ckey]
+	var/list/our_whitelists = GLOB.alien_whitelist[M.ckey]
 	if("All" in our_whitelists)
 		return TRUE
 	if(language.name in our_whitelists)
@@ -103,8 +103,8 @@ var/list/whitelist = list()
 		return 1
 
 	//If we have a loaded file, search it
-	if(alien_whitelist)
-		for (var/s in alien_whitelist)
+	if(GLOB.alien_whitelist)
+		for (var/s in GLOB.alien_whitelist)
 			if(findtext(s,"[M.ckey] - [module]"))
 				return 1
 			if(findtext(s,"[M.ckey] - All"))

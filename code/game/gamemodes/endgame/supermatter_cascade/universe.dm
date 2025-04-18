@@ -1,4 +1,4 @@
-var/global/universe_has_ended = 0
+GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 
 /datum/universal_state/supermatter_cascade
@@ -79,7 +79,7 @@ var/global/universe_has_ended = 0
 
 		spawn(5 MINUTES)
 			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
-			universe_has_ended = 1
+			GLOB.universe_has_ended = 1
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()

@@ -209,8 +209,8 @@
 				screen = clamp(text2num(params["screen"]) || 0, GENERAL_RECORD_LIST, GENERAL_RECORD_MAINT)
 				active1 = null
 			if("del_all")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
 				for(var/datum/data/record/R in data_core.general)
 					qdel(R)
 				set_temp("All employment records deleted.")
@@ -225,8 +225,8 @@
 						if(ui.user.Adjacent(src))
 							active1.fields["notes"] = new_notes
 			if("del_r")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
 				if(active1)
 					for(var/datum/data/record/R in data_core.medical)
 						if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
@@ -242,8 +242,8 @@
 				active1 = general_record
 				screen = GENERAL_RECORD_DATA
 			if("new")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
 				active1 = data_core.CreateGeneralRecord()
 				screen = GENERAL_RECORD_DATA
 				set_temp("Employment record created.", "success")
@@ -384,8 +384,8 @@
 					R.fields["criminal"] = pick("None", "*Arrest*", "Incarcerated", "Parolled", "Released")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconcious*", "Active", "Physically Unfit")
-					if(PDA_Manifest.len)
-						PDA_Manifest.Cut()
+					if(GLOB.PDA_Manifest.len)
+						GLOB.PDA_Manifest.Cut()
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
 			continue

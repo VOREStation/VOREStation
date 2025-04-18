@@ -1586,9 +1586,9 @@
 
 			var/soundfile
 			if(!RTB.fancy_vore)
-				soundfile = classic_release_sounds[RTB.release_sound]
+				soundfile = GLOB.classic_release_sounds[RTB.release_sound]
 			else
-				soundfile = fancy_release_sounds[RTB.release_sound]
+				soundfile = GLOB.fancy_release_sounds[RTB.release_sound]
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 

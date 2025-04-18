@@ -307,14 +307,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("Another consciousness is in your body... it is resisting you."))
 		return
 	//VOREStation Add
-	if(prevent_respawns.Find(mind.name))
+	if(GLOB.prevent_respawns.Find(mind.name))
 		to_chat(src, span_warning("You already quit this round as this character, sorry!"))
 		return
 	//VOREStation Add End
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
 		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune
-			if(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]) // Found an astral journey rune.
+			if(R && R.word1 == GLOB.cultwords["hell"] && R.word2 == GLOB.cultwords["travel"] && R.word3 == GLOB.cultwords["self"]) // Found an astral journey rune.
 				found_rune = 1
 				break
 		if(!found_rune)
@@ -858,7 +858,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_ghost_visibility(TRUE)
 	else
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
 			span_warning("\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective."), \
 			span_warning("You get the feeling that the ghost can't become any more visible.") \

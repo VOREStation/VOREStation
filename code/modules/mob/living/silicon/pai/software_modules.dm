@@ -70,7 +70,7 @@
 			count++
 
 		// Check the carrier
-		var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+		var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 		var/answer = tgui_alert(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", list("Yes", "No"))
 		if(answer == "Yes")
 			var/turf/T = get_turf(P.loc)
@@ -113,7 +113,7 @@
 	var/list/data = ..()
 	if(data_core)
 		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /datum/pai_software/messenger
