@@ -305,7 +305,8 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			perp.ContractDisease(D, BP_R_FOOT)
+			if(D.spread_flags & DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT)
+				perp.ContractDisease(D, BP_R_FOOT)
 
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
