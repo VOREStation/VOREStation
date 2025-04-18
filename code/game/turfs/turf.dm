@@ -469,7 +469,7 @@
 
 /turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE, purge = TRUE)
 
-	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.GetViruses())
+	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.GetSpreadableViruses())
 
 	if (QDELETED(V))
 		V = locate() in src

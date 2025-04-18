@@ -189,6 +189,15 @@
 	LAZYINITLIST(viruses)
 	return viruses
 
+/mob/proc/GetSpreadableViruses()
+	LAZYINITLIST(viruses)
+	var/list/viruses_to_return = list()
+	for(var/datum/disease/D in viruses)
+		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+			continue
+		viruses_to_return += D
+	return viruses_to_return
+
 /mob/proc/GetResistances()
 	LAZYINITLIST(resistances)
 	return resistances

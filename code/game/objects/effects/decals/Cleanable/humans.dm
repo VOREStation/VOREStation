@@ -285,8 +285,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			if(D.spread_flags & (DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT))
-				perp.ContractDisease(D, BP_R_FOOT)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_FOOT)
 
 /obj/effect/decal/cleanable/mucus/attack_hand(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
@@ -295,8 +296,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			if(D.spread_flags & (DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT))
-				perp.ContractDisease(D, BP_R_HAND)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_HAND)
 
 /obj/effect/decal/cleanable/vomit/Crossed(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
@@ -305,8 +307,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			if(D.spread_flags & (DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT))
-				perp.ContractDisease(D, BP_R_FOOT)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_FOOT)
 
 /obj/effect/decal/cleanable/vomit/attack_hand(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
@@ -315,8 +318,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			if(D.spread_flags & (DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT))
-				perp.ContractDisease(D, BP_R_HAND)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_HAND)
 
 /obj/effect/decal/cleanable/mucus/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
 	. = ..()
