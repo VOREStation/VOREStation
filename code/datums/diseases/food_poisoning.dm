@@ -9,7 +9,7 @@
 	cures = list(REAGENT_ID_CHICKENSOUP)
 	cure_chance = 10
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = "Nausea, sickness, and vomitting."
+	desc = "Nausea, sickness, and vomiting."
 	danger = DISEASE_MINOR
 
 /datum/disease/food_poisoning/stage_act()
