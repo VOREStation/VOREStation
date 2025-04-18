@@ -2,7 +2,7 @@
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	icon = 'icons/obj/stacks_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/stacks_vr.dmi'
 	icon_state = "nanopaste"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
@@ -21,33 +21,32 @@
 				R.adjustFireLoss(-15)
 				R.updatehealth()
 				use(1)
-				user.visible_message(span_notice("\The [user] applied some [src] on [R]'s damaged areas."),\
-				span_notice("You apply some [src] at [R]'s damaged areas."))
+				user.balloon_alert_visible("\the [user] applied some [src] on [R]'s damaged areas.",\
+				"you apply some [src] at [R]'s damaged areas.")
 		else
-			to_chat(user, span_notice("All [R]'s systems are nominal."))
+			balloon_alert(user, "all [R]'s systems are nominal.")
 
 	if (ishuman(M))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
 		if(!S)
-			to_chat(user, span_warning("No body part there to work on!"))
+			balloon_alert(user, "no body part there to work on!")
 			return 1
 
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
+				balloon_alert(user, "you can't apply [src] through [H.head]!")
 				return 1
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
+				balloon_alert(user, "you can't apply [src] through [H.wear_suit]!")
 				return 1
 
-		//VOREStation Edit Start
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
-				to_chat(user, span_notice("Nothing to fix here."))
+				balloon_alert(user, "nothing to fix here.")
 			else if((S.open < 2) && (S.brute_dam + S.burn_dam >= S.min_broken_damage) && !repair_external)
-				to_chat(user, span_notice("The damage is too extensive for this nanite swarm to handle."))
+				balloon_alert(user, "the damage is too extensive for this nanite swarm to handle.")
 			else if(can_use(1))
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(S.open >= 2)
@@ -57,6 +56,5 @@
 					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
 				H.updatehealth()
 				use(1)
-				user.visible_message(span_notice("\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src]."),\
-				span_notice("You apply some nanite paste on [user == M ? "your" : "[M]'s"] [S.name]."))
-		//VOREStation Edit End
+				user.balloon_alert_visible("\the [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].",\
+				"you apply some nanite paste on [user == M ? "your" : "[M]'s"] [S.name].")

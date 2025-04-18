@@ -35,10 +35,10 @@
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				to_chat(user, span_warning("\The [blocked] is in the way!"))
+				balloon_alert(user, "\the [blocked] is in the way!")
 				return
 
-			to_chat(M, span_notice("You swallow \the [src]."))
+			balloon_alert(user, "swallowed \the [src]")
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
@@ -49,21 +49,21 @@
 
 		var/mob/living/carbon/human/H = M
 		if(!H.check_has_mouth())
-			to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
+			balloon_alert(user, "\the [H] doesn't have a mouth.")
 			return
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
-			to_chat(user, span_warning("\The [blocked] is in the way!"))
+			balloon_alert(user, "\the [blocked] is in the way!")
 			return
 
-		user.visible_message(span_warning("[user] attempts to force [M] to swallow \the [src]."))
+		balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
-		user.visible_message(span_warning("[user] forces [M] to swallow \the [src]."))
+		balloon_alert_visible("[user] forces [M] to swallow \the [src].")
 
 		var/contained = reagentlist()
 		add_attack_logs(user,M,"Fed a pill containing [contained]")
@@ -81,9 +81,9 @@
 
 	if(target.is_open_container() && target.reagents)
 		if(!target.reagents.total_volume)
-			to_chat(user, span_notice("[target] is empty. Can't dissolve \the [src]."))
+			balloon_alert(user, "[target] is empty.")
 			return
-		to_chat(user, span_notice("You dissolve \the [src] in [target]."))
+		balloon_alert_visible("[user] puts something in \the [target]", "[target] dissolves in \the [src]", 2)
 
 		add_attack_logs(user,null,"Spiked [target.name] with a pill containing [reagentlist()]")
 
@@ -98,7 +98,7 @@
 /obj/item/reagent_containers/pill/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_sharp(W))
 		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
-		user.visible_message(span_warning("[user] gently cuts up [src] with [W]!"))
+		balloon_alert_visible("[user] cuts up [src] with [W]!", "cut up \the [src] with [W]")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
 		if(reagents)
@@ -108,7 +108,7 @@
 
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
-		user.visible_message(span_warning("[user] clumsily chops up [src] with [W]!"))
+		balloon_alert_visible("[user] clumsily cuts up [src] with [W]!", "You clumsily cut up \the [src] with [W]")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
 		if(reagents)

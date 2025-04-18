@@ -40,6 +40,7 @@
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(span_danger("[user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"), \
 	span_danger("Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"))
+	user.balloon_alert_visible("slips, scraping around inside [target]'s [affected.name]", "your hand slips, scraping around inside \the [affected.name]")
 	affected.createwound(CUT, 20)
 
 ///////////////////////////////////////////////////////////////
@@ -66,6 +67,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."), \
 	span_filter_notice("You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].") )
+	user.balloon_alert_visible("starts making space inside [target]'s [get_cavity(affected)]", "making space inside [get_cavity(affected)]")
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 1
 	..()
@@ -74,6 +76,7 @@
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."), \
 	span_notice("You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].") )
+	user.balloon_alert_visible("makes space inside [target]'s [get_cavity(affected)]", "made space inside \the [get_cavity(affected)]")
 
 ///////////////////////////////////////////////////////////////
 // Cavity Closing Surgery
@@ -101,6 +104,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]."), \
 	span_filter_notice("You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].") )
+	user.balloon_alert_visible("starts mending [target]'s [get_cavity(affected)] cavity wall.", "mending \the [get_cavity(affected)] cavity wall.")
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 0
 	..()
@@ -108,7 +112,8 @@
 /datum/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool]."), \
-	span_notice(" You mend[target]'s [get_cavity(affected)] cavity walls with \the [tool].") )
+	span_notice(" You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool].") )
+	user.balloon_alert_visible("mends [target]'s [get_cavity(affected)] cavity walls", "mended [get_cavity(affected)] cavity walls.")
 
 ///////////////////////////////////////////////////////////////
 // Item Implantation Surgery
@@ -151,6 +156,7 @@
 		tool = G.wrapped
 	user.visible_message(span_notice("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
 	span_notice("You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.") ) //Nobody will probably ever see this, but I made these two blue. ~CK
+	user.balloon_alert_visible("starts putting \the [tool] inside [target]'s [get_cavity(affected)]", "putting \the [tool] inside \the [get_cavity(affected)]")
 	target.custom_pain("The pain in your chest is living hell!",1)
 	..()
 
@@ -164,6 +170,7 @@
 		user.drop_item()
 	user.visible_message(span_notice("[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
 	span_notice("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.") )
+	user.balloon_alert_visible("Puts \the [tool] inside [target]'s [get_cavity(affected)]", "\the [tool] placed inside [get_cavity(affected)]")
 	if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && (affected.robotic < ORGAN_ROBOT))
 		to_chat(user, span_danger(" You tear some blood vessels trying to fit such a big object in this cavity."))
 		var/datum/wound/internal_bleeding/I = new (10)
@@ -202,6 +209,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] starts poking around inside [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You start poking around inside [target]'s [affected.name] with \the [tool].") )
+	user.balloon_alert_visible("pokes inside [target]'s [affected.name]", "poking around inside [affected.name]")
 	target.custom_pain("The pain in your [affected.name] is living hell!",1)
 	..()
 
@@ -214,11 +222,13 @@
 		if(isnull(obj)) //They clicked cancel.
 			user.visible_message(span_notice("[user] takes \the [tool] out of [target]'s [affected.name]."), \
 			span_notice("You take \the [tool] out of the incision on [target]'s [affected.name].") )
+			user.balloon_alert_visible("Takes \the [tool] out of [target]'s [affected.name]", "\the [tool] taken out of the incison on \the [affected.name]")
 			return
 		if(!do_mob(user, target, 1)) //They moved away
 			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))
 			user.visible_message(span_notice("[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!"), \
 			span_notice("You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!") )
+			user.balloon_alert_visible("fails to remove anything from [target]'s [affected.name]", "failed to remove \the [obj] from \the [affected.name]")
 			return
 
 		if(istype(obj,/obj/item/implant))
@@ -226,14 +236,17 @@
 			if (!imp.islegal()) //ILLEGAL IMPLANT ALERT!!!!!!!!!!
 				user.visible_message(span_notice("[user] seems to be intently working on something within [target]'s [affected.name] with \the [tool]!"), \
 				span_notice("You intently begin to take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!") )
+				user.balloon_alert_visible("intently works on something within [target]'s [affected.name]", "intently taking \the [obj] out of the incision in \the [affected.name]")
 				if(!do_after(user, min_duration, target))
 					user.visible_message(span_notice("[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!"), \
 					span_notice("You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!") )
+					user.balloon_alert_visible("fails to remove anything from [target]'s [affected.name]", "failed to remove \the [obj] from \the [affected.name]")
 					return
 
 
 		user.visible_message(span_notice("[user] takes something out of the incision on [target]'s [affected.name] with \the [tool]!"), \
 		span_notice("You take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!") )
+		user.balloon_alert_visible("Takes something out of the incision on [target]'s [affected.name]", "[obj] taken out of the incision on [affected.name]")
 		affected.implants -= obj
 		if(!target.has_embedded_objects())
 			target.clear_alert("embeddedobject")
@@ -259,6 +272,7 @@
 	else
 		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out."), \
 		span_notice("You could not find anything inside [target]'s [affected.name].") )
+		user.balloon_alert_visible("could not find anything inside", "nothing found inside")
 
 /datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	..()

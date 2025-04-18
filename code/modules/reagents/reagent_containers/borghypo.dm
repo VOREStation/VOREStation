@@ -67,14 +67,14 @@
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, span_warning("The injector is empty."))
+		balloon_alert(user, "the injector is empty.")
 		return
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 		if(!affected)
-			to_chat(user, span_danger("\The [H] is missing that limb!"))
+			balloon_alert(user, "\the [H] is missing that limb!")
 			return
 		/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 		else if(affected.robotic >= ORGAN_ROBOT)
@@ -83,8 +83,8 @@
 		*/
 
 	if(M.can_inject(user, 1, ignore_thickness = bypass_protection))
-		to_chat(user, span_notice("You inject [M] with the injector."))
-		to_chat(M, span_notice("You feel a tiny prick!"))
+		balloon_alert(user, "you inject [M] with the injector.")
+		balloon_alert(M, "you feel a tiny prick!")
 
 		if(M.reagents)
 			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
@@ -115,7 +115,7 @@
 			playsound(src, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
 			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
-			to_chat(usr, span_notice("Synthesizer is now producing '[R.name]'."))
+			balloon_alert(usr, "synthesizer is now producing '[R.name]'")
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
@@ -191,11 +191,11 @@
 		return
 
 	if(!target.reagents.get_free_space())
-		to_chat(user, span_notice("[target] is full."))
+		balloon_alert(user, "[target] is full!")
 		return
 
 	var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 	target.reagents.add_reagent(reagent_ids[mode], t)
 	reagent_volumes[reagent_ids[mode]] -= t
-	to_chat(user, span_notice("You transfer [t] units of the solution to [target]."))
+	balloon_alert(user, "transfered [t] units to [target].")
 	return

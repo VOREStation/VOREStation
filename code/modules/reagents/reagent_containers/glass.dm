@@ -38,7 +38,7 @@
 		/mob/living/bot/medbot,
 		/obj/item/storage/secure/safe,
 		/obj/machinery/iv_drip,
-		/obj/structure/medical_stand, //VOREStation Add,
+		/obj/structure/medical_stand,
 		/obj/machinery/disposal,
 		/mob/living/simple_mob/animal/passive/cow,
 		/mob/living/simple_mob/animal/goat,
@@ -74,10 +74,10 @@
 /obj/item/reagent_containers/glass/attack_self(mob/user)
 	..()
 	if(is_open_container())
-		to_chat(user, span_notice("You put the lid on \the [src]."))
+		balloon_alert(user, "lid put on \the [src]")
 		flags ^= OPENCONTAINER
 	else
-		to_chat(user, span_notice("You take the lid off \the [src]."))
+		balloon_alert(user, "lid removed off \the [src]")
 		flags |= OPENCONTAINER
 	update_icon()
 
@@ -100,7 +100,7 @@
 	return ..()
 
 /obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
-	to_chat(user, span_notice("You swallow a gulp from \the [src]."))
+	balloon_alert(user, "swallowed from \the [src]")
 
 /obj/item/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
 	var/reagent
@@ -141,7 +141,7 @@
 		if(standard_splash_mob(user,target))
 			return 1
 		if(reagents && reagents.total_volume)
-			to_chat(user, span_notice("You splash the solution onto [target].")) //They are on harm intent, aka wanting to spill it.
+			balloon_alert(user, "splashed the solution onto [target]")
 			reagents.splash(target, reagents.total_volume)
 			return 1
 	..()
@@ -152,17 +152,17 @@
 		if(length(tmp_label) > 50)
 			to_chat(user, span_notice("The label can be at most 50 characters long."))
 		else if(length(tmp_label) > 10)
-			to_chat(user, span_notice("You set the label."))
+			balloon_alert(user, "label set")
 			label_text = tmp_label
 			update_name_label()
 		else
-			to_chat(user, span_notice("You set the label to \"[tmp_label]\"."))
+			balloon_alert(user, "label set to \"[tmp_label]\"")
 			label_text = tmp_label
 			update_name_label()
 	if(istype(W,/obj/item/storage/bag))
 		..()
 	if(W && W.w_class <= w_class && (flags & OPENCONTAINER) && user.a_intent != I_HELP)
-		to_chat(user, span_notice("You dip \the [W] into \the [src]."))
+		balloon_alert(user, "[W] dipped into \the [src].")
 		reagents.touch_obj(W, reagents.total_volume)
 
 /obj/item/reagent_containers/glass/proc/update_name_label()
@@ -330,7 +330,7 @@
 		qdel(src)
 		return
 	else if(D.has_tool_quality(TOOL_WIRECUTTER))
-		to_chat(user, span_notice("You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now."))
+		balloon_alert(user, "you cut a big hole in \the [src] with \the [D]. It's kinda useless now.")
 		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket)
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -340,16 +340,16 @@
 		if (M.use(1))
 			var/obj/item/secbot_assembly/edCLN_assembly/B = new /obj/item/secbot_assembly/edCLN_assembly
 			B.loc = get_turf(src)
-			to_chat(user, span_notice("You armed the robot frame."))
+			balloon_alert(user, "armed the robot frame.")
 			if (user.get_inactive_hand()==src)
 				user.remove_from_mob(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
-			to_chat(user, span_warning("You need one sheet of metal to arm the robot frame."))
-	else if(istype(D, /obj/item/mop) || istype(D, /obj/item/soap) || istype(D, /obj/item/reagent_containers/glass/rag))  //VOREStation Edit - "Allows soap and rags to be used on buckets"
+			balloon_alert(user, "one sheet of metal is needed to arm the robot frame.")
+	else if(istype(D, /obj/item/mop) || istype(D, /obj/item/soap) || istype(D, /obj/item/reagent_containers/glass/rag))
 		if(reagents.total_volume < 1)
-			to_chat(user, span_warning("\The [src] is empty!"))
+			balloon_alert(user, "\the [src] is empty!")
 		else
 			reagents.trans_to_obj(D, 5)
 			to_chat(user, span_notice("You wet \the [D] in \the [src]."))
