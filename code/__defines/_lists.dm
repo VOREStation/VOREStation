@@ -47,3 +47,9 @@
 #define reverseList(L) reverseRange(L.Copy())
 
 #define islist(L) istype(L, /list)
+
+/// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
+#define LAZYORASSOCLIST(lazy_list, key, value) \
+	LAZYINITLIST(lazy_list); \
+	LAZYINITLIST(lazy_list[key]); \
+	lazy_list[key] |= value;

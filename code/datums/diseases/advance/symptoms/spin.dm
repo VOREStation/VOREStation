@@ -20,17 +20,33 @@ BONUS
 	stealth = 2
 	resistance = 0
 	stage_speed = 3
-	transmittable = 1
+	transmission = 1
 	level = 1
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 35 SECONDS
 	severity = 0
+	threshold_descs = list(
+		"Resistance 6" = "The target will flip more violently."
+	)
 
-/datum/symptom/spyndrome/Activate(var/datum/disease/advance/A)
-	..()
+	var/bigspin = FALSE
 
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		if(A.affected_mob.buckled())
-			to_chat(viewers(A.affected_mob), span_warning("[A.affected_mob.name] struggles violently against their restraints!"))
+/datum/symptom/spyndrome/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.resistance >= 6)
+		bigspin = TRUE
+
+/datum/symptom/spyndrome/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/M = A.affected_mob
+	switch(A.stage)
+		if(1, 2, 3)
+			if(prob(base_message_chance))
+				to_chat(M, span_notice("You can't stand still."))
 		else
-			to_chat(viewers(A.affected_mob), span_warning("[A.affected_mob.name] spins around violently!"))
-			A.affected_mob.emote("spin")
-	return
+			if(bigspin)
+				M.emote("floorspin")
+			else
+				M.emote("spin")

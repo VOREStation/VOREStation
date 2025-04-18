@@ -542,7 +542,7 @@
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
-
+/*
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
 	//spread some viruses while we are at it
@@ -556,7 +556,7 @@
 				continue
 			for(var/mob/living/carbon/M in view(1,src))
 				ContractDisease(D)
-
+*/
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
@@ -2296,9 +2296,9 @@
 /mob/living/carbon/human/proc/has_virus()
 	for(var/thing in viruses)
 		var/datum/disease/D = thing
-		if(!D.discovered)
+		if(!global_flag_check(D.virus_modifiers, DISCOVERED))
 			continue
-		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.severity != NONTHREAT))
+		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.danger != DISEASE_NONTHREAT))
 			return TRUE
 	return FALSE
 

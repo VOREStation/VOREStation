@@ -911,65 +911,91 @@
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
+
 	if(!check_has_mouth())
-		return
+		return TRUE
 
-	if(!lastpuke)
-		lastpuke = 1
-		if(isSynthetic())
-			to_chat(src, span_danger("A sudden, dizzying wave of internal feedback rushes over you!"))
-			src.Weaken(5)
-		else
-			if (nutrition <= 100)
-				to_chat(src, span_danger("You gag as you want to throw up, but there's nothing in your stomach!"))
-				src.Weaken(10)
+	if(nutrition < 100 && !blood)
+		if(message)
+			visible_message(span_warning("[src] dry heaves!"), span_userdanger("You try to throw up, but there's nothing in your stomach!"))
+
+		if(stun)
+			Stun(stun)
+		return TRUE
+
+	var/obj/vomit_goal = get_active_hand()
+
+	if(!istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+		vomit_goal = check_vomit_goal()
+
+	if(iscarbon(src) && is_mouth_covered())
+		if(message)
+			visible_message(span_danger("[src] throws up all over themself!"), span_userdanger("You throw up all over yourself!"))
+		distance = 0
+	else if(vomit_goal)
+		if(message)
+			visible_message(span_danger("[src] throws up into the [vomit_goal]!"), span_userdanger("You throw up into the [vomit_goal]!"))
+		if(istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+			var/obj/item/organ/internal/stomach/S = organs_by_name[O_STOMACH]
+			var/obj/item/reagent_containers/glass/bucket/puke_bucket = vomit_goal
+			if(S && S.acidtype)
+				puke_bucket.reagents.add_reagent(S.acidtype, rand(3, 6))
+			else if(blood)
+				puke_bucket.reagents.add_reagent(REAGENT_BLOOD, rand(3, 6))
 			else
-				to_chat(src, span_warning("You feel nauseous..."))
+				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
+		distance = 0
+	else
+		if(message)
+			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
 
-				if(ishuman(src))
-					var/mob/living/carbon/human/Hu = src
-					if(CE_ANTACID in Hu.chem_effects)
-						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
-							spawn(rand(30 SECONDS, 2 MINUTES))
-								lastpuke = FALSE
-							return
+	if(stun)
+		Stun(stun)
 
-				spawn()
-					if(!skip_wait)
-						sleep(150)	//15 seconds until second warning
-						to_chat(src, span_warning("You feel like you are about to throw up!"))
-						sleep(100)	//and you have 10 more for mad dash to the bucket
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	var/turf/T = get_turf(src)
+	var/vomit_type = NONE
+	var/mob/living/carbon/human/H = src
 
-					//Damaged livers cause you to vomit blood.
-					if(!blood_vomit)
-						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
-							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
-								if(!L || L.is_broken())
-									blood_vomit = 1
+	if(isSynthetic())
+		vomit_type = VOMIT_NANITE
+	else if(ishuman(src) && H.ingested.has_reagent(REAGENT_ID_PHORON) && !isSynthetic())
+		vomit_type = VOMIT_PURPLE
+	else if(toxloss && !isSynthetic())
+		vomit_type = VOMIT_TOXIC
 
-					Stun(5)
-					src.visible_message(span_warning("[src] throws up!"),span_warning("You throw up!"))
-					playsound(src, 'sound/effects/splat.ogg', 50, 1)
+	if(!blood)
+		adjust_nutrition(-lost_nutrition)
+		adjustToxLoss(-3)
 
-					var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
-					if(istype(T))
-						if(blood_vomit)
-							T.add_blood_floor(src)
-						else
-							T.add_vomit_floor(src, 1)
+	if(distance)
+		for(var/i=0 to distance)
+			if(blood)
+				if(T)
+					blood_splatter(T, large = TRUE)
+				if(stun)
+					adjustBruteLoss(2)
+			else if(T)
+				T.add_vomit_floor(src, vomit_type, purge)
+			T = get_step(T, dir)
+	return TRUE
 
-					if(blood_vomit)
-						if(getBruteLoss() < 50)
-							adjustBruteLoss(3)
-					else
-						adjust_nutrition(-40)
-						adjustToxLoss(-3)
-
-		spawn(350)
-			lastpuke = 0
+/mob/living/proc/check_vomit_goal()
+	PRIVATE_PROC(TRUE)
+	var/obj_list = list(/obj/machinery/disposal,/obj/structure/toilet,/obj/structure/sink,/obj/structure/urinal)
+	for(var/type in obj_list)
+		// check standing on
+		var/turf/T = get_turf(src)
+		var/obj/O = locate(type) in T
+		if(O)
+			return O
+		// check ahead of us
+		T = get_turf(get_step(T,dir))
+		O = locate(type) in T
+		if(O && O.Adjacent(src))
+			return O
+	return null
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())

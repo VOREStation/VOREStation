@@ -17,15 +17,16 @@ Bonus
 
 /datum/symptom/necrotic_agent
 	name = "Necrotic Agent"
-	stealth = -2
-	resistance = -3
-	stage_speed = -3
-	transmittable = 0
+	desc = "Allows the virus to infect corpses, and work on the dead."
+	stealth = 2
+	resistance = -2
+	stage_speed = -1
+	transmission = 0
 	level = 6
 	severity = 3
 
-/datum/symptom/necrotic_agent/Start(datum/disease/advance/A)
-	A.allow_dead = TRUE
+/datum/symptom/necrotic_agent/OnAdd(datum/disease/advance/A)
+	A.virus_modifiers |= SPREAD_DEAD
 
-/datum/symptom/necrotic_agent/End(datum/disease/advance/A)
-	A.allow_dead = FALSE
+/datum/symptom/necrotic_agent/OnRemove(datum/disease/advance/A)
+	A.virus_modifiers &= ~SPREAD_DEAD
