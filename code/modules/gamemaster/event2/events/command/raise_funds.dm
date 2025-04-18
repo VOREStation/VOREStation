@@ -84,9 +84,9 @@
 // Returns the sum of the station account and all the departmental accounts.
 /datum/event2/event/raise_funds/proc/count_money()
 	. = 0
-	. += station_account.money
+	. += GLOB.station_account.money
 	for(var/i = 1 to SSjob.department_datums.len)
-		var/datum/money_account/account = LAZYACCESS(department_accounts, SSjob.department_datums[i])
+		var/datum/money_account/account = LAZYACCESS(GLOB.department_accounts, SSjob.department_datums[i])
 		if(istype(account))
 			. += account.money
 

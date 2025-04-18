@@ -463,7 +463,7 @@
 			qdel(B)
 
 	//Update any existing objectives involving this mob.
-	for(var/datum/objective/O in all_objectives)
+	for(var/datum/objective/O in GLOB.all_objectives)
 		// We don't want revs to get objectives that aren't for heads of staff. Letting
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == to_despawn.mind)
@@ -495,8 +495,8 @@
 
 		// Delete them from datacore.
 
-		if(PDA_Manifest.len)
-			PDA_Manifest.Cut()
+		if(GLOB.PDA_Manifest.len)
+			GLOB.PDA_Manifest.Cut()
 		for(var/datum/data/record/R in data_core.medical)
 			if((R.fields["name"] == to_despawn.real_name))
 				qdel(R)

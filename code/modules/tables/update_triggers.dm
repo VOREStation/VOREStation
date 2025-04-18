@@ -1,4 +1,4 @@
-/obj/structure/window/Initialize(mapload)
+/obj/structure/window/Initialize(mapload, start_dir=null, constructed=0)
 	. = ..()
 	for(var/obj/structure/table/T in view(src, 1))
 		T.update_connections()

@@ -30,6 +30,6 @@
 		new /obj/item/material/shard(src.loc)
 	if(prob(25))
 		new /obj/item/material/shard(src.loc)
-	..()
+	. = ..()
 
 //todo: laser_act

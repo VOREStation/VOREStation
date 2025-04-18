@@ -138,7 +138,7 @@
 /mob/living/simple_mob/animal/sif/sakimm/Destroy()
 	if(hat)
 		drop_hat(src)
-	..()
+	. = ..()
 
 /mob/living/simple_mob/animal/sif/sakimm/update_icon()
 	cut_overlays()

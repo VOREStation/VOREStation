@@ -15,5 +15,5 @@
 /obj/item/stool/baystool/padded
 	icon_state = "bar_stool_padded_preview" //set for the map
 
-/obj/item/stool/baystool/padded/New(var/newloc, var/new_material)
-	..(newloc, MAT_STEEL, MAT_CARPET)
+/obj/item/stool/baystool/padded/Initialize(mapload, var/new_material)
+	. = ..(mapload, MAT_STEEL, MAT_CARPET)
