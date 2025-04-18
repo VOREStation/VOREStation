@@ -137,7 +137,7 @@ const MiningVendorSearch = (props: {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onInput={(_e, value) => props.onSearchText(value)}
+            onChange={(value) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

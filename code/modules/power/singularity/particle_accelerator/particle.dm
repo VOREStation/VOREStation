@@ -34,11 +34,10 @@
 	movement_range = 25
 	energy = 50
 
-/obj/effect/accelerated_particle/New(loc, dir = 2)
-	src.loc = loc
-	src.set_dir(dir)
-	spawn(0)
-		move(1)
+/obj/effect/accelerated_particle/Initialize(mapload, dir = 2)
+	. = ..()
+	set_dir(dir)
+	addtimer(CALLBACK(src, PROC_REF(move)), 0.1 SECONDS)
 
 
 /obj/effect/accelerated_particle/Bump(atom/A)
@@ -98,6 +97,6 @@
 	movement_range--
 	if(movement_range <= 0)
 		qdel(src)
-	else
-		sleep(lag)
-		move(lag)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(move), lag), lag)

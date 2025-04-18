@@ -81,7 +81,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	if (!trait || !preference)
 		return
 	var/list/trait_prefs
-	var/datum/trait/instance = all_traits[trait]
+	var/datum/trait/instance = GLOB.all_traits[trait]
 	var/list/traitlist
 	switch(instance.category)
 		if (1)
@@ -180,10 +180,10 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 	// Clean up positive traits
 	for(var/datum/trait/path as anything in pref.pos_traits)
-		if(!(path in positive_traits))
+		if(!(path in GLOB.positive_traits))
 			pref.pos_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_positive))
+		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_positive))
 			pref.pos_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
@@ -191,11 +191,11 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			pref.pos_traits -= path
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
-		if(!(path in neutral_traits))
+		if(!(path in GLOB.neutral_traits))
 			to_world_log("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_neutral))
+		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_neutral))
 			to_world_log("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
@@ -205,10 +205,10 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)
-		if(!(path in negative_traits))
+		if(!(path in GLOB.negative_traits))
 			pref.neg_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_negative))
+		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_negative))
 			pref.neg_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
@@ -287,7 +287,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	var/points_left = pref.starting_trait_points
 
 	for(var/T in pref.pos_traits + pref.neg_traits)
-		points_left -= traits_costs[T]
+		points_left -= GLOB.traits_costs[T]
 		if(T in pref.pos_traits)
 			traits_left--
 	. += span_bold("Traits Left:") + " [traits_left]<br>"
@@ -298,21 +298,21 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.pos_traits)
-		var/datum/trait/trait = positive_traits[T]
+		var/datum/trait/trait = GLOB.positive_traits[T]
 		. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.pos_traits[T])]</li>"
 	. += "</ul>"
 
 	. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neu_traits)
-		var/datum/trait/trait = neutral_traits[T]
+		var/datum/trait/trait = GLOB.neutral_traits[T]
 		. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neu_traits[T])]</li>"
 	. += "</ul>"
 
 	. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neg_traits)
-		var/datum/trait/trait = negative_traits[T]
+		var/datum/trait/trait = GLOB.negative_traits[T]
 		. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
 	. += "</ul>"
 
@@ -391,7 +391,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		var/choice = tgui_alert(user, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.pos_traits -= trait
-			var/datum/trait/instance = all_traits[trait]
+			var/datum/trait/instance = GLOB.all_traits[trait]
 			instance.remove_pref(pref)
 		return TOPIC_REFRESH
 
@@ -400,7 +400,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		var/choice = tgui_alert(user, "Remove [initial(trait.name)]?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neu_traits -= trait
-			var/datum/trait/instance = all_traits[trait]
+			var/datum/trait/instance = GLOB.all_traits[trait]
 			instance.remove_pref(pref)
 		return TOPIC_REFRESH
 
@@ -409,7 +409,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		var/choice = tgui_alert(user, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neg_traits -= trait
-			var/datum/trait/instance = all_traits[trait]
+			var/datum/trait/instance = GLOB.all_traits[trait]
 			instance.remove_pref(pref)
 		return TOPIC_REFRESH
 
@@ -519,24 +519,24 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		switch(mode)
 			if(POSITIVE_MODE)
 				if(pref.species == SPECIES_CUSTOM)
-					picklist = positive_traits.Copy() - pref.pos_traits
+					picklist = GLOB.positive_traits.Copy() - pref.pos_traits
 					mylist = pref.pos_traits
 				else
-					picklist = everyone_traits_positive.Copy() - pref.pos_traits
+					picklist = GLOB.everyone_traits_positive.Copy() - pref.pos_traits
 					mylist = pref.pos_traits
 			if(NEUTRAL_MODE)
 				if(pref.species == SPECIES_CUSTOM)
-					picklist = neutral_traits.Copy() - pref.neu_traits
+					picklist = GLOB.neutral_traits.Copy() - pref.neu_traits
 					mylist = pref.neu_traits
 				else
-					picklist = everyone_traits_neutral.Copy() - pref.neu_traits
+					picklist = GLOB.everyone_traits_neutral.Copy() - pref.neu_traits
 					mylist = pref.neu_traits
 			if(NEGATIVE_MODE)
 				if(pref.species == SPECIES_CUSTOM)
-					picklist = negative_traits.Copy() - pref.neg_traits
+					picklist = GLOB.negative_traits.Copy() - pref.neg_traits
 					mylist = pref.neg_traits
 				else
-					picklist = everyone_traits_negative.Copy() - pref.neg_traits
+					picklist = GLOB.everyone_traits_negative.Copy() - pref.neg_traits
 					mylist = pref.neg_traits
 
 		if(isnull(picklist))
@@ -552,7 +552,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 		var/points_left = pref.starting_trait_points
 		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)
-			points_left -= traits_costs[T]
+			points_left -= GLOB.traits_costs[T]
 
 		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len)
 
@@ -584,7 +584,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			return TOPIC_REFRESH
 		else if(trait_choice in nicelist)
 			var/datum/trait/path = nicelist[trait_choice]
-			var/datum/trait/instance = all_traits[path]
+			var/datum/trait/instance = GLOB.all_traits[path]
 
 			var/conflict = FALSE
 
@@ -609,7 +609,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 			varconflict:
 				for(var/P in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
-					var/datum/trait/instance_test = all_traits[P]
+					var/datum/trait/instance_test = GLOB.all_traits[P]
 					if(path in instance_test.excludes)
 						conflict = instance_test.name
 						break varconflict

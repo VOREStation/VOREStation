@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import type { Placement } from '@floating-ui/react';
 import { Box, Button, Section, Tooltip } from 'tgui-core/components';
 
 export const meta = {
@@ -19,7 +20,7 @@ const Story = () => {
     'bottom',
     'bottom-start',
     'bottom-end',
-  ];
+  ] as Placement[];
 
   return (
     <Section>

@@ -1573,3 +1573,12 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "evelynn"
 	pointer_icon_state = "purple_laser"
+
+//sixberry: Thistle
+/obj/item/clothing/glasses/fluff/kintacts_aquamarine
+	name = "Aquamarine KINtacts"
+	desc = "A blueish-green pair of borosilicate glass contact lenses, designed solely for Shadekin. They seem to have some degree of iridescence to them."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kintacts"
+	item_state = "kintacts_mob"

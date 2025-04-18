@@ -1,4 +1,4 @@
-var/global/list/prevent_respawns = list()
+GLOBAL_LIST_EMPTY(prevent_respawns)
 
 /hook/death/proc/quit_notify(mob/dead)
 	if(ishuman(dead))
@@ -25,7 +25,7 @@ var/global/list/prevent_respawns = list()
 	//prevent_respawns += mind.name //Replaced by PR 4785
 
 	//Update any existing objectives involving this mob.
-	for(var/datum/objective/O in all_objectives)
+	for(var/datum/objective/O in GLOB.all_objectives)
 		if(O.target == src.mind)
 			if(O.owner && O.owner.current)
 				to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
@@ -45,8 +45,8 @@ var/global/list/prevent_respawns = list()
 		src.mind.special_role = null
 
 	//Cut the PDA manifest (ugh)
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
+	if(GLOB.PDA_Manifest.len)
+		GLOB.PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
 		if((R.fields["name"] == src.real_name))
 			qdel(R)

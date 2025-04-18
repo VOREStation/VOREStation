@@ -23,7 +23,7 @@
 	save_data["autohiss"]			= pref.autohiss
 
 /datum/category_item/player_setup_item/vore/egg/sanitize_character()
-	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, global_vore_egg_types, initial(pref.vore_egg_type))
+	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, GLOB.global_vore_egg_types, initial(pref.vore_egg_type))
 
 /datum/category_item/player_setup_item/vore/egg/copy_to_mob(var/mob/living/carbon/human/character)
 	character.vore_egg_type	= pref.vore_egg_type
@@ -51,7 +51,7 @@
 		return TOPIC_NOACTION
 
 	else if(href_list["vore_egg_type"])
-		var/list/vore_egg_types = global_vore_egg_types
+		var/list/vore_egg_types = GLOB.global_vore_egg_types
 		var/selection = tgui_input_list(user, "Choose your character's egg type:", "Character Preference", vore_egg_types, pref.vore_egg_type)
 		if(selection)
 			pref.vore_egg_type = selection

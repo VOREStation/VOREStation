@@ -13,9 +13,9 @@
 
 /obj/item/frame/proc/update_type_list()
 	if(!frame_types_floor)
-		frame_types_floor = construction_frame_floor
+		frame_types_floor = GLOB.construction_frame_floor
 	if(!frame_types_wall)
-		frame_types_wall = construction_frame_wall
+		frame_types_wall = GLOB.construction_frame_wall
 
 /obj/item/frame/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))

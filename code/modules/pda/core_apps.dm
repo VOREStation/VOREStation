@@ -209,7 +209,7 @@
 /datum/data/pda/app/manifest/update_ui(mob/user as mob, list/data)
 	if(data_core)
 		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	data["manifest"] = GLOB.PDA_Manifest
 
 /datum/data/pda/app/manifest/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
