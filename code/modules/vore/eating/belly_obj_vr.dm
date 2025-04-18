@@ -920,7 +920,7 @@
 			//privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(!silent && !isobserver(M))
+	if(!silent && isobserver(M))
 		silent = TRUE
 	if(!silent)
 		if(isitem(M))
