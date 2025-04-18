@@ -179,7 +179,17 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return D
 
 /datum/disease/proc/GetDiseaseID()
-	return type
+	return
+
+/datum/disease/proc/IsSpreadByBlood()
+	if(spread_flags & DISEASE_SPREAD_BLOOD)
+		return TRUE
+	return FALSE
+
+/datum/disease/proc/IsSpreadByFluids()
+	if(spread_flags & DISEASE_SPREAD_FLUIDS)
+		return TRUE
+	return FALSE
 
 /datum/disease/proc/IsSpreadByTouch()
 	if(spread_flags & DISEASE_SPREAD_CONTACT)
