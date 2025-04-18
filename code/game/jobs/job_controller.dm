@@ -486,7 +486,7 @@ var/global/datum/controller/occupations/job_master
 	if(H.mind && job.department_accounts)
 		var/remembered_info = ""
 		for(var/D in job.department_accounts)
-			var/datum/money_account/department_account = department_accounts[D]
+			var/datum/money_account/department_account = GLOB.department_accounts[D]
 			if(department_account)
 				remembered_info += span_bold("Department account number ([D]):") + " #[department_account.account_number]<br>"
 				remembered_info += span_bold("Department account pin ([D]):") + " [department_account.remote_access_pin]<br>"

@@ -33,7 +33,7 @@
 	return null
 
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
-	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
 
 	if(is_incorporeal())
@@ -499,7 +499,7 @@
 		to_chat(user,message)
 		return FALSE
 
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 
 	if(user == src)
 		user.visible_message(span_filter_notice("\The [user] starts applying pressure to [TU.his] [organ.name]!"), span_filter_notice("You start applying pressure to your [organ.name]!"))
