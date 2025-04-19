@@ -437,3 +437,11 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_EXTEND
 
 	slowdown = 2
+
+/datum/modifier/trait/thickdigits
+	name = "Thick Digits"
+	desc = "Your hands cannot properly wield weapons."
+
+/datum/modifier/rednet //Not used here currently, but used downstream. Todo: Port it.
+	mob_overlay_state = "red_electricity_constant"
+	slowdown = 1
