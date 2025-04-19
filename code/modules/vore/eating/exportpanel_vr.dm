@@ -219,6 +219,14 @@
 			for(var/msg in B.examine_messages_absorbed)
 				belly_data["examine_messages_absorbed"] += msg
 
+			belly_data["trash_eater_in"] = list()
+			for(var/msg in B.trash_eater_in)
+				belly_data["trash_eater_in"] += msg
+
+			belly_data["trash_eater_out"] = list()
+			for(var/msg in B.trash_eater_out)
+				belly_data["trash_eater_out"] += msg
+
 			//belly_data["emote_list"] = list()
 			//for(var/EL in B.emote_lists)
 			//	for(var/msg in B.emote_lists[EL])

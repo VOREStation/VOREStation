@@ -365,6 +365,16 @@
 			if(new_emotes_digest)
 				new_belly.set_messages(new_emotes_digest,BELLY_MODE_DIGEST, limit = MAX_MESSAGE_LEN / 4)
 
+		if(islist(belly_data["trash_eater_in"]))
+			var/new_trash_eater_in = sanitize(jointext(belly_data["trash_eater_in"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
+			if(new_trash_eater_in)
+				new_belly.set_messages(new_trash_eater_in ,BELLY_TRASH_EATER_IN, limit = MAX_MESSAGE_LEN / 2)
+
+		if(islist(belly_data["trash_eater_out"]))
+			var/new_trash_eater_out = sanitize(jointext(belly_data["trash_eater_out"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
+			if(new_trash_eater_out)
+				new_belly.set_messages(new_trash_eater_out,BELLY_TRASH_EATER_OUT, limit = MAX_MESSAGE_LEN / 2)
+
 		if(islist(belly_data["emotes_hold"]))
 			var/new_emotes_hold = sanitize(jointext(belly_data["emotes_hold"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
 			if(new_emotes_hold)
