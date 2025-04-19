@@ -47,7 +47,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/closet/LateInitialize()
-	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
 		starts_with = null

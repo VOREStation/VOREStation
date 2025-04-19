@@ -86,7 +86,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/brain/LateInitialize()
-	. = ..()
 	if(brainmob)
 		butcherable = FALSE
 

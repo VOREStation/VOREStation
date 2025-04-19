@@ -9,7 +9,6 @@
 /obj/effect/expl_particles/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1.5 SECONDS)
-	return
 
 /datum/effect/system/expl_particles
 	var/number = 10
@@ -44,7 +43,6 @@
 /obj/effect/explosion/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECOND)
-	return
 
 /datum/effect/system/explosion
 	var/turf/location

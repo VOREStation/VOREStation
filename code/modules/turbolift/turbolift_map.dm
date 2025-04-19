@@ -24,7 +24,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/turbolift_map_holder/LateInitialize()
-	. = ..()
 	// Create our system controller.
 	var/datum/turbolift/lift = new()
 

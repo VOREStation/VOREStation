@@ -217,7 +217,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/apc/LateInitialize()
-	. = ..()
 	update()
 
 /obj/machinery/power/apc/Destroy()

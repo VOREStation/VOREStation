@@ -40,8 +40,8 @@
 // Description: Adds a static overlay to the client's screen.
 /mob/living/voice/Login()
 	..()
-	client.screen |= global_hud.whitense
-	client.screen |= global_hud.darkMask
+	client.screen |= GLOB.global_hud.whitense
+	client.screen |= GLOB.global_hud.darkMask
 
 // Proc: Destroy()
 // Parameters: None

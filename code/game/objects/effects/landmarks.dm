@@ -92,8 +92,6 @@
 	. = ..()
 	tag = "start*[name]"
 
-	return 1
-
 /obj/effect/landmark/forbidden_level
 	delete_me = TRUE
 

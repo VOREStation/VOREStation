@@ -301,7 +301,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/percent_done = (world.time - (install_done - (35 MINUTES))) / (35 MINUTES)
 
 	if(human.client)
-		human.client.screen.Add(global_hud.whitense) //This is the camera static
+		human.client.screen.Add(GLOB.global_hud.whitense) //This is the camera static
 
 	switch(percent_done) //This is 0.0 to 1.0 kinda percent.
 		//Connecting to optical nerves
