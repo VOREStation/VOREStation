@@ -187,6 +187,10 @@
 	/// By default, this is set to off, as evasion being calculated is (in my eyes) enough for PvP combat.
 	/// However, if you wish to enable it so there's miss chance, flip this FALSE to TRUE
 	var/user_misses = FALSE
+
+	if(!ismob(attacker)) //attacker can be null, or non-mob objects, ae: circuitry mechanism.
+		return zone
+
 	if(!user_misses && attacker.client)
 		return zone
 
