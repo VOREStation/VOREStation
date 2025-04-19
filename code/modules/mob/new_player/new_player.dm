@@ -111,7 +111,7 @@
 
 	output += "</div>"
 
-	if (client.prefs.lastlorenews == GLOB.news_data.newsindex)
+	if (client.prefs?.lastlorenews == GLOB.news_data.newsindex)
 		client.seen_news = 1
 
 	if(GLOB.news_data.station_newspaper && !client.seen_news && client.prefs?.read_preference(/datum/preference/toggle/show_lore_news))

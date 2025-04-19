@@ -195,7 +195,7 @@
 /obj/item/mail/proc/unwrap(mob/user)
 	if(recipient_ref)
 		var/datum/mind/recipient = recipient_ref.resolve()
-		if(recipient && recipient.current.dna.unique_enzymes != user.dna.unique_enzymes)
+		if(recipient && recipient.current?.dna.unique_enzymes != user.dna.unique_enzymes)
 			to_chat(user, span_danger("You can't open somebody's mail! That's <em>illegal</em>"))
 			return FALSE
 

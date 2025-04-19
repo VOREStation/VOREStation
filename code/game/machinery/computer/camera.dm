@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	power_change()
 
 /obj/machinery/computer/security/telescreen/entertainment/Destroy()
+	GLOB.entertainment_screens -= src
 	if(showing)
 		stop_showing()
 	vis_contents.Cut()
