@@ -190,8 +190,11 @@
 	if(istype(attacker, living_attacker))
 		living_attacker = attacker
 
-	else if(non_living_always_hits)
+	else if(non_living_always_hits) //Warning: This will make things like frag mines ANNIHILATE people without evasion.
 		return zone
+	else
+		if(!has_evasion_chance && prob(miss_chance_mod)) //Only take miss chance into account when we have no evasion IF the attacker is non-living (turret/mine/claymore).
+			return null //They missed.
 
 
 	/// Toggle for servers that desire to have players able to miss each other.
