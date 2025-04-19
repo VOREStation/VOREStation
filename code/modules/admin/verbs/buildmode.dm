@@ -209,10 +209,10 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 
 /obj/effect/bmode/buildholder/Initialize(mapload)
 	. = ..()
-	BLOB.active_buildmode_holders += src
+	GLOB.active_buildmode_holders += src
 
 /obj/effect/bmode/buildholder/Destroy()
-	BLOB.active_buildmode_holders -= src
+	GLOB.active_buildmode_holders -= src
 	qdel(builddir)
 	builddir = null
 	qdel(buildhelp)

@@ -28,7 +28,7 @@
 		else
 			var/turf/playerTurf = get_turf(Player)
 			if(!playerTurf)
-				log_debug("Player [player.name] ([player.ckey]) playing as [player.species] was in nullspace at round end.")
+				log_debug("Player [Player.name] ([Player.ckey]) playing as [Player.species] was in nullspace at round end.")
 				continue
 			if(isAdminLevel(playerTurf.z))
 				// Evac'd - Next round they arrive on the shuttle.
