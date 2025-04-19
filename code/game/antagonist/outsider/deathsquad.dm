@@ -70,9 +70,6 @@ var/datum/antagonist/deathsquad/deathsquad
 
 	var/syndicate_commando_name = pick(last_names)
 
-	var/datum/preferences/A = new() //Randomize appearance for the commando.
-	A.randomize_appearance_and_body_for(player.current)
-
 	player.name = "[syndicate_commando_rank] [syndicate_commando_name]"
 	player.current.name = player.name
 	player.current.real_name = player.current.name

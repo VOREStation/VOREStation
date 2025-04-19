@@ -42,7 +42,7 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout
 	name = "Loadout"
-	sort_order = 1
+	sort_order = 2
 	var/current_tab = "General"
 
 /datum/category_item/player_setup_item/loadout/load_character(list/save_data)
@@ -79,7 +79,7 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
+		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && preference_mob?.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))

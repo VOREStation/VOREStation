@@ -236,8 +236,6 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 
 	markings_len = character.markings_len
 
-	descriptors = character.descriptors?.Copy()
-
 	if (copy_flavour)
 		flavor_texts = character.flavor_texts?.Copy()
 

@@ -53,6 +53,7 @@
 	output += "<hr>"
 
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];show_game_preferences=1'>Game Options</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
@@ -163,7 +164,10 @@
 	if(!client)	return 0
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
+		client.character_setup()
+		return 1
+	if(href_list["show_game_preferences"])
+		client.game_options()
 		return 1
 
 	if(href_list["ready"])
@@ -600,7 +604,6 @@
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character, icon_updates = TRUE)
 

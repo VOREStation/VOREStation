@@ -1,8 +1,6 @@
-// import { exhaustiveCheck } from 'common/exhaustive';
-
 import { useBackend } from 'tgui/backend';
 
-// import { CharacterPreferenceWindow } from './CharacterPreferenceWindow';
+import { CharacterPreferenceWindow } from './CharacterPreferenceWindow';
 import {
   GamePreferencesSelectedPage,
   type PreferencesMenuData,
@@ -16,8 +14,8 @@ export const PreferencesMenu = (props) => {
   const window = data.window;
 
   switch (window) {
-    // case Window.Character:
-    // return <CharacterPreferenceWindow />;
+    case Window.Character:
+      return <CharacterPreferenceWindow />;
     case Window.Game:
       return <GamePreferenceWindow />;
     case Window.Keybindings:
@@ -26,7 +24,5 @@ export const PreferencesMenu = (props) => {
           startingPage={GamePreferencesSelectedPage.Keybindings}
         />
       );
-    // default:
-    //   exhaustiveCheck(window);
   }
 };

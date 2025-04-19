@@ -61,7 +61,8 @@ var/list/preferences_datums = list()
 		"4"  = "character_preview_map:2,3",
 		"8"  = "character_preview_map:2,1",
 		"BG" = "character_preview_map:1,1 to 3,8",
-		"PMH" = "character_preview_map:2,7"
+		"PMH" = "character_preview_map:2,7",
+		"PMHjiggle" = "character_preview_map:102,7:107",
 	)
 
 		//Jobs, uses bitflags
@@ -96,8 +97,6 @@ var/list/preferences_datums = list()
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
 	var/custom_link = null
-
-	var/list/body_descriptors = list()
 
 	var/med_record = ""
 	var/sec_record = ""
@@ -194,31 +193,35 @@ var/list/preferences_datums = list()
 		update_preview_icon()
 	show_character_previews()
 
-	var/dat = "<html><body><center>"
+	current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+	update_tgui_static_data(user)
+	tgui_interact(user)
 
-	if(path)
-		dat += "Slot - "
-		dat += "<a href='byond://?src=\ref[src];load=1'>Load slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];reload=1'>Reload slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];resetslot=1'>Reset slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];copy=1'>Copy slot</a>"
+	// var/dat = "<html><body><center>"
 
-	else
-		dat += "Please create an account to save your preferences."
+	// if(path)
+	// 	dat += "Slot - "
+	// 	dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
+	// 	dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
+	// 	dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a> - "
+	// 	dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
+	// 	dat += "<a href='?src=\ref[src];copy=1'>Copy slot</a>"
 
-	dat += "<br>"
-	dat += player_setup.header()
-	dat += "<br><HR></center>"
-	dat += player_setup.content(user)
+	// else
+	// 	dat += "Please create an account to save your preferences."
 
-	dat += "</body></html>"
-	//user << browse(dat, "window=preferences;size=635x736")
-	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
-	popup.set_content(dat)
-	popup.open(FALSE) // Skip registring onclose on the browser pane
-	onclose(user, "preferences_window", src) // We want to register on the window itself
+	// dat += "<br>"
+	// dat += player_setup.header()
+	// dat += "<br><HR></center>"
+	// dat += player_setup.content(user)
+
+	// dat += "</html></body>"
+	// //user << browse(dat, "window=preferences;size=635x736")
+	// winshow(user, "preferences_window", TRUE)
+	// var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
+	// popup.set_content(dat)
+	// popup.open(FALSE) // Skip registring onclose on the browser pane
+	// onclose(user, "preferences_window", src) // We want to register on the window itself
 
 /datum/preferences/proc/update_character_previews(var/mob/living/carbon/human/mannequin)
 	if(!client)
@@ -350,10 +353,6 @@ var/list/preferences_datums = list()
 		character.update_mutations()
 		character.update_underwear()
 		character.update_hair()
-
-	if(LAZYLEN(character.descriptors))
-		for(var/entry in body_descriptors)
-			character.descriptors[entry] = body_descriptors[entry]
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
@@ -582,22 +581,6 @@ var/list/preferences_datums = list()
 			if(O)
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
-
-	var/list/last_descriptors = list()
-	if(islist(body_descriptors))
-		last_descriptors = body_descriptors.Copy()
-	body_descriptors = list()
-
-	var/datum/species/mob_species = GLOB.all_species[species]
-	if(LAZYLEN(mob_species.descriptors))
-		for(var/entry in mob_species.descriptors)
-			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
-			if(istype(descriptor))
-				if(isnull(last_descriptors[entry]))
-					body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
-				else
-					body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
-	character.descriptors = body_descriptors
 
 	if (copy_flavour)
 		character.flavor_texts["general"]	= flavor_texts["general"]

@@ -69,6 +69,16 @@ type ByondType = {
   strictMode: boolean;
 
   /**
+   * If a number, gives the version of IE this window is running. Otherwise, null.
+   */
+  TRIDENT: number | null;
+
+  /**
+   * If a number, gives the version of Edge this window is running. Otherwise, null.
+   */
+  BLINK: number | null;
+
+  /**
    * Makes a BYOND call.
    *
    * If path is empty, this will trigger a Topic call.

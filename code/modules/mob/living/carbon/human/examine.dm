@@ -454,10 +454,6 @@
 	if(applying_pressure)
 		msg += applying_pressure
 
-	var/show_descs = show_descriptors_to(user)
-	if(show_descs)
-		msg += span_notice("[jointext(show_descs, "<br>")]")
-
 	if(pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.

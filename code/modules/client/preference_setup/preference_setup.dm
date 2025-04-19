@@ -104,7 +104,7 @@
 		. = 1
 
 	else if(href_list["game_prefs"])
-		user.client.prefs.tgui_interact(user)
+		user.client.game_options()
 
 	if(.)
 		user.client.prefs.ShowChoices(user)

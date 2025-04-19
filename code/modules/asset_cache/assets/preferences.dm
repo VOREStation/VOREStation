@@ -1,3 +1,9 @@
+/datum/asset/simple/preferences
+	assets = list(
+		"preview_protean_animation.gif" = 'icons/mob/human_races/preview_protean_animation.gif',
+		"preview_custom_animation.gif" = 'icons/mob/human_races/preview_custom_animation.gif',
+	)
+
 /// Assets generated from `/datum/preference` icons
 /datum/asset/spritesheet/preferences
 	name = "preferences"

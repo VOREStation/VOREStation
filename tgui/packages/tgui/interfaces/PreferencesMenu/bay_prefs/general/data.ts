@@ -1,0 +1,310 @@
+import { type BooleanLike } from 'tgui-core/react';
+
+export type BodyMarking = Record<
+  string,
+  {
+    on: BooleanLike;
+    color: string;
+  }
+> & {
+  color: string;
+};
+
+export enum Gender {
+  Male = 'Male',
+  Female = 'Female',
+  Neuter = 'Neuter',
+  Plural = 'Plural',
+}
+
+export type BasicData = {
+  real_name: string;
+  be_random_name: BooleanLike;
+  nickname: string;
+  biological_sex: Gender;
+  identifying_gender: Gender;
+  age: number;
+  bday_month: number;
+  bday_day: number;
+  bday_announce: BooleanLike;
+  spawnpoint: string;
+  ooc_notes_length: number;
+
+  languages: { name: string; removable: BooleanLike }[];
+  languages_can_add: BooleanLike;
+  language_keys: string[];
+  preferred_language: string;
+  runechat_color: string;
+};
+
+export enum BodypartFlags {
+  BP_L_FOOT = 'l_foot',
+  BP_R_FOOT = 'r_foot',
+  BP_L_LEG = 'l_leg',
+  BP_R_LEG = 'r_leg',
+  BP_L_HAND = 'l_hand',
+  BP_R_HAND = 'r_hand',
+  BP_L_ARM = 'l_arm',
+  BP_R_ARM = 'r_arm',
+  BP_HEAD = 'head',
+  BP_TORSO = 'torso',
+  BP_GROIN = 'groin',
+  O_EYES = 'eyes',
+  O_HEART = 'heart',
+  O_LUNGS = 'lungs',
+  O_BRAIN = 'brain',
+  O_LIVER = 'liver',
+  O_KIDNEYS = 'kidneys',
+  O_VOICE = 'voicebox',
+  O_SPLEEN = 'spleen',
+  O_STOMACH = 'stomach',
+  O_INTESTINE = 'intestine',
+}
+
+export const is_organ = (organ: BodypartFlags): boolean => {
+  switch (organ) {
+    case BodypartFlags.O_EYES:
+    case BodypartFlags.O_HEART:
+    case BodypartFlags.O_LUNGS:
+    case BodypartFlags.O_BRAIN:
+    case BodypartFlags.O_LIVER:
+    case BodypartFlags.O_KIDNEYS:
+    case BodypartFlags.O_VOICE:
+    case BodypartFlags.O_SPLEEN:
+    case BodypartFlags.O_STOMACH:
+    case BodypartFlags.O_INTESTINE:
+      return true;
+    default:
+      return false;
+  }
+};
+
+export const proper_organ_name = (organ: BodypartFlags): string => {
+  switch (organ) {
+    case BodypartFlags.BP_L_FOOT:
+      return 'left foot';
+    case BodypartFlags.BP_R_FOOT:
+      return 'right foot';
+    case BodypartFlags.BP_L_LEG:
+      return 'left leg';
+    case BodypartFlags.BP_R_LEG:
+      return 'right leg';
+    case BodypartFlags.BP_L_HAND:
+      return 'left hand';
+    case BodypartFlags.BP_R_HAND:
+      return 'right hand';
+    case BodypartFlags.BP_L_ARM:
+      return 'left arm';
+    case BodypartFlags.BP_R_ARM:
+      return 'right arm';
+    case BodypartFlags.BP_HEAD:
+      return 'head';
+    case BodypartFlags.BP_TORSO:
+      return 'torso';
+    case BodypartFlags.BP_GROIN:
+      return 'groin';
+    case BodypartFlags.O_EYES:
+      return 'eyes';
+    case BodypartFlags.O_HEART:
+      return 'heart';
+    case BodypartFlags.O_LUNGS:
+      return 'lungs';
+    case BodypartFlags.O_BRAIN:
+      return 'brain';
+    case BodypartFlags.O_LIVER:
+      return 'liver';
+    case BodypartFlags.O_KIDNEYS:
+      return 'kidneys';
+    case BodypartFlags.O_VOICE:
+      return 'larynx';
+    case BodypartFlags.O_SPLEEN:
+      return 'spleen';
+    case BodypartFlags.O_STOMACH:
+      return 'stomach';
+    case BodypartFlags.O_INTESTINE:
+      return 'intestines';
+  }
+  return 'unknown';
+};
+
+export enum OrganStatus {
+  Cyborg = 'cyborg',
+  Amputated = 'amputated',
+  Mechanical = 'mechanical',
+  Digital = 'digital',
+  Assisted = 'assisted',
+}
+
+export type BodyData = {
+  species: string;
+  organ_data: Record<BodypartFlags, OrganStatus>;
+  rlimb_data: Record<BodypartFlags, string>;
+
+  s_tone: number;
+  eyes_color: string;
+  skin_color: string;
+
+  h_style: string;
+  hair_color: string;
+
+  f_style: string;
+  facial_color: string;
+
+  grad_style: string;
+  grad_color: string;
+
+  ear_style: string | null;
+  ears_color1: string;
+  ears_color2: string;
+  ears_color3: string;
+
+  ears_alpha: number;
+
+  ear_secondary_style: string | null;
+  ear_secondary_colors: string[];
+  ear_secondary_alpha: number;
+
+  body_markings: Record<string, BodyMarking>;
+
+  tail_style: string;
+  tail_color1: string;
+  tail_color2: string;
+  tail_color3: string;
+  tail_alpha: number;
+
+  wing_style: string;
+  wing_color1: string;
+  wing_color2: string;
+  wing_color3: string;
+  wing_alpha: number;
+
+  b_type: string;
+  digitigrade: BooleanLike;
+
+  synth_color_toggle: BooleanLike;
+  synth_color: string;
+  synth_markings: BooleanLike;
+};
+
+export type BackgroundData = {
+  economic_status: string;
+  home_system: string;
+  birthplace: string;
+  citizenship: string;
+  faction: string;
+  religion: string;
+  records_banned: BooleanLike;
+  med_record: string;
+  gen_record: string;
+  sec_record: string;
+};
+
+export type FlavorData = {
+  flavor_text_length: number;
+};
+
+export const REQUIRED_FLAVOR_TEXT_LENGTH = 30;
+export const REQUIRED_OOC_LENGTH = 15;
+
+export type GeneralData = BasicData & BodyData & BackgroundData & FlavorData;
+
+export type GeneralDataStatic = {
+  allow_metadata: BooleanLike;
+  can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
+  digi_allowed: BooleanLike;
+  available_hair_styles: string[];
+  available_facial_styles: string[];
+  available_ear_styles: string[];
+  available_tail_styles: string[];
+  available_wing_styles: string[];
+};
+
+export type StandardStyle = { name: string; icon: string; icon_state: string };
+
+export type EarStyle = StandardStyle & {
+  type: string;
+  do_colouration: BooleanLike;
+  extra_overlay: string;
+  extra_overlay2: string;
+};
+
+export type MarkingStyle = StandardStyle & {
+  genetic: BooleanLike;
+  body_parts: string[];
+};
+
+export type WingStyle = StandardStyle & {
+  do_colouration: BooleanLike;
+  extra_overlay: string;
+  extra_overlay2: string;
+};
+
+export type TailStyle = StandardStyle & {
+  do_colouration: BooleanLike;
+  extra_overlay: string;
+  extra_overlay2: string;
+};
+
+export enum SpeciesFlags {
+  NONE = 0,
+  NO_MINOR_CUT = 1 << 0,
+  PLANT = 1 << 1,
+  NO_SLEEVE = 1 << 2,
+  NO_PAIN = 1 << 3,
+  NO_SLIP = 1 << 4,
+  NO_POISON = 1 << 5,
+  NO_EMBED = 1 << 6,
+  NO_HALLUCINATION = 1 << 7,
+  NO_BLOOD = 1 << 8,
+  UNDEAD = 1 << 9,
+  NO_INFECT = 1 << 10,
+  NO_DEFIB = 1 << 11,
+  NO_DNA = 1 << 12,
+  THICK_SKIN = 1 << 13,
+}
+
+export enum SpawnFlags {
+  NONE = 0,
+  SPECIES_IS_WHITELISTED = 1 << 0,
+  SPECIES_IS_RESTRICTED = 1 << 1,
+  SPECIES_CAN_JOIN = 1 << 2,
+  SPECIES_NO_FBP_CONSTRUCTION = 1 << 3,
+  SPECIES_NO_FBP_CHARGEN = 1 << 4,
+  SPECIES_NO_POSIBRAIN = 1 << 5,
+  SPECIES_NO_DRONEBRAIN = 1 << 6,
+}
+
+export enum AppearanceFlags {
+  NONE = 0,
+  HAS_SKIN_TONE = 1 << 0,
+  HAS_SKIN_COLOR = 1 << 1,
+  HAS_LIPS = 1 << 2,
+  HAS_UNDERWEAR = 1 << 3,
+  HAS_EYE_COLOR = 1 << 4,
+  HAS_HAIR_COLOR = 1 << 5,
+  RADIATION_GLOWS = 1 << 6,
+}
+
+export type Species = {
+  name: string;
+  wikilink: string;
+  blurb: string;
+  species_language: string;
+  icobase: string;
+  rarity: number;
+  has_organ: string;
+  flags: SpeciesFlags;
+  spawn_flags: SpawnFlags;
+  appearance_flags: AppearanceFlags;
+};
+
+export type GeneralDataConstant = {
+  species: Species[];
+  hair_styles: Record<string, StandardStyle>;
+  facial_styles: Record<string, StandardStyle>;
+  grad_styles: Record<string, StandardStyle>;
+  ear_styles: Record<string, EarStyle>;
+  body_markings: Record<string, MarkingStyle>;
+  tail_styles: Record<string, TailStyle>;
+  wing_styles: Record<string, WingStyle>;
+};

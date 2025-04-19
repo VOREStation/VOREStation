@@ -2,11 +2,11 @@
 	var/list/all_underwear
 	var/list/all_underwear_metadata
 
-/datum/category_item/player_setup_item/general/equipment
-	name = "Clothing"
-	sort_order = 4
+/datum/category_item/player_setup_item/loadout/equipment
+	name = "Equipment"
+	sort_order = 1
 
-/datum/category_item/player_setup_item/general/equipment/load_character(list/save_data)
+/datum/category_item/player_setup_item/loadout/equipment/load_character(list/save_data)
 	pref.all_underwear				= check_list_copy(save_data["all_underwear"])
 	pref.all_underwear_metadata		= check_list_copy(save_data["all_underwear_metadata"])
 	for(var/i in pref.all_underwear_metadata)
@@ -19,7 +19,7 @@
 	pref.shoe_hater					= save_data["shoe_hater"]
 	pref.no_jacket					= save_data["no_jacket"]
 
-/datum/category_item/player_setup_item/general/equipment/save_character(list/save_data)
+/datum/category_item/player_setup_item/loadout/equipment/save_character(list/save_data)
 	save_data["all_underwear"]				= pref.all_underwear
 	var/list/underwear = list()
 	for(var/i in pref.all_underwear_metadata)
@@ -61,7 +61,7 @@ var/global/list/valid_ringtones = list(
 		)
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/loadout/equipment/copy_to_mob(var/mob/living/carbon/human/character)
 	character.all_underwear.Cut()
 	character.all_underwear_metadata.Cut()
 
@@ -88,7 +88,7 @@ var/global/list/valid_ringtones = list(
 		pref.pdachoice = 1
 	character.pdachoice = pref.pdachoice
 
-/datum/category_item/player_setup_item/general/equipment/sanitize_character()
+/datum/category_item/player_setup_item/loadout/equipment/sanitize_character()
 	if(!islist(pref.gear)) pref.gear = list()
 
 	if(!istype(pref.all_underwear))
@@ -120,7 +120,7 @@ var/global/list/valid_ringtones = list(
 	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
 
-/datum/category_item/player_setup_item/general/equipment/content()
+/datum/category_item/player_setup_item/loadout/equipment/content()
 	. = list()
 	. += span_bold("Equipment:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
@@ -142,7 +142,7 @@ var/global/list/valid_ringtones = list(
 
 	return jointext(.,null)
 
-/datum/category_item/player_setup_item/general/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
+/datum/category_item/player_setup_item/loadout/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
 	var/metadata = pref.all_underwear_metadata[underwear_category]
 	if(!metadata)
 		metadata = list()
@@ -154,12 +154,12 @@ var/global/list/valid_ringtones = list(
 		metadata["[gt]"] = tweak_data
 	return tweak_data
 
-/datum/category_item/player_setup_item/general/equipment/proc/set_metadata(var/underwear_category, var/datum/gear_tweak/gt, var/new_metadata)
+/datum/category_item/player_setup_item/loadout/equipment/proc/set_metadata(var/underwear_category, var/datum/gear_tweak/gt, var/new_metadata)
 	var/list/metadata = pref.all_underwear_metadata[underwear_category]
 	metadata["[gt]"] = new_metadata
 
 
-/datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/loadout/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_headset"])
 		var/new_headset = tgui_input_list(user, "Choose your character's style of headset:", "Character Preference", GLOB.headsetlist, GLOB.headsetlist[pref.headset])
 		if(!isnull(new_headset) && CanUseTopic(user))
