@@ -175,26 +175,22 @@
 	src.vis_contents |= item_overlay
 
 	if(mapload)
-		move_to_marker()
+		return INITIALIZE_HINT_LATELOAD
 
 	//ditto for the monitor and door. sure, these COULD be overlays, but that is way more effort
 
+/obj/machinery/maint_recycler/LateInitialize()
+	move_to_marker()
 
-/obj/machinery/maint_recycler/proc/move_to_marker() //stinky, but we don't have a central "markers" subsystem. yet. refactor one we do
-	var/list/potential_markers = list()
-	for(var/obj/recycler_beacon/rb in world)
-		potential_markers += rb
-
-	if(potential_markers.len > 0)
-		var/obj/marker = pick(potential_markers)
-		forceMove(get_turf(marker))
+/obj/machinery/maint_recycler/proc/move_to_marker()
+	if(GLOB.recycler_locations.len > 0)
+		var/turf/spot = pick(GLOB.recycler_locations)
+		forceMove(spot)
 		dir = SOUTH
 		log_admin("[src] has been placed at [loc], [x],[y],[z]")
 		testing("[src] has been placed at [loc], [x],[y],[z]")
 	else
 		log_and_message_admins("[src] tried to move itself, but there was nowhere for it to go! (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)", null)
-	for(var/obj/marker in potential_markers)
-		qdel(marker) //clean up after ourselves. we're not animals.
 
 /obj/machinery/maint_recycler/attackby(obj/item/O, mob/user)
 	if(!door_open)

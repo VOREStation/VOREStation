@@ -16,10 +16,14 @@
 	name = "MaintVendor"
 
 /datum/asset/spritesheet_batched/maint_vendor/create_spritesheets()
-	insert_all_icons("", 'code/modules/maint_recycler/icons/vendor_entries.dmi', prefix_with_dirs = FALSE) // OOC, LOOC ect icons
+	insert_all_icons("", 'code/modules/maint_recycler/icons/vendor_entries.dmi', prefix_with_dirs = FALSE)
 
 
-/obj/recycler_beacon
+GLOBAL_LIST_EMPTY(recycler_vendor_locations)
+
+GLOBAL_LIST_EMPTY(recycler_locations)
+
+/obj/effect/recycler_beacon
 	icon = 'code/modules/maint_recycler/icons/maint_recycler.dmi'
 	icon_state = "marker"
 	invisibility = 101
@@ -27,7 +31,12 @@
 	density = 0
 	anchored = 1
 
-/obj/recycler_vendor_beacon
+/obj/effect/recycler_beacon/Initialize(mapload)
+	. = ..()
+	GLOB.recycler_locations |= get_turf(src)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/recycler_vendor_beacon
 	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
 	icon_state = "marker"
 	invisibility = 101
@@ -35,3 +44,7 @@
 	mouse_opacity = 0
 	density = 0
 	anchored = 1
+
+/obj/effect/recycler_vendor_beacon/Initialize(mapload)
+	GLOB.recycler_vendor_locations |= get_turf(src)
+	. = ..()

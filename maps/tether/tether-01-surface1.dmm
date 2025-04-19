@@ -1027,7 +1027,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "abR" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "abS" = (
@@ -4149,7 +4149,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "ahh" = (
@@ -4464,7 +4464,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "ahN" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "ahO" = (
@@ -7852,7 +7852,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "anA" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "anB" = (
@@ -12553,7 +12553,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/railing,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "avN" = (
@@ -13808,7 +13808,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "axD" = (
@@ -15341,7 +15341,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "azV" = (
@@ -16582,7 +16582,7 @@
 /area/tether/surfacebase/tram)
 "aCc" = (
 /obj/structure/railing,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aCd" = (
@@ -16809,7 +16809,7 @@
 /area/maintenance/lower/research)
 "aCv" = (
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aCw" = (
@@ -18002,14 +18002,14 @@
 /area/tether/surfacebase/tram)
 "aEQ" = (
 /obj/structure/catwalk,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aER" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aES" = (
@@ -19101,7 +19101,7 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "aGF" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "aGG" = (
@@ -19113,11 +19113,11 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/surfacebase/outside/outside1)
 "aGH" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "aGI" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "aGJ" = (
@@ -21154,14 +21154,14 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aKn" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "aKo" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "aKp" = (
@@ -27584,7 +27584,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "aWp" = (
@@ -28334,7 +28334,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "aXO" = (
@@ -28377,21 +28377,21 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "aXU" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "aXV" = (
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "aXW" = (
@@ -28399,7 +28399,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
 "aXX" = (
@@ -28419,7 +28419,7 @@
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aXZ" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "aYa" = (
@@ -28510,7 +28510,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "aYm" = (
@@ -28520,7 +28520,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aYn" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "aYo" = (
@@ -28566,7 +28566,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "aYu" = (
@@ -28611,7 +28611,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "aYx" = (
@@ -29114,7 +29114,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bba" = (
@@ -32381,7 +32381,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "gWO" = (
@@ -32436,7 +32436,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "haz" = (
@@ -34621,7 +34621,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "mIw" = (
@@ -35740,7 +35740,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "pZb" = (

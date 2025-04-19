@@ -3334,7 +3334,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "gs" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "gt" = (
@@ -3397,11 +3397,11 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "gB" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "gC" = (
@@ -3485,7 +3485,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "gK" = (
@@ -3518,7 +3518,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/rnd/research)
 "gN" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "gO" = (
@@ -3552,11 +3552,11 @@
 /turf/simulated/wall/bay/brown,
 /area/stellardelight/deck1/oreprocessing)
 "gR" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "gS" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "gT" = (
@@ -3705,7 +3705,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "hf" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "hg" = (
@@ -9228,7 +9228,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "sF" = (
@@ -20340,7 +20340,7 @@
 "Rf" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/door/firedoor/glass,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "Rg" = (
@@ -21790,7 +21790,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "TR" = (
@@ -21898,7 +21898,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "Ua" = (

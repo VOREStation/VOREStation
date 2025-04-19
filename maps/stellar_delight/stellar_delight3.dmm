@@ -449,7 +449,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/transitgateway)
 "bc" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "bd" = (
@@ -468,7 +468,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/sdboat/fore/airless_base)
 "bf" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardaft)
 "bg" = (
@@ -505,7 +505,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/maintenance/stellardelight/deck3/starboardfore)
 "bi" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "bj" = (
@@ -513,7 +513,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "bk" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "bl" = (
@@ -544,7 +544,7 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "bo" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
 "bp" = (
@@ -8792,7 +8792,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "FH" = (

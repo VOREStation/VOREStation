@@ -1092,7 +1092,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "acg" = (
@@ -2108,7 +2108,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
 "adO" = (
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "adP" = (
@@ -2238,7 +2238,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/rust,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aea" = (
@@ -2708,7 +2708,7 @@
 /area/quartermaster/belterdock/gear)
 "aeJ" = (
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "aeK" = (
@@ -2761,7 +2761,7 @@
 /turf/simulated/floor,
 /area/storage/tech)
 "aeN" = (
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aeO" = (
@@ -2789,7 +2789,7 @@
 /area/engineering/engine_monitoring)
 "aeR" = (
 /obj/effect/floor_decal/rust,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aeS" = (
@@ -2817,7 +2817,7 @@
 /area/engineering/engine_monitoring)
 "aeT" = (
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aeU" = (
@@ -24155,7 +24155,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "lEZ" = (
@@ -24711,7 +24711,7 @@
 /area/engineering/engineering_airlock)
 "mnj" = (
 /obj/effect/floor_decal/rust,
-/obj/recycler_beacon,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/cargo)
 "mnt" = (
@@ -26824,7 +26824,7 @@
 /area/tether/station/dock_two)
 "oRj" = (
 /obj/effect/landmark/stardog,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "oRC" = (
@@ -27290,7 +27290,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/obj/recycler_vendor_beacon,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "pJm" = (
