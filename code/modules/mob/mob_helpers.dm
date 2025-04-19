@@ -137,7 +137,7 @@
 /// always_hit: Miss chance is not calculateed. Always hit the zone it's targeting. (Default: FALSE)
 /// user_misses: If Player Characters are subjected to RNG hitchance on other Player Characters (Default: FALSE)
 /// mob_misses: If mobs are subjected to RNG hitchance on Player Characters (Default: TRUE)
-/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, mob/living/attacker)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0, ranged_attack=0, force_hit = FALSE, atom/movable/attacker)
 	zone = check_zone(zone)
 
 
@@ -182,12 +182,24 @@
 	if(!target.client) //If the target is an NPC, we will always hit (barring extreme circumstances like mobs having modified evasion, handled above). Removes baymiss against mobs.
 		return zone
 
+
+	var/mob/living/living_attacker
+	/// Toggle if you desire to have it so things like claymores, mines, and turrets ALWAYS will hit their selected zone & are not subject to RNG miss chance.
+	/// By default, this is set to FALSE. If toggled to TRUE, non living entities will ALWAYS hit 100% of the time.
+	var/non_living_always_hits = FALSE
+	if(istype(attacker, living_attacker))
+		living_attacker = attacker
+
+	else if(non_living_always_hits)
+		return zone
+
+
 	/// Toggle for servers that desire to have players able to miss each other.
 	/// This is if users are subjected to the same RNG hitchance against other players as mobs are.
 	/// By default, this is set to off, as evasion being calculated is (in my eyes) enough for PvP combat.
 	/// However, if you wish to enable it so there's miss chance, flip this FALSE to TRUE
 	var/user_misses = FALSE
-	if(!user_misses && attacker.client)
+	if(!user_misses && living_attacker && living_attacker.client)
 		return zone
 
 	/// Toggle for servers that desire to have mobs able to miss players.
@@ -195,7 +207,7 @@
 	/// If toggled off, mobs will always hit each players, evasion-not-withstanding
 	/// This can make PvE combat feel better for players or introduce some randomization with PvP.
 	var/mob_misses = TRUE //Toggle to enable mob missing or not.
-	if(!mob_misses && !attacker.client) //If mob_misses is disabled, they land their blow on the zone they're targeting.
+	if(!mob_misses && living_attacker && !living_attacker.client) //If mob_misses is disabled, they land their blow on the zone they're targeting.
 		return zone
 
 	//However, if a mob IS attacking a player, let's throw in some RNG into the mix to make it feel better for players.
