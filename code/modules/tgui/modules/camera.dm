@@ -83,7 +83,7 @@
 	var/turf/newturf = get_turf(active_camera)
 	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use() || B.flag_check(AREA_BLOCK_TRACKING))
+	if(!active_camera?.can_use() || B?.flag_check(AREA_BLOCK_TRACKING))
 		show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
@@ -187,7 +187,7 @@
 	var/turf/newturf = get_turf(active_camera)
 	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera.can_use() || B.flag_check(AREA_BLOCK_TRACKING))
+	if(!active_camera.can_use() || B?.flag_check(AREA_BLOCK_TRACKING))
 		show_camera_static()
 		return TRUE
 
