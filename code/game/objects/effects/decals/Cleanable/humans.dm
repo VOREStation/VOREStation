@@ -84,6 +84,8 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(!istype(perp))
 		return
+	if(perp.flying || perp.hovering || perp.is_floating) //if the perp isn't on the ground, they shouldn't be affected by the stuff on the floor.
+		return
 	if(amount < 1)
 		return
 
