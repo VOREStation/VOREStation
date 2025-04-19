@@ -689,9 +689,10 @@
 	// This means that, accuracy negates evasion 1:1 when it comes to PvP combat (or for PvE combat if you give a mob natural evasion)
 	// Things that affect accuracy: gun_accuracy_mod species var (Bad Shot/Eagle Eye), Fear, Gun Accuracy.
 	// +accuracy = higher chance to hit through evasion. -accuracy = lower chance to hit through evasion.
-	// These ONLY matter if the mob you are attacking has evasion.
+	// These ONLY matter if the mob you are attacking has evasion OR if it's coming from a non-living attacker (Mines/Turrets)
 	// The get_zone_with_miss_chance() proc is HIGHLY variable and can be changed server to server with multiple simple var switches built in without having to do specialty code or multiple edits.
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, -accuracy, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	var/miss_chance = (-accuracy + miss_modifier) //Chance to miss the target. Higher
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)
