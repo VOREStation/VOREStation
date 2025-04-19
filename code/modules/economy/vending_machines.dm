@@ -457,6 +457,7 @@
 					/obj/item/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/reagent_containers/syringe/antiviral = 4,
 					/obj/item/reagent_containers/syringe = 12,
+					/obj/item/reagent_containers/hypospray/autoinjector/allergen = 6,
 					/obj/item/healthanalyzer = 5,
 					/obj/item/reagent_containers/glass/beaker = 4,
 					/obj/item/reagent_containers/dropper = 2,

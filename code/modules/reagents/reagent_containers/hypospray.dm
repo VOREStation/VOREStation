@@ -211,6 +211,12 @@
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
 	filled_reagents = list(REAGENT_ID_REZADONE = 5)
 
+/obj/item/reagent_containers/hypospray/autoinjector/allergen
+	name = "AllergyPen"
+	desc = "An autoinjector designed for use during an allergic reaction or anaphylaxis. The user should immediately seek medical support after use, for additional monitoring and aid."
+	icon_state = "allergy"
+	item_state = "allergy"
+
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector
 	name = "empty hypo"
