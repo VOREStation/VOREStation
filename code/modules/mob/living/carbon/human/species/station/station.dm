@@ -1043,7 +1043,7 @@
 	base_color = "#EECEB3"
 
 	blurb = "A coincidentally humanlike species, Rapala are a client species of the Unathi that have \
-	no genetic relation to humans in spite of the similar appearance. They have unusual gene pairing of \
+	no genetic relation to humans in spite of the similar appearance. They have an unusual gene pairing of \
 	XX and XY, and VW and WW. They are capable of in atmosphere flight and have organs \
 	that make them more naturally attuned to learning the piloting of aircraft and spaceflight. Rapala \
 	society is hierarchical and communal, although not every individual will agree with this status quo."
