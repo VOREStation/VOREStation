@@ -229,6 +229,7 @@
 	M.client.prefs.copy_to(new_character)
 	new_character.dna.ResetUIFrom(new_character)
 	new_character.sync_organ_dna()
+	new_character.sync_addictions()
 	new_character.key = M.key
 	new_character.mind.loaded_from_ckey = picked_ckey
 	new_character.mind.loaded_from_slot = picked_slot
