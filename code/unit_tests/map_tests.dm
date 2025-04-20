@@ -99,7 +99,7 @@
 
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
-	for(var/color in possible_cable_coil_colours)
+	for(var/color in GLOB.possible_cable_coil_colours)
 		cable_turfs = list()
 
 		for(C in world)
@@ -108,7 +108,7 @@
 			T = get_turf(C)
 			var/area/A = get_area(T)
 			if(T && (T.z in zs_to_test) && !(A.type in exempt_from_wires))
-				if(C.color == possible_cable_coil_colours[color])
+				if(C.color == GLOB.possible_cable_coil_colours[color])
 					cable_turfs |= get_turf(C)
 
 		for(T in cable_turfs)

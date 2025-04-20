@@ -62,7 +62,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if((H.species.name in remainless_species))	//Don't leave anything if there is nothing to leave
+	if((H.species.name in GLOB.remainless_species))	//Don't leave anything if there is nothing to leave
 		return
 
 	if(prob(20) && !H.isSynthetic())	//ribcage surviving whole is some luck //Edit: no robor

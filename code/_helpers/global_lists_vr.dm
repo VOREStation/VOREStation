@@ -3,42 +3,42 @@
 */
 
 var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
-var/global/list/negative_traits = list()	// Negative custom species traits, indexed by path
-var/global/list/neutral_traits = list()		// Neutral custom species traits, indexed by path
-var/global/list/positive_traits = list()	// Positive custom species traits, indexed by path
-var/global/list/everyone_traits_positive = list()	// Neutral traits available to all species, indexed by path
-var/global/list/everyone_traits_neutral = list()	// Neutral traits available to all species, indexed by path
-var/global/list/everyone_traits_negative = list()	// Neutral traits available to all species, indexed by path
-var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
-var/global/list/all_traits = list()			// All of 'em at once (same instances)
+GLOBAL_LIST_EMPTY(negative_traits)	// Negative custom species traits, indexed by path
+GLOBAL_LIST_EMPTY(neutral_traits)		// Neutral custom species traits, indexed by path
+GLOBAL_LIST_EMPTY(positive_traits)	// Positive custom species traits, indexed by path
+GLOBAL_LIST_EMPTY(everyone_traits_positive)	// Neutral traits available to all species, indexed by path
+GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all species, indexed by path
+GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
+GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
+GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
 var/global/list/active_ghost_pods = list()
 
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
 var/global/list/visitable_overmap_object_instances = list()
 
-var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")
+GLOBAL_LIST_INIT(sensorpreflist, list("Off", "Binary", "Vitals", "Tracking", "No Preference"))
 
 // Used by the ban panel to determine what departments are offmap departments. All these share an 'offmap roles' ban.
-var/global/list/offmap_departments = list(DEPARTMENT_TALON)
+GLOBAL_LIST_INIT(offmap_departments, list(DEPARTMENT_TALON))
 
 // Closets have magic appearances
 GLOBAL_LIST_EMPTY(closet_appearances)
 
 //stores numeric player size options indexed by name
-var/global/list/player_sizes_list = list(
+GLOBAL_LIST_INIT(player_sizes_list, list(
 		"Macro" 	= RESIZE_HUGE,
 		"Big" 		= RESIZE_BIG,
 		"Normal" 	= RESIZE_NORMAL,
 		"Small" 	= RESIZE_SMALL,
-		"Tiny" 		= RESIZE_TINY)
+		"Tiny" 		= RESIZE_TINY))
 
 //stores vantag settings indexed by name
-var/global/list/vantag_choices_list = list(
+GLOBAL_LIST_INIT(vantag_choices_list, list(
 		VANTAG_NONE		=	"No Involvement",
 		VANTAG_VORE		=	"Be Prey",
 		VANTAG_KIDNAP	=	"Be Kidnapped",
-		VANTAG_KILL		=	"Be Killed")
+		VANTAG_KILL		=	"Be Killed"))
 
 //Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
 var/global/list/item_vore_blacklist = list(
@@ -53,7 +53,7 @@ var/global/list/item_vore_blacklist = list(
 		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
 
 //Classic Vore sounds
-var/global/list/classic_vore_sounds = list(
+GLOBAL_LIST_INIT(classic_vore_sounds, list(
 		"Gulp" = 'sound/vore/gulp.ogg',
 		"Insert" = 'sound/vore/insert.ogg',
 		"Insertion1" = 'sound/vore/insertion1.ogg',
@@ -70,9 +70,10 @@ var/global/list/classic_vore_sounds = list(
 		"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
 		"Zipper" = 'sound/items/zip.ogg',
-		"None" = null)
+		"None" = null
+		))
 
-var/global/list/classic_release_sounds = list(
+GLOBAL_LIST_INIT(classic_release_sounds, list(
 		"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
 		"Rustle 2 (cloth)" = 'sound/effects/rustle2.ogg',
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
@@ -81,10 +82,10 @@ var/global/list/classic_release_sounds = list(
 		"Zipper" = 'sound/items/zip.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
 		"None" = null
-		)
+		))
 
 //Poojy's Fancy Sounds
-var/global/list/fancy_vore_sounds = list(
+GLOBAL_LIST_INIT(fancy_vore_sounds, list(
 		"Gulp" = 'sound/vore/sunesound/pred/swallow_01.ogg',
 		"Swallow" = 'sound/vore/sunesound/pred/swallow_02.ogg',
 		"Insertion1" = 'sound/vore/sunesound/pred/insertion_01.ogg',
@@ -103,9 +104,9 @@ var/global/list/fancy_vore_sounds = list(
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
 		"Zipper" = 'sound/items/zip.ogg',
 		"None" = null
-		)
+		))
 
-var/global/list/fancy_release_sounds = list(
+GLOBAL_LIST_INIT(fancy_release_sounds, list(
 		"Rustle (cloth)" = 'sound/effects/rustle1.ogg',
 		"Rustle 2 (cloth)" = 'sound/effects/rustle2.ogg',
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
@@ -116,9 +117,9 @@ var/global/list/fancy_release_sounds = list(
 		"Pred Escape" = 'sound/vore/sunesound/pred/escape.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
 		"None" = null
-		)
+		))
 
-var/global/list/global_vore_egg_types = list(
+GLOBAL_LIST_INIT(global_vore_egg_types, list(
 	"Unathi",
 	"Tajara",
 	"Akula",
@@ -151,7 +152,8 @@ var/global/list/global_vore_egg_types = list(
 	"Purple",
 	"Red",
 	"Rainbow",
-	"Spotted Pink")
+	"Spotted Pink"
+	))
 
 var/global/list/tf_vore_egg_types = list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
@@ -248,16 +250,16 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/card/id
 				)
 
-var/global/list/contamination_flavors = list(
-				"Generic" = contamination_flavors_generic,
-				"Acrid" = contamination_flavors_acrid,
-				"Dirty" = contamination_flavors_dirty,
-				"Musky" = contamination_flavors_musky,
-				"Smelly" = contamination_flavors_smelly,
-				"Slimy" = contamination_flavors_slimy,
-				"Wet" = contamination_flavors_wet)
+GLOBAL_LIST_INIT(contamination_flavors, list(
+				"Generic" = GLOB.contamination_flavors_generic,
+				"Acrid" = GLOB.contamination_flavors_acrid,
+				"Dirty" = GLOB.contamination_flavors_dirty,
+				"Musky" = GLOB.contamination_flavors_musky,
+				"Smelly" = GLOB.contamination_flavors_smelly,
+				"Slimy" = GLOB.contamination_flavors_slimy,
+				"Wet" = GLOB.contamination_flavors_wet))
 
-var/global/list/contamination_flavors_generic = list("acrid",
+GLOBAL_LIST_INIT(contamination_flavors_generic, list("acrid",
 				"bedraggled",
 				"begrimed",
 				"churned",
@@ -313,9 +315,9 @@ var/global/list/contamination_flavors_generic = list("acrid",
 				"unclean",
 				"unsanitary",
 				"unsavory",
-				"yucky")
+				"yucky"))
 
-var/global/list/contamination_flavors_wet = list("damp",
+GLOBAL_LIST_INIT(contamination_flavors_wet, list("damp",
 				"drenched",
 				"drippy",
 				"gloppy",
@@ -334,9 +336,9 @@ var/global/list/contamination_flavors_wet = list("damp",
 				"sopping",
 				"squashy",
 				"squishy",
-				"sticky")
+				"sticky"))
 
-var/global/list/contamination_flavors_smelly = list("disgusting",
+GLOBAL_LIST_INIT(contamination_flavors_smelly, list("disgusting",
 				"filthy",
 				"foul",
 				"funky",
@@ -357,9 +359,9 @@ var/global/list/contamination_flavors_smelly = list("disgusting",
 				"stinky",
 				"unsavory",
 				"whiffy",
-				"yucky")
+				"yucky"))
 
-var/global/list/contamination_flavors_acrid = list("acrid",
+GLOBAL_LIST_INIT(contamination_flavors_acrid, list("acrid",
 				"caustic",
 				"churned",
 				"chymous",
@@ -398,9 +400,9 @@ var/global/list/contamination_flavors_acrid = list("acrid",
 				"sticky",
 				"tainted",
 				"unsavory",
-				"yucky")
+				"yucky"))
 
-var/global/list/contamination_flavors_dirty = list("bedraggled",
+GLOBAL_LIST_INIT(contamination_flavors_dirty, list("bedraggled",
 				"begrimed",
 				"besmirched",
 				"blemished",
@@ -434,9 +436,9 @@ var/global/list/contamination_flavors_dirty = list("bedraggled",
 				"tarnished",
 				"unclean",
 				"unsanitary",
-				"unsavory")
+				"unsavory"))
 
-var/global/list/contamination_flavors_musky = list("drenched",
+GLOBAL_LIST_INIT(contamination_flavors_musky, list("drenched",
 				"drippy",
 				"funky",
 				"gooey",
@@ -456,9 +458,9 @@ var/global/list/contamination_flavors_musky = list("drenched",
 				"squashy",
 				"squishy",
 				"sticky",
-				"tainted")
+				"tainted"))
 
-var/global/list/contamination_flavors_slimy = list("slimy",
+GLOBAL_LIST_INIT(contamination_flavors_slimy, list("slimy",
 				"sloppy",
 				"drippy",
 				"glistening",
@@ -471,9 +473,10 @@ var/global/list/contamination_flavors_slimy = list("slimy",
 				"glutinous",
 				"syrupy",
 				"slippery",
-				"gelatinous")
+				"gelatinous"
+				))
 
-var/global/list/contamination_colors = list("green",
+GLOBAL_LIST_INIT(contamination_colors, list("green",
 				"white",
 				"black",
 				"grey",
@@ -487,10 +490,11 @@ var/global/list/contamination_colors = list("green",
 				"darkred",
 				"cyan",
 				"beige",
-				"pink")
+				"pink"
+				))
 
 //For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.
-var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
+GLOBAL_LIST_INIT(remainless_species, list(SPECIES_PROMETHEAN,
 				SPECIES_DIONA,
 				SPECIES_ALRAUNE,
 				SPECIES_PROTEAN,
@@ -509,9 +513,9 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_XENO_QUEEN,
 				SPECIES_SHADOW,
 				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
-				SPECIES_SHADEKIN)			//Shadefluffers just poof away
+				SPECIES_SHADEKIN))			//Shadefluffers just poof away
 
-/var/global/list/alt_titles_with_icons = list(
+GLOBAL_LIST_INIT(alt_titles_with_icons, list(
 				JOB_ALT_VIROLOGIST,
 				JOB_ALT_APPRENTICE_ENGINEER,
 				JOB_ALT_MEDICAL_INTERN,
@@ -520,9 +524,9 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				JOB_ALT_JR_CARGO_TECH,
 				JOB_ALT_SERVER,
 				JOB_ALT_ELECTRICIAN,
-				JOB_ALT_BARISTA)
+				JOB_ALT_BARISTA))
 
-/var/global/list/existing_solargrubs = list()
+GLOBAL_LIST_EMPTY(existing_solargrubs)
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
@@ -540,33 +544,33 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		if(!instance.name)
 			continue //A prototype or something
 		var/cost = instance.cost
-		traits_costs[path] = cost
-		all_traits[path] = instance
+		GLOB.traits_costs[path] = cost
+		GLOB.all_traits[path] = instance
 
 	// Traitgenes Initilize trait genes
-	setupgenetics(all_traits)
+	setupgenetics(GLOB.all_traits)
 
 	// Shakey shakey shake
-	sortTim(all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
+	sortTim(GLOB.all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
 
 	// Split 'em up
-	for(var/traitpath in all_traits)
-		var/datum/trait/T = all_traits[traitpath]
+	for(var/traitpath in GLOB.all_traits)
+		var/datum/trait/T = GLOB.all_traits[traitpath]
 		var/category = T.category
 		if(!T.hidden) // Traitgenes forbid hidden traits from showing, done to hide genetics only traits
 			switch(category)
 				if(-INFINITY to -0.1)
-					negative_traits[traitpath] = T
+					GLOB.negative_traits[traitpath] = T
 					if(!(T.custom_only))
-						everyone_traits_negative[traitpath] = T
+						GLOB.everyone_traits_negative[traitpath] = T
 				if(0)
-					neutral_traits[traitpath] = T
+					GLOB.neutral_traits[traitpath] = T
 					if(!(T.custom_only))
-						everyone_traits_neutral[traitpath] = T
+						GLOB.everyone_traits_neutral[traitpath] = T
 				if(0.1 to INFINITY)
-					positive_traits[traitpath] = T
+					GLOB.positive_traits[traitpath] = T
 					if(!(T.custom_only))
-						everyone_traits_positive[traitpath] = T
+						GLOB.everyone_traits_positive[traitpath] = T
 
 
 	// Weaver recipe stuff
@@ -575,19 +579,19 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/datum/weaver_recipe/instance = new path()
 		if(!instance.title)
 			continue //A prototype or something
-		weavable_structures[instance.title] = instance
+		GLOB.weavable_structures[instance.title] = instance
 
 	paths = subtypesof(/datum/weaver_recipe/item)
 	for(var/path in paths)
 		var/datum/weaver_recipe/instance = new path()
 		if(!instance.title)
 			continue //A prototype or something
-		weavable_items[instance.title] = instance
+		GLOB.weavable_items[instance.title] = instance
 
 	return 1 // Hooks must return 1
 
-var/global/list/weavable_structures = list()
-var/global/list/weavable_items = list()
+GLOBAL_LIST_EMPTY(weavable_structures)
+GLOBAL_LIST_EMPTY(weavable_items)
 
 
 var/global/list/xenobio_metal_materials_normal = list(
@@ -929,7 +933,7 @@ var/global/list/event_wildlife_roaming = list(
 										)
 
 
-var/global/list/selectable_speech_bubbles = list(
+GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
 	"default",
 	"normal",
 	"slime",
@@ -965,7 +969,8 @@ var/global/list/selectable_speech_bubbles = list(
 	"notepad",
 	"science",
 	"engineering",
-	"cargo")
+	"cargo"
+	))
 
 
 

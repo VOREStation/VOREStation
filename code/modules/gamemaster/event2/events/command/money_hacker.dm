@@ -10,7 +10,7 @@
 
 	if(!command)
 		return 0
-	return 30 + (command * 20) + (all_money_accounts.len * 5)
+	return 30 + (command * 20) + (GLOB.all_money_accounts.len * 5)
 
 
 
@@ -20,8 +20,8 @@
 	var/datum/money_account/targeted_account = null
 
 /datum/event2/event/money_hacker/set_up()
-	if(LAZYLEN(all_money_accounts))
-		targeted_account = pick(all_money_accounts)
+	if(LAZYLEN(GLOB.all_money_accounts))
+		targeted_account = pick(GLOB.all_money_accounts)
 
 	if(!targeted_account)
 		log_debug("Money hacker event could not find an account to hack. Aborting.")
@@ -99,7 +99,7 @@
 
 	var/date1 = "1 January 1970" // Unix epoch.
 	var/date2 = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [rand(1000,3000)]"
-	T.date = pick("", current_date_string, date1, date2,"Nowhen")
+	T.date = pick("", GLOB.current_date_string, date1, date2,"Nowhen")
 
 	var/time1 = rand(0, 99999999)
 	var/time2 = "[round(time1 / 36000)+12]:[(time1 / 600 % 60) < 10 ? add_zero(time1 / 600 % 60, 1) : time1 / 600 % 60]"

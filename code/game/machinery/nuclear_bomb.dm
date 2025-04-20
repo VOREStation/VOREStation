@@ -1,4 +1,4 @@
-var/bomb_set
+GLOBAL_VAR(bomb_set)
 
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
@@ -45,7 +45,7 @@ var/bomb_set
 
 /obj/machinery/nuclearbomb/process()
 	if(timing)
-		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
+		GLOB.bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
 		timeleft--
 		if(timeleft <= 0)
 			explode()
@@ -274,7 +274,7 @@ var/bomb_set
 							if(icon_state == "nuclearbomb2")
 								icon_state = "nuclearbomb1"
 						timing = 0
-						bomb_set = 0
+						GLOB.bomb_set = 0
 					if(light_wire == temp_wire)
 						lighthack = !lighthack
 
@@ -321,18 +321,18 @@ var/bomb_set
 						if(!lighthack)
 							icon_state = "nuclearbomb2"
 						if(!safety)
-							bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
+							GLOB.bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
 						else
-							bomb_set = 0
+							GLOB.bomb_set = 0
 					else
-						bomb_set = 0
+						GLOB.bomb_set = 0
 						if(!lighthack)
 							icon_state = "nuclearbomb1"
 				if(href_list["safety"])
 					safety = !(safety)
 					if(safety)
 						timing = 0
-						bomb_set = 0
+						GLOB.bomb_set = 0
 				if(href_list["anchor"])
 
 					if(removal_stage == 5)
@@ -414,10 +414,10 @@ var/bomb_set
 
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
-	nuke_disks += src
+	GLOB.nuke_disks += src
 
 /obj/item/disk/nuclear/Destroy()
-	if(!nuke_disks.len && blobstart.len > 0)
+	if(!GLOB.nuke_disks.len && blobstart.len > 0)
 		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")

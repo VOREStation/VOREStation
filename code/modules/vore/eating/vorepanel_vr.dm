@@ -1444,7 +1444,7 @@
 
 			if(isobserver(target))
 				var/mob/observer/T = target
-				if(!ismob(T.body_backup) || prevent_respawns.Find(T.mind.name) || ispAI(T.body_backup))
+				if(!ismob(T.body_backup) || GLOB.prevent_respawns.Find(T.mind.name) || ispAI(T.body_backup))
 					to_chat(user,span_warning("They don't seem to be reformable!"))
 					return TRUE
 
@@ -1514,7 +1514,7 @@
 					announce_ghost_joinleave(T.mind, 0, "They now occupy their body again.")
 			else if(istype(target,/obj/item/mmi)) // A good bit of repeated code, sure, but... cleanest way to do this.
 				var/obj/item/mmi/MMI = target
-				if(!ismob(MMI.body_backup) || !MMI.brainmob.mind || prevent_respawns.Find(MMI.brainmob.mind.name))
+				if(!ismob(MMI.body_backup) || !MMI.brainmob.mind || GLOB.prevent_respawns.Find(MMI.brainmob.mind.name))
 					to_chat(user,span_warning("They don't seem to be reformable!"))
 					return TRUE
 				var/accepted = tgui_alert(MMI.brainmob, "[host] is trying to reform your body! Would you like to get reformed inside [host]'s [lowertext(host.vore_selected.name)]?", "Reforming Attempt", list("Yes", "No"))
@@ -1775,14 +1775,14 @@
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
-			var/list/menu_list = contamination_flavors.Copy()
+			var/list/menu_list = GLOB.contamination_flavors.Copy()
 			var/new_flavor = tgui_input_list(user, "Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])", "Flavor Choice", menu_list)
 			if(!new_flavor)
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
 			. = TRUE
 		if("b_contamination_color")
-			var/list/menu_list = contamination_colors.Copy()
+			var/list/menu_list = GLOB.contamination_colors.Copy()
 			var/new_color = tgui_input_list(user, "Choose Contamination Color (currently [host.vore_selected.contamination_color])", "Color Choice", menu_list)
 			if(!new_color)
 				return FALSE
@@ -1790,7 +1790,7 @@
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
 			. = TRUE
 		if("b_egg_type")
-			var/list/menu_list = global_vore_egg_types.Copy()
+			var/list/menu_list = GLOB.global_vore_egg_types.Copy()
 			var/new_egg_type = tgui_input_list(user, "Choose Egg Type (currently [host.vore_selected.egg_type])", "Egg Choice", menu_list)
 			if(!new_egg_type)
 				return FALSE
@@ -2252,9 +2252,9 @@
 		if("b_release")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", fancy_release_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.fancy_release_sounds)
 			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", classic_release_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.classic_release_sounds)
 
 			if(!choice)
 				return FALSE
@@ -2264,9 +2264,9 @@
 		if("b_releasesoundtest")
 			var/sound/releasetest
 			if(host.vore_selected.fancy_vore)
-				releasetest = fancy_release_sounds[host.vore_selected.release_sound]
+				releasetest = GLOB.fancy_release_sounds[host.vore_selected.release_sound]
 			else
-				releasetest = classic_release_sounds[host.vore_selected.release_sound]
+				releasetest = GLOB.classic_release_sounds[host.vore_selected.release_sound]
 
 			if(releasetest)
 				releasetest = sound(releasetest)
@@ -2277,9 +2277,9 @@
 		if("b_sound")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", fancy_vore_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.fancy_vore_sounds)
 			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", classic_vore_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.classic_vore_sounds)
 
 			if(!choice)
 				return FALSE
@@ -2289,9 +2289,9 @@
 		if("b_soundtest")
 			var/sound/voretest
 			if(host.vore_selected.fancy_vore)
-				voretest = fancy_vore_sounds[host.vore_selected.vore_sound]
+				voretest = GLOB.fancy_vore_sounds[host.vore_selected.vore_sound]
 			else
-				voretest = classic_vore_sounds[host.vore_selected.vore_sound]
+				voretest = GLOB.classic_vore_sounds[host.vore_selected.vore_sound]
 			if(voretest)
 				voretest = sound(voretest)
 				voretest.volume = host.vore_selected.sound_volume
