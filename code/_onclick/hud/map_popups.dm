@@ -25,9 +25,11 @@
 /**
  * Ending cinematic for when the game is ending (or is doing a 'normally round ending' cinematic)
  * We have a list of watchers so we can remove ourself from them after we're done!
+ * Additionally, we have a 'initiating_entity' which is whatever entity started the game end cinematic!
  */
 /obj/screen/game_end
 	var/mob/living/watchers = list()
+	var/obj/initiating_entity
 
 /**
  * A screen object, which acts as a container for turfs and other things

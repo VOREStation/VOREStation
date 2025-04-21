@@ -309,6 +309,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.plane = PLANE_PLAYER_HUD
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
+	cinematic.initiating_entity = src.initiating_entity
 
 	var/obj/structure/bed/chair/temp_buckle = new(src)
 	var/list/the_reaper = list() //Mobs that shall get exploded
@@ -331,19 +332,21 @@ var/global/datum/controller/subsystem/ticker/ticker
 				if("mercenary") //Nuke wasn't on station when it blew up
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 					flick("station_intact_fade_red",cinematic)
 					cinematic.icon_state = "summary_nukefail"
 				else
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
-					//flick("end",cinematic)
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 
 
 		if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
 			sleep(50)
-			world << sound('sound/effects/explosionfar.ogg')
+			if(cinematic.initiating_entity)
+				playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 
 
 		else	//station was destroyed
@@ -354,25 +357,29 @@ var/global/datum/controller/subsystem/ticker/ticker
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 					cinematic.icon_state = "summary_nukewin"
 				if("AI malfunction") //Malf (screen,explosion,summary)
 					flick("intro_malf",cinematic)
 					sleep(76)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 					cinematic.icon_state = "summary_malf"
 				if("blob") //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 					cinematic.icon_state = "summary_selfdes"
 				else //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					if(cinematic.initiating_entity)
+						playsound(initiating_entity,'sound/effects/explosionfar.ogg',100,0,5, is_global = 2, pressure_affected = FALSE)
 					cinematic.icon_state = "summary_selfdes"
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
