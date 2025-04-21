@@ -6,7 +6,7 @@
 	event_type = /datum/event2/event/brand_intelligence
 
 /datum/event2/meta/brand_intelligence/get_weight()
-	return 10 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20)
+	return 10 + (GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20)
 
 
 
@@ -19,7 +19,7 @@
 	var/last_malware_spread_time = null
 
 /datum/event2/event/brand_intelligence/set_up()
-	for(var/obj/machinery/vending/V in machines)
+	for(var/obj/machinery/vending/V in GLOB.machines)
 		if(!(V.z in using_map.station_levels))
 			continue
 		vending_machines += V

@@ -96,7 +96,7 @@
 
 
 /obj/item/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(span_danger("\The [user] accidentally cuts [TU.himself] with \the [src]."),\

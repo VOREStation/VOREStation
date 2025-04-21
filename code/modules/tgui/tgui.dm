@@ -260,7 +260,10 @@
 	json_data["config"] = list(
 		"title" = title,
 		"status" = status,
-		"interface" = interface,
+		"interface" = list(
+			"name" = interface,
+			"layout" = null, // user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout), // unused
+		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
 		"map" = (using_map && using_map.path) ? using_map.path : "Unknown",

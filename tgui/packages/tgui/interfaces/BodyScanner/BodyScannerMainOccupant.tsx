@@ -5,6 +5,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
@@ -18,14 +19,18 @@ export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
     <Section
       title="Occupant"
       buttons={
-        <>
-          <Button icon="user-slash" onClick={() => act('ejectify')}>
-            Eject
-          </Button>
-          <Button icon="print" onClick={() => act('print_p')}>
-            Print Report
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button icon="user-slash" onClick={() => act('ejectify')}>
+              Eject
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button icon="print" onClick={() => act('print_p')}>
+              Print Report
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

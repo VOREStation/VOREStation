@@ -75,7 +75,7 @@
 	if(O.anchored)
 		return 0 //mob is anchored???
 	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
+		return 0 //doesn't use adjacent() to allow for non-GLOB.cardinal (fuck my life)
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
@@ -188,7 +188,7 @@
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
 
-		occupantData["hasVirus"] = LAZYLEN(H.viruses)
+		occupantData["hasVirus"] = H.IsInfected()
 
 		occupantData["bruteLoss"] = H.getBruteLoss()
 		occupantData["oxyLoss"] = H.getOxyLoss()
@@ -379,7 +379,7 @@
 		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
 		dat += "<br>"
 
-		if(LAZYLEN(occupant.viruses))
+		if(occupant.IsInfected())
 			for(var/datum/disease/D in occupant.GetViruses())
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue

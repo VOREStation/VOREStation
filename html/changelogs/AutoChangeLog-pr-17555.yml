@@ -1,0 +1,4 @@
+author: "tacoguy7765093"
+delete-after: True
+changes:
+  - sound: "Surgery tools now make proper melee attack noises."
