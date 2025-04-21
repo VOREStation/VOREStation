@@ -312,7 +312,7 @@ emp_act
 		return 0
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay(GLOB.hit_appends)	//forcesay checks stat already
 
 	if(prob(25 + (effective_force * 2)))
 		if(!((I.damtype == BRUTE) || (I.damtype == HALLOSS)))
@@ -692,3 +692,12 @@ emp_act
 		flick(G.hud.icon_state, G.hud)
 
 	return 1
+
+/mob/living/carbon/human/is_mouth_covered(head_only, mask_only)
+	if(!check_has_mouth())
+		return TRUE
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+		return TRUE
+
+	return FALSE

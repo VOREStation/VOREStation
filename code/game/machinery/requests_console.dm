@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			var/log_msg = message
 			var/pass = 0
 			screen = RCS_SENTFAIL
-			for(var/obj/machinery/message_server/MS in machines)
+			for(var/obj/machinery/message_server/MS in GLOB.machines)
 				if(!MS.active)
 					continue
 				MS.send_rc_message(ckey(params["department"]), department, log_msg, msgStamped, msgVerified, priority)

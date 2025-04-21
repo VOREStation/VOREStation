@@ -74,7 +74,7 @@
 	//MOVEMENT
 	if(prob(50))
 		anchored = FALSE
-		step(src, pick(alldirs))
+		step(src, pick(GLOB.alldirs))
 		anchored = TRUE
 	controller()
 

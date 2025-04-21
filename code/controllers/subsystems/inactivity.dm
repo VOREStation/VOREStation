@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(inactivity)
 					if(isAI(C.mob))
 						var/mob/living/silicon/ai/A = C.mob
 						GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(A.loc)
-						global_announcer.autosay("[A] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+						GLOB.global_announcer.autosay("[A] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 						A.clear_client()
 						information = " while an AI."
 

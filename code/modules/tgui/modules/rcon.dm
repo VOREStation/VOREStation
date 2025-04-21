@@ -134,7 +134,7 @@
 			known_SMESs.Add(SMES)
 
 	known_breakers = new /list()
-	for(var/obj/machinery/power/breakerbox/breaker in machines)
+	for(var/obj/machinery/power/breakerbox/breaker in GLOB.machines)
 		if(!(breaker.z in map_levels))
 			continue
 		if(breaker.RCon_tag != "NO_TAG")
