@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(points_of_interest)
 	var/list/obj/effect/landmark/poi_loader/poi_queue = list()
 
 /datum/controller/subsystem/points_of_interest/Initialize()
+	while (poi_queue.len)
+		load_next_poi()
 	to_world_log("Initializing POIs")
 	admin_notice(span_danger("Initializing POIs"), R_DEBUG)
 	return SS_INIT_SUCCESS
