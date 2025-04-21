@@ -555,13 +555,17 @@
 				if(select_key in owner.flavor_texts)
 					switch(select_key)
 						if("general")
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 						else
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 		// ***********************************

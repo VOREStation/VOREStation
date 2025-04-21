@@ -6,7 +6,7 @@
 	event_type = /datum/event2/event/ion_storm
 
 /datum/event2/meta/ion_storm/get_weight()
-	var/list/bots = metric.get_people_in_department(DEPARTMENT_SYNTHETIC)
+	var/list/bots = GLOB.metric.get_people_in_department(DEPARTMENT_SYNTHETIC)
 	. = 5 // A small chance even if no synths are on, since it can still emag beepsky.
 	for(var/mob/living/silicon/S in bots)
 		if(istype(S, /mob/living/silicon/robot/drone)) // Drones don't get their laws screwed with, so don't count them.

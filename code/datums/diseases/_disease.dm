@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 /datum/disease/Destroy()
 	affected_mob = null
-	active_diseases.Remove(src)
+	GLOB.active_diseases.Remove(src)
 	if(global_flag_check(virus_modifiers, PROCESSING))
 		End()
 	return ..()

@@ -151,3 +151,14 @@
   Diana:
   - bugfix: Shoulder augments can now be installed the first time without having to
       screwdriver them twice
+2025-04-18:
+  ItsSelis:
+  - refactor: converts a bunch of global variables/lists to managed global variables/lists
+  Kashargul:
+  - bugfix: highlight input size
+  - bugfix: samples no longer generate infinite tech level lists
+  KillianKirilenko:
+  - rscadd: Added sleeveless variant of the colourable duster.
+  TeleTubby2:
+  - rscadd: NIF commlinks auto-initialize if the relevant preference is set in character
+      creation

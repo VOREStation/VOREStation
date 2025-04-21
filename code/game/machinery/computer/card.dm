@@ -87,9 +87,9 @@
 
 /obj/machinery/computer/card/tgui_static_data(mob/user)
 	var/list/data =  ..()
-	if(data_core)
-		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	if(GLOB.data_core)
+		GLOB.data_core.get_manifest_list()
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /obj/machinery/computer/card/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -156,7 +156,7 @@
 	switch(action)
 		if("modify")
 			if(modify)
-				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
+				GLOB.data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 				if(ishuman(ui.user))
 					modify.forceMove(get_turf(src))
@@ -258,7 +258,7 @@
 						P.name = text("crew manifest ([])", stationtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
 							<br>
-							[data_core ? data_core.get_manifest(0) : ""]
+							[GLOB.data_core ? GLOB.data_core.get_manifest(0) : ""]
 						"}
 					else if(modify)
 						P.name = "access report"
