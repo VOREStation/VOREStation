@@ -1630,6 +1630,60 @@
 	icon_state = "demitesh_fluffytail"
 	extra_overlay = "demitesh_fluffytail_marks"
 
+/datum/sprite_accessory/tail/longtail/largeshark
+	name = "Large Shark"
+	icon_state = "large-shark"
+	extra_overlay = "large-shark-underbelly"
+	extra_overlay2 = "large-shark-tips"
+
+/datum/sprite_accessory/tail/longtail/largeshark/finless
+	name = "Large Shark (finless)"
+	icon_state = "large-shark-finless"
+	extra_overlay2 = "large-shark-tips-finless"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes
+	name = "Large Shark (striped)"
+	extra_overlay = "large-shark-stripes"
+	extra_overlay2 = "large-shark-stripes-underbelly"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes2
+	name = "Large Shark (striped, underbelly)"
+	extra_overlay = "large-shark-underbelly"
+	extra_overlay2 = "large-shark-stripes-underbelly"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes/finless
+	name = "Large Shark (striped, finless)"
+	icon_state = "large-shark-finless"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes2/finless
+	name = "Large Shark (striped, finless, underbelly)"
+	icon_state = "large-shark-finless"
+
+/datum/sprite_accessory/tail/longtail/flagtail
+	name = "Flagtail"
+	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon_state = "flagtail"
+	extra_overlay = "flagtail-1"
+	extra_overlay2 = "flagtail-2"
+
+/datum/sprite_accessory/tail/longtail/chonksqrl
+	name = "Squirrel (Big)"
+	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon_state = "chonksqrl"
+	extra_overlay = "chonksqrl-m1"
+	extra_overlay2 = "chonksqrl-m2"
+
+/datum/sprite_accessory/tail/longtail/op_qaavos
+	name = "Qaavos Tail"
+	icon_state = "qaavos_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/op_anteater
+	name = "Anteater tail"
+	icon_state = "anteater_tail"
+
+
 /datum/sprite_accessory/tail/small_bugbum
 	name = "Bug Abdomen, Alt, Small (Dual-Color)"
 	icon_state = "smallbug1"
@@ -1751,51 +1805,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "stripedtail_colorable_w"
-
-/datum/sprite_accessory/tail/longtail/largeshark
-	name = "Large Shark"
-	icon_state = "large-shark"
-	extra_overlay = "large-shark-underbelly"
-	extra_overlay2 = "large-shark-tips"
-
-/datum/sprite_accessory/tail/longtail/largeshark/finless
-	name = "Large Shark (finless)"
-	icon_state = "large-shark-finless"
-	extra_overlay2 = "large-shark-tips-finless"
-
-/datum/sprite_accessory/tail/longtail/largeshark/stripes
-	name = "Large Shark (striped)"
-	extra_overlay = "large-shark-stripes"
-	extra_overlay2 = "large-shark-stripes-underbelly"
-
-/datum/sprite_accessory/tail/longtail/largeshark/stripes2
-	name = "Large Shark (striped, underbelly)"
-	extra_overlay = "large-shark-underbelly"
-	extra_overlay2 = "large-shark-stripes-underbelly"
-
-/datum/sprite_accessory/tail/longtail/largeshark/stripes/finless
-	name = "Large Shark (striped, finless)"
-	icon_state = "large-shark-finless"
-
-/datum/sprite_accessory/tail/longtail/largeshark/stripes2/finless
-	name = "Large Shark (striped, finless, underbelly)"
-	icon_state = "large-shark-finless"
-
-//RS backport tails
-
-/datum/sprite_accessory/tail/longtail/flagtail
-	name = "Flagtail"
-	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
-	icon_state = "flagtail"
-	extra_overlay = "flagtail-1"
-	extra_overlay2 = "flagtail-2"
-
-/datum/sprite_accessory/tail/longtail/chonksqrl
-	name = "Squirrel (Big)"
-	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
-	icon_state = "chonksqrl"
-	extra_overlay = "chonksqrl-m1"
-	extra_overlay2 = "chonksqrl-m2"
 
 // Exclusive Tails
 
