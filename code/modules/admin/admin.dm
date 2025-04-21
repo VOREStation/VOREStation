@@ -1,4 +1,4 @@
-var/global/floorIsLava = 0
+GLOBAL_VAR_INIT(floorIsLava, 0)
 
 
 ////////////////////////////////
@@ -1420,12 +1420,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Mode has not started.")
 		return
 
-	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", all_antag_types)
-	if(!antag_type || !all_antag_types[antag_type])
+	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
+	if(!antag_type || !GLOB.all_antag_types[antag_type])
 		to_chat(usr, "Aborting.")
 		return
 
-	var/datum/antagonist/antag = all_antag_types[antag_type]
+	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
@@ -1502,8 +1502,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Fun.Event Kit"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", alldepartments)
-	for(var/obj/machinery/photocopier/faxmachine/sendto in allfaxes)
+	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
 
 			if (!istype(src,/datum/admins))
@@ -1561,7 +1561,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/obj/item/rcvdcopy
 	rcvdcopy = destination.copy(P)
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
-	adminfaxes += rcvdcopy
+	GLOB.adminfaxes += rcvdcopy
 
 
 

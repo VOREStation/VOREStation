@@ -307,7 +307,7 @@
 	// Update manifest'
 	if(GLOB.data_core)
 		GLOB.data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	data["manifest"] = GLOB.PDA_Manifest
 	data["mapRef"] = map_name
 	return data
 

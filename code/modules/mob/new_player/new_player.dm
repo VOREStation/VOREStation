@@ -111,7 +111,7 @@
 
 	output += "</div>"
 
-	if (client.prefs.lastlorenews == GLOB.news_data.newsindex)
+	if (client.prefs?.lastlorenews == GLOB.news_data.newsindex)
 		client.seen_news = 1
 
 	if(GLOB.news_data.station_newspaper && !client.seen_news && client.prefs?.read_preference(/datum/preference/toggle/show_lore_news))
@@ -483,8 +483,8 @@
 	if(J.mob_type & JOB_SILICON_AI)
 
 		// IsJobAvailable for AI checks that there is an empty core available in this list
-		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
-		empty_playable_ai_cores -= C
+		var/obj/structure/AIcore/deactivated/C = GLOB.empty_playable_ai_cores[1]
+		GLOB.empty_playable_ai_cores -= C
 
 		character.loc = C.loc
 

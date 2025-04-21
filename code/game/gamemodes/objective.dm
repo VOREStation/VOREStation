@@ -1,5 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-var/global/list/all_objectives = list()
+GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective
 	var/datum/mind/owner = null			//Who owns the objective.
@@ -9,13 +9,13 @@ var/global/list/all_objectives = list()
 	var/completed = 0					//currently only used for custom objectives.
 
 /datum/objective/New(var/text)
-	all_objectives |= src
+	GLOB.all_objectives |= src
 	if(text)
 		explanation_text = text
 	..()
 
 /datum/objective/Destroy()
-	all_objectives -= src
+	GLOB.all_objectives -= src
 	. = ..()
 
 /datum/objective/proc/check_completion()
@@ -67,7 +67,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/execute/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
 		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute [T.him]."
 	else
 		explanation_text = "Free Objective"
@@ -77,7 +77,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/execute/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
 		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute [T.him]."
 	else
 		explanation_text = "Free Objective"
@@ -126,7 +126,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/demote/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
 		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
 	else
 		explanation_text = "Free Objective"
@@ -135,7 +135,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
 		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
 	else
 		explanation_text = "Free Objective"

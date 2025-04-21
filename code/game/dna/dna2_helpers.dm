@@ -245,9 +245,9 @@
 		H.a_wing = dna.GetUIValueRange(DNA_UI_WING_ALPHA,	255)
 
 		// Playerscale
-		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
-		if((0 < size) && (size <= player_sizes_list.len))
-			H.resize(player_sizes_list[player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
+		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, GLOB.player_sizes_list.len)
+		if((0 < size) && (size <= GLOB.player_sizes_list.len))
+			H.resize(GLOB.player_sizes_list[GLOB.player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)

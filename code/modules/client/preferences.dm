@@ -639,14 +639,14 @@ var/list/preferences_datums = list()
 		character.species.icon_scale_y = 1
 		for (var/trait in neu_traits)
 			if (trait in traits_to_copy)
-				var/datum/trait/instance = all_traits[trait]
+				var/datum/trait/instance = GLOB.all_traits[trait]
 				if (!instance)
 					continue
 				for (var/to_edit in instance.var_changes)
 					character.species.vars[to_edit] = instance.var_changes[to_edit]
 	character.update_transform()
 	if(!voice_sound)
-		character.voice_sounds_list = talk_sound
+		character.voice_sounds_list = GLOB.talk_sound
 	else
 		character.voice_sounds_list = get_talk_sound(voice_sound)
 

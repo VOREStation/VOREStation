@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Changed blood splatters and subtypes such as oil to no longer interact with someone flying, hovering or floating over them."

@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Mining vendor will now happily sell you a holster for your machete"

@@ -117,7 +117,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		authmsg += "([id_auth])\n"
 	if (stamp)
 		authmsg += "([stamp])\n"
-	for (var/obj/machinery/requests_console/Console in allConsoles)
+	for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
 		if (ckey(Console.department) == ckey(recipient))
 			if(Console.inoperable())
 				Console.message_log += list(list("Message lost due to console failure.","Please contact [station_name()] system adminsitrator or AI for technical assistance."))

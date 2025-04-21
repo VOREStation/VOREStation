@@ -66,7 +66,7 @@
 			if(!H.species || !H.species.traits || H.species.traits.len == 0)
 				H.emote(pick("scratch","jump","roll","tail")) // fallbacks
 			else
-				var/datum/trait/T = all_traits[pick(H.species.traits)]
+				var/datum/trait/T = GLOB.all_traits[pick(H.species.traits)]
 				if(T)
 					var/geneexpression
 					if(T.primitive_expression_messages.len)

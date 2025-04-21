@@ -18,7 +18,7 @@
 
 /datum/category_item/player_setup_item/vore/vantag/sanitize_character()
 	pref.vantag_volunteer	= sanitize_integer(pref.vantag_volunteer, 0, 1, initial(pref.vantag_volunteer))
-	pref.vantag_preference	= sanitize_inlist(pref.vantag_preference, vantag_choices_list, initial(pref.vantag_preference))
+	pref.vantag_preference	= sanitize_inlist(pref.vantag_preference, GLOB.vantag_choices_list, initial(pref.vantag_preference))
 
 /datum/category_item/player_setup_item/vore/vantag/copy_to_mob(var/mob/living/carbon/human/character)
 	if(character && !istype(character,/mob/living/carbon/human/dummy))
@@ -28,7 +28,7 @@
 /datum/category_item/player_setup_item/vore/vantag/content(var/mob/user)
 	. += "<br>"
 	. += span_bold("Event Volunteer:") + " <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_vantag_volunteer=1'>" + span_bold("[pref.vantag_volunteer ? "Yes" : "No"]") + "</a><br>"
-	. += span_bold("Event Pref:") + " <a href='byond://?src=\ref[src];change_vantag=1'>" + span_bold("[vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
+	. += span_bold("Event Pref:") + " <a href='byond://?src=\ref[src];change_vantag=1'>" + span_bold("[GLOB.vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
 
 /datum/category_item/player_setup_item/vore/vantag/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_vantag_volunteer"])
@@ -37,8 +37,8 @@
 
 	else if(href_list["change_vantag"])
 		var/list/names_list = list()
-		for(var/C in vantag_choices_list)
-			names_list[vantag_choices_list[C]] = C
+		for(var/C in GLOB.vantag_choices_list)
+			names_list[GLOB.vantag_choices_list[C]] = C
 
 		var/selection = tgui_input_list(user, "How do you want to be involved with VS Event Characters, ERP-wise? They will see this choice on you in a HUD. Event characters are admin-selected and spawned players, possibly with assigned objectives, who are obligated to respect ERP prefs and RP their actions like any other player, though it may be a slightly shorter RP if they are pressed for time or being caught.", "Event Preference", names_list)
 		if(selection && selection != "Normal")
