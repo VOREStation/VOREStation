@@ -692,3 +692,12 @@ emp_act
 		flick(G.hud.icon_state, G.hud)
 
 	return 1
+
+/mob/living/carbon/human/is_mouth_covered(head_only, mask_only)
+	if(!check_has_mouth())
+		return TRUE
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+		return TRUE
+
+	return FALSE

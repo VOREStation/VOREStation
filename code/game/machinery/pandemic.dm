@@ -6,15 +6,16 @@
 	anchored = TRUE
 	icon = 'icons/obj/pandemic.dmi'
 	icon_state = "pandemic0"
+	idle_power_usage = 20
+	use_power = TRUE
+
 	var/temp_html = ""
-	var/printing = null
-	var/wait = null
-	var/selected_strain_index = 1
+	var/printing = FALSE
+	var/wait = FALSE
 	var/obj/item/reagent_containers/beaker = null
 
-// PanDEMIC Bottle
-/obj/item/reagent_containers/glass/bottle/vaccine
-	icon_state = "bottle10"
+// PanDEMIC Vial
+/obj/item/reagent_containers/glass/beaker/vial/vaccine
 	possible_transfer_amounts = (list(5, 10, 15))
 	volume = 15
 
@@ -26,200 +27,59 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/computer/pandemic/proc/GetViruses()
-	if(beaker && beaker.reagents)
-		if(length(beaker.reagents.reagent_list))
-			var/datum/reagent/blood/BL = locate() in beaker.reagents.reagent_list
-			if(BL)
-				if(BL.data && BL.data["viruses"])
-					var/list/viruses = BL.data["viruses"]
-					return viruses
-
-/obj/machinery/computer/pandemic/proc/GetVirusByIndex(index)
-	var/list/viruses = GetViruses()
-	if(viruses && index > 0 && index <= length(viruses))
-		return viruses[index]
-
-/obj/machinery/computer/pandemic/proc/GetResistances()
-	if(beaker && beaker.reagents)
-		if(length(beaker.reagents.reagent_list))
-			var/datum/reagent/blood/BL = locate() in beaker.reagents.reagent_list
-			if(BL)
-				if(BL.data && BL.data["resistances"])
-					var/list/resistances = BL.data["resistances"]
-					return resistances
-
-/obj/machinery/computer/pandemic/proc/GetResistancesByIndex(index)
-	var/list/resistances = GetResistances()
-	if(resistances && index > 0 && index <= length(resistances))
-		return resistances[index]
-
-/obj/machinery/computer/pandemic/proc/GetVirusTypeByIndex(index)
-	var/datum/disease/D = GetVirusByIndex(index)
-	if(D)
-		return D.GetDiseaseID()
-
-/obj/machinery/computer/pandemic/proc/replicator_cooldown(waittime)
-	wait = 1
-	update_icon()
-	spawn(waittime)
-		wait = null
-		update_icon()
-		playsound(loc, 'sound/machines/ping.ogg', 30, 1)
-
 /obj/machinery/computer/pandemic/update_icon()
 	if(stat & BROKEN)
 		icon_state = (beaker ? "pandemic1_b" : "pandemic0_b")
 		return
 	icon_state = "pandemic[(beaker)?"1":"0"][!(stat & NOPOWER) ? "" : "_nopower"]"
 
-/obj/machinery/computer/pandemic/proc/create_culture(name, bottle_type = "culture", cooldown = 50, vaccine = FALSE)
-
-	var/obj/item/reagent_containers/glass/bottle/B
-	if(vaccine)
-		B = new /obj/item/reagent_containers/glass/bottle/vaccine(loc)
-		B.name = "[name] vaccine"
-	else
-		B = new(loc)
-		B.icon_state = "bottle10"
-		B.name = "[name] [bottle_type] bottle"
-
-	B.pixel_x = rand(-3, 3)
-	B.pixel_y = rand(-3, 3)
-	replicator_cooldown(cooldown)
-	return B
-
 /obj/machinery/computer/pandemic/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(inoperable())
 		return
 
-	. = TRUE
-
 	switch(action)
-		if("clone_strain")
+		if("create_culture_bottle")
+			if(wait)
+				return FALSE
+			create_culture_bottle(params["index"])
+			return TRUE
+		if("create_vaccine_bottle")
 			if(wait)
 				atom_say("The replicator is not ready yet.")
-				return
-
-			var/strain_index = text2num(params["strain_index"])
-			if(isnull(strain_index))
-				atom_say("Unable to respond to command.")
-				return
-			var/datum/disease/virus = GetVirusByIndex(strain_index)
-			var/datum/disease/D = null
-			if(!virus)
-				atom_say("Unable to find requested strain.")
-				return
-			var/type = virus.GetDiseaseID()
-			if(!ispath(type))
-				var/datum/disease/advance/A = GLOB.archive_diseases[type]
-				if(A)
-					D = new A.type(0, A)
-			else if(type)
-				if(type in GLOB.diseases) // Make sure this is a disease
-					D = new type(0, null)
-			if(!D)
-				atom_say("Unable to synthesize requested strain.")
-				return
-			var/default_name = ""
-			if(D.name == "Unknown" || D.name == "")
-				default_name = replacetext(beaker.name, new/regex(" culture bottle\\Z", "g"), "")
-			else
-				default_name = D.name
-			var/name = tgui_input_text(ui.user, "Name:", "Name the culture", default_name, MAX_NAME_LEN)
-			if(name == null || wait)
-				return
-			var/obj/item/reagent_containers/glass/bottle/B = create_culture(name)
-			B.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
-			B.reagents.add_reagent(REAGENT_ID_BLOOD, 20, list("viruses" = list(D)))
-		if("clone_vaccine")
-			if(wait)
-				atom_say("The replicator is not ready yet.")
-				return
-
-			var/resistance_index = text2num(params["resistance_index"])
-			if(isnull(resistance_index))
-				atom_say("Unable to find requested antibody.")
-				return
-			var/vaccine_type = GetResistancesByIndex(resistance_index)
-			var/vaccine_name = "Unknown"
-			if(!ispath(vaccine_type))
-				if(GLOB.archive_diseases[vaccine_type])
-					var/datum/disease/D = GLOB.archive_diseases[vaccine_type]
-					if(D)
-						vaccine_name = D.name
-			else if(vaccine_type)
-				var/datum/disease/D = new vaccine_type(0, null)
-				if(D)
-					vaccine_name = D.name
-
-			if(!vaccine_type)
-				atom_say("Unable to synthesize requested antibody.")
-				return
-
-			var/obj/item/reagent_containers/glass/bottle/vaccine/B = create_culture(vaccine_name, REAGENT_ID_VACCINE, 200, TRUE)
-			B.reagents.add_reagent(REAGENT_ID_VACCINE, 15, list(vaccine_type))
-			if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
-				beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 5)
-				if(!length(beaker.reagents.reagent_list))
-					update_tgui_static_data(ui.user)
-
+				return FALSE
+			create_vaccine_bottle(params["index"])
+			return TRUE
 		if("eject_beaker")
 			eject_beaker()
 			update_tgui_static_data(ui.user)
+			return TRUE
 		if("destroy_eject_beaker")
 			beaker.reagents.clear_reagents()
 			eject_beaker()
 			update_tgui_static_data(ui.user)
-		if("print_release_forms")
-			var/strain_index = text2num(params["strain_index"])
+			return TRUE
+		if("empty_beaker")
+			beaker.reagents.clear_reagents()
+			return TRUE
+		if("rename_disease")
+			rename_disease(params["index"], params["name"])
+			return TRUE
+		if("print_release_form")
+			var/strain_index = text2num(params["index"])
 			if(isnull(strain_index))
 				atom_say("Unable to respond to command.")
-				return
-			var/type = GetVirusTypeByIndex(strain_index)
+				return FALSE
+			var/type = get_virus_id_by_index(strain_index)
 			if(!type)
 				atom_say("Unable to find requested strain.")
-				return
+				return FALSE
 			var/datum/disease/advance/A = GLOB.archive_diseases[type]
 			if(!A)
 				atom_say("Unable to find requested strain.")
-				return
-			print_form(A, ui.user)
-		if("name_strain")
-			var/strain_index = text2num(params["strain_index"])
-			if(isnull(strain_index))
-				atom_say("Unable to respond to command.")
-				return
-			var/type = GetVirusTypeByIndex(strain_index)
-			if(!type)
-				atom_say("Unable to find requested strain.")
-				return
-			var/datum/disease/advance/A = GLOB.archive_diseases[type]
-			if(!A)
-				atom_say("Unable to find requested strain.")
-				return
-			if(A.name != "Unknown")
-				atom_say("Request rejected. Strain already has a name.")
-				return
-			var/new_name = tgui_input_text(ui.user, "Name the Strain", "New Name", max_length = MAX_NAME_LEN)
-			if(!new_name)
-				return
-			A.AssignName(new_name)
-			for(var/datum/disease/advance/AD in GLOB.active_diseases)
-				AD.Refresh()
-			update_tgui_static_data(ui.user)
-		if("switch_strain")
-			var/strain_index = text2num(params["strain_index"])
-			if(isnull(strain_index) || strain_index < 1)
-				atom_say("Unable to respond to command.")
-				return
-			var/list/viruses = GetViruses()
-			if(strain_index > length(viruses))
-				atom_say("Unable to find requested strain.")
-				return
-			selected_strain_index = strain_index;
+				return FALSE
 		else
 			return FALSE
 
@@ -229,85 +89,34 @@
 /obj/machinery/computer/pandemic/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PanDEMIC", name)
+		ui = new(user, src, "Pandemic", name)
 		ui.open()
 
 /obj/machinery/computer/pandemic/tgui_data(mob/user)
-	var/datum/reagent/blood/Blood = null
-	if(beaker)
-		var/datum/reagents/R = beaker.reagents
-		for(var/datum/reagent/blood/B in R.reagent_list)
-			if(B)
-				Blood = B
-				break
-
-	var/list/data = list(
-		"synthesisCooldown" = wait ? TRUE : FALSE,
-		"beakerLoaded" = beaker ? TRUE : FALSE,
-		"beakerContainsBlood" = Blood ? TRUE : FALSE,
-		"beakerContainsVirus" = length(Blood?.data["viruses"]) != 0,
-		"selectedStrainIndex" = selected_strain_index,
+	var/list/data = list()
+	data["is_ready"] = !wait
+	if(!beaker)
+		data["has_beaker"] = FALSE
+		data["has_blood"] = FALSE
+		return data
+	data["has_beaker"] = TRUE
+	data["beaker"] = list(
+		"volume" = round(beaker.reagents?.total_volume, 0.01) || 0,
+		"capacity" = beaker.volume
 	)
+	var/datum/reagent/blood/blood = locate() in beaker.reagents.reagent_list
+	if(!blood)
+		data["has_blood"] = FALSE
+		return data
+
+	data["has_blood"] = TRUE
+	data["blood"] = list()
+	data["blood"]["dna"] = blood.data["blood_DNA"] || "none"
+	data["blood"]["type"] = blood.data["blood_type"] || "none"
+	data["viruses"] = get_viruses_data(blood)
+	data["resistances"] = get_resistance_data(blood)
 
 	return data
-
-/obj/machinery/computer/pandemic/tgui_static_data(mob/user)
-	var/list/data = list()
-	. = data
-
-	var/datum/reagent/blood/Blood = null
-	if(beaker)
-		var/datum/reagents/R = beaker.reagents
-		for(var/datum/reagent/blood/B in R.reagent_list)
-			if(B)
-				Blood = B
-				break
-
-	var/list/strains = list()
-	for(var/datum/disease/D in GetViruses())
-		if(D.visibility_flags & HIDDEN_PANDEMIC)
-			continue
-
-		var/list/symptoms = list()
-		if(istype(D, /datum/disease/advance))
-			var/datum/disease/advance/A = D
-			D = GLOB.archive_diseases[A.GetDiseaseID()]
-			if(!D)
-				CRASH("We weren't able to get the advance disease from the archive.")
-			for(var/datum/symptom/S in A.symptoms)
-				symptoms += list(list(
-					"name" = S.name,
-					"stealth" = S.stealth,
-					"resistance" = S.resistance,
-					"stageSpeed" = S.stage_speed,
-					"transmissibility" = S.transmittable,
-					"complexity" = S.level,
-				))
-
-		strains += list(list(
-			"commonName" = D.name,
-			"description" = D.desc,
-			"bloodDNA" = Blood.data["blood_DNA"],
-			"bloodType" = Blood.data["blood_type"],
-			"diseaseAgent" = D.agent,
-			"possibleTreatments" = D.cure_text,
-			"transmissionRoute" = D.spread_text,
-			"symptoms" = symptoms,
-			"isAdvanced" = istype(D, /datum/disease/advance),
-		))
-	data["strains"] = strains
-
-	var/list/resistances = list()
-	for(var/resistance in GetResistances())
-		if(!ispath(resistance))
-			var/datum/disease/D = GLOB.archive_diseases[resistance]
-			if(D)
-				resistances += list(D.name)
-		else if(resistance)
-			var/datum/disease/D = new resistance(0, null)
-			if(D)
-				resistances += list(D.name)
-	data["resistances"] = resistances
 
 /obj/machinery/computer/pandemic/proc/eject_beaker()
 	set name = "Eject Beaker"
@@ -320,10 +129,13 @@
 	beaker.forceMove(loc)
 	beaker = null
 	icon_state = "pandemic0"
-	selected_strain_index = 1
 
 /obj/machinery/computer/pandemic/proc/print_form(datum/disease/advance/D, mob/living/user)
 	D = GLOB.archive_diseases[D.GetDiseaseID()]
+	if(!istype(D))
+		visible_message(span_warning("ERROR: Unable to print form."))
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		return
 	if(!(printing) && D)
 		var/reason = tgui_input_text(user,"Enter a reason for the release", "Write", multiline = TRUE)
 		if(!reason)
@@ -333,7 +145,7 @@
 		for(var/I in D.symptoms)
 			var/datum/symptom/S = I
 			english_symptoms += S.name
-		var/symtoms = english_list(english_symptoms)
+		var/symptoms = english_list(english_symptoms)
 
 		var/signature
 		if(tgui_alert(user, "Would you like to add your signature?", "Signature", list("Yes","No")) == "Yes")
@@ -341,7 +153,7 @@
 		else
 			signature = "<span class=\"paper_field\"></span>"
 
-		printing = 1
+		printing = TRUE
 		var/obj/item/paper/P = new /obj/item/paper(loc)
 		visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
 		playsound(loc, 'sound/machines/printer.ogg', 50, 1)
@@ -349,7 +161,7 @@
 		P.info = span_underline(span_huge(span_bold("<center> Releasing Virus </center>")))
 		P.info += "<HR>"
 		P.info += span_underline("Name of the Virus:") + " [D.name] <BR>"
-		P.info += span_underline("Symptoms:") + " [symtoms]<BR>"
+		P.info += span_underline("Symptoms:") + " [symptoms]<BR>"
 		P.info += span_underline("Spreads by:") + " [D.spread_text]<BR>"
 		P.info += span_underline("Cured by:") + " [D.cure_text]<BR>"
 		P.info += "<BR>"
@@ -360,7 +172,7 @@
 		P.info += "If approved, stamp below with the Chief Medical Officer's stamp, and/or the Captain's stamp if required:"
 		P.updateinfolinks()
 		P.name = "Releasing Virus - [D.name]"
-		printing = null
+		printing = FALSE
 
 /obj/machinery/computer/pandemic/attack_ai(mob/user)
 	return attack_hand(user)
@@ -394,3 +206,146 @@
 		icon_state = "pandemic1"
 	else
 		return ..()
+
+/obj/machinery/computer/pandemic/proc/get_viruses_data(datum/reagent/blood/blood)
+	. = list()
+	var/list/viruses = blood.get_diseases()
+	var/index = 1
+
+	for(var/datum/disease/disease as anything in viruses)
+		if(CHECK_BITFIELD(disease.visibility_flags, HIDDEN_PANDEMIC))
+			continue
+
+		var/list/traits = list()
+		traits["name"] = disease.name
+		if(istype(disease, /datum/disease/advance))
+			var/datum/disease/advance/adv_disease = disease
+			traits["can_rename"] = (adv_disease.name == "Unknown")
+			traits["name"] = disease.name
+			traits["is_adv"] = TRUE
+			traits["symptoms"] = list()
+			for(var/datum/symptom/symptom as() in adv_disease.symptoms)
+				traits["symptoms"] += list(symptom.get_symptom_data())
+			traits["resistance"] = adv_disease.resistance
+			traits["stealth"] = adv_disease.stealth
+			traits["stage_speed"] = adv_disease.stage_rate
+			traits["transmission"] = adv_disease.transmission
+			traits["symptom_severity"] = adv_disease.severity
+
+		traits["index"] = index++
+		traits["agent"] = disease.agent
+		traits["description"] = disease.desc || "none"
+		traits["spread"] = disease.spread_text || "none"
+		traits["cure"] = disease.cure_text || "none"
+		traits["danger"] = disease.danger || "none"
+
+		. += list(traits)
+
+/obj/machinery/computer/pandemic/proc/get_resistance_data(datum/reagent/blood/blood)
+	var/list/data = list()
+	if(!islist(blood.data["resistances"]))
+		return data
+	var/list/resistances = blood.data["resistances"]
+	for(var/id in resistances)
+		var/list/resistance = list()
+		var/datum/disease/disease = GLOB.archive_diseases[id]
+		if(disease)
+			resistance["id"] = id
+			resistance["name"] = disease.name
+		data += list(resistance)
+	return data
+
+/obj/machinery/computer/pandemic/proc/get_by_index(thing, index)
+	if(!beaker || !beaker.reagents)
+		return FALSE
+	var/datum/reagent/blood/blood = locate() in beaker.reagents.reagent_list
+	if(blood?.data[thing])
+		return blood.data[thing][index]
+	return FALSE
+
+/obj/machinery/computer/pandemic/proc/get_virus_id_by_index(index)
+	var/datum/disease/disease = get_by_index("viruses", index)
+	if(!disease)
+		return FALSE
+	return disease.GetDiseaseID()
+
+/obj/machinery/computer/pandemic/proc/create_vaccine_bottle(index)
+	use_power(active_power_usage)
+	var/id = index
+	var/datum/disease/disease = GLOB.archive_diseases[id]
+	var/obj/item/reagent_containers/glass/beaker/vial/bottle = new(drop_location())
+	bottle.name = "[disease.name] vaccine"
+	bottle.reagents.add_reagent(REAGENT_ID_VACCINE, 15, list(get_by_index("resistances", id)))
+	beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 5)
+	wait = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 20 SECONDS)
+	return TRUE
+
+/obj/machinery/computer/pandemic/proc/create_culture_bottle(index)
+	var/id = get_virus_id_by_index(text2num(index))
+	var/datum/disease/advance/adv_disease = GLOB.archive_diseases[id]
+	var/old_name = adv_disease.name
+
+	if(!istype(adv_disease))
+		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
+		return FALSE
+
+	if(!beaker.reagents.has_reagent(REAGENT_ID_BLOOD, 10))
+		to_chat(usr, span_warning("ERROR: Not enough blood in the sample."))
+		return FALSE
+
+	use_power(active_power_usage)
+	adv_disease = adv_disease.Copy()
+	adv_disease.name = old_name
+	var/list/cures = get_beaker_cures(id)
+	if(cures.len)
+		adv_disease.cures = cures[1]
+		adv_disease.cure_text = cures[2]
+	var/list/data = list("viruses" = list(adv_disease))
+
+	var/obj/item/reagent_containers/glass/beaker/vial/bottle = new(drop_location())
+	bottle.name = "[adv_disease.name] culture vial"
+	bottle.desc = "A small vial containing [adv_disease.agent] culture in synthblood."
+	bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+	beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 10)
+	wait = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 5 SECONDS)
+	return TRUE
+
+/obj/machinery/computer/pandemic/proc/get_beaker_cures(disease_id)
+	var/list/cures = list()
+	if(!beaker)
+		return cures
+
+	var/datum/reagent/blood/blood = beaker.reagents.get_reagent(REAGENT_ID_BLOOD)
+	if(!blood)
+		return cures
+
+	var/list/viruses = blood.get_diseases()
+	if(!length(viruses))
+		return cures
+
+	for(var/datum/disease/advance/disease in viruses)
+		if(disease.GetDiseaseID() == disease_id)
+			cures.Add(disease.cures)
+			cures.Add(disease.cure_text)
+			break
+
+	return cures
+
+/obj/machinery/computer/pandemic/proc/rename_disease(index, name)
+	var/id = get_virus_id_by_index(text2num(index))
+	var/datum/disease/advance/adv_disease = GLOB.archive_diseases[id]
+
+	if(adv_disease)
+		if(!name)
+			return FALSE
+		adv_disease.AssignName(name)
+		return TRUE
+	return FALSE
+
+/obj/machinery/computer/pandemic/proc/reset_replicator_cooldown()
+	wait = FALSE
+	SStgui.update_uis(src)
+	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
+	return TRUE

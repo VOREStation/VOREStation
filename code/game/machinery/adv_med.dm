@@ -188,7 +188,7 @@
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
 
-		occupantData["hasVirus"] = LAZYLEN(H.viruses)
+		occupantData["hasVirus"] = H.IsInfected()
 
 		occupantData["bruteLoss"] = H.getBruteLoss()
 		occupantData["oxyLoss"] = H.getOxyLoss()
@@ -379,7 +379,7 @@
 		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
 		dat += "<br>"
 
-		if(LAZYLEN(occupant.viruses))
+		if(occupant.IsInfected())
 			for(var/datum/disease/D in occupant.GetViruses())
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue

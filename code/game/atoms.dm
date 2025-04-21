@@ -483,17 +483,6 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
-		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-
-		for(var/datum/disease/D in M.GetViruses())
-			this.viruses |= D.Copy()
-
-		// Make toxins vomit look different
-		if(toxvomit)
-			this.icon_state = "vomittox_[pick(1,4)]"
-
 /atom/proc/clean_blood()
 	if(!simulated)
 		return
@@ -853,3 +842,15 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+/**
+*	Respond to our atom being checked by a virus extrapolator.
+*
+*	Default behaviour is to send COMSIG_ATOM_EXTRAPOLATOR_ACT and return an empty list (which may be populated by the signal)
+*
+*	Returns a list of viruses in the atom.
+*	Include EXTRAPOLATOR_SPECIAL_HANDLED in the list if the extrapolation act has been handled by this proc or a signal, and should not be handled by the extrapolator itself.
+*/
+/atom/proc/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = list(EXTRAPOLATOR_RESULT_DISEASES = list())
+	SEND_SIGNAL(src, COMSIG_ATOM_EXTRAPOLATOR_ACT, user, extrapolator, dry_run, .)

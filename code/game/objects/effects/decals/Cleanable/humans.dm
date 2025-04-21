@@ -125,7 +125,7 @@ var/global/list/image/splatter_cache=list()
 	if(viruses)
 		for(var/datum/disease/D in viruses)
 			if(D.IsSpreadByTouch())
-				perp.ContractDisease(D)
+				perp.ContractDisease(D, BP_R_FOOT)
 
 	amount--
 
@@ -156,7 +156,7 @@ var/global/list/image/splatter_cache=list()
 	if(viruses)
 		for(var/datum/disease/D in viruses)
 			if(D.IsSpreadByTouch())
-				user.ContractDisease(D)
+				user.ContractDisease(D, BP_R_HAND)
 
 /obj/effect/decal/cleanable/blood/splatter
 		random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
@@ -287,7 +287,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			perp.ContractDisease(D)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_FOOT)
 
 /obj/effect/decal/cleanable/mucus/attack_hand(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
@@ -296,7 +298,9 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			perp.ContractDisease(D)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_HAND)
 
 /obj/effect/decal/cleanable/vomit/Crossed(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
@@ -305,15 +309,31 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			perp.ContractDisease(D)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_FOOT)
 
-/obj/effect/decal/cleanable/vomit/Crossed(mob/living/carbon/human/perp)
+/obj/effect/decal/cleanable/vomit/attack_hand(mob/living/carbon/human/perp)
 	if(perp.is_incorporeal())
 		return
 	if(!istype(perp))
 		return
 	if(viruses)
 		for(var/datum/disease/D in viruses)
-			perp.ContractDisease(D)
+			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			perp.ContractDisease(D, BP_R_HAND)
+
+/obj/effect/decal/cleanable/mucus/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
+
+/obj/effect/decal/cleanable/vomit/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
+
+/obj/effect/decal/cleanable/blood/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
 
 #undef DRYING_TIME

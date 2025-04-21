@@ -351,7 +351,7 @@
 /datum/supply_pack/med/virus
 	name = "Virus culture crate"
 	desc = "Glass bottles with viral cultures. HANDLE WITH CARE. Requires Chief Medical Officer access."
-	contains = list(/obj/item/reagent_containers/glass/bottle/culture/cold = 1, /obj/item/reagent_containers/glass/bottle/culture/flu = 1)
+	contains = list(/obj/item/reagent_containers/glass/beaker/vial/culture/cold = 1, /obj/item/reagent_containers/glass/beaker/vial/culture/flu = 1)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Virus culture crate"
@@ -425,7 +425,7 @@
 	name = "Experimental Disease crate"
 	desc = "An experimental disease. Contains a multitude of symptoms."
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/culture/random_virus = 1
+		/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus = 1
 	)
 	cost = 60
 	containertype = /obj/structure/closet/crate/freezer
@@ -435,7 +435,7 @@
 	name = "Minor Experimental Disease crate"
 	desc = "An experimental disease. Contains a weakened, untested viral culture."
 	contains = list(
-		/obj/item/reagent_containers/glass/bottle/culture/random_virus/minor = 1
+		/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/minor = 1
 	)
 	cost = 40
 	containertype = /obj/structure/closet/crate/freezer
