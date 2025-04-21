@@ -7,6 +7,7 @@ import {
   Modal,
   NoticeBox,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
 
@@ -51,24 +52,28 @@ export const NIF = (props) => {
               m={0}
               title={viewingModule.name}
               buttons={
-                <>
-                  <Button.Confirm
-                    icon="ban"
-                    color="bad"
-                    confirmIcon="ban"
-                    confirmContent={'Uninstall ' + viewingModule.name + '?'}
-                    onClick={() => {
-                      act('uninstall', { module: viewingModule.ref });
-                      setViewing(null);
-                    }}
-                  >
-                    Uninstall
-                  </Button.Confirm>
-                  <Button
-                    icon="window-close"
-                    onClick={() => setViewing(null)}
-                  />
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button.Confirm
+                      icon="ban"
+                      color="bad"
+                      confirmIcon="ban"
+                      confirmContent={'Uninstall ' + viewingModule.name + '?'}
+                      onClick={() => {
+                        act('uninstall', { module: viewingModule.ref });
+                        setViewing(null);
+                      }}
+                    >
+                      Uninstall
+                    </Button.Confirm>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="window-close"
+                      onClick={() => setViewing(null)}
+                    />
+                  </Stack.Item>
+                </Stack>
               }
             >
               <Box>{viewingModule.desc}</Box>

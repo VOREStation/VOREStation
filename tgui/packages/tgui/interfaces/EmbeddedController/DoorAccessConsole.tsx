@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { PanelOpen } from './PanelOpen';
 import type { DoorAccessConsoleData } from './types';
@@ -23,26 +23,30 @@ export const DoorAccessConsole = (props) => {
       <Section
         title="Status"
         buttons={
-          <>
+          <Stack>
             {/* Interior Button */}
-            <Button
-              icon={interiorOpen ? 'arrow-left' : 'exclamation-triangle'}
-              onClick={() => {
-                act(interiorOpen ? 'cycle_ext_door' : 'force_ext');
-              }}
-            >
-              {interiorOpen ? 'Cycle To Exterior' : 'Lock Exterior Door'}
-            </Button>
+            <Stack.Item>
+              <Button
+                icon={interiorOpen ? 'arrow-left' : 'exclamation-triangle'}
+                onClick={() => {
+                  act(interiorOpen ? 'cycle_ext_door' : 'force_ext');
+                }}
+              >
+                {interiorOpen ? 'Cycle To Exterior' : 'Lock Exterior Door'}
+              </Button>
+            </Stack.Item>
             {/* Exterior Button */}
-            <Button
-              icon={exteriorOpen ? 'arrow-right' : 'exclamation-triangle'}
-              onClick={() => {
-                act(exteriorOpen ? 'cycle_int_door' : 'force_int');
-              }}
-            >
-              {exteriorOpen ? 'Cycle To Interior' : 'Lock Interior Door'}
-            </Button>
-          </>
+            <Stack.Item>
+              <Button
+                icon={exteriorOpen ? 'arrow-right' : 'exclamation-triangle'}
+                onClick={() => {
+                  act(exteriorOpen ? 'cycle_int_door' : 'force_int');
+                }}
+              >
+                {exteriorOpen ? 'Cycle To Interior' : 'Lock Interior Door'}
+              </Button>
+            </Stack.Item>
+          </Stack>
         }
       >
         <LabeledList>

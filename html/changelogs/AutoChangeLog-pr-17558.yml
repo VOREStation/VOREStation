@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "turrets no longer have 100% baymiss chance"
+  - bugfix: "Fragmines will no longer do 400 damage when you step on them."

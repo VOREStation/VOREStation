@@ -190,7 +190,7 @@ const GeneralMobSettings = (props: {
             <Input
               fluid
               value={data.path_name}
-              onChange={(e, val: string) => props.onName(val)}
+              onChange={(val: string) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -364,7 +364,8 @@ const GeneralMobSettings = (props: {
             <br />
             <TextArea
               height={'18rem'}
-              onChange={(e, val: string) => props.onDesc(val)}
+              expensive
+              onChange={(val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Stack.Item>
@@ -373,8 +374,9 @@ const GeneralMobSettings = (props: {
             <br />
             <TextArea
               height={'18rem'}
+              expensive
               value={data.flavor_text}
-              onChange={(e, val: string) => props.onFlavor(val)}
+              onChange={(val: string) => props.onFlavor(val)}
             />
           </Stack.Item>
         </Stack>
