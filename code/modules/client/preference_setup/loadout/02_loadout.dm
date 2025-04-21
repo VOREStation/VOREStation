@@ -99,11 +99,6 @@ var/list/gear_datums = list()
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 	var/total_cost = 0
 	for(var/gear_name in active_gear_list)
-		if(!(gear_name in gear_datums))
-			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
-			active_gear_list -= gear_name
-			continue
-
 		if(!gear_datums[gear_name])
 			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
 			active_gear_list -= gear_name
@@ -121,68 +116,50 @@ var/list/gear_datums = list()
 			continue
 		total_cost += G.cost
 
-/datum/category_item/player_setup_item/loadout/loadout/content()
-	. = list()
-	var/mob/preference_mob = preference_mob()	//Vorestation Edit
-	// { "jackboots, thigh-length": { ...tweaks }}
+/datum/category_item/player_setup_item/loadout/loadout/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["total_cost"] = get_total()
+	data["gear_slot"] = pref.gear_slot
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+	data["active_gear_list"] = active_gear_list
 
-	var/total_cost = get_total()
-	var/fcolor =  "#3366CC"
-	if(total_cost < MAX_GEAR_COST)
-		fcolor = "#E67300"
+	var/list/gear_tweaks = list()
+	for(var/item in active_gear_list)
+		var/datum/gear/G = gear_datums[item]
+		var/list/tweaks = list()
+		for(var/datum/gear_tweak/tweak in G.gear_tweaks)
+			UNTYPED_LIST_ADD(tweaks, list(
+				"ref" = REF(tweak),
+				"contents" = tweak.get_contents(get_tweak_metadata(G, tweak))
+			))
+		gear_tweaks[G.display_name] = tweaks
+	data["gear_tweaks"] = gear_tweaks
 
-	. += "<table align = 'center' width = 100%>"
-	. += "<tr><td colspan=3><center><a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a>" + span_bold("<font color = '[fcolor]'>\[[pref.gear_slot]\]</font> ") + "<a href='byond://?src=\ref[src];next_slot=1'>\>\></a>" + span_bold("<font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.") + " \[<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
+	return data
 
-	. += "<tr><td colspan=3><center><b>"
-	var/firstcat = 1
+/datum/category_item/player_setup_item/loadout/loadout/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	var/list/categories = list()
 	for(var/category in loadout_categories)
-		if(firstcat)
-			firstcat = 0
-		else
-			. += " |"
-
 		var/datum/loadout_category/LC = loadout_categories[category]
-		var/category_cost = 0
+		var/list/items = list()
 		for(var/gear in LC.gear)
-			if(gear in active_gear_list)
-				var/datum/gear/G = LC.gear[gear]
-				category_cost += G.cost
+			var/datum/gear/G = LC.gear[gear]
+			UNTYPED_LIST_ADD(items, list(
+				"name" = G.display_name,
+				"desc" = G.description,
+				"cost" = G.cost,
+				"show_roles" = G.show_roles,
+				"allowed_roles" = G.allowed_roles
+			))
+		categories[category] = items
+	data["categories"] = categories
 
-		if(category == current_tab)
-			. += " " + span_linkOn("[category] - [category_cost]") + " "
-		else
-			if(category_cost)
-				. += " <a href='byond://?src=\ref[src];select_category=[category]'><font color = '#E67300'>[category] - [category_cost]</font></a> "
-			else
-				. += " <a href='byond://?src=\ref[src];select_category=[category]'>[category] - 0</a> "
-	. += "</b></center></td></tr>"
+	data["max_gear_cost"] = MAX_GEAR_COST
 
-	var/datum/loadout_category/LC = loadout_categories[current_tab]
-	. += "<tr><td colspan=3><hr></td></tr>"
-	. += "<tr><td colspan=3>" + span_bold("<center>[LC.category]</center>") + "</td></tr>"
-	. += "<tr><td colspan=3><hr></td></tr>"
-	for(var/gear_name in LC.gear)
-		var/datum/gear/G = LC.gear[gear_name]
-		if(preference_mob && preference_mob.client)
-			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
-				continue
-			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
-				continue
-		var/ticked = (G.display_name in active_gear_list)
-		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
-		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
-		. += "<td>" + span_normal(span_italics("[G.description]")) + "</td></tr>"
-		if(G.show_roles && G.allowed_roles)
-			. += "<td colspan=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted to: [list2text(G.allowed_roles,", ")]</td>"
-		if(ticked)
-			. += "<tr><td colspan=3>"
-			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
-				. += " <a href='byond://?src=\ref[src];gear=[url_encode(G.display_name)];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
-			. += "</td></tr>"
-	. += "</table>"
-	. = jointext(., null)
+	return data
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(var/datum/gear/G)
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
@@ -211,51 +188,54 @@ var/list/gear_datums = list()
 		if(G)
 			. += G.cost
 
-/datum/category_item/player_setup_item/loadout/loadout/OnTopic(href, href_list, user)
+/datum/category_item/player_setup_item/loadout/loadout/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+	var/mob/user = ui.user
 
-	if(href_list["toggle_gear"])
-		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
-		if(TG.display_name in active_gear_list)
-			active_gear_list -= TG.display_name
-		else
-			var/total_cost = get_total()
-			if((total_cost+TG.cost) <= MAX_GEAR_COST)
-				active_gear_list[TG.display_name] = list()
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	if(href_list["gear"] && href_list["tweak"])
-		var/datum/gear/gear = gear_datums[url_decode(href_list["gear"])]
-		var/datum/gear_tweak/tweak = locate(href_list["tweak"])
-		if(!tweak || !istype(gear) || !(tweak in gear.gear_tweaks))
-			return TOPIC_NOACTION
-		var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
-		if(!metadata)
-			return TOPIC_NOACTION
-		set_tweak_metadata(gear, tweak, metadata)
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-	if(href_list["next_slot"] || href_list["prev_slot"])
-		//If we're moving up a slot..
-		if(href_list["next_slot"])
-			//change the current slot number
-			pref.gear_slot = pref.gear_slot+1
+	switch(action)
+		if("next_slot")
+			pref.gear_slot = pref.gear_slot + 1
 			if(pref.gear_slot > CONFIG_GET(number/loadout_slots))
 				pref.gear_slot = 1
-		//If we're moving down a slot..
-		else if(href_list["prev_slot"])
-			//change current slot one down
-			pref.gear_slot = pref.gear_slot-1
-			if(pref.gear_slot<1)
+			if(!("[pref.gear_slot]" in pref.gear_list))
+				pref.gear_list["[pref.gear_slot]"] = list()
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("prev_slot")
+			pref.gear_slot = pref.gear_slot - 1
+			if(pref.gear_slot <= 0)
 				pref.gear_slot = CONFIG_GET(number/loadout_slots)
-		// Refresh?
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-	else if(href_list["select_category"])
-		current_tab = href_list["select_category"]
-		return TOPIC_REFRESH
-	else if(href_list["clear_loadout"])
-		active_gear_list.Cut()
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-	return ..()
+			if(!("[pref.gear_slot]" in pref.gear_list))
+				pref.gear_list["[pref.gear_slot]"] = list()
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("clear_loadout")
+			active_gear_list.Cut()
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("toggle_gear")
+			var/datum/gear/TG = gear_datums[params["gear"]]
+			if(TG)
+				if(TG.display_name in active_gear_list)
+					active_gear_list -= TG.display_name
+				else if(get_total() + TG.cost <= MAX_GEAR_COST)
+					active_gear_list[TG.display_name] = list()
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("gear_tweak")
+			var/datum/gear/gear = gear_datums[params["gear"]]
+			var/datum/gear_tweak/tweak = locate(params["tweak"])
+			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
+				return TOPIC_HANDLED
+			var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
+			if(!metadata)
+				return TOPIC_HANDLED
+			set_tweak_metadata(gear, tweak, metadata)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 /datum/gear
 	var/display_name       //Name/index. Must be unique.

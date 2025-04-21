@@ -7,6 +7,7 @@ import {
   type LoadoutDataStatic,
 } from './data';
 import { SubtabEquipment } from './SubtabEquipment';
+import { SubtabLoadout } from './SubtabLoadout';
 
 export const Loadout = (props: {
   data: LoadoutData;
@@ -67,7 +68,11 @@ export const LoadoutContent = (props: {
           serverData={serverData}
         />
       ) : subtab === Subtabs.Loadout ? (
-        <Box>Loadout</Box>
+        <SubtabLoadout
+          data={data}
+          staticData={staticData}
+          serverData={serverData}
+        />
       ) : (
         <Box>Error</Box>
       )}

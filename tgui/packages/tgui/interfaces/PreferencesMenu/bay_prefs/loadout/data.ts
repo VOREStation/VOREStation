@@ -25,10 +25,27 @@ export type LoadoutData = {
   ringtone: string;
   shoes: BooleanLike;
   jacket: BooleanLike;
+
+  // loadout
+  gear_slot: number;
+  total_cost: number;
+  active_gear_list: Record<string, any>; // we don't actually care about the subkeys
+  gear_tweaks: Record<string, GearTweak[]>;
 };
 
 // Updated every reload/UI open
-export type LoadoutDataStatic = {};
+export type Gear = {
+  name: string;
+  desc: string;
+  cost: number;
+  show_roles: string;
+  allowed_roles: string[];
+};
+
+export type LoadoutDataStatic = {
+  categories: Record<string, Gear[]>;
+  max_gear_cost: number;
+};
 
 // Never changes
 export type LoadoutDataConstant = {
