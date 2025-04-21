@@ -1,24 +1,24 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-var/cultwords = list()
-var/runedec = 0
-var/global/list/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", "self", "see", "other", "hide")
-var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri")
+GLOBAL_LIST_EMPTY(cultwords)
+GLOBAL_VAR_INIT(runedec, 0)
+GLOBAL_LIST_INIT(engwords, list("travel", "blood", "join", "hell", "destroy", "technology", "self", "see", "other", "hide"))
+GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri"))
 
 /client/proc/check_words() // -- Urist
 	set category = "Admin.Secrets"
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
-	if(!cultwords["travel"])
+	if(!GLOB.cultwords["travel"])
 		runerandom()
-	for (var/word in engwords)
-		to_chat(usr, "[cultwords[word]] is [word]")
+	for (var/word in GLOB.engwords)
+		to_chat(usr, "[GLOB.cultwords[word]] is [word]")
 
 /proc/runerandom() //randomizes word meaning
-	var/list/runewords=rnwords
-	for (var/word in engwords)
-		cultwords[word] = pick(runewords)
-		runewords-=cultwords[word]
+	var/list/runewords=GLOB.rnwords
+	for (var/word in GLOB.engwords)
+		GLOB.cultwords[word] = pick(runewords)
+		runewords -= GLOB.cultwords[word]
 
 /obj/effect/rune
 	desc = "A strange collection of symbols drawn in blood."
@@ -112,53 +112,53 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		return fizzle()
 //		if(!src.visibility)
 //			src.visibility=1
-	if(word1 == cultwords["travel"] && word2 == cultwords["self"])
+	if(word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["self"])
 		return teleport(src.word3)
-	if(word1 == cultwords["see"] && word2 == cultwords["blood"] && word3 == cultwords["hell"])
+	if(word1 == GLOB.cultwords["see"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["hell"])
 		return tomesummon()
-	if(word1 == cultwords["hell"] && word2 == cultwords["destroy"] && word3 == cultwords["other"])
+	if(word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["destroy"] && word3 == GLOB.cultwords["other"])
 		return armor()
-	if(word1 == cultwords["join"] && word2 == cultwords["blood"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["self"])
 		return convert()
-	if(word1 == cultwords["hell"] && word2 == cultwords["join"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["join"] && word3 == GLOB.cultwords["self"])
 		return tearreality()
-	if(word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["technology"])
+	if(word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["technology"])
 		return emp(src.loc,5)
-	if(word1 == cultwords["travel"] && word2 == cultwords["blood"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["self"])
 		return drain()
-	if(word1 == cultwords["see"] && word2 == cultwords["hell"] && word3 == cultwords["join"])
+	if(word1 == GLOB.cultwords["see"] && word2 == GLOB.cultwords["hell"] && word3 == GLOB.cultwords["join"])
 		return seer()
-	if(word1 == cultwords["blood"] && word2 == cultwords["join"] && word3 == cultwords["hell"])
+	if(word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["join"] && word3 == GLOB.cultwords["hell"])
 		return raise()
-	if(word1 == cultwords["hide"] && word2 == cultwords["see"] && word3 == cultwords["blood"])
+	if(word1 == GLOB.cultwords["hide"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["blood"])
 		return obscure(4)
-	if(word1 == cultwords["hell"] && word2 == cultwords["travel"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["travel"] && word3 == GLOB.cultwords["self"])
 		return ajourney()
-	if(word1 == cultwords["blood"] && word2 == cultwords["see"] && word3 == cultwords["travel"])
+	if(word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["travel"])
 		return manifest()
-	if(word1 == cultwords["hell"] && word2 == cultwords["technology"] && word3 == cultwords["join"])
+	if(word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["technology"] && word3 == GLOB.cultwords["join"])
 		return talisman()
-	if(word1 == cultwords["hell"] && word2 == cultwords["blood"] && word3 == cultwords["join"])
+	if(word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["join"])
 		return sacrifice()
-	if(word1 == cultwords["blood"] && word2 == cultwords["see"] && word3 == cultwords["hide"])
+	if(word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["hide"])
 		return revealrunes(src)
-	if(word1 == cultwords["destroy"] && word2 == cultwords["travel"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["travel"] && word3 == GLOB.cultwords["self"])
 		return wall()
-	if(word1 == cultwords["travel"] && word2 == cultwords["technology"] && word3 == cultwords["other"])
+	if(word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["technology"] && word3 == GLOB.cultwords["other"])
 		return freedom()
-	if(word1 == cultwords["join"] && word2 == cultwords["other"] && word3 == cultwords["self"])
+	if(word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["self"])
 		return cultsummon()
-	if(word1 == cultwords["hide"] && word2 == cultwords["other"] && word3 == cultwords["see"])
+	if(word1 == GLOB.cultwords["hide"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["see"])
 		return deafen()
-	if(word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["other"])
+	if(word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["other"])
 		return blind()
-	if(word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["blood"])
+	if(word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["blood"])
 		return bloodboil()
-	if(word1 == cultwords["self"] && word2 == cultwords["other"] && word3 == cultwords["technology"])
+	if(word1 == GLOB.cultwords["self"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["technology"])
 		return communicate()
-	if(word1 == cultwords["travel"] && word2 == cultwords["other"])
+	if(word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["other"])
 		return itemport(src.word3)
-	if(word1 == cultwords["join"] && word2 == cultwords["hide"] && word3 == cultwords["technology"])
+	if(word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["hide"] && word3 == GLOB.cultwords["technology"])
 		return runestun()
 	else
 		return fizzle()
@@ -290,10 +290,10 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 /obj/item/book/tome/Initialize(mapload)
 	. = ..()
-	if(!cultwords["travel"])
+	if(!GLOB.cultwords["travel"])
 		runerandom()
-	for(var/V in cultwords)
-		words[cultwords[V]] = V
+	for(var/V in GLOB.cultwords)
+		words[GLOB.cultwords[V]] = V
 
 /obj/item/book/tome/attack(mob/living/M as mob, mob/living/user as mob)
 	add_attack_logs(user,M,"Hit with [name]")
@@ -318,7 +318,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	if(!user.canmove || user.stat || user.restrained())
 		return
 
-	if(!cultwords["travel"])
+	if(!GLOB.cultwords["travel"])
 		runerandom()
 	if(iscultist(user))
 		var/C = 0
@@ -328,7 +328,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			to_chat(user, span_warning("You do not have enough space to write a proper rune."))
 			return
 
-		if (C>=26 + runedec + cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
+		if (C>=26 + GLOB.runedec + cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
 			tgui_alert_async(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
@@ -440,7 +440,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 /obj/item/book/tome/imbued/attack_self(mob/user as mob)
 	if(src.cultistsonly && !iscultist(user))
 		return
-	if(!cultwords["travel"])
+	if(!GLOB.cultwords["travel"])
 		runerandom()
 	if(user)
 		var/r
@@ -461,8 +461,8 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				var/beacon
 				if(user)
 					beacon = tgui_input_list(user, "Select the last rune", "Rune Scribing", words, timeout=30 SECONDS)
-				R.word1=cultwords["travel"]
-				R.word2=cultwords["self"]
+				R.word1=GLOB.cultwords["travel"]
+				R.word2=GLOB.cultwords["self"]
 				R.word3=beacon
 				R.loc = user.loc
 				R.check_icon()
@@ -471,140 +471,140 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				var/beacon
 				if(user)
 					beacon = tgui_input_list(user, "Select the last rune", "Rune Scribing", words, timeout=30 SECONDS)
-				R.word1=cultwords["travel"]
-				R.word2=cultwords["other"]
+				R.word1=GLOB.cultwords["travel"]
+				R.word2=GLOB.cultwords["other"]
 				R.word3=beacon
 				R.loc = user.loc
 				R.check_icon()
 			if("tome")
-				R.word1=cultwords["see"]
-				R.word2=cultwords["blood"]
-				R.word3=cultwords["hell"]
+				R.word1=GLOB.cultwords["see"]
+				R.word2=GLOB.cultwords["blood"]
+				R.word3=GLOB.cultwords["hell"]
 				R.loc = user.loc
 				R.check_icon()
 			if("armor")
-				R.word1=cultwords["hell"]
-				R.word2=cultwords["destroy"]
-				R.word3=cultwords["other"]
+				R.word1=GLOB.cultwords["hell"]
+				R.word2=GLOB.cultwords["destroy"]
+				R.word3=GLOB.cultwords["other"]
 				R.loc = user.loc
 				R.check_icon()
 			if("convert")
-				R.word1=cultwords["join"]
-				R.word2=cultwords["blood"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["join"]
+				R.word2=GLOB.cultwords["blood"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("tear in reality")
-				R.word1=cultwords["hell"]
-				R.word2=cultwords["join"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["hell"]
+				R.word2=GLOB.cultwords["join"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("emp")
-				R.word1=cultwords["destroy"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["technology"]
+				R.word1=GLOB.cultwords["destroy"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["technology"]
 				R.loc = user.loc
 				R.check_icon()
 			if("drain")
-				R.word1=cultwords["travel"]
-				R.word2=cultwords["blood"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["travel"]
+				R.word2=GLOB.cultwords["blood"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("seer")
-				R.word1=cultwords["see"]
-				R.word2=cultwords["hell"]
-				R.word3=cultwords["join"]
+				R.word1=GLOB.cultwords["see"]
+				R.word2=GLOB.cultwords["hell"]
+				R.word3=GLOB.cultwords["join"]
 				R.loc = user.loc
 				R.check_icon()
 			if("raise")
-				R.word1=cultwords["blood"]
-				R.word2=cultwords["join"]
-				R.word3=cultwords["hell"]
+				R.word1=GLOB.cultwords["blood"]
+				R.word2=GLOB.cultwords["join"]
+				R.word3=GLOB.cultwords["hell"]
 				R.loc = user.loc
 				R.check_icon()
 			if("obscure")
-				R.word1=cultwords["hide"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["blood"]
+				R.word1=GLOB.cultwords["hide"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["blood"]
 				R.loc = user.loc
 				R.check_icon()
 			if("astral journey")
-				R.word1=cultwords["hell"]
-				R.word2=cultwords["travel"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["hell"]
+				R.word2=GLOB.cultwords["travel"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("manifest")
-				R.word1=cultwords["blood"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["travel"]
+				R.word1=GLOB.cultwords["blood"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["travel"]
 				R.loc = user.loc
 				R.check_icon()
 			if("imbue talisman")
-				R.word1=cultwords["hell"]
-				R.word2=cultwords["technology"]
-				R.word3=cultwords["join"]
+				R.word1=GLOB.cultwords["hell"]
+				R.word2=GLOB.cultwords["technology"]
+				R.word3=GLOB.cultwords["join"]
 				R.loc = user.loc
 				R.check_icon()
 			if("sacrifice")
-				R.word1=cultwords["hell"]
-				R.word2=cultwords["blood"]
-				R.word3=cultwords["join"]
+				R.word1=GLOB.cultwords["hell"]
+				R.word2=GLOB.cultwords["blood"]
+				R.word3=GLOB.cultwords["join"]
 				R.loc = user.loc
 				R.check_icon()
 			if("reveal")
-				R.word1=cultwords["blood"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["hide"]
+				R.word1=GLOB.cultwords["blood"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["hide"]
 				R.loc = user.loc
 				R.check_icon()
 			if("wall")
-				R.word1=cultwords["destroy"]
-				R.word2=cultwords["travel"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["destroy"]
+				R.word2=GLOB.cultwords["travel"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("freedom")
-				R.word1=cultwords["travel"]
-				R.word2=cultwords["technology"]
-				R.word3=cultwords["other"]
+				R.word1=GLOB.cultwords["travel"]
+				R.word2=GLOB.cultwords["technology"]
+				R.word3=GLOB.cultwords["other"]
 				R.loc = user.loc
 				R.check_icon()
 			if("cultsummon")
-				R.word1=cultwords["join"]
-				R.word2=cultwords["other"]
-				R.word3=cultwords["self"]
+				R.word1=GLOB.cultwords["join"]
+				R.word2=GLOB.cultwords["other"]
+				R.word3=GLOB.cultwords["self"]
 				R.loc = user.loc
 				R.check_icon()
 			if("deafen")
-				R.word1=cultwords["hide"]
-				R.word2=cultwords["other"]
-				R.word3=cultwords["see"]
+				R.word1=GLOB.cultwords["hide"]
+				R.word2=GLOB.cultwords["other"]
+				R.word3=GLOB.cultwords["see"]
 				R.loc = user.loc
 				R.check_icon()
 			if("blind")
-				R.word1=cultwords["destroy"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["other"]
+				R.word1=GLOB.cultwords["destroy"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["other"]
 				R.loc = user.loc
 				R.check_icon()
 			if("bloodboil")
-				R.word1=cultwords["destroy"]
-				R.word2=cultwords["see"]
-				R.word3=cultwords["blood"]
+				R.word1=GLOB.cultwords["destroy"]
+				R.word2=GLOB.cultwords["see"]
+				R.word3=GLOB.cultwords["blood"]
 				R.loc = user.loc
 				R.check_icon()
 			if("communicate")
-				R.word1=cultwords["self"]
-				R.word2=cultwords["other"]
-				R.word3=cultwords["technology"]
+				R.word1=GLOB.cultwords["self"]
+				R.word2=GLOB.cultwords["other"]
+				R.word3=GLOB.cultwords["technology"]
 				R.loc = user.loc
 				R.check_icon()
 			if("stun")
-				R.word1=cultwords["join"]
-				R.word2=cultwords["hide"]
-				R.word3=cultwords["technology"]
+				R.word1=GLOB.cultwords["join"]
+				R.word2=GLOB.cultwords["hide"]
+				R.word3=GLOB.cultwords["technology"]
 				R.loc = user.loc
 				R.check_icon()

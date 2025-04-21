@@ -22,7 +22,7 @@
 	return highest_overpower
 
 /datum/event2/meta/grid_check/get_weight()
-	var/population_factor = metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
+	var/population_factor = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
 	var/overpower_factor = 50 * get_overpower() // Will be 0 if not overloaded at all, and 50 if turbines are outputting twice as much as rated.
 	return (20 + population_factor + overpower_factor) / (times_ran + 1)
 

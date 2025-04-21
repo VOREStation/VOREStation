@@ -81,7 +81,7 @@
 	..()
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
 		if(prob(20))

@@ -170,7 +170,7 @@
 
 	#ifdef CARDINAL_INPUT_ONLY
 
-	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
+	/// Movement dir of the most recently pressed movement key.  Used in GLOB.cardinal-only movement mode.
 	var/last_move_dir_pressed = NONE
 
 	#endif

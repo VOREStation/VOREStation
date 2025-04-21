@@ -4258,7 +4258,7 @@
 
 		M.druggy = max(M.druggy, drug_strength)
 		if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 
 /datum/reagent/ethanol/sakebomb
 	name = REAGENT_SAKEBOMB

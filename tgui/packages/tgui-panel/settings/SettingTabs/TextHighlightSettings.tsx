@@ -182,6 +182,7 @@ const TextHighlightSetting = (props) => {
         </Stack.Item>
       </Stack>
       <TextArea
+        fluid
         expensive
         height="3em"
         value={highlightText}
@@ -197,6 +198,7 @@ const TextHighlightSetting = (props) => {
       />
       {!!highlightBlacklist && (
         <TextArea
+          fluid
           expensive
           height="3em"
           value={blacklistText}

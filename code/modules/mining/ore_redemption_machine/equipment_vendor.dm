@@ -76,24 +76,25 @@
 	prize_list = list()
 	prize_list["Gear"] = list(
 		// TODO EQUIPMENT("Advanced Scanner",	/obj/item/t_scanner/adv_mining_scanner,										800),
-		// TODO EQUIPMENT("Explorer's Webbing",	/obj/item/storage/belt/mining,														500),
+		// TODO EQUIPMENT("Explorer's Webbing",	/obj/item/storage/belt/mining,												500),
 		EQUIPMENT("Defense Equipment - Plasteel Machete",		/obj/item/material/knife/machete,							500),
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/grenade/spawnergrenade/manhacks/station/locked,	1000),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/grenade/spawnergrenade/ward,						1500),
-		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/grenade/smokebomb,									100),
+		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/grenade/smokebomb,								100),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
-		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,					1000), //eh this is two-hasnded so whatever, same price for slight dmg increase!
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-handed so whatever, same price for slight dmg increase!
+		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				350),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/material/fishing_net,								500),
-		EQUIPMENT("Fulton Beacon",								/obj/item/fulton_core,												500),
+		EQUIPMENT("Fulton Beacon",								/obj/item/fulton_core,										500),
 		EQUIPMENT("Geiger Counter",								/obj/item/geiger,											750),
 		EQUIPMENT("GPS Device",									/obj/item/gps/mining,										100),
-		// EQUIPMENT("Mining Conscription Kit",					/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
-		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										2500),
+		// EQUIPMENT("Mining Conscription Kit",					/obj/item/storage/backpack/duffelbag/mining_conscript,		1000),
+		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,								2500),
 		EQUIPMENT("Mini-Translocator",							/obj/item/perfect_tele/one_beacon,							1200),
-		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
+		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,									750),
 		EQUIPMENT("Mining Satchel of Holding",					/obj/item/storage/bag/ore/holding,							1500),
 		EQUIPMENT("Sheet Snatcher of Holding",					/obj/item/storage/bag/sheetsnatcher/holding,				1000),
 		EQUIPMENT("Advanced Ore Scanner",						/obj/item/mining_scanner/advanced,							500),
@@ -154,7 +155,7 @@
 		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,					2000),
 	)
 	prize_list["Miscellaneous"] = list(
-		EQUIPMENT(REAGENT_ABSINTHE,					/obj/item/reagent_containers/food/drinks/bottle/absinthe,	125),
+		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/reagent_containers/food/drinks/bottle/absinthe,	125),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			150),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
 		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
@@ -166,7 +167,7 @@
 		EQUIPMENT("Thalers - 100",				/obj/item/spacecash/c100,									1000),
 		EQUIPMENT("Thalers - 1000",				/obj/item/spacecash/c1000,									10000),
 		EQUIPMENT("Umbrella",					/obj/item/melee/umbrella/random,								200),
-		EQUIPMENT(REAGENT_WHISKEY,					/obj/item/reagent_containers/food/drinks/bottle/whiskey,		125),
+		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/reagent_containers/food/drinks/bottle/whiskey,		125),
 		EQUIPMENT("Mining PSG Upgrade Disk",	/obj/item/borg/upgrade/shield_upgrade,								2500),
 	)
 	prize_list["Extra"] = list() // Used in child vendors

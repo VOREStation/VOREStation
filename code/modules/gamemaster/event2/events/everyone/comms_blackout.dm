@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/comms_blackout
 
 /datum/event2/meta/comms_blackout/get_weight()
-	return 50 + metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5
+	return 50 + GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5
 
 
 
@@ -39,5 +39,5 @@
 			T.emp_act(1)
 
 	// Communicators go down no matter what.
-	for(var/obj/machinery/exonet_node/N in machines)
+	for(var/obj/machinery/exonet_node/N in GLOB.machines)
 		N.emp_act(1)
