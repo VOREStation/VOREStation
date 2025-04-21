@@ -1,7 +1,7 @@
 // Navigation beacon for AI robots
 // Functions as a transponder: looks for incoming signal matching
 
-var/global/list/navbeacons = list()	// no I don't like putting this in, but it will do for now
+GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do for now
 
 /obj/machinery/navbeacon
 	icon = 'icons/obj/objects.dmi'
@@ -26,7 +26,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 
 	var/turf/T = loc
 	hide(!T.is_plating())
-	navbeacons += src
+	GLOB.navbeacons += src
 
 // set the transponder codes assoc list from codes_txt
 // DEPRECATED - This is kept only for compatibilty with old map files! Do not use this!
@@ -201,7 +201,7 @@ Transponder Codes:<UL>"}
 				updateDialog()
 
 /obj/machinery/navbeacon/Destroy()
-	navbeacons.Remove(src)
+	GLOB.navbeacons.Remove(src)
 	. = ..()
 
 

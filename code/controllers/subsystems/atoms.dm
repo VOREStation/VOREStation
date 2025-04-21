@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		text2file(initlog, "[log_path]-initialize.log")
+		text2file(initlog, "[GLOB.log_directory]-initialize.log")
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT

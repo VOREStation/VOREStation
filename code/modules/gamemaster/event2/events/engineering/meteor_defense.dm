@@ -10,15 +10,15 @@
 
 /datum/event2/meta/meteor_defense/get_weight()
 	// Engineers count as 20.
-	var/engineers = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
+	var/engineers = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 	if(engineers < 3) // There -must- be at least three engineers for this to be possible.
 		return 0
 
 	. = engineers * 20
 
 	// Cargo and AI/borgs count as 10.
-	var/cargo = metric.count_people_with_job(/datum/job/cargo_tech) + metric.count_people_with_job(/datum/job/qm)
-	var/bots = metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
+	var/cargo = GLOB.metric.count_people_with_job(/datum/job/cargo_tech) + GLOB.metric.count_people_with_job(/datum/job/qm)
+	var/bots = GLOB.metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
 
 	. += (cargo + bots) * 10
 
@@ -40,7 +40,7 @@
 	meteor_types = meteors_threatening.Copy()
 
 /datum/event2/event/meteor_defense/set_up()
-	direction = pick(cardinal) // alldirs doesn't work with current meteor code unfortunately.
+	direction = pick(GLOB.cardinal) // GLOB.alldirs doesn't work with current meteor code unfortunately.
 	waves = rand(3, 6)
 	switch(direction)
 		if(NORTH)
@@ -74,7 +74,7 @@
 		waves--
 		message_admins("[waves] more wave\s of meteors remain.")
 		// Dir is reversed because the direction describes where meteors are going, not what side it's gonna hit.
-		spawn_meteors(rand(wave_upper_bound, wave_lower_bound), meteor_types, reverse_dir[direction])
+		spawn_meteors(rand(wave_upper_bound, wave_lower_bound), meteor_types, GLOB.reverse_dir[direction])
 
 /datum/event2/event/meteor_defense/should_end()
 	return waves <= 0

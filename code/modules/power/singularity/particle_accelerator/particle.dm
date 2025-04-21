@@ -36,10 +36,8 @@
 
 /obj/effect/accelerated_particle/Initialize(mapload, dir = 2)
 	. = ..()
-	src.loc = loc
-	src.set_dir(dir)
-	addtimer(CALLBACK(src, PROC_REF(move)), 0.1 SECONDS)
-
+	set_dir(dir)
+	move(0.1 SECONDS)
 
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if (A)
@@ -98,6 +96,6 @@
 	movement_range--
 	if(movement_range <= 0)
 		qdel(src)
-	else
-		sleep(lag)
-		move(lag)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(move), lag), lag)

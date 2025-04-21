@@ -1007,8 +1007,8 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_structures)
-		desired_result  = weavable_structures[choice]
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", GLOB.weavable_structures)
+		desired_result  = GLOB.weavable_structures[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
@@ -1066,8 +1066,8 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_items)
-		desired_result  = weavable_items[choice]
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", GLOB.weavable_items)
+		desired_result  = GLOB.weavable_items[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 

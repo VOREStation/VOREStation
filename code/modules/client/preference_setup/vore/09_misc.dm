@@ -34,7 +34,7 @@
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
 	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
 	pref.directory_erptag		= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
-	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, sensorpreflist.len, initial(pref.sensorpref))
+	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, GLOB.sensorpreflist.len, initial(pref.sensorpref))
 	pref.capture_crystal		= sanitize_integer(pref.capture_crystal, 0, 1, initial(pref.capture_crystal))
 	pref.auto_backup_implant	= sanitize_integer(pref.auto_backup_implant, 0, 1, initial(pref.auto_backup_implant))
 	pref.borg_petting			= sanitize_integer(pref.borg_petting, 0, 1, initial(pref.borg_petting))
@@ -45,7 +45,7 @@
 	. += span_bold("Character Directory Vore Tag:") + " <a href='byond://?src=\ref[src];directory_tag=1'><b>[pref.directory_tag]</b></a><br>"
 	. += span_bold("Character Directory ERP Tag:") + " <a href='byond://?src=\ref[src];directory_erptag=1'><b>[pref.directory_erptag]</b></a><br>"
 	. += span_bold("Character Directory Advertisement:") + " <a href='byond://?src=\ref[src];directory_ad=1'><b>Set Directory Ad</b></a><br>"
-	. += span_bold("Suit Sensors Preference:") + " <a [pref.sensorpref ? "" : ""] href='byond://?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"
+	. += span_bold("Suit Sensors Preference:") + " <a [pref.sensorpref ? "" : ""] href='byond://?src=\ref[src];toggle_sensor_setting=1'><b>[GLOB.sensorpreflist[pref.sensorpref]]</b></a><br>"
 	. += span_bold("Capture Crystal Preference:") + " <a [pref.capture_crystal ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_capture_crystal=1'><b>[pref.capture_crystal ? "Yes" : "No"]</b></a><br>"
 	. += span_bold("Spawn With Backup Implant:") + " <a [pref.auto_backup_implant ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_implant=1'><b>[pref.auto_backup_implant ? "Yes" : "No"]</b></a><br>"
 	. += span_bold("Allow petting as robot:") + " <a [pref.borg_petting ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_borg_petting=1'><b>[pref.borg_petting ? "Yes" : "No"]</b></a><br>"
@@ -75,9 +75,9 @@
 		pref.directory_ad = msg
 		return TOPIC_REFRESH
 	else if(href_list["toggle_sensor_setting"])
-		var/new_sensorpref = tgui_input_list(user, "Choose your character's sensor preferences:", "Character Preferences", sensorpreflist, sensorpreflist[pref.sensorpref])
+		var/new_sensorpref = tgui_input_list(user, "Choose your character's sensor preferences:", "Character Preferences", GLOB.sensorpreflist, GLOB.sensorpreflist[pref.sensorpref])
 		if (!isnull(new_sensorpref) && CanUseTopic(user))
-			pref.sensorpref = sensorpreflist.Find(new_sensorpref)
+			pref.sensorpref = GLOB.sensorpreflist.Find(new_sensorpref)
 			return TOPIC_REFRESH
 	else if(href_list["toggle_capture_crystal"])
 		pref.capture_crystal = pref.capture_crystal ? 0 : 1;

@@ -21,9 +21,9 @@
 // The reverse lookup of player_sizes_list, number to name.
 /proc/player_size_name(var/size_multiplier)
 	// (This assumes list is sorted big->small)
-	for(var/N in player_sizes_list)
+	for(var/N in GLOB.player_sizes_list)
 		. = N // So we return the smallest if we get to the end
-		if(size_multiplier >= player_sizes_list[N])
+		if(size_multiplier >= GLOB.player_sizes_list[N])
 			return N
 
 /**
