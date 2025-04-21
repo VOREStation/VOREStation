@@ -1,4 +1,4 @@
-var/global/list/global_used_pois = list()
+GLOBAL_LIST_EMPTY(global_used_pois)
 SUBSYSTEM_DEF(points_of_interest)
 	name = "Points of Interest"
 	wait = 1 SECONDS
