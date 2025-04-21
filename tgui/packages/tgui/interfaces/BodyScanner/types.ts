@@ -44,7 +44,7 @@ type reagent = { name: string; amount: number; overdose: BooleanLike };
 
 export type internalOrgan = {
   name: string;
-  desc: string | null;
+  desc?: string | null;
   germ_level?: number;
   damage?: number;
   maxHealth?: number;
