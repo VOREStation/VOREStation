@@ -1,7 +1,6 @@
 import { Section } from 'tgui-core/components';
 
 import { ServerPreferencesFetcher } from '../ServerPreferencesFetcher';
-import { type LegacyData, type LegacyStatic } from './data';
 import {
   type GeneralData,
   type GeneralDataConstant,
@@ -26,8 +25,8 @@ enum Tabs {
 
 export const BayPrefsEntryPoint = (props: {
   type: string;
-  data: LegacyData;
-  staticData: LegacyStatic;
+  data: any;
+  staticData: any;
 }) => {
   const { type, data, staticData } = props;
 

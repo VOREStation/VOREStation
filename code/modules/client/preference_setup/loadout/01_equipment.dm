@@ -177,10 +177,6 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/loadout/equipment/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-
-	// TODO: Remove when we have static data in this or the loadout page
-	data["obligatory_static_data"] = TRUE
-
 	return data
 
 /datum/category_item/player_setup_item/loadout/equipment/tgui_constant_data()

@@ -2,17 +2,23 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, ByondUi, Section, Stack } from 'tgui-core/components';
+import { type BooleanLike } from 'tgui-core/react';
 
 import { BayPrefsEntryPoint } from './bay_prefs';
-import { type LegacyData, type LegacyStatic } from './bay_prefs/data';
 
 type Data = {
   header: string;
   content: string;
   categories: string[];
-  selected_category: string;
-  legacy: LegacyData;
-  legacy_static: LegacyStatic;
+  selected_category: {
+    name: string;
+    items: any;
+  };
+  selected_category_static: any;
+
+  preview_loadout: BooleanLike;
+  preview_job_gear: BooleanLike;
+  preview_animations: BooleanLike;
 };
 
 export const CharacterPreferenceWindow = (props) => {
@@ -20,12 +26,13 @@ export const CharacterPreferenceWindow = (props) => {
   const [showOld, setShowOld] = useState(true);
 
   const {
-    header,
     content,
     categories,
     selected_category,
-    legacy,
-    legacy_static,
+    selected_category_static,
+    preview_loadout,
+    preview_job_gear,
+    preview_animations,
   } = data;
 
   return (
@@ -67,7 +74,7 @@ export const CharacterPreferenceWindow = (props) => {
                 {categories.map((category) => (
                   <Button
                     key={category}
-                    selected={category === selected_category}
+                    selected={category === selected_category.name}
                     onClick={() => act('switch_category', { category })}
                   >
                     {category}
@@ -92,9 +99,9 @@ export const CharacterPreferenceWindow = (props) => {
             <Stack vertical fill height="92%">
               <Stack.Item grow>
                 <BayPrefsEntryPoint
-                  type={selected_category}
-                  data={legacy}
-                  staticData={legacy_static}
+                  type={selected_category.name}
+                  data={selected_category.items}
+                  staticData={selected_category_static}
                 />
               </Stack.Item>
               {showOld ? (
@@ -121,14 +128,14 @@ export const CharacterPreferenceWindow = (props) => {
                 </Stack.Item>
                 <Stack.Item grow>
                   <Button fluid onClick={() => act('toggle_preview_loadout')}>
-                    {data.legacy.preview_loadout ? 'Hide' : 'Show'} Loadout
+                    {preview_loadout ? 'Hide' : 'Show'} Loadout
                   </Button>
                 </Stack.Item>
               </Stack>
               <Stack>
                 <Stack.Item grow>
                   <Button fluid onClick={() => act('toggle_preview_job_gear')}>
-                    {data.legacy.preview_job_gear ? 'Hide' : 'Show'} Job Gear
+                    {preview_job_gear ? 'Hide' : 'Show'} Job Gear
                   </Button>
                 </Stack.Item>
                 <Stack.Item grow>
@@ -136,8 +143,7 @@ export const CharacterPreferenceWindow = (props) => {
                     fluid
                     onClick={() => act('toggle_preview_animations')}
                   >
-                    {data.legacy.preview_animations ? 'Hide' : 'Show'}{' '}
-                    Animations
+                    {preview_animations ? 'Hide' : 'Show'} Animations
                   </Button>
                 </Stack.Item>
               </Stack>

@@ -8,15 +8,18 @@
 		return data
 
 	var/list/legacy = list()
-	var/list/categories = preferences.player_setup.categories
-	for(var/datum/category_group/player_setup_category/category as anything in categories)
-		var/list/items = category.items
+	if(preferences.player_setup.selected_category)
+		var/list/items = preferences.player_setup.selected_category.items
 		for(var/datum/category_item/player_setup_item/item as anything in items)
 			legacy += item.tgui_data(user)
-	legacy["preview_loadout"] = preferences.equip_preview_mob & EQUIP_PREVIEW_LOADOUT
-	legacy["preview_job_gear"] = preferences.equip_preview_mob & EQUIP_PREVIEW_JOB
-	legacy["preview_animations"] = preferences.animations_toggle
-	data["legacy"] = legacy
+	data["selected_category"] = list(
+		"name" = preferences.player_setup.selected_category.name,
+		"items" = legacy,
+	)
+
+	data["preview_loadout"] = preferences.equip_preview_mob & EQUIP_PREVIEW_LOADOUT
+	data["preview_job_gear"] = preferences.equip_preview_mob & EQUIP_PREVIEW_JOB
+	data["preview_animations"] = preferences.animations_toggle
 
 	return data
 
@@ -26,20 +29,19 @@
 	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return data
 
-	data["header"] =  preferences.player_setup.header()
 	data["content"] = preferences.player_setup.content(user)
-	data["selected_category"] = preferences.player_setup.selected_category.name
+
+	var/list/categories_data = list()
+	for(var/datum/category_group/player_setup_category/category as anything in preferences.player_setup.categories)
+		UNTYPED_LIST_ADD(categories_data, category.name)
+	data["categories"] = categories_data
 
 	var/list/legacy = list()
-	var/list/categories = preferences.player_setup.categories
-	var/list/categories_data = list()
-	for(var/datum/category_group/player_setup_category/category as anything in categories)
-		UNTYPED_LIST_ADD(categories_data, category.name)
-		var/list/items = category.items
+	if(preferences.player_setup.selected_category)
+		var/list/items = preferences.player_setup.selected_category.items
 		for(var/datum/category_item/player_setup_item/item as anything in items)
 			legacy += item.tgui_static_data(user)
-	data["categories"] = categories_data
-	data["legacy_static"] = legacy
+	data["selected_category_static"] = legacy
 
 	return data
 
