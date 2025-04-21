@@ -10,7 +10,7 @@
 /datum/game_master/default/choose_event()
 	log_game_master("Now starting event decision.")
 
-	var/list/most_active_departments = metric.assess_all_departments(3, list(last_department_used))
+	var/list/most_active_departments = GLOB.metric.assess_all_departments(3, list(last_department_used))
 	var/list/best_events = decide_best_events(most_active_departments)
 
 	if(LAZYLEN(best_events))

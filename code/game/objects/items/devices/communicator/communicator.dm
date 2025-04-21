@@ -2,7 +2,7 @@
 //
 // Allows ghosts to roleplay with crewmembers without having to commit to joining the round, and also allows communications between two communicators.
 
-var/global/list/obj/item/communicator/all_communicators = list()
+GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 
 // List of core tabs the communicator can switch to
 #define HOMETAB 1
@@ -97,8 +97,8 @@ var/global/list/obj/item/communicator/all_communicators = list()
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
 /obj/item/communicator/Initialize(mapload)
 	. = ..()
-	all_communicators += src
-	all_communicators = sortAtom(all_communicators)
+	GLOB.all_communicators += src
+	GLOB.all_communicators = sortAtom(GLOB.all_communicators)
 	node = get_exonet_node()
 	START_PROCESSING(SSobj, src)
 	camera = new(src)
@@ -187,7 +187,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	src.known_devices.Cut()
 	if(!get_connection_to_tcomms()) //If the network's down, we can't see anything.
 		return
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(!comm || !comm.exonet || !comm.exonet.address || comm.exonet.address == src.exonet.address) //Don't add addressless devices, and don't add ourselves.
 			continue
 		src.known_devices |= comm
@@ -314,7 +314,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	node = null
 
 	//Clean up references that might point at us
-	all_communicators -= src
+	GLOB.all_communicators -= src
 	STOP_PROCESSING(SSobj, src)
 	listening_objects.Remove(src)
 	QDEL_NULL(camera)

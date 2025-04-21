@@ -120,7 +120,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B2 = get_step(src, dir)
 		T2 = GetAbove(B2)
 		if(!istype(B2) || !istype(T2))
@@ -293,7 +293,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B1 = get_step(src, turn(dir, 180))
 		O = GetAbove(B1)
 		if(!istype(B1) || !istype(O))
@@ -377,7 +377,7 @@
 		return
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		O = get_step(src, turn(dir, 180))
 		B1 = GetBelow(O)
 		if(!istype(B1) || !istype(O))

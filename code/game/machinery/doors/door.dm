@@ -421,7 +421,7 @@
 /obj/machinery/door/proc/next_close_wait()
 	var/lowest_temp = T20C
 	var/highest_temp = T0C
-	for(var/D in cardinal)
+	for(var/D in GLOB.cardinal)
 		var/turf/target = get_step(loc, D)
 		if(!target.density)
 			var/datum/gas_mixture/airmix = target.return_air()
