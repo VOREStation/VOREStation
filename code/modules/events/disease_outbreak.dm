@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 			popleft(A.symptoms)	//We have a full symptom list but are still not transmittable. Try removing one of the "payloads"
 
 		A.AssignProperties(A.GenerateProperties())
-	A.name = pick(alphabet_uppercase) + num2text(rand(1,9)) + pick(alphabet_uppercase) + num2text(rand(1,9)) + pick("v", "V", "-" + num2text(game_year), "")
+	A.name = pick(GLOB.alphabet_upper) + num2text(rand(1,9)) + pick(GLOB.alphabet_upper) + num2text(rand(1,9)) + pick("v", "V", "-" + num2text(GLOB.game_year), "")
 	A.Refresh()
 	return A
 

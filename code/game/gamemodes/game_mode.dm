@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			antag_summary += "[antag.role_text_plural]"
 			i++
 		antag_summary += "."
-		if(antag_templates.len > 1 && master_mode != "secret")
+		if(antag_templates.len > 1 && GLOB.master_mode != "secret")
 			to_world(span_filter_system("[antag_summary]"))
 		else
 			message_admins("[antag_summary]")
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if((player.client)&&(player.ready))
 			playerC++
 
-	if(master_mode=="secret")
+	if(GLOB.master_mode=="secret")
 		if(playerC < CONFIG_GET(keyed_list/player_requirements_secret)[config_tag])
 			return 0
 	else
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		to_chat(usr, span_warning("Something is terribly wrong; there is no gametype."))
 		return
 
-	if(master_mode != "secret")
+	if(GLOB.master_mode != "secret")
 		to_chat(usr, span_boldnotice("The roundtype is [capitalize(ticker.mode.name)]"))
 		if(ticker.mode.round_description)
 			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))

@@ -326,7 +326,7 @@
 
 			var/rand_set = list("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
 			if(p >= 80)
-				rand_set += alphabet_uppercase
+				rand_set += GLOB.alphabet_upper
 			for(var/j = 1, j <= rand(0, 2), j++)
 				letter += pick(rand_set)
 

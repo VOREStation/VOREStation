@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 /datum/disease/Destroy()
 	affected_mob = null
-	active_diseases.Remove(src)
+	GLOB.active_diseases.Remove(src)
 	if(processing)
 		End()
 	return ..()

@@ -39,7 +39,7 @@
 	DD.start_cure_timer()
 	viruses += DD
 	DD.affected_mob = src
-	active_diseases += DD
+	GLOB.active_diseases += DD
 
 	var/list/skipped = list("affected_mob", "holder", "carrier", "stage", "type", "parent_type", "vars", "transformed")
 	if(respect_carrier)

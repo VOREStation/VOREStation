@@ -11,12 +11,12 @@
 	event_type = /datum/event2/event/canister_leak
 
 /datum/event2/meta/canister_leak/get_weight()
-	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30
+	return GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30
 
 /datum/event2/event/canister_leak/start()
 	// List of all non-destroyed canisters on station levels
 	var/list/all_canisters = list()
-	for(var/obj/machinery/portable_atmospherics/canister/C in machines)
+	for(var/obj/machinery/portable_atmospherics/canister/C in GLOB.machines)
 		if(!C.destroyed && (C.z in using_map.station_levels) && C.air_contents.total_moles >= MOLES_CELLSTANDARD)
 			all_canisters += C
 	var/obj/machinery/portable_atmospherics/canister/C = pick(all_canisters)

@@ -409,14 +409,14 @@
 // Used for A-star pathfinding
 
 
-// Returns the surrounding cardinal turfs with open links
+// Returns the surrounding GLOB.cardinal turfs with open links
 // Including through doors openable with the ID
 /turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
 
-	for(var/d in cardinal)
+	for(var/d in GLOB.cardinal)
 		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
@@ -424,11 +424,11 @@
 	return L
 
 
-// Similar to above but not restricted to just cardinal directions.
+// Similar to above but not restricted to just GLOB.cardinal directions.
 /turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
-	for(var/d in alldirs)
+	for(var/d in GLOB.alldirs)
 		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))

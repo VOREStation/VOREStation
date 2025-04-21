@@ -98,10 +98,10 @@
 	if(authenticated)
 		switch(screen)
 			if(GENERAL_RECORD_LIST)
-				if(!isnull(data_core.general))
+				if(!isnull(GLOB.data_core.general))
 					var/list/records = list()
 					data["records"] = records
-					for(var/datum/data/record/R in sortRecord(data_core.general))
+					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 						records[++records.len] = list(
 							"ref" = "\ref[R]",
 							"id" = R.fields["id"],
@@ -110,7 +110,7 @@
 			if(GENERAL_RECORD_DATA)
 				var/list/general = list()
 				data["general"] = general
-				if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+				if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 					var/list/fields = list()
 					general["fields"] = fields
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], "name")
@@ -149,7 +149,7 @@
 
 	add_fingerprint(ui.user)
 
-	if(!data_core.general.Find(active1))
+	if(!GLOB.data_core.general.Find(active1))
 		active1 = null
 
 	. = TRUE
@@ -211,7 +211,7 @@
 			if("del_all")
 				if(GLOB.PDA_Manifest)
 					GLOB.PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.general)
+				for(var/datum/data/record/R in GLOB.data_core.general)
 					qdel(R)
 				set_temp("All employment records deleted.")
 			if("sync_r")
@@ -228,14 +228,14 @@
 				if(GLOB.PDA_Manifest)
 					GLOB.PDA_Manifest.Cut()
 				if(active1)
-					for(var/datum/data/record/R in data_core.medical)
+					for(var/datum/data/record/R in GLOB.data_core.medical)
 						if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 							qdel(R)
 					set_temp("Employment record deleted.")
 					QDEL_NULL(active1)
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
-				if(!data_core.general.Find(general_record))
+				if(!GLOB.data_core.general.Find(general_record))
 					set_temp("Record not found.", "danger")
 					return
 
@@ -244,7 +244,7 @@
 			if("new")
 				if(GLOB.PDA_Manifest)
 					GLOB.PDA_Manifest.Cut()
-				active1 = data_core.CreateGeneralRecord()
+				active1 = GLOB.data_core.CreateGeneralRecord()
 				screen = GENERAL_RECORD_DATA
 				set_temp("Employment record created.", "success")
 			if("del_c")
@@ -328,7 +328,7 @@
 /obj/machinery/computer/skills/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
-	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+	if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
 		<br>\nSpecies: [active1.fields["species"]]
@@ -371,7 +371,7 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.security)
+	for(var/datum/data/record/R in GLOB.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

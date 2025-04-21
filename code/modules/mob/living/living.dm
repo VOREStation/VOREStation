@@ -16,7 +16,7 @@
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
-	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
+	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
 	SSradiation.listeners -= src

@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(ticker)
 	var/current_state = GAME_STATE_INIT	// We aren't even at pregame yet // TODO replace with CURRENT_GAME_STATE
 
 	/* Relies upon the following globals (TODO move those in here) */
-	// var/master_mode = "extended"		//The underlying game mode (so "secret" or the voted mode).
+	// var/GLOB.master_mode = "extended"		//The underlying game mode (so "secret" or the voted mode).
 										// Set by SSvote when VOTE_GAMEMODE finishes.
 	// var/round_progressing = 1		//Whether the lobby clock is ticking down.
 
@@ -84,7 +84,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 // Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
 /datum/controller/subsystem/ticker/proc/pregame_tick()
-	if(round_progressing && last_fire)
+	if(GLOB.round_progressing && last_fire)
 		pregame_timeleft -= (world.time - last_fire) / (1 SECOND)
 
 	if(start_immediately)
@@ -122,23 +122,23 @@ var/global/datum/controller/subsystem/ticker/ticker
 // Returns 0 if failed to pick a mode, otherwise 1
 /datum/controller/subsystem/ticker/proc/setup_choose_gamemode()
 	//Create and announce mode
-	if(master_mode == "secret")
+	if(GLOB.master_mode == "secret")
 		src.hide_mode = TRUE
 
 	var/list/runnable_modes = config.get_runnable_modes()
-	if((master_mode == "random") || (master_mode == "secret"))
+	if((GLOB.master_mode == "random") || (GLOB.master_mode == "secret"))
 		if(!runnable_modes.len)
 			to_world(span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
 			return 0
-		if(secret_force_mode != "secret")
-			src.mode = config.pick_mode(secret_force_mode)
+		if(GLOB.secret_force_mode != "secret")
+			src.mode = config.pick_mode(GLOB.secret_force_mode)
 		if(!src.mode)
 			var/list/weighted_modes = list()
 			for(var/datum/game_mode/GM in runnable_modes)
 				weighted_modes[GM.config_tag] = CONFIG_GET(keyed_list/probabilities)[GM.config_tag]
 			src.mode = config.gamemode_cache[pickweight(weighted_modes)]
 	else
-		src.mode = config.pick_mode(master_mode)
+		src.mode = config.pick_mode(GLOB.master_mode)
 
 	if(!src.mode)
 		to_world(span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
@@ -427,7 +427,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 			// If they're a carbon, they can get manifested
 			if(J?.mob_type & JOB_CARBON)
-				data_core.manifest_inject(new_char)
+				GLOB.data_core.manifest_inject(new_char)
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
@@ -555,7 +555,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		if(GAME_STATE_INIT)
 			..()
 		if(GAME_STATE_PREGAME) // RUNLEVEL_LOBBY
-			msg = "START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]"
+			msg = "START [GLOB.round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]"
 		if(GAME_STATE_SETTING_UP) // RUNLEVEL_SETUP
 			msg = "SETUP"
 		if(GAME_STATE_PLAYING) // RUNLEVEL_GAME
