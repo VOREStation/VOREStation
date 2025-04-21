@@ -111,9 +111,6 @@ var/global/datum/controller/occupations/job_master
 			Debug("FOC is_job_whitelisted failed, Player: [player]")
 			continue
 		//VOREStation Code End
-		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN]) == TRUE)
-			Debug("FOC character species invalid for job, Player: [player]")
-			continue
 		if(flag && !(player.client.prefs.be_special & flag))
 			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
@@ -129,9 +126,6 @@ var/global/datum/controller/occupations/job_master
 			continue
 
 		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN])))
-			continue
-
-		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN]) == TRUE)
 			continue
 
 		if(istype(job, GetJob(JOB_ALT_VISITOR))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant

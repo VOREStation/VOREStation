@@ -13,6 +13,12 @@ import {
   type LoadoutDataConstant,
   type LoadoutDataStatic,
 } from './loadout/data';
+import { Occupation } from './occupation';
+import {
+  type OccupationData,
+  type OccupationDataConstant,
+  type OccupationDataStatic,
+} from './occupation/data';
 
 enum Tabs {
   General = 'General',
@@ -54,6 +60,14 @@ export const BayPrefsEntryPoint = (props: {
                 data={data as LoadoutData}
                 staticData={staticData as LoadoutDataStatic}
                 serverData={relevantData as LoadoutDataConstant}
+              />
+            );
+          case Tabs.Occupation:
+            return (
+              <Occupation
+                data={data as OccupationData}
+                staticData={staticData as OccupationDataStatic}
+                serverData={relevantData as OccupationDataConstant}
               />
             );
           default:
