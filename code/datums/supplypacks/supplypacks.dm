@@ -6,26 +6,26 @@
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 //NOTE NOTE: Hidden var is now deprecated, whoever removed support for it should've removed the var altogether
 
-//var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
-var/list/all_supply_groups = list("Atmospherics",
-								  "Costumes",
-								  "Engineering",
-								  "Hospitality",
-								  "Hydroponics",
-								  "Materials",
-								  "Medical",
-								  "Miscellaneous",
-								  "Munitions",
-								  "Reagents",
-								  "Reagent Cartridges",
-								  "Recreation",
-								  "Robotics",
-								  "Science",
-								  "Security",
-								  "Supplies",
-								  "Vendor Refills",
-								  "Hardsuits",
-								  "Voidsuits")
+//GLOBAL_LIST_INIT(all_supply_groups, list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Atmospherics",
+								"Costumes",
+								"Engineering",
+								"Hospitality",
+								"Hydroponics",
+								"Materials",
+								"Medical",
+								"Miscellaneous",
+								"Munitions",
+								"Reagents",
+								"Reagent Cartridges",
+								"Recreation",
+								"Robotics",
+								"Science",
+								"Security",
+								"Supplies",
+								"Vendor Refills",
+								"Hardsuits",
+								"Voidsuits"))
 
 /datum/supply_pack
 	var/name = null

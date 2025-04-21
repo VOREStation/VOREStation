@@ -6,7 +6,7 @@
 
 
 /datum/event/blob/start()
-	var/turf/T = pick(blobstart)
+	var/turf/T = pick(GLOB.blobstart)
 	if(!T)
 		kill()
 		return

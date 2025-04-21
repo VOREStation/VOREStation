@@ -26,14 +26,14 @@
 // Claim machine ID
 /obj/item/retail_scanner/Initialize(mapload)
 	. = ..()
-	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
+	machine_id = "[station_name()] RETAIL #[GLOB.num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
-	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
+	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 
 /obj/item/retail_scanner/Destroy()
-	transaction_devices -= src
+	GLOB.transaction_devices -= src
 	. = ..()
 
 // Always face the user when put on a table
@@ -242,7 +242,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "([transaction_amount])"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					D.transaction_log.Add(T)
 
@@ -252,7 +252,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "[transaction_amount]"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					linked_account.transaction_log.Add(T)
 
@@ -285,7 +285,7 @@
 			T.purpose = transaction_purpose
 			T.amount = "[transaction_amount]"
 			T.source_terminal = machine_id
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = stationtime2text()
 			linked_account.transaction_log.Add(T)
 

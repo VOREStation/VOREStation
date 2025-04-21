@@ -1,0 +1,10 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "The Rapid Material Synthesizer (RMS) has been MASSIVELY buffed and reworked. Check it out!"
+  - qol: "RMS prices MASSIVELY decreased."
+  - qol: "RMS randomize mode can now randomize ANY MATERIAL in the game. Feeling lucky?"
+  - bugfix: "RMS will no longer drain any battery you use it on to 0"
+  - bugfix: "RMS will now properly detonate rigged batteries"
+  - rscdel: "RMS no longer has any emag interactions"
+  - rscadd: "Added a secret 1 in a million interaction with the RMS :)"

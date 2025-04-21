@@ -104,7 +104,7 @@
 		to_chat(user, span_cult("An inexplicable force rips through your arm as it's engulfed in flames, tearing the sword from your grasp!"))
 		user.drop_from_inventory(src, user.loc)
 		user.Weaken(5)
-		throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,10),5)
+		throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,10),5)
 		user.apply_damage(rand(force/2, force), BURN, zone, FALSE)
 		return
 
@@ -134,12 +134,12 @@
 	else if(istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, span_cult("An inexplicable force rips through you, tearing the sword from your grasp!"))
 		user.drop_from_inventory(src, user.loc)
-		throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,10),5)
+		throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,10),5)
 
 	else
 		to_chat(user, span_cult("The blade hisses, forcing itself from your manipulators. \The [src] will only allow mortals to wield it against foes, not kin."))
 		user.drop_from_inventory(src, user.loc)
-		throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,10),5)
+		throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,10),5)
 
 	if(prob(10)) //During testing, this was set to 100% of the time to make sure it works... It went  from spooky to 'dear god make it stop'
 		var/spooky = pick('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/Heart Beat.ogg', 'sound/effects/screech.ogg',\

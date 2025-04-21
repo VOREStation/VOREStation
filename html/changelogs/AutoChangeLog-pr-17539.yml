@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "samples no longer generate infinite tech level lists"
