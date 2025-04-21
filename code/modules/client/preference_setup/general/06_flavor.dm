@@ -62,12 +62,16 @@
 			if("open")
 				pass()
 			if("general")
-				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
+				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 			else
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavor text for your [href_list["flavor_text"]]. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavor text for your [href_list["flavor_text"]]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 		SetFlavorText(user)
 		return TOPIC_HANDLED
@@ -77,12 +81,16 @@
 			if("open")
 				pass()
 			if("Default")
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in \"!clear\" to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 			else
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in \"!clear\" to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
 		return TOPIC_HANDLED
