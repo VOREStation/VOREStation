@@ -396,8 +396,9 @@ var/global/datum/controller/occupations/job_master
 		//Equip custom gear loadout.
 		var/list/custom_equip_slots = list()
 		var/list/custom_equip_leftovers = list()
-		if(H.client && H.client.prefs && H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
-			for(var/thing in H.client.prefs.gear)
+		if(H?.client?.prefs && !(job.mob_type & JOB_SILICON))
+			var/list/active_gear_list = LAZYACCESS(H.client.prefs.gear_list, "[H.client.prefs.gear_slot]")
+			for(var/thing in active_gear_list)
 				var/datum/gear/G = gear_datums[thing]
 				if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
 					continue
@@ -422,14 +423,14 @@ var/global/datum/controller/occupations/job_master
 
 				// Implants get special treatment
 				if(G.slot == "implant")
-					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
+					var/obj/item/implant/I = G.spawn_item(H, active_gear_list[G.display_name])
 					I.invisibility = 100
 					I.implant_loadout(H)
 					continue
 
 				// Try desperately (and sorta poorly) to equip the item. Now with increased desperation!
 				if(G.slot && !(G.slot in custom_equip_slots))
-					var/metadata = H.client.prefs.gear[G.display_name]
+					var/metadata = active_gear_list[G.display_name]
 					//if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 					//	custom_equip_leftovers += thing
 					//else
@@ -469,7 +470,8 @@ var/global/datum/controller/occupations/job_master
 			if(G.slot in custom_equip_slots)
 				spawn_in_storage += thing
 			else
-				var/metadata = H.client.prefs.gear[G.display_name]
+				var/list/active_gear_list = LAZYACCESS(H.client.prefs.gear_list, "[H.client.prefs.gear_slot]")
+				var/metadata = active_gear_list[G.display_name]
 				if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 					to_chat(H, span_notice("Equipping you with \the [thing]!"))
 					custom_equip_slots.Add(G.slot)
@@ -517,11 +519,12 @@ var/global/datum/controller/occupations/job_master
 				B = S
 				break
 
+			var/list/active_gear_list = LAZYACCESS(H.client.prefs.gear_list, "[H.client.prefs.gear_slot]")
 			if(!isnull(B))
 				for(var/thing in spawn_in_storage)
 					to_chat(H, span_notice("Placing \the [thing] in your [B.name]!"))
 					var/datum/gear/G = gear_datums[thing]
-					var/metadata = H.client.prefs.gear[G.display_name]
+					var/metadata = active_gear_list[G.display_name]
 					G.spawn_item(B, metadata)
 			else
 				to_chat(H, span_danger("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."))

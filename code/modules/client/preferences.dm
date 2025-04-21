@@ -36,7 +36,6 @@ var/list/preferences_datums = list()
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Language prefix keys
 	var/list/language_custom_keys = list() //Language custom call keys
-	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
 	var/list/traits						//Traits which modifier characters for better or worse (mostly worse).
@@ -152,7 +151,6 @@ var/list/preferences_datums = list()
 	load_savefile()
 
 	// Legacy code
-	gear = list()
 	gear_list = list()
 	gear_slot = 1
 	// End legacy code

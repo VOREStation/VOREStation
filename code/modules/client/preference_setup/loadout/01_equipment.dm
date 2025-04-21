@@ -89,8 +89,6 @@ var/global/list/valid_ringtones = list(
 	character.pdachoice = pref.pdachoice
 
 /datum/category_item/player_setup_item/loadout/equipment/sanitize_character()
-	if(!islist(pref.gear)) pref.gear = list()
-
 	if(!istype(pref.all_underwear))
 		pref.all_underwear = list()
 

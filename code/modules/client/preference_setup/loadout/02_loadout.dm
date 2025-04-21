@@ -54,14 +54,8 @@ var/list/gear_datums = list()
 			entries["[j]"] = path2text_list(entries["[j]"])
 		pref.gear_list["[i]"] = entries
 	pref.gear_slot = save_data["gear_slot"]
-	if(pref.gear_list!=null && pref.gear_slot!=null)
-		pref.gear = pref.gear_list["[pref.gear_slot]"]
-	else
-		pref.gear = check_list_copy(save_data["gear"])
-		pref.gear_slot = 1
 
 /datum/category_item/player_setup_item/loadout/loadout/save_character(list/save_data)
-	pref.gear_list["[pref.gear_slot]"] = pref.gear
 	var/list/all_gear = list()
 	var/worn_gear = check_list_copy(pref.gear_list)
 	for(var/i in worn_gear)
@@ -96,40 +90,44 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
-	if(!islist(pref.gear))
-		pref.gear = list()
-	if(!islist(pref.gear_list))
-		pref.gear_list = list()
+	if(LAZYLEN(pref.gear_list) < 0)
+		return
 
-	for(var/gear_name in pref.gear)
-		if(!(gear_name in gear_datums))
-			pref.gear -= gear_name
+	if(pref.gear_slot > LAZYLEN(pref.gear_list))
+		pref.gear_slot = 1
+
+	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 	var/total_cost = 0
-	for(var/gear_name in pref.gear)
+	for(var/gear_name in active_gear_list)
+		if(!(gear_name in gear_datums))
+			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
+			active_gear_list -= gear_name
+			continue
+
 		if(!gear_datums[gear_name])
-			to_chat(preference_mob, span_warning("You cannot have more than one of the \the [gear_name]"))
-			pref.gear -= gear_name
-		else if(!(gear_name in valid_gear_choices()))
-			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))		//Vorestation Edit
-			pref.gear -= gear_name
-		else
-			var/datum/gear/G = gear_datums[gear_name]
-			if(total_cost + G.cost > MAX_GEAR_COST)
-				pref.gear -= gear_name
-				to_chat(preference_mob, span_warning("You cannot afford to take \the [gear_name]"))
-			else
-				total_cost += G.cost
+			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
+			active_gear_list -= gear_name
+			continue
+
+		if(!(gear_name in valid_gear_choices()))
+			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))
+			active_gear_list -= gear_name
+			continue
+
+		var/datum/gear/G = gear_datums[gear_name]
+		if(total_cost + G.cost > MAX_GEAR_COST)
+			active_gear_list -= gear_name
+			to_chat(preference_mob, span_warning("You cannot afford to take \the [gear_name]"))
+			continue
+		total_cost += G.cost
 
 /datum/category_item/player_setup_item/loadout/loadout/content()
 	. = list()
 	var/mob/preference_mob = preference_mob()	//Vorestation Edit
-	var/total_cost = 0
-	if(pref.gear && pref.gear.len)
-		for(var/i = 1; i <= pref.gear.len; i++)
-			var/datum/gear/G = gear_datums[pref.gear[i]]
-			if(G)
-				total_cost += G.cost
+	// { "jackboots, thigh-length": { ...tweaks }}
+	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 
+	var/total_cost = get_total()
 	var/fcolor =  "#3366CC"
 	if(total_cost < MAX_GEAR_COST)
 		fcolor = "#E67300"
@@ -140,7 +138,6 @@ var/list/gear_datums = list()
 	. += "<tr><td colspan=3><center><b>"
 	var/firstcat = 1
 	for(var/category in loadout_categories)
-
 		if(firstcat)
 			firstcat = 0
 		else
@@ -149,7 +146,7 @@ var/list/gear_datums = list()
 		var/datum/loadout_category/LC = loadout_categories[category]
 		var/category_cost = 0
 		for(var/gear in LC.gear)
-			if(gear in pref.gear)
+			if(gear in active_gear_list)
 				var/datum/gear/G = LC.gear[gear]
 				category_cost += G.cost
 
@@ -173,7 +170,7 @@ var/list/gear_datums = list()
 				continue
 			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
 				continue
-		var/ticked = (G.display_name in pref.gear)
+		var/ticked = (G.display_name in active_gear_list)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		. += "<td>" + span_normal(span_italics("[G.description]")) + "</td></tr>"
@@ -188,10 +185,12 @@ var/list/gear_datums = list()
 	. = jointext(., null)
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(var/datum/gear/G)
-	. = pref.gear[G.display_name]
+	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+
+	// {"/datum/gear_tweak/custom_name": "" }
+	. = LAZYACCESS(active_gear_list, G.display_name)
 	if(!.)
 		. = list()
-		pref.gear[G.display_name] = .
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
@@ -204,32 +203,38 @@ var/list/gear_datums = list()
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_total()
+	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+	. = 0
+	for(var/gear_name in active_gear_list)
+		var/datum/gear/G = gear_datums[gear_name]
+		if(G)
+			. += G.cost
+
 /datum/category_item/player_setup_item/loadout/loadout/OnTopic(href, href_list, user)
+	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+
 	if(href_list["toggle_gear"])
 		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
-		if(TG.display_name in pref.gear)
-			pref.gear -= TG.display_name
+		if(TG.display_name in active_gear_list)
+			active_gear_list -= TG.display_name
 		else
-			var/total_cost = 0
-			for(var/gear_name in pref.gear)
-				var/datum/gear/G = gear_datums[gear_name]
-				if(istype(G)) total_cost += G.cost
+			var/total_cost = get_total()
 			if((total_cost+TG.cost) <= MAX_GEAR_COST)
-				pref.gear += TG.display_name
+				active_gear_list[TG.display_name] = list()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	if(href_list["gear"] && href_list["tweak"])
 		var/datum/gear/gear = gear_datums[url_decode(href_list["gear"])]
 		var/datum/gear_tweak/tweak = locate(href_list["tweak"])
 		if(!tweak || !istype(gear) || !(tweak in gear.gear_tweaks))
 			return TOPIC_NOACTION
 		var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
-		if(!metadata || !CanUseTopic(user))
+		if(!metadata)
 			return TOPIC_NOACTION
 		set_tweak_metadata(gear, tweak, metadata)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 	if(href_list["next_slot"] || href_list["prev_slot"])
-		//Set the current slot in the gear list to the currently selected gear
-		pref.gear_list["[pref.gear_slot]"] = pref.gear
 		//If we're moving up a slot..
 		if(href_list["next_slot"])
 			//change the current slot number
@@ -242,19 +247,13 @@ var/list/gear_datums = list()
 			pref.gear_slot = pref.gear_slot-1
 			if(pref.gear_slot<1)
 				pref.gear_slot = CONFIG_GET(number/loadout_slots)
-		// Set the currently selected gear to whatever's in the new slot
-		if(pref.gear_list["[pref.gear_slot]"])
-			pref.gear = pref.gear_list["[pref.gear_slot]"]
-		else
-			pref.gear = list()
-			pref.gear_list["[pref.gear_slot]"] = list()
 		// Refresh?
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 	else if(href_list["select_category"])
 		current_tab = href_list["select_category"]
 		return TOPIC_REFRESH
 	else if(href_list["clear_loadout"])
-		pref.gear.Cut()
+		active_gear_list.Cut()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 

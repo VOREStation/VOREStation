@@ -211,7 +211,8 @@
 
 	if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 		var/list/equipped_slots = list()
-		for(var/thing in gear)
+		var/list/active_gear_list = LAZYACCESS(gear_list, "[gear_slot]")
+		for(var/thing in active_gear_list)
 			var/datum/gear/G = gear_datums[thing]
 			if(G)
 				var/permitted = 0
@@ -231,7 +232,7 @@
 					continue
 
 				if(G.slot && !(G.slot in equipped_slots))
-					var/metadata = gear[G.display_name]
+					var/metadata = active_gear_list[G.display_name]
 					if(mannequin.equip_to_slot_or_del(G.spawn_item(mannequin, metadata), G.slot))
 						if(G.slot != slot_tie)
 							equipped_slots += G.slot
