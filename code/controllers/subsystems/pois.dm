@@ -82,4 +82,4 @@ SUBSYSTEM_DEF(points_of_interest)
 	annihilate_bounds(poi_to_load)
 	// Actually load it
 	template_to_use.load(T)
-	qdel(src)
+	qdel(poi_to_load)
