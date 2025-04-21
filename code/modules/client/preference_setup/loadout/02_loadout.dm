@@ -217,6 +217,19 @@ var/list/gear_datums = list()
 			active_gear_list.Cut()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+		if("copy_loadout")
+			var/copy_to = tgui_input_number(user, "What slot would you like to copy slot [pref.gear_slot] to?", "Copy Slot", 1, CONFIG_GET(number/loadout_slots), 1)
+			if(!copy_to)
+				return TOPIC_HANDLED
+
+			if("[copy_to]" in pref.gear_list)
+				var/confirm = tgui_alert(user, "This will overwrite slot [copy_to], are you sure?", "Are you sure?", list("No", "Yes"))
+				if(confirm != "Yes")
+					return TOPIC_HANDLED
+
+			pref.gear_list["[copy_to]"] = check_list_copy(active_gear_list)
+			return TOPIC_REFRESH
+
 		if("toggle_gear")
 			var/datum/gear/TG = gear_datums[params["gear"]]
 			if(TG)

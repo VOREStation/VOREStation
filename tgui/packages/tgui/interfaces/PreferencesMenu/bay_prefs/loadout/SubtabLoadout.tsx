@@ -43,8 +43,8 @@ export const SubtabLoadout = (props: {
             loadout points spent.
           </Stack.Item>
           <Stack.Item>
-            [<Button onClick={() => act('clear_loadout')}>Clear Loadout</Button>
-            ]
+            [<Button onClick={() => act('copy_loadout')}>Copy Slot</Button>] [
+            <Button onClick={() => act('clear_loadout')}>Clear Loadout</Button>]
           </Stack.Item>
         </Stack>
       </Stack.Item>
