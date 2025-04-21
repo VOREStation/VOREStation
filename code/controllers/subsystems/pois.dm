@@ -53,9 +53,9 @@ SUBSYSTEM_DEF(points_of_interest)
 	if(!poi_to_load.poi_type)
 		return
 
-	if(!(global_used_pois.len) || !(global_used_pois[poi_to_load.poi_type]))
-		global_used_pois[poi_to_load.poi_type] = list()
-		var/list/poi_list = global_used_pois[poi_to_load.poi_type]
+	if(!(GLOB.global_used_pois.len) || !(GLOB.global_used_pois[poi_to_load.poi_type]))
+		GLOB.global_used_pois[poi_to_load.poi_type] = list()
+		var/list/poi_list = GLOB.global_used_pois[poi_to_load.poi_type]
 		for(var/map in SSmapping.map_templates)
 			var/template = SSmapping.map_templates[map]
 			if(istype(template, poi_to_load.poi_type))
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(points_of_interest)
 
 	var/datum/map_template/template_to_use = null
 
-	var/list/our_poi_list = global_used_pois[poi_to_load.poi_type]
+	var/list/our_poi_list = GLOB.global_used_pois[poi_to_load.poi_type]
 
 	if(!our_poi_list.len)
 		return
@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(points_of_interest)
 	//admin_notice(span_danger("Chosen Predefined PoI Map: [chosen_type.name]"), R_DEBUG)
 
 	if(poi_to_load.remove_from_pool)
-		global_used_pois[poi_to_load.poi_type] -= template_to_use
+		GLOB.global_used_pois[poi_to_load.poi_type] -= template_to_use
 
 	// Annihilate movable atoms
 	annihilate_bounds(poi_to_load)
