@@ -1,6 +1,6 @@
+import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../../../backend';
 import {
   type GeneralData,
   type GeneralDataConstant,

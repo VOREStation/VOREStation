@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Box, Button, ImageButton, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../../../../backend';
 import {
   ColorizedImageButton,
   ColorPicker,

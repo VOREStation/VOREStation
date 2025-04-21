@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -10,8 +12,6 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike } from 'tgui-core/react';
 
-import { resolveAsset } from '../../../../assets';
-import { useBackend } from '../../../../backend';
 import {
   AppearanceFlags,
   type GeneralData,

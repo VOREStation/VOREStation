@@ -120,28 +120,6 @@ var/global/list/valid_ringtones = list(
 	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
 
-/datum/category_item/player_setup_item/loadout/equipment/content()
-	. = list()
-	. += span_bold("Equipment:") + "<br>"
-	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
-		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
-		. += "[UWC.name]: <a href='byond://?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
-		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
-		if(UWI)
-			for(var/datum/gear_tweak/gt in UWI.tweaks)
-				. += " <a href='byond://?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
-
-		. += "<br>"
-	. += "Headset Type: <a href='byond://?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset]]</b></a><br>"
-	. += "Backpack Type: <a href='byond://?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
-	. += "PDA Type: <a href='byond://?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
-	. += "Communicator Visibility: <a href='byond://?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
-	. += "Ringtone (leave blank for job default): <a href='byond://?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
-	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>"
-	. += "Spawn With Jacket:<a href='byond://?src=\ref[src];toggle_jacket=1'><b>[(pref.no_jacket) ? "No" : "Yes"]</b></a><br>"
-
-	return jointext(.,null)
-
 /datum/category_item/player_setup_item/loadout/equipment/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
@@ -228,7 +206,7 @@ var/global/list/valid_ringtones = list(
 
 		if("change_pda")
 			// Takes the JS index
-			var/new_pdachoice = text2num(params["backbag"]) + 1
+			var/new_pdachoice = text2num(params["pda"]) + 1
 			if(LAZYACCESS(backbaglist, new_pdachoice))
 				pref.pdachoice = new_pdachoice
 				return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -277,68 +255,3 @@ var/global/list/valid_ringtones = list(
 		if("toggle_jacket")
 			pref.no_jacket = !pref.no_jacket
 			return TOPIC_REFRESH
-
-/datum/category_item/player_setup_item/loadout/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(href_list["change_headset"])
-		var/new_headset = tgui_input_list(user, "Choose your character's style of headset:", "Character Preference", GLOB.headsetlist, GLOB.headsetlist[pref.headset])
-		if(!isnull(new_headset) && CanUseTopic(user))
-			pref.headset = GLOB.headsetlist.Find(new_headset)
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	if(href_list["change_backpack"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
-		if(!isnull(new_backbag) && CanUseTopic(user))
-			pref.backbag = backbaglist.Find(new_backbag)
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["change_pda"])
-		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist, pdachoicelist[pref.pdachoice])
-		if(!isnull(new_pdachoice) && CanUseTopic(user))
-			pref.pdachoice = pdachoicelist.Find(new_pdachoice)
-			return TOPIC_REFRESH
-
-	else if(href_list["change_underwear"])
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
-		if(!UWC)
-			return
-		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
-		if(selected_underwear && CanUseTopic(user))
-			pref.all_underwear[UWC.name] = selected_underwear.name
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["underwear"] && href_list["tweak"])
-		var/underwear = href_list["underwear"]
-		if(!(underwear in pref.all_underwear))
-			return TOPIC_NOACTION
-		var/datum/gear_tweak/gt = locate(href_list["tweak"])
-		if(!gt)
-			return TOPIC_NOACTION
-		var/new_metadata = gt.get_metadata(user, get_metadata(underwear, gt))
-		if(new_metadata)
-			set_metadata(underwear, gt, new_metadata)
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-	else if(href_list["toggle_comm_visibility"])
-		if(CanUseTopic(user))
-			pref.communicator_visibility = !pref.communicator_visibility
-			return TOPIC_REFRESH
-	else if(href_list["set_ringtone"])
-		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
-		if(!choice || !CanUseTopic(user))
-			return TOPIC_NOACTION
-		if(choice == "Other")
-			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
-			if(raw_choice && CanUseTopic(user))
-				pref.ringtone = raw_choice
-		else
-			pref.ringtone = choice
-		return TOPIC_REFRESH
-	else if(href_list["toggle_shoes"])
-		if(CanUseTopic(user))
-			pref.shoe_hater = !pref.shoe_hater
-			return TOPIC_REFRESH
-	else if(href_list["toggle_jacket"])
-		if(CanUseTopic(user))
-			pref.no_jacket = !pref.no_jacket
-			return TOPIC_REFRESH
-
-	return ..()

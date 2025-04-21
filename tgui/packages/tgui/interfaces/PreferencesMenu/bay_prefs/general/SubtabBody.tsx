@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Box, Button, ColorBox, Icon, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../../../backend';
 import { CustomImageButton } from '../helper_components';
 import { EarsDimmer, EarsImageButton } from './body/Ears';
 import { EarsSecondaryDimmer } from './body/EarsSecondary';
