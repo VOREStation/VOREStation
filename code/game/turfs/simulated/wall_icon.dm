@@ -126,13 +126,13 @@
 /turf/simulated/wall/proc/special_wall_connections(list/dirs, list/inrange)
 	if(material.icon_base == "hull") // Could be improved...
 		var/additional_dirs = 0
-		for(var/direction in alldirs)
+		for(var/direction in GLOB.alldirs)
 			var/turf/T = get_step(src,direction)
 			if(T && (locate(/obj/structure/hull_corner) in T))
 				dirs += direction
 				additional_dirs |= direction
 		if(additional_dirs)
-			for(var/diag_dir in cornerdirs)
+			for(var/diag_dir in GLOB.cornerdirs)
 				if ((additional_dirs & diag_dir) == diag_dir)
 					dirs += diag_dir
 

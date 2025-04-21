@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
+import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { localPrefs } from '../types';
@@ -29,16 +29,20 @@ export const VoreUserPreferencesSpawn = (props: {
     <Section
       title="Spawn Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.spawnbelly}
-            tooltipPosition="top"
-          />
-          <VoreUserPreferenceItem
-            spec={preferences.spawnprey}
-            tooltipPosition="top"
-          />
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.spawnbelly}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.spawnprey}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack wrap="wrap" justify="center">

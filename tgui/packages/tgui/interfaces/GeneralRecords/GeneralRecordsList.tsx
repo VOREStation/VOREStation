@@ -21,7 +21,7 @@ export const GeneralRecordsList = (props) => {
       <Input
         fluid
         placeholder="Search by Name, DNA, or ID"
-        onInput={(e, value: string) => setSearchText(value)}
+        onChange={(value: string) => setSearchText(value)}
       />
       <Box mt="0.5rem">
         {records.map((record, i) => (

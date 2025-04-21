@@ -9,9 +9,9 @@
 
 /datum/tgui_module/cardmod/tgui_static_data(mob/user)
 	var/list/data =  ..()
-	if(data_core)
-		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	if(GLOB.data_core)
+		GLOB.data_core.get_manifest_list()
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /datum/tgui_module/cardmod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -155,7 +155,7 @@
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
-									[data_core ? data_core.get_manifest(0) : ""]
+									[GLOB.data_core ? GLOB.data_core.get_manifest(0) : ""]
 									"}
 					if(!computer.nano_printer.print_text(contents,text("crew manifest ([])", stationtime2text())))
 						to_chat(ui.user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
@@ -166,7 +166,7 @@
 		if("modify")
 			if(computer && computer.card_slot)
 				if(id_card)
-					data_core.manifest_modify(id_card.registered_name, id_card.assignment, id_card.rank)
+					GLOB.data_core.manifest_modify(id_card.registered_name, id_card.assignment, id_card.rank)
 				computer.proc_eject_id(ui.user)
 			. = TRUE
 		if("terminate")

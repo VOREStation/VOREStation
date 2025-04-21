@@ -11,7 +11,7 @@
 /obj/effect/temp_visual/Initialize(mapload)
 	. = ..()
 	if(randomdir)
-		set_dir(pick(global.cardinal))
+		set_dir(pick(global.GLOB.cardinal))
 
 	spawn(duration)
 		qdel(src)

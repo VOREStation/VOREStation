@@ -21,6 +21,9 @@
 @include meta.load-css('./atomic/outline.scss');
 @include meta.load-css('./atomic/text.scss');
 
+// Components
+@include meta.load-css('./components/NanoMap.scss');
+
 // Interfaces
 @include meta.load-css('./interfaces/AutomatedTellerMachine.scss');
 @include meta.load-css('./interfaces/ListInput.scss');

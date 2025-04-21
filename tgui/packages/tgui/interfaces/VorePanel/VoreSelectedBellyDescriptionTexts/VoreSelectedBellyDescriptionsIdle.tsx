@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList } from 'tgui-core/components';
+import { Button, LabeledList, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 export const VoreSelectedBellyDescriptionsIdle = (props: {
@@ -12,123 +12,159 @@ export const VoreSelectedBellyDescriptionsIdle = (props: {
 
   return (
     <LabeledList.Item label="Idle Messages">
-      {(message_mode || mode === 'Hold' || mode === 'Selective') && (
-        <>
-          <Button
-            onClick={() =>
-              act('set_attribute', {
-                attribute: 'b_msgs',
-                msgtype: 'im_hold',
-              })
-            }
-          >
-            Idle Messages (Hold)
-          </Button>
-          <Button
-            onClick={() =>
-              act('set_attribute', {
-                attribute: 'b_msgs',
-                msgtype: 'im_holdabsorbed',
-              })
-            }
-          >
-            Idle Messages (Hold Absorbed)
-          </Button>
-        </>
-      )}
-      {(message_mode || mode === 'Digest' || mode === 'Selective') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', {
-              attribute: 'b_msgs',
-              msgtype: 'im_digest',
-            })
-          }
-        >
-          Idle Messages (Digest)
-        </Button>
-      )}
-      {(message_mode || mode === 'Absorb' || mode === 'Selective') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', {
-              attribute: 'b_msgs',
-              msgtype: 'im_absorb',
-            })
-          }
-        >
-          Idle Messages (Absorb)
-        </Button>
-      )}
-      {(message_mode || mode === 'Unabsorb') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', {
-              attribute: 'b_msgs',
-              msgtype: 'im_unabsorb',
-            })
-          }
-        >
-          Idle Messages (Unabsorb)
-        </Button>
-      )}
-      {(message_mode || mode === 'Drain' || mode === 'Selective') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_drain' })
-          }
-        >
-          Idle Messages (Drain)
-        </Button>
-      )}
-      {(message_mode || mode === 'Heal') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_heal' })
-          }
-        >
-          Idle Messages (Heal)
-        </Button>
-      )}
-      {(message_mode || mode === 'Size Steal') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_steal' })
-          }
-        >
-          Idle Messages (Size Steal)
-        </Button>
-      )}
-      {(message_mode || mode === 'Shrink') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', {
-              attribute: 'b_msgs',
-              msgtype: 'im_shrink',
-            })
-          }
-        >
-          Idle Messages (Shrink)
-        </Button>
-      )}
-      {(message_mode || mode === 'Grow') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_grow' })
-          }
-        >
-          Idle Messages (Grow)
-        </Button>
-      )}
-      {(message_mode || mode === 'Encase In Egg') && (
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_egg' })
-          }
-        >
-          Idle Messages (Encase In Egg)
-        </Button>
-      )}
+      <Stack wrap>
+        {(message_mode || mode === 'Hold' || mode === 'Selective') && (
+          <>
+            <Stack.Item>
+              <Button
+                onClick={() =>
+                  act('set_attribute', {
+                    attribute: 'b_msgs',
+                    msgtype: 'im_hold',
+                  })
+                }
+              >
+                Idle Messages (Hold)
+              </Button>
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                onClick={() =>
+                  act('set_attribute', {
+                    attribute: 'b_msgs',
+                    msgtype: 'im_holdabsorbed',
+                  })
+                }
+              >
+                Idle Messages (Hold Absorbed)
+              </Button>
+            </Stack.Item>
+          </>
+        )}
+        {(message_mode || mode === 'Digest' || mode === 'Selective') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_digest',
+                })
+              }
+            >
+              Idle Messages (Digest)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Absorb' || mode === 'Selective') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_absorb',
+                })
+              }
+            >
+              Idle Messages (Absorb)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Unabsorb') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_unabsorb',
+                })
+              }
+            >
+              Idle Messages (Unabsorb)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Drain' || mode === 'Selective') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_drain',
+                })
+              }
+            >
+              Idle Messages (Drain)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Heal') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_heal',
+                })
+              }
+            >
+              Idle Messages (Heal)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Size Steal') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_steal',
+                })
+              }
+            >
+              Idle Messages (Size Steal)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Shrink') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_shrink',
+                })
+              }
+            >
+              Idle Messages (Shrink)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Grow') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_msgs',
+                  msgtype: 'im_grow',
+                })
+              }
+            >
+              Idle Messages (Grow)
+            </Button>
+          </Stack.Item>
+        )}
+        {(message_mode || mode === 'Encase In Egg') && (
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_egg' })
+              }
+            >
+              Idle Messages (Encase In Egg)
+            </Button>
+          </Stack.Item>
+        )}
+      </Stack>
     </LabeledList.Item>
   );
 };
