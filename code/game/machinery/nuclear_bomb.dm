@@ -418,7 +418,7 @@ GLOBAL_VAR(bomb_set)
 				log_game("Rebooting due to nuclear detonation")
 				world.Reboot()
 				return
-	bomb_set = 0 //Bomb has gone kaboom, let's reset it! If there's another nuke ongoing, it'll set bomb_set to 1 in it's processing tick.
+	GLOB.bomb_set = 0 //Bomb has gone kaboom, let's reset it! If there's another nuke ongoing, it'll set bomb_set to 1 in it's processing tick.
 	return
 
 /obj/item/disk/nuclear/Initialize(mapload)
