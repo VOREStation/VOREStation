@@ -42,7 +42,7 @@
 			modules.Add(GLOB.shell_module_types)
 		else
 			modules.Add(GLOB.robot_module_types)
-			if(R.crisis || security_level >= SEC_LEVEL_RED || R.crisis_override)
+			if(R.crisis || GLOB.security_level >= SEC_LEVEL_RED || R.crisis_override)
 				to_chat(R, span_red("Crisis mode active. Combat module available."))
 				modules |= GLOB.emergency_module_types
 			for(var/module_name in GLOB.whitelisted_module_types)
