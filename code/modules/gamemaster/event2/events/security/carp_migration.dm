@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/mob_spawning/carp_migration
 
 /datum/event2/meta/carp_migration/get_weight()
-	return 10 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 20) + (metric.count_all_space_mobs() * 40)
+	return 10 + (GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY) * 20) + (GLOB.metric.count_all_space_mobs() * 40)
 
 
 /datum/event2/event/mob_spawning/carp_migration

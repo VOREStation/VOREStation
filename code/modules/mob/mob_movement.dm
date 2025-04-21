@@ -340,7 +340,7 @@
 	// Update all the grabs!
 	for (var/obj/item/grab/G in my_mob)
 		if (G.state == GRAB_NECK)
-			mob.set_dir(reverse_dir[direct])
+			mob.set_dir(GLOB.reverse_dir[direct])
 		G.adjust_position()
 	for (var/obj/item/grab/G in my_mob.grabbed_by)
 		G.adjust_position()

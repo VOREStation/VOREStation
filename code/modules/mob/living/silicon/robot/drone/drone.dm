@@ -280,7 +280,7 @@ var/list/mob_hat_cache = list()
 
 	log_game("[key_name(user)] emagged drone [key_name(src)]. Laws overridden.")
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
+	GLOB.lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
 	emagged = 1
 	lawupdate = 0

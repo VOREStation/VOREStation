@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 
 	// We warned you.
 	GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(loc)
-	global_announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+	GLOB.global_announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 
 	//Handle job slot/tater cleanup.
 	set_respawn_timer()

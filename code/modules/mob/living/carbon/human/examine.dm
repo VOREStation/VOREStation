@@ -407,7 +407,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.security)
+		for (var/datum/data/record/R in GLOB.data_core.security)
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
@@ -426,7 +426,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.medical)
+		for (var/datum/data/record/R in GLOB.data_core.medical)
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 
