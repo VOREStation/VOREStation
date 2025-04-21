@@ -311,6 +311,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.screen_loc = "1,0"
 
 	var/obj/structure/bed/chair/temp_buckle = new(src)
+	var/list/the_reaper = list() //Mobs that shall get exploded
 	temp_buckle.dir = 2 //face South.
 	LAZYINITLIST(temp_buckle.buckled_mobs)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
@@ -385,6 +386,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				if(the_entity.z == our_watcher.z && !istype(our_watcher.loc, /obj/structure/closet/secure_closet/freezer)) //You're on the Z level that the bomb just went off at. (And you're not in a fridge)
 					our_watcher.health = 0
 					our_watcher.set_stat(DEAD)
+					the_reaper += our_watcher
 	else //If it hit the station, EVERYONE in the station dies.
 		for(var/mob/living/M in cinematic.watchers)
 			M.buckled = temp_buckle
@@ -396,6 +398,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(T && (T.z in using_map.station_levels) && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))				//we don't use M.death(0) because it calls a for(/mob) loop and
 				M.health = 0
 				M.set_stat(DEAD)
+				the_reaper += M
 
 	if(temp_buckle)
 		temp_buckle.unbuckle_all_mobs()
@@ -407,6 +410,10 @@ var/global/datum/controller/subsystem/ticker/ticker
 				our_watcher.client.screen -= cinematic
 				cinematic.watchers -= our_watcher
 		qdel_null(cinematic)
+	if(LAZYLEN(the_reaper)) //Your time
+		for(var/mob/living/the_reaped in the_reaper) //Has come...
+			the_reaped.ex_act(1) //Boom.
+	the_reaper.Cut()
 	return
 
 
