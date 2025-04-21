@@ -142,6 +142,56 @@ var/global/list/valid_ringtones = list(
 
 	return jointext(.,null)
 
+/datum/category_item/player_setup_item/loadout/equipment/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	var/list/underwear_data = list()
+	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+		var/item_name = LAZYACCESS(pref.all_underwear, UWC.name) || "None"
+
+		var/list/tweaks = list()
+		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
+		if(UWI)
+			for(var/datum/gear_tweak/gt in UWI.tweaks)
+				UNTYPED_LIST_ADD(tweaks, list(
+					"ref" = REF(gt),
+					"contents" = gt.get_contents(get_metadata(UWC.name, gt))
+				))
+
+		UNTYPED_LIST_ADD(underwear_data, list(
+			"category" = UWC.name,
+			"name" = item_name,
+			"tweaks" = tweaks
+		))
+	data["underwear"] = underwear_data
+
+	data["headset_type"] = GLOB.headsetlist[pref.headset]
+	data["backpack_type"] = backbaglist[pref.backbag]
+	data["pda_type"] = pdachoicelist[pref.pdachoice]
+	data["communicator_visibility"] = pref.communicator_visibility // boolean
+	data["ringtone"] = pref.ringtone
+	data["shoes"] = pref.shoe_hater
+	data["jacket"] = pref.no_jacket
+
+	return data
+
+/datum/category_item/player_setup_item/loadout/equipment/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	// TODO: Remove when we have static data in this or the loadout page
+	data["obligatory_static_data"] = TRUE
+
+	return data
+
+/datum/category_item/player_setup_item/loadout/equipment/tgui_constant_data()
+	var/list/data = ..()
+
+	data["headsetlist"] = GLOB.headsetlist
+	data["backbaglist"] = backbaglist
+	data["pdachoicelist"] = pdachoicelist
+
+	return data
+
 /datum/category_item/player_setup_item/loadout/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
 	var/metadata = pref.all_underwear_metadata[underwear_category]
 	if(!metadata)
@@ -158,6 +208,79 @@ var/global/list/valid_ringtones = list(
 	var/list/metadata = pref.all_underwear_metadata[underwear_category]
 	metadata["[gt]"] = new_metadata
 
+/datum/category_item/player_setup_item/loadout/equipment/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = ui.user
+
+	switch(action)
+		if("change_headset")
+			// Takes the JS index
+			var/new_headset = text2num(params["headset"]) + 1
+			if(LAZYACCESS(GLOB.headsetlist, new_headset))
+				pref.headset = new_headset
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("change_backpack")
+			// Takes the JS index
+			var/new_backbag = text2num(params["backbag"]) + 1
+			if(LAZYACCESS(backbaglist, new_backbag))
+				pref.backbag = new_backbag
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("change_pda")
+			// Takes the JS index
+			var/new_pdachoice = text2num(params["backbag"]) + 1
+			if(LAZYACCESS(backbaglist, new_pdachoice))
+				pref.pdachoice = new_pdachoice
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("change_underwear")
+			var/datum/category_group/underwear/UWC = LAZYACCESS(global_underwear.categories_by_name, params["underwear"])
+			if(!UWC)
+				return
+			var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
+			if(selected_underwear)
+				pref.all_underwear[UWC.name] = selected_underwear.name
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("underwear_tweak")
+			var/underwear = params["underwear"]
+			if(!(underwear in pref.all_underwear))
+				return TOPIC_NOACTION
+			var/datum/gear_tweak/gt = locate(params["tweak"])
+			if(!gt)
+				return TOPIC_NOACTION
+			var/new_metadata = gt.get_metadata(user, get_metadata(underwear, gt))
+			if(new_metadata)
+				set_metadata(underwear, gt, new_metadata)
+				return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("toggle_comm_visibility")
+			pref.communicator_visibility = !pref.communicator_visibility
+			return TOPIC_REFRESH
+
+		if("set_ringtone")
+			var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+			if(!choice)
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+				if(raw_choice)
+					pref.ringtone = raw_choice
+			else
+				pref.ringtone = choice
+			return TOPIC_REFRESH
+
+		if("toggle_shoes")
+			pref.shoe_hater = !pref.shoe_hater
+			return TOPIC_REFRESH
+
+		if("toggle_jacket")
+			pref.no_jacket = !pref.no_jacket
+			return TOPIC_REFRESH
 
 /datum/category_item/player_setup_item/loadout/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_headset"])
