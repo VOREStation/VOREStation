@@ -16,7 +16,6 @@
 #include "code\_macros.dm"
 #include "code\_macros_vr.dm"
 #include "code\coalesce.dm"
-#include "code\global.dm"
 #include "code\global_init.dm"
 #include "code\global_vr.dm"
 #include "code\names.dm"
