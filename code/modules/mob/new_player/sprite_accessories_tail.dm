@@ -1673,13 +1673,13 @@
 	extra_overlay = "chonksqrl-m1"
 	extra_overlay2 = "chonksqrl-m2"
 
-/datum/sprite_accessory/tail/longtail/op_qaavos
+/datum/sprite_accessory/tail/longtail/qaavos
 	name = "Qaavos Tail"
 	icon_state = "qaavos_tail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/longtail/op_anteater
+/datum/sprite_accessory/tail/longtail/anteater
 	name = "Anteater tail"
 	icon_state = "anteater_tail"
 
