@@ -23,12 +23,9 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 
-/obj/singularity/energy_ball/New(loc, starting_energy = 50, is_miniball = FALSE)
-	..()
-	miniball = is_miniball
-
-/obj/singularity/energy_ball/Initialize(mapload)
+/obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	. = ..()
+	miniball = is_miniball
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")
 
@@ -78,7 +75,7 @@
 	//we face the last thing we zapped, so this lets us favor that direction a bit
 	var/move_bias = dir
 	for(var/i in 0 to move_amount)
-		var/move_dir = pick(global.alldirs + move_bias) //ensures large-ball teslas don't just sit around
+		var/move_dir = pick(global.GLOB.alldirs + move_bias) //ensures large-ball teslas don't just sit around
 		if(target && prob(10))
 			move_dir = get_dir(src,target)
 		var/turf/T = get_step(src, move_dir)

@@ -104,3 +104,61 @@
   - rscadd: Adds "traffic officer's jacket" to Suits and Overwear
   - rscadd: Adds the option to bring a rubber ducky with you to the loadout on General
   - rscadd: Adds the waiter's outfit to the loadout on Casual Dress
+2025-04-11:
+  Asher-42:
+  - rscadd: moves eye layer under bellies for borgs
+  Cameron-The-Raven:
+  - rscadd: Space heaters can now be crafted
+  - rscadd: Space heaters can now be upgraded to cool/heat faster (Uses micro_laser,
+      manipulator, and capacitor to upgrade various parts)
+2025-04-12:
+  Diana:
+  - bugfix: Exit VR now properly lets you exit vr
+  Drathek:
+  - code_imp: DMI merge hook will now try to retain positioning of sprites when handling
+      some conflicts
+  Kashargul:
+  - bugfix: runechat offset delta being applied twice in some cases
+  SatinIsle:
+  - rscadd: Added the recolour ability to beast form transformations, allowing them
+      to recolour themselves once per transformation.
+  - bugfix: Fixes some bad destroys
+  - rscadd: Added IDs to the list of edible trash eater items. Just like PDA's they
+      require the owner to be watching when they're eaten.
+  - bugfix: Fixed PDA eating warning messages not being visible.
+2025-04-13:
+  Diana:
+  - bugfix: Stumblevore and flight vore should now work properly.
+  Kashargul:
+  - bugfix: RPD interface
+  - code_imp: tgui-core to 3.0.4
+  - bugfix: chat messages not querying
+  ReoDaProtovali:
+  - rscadd: Added Special teleporter vorebellies.
+  - code_imp: Added support for vorebellies to be marked as unsavable, preventing
+      them from being saved to characters.
+  whooshboom:
+  - rscadd: Silicon are now able to be picked up, with a toggle in their abilities
+      section to preserve petting.
+2025-04-14:
+  Kashargul:
+  - bugfix: color picker layout
+  - qol: we no longer reset the value on blur, we only validate input or onEnter
+  - code_imp: finishes new to init
+  - rscadd: marker beacon to mining robots
+  - bugfix: modal inputs
+2025-04-15:
+  Diana:
+  - bugfix: Shoulder augments can now be installed the first time without having to
+      screwdriver them twice
+2025-04-18:
+  ItsSelis:
+  - refactor: converts a bunch of global variables/lists to managed global variables/lists
+  Kashargul:
+  - bugfix: highlight input size
+  - bugfix: samples no longer generate infinite tech level lists
+  KillianKirilenko:
+  - rscadd: Added sleeveless variant of the colourable duster.
+  TeleTubby2:
+  - rscadd: NIF commlinks auto-initialize if the relevant preference is set in character
+      creation

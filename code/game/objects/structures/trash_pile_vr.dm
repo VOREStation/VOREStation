@@ -102,10 +102,10 @@
 		return
 
 	var/timedifference = world.time - user.client.time_died_as_mouse
-	if(user.client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
+	if(user.client.time_died_as_mouse && timedifference <= CONFIG_GET(number/mouse_respawn_time) MINUTES)
 		var/timedifference_text
-		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
-		to_chat(user, span_warning("You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left."))
+		timedifference_text = time2text(CONFIG_GET(number/mouse_respawn_time) MINUTES - timedifference,"mm:ss")
+		to_chat(user, span_warning("You may only spawn again as a mouse more than [CONFIG_GET(number/mouse_respawn_time)] minutes after your death. You have [timedifference_text] left."))
 		return
 
 	var/response = tgui_alert(user, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?",list("Squeek!","Nope!"))
