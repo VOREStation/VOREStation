@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Spaceacillin and other ABX will work with the patient stabilizer"
+  - rscadd: "The patient stabilizer now plays sound to the deceased individual"

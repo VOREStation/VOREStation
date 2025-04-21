@@ -67,6 +67,7 @@
 	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
+	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
 
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
@@ -459,7 +460,9 @@
 	"item_multiplier",
 	"undergarment_chosen",
 	"undergarment_if_none",
-	"undergarment_color"
+	"undergarment_color",
+	"trash_eater_in",
+	"trash_eater_out"
 	)
 
 	if (save_digest_mode == 1)
@@ -525,9 +528,9 @@
 	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_vore_sounds[vore_sound]
+			soundfile = GLOB.classic_vore_sounds[vore_sound]
 		else
-			soundfile = fancy_vore_sounds[vore_sound]
+			soundfile = GLOB.fancy_vore_sounds[vore_sound]
 		if(special_entrance_sound) // Custom sound set by mob's init_vore or ingame varedits.
 			soundfile = special_entrance_sound
 		if(soundfile)
@@ -838,9 +841,9 @@
 		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(name)]!"))), range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_release_sounds[release_sound]
+			soundfile = GLOB.classic_release_sounds[release_sound]
 		else
-			soundfile = fancy_release_sounds[release_sound]
+			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
@@ -917,15 +920,18 @@
 			//privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(istype(M, /mob/observer))
+	if(isobserver(M))
 		silent = TRUE
 	if(!silent)
-		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
+		if(isitem(M))
+			owner.visible_message(span_vnotice(span_green(span_bold(belly_format_string(trash_eater_out, M, item=M)))),range = privacy_range) //double dip. prey = item, item = prey. sanity check in case they use %prey in the message.
+		else
+			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_release_sounds[release_sound]
+			soundfile = GLOB.classic_release_sounds[release_sound]
 		else
-			soundfile = fancy_release_sounds[release_sound]
+			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	//Should fix your view not following you out of mobs sometimes!
@@ -1077,7 +1083,7 @@
 					R.mmi.brainmob.languages = MB.original_languages
 				else
 					R.mmi.brainmob.languages = R.languages
-				R.mmi.brainmob.remove_language("Robot Talk")
+				R.mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
 				hasMMI = R.mmi
 				M.mind.transfer_to(hasMMI.brainmob)
 				R.mmi = null
@@ -1212,7 +1218,7 @@
 	//Sketchy fallback for safety, put them somewhere safe.
 	else
 		log_debug("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
-		var/fallback = pick(latejoin)
+		var/fallback = pick(GLOB.latejoin)
 		return get_turf(fallback)
 
 //Yes, it's ""safe"" to drop items here

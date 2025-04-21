@@ -1,18 +1,18 @@
 // This system is used to grab a ghost from observers with the required preferences and
 // lack of bans set. See posibrain.dm for an example of how they are called/used. ~Z
 
-var/list/ghost_traps
+GLOBAL_LIST(ghost_traps)
 
 /proc/get_ghost_trap(var/trap_key)
-	if(!ghost_traps)
+	if(!GLOB.ghost_traps)
 		populate_ghost_traps()
-	return ghost_traps[trap_key]
+	return GLOB.ghost_traps[trap_key]
 
 /proc/populate_ghost_traps()
-	ghost_traps = list()
+	GLOB.ghost_traps = list()
 	for(var/traptype in typesof(/datum/ghosttrap))
 		var/datum/ghosttrap/G = new traptype
-		ghost_traps[G.object] = G
+		GLOB.ghost_traps[G.object] = G
 
 /datum/ghosttrap
 	var/object = "positronic brain"

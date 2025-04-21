@@ -1,4 +1,4 @@
-/var/const/meteor_wave_delay = 625 //minimum wait between waves in tenths of seconds
+GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
@@ -44,7 +44,7 @@
 
 /proc/spawn_meteor(var/list/meteortypes, var/startSide, var/startLevel)
 	if(isnull(startSide))
-		startSide = pick(cardinal)
+		startSide = pick(GLOB.cardinal)
 	if(isnull(startLevel))
 		startLevel = pick(using_map.station_levels - using_map.sealed_levels)
 

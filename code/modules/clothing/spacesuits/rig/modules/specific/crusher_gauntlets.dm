@@ -25,7 +25,7 @@
 /obj/item/rig_module/gauntlets/activate()
 	..()
 	var/mob/living/M = holder.wearer
-	var/datum/gender/TU = gender_datums[M.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[M.get_visible_gender()]
 
 	if(M.l_hand && M.r_hand)
 		to_chat(M, span_danger("Your hands are full."))

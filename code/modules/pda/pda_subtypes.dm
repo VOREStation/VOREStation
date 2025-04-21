@@ -43,7 +43,7 @@
 	default_cartridge = /obj/item/cartridge/mime
 	icon_state = "pda-mime"
 
-/obj/item/pda/mime/New()
+/obj/item/pda/mime/Initialize(mapload)
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -128,7 +128,7 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
 	model_name = "Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant"
 
-/obj/item/pda/librarian/New()
+/obj/item/pda/librarian/Initialize(mapload)
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -171,44 +171,44 @@
 	)
 	var/list/cartridges_to_send_to = list()
 
-/obj/item/pda/multicaster/command/New()
-	..()
+/obj/item/pda/multicaster/command/Initialize(mapload)
+	. = ..()
 	owner = "Command Department"
 	name = "Command Department (Relay)"
 	cartridges_to_send_to = command_cartridges
 
-/obj/item/pda/multicaster/security/New()
-	..()
+/obj/item/pda/multicaster/security/Initialize(mapload)
+	. = ..()
 	owner = "Security Department"
 	name = "Security Department (Relay)"
 	cartridges_to_send_to = security_cartridges
 
-/obj/item/pda/multicaster/engineering/New()
-	..()
+/obj/item/pda/multicaster/engineering/Initialize(mapload)
+	. = ..()
 	owner = "Engineering Department"
 	name = "Engineering Department (Relay)"
 	cartridges_to_send_to = engineering_cartridges
 
-/obj/item/pda/multicaster/medical/New()
-	..()
+/obj/item/pda/multicaster/medical/Initialize(mapload)
+	. = ..()
 	owner = "Medical Department"
 	name = "Medical Department (Relay)"
 	cartridges_to_send_to = medical_cartridges
 
-/obj/item/pda/multicaster/research/New()
-	..()
+/obj/item/pda/multicaster/research/Initialize(mapload)
+	. = ..()
 	owner = "Research Department"
 	name = "Research Department (Relay)"
 	cartridges_to_send_to = research_cartridges
 
-/obj/item/pda/multicaster/cargo/New()
-	..()
+/obj/item/pda/multicaster/cargo/Initialize(mapload)
+	. = ..()
 	owner = "Cargo Department"
 	name = "Cargo Department (Relay)"
 	cartridges_to_send_to = cargo_cartridges
 
-/obj/item/pda/multicaster/civilian/New()
-	..()
+/obj/item/pda/multicaster/civilian/Initialize(mapload)
+	. = ..()
 	owner = "Civilian Services Department"
 	name = "Civilian Services Department (Relay)"
 	cartridges_to_send_to = civilian_cartridges
@@ -230,8 +230,8 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 
-/obj/item/storage/box/PDAs/New()
-	..()
+/obj/item/storage/box/PDAs/Initialize(mapload)
+	. = ..()
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)

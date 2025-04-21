@@ -27,8 +27,11 @@ var/global/last_tick_duration = 0
 		job_master.LoadJobs("config/jobs.txt")
 		admin_notice(span_danger("Job setup complete"), R_DEBUG)
 
-	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
-	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
+	if(!GLOB.syndicate_code_phrase)
+		GLOB.syndicate_code_phrase = generate_code_phrase()
+
+	if(!GLOB.syndicate_code_response)
+		GLOB.syndicate_code_response = generate_code_phrase()
 
 /datum/controller/game_controller/proc/setup()
 
