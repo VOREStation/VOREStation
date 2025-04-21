@@ -40,12 +40,12 @@ var/list/gear_datums = list()
 		LC.gear = sortAssoc(LC.gear)
 	return 1
 
-/datum/category_item/player_setup_item/loadout
+/datum/category_item/player_setup_item/loadout/loadout
 	name = "Loadout"
 	sort_order = 2
 	var/current_tab = "General"
 
-/datum/category_item/player_setup_item/loadout/load_character(list/save_data)
+/datum/category_item/player_setup_item/loadout/loadout/load_character(list/save_data)
 	pref.gear_list = list()
 	var/all_gear = check_list_copy(save_data["gear_list"])
 	for(var/i in all_gear)
@@ -60,7 +60,7 @@ var/list/gear_datums = list()
 		pref.gear = check_list_copy(save_data["gear"])
 		pref.gear_slot = 1
 
-/datum/category_item/player_setup_item/loadout/save_character(list/save_data)
+/datum/category_item/player_setup_item/loadout/loadout/save_character(list/save_data)
 	pref.gear_list["[pref.gear_slot]"] = pref.gear
 	var/list/all_gear = list()
 	var/worn_gear = check_list_copy(pref.gear_list)
@@ -74,7 +74,7 @@ var/list/gear_datums = list()
 	save_data["gear_list"] = all_gear
 	save_data["gear_slot"] = pref.gear_slot
 
-/datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
+/datum/category_item/player_setup_item/loadout/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
@@ -94,7 +94,7 @@ var/list/gear_datums = list()
 				continue
 		. += gear_name
 
-/datum/category_item/player_setup_item/loadout/sanitize_character()
+/datum/category_item/player_setup_item/loadout/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
 	if(!islist(pref.gear))
 		pref.gear = list()
@@ -120,7 +120,7 @@ var/list/gear_datums = list()
 			else
 				total_cost += G.cost
 
-/datum/category_item/player_setup_item/loadout/content()
+/datum/category_item/player_setup_item/loadout/loadout/content()
 	. = list()
 	var/mob/preference_mob = preference_mob()	//Vorestation Edit
 	var/total_cost = 0
@@ -187,24 +187,24 @@ var/list/gear_datums = list()
 	. += "</table>"
 	. = jointext(., null)
 
-/datum/category_item/player_setup_item/loadout/proc/get_gear_metadata(var/datum/gear/G)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(var/datum/gear/G)
 	. = pref.gear[G.display_name]
 	if(!.)
 		. = list()
 		pref.gear[G.display_name] = .
 
-/datum/category_item/player_setup_item/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
 	. = metadata["[tweak]"]
 	if(!.)
 		. = tweak.get_default()
 		metadata["[tweak]"] = .
 
-/datum/category_item/player_setup_item/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
+/datum/category_item/player_setup_item/loadout/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
-/datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
+/datum/category_item/player_setup_item/loadout/loadout/OnTopic(href, href_list, user)
 	if(href_list["toggle_gear"])
 		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
 		if(TG.display_name in pref.gear)
