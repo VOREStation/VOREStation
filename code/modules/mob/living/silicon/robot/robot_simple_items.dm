@@ -185,7 +185,7 @@
 	set name = "Change Colour"
 	set category = "Object"
 
-	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
+	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
 	set_cable_color(selected_type, usr)
 
 /*
