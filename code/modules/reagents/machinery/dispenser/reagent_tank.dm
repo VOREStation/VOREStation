@@ -514,7 +514,7 @@
 	name = "nuclear beer keg"
 	desc = "A beer keg in the form of a nuclear bomb! An absolute blast at parties!"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "nuclearbomb0"
+	icon_state = "nuclearbomb0_old"
 
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil
