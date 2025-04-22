@@ -169,7 +169,7 @@
 
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/standard/hound/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/standard/hound/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/melee/baton/loaded(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
@@ -203,5 +203,4 @@
 	add_verb(R,/mob/living/proc/toggle_rider_reins)
 	add_verb(R,/mob/living/proc/shred_limb)
 	add_verb(R,/mob/living/silicon/robot/proc/rest_style)
-	..()
 */

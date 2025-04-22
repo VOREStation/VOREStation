@@ -3,8 +3,8 @@
 	name = SPECIES_XENO
 	name_plural = "Xenomorphs"
 
-	default_language = "Xenomorph"
-	language = "Hivemind"
+	default_language = LANGUAGE_XENOLINGUA
+	language = LANGUAGE_HIVEMIND
 	assisted_langs = list()
 	unarmed_types = list(/datum/unarmed_attack/claws/strong/xeno, /datum/unarmed_attack/bite/strong/xeno)
 	hud_type = /datum/hud_data/alien

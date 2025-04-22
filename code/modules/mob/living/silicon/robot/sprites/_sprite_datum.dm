@@ -139,15 +139,16 @@
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-eyes"
-	else
-		return
+	else if(ourborg.resting && has_rest_sprites)
+		return "[get_rest_sprite(ourborg)]-eyes"
 
 /datum/robot_sprite/proc/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-lights"
-	else
-		return
+	else if(ourborg.resting && has_rest_sprites)
+		return "[get_rest_sprite(ourborg)]-lights"
 
+// This can not use the get_rest_sprite function as it could use belly overlays as decals
 /datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
 	if(LAZYLEN(sprite_decals))
 		if(!ourborg.resting)

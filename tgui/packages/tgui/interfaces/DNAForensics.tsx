@@ -6,6 +6,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -25,23 +26,27 @@ export const DNAForensics = (props) => {
         <Section
           title="Status"
           buttons={
-            <>
-              <Button
-                selected={scanning}
-                disabled={!bloodsamp}
-                icon="power-off"
-                onClick={() => act('scanItem')}
-              >
-                {scanning ? 'Halt Scan' : 'Begin Scan'}
-              </Button>
-              <Button
-                disabled={!bloodsamp}
-                icon="eject"
-                onClick={() => act('ejectItem')}
-              >
-                Eject Bloodsample
-              </Button>
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button
+                  selected={scanning}
+                  disabled={!bloodsamp}
+                  icon="power-off"
+                  onClick={() => act('scanItem')}
+                >
+                  {scanning ? 'Halt Scan' : 'Begin Scan'}
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  disabled={!bloodsamp}
+                  icon="eject"
+                  onClick={() => act('ejectItem')}
+                >
+                  Eject Bloodsample
+                </Button>
+              </Stack.Item>
+            </Stack>
           }
         >
           <LabeledList>

@@ -2,7 +2,7 @@
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 	if(flipped == 1)
-		if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+		if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 			return !density
 		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -158,6 +158,7 @@
 
 // Placing stuff on tables
 	if(user.unEquip(W, 0, src.loc) && user.client?.prefs?.read_preference(/datum/preference/toggle/precision_placement))
+		W.do_drop_animation(user)
 		auto_align(W, click_parameters)
 		return 1
 

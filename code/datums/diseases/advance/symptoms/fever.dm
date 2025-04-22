@@ -17,24 +17,54 @@ Bonus
 
 /datum/symptom/fever
 	name = "Fever"
-	stealth = 0
+	desc = "The virus causes a febrile response from the host, raising it's body temperature."
+	stealth = -1
 	resistance = 3
 	stage_speed = 3
-	transmittable = 2
+	transmission = 2
 	level = 2
-	severity = 2
+	severity = 0
+	base_message_chance = 20
+	symptom_delay_min = 25 SECONDS
+	symptom_delay_max = 50 SECONDS
 
-/datum/symptom/fever/Activate(var/datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/carbon/M = A.affected_mob
+	var/unsafe = FALSE
+
+	threshold_descs = list(
+		"Resistance 5" = "Increases fever intensity, fever can overheat and harm the host.",
+		"Resistance 10" = "Further increases fever intensity."
+	)
+
+/datum/symptom/fever/severityset(datum/disease/advance/A)
+	. = ..()
+	if(A.resistance >= 5)
+		severity += 1
+		if(A.resistance >= 10)
+			severity += 1
+
+/datum/symptom/fever/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.resistance >= 5)
+		power = 1.5
+		unsafe = TRUE
+		if(A.resistance >= 10)
+			power = 2.5
+
+/datum/symptom/fever/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/M = A.affected_mob
+	if(M.stat == DEAD)
+		return
+	if(!unsafe || A.stage < 4)
 		to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
-		if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
-			Heat(M, A)
+	else
+		to_chat(M, span_userdanger(pick("You feel too hot", "You feel like your blod is boiling.")))
+	set_body_temp(A.affected_mob, A)
 
-	return
-
-/datum/symptom/fever/proc/Heat(var/mob/living/M, var/datum/disease/advance/A)
-	var/get_heat = (sqrtor0(21+A.totalTransmittable()*2))+(sqrtor0(20+A.totalStageSpeed()*3))
-	M.bodytemperature = min(M.bodytemperature + (get_heat * A.stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)
-	return TRUE
+/datum/symptom/fever/proc/set_body_temp(mob/living/M, datum/disease/advance/A)
+	if(!unsafe)
+		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT - 1)))
+	else
+		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT + 20)))

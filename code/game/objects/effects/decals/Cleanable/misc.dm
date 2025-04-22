@@ -123,6 +123,19 @@
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/datum/disease/viruses = list()
 
+/obj/effect/decal/cleanable/vomit/old
+	name = "crusty dried vomit"
+	desc = "You try not to look at the chunks, and fail."
+
+/obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	icon_state += "-old"
+	if(length(diseases))
+		viruses += diseases
+	if(prob(95))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 5), rand(7, 9), 4)
+		src.viruses += new_disease
+
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"
 	desc = "It's red."

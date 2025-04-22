@@ -1,4 +1,4 @@
-import { Box, Section, Stack } from 'tgui-core/components';
+import { Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { localPrefs } from '../types';
@@ -14,22 +14,15 @@ export const VoreUserPreferencesSoulcatcher = (props: {
     <Section
       title="Soulcatcher Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.soulcatcher}
-            tooltipPosition="top"
-          />
-        </Box>
+        <VoreUserPreferenceItem
+          spec={preferences.soulcatcher}
+          tooltipPosition="top"
+        />
       }
     >
       {soulcatcher_allow_capture ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item
-            basis="32%"
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.soulcatcher_transfer}
               tooltipPosition="right"

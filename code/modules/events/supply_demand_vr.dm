@@ -22,9 +22,9 @@
 	running_demand_events += src
 	// Decide what items are requried!
 	// We base this on what departmets are most active, excluding departments we don't have
-	var/list/notHaveDeptList = metric.departments.Copy()
+	var/list/notHaveDeptList = GLOB.metric.departments.Copy()
 	notHaveDeptList.Remove(list(DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_CARGO, DEPARTMENT_CIVILIAN))
-	var/deptActivity = metric.assess_all_departments(severity * 2, notHaveDeptList)
+	var/deptActivity = GLOB.metric.assess_all_departments(severity * 2, notHaveDeptList)
 	for(var/dept in deptActivity)
 		switch(dept)
 			if(DEPARTMENT_ENGINEERING)
@@ -59,7 +59,7 @@
 	message += "<hr>"
 	message += "Deliver these items to [command_name()] via the supply shuttle.  Please put the ones you can into crates!<br>"
 
-	for(var/dpt in req_console_supplies)
+	for(var/dpt in GLOB.req_console_supplies)
 		send_console_message(message, dpt);
 
 	// Also announce over main comms so people know to look

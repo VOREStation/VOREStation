@@ -94,10 +94,10 @@ var/datum/antagonist/cultist/cult
 			word = pick(allwords)
 
 	// Ensure runes are randomized.
-	if(!cultwords["travel"])
+	if(!GLOB.cultwords["travel"])
 		runerandom()
 
-	var/wordexp = "[cultwords[word]] is [word]..."
+	var/wordexp = "[GLOB.cultwords[word]] is [word]..."
 	to_chat(cult_mob, span_warning("You remember one thing from the dark teachings of your master... [wordexp]"))
 	cult_mob.mind.store_memory("You remember that <B>[wordexp]</B>", 0, 0)
 
