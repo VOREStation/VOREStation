@@ -6,7 +6,7 @@
 
 	var/list/hiss_list = list()
 	for(var/datum/trait/T in subtypesof(/datum/trait))
-		if(!islist(!T.var_changes[autohiss_basic_map]))
+		if(!islist(T.var_changes["autohiss_basic_map"]))
 			continue
 		// Has a hiss!
 		hiss_list += T
