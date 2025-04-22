@@ -22,18 +22,22 @@ export const MessageMonitorMain = (props) => {
     <Section
       title="Main Menu"
       buttons={
-        <>
-          <Button icon="link" onClick={() => act('find')}>
-            Server Link
-          </Button>
-          <Button
-            icon="power-off"
-            selected={linkedServer.active}
-            onClick={() => act('active')}
-          >
-            {'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button icon="link" onClick={() => act('find')}>
+              Server Link
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="power-off"
+              selected={linkedServer.active}
+              onClick={() => act('active')}
+            >
+              {'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>
@@ -156,15 +160,17 @@ export const MessageMonitorAdmin = (props) => {
         <LabeledList.Item label="Sender">
           <Input
             fluid
+            expensive
             value={customsender}
-            onChange={(e, val) => act('set_sender', { val: val })}
+            onChange={(val) => act('set_sender', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Sender's Job">
           <Input
             fluid
+            expensive
             value={customjob}
-            onChange={(e, val) => act('set_sender_job', { val: val })}
+            onChange={(val) => act('set_sender_job', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
@@ -185,8 +191,9 @@ export const MessageMonitorAdmin = (props) => {
           <Input
             fluid
             mb={0.5}
+            expensive
             value={custommessage}
-            onChange={(e, val: string) => act('set_message', { val: val })}
+            onChange={(val: string) => act('set_message', { val: val })}
           />
         </LabeledList.Item>
       </LabeledList>

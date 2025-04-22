@@ -5,8 +5,8 @@
 
 /datum/event/money_lotto/start()
 	winner_sum = pick(5000, 10000, 50000, 100000, 500000, 1000000, 1500000)
-	if(all_money_accounts.len)
-		var/datum/money_account/D = pick(all_money_accounts)
+	if(GLOB.all_money_accounts.len)
+		var/datum/money_account/D = pick(GLOB.all_money_accounts)
 		winner_name = D.owner_name
 		if(!D.suspended)
 			D.money += winner_sum
@@ -15,7 +15,7 @@
 			T.target_name = "The [using_map.starsys_name] Times Grand Slam -Stellar- Lottery"
 			T.purpose = "Winner!"
 			T.amount = winner_sum
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = stationtime2text()
 			T.source_terminal = "Sif TCD Terminal #[rand(111,333)]"
 			D.transaction_log.Add(T)

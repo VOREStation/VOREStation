@@ -83,7 +83,7 @@
 	if(eye_state == PURPLE_EYES)
 		destroy_lights = 25
 
-	for(var/obj/machinery/light/L in machines)
+	for(var/obj/machinery/light/L in GLOB.machines)
 		if(L.z != z || get_dist(src,L) > 10)
 			continue
 

@@ -17,22 +17,50 @@ Bonus
 
 /datum/symptom/deafness
 	name = "Deafness"
-	stealth = 1
-	resistance = -2
+	desc = "The virus causes inflammation of the eardrums, causing intermittent deafness."
+	stealth = -1
+	resistance = -1
 	stage_speed = 1
-	transmittable = -3
-	level = 4
-	severity = 3
+	transmission = -3
+	level = 3
+	severity = 2
+	base_message_chance = 100
+	symptom_delay_min = 25 SECONDS
+	symptom_delay_max = 80 SECONDS
 
-/datum/symptom/deafness/Activate(datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
+	threshold_descs = list(
+		"Resistance 9" = "Causes permanent hearing loss.",
+		"Stealth 4" = "The symptom remains hidden until active."
+	)
 
-		switch(A.stage)
-			if(3, 4)
-				to_chat(M, span_warning("[pick("you hear a ringing in your ear.", "You ears pop.")]"))
-			if(5)
-				to_chat(M, span_userdanger("You ear pop and begin ringing loudly!"))
-				M.ear_deaf += 20
-	return
+/datum/symptom/deafness/severityset(datum/disease/advance/A)
+	. = ..()
+	if(A.resistance >= 9)
+		severity += 1
+
+/datum/symptom/deafness/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stealth >= 4)
+		supress_warning = TRUE
+	if(A.resistance >= 9)
+		power = 2
+
+/datum/symptom/deafness/Activate(var/datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/M = A.affected_mob
+	if(M.stat == DEAD)
+		return
+	switch(A.stage)
+		if(3, 4)
+			if(prob(base_message_chance) && !supress_warning)
+				to_chat(M, span_warning(pick("You hear a ringing in your ears.", "Your ears pop.")))
+		if(5)
+			if(power >= 2)
+				M.adjustEarDamage(100, 10)
+				to_chat(M, span_userdanger("Your ears pop painfully and start bleeding!"))
+				M.emote("scream")
+			else
+				to_chat(M, span_userdanger("Your ears pop and begin ringing loudly!"))
+				M.adjustEarDamage(0, 10)

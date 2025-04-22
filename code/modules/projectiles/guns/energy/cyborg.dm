@@ -255,7 +255,7 @@
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
@@ -421,7 +421,7 @@
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/baton/arm
 	name = "electrified arm"
