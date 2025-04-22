@@ -279,10 +279,10 @@
 
 	if(istype(O,/obj/item/holder) || istype(O,/mob/)) //just in case.
 		var/obj/item/holder/h = O
-		if(!isRepeat) global_announcer.autosay("HARM ALERT: Crewmember [user] recorded displaying murderous tendencies towards innocent creatures in [get_area(src)]. Please schedule psych evaluation and ensure the wellbeing of recorded victim: [h.held_mob]", "[src]", "Security")
+		if(!isRepeat) GLOB.global_announcer.autosay("HARM ALERT: Crewmember [user] recorded displaying murderous tendencies towards innocent creatures in [get_area(src)]. Please schedule psych evaluation and ensure the wellbeing of recorded victim: [h.held_mob]", "[src]", "Security")
 		audible_message("[src] states, \"AMORAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
 	else
-		if(!isRepeat) global_announcer.autosay("PROPERTY DESTRUCTION ALERT: Crewmember [user] has been recorded attempting to destroy high priority station equipment in [get_area(src)]. Please ensure the integrity of \The [O].", "[src]", "Security")
+		if(!isRepeat) GLOB.global_announcer.autosay("PROPERTY DESTRUCTION ALERT: Crewmember [user] has been recorded attempting to destroy high priority station equipment in [get_area(src)]. Please ensure the integrity of \The [O].", "[src]", "Security")
 		audible_message("[src] states, \"CRIMINAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
 
 	playsound(src,pick(angry_sounds),80)
