@@ -25,5 +25,5 @@
 	if(failed)
 		fail("One or more autohiss traits allow another autohiss to be chosen with it.")
 	else
-		pass("Autohiss traits are exclusive.")
+		pass("All [hiss_list.len] autohiss traits are properly exclusive.")
 	return failed
