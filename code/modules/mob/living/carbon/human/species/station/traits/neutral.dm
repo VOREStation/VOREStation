@@ -1675,5 +1675,4 @@
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera,
-		/datum/trait/neutral/autohiss_yingish/xenochimera)
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
