@@ -8,8 +8,7 @@
 	for(var/traitpath in subtypesof(/datum/trait))
 		var/datum/trait/T = GLOB.all_traits[traitpath]
 		// Check if it has a hiss
-		var/list/hiss_list = T.var_changes["autohiss_basic_map"]
-		if(!hiss_list || !hiss_list.len)
+		if(!islist(T.var_changes["autohiss_basic_map"]))
 			continue
 		hiss_list += T
 
