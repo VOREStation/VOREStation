@@ -12,11 +12,6 @@
 	sort_order = 3
 	category_item_type = /datum/category_item/player_setup_item/occupation
 
-/datum/category_group/player_setup_category/appearance_preferences
-	name = "Special Roles"
-	sort_order = 4
-	category_item_type = /datum/category_item/player_setup_item/antagonism
-
 /datum/category_group/player_setup_category/loadout_preferences
 	name = "Loadout"
 	sort_order = 5

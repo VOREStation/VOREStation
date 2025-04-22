@@ -203,10 +203,35 @@ export type FlavorData = {
   flavor_text_length: number;
 };
 
+export type SpecialRole = {
+  idx: number;
+  name: string;
+  selected: BooleanLike;
+  banned: BooleanLike;
+};
+
+export type AntagonismData = {
+  antag_faction: string;
+  antag_vis: string;
+  uplink_type: string;
+  record_banned: BooleanLike;
+  exploitable_record?: string;
+  pai_name: string;
+  pai_desc: string;
+  pai_role: string;
+  pai_comments: string;
+  syndicate_ban: BooleanLike;
+  special_roles: SpecialRole[];
+};
+
 export const REQUIRED_FLAVOR_TEXT_LENGTH = 30;
 export const REQUIRED_OOC_LENGTH = 15;
 
-export type GeneralData = BasicData & BodyData & BackgroundData & FlavorData;
+export type GeneralData = BasicData &
+  BodyData &
+  BackgroundData &
+  FlavorData &
+  AntagonismData;
 
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;
