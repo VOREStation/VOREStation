@@ -55,11 +55,11 @@
 	activation_message="Your body feels chilly."
 	primitive_expression_messages=list("shivers.")
 
-
 /datum/trait/neutral/autohiss_unathi
 	name = "Autohiss (Unathi)"
 	desc = "You roll your S's and x's"
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"s" = list("ss", "sss", "ssss")
@@ -72,16 +72,18 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
-	custom_only = FALSE
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
 	desc = "You roll your R's."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
@@ -91,16 +93,18 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
-	custom_only = FALSE
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_zaddat
 	name = "Autohiss (Zaddat)"
 	desc = "You buzz your S's and F's."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"f" = list("v","vh"),
@@ -117,11 +121,12 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
-	custom_only = FALSE
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_vassilian
 	name = "Autohiss (Vassilian)"
@@ -142,10 +147,40 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_yingish
+	name = "Autohiss (Yingish)"
+	desc = "You pronounce th's with a lisp, a bit like zhis!"
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"thi" = list("z"),
+			"shi" = list("z"),
+			"tha" = list("z"),
+			"tho" = list("z")
+		),
+	autohiss_extra_map = list(
+			"the" = list("z"),
+			"so" = list("z")
+		),
+	autohiss_exempt = list())
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
@@ -1525,9 +1560,11 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1546,9 +1583,11 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_zaddat/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1574,9 +1613,11 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
-		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_vassilian/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1600,6 +1641,39 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
-		/datum/trait/neutral/autohiss_zaddat/xenochimera)
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_yingish/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Yingish)"
+	desc = "You pronounce th's with a lisp, a bit like zhis!"
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"thi" = list("z"),
+			"shi" = list("z"),
+			"tha" = list("z"),
+			"tho" = list("z")
+		),
+	autohiss_extra_map = list(
+			"the" = list("z"),
+			"so" = list("z")
+		),
+	autohiss_exempt = list())
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
