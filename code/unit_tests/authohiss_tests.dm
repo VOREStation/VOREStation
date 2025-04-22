@@ -18,9 +18,14 @@
 			log_unit_test("[T.type]: Trait - Autohiss excludes itself.")
 			failed = TRUE
 
-		var/list/exempt_list = hiss_list.Copy() - list(T.type) // MUST exclude all others except itself
+		if(!T.excludes)
+			log_unit_test("[T.type]: Trait - Autohiss missing exclusion list.")
+			failed = TRUE
+			continue
+
+		var/list/exempt_list = hiss_list.Copy() - T.type // MUST exclude all others except itself
 		for(var/EX in exempt_list)
-			if(!(EX in T.excludes))
+			if(!(EX.type in T.excludes))
 				log_unit_test("[T.type]: Trait - Autohiss missing exclusion for [EX].")
 				failed = TRUE
 
