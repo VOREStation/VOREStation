@@ -79,7 +79,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
                   fluid
                   value={nameSearch}
                   placeholder="Search for Name..."
-                  onChange={(e, val) => setNameSearch(val)}
+                  onChange={(val) => setNameSearch(val)}
                 />
               </Stack.Item>
               <Stack.Item>

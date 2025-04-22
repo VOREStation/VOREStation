@@ -5,18 +5,20 @@
  */
 
 import { useState } from 'react';
-import { logger } from 'tgui/logging';
 import { Button, ByondUi, Section, TextArea } from 'tgui-core/components';
+
+import { logger } from '../logging';
 
 export const meta = {
   title: 'ByondUi',
   render: () => <Story />,
 };
 
-const Story = (props) => {
+function Story() {
   const [code, setCode] = useState(
     `Byond.winset('${Byond.windowId}', {\n  'is-visible': true,\n})`,
   );
+
   return (
     <>
       <Section title="Button">
@@ -53,13 +55,14 @@ const Story = (props) => {
         }
       >
         <TextArea
+          as="textarea"
           width="100%"
           height="10em"
-          onChange={(_, value) => setCode(value)}
+          onChange={(value) => setCode(value)}
         >
           {code}
         </TextArea>
       </Section>
     </>
   );
-};
+}

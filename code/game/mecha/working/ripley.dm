@@ -49,7 +49,7 @@
 			T.Entered(A)
 		step_rand(A)
 	cargo.Cut()
-	..()
+	. = ..()
 
 /obj/mecha/working/ripley/firefighter
 	desc = "Standard APLU chassis was refitted with additional thermal protection and cistern."

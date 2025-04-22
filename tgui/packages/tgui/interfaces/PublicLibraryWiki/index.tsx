@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
@@ -38,13 +38,14 @@ export const PublicLibraryWiki = (props) => {
     donated,
     goal,
   } = data;
+  const tippOfTheDay = useRef(
+    WikiTippOfTheDay[Math.floor(Math.random() * WikiTippOfTheDay.length)],
+  );
+
   const [displayedAds, setDisplayedAds] = useState<string[][]>([]);
   const [displayDonation, setDislayDonation] = useState(false);
   const [displayedDonations, setDisplayedDonations] = useState<string>('');
   const [displayedDonated, setDisplayDonated] = useState<string>('');
-  const [tippOfTheDay, setTipOfTheDay] = useState<string>(
-    WikiTippOfTheDay[Math.floor(Math.random() * WikiTippOfTheDay.length)],
-  );
   const [updateAds, setUpdateAds] = useState(false);
   const [loadTime, setLoadTime] = useState(
     Math.floor(Math.random() * 2000) + 2000,
@@ -127,7 +128,9 @@ export const PublicLibraryWiki = (props) => {
   }, [has_donated]);
 
   const tabs: React.JSX.Element[] = [];
-  tabs[0] = <WikiLoadingPage endTime={loadTime - 500} tipp={tippOfTheDay} />;
+  tabs[0] = (
+    <WikiLoadingPage endTime={loadTime - 500} tipp={tippOfTheDay.current} />
+  );
   tabs[1] = crash ? (
     <WikiErrorPage />
   ) : (

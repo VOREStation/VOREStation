@@ -5726,9 +5726,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/engineering/engine_room)
 "lW" = (
-/obj/machinery/medical_kiosk{
-	pixel_y = 6
-	},
+/obj/structure/bed/chair,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
 "lX" = (
@@ -19285,11 +19283,13 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Qq" = (
-/obj/structure/bed/chair,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/medical_kiosk{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
 "Qr" = (

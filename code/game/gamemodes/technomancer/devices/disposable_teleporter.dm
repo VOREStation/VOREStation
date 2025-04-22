@@ -31,10 +31,10 @@
 		to_chat(user, span_danger("\The [src] has ran out of uses, and is now useless to you!"))
 		return
 	else
-		var/area_wanted = tgui_input_list(user, "Area to teleport to", "Teleportation", teleportlocs)
+		var/area_wanted = tgui_input_list(user, "Area to teleport to", "Teleportation", GLOB.teleportlocs)
 		if(!area_wanted)
 			return
-		var/area/A = teleportlocs[area_wanted]
+		var/area/A = GLOB.teleportlocs[area_wanted]
 		if(!A)
 			return
 

@@ -38,8 +38,8 @@
 	gunshot_residue = null
 
 
-/obj/item/clothing/New()
-	..()
+/obj/item/clothing/Initialize(mapload)
+	. = ..()
 	if(starting_accessories)
 		for(var/T in starting_accessories)
 			var/obj/item/clothing/accessory/tie = new T(src)
@@ -288,8 +288,10 @@
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
-/obj/item/clothing/ears/offear/New(var/obj/O)
-	if(O)
+/obj/item/clothing/ears/offear/Initialize(mapload)
+	. = ..()
+	if(isobj(loc))
+		var/obj/O = loc
 		name = O.name
 		desc = O.desc
 		icon = O.icon
@@ -444,8 +446,8 @@
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
 	var/special_attack_type = null
 
-/obj/item/clothing/gloves/New()
-	..()
+/obj/item/clothing/gloves/Initialize(mapload)
+	. = ..()
 	if(special_attack_type && ispath(special_attack_type))
 		special_attack = new special_attack_type
 
@@ -1003,8 +1005,8 @@
 		return
 	..()
 
-/obj/item/clothing/under/New()
-	..()
+/obj/item/clothing/under/Initialize(mapload)
+	. = ..()
 	if(worn_state)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 	else
@@ -1198,9 +1200,9 @@
 		to_chat(usr, span_notice("You roll down your [src]'s sleeves."))
 	update_clothing_icon()
 
-/obj/item/clothing/under/rank/New()
+/obj/item/clothing/under/rank/Initialize(mapload)
+	. = ..()
 	sensor_mode = pick(0,1,2,3)
-	..()
 
 /obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)

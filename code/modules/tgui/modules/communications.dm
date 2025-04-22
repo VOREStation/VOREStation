@@ -64,16 +64,16 @@
 
 /datum/tgui_module/communications/proc/change_security_level(mob/user, new_level)
 	tmp_alertlevel = new_level
-	var/old_level = security_level
+	var/old_level = GLOB.security_level
 	if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 	if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN
 	if(tmp_alertlevel > SEC_LEVEL_BLUE) tmp_alertlevel = SEC_LEVEL_BLUE //Cannot engage delta with this
 	set_security_level(tmp_alertlevel)
-	if(security_level != old_level)
+	if(GLOB.security_level != old_level)
 		//Only notify the admins if an actual change happened
 		log_game("[key_name(user)] has changed the security level to [get_security_level()].")
 		message_admins("[key_name_admin(user)] has changed the security level to [get_security_level()].")
-		switch(security_level)
+		switch(GLOB.security_level)
 			if(SEC_LEVEL_GREEN)
 				feedback_inc("alert_comms_green",1)
 			if(SEC_LEVEL_YELLOW)
@@ -110,8 +110,8 @@
 		),
 	)
 
-	data["security_level"] = security_level
-	switch(security_level)
+	data["security_level"] = GLOB.security_level
+	switch(GLOB.security_level)
 		if(SEC_LEVEL_BLUE)
 			data["security_level_color"] = "blue";
 		if(SEC_LEVEL_ORANGE)
@@ -377,14 +377,14 @@
 
 /* Etc global procs */
 /proc/enable_prison_shuttle(var/mob/user)
-	for(var/obj/machinery/computer/prison_shuttle/PS in machines)
+	for(var/obj/machinery/computer/prison_shuttle/PS in GLOB.machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 
 /proc/call_shuttle_proc(var/mob/user)
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!universe.OnShuttleCall(user))
+	if(!GLOB.universe.OnShuttleCall(user))
 		to_chat(user, span_notice("Cannot establish a bluespace connection."))
 		return
 

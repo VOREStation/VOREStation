@@ -1,0 +1,27 @@
+/**
+ * Internal variables
+ * For more, see: https://github.com/tgstation/tgui-core
+ * Files: vars-colors.scss | vars-components.scss | vars-vaules.scss
+ */
+
+:root {
+  /* TitleBar */
+  --titlebar-background: var(--color-secondary);
+  --titlebar-text: var(--color-text-translucent-light);
+  --titlebar-shadow-color: var(--color-border-dark);
+  --titlebar-shadow-core: var(--color-border-dark);
+
+  /* Camera Console */
+  --camera-console-background: hsla(0, 0%, 0%, 0.33);
+
+  /* ID Card */
+  --id-separator-color: var(--color-primary);
+
+  /* Tinder Messaging */
+  --tinder-sent-color: hsl(96, 63%, 35%);
+  --tinder-received-color: hsl(34, 88%, 43%);
+
+  /* Turbolift */
+  --turbolift-background: hsla(0, 100%, 50%, 0.35);
+  --turbolift-separator: hsla(0, 100%, 50%, 1);
+}
