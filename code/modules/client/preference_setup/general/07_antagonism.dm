@@ -1,20 +1,20 @@
-/datum/category_item/player_setup_item/general/basic
+/datum/category_item/player_setup_item/general/basic_antagonism
 	name = "Basic"
 	sort_order = 7
 
 	var/datum/paiCandidate/candidate
 
-/datum/category_item/player_setup_item/general/basic/load_character(list/save_data)
+/datum/category_item/player_setup_item/general/basic_antagonism/load_character(list/save_data)
 	pref.exploit_record = save_data["exploit_record"]
 	pref.antag_faction  = save_data["antag_faction"]
 	pref.antag_vis      = save_data["antag_vis"]
 
-/datum/category_item/player_setup_item/general/basic/save_character(list/save_data)
+/datum/category_item/player_setup_item/general/basic_antagonism/save_character(list/save_data)
 	save_data["exploit_record"] = pref.exploit_record
 	save_data["antag_faction"]  = pref.antag_faction
 	save_data["antag_vis"]      = pref.antag_vis
 
-/datum/category_item/player_setup_item/general/basic/load_preferences(datum/json_savefile/savefile)
+/datum/category_item/player_setup_item/general/basic_antagonism/load_preferences(datum/json_savefile/savefile)
 	if(!candidate)
 		candidate = new()
 	var/preference_mob = preference_mob()
@@ -28,7 +28,7 @@
 
 	candidate.savefile_load(preference_mob)
 
-/datum/category_item/player_setup_item/general/basic/save_preferences(datum/json_savefile/savefile)
+/datum/category_item/player_setup_item/general/basic_antagonism/save_preferences(datum/json_savefile/savefile)
 	if(!candidate)
 		return
 
@@ -37,17 +37,17 @@
 
 	candidate.savefile_save(preference_mob())
 
-/datum/category_item/player_setup_item/general/basic/sanitize_character()
+/datum/category_item/player_setup_item/general/basic_antagonism/sanitize_character()
 	if(!pref.antag_faction) pref.antag_faction = "None"
 	if(!pref.antag_vis) pref.antag_vis = "Hidden"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/basic_antagonism/copy_to_mob(var/mob/living/carbon/human/character)
 	character.exploit_record = pref.exploit_record
 	character.antag_faction = pref.antag_faction
 	character.antag_vis = pref.antag_vis
 
-/datum/category_item/player_setup_item/general/basic/tgui_data(mob/user)
+/datum/category_item/player_setup_item/general/basic_antagonism/tgui_data(mob/user)
 	var/list/data = ..()
 
 	data["antag_faction"] = pref.antag_faction
@@ -67,7 +67,7 @@
 
 	return data
 
-/datum/category_item/player_setup_item/general/basic/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/datum/category_item/player_setup_item/general/basic_antagonism/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if(.)
 		return

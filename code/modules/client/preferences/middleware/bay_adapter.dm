@@ -9,8 +9,7 @@
 
 	var/list/legacy = list()
 	if(preferences.player_setup.selected_category)
-		var/list/items = preferences.player_setup.selected_category.items
-		for(var/datum/category_item/player_setup_item/item as anything in items)
+		for(var/datum/category_item/player_setup_item/item as anything in preferences.player_setup.selected_category.items)
 			legacy += item.tgui_data(user)
 	data["selected_category"] = list(
 		"name" = preferences.player_setup.selected_category.name,
