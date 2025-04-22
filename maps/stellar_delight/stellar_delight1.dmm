@@ -8952,12 +8952,13 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/structure/closet/crate/medical,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
+/mob/living/simple_mob/animal/passive/mouse/white/virology,
+/obj/structure/table/glass,
+/obj/item/extrapolator{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/obj/item/extrapolator,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "sg" = (

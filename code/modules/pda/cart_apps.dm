@@ -131,12 +131,12 @@
 /datum/data/pda/app/crew_records/update_ui(mob/user as mob, list/data)
 	var/list/records[0]
 
-	if(general_records && (general_records in data_core.general))
+	if(general_records && (general_records in GLOB.data_core.general))
 		data["records"] = records
 		records["general"] = general_records.fields
 		return records
 	else
-		for(var/datum/data/record/R as anything in sortRecord(data_core.general))
+		for(var/datum/data/record/R as anything in sortRecord(GLOB.data_core.general))
 			if(R)
 				records += list(list(name = R.fields["name"], "ref" = "\ref[R]"))
 		data["recordsList"] = records
@@ -149,7 +149,7 @@
 	switch(action)
 		if("Records")
 			var/datum/data/record/R = locate(params["target"])
-			if(R && (R in data_core.general))
+			if(R && (R in GLOB.data_core.general))
 				load_records(R)
 			return TRUE
 		if("Back")
@@ -174,14 +174,14 @@
 	if(!records)
 		return
 
-	if(medical_records && (medical_records in data_core.medical))
+	if(medical_records && (medical_records in GLOB.data_core.medical))
 		records["medical"] = medical_records.fields
 
 	return records
 
 /datum/data/pda/app/crew_records/medical/load_records(datum/data/record/R)
 	..(R)
-	for(var/datum/data/record/E as anything in data_core.medical)
+	for(var/datum/data/record/E as anything in GLOB.data_core.medical)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			medical_records = E
 			break
@@ -199,14 +199,14 @@
 	if(!records)
 		return
 
-	if(security_records && (security_records in data_core.security))
+	if(security_records && (security_records in GLOB.data_core.security))
 		records["security"] = security_records.fields
 
 	return records
 
 /datum/data/pda/app/crew_records/security/load_records(datum/data/record/R)
 	..(R)
-	for(var/datum/data/record/E as anything in data_core.security)
+	for(var/datum/data/record/E as anything in GLOB.data_core.security)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			security_records = E
 			break

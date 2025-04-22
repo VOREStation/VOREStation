@@ -5,6 +5,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import { toTitleCase } from 'tgui-core/string';
 
@@ -82,28 +83,32 @@ export const ShuttleControlConsoleWeb = (props) => {
                 <LabeledList.Item
                   label="Docking Status"
                   buttons={
-                    <>
-                      <Button
-                        selected={docking_status === 'docked'}
-                        disabled={
-                          docking_status !== 'undocked' &&
-                          docking_status !== 'docked'
-                        }
-                        onClick={() => act('dock_command')}
-                      >
-                        Dock
-                      </Button>
-                      <Button
-                        selected={docking_status === 'undocked'}
-                        disabled={
-                          docking_status !== 'docked' &&
-                          docking_status !== 'undocked'
-                        }
-                        onClick={() => act('undock_command')}
-                      >
-                        Undock
-                      </Button>
-                    </>
+                    <Stack>
+                      <Stack.Item>
+                        <Button
+                          selected={docking_status === 'docked'}
+                          disabled={
+                            docking_status !== 'undocked' &&
+                            docking_status !== 'docked'
+                          }
+                          onClick={() => act('dock_command')}
+                        >
+                          Dock
+                        </Button>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          selected={docking_status === 'undocked'}
+                          disabled={
+                            docking_status !== 'docked' &&
+                            docking_status !== 'undocked'
+                          }
+                          onClick={() => act('undock_command')}
+                        >
+                          Undock
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
                   }
                 >
                   <Box bold inline>

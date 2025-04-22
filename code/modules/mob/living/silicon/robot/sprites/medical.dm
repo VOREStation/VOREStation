@@ -141,28 +141,27 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/crisis/dullahan
+/datum/robot_sprite/dogborg/tall/medical/dullahanmed
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_med.dmi'
 	name = "Dullahan"
 	sprite_icon_state = "dullahanmed"
-	module_type = "Crisis"
-	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_med.dmi'
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("breastplate","loincloth","eyecover")
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/crisis/dullahan/crisisalt
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahanmed_alt"
-	icon_x = 32
-	pixel_x = 0
-
-/datum/robot_sprite/dogborg/tall/medical/dullahan/crisisalt2
+/datum/robot_sprite/dogborg/tall/medical/dullahanmedv3
 	name = "Dullahan medical v3"
 	sprite_decals = list("decals")
 	sprite_icon = 'icons/mob/robot/dullahan/v3/medical.dmi'
 	sprite_icon_state = "dullahanmedical"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 64
 	pixel_x = -16

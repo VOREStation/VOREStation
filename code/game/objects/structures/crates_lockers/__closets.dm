@@ -584,4 +584,4 @@
 	playsound(src, vore_sound, 25)
 
 	var/mob/living/M = usr
-	M.perform_the_nom(usr,target,usr,usr.vore_selected,1)
+	M.perform_the_nom(usr,target,usr,usr.vore_selected,-1)

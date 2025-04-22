@@ -23,9 +23,10 @@ export const MessageMonitorLogin = (props) => {
       <Box color="label" my="1rem">
         Decryption Key:
         <Input
+          expensive
           placeholder="Decryption Key"
           ml="0.5rem"
-          onChange={(e, val) => act('auth', { key: val })}
+          onChange={(val) => act('auth', { key: val })}
         />
       </Box>
       {!!isMalfAI && (

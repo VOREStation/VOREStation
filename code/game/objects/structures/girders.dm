@@ -19,15 +19,18 @@
 	var/applies_material_colour = 1
 	var/wall_type = /turf/simulated/wall
 
-/obj/structure/girder/New(var/newloc, var/material_key)
-	..(newloc)
+/obj/structure/girder/Initialize(mapload, var/material_key)
+	. = ..()
 	if(!material_key)
 		material_key = default_material
-	set_material(material_key)
+	var/our_material = get_material_by_name(material_key)
+	if(!our_material)
+		return INITIALIZE_HINT_QDEL
+	set_material(our_material)
 	update_icon()
 
 /obj/structure/girder/Destroy()
-	if(girder_material.products_need_process())
+	if(girder_material && girder_material.products_need_process())
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -45,10 +48,8 @@
 	return total_radiation
 
 
-/obj/structure/girder/proc/set_material(var/new_material)
-	girder_material = get_material_by_name(new_material)
-	if(!girder_material)
-		qdel(src)
+/obj/structure/girder/proc/set_material(var/datum/material/new_material)
+	girder_material = new_material
 	name = "[girder_material.display_name] [initial(name)]"
 	max_health = round(girder_material.integrity) //Should be 150 with default integrity (steel). Weaker than ye-olden Girders now.
 	health = max_health
@@ -75,8 +76,8 @@
 	health = 50
 	cover = 25
 
-/obj/structure/girder/displaced/New(var/newloc, var/material_key)
-	..(newloc, material_key)
+/obj/structure/girder/displaced/Initialize(mapload, material_key)
+	. = ..()
 	displace()
 
 /obj/structure/girder/proc/displace()

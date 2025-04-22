@@ -153,7 +153,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
 	. = msg
 	if(istype(target))
-		var/datum/gender/target_gender = gender_datums[target.get_visible_gender()]
+		var/datum/gender/target_gender = GLOB.gender_datums[target.get_visible_gender()]
 		. = replacetext(., "TARGET_THEM",  target_gender.him)
 		. = replacetext(., "TARGET_THEIR", target_gender.his)
 		. = replacetext(., "TARGET_SELF",  target_gender.himself)
@@ -162,7 +162,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
 	. = msg
 	if(istype(user))
-		var/datum/gender/user_gender = gender_datums[user.get_visible_gender()]
+		var/datum/gender/user_gender = GLOB.gender_datums[user.get_visible_gender()]
 		. = replacetext(., "USER_THEM",  user_gender.him)
 		. = replacetext(., "USER_THEIR", user_gender.his)
 		. = replacetext(., "USER_SELF",  user_gender.himself)

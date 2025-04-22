@@ -55,7 +55,7 @@
 			if((get_z(L) in using_map.station_levels) && !istype(L.loc, /turf/space))
 				loc_display = T.loc
 			if(track.malfunction)
-				loc_display = pick(teleportlocs)
+				loc_display = pick(GLOB.teleportlocs)
 			trackImplants.Add(list(list(
 				"host" = L,
 				"ref" = "\ref[track]",

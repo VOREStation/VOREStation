@@ -141,7 +141,7 @@
 		return
 
 	var/list/all_fabricators = list()
-	for(var/obj/machinery/drone_fabricator/DF in machines)
+	for(var/obj/machinery/drone_fabricator/DF in GLOB.machines)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
 		if(DF.drone_progress >= 100)

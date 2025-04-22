@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(mapping)
 // VOREStation Edit End: Re-enable this
 
 /datum/controller/subsystem/mapping/stat_entry(msg)
-	if (!Debug2)
+	if (!GLOB.Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	. = ..()
 

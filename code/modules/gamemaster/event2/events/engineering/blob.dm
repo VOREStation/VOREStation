@@ -31,17 +31,17 @@
 
 /datum/event2/meta/blob/get_weight()
 	// Count the 'fighters'.
-	var/list/engineers = metric.get_people_in_department(DEPARTMENT_ENGINEERING)
-	var/list/security = metric.get_people_in_department(DEPARTMENT_SECURITY)
+	var/list/engineers = GLOB.metric.get_people_in_department(DEPARTMENT_ENGINEERING)
+	var/list/security = GLOB.metric.get_people_in_department(DEPARTMENT_SECURITY)
 
 	if(engineers.len + security.len < required_fighters)
 		return 0
 
 	// Now count the 'support'.
-	var/list/medical = metric.get_people_in_department(DEPARTMENT_MEDICAL)
+	var/list/medical = GLOB.metric.get_people_in_department(DEPARTMENT_MEDICAL)
 	var/need_medical = FALSE
 
-	var/list/robotics = metric.get_people_with_job(/datum/job/roboticist)
+	var/list/robotics = GLOB.metric.get_people_with_job(/datum/job/roboticist)
 	var/need_robotics = FALSE
 
 	// Determine what kind of support might be needed.
