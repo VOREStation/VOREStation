@@ -764,7 +764,7 @@
 	//If you had traits, apply them
 	if(new_copy.traits)
 		for(var/trait in new_copy.traits)
-			var/datum/trait/T = all_traits[trait]
+			var/datum/trait/T = GLOB.all_traits[trait]
 			T.apply(new_copy, H, new_copy.traits[trait])
 
 	//Set up a mob

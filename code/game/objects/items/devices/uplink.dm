@@ -130,7 +130,7 @@
 	data["locked_records"] = null
 
 	if(exploit_id)
-		for(var/datum/data/record/L in data_core.locked)
+		for(var/datum/data/record/L in GLOB.data_core.locked)
 			if(L.fields["id"] == exploit_id)
 				data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
 								// We trade off being able to automatically add shit for more control over what gets passed to json
@@ -155,7 +155,7 @@
 				break
 	else
 		var/list/permanentData = list()
-		for(var/datum/data/record/L in sortRecord(data_core.locked))
+		for(var/datum/data/record/L in sortRecord(GLOB.data_core.locked))
 			permanentData.Add(list(list(
 				"name" = L.fields["name"],
 				"id" = L.fields["id"]
