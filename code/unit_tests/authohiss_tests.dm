@@ -5,9 +5,8 @@
 	var/failed = FALSE
 
 	var/list/hiss_list = list()
-	for(var/traitpath in subtypesof(/datum/trait))
+	for(var/traitpath in GLOB.all_traits)
 		var/datum/trait/T = GLOB.all_traits[traitpath]
-		// Check if it has a hiss
 		if(!islist(T.var_changes["autohiss_basic_map"]))
 			continue
 		hiss_list += T
