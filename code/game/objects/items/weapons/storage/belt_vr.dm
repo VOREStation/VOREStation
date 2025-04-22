@@ -118,7 +118,8 @@
 		/obj/item/storage/bag/sheetsnatcher,
 		/obj/item/melee,
 		/obj/item/kinetic_crusher,
-		/obj/item/mining_scanner
+		/obj/item/mining_scanner,
+		/obj/item/storage/bag/ore
 		)
 		//Pretty much, if it's in the mining vendor, they should be able to put it on the belt.
 

@@ -162,3 +162,90 @@
   TeleTubby2:
   - rscadd: NIF commlinks auto-initialize if the relevant preference is set in character
       creation
+2025-04-22:
+  Asher-42:
+  - rscadd: breastplate, eye cover, and loincloth overlays to the 'decal' menu on
+      borgs for dullahans
+  - rscadd: ability to use overlays on resting borgs(lights etc.).
+  - rscadd: dullahan v1/2 -> dullahan
+  - rscadd: condensed dullahan versions into one single unit, v3 is still seperate
+      due to being a different size and coloration.
+  Cameron-The-Raven:
+  - qol: FBPs will no longer go blind when a welder is used.
+  Diana:
+  - qol: The Rapid Material Synthesizer (RMS) has been MASSIVELY buffed and reworked.
+      Check it out!
+  - qol: RMS prices MASSIVELY decreased.
+  - qol: RMS randomize mode can now randomize ANY MATERIAL in the game. Feeling lucky?
+  - bugfix: RMS will no longer drain any battery you use it on to 0
+  - bugfix: RMS will now properly detonate rigged batteries
+  - rscdel: RMS no longer has any emag interactions
+  - rscadd: Added a secret 1 in a million interaction with the RMS :)
+  - rscadd: Adds a LOT of tails and taur tails from downstream. Large shark, Husky
+      taur, orca tail, more bug abdomens, leopard tail, tyranid, among others!
+  - rscadd: Adds a new melee focused PSG that prevents the usage of guns while giving
+      buffs for melee combat
+  - qol: Makes PSGs more acquirable
+  - spellcheck: Standardizes the PSG names (PSG Variant-XXX)
+  - rscadd: Adds the PSG-BIO to the CMO's locker and CMO supply crate(Just reduces
+      toxin/oxygen/clone attack damage taken)
+  - rscadd: Adds the PSG-Melee to the Pathfinder locker (And pathfinder supply crate)
+  - rscadd: Adds the PSG-BIO to the Pathfinder Medic locker
+  - rscadd: Adds the PSG-S to HoS locker (and HoS supply pack)
+  - rscadd: Makes it so the Exploration shield cargo pack has a melee and upgraded
+      mining (mob combat) PSG
+  - qol: Bodyscanner now tells you when someone is missing an organ instead of omitting
+      it entirely
+  - bugfix: turrets no longer have 100% baymiss chance
+  - bugfix: Fragmines will no longer do 400 damage when you step on them.
+  - bugfix: Spaceacillin and other ABX will work with the patient stabilizer
+  - rscadd: The patient stabilizer now plays sound to the deceased individual
+  - rscadd: Mining vendor will now happily sell you a holster for your machete
+  Guti:
+  - rscadd: Extrapolator, to allow virologists to extract diseases from plenty of
+      sources.
+  - rscadd: Virus thresholds, allowing viruses to do more when one of these thresholds
+      is reached.
+  - rscadd: SBG Syndrome
+  - rscadd: Mice, old vomit, blood, and other crewmembers may contain diseases now,
+      allowing virologists to scan and take them.
+  - rscadd: Added Fleming to all Virology areas
+  - rscadd: Added an extrapolator to all Virology areas
+  - balance: Symptoms are now slower, with different times to activate between them.
+  - balance: Reduced the base infectivity chance
+  - balance: Spread can now be by blood, fluids, or contact. Airborne diseases can
+      be achieved with some thresholds.
+  - qol: Refactored the PanDEMIC's interface
+  - refactor: Refactored how diseases spread, now needing airborne specific symptoms
+      to allow the to be airborne.
+  - refactor: Refactored ContractDisease proc to check body zones more clearly
+  - refactor: Refactored CanContractDisease proc to check better for organs
+  - refactor: Added various getters and setters for viruses, some of their vars were
+      changed to private.
+  - refactor: Refactored the various viruses flag names
+  - refactor: Refactored advanced diseases
+  - refactor: Refactored symptoms into the new advanced diseases
+  - refactor: Refactored vomit code
+  - code_imp: Added AirborneContractDisease for airborne diseases
+  - code_imp: Added extrapolator_act
+  - code_imp: Added is_mouth_covered proc
+  ItsSelis:
+  - refactor: Moved all global vars from the code/global.dm to code/_global_vars/
+  Kashargul:
+  - code_imp: tgui core 3.1.2
+  - bugfix: several prefs could not be cleared
+  - bugfix: tgui say focus
+  - code_imp: fix multiple runtimes
+  SatinIsle:
+  - rscadd: Added a new AllergyPen autoinjector, available via the loadout (1 point)
+      and medical vendors.
+  - balance: Reduced the plastic cost of large autoinjectors in the injector maker
+      from 1500 to 250, and smaller ones from 30 to 25.
+  - qol: Changed blood splatters and subtypes such as oil to no longer interact with
+      someone flying, hovering or floating over them.
+  TeleTubby2:
+  - rscadd: You can now configure the messages used by the trash eater perk on a per
+      vorebelly basis.
+  - bugfix: Rings and Bracelets won't slow you down anymore
+  tacoguy7765093:
+  - sound: Surgery tools now make proper melee attack noises.
