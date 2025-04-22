@@ -7,7 +7,8 @@
 	var/list/hiss_list = list()
 	for(var/traitpath in GLOB.all_traits)
 		var/datum/trait/T = GLOB.all_traits[traitpath]
-		if(!islist(T.var_changes["autohiss_basic_map"]))
+		var/list/L = T.var_changes["autohiss_basic_map"]
+		if(!L || !islist(L))
 			continue
 		hiss_list += T
 
