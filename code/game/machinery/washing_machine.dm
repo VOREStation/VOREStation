@@ -60,7 +60,7 @@
 	playsound(src, 'sound/items/washingmachine.ogg', 50, 1, 1)
 	sleep(200)
 	for(var/atom/A in washing)
-		A.clean_blood()
+		A.wash(CLEAN_ALL)
 
 	for(var/obj/item/I in washing)
 		I.decontaminate()

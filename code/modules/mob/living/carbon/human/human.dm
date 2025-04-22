@@ -1156,7 +1156,7 @@
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		gloves.clean_blood()
+		gloves.wash(CLEAN_SCRUB)
 		update_inv_gloves()
 		gloves.germ_level = 0
 	else
@@ -1165,7 +1165,7 @@
 
 	//Sometimes do shoes if asked (or feet if no shoes)
 	if(washshoes && shoes)
-		shoes.clean_blood()
+		shoes.wash(CLEAN_SCRUB)
 		update_inv_shoes()
 		shoes.germ_level = 0
 	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))

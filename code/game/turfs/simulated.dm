@@ -65,7 +65,7 @@
 
 /turf/simulated/clean_blood()
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		B.clean_blood()
+		B.wash(CLEAN_SCRUB)
 	..()
 
 /turf/simulated/Initialize(mapload)

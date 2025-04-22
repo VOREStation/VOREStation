@@ -140,7 +140,7 @@
 				automatic_custom_emote(AUDIBLE_MESSAGE, "begins to clean up \the [loc]")
 			if(do_after(src, cleantime * cTimeMult))
 				if(blood)
-					clean_blood()
+					wash(CLEAN_TYPE_BLOOD)
 				if(istype(loc, /turf/simulated))
 					var/turf/simulated/T = loc
 					T.dirt = 0

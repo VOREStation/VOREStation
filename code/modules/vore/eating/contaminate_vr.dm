@@ -73,7 +73,7 @@ var/list/gurgled_overlays = list(
 
 		busy = TRUE
 		if(do_after(user, 40, src))
-			I.clean_blood()
+			I.wash(CLEAN_SCRUB)
 			user.visible_message(span_notice("[user] washes [I] using [src]."),
 				span_notice("You wash [I] using [src]."))
 		busy = FALSE
