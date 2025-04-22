@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new AllergyPen autoinjector, available via the loadout (1 point) and medical vendors."
+  - balance: "Reduced the plastic cost of large autoinjectors in the injector maker from 1500 to 250, and smaller ones from 30 to 25."
