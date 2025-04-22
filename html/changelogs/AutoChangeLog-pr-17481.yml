@@ -1,7 +1,0 @@
-author: "Asher-42"
-delete-after: True
-changes:
-  - rscadd: "breastplate, eye cover, and loincloth overlays to the 'decal' menu on borgs for dullahans"
-  - rscadd: "ability to use overlays on resting borgs(lights etc.)."
-  - rscadd: "dullahan v1/2 -> dullahan"
-  - rscadd: "condensed dullahan versions into one single unit, v3 is still seperate due to being a different size and coloration."
