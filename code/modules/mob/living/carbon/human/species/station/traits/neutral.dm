@@ -68,7 +68,13 @@
 			"x" = list("ks", "kss", "ksss")
 		),
 	autohiss_exempt = list(LANGUAGE_UNATHI))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_zaddat)
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 	custom_only = FALSE
 
 /datum/trait/neutral/autohiss_tajaran
@@ -80,7 +86,13 @@
 			"r" = list("rr", "rrr", "rrrr")
 		),
 	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI))
-	excludes = list(/datum/trait/neutral/autohiss_unathi, /datum/trait/neutral/autohiss_zaddat)
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 	custom_only = FALSE
 
 /datum/trait/neutral/autohiss_zaddat
@@ -99,8 +111,38 @@
 			"v" = list("vv", "vvv")
 		),
 	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 	custom_only = FALSE
+
+/datum/trait/neutral/autohiss_vassilian
+	name = "Autohiss (Vassilian)"
+	desc = "You buzz your S's, F's, Th's, and R's."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+		"s" = list("sz", "z", "zz"),
+		"f" = list("zk")
+		),
+	autohiss_extra_map = list(
+		"th" = list("zk", "szk"),
+		"r" = list("rk")
+	),
+	autohiss_exempt = list(LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
@@ -1475,7 +1517,12 @@
 			"x" = list("ks", "kss", "ksss")
 		),
 	autohiss_exempt = list("Sinta'unathi"))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran)
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1489,4 +1536,61 @@
 			"r" = list("rr", "rrr", "rrrr")
 		),
 	autohiss_exempt = list("Siik"))
-	excludes = list(/datum/trait/neutral/autohiss_unathi)
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera)
+
+/datum/trait/neutral/autohiss_zaddat/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Zaddat)"
+	desc = "You buzz your S's and F's."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"f" = list("v","vh"),
+			"ph" = list("v", "vh")
+		),
+	autohiss_extra_map = list(
+			"s" = list("z", "zz", "zzz"),
+			"ce" = list("z", "zz"),
+			"ci" = list("z", "zz"),
+			"v" = list("vv", "vvv")
+		),
+	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera)
+
+/datum/trait/neutral/autohiss_vassilian/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Vassilian)"
+	desc = "You buzz your S's, F's, Th's, and R's."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+		"s" = list("sz", "z", "zz"),
+		"f" = list("zk")
+		),
+	autohiss_extra_map = list(
+		"th" = list("zk", "szk"),
+		"r" = list("rk")
+	),
+	autohiss_exempt = list(LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera)
