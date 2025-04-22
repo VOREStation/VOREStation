@@ -1524,6 +1524,7 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
 		/datum/trait/neutral/autohiss_vassilian/xenochimera)
@@ -1544,6 +1545,7 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
 		/datum/trait/neutral/autohiss_vassilian/xenochimera)
@@ -1571,6 +1573,7 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_vassilian/xenochimera)
