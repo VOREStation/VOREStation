@@ -673,14 +673,9 @@ This function completely restores a damaged organ to perfect condition.
 
 /obj/item/organ/external/process()
 	if(owner)
-		//Dismemberment
-		//if(parent && parent.is_stump()) //should never happen
-		//	warning("\The [src] ([src.type]) belonging to [owner] ([owner.type]) was attached to a stump")
-		//	remove()
-		//	return
 
 		// Process wounds, doing healing etc. Only do this every few ticks to save processing power
-		if(owner.life_tick % wound_update_accuracy == 0)
+		if(owner.stat != DEAD && owner.life_tick % wound_update_accuracy == 0)
 			update_wounds()
 
 		//Chem traces slowly vanish

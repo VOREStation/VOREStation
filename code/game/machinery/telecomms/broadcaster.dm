@@ -138,7 +138,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	machinetype = 6
 	produces_heat = 0
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
-	var/overmap_range = 0 //Same turf
+	var/overmap_range = 0
 
 	var/list/linked_radios_weakrefs = list()
 
@@ -157,8 +157,8 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	if(!using_map.use_overmap)
 		return
 
-	// Someone else handling it?
-	if(signal.data["done"])
+	// Is there a valid signal
+	if(!signal)
 		return
 
 	// Where are we able to hear from (and talk to, since we're AIO) anyway?
@@ -186,37 +186,38 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		signal.data["level"] = map_levels
 
 		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
+			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)
 
-		/* ###### Broadcast a message using signal.data ###### */
 
-		var/datum/radio_frequency/connection = signal.data["connection"]
+/obj/machinery/telecomms/allinone/proc/broadcast_signal(datum/signal/signal)
+	/* ###### Broadcast a message using signal.data ###### */
+	var/datum/radio_frequency/connection = signal.data["connection"]
 
-		var/list/forced_radios
-		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/radio/R = wr.resolve()
-			if(istype(R))
-				LAZYDISTINCTADD(forced_radios, R)
+	var/list/forced_radios
+	for(var/datum/weakref/wr in linked_radios_weakrefs)
+		var/obj/item/radio/R = wr.resolve()
+		if(istype(R))
+			LAZYDISTINCTADD(forced_radios, R)
 
-		Broadcast_Message(
-			signal.data["connection"],
-			signal.data["mob"],
-			signal.data["vmask"],
-			signal.data["vmessage"],
-			signal.data["radio"],
-			signal.data["message"],
-			signal.data["name"],
-			signal.data["job"],
-			signal.data["realname"],
-			signal.data["vname"],
-			DATA_NORMAL,
-			signal.data["compression"],
-			signal.data["level"],
-			connection.frequency,
-			signal.data["verb"],
-			signal.data["language"],
-			forced_radios
-		)
+	Broadcast_Message(
+		signal.data["connection"],
+		signal.data["mob"],
+		signal.data["vmask"],
+		signal.data["vmessage"],
+		signal.data["radio"],
+		signal.data["message"],
+		signal.data["name"],
+		signal.data["job"],
+		signal.data["realname"],
+		signal.data["vname"],
+		DATA_NORMAL,
+		signal.data["compression"],
+		signal.data["level"],
+		connection.frequency,
+		signal.data["verb"],
+		signal.data["language"],
+		forced_radios
+	)
 
 //Antag version with unlimited range (doesn't even check) and uses no power, to enable antag comms to work anywhere.
 /obj/machinery/telecomms/allinone/antag
@@ -244,35 +245,37 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		//signal.data["level"] = using_map.contact_levels.Copy()
 
 		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
+			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)
 
-		/* ###### Broadcast a message using signal.data ###### */
+/obj/machinery/telecomms/allinone/antag/broadcast_signal(datum/signal/signal)
+	/* ###### Broadcast a message using signal.data ###### */
 
-		var/datum/radio_frequency/connection = signal.data["connection"]
+	var/datum/radio_frequency/connection = signal.data["connection"]
 
-		var/list/forced_radios
-		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/radio/R = wr.resolve()
-			if(istype(R))
-				LAZYDISTINCTADD(forced_radios, R)
+	var/list/forced_radios
+	for(var/datum/weakref/wr in linked_radios_weakrefs)
+		var/obj/item/radio/R = wr.resolve()
+		if(istype(R))
+			LAZYDISTINCTADD(forced_radios, R)
 
-		if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
+	if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_NORMAL,
+							signal.data["compression"], list(0), connection.frequency,
+							signal.data["verb"], forced_radios)
+	else
+		if(intercept)
 			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
-							  signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], forced_radios)
-		else
-			if(intercept)
-				Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_ANTAG,
-							  signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], forced_radios)
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_ANTAG,
+							signal.data["compression"], list(0), connection.frequency,
+							signal.data["verb"], forced_radios)
+
 
 /**
 
@@ -412,6 +415,10 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
 		if(data == DATA_ANTAG && isobserver(R) && R.client?.prefs?.read_preference(/datum/preference/toggle/ghost_radio))
+			continue
+
+		var/list/ghostradio_freq_blacklist = list(ENT_FREQ)//, BDCM_FREQ) //Kept for Downstream use
+		if(istype(R, /mob/observer/dead) && R.client?.prefs?.read_preference(/datum/preference/toggle/ghost_radio) && (connection.frequency in ghostradio_freq_blacklist))
 			continue
 
 		// --- Check for compression ---

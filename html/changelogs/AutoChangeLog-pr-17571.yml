@@ -1,0 +1,4 @@
+author: "Cerami"
+delete-after: True
+changes:
+  - bugfix: "Your loadout items won't poof"
