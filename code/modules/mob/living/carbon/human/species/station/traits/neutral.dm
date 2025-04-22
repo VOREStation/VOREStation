@@ -71,6 +71,7 @@
 	excludes = list(
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
@@ -89,6 +90,7 @@
 	excludes = list(
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
@@ -114,6 +116,7 @@
 	excludes = list(
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_vassilian,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
@@ -1522,7 +1525,8 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
-		/datum/trait/neutral/autohiss_zaddat/xenochimera)
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1541,7 +1545,8 @@
 		/datum/trait/neutral/autohiss_tajaran,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
-		/datum/trait/neutral/autohiss_zaddat/xenochimera)
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 
 /datum/trait/neutral/autohiss_zaddat/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1567,7 +1572,8 @@
 		/datum/trait/neutral/autohiss_unathi,
 		/datum/trait/neutral/autohiss_zaddat,
 		/datum/trait/neutral/autohiss_unathi/xenochimera,
-		/datum/trait/neutral/autohiss_tajaran/xenochimera)
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
 
 /datum/trait/neutral/autohiss_vassilian/xenochimera
 	sort = TRAIT_SORT_SPECIES
