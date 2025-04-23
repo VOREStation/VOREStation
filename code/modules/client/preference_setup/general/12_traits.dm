@@ -41,7 +41,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			choices = (choices | new_species)
 	return choices
 
-/datum/category_item/player_setup_item/vore/traits/proc/get_html_for_trait(var/datum/trait/trait, var/list/trait_prefs = null)
+/datum/category_item/player_setup_item/general/traits/proc/get_html_for_trait(var/datum/trait/trait, var/list/trait_prefs = null)
 	. = ""
 	if (!LAZYLEN(trait.has_preferences))
 		return
@@ -77,7 +77,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			if (-1)//TRAIT_TYPE_NEGATIVE
 				pref.neg_traits[trait.type] = trait_prefs
 
-/datum/category_item/player_setup_item/vore/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
+/datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
 	if (!trait || !preference)
 		return
 	var/list/trait_prefs
@@ -109,11 +109,11 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			trait_prefs[preference] = new_string
 
 // Definition of the stuff for Ears
-/datum/category_item/player_setup_item/vore/traits
+/datum/category_item/player_setup_item/general/traits
 	name = "Traits"
 	sort_order = 7
 
-/datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
+/datum/category_item/player_setup_item/general/traits/load_character(list/save_data)
 	pref.custom_species			= save_data["custom_species"]
 	pref.custom_base			= save_data["custom_base"]
 	pref.pos_traits				= text2path_list(save_data["pos_traits"])
@@ -134,7 +134,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	pref.custom_heat			= check_list_copy(save_data["custom_heat"])
 	pref.custom_cold			= check_list_copy(save_data["custom_cold"])
 
-/datum/category_item/player_setup_item/vore/traits/save_character(list/save_data)
+/datum/category_item/player_setup_item/general/traits/save_character(list/save_data)
 	save_data["custom_species"]		= pref.custom_species
 	save_data["custom_base"]		= pref.custom_base
 	save_data["pos_traits"]			= check_list_copy(pref.pos_traits)
@@ -155,7 +155,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
 	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
-/datum/category_item/player_setup_item/vore/traits/sanitize_character()
+/datum/category_item/player_setup_item/general/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
 	if(!pref.neu_traits) pref.neu_traits = list()
 	if(!pref.neg_traits) pref.neg_traits = list()
@@ -239,7 +239,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	else
 		pref.custom_cold = list()
 
-/datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
 	character.custom_say		= lowertext(trim(pref.custom_say))
 	character.custom_ask		= lowertext(trim(pref.custom_ask))
@@ -272,7 +272,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
-/datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
+/datum/category_item/player_setup_item/general/traits/content(var/mob/user)
 	. += span_bold("Custom Species Name:") + " "
 	. += "<a href='byond://?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
@@ -348,7 +348,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	. += "(<a href='byond://?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"
 
-/datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/general/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
 		return TOPIC_NOACTION
 

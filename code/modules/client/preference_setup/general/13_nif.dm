@@ -6,7 +6,7 @@
 
 // Definition of the stuff for NIFs
 // Magic bullshit, they're stored separately from everything else
-/datum/category_item/player_setup_item/vore/nif
+/datum/category_item/player_setup_item/general/nif
 	name = "NIF Data"
 	sort_order = 8
 
@@ -15,7 +15,7 @@
 		return
 	return "data/player_saves/[copytext(ckey,1,2)]/[ckey]/nif.json"
 
-/datum/category_item/player_setup_item/vore/nif/load_character()
+/datum/category_item/player_setup_item/general/nif/load_character()
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
 	var/list/save_data_file = savefile.get_entry("character[pref.default_slot]", list())
 
@@ -23,7 +23,7 @@
 	pref.nif_durability	= save_data_file["nif_durability"]
 	pref.nif_savedata	= check_list_copy(save_data_file["nif_savedata"])
 
-/datum/category_item/player_setup_item/vore/nif/save_character()
+/datum/category_item/player_setup_item/general/nif/save_character()
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
 	var/list/save_data_file = savefile.get_entry("character[pref.default_slot]", list())
 
@@ -34,7 +34,7 @@
 	savefile.set_entry("character[pref.default_slot]", save_data_file)
 	savefile.save()
 
-/datum/category_item/player_setup_item/vore/nif/sanitize_character()
+/datum/category_item/player_setup_item/general/nif/sanitize_character()
 	if(pref.nif_path && !ispath(pref.nif_path))		//We have at least a text string that should be a path.
 		pref.nif_path = text2path(pref.nif_path) 	//Try to convert it to a hard path.
 		if(!pref.nif_path)							//If we couldn't, kill it.
@@ -51,10 +51,14 @@
 	if(!islist(pref.nif_savedata))
 		pref.nif_savedata = list()
 
-/datum/category_item/player_setup_item/vore/nif/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/nif/copy_to_mob(var/mob/living/carbon/human/character)
 	//If you had a NIF...
 	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability)
 		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)
 
-/datum/category_item/player_setup_item/vore/nif/content(var/mob/user)
-	. += span_bold("NIF:") + " [ispath(pref.nif_path) ? "Present" : "None"]"
+/datum/category_item/player_setup_item/general/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["nif"] = ispath(pref.nif_path)
+
+	return data

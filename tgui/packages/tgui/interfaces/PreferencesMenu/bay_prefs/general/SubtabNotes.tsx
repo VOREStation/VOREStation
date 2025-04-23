@@ -27,6 +27,7 @@ export const SubtabNotes = (props: {
     med_record,
     gen_record,
     sec_record,
+    nif,
   } = data;
 
   return (
@@ -131,6 +132,11 @@ export const SubtabNotes = (props: {
                     Set Dislikes
                   </Button>
                 </Stack.Item>
+                <Stack.Item>
+                  <Button onClick={() => act('edit_private_notes')}>
+                    Set Private Notes
+                  </Button>
+                </Stack.Item>
               </Stack>
             </Stack.Item>
           ) : null}
@@ -167,6 +173,7 @@ export const SubtabNotes = (props: {
               </Stack.Item>
             </>
           )}
+          <Stack.Item>NIF: {nif ? 'Installed' : 'None'}</Stack.Item>
         </Stack>
       </Stack.Item>
     </Stack>

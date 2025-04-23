@@ -1,6 +1,13 @@
+#define AUTOHISS_OFF 0
+#define AUTOHISS_BASIC 1
+#define AUTOHISS_FULL 2
+
 /datum/preferences
 	var/biological_gender = MALE
 	var/identifying_gender = MALE
+
+	var/vore_egg_type = "Egg" //The egg type they have.
+	var/autohiss = "Full"			// VOREStation Add: Whether we have Autohiss on. I'm hijacking the egg panel bc this one has a shitton of unused space.
 
 /datum/preferences/proc/set_biological_gender(var/gender)
 	biological_gender = gender
@@ -11,16 +18,20 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/general/basic/load_character(list/save_data)
-	pref.real_name						= save_data["real_name"]
-	pref.nickname						= save_data["nickname"]
-	pref.biological_gender				= save_data["gender"]
-	pref.identifying_gender				= save_data["id_gender"]
+	pref.real_name			= save_data["real_name"]
+	pref.nickname			= save_data["nickname"]
+	pref.biological_gender	= save_data["gender"]
+	pref.identifying_gender	= save_data["id_gender"]
+	pref.vore_egg_type		= save_data["vore_egg_type"]
+	pref.autohiss			= save_data["autohiss"]
 
 /datum/category_item/player_setup_item/general/basic/save_character(list/save_data)
 	save_data["real_name"]				= pref.real_name
 	save_data["nickname"]				= pref.nickname
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
+	save_data["vore_egg_type"]			= pref.vore_egg_type
+	save_data["autohiss"]				= pref.autohiss
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
@@ -29,6 +40,8 @@
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.nickname		= sanitize_name(pref.nickname)
+	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, GLOB.global_vore_egg_types, initial(pref.vore_egg_type))
+	pref.autohiss = sanitize_inlist(pref.autohiss, list("None", "Basic", "Full"), initial(pref.autohiss))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
@@ -50,6 +63,20 @@
 	character.gender = pref.biological_gender
 	character.identifying_gender = pref.identifying_gender
 
+	character.vore_egg_type	= pref.vore_egg_type
+	// VOREStation Add
+	if(pref.client) // Safety, just in case so we don't runtime.
+		if(!pref.autohiss)
+			pref.client.autohiss_mode = AUTOHISS_FULL
+		else
+			switch(pref.autohiss)
+				if("Full")
+					pref.client.autohiss_mode = AUTOHISS_FULL
+				if("Basic")
+					pref.client.autohiss_mode = AUTOHISS_BASIC
+				if("Off")
+					pref.client.autohiss_mode = AUTOHISS_OFF
+
 /datum/category_item/player_setup_item/general/basic/tgui_data(mob/user)
 	var/list/data = ..()
 
@@ -64,6 +91,8 @@
 	data["bday_announce"] = pref.read_preference(/datum/preference/toggle/human/bday_announce)
 	data["spawnpoint"] = pref.read_preference(/datum/preference/choiced/living/spawnpoint)
 	data["ooc_notes_length"] = LAZYLEN(pref.read_preference(/datum/preference/text/living/ooc_notes))
+	data["vore_egg_type"] = pref.vore_egg_type
+	data["autohiss"] = pref.autohiss
 
 	return data
 
@@ -218,6 +247,24 @@
 					new_metadata = ""
 				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_dislikes, new_metadata)
 
+		if("vore_egg_type")
+			var/list/vore_egg_types = GLOB.global_vore_egg_types
+			var/selection = tgui_input_list(user, "Choose your character's egg type:", "Character Preference", vore_egg_types, pref.vore_egg_type)
+			if(selection)
+				pref.vore_egg_type = selection
+				return TOPIC_REFRESH
+
+		// VOREStation Add Start
+		if("autohiss")
+			var/list/autohiss_selection = list("Full", "Basic", "Off")
+			var/selection = tgui_input_list(user, "Choose your default autohiss setting:", "Character Preference", autohiss_selection, pref.autohiss)
+			if(selection)
+				pref.autohiss = selection
+			else if(!selection)
+				pref.autohiss = "Full"
+			return TOPIC_REFRESH
+
+
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S
 	if(pref.species)
@@ -230,3 +277,7 @@
 	possible_genders = possible_genders.Copy()
 	possible_genders |= NEUTER
 	return possible_genders
+
+#undef AUTOHISS_OFF
+#undef AUTOHISS_BASIC
+#undef AUTOHISS_FULL

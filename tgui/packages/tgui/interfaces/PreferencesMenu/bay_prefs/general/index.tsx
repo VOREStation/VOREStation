@@ -11,6 +11,7 @@ import { SubtabInfo } from './SubtabInfo';
 import { SubtabNotes } from './SubtabNotes';
 import { SubtabSettings } from './SubtabSettings';
 import { SubtabSpecies } from './SubtabSpecies';
+import { SubtabTraits } from './SubtabTraits';
 
 // ///////////////
 // Main Components
@@ -36,6 +37,7 @@ enum SubtabState {
   Body = 'Body',
   CharSettings = 'CharSettings',
   Notes = 'Notes',
+  Traits = 'Traits',
 }
 
 const SUBTAB_TO_NAME = {
@@ -64,6 +66,11 @@ const SUBTAB_TO_NAME = {
       Notes <Icon name="clipboard-o" />
     </Box>
   ),
+  [SubtabState.Traits]: (
+    <Box inline>
+      Traits <Icon name="tractor" />
+    </Box>
+  ),
 };
 
 const SUBTAB_TO_COMPONENT: Record<
@@ -79,6 +86,7 @@ const SUBTAB_TO_COMPONENT: Record<
   [SubtabState.Body]: (props) => <SubtabBody {...props} />,
   [SubtabState.CharSettings]: (props) => <SubtabSettings {...props} />,
   [SubtabState.Notes]: (props) => <SubtabNotes {...props} />,
+  [SubtabState.Traits]: (props) => <SubtabTraits {...props} />,
 };
 
 export const GeneralContent = (props: {

@@ -17,6 +17,14 @@ export enum Gender {
   Plural = 'Plural',
 }
 
+export enum PersistanceEnum {
+  PERSIST_SPAWN = 0x01,
+  PERSIST_WEIGHT = 0x02,
+  PERSIST_ORGANS = 0x04,
+  PERSIST_MARKINGS = 0x08,
+  PERSIST_SIZE = 0x10,
+}
+
 export type BasicData = {
   real_name: string;
   be_random_name: BooleanLike;
@@ -35,6 +43,11 @@ export type BasicData = {
   language_keys: string[];
   preferred_language: string;
   runechat_color: string;
+
+  vore_egg_type: string;
+  autohiss: string;
+
+  persistence_settings: PersistanceEnum;
 };
 
 export enum BodypartFlags {
@@ -240,12 +253,32 @@ export type SizeData = {
   weight_loss: number;
 };
 
+export type MiscData = {
+  show_in_directory: BooleanLike;
+  directory_tag: string;
+  directory_erptag: string;
+  sensorpref: string;
+  capture_crystal: BooleanLike;
+  auto_backup_implant: BooleanLike;
+  borg_petting: BooleanLike;
+
+  resleeve_lock: BooleanLike;
+  resleeve_scan: BooleanLike;
+  mind_scan: BooleanLike;
+
+  vantag_volunteer: BooleanLike;
+  vantag_preference: string;
+
+  nif: BooleanLike;
+};
+
 export type GeneralData = BasicData &
   BodyData &
   BackgroundData &
   FlavorData &
   AntagonismData &
-  SizeData;
+  SizeData &
+  MiscData;
 
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;

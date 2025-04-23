@@ -115,17 +115,8 @@ export const SubtabInfo = (props: {
     language_keys,
     preferred_language,
     runechat_color,
-    antag_faction,
-    antag_vis,
-    uplink_type,
-    record_banned,
-    exploitable_record,
-    pai_name,
-    pai_desc,
-    pai_role,
-    pai_comments,
-    syndicate_ban,
-    special_roles,
+    vore_egg_type,
+    autohiss,
   } = data;
 
   return (
@@ -189,6 +180,14 @@ export const SubtabInfo = (props: {
                 <Button onClick={() => act('bday_announce')}>
                   {bday_announce ? 'Yes' : 'No'}
                 </Button>
+              </LabeledList.Item>
+              <LabeledList.Item label="Egg Type">
+                <Button onClick={() => act('vore_egg_type')}>
+                  {vore_egg_type}
+                </Button>
+              </LabeledList.Item>
+              <LabeledList.Item label="Autohiss Setting">
+                <Button onClick={() => act('autohiss')}>{autohiss}</Button>
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
