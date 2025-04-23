@@ -270,6 +270,8 @@ export type MiscData = {
   vantag_preference: string;
 
   nif: BooleanLike;
+
+  custom_species: string;
 };
 
 export type GeneralData = BasicData &

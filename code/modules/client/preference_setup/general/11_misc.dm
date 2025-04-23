@@ -6,6 +6,8 @@
 	var/resleeve_scan = 1	// Whether mob should start with a pre-spawn body scan.  Default true.
 	var/mind_scan = 1		// Whether mob should start with a pre-spawn mind scan.  Default true.
 
+	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
+
 	var/custom_say = null
 	var/custom_whisper = null
 	var/custom_ask = null
@@ -33,6 +35,8 @@
 	pref.vantag_volunteer		= save_data["vantag_volunteer"]
 	pref.vantag_preference		= save_data["vantag_preference"]
 
+	pref.custom_species			= save_data["custom_species"]
+
 	pref.custom_say				= save_data["custom_say"]
 	pref.custom_whisper			= save_data["custom_whisper"]
 	pref.custom_ask				= save_data["custom_ask"]
@@ -55,6 +59,8 @@
 	save_data["vantag_volunteer"]		= pref.vantag_volunteer
 	save_data["vantag_preference"]		= pref.vantag_preference
 
+	save_data["custom_species"]		= pref.custom_species
+
 	save_data["custom_say"]			= pref.custom_say
 	save_data["custom_whisper"]		= pref.custom_whisper
 	save_data["custom_ask"]			= pref.custom_ask
@@ -63,6 +69,8 @@
 	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
 /datum/category_item/player_setup_item/general/vore_misc/copy_to_mob(var/mob/living/carbon/human/character)
+	character.custom_species	= pref.custom_species
+
 	character.custom_say		= lowertext(trim(pref.custom_say))
 	character.custom_ask		= lowertext(trim(pref.custom_ask))
 	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
@@ -142,6 +150,8 @@
 
 	data["vantag_volunteer"] = pref.vantag_volunteer
 	data["vantag_preference"] = GLOB.vantag_choices_list[pref.vantag_preference]
+
+	data["custom_species"] = pref.custom_species
 
 	return data
 
@@ -295,4 +305,9 @@
 			var/heat_choice = tgui_alert(user, "Reset your Custom Heat Discomfort messages?", "Reset Discomfort",list("Yes","No"))
 			if(heat_choice == "Yes")
 				pref.custom_heat = list()
+			return TOPIC_REFRESH
+		if("custom_species")
+			var/raw_choice = sanitize(tgui_input_text(user, "Input your custom species name:",
+				"Character Preference", pref.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+			pref.custom_species = raw_choice
 			return TOPIC_REFRESH

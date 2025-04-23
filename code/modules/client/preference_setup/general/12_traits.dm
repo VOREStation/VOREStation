@@ -5,7 +5,6 @@
 var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_COPPER,REAGENT_ID_PHORON,REAGENT_ID_SILVER,REAGENT_ID_GOLD,REAGENT_ID_SLIMEJELLY)	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
 
 /datum/preferences
-	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 	var/custom_base		// What to base the custom species on
 	var/blood_color = "#A10808"
 
@@ -106,7 +105,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	sort_order = 7
 
 /datum/category_item/player_setup_item/general/traits/load_character(list/save_data)
-	pref.custom_species			= save_data["custom_species"]
 	pref.custom_base			= save_data["custom_base"]
 	pref.pos_traits				= text2path_list(save_data["pos_traits"])
 	pref.neu_traits				= text2path_list(save_data["neu_traits"])
@@ -120,7 +118,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 
 /datum/category_item/player_setup_item/general/traits/save_character(list/save_data)
-	save_data["custom_species"]		= pref.custom_species
 	save_data["custom_base"]		= pref.custom_base
 	save_data["pos_traits"]			= check_list_copy(pref.pos_traits)
 	save_data["neu_traits"]			= check_list_copy(pref.neu_traits)
@@ -202,8 +199,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
-	character.custom_species	= pref.custom_species
-
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
 		pref.gross_meatbag = 0
@@ -228,9 +223,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/general/traits/content(var/mob/user)
-	. += span_bold("Custom Species Name:") + " "
-	. += "<a href='byond://?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
-
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		. += span_bold("Icon Base:") + " "
@@ -281,13 +273,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 /datum/category_item/player_setup_item/general/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
 		return TOPIC_NOACTION
-
-	else if(href_list["custom_species"])
-		var/raw_choice = sanitize(tgui_input_text(user, "Input your custom species name:",
-			"Character Preference", pref.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
-		if (CanUseTopic(user))
-			pref.custom_species = raw_choice
-		return TOPIC_REFRESH
 
 	else if(href_list["custom_base"])
 		var/list/choices = pref.get_custom_bases_for_species()

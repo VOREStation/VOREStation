@@ -117,6 +117,7 @@ export const SubtabInfo = (props: {
     runechat_color,
     vore_egg_type,
     autohiss,
+    custom_species,
   } = data;
 
   return (
@@ -188,6 +189,11 @@ export const SubtabInfo = (props: {
               </LabeledList.Item>
               <LabeledList.Item label="Autohiss Setting">
                 <Button onClick={() => act('autohiss')}>{autohiss}</Button>
+              </LabeledList.Item>
+              <LabeledList.Item label="Custom Species Name">
+                <Button onClick={() => act('custom_species')}>
+                  {custom_species || '-Input Name-'}
+                </Button>
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
