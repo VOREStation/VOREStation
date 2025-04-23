@@ -340,8 +340,8 @@
 	icon_x = 64
 	pixel_x = -16
 
-/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt3
-	name = "Dullahan v4 matcha"
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/servicealt3
+	name = "Dullahan v3 matcha"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/barista.dmi'
 	sprite_icon_state = "dullahanbarista"
 	sprite_decals = list("decals")
