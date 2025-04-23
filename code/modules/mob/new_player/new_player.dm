@@ -8,6 +8,7 @@
 	var/show_hidden_jobs = 0	//Show jobs that are set to "Never" in preferences
 	var/has_respawned = FALSE	//Determines if we're using RESPAWN_MESSAGE
 	var/datum/browser/panel
+	var/datum/tgui_window/lobby_window = null
 	var/datum/tgui_module/crew_manifest/new_player/manifest_dialog = null
 	var/datum/tgui_module/late_choices/late_choices_dialog = null
 	universal_speak = 1

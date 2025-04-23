@@ -6,6 +6,12 @@
 		my_client.screen -= lobby_image
 		my_client = null
 
+	QDEL_NULL(lobby_window)
+
+	var/client/exiting_client = GLOB.directory[persistent_ckey]
+	if(exiting_client)
+		winset(exiting_client, "lobby_browser", "is-disabled=true;is-visible=false")
+
 	..()
 
 	//if(created_for)
