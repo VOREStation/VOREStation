@@ -2502,9 +2502,9 @@
 
 /datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA || M.spice_mod <= 0.25)
+	if(alien == IS_DIONA || M.species.spice_mod <= 0.25)
 		return
-	M.bodytemperature += 10 * (M.burn_mod * M.spice_mod)
+	M.bodytemperature += 10 * (M.species.burn_mod * M.species.spice_mod)
 
 /datum/reagent/drink/sweetsundaeramen
 	name = REAGENT_DESSERTRAMEN
@@ -4480,9 +4480,9 @@
 
 /datum/reagent/ethanol/soemmerfire/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA || M.spice_mod <= 0.25)
+	if(alien == IS_DIONA || M.species.spice_mod <= 0.25)
 		return
-	M.bodytemperature += 10 * (M.burn_mod * M.spice_mod)
+	M.bodytemperature += 10 * (M.species.burn_mod * M.species.spice_mod)
 
 /datum/reagent/ethanol/winebrandy
 	name = REAGENT_WINEBRANDY
