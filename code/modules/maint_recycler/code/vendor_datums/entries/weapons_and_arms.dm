@@ -4,7 +4,7 @@
 	desc = "I USED THE REVOLVER. YOU KNOW WHY? CAUSE THE REVOLVER DOESN’T MISS: AND UNLIKE THE SHITTY TASER IT STOPS A CRIMINAL IN THEIR TRACKS IN TWO HITS. BANG: BANG: AND THEY’RE FUCKING DONE. I USE FOUR SHOTS JUST TO MAKE DAMN SURE."
 	object_type_to_spawn = /obj/item/toy/russian_revolver/trick_revolver
 	item_cost = 50 //pricy!
-	tagline = "clean and effective as fuck!"
+	tagline = "clean and effective as fuck! OnlySec!"
 	per_person_cap = 1
 	per_round_cap = 1 //limited supply!
 	required_access = list(access_security)
