@@ -34,7 +34,7 @@
 			owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
 			owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
 
-		var/datum/robolimb/R = all_robolimbs[model] // company should be set in parent by now
+		var/datum/robolimb/R = GLOB.all_robolimbs[model] // company should be set in parent by now
 		if(!R)
 			log_error("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
 		owner.synthetic = R
@@ -300,7 +300,7 @@
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	. = ..(company, skip_prosthetics, 1)
 	if(model)
-		var/datum/robolimb/robohead = all_robolimbs[model]
+		var/datum/robolimb/robohead = GLOB.all_robolimbs[model]
 		if(robohead?.monitor_styles && robohead?.monitor_icon)
 			LAZYDISTINCTADD(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
 		else

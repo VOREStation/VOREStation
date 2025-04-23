@@ -116,7 +116,8 @@ export const VoreSelectedBellyDescriptions = (props: {
                 Number of prey digested in this belly.
               </LabeledList.Item>
               <LabeledList.Item label="%item">
-                Only used in resist messages - item the prey is using to escape.
+                item the prey is using to escape in resist messages, or the item
+                ingested via trash eater
               </LabeledList.Item>
               <LabeledList.Item label="%dest">
                 Only used in transfer messages - belly prey is going to.
@@ -207,6 +208,25 @@ export const VoreSelectedBellyDescriptions = (props: {
             }
           >
             Examine Message (with absorbed victims)
+          </Button>
+        </LabeledList.Item>
+        <LabeledList.Item label="Trash Eater Messages">
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_trasheater', msgtype: 'in' })
+            }
+          >
+            Item Eat Message
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_trasheater',
+                msgtype: 'out',
+              })
+            }
+          >
+            Item Expel Message
           </Button>
         </LabeledList.Item>
         {message_mode || escapable ? (

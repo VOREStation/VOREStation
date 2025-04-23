@@ -94,7 +94,7 @@
 
 		newloc = loc_landmark.loc
 
-	var/mob/living/silicon/ai/O = new (newloc, using_map.default_law_type,,1)//No MMI but safety is in effect.
+	var/mob/living/silicon/ai/O = new (newloc, FALSE, using_map.default_law_type, null, 1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 

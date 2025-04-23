@@ -1,13 +1,6 @@
 import './styles/main.scss';
 
-import {
-  type FormEvent,
-  type KeyboardEvent,
-  type MouseEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
@@ -37,15 +30,6 @@ type ByondProps = {
   scale: BooleanLike;
 };
 
-const ROWS: Record<keyof typeof WindowSize, number> = {
-  Small: 1,
-  Medium: 2,
-  Large: 3,
-  Max: 20,
-  Width: 360,
-  MaxWidth: 800,
-} as const;
-
 export function TguiSay() {
   const innerRef = useRef<HTMLTextAreaElement>(null);
   const channelIterator = useRef(new ChannelIterator());
@@ -61,8 +45,8 @@ export function TguiSay() {
   const [currentPrefix, setCurrentPrefix] = useState<
     keyof typeof RADIO_PREFIXES | null
   >(null);
-  const [size, setSize] = useState(WindowSize.Small);
   const [maxLength, setMaxLength] = useState(4096);
+  const [size, setSize] = useState(WindowSize.Small);
   const [lightMode, setLightMode] = useState(false);
   const [value, setValue] = useState('');
 
@@ -113,7 +97,7 @@ export function TguiSay() {
     }
   }
 
-  function handleButtonClick(event: MouseEvent<HTMLButtonElement>): void {
+  function handleButtonClick(event: React.MouseEvent<HTMLButtonElement>): void {
     isDragging.current = true;
 
     setTimeout(() => {
@@ -207,7 +191,7 @@ export function TguiSay() {
     );
   }
 
-  function handleInput(event: FormEvent<HTMLTextAreaElement>): void {
+  function handleInput(event: React.FormEvent<HTMLTextAreaElement>): void {
     const iterator = channelIterator.current;
     let newValue = event.currentTarget.value;
 
@@ -232,7 +216,9 @@ export function TguiSay() {
     setValue(newValue);
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
+  function handleKeyDown(
+    event: React.KeyboardEvent<HTMLTextAreaElement>,
+  ): void {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
@@ -311,24 +297,18 @@ export function TguiSay() {
 
   function handleOpen(data: ByondOpen): void {
     setSize(minimumHeight.current);
-    const { channel } = data;
-    const iterator = channelIterator.current;
-    // Catches the case where the modal is already open
-    if (iterator.isSay()) {
-      iterator.set(channel);
-    }
+    channelIterator.current.set(data.channel);
 
-    setButtonContent(iterator.current());
+    setCurrentPrefix(null);
+    setButtonContent(channelIterator.current.current());
     windowOpen(
-      iterator.current(),
+      channelIterator.current.current(),
       minimumWidth.current,
       minimumHeight.current,
       scale.current,
     );
-    const input = innerRef.current;
-    setTimeout(() => {
-      input?.focus();
-    }, 1);
+
+    innerRef.current?.focus();
   }
 
   function handleProps(data: ByondProps): void {
@@ -372,8 +352,8 @@ export function TguiSay() {
     newSize = clamp(newSize, minimumHeight.current, WindowSize.Max);
 
     if (size !== newSize) {
-      setSize(newSize);
       windowSet(minimumWidth.current, newSize, scale.current);
+      setSize(newSize);
     }
   }, [value]);
 
@@ -410,12 +390,15 @@ export function TguiSay() {
         <textarea
           spellCheck
           autoCorrect="off"
-          className={`textarea textarea-${theme}`}
+          className={classes([
+            'textarea',
+            `textarea-${theme}`,
+            value.length > LineLength.Large && 'textarea-large',
+          ])}
           maxLength={maxLength}
           onInput={handleInput}
           onKeyDown={handleKeyDown}
           ref={innerRef}
-          rows={ROWS[size] || 1}
           value={value}
         />
         <button

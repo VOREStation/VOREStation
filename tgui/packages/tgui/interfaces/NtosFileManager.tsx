@@ -170,12 +170,11 @@ const FileTable = (props: {
               <>
                 <Button.Input
                   width="80%"
-                  currentValue={file.name}
+                  buttonText={file.name}
+                  value={file.name}
                   tooltip="Rename"
-                  onCommit={(e, value) => onRename(file.uid, value)}
-                >
-                  {file.name}
-                </Button.Input>
+                  onCommit={(value) => onRename(file.uid, value)}
+                />
                 <Button onClick={() => onOpen(file.uid)}>Open</Button>
               </>
             ) : (

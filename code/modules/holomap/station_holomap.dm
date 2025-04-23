@@ -80,7 +80,7 @@
 		startWatching(AM)
 
 /obj/machinery/station_map/Uncross(atom/movable/mover, turf/target)
-	if(get_dir(mover, target) == reverse_dir[dir])
+	if(get_dir(mover, target) == GLOB.reverse_dir[dir])
 		return FALSE
 	return TRUE
 /obj/machinery/station_map/proc/startWatching(var/mob/user)

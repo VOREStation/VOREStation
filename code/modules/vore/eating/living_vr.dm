@@ -908,7 +908,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
-		visible_message(span_vwarning("[src] demonstrates the voracious capabilities of their [lowertext(vore_selected.name)] by making [I] disappear!"))
+		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 		return
 	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
 	return
@@ -1586,9 +1586,9 @@
 
 			var/soundfile
 			if(!RTB.fancy_vore)
-				soundfile = classic_release_sounds[RTB.release_sound]
+				soundfile = GLOB.classic_release_sounds[RTB.release_sound]
 			else
-				soundfile = fancy_release_sounds[RTB.release_sound]
+				soundfile = GLOB.fancy_release_sounds[RTB.release_sound]
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
