@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
+
 import { Window } from '../../layouts';
 
 type Data = {

@@ -105,24 +105,20 @@ export const SubtabSettings = (props: {
               <Stack.Item>
                 <Box bold>Misc Settings</Box>
                 <LabeledList>
-                  <LabeledList.Item
-                    label="Allow Capture Crystal"
-                    tooltip="Would you like to be able to be put in a capture crystal?"
-                  >
+                  <LabeledList.Item label="Allow Capture Crystal">
                     <Button
                       onClick={() => act('toggle_capture_crystal')}
                       selected={capture_crystal}
+                      tooltip="Would you like to be able to be put in a capture crystal?"
                     >
                       {capture_crystal ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Allow Robot Petting"
-                    tooltip="Would you like to be able to be pet as a robot?"
-                  >
+                  <LabeledList.Item label="Allow Robot Petting">
                     <Button
                       onClick={() => act('toggle_borg_petting')}
                       selected={borg_petting}
+                      tooltip="Would you like to be able to be pet as a robot?"
                     >
                       {borg_petting ? 'Yes' : 'No'}
                     </Button>
@@ -137,74 +133,64 @@ export const SubtabSettings = (props: {
                       {custom_footstep}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Event Volunteer"
-                    tooltip="Would you like to be offered a chance to participate in events?"
-                  >
+                  <LabeledList.Item label="Event Volunteer">
                     <Button
                       onClick={() => act('toggle_vantag_volunteer')}
                       selected={vantag_volunteer}
+                      tooltip="Would you like to be offered a chance to participate in events?"
                     >
                       {vantag_volunteer ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Event Pref"
-                    tooltip="How do you want to be involved with event characters, ERP wise?"
-                  >
-                    <Button onClick={() => act('change_vantag')}>
+                  <LabeledList.Item label="Event Pref">
+                    <Button
+                      onClick={() => act('change_vantag')}
+                      tooltip="How do you want to be involved with event characters, ERP wise?"
+                    >
                       {vantag_preference}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Prevent Body Impersonation"
-                    tooltip="Prevent anyone from impersonating your character via resleeving and other methods"
-                  >
+                  <LabeledList.Item label="Prevent Body Impersonation">
                     <Button
                       onClick={() => act('toggle_resleeve_lock')}
                       selected={resleeve_lock}
+                      tooltip="Prevent anyone from impersonating your character via resleeving and other methods"
                     >
                       {resleeve_lock ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Spawn With Backup Implant"
-                    tooltip="Automatically back your mind up to be resleeved?"
-                  >
+                  <LabeledList.Item label="Spawn With Backup Implant">
                     <Button
                       onClick={() => act('toggle_implant')}
                       selected={auto_backup_implant}
+                      tooltip="Automatically back your mind up to be resleeved?"
                     >
                       {auto_backup_implant ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Start With Body Scan"
-                    tooltip="Select if you start the round with your body records ready to be resleeved"
-                  >
+                  <LabeledList.Item label="Start With Body Scan">
                     <Button
                       onClick={() => act('toggle_resleeve_scan')}
                       selected={resleeve_scan}
+                      tooltip="Select if you start the round with your body records ready to be resleeved"
                     >
                       {resleeve_scan ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Start With Mind Scan"
-                    tooltip="Select if you start the round with your mind ready to be resleeved"
-                  >
+                  <LabeledList.Item label="Start With Mind Scan">
                     <Button
                       onClick={() => act('toggle_mind_scan')}
                       selected={mind_scan}
+                      tooltip="Select if you start the round with your mind ready to be resleeved"
                     >
                       {mind_scan ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
-                  <LabeledList.Item
-                    label="Suit Sensors"
-                    tooltip="Select whether you can be tracked by medical by default"
-                  >
-                    <Button onClick={() => act('toggle_sensor_setting')}>
+                  <LabeledList.Item label="Suit Sensors">
+                    <Button
+                      onClick={() => act('toggle_sensor_setting')}
+                      tooltip="Select whether you can be tracked by medical by default"
+                    >
                       {sensorpref}
                     </Button>
                   </LabeledList.Item>

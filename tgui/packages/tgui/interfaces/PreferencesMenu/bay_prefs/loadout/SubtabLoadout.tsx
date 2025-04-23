@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 import { Fragment, useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack, Table } from 'tgui-core/components';
 
-import { useBackend } from '../../../../backend';
 import {
   type LoadoutData,
   type LoadoutDataConstant,

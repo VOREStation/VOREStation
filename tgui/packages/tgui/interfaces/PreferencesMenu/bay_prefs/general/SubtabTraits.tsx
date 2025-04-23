@@ -1,3 +1,4 @@
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -8,7 +9,6 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../../../../backend';
 import {
   type GeneralData,
   type GeneralDataConstant,

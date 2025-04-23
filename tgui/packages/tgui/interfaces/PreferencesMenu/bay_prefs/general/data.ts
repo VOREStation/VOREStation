@@ -113,7 +113,7 @@ export const proper_organ_name = (organ: BodypartFlags): string => {
     case BodypartFlags.BP_HEAD:
       return 'head';
     case BodypartFlags.BP_TORSO:
-      return 'torso';
+      return 'full body';
     case BodypartFlags.BP_GROIN:
       return 'groin';
     case BodypartFlags.O_EYES:
