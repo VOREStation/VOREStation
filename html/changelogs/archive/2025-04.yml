@@ -249,3 +249,6 @@
   - bugfix: Rings and Bracelets won't slow you down anymore
   tacoguy7765093:
   - sound: Surgery tools now make proper melee attack noises.
+2025-04-23:
+  Cerami:
+  - bugfix: Your loadout items won't poof
