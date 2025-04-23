@@ -140,7 +140,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/obj/item/communicator/comm in GLOB.all_communicators)
+	for(var/obj/item/communicator/comm in all_communicators)
 		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)

@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Bodyscanner now tells you when someone is missing an organ instead of omitting it entirely"
