@@ -73,7 +73,7 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && preference_mob?.client) //VOREStation Edit.
+		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
@@ -84,7 +84,7 @@ var/list/gear_datums = list()
 		if(pref.client)
 			if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(pref.client.prefs.real_name in G.character_name))
+			if(G.character_name && !(pref.real_name in G.character_name))
 				continue
 		. += gear_name
 
