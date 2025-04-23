@@ -75,6 +75,9 @@
 	sprite_icon_state = "dullahansyndi"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","loincloth","eyecover")
 	icon_x = 32
