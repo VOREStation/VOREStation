@@ -83,7 +83,9 @@ export const SubtabLoadout = (props: {
                     </Button>
                   </Table.Cell>
                   <Table.Cell collapsing>{item.cost}</Table.Cell>
-                  <Table.Cell collapsing>{item.desc}</Table.Cell>
+                  <Table.Cell style={{ wordWrap: 'break-word' }}>
+                    {item.desc}
+                  </Table.Cell>
                 </Table.Row>
                 {item.name in gear_tweaks ? (
                   <Table.Row>
