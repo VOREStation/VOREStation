@@ -2502,9 +2502,23 @@
 
 /datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA || M.species.spice_mod <= 0.25)
+	if(alien == IS_DIONA)
 		return
-	M.bodytemperature += 10 * (M.species.burn_mod * M.species.spice_mod)
+	if(alien == IS_ALRAUNE)
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
+		to_chat(M, span_danger("Your insides feel uncomfortably hot!"))
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
+		if(prob(5))
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 
 /datum/reagent/drink/sweetsundaeramen
 	name = REAGENT_DESSERTRAMEN
@@ -4480,9 +4494,23 @@
 
 /datum/reagent/ethanol/soemmerfire/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA || M.species.spice_mod <= 0.25)
+	if(alien == IS_DIONA)
 		return
-	M.bodytemperature += 10 * (M.species.burn_mod * M.species.spice_mod)
+	if(alien == IS_ALRAUNE)
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
+		to_chat(M, span_danger("Your insides feel uncomfortably hot!"))
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
+		if(prob(5))
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 
 /datum/reagent/ethanol/winebrandy
 	name = REAGENT_WINEBRANDY
