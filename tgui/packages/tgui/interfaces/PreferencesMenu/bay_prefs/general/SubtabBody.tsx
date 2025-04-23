@@ -48,6 +48,8 @@ export const SubtabBody = (props: {
     synth_markings,
     voice_freq,
     voice_sound,
+    blood_color,
+    blood_reagents,
   } = data;
   const { digi_allowed } = staticData;
   const { species: species_list } = serverData;
@@ -133,6 +135,20 @@ export const SubtabBody = (props: {
                   <LabeledList.Item label="Blood Type">
                     <Button inline onClick={() => act('blood_type')}>
                       {b_type}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Blood Color">
+                    <Button inline onClick={() => act('blood_color')}>
+                      Set
+                    </Button>
+                    <Button inline onClick={() => act('reset_blood_color')}>
+                      R
+                    </Button>
+                    <ColorBox color={blood_color} />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Blood Reagent">
+                    <Button inline onClick={() => act('blood_reagents')}>
+                      {blood_reagents}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Voice Frequency">

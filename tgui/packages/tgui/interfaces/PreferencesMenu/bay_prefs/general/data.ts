@@ -197,6 +197,9 @@ export type BodyData = {
   synth_color_toggle: BooleanLike;
   synth_color: string;
   synth_markings: BooleanLike;
+
+  blood_color: string;
+  blood_reagents: string;
 };
 
 export type BackgroundData = {
