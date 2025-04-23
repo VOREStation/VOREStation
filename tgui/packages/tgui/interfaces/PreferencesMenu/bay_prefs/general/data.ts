@@ -277,6 +277,12 @@ export type MiscData = {
   nif: BooleanLike;
 
   custom_species: string;
+  pos_traits: string[] | Record<string, Record<string, any> | null>;
+  neu_traits: string[] | Record<string, Record<string, any> | null>;
+  neg_traits: string[] | Record<string, Record<string, any> | null>;
+  traits_cheating: BooleanLike;
+  max_traits: number;
+  trait_points: number;
 };
 
 export type GeneralData = BasicData &
@@ -377,6 +383,42 @@ export type Species = {
   appearance_flags: AppearanceFlags;
 };
 
+export enum TraitPrefType {
+  TRAIT_PREF_TYPE_BOOLEAN = 1,
+  TRAIT_PREF_TYPE_COLOR = 2,
+  TRAIT_PREF_TYPE_STRING = 3,
+}
+
+export enum TraitVareditTarget {
+  TRAIT_NO_VAREDIT_TARGET = 0,
+  TRAIT_VAREDIT_TARGET_SPECIES = 1,
+  TRAIT_VAREDIT_TARGET_MOB = 2,
+}
+
+export enum TraitCategory {
+  Positive = 1,
+  Neutral = 0,
+  Negative = -1,
+}
+
+export type TraitSubpref = [TraitPrefType, string, TraitVareditTarget, string];
+
+export type Trait = {
+  cost: number;
+  name: string;
+  category: TraitCategory;
+  /**
+   * list(
+   *  "identifier/name of var to edit" = list(
+   *    typeofpref, // typeofpref should follow the defines in _traits.dm (eg. TRAIT_PREF_TYPE_BOOLEAN)
+   *    "text to display in prefs",
+   *    TRAIT_NO_VAREDIT_TARGET/TRAIT_VAREDIT_TARGET_SPECIES/etc,
+   *    (optional: default value)
+   *   ), etc)
+   */
+  has_preferences: Record<string, TraitSubpref>;
+};
+
 export type GeneralDataConstant = {
   species: Species[];
   hair_styles: Record<string, StandardStyle>;
@@ -386,4 +428,5 @@ export type GeneralDataConstant = {
   body_markings: Record<string, MarkingStyle>;
   tail_styles: Record<string, TailStyle>;
   wing_styles: Record<string, WingStyle>;
+  all_traits: Record<string, Trait>;
 };

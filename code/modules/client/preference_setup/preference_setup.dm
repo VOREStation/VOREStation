@@ -81,10 +81,6 @@
 	dat += "<a href='byond://?src=\ref[src];game_prefs=1'>Game Options</a>"
 	return dat
 
-/datum/category_collection/player_setup_collection/proc/content(var/mob/user)
-	if(selected_category)
-		return selected_category.content(user)
-
 /datum/category_collection/player_setup_collection/Topic(var/href,var/list/href_list)
 	if(..())
 		return 1
@@ -147,21 +143,6 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.copy_to_mob(C)
 
-/datum/category_group/player_setup_category/proc/content(var/mob/user)
-	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
-	var/current = 0
-	var/halfway = items.len / 2
-	for(var/datum/category_item/player_setup_item/PI in items)
-		if(halfway && current++ >= halfway)
-			halfway = 0
-			. += "</td><td></td><td style='width:50%'>"
-		. += "[PI.content(user)]<br>"
-	. += "</td></tr></table>"
-
-/datum/category_group/player_setup_category/occupation_preferences/content(var/mob/user)
-	for(var/datum/category_item/player_setup_item/PI in items)
-		. += "[PI.content(user)]<br>"
-
 /**********************
 * Category Item Setup *
 **********************/
@@ -209,9 +190,6 @@
 * Called when the item is asked to apply its per character settings to a new mob.
 */
 /datum/category_item/player_setup_item/proc/copy_to_mob(var/mob/living/carbon/human/C)
-	return
-
-/datum/category_item/player_setup_item/proc/content()
 	return
 
 /datum/category_item/player_setup_item/proc/sanitize_character()

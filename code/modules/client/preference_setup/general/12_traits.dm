@@ -32,42 +32,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 			choices = (choices | new_species)
 	return choices
 
-/datum/category_item/player_setup_item/general/traits/proc/get_html_for_trait(var/datum/trait/trait, var/list/trait_prefs = null)
-	. = ""
-	if (!LAZYLEN(trait.has_preferences))
-		return
-	. = "<br><ul>"
-	var/altered = FALSE
-	if (!LAZYLEN(trait_prefs))
-		trait_prefs = trait.get_default_prefs()
-		altered = TRUE
-	for (var/identifier in trait.has_preferences)
-		var/pref_list = trait.has_preferences[identifier] //faster
-		if (LAZYLEN(pref_list) >= 2)
-			if (!(identifier in trait_prefs))
-				trait_prefs[identifier] = trait.default_value_for_pref(identifier) //won't be called at all often
-				altered = TRUE
-			. += "<li>- [pref_list[2]]:"
-			var/link = " <a href='byond://?src=\ref[src];clicked_trait_pref=[trait.type];pref=[identifier]'>"
-			switch (pref_list[1])
-				if (1) //TRAIT_PREF_TYPE_BOOLEAN
-					. += link + (trait_prefs[identifier] ? "Enabled" : "Disabled")
-				if (2) //TRAIT_PREF_TYPE_COLOR
-					. += " " + color_square(hex = trait_prefs[identifier]) + link + "Change"
-				if (3) //TRAIT_PREF_TYPE_STRING
-					var/string = trait_prefs[identifier]
-					. += link + (length(string) > 0 ? string : "\[Empty\]")
-			. += "</a></li>"
-	. += "</ul>"
-	if (altered)
-		switch(trait.category)
-			if (1) //TRAIT_TYPE_POSITIVE
-				pref.pos_traits[trait.type] = trait_prefs
-			if (0) //TRAIT_TYPE_NEUTRAL
-				pref.neu_traits[trait.type] = trait_prefs
-			if (-1)//TRAIT_TYPE_NEGATIVE
-				pref.neg_traits[trait.type] = trait_prefs
-
 /datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
 	if (!trait || !preference)
 		return
@@ -231,45 +195,31 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	data["blood_color"] = pref.blood_color
 	data["blood_reagents"] = pref.blood_reagents
 
+	data["pos_traits"] = pref.pos_traits
+	data["neu_traits"] = pref.neu_traits
+	data["neg_traits"] = pref.neg_traits
+	data["traits_cheating"] = pref.traits_cheating
+	data["max_traits"] = pref.max_traits
+	data["trait_points"] = pref.starting_trait_points
+
 	return data
 
-/datum/category_item/player_setup_item/general/traits/content(var/mob/user)
-	var/datum/species/selected_species = GLOB.all_species[pref.species]
-	var/traits_left = pref.max_traits
+/datum/category_item/player_setup_item/general/traits/tgui_constant_data()
+	var/list/data = ..()
 
+	var/list/all_traits = list()
+	for(var/path in GLOB.all_traits)
+		var/datum/trait/T = GLOB.all_traits[path]
+		all_traits[path] = list(
+			"cost" = T.cost,
+			"name" = T.name,
+			"category" = T.category,
+			"has_preferences" = T.has_preferences,
+		)
 
-	var/points_left = pref.starting_trait_points
+	data["all_traits"] = all_traits
 
-	for(var/T in pref.pos_traits + pref.neg_traits)
-		points_left -= GLOB.traits_costs[T]
-		if(T in pref.pos_traits)
-			traits_left--
-	. += span_bold("Traits Left:") + " [traits_left]<br>"
-	. += span_bold("Points Left:") + " [points_left]<br>"
-	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
-		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
-
-	. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
-	. += "<ul>"
-	for(var/T in pref.pos_traits)
-		var/datum/trait/trait = GLOB.positive_traits[T]
-		. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.pos_traits[T])]</li>"
-	. += "</ul>"
-
-	. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
-	. += "<ul>"
-	for(var/T in pref.neu_traits)
-		var/datum/trait/trait = GLOB.neutral_traits[T]
-		. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neu_traits[T])]</li>"
-	. += "</ul>"
-
-	. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
-	. += "<ul>"
-	for(var/T in pref.neg_traits)
-		var/datum/trait/trait = GLOB.negative_traits[T]
-		. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
-	. += "</ul>"
-
+	return data
 
 /datum/category_item/player_setup_item/general/traits/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
@@ -302,7 +252,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				pref.blood_reagents = new_blood_reagents
 				return TOPIC_REFRESH
 		if("clicked_pos_trait")
-			var/datum/trait/trait = text2path(params["clicked_pos_trait"])
+			var/datum/trait/trait = text2path(params["trait"])
 			var/choice = tgui_alert(user, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 			if(choice == "Remove")
 				pref.pos_traits -= trait
@@ -310,7 +260,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				instance.remove_pref(pref)
 			return TOPIC_REFRESH
 		if("clicked_neu_trait")
-			var/datum/trait/trait = text2path(params["clicked_neu_trait"])
+			var/datum/trait/trait = text2path(params["trait"])
 			var/choice = tgui_alert(user, "Remove [initial(trait.name)]?","Remove Trait",list("Remove","Cancel"))
 			if(choice == "Remove")
 				pref.neu_traits -= trait
@@ -318,7 +268,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				instance.remove_pref(pref)
 			return TOPIC_REFRESH
 		if("clicked_neg_trait")
-			var/datum/trait/trait = text2path(params["clicked_neg_trait"])
+			var/datum/trait/trait = text2path(params["trait"])
 			var/choice = tgui_alert(user, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 			if(choice == "Remove")
 				pref.neg_traits -= trait
@@ -450,193 +400,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				instance.apply_pref(pref)
 				mylist[path] = instance.get_default_prefs()
 				return TOPIC_REFRESH
-
-/datum/category_item/player_setup_item/general/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(!CanUseTopic(user))
-		return TOPIC_NOACTION
-
-	else if(href_list["custom_base"])
-		var/list/choices = pref.get_custom_bases_for_species()
-		var/text_choice = tgui_input_list(user, "Pick an icon set for your species:","Icon Base", choices)
-		if(text_choice in choices)
-			pref.custom_base = text_choice
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["blood_color"])
-		var/color_choice = tgui_color_picker(user, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color)
-		if(color_choice)
-			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
-		return TOPIC_REFRESH
-
-	else if(href_list["blood_reset"])
-		var/datum/species/spec = GLOB.all_species[pref.species]
-		var/new_blood = spec.blood_color ? spec.blood_color : "#A10808"
-		var/choice = tgui_alert(user, "Reset blood color to species default ([new_blood])?","Reset Blood Color",list("Reset","Cancel"))
-		if(choice == "Reset")
-			pref.blood_color = new_blood
-		return TOPIC_REFRESH
-
-	else if(href_list["blood_reagents"])
-		var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", valid_bloodreagents)
-		if(new_blood_reagents && CanUseTopic(user))
-			pref.blood_reagents = new_blood_reagents
-			return TOPIC_REFRESH
-
-	else if(href_list["clicked_pos_trait"])
-		var/datum/trait/trait = text2path(href_list["clicked_pos_trait"])
-		var/choice = tgui_alert(user, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
-		if(choice == "Remove")
-			pref.pos_traits -= trait
-			var/datum/trait/instance = GLOB.all_traits[trait]
-			instance.remove_pref(pref)
-		return TOPIC_REFRESH
-
-	else if(href_list["clicked_neu_trait"])
-		var/datum/trait/trait = text2path(href_list["clicked_neu_trait"])
-		var/choice = tgui_alert(user, "Remove [initial(trait.name)]?","Remove Trait",list("Remove","Cancel"))
-		if(choice == "Remove")
-			pref.neu_traits -= trait
-			var/datum/trait/instance = GLOB.all_traits[trait]
-			instance.remove_pref(pref)
-		return TOPIC_REFRESH
-
-	else if(href_list["clicked_neg_trait"])
-		var/datum/trait/trait = text2path(href_list["clicked_neg_trait"])
-		var/choice = tgui_alert(user, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
-		if(choice == "Remove")
-			pref.neg_traits -= trait
-			var/datum/trait/instance = GLOB.all_traits[trait]
-			instance.remove_pref(pref)
-		return TOPIC_REFRESH
-
-	else if(href_list["clicked_trait_pref"])
-		var/datum/trait/trait = text2path(href_list["clicked_trait_pref"])
-		get_pref_choice_from_trait(user, trait, href_list["pref"])
-		return TOPIC_REFRESH
-
-	else if(href_list["add_trait"])
-		var/mode = text2num(href_list["add_trait"])
-		var/list/picklist
-		var/list/mylist
-		switch(mode)
-			if(POSITIVE_MODE)
-				if(pref.species == SPECIES_CUSTOM)
-					picklist = GLOB.positive_traits.Copy() - pref.pos_traits
-					mylist = pref.pos_traits
-				else
-					picklist = GLOB.everyone_traits_positive.Copy() - pref.pos_traits
-					mylist = pref.pos_traits
-			if(NEUTRAL_MODE)
-				if(pref.species == SPECIES_CUSTOM)
-					picklist = GLOB.neutral_traits.Copy() - pref.neu_traits
-					mylist = pref.neu_traits
-				else
-					picklist = GLOB.everyone_traits_neutral.Copy() - pref.neu_traits
-					mylist = pref.neu_traits
-			if(NEGATIVE_MODE)
-				if(pref.species == SPECIES_CUSTOM)
-					picklist = GLOB.negative_traits.Copy() - pref.neg_traits
-					mylist = pref.neg_traits
-				else
-					picklist = GLOB.everyone_traits_negative.Copy() - pref.neg_traits
-					mylist = pref.neg_traits
-
-		if(isnull(picklist))
-			return TOPIC_REFRESH
-
-		if(isnull(mylist))
-			return TOPIC_REFRESH
-
-		var/list/nicelist = list()
-		for(var/P in picklist)
-			var/datum/trait/T = picklist[P]
-			nicelist[T.name] = P
-
-		var/points_left = pref.starting_trait_points
-		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)
-			points_left -= GLOB.traits_costs[T]
-
-		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len)
-
-		var/message = "Select a trait to learn more."
-		if(mode != NEUTRAL_MODE)
-			message = "\[Remaining: [points_left] points, [traits_left] traits\]\n" + message
-		var/title = "Traits"
-		switch(mode)
-			if(POSITIVE_MODE)
-				title = "Positive Traits"
-			if(NEUTRAL_MODE)
-				title = "Neutral Traits"
-			if(NEGATIVE_MODE)
-				title = "Negative Traits"
-
-		var/trait_choice
-		var/done = FALSE
-		while(!done)
-			trait_choice = tgui_input_list(user, message, title, nicelist)
-			if(!trait_choice)
-				done = TRUE
-			if(trait_choice in nicelist)
-				var/datum/trait/path = nicelist[trait_choice]
-				var/choice = tgui_alert(user, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back"))
-				if(choice == "Take Trait")
-					done = TRUE
-
-		if(!trait_choice)
-			return TOPIC_REFRESH
-		else if(trait_choice in nicelist)
-			var/datum/trait/path = nicelist[trait_choice]
-			var/datum/trait/instance = GLOB.all_traits[path]
-
-			var/conflict = FALSE
-
-			if(pref.dirty_synth && !(instance.can_take & SYNTHETICS))
-				tgui_alert_async(user, "The trait you've selected can only be taken by organic characters!", "Error")
-				return TOPIC_REFRESH
-
-			if(pref.gross_meatbag && !(instance.can_take & ORGANICS))
-				tgui_alert_async(user, "The trait you've selected can only be taken by synthetic characters!", "Error")
-				return TOPIC_REFRESH
-
-			if(pref.species in instance.banned_species)
-				tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
-				return TOPIC_REFRESH
-
-			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species))
-				tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
-				return TOPIC_REFRESH
-
-			if(trait_choice in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
-				conflict = instance.name
-
-			varconflict:
-				for(var/P in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
-					var/datum/trait/instance_test = GLOB.all_traits[P]
-					if(path in instance_test.excludes)
-						conflict = instance_test.name
-						break varconflict
-
-					for(var/V in instance.var_changes)
-						if(V == "flags")
-							continue
-						if(V in instance_test.var_changes)
-							conflict = instance_test.name
-							break varconflict
-
-					for(var/V in instance.var_changes_pref)
-						if(V in instance_test.var_changes_pref)
-							conflict = instance_test.name
-							break varconflict
-
-			if(conflict)
-				tgui_alert_async(user, "You cannot take this trait and [conflict] at the same time. Please remove that trait, or pick another trait to add.", "Error")
-				return TOPIC_REFRESH
-
-			instance.apply_pref(pref)
-			mylist[path] = instance.get_default_prefs()
-			return TOPIC_REFRESH
-
-	return ..()
 
 #undef POSITIVE_MODE
 #undef NEUTRAL_MODE

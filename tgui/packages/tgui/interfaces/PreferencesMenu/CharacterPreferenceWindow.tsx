@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, ByondUi, Section, Stack } from 'tgui-core/components';
+import { Box, Button, ByondUi, Stack } from 'tgui-core/components';
 import { type BooleanLike } from 'tgui-core/react';
 
 import { BayPrefsEntryPoint } from './bay_prefs';
 
 type Data = {
-  header: string;
-  content: string;
   categories: string[];
   selected_category: {
     name: string;
@@ -23,10 +20,8 @@ type Data = {
 
 export const CharacterPreferenceWindow = (props) => {
   const { act, data } = useBackend<Data>();
-  const [showOld, setShowOld] = useState(true);
 
   const {
-    content,
     categories,
     selected_category,
     selected_category_static,
@@ -83,11 +78,6 @@ export const CharacterPreferenceWindow = (props) => {
                 <Button onClick={() => act('game_prefs')}>Game Options</Button>
               </Box>
               <Box position="absolute" top={0} right={0}>
-                <Button.Checkbox
-                  checked={showOld}
-                  onClick={() => setShowOld((x) => !x)}
-                  tooltip="Show Old Menu (DEV OPTION)"
-                />
                 <Button
                   icon="refresh"
                   onClick={() => act('refresh_character_preview')}
@@ -104,14 +94,6 @@ export const CharacterPreferenceWindow = (props) => {
                   staticData={selected_category_static}
                 />
               </Stack.Item>
-              {showOld ? (
-                <Stack.Item grow>
-                  <Section fill scrollable mt={1}>
-                    {/* eslint-disable-next-line react/no-danger */}
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
-                  </Section>
-                </Stack.Item>
-              ) : null}
             </Stack>
           </Stack.Item>
           <Stack.Item grow>

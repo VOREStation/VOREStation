@@ -28,8 +28,6 @@
 	if(preferences.current_window != PREFERENCE_TAB_CHARACTER_PREFERENCES)
 		return data
 
-	data["content"] = preferences.player_setup.content(user)
-
 	var/list/categories_data = list()
 	for(var/datum/category_group/player_setup_category/category as anything in preferences.player_setup.categories)
 		UNTYPED_LIST_ADD(categories_data, category.name)
