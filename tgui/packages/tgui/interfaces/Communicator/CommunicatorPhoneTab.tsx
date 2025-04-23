@@ -49,7 +49,7 @@ export const CommunicatorPhoneTab = (props) => {
     </Button>
   ));
 
-  let finalArray: React.JSX.Element[] = [];
+  const finalArray: React.JSX.Element[] = [];
 
   for (let i = 0; i < buttonArray.length; i += 4) {
     finalArray.push(
@@ -71,7 +71,7 @@ export const CommunicatorPhoneTab = (props) => {
               <Input
                 fluid
                 value={targetAddress}
-                onInput={(e, val) => act('write_target_address', { val: val })}
+                onChange={(val) => act('write_target_address', { val: val })}
               />
             </Stack.Item>
             <Stack.Item>

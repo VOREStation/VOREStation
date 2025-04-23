@@ -87,10 +87,10 @@ SUBSYSTEM_DEF(vote)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == VOTE_GAMEMODE)
-				if(master_mode in choices)
-					choices[master_mode] += non_voters
-					if(choices[master_mode] >= greatest_votes)
-						greatest_votes = choices[master_mode]
+				if(GLOB.master_mode in choices)
+					choices[GLOB.master_mode] += non_voters
+					if(choices[GLOB.master_mode] >= greatest_votes)
+						greatest_votes = choices[GLOB.master_mode]
 			else if(mode == VOTE_CREW_TRANSFER)
 				var/factor = 0.5
 				switch(world.time / (10 * 60)) // minutes
@@ -149,12 +149,12 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = 1
 			if(VOTE_GAMEMODE)
-				if(master_mode != .)
+				if(GLOB.master_mode != .)
 					world.save_mode(.)
 					if(ticker && ticker.mode)
 						restart = 1
 					else
-						master_mode = .
+						GLOB.master_mode = .
 			if(VOTE_CREW_TRANSFER)
 				if(. == "Initiate Crew Transfer")
 					init_shift_change(null, 1)

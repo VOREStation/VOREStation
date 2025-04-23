@@ -363,7 +363,7 @@
 	id = REAGENT_ID_STOXIN
 	result = REAGENT_ID_STOXIN
 	required_reagents = list(REAGENT_ID_CHLORALHYDRATE = 1, REAGENT_ID_SUGAR = 4)
-	inhibitors = list(REAGENT_ID_PHOSPHORUS) // Messes with the smoke
+	inhibitors = list(REAGENT_ID_PHOSPHORUS = 1) // Messes with the smoke
 	result_amount = 5
 
 /decl/chemical_reaction/instant/chloralhydrate
@@ -614,14 +614,15 @@
 /decl/chemical_reaction/instant/solidification/steel
 	name = "Solid Steel"
 	id = "solidsteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_STEEL = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET)
+	inhibitors = list(REAGENT_ID_PLATINUM = 1) // do not block plasteel formation
 	sheet_to_give = /obj/item/stack/material/steel
 
 
 /decl/chemical_reaction/instant/solidification/plasteel
 	name = "Solid Plasteel"
 	id = "solidplasteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_PLASTEEL = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/plasteel
 
 
@@ -682,7 +683,7 @@
 
 /decl/chemical_reaction/instant/carpetify/pcarpet
 	name = "Purple Carpet"
-	id = "Purplecarpet"
+	id = "purplecarpet"
 	required_reagents = list(REAGENT_ID_LIQUIDCARPETP = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/purcarpet
 
@@ -784,6 +785,8 @@
 	result_amount = 2
 	log_is_important = 1
 
+#ifndef UNIT_TEST
+// If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TEST wrapper
 /decl/chemical_reaction/instant/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
@@ -792,14 +795,13 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat!=DEAD)
 			e.amount *= 0.5
-	//VOREStation Add Start
 	else
 		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
-	//VOREStation Add End
 	e.start()
 
 	//holder.clear_reagents() //VOREStation Removal
 	return
+#endif
 
 /decl/chemical_reaction/instant/napalm
 	name = "Napalm"

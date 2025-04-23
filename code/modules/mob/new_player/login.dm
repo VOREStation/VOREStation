@@ -28,9 +28,9 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 /mob/new_player/Login()
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
-	if(join_motd)
-		join_motd = GLOB.is_valid_url.Replace(join_motd,span_linkify("$1"))
-		to_chat(src, examine_block("<div class=\"motd\">[join_motd]</div>"))
+	if(GLOB.join_motd)
+		GLOB.join_motd = GLOB.is_valid_url.Replace(GLOB.join_motd, span_linkify("$1"))
+		to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
 
 	if(has_respawned)
 		to_chat(src, CONFIG_GET(string/respawn_message))
@@ -49,13 +49,16 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 	created_for = ckey
 
-	new_player_panel()
-	client.init_verbs()
-	spawn(40)
-		if(client)
-			handle_privacy_poll()
-			client.playtitlemusic()
-			version_warnings()
+	if(!QDELETED(src))
+		new_player_panel()
+		addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+
+/mob/new_player/proc/do_after_login()
+	PRIVATE_PROC(TRUE)
+	if(client)
+		handle_privacy_poll()
+		client.playtitlemusic()
+		version_warnings()
 
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem

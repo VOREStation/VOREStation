@@ -24,6 +24,7 @@ bonktrauma - Diona
 bothnevarbackwards - Diona
 bricker98 - Protean
 bricker98 - Black-Eyed Shadekin
+bricker98 - Hanner
 bubonicsweetie - Protean
 burritojustice - Protean
 camanis - Protean
@@ -114,6 +115,7 @@ magpiemayhem - Xenochimera
 makkinindorn - Protean
 marcobarko - Black-Eyed Shadekin
 marcobarko - Protean
+maxcaliber50 - Protean
 maxine64 - Xenochimera
 mewchild - Diona
 mewchild - Vox
@@ -197,6 +199,7 @@ terrestris - Vox
 thedavestdave - Protean
 theoun - Hanner
 timidvi - Diona
+titaania - Protean
 tombomb90 - Protean
 torquegstc - Protean
 trifireblade - Protean

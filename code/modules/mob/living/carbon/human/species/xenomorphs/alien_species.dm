@@ -3,8 +3,8 @@
 	name = SPECIES_XENO
 	name_plural = "Xenomorphs"
 
-	default_language = "Xenomorph"
-	language = "Hivemind"
+	default_language = LANGUAGE_XENOLINGUA
+	language = LANGUAGE_HIVEMIND
 	assisted_langs = list()
 	unarmed_types = list(/datum/unarmed_attack/claws/strong/xeno, /datum/unarmed_attack/bite/strong/xeno)
 	hud_type = /datum/hud_data/alien
@@ -24,7 +24,7 @@
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	flags =  NO_DNA | NO_SLEEVE | NO_PAIN | NO_SLIP | NO_POISON | NO_MINOR_CUT | NO_INFECT | NO_DEFIB
+	flags =  NO_DNA | NO_SLEEVE | NO_PAIN | NO_SLIP | NO_POISON | NO_MINOR_CUT | NO_INFECT | NO_DEFIB | THICK_SKIN
 	spawn_flags = SPECIES_IS_RESTRICTED
 
 	reagent_tag = IS_XENOS
@@ -181,7 +181,6 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
-		/mob/living/carbon/human/proc/regurgitate,
 		/mob/living/carbon/human/proc/plant,
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/evolve,
@@ -223,7 +222,6 @@
 		/mob/living/carbon/human/proc/gut,
 		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/regurgitate
 		)
 
 /datum/species/xenos/sentinel
@@ -251,7 +249,6 @@
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
 		/mob/living/carbon/human/proc/tackle,
-		/mob/living/carbon/human/proc/regurgitate,
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/corrosive_acid,
 		/mob/living/carbon/human/proc/neurotoxin,
@@ -290,7 +287,6 @@
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
 		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/regurgitate,
 		/mob/living/carbon/human/proc/lay_egg,
 		/mob/living/carbon/human/proc/plant,
 		/mob/living/carbon/human/proc/transfer_plasma,

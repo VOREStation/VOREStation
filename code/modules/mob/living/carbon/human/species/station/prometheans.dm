@@ -2,7 +2,6 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 // Species definition follows.
 /datum/species/shapeshifter/promethean
-
 	name =             SPECIES_PROMETHEAN
 	name_plural =      "Prometheans"
 	blurb =            "Prometheans (Macrolimus artificialis) are a species of artificially-created gelatinous humanoids, \
@@ -10,6 +9,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	mimic many forms of life. Derived from the Aetolian giant slime (Macrolimus vulgaris) inhabiting the warm, tropical planet \
 	of Aetolus, they are a relatively new lab-created sapient species, and as such many things about them have yet to be comprehensively studied. \
 	What has Science done?"
+	wikilink="https://wiki.vore-station.net/Promethean"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/promethean)
 	show_ssd =         "totally quiescent"
 	death_message =    "rapidly loses cohesion, splattering across the ground..."
@@ -18,16 +18,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
+	color_mult = 1
 
-	hunger_factor =    0.2
-	reagent_tag =      IS_SLIME
-	mob_size =         MOB_SMALL
-	bump_flag =        SLIME
-	swap_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
-	push_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
-	flags =            NO_DNA | NO_SLEEVE | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_DEFIB
+	hunger_factor =	0.2
+	reagent_tag =	IS_SLIME
+	mob_size =		MOB_MEDIUM
+	push_flags =	~HEAVY
+	swap_flags =	~HEAVY
+	flags =			NO_DNA | NO_SLEEVE | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_DEFIB
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
-	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	language = LANGUAGE_PROMETHEAN
@@ -46,12 +46,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
-	min_age =		1
-	max_age =		16
+	min_age = 18
+	max_age = 80
 
 	economic_modifier = 3
 
-	gluttonous =	1
 	virus_immune =	1
 	blood_volume =	560
 	brute_mod =		0.75
@@ -79,9 +78,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 	siemens_coefficient = 0.8
 
 	water_resistance = 0
-	water_damage_mod = 0.3
+	water_damage_mod = 0
 
-	genders = list(MALE, FEMALE, NEUTER, PLURAL)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 
@@ -114,13 +113,25 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/regenerate
+		/mob/living/carbon/human/proc/regenerate,
+		/mob/living/carbon/human/proc/shapeshifter_select_wings,
+		/mob/living/carbon/human/proc/shapeshifter_select_tail,
+		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
+		/mob/living/carbon/human/proc/prommie_blobform,
+		/mob/living/proc/set_size,
+		/mob/living/carbon/human/proc/promethean_select_opaqueness,
 		)
 
-	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY)
+	valid_transform_species = list(
+		SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_SKRELL,
+		SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY, SPECIES_SERGAL,
+		SPECIES_AKULA, SPECIES_NEVREAN, SPECIES_ZORREN_HIGH,
+		SPECIES_FENNEC, SPECIES_VULPKANIN, SPECIES_VASILISSAN,
+		SPECIES_RAPALA, SPECIES_MONKEY_SKRELL, SPECIES_MONKEY_UNATHI, SPECIES_MONKEY_TAJ, SPECIES_MONKEY_AKULA,
+		SPECIES_MONKEY_VULPKANIN, SPECIES_MONKEY_SERGAL, SPECIES_MONKEY_NEVREAN)
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
@@ -182,6 +193,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 	H.apply_stored_shock_to(target)
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
+	if(!H)
+		return // Iono!
+
+	if(H.temporary_form)
+		H.forceMove(H.temporary_form.drop_location())
+		H.ckey = H.temporary_form.ckey
+		QDEL_NULL(H.temporary_form)
+
 	spawn(1)
 		if(H)
 			H.gib()
@@ -369,3 +388,28 @@ var/datum/species/shapeshifter/promethean/prometheans
 			return span_warning("[t_she] glowing brightly with high levels of electrical activity.")
 		if(35 to INFINITY)
 			return span_danger("[t_she] radiating massive levels of electrical activity!")
+
+/mob/living/carbon/human/proc/prommie_blobform()
+	set name = "Toggle Blobform"
+	set desc = "Switch between amorphous and humanoid forms."
+	set category = "Abilities.Promethean"
+	set hidden = FALSE
+
+	var/atom/movable/to_locate = temporary_form || src
+	if(!isturf(to_locate.loc))
+		to_chat(to_locate,span_warning("You need more space to perform this action!"))
+		return
+	/*
+	//Blob form
+	if(temporary_form)
+		if(temporary_form.stat)
+			to_chat(temporary_form,span_warning("You can only do this while not stunned."))
+		else
+			prommie_outofblob(temporary_form)
+	*/
+	//Human form
+	else if(stat || paralysis || stunned || weakened || restrained())
+		to_chat(src,span_warning("You can only do this while not stunned."))
+		return
+	else
+		prommie_intoblob()

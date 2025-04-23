@@ -1,4 +1,4 @@
-var/global/floorIsLava = 0
+GLOBAL_VAR_INIT(floorIsLava, 0)
 
 
 ////////////////////////////////
@@ -571,7 +571,7 @@ var/global/floorIsLava = 0
 		<html><center>"} + span_bold("Game Panel") + {"</center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(master_mode == "secret")
+	if(GLOB.master_mode == "secret")
 		dat += "<A href='byond://?src=\ref[src];[HrefToken()];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
@@ -682,7 +682,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 					msgverb = sanitize(msgverb, 50, extra = 0)
 				else
 					msgverb = "states"
-				global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				GLOB.global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 				//VOREStation Edit End
 				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
 
@@ -772,7 +772,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/this_sender = decomposed[i]
 			var/this_message = decomposed[++i]
 			var/this_wait = decomposed[++i]
-			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
+			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()
@@ -977,8 +977,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 		return
-	round_progressing = !round_progressing
-	if (!round_progressing)
+	GLOB.round_progressing = !GLOB.round_progressing
+	if (!GLOB.round_progressing)
 		to_world(span_world("The game start has been delayed."))
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -1033,7 +1033,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Unprison"
 	if (M.z == 2)
 		if (CONFIG_GET(flag/allow_admin_jump))
-			M.loc = pick(latejoin)
+			M.loc = get_turf(pick(GLOB.latejoin))
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
@@ -1420,12 +1420,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Mode has not started.")
 		return
 
-	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", all_antag_types)
-	if(!antag_type || !all_antag_types[antag_type])
+	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
+	if(!antag_type || !GLOB.all_antag_types[antag_type])
 		to_chat(usr, "Aborting.")
 		return
 
-	var/datum/antagonist/antag = all_antag_types[antag_type]
+	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
@@ -1502,8 +1502,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Fun.Event Kit"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", alldepartments)
-	for(var/obj/machinery/photocopier/faxmachine/sendto in allfaxes)
+	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
 
 			if (!istype(src,/datum/admins))
@@ -1561,7 +1561,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/obj/item/rcvdcopy
 	rcvdcopy = destination.copy(P)
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
-	adminfaxes += rcvdcopy
+	GLOB.adminfaxes += rcvdcopy
 
 
 

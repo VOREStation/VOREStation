@@ -39,6 +39,7 @@
 	color = "#333333"
 	scannable = 1
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/nif_repair_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))

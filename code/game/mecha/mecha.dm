@@ -2193,7 +2193,7 @@
 						</div>
 						</body>
 						</html>
-					 "}
+					"}
 	return output
 
 
@@ -2322,14 +2322,14 @@
 		for(var/obj/item/mecha_parts/mecha_equipment/W in micro_weapon_equipment)
 			output += "Micro Weapon Module: [W.name] <a href='byond://?src=\ref[W];detach=1'>Detach</a><br>"
 	output += {"<b>Available hull slots:</b> [max_hull_equip-hull_equipment.len]<br>
-	 <b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
-	 <b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
-	 <b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
-	 <b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
-	 <b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
-	 <b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
-	 </div></div>
-	 "}
+		<b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
+		<b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
+		<b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
+		<b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
+		<b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
+		<b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
+		</div></div>
+	"}
 	return output
 
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
@@ -2345,7 +2345,7 @@
 /obj/mecha/proc/get_log_html()
 	var/output = "<html><head><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"
 	for(var/list/entry in log)
-		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [game_year]</div>
+		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [GLOB.game_year]</div>
 						<div style='margin-left:15px; margin-bottom:10px;'>[entry["message"]]</div>
 						"}
 	output += "</body></html>"
@@ -2356,7 +2356,7 @@
 	for(var/list/entry in log)
 		data.Add(list(list(
 			"time" = time2text(entry["time"], "DDD MMM DD hh:mm:ss"),
-			"year" = game_year,
+			"year" = GLOB.game_year,
 			"message" = entry["message"],
 		)))
 	return data
@@ -2847,8 +2847,8 @@
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
- 					   </body>
-						</html>"}
+						</body>
+					</html>"}
 
 	occupant << browse(output, "window=ex_debug")
 	//src.health = initial(src.health)/2.2

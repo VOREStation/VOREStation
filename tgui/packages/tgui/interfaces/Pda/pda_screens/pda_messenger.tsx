@@ -1,21 +1,28 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Image,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { fetchRetry } from 'tgui-core/http';
 import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   active_conversation: string;
-  convo_name: string;
-  convo_job: string;
-  messages: message[];
+  convo_name?: string;
+  convo_job?: string;
+  messages?: message[];
   toff: BooleanLike;
   silent: BooleanLike;
-  convopdas: pda[];
-  pdas: pda[];
-  charges: number;
-  plugins: { name: string; icon: string; ref: string }[];
+  convopdas?: pda[];
+  pdas?: pda[];
+  charges?: number;
+  plugins?: { name: string; icon: string; ref: string }[];
   enable_message_embeds: BooleanLike;
 };
 
@@ -47,7 +54,7 @@ const CopyToClipboardButton = (props: { messages: message[] }) => {
 
   useEffect(() => {
     if (showCompletion) {
-      let timeout = setTimeout(() => {
+      const timeout = setTimeout(() => {
         setShowCompletion(false);
       }, 1000);
       return () => clearTimeout(timeout);
@@ -72,7 +79,7 @@ const CopyToClipboardButton = (props: { messages: message[] }) => {
 const copyToClipboard = (messages: message[]) => {
   let string = '';
 
-  for (let message of messages) {
+  for (const message of messages) {
     if (message.sent) {
       string += `You: ${message.message}\n`;
     } else {
@@ -81,7 +88,7 @@ const copyToClipboard = (messages: message[]) => {
   }
 
   if (Byond.TRIDENT) {
-    let ie_window = window as IeWindow;
+    const ie_window = window as IeWindow;
     ie_window.clipboardData.setData('Text', string);
   } else {
     navigator.clipboard.writeText(string);
@@ -102,7 +109,7 @@ export const pda_messenger = (props) => {
 const MessengerList = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { convopdas, pdas, charges, silent, toff } = data;
+  const { convopdas = [], pdas = [], charges, silent, toff } = data;
 
   return (
     <Box>
@@ -164,7 +171,7 @@ const PDAList = (props) => {
 
   const { pdas, title, msgAct } = props;
 
-  const { charges, plugins } = data;
+  const { charges, plugins = [] } = data;
 
   if (!pdas || !pdas.length) {
     return <Section title={title}>No PDAs found.</Section>;
@@ -203,35 +210,41 @@ const PDAList = (props) => {
 
 const ActiveConversation = (props) => {
   const { act, data } = useBackend<Data>();
-  const { convo_name, convo_job, messages, active_conversation } = data;
+  const { convo_name, convo_job, messages = [], active_conversation } = data;
   const [asciiMode, setAsciiMode] = useState(false);
 
   return (
     <Section
       title={`Conversation with ${convo_name} (${convo_job})`}
       buttons={
-        <>
-          <Button
-            icon="eye"
-            selected={asciiMode}
-            tooltip="ASCII Mode"
-            tooltipPosition="bottom-end"
-            onClick={() => setAsciiMode(!asciiMode)}
-          />
-          <Button
-            icon="reply"
-            tooltip="Reply"
-            tooltipPosition="bottom-end"
-            onClick={() => act('Message', { target: active_conversation })}
-          />
-          <Button.Confirm
-            icon="trash"
-            color="bad"
-            tooltip="Delete Conversation"
-            tooltipPosition="bottom-end"
-            onClick={() => act('Clear', { option: 'Convo' })}
-          />
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="eye"
+              selected={asciiMode}
+              tooltip="ASCII Mode"
+              tooltipPosition="bottom-end"
+              onClick={() => setAsciiMode(!asciiMode)}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="reply"
+              tooltip="Reply"
+              tooltipPosition="bottom-end"
+              onClick={() => act('Message', { target: active_conversation })}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button.Confirm
+              icon="trash"
+              color="bad"
+              tooltip="Delete Conversation"
+              tooltipPosition="bottom-end"
+              onClick={() => act('Clear', { option: 'Convo' })}
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <ScrollOnMount>
@@ -312,7 +325,7 @@ const findClassMessage = (im, lastIndex, filterArray) => {
       : 'TinderMessage_First_Received';
   }
 
-  let lastSent = filterArray[lastIndex].sent;
+  const lastSent = filterArray[lastIndex].sent;
   if (im.sent && lastSent) {
     return 'TinderMessage_Subsequent_Sent';
   } else if (!im.sent && !lastSent) {
@@ -370,7 +383,7 @@ const TinderMessageEmbedAttempt = (props: {
   const [elem, setElem] = useState<ReactNode>(null);
 
   useEffect(() => {
-    let link = decodeHtmlEntities(im.message.trim());
+    const link = decodeHtmlEntities(im.message.trim());
 
     // Early easy check
     if (!link.startsWith('https://')) {
@@ -406,7 +419,7 @@ const TinderMessageEmbedAttempt = (props: {
         return null;
       }
 
-      let type = response.headers.get('Content-Type');
+      const type = response.headers.get('Content-Type');
 
       // If we just fetched an image, use it!
       if (

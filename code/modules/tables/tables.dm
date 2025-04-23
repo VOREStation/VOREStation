@@ -425,7 +425,7 @@ var/list/table_icon_cache = list()
 	if(istype(src, /obj/structure/table/rack))
 		return connections
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/turf/T = get_step(src, direction)
 		if(T)
 			var/obj/structure/table/nextT = locate(/obj/structure/table) in T

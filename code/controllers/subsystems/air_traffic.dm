@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(atc)
 	priority = FIRE_PRIORITY_ATC
 	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
+	init_order = INIT_ORDER_ATC
 	flags = SS_BACKGROUND
 
 	VAR_PRIVATE/next_tick = 0
@@ -77,7 +78,7 @@ SUBSYSTEM_DEF(atc)
 
 /datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
 	ASSERT(message)
-	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
+	GLOB.global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 
 /datum/controller/subsystem/atc/proc/is_squelched()
 	return squelched

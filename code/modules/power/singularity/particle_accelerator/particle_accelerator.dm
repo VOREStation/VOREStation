@@ -33,11 +33,11 @@ proc
 process()
 check_build()
 
-Setup map
-  |EC|
-CC|FC|
-  |PB|
-PE|PE|PE
+ * Setup map
+ *   |EC|
+ * CC|FC|
+ *   |PB|
+ * PE|PE|PE
 
 
 Icon Addemdum
@@ -76,7 +76,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	construction_state = 0
 	if(master)
 		master.part_scan()
-	..()
+	. = ..()
 
 /obj/structure/particle_accelerator/end_cap
 	name = "Alpha Particle Generation Array"

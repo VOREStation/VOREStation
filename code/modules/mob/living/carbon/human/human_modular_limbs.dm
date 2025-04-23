@@ -1,17 +1,17 @@
-/*
-  A system for easily and quickly removing your own bodyparts, with a view towards
-  swapping them out for new ones, or just doing it as a party trick to horrify an
-  audience. Current implementation only supports robolimbs and uses a modular_bodypart
-  value on the manufacturer datum, but I have tried to keep it generic for future work.
-  PS. jesus christ this was meant to be a half an hour port
-*/
+/**
+ * A system for easily and quickly removing your own bodyparts, with a view towards
+ * swapping them out for new ones, or just doing it as a party trick to horrify an
+ * audience. Current implementation only supports robolimbs and uses a modular_bodypart
+ * value on the manufacturer datum, but I have tried to keep it generic for future work.
+ * PS. jesus christ this was meant to be a half an hour port
+ */
 
 // External organ procs:
 // Does this bodypart count as a modular limb, and if so, what kind?
 /obj/item/organ/external/proc/get_modular_limb_category()
 	. = MODULAR_BODYPART_INVALID
 	if(robotic >= ORGAN_ROBOT && model)
-		var/datum/robolimb/manufacturer = all_robolimbs[model]
+		var/datum/robolimb/manufacturer = GLOB.all_robolimbs[model]
 		if(!isnull(manufacturer?.modular_bodyparts))
 			. = manufacturer.modular_bodyparts
 
@@ -167,7 +167,7 @@
 	for(var/obj/item/organ/external/child in E.children)
 		child.status &= ~ORGAN_CUT_AWAY
 
-	var/datum/gender/G = gender_datums[gender]
+	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
 		span_notice("\The [src] attaches \the [E] to [G.his] body!"),
 		span_notice("You attach \the [E] to your body!"))
@@ -195,7 +195,7 @@
 	E.removed(src)
 	E.dropInto(loc)
 	put_in_hands(E)
-	var/datum/gender/G = gender_datums[gender]
+	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
 		span_notice("\The [src] detaches [G.his] [E.name]!"),
 		span_notice("You detach your [E.name]!"))

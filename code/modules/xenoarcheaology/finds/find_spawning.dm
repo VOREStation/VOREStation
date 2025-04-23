@@ -208,7 +208,7 @@
 			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug
 				)
-			var/new_metal = /obj/item/stack/material/supermatter
+			var/obj/item/stack/new_metal = /obj/item/stack/material/supermatter
 			for(var/x=1;x<=10;x++) //You got 10 chances to hit a metal that is NOT banned.
 				var/picked_metal = pick(possible_object_paths) //We select
 				if(picked_metal in banned_sheet_materials)
@@ -216,8 +216,9 @@
 				else
 					new_metal = picked_metal
 					break
-			new_item = new new_metal(src.loc)
-			new_item:amount = rand(5,45)
+			new_metal = new new_metal(src.loc)
+			new_metal.amount = rand(5,45)
+			new_item = new_metal
 		if(ARCHAEO_PEN)
 			var/new_pen = pick(/obj/item/pen, /obj/item/pen/blade/fountain, /obj/item/pen/reagent/sleepy) //There are WAY too many pen blade variants that it'd drown out the others in this list.
 			new_item = new new_pen(src.loc)
@@ -343,7 +344,7 @@
 			possible_laser_paths += /obj/item/projectile/ion
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			// THE BLACKLIST
-			possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy)
+			// possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy, /obj/item/projectile/beam/final_option) //These are very very rare...Disabling the blacklist for now because the chance of finding them is so low that it feels like a nice treat when you DO find them. If it ends up being problemmatic, just reenable this line.
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun

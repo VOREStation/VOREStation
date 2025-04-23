@@ -55,7 +55,7 @@
 		pref.voice_freq			= sanitize_integer(pref.voice_freq, MIN_VOICE_FREQ, MAX_VOICE_FREQ, initial(pref.fuzzy))
 	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
 		pref.size_multiplier = initial(pref.size_multiplier)
-	if(!(pref.custom_speech_bubble in selectable_speech_bubbles))
+	if(!(pref.custom_speech_bubble in GLOB.selectable_speech_bubbles))
 		pref.custom_speech_bubble = "default"
 	if(!(pref.custom_footstep))
 		pref.custom_footstep = "Default"
@@ -69,7 +69,7 @@
 	character.voice_freq		= pref.voice_freq
 	character.resize(pref.size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 	if(!pref.voice_sound)
-		character.voice_sounds_list = talk_sound
+		character.voice_sounds_list = GLOB.talk_sound
 	else
 		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
@@ -92,13 +92,13 @@
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
-		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Set Size", null, 200, 25)
-		if (!ISINRANGE(new_size,25,200))
+		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from [RESIZE_MINIMUM * 100]% to [RESIZE_MAXIMUM * 100]%", "Set Size", pref.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+		if (!ISINRANGE(new_size, RESIZE_MINIMUM * 100, RESIZE_MAXIMUM * 100))
 			pref.size_multiplier = 1
 			to_chat(user, span_notice("Invalid size."))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)
-			pref.size_multiplier = (new_size/100)
+			pref.size_multiplier = (new_size / 100)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["toggle_fuzzy"])
@@ -185,7 +185,7 @@
 			pref.voice_sound = choice
 		return TOPIC_REFRESH
 	else if(href_list["customize_speech_bubble"])
-		var/choice = tgui_input_list(user, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", selectable_speech_bubbles)
+		var/choice = tgui_input_list(user, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", GLOB.selectable_speech_bubbles)
 		if(!choice)
 			pref.custom_speech_bubble = "default"
 		else
@@ -203,33 +203,33 @@
 		var/sound/S
 		switch(pref.voice_sound)
 			if("beep-boop")
-				S = sound(pick(talk_sound))
+				S = sound(pick(GLOB.talk_sound))
 			if("goon speak 1")
-				S = sound(pick(goon_speak_one_sound))
+				S = sound(pick(GLOB.goon_speak_one_sound))
 			if("goon speak 2")
-				S = sound(pick(goon_speak_two_sound))
+				S = sound(pick(GLOB.goon_speak_two_sound))
 			if("goon speak 3")
-				S = sound(pick(goon_speak_three_sound))
+				S = sound(pick(GLOB.goon_speak_three_sound))
 			if("goon speak 4")
-				S = sound(pick(goon_speak_four_sound))
+				S = sound(pick(GLOB.goon_speak_four_sound))
 			if("goon speak blub")
-				S = sound(pick(goon_speak_blub_sound))
+				S = sound(pick(GLOB.goon_speak_blub_sound))
 			if("goon speak bottalk")
-				S = sound(pick(goon_speak_bottalk_sound))
+				S = sound(pick(GLOB.goon_speak_bottalk_sound))
 			if("goon speak buwoo")
-				S = sound(pick(goon_speak_buwoo_sound))
+				S = sound(pick(GLOB.goon_speak_buwoo_sound))
 			if("goon speak cow")
-				S = sound(pick(goon_speak_cow_sound))
+				S = sound(pick(GLOB.goon_speak_cow_sound))
 			if("goon speak lizard")
-				S = sound(pick(goon_speak_lizard_sound))
+				S = sound(pick(GLOB.goon_speak_lizard_sound))
 			if("goon speak pug")
-				S = sound(pick(goon_speak_pug_sound))
+				S = sound(pick(GLOB.goon_speak_pug_sound))
 			if("goon speak pugg")
-				S = sound(pick(goon_speak_pugg_sound))
+				S = sound(pick(GLOB.goon_speak_pugg_sound))
 			if("goon speak roach")
-				S = sound(pick(goon_speak_roach_sound))
+				S = sound(pick(GLOB.goon_speak_roach_sound))
 			if("goon speak skelly")
-				S = sound(pick(goon_speak_skelly_sound))
+				S = sound(pick(GLOB.goon_speak_skelly_sound))
 		if(S)
 			S.frequency = pick(pref.voice_freq)
 			S.volume = 50

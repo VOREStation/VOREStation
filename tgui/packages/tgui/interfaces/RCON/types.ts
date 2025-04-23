@@ -1,6 +1,6 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { smes } from '../Smes';
+import type { smes } from '../Smes';
 
 export type Data = {
   pages: number;

@@ -87,7 +87,7 @@
 				H.update_inv_wear_mask()
 				playsound(src, 'sound/effects/tape.ogg',25)
 
-			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+			else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 				if(!can_place(H, user))
 					return
 
@@ -171,8 +171,8 @@
 	var/dir_offset = 0
 	if(target_turf != source_turf)
 		dir_offset = get_dir(source_turf, target_turf)
-		if(!(dir_offset in cardinal))
-			to_chat(user, "You cannot reach that from here.")		// can only place stuck papers in cardinal directions, to
+		if(!(dir_offset in GLOB.cardinal))
+			to_chat(user, "You cannot reach that from here.")		// can only place stuck papers in GLOB.cardinal directions, to
 			return											// reduce papers around corners issue.
 
 	user.drop_from_inventory(src)

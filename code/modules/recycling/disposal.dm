@@ -793,11 +793,9 @@
 	var/subtype = 0
 
 // new pipe, set the icon_state as on map
-/obj/structure/disposalpipe/New()
-	..()
+/obj/structure/disposalpipe/Initialize(mapload)
+	. = ..()
 	base_icon_state = icon_state
-	return
-
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
@@ -821,7 +819,7 @@
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 // returns the direction of the next pipe object, given the entrance dir
 // by default, returns the bitmask of remaining directions
@@ -938,7 +936,7 @@
 // remains : set to leave broken pipe pieces in place
 /obj/structure/disposalpipe/proc/broken(var/remains = 0)
 	if(remains)
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinal)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(src.loc)
 				P.set_dir(D)
@@ -1084,7 +1082,7 @@
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 /obj/structure/disposalpipe/hides_under_flooring()
 	return 1
@@ -1098,25 +1096,23 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-/obj/structure/disposalpipe/segment/New()
-	..()
+/obj/structure/disposalpipe/segment/Initialize(mapload)
+	. = ..()
 	if(icon_state == "pipe-s")
 		dpdir = dir | turn(dir, 180)
 	else
 		dpdir = dir | turn(dir, -90)
 
 	update()
-	return
 
 ///// Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-/obj/structure/disposalpipe/up/New()
-	..()
+/obj/structure/disposalpipe/up/Initialize(mapload)
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/up/nextdir(var/fromdir)
 	var/nextdir
@@ -1162,11 +1158,10 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-/obj/structure/disposalpipe/down/New()
-	..()
+/obj/structure/disposalpipe/down/Initialize(mapload)
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/down/nextdir(var/fromdir)
 	var/nextdir
@@ -1217,8 +1212,8 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-/obj/structure/disposalpipe/junction/New()
-	..()
+/obj/structure/disposalpipe/junction/Initialize(mapload)
+	. = ..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1275,7 +1270,7 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/New()
+/obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
 	dpdir = dir | turn(dir, 180)
 	if(sort_tag) GLOB.tagger_locations |= list("[sort_tag]" = get_z(src))
@@ -1342,7 +1337,7 @@
 
 	dpdir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/New()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
 	if(sortType) GLOB.tagger_locations |= list("[sortType]" = get_z(src))
 
@@ -1532,10 +1527,9 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/New()
-	..()
+/obj/structure/disposalpipe/broken/Initialize(mapload)
+	. = ..()
 	update()
-	return
 
 // called when welded
 // for broken pipe, remove and turn into scrap
@@ -1647,7 +1641,7 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	src.streak(dirs)
 
@@ -1656,7 +1650,7 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	src.streak(dirs)
 

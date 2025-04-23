@@ -255,7 +255,7 @@
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
@@ -421,7 +421,7 @@
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/baton/arm
 	name = "electrified arm"
@@ -447,7 +447,15 @@
 		target.taunt(user)
 
 /obj/item/melee/robotic/baton/slime
-	hitcost = 200
+	name = "slimebaton"
+	desc = "A modified stun baton designed to stun slimes and other lesser slimy xeno lifeforms for handling."
+	icon_state = "slimebaton_active"
+	item_state = "slimebaton"
+	force = 10 //we like round numbers here
+	lightcolor = "#33CCFF"
+	agonyforce = 10	//It's not supposed to be great at stunning human beings.
+	hitcost = 48	//Less zap for less cost
+
 
 /obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/user, hit_zone)
 	if(!istype(L))

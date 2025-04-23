@@ -54,3 +54,62 @@
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 		to_chat(src,span_notice("You will now dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
+
+/mob/living/proc/toggle_sparkles()
+	set name = "Toggle Sparkles"
+	set desc = "Toggle fancy glowing sparkles!"
+	set category = "Abilities.Sparkledog"
+
+	if(!glow_toggle)
+		glow_range = 3
+		glow_intensity = 2
+		glow_color = "#FFFFFF"
+		glow_toggle = TRUE
+		add_modifier(/datum/modifier/sparkle, null, src)
+	else
+		glow_toggle = FALSE
+
+/datum/modifier/sparkle
+	name = "sparkling"
+	desc = "You are sparkling, woo!"
+	mob_overlay_state = "cyan_sparkles"
+	on_created_text = span_notice("You begin to sparkle!")
+	on_expired_text = span_notice("Your sparkling fades away...")
+
+/datum/modifier/sparkle/tick()
+	if(!holder.glow_toggle || holder.stat)
+		expire()
+
+/mob/living/proc/healing_rainbows()
+	set name = "Firin Mah Lazor"
+	set desc = "Fire a glowing beam of rainbows at another person to heal them!"
+	set category = "Abilities.Sparkledog"
+
+	if(src.stat)
+		to_chat(src, span_warning("You can't vomit rainbows in this condition!"))
+
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/M in oview(7,src))
+		if(M.z != src.z || get_dist(src,M) > 7)
+			continue
+		if(src == M)
+			continue
+		targets |= M
+
+	if(!targets)
+		to_chat(src, span_warning("There is nobody next to you."))
+		return
+
+	var/mob/living/carbon/human/chosen_target = tgui_input_list(src, "Who do you wish to shoot rainbows at?", "Rainbow", targets)
+	if(!chosen_target)
+		return
+
+	visible_message(span_warning("[src] begins chargin' their lazor!"))
+	if(!do_after(src, 5 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
+		return
+	if(chosen_target.z != src.z || get_dist(src,chosen_target) > 7)
+		return
+	visible_message(span_warning("[src] fires their lazor at [chosen_target]!"))
+	var/obj/item/projectile/P = new /obj/item/projectile/beam/sparkledog(get_turf(src))
+	playsound(src, "'sound/weapons/sparkle.ogg'", 50, 1)
+	P.launch_projectile(chosen_target, BP_TORSO, src)

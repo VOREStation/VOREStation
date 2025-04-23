@@ -552,6 +552,6 @@
 /obj/item/storage/backpack/satchel/ranger
 	name = "ranger satchel"
 	desc = "A satchel designed for the Go Go ERT Rangers series to allow for slightly bigger carry capacity for the ERT-Rangers.\
-	 Unlike the show claims, it is not a phoron-enhanced satchel of holding with plot-relevant content."
+		Unlike the show claims, it is not a phoron-enhanced satchel of holding with plot-relevant content."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_satchel"

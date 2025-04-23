@@ -1,7 +1,7 @@
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
-import { Module } from './types';
+import type { Module } from './types';
 
 type SearchObject = string | { name: string };
 

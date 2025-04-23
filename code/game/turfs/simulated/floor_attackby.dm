@@ -26,10 +26,10 @@
 
 		// Patch holes in the ceiling
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
-			 	// Must be build adjacent to an existing floor/wall, no floating floors
+			if(isopenturf(T))
+				// Must be build adjacent to an existing floor/wall, no floating floors
 				var/list/cardinalTurfs = list() // Up a Z level
-				for(var/dir in cardinal)
+				for(var/dir in GLOB.cardinal)
 					var/turf/B = get_step(T, dir)
 					if(B)
 						cardinalTurfs += B
@@ -53,7 +53,7 @@
 
 		// Create a ceiling to shield from the weather
 		if(src.is_outdoors())
-			for(var/dir in cardinal)
+			for(var/dir in GLOB.cardinal)
 				var/turf/A = get_step(src, dir)
 				if(A && !A.is_outdoors())
 					if(expended_tile || R.use(1))

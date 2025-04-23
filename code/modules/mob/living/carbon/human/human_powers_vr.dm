@@ -31,7 +31,7 @@
 	update_icons_body()
 
 	if(H.robotic)
-		var/datum/robolimb/robohead = all_robolimbs[H.model]
+		var/datum/robolimb/robohead = GLOB.all_robolimbs[H.model]
 		if(robohead.monitor_styles && robohead.monitor_icon)
 			to_chat(src, span_notice("You reconfigure the rendering order of your facial display."))
 
@@ -47,8 +47,8 @@
 	if(stat)
 		return
 
-	var/obj/item/organ/external/l_hand = get_organ("l_hand")
-	var/obj/item/organ/external/r_hand = get_organ("r_hand")
+	var/obj/item/organ/external/l_hand = get_organ(BP_L_HAND)
+	var/obj/item/organ/external/r_hand = get_organ(BP_R_HAND)
 	if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 		to_chat(src, span_warning("You have no hands to play games with!"))
 		return
@@ -59,8 +59,8 @@
 			continue
 		if(H == src)
 			continue
-		var/obj/item/organ/external/l_hand2 = H.get_organ("l_hand")
-		var/obj/item/organ/external/r_hand2 = H.get_organ("r_hand")
+		var/obj/item/organ/external/l_hand2 = H.get_organ(BP_L_HAND)
+		var/obj/item/organ/external/r_hand2 = H.get_organ(BP_R_HAND)
 		if((!l_hand2 || l_hand2.is_stump()) && (!r_hand2 || r_hand2.is_stump()))
 			continue
 		nearby |= H
@@ -70,8 +70,8 @@
 				continue
 			if(H == src)
 				continue
-			var/obj/item/organ/external/l_hand2 = H.get_organ("l_hand")
-			var/obj/item/organ/external/r_hand2 = H.get_organ("r_hand")
+			var/obj/item/organ/external/l_hand2 = H.get_organ(BP_L_HAND)
+			var/obj/item/organ/external/r_hand2 = H.get_organ(BP_R_HAND)
 			if((!l_hand2 || l_hand2.is_stump()) && (!r_hand2 || r_hand2.is_stump()))
 				continue
 			nearby |= H
@@ -257,3 +257,37 @@
 			player1.visible_message(span_notice("After a gruelling battle, [player1] eventually manages to subdue the thumb of [player2]!"))
 		else
 			player2.visible_message(span_notice("After a gruelling battle, [player2] eventually manages to subdue the thumb of [player1]!"))
+
+///Play dead for sparkledog memes
+
+/mob/living/carbon/human/proc/play_dead()
+	set name = "Play Dead"
+	set desc = "Literally just die on the spot. It's okay, you can get better."
+	set category = "Abilities.Sparkledog"
+
+	if(stat)
+		to_chat(src, span_warning("You're too messed up right now to act all messed up, it's, like, for real."))
+		return
+
+	if(!resting)
+		SetResting(1)
+		add_modifier(/datum/modifier/play_dead, null, src) //Tracks whether they are still resting to remove the status indicator
+		add_status_indicator("dead")
+		visible_message(span_warning("\The [src] literally just dies!"))
+	else
+		SetResting(0)
+
+/datum/modifier/play_dead
+	name = "playing dead"
+	desc = "You are are pretending to be dead, you aren't very convincing!"
+	on_created_text = span_notice("You begin to play dead!")
+	on_expired_text = span_notice("You got better.")
+
+/datum/modifier/play_dead/tick()
+	if(!holder.resting)
+		expire()
+
+/datum/modifier/play_dead/expire()
+	holder.remove_status_indicator("dead")
+	holder.visible_message(span_warning("\The [src] literally just dies!"))
+	..()

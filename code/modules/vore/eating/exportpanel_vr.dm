@@ -27,7 +27,7 @@
 	var/list/data = list()
 	var/mob/living/host = user
 
-	data["db_version"] = "0.1"
+	data["db_version"] = "0.2"
 	data["db_repo"] = "vorestation"
 	data["mob_name"] = host.real_name
 
@@ -42,6 +42,7 @@
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
+			belly_data["prevent_saving"] = B.prevent_saving
 
 			// Controls
 			belly_data["mode"] = B.digest_mode
@@ -217,6 +218,14 @@
 			belly_data["examine_messages_absorbed"] = list()
 			for(var/msg in B.examine_messages_absorbed)
 				belly_data["examine_messages_absorbed"] += msg
+
+			belly_data["trash_eater_in"] = list()
+			for(var/msg in B.trash_eater_in)
+				belly_data["trash_eater_in"] += msg
+
+			belly_data["trash_eater_out"] = list()
+			for(var/msg in B.trash_eater_out)
+				belly_data["trash_eater_out"] += msg
 
 			//belly_data["emote_list"] = list()
 			//for(var/EL in B.emote_lists)
@@ -480,5 +489,21 @@
 			belly_data["fullness5_messages"] = list()
 			for(var/msg in B.fullness5_messages)
 				belly_data["fullness5_messages"] += msg
+
+	// Soulcatcher export
+	if(user.soulgem)
+		var/obj/soulgem/gem = user.soulgem
+		var/list/soulcatcher_data = list()
+		soulcatcher_data["name"] = gem.name
+		soulcatcher_data["setting_flags"] = gem.setting_flags
+		soulcatcher_data["inside_flavor"] = gem.inside_flavor
+		soulcatcher_data["capture_message"] = gem.capture_message
+		soulcatcher_data["transit_message"] = gem.transit_message
+		soulcatcher_data["release_message"] = gem.release_message
+		soulcatcher_data["transfer_message"] = gem.transfer_message
+		soulcatcher_data["delete_message"] = gem.delete_message
+		soulcatcher_data["linked_belly"] = gem.linked_belly
+
+		data["soulcatcher"] = soulcatcher_data
 
 	return data

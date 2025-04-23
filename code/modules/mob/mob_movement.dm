@@ -267,8 +267,8 @@
 		else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 			if(ishuman(my_mob))
 				var/mob/living/carbon/human/driver = my_mob
-				var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
-				var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
+				var/obj/item/organ/external/l_hand = driver.get_organ(BP_L_HAND)
+				var/obj/item/organ/external/r_hand = driver.get_organ(BP_R_HAND)
 				if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 					return // No hands to drive your chair? Tough luck!
 			//drunk wheelchair driving
@@ -340,7 +340,7 @@
 	// Update all the grabs!
 	for (var/obj/item/grab/G in my_mob)
 		if (G.state == GRAB_NECK)
-			mob.set_dir(reverse_dir[direct])
+			mob.set_dir(GLOB.reverse_dir[direct])
 		G.adjust_position()
 	for (var/obj/item/grab/G in my_mob.grabbed_by)
 		G.adjust_position()

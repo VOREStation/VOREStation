@@ -11,7 +11,7 @@
 	// Destination tagging for the mail sorter.
 	var/sortTag = 0
 	// Who this mail is for and who can open it.
-	var/datum/weakref/recipient
+	var/datum/weakref/recipient_ref
 	// How many goodies this mail contains.
 	var/goodie_count = 1
 	// Goodies which can be given to anyone.
@@ -103,14 +103,15 @@
 
 /obj/item/mail/proc/setRecipient(mob/user)
 	var/list/recipients = list()
+	var/mob/living/recipient_mob
 	for(var/mob/living/player in player_list)
 		if(!player_is_antag(player.mind) && player.mind.show_in_directory)
 			recipients += player
 
-	recipients = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
+	recipient_mob = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
 
-	if(recipients)
-		initialize_for_recipient(recipients, preset_goodies = TRUE)
+	if(recipient_mob)
+		initialize_for_recipient(recipient_mob.mind, preset_goodies = TRUE)
 		return TRUE
 
 /obj/item/mail/blank/AltClick(mob/user)
@@ -192,9 +193,11 @@
 	return after_unwrap(user)
 
 /obj/item/mail/proc/unwrap(mob/user)
-	if(recipient && user != recipient)
-		to_chat(user, span_danger("You can't open somebody's mail! That's <em>illegal</em>"))
-		return FALSE
+	if(recipient_ref)
+		var/datum/mind/recipient = recipient_ref.resolve()
+		if(recipient && recipient.current?.dna.unique_enzymes != user.dna.unique_enzymes)
+			to_chat(user, span_danger("You can't open somebody's mail! That's <em>illegal</em>"))
+			return FALSE
 
 	if(opening)
 		to_chat(user, span_danger("You are already opening that!"))
@@ -216,20 +219,20 @@
 	playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	qdel(src)
 
-/obj/item/mail/proc/initialize_for_recipient(mob/new_recipient, var/preset_goodies = FALSE)
-	recipient = new_recipient
-	var/current_title = new_recipient.mind.role_alt_title ? new_recipient.mind.role_alt_title : new_recipient.mind.assigned_role
-	name = "[initial(name)] for [new_recipient.real_name] ([current_title])"
+/obj/item/mail/proc/initialize_for_recipient(var/datum/mind/recipient, var/preset_goodies = FALSE)
+	var/current_title = recipient.role_alt_title ? recipient.role_alt_title : recipient.assigned_role
+	name = "[initial(name)] for [recipient.name] ([current_title])"
+	recipient_ref = WEAKREF(recipient)
 
-	var/datum/job/this_job = SSjob.name_occupations[new_recipient.job]
+	var/datum/job/this_job = SSjob.name_occupations[recipient.assigned_role]
 
 	var/list/goodies = generic_goodies
 	if(this_job)
 		colored_envelope = this_job.get_mail_color()
 		if(!preset_goodies)
-			var/list/job_goodies = this_job.get_mail_goodies(new_recipient, current_title)
+			var/list/job_goodies = this_job.get_mail_goodies(recipient.current, current_title)
 			if(LAZYLEN(job_goodies))
-				if(this_job.get_mail_goodies())
+				if(this_job.get_mail_goodies(recipient.current, current_title))
 					goodies = job_goodies
 				else
 					goodies += job_goodies
@@ -238,7 +241,7 @@
 		for(var/iterator in 1 to goodie_count)
 			var/target_good = pickweight(goodies)
 			var/atom/movable/target_atom = new target_good(src)
-			log_game("[key_name(new_recipient)] received [target_atom.name] in the mail ([target_good])")
+			log_game("[key_name(recipient)] received [target_atom.name] in the mail ([target_good])")
 
 	update_icon()
 	return TRUE
@@ -259,6 +262,7 @@
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
 	var/list/recipients = list()
+	var/datum/mind/recipient_mind
 
 	for(var/path in types)
 		if(findtext("[path]", object))
@@ -277,9 +281,11 @@
 	for(var/mob/living/player in player_list)
 		recipients += player
 
-	recipients = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
+	var/mob/living/chosen_player = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
 
-	if(!recipients)
+	recipient_mind = chosen_player.mind
+
+	if(!recipient_mind)
 		return
 
 	var/shuttle_spawn = tgui_alert(usr, "Spawn mail at location or in the shuttle?", "Spawn mail", list("Location", "Shuttle"))
@@ -287,13 +293,13 @@
 		return
 	if(shuttle_spawn == "Shuttle")
 		var/obj/item/mail/new_mail = new
-		new_mail.initialize_for_recipient(recipients, TRUE)
+		new_mail.initialize_for_recipient(recipient_mind, TRUE)
 		new chosen(new_mail)
 		SSmail.admin_mail += new_mail
 		log_and_message_admins("spawned [chosen] inside an envelope at the shuttle")
 	else
 		var/obj/item/mail/ground_mail = new /obj/item/mail(usr.loc)
-		ground_mail.initialize_for_recipient(recipients, TRUE)
+		ground_mail.initialize_for_recipient(recipient_mind, TRUE)
 		new chosen(ground_mail)
 		log_and_message_admins("spawned [chosen] inside an envelope at ([usr.x],[usr.y],[usr.z])")
 
@@ -320,7 +326,7 @@
 			new_mail = new /obj/item/mail/envelope(src)
 		var/mob/living/carbon/human/mail_to
 		if(mail_to)
-			new_mail.initialize_for_recipient(mail_to)
+			new_mail.initialize_for_recipient(mail_to.mind)
 			mail_recipients -= mail_to
 		else
 			new_mail.junk_mail()
@@ -380,24 +386,27 @@
 		saved = A
 		return
 	if(isliving(A))
-		var/mob/living/M = A
-
 		if(!saved)
 			to_chat(user, span_danger("No logged mail!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
-		var/mob/living/recipient = saved.recipient
+		var/datum/mind/recipient
+		if(saved.recipient_ref)
+			recipient = saved.recipient_ref.resolve()
 
-		if(M.stat == DEAD)
+		if(isnull(recipient) || isnull(recipient.current))
+			return
+
+		if(recipient.current.stat == DEAD)
 			to_chat(user, span_warning("Consent Verification failed: You can't deliver mail to a corpse!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		if(M.real_name != recipient.real_name)
+		if(recipient.current.dna.unique_enzymes != recipient.current.dna.unique_enzymes)
 			to_chat(user, span_warning("Identity Verification failed: Target is not authorized recipient of this envelope!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		if(!M.client)
+		if(!recipient.current.client)
 			to_chat(user, span_warning("Consent Verification failed: The scanner does not accept orders from SSD crewmemmbers!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return

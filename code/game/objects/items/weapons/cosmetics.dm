@@ -51,15 +51,15 @@
 			return
 		if(H == user)
 			user.visible_message(span_notice("[user] does their lips with \the [src]."), \
-								 span_notice("You take a moment to apply \the [src]. Perfect!"))
+									span_notice("You take a moment to apply \the [src]. Perfect!"))
 			H.lip_style = colour
 			H.update_icons_body()
 		else
 			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
-								 span_notice("You begin to apply \the [src]."))
+									span_notice("You begin to apply \the [src]."))
 			if(do_after(user, 20, H))	//user needs to keep their active hand, H does not.
 				user.visible_message(span_notice("[user] does [H]'s lips with \the [src]."), \
-									 span_notice("You apply \the [src]."))
+										span_notice("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_icons_body()
 	else

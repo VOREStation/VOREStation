@@ -83,6 +83,8 @@
 			names = D.get_variables()
 		//sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects. //VOREStation edit - commented out, replaced with spawn(0) above
 
+		var/ui_scale = prefs?.read_preference(/datum/preference/toggle/ui_scale)
+
 		var/list/variable_html = list()
 		if (islist)
 			var/list/L = D
@@ -113,6 +115,7 @@
 					font-size: 8pt;
 				}
 			</style>
+			[!ui_scale && window_scaling ? "<style>body {zoom: [100 / window_scaling]%;}</style>" : ""]
 		</head>
 		<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 			<script type="text/javascript">
@@ -277,7 +280,11 @@
 		</body>
 	</html>
 	"}
-		src << browse(html, "window=variables[refid];size=475x650") //VOREStation edit end
+		var/size_string = "size=475x650";
+		if(ui_scale && window_scaling)
+			size_string = "size=[475 * window_scaling]x[650 * window_scaling]"
+
+		src << browse(html, "window=variables[refid];[size_string]")
 
 /client/proc/vv_update_display(datum/D, span, content)
 	src << output("[span]:[content]", "variables\ref[D].browser:replace_span")

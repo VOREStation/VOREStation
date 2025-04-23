@@ -101,6 +101,9 @@
 	while(reaction_occurred)
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
+		#ifdef UNIT_TEST
+		SEND_SIGNAL(src, COMSIG_UNITTEST_DATA, list(C))
+		#endif
 	update_total()
 
 /* Holder-to-chemical */
@@ -136,6 +139,7 @@
 		R.holder = src
 		R.volume = amount
 		R.initialize_data(data)
+		SetViruses(R,data)
 		if(was_from_belly)
 			R.from_belly = was_from_belly
 		update_total()

@@ -1,10 +1,11 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   db_version: string;
   db_repo: string;
   mob_name: string;
   bellies?: Belly[];
+  soulcatcher?: Soulcatcher;
 };
 
 export type Belly = {
@@ -15,6 +16,7 @@ export type Belly = {
   absorbed_desc: string;
   vore_verb: string;
   release_verb: string;
+  prevent_saving: BooleanLike;
 
   // Controls
   mode: string;
@@ -93,6 +95,8 @@ export type Belly = {
   unabsorb_messages_prey: string[];
   examine_messages: string[];
   examine_messages_absorbed: string[];
+  trash_eater_in: string[];
+  trash_eater_out: string[];
 
   // emote_list: string[];
   emotes_digest: string[];
@@ -217,4 +221,16 @@ export type Belly = {
   fullness3_messages: string[];
   fullness4_messages: string[];
   fullness5_messages: string[];
+};
+
+export type Soulcatcher = {
+  name: string;
+  inside_flavor: string;
+  capture_message: string;
+  transit_message: string;
+  release_message: string;
+  transfer_message: string;
+  delete_message: string;
+  linked_belly: string;
+  setting_flags: number;
 };

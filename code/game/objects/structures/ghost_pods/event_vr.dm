@@ -188,6 +188,7 @@
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
+	var/redgate_restricted = FALSE
 
 //override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/attack_ghost(var/mob/observer/dead/user)
@@ -207,7 +208,7 @@
 
 	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should not be used with characters you regularly play on station. Are you absolutely sure you wish to continue?", "Maint Lurker Spawner", list("Yes", "No"))
 
-	if(!choice || choice == "No")
+	if(choice != "Yes")
 		return
 
 	create_occupant(user)
@@ -243,8 +244,11 @@
 	new_character.regenerate_icons()
 
 	new_character.update_transform()
-
-	to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in maintenance."))
+	if(redgate_restricted)
+		new_character.redgate_restricted = TRUE
+		to_chat(new_character, span_notice("You are an inhabitant of this redgate location, you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to basic doors along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in the redgate map."))
+	else
+		to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in maintenance."))
 	to_chat(new_character, span_critical("Please be advised, this role is " + span_bold("NOT AN ANTAGONIST.")))
 	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character; this role is not free license to attack and murder people without provocation or explicit out-of-character consent. You should probably be cautious around high-traffic and highly sensitive areas (e.g. Telecomms) as Security personnel would be well within their rights to treat you as a trespasser. That said, good luck!"))
 
@@ -255,3 +259,32 @@
 	. = ..()
 	if(!(src in active_ghost_pods))
 		active_ghost_pods += src
+
+/// redspace variant
+
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate
+	name = "Redspace inhabitant hole"
+	desc = "A starting location for characters who exist inside of the redgate!"
+	redgate_restricted = TRUE
+
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate/attack_ghost(var/mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
+		return
+
+	//No whitelist
+	if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
+		to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+		return
+
+	//No OOC notes/FT
+	if(not_has_ooc_text(user))
+		//to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
+		return
+
+	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should be a character who has a suitable reason for existing within this redspace location. You will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redspace Inhabitant Spawner", list("Yes", "No"))
+
+	if(choice != "Yes")
+		return
+
+	create_occupant(user)

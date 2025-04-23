@@ -1,5 +1,11 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section, Slider } from 'tgui-core/components';
+import {
+  Button,
+  LabeledList,
+  Section,
+  Slider,
+  Stack,
+} from 'tgui-core/components';
 
 import { dispenseAmounts } from './constants';
 import type { Data } from './types';
@@ -11,21 +17,24 @@ export const ChemDispenserSettings = (props) => {
     <Section title="Settings" fill>
       <LabeledList>
         <LabeledList.Item label="Dispense" verticalAlign="middle">
-          {dispenseAmounts.map((a, i) => (
-            <Button
-              key={i}
-              textAlign="center"
-              selected={amount === a}
-              m="0"
-              onClick={() =>
-                act('amount', {
-                  amount: a,
-                })
-              }
-            >
-              {a + 'u'}
-            </Button>
-          ))}
+          <Stack g={0.1}>
+            {dispenseAmounts.map((a, i) => (
+              <Stack.Item key={i}>
+                <Button
+                  textAlign="center"
+                  selected={amount === a}
+                  m="0"
+                  onClick={() =>
+                    act('amount', {
+                      amount: a,
+                    })
+                  }
+                >
+                  {a + 'u'}
+                </Button>
+              </Stack.Item>
+            ))}
+          </Stack>
         </LabeledList.Item>
         <LabeledList.Item label="Custom Amount">
           <Slider
@@ -34,7 +43,7 @@ export const ChemDispenserSettings = (props) => {
             value={amount}
             minValue={1}
             maxValue={120}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('amount', {
                 amount: value,
               })

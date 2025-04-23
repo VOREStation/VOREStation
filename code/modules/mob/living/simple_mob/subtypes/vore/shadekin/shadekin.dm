@@ -197,6 +197,7 @@
 		"The stinging and aching gives way to numbness as you're slowly smothered out. Your body is steadily reduced to nutrients and energy for the creature to continue on its way.",
 		"The chaos of being digested fades as you're snuffed out by a harsh clench! You're steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
+	. = ..()
 
 /mob/living/simple_mob/shadekin/Life()
 	. = ..()
@@ -407,7 +408,7 @@
 
 				//Random walk
 				if(!moving_to)
-					moving_to = pick(cardinal)
+					moving_to = pick(GLOB.cardinal)
 					dir = moving_to
 
 				var/turf/T = get_step(src,moving_to)

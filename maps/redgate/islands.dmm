@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/beach/sand/desert/outdoors,
+/area/redgate/islands/ocean)
 "ah" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/dark,
@@ -17351,7 +17355,7 @@ tD
 tD
 tD
 nx
-nx
+aa
 nx
 La
 Bp
