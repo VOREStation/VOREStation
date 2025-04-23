@@ -322,6 +322,8 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "loincloth","loinclothbreastplate","eyecover")
 	pixel_x = 0
 	icon_x = 32

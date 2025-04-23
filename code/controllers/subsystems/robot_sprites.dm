@@ -196,9 +196,11 @@ SUBSYSTEM_DEF(robot_sprites)
 				continue
 			if(findtext(icon, regex("-eyes")))
 				RS.has_eye_sprites = TRUE
+				RS.has_rest_eyes_sprites = TRUE
 				continue
 			if(findtext(icon, regex("-lights")))
 				RS.has_eye_light_sprites = TRUE
+				RS.has_rest_lights_sprites = TRUE
 				continue
 			if(findtext(icon, regex("-decals")))
 				RS.sprite_decals |= list("decals")
