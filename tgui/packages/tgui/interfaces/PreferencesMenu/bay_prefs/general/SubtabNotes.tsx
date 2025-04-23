@@ -70,48 +70,68 @@ export const SubtabNotes = (props: {
           </Stack.Item>
           <Stack.Item>
             <Box bold>Flavor Text</Box>
-            <Button
-              onClick={() => act('flavor_text')}
-              color={
-                data.flavor_text_length < REQUIRED_FLAVOR_TEXT_LENGTH
-                  ? 'bad'
-                  : 'good'
-              }
-              tooltip={
-                data.flavor_text_length < REQUIRED_FLAVOR_TEXT_LENGTH
-                  ? 'Your flavor text is not long enough, this will prevent you from spawning. Remember, this is not what you taste like, but what you look like.'
-                  : ''
-              }
-            >
-              Set Flavor Text
-            </Button>
-            <Button onClick={() => act('flavour_text_robot')}>
-              Set Robot Flavor Text
-            </Button>
-            <Button onClick={() => act('custom_link')}>Set Custom Link</Button>
+            <Stack>
+              <Stack.Item>
+                <Button
+                  onClick={() => act('flavor_text')}
+                  color={
+                    data.flavor_text_length < REQUIRED_FLAVOR_TEXT_LENGTH
+                      ? 'bad'
+                      : 'good'
+                  }
+                  tooltip={
+                    data.flavor_text_length < REQUIRED_FLAVOR_TEXT_LENGTH
+                      ? 'Your flavor text is not long enough, this will prevent you from spawning. Remember, this is not what you taste like, but what you look like.'
+                      : ''
+                  }
+                >
+                  Set Flavor Text
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button onClick={() => act('flavour_text_robot')}>
+                  Set Robot Flavor Text
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button onClick={() => act('custom_link')}>
+                  Set Custom Link
+                </Button>
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
           {staticData.allow_metadata ? (
             <Stack.Item>
               <Box bold>OOC Notes</Box>
-              <Button
-                onClick={() => act('edit_ooc_notes')}
-                color={
-                  data.ooc_notes_length < REQUIRED_OOC_LENGTH ? 'bad' : 'good'
-                }
-                tooltip={
-                  data.ooc_notes_length < REQUIRED_OOC_LENGTH
-                    ? 'Your OOC Notes are not long enough, this will prevent you from spawning.'
-                    : ''
-                }
-              >
-                Set OOC Notes
-              </Button>
-              <Button onClick={() => act('edit_ooc_note_likes')}>
-                Set Likes
-              </Button>
-              <Button onClick={() => act('edit_ooc_note_dislikes')}>
-                Set Dislikes
-              </Button>
+              <Stack>
+                <Stack.Item>
+                  <Button
+                    onClick={() => act('edit_ooc_notes')}
+                    color={
+                      data.ooc_notes_length < REQUIRED_OOC_LENGTH
+                        ? 'bad'
+                        : 'good'
+                    }
+                    tooltip={
+                      data.ooc_notes_length < REQUIRED_OOC_LENGTH
+                        ? 'Your OOC Notes are not long enough, this will prevent you from spawning.'
+                        : ''
+                    }
+                  >
+                    Set OOC Notes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button onClick={() => act('edit_ooc_note_likes')}>
+                    Set Likes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button onClick={() => act('edit_ooc_note_dislikes')}>
+                    Set Dislikes
+                  </Button>
+                </Stack.Item>
+              </Stack>
             </Stack.Item>
           ) : null}
         </Stack>

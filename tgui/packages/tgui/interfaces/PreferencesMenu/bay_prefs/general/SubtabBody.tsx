@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, ColorBox, Icon, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  ColorBox,
+  Icon,
+  LabeledList,
+  Stack,
+} from 'tgui-core/components';
 
 import { CustomImageButton } from '../helper_components';
 import { EarsDimmer, EarsImageButton } from './body/Ears';
@@ -39,6 +46,8 @@ export const SubtabBody = (props: {
     synth_color,
     synth_color_toggle,
     synth_markings,
+    voice_freq,
+    voice_sound,
   } = data;
   const { digi_allowed } = staticData;
   const { species: species_list } = serverData;
@@ -68,79 +77,177 @@ export const SubtabBody = (props: {
           setVisiblePopup={setVisiblePopup}
         />
       </Stack.Item>
-      <Stack.Item grow textAlign="right">
-        <Button onClick={() => setVisiblePopup(BodyPopup.Markings)} mb={1}>
+      <Stack.Item grow>
+        <Stack vertical fill>
+          <Stack.Item>
+            <Stack fill justify="space-around">
+              <Stack.Item>
+                <SizePrefs
+                  data={data}
+                  staticData={staticData}
+                  serverData={serverData}
+                  setVisiblePopup={setVisiblePopup}
+                />
+              </Stack.Item>
+              <Stack.Item textAlign="center">
+                <LabeledList>
+                  {our_species.appearance_flags &
+                  AppearanceFlags.HAS_EYE_COLOR ? (
+                    <LabeledList.Item label="Eye Color">
+                      <ColorBox color={eyes_color} />
+                      <Button inline ml={1} onClick={() => act('eye_color')}>
+                        Change
+                      </Button>{' '}
+                    </LabeledList.Item>
+                  ) : null}
+
+                  {our_species.appearance_flags &
+                  AppearanceFlags.HAS_SKIN_TONE ? (
+                    <LabeledList.Item label="Skin Tone">
+                      {s_tone}/220
+                      <Button inline ml={1} onClick={() => act('skin_tone')}>
+                        Change
+                      </Button>
+                    </LabeledList.Item>
+                  ) : null}
+                  {our_species.appearance_flags &
+                  AppearanceFlags.HAS_SKIN_COLOR ? (
+                    <LabeledList.Item label="Body Color">
+                      <ColorBox color={skin_color} />
+                      <Button inline ml={1} onClick={() => act('skin_color')}>
+                        Change
+                      </Button>
+                    </LabeledList.Item>
+                  ) : null}
+                  {digi_allowed ? (
+                    <LabeledList.Item label="Digitigrade">
+                      <Button
+                        inline
+                        onClick={() => act('digitigrade')}
+                        selected={digitigrade}
+                      >
+                        {digitigrade ? 'Yes' : 'No'}
+                      </Button>
+                    </LabeledList.Item>
+                  ) : null}
+                  <LabeledList.Item label="Blood Type">
+                    <Button inline onClick={() => act('blood_type')}>
+                      {b_type}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Voice Frequency">
+                    <Button onClick={() => act('voice_freq')}>
+                      {voice_freq}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Voice Sounds">
+                    <Button onClick={() => act('voice_sounds_list')}>
+                      {voice_sound}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item>
+                    <Button onClick={() => act('voice_test')}>
+                      Test Selected Voice
+                    </Button>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item grow>
+            <details>
+              <summary style={{ cursor: 'pointer' }}>Synthetic Options</summary>
+              <Box>
+                <LabeledList>
+                  <LabeledList.Item label="Allow Synth markings">
+                    <Button onClick={() => act('synth_markings')}>
+                      {synth_markings ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Allow Synth Color">
+                    <Button inline onClick={() => act('synth_color_toggle')}>
+                      {synth_color_toggle ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
+                  {synth_color_toggle ? (
+                    <LabeledList.Item label="Synth Color">
+                      <Button inline onClick={() => act('synth_color')}>
+                        Change
+                      </Button>{' '}
+                      <ColorBox color={synth_color} />
+                    </LabeledList.Item>
+                  ) : null}
+                </LabeledList>
+                <OrganBuilder
+                  data={data}
+                  staticData={staticData}
+                  serverData={serverData}
+                />
+              </Box>
+            </details>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+    </Stack>
+  );
+};
+
+const SizePrefs = (props: {
+  data: GeneralData;
+  staticData: GeneralDataStatic;
+  serverData: GeneralDataConstant;
+  setVisiblePopup: React.Dispatch<React.SetStateAction<BodyPopup>>;
+}) => {
+  const { act } = useBackend();
+  const { data, staticData, serverData, setVisiblePopup } = props;
+  const {
+    size_multiplier,
+    fuzzy,
+    offset_override,
+    weight_vr,
+    weight_gain,
+    weight_loss,
+  } = data;
+
+  return (
+    <Stack vertical>
+      <Stack.Item textAlign="center">
+        <Button
+          onClick={() => setVisiblePopup(BodyPopup.Markings)}
+          mb={1}
+          icon="paint-roller"
+          fontSize={1.2}
+        >
           Edit Markings
         </Button>
-        {our_species.appearance_flags & AppearanceFlags.HAS_EYE_COLOR ? (
-          <Box>
-            <Button inline onClick={() => act('eye_color')}>
-              Eyes Color
-            </Button>{' '}
-            <ColorBox color={eyes_color} />
-          </Box>
-        ) : null}
-        {our_species.appearance_flags & AppearanceFlags.HAS_SKIN_TONE ? (
-          <Box>
-            <Button inline onClick={() => act('skin_tone')}>
-              Skin Tone
-            </Button>{' '}
-            {s_tone}/220
-          </Box>
-        ) : null}
-        {our_species.appearance_flags & AppearanceFlags.HAS_SKIN_COLOR ? (
-          <Box>
-            <Button inline onClick={() => act('skin_color')}>
-              Body Color
-            </Button>{' '}
-            <ColorBox color={skin_color} />
-          </Box>
-        ) : null}
-        {digi_allowed ? (
-          <Box>
-            Digitgrade:{' '}
-            <Button inline onClick={() => act('digitigrade')}>
-              {digitigrade ? 'Yes' : 'No'}
+      </Stack.Item>
+      <Stack.Item>
+        <LabeledList>
+          <LabeledList.Item label="Scale">
+            <Button onClick={() => act('size_multiplier')}>
+              {size_multiplier}%
             </Button>
-          </Box>
-        ) : null}
-        <Box>
-          Blood Type:{' '}
-          <Button inline onClick={() => act('blood_type')}>
-            {b_type}
-          </Button>
-        </Box>
-        <details>
-          <summary style={{ cursor: 'pointer' }}>Synthetic Options</summary>
-          <Box>
-            <Box>
-              Allow Synth markings:{' '}
-              <Button inline onClick={() => act('synth_markings')}>
-                {synth_markings ? 'Yes' : 'No'}
-              </Button>
-            </Box>
-            <Box>
-              Allow Synth Color:{' '}
-              <Button inline onClick={() => act('synth_color_toggle')}>
-                {synth_color_toggle ? 'Yes' : 'No'}
-              </Button>
-            </Box>
-            {synth_color_toggle ? (
-              <Box>
-                Synth Color:{' '}
-                <Button inline onClick={() => act('synth_color')}>
-                  Change
-                </Button>{' '}
-                <ColorBox color={synth_color} />
-              </Box>
-            ) : null}
-            <OrganBuilder
-              data={data}
-              staticData={staticData}
-              serverData={serverData}
-            />
-          </Box>
-        </details>
+          </LabeledList.Item>
+          <LabeledList.Item label="Scaled Appearance">
+            <Button onClick={() => act('toggle_fuzzy')}>
+              {fuzzy ? 'Fuzzy' : 'Sharp'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Scaling Center">
+            <Button onClick={() => act('toggle_offset_override')}>
+              {offset_override ? 'Odd' : 'Even'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Relative Weight">
+            <Button onClick={() => act('weight')}>{weight_vr}</Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Weight Gain Rate">
+            <Button onClick={() => act('weight_gain')}>{weight_gain}</Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Weight Loss Rate">
+            <Button onClick={() => act('weight_loss')}>{weight_loss}</Button>
+          </LabeledList.Item>
+        </LabeledList>
       </Stack.Item>
     </Stack>
   );

@@ -227,11 +227,25 @@ export type AntagonismData = {
 export const REQUIRED_FLAVOR_TEXT_LENGTH = 30;
 export const REQUIRED_OOC_LENGTH = 15;
 
+export type SizeData = {
+  size_multiplier: number;
+  fuzzy: BooleanLike;
+  offset_override: BooleanLike;
+  voice_freq: number;
+  voice_sound: string;
+  custom_speech_bubble: string;
+  custom_footstep: string;
+  weight_vr: number;
+  weight_gain: number;
+  weight_loss: number;
+};
+
 export type GeneralData = BasicData &
   BodyData &
   BackgroundData &
   FlavorData &
-  AntagonismData;
+  AntagonismData &
+  SizeData;
 
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;

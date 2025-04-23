@@ -2,7 +2,6 @@ import { type ReactNode } from 'react';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../../../backend';
-import { logger } from '../../../../logging';
 import {
   type Job,
   type OccupationData,
@@ -49,7 +48,20 @@ export const OccupationContent = (props: {
   }
 
   return (
-    <Section fill scrollable title={'Choose Occupation Chances'} mt={1}>
+    <Section
+      fill
+      scrollable
+      title={'Choose Occupation Chances'}
+      mt={1}
+      buttons={
+        <Button
+          color="transparent"
+          icon="question"
+          tooltip="Left click to increase priority, right click to decrease priority"
+          tooltipPosition="bottom-end"
+        />
+      }
+    >
       <Stack fill>
         <Stack.Item grow>
           {first_half.map((job) => (
@@ -129,10 +141,6 @@ export const JobBox = (props: { job: Job }) => {
     disabledReason = (
       <Box bold>[MIN CHARACTER AGE FOR SELECTED RACE/BRAIN: {job.min_age}]</Box>
     );
-  }
-
-  if (job.title === 'Mime') {
-    logger.log(job.denylist_whitelist);
   }
 
   return (
