@@ -175,7 +175,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["bday_announce"])
-		pref.update_preference_by_type(/datum/preference/toggle/human/bday_announce, /*!pref.read_preference(/datum/preference/toggle/human/bday_announce)*/ FALSE)
+		pref.update_preference_by_type(/datum/preference/toggle/human/bday_announce, !pref.read_preference(/datum/preference/toggle/human/bday_announce) FALSE)
 		return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])
