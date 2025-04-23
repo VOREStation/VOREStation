@@ -46,7 +46,7 @@ export const RecyclerVendor = (props) => {
   return (
     <Window
       theme="crtsoul"
-      title="Recycling Rewards Redemptio n Vendor"
+      title="Recycling Rewards Redemption Vendor"
       width={750}
       height={700}
     >
@@ -80,8 +80,8 @@ export const RecyclerVendor = (props) => {
 
                   <Stack.Item>
                     <Section title="User Info">
-                      <p>Welcome {userName}!</p>
-                      <p>Balance: ♻️{userBalance}</p>
+                      <Box> Welcome {userName}! </Box>
+                      <Box> Balance: ♻️{userBalance} </Box>
                     </Section>
                   </Stack.Item>
                 </Stack>

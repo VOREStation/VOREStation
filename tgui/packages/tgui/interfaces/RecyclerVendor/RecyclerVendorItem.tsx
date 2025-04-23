@@ -16,8 +16,8 @@ export const VendorItem = (props: {
     <Box className="RecyclerProductEntry">
       <Box className={classes(['MaintVendor32x32', icon])} />
       <Box>
-        <h2>{name}</h2>
-        <p>{desc}</p>
+        <Box className="RecyclerProductLabel">{name}</Box>
+        <Box className="RecyclerProductDescription">{desc}</Box>
       </Box>
       <Box className="SplashBounce">{advert}</Box>
       <Box>

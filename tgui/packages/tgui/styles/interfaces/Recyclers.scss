@@ -27,18 +27,20 @@
 
 .SplashBounce {
   display: inline-block;
-  font-style: italic;
   font-weight: bold;
-  font-family: 'monospace';
+  font-family: 'Comic Sans MS';
   animation: bounce 0.5s infinite;
   transform: rotate(30deg);
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 1.3em;
 }
 
 .RecyclerCategoryButton {
   font-family: 'VT323';
+  font-size: 1.2em;
 }
 .Button {
   margin-top: 10px;
@@ -52,6 +54,22 @@
   50% {
     transform: scale(1) rotate(5deg);
   }
+}
+
+.RecyclerProductLabel {
+  font-family: 'VT323';
+  font-size: 1.9em;
+  color: lime;
+  text-shadow: 0px 0px 5px #000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.RecyclerProductDescription {
+  font-family: 'VT323';
+  font-size: 1.2em;
+  color: lime;
+  text-shadow: 0px 0px 5px #000;
 }
 
 .carousel {

@@ -113,7 +113,7 @@
 /obj/machinery/maint_vendor/proc/dispense_item_from_datum(var/mob/user, var/datum/maint_recycler_vendor_entry/used_entry)
 	playsound(src, 'code/modules/maint_recycler/sfx/ejectgoodies.ogg', 75, 1)
 	used_entry.spawn_with_delay(src);
-	audible_message("[src] states, \"[used_entry.tagline].\" ", "\The [src]'s screen briefly flashes an $!" , runemessage = "$$$")
+	audible_message("[src] states, \"[used_entry.tagline]\" ", "\The [src]'s screen briefly flashes an $!" , runemessage = "$$$")
 	if(prob(95))
 		set_screen_state("screen_cashout",10)
 	else
