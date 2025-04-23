@@ -227,7 +227,13 @@
 
 /obj/item/wash(clean_types)
 	. = ..()
-
-	if(ismob(loc))
-		var/mob/mob_loc = loc
-		mob_loc.regenerate_icons()
+	if(blood_overlay && clean_types & CLEAN_WASH)
+		overlays.Remove(blood_overlay)
+	if(gurgled && clean_types & CLEAN_WASH)
+		gurgled = FALSE
+		cut_overlay(gurgled_overlays[gurgled_color])
+		name = initial(name)
+		desc = initial(desc)
+	if(contaminated && clean_types & CLEAN_RAD) // Phoron and stuff, washing machine needed
+		contaminated = FALSE
+		cut_overlay(contamination_overlay)

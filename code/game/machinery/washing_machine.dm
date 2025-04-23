@@ -58,12 +58,12 @@
 	update_icon()
 	to_chat(usr, "The washing machine starts a cycle.")
 	playsound(src, 'sound/items/washingmachine.ogg', 50, 1, 1)
-	sleep(200)
+
+	addtimer(CALLBACK(src, PROC_REF(finish_wash)), 2 SECONDS)
+
+/obj/machinery/washing_machine/proc/finish_wash()
 	for(var/atom/A in washing)
 		A.wash(CLEAN_ALL)
-
-	for(var/obj/item/I in washing)
-		I.decontaminate()
 
 	//Tanning!
 	for(var/obj/item/stack/hairlesshide/HH in washing)
@@ -86,17 +86,14 @@
 	set category = "Object"
 	set src in usr.loc
 
-	sleep(20)
-	if(state in list(1,3,6))
+	if(state in list(1,3,6) && do_after(user, 20))
 		usr.loc = src.loc
 
 /obj/machinery/washing_machine/update_icon()
-	//VOREStation Edit
 	cut_overlays()
 	icon_state = "wm_[state]"
 	if(panel_open)
 		add_overlay("panel")
-	//VOREStation Edit End
 
 /obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(state == 2 && washing.len < 1)
