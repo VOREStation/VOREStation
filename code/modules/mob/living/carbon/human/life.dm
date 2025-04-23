@@ -1490,7 +1490,7 @@
 
 	..()
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science, global_hud.material, global_hud.whitense)
+	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
@@ -1697,7 +1697,7 @@
 							found_welder = 1
 				if(absorbed) found_welder = 1
 			if(found_welder)
-				client.screen |= global_hud.darkMask
+				client.screen |= GLOB.global_hud.darkMask
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()
