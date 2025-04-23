@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import { useBackend } from 'tgui/backend';
 
-import { Window } from '../../layouts';
+import { Window } from 'tgui/layouts';
 
 type Data = {
   header: string;
