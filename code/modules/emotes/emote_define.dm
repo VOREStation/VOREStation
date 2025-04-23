@@ -189,7 +189,11 @@ var/global/list/emotes_by_key
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+		if(istype(user, /mob))
+			var/mob/u = user
+			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = u.voice_freq, preference = sound_preferences, volume_channel = use_sound["volchannel"])
+		else
+			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

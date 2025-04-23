@@ -168,11 +168,9 @@
 		brainmob.ooc_notes = L.ooc_notes
 		brainmob.ooc_notes_likes = L.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = L.ooc_notes_dislikes
-		/* Not implemented on virgo
 		brainmob.ooc_notes_favs = L.ooc_notes_favs
 		brainmob.ooc_notes_maybes = L.ooc_notes_maybes
 		brainmob.ooc_notes_style = L.ooc_notes_style
-		*/
 		brainmob.timeofhostdeath = L.timeofdeath
 		if(ishuman(L))
 			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.

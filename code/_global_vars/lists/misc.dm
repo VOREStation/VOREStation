@@ -10,6 +10,8 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 GLOBAL_LIST_INIT(char_directory_tags, list("Pred", "Pred-Pref", "Prey", "Prey-Pref", "Switch", "Non-Vore", "Unset"))
 GLOBAL_LIST_INIT(char_directory_erptags, list("Dominant", "Dom-Pref", "Submissive", "Sub-Pref", "Switch", "No ERP", "Unset"))
+GLOBAL_LIST_INIT(char_directory_sexualitytags, list("Straight", "Bisexual", "Pansexual", "Gay", "Lesbian", "Asexual", "Demisexual", "Unset"))
+GLOBAL_LIST_INIT(char_directory_gendertags, list("Male", "Female", "Nonbinary", "Trans Man", "Trans Woman", "Other", "Ungendered", "Unset"))
 GLOBAL_LIST_EMPTY(crafting_recipes) //list of all table craft recipes
 
 GLOBAL_LIST_INIT(uplink_locations, list("PDA", "Headset", "None"))

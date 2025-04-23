@@ -1100,7 +1100,6 @@
 			save_ooc_panel(usr)
 	if(href_list["print_ooc_notes_chat"])
 		print_ooc_notes_chat(usr)
-	/* Not implemented on virgo
 	if(href_list["edit_ooc_note_favs"])
 		if(usr == src)
 			set_metainfo_favs(usr)
@@ -1109,7 +1108,6 @@
 			set_metainfo_maybes(usr)
 	if(href_list["set_metainfo_ooc_style"])
 		set_metainfo_ooc_style(usr)
-	*/
 	if(href_list["save_private_notes"])
 		if(usr == src)
 			save_private_notes(usr)
