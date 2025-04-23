@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	17
+#define SAVEFILE_VERSION_MAX	18
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -89,6 +89,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v17.")
 		to_chat(client, span_danger("v17 savefile migration complete."))
 
+	// Migration for jukebox volume from 0-1 to 0-100
+	if(current_version < 18)
+		log_debug("[client_ckey] preferences migrating from [current_version] to v18....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v18..."))
+
+		migration_18_jukebox(S)
+
+		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v18.")
+		to_chat(client, span_danger("v18 savefile migration complete."))
 /datum/preferences/proc/update_character(current_version, list/save_data)
 	// Migration from BYOND savefiles to JSON: Important milemark.
 	if(current_version == -3)
