@@ -828,7 +828,6 @@
 			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 	// holder.remove_reagent(REAGENT_ID_FROSTOIL, 5)  // VOREStation Edit: Nop, we don't instadelete spices for free.
 
-
 /datum/reagent/condensedcapsaicin
 	name = REAGENT_CONDENSEDCAPSAICIN
 	id = REAGENT_ID_CONDENSEDCAPSAICIN
