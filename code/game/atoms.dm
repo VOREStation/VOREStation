@@ -494,15 +494,6 @@
 		if(toxvomit)
 			this.icon_state = "vomittox_[pick(1,4)]"
 
-/atom/proc/clean_blood()
-	if(!simulated)
-		return
-	fluorescent = 0
-	src.germ_level = 0
-	if(istype(blood_DNA, /list))
-		blood_DNA = null
-		return TRUE
-
 /atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	wash(CLEAN_WASH)
 	R.reagents.splash(src, 1)
@@ -873,3 +864,10 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		return TRUE
+
+	if(istype(blood_DNA, /list))
+		blood_DNA = null
+		return TRUE
+
+	germ_level = 0
+	fluorescent = 0

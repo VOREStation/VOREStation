@@ -1485,7 +1485,7 @@
 		if(istype(I,/obj/item/card/id))
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 		if(I.gurgled && target.contaminates)
-			I.decontaminate()
+			I.wash(CLEAN_WASH)
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	owner.updateVRPanel()

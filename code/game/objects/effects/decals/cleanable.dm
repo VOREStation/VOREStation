@@ -37,12 +37,6 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	SSpersistence.forget_value(src, /datum/persistent/filth)
 	. = ..()
 
-/obj/effect/decal/cleanable/clean_blood(var/ignore = 0)
-	if(!ignore)
-		qdel(src)
-		return
-	..()
-
 /obj/effect/decal/cleanable/Initialize(mapload, _age)
 	. = ..()
 	if (random_icon_states && length(random_icon_states) > 0)

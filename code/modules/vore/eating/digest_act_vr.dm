@@ -70,7 +70,7 @@
 				if(!oldname)
 					oldname = cleanname ? cleanname : name
 				cleanname = "[d_stage_name] [oldname]"
-				decontaminate()
+				wash(CLEAN_ALL)
 				if(istype(B))
 					gurgled_color = B.contamination_color //Apply the correct color setting so uncontaminable things can still have the right overlay.
 					gurgle_contaminate(B, B.contamination_flavor, B.contamination_color)

@@ -712,11 +712,6 @@ var/list/global/slot_flags_enumeration = list(
 	M.eye_blurry += rand(3,4)
 	return
 
-/obj/item/clean_blood()
-	. = ..()
-	if(blood_overlay)
-		overlays.Remove(blood_overlay)
-
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
 		fluorescent = 1

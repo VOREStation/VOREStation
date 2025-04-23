@@ -433,14 +433,14 @@
 	update_inv_handcuffed()
 
 // Clears blood overlays
-/mob/living/carbon/clean_blood()
+/mob/living/carbon/wash(clean_types)
 	. = ..()
 	if(src.r_hand)
-		src.r_hand.wash(CLEAN_SCRUB)
+		src.r_hand.wash(clean_types)
 	if(src.l_hand)
-		src.l_hand.wash(CLEAN_SCRUB)
+		src.l_hand.wash(clean_types)
 	if(src.back)
-		if(src.back.wash(CLEAN_SCRUB))
+		if(src.back.wash(clean_types))
 			src.update_inv_back(0)
 
 	if(ishuman(src))
@@ -467,48 +467,48 @@
 				washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
 
 		if(H.head)
-			if(H.head.wash(CLEAN_SCRUB))
+			if(H.head.wash(clean_types))
 				H.update_inv_head()
 
 		if(H.wear_suit)
-			if(H.wear_suit.wash(CLEAN_SCRUB))
+			if(H.wear_suit.wash(clean_types))
 				H.update_inv_wear_suit()
 
 		else if(H.w_uniform)
-			if(H.w_uniform.wash(CLEAN_SCRUB))
+			if(H.w_uniform.wash(clean_types))
 				H.update_inv_w_uniform()
 
 		if(H.gloves && washgloves)
-			if(H.gloves.wash(CLEAN_SCRUB))
+			if(H.gloves.wash(clean_types))
 				H.update_inv_gloves(0)
 
 		if(H.shoes && washshoes)
-			if(H.shoes.wash(CLEAN_SCRUB))
+			if(H.shoes.wash(clean_types))
 				H.update_inv_shoes(0)
 
 		if(H.wear_mask && washmask)
-			if(H.wear_mask.wash(CLEAN_SCRUB))
+			if(H.wear_mask.wash(clean_types))
 				H.update_inv_wear_mask(0)
 
 		if(H.glasses && washglasses)
-			if(H.glasses.wash(CLEAN_SCRUB))
+			if(H.glasses.wash(clean_types))
 				H.update_inv_glasses(0)
 
 		if(H.l_ear && washears)
-			if(H.l_ear.wash(CLEAN_SCRUB))
+			if(H.l_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
 		if(H.r_ear && washears)
-			if(H.r_ear.wash(CLEAN_SCRUB))
+			if(H.r_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
 		if(H.belt)
-			if(H.belt.wash(CLEAN_SCRUB))
+			if(H.belt.wash(clean_types))
 				H.update_inv_belt(0)
 
 	else
 		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-			if(src.wear_mask.wash(CLEAN_SCRUB))
+			if(src.wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit

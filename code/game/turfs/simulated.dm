@@ -63,11 +63,6 @@
 			cut_overlay(wet_overlay)
 			wet_overlay = null
 
-/turf/simulated/clean_blood()
-	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		B.wash(CLEAN_SCRUB)
-	..()
-
 /turf/simulated/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /area/chapel))
