@@ -118,6 +118,8 @@ export const SubtabInfo = (props: {
     vore_egg_type,
     autohiss,
     custom_species,
+    selects_bodytype,
+    custom_base,
   } = data;
 
   return (
@@ -195,6 +197,16 @@ export const SubtabInfo = (props: {
                   {custom_species || '-Input Name-'}
                 </Button>
               </LabeledList.Item>
+              {selects_bodytype ? (
+                <LabeledList.Item
+                  label="Custom Species Icon"
+                  tooltip="Your selected species can choose any other race for it's base sprites"
+                >
+                  <Button onClick={() => act('custom_base')}>
+                    {custom_base || 'Human'}
+                  </Button>
+                </LabeledList.Item>
+              ) : null}
             </LabeledList>
           </Stack.Item>
         </Stack>

@@ -225,6 +225,9 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 /datum/category_item/player_setup_item/general/traits/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
+	var/datum/species/selected_species = GLOB.all_species[pref.species]
+	data["selects_bodytype"] = selected_species.selects_bodytype
+	data["custom_base"] = pref.custom_base
 	data["blood_color"] = pref.blood_color
 	data["blood_reagents"] = pref.blood_reagents
 
@@ -232,10 +235,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 /datum/category_item/player_setup_item/general/traits/content(var/mob/user)
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
-	if(selected_species.selects_bodytype)
-		. += span_bold("Icon Base:") + " "
-		. += "<a href='byond://?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
-
 	var/traits_left = pref.max_traits
 
 

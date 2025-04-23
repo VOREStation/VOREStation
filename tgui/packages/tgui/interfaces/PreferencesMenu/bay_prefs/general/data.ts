@@ -198,6 +198,8 @@ export type BodyData = {
   synth_color: string;
   synth_markings: BooleanLike;
 
+  selects_bodytype: BooleanLike;
+  custom_base: string;
   blood_color: string;
   blood_reagents: string;
 };
