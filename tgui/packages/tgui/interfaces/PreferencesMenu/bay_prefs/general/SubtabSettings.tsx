@@ -288,6 +288,59 @@ export const SubtabSettings = (props: {
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
+                <Box bold>Custom Text</Box>
+                <LabeledList>
+                  <LabeledList.Item label="Custom Say">
+                    <Button fluid onClick={() => act('custom_say')}>
+                      Set Say Verb
+                    </Button>
+                    <Button fluid onClick={() => act('reset_say')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Whisper">
+                    <Button fluid onClick={() => act('custom_whisper')}>
+                      Set Whisper Verb
+                    </Button>
+                    <Button fluid onClick={() => act('reset_whisper')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Ask">
+                    <Button fluid onClick={() => act('custom_ask')}>
+                      Set Ask Verb
+                    </Button>
+                    <Button fluid onClick={() => act('reset_ask')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Exclaim">
+                    <Button fluid onClick={() => act('custom_exclaim')}>
+                      Set Exclaim Verb
+                    </Button>
+                    <Button fluid onClick={() => act('reset_exclaim')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Heat Discomfort">
+                    <Button fluid onClick={() => act('custom_heat')}>
+                      Set Heat Messages
+                    </Button>
+                    <Button fluid onClick={() => act('reset_heat')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Cold Discomfort">
+                    <Button fluid onClick={() => act('custom_cold')}>
+                      Set Cold Messages
+                    </Button>
+                    <Button fluid onClick={() => act('reset_cold')}>
+                      Reset
+                    </Button>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+              <Stack.Item>
                 <Box bold>pAI Settings</Box>
                 <LabeledList>
                   <LabeledList.Item label="Name">

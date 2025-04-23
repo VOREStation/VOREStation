@@ -9,14 +9,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	var/custom_base		// What to base the custom species on
 	var/blood_color = "#A10808"
 
-	var/custom_say = null
-	var/custom_whisper = null
-	var/custom_ask = null
-	var/custom_exclaim = null
-
-	var/list/custom_heat = list()
-	var/list/custom_cold = list()
-
 	var/list/pos_traits	= list()	// What traits they've selected for their custom species
 	var/list/neu_traits = list()
 	var/list/neg_traits = list()
@@ -126,13 +118,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	pref.max_traits				= save_data["max_traits"]
 	pref.starting_trait_points	= save_data["trait_points"]
 
-	pref.custom_say				= save_data["custom_say"]
-	pref.custom_whisper			= save_data["custom_whisper"]
-	pref.custom_ask				= save_data["custom_ask"]
-	pref.custom_exclaim			= save_data["custom_exclaim"]
-
-	pref.custom_heat			= check_list_copy(save_data["custom_heat"])
-	pref.custom_cold			= check_list_copy(save_data["custom_cold"])
 
 /datum/category_item/player_setup_item/general/traits/save_character(list/save_data)
 	save_data["custom_species"]		= pref.custom_species
@@ -146,14 +131,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	save_data["traits_cheating"]	= pref.traits_cheating
 	save_data["max_traits"]			= pref.max_traits
 	save_data["trait_points"]		= pref.starting_trait_points
-
-	save_data["custom_say"]			= pref.custom_say
-	save_data["custom_whisper"]		= pref.custom_whisper
-	save_data["custom_ask"]			= pref.custom_ask
-	save_data["custom_exclaim"]		= pref.custom_exclaim
-
-	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
-	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
 /datum/category_item/player_setup_item/general/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
@@ -223,31 +200,9 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
-	pref.custom_say = lowertext(trim(pref.custom_say))
-	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
-	pref.custom_ask = lowertext(trim(pref.custom_ask))
-	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
-
-	if (islist(pref.custom_heat)) //don't bother checking these for actual singular message length, they should already have been checked and it'd take too long every time it's sanitized
-		if (length(pref.custom_heat) > 10)
-			pref.custom_heat.Cut(11)
-	else
-		pref.custom_heat = list()
-	if (islist(pref.custom_cold))
-		if (length(pref.custom_cold) > 10)
-			pref.custom_cold.Cut(11)
-	else
-		pref.custom_cold = list()
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	character.custom_say		= lowertext(trim(pref.custom_say))
-	character.custom_ask		= lowertext(trim(pref.custom_ask))
-	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
-	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
-	character.custom_heat = pref.custom_heat
-	character.custom_cold = pref.custom_cold
-
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
@@ -323,31 +278,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	. += "<a href='byond://?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
-	. += span_bold("Custom Say: ")
-	. += "<a href='byond://?src=\ref[src];custom_say=1'>Set Say Verb</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_say=1'>Reset</A>)"
-	. += "<br>"
-	. += span_bold("Custom Whisper: ")
-	. += "<a href='byond://?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_whisper=1'>Reset</A>)"
-	. += "<br>"
-	. += span_bold("Custom Ask: ")
-	. += "<a href='byond://?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_ask=1'>Reset</A>)"
-	. += "<br>"
-	. += span_bold("Custom Exclaim: ")
-	. += "<a href='byond://?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_exclaim=1'>Reset</A>)"
-	. += "<br>"
-	. += span_bold("Custom Heat Discomfort: ")
-	. += "<a href='byond://?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_heat=1'>Reset</A>)"
-	. += "<br>"
-	. += span_bold("Custom Cold Discomfort: ")
-	. += "<a href='byond://?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
-	. += "(<a href='byond://?src=\ref[src];reset_cold=1'>Reset</A>)"
-	. += "<br>"
-
 /datum/category_item/player_setup_item/general/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
 		return TOPIC_NOACTION
@@ -416,100 +346,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	else if(href_list["clicked_trait_pref"])
 		var/datum/trait/trait = text2path(href_list["clicked_trait_pref"])
 		get_pref_choice_from_trait(user, trait, href_list["pref"])
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_say"])
-		var/say_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'says': [pref.real_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12), 12)
-		if(say_choice)
-			pref.custom_say = say_choice
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_whisper"])
-		var/whisper_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [pref.real_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12), 12)
-		if(whisper_choice)
-			pref.custom_whisper = whisper_choice
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_ask"])
-		var/ask_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'asks': [pref.real_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12), 12)
-		if(ask_choice)
-			pref.custom_ask = ask_choice
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_exclaim"])
-		var/exclaim_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12), 12)
-		if(exclaim_choice)
-			pref.custom_exclaim = exclaim_choice
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_heat"])
-		tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
-		var/old_message = pref.custom_heat.Join("\n\n")
-		var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
-		if(length(new_message) > 0)
-			var/list/raw_list = splittext(new_message,"\n\n")
-			if(raw_list.len > 10)
-				raw_list.Cut(11)
-			for(var/i = 1, i <= raw_list.len, i++)
-				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
-					raw_list.Cut(i,i)
-				else
-					raw_list[i] = readd_quotes(raw_list[i])
-			ASSERT(raw_list.len <= 10)
-			pref.custom_heat = raw_list
-		return TOPIC_REFRESH
-
-	else if(href_list["custom_cold"])
-		tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
-		var/old_message = pref.custom_heat.Join("\n\n")
-		var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
-		if(length(new_message) > 0)
-			var/list/raw_list = splittext(new_message,"\n\n")
-			if(raw_list.len > 10)
-				raw_list.Cut(11)
-			for(var/i = 1, i <= raw_list.len, i++)
-				if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
-					raw_list.Cut(i,i)
-				else
-					raw_list[i] = readd_quotes(raw_list[i])
-			ASSERT(raw_list.len <= 10)
-			pref.custom_cold = raw_list
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_say"])
-		var/say_choice = tgui_alert(user, "Reset your Custom Say Verb?","Reset Verb",list("Yes","No"))
-		if(say_choice == "Yes")
-			pref.custom_say = null
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_whisper"])
-		var/whisper_choice = tgui_alert(user, "Reset your Custom Whisper Verb?","Reset Verb",list("Yes","No"))
-		if(whisper_choice == "Yes")
-			pref.custom_whisper = null
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_ask"])
-		var/ask_choice = tgui_alert(user, "Reset your Custom Ask Verb?","Reset Verb",list("Yes","No"))
-		if(ask_choice == "Yes")
-			pref.custom_ask = null
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_exclaim"])
-		var/exclaim_choice = tgui_alert(user, "Reset your Custom Exclaim Verb?","Reset Verb",list("Yes","No"))
-		if(exclaim_choice == "Yes")
-			pref.custom_exclaim = null
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_cold"])
-		var/cold_choice = tgui_alert(user, "Reset your Custom Cold Discomfort messages?", "Reset Discomfort",list("Yes","No"))
-		if(cold_choice == "Yes")
-			pref.custom_cold = list()
-		return TOPIC_REFRESH
-
-	else if(href_list["reset_heat"])
-		var/heat_choice = tgui_alert(user, "Reset your Custom Heat Discomfort messages?", "Reset Discomfort",list("Yes","No"))
-		if(heat_choice == "Yes")
-			pref.custom_heat = list()
 		return TOPIC_REFRESH
 
 	else if(href_list["add_trait"])

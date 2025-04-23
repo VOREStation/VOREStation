@@ -6,6 +6,14 @@
 	var/resleeve_scan = 1	// Whether mob should start with a pre-spawn body scan.  Default true.
 	var/mind_scan = 1		// Whether mob should start with a pre-spawn mind scan.  Default true.
 
+	var/custom_say = null
+	var/custom_whisper = null
+	var/custom_ask = null
+	var/custom_exclaim = null
+
+	var/list/custom_heat = list()
+	var/list/custom_cold = list()
+
 /datum/category_item/player_setup_item/general/vore_misc
 	name = "Misc Settings"
 	sort_order = 1
@@ -25,6 +33,13 @@
 	pref.vantag_volunteer		= save_data["vantag_volunteer"]
 	pref.vantag_preference		= save_data["vantag_preference"]
 
+	pref.custom_say				= save_data["custom_say"]
+	pref.custom_whisper			= save_data["custom_whisper"]
+	pref.custom_ask				= save_data["custom_ask"]
+	pref.custom_exclaim			= save_data["custom_exclaim"]
+	pref.custom_heat			= check_list_copy(save_data["custom_heat"])
+	pref.custom_cold			= check_list_copy(save_data["custom_cold"])
+
 /datum/category_item/player_setup_item/general/vore_misc/save_character(list/save_data)
 	save_data["show_in_directory"]		= pref.show_in_directory
 	save_data["directory_tag"]			= pref.directory_tag
@@ -40,7 +55,21 @@
 	save_data["vantag_volunteer"]		= pref.vantag_volunteer
 	save_data["vantag_preference"]		= pref.vantag_preference
 
+	save_data["custom_say"]			= pref.custom_say
+	save_data["custom_whisper"]		= pref.custom_whisper
+	save_data["custom_ask"]			= pref.custom_ask
+	save_data["custom_exclaim"]		= pref.custom_exclaim
+	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
+	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
+
 /datum/category_item/player_setup_item/general/vore_misc/copy_to_mob(var/mob/living/carbon/human/character)
+	character.custom_say		= lowertext(trim(pref.custom_say))
+	character.custom_ask		= lowertext(trim(pref.custom_ask))
+	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
+	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
+	character.custom_heat = pref.custom_heat
+	character.custom_cold = pref.custom_cold
+
 	if(pref.sensorpref > 5 || pref.sensorpref < 1)
 		pref.sensorpref = 5
 	character.sensorpref = pref.sensorpref
@@ -80,6 +109,21 @@
 	pref.mind_scan			= sanitize_integer(pref.mind_scan, 0, 1, initial(pref.mind_scan))
 	pref.vantag_volunteer	= sanitize_integer(pref.vantag_volunteer, 0, 1, initial(pref.vantag_volunteer))
 	pref.vantag_preference	= sanitize_inlist(pref.vantag_preference, GLOB.vantag_choices_list, initial(pref.vantag_preference))
+
+	pref.custom_say = lowertext(trim(pref.custom_say))
+	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
+	pref.custom_ask = lowertext(trim(pref.custom_ask))
+	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
+	if (islist(pref.custom_heat)) //don't bother checking these for actual singular message length, they should already have been checked and it'd take too long every time it's sanitized
+		if (length(pref.custom_heat) > 10)
+			pref.custom_heat.Cut(11)
+	else
+		pref.custom_heat = list()
+	if (islist(pref.custom_cold))
+		if (length(pref.custom_cold) > 10)
+			pref.custom_cold.Cut(11)
+	else
+		pref.custom_cold = list()
 
 /datum/category_item/player_setup_item/general/vore_misc/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -169,4 +213,86 @@
 			var/selection = tgui_input_list(user, "How do you want to be involved with VS Event Characters, ERP-wise? They will see this choice on you in a HUD. Event characters are admin-selected and spawned players, possibly with assigned objectives, who are obligated to respect ERP prefs and RP their actions like any other player, though it may be a slightly shorter RP if they are pressed for time or being caught.", "Event Preference", names_list)
 			if(selection && selection != "Normal")
 				pref.vantag_preference = names_list[selection]
+			return TOPIC_REFRESH
+		if("custom_say")
+			var/say_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'says': [pref.real_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12), 12)
+			if(say_choice)
+				pref.custom_say = say_choice
+			return TOPIC_REFRESH
+		if("custom_whisper")
+			var/whisper_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [pref.real_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12), 12)
+			if(whisper_choice)
+				pref.custom_whisper = whisper_choice
+			return TOPIC_REFRESH
+		if("custom_ask")
+			var/ask_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'asks': [pref.real_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12), 12)
+			if(ask_choice)
+				pref.custom_ask = ask_choice
+			return TOPIC_REFRESH
+		if("custom_exclaim")
+			var/exclaim_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12), 12)
+			if(exclaim_choice)
+				pref.custom_exclaim = exclaim_choice
+			return TOPIC_REFRESH
+		if("custom_heat")
+			tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+			var/old_message = pref.custom_heat.Join("\n\n")
+			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+			if(length(new_message) > 0)
+				var/list/raw_list = splittext(new_message,"\n\n")
+				if(raw_list.len > 10)
+					raw_list.Cut(11)
+				for(var/i = 1, i <= raw_list.len, i++)
+					if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
+						raw_list.Cut(i,i)
+					else
+						raw_list[i] = readd_quotes(raw_list[i])
+				ASSERT(raw_list.len <= 10)
+				pref.custom_heat = raw_list
+			return TOPIC_REFRESH
+		if("custom_cold")
+			tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
+			var/old_message = pref.custom_heat.Join("\n\n")
+			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+			if(length(new_message) > 0)
+				var/list/raw_list = splittext(new_message,"\n\n")
+				if(raw_list.len > 10)
+					raw_list.Cut(11)
+				for(var/i = 1, i <= raw_list.len, i++)
+					if(length(raw_list[i]) < 3 || length(raw_list[i]) > 160)
+						raw_list.Cut(i,i)
+					else
+						raw_list[i] = readd_quotes(raw_list[i])
+				ASSERT(raw_list.len <= 10)
+				pref.custom_cold = raw_list
+			return TOPIC_REFRESH
+		if("reset_say")
+			var/say_choice = tgui_alert(user, "Reset your Custom Say Verb?","Reset Verb",list("Yes","No"))
+			if(say_choice == "Yes")
+				pref.custom_say = null
+			return TOPIC_REFRESH
+		if("reset_whisper")
+			var/whisper_choice = tgui_alert(user, "Reset your Custom Whisper Verb?","Reset Verb",list("Yes","No"))
+			if(whisper_choice == "Yes")
+				pref.custom_whisper = null
+			return TOPIC_REFRESH
+		if("reset_ask")
+			var/ask_choice = tgui_alert(user, "Reset your Custom Ask Verb?","Reset Verb",list("Yes","No"))
+			if(ask_choice == "Yes")
+				pref.custom_ask = null
+			return TOPIC_REFRESH
+		if("reset_exclaim")
+			var/exclaim_choice = tgui_alert(user, "Reset your Custom Exclaim Verb?","Reset Verb",list("Yes","No"))
+			if(exclaim_choice == "Yes")
+				pref.custom_exclaim = null
+			return TOPIC_REFRESH
+		if("reset_cold")
+			var/cold_choice = tgui_alert(user, "Reset your Custom Cold Discomfort messages?", "Reset Discomfort",list("Yes","No"))
+			if(cold_choice == "Yes")
+				pref.custom_cold = list()
+			return TOPIC_REFRESH
+		if("reset_heat")
+			var/heat_choice = tgui_alert(user, "Reset your Custom Heat Discomfort messages?", "Reset Discomfort",list("Yes","No"))
+			if(heat_choice == "Yes")
+				pref.custom_heat = list()
 			return TOPIC_REFRESH
