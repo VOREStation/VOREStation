@@ -2164,8 +2164,6 @@
 #include "code\modules\client\preference_setup\loadout\loadout_utility.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_xeno.dm"
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
-#include "code\modules\client\preference_setup\volume_sliders\01_volume.dm"
-#include "code\modules\client\preference_setup\volume_sliders\02_media.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
 #include "code\modules\client\preference_setup\vore\03_egg.dm"
 #include "code\modules\client\preference_setup\vore\04_resleeving.dm"

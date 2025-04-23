@@ -126,8 +126,6 @@ var/list/preferences_datums = list()
 	// WE JUST HAVE NOWHERE ELSE TO STORE IT
 	var/list/action_button_screen_locs
 
-	var/list/volume_channels = list()
-
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
 	var/selecting_slots = FALSE
 
