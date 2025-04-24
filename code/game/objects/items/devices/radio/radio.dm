@@ -85,45 +85,45 @@ var/global/list/default_medbay_channels = list(
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
 	listening_objects += src
-	return INITIALIZE_HINT_LATELOAD
+
+	if(bluespace_radio && (bs_tx_preload_id || bs_rx_preload_id))
+		return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/LateInitialize()
-	. = ..()
-	if(bluespace_radio)
-		if(bs_tx_preload_id)
-			//Try to find a receiver
-			for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)
-				if(RX.id == bs_tx_preload_id) //Again, bs_tx is the thing to TRANSMIT TO, so a receiver.
-					bs_tx_weakref = WEAKREF(RX)
-					RX.link_radio(src)
+	if(bs_tx_preload_id)
+		//Try to find a receiver
+		for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)
+			if(RX.id == bs_tx_preload_id) //Again, bs_tx is the thing to TRANSMIT TO, so a receiver.
+				bs_tx_weakref = WEAKREF(RX)
+				RX.link_radio(src)
+				break
+		//Hmm, howabout an AIO machine
+		if(!bs_tx_weakref)
+			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+				if(AIO.id == bs_tx_preload_id)
+					bs_tx_weakref = WEAKREF(AIO)
+					AIO.link_radio(src)
 					break
-			//Hmm, howabout an AIO machine
-			if(!bs_tx_weakref)
-				for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
-					if(AIO.id == bs_tx_preload_id)
-						bs_tx_weakref = WEAKREF(AIO)
-						AIO.link_radio(src)
-						break
-			if(!bs_tx_weakref)
-				testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+		if(!bs_tx_weakref)
+			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
-		if(bs_rx_preload_id)
-			var/found = 0
-			//Try to find a transmitter
-			for(var/obj/machinery/telecomms/broadcaster/TX in telecomms_list)
-				if(TX.id == bs_rx_preload_id) //Again, bs_rx is the thing to RECEIVE FROM, so a transmitter.
-					TX.link_radio(src)
+	if(bs_rx_preload_id)
+		var/found = 0
+		//Try to find a transmitter
+		for(var/obj/machinery/telecomms/broadcaster/TX in telecomms_list)
+			if(TX.id == bs_rx_preload_id) //Again, bs_rx is the thing to RECEIVE FROM, so a transmitter.
+				TX.link_radio(src)
+				found = 1
+				break
+		//Hmm, howabout an AIO machine
+		if(!found)
+			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+				if(AIO.id == bs_rx_preload_id)
+					AIO.link_radio(src)
 					found = 1
 					break
-			//Hmm, howabout an AIO machine
-			if(!found)
-				for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
-					if(AIO.id == bs_rx_preload_id)
-						AIO.link_radio(src)
-						found = 1
-						break
-			if(!found)
-				testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+		if(!found)
+			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
 /obj/item/radio/Destroy()
 	qdel(wires)
