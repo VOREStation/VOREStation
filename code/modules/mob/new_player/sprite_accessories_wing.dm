@@ -615,7 +615,7 @@
 	name = "Naga wings"
 	desc = ""
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
-	icon_state = "naga_wings"
+	icon_state = "naga_wing"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
