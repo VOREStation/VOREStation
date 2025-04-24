@@ -129,6 +129,6 @@
 	has_vore_belly_resting_sprites = FALSE
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
-	sprite_decals = list("breastplate")
+	sprite_decals = list("breastplate", "maidoutfit")
 	icon_x = 32
 	pixel_x = 0
