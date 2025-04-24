@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "a crash when an empty regular expression was used in highlight blacklists"
