@@ -112,7 +112,7 @@
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		if(H.client)
-			H.client.screen |= global_hud.meson
+			H.client.screen |= GLOB.global_hud.meson
 
 /datum/nifsoft/material
 	name = "Material Scanner"
@@ -132,7 +132,7 @@
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		if(H.client)
-			H.client.screen |= global_hud.material
+			H.client.screen |= GLOB.global_hud.material
 
 /datum/nifsoft/thermals
 	name = "Thermal Scanner"
@@ -153,7 +153,7 @@
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		if(H.client)
-			H.client.screen |= global_hud.thermal
+			H.client.screen |= GLOB.global_hud.thermal
 
 /datum/nifsoft/nightvis
 	name = "Low-Light Amp"
@@ -173,4 +173,4 @@
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		if(H.client)
-			H.client.screen |= global_hud.nvg
+			H.client.screen |= GLOB.global_hud.nvg

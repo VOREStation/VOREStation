@@ -252,3 +252,6 @@
 2025-04-23:
   Cerami:
   - bugfix: Your loadout items won't poof
+2025-04-24:
+  Asher-42:
+  - bugfix: resting causing an error
