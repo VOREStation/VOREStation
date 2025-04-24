@@ -28,6 +28,7 @@ import './styles/themes/wizard.scss';
 import './styles/themes/admin.scss';
 import './styles/themes/abstract.scss';
 import './styles/themes/bingle.scss';
+import './styles/themes/algae.scss';
 
 import { perf } from 'common/perf';
 import { setupGlobalEvents } from 'tgui-core/events';
