@@ -2520,12 +2520,12 @@
 		fyrdsgen--
 
 /datum/lore/organization/gov/teshari
-	name = "Teshari Expeditionary Fleet"
-	short_name = "Teshari Expeditionary"
-	acronym = "TEF"
-	desc = "Though nominally a client state of the skrell, the teshari nevertheless maintain their own navy in the form of the Teshari Expeditionary Fleet. The TEF are as much civil and combat engineers as a competent space force, as they are the tip of the spear when it comes to locating and surveying new worlds suitable for teshari habitation, and in the establishment of full colonies. That isn't to say there aren't independent teshari colonies out there, but those that are founded under the wings of the TEF tend to be the largest and most prosperous. They're also responsible for maintaining the security of these colonies and protecting trade ships. Like the USDF (and unlike most other governmental fleets), TEF vessels almost universally sport the 'TEF' designator rather than specific terms.\
+	name = "Teshari Union"
+	short_name = "Teshari"
+	acronym = "TUV"
+	desc = "Though nominally a client state of the skrell, the Teshari Union nevertheless maintain their own navy of primarily civilian ships. The fleets of the TUV are the primary source of Teshari expansion, and effectively are the nation itself. That isn't to say there aren't independent teshari colonies out there, but those that are founded under the wings of the TUV tend to be the largest and most prosperous. They're also responsible for maintaining the security of these colonies and protecting trade ships, although heavier work is done by their Skrell allies. Like the USDF (and unlike most other governmental fleets), TU vessels almost universally sport the 'TUV' designator rather than specific terms.\
 	<br><br>\
-	The TEF's ships are named after famous teshari pioneers and explorers and the events surrounding those individuals."
+	The TU's ships are named after famous teshari pioneers and explorers and the events surrounding those individuals."
 	history = ""
 	work = "teshari colonization and infrastructure maintenance"
 	headquarters = "Qerr'balak, Qerr'valis"
@@ -2533,18 +2533,18 @@
 	autogenerate_destination_names = TRUE //big list of own holdings to come
 
 	org_type = "government"
-	//the tesh expeditionary fleet's closest analogue in modern terms would be the US Army Corps of Engineers, just with added combat personnel as well
-	ship_prefixes = list("TEF" = "a diplomatic", "TEF" = "a peacekeeping", "TEF" = "an escort", "TEF" = "an exploration", "TEF" = "a survey", "TEF" = "an expeditionary", "TEF" = "a pioneering")
+	//its more or less a civilian fleet of ships that have a few armed ones sprinkled in to deter pirates when needed. They call in the Skrell for anything heavier.
+	ship_prefixes = list("TUV" = "a diplomatic", "TUV" = "a peacekeeping", "TUV" = "an escort", "TUV" = "an exploration", "TUV" = "a survey", "TUV" = "an expeditionary", "TUV" = "a pioneering")
 	//TODO: better ship names? I just took a bunch of random teshnames from the Random Name button and added a word.
 	ship_names = list()
 	destination_names = list(
-			"an Expeditionary Fleet RV point",
-			"an Expeditionary Fleet Resupply Ship",
-			"an Expeditionary Fleet Supply Depot",
+			"an expeditionary fleet RV point",
+			"an expeditionary fleet Resupply Ship",
+			"an expeditionary fleet Supply Depot",
 			"a newly-founded Teshari colony",
 			"a prospective Teshari colony site",
 			"a potential Teshari colony site",
-			"Expeditionary Fleet HQ"
+			"a fleet hub"
 			)
 
 /datum/lore/organization/gov/teshari/New()
