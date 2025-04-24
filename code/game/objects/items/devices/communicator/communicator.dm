@@ -351,8 +351,8 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 
 /obj/machinery/camera/communicator/Initialize(mapload)
 	. = ..()
-	client_huds |= global_hud.whitense
-	client_huds |= global_hud.darkMask
+	client_huds |= GLOB.global_hud.whitense
+	client_huds |= GLOB.global_hud.darkMask
 
 //It's the 26th century. We should have smart watches by now.
 /obj/item/communicator/watch
