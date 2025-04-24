@@ -367,11 +367,11 @@ class ChatRenderer {
             // We're not going to let regex characters fuck up our RegEx operation.
             line = line.replace(regexEscapeCharacters, '\\$&');
 
-            blacklistWords.push('^\\s*' + line);
-            blacklistWords.push('^\\[\\d+:\\d+\\]\\s*' + line);
+            blacklistWords.push(line);
           }
+          blacklistWords = blacklistWords.join('|');
         }
-        const regexStrBL = blacklistWords ? blacklistWords.join('|') : '';
+        const regexStrBL = blacklistWords;
         const flagsBL = 'i';
         // We wrap this in a try-catch to ensure that broken regex doesn't break
         // the entire chat.
@@ -665,11 +665,13 @@ class ChatRenderer {
         // Highlight text
         if (!message.avoidHighlighting && this.highlightParsers) {
           this.highlightParsers.map((parser) => {
+            const ourUser = node.getElementsByClassName('name');
             if (
               !(
                 parser.highlightBlacklist &&
                 parser.blacklistregex &&
-                parser.blacklistregex.test(node.textContent)
+                ourUser.length > 0 &&
+                parser.blacklistregex.test(ourUser[0].textContent)
               )
             ) {
               const highlighted = highlightNode(
