@@ -371,7 +371,7 @@ class ChatRenderer {
             blacklistWords.push('^\\[\\d+:\\d+\\]\\s*' + line);
           }
         }
-        const regexStrBL = blacklistWords.join('|');
+        const regexStrBL = blacklistWords ? blacklistWords.join('|') : '';
         const flagsBL = 'i';
         // We wrap this in a try-catch to ensure that broken regex doesn't break
         // the entire chat.
