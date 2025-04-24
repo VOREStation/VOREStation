@@ -1,0 +1,4 @@
+author: "MeepleMuncher"
+delete-after: True
+changes:
+  - bugfix: "Fixed an old programming error that caused hell ramen and soemmerfire to continuously increase the body temperature of the mob that ingested it."
