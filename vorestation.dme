@@ -2029,6 +2029,7 @@
 #include "code\modules\asset_cache\assets\fontawesome.dm"
 #include "code\modules\asset_cache\assets\icon_ref_map.dm"
 #include "code\modules\asset_cache\assets\jquery.dm"
+#include "code\modules\asset_cache\assets\microwave.dm"
 #include "code\modules\asset_cache\assets\ntos.dm"
 #include "code\modules\asset_cache\assets\permissions.dm"
 #include "code\modules\asset_cache\assets\preferences.dm"
