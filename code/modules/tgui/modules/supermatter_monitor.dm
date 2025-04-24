@@ -21,7 +21,7 @@
 	if(!z)
 		return
 	var/valid_z_levels = using_map.get_map_levels(z)
-	for(var/obj/machinery/power/supermatter/S in machines)
+	for(var/obj/machinery/power/supermatter/S in GLOB.machines)
 		// Delaminating, not within coverage, not on a tile.
 		if(S.grav_pulling || S.exploded || !(S.z in valid_z_levels) || !istype(S.loc, /turf/))
 			continue

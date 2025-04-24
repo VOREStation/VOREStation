@@ -6,7 +6,7 @@
 	event_type = /datum/event2/event/money_hacker
 
 /datum/event2/meta/money_hacker/get_weight()
-	var/command = metric.count_people_with_job(/datum/job/hop) + metric.count_people_with_job(/datum/job/captain)
+	var/command = GLOB.metric.count_people_with_job(/datum/job/hop) + GLOB.metric.count_people_with_job(/datum/job/captain)
 
 	if(!command)
 		return 0
@@ -34,13 +34,13 @@
 	Notifications will be sent as updates occur."
 	var/my_department = "[location_name()] Firewall Subroutines"
 
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active)
 			continue
 		MS.send_rc_message(JOB_HEAD_OF_PERSONNEL + "'s Desk", my_department, "[message]<br>", "", "", 2)
 
 	// Nobody reads the requests consoles so lets use the radio as well.
-	global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
+	GLOB.global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
 
 /datum/event2/event/money_hacker/end()
 	var/message = null
@@ -55,11 +55,11 @@
 
 	var/my_department = "[location_name()] Firewall Subroutines"
 
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active) continue
 		MS.send_rc_message(JOB_HEAD_OF_PERSONNEL + "'s Desk", my_department, message, "", "", 2)
 
-	global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
+	GLOB.global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
 
 /datum/event2/event/money_hacker/proc/hack_account(datum/money_account/A)
 	// Subtract the money.

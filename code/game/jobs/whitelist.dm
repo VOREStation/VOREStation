@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 		return 0
 
 	//Module is not even whitelisted
-	if(!(module in whitelisted_module_types))
+	if(!(module in GLOB.whitelisted_module_types))
 		return 1
 
 	//If we have a loaded file, search it

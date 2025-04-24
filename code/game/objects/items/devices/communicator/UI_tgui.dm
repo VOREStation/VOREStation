@@ -305,8 +305,8 @@
 /obj/item/communicator/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	// Update manifest'
-	if(data_core)
-		data_core.get_manifest_list()
+	if(GLOB.data_core)
+		GLOB.data_core.get_manifest_list()
 	data["manifest"] = GLOB.PDA_Manifest
 	data["mapRef"] = map_name
 	return data

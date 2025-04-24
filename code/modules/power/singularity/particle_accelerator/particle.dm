@@ -37,8 +37,7 @@
 /obj/effect/accelerated_particle/Initialize(mapload, dir = 2)
 	. = ..()
 	set_dir(dir)
-	addtimer(CALLBACK(src, PROC_REF(move)), 0.1 SECONDS)
-
+	move(0.1 SECONDS)
 
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if (A)

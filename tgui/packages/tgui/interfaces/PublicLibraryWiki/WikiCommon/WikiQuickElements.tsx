@@ -80,7 +80,7 @@ export const MinMaxBoxTemperature = (props: {
       {' | '}
       <MinMaxBox
         min={realMin - zeroC}
-        max={realMax}
+        max={realMax - zeroC}
         minColor={minColor}
         maxColor={maxColor}
         unit="°C"

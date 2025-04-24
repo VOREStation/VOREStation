@@ -257,14 +257,11 @@
 				else
 					dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's dermis.")
 					dat += "<br>"
-		if(LAZYLEN(C.viruses))
+		if(C.IsInfected())
 			for (var/datum/disease/virus in C.GetViruses())
 				if(virus.visibility_flags & HIDDEN_SCANNER || virus.visibility_flags & HIDDEN_PANDEMIC)
 					continue
-				virus.discovered = TRUE
-				dat += span_warning("Warning: [virus.name] detected in subject's blood.")
-				dat += "<br>"
-				dat += span_warning("Severity: [virus.severity]")
+				dat += span_alert(span_bold("Warning: [virus.form] detected in subject's blood."))
 				dat += "<br>"
 	if (M.getCloneLoss())
 		dat += span_warning("Subject appears to have been imperfectly cloned.")

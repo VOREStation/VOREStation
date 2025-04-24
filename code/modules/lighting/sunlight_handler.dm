@@ -62,7 +62,7 @@
 	GENERATE_MISSING_CORNERS(holder) //Somehow corners are self destructing under specific circumstances. Likely race conditions. This is slightly unoptimal but may be necessary.
 	sunlight_check() //Also not optimal but made necessary by race conditions
 	sunlight_update()
-	for(var/dir in (cardinal + cornerdirs))
+	for(var/dir in (GLOB.cardinal + GLOB.cornerdirs))
 		var/turf/simulated/T = get_step(holder, dir)
 		if(istype(T) && T.shandler)
 			T.shandler.sunlight_update()
@@ -168,7 +168,7 @@
 	if(try_get_sun() && !holder.is_outdoors() && !holder.density)
 		var/outside_near = FALSE
 		outer_loop:
-			for(var/dir in cardinal)
+			for(var/dir in GLOB.cardinal)
 				var/steps = 1
 				var/turf/cur_turf = get_step(holder,dir)
 				while(cur_turf && !cur_turf.density && steps < (SUNLIGHT_RADIUS + 1))
@@ -177,10 +177,10 @@
 						break outer_loop
 					steps += 1
 					cur_turf = get_step(cur_turf,dir)
-		if(!outside_near) //If cardinal directions fail, then check diagonals.
+		if(!outside_near) //If GLOB.cardinal directions fail, then check diagonals.
 			var/radius = ONE_OVER_SQRT_2 * SUNLIGHT_RADIUS + 1
 			outer_loop:
-				for(var/dir in cornerdirs)
+				for(var/dir in GLOB.cornerdirs)
 					var/steps = 1
 					var/turf/cur_turf = get_step(holder,dir)
 					var/opp_dir = turn(dir,180)

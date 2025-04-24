@@ -4,7 +4,7 @@
 // Data expects a "url" field pointing to the current hosted server and port to connect on.
 /decl/webhook/roundstart/get_message(var/list/data)
 	. = ..()
-	var/desc = "Gamemode: **[global.master_mode]**\n"
+	var/desc = "Gamemode: **[GLOB.master_mode]**\n"
 	desc += "Players: **[global.player_list.len]**"
 	if(data && data["url"])
 		desc += "\nAddress: <[data["url"]]>"
