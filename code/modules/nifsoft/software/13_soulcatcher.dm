@@ -487,6 +487,7 @@
 	return 1
 
 /mob/observer/eye/ar_soul/proc/human_moved()
+	SIGNAL_HANDLER
 	if(!can_see(parent_human,src))
 		forceMove(get_turf(parent_human))
 

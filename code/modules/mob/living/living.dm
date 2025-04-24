@@ -1371,6 +1371,7 @@
 		qdel_null(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1386,6 +1387,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/owner = user
 	if(owner.client?.prefs)
 		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)

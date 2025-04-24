@@ -332,6 +332,7 @@
 
 // Handles the vore fx updates for the captured souls
 /obj/soulgem/proc/soulgem_show_vfx(var/update, var/severity = 0)
+	SIGNAL_HANDLER
 	if(linked_belly)
 		for(var/mob/living/L in brainmobs)
 			if(flag_check(SOULGEM_SHOW_VORE_SFX))

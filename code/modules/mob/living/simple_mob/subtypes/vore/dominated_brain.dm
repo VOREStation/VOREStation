@@ -52,11 +52,13 @@
 	pred_was_deleted()
 
 /mob/living/dominated_brain/proc/prey_was_deleted()
+	SIGNAL_HANDLER
 	if(prey_body)
 		UnregisterSignal(prey_body, COMSIG_PARENT_QDELETING)
 		prey_body = null
 
 /mob/living/dominated_brain/proc/pred_was_deleted()
+	SIGNAL_HANDLER
 	if(pred_body)
 		UnregisterSignal(pred_body, COMSIG_PARENT_QDELETING)
 		pred_body = null

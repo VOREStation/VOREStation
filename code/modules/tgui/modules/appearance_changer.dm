@@ -867,6 +867,7 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner) // Copied from the vore version.
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -1000,6 +1001,7 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner)
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -1091,7 +1093,7 @@
 	owner.invisibility = 101
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
