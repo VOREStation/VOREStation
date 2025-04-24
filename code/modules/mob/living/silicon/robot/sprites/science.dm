@@ -220,6 +220,8 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","loincloth","eyecover")

@@ -121,8 +121,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 
 /obj/machinery/telecomms/LateInitialize()
-	. = ..()
-
 	//Set the listening_level if there's none.
 	if(!listening_level)
 		//Defaults to our Z level!
