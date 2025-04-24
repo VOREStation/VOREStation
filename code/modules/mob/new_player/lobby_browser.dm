@@ -29,12 +29,17 @@
 /mob/new_player/tgui_state(mob/user)
 	return GLOB.tgui_always_state
 
+/mob/new_player/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/simple/lobby_files)
+
 /mob/new_player/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["map"] = using_map.full_name
 	data["station_time"] = stationtime2text()
-	data["round_start"] = !SSticker || !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
+	data["display_loading"] = SSticker.current_state == GAME_STATE_INIT
+	data["round_start"] = !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
 	data["round_time"] = roundduration2text()
 	data["ready"] = ready
 	data["new_news"] = client?.check_for_new_server_news()
@@ -42,6 +47,14 @@
 	data["show_station_news"] = GLOB.news_data.station_newspaper
 	data["new_station_news"] = client.prefs.lastlorenews != GLOB.news_data.newsindex
 	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash
+
+	return data
+
+/mob/new_player/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	data["bg"] = lobby_image.icon
+	data["bg_state"] = lobby_image.icon_state
 
 	return data
 
@@ -135,4 +148,7 @@
 		if("open_changelog")
 			write_preference_directly(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
 			client.changes()
+			return TRUE
+		if("keyboard")
+			playsound_local(ui.user, get_sfx("keyboard"), vol = 20)
 			return TRUE
