@@ -198,6 +198,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/storage/box/beakers,
 				prob(2);/obj/item/storage/box/bodybags,
 				prob(3);/obj/item/storage/box/syringes,
+				prob(3);/obj/item/storage/box/old_syringes,
 				prob(3);/obj/item/storage/box/gloves,
 				prob(2);/obj/item/storage/belt/medical/emt,
 				prob(2);/obj/item/storage/belt/medical,
