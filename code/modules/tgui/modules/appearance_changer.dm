@@ -1093,7 +1093,7 @@
 	owner.invisibility = 101
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
+	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
 
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
