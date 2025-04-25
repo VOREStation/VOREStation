@@ -33,6 +33,7 @@
 	var/interface_path = "RIGSuit"
 	var/ai_interface_path = "RIGSuit"
 	var/interface_title = "Hardsuit Controller"
+	var/interface_intro = "NT"
 	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
 

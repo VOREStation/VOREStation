@@ -121,6 +121,16 @@ GLOBAL_DATUM_INIT(rigsuit_ui_icon, /icon, 'icons/hud/rig_ui_slots.dmi')
 	return data
 
 /*
+ * Sends data once each time the UI is opened.
+ */
+/obj/item/rig/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	data["interface_intro"] = interface_intro
+
+	return data
+
+/*
  * tgui_act() is the TGUI equivelent of Topic(). It's responsible for all of the "actions" you can take in the UI.
  */
 /obj/item/rig/tgui_act(action, params, datum/tgui/ui)
