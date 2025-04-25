@@ -266,7 +266,7 @@
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/engineering/dullahanv3
-	name = "Dullahan v2"
+	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/engineer.dmi'
 	sprite_icon_state = "dullahanengineer"
 	has_eye_light_sprites = TRUE
