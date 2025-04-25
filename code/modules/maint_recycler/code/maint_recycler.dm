@@ -132,7 +132,7 @@
 
 /obj/machinery/maint_recycler/Destroy()
 	if(inserted_item)
-		inserted_item.loc = get_turf(src)
+		inserted_item.forceMove(get_turf(src))
 		inserted_item = null
 
 	if(hatch)
