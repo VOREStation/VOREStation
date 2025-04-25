@@ -181,6 +181,12 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	if(!(pref.blood_reagents == "default"))
 		new_S.blood_reagents = pref.blood_reagents
 
+	var/species_sounds_to_copy = pref.species_sound // What sounds are we using?
+	if(species_sounds_to_copy == "Unset") // Are we unset?
+		species_sounds_to_copy = select_default_species_sound(pref) // This will also grab gendered versions of the sounds, if they exist.
+
+	new_S.species_sounds = species_sounds_to_copy // Now we send our sounds over to the mob
+
 	if(pref.species == SPECIES_CUSTOM)
 		//Statistics for this would be nice
 		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")

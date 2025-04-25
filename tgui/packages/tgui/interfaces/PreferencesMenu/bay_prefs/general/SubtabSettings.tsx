@@ -53,6 +53,7 @@ export const SubtabSettings = (props: {
     syndicate_ban,
     special_roles,
     custom_footstep,
+    custom_species_sound,
     custom_speech_bubble,
     persistence_settings,
     show_in_directory,
@@ -132,6 +133,57 @@ export const SubtabSettings = (props: {
                     <Button onClick={() => act('customize_footsteps')}>
                       {custom_footstep}
                     </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Custom Species Sounds">
+                    <Button onClick={() => act('customize_species_sounds')}>
+                      {custom_species_sound}
+                    </Button>
+                    <Stack>
+                      <Stack.Item>
+                        <Button
+                          icon="head-side-cough"
+                          tooltip="Test Cough Sound"
+                          onClick={() => act('cough_test')}
+                        />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          icon="box-tissue"
+                          tooltip="Test Sneeze Sound"
+                          onClick={() => act('sneeze_test')}
+                        />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          icon="person-harassing"
+                          tooltip="Test Screan Sound"
+                          onClick={() => act('scream_test')}
+                        />
+                      </Stack.Item>
+                    </Stack>
+                    <Stack>
+                      <Stack.Item>
+                        <Button
+                          icon="bandage"
+                          tooltip="Test Pain Sound"
+                          onClick={() => act('pain_test')}
+                        />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          icon="lungs"
+                          tooltip="Test Gasp Sound"
+                          onClick={() => act('gasp_test')}
+                        />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          icon="skull"
+                          tooltip="Test Death Sound"
+                          onClick={() => act('death_test')}
+                        />
+                      </Stack.Item>
+                    </Stack>
                   </LabeledList.Item>
                   <LabeledList.Item label="Event Volunteer">
                     <Button

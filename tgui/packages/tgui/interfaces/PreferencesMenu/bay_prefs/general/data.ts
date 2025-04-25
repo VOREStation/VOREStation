@@ -252,6 +252,7 @@ export type SizeData = {
   voice_freq: number;
   voice_sound: string;
   custom_speech_bubble: string;
+  custom_species_sound: string;
   custom_footstep: string;
   weight_vr: number;
   weight_gain: number;

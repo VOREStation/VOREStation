@@ -16,7 +16,7 @@ var/list/talk_sound_map = rlist(
 									"goon speak pugg",
 									"goon speak roach",
 									"goon speak skelly",
-									// "xeno speak" // Does not exist on virgo
+									"xeno speak"
 								),
 								list(
 									GLOB.talk_sound,
@@ -33,7 +33,7 @@ var/list/talk_sound_map = rlist(
 									GLOB.goon_speak_pugg_sound,
 									GLOB.goon_speak_roach_sound,
 									GLOB.goon_speak_skelly_sound,
-									// xeno_speak_sound // Does not exist on virgo
+									GLOB.xeno_speak_sound
 									)
 								)
 

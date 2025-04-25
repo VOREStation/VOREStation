@@ -134,7 +134,6 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/LateInitialize() //Needs to happen after overmap sectors are initialized so we can figure out where we are
 	update_list()
 	update_areas()
-	return ..()
 
 /obj/machinery/gravity_generator/main/set_fix()
 	. = ..()
