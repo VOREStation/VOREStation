@@ -68,7 +68,6 @@
 		cut_overlay(em_block)
 		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(em_block)
-	set_listening(NON_LISTENING_ATOM)
 	. = ..()
 
 	unbuckle_all_mobs()
@@ -90,7 +89,8 @@
 
 	if(orbiting)
 		stop_orbit()
-	QDEL_NULL(riding_datum) //VOREStation Add
+	QDEL_NULL(riding_datum)
+	set_listening(NON_LISTENING_ATOM)
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
