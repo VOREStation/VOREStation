@@ -150,5 +150,8 @@
 			client.changes()
 			return TRUE
 		if("keyboard")
+			if(!SSsounds.subsystem_initialized)
+				return
+
 			playsound_local(ui.user, get_sfx("keyboard"), vol = 20)
 			return TRUE
