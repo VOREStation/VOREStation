@@ -59,12 +59,16 @@
 			AddComponent(/datum/component/overlay_lighting, starts_on = light_on)
 		if(MOVABLE_LIGHT_DIRECTIONAL)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
+	if (listening_recursive)
+		set_listening(listening_recursive)
+
 
 /atom/movable/Destroy()
 	if(em_block)
 		cut_overlay(em_block)
 		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(em_block)
+	set_listening(NON_LISTENING_ATOM)
 	. = ..()
 
 	unbuckle_all_mobs()
@@ -676,15 +680,6 @@
 
 /atom/movable/proc/exit_belly(obj/belly/B)
 	return
-
-/atom/movable/New()
-	. = ..()
-	if (listening_recursive)
-		set_listening(listening_recursive)
-
-/atom/movable/Destroy()
-	. = ..()
-	set_listening(NON_LISTENING_ATOM)
 
 /atom/movable/proc/set_listening(var/set_to)
 	if (listening_recursive && !set_to)
