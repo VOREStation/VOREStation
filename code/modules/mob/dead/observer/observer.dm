@@ -1063,7 +1063,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(choice == "Yes")
 			paiController.recruitWindow(src)
 		var/count = 0
-		for(var/obj/item/paicard/p in all_pai_cards)
+		for(var/obj/item/paicard/p in GLOB.all_pai_cards)
 			var/obj/item/paicard/PP = p
 			if(PP.pai == null)
 				count++

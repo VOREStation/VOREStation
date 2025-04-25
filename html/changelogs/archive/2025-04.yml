@@ -255,3 +255,18 @@
 2025-04-24:
   Asher-42:
   - bugfix: resting causing an error
+2025-04-25:
+  Kashargul:
+  - bugfix: a crash when an empty regular expression was used in highlight blacklists
+  - code_imp: some less usr
+  MeepleMuncher:
+  - bugfix: Fixed an old programming error that caused hell ramen and soemmerfire
+      to continuously increase the body temperature of the mob that ingested it.
+  ShadowLarkens:
+  - rscadd: Pretty UI for the algae farm
+  - rscadd: Slightly prettier Canister UI.
+  - rscadd: Microwave UI is prettier now~
+  TheCaramelion:
+  - qol: Virus extrapolator can now identify stealthy viruses
+  - rscdel: Removed "old vomit" spreading viruses
+  - bugfix: Makes vaccines work again

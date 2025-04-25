@@ -34,6 +34,7 @@
 	var/opacity_check
 	var/pref_check
 	var/exclusive
+	var/volume_chan
 
 	var/timerid
 	var/started

@@ -1,0 +1,10 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - rscadd: "You can now crawl while down!"
+  - rscadd: "Species now have specific sounds and gendered sounds."
+  - qol: "Weather can now be turned up/down in the character preferences"
+  - balance: "Xenochimera have licking wounds"
+  - qol: "Bellyrubbing is now an emote"
+  - rscadd: "Wolves now have vore stomachs"
+  - qol: "Staff can see when each other log out"

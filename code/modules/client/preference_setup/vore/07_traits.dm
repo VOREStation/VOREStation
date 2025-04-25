@@ -267,6 +267,15 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	if(!(pref.blood_reagents == "default"))
 		new_S.blood_reagents = pref.blood_reagents
 
+	//Any additional non-trait settings can be applied here
+	new_S.blood_color = pref.blood_color
+
+	var/species_sounds_to_copy = pref.species_sound // What sounds are we using?
+	if(species_sounds_to_copy == "Unset") // Are we unset?
+		species_sounds_to_copy = select_default_species_sound(pref) // This will also grab gendered versions of the sounds, if they exist.
+
+	new_S.species_sounds = species_sounds_to_copy // Now we send our sounds over to the mob
+
 	if(pref.species == SPECIES_CUSTOM)
 		//Statistics for this would be nice
 		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")
@@ -286,6 +295,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 	var/points_left = pref.starting_trait_points
 
+
 	for(var/T in pref.pos_traits + pref.neg_traits)
 		points_left -= GLOB.traits_costs[T]
 		if(T in pref.pos_traits)
@@ -295,21 +305,21 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
 		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
 
-	. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait(s) (Limited) +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.pos_traits)
 		var/datum/trait/trait = GLOB.positive_traits[T]
 		. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.pos_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait(s) (No Limit) +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neu_traits)
 		var/datum/trait/trait = GLOB.neutral_traits[T]
 		. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neu_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait(s) (No Limit) +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neg_traits)
 		var/datum/trait/trait = GLOB.negative_traits[T]
