@@ -1217,7 +1217,7 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob = new
+var/mob/dview/dview_mob
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
@@ -1225,7 +1225,6 @@ var/mob/dview/dview_mob = new
 		return
 	if(!dview_mob) //VOREStation Add: Debugging
 		dview_mob = new
-		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 

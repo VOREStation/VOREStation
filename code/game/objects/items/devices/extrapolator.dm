@@ -148,7 +148,6 @@
 	. = TRUE
 	var/list/result = target?.extrapolator_act(user, target)
 	var/list/diseases = result[EXTRAPOLATOR_RESULT_DISEASES]
-	var/show_message = FALSE
 	if(!length(diseases))
 		return FALSE
 	if(EXTRAPOLATOR_ACT_CHECK(result, EXTRAPOLATOR_ACT_PRIORITY_SPECIAL))
@@ -160,9 +159,6 @@
 		for(var/datum/disease/disease in diseases)
 			if(istype(disease, /datum/disease/advance))
 				var/datum/disease/advance/advance_disease = disease
-				if(advance_disease.stealth >= maximum_stealth)
-					continue
-				show_message = TRUE
 				var/list/properties
 				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
@@ -174,10 +170,7 @@
 					message += "[symptom.name]"
 			else
 				message += span_info("<b>[disease.name]</b>, stage [disease.stage]/[disease.max_stages].")
-	if(show_message)
-		to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
-	else
-		to_chat(user, span_notice("[icon2html(src, user)] \The [src] fails to return any data."))
+	to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 
 /obj/item/extrapolator/proc/extrapolate(mob/living/user, atom/target, isolate = FALSE)
 	. = FALSE
