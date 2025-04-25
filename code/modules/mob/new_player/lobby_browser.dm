@@ -53,8 +53,8 @@
 /mob/new_player/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	data["bg"] = lobby_image.icon
-	data["bg_state"] = lobby_image.icon_state
+	data["bg"] = 'icons/misc/loading.dmi'
+	data["bg_state"] = "loading"
 
 	return data
 
@@ -134,7 +134,7 @@
 			handle_server_news()
 			return TRUE
 		if("give_feedback")
-			if(!SSsqlite.can_submit_feedback(my_client))
+			if(!SSsqlite.can_submit_feedback(GLOB.directory[persistent_ckey]))
 				return
 
 			if(client.feedback_form)
