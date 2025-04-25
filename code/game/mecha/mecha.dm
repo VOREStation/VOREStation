@@ -1872,7 +1872,7 @@
 	src.log_message("Toggled strafing mode [strafing?"on":"off"].")
 	return
 
-/obj/mecha/MouseDrop_T(mob/O, mob/user as mob)
+/obj/mecha/MouseDrop_T(mob/O, mob/user)
 	//Humans can pilot mechs.
 	if(!ishuman(O))
 		return
@@ -1881,13 +1881,13 @@
 	if(O != user)
 		return
 
-	move_inside()
+	move_inside(user)
 
 /obj/mecha/verb/enter()
 	set category = "Object"
 	set name = "Enter Exosuit"
 	set src in oview(1)
-	move_inside()
+	move_inside(usr)
 
 //returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
 //since is_type_in_list uses caching, this is a slower operation, so only use it if needed
@@ -1897,65 +1897,65 @@
 			return ME
 	return null
 
-/obj/mecha/proc/move_inside()
-	if (usr.stat || !ishuman(usr))
+/obj/mecha/proc/move_inside(mob/user)
+	if (user.stat || !ishuman(user) || user.is_incorporeal())
 		return
 
-	if (usr.buckled)
-		to_chat(usr, span_warning("You can't climb into the exosuit while buckled!"))
+	if (user.buckled)
+		to_chat(user, span_warning("You can't climb into the exosuit while buckled!"))
 		return
 
-	src.log_message("[usr] tries to move in.")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	src.log_message("[user] tries to move in.")
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
 		if(C.handcuffed)
-			to_chat(usr, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
+			to_chat(user, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 	if (src.occupant)
-		to_chat(usr, span_danger("The [src.name] is already occupied!"))
+		to_chat(user, span_danger("The [src.name] is already occupied!"))
 		src.log_append_to_last("Permission denied.")
 		return
 /*
-	if (usr.abiotic())
-		to_chat(usr, span_notice("Subject cannot have abiotic items on."))
+	if (user.abiotic())
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 */
 	var/passed
 	if(src.dna)
-		if(usr.dna.unique_enzymes==src.dna)
+		if(user.dna.unique_enzymes==src.dna)
 			passed = 1
-	else if(src.operation_allowed(usr))
+	else if(src.operation_allowed(user))
 		passed = 1
 	if(!passed)
 		to_chat(usr, span_warning("Access denied"))
 		src.log_append_to_last("Permission denied.")
 		return
-	if(isliving(usr))
-		var/mob/living/L = usr
+	if(isliving(user))
+		var/mob/living/L = user
 		if(L.has_buckled_mobs())
 			to_chat(L, span_warning("You have other entities attached to yourself. Remove them first."))
 			return
 
-//	to_chat(usr, "You start climbing into [src.name]")
+//	to_chat(user, "You start climbing into [src.name]")
 	if(get_equipment(/obj/item/mecha_parts/mecha_equipment/runningboard))
-		visible_message(span_notice("\The [usr] is instantly lifted into [src.name] by the running board!"))
-		moved_inside(usr)
+		visible_message(span_notice("\The [user] is instantly lifted into [src.name] by the running board!"))
+		moved_inside(user)
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message(span_infoplain(span_bold("\The [usr]") + " starts to climb into [src.name]"))
-		if(enter_after(40,usr))
+		visible_message(span_infoplain(span_bold("\The [user]") + " starts to climb into [src.name]"))
+		if(enter_after(40, user))
 			if(!src.occupant)
-				moved_inside(usr)
+				moved_inside(user)
 				if(ishuman(occupant)) //Aeiou
 					GrantActions(occupant, 1)
-			else if(src.occupant!=usr)
+			else if(src.occupant != user)
 				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
 		else
-			to_chat(usr, "You stop entering the exosuit.")
+			to_chat(user, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
