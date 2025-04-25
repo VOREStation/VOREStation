@@ -18,7 +18,6 @@
 	assets = list(
 		"Grand9K_Pixel.ttf" = file("interface/fonts/Grand9K_Pixel.ttf"),
 		"Pixellari.ttf" = file("interface/fonts/Pixellari.ttf"),
-		"SpessFont.ttf" = file("interface/fonts/SpessFont.ttf"),
 		"TinyUnicode.ttf" = file("interface/fonts/TinyUnicode.ttf"),
 		"VCR_OSD_Mono.ttf" = file("interface/fonts/VCR_OSD_Mono.ttf"),
 	)
