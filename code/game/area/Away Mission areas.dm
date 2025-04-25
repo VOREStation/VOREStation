@@ -22,7 +22,7 @@
 			valid_spawn_turfs |= F
 
 /area/LateInitialize()
-	..()
+	. = ..()
 	EvalValidSpawnTurfs()
 
 	if(!valid_spawn_turfs.len && (mobcountmax || floracountmax))

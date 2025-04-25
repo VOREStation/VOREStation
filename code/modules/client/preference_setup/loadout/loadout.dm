@@ -76,24 +76,22 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
-	var/mob/preference_mob = preference_mob() //VOREStation Add
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
 		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
-			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob.client, GLOB.all_species[G.whitelisted]))
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 				continue
+
 		if(max_cost && G.cost > max_cost)
 			continue
-		//VOREStation Edit Start
-		if(preference_mob && preference_mob.client)
-			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
+		if(pref.client)
+			if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
+			if(G.character_name && !(pref.client.prefs.real_name in G.character_name))
 				continue
-		//VOREStation Edit End
 		. += gear_name
 
 /datum/category_item/player_setup_item/loadout/sanitize_character()

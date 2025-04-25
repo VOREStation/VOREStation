@@ -802,6 +802,8 @@
 
 /obj/item/rig/dropped(mob/user)
 	. = ..(user)
+	// So the next user will see the boot animation
+	tgui_shared_states.Cut()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
 	if(wearer && wearer.wearing_rig == src)
@@ -957,7 +959,7 @@
 			return 0
 
 	if(malfunctioning)
-		direction = pick(cardinal)
+		direction = pick(GLOB.cardinal)
 
 	// Inside an object, tell it we moved.
 	if(isobj(wearer.loc) || ismob(wearer.loc))

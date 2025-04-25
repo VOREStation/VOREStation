@@ -18,7 +18,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/eggsac/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -61,7 +60,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -100,7 +98,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/acidgland/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -119,7 +116,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/hivenode/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -143,7 +139,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/resinspinner/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color

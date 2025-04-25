@@ -303,7 +303,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(GLOB.data_core.general, GLOB.data_core.medical, GLOB.data_core.security, GLOB.data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -1145,8 +1145,8 @@ var/global/list/common_tools = list(
 	if(surface)
 		return surface
 
-/proc/reverse_direction(var/dir)
-	return global.reverse_dir[dir]
+/proc/reverse_direction(dir)
+	return GLOB.reverse_dir[dir]
 
 /*
 Checks if that loc and dir has a item on the wall
@@ -1217,7 +1217,7 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob = new
+var/mob/dview/dview_mob
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
@@ -1225,7 +1225,6 @@ var/mob/dview/dview_mob = new
 		return
 	if(!dview_mob) //VOREStation Add: Debugging
 		dview_mob = new
-		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 

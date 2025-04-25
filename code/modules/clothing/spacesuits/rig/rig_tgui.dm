@@ -1,3 +1,6 @@
+// Just used to force the icon into the rsc, Byond.iconRefMap does the rest
+GLOBAL_DATUM_INIT(rigsuit_ui_icon, /icon, 'icons/hud/rig_ui_slots.dmi')
+
 /*
  * This defines the global UI for RIGSuits.
  * It has all of the relevant TGUI procs, but it's entry point is in rig_verbs.dm

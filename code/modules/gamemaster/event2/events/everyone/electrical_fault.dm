@@ -10,7 +10,7 @@
 	event_type = /datum/event2/event/electrical_fault
 
 /datum/event2/meta/electrical_fault/get_weight()
-	return 10 + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)
+	return 10 + (GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)
 
 
 /datum/event2/event/electrical_fault

@@ -152,7 +152,15 @@
 	return 1
 
 /obj/item/reagent_containers/proc/liquid_belly_check()
+	if(!reagents)
+		return FALSE
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.from_belly)
 			return TRUE
 	return FALSE
+
+/obj/item/reagent_containers/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = ..()
+	EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_ISOLATE)
+	var/datum/reagent/blood/blood = reagents.get_reagent(REAGENT_ID_BLOOD)
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., blood?.get_diseases())
