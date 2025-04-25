@@ -8,7 +8,7 @@ import { classes } from 'tgui-core/react';
 
 import { LobbyContext } from './constants';
 import { LobbyButtons } from './LobbyButtons';
-import { Button } from './LobbyElements';
+import { CustomButton } from './LobbyElements';
 import type { LobbyData } from './types';
 
 export const LobbyMenu = (props) => {
@@ -78,7 +78,7 @@ export const LobbyMenu = (props) => {
           />
           <Box height="100%" width="100%" position="absolute" className="crt" />
           <Box position="absolute" top="10px" right="10px">
-            <Button
+            <CustomButton
               icon="cog"
               onClick={() => {
                 setModal(
@@ -86,12 +86,15 @@ export const LobbyMenu = (props) => {
                     p={5}
                     title="Lobby Settings"
                     buttons={
-                      <Button icon="xmark" onClick={() => setModal(false)} />
+                      <CustomButton
+                        icon="xmark"
+                        onClick={() => setModal(false)}
+                      />
                     }
                   >
                     <Stack>
                       <Stack.Item>
-                        <Button
+                        <CustomButton
                           icon="tv"
                           onClick={() => {
                             storage.set(
@@ -104,10 +107,10 @@ export const LobbyMenu = (props) => {
                           tooltip="Removes the CRT filter background"
                         >
                           {`${filterDisabled ? 'Enable' : 'Disable'} Scanlines`}
-                        </Button>
+                        </CustomButton>
                       </Stack.Item>
                       <Stack.Item>
-                        <Button
+                        <CustomButton
                           icon="volume-xmark"
                           onClick={() => {
                             storage.set('lobby-audio-disabled', !audioDisabled);
@@ -117,10 +120,10 @@ export const LobbyMenu = (props) => {
                           tooltip="Removes the loading audio"
                         >
                           {`${audioDisabled ? 'Enable' : 'Disable'} Audio`}
-                        </Button>
+                        </CustomButton>
                       </Stack.Item>
                       <Stack.Item>
-                        <Button
+                        <CustomButton
                           icon="bolt"
                           onClick={() => {
                             storage.set(
@@ -133,7 +136,7 @@ export const LobbyMenu = (props) => {
                           tooltip="Disables animations."
                         >
                           {`${animationsDisabled ? 'Enable' : 'Disable'} Animations`}
-                        </Button>
+                        </CustomButton>
                       </Stack.Item>
                     </Stack>
                   </Section>,
@@ -143,7 +146,7 @@ export const LobbyMenu = (props) => {
           </Box>
           {hidden && (
             <Box position="absolute" top="10px" left="10px">
-              <Button icon={'check'} onClick={() => setHidden(false)} />
+              <CustomButton icon={'check'} onClick={() => setHidden(false)} />
             </Box>
           )}
           <Stack vertical height="100%" justify="space-around" align="center">

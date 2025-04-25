@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button as NativeButton, Stack } from 'tgui-core/components';
+import { Box, Button, Stack } from 'tgui-core/components';
 
 import { LobbyContext } from './constants';
 import type { LobbyButtonProps, LobbyContextType } from './types';
@@ -49,20 +49,20 @@ export const LobbyButton = (props: LobbyButtonProps) => {
             : `${1.5 + index * 0.2}s`,
       }}
     >
-      <Button fluid className={'distinctButton ' + className} {...rest}>
+      <CustomButton fluid className={'distinctButton ' + className} {...rest}>
         {children}
-      </Button>
+      </CustomButton>
     </Stack.Item>
   );
 };
 
-export const Button = (props) => {
+export const CustomButton = (props) => {
   const { act } = useBackend();
 
   return (
     // this works because of event propagation
     <Box onClick={() => act('keyboard')}>
-      <NativeButton {...props} />
+      <Button {...props} />
     </Box>
   );
 };
