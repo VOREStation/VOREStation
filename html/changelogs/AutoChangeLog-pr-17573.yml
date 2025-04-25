@@ -1,6 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - qol: "Virus extrapolator can now identify stealthy viruses"
-  - rscdel: "Removed \"old vomit\" spreading viruses"
-  - bugfix: "Makes vaccines work again"
