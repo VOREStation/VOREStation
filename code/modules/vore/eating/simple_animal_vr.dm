@@ -32,7 +32,6 @@
 		return
 	*/
 	feed_grabbed_to_self(src,T)
-	//update_icon() CHOMPEdit
 
 /mob/living/simple_mob/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.

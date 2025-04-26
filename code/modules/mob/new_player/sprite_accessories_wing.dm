@@ -611,6 +611,15 @@
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
+/datum/sprite_accessory/wing/naga_wings
+	name = "Naga wings"
+	desc = ""
+	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
+	icon_state = "naga_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	wing_offset = 16
+
 /datum/sprite_accessory/wing/sloogshell
 	name = "Sloog shell"
 	desc = ""
