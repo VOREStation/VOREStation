@@ -270,3 +270,22 @@
   - qol: Virus extrapolator can now identify stealthy viruses
   - rscdel: Removed "old vomit" spreading viruses
   - bugfix: Makes vaccines work again
+2025-04-26:
+  Cameron-The-Raven:
+  - rscadd: You can now crawl while down!
+  - rscadd: Species now have specific sounds and gendered sounds.
+  - qol: Weather can now be turned up/down in the character preferences
+  - balance: Xenochimera have licking wounds
+  - qol: Bellyrubbing is now an emote
+  - rscadd: Wolves now have vore stomachs
+  - qol: Staff can see when each other log out
+  Kashargul:
+  - bugfix: name loading for robot module selection
+  - bugfix: tgui say unsupported channels are no longer black on black in dark mode
+  ShadowLarkens:
+  - qol: RIGSuit UI made prettier and more usable!
+  - rscadd: /tg/'s fonts added, maptext now uses Grand9K Pixel.
+  Willburd:
+  - rscadd: vassilian autohiss
+  - rscadd: yingish autohiss
+  - code_imp: autohiss unit testing
