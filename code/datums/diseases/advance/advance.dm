@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/c3sev
 
 	for(var/datum/symptom/S as() in symptoms)
-		resistance = S.resistance
+		resistance += S.resistance
 		stealth += S.stealth
 		stage_rate += S.stage_speed
 		transmission += S.transmission
