@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "name loading for robot module selection"
-  - bugfix: "tgui say unsupported channels are no longer black on black in dark mode"
