@@ -147,6 +147,7 @@
 	RegisterSignal(shuttle, COMSIG_OBSERVER_SHUTTLE_MOVED, PROC_REF(shuttle_left))
 
 /obj/effect/shuttle_landmark/visiting_shuttle/proc/shuttle_left(datum/shuttle/shuttle, obj/effect/shuttle_landmark/old_landmark, obj/effect/shuttle_landmark/new_landmark)
+	SIGNAL_HANDLER
 	if(old_landmark == src)
 		UnregisterSignal(shuttle, COMSIG_OBSERVER_SHUTTLE_MOVED)
 		LAZYREMOVE(core_landmark.visitors, src)
@@ -156,6 +157,7 @@
 //
 
 /obj/effect/overmap/visitable/ship/landable/proc/pre_shuttle_jump(datum/shuttle/given_shuttle, obj/effect/shuttle_landmark/from, obj/effect/shuttle_landmark/into)
+	SIGNAL_HANDLER
 	if(given_shuttle != SSshuttles.shuttles[shuttle])
 		return
 	if(into == landmark)
@@ -163,6 +165,7 @@
 		UnregisterSignal(SSshuttles.shuttles[shuttle], COMSIG_OBSERVER_SHUTTLE_PRE_MOVE)
 
 /obj/effect/overmap/visitable/ship/landable/proc/on_shuttle_jump(datum/shuttle/given_shuttle, obj/effect/shuttle_landmark/from, obj/effect/shuttle_landmark/into)
+	SIGNAL_HANDLER
 	if(given_shuttle != SSshuttles.shuttles[shuttle])
 		return
 	var/datum/shuttle/autodock/auto = given_shuttle

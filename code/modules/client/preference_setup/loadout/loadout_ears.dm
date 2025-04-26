@@ -40,3 +40,4 @@
 	earrings["dangle, platinum"] = /obj/item/clothing/ears/earring/dangle/platinum
 	earrings["dangle, diamond"] = /obj/item/clothing/ears/earring/dangle/diamond
 	gear_tweaks += new/datum/gear_tweak/path(earrings)
+	gear_tweaks += gear_tweak_free_color_choice

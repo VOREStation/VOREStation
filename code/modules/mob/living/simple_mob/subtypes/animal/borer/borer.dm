@@ -188,6 +188,7 @@
 	Q.query() // This will sleep the proc for awhile.
 
 /mob/living/simple_mob/animal/borer/proc/get_winner()
+	SIGNAL_HANDLER
 	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
 		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)
