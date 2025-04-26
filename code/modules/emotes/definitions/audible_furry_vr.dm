@@ -131,7 +131,7 @@
 /decl/emote/audible/cackle
 	key = "cackle"
 	emote_message_3p = "cackles hysterically!"
-	emote_sound = 'sound/voice/YeenCackle.ogg'
+	emote_sound = 'sound/voice/yeencackle.ogg'
 /decl/emote/audible/spiderchitter
 	key = "spiderchitter"
 	emote_message_3p = "chitters."
