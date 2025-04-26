@@ -102,7 +102,7 @@
 		return FALSE
 	if(H.GetViruses())
 		for(var/datum/disease/D in H.GetSpreadableViruses())
-			if(D.danger == DISEASE_POSITIVE || D.danger == DISEASE_BENEFICIAL)
+			if(D.danger == DISEASE_POSITIVE || D.danger == DISEASE_BENEFICIAL || D.disease_flags & DORMANT || D.spread_flags & DISEASE_SPREAD_FALTERED)
 				continue
 			return FALSE
 	return TRUE

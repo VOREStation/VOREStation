@@ -166,7 +166,9 @@
 				var/list/properties
 				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
-				message += "<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], stage [advance_disease.stage]/5"
+				if(global_flag_check(advance_disease.virus_modifiers, FALTERED))
+					LAZYADD(properties, "faltered")
+				message += span_info("<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], [global_flag_check(advance_disease.virus_modifiers, DORMANT) ? "<i>dormant virus</i>" : "stage [advance_disease.stage]/5"]")
 				if(extracted_ids[advance_disease.GetDiseaseID()])
 					message += "This virus has been extracted by \the [src] previously."
 				message += "[advance_disease.name] has the following symptoms:"
@@ -201,12 +203,12 @@
 	if(!target_disease)
 		return
 	using = TRUE
-	// I'll see about this...
-	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
-	// if(choice == "Symptom")
-	//. = isolate_symptom(user, target, target_disease)
-	// else
-	. = isolate_disease(user, target, target_disease)
+	// Bad idea to comment it out
+	var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
+	if(choice == "Symptom")
+		. = isolate_symptom(user, target, target_disease)
+	else
+		. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)
@@ -243,6 +245,7 @@
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
 	var/datum/disease/advance/D = disease.Copy()
+	D.virus_modifiers &= ~DORMANT
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))

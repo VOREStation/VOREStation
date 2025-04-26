@@ -91,7 +91,7 @@ BONUS
 
 	if(A.transmission >= 12)
 		for(var/datum/disease/D in M.GetViruses())
-			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_CONTACT))
+			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_CONTACT) || (D.spread_flags & DISEASE_SPREAD_FALTERED))
 				continue
 			if(D == A)
 				continue

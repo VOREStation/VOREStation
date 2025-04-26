@@ -481,13 +481,14 @@
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
-/obj/item/reagent_containers/syringe/old
-	mode = SYRINGE_BROKEN
+/obj/item/reagent_containers/syringe/
+	name = "old syringe"
 	desc = "An old, broken syringe. Are you sure it's a good idea to pick it up without gloves?"
+	mode = SYRINGE_BROKEN
 
 /obj/item/reagent_containers/syringe/old/Initialize(mapload)
 	. = ..()
-	if(prob(65))
+	if(prob(75))
 		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(1, 3), rand(7, 9), 2)
 		src.viruses += new_disease
 

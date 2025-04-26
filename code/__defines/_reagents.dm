@@ -281,6 +281,12 @@
 #define REAGENT_ID_PHORONVIRUSFOOD "phoronvirusfood"
 #define REAGENT_WEAKPHORONVIRUSFOOD "Weakened phoronic virus food"
 #define REAGENT_ID_WEAKPHORONVIRUSFOOD "weakphoronvirusfood"
+#define REAGENT_URANIUMVIRUSFOOD "Unstable uranium gel"
+#define REAGENT_ID_URANIUMVIRUSFOOD "uraniumvirusfood"
+#define REAGENT_UNSTABLEURANIUMVIRUSFOOD "Unstable uranium gel"
+#define REAGENT_ID_UNSTABLEURANIUMVIRUSFOOD "unstableuraniumvirusfood"
+#define REAGENT_STABLEURANIUMVIRUSFOOD "Stable uranium gel"
+#define REAGENT_ID_STABLEURANIUMVIRUSFOOD "stableuraniumvirusfood"
 #define REAGENT_SIZEVIRUSFOOD "Sizeoxadone virus food"
 #define REAGENT_ID_SIZEVIRUSFOOD "sizevirusfood"
 

@@ -29,8 +29,13 @@
 	if(HasDisease(D))
 		return FALSE
 
-	if(istype(D, /datum/disease/advance) && count_by_type(GetViruses(), /datum/disease/advance) > 0)
-		return FALSE
+	if(istype(D, /datum/disease/advance))
+		var/active_diseases = 0
+		for(var/datum/disease/AD in GetViruses())
+			if(!(AD.virus_modifiers & DORMANT)) // You can have as many dormant diseases as you want
+				active_diseases++
+		if(active_diseases > 0) // But ONLY one active disease
+			return FALSE
 
 	var/compatible_type = FALSE
 	for(var/type_to_test in D.viable_mobtypes)
@@ -165,6 +170,9 @@
 	for(var/organ in D.required_organs)
 		if(!((locate(organ) in organs) || (locate(organ) in internal_organs)))
 			return FALSE
+
+	if(global_flag_check(D.virus_modifiers, DORMANT))
+		return FALSE
 
 	if(species.virus_immune && !global_flag_check(D.virus_modifiers, BYPASSES_IMMUNITY))
 		D.virus_modifiers |= CARRIER
