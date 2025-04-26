@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(scarySounds, list(
 	'sound/weapons/thudswoosh.ogg',
-	'sound/weapons/Taser.ogg',
+	'sound/weapons/taser.ogg',
 	'sound/weapons/armbomb.ogg',
 	'sound/voice/hiss1.ogg',
 	'sound/voice/hiss2.ogg',

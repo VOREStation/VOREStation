@@ -320,7 +320,7 @@
 /obj/item/projectile/beam/stun
 	name = "stun beam"
 	icon_state = "stun"
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 	nodamage = 1
 	taser_effect = 1
 	agony = 35

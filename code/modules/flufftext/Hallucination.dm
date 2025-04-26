@@ -130,9 +130,9 @@ Gunshots/explosions/opening doors/less rare audio (done)
 					if(10) src << 'sound/weapons/smash.ogg'
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+						src << 'sound/weapons/taser.ogg'
 						spawn(rand(10,30))
-							src << 'sound/weapons/Taser.ogg'
+							src << 'sound/weapons/taser.ogg'
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source

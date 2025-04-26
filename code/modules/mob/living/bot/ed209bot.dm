@@ -65,7 +65,7 @@
 	if(emagged)
 		projectile = /obj/item/projectile/beam
 
-	playsound(src, emagged ? 'sound/weapons/Laser.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
+	playsound(src, emagged ? 'sound/weapons/Laser.ogg' : 'sound/weapons/taser.ogg', 50, 1)
 	var/obj/item/projectile/P = new projectile(loc)
 
 	P.firer = src

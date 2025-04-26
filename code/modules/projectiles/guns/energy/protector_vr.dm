@@ -13,7 +13,7 @@
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "gun"
 
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 	projectile_type = /obj/item/projectile/beam/stun
 
 	modifystate = "stun"

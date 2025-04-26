@@ -72,10 +72,10 @@
 			if(istype(A,/obj/item/gun/projectile) || istype(I,/obj/item/gun/projectile))
 				seen_gun = 1
 				projectiletype = /obj/item/projectile/bullet/pistol/medium
-				projectilesound = 'sound/weapons/Gunshot_light.ogg'
+				projectilesound = 'sound/weapons/gunshot_light.ogg'
 				if(istype(A,/obj/item/gun/projectile/shotgun) || istype(I,/obj/item/gun/projectile/shotgun))
 					projectiletype = /obj/item/projectile/bullet/pellet/shotgun
-					projectilesound = 'sound/weapons/Gunshot_shotgun.ogg'
+					projectilesound = 'sound/weapons/gunshot_shotgun.ogg'
 					reload_time = 1.5 SECONDS
 					ranged_attack_delay = 1.5 SECONDS
 					projectile_dispersion = 8

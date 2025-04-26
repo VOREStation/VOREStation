@@ -40,8 +40,8 @@
 	say_stand_down = list("Your compliance is welcome.")
 	say_escalate = list("Combat initiated.", "Your termination is inevitable.")
 
-	threaten_sound = 'sound/weapons/TargetOn.ogg'
-	stand_down_sound = 'sound/weapons/TargetOff.ogg'
+	threaten_sound = 'sound/weapons/targeton.ogg'
+	stand_down_sound = 'sound/weapons/targetoff.ogg'
 
 /mob/living/simple_mob/humanoid/merc/drone
 	name = "combat droid"

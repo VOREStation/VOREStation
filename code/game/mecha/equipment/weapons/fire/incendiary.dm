@@ -9,7 +9,7 @@
 	icon_state = "mecha_drac3"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/incendiary
-	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
+	fire_sound = 'sound/weapons/gunshot_machinegun.ogg'
 	projectiles = 30
 	projectiles_per_shot = 2
 	deviation = 0.4
