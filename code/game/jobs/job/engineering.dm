@@ -161,7 +161,7 @@
 
 /datum/alt_title/firefighter
 	title = JOB_ALT_FIREFIGHTER
-	title_blurb = "A " + JOB_ALT_FIREFIGHTER + " is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the samed duties, although specizlizes more in tackling fires."
+	title_blurb = "A " + JOB_ALT_FIREFIGHTER + " is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the same duties, although specizlizes more in tackling fires."
 
 /datum/alt_title/disposals_tech
 	title = JOB_ALT_DISPOSALS_TECHNICIAN
