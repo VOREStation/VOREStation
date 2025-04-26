@@ -16385,7 +16385,7 @@
 	dir = 4;
 	door_color = "#525252";
 	name = "EVA Shuttle";
-	req_one_access = list(18,19,43);
+	req_one_access = list(18,19,43,65);
 	stripe_color = "#408f3b"
 	},
 /obj/structure/cable/green{

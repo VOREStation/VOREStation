@@ -542,13 +542,12 @@
 				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
-		/*if("species_sound") //TODO: UP PORT SPECIES_SOUNDS
+		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice && can_change(owner, APPEARANCE_RACE))
 				owner.species.species_sounds = choice
 				return TRUE
-		*/
 		if("flavor_text")
 			var/select_key = params["target"]
 			if(select_key && can_change(owner, APPEARANCE_RACE))
