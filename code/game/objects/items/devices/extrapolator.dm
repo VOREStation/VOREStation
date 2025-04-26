@@ -194,12 +194,11 @@
 	if(!target_disease)
 		return
 	using = TRUE
-	// I'll see about this...
-	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
-	// if(choice == "Symptom")
-	//. = isolate_symptom(user, target, target_disease)
-	// else
-	. = isolate_disease(user, target, target_disease)
+	var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
+	if(choice == "Symptom")
+		. = isolate_symptom(user, target, target_disease)
+	else
+		. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)
