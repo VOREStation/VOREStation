@@ -134,7 +134,7 @@ var/global/list/emotes_by_key
 	if (!use_range)
 		use_range = world.view
 
-	if(ismob(user))
+	if(ismob(user) && (use_3p || use_1p)) //Adds functionality for emotes that don't give use feedback, such as bellyrubs.
 		var/mob/M = user
 		if(message_type == AUDIBLE_MESSAGE)
 			if(isliving(user))
