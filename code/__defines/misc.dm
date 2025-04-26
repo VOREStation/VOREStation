@@ -80,8 +80,7 @@
 #define WAIT_FINISH  4
 #define DO_AUTOPILOT 5
 
-// Setting this much higher than 1024 could allow spammers to DOS the server easily.
-#define MAX_MESSAGE_LEN       4096 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
+#define MAX_MESSAGE_LEN       4096
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
@@ -269,15 +268,15 @@
 // Second argument is the path the list is expected to contain. Note that children will also get added to the global list.
 // If the GLOB system is ever ported, you can change this macro in one place and have less work to do than you otherwise would.
 #define GLOBAL_LIST_BOILERPLATE(LIST_NAME, PATH)\
-var/global/list/##LIST_NAME = list();\
+GLOBAL_LIST_EMPTY(##LIST_NAME);\
 ##PATH/Initialize(mapload, ...)\
 	{\
-	##LIST_NAME += src;\
+	GLOB.##LIST_NAME += src;\
 	return ..();\
 	}\
 ##PATH/Destroy(force, ...)\
 	{\
-	##LIST_NAME -= src;\
+	GLOB.##LIST_NAME -= src;\
 	return ..();\
 	}\
 
@@ -444,6 +443,13 @@ var/global/list/##LIST_NAME = list();\
 #define VOLUME_CHANNEL_VORE "Vore"
 #define VOLUME_CHANNEL_DOORS "Doors"
 #define VOLUME_CHANNEL_INSTRUMENTS "Instruments"
+#define VOLUME_CHANNEL_WEATHER "Weather"
+#define VOLUME_CHANNEL_SPECIES_SOUNDS "Species Sounds (Verbal Injury Feedback)"
+#define VOLUME_CHANNEL_HUD_WARNINGS "SS13 HUD (Clientside-only sounds)" //NYI
+#define VOLUME_CHANNEL_DEATH_SOUNDS "Death Sounds"
+#define VOLUME_CHANNEL_INJURY_SOUNDS "Mob Injury Sounds (Non-Verbal Feedback)" //NYI
+#define VOLUME_CHANNEL_MACHINERY "Machinery Noises"
+#define VOLUME_CHANNEL_MACHINERY_IDLE "Machinery Idle Noises"
 
 // Make sure you update this or clients won't be able to adjust the channel
 GLOBAL_LIST_INIT(all_volume_channels, list(
@@ -452,7 +458,14 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_ALARMS,
 	VOLUME_CHANNEL_VORE,
 	VOLUME_CHANNEL_DOORS,
-	VOLUME_CHANNEL_INSTRUMENTS
+	VOLUME_CHANNEL_INSTRUMENTS,
+	VOLUME_CHANNEL_WEATHER,
+	VOLUME_CHANNEL_SPECIES_SOUNDS,
+	VOLUME_CHANNEL_HUD_WARNINGS,
+	VOLUME_CHANNEL_DEATH_SOUNDS,
+	VOLUME_CHANNEL_INJURY_SOUNDS,
+	VOLUME_CHANNEL_MACHINERY,
+	VOLUME_CHANNEL_MACHINERY_IDLE
 ))
 
 #define APPEARANCECHANGER_CHANGED_RACE "Race"

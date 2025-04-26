@@ -129,10 +129,12 @@
 		stopWatching()
 
 /obj/machinery/station_map/proc/checkPosition()
+	SIGNAL_HANDLER
 	if(!watching_mob || (watching_mob.loc != loc) || (dir != watching_mob.dir))
 		stopWatching()
 
 /obj/machinery/station_map/proc/stopWatching()
+	SIGNAL_HANDLER
 	if(watching_mob)
 		if(watching_mob.client)
 			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
