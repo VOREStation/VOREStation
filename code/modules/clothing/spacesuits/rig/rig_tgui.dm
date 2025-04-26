@@ -1,5 +1,5 @@
 // Just used to force the icon into the rsc, Byond.iconRefMap does the rest
-GLOBAL_DATUM_INIT(rigsuit_ui_icon, /icon, 'icons/hud/rig_ui_slots.dmi')
+GLOBAL_DATUM_INIT(rigsuit_ui_icon, /icon, 'icons/hud/rig/rig_ui_slots.dmi')
 
 /*
  * This defines the global UI for RIGSuits.
@@ -119,6 +119,26 @@ GLOBAL_DATUM_INIT(rigsuit_ui_icon, /icon, 'icons/hud/rig_ui_slots.dmi')
 		data["modules"] = list()
 
 	return data
+
+/*
+ * Sends data once each time the UI is opened.
+ */
+/obj/item/rig/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	data["interface_intro"] = interface_intro
+
+	return data
+
+
+/datum/asset/simple/rig
+	assets = list(
+		"tentacles.mp4" = 'icons/hud/rig/tentacles.mp4',
+	)
+
+/obj/item/rig/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/simple/rig)
 
 /*
  * tgui_act() is the TGUI equivelent of Topic(). It's responsible for all of the "actions" you can take in the UI.
