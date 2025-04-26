@@ -35,8 +35,12 @@ export const RecyclerInterface = (props) => {
           </Stack>
 
           <Section title=" ">
-            <h1>Welcome back, {userName}!</h1>
-            <h1>Your Balance Is: {userBalance}!</h1>
+            <Box className="RecyclerProductLabel">
+              Welcome back, {userName}!
+            </Box>
+            <Box className="RecyclerProductLabel">
+              Your Balance Is: {userBalance}!
+            </Box>
             <Stack align="center" direction="Row">
               <Stack.Item>
                 <Box className="image-container" inline>
