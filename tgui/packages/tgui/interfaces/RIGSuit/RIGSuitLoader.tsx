@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Window } from 'tgui/layouts';
 import { Box, Stack } from 'tgui-core/components';
 
+import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
 import { CommonwealthLogo } from './animated_logos/Commonwealth';
 import { NTLogo } from './animated_logos/NT';
@@ -101,6 +102,37 @@ export const LoaderCommonwealth = (props: { onFinish?: () => void }) => {
   );
 };
 
+export const LoaderProtean = (props: { onFinish?: () => void }) => {
+  const [showLogo, setShowLogo] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowLogo(false);
+    }, 3500);
+  }, []);
+
+  if (showLogo) {
+    return (
+      <Stack vertical fill justify="center" backgroundColor="#0e0e0e">
+        <Stack.Item>
+          <video
+            autoPlay
+            src={resolveAsset('tentacles.mp4')}
+            height="100%"
+            width="100%"
+          />
+        </Stack.Item>
+      </Stack>
+    );
+  }
+
+  return (
+    <Box backgroundColor="black" height="100%">
+      <LoadingText onFinish={props.onFinish} />
+    </Box>
+  );
+};
+
 export const RIGSuitLoader = (props: { onFinish?: () => void }) => {
   const { data } = useBackend<Data>();
   // You can skip to the end by clicking
@@ -110,6 +142,8 @@ export const RIGSuitLoader = (props: { onFinish?: () => void }) => {
 
   if (data.interface_intro === 'Commonwealth') {
     loader = <LoaderCommonwealth onFinish={props.onFinish} />;
+  } else if (data.interface_intro === 'Protean') {
+    loader = <LoaderProtean onFinish={props.onFinish} />;
   }
 
   return (
