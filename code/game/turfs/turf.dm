@@ -362,7 +362,7 @@
 /turf/proc/can_engrave()
 	return FALSE
 
-/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool)
+/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool, click_parameters)
 
 	if(!tool || !tool.sharp || !can_engrave())
 		return FALSE
@@ -394,6 +394,18 @@
 	var/obj/effect/decal/writing/graffiti = new(src)
 	graffiti.message = message
 	graffiti.author = vandal.ckey
+
+	if(click_parameters)
+		var/list/mouse_control = params2list(click_parameters)
+		var/p_x = 0
+		var/p_y = 0
+		if(mouse_control["icon-x"])
+			p_x = text2num(mouse_control["icon-x"]) - 16
+		if(mouse_control["icon-y"])
+			p_y = text2num(mouse_control["icon-y"]) - 16
+
+		graffiti.pixel_x = p_x
+		graffiti.pixel_y = p_y
 
 	if(lowertext(message) == "elbereth")
 		to_chat(vandal, span_notice("You feel much safer."))
