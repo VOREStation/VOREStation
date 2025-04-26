@@ -281,7 +281,7 @@
 	icon_state = "syndicateranged_sniper"
 	icon_living = "syndicateranged_sniper"
 	projectiletype = /obj/item/projectile/bullet/rifle/a145/highvel // Really scary bullet.
-	projectilesound = 'sound/weapons/Gunshot_cannon.ogg'
+	projectilesound = 'sound/weapons/gunshot_cannon.ogg'
 
 	projectile_accuracy = 75
 

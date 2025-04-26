@@ -114,4 +114,4 @@
 
 /obj/item/projectile/beam/heavylaser/lessheavy //all bark. no (or little) bite.
 	damage = 15
-	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'
+	fire_sound = 'sound/weapons/gunshot_cannon.ogg'

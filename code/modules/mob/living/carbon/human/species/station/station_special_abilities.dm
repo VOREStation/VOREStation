@@ -298,7 +298,7 @@
 						if(8) src << 'sound/machines/door/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
-							src << 'sound/weapons/Gunshot1.ogg'
+							src << 'sound/weapons/gunshot1.ogg'
 							spawn(rand(10,30))
 								src << 'sound/weapons/Gunshot2.ogg'
 						if(10) src << 'sound/weapons/smash.ogg'

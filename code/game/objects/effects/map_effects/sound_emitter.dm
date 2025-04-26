@@ -82,7 +82,7 @@
 
 /obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight
 	sounds_to_play = list(
-		'sound/weapons/Gunshot1.ogg',
+		'sound/weapons/gunshot1.ogg',
 		'sound/weapons/Gunshot_deagle.ogg',
 		'sound/weapons/Gunshot_generic_rifle.ogg',
 		'sound/weapons/Gunshot_sniper.ogg',

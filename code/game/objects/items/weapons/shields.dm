@@ -94,7 +94,7 @@
 					return 0
 			//Otherwise, if we're here, we're gonna stop the attack entirely.
 			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 			return 1
 	return 0
 

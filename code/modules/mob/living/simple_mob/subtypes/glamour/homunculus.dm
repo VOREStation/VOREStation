@@ -86,7 +86,7 @@
 					projectile_accuracy = -20
 				if(istype(A,/obj/item/gun/projectile/heavysniper) || istype(I,/obj/item/gun/projectile/heavysniper))
 					projectiletype = /obj/item/projectile/bullet/rifle/a145/highvel // Do not get seen with a big ass sniper!
-					projectilesound = 'sound/weapons/Gunshot_cannon.ogg'
+					projectilesound = 'sound/weapons/gunshot_cannon.ogg'
 					ranged_attack_delay = 2.5 SECONDS
 					reload_time = 5 SECONDS
 					projectile_accuracy = 75
