@@ -37,7 +37,7 @@
 				s.set_up(3, 1, src)
 				s.start()
 			if(effect == 2)
-				for(var/obj/machinery/light/L in machines)
+				for(var/obj/machinery/light/L in GLOB.machines)
 					if(L.z != user.z || get_dist(user,L) > 10)
 						continue
 					else

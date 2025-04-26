@@ -2,6 +2,10 @@
 ** Holds defines for code\game\atoms_movable.dm to avoid magic numbers and potential unexpected overwrites down the line
 */
 
+#define NON_LISTENING_ATOM		0
+#define LISTENING_ATOM			1
+#define LISTENING_PLAYER		2
+
 #define DEFAULT_ICON_SCALE_X 1
 #define DEFAULT_ICON_SCALE_Y 1
 #define DEFAULT_ICON_ROTATION 0

@@ -2,6 +2,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   primarysystem: string | null;
+  interface_intro: string;
   ai: BooleanLike;
   cooling: BooleanLike;
   sealed: BooleanLike;

@@ -31,7 +31,7 @@
 	update_icons_body()
 
 	if(H.robotic)
-		var/datum/robolimb/robohead = all_robolimbs[H.model]
+		var/datum/robolimb/robohead = GLOB.all_robolimbs[H.model]
 		if(robohead.monitor_styles && robohead.monitor_icon)
 			to_chat(src, span_notice("You reconfigure the rendering order of your facial display."))
 

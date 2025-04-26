@@ -59,11 +59,6 @@
 	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
 	death_message = "phases to somewhere far away!"
-	male_cough_sounds = null
-	female_cough_sounds = null
-	male_sneeze_sound = null
-	female_sneeze_sound = null
-
 	speech_bubble_appearance = "ghost"
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)

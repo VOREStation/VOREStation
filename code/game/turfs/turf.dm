@@ -362,7 +362,7 @@
 /turf/proc/can_engrave()
 	return FALSE
 
-/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool)
+/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool, click_parameters)
 
 	if(!tool || !tool.sharp || !can_engrave())
 		return FALSE
@@ -394,6 +394,18 @@
 	var/obj/effect/decal/writing/graffiti = new(src)
 	graffiti.message = message
 	graffiti.author = vandal.ckey
+
+	if(click_parameters)
+		var/list/mouse_control = params2list(click_parameters)
+		var/p_x = 0
+		var/p_y = 0
+		if(mouse_control["icon-x"])
+			p_x = text2num(mouse_control["icon-x"]) - 16
+		if(mouse_control["icon-y"])
+			p_y = text2num(mouse_control["icon-y"]) - 16
+
+		graffiti.pixel_x = p_x
+		graffiti.pixel_y = p_y
 
 	if(lowertext(message) == "elbereth")
 		to_chat(vandal, span_notice("You feel much safer."))
@@ -466,3 +478,32 @@
 // We were the the B-side in a turf translation
 /turf/proc/post_translate_B(var/turf/A)
 	return
+
+/turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE, purge = TRUE)
+
+	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.GetSpreadableViruses())
+
+	if (QDELETED(V))
+		V = locate() in src
+	if(!V)
+		return
+	if(toxvomit == VOMIT_PURPLE)
+		V.icon_state = "vomitpurp_1"
+		V.random_icon_states = list("vomitpurp_1", "vomitpurp_2", "vomitpurp_3", "vomitpurp_4")
+	else if (toxvomit == VOMIT_TOXIC)
+		V.icon_state = "vomittox_1"
+		V.random_icon_states = list("vomittox_1", "vomittox_2", "vomittox_3", "vomittox_4")
+	else if (toxvomit == VOMIT_NANITE)
+		V.name = "metallic slurry"
+		V.desc = "A puddle of metallic slury that looks vaguely like very fine sand. It almost seems like it's moving..."
+		V.icon_state = "vomitnanite_1"
+		V.random_icon_states = list("vomitnanite_1", "vomitnanite_2", "vomitnanite_3", "vomitnanite_4")
+	if(purge && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.ingested)
+			clear_reagents_to_vomit_pool(H, V)
+
+/proc/clear_reagents_to_vomit_pool(mob/living/carbon/human/H, obj/effect/decal/cleanable/vomit/V)
+	H.ingested.trans_to(V, H.ingested.total_volume / 10)
+	for(var/datum/reagent/R in H.ingested.reagent_list)
+		H.ingested.remove_reagent(R, min(R.volume, 10))
