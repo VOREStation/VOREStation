@@ -132,9 +132,12 @@
 	icon_state += "-old"
 	if(length(diseases))
 		viruses += diseases
-	if(prob(95))
-		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 5), rand(7, 9), 4)
+	if(prob(65))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
 		src.viruses += new_disease
+
+/obj/effect/decal/cleanable/vomit/old/Crossed(mob/living/carbon/human/perp)
+	return // Don't spread our viruses
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"

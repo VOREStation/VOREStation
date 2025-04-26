@@ -1593,14 +1593,10 @@
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
 /mob/living/proc/vore_bellyrub(var/mob/living/T in view(1,src))
-	set name = "Give Bellyrubs"
-	set category = "Abilities.General"
-	set desc = "Provide bellyrubs to either yourself or another mob with a belly."
 
 	if(!T)
-		T = tgui_input_list(src, "Choose whose belly to rub", "Rub Belly?", mobs_in_view(1,src))
-		if(!T)
-			return FALSE
+		return FALSE
+
 	if(!(T in view(1,src)))
 		return FALSE
 	if(T.vore_selected)

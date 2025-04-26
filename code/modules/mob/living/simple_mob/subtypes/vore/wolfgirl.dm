@@ -23,7 +23,10 @@
 
 	say_list_type = /datum/say_list/wolfgirl
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl
-
+	can_be_drop_prey = FALSE
+	species_sounds = "Canine"
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 // Activate Noms!
 /mob/living/simple_mob/vore/wolfgirl
 	vore_active = 1

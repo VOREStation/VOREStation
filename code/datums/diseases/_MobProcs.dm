@@ -210,7 +210,7 @@
 	LAZYINITLIST(resistances)
 	return resistances
 
-/mob/proc/AddResistances(resistance)
+/mob/proc/AddResistances(var/list/resistance)
 	LAZYINITLIST(resistances)
 	resistances |= resistance
 	return TRUE
