@@ -103,6 +103,10 @@
 /mob/observer/dead/Initialize(mapload, aghost = FALSE)
 
 	appearance = loc
+	invisibility = initial(invisibility)
+	layer = initial(layer)
+	plane = initial(plane)
+	alpha = initial(alpha)
 	admin_ghosted = aghost
 
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
