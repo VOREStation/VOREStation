@@ -6,5 +6,5 @@
 	)
 
 /datum/asset/simple/lobby_files/register()
-	assets["lobby_bg.gif"] = icon(using_map.lobby_icon, pick(using_map.lobby_screens))
+	assets["lobby_bg.gif"] = pick(using_map.lobby_screens)
 	. = ..()
