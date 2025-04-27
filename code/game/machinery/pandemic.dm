@@ -80,6 +80,8 @@
 			if(!A)
 				atom_say("Unable to find requested strain.")
 				return FALSE
+			print_form(A, ui.user)
+			return TRUE
 		else
 			return FALSE
 

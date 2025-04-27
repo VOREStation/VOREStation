@@ -1,0 +1,138 @@
+@import url(//fonts.googleapis.com/css?family=VT323);
+.RecyclerProductEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-color: lime;
+  min-height: 150px; /* Adjust as needed */
+  font-family: 'VT323';
+}
+
+.MaintVendor32x32 {
+  vertical-align: baseline;
+  border-style: dashed;
+  border-width: 1px;
+  transform: scale(2.5);
+  margin-right: 35px;
+  margin-left: 25px;
+  min-width: 32px;
+  max-width: 32px;
+  filter: grayscale(1) sepia(1) hue-rotate(30deg) saturate(5);
+  margin-bottom: 10px;
+}
+
+.SplashBounce {
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'Comic Sans MS';
+  animation: bounce 0.5s infinite;
+  transform: rotate(30deg);
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 1.3em;
+}
+
+.RecyclerCategoryButton {
+  font-family: 'VT323';
+  font-size: 1.2em;
+}
+.Button {
+  margin-top: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0.95) rotate(3deg);
+  }
+  50% {
+    transform: scale(1) rotate(5deg);
+  }
+}
+
+.RecyclerProductLabel {
+  font-family: 'VT323';
+  font-size: 1.9em;
+  color: lime;
+  text-shadow: 0px 0px 5px #000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.RecyclerProductDescription {
+  font-family: 'VT323';
+  font-size: 1.2em;
+  color: lime;
+  text-shadow: 0px 0px 5px #000;
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.carousel-track {
+  display: flex;
+  animation: slide 220s linear infinite;
+}
+
+.carousel-box {
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  margin: 0 10px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: 00ff00;
+  text-align: center;
+  line-height: 40px;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.image-container {
+  width: 101px;
+  height: 101px;
+  overflow: hidden;
+  outline: 2px solid rgb(7, 77, 14);
+
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+
+  img {
+    display: block;
+    filter: sepia(1) hue-rotate(80deg) saturate(5)
+      drop-shadow(-1px 1px 3px lime);
+    width: 100%;
+    border-style: dashed;
+    border-width: 2px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply; // too bad IE11 SUCKS ASS
+    background-color: rgba(0, 255, 0, 0.1);
+    pointer-events: none;
+  }
+}

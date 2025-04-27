@@ -196,7 +196,6 @@
 	if(!target_disease)
 		return
 	using = TRUE
-	// Bad idea to comment it out
 	var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
 	if(choice == "Symptom")
 		. = isolate_symptom(user, target, target_disease)

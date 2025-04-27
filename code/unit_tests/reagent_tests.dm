@@ -280,6 +280,7 @@
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
+	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
 
