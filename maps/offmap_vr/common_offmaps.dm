@@ -471,7 +471,7 @@
 	desc = "Spawns the mobs!"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	mouse_opacity = 0
 	density = 0
 	anchored = 1

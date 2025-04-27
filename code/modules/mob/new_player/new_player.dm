@@ -11,7 +11,7 @@
 	var/datum/tgui_module/late_choices/late_choices_dialog = null
 	universal_speak = 1
 
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	density = FALSE
 	stat = 2

@@ -96,7 +96,7 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	my_image.mouse_opacity = 1
-	my_image.invisibility = 0
+	my_image.invisibility = INVISIBILITY_NONE
 	my_image.alpha = alpha
 	my_image.override = override
 
@@ -105,7 +105,7 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	my_image.mouse_opacity = 0
-	my_image.invisibility = 101
+	my_image.invisibility = INVISIBILITY_ABSTRACT
 	my_image.alpha = 0
 	my_image.override = FALSE
 

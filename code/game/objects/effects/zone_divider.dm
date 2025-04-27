@@ -3,7 +3,7 @@
 	name = "zone divider"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
-	invisibility = 101 		//nope, can't see this
+	invisibility = INVISIBILITY_ABSTRACT 		//nope, can't see this
 	anchored = TRUE
 	density = FALSE
 	opacity = 0
