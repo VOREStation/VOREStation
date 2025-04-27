@@ -1,8 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - rscadd: "Added some new machines in maint, go find them!"
-  - rscadd: "Added some remote scene tools - bluespace stickers, and the voodoo kit. They let you ahr pea - but remotely."
-  - rscdel: "Removed some maint-trader spawn locations"
-  - maptweak: "Maint Recyclers and Maint Vendors both have several spawn locations in maint"
-  - refactor: "fixed the logout commsig never getting sent"

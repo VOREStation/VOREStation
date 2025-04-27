@@ -289,3 +289,41 @@
   - rscadd: vassilian autohiss
   - rscadd: yingish autohiss
   - code_imp: autohiss unit testing
+2025-04-27:
+  Asher-42:
+  - rscadd: adds dullahan taurs
+  - rscadd: naga wings
+  - rscadd: naga ears
+  Cameron-The-Raven:
+  - rscadd: You can now set your Favorite and Maybe OOC prefs.
+  - rscadd: You can now set your Sexuality and Gender in the Character Directory
+  Kash:
+  - bugfix: Fixes a bug where reagents would show up twice in the chem dispenser
+  Kashargul:
+  - bugfix: runtime on bad runes in persistent files
+  SatinIsle:
+  - code_imp: Added missing SIGNAL_HANDLER lines to many RegisterSignal() proc refs.
+  ShadowLarkens:
+  - rscadd: More immersive photocopier
+  - rscadd: Even more RIG startup screens
+  - rscadd: Added new lobby screen and new player experience.
+  - rscadd: TEG has pretty spinning fans
+  - rscadd: Disposal bin UI overhauled to be more skeuomorphic
+  TankTheBirb:
+  - rscadd: Adds Xenoarch access to the SD's EVA shuttle
+  TeleTubby2:
+  - rscadd: Added some new machines in maint, go find them!
+  - rscadd: Added some remote scene tools - bluespace stickers, and the voodoo kit.
+      They let you ahr pea - but remotely.
+  - rscdel: Removed some maint-trader spawn locations
+  - maptweak: Maint Recyclers and Maint Vendors both have several spawn locations
+      in maint
+  - refactor: fixed the logout commsig never getting sent
+  TheCaramelion:
+  - bugfix: Fixed Resistance not being calculated properly
+  - rscadd: Added old blood
+  - qol: Extrapolator can isolate symptoms now
+  - bugfix: Fixed Pandemic not saving the name of named diseases
+  - bugfix: Fixed Pandemic not printing the "virus release" notice
+  Tost:
+  - rscadd: Adds colour selection to earrings

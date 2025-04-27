@@ -1,7 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - rscadd: "Added old blood"
-  - qol: "Extrapolator can isolate symptoms now"
-  - bugfix: "Fixed Pandemic not saving the name of named diseases"
-  - bugfix: "Fixed Pandemic not printing the \"virus release\" notice"

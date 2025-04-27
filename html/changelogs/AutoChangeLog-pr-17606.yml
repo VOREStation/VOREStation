@@ -1,4 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - bugfix: "Fixed Resistance not being calculated properly"

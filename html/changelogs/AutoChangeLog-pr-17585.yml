@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - code_imp: "Added missing SIGNAL_HANDLER lines to many RegisterSignal() proc refs."
