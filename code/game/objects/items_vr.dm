@@ -37,6 +37,4 @@
 		var/obj/belly/B = user.loc
 		if(B.mode_flags & DM_FLAG_MUFFLEITEMS)
 			return TRUE
-		return FALSE
-	else
-		return FALSE
+	return FALSE
