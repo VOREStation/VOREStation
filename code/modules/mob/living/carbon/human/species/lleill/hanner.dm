@@ -129,7 +129,7 @@
 					)
 	spawn (50)
 		if(H.lleill_display)
-			H.lleill_display.invisibility = 0
+			H.lleill_display.invisibility = INVISIBILITY_NONE
 			H.lleill_display.icon_state = "lleill-4"
 
 /datum/species/shapeshifter/hanner/add_inherent_verbs(var/mob/living/carbon/human/H)
