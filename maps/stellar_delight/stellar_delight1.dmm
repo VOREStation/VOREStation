@@ -3333,6 +3333,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"gs" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/exploration)
 "gt" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -3385,6 +3389,21 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
+"gA" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
+"gB" = (
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portcent)
 "gC" = (
 /obj/structure/table/steel,
 /obj/item/sleevemate,
@@ -3456,6 +3475,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
+"gJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardcent)
 "gK" = (
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/angled{
@@ -3485,6 +3517,10 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/rnd/research)
+"gN" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardcent)
 "gO" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
@@ -3515,6 +3551,14 @@
 "gQ" = (
 /turf/simulated/wall/bay/brown,
 /area/stellardelight/deck1/oreprocessing)
+"gR" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portcent)
+"gS" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portfore)
 "gT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3660,6 +3704,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
+"hf" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardfore)
 "hg" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -9181,6 +9229,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "sF" = (
@@ -16385,7 +16434,7 @@
 	dir = 4;
 	door_color = "#525252";
 	name = "EVA Shuttle";
-	req_one_access = list(18,19,43);
+	req_one_access = list(18,19,43,65);
 	stripe_color = "#408f3b"
 	},
 /obj/structure/cable/green{
@@ -20292,6 +20341,7 @@
 "Rf" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/door/firedoor/glass,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
 "Rg" = (
@@ -21741,6 +21791,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "TR" = (
@@ -21848,6 +21899,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "Ua" = (
@@ -31718,7 +31770,7 @@ Ua
 Ua
 Ua
 Ec
-vT
+gs
 pC
 HG
 LO
@@ -31803,14 +31855,14 @@ xy
 Ox
 NW
 cB
-cB
+gS
 FV
 dS
 kx
 Zz
 Bb
 ey
-cB
+gS
 cB
 Dj
 gY
@@ -32106,7 +32158,7 @@ SC
 SC
 SC
 Wh
-gY
+gB
 PM
 PM
 PM
@@ -32672,7 +32724,7 @@ hh
 km
 QB
 zi
-gY
+gR
 HY
 GN
 PM
@@ -36501,13 +36553,13 @@ Cj
 LY
 WC
 Ik
-Cg
+gN
 hI
 UM
 Xv
 wP
 lY
-Cg
+gN
 bz
 Wu
 Iw
@@ -37218,7 +37270,7 @@ XR
 XR
 XR
 iy
-vP
+gJ
 Wu
 JF
 JF
@@ -37341,7 +37393,7 @@ jw
 ai
 cr
 fB
-yy
+hf
 Bw
 sV
 sV
@@ -37378,7 +37430,7 @@ CY
 Lf
 Qz
 fA
-Dv
+gA
 bB
 kq
 Dx
@@ -37493,7 +37545,7 @@ yy
 yy
 yy
 AW
-Cg
+gN
 yr
 XR
 UZ

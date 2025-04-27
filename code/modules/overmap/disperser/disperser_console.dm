@@ -66,6 +66,7 @@
 	return FALSE
 
 /obj/machinery/computer/ship/disperser/proc/release_links()
+	SIGNAL_HANDLER
 	UnregisterSignal(front, COMSIG_OBSERVER_DESTROYED)
 	UnregisterSignal(middle, COMSIG_OBSERVER_DESTROYED)
 	UnregisterSignal(back, COMSIG_OBSERVER_DESTROYED)

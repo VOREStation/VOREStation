@@ -49,6 +49,11 @@
 
 	allow_mind_transfer = TRUE
 
+	can_be_drop_prey = FALSE
+	species_sounds = "Canine"
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
+
 // Activate Noms!
 
 /mob/living/simple_mob/vore/otie
