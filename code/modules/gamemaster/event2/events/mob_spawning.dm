@@ -93,5 +93,6 @@
 
 // If simple_mob is bomphed, remove it from the list.
 /datum/event2/event/mob_spawning/proc/on_mob_destruction(mob/M)
+	SIGNAL_HANDLER
 	spawned_mobs -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

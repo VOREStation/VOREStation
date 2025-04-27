@@ -33,6 +33,7 @@
 	var/interface_path = "RIGSuit"
 	var/ai_interface_path = "RIGSuit"
 	var/interface_title = "Hardsuit Controller"
+	var/interface_intro = "NT"
 	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
 
@@ -802,6 +803,8 @@
 
 /obj/item/rig/dropped(mob/user)
 	. = ..(user)
+	// So the next user will see the boot animation
+	tgui_shared_states?.Cut()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
 	if(wearer && wearer.wearing_rig == src)

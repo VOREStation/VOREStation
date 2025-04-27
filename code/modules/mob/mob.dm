@@ -77,11 +77,11 @@
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
-	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/show_message(msg, type, alt, alt_type)
+
 	if(!client && !teleop)	return
 
 	if (type)
@@ -480,7 +480,7 @@
 
 
 	targets += observe_list_format(GLOB.nuke_disks)
-	targets += observe_list_format(all_singularities)
+	targets += observe_list_format(GLOB.all_singularities)
 	targets += getmobs()
 	targets += observe_list_format(sortAtom(mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
@@ -561,6 +561,9 @@
 
 	if (AM.anchored)
 		to_chat(src, span_warning("It won't budge!"))
+		return
+
+	if(lying)
 		return
 
 	var/mob/M = AM
@@ -1136,18 +1139,6 @@
 	if(throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
 		throw_icon.icon_state = "act_throw_on"
 
-/mob/verb/spacebar_throw_on()
-	set name = ".throwon"
-	set hidden = TRUE
-	set instant = TRUE
-	throw_mode_on()
-
-/mob/verb/spacebar_throw_off()
-	set name = ".throwoff"
-	set hidden = TRUE
-	set instant = TRUE
-	throw_mode_off()
-
 /mob/proc/isSynthetic()
 	return 0
 
@@ -1171,15 +1162,6 @@
 		var/mob/exploited = exploit_for.resolve()
 		exploited?.exploit_addons -= src
 		exploit_for = null
-	. = ..()
-
-
-
-/obj/Destroy()
-	if(istype(loc, /mob))
-		var/mob/holder = loc
-		if(src in holder.exploit_addons)
-			holder.exploit_addons -= src
 	. = ..()
 
 
