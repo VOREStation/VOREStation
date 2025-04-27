@@ -858,7 +858,7 @@
 	if(delay_time)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), delay_time, TIMER_DELETE_ME)
 		return
-	process_power_change()
+	update_icon()
 
 /obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()
