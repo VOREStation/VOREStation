@@ -60,56 +60,12 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
-/atom/New(loc, ...)
-	// Don't call ..() unless /datum/New() ever exists
-
-	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
-	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
-	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
-		world.preloader_load(src)
-
-	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
-	var/do_initialize = SSatoms.initialized
-	if(do_initialize > INITIALIZATION_INSSATOMS)
-		args[1] = (do_initialize == INITIALIZATION_INNEW_MAPLOAD)
-		if(SSatoms.InitAtom(src, args))
-			// We were deleted. No sense continuing
-			return
-
-	// Uncomment if anything ever uses the return value of SSatoms.InitializeAtoms ~Leshana
-	// If a map is being loaded, it might want to know about newly created objects so they can be handled.
-	// var/list/created = SSatoms.created_atoms
-	// if(created)
-	// 	created += src
-
-// Note: I removed "auto_init" feature (letting types disable auto-init) since it shouldn't be needed anymore.
-// 	You can replicate the same by checking the value of the first parameter to initialize() ~Leshana
-
-// Called after New if the map is being loaded, with mapload = TRUE
-// Called from base of New if the map is not being loaded, with mapload = FALSE
-// This base must be called or derivatives must set initialized to TRUE
-// Must not sleep!
-// Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
-// Must return an Initialize hint. Defined in code/__defines/subsystems.dm
-/atom/proc/Initialize(mapload, ...)
-	SHOULD_CALL_PARENT(TRUE)
-	if(QDELETED(src))
-		stack_trace("GC: -- [type] had initialize() called after qdel() --")
-	if(flags & ATOM_INITIALIZED)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags |= ATOM_INITIALIZED
-	return INITIALIZE_HINT_NORMAL
-
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
 	if(light)
 		QDEL_NULL(light)
 	return ..()
-
-// Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize()
-	return
 
 /atom/proc/reveal_blood()
 	return
@@ -499,12 +455,12 @@
 	R.reagents.splash(src, 1)
 
 /atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map)) return
+	if(!islist(GLOB.global_map) || isemptylist(GLOB.global_map)) return
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x=1,cur_x<=global_map.len,cur_x++)
-		y_arr = global_map[cur_x]
+	for(cur_x = 1, cur_x <= GLOB.global_map.len, cur_x++)
+		y_arr = GLOB.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break

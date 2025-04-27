@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/gravity
 
 /datum/event2/meta/gravity/get_weight()
-	return (20 + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)) / (times_ran + 1)
+	return (20 + (GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)) / (times_ran + 1)
 
 
 

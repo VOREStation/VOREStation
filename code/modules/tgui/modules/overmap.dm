@@ -85,6 +85,7 @@
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
+	SIGNAL_HANDLER
 	user.reset_view()
 	user.set_viewsize() // reset to default
 	if(map_view_used)
@@ -198,7 +199,7 @@
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
 	// SENSORS
-	for(var/obj/machinery/shipsensors/S in global.machines)
+	for(var/obj/machinery/shipsensors/S in GLOB.machines)
 		if(linked.check_ownership(S))
 			sensors = S
 			break

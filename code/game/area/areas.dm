@@ -117,9 +117,11 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	for (var/obj/machinery/alarm/AA in src)
-		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
-			danger_level = max(danger_level, AA.danger_level)
+	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
+	if(!(AM && AM.shorted))
+		for(var/obj/machinery/alarm/AA in src)
+			if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
+				danger_level = max(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)
 		atmosalm = danger_level
@@ -502,35 +504,35 @@ var/list/mob/living/forced_ambiance_list = new
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
-var/list/teleportlocs = list()
+GLOBAL_LIST_EMPTY(teleportlocs)
 
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
+		if(GLOB.teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z in using_map.station_levels)
-			teleportlocs += AR.name
-			teleportlocs[AR.name] = AR
+			GLOB.teleportlocs += AR.name
+			GLOB.teleportlocs[AR.name] = AR
 
-	teleportlocs = sortAssoc(teleportlocs)
+	GLOB.teleportlocs = sortAssoc(GLOB.teleportlocs)
 
 	return 1
 
-var/list/ghostteleportlocs = list()
+GLOBAL_LIST_EMPTY(ghostteleportlocs)
 
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)
-		if(ghostteleportlocs.Find(AR.name)) continue
+		if(GLOB.ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			GLOB.ghostteleportlocs += AR.name
+			GLOB.ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z in using_map.player_levels)
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			GLOB.ghostteleportlocs += AR.name
+			GLOB.ghostteleportlocs[AR.name] = AR
 
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	GLOB.ghostteleportlocs = sortAssoc(GLOB.ghostteleportlocs)
 
 	return 1
 

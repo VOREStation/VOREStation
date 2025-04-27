@@ -52,7 +52,7 @@
 
 /datum/ai_holder/simple_mob/siffet/post_melee_attack(atom/A) //Evasive
 	if(holder.Adjacent(A))
-		holder.IMove(get_step(holder, pick(alldirs)))
+		holder.IMove(get_step(holder, pick(GLOB.alldirs)))
 		holder.face_atom(A)
 
 /mob/living/simple_mob/animal/sif/siffet/IIsAlly(mob/living/L)

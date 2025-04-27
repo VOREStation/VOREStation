@@ -6,7 +6,7 @@
 	event_type = /datum/event2/event/shipping_error
 
 /datum/event2/meta/shipping_error/get_weight()
-	return (metric.count_people_with_job(/datum/job/cargo_tech) + metric.count_people_with_job(/datum/job/qm)) * 30
+	return (GLOB.metric.count_people_with_job(/datum/job/cargo_tech) + GLOB.metric.count_people_with_job(/datum/job/qm)) * 30
 
 /datum/event2/event/shipping_error/start()
 	var/datum/supply_order/O = new /datum/supply_order()

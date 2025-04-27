@@ -1,0 +1,138 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+@import url(//fonts.googleapis.com/css?family=VT323);
+
+.theme-crtsoul:root {
+  // Base
+  --color-base: hsl(120, 20%, 8.8%);
+  --color-primary: hsl(120, 100%, 50%);
+  --color-secondary: hsl(120, 28%, 18.5%);
+  --base-gradient-spread: 0;
+  --candystripe-odd: hsla(120, 100%, 20%, 0.5);
+
+  // Components
+  --button-background-selected: var(--color-primary);
+  --tab-background-selected: hsla(120, 100%, 50%, 0.25);
+  --tab-color: hsl(0, 0%, 90%);
+  --tab-color-selected: var(--color-primary);
+
+  font-family: 'VT323';
+  font-size: 15px;
+  text-shadow: 0 0 3px #00ff00;
+  color: #00ff00;
+
+  .Layout__content {
+    background-image: none;
+  }
+
+  .Button {
+    font-family: var(--font-family-mono);
+    border-width: var(--border-thickness-small);
+    border-style: outset;
+    border-color: hsl(120, 100%, 33.33%);
+    border-color: #00aa00;
+    outline: var(--border-thickness-tiny) solid rgb(0, 122, 0);
+
+    &--color--default {
+      color: var(--color-text-fixed-black);
+    }
+  }
+
+  .Layout__content {
+    background-image: none;
+    color: #00ff00;
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.37861;
+    }
+
+    5% {
+      opacity: 0.44769;
+    }
+
+    10% {
+      opacity: 0.33604;
+    }
+
+    15% {
+      opacity: 0.20626;
+    }
+
+    20% {
+      opacity: 0.28128;
+    }
+
+    25% {
+      opacity: 0.20626;
+    }
+
+    30% {
+      opacity: 0.28128;
+    }
+
+    35% {
+      opacity: 0.33604;
+    }
+  }
+
+  .candystripe:nth-child(odd) {
+    background-color: rgba(0, 100, 0, 0.5);
+  }
+
+  .Layout__content::after {
+    content: ' ';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+
+  .Layout__content::before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+      linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.06),
+        rgba(0, 255, 0, 0.02),
+        rgba(0, 0, 255, 0.06)
+      );
+    z-index: 2;
+    background-size:
+      100% 3px,
+      5px 100%;
+    pointer-events: none;
+  }
+
+  .Section__titleText {
+    color: #00ff00;
+  }
+
+  /*media all*/
+  .color-label {
+    color: #00ff00 !important;
+  }
+
+  logo-container {
+    filter: sepia(1) hue-rotate(80deg) saturate(5)
+      drop-shadow(-1px 1px 2px lime);
+  }
+}

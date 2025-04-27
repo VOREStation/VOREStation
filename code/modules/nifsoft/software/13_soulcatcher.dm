@@ -259,11 +259,9 @@
 		brainmob.ooc_notes = H.ooc_notes
 		brainmob.ooc_notes_likes = H.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
-		/* Not implemented on virgo
 		brainmob.ooc_notes_favs = H.ooc_notes_favs
 		brainmob.ooc_notes_maybes = H.ooc_notes_maybes
 		brainmob.ooc_notes_style = H.ooc_notes_style
-		*/
 		brainmob.timeofhostdeath = H.timeofdeath
 		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
@@ -348,12 +346,12 @@
 	if(soulcatcher) // needs it's own handling to allow vore_fx
 		if(ext_blind)
 			eye_blind = 5
-			client.screen.Remove(global_hud.whitense)
+			client.screen.Remove(GLOB.global_hud.whitense)
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
 			eye_blind = 0
 			clear_fullscreens()
-			client.screen.Add(global_hud.whitense)
+			client.screen.Add(GLOB.global_hud.whitense)
 
 	//If they're deaf
 	if(ext_deaf)
@@ -487,6 +485,7 @@
 	return 1
 
 /mob/observer/eye/ar_soul/proc/human_moved()
+	SIGNAL_HANDLER
 	if(!can_see(parent_human,src))
 		forceMove(get_turf(parent_human))
 

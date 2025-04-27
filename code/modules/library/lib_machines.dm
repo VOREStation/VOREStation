@@ -186,7 +186,7 @@
 				dat += "<A href='byond://?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
 				new /obj/item/book/tome(src.loc)
-				var/datum/gender/T = gender_datums[user.get_visible_gender()]
+				var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older."), 2)
 				src.arcanecheckout = 0
