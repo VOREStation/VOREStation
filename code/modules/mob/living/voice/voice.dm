@@ -4,6 +4,7 @@
 	desc = "How are you examining me?"
 	see_invisible = SEE_INVISIBLE_LIVING
 	var/obj/item/communicator/comm = null
+	var/item_tf = FALSE
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 

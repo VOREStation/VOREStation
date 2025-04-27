@@ -279,7 +279,7 @@ var/list/gear_datums = list()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
-	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc)
+	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc, GLOB.gear_tweak_item_tf_spawn, GLOB.gear_tweak_free_matrix_recolor)
 
 /datum/gear_data
 	var/path
