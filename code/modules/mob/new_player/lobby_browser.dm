@@ -38,7 +38,7 @@
 
 	var/displayed_name = world.name
 	if(config && CONFIG_GET(string/servername))
-		var/displayed_name = CONFIG_GET(string/servername)
+		displayed_name = CONFIG_GET(string/servername)
 
 	data["server_name"] = displayed_name
 	data["map"] = using_map.full_name
