@@ -5,6 +5,7 @@
 #define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 
 // Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
+#define INVISIBILITY_NONE                  0
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
@@ -21,6 +22,7 @@
 #define SEE_INVISIBLE_OBSERVER            61
 
 #define SEE_INVISIBLE_MINIMUM 5
+#define INVISIBILITY_BADMIN 99 // Used for objects that badmins should see
 #define INVISIBILITY_MAXIMUM 100
 #define INVISIBILITY_ABSTRACT 101 //only used for abstract objects, things that are not really there.
 

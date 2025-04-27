@@ -1980,7 +1980,7 @@
 
 /datum/species/xenochimera/proc/update_xenochimera_hud(var/mob/living/carbon/human/H, var/danger, var/feral)
 	if(H.xenochimera_danger_display)
-		H.xenochimera_danger_display.invisibility = 0
+		H.xenochimera_danger_display.invisibility = INVISIBILITY_NONE
 		if(danger && feral)
 			H.xenochimera_danger_display.icon_state = "danger11"
 		else if(danger && !feral)
@@ -1994,7 +1994,7 @@
 
 /obj/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/screen/xenochimera/danger_level
 	name = "danger level"
