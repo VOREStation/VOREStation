@@ -119,6 +119,10 @@
 		)
 
 	allow_mind_transfer = TRUE
+	can_be_drop_prey = FALSE
+	species_sounds = "Spider"
+	pain_emote_1p = list("chitter", "click")
+	pain_emote_3p = list("chitters", "clicks")
 
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()

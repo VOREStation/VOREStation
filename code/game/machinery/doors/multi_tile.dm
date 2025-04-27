@@ -27,6 +27,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/multi_tile/proc/SetBounds()
+	SIGNAL_HANDLER
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size
 		bound_height = world.icon_size

@@ -3,6 +3,7 @@
 ## Enforce text mode and LF line breaks
 *.bat text eol=lf
 *.cjs text eol=lf
+*.mjs text eol=lf
 *.css text eol=lf
 *.dm text eol=lf
 *.dme text eol=lf
@@ -42,4 +43,3 @@
 
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab
-
