@@ -142,7 +142,7 @@
 					return TOPIC_NOACTION
 
 		if("reset_nickname")
-			var/nick_choice = tgui_alert(usr, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
+			var/nick_choice = tgui_alert(user, "Wipe your Nickname? This will completely remove any chosen nickname(s).","Wipe Nickname",list("Yes","No"))
 			if(nick_choice == "Yes")
 				pref.nickname = null
 			return TOPIC_REFRESH
@@ -229,23 +229,41 @@
 			return TOPIC_REFRESH
 
 		if("edit_ooc_notes")
-			var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes)), multiline = TRUE,  prevent_enter = TRUE))
+			var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes)), multiline = TRUE,  prevent_enter = TRUE))
 			if(new_metadata)
 				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes, new_metadata)
 
+		if("edit_ooc_note_favs")
+			var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_favs)), multiline = TRUE,  prevent_enter = TRUE))
+			if(new_metadata)
+				if(new_metadata == "!clear")
+					new_metadata = ""
+				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+
 		if("edit_ooc_note_likes")
-			var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_likes)), multiline = TRUE,  prevent_enter = TRUE))
+			var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_likes)), multiline = TRUE,  prevent_enter = TRUE))
 			if(new_metadata)
 				if(new_metadata == "!clear")
 					new_metadata = ""
 				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_likes, new_metadata)
 
+		if("edit_ooc_note_maybes")
+			var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_maybes)), multiline = TRUE,  prevent_enter = TRUE))
+			if(new_metadata && CanUseTopic(user))
+				if(new_metadata == "!clear")
+					new_metadata = ""
+				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+
 		if("edit_ooc_note_dislikes")
-			var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_dislikes)), multiline = TRUE,  prevent_enter = TRUE))
+			var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_dislikes)), multiline = TRUE,  prevent_enter = TRUE))
 			if(new_metadata)
 				if(new_metadata == "!clear")
 					new_metadata = ""
 				pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_dislikes, new_metadata)
+
+		if("edit_ooc_note_style")
+			pref.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, !pref.read_preference(/datum/preference/toggle/living/ooc_notes_style))
+			return TOPIC_REFRESH
 
 		if("vore_egg_type")
 			var/list/vore_egg_types = GLOB.global_vore_egg_types
@@ -264,6 +282,7 @@
 				pref.autohiss = "Full"
 			return TOPIC_REFRESH
 
+	return ..()
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S

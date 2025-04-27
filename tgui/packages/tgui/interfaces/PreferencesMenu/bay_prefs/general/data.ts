@@ -211,6 +211,7 @@ export type BackgroundData = {
   citizenship: string;
   faction: string;
   religion: string;
+  ooc_note_style: BooleanLike;
   records_banned: BooleanLike;
   med_record: string;
   gen_record: string;
@@ -262,6 +263,8 @@ export type SizeData = {
 export type MiscData = {
   show_in_directory: BooleanLike;
   directory_tag: string;
+  directory_gendertag: string;
+  directory_sexualitytag: string;
   directory_erptag: string;
   sensorpref: string;
   capture_crystal: BooleanLike;

@@ -52,6 +52,7 @@
 	data["citizenship"] = pref.citizenship
 	data["faction"] = pref.faction
 	data["religion"] = pref.religion
+	data["ooc_note_style"] = pref.read_preference(/datum/preference/toggle/living/ooc_notes_style)
 
 	if(jobban_isbanned(user, "Records"))
 		data["records_banned"] = TRUE

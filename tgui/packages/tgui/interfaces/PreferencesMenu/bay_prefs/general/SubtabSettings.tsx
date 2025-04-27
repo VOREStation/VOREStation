@@ -58,6 +58,8 @@ export const SubtabSettings = (props: {
     persistence_settings,
     show_in_directory,
     directory_tag,
+    directory_gendertag,
+    directory_sexualitytag,
     directory_erptag,
     sensorpref,
     capture_crystal,
@@ -307,6 +309,22 @@ export const SubtabSettings = (props: {
                   >
                     <Button onClick={() => act('directory_tag')}>
                       {directory_tag}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Gender Tag"
+                    tooltip="What's your gender?"
+                  >
+                    <Button onClick={() => act('directory_gendertag')}>
+                      {directory_gendertag}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item
+                    label="Sexuality Tag"
+                    tooltip="What's your orientation?"
+                  >
+                    <Button onClick={() => act('directory_sexualitytag')}>
+                      {directory_sexualitytag}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item

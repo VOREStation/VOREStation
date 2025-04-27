@@ -23,6 +23,8 @@
 /datum/category_item/player_setup_item/general/vore_misc/load_character(list/save_data)
 	pref.show_in_directory		= save_data["show_in_directory"]
 	pref.directory_tag			= save_data["directory_tag"]
+	pref.directory_gendertag	= save_data["directory_gendertag"]
+	pref.directory_sexualitytag	= save_data["directory_sexualitytag"]
 	pref.directory_erptag		= save_data["directory_erptag"]
 	pref.directory_ad			= save_data["directory_ad"]
 	pref.sensorpref				= save_data["sensorpref"]
@@ -47,6 +49,8 @@
 /datum/category_item/player_setup_item/general/vore_misc/save_character(list/save_data)
 	save_data["show_in_directory"]		= pref.show_in_directory
 	save_data["directory_tag"]			= pref.directory_tag
+	save_data["directory_gendertag"]	= pref.directory_gendertag
+	save_data["directory_sexualitytag"]	= pref.directory_sexualitytag
 	save_data["directory_erptag"]		= pref.directory_erptag
 	save_data["directory_ad"]			= pref.directory_ad
 	save_data["sensorpref"]				= pref.sensorpref
@@ -107,6 +111,8 @@
 /datum/category_item/player_setup_item/general/vore_misc/sanitize_character()
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
 	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
+	pref.directory_gendertag	= sanitize_inlist(pref.directory_gendertag, GLOB.char_directory_gendertags, initial(pref.directory_gendertag))
+	pref.directory_sexualitytag	= sanitize_inlist(pref.directory_sexualitytag, GLOB.char_directory_sexualitytags, initial(pref.directory_sexualitytag))
 	pref.directory_erptag		= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
 	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, GLOB.sensorpreflist.len, initial(pref.sensorpref))
 	pref.capture_crystal		= sanitize_integer(pref.capture_crystal, 0, 1, initial(pref.capture_crystal))
@@ -138,6 +144,8 @@
 
 	data["show_in_directory"] = pref.show_in_directory
 	data["directory_tag"] = pref.directory_tag
+	data["directory_gendertag"] = pref.directory_gendertag
+	data["directory_sexualitytag"] = pref.directory_sexualitytag
 	data["directory_erptag"] = pref.directory_erptag
 	data["sensorpref"] = GLOB.sensorpreflist[pref.sensorpref]
 	data["capture_crystal"] = pref.capture_crystal
@@ -171,6 +179,18 @@
 			if(!new_tag)
 				return
 			pref.directory_tag = new_tag
+			return TOPIC_REFRESH
+		if("directory_gendertag")
+			var/new_gendertag = tgui_input_list(user, "Pick a new Gender tag for the character directory. This is YOUR gender, not what you prefer.", "Character Gender Tag", GLOB.char_directory_gendertags, pref.directory_gendertag)
+			if(!new_gendertag)
+				return
+			pref.directory_gendertag = new_gendertag
+			return TOPIC_REFRESH
+		if("directory_sexualitytag")
+			var/new_sexualitytag = tgui_input_list(user, "Pick a new Sexuality/Orientation tag for the character directory", "Character Sexuality/Orientation Tag", GLOB.char_directory_sexualitytags, pref.directory_sexualitytag)
+			if(!new_sexualitytag)
+				return
+			pref.directory_sexualitytag = new_sexualitytag
 			return TOPIC_REFRESH
 		if("directory_erptag")
 			var/new_erptag = tgui_input_list(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags, pref.directory_erptag)

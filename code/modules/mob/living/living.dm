@@ -1386,6 +1386,7 @@
 		qdel_null(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1401,6 +1402,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/owner = user
 	if(owner.client?.prefs)
 		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
@@ -1475,3 +1477,39 @@
 			drop.invisibility = 0
 	//else
 		// come up with drips for other mobs someday
+
+/mob/living/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_favs = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+		to_chat(user, span_filter_notice("OOC note favs have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note favs mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_maybes = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+		to_chat(user, span_filter_notice("OOC note maybes have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note maybes mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	ooc_notes_style = !ooc_notes_style
+	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
+	if(reopen)
+		ooc_notes_window(user)

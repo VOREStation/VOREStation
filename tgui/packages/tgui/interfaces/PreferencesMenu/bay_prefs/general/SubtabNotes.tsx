@@ -23,6 +23,7 @@ export const SubtabNotes = (props: {
     citizenship,
     faction,
     religion,
+    ooc_note_style,
     records_banned,
     med_record,
     gen_record,
@@ -31,44 +32,98 @@ export const SubtabNotes = (props: {
   } = data;
 
   return (
-    <Stack fill justify="space-between">
+    <Stack vertical fill>
+      <Stack.Item>
+        <Stack fill justify="space-between">
+          <Stack.Item>
+            <Stack vertical fill>
+              <Stack.Item>
+                <Box bold>Background Information</Box>
+                <LabeledList>
+                  <LabeledList.Item label="Economic Status">
+                    <Button onClick={() => act('econ_status')}>
+                      {economic_status || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Home System">
+                    <Button onClick={() => act('home_system')}>
+                      {home_system || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Birthplace">
+                    <Button onClick={() => act('birthplace')}>
+                      {birthplace || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Citizenship">
+                    <Button onClick={() => act('citizenship')}>
+                      {citizenship || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Faction">
+                    <Button onClick={() => act('faction')}>
+                      {faction || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Religion">
+                    <Button onClick={() => act('religion')}>
+                      {religion || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>
+            <Stack vertical fill>
+              {records_banned ? (
+                <Stack.Item>
+                  <Box bold>You are banned from using character records.</Box>
+                </Stack.Item>
+              ) : (
+                <>
+                  <Stack.Item>
+                    <Box bold>Medical Records</Box>
+                    <Button onClick={() => act('set_medical_records')}>
+                      {med_record || 'None'}
+                    </Button>{' '}
+                    (
+                    <Button onClick={() => act('reset_medrecord')}>
+                      Reset
+                    </Button>
+                    )
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Box bold>Employment Records</Box>
+                    <Button onClick={() => act('set_general_records')}>
+                      {gen_record || 'None'}
+                    </Button>{' '}
+                    (
+                    <Button onClick={() => act('reset_emprecord')}>
+                      Reset
+                    </Button>
+                    )
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Box bold>Security Records</Box>
+                    <Button onClick={() => act('set_security_records')}>
+                      {sec_record || 'None'}
+                    </Button>{' '}
+                    (
+                    <Button onClick={() => act('reset_secrecord')}>
+                      Reset
+                    </Button>
+                    )
+                  </Stack.Item>
+                </>
+              )}
+              <Stack.Item>NIF: {nif ? 'Installed' : 'None'}</Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
       <Stack.Item>
         <Stack vertical fill>
-          <Stack.Item>
-            <Box bold>Background Information</Box>
-            <LabeledList>
-              <LabeledList.Item label="Economic Status">
-                <Button onClick={() => act('econ_status')}>
-                  {economic_status || 'None'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Home System">
-                <Button onClick={() => act('home_system')}>
-                  {home_system || 'None'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Birthplace">
-                <Button onClick={() => act('birthplace')}>
-                  {birthplace || 'None'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Citizenship">
-                <Button onClick={() => act('citizenship')}>
-                  {citizenship || 'None'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Faction">
-                <Button onClick={() => act('faction')}>
-                  {faction || 'None'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Religion">
-                <Button onClick={() => act('religion')}>
-                  {religion || 'None'}
-                </Button>
-              </LabeledList.Item>
-            </LabeledList>
-          </Stack.Item>
           <Stack.Item>
             <Box bold>Flavor Text</Box>
             <Stack>
@@ -123,8 +178,18 @@ export const SubtabNotes = (props: {
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
+                  <Button onClick={() => act('edit_ooc_note_favs')}>
+                    Set Favs
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
                   <Button onClick={() => act('edit_ooc_note_likes')}>
                     Set Likes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button onClick={() => act('edit_ooc_note_maybes')}>
+                    Set Maybes
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
@@ -137,43 +202,14 @@ export const SubtabNotes = (props: {
                     Set Private Notes
                   </Button>
                 </Stack.Item>
+                <Stack.Item>
+                  <Button onClick={() => act('edit_ooc_note_style')}>
+                    {ooc_note_style ? 'Lists' : 'Fields'}
+                  </Button>
+                </Stack.Item>
               </Stack>
             </Stack.Item>
           ) : null}
-        </Stack>
-      </Stack.Item>
-      <Stack.Item>
-        <Stack vertical fill>
-          {records_banned ? (
-            <Stack.Item>
-              <Box bold>You are banned from using character records.</Box>
-            </Stack.Item>
-          ) : (
-            <>
-              <Stack.Item>
-                <Box bold>Medical Records</Box>
-                <Button onClick={() => act('set_medical_records')}>
-                  {med_record || 'None'}
-                </Button>{' '}
-                (<Button onClick={() => act('reset_medrecord')}>Reset</Button>)
-              </Stack.Item>
-              <Stack.Item>
-                <Box bold>Employment Records</Box>
-                <Button onClick={() => act('set_general_records')}>
-                  {gen_record || 'None'}
-                </Button>{' '}
-                (<Button onClick={() => act('reset_emprecord')}>Reset</Button>)
-              </Stack.Item>
-              <Stack.Item>
-                <Box bold>Security Records</Box>
-                <Button onClick={() => act('set_security_records')}>
-                  {sec_record || 'None'}
-                </Button>{' '}
-                (<Button onClick={() => act('reset_secrecord')}>Reset</Button>)
-              </Stack.Item>
-            </>
-          )}
-          <Stack.Item>NIF: {nif ? 'Installed' : 'None'}</Stack.Item>
         </Stack>
       </Stack.Item>
     </Stack>

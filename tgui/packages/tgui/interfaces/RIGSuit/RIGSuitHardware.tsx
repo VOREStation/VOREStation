@@ -126,7 +126,7 @@ export const RIGSuitHardware = (props) => {
                     <DmIcon
                       height={6}
                       width={6}
-                      icon="icons/hud/rig_ui_slots.dmi"
+                      icon="icons/hud/rig/rig_ui_slots.dmi"
                       icon_state="base"
                     />
                     <Box position="absolute" top={0.5} left={0.5}>
@@ -153,7 +153,7 @@ export const RIGSuitHardware = (props) => {
                     <DmIcon
                       height={6}
                       width={6}
-                      icon="icons/hud/rig_ui_slots.dmi"
+                      icon="icons/hud/rig/rig_ui_slots.dmi"
                       icon_state="base"
                     />
                     <Box position="absolute" top={0.7} left={0.5}>
@@ -174,7 +174,7 @@ export const RIGSuitHardware = (props) => {
                     <DmIcon
                       height={6}
                       width={6}
-                      icon="icons/hud/rig_ui_slots.dmi"
+                      icon="icons/hud/rig/rig_ui_slots.dmi"
                       icon_state="base"
                     />
                     <Box position="absolute" top={1} left={1}>
@@ -192,7 +192,7 @@ export const RIGSuitHardware = (props) => {
                     <DmIcon
                       height={6}
                       width={6}
-                      icon="icons/hud/rig_ui_slots.dmi"
+                      icon="icons/hud/rig/rig_ui_slots.dmi"
                       icon_state="base"
                     />
                     <Box position="absolute" top={1} left={0.5}>
@@ -231,7 +231,7 @@ const HardwarePiece = (props: {
         <DmIcon
           height={6}
           width={6}
-          icon="icons/hud/rig_ui_slots.dmi"
+          icon="icons/hud/rig/rig_ui_slots.dmi"
           icon_state={props.icon}
           style={{
             cursor: 'pointer',
