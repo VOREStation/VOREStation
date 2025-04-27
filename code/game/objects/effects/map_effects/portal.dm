@@ -46,7 +46,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 /obj/effect/map_effect/portal
 	name = "portal subtype"
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	opacity = TRUE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER

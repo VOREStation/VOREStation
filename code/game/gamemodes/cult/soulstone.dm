@@ -123,7 +123,7 @@
 		T.drop_from_inventory(W)
 
 	new /obj/effect/decal/remains/human(T.loc) //Spawns a skeleton
-	T.invisibility = 101
+	T.invisibility = INVISIBILITY_ABSTRACT
 
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( T.loc )
 	animation.icon_state = "blank"

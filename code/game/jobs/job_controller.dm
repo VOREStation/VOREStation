@@ -422,7 +422,7 @@ var/global/datum/controller/occupations/job_master
 				// Implants get special treatment
 				if(G.slot == "implant")
 					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
-					I.invisibility = 100
+					I.invisibility = INVISIBILITY_MAXIMUM
 					I.implant_loadout(H)
 					continue
 

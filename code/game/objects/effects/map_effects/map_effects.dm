@@ -2,7 +2,7 @@
 // Players cannot see or interact with these.
 /obj/effect/map_effect
 	anchored = TRUE
-	invisibility = 99 // So a badmin can go view these by changing their see_invisible.
+	invisibility = INVISIBILITY_BADMIN // So a badmin can go view these by changing their see_invisible.
 	icon = 'icons/effects/map_effects.dmi'
 
 	// Below vars concern check_for_player_proximity() and is used to not waste effort if nobody is around to appreciate the effects.
