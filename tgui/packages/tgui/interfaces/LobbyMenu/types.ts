@@ -4,6 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type LobbyData = {
   display_loading: BooleanLike;
+  server_name: string;
   map: string;
   station_time: string;
   round_start: BooleanLike;

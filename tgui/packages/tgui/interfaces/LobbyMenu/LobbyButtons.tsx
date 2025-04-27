@@ -13,6 +13,7 @@ export const LobbyButtons = (props: {
   const { setModal, hidden, setHidden } = props;
 
   const {
+    server_name,
     map,
     station_time,
     round_start,
@@ -47,7 +48,7 @@ export const LobbyButtons = (props: {
             <Stack.Item minWidth="200px">
               <Stack vertical fill>
                 <Stack.Item>
-                  <Box className="typeEffect">Welcome to VOREStation.</Box>
+                  <Box className="typeEffect">Welcome to {server_name}.</Box>
                 </Stack.Item>
                 <Stack.Item>
                   <Box className="typeEffect">Map: {map}</Box>
