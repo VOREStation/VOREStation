@@ -901,7 +901,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_info("You are now visible!"))
 
 	plane = (plane == PLANE_GHOSTS) ? PLANE_WORLD : PLANE_GHOSTS
-	invisibility = (plane == PLANE_WORLD) ? 0 : INVISIBILITY_OBSERVER
+	invisibility = (plane == PLANE_WORLD) ? INVISIBILITY_NONE : INVISIBILITY_OBSERVER
 
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
