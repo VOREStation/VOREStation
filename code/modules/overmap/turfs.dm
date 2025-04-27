@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 /turf/unsimulated/map/edge/LateInitialize()
 	//This could be done by using the using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
 	//  the edges this way allows for 'sub overmaps' elsewhere and whatnot.
-	for(var/side in alldirs) //The order of this list is relevant: It should definitely break on finding a cardinal FIRST.
+	for(var/side in GLOB.alldirs) //The order of this list is relevant: It should definitely break on finding a GLOB.cardinal FIRST.
 		var/turf/T = get_step(src, side)
 		if(T?.type == /turf/unsimulated/map) //Not a wall, not something else, EXACTLY a flat map turf.
 			map_is_to_my = side

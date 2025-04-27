@@ -40,7 +40,7 @@
 
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(var/intact)
-	invisibility = intact ? 101 : 0
+	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 // update the icon_state
@@ -215,7 +215,7 @@
 	. = ..()
 
 	if(autolink)
-		for(var/obj/machinery/magnetic_module/M in machines)
+		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
@@ -230,7 +230,7 @@
 
 /obj/machinery/magnetic_controller/process()
 	if(magnets.len == 0 && autolink)
-		for(var/obj/machinery/magnetic_module/M in machines)
+		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 

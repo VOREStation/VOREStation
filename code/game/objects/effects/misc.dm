@@ -11,7 +11,7 @@
 	name = "self deleting effect"
 	desc = "How are you examining what which cannot be seen?"
 	icon = 'icons/effects/effects.dmi'
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/time_to_die = 10 SECONDS // Afer which, it will delete itself.
 
 /obj/effect/temporary_effect/Initialize(mapload)

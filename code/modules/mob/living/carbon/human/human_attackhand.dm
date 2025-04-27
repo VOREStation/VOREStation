@@ -76,7 +76,7 @@
 
 	if(istype(M,/mob/living/carbon) && has_hands)
 		for(var/datum/disease/D in M.GetViruses())
-			if(D.spread_flags & CONTACT_HANDS)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				ContractDisease(D)
 
 	switch(M.a_intent)
@@ -205,6 +205,7 @@
 		apply_effect(3, WEAKEN, armor_check)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(armor_check < 60)
+			drop_both_hands()
 			if(M.lying)
 				visible_message(span_danger("[M] swept [src] down onto the floor!"))
 			else
@@ -352,7 +353,7 @@
 				attack_message = "[H] attempted to strike [src], but missed!"
 			else
 				attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
-				src.set_dir(pick(cardinal))
+				src.set_dir(pick(GLOB.cardinal))
 			miss_type = 1
 
 	if(!miss_type && block)

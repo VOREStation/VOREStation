@@ -10,7 +10,7 @@
 
 	spawncount = rand(2 * severity, 6 * severity)
 
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		var/area/A = get_area(temp_vent)
 		if(A.flag_check(AREA_FORBID_EVENTS))
 			continue

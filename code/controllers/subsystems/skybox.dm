@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(skybox)
 		speedspace_cache["EW_[i]"] = MA
 
 	//Over-the-edge images
-	for (var/dir in alldirs)
+	for (var/dir in GLOB.alldirs)
 		var/mutable_appearance/MA = new(normal_space)
 		var/matrix/M = matrix()
 		var/horizontal = (dir & (WEST|EAST))

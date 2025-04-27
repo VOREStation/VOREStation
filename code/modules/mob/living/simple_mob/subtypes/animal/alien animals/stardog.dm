@@ -127,7 +127,7 @@
 	if(istype(loc, /turf/unsimulated/map))
 		if(!invisibility)
 			invisibility = INVISIBILITY_ABSTRACT
-			child_om_marker.invisibility = 0
+			child_om_marker.invisibility = INVISIBILITY_NONE
 			ai_holder.base_wander_delay = 50
 			ai_holder.wander_delay = 1
 			melee_damage_lower = 50
@@ -137,7 +137,7 @@
 			movement_cooldown = 5
 
 	else if(invisibility)
-		invisibility = 0
+		invisibility = INVISIBILITY_NONE
 		child_om_marker.invisibility = INVISIBILITY_ABSTRACT
 		ai_holder.base_wander_delay = 5
 		ai_holder.wander_delay = 1
@@ -1109,15 +1109,15 @@
 
 /obj/effect/landmark/area_gatherer
 	name = "stardog area gatherer"
+
 /obj/effect/landmark/area_gatherer/Initialize(mapload)
 	. = ..()
-	LateInitialize()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/landmark/area_gatherer/LateInitialize()	//I am very afraid
 	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
 	var/mob/living/simple_mob/vore/overmap/stardog/dog = s.parent
 	dog.weather_areas |= get_area(src)
-	for(var/thing in dog.weather_areas)
 	qdel(src)
 
 /obj/machinery/computer/ship/navigation/telescreen/dog_eye
@@ -1257,7 +1257,7 @@
 	desc = "It's waiting to accept treats!"
 	icon = 'icons/obj/flesh_machines.dmi'
 	icon_state = "mouth"
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	anchored = TRUE
 	pixel_x = -16
 	var/id = "mouth_a"							//same id will be linked

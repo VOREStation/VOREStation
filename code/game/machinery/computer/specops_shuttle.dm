@@ -92,7 +92,7 @@ var/specops_shuttle_timeleft = 0
 
 	specops_shuttle_at_station = 0
 
-	for(var/obj/machinery/computer/specops_shuttle/S in machines)
+	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
 		S.specops_shuttle_timereset = world.time + SPECOPS_RETURN_DELAY
 
 	qdel(announcer)
@@ -165,7 +165,7 @@ var/specops_shuttle_timeleft = 0
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Exit")
 				var/obj/effect/portal/P = new(L.loc)
-				P.invisibility = 101//So it is not seen by anyone.
+				P.invisibility = INVISIBILITY_ABSTRACT//So it is not seen by anyone.
 				P.failchance = 0//So it has no fail chance when teleporting.
 				P.target = pick(spawn_marauder)//Where the marauder will arrive.
 				spawn_marauder.Remove(P.target)
@@ -233,7 +233,7 @@ var/specops_shuttle_timeleft = 0
 		var/mob/M = locate(/mob) in T
 		to_chat(M, span_notice("You have arrived to [station_name()]. Commence operation!"))
 
-	for(var/obj/machinery/computer/specops_shuttle/S in machines)
+	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
 		S.specops_shuttle_timereset = world.time + SPECOPS_RETURN_DELAY
 
 	qdel(announcer)
@@ -241,7 +241,7 @@ var/specops_shuttle_timeleft = 0
 /proc/specops_can_move()
 	if(specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom)
 		return 0
-	for(var/obj/machinery/computer/specops_shuttle/S in machines)
+	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
 		if(world.timeofday <= S.specops_shuttle_timereset)
 			return 0
 	return 1

@@ -535,7 +535,7 @@
 	var/list/zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
-	for(var/obj/machinery/gravity_generator/main/GG in machines)
+	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
 		if(GG.z in zLevels)
 			GG.update_areas()
 	return TRUE
@@ -678,7 +678,7 @@
 			return ROOM_ERR_TOOLARGE
 		var/turf/T = pending[1] //why byond havent list::pop()?
 		pending -= T
-		for (var/dir in cardinal)
+		for (var/dir in GLOB.cardinal)
 			var/turf/NT = get_step(T,dir)
 			if (!isturf(NT) || (NT in found) || (NT in pending))
 				continue
@@ -835,7 +835,7 @@
 				return 1 //TOOLARGE
 			var/turf/T = pending[1]
 			pending -= T
-			for (var/dir in cardinal)
+			for (var/dir in GLOB.cardinal)
 				var/turf/NT = get_step(T,dir)
 				if (!isturf(NT) || (NT in found) || (NT in pending))
 					continue
@@ -936,7 +936,7 @@
 	var/list/zLevels = using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
-	for(var/obj/machinery/gravity_generator/main/GG in machines)
+	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
 		if(GG.z in zLevels)
 			GG.update_areas()
 	return

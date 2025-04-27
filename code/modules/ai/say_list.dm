@@ -8,6 +8,13 @@
 /mob/living
 	var/datum/say_list/say_list = null
 	var/say_list_type = /datum/say_list	// Type to give us on initialization. Default has empty lists, so the mob will be silent.
+	var/can_pain_emote = TRUE
+	var/datum/looping_sound/mob/deafened/deaf_loop //NYI
+	var/pain_emote_1p = null
+	var/pain_emote_3p = null
+	var/species_sounds = "None" // By default, we have nothing.
+	var/death_sound_override = null
+	var/datum/looping_sound/mob/on_fire/firesoundloop
 
 /mob/living/Initialize(mapload)
 	if(say_list_type)

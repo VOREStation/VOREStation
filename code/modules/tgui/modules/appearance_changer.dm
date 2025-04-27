@@ -542,26 +542,29 @@
 				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
-		/*if("species_sound") //TODO: UP PORT SPECIES_SOUNDS
+		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice && can_change(owner, APPEARANCE_RACE))
 				owner.species.species_sounds = choice
 				return TRUE
-		*/
 		if("flavor_text")
 			var/select_key = params["target"]
 			if(select_key && can_change(owner, APPEARANCE_RACE))
 				if(select_key in owner.flavor_texts)
 					switch(select_key)
 						if("general")
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 						else
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 		// ***********************************
@@ -863,6 +866,7 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner) // Copied from the vore version.
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -996,6 +1000,7 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner)
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -1084,7 +1089,7 @@
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
+	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)

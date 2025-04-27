@@ -193,6 +193,7 @@
 	desc += " \An [attached_grenade] is attached to it!"
 
 /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
+	SIGNAL_HANDLER
 	if(!attached_grenade)
 		return
 	UnregisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED)

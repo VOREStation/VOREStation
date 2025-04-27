@@ -24,7 +24,7 @@
 //If underfloor, hide the cable^H^H diffuser
 /obj/machinery/shield_diffuser/hide(var/i)
 	if(istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 /obj/machinery/shield_diffuser/hides_under_flooring()
@@ -39,7 +39,7 @@
 
 	if(!enabled)
 		return
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		var/turf/simulated/shielded_tile = get_step(get_turf(src), direction)
 		for(var/obj/effect/shield/S in shielded_tile)
 			S.diffuse(5)

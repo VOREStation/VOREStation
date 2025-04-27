@@ -59,11 +59,6 @@
 	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
 	death_message = "phases to somewhere far away!"
-	male_cough_sounds = null
-	female_cough_sounds = null
-	male_sneeze_sound = null
-	female_sneeze_sound = null
-
 	speech_bubble_appearance = "ghost"
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
@@ -227,7 +222,7 @@
 		var/l_icon = 0
 		var/e_icon = 0
 
-		H.shadekin_display.invisibility = 0
+		H.shadekin_display.invisibility = INVISIBILITY_NONE
 		if(T)
 			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 			var/darkness = 1-brightness //Invert
