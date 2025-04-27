@@ -40,6 +40,7 @@
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
 		O_BRAIN =		/obj/item/organ/internal/brain,
 		O_APPENDIX = 	/obj/item/organ/internal/appendix,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
 		O_SPLEEN = 		/obj/item/organ/internal/spleen,
 		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
@@ -161,11 +162,12 @@
 
 	//No kidneys or appendix
 	has_organ = list(
-		O_HEART =    /obj/item/organ/internal/heart/unathi,
-		O_LUNGS =    /obj/item/organ/internal/lungs/unathi,
-		O_LIVER =    /obj/item/organ/internal/liver/unathi,
-		O_BRAIN =    /obj/item/organ/internal/brain/unathi,
-		O_EYES =     /obj/item/organ/internal/eyes/unathi,
+		O_HEART =		/obj/item/organ/internal/heart/unathi,
+		O_LUNGS =		/obj/item/organ/internal/lungs/unathi,
+		O_LIVER =		/obj/item/organ/internal/liver/unathi,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
+		O_BRAIN =		/obj/item/organ/internal/brain/unathi,
+		O_EYES =		/obj/item/organ/internal/eyes/unathi,
 		O_STOMACH =		/obj/item/organ/internal/stomach/unathi,
 		O_INTESTINE =	/obj/item/organ/internal/intestine/unathi
 		)
@@ -293,13 +295,14 @@
 	cold_discomfort_level = 215
 
 	has_organ = list(    //No appendix.
-		O_HEART =    /obj/item/organ/internal/heart/tajaran,
-		O_LUNGS =    /obj/item/organ/internal/lungs/tajaran,
-		O_VOICE = 		/obj/item/organ/internal/voicebox,
-		O_LIVER =    /obj/item/organ/internal/liver/tajaran,
-		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_EYES =     /obj/item/organ/internal/eyes/tajaran,
+		O_HEART =		/obj/item/organ/internal/heart/tajaran,
+		O_LUNGS =		/obj/item/organ/internal/lungs/tajaran,
+		O_VOICE =		/obj/item/organ/internal/voicebox,
+		O_LIVER =		/obj/item/organ/internal/liver/tajaran,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
+		O_BRAIN =		/obj/item/organ/internal/brain,
+		O_EYES =		/obj/item/organ/internal/eyes/tajaran,
 		O_STOMACH =		/obj/item/organ/internal/stomach/tajaran,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
@@ -502,15 +505,16 @@
 		)
 
 	has_organ = list(    //No appendix.
-	O_HEART =    /obj/item/organ/internal/heart,
-	O_LUNGS =    /obj/item/organ/internal/lungs,
-	O_VOICE = 	 /obj/item/organ/internal/voicebox,
-	O_LIVER =    /obj/item/organ/internal/liver,
-	O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-	O_BRAIN =    /obj/item/organ/internal/brain,
-	O_EYES =     /obj/item/organ/internal/eyes,
-	O_STOMACH =	 /obj/item/organ/internal/stomach,
-	O_INTESTINE =/obj/item/organ/internal/intestine
+	O_HEART =		/obj/item/organ/internal/heart,
+	O_LUNGS =		/obj/item/organ/internal/lungs,
+	O_VOICE =		/obj/item/organ/internal/voicebox,
+	O_LIVER =		/obj/item/organ/internal/liver,
+	O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+	O_SPLEEN =		/obj/item/organ/internal/spleen,
+	O_BRAIN =		/obj/item/organ/internal/brain,
+	O_EYES =		/obj/item/organ/internal/eyes,
+	O_STOMACH =		/obj/item/organ/internal/stomach,
+	O_INTESTINE =	/obj/item/organ/internal/intestine
 	)
 
 
@@ -1196,13 +1200,14 @@
 		)
 
 	has_organ = list(
-		O_HEART =    /obj/item/organ/internal/heart,
-		O_LUNGS =    /obj/item/organ/internal/lungs,
-		O_VOICE = 	/obj/item/organ/internal/voicebox,
-		O_LIVER =    /obj/item/organ/internal/liver,
-		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_EYES =     /obj/item/organ/internal/eyes,
+		O_HEART =		/obj/item/organ/internal/heart,
+		O_LUNGS =		/obj/item/organ/internal/lungs,
+		O_VOICE =		/obj/item/organ/internal/voicebox,
+		O_LIVER =		/obj/item/organ/internal/liver,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
+		O_BRAIN =		/obj/item/organ/internal/brain,
+		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
@@ -1366,6 +1371,7 @@
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =		/obj/item/organ/internal/liver,
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
 		O_BRAIN =		/obj/item/organ/internal/brain,
 		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
@@ -1735,6 +1741,7 @@
 		O_VOICE =		/obj/item/organ/internal/voicebox,
 		O_LIVER =		/obj/item/organ/internal/liver,
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
 		O_BRAIN =		/obj/item/organ/internal/brain,
 		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,

@@ -165,6 +165,22 @@
 	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
+var/static/list/worm_meat_spawns = list (
+		/obj/random/junk = 30,
+		/obj/random/trash = 30,
+		/obj/random/maintenance/clean = 15,
+		/obj/random/tool = 15,
+		/obj/random/medical = 3,
+		/obj/random/bomb_supply = 7,
+		/obj/random/contraband = 3,
+		/obj/random/unidentified_medicine/old_medicine = 7,
+		/obj/item/strangerock = 3,
+		/obj/item/ore/phoron = 7,
+		/obj/random/handgun = 1,
+		/obj/random/toolbox = 4,
+		/obj/random/drinkbottle = 5
+)
+
 /obj/item/reagent_containers/food/snacks/meat/worm
 	name = "weird meat"
 	desc = "A chunk of pulsating meat."
@@ -183,20 +199,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/knife))
-		var/to_spawn = pickweight(/obj/random/junk = 30,
-		/obj/random/trash = 30,
-		/obj/random/maintenance/clean = 15,
-		/obj/random/tool = 15,
-		/obj/random/medical = 3,
-		/obj/random/bomb_supply = 7,
-		/obj/random/contraband = 3,
-		/obj/random/unidentified_medicine/old_medicine = 7,
-		/obj/item/strangerock = 3,
-		/obj/item/ore/phoron = 7,
-		/obj/random/handgun = 1,
-		/obj/random/toolbox = 4,
-		/obj/random/drinkbottle = 5
-		)
+		var/to_spawn = pickweight(worm_meat_spawns)
 
 		new to_spawn(get_turf(src))
 
