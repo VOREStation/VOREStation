@@ -854,7 +854,11 @@
 
 /obj/machinery/alarm/power_change()
 	..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), rand(0,15), TIMER_DELETE_ME)
+	var/delay_time = rand(0, 15)
+	if(delay_time)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), delay_time, TIMER_DELETE_ME)
+		return
+	process_power_change()
 
 /obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()
