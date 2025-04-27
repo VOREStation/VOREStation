@@ -21,7 +21,7 @@
 /obj/effect/temporary_effect/chroma
 	name = "chroma"
 	desc = "How are you examining what which cannot be seen?"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	time_to_die = 2 MINUTES //Despawn after this time, if set.
 
 /obj/effect/temporary_effect/chroma/Initialize(mapload, var/new_color = "#FFFFFF")
