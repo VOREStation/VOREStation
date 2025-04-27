@@ -4,13 +4,14 @@
 /datum/unit_test/recycler_vendor_entry_invalid/start_test()
 	var/failed = FALSE
 
-	var/item_to_spawn = initial(R.object_type_to_spawn)
-	var/item_cost = initial(R.item_cost)
-	var/global_item_cap = initial(R.per_round_cap)
-	var/individual_item_cap initial(R.per_person_cap)
-	var/is_scam = initial(R.is_scam)
+
 
 	for(var/datum/maint_recycler_vendor_entry/R in subtypesof(/datum/maint_recycler_vendor_entry))
+		var/item_to_spawn = initial(R.object_type_to_spawn)
+		var/item_cost = initial(R.item_cost)
+		var/global_item_cap = initial(R.per_round_cap)
+		var/individual_item_cap = initial(R.per_person_cap)
+		var/is_scam = initial(R.is_scam)
 		if(!item_to_spawn && !is_scam)
 			log_unit_test("[R] : Vendor Entry - Missing Object Type on non-scam entry")
 			failed = TRUE
