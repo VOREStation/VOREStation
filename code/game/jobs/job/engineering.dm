@@ -46,6 +46,12 @@
 /datum/job/chief_engineer/get_request_reasons()
 	return list("Engine setup", "Construction project", "Repairs necessary", "Training crew", "Assembling expedition team")
 
+/datum/job/chief_engineer/equip(mob/living/carbon/human/H, alt_title)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_CAN_SEE_WIRES, JOB_TRAIT)
+	if(H.mind)
+		ADD_TRAIT(H.mind, TRAIT_CAN_SEE_WIRES, JOB_TRAIT)
+
 /datum/alt_title/head_engineer
 	title = JOB_ALT_HEAD_ENGINEER
 
@@ -85,6 +91,12 @@
 
 /datum/job/engineer/get_request_reasons()
 	return list("Engine setup", "Construction project", "Repairs necessary", "Assembling expedition team")
+
+/datum/job/engineer/equip(mob/living/carbon/human/H, alt_title)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_CAN_SEE_WIRES, JOB_TRAIT)
+	if(H.mind)
+		ADD_TRAIT(H.mind, TRAIT_CAN_SEE_WIRES, JOB_TRAIT)
 
 // Engineer Alt Titles
 /datum/alt_title/maint_tech
@@ -158,6 +170,10 @@
 
 /datum/alt_title/atmos_engi
 	title = JOB_ALT_ATMOSPHERIC_ENGINEER
+
+/datum/alt_title/firefighter
+	title = JOB_ALT_FIREFIGHTER
+	title_blurb = "A " + JOB_ALT_FIREFIGHTER + " is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the same duties, although specizlizes more in tackling fires."
 
 /datum/alt_title/disposals_tech
 	title = JOB_ALT_DISPOSALS_TECHNICIAN

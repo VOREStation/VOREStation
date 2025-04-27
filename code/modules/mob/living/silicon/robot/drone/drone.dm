@@ -249,17 +249,6 @@ var/list/mob_hat_cache = list()
 				request_player()
 			return
 
-		else
-			user.visible_message(span_danger("\The [user] swipes [TU.his] ID card through \the [src], attempting to shut it down."), span_danger("You swipe your ID card through \the [src], attempting to shut it down."))
-
-			if(emagged)
-				return
-
-			if(allowed(user))
-				shut_down()
-			else
-				to_chat(user, span_danger("Access denied."))
-
 		return
 
 	..()
@@ -318,10 +307,6 @@ var/list/mob_hat_cache = list()
 		gib()
 		return
 	..()
-
-//DRONE MOVEMENT.
-/mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)
-	return 0
 
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()

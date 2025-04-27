@@ -194,8 +194,14 @@ SUBSYSTEM_DEF(robot_sprites)
 			if(findtext(icon, regex("-disabler")))
 				RS.sprite_flags |= ROBOT_HAS_DISABLER_SPRITE
 				continue
+			if(findtext(icon, regex("-rest-eyes")))
+				RS.has_rest_eyes_sprites = TRUE
+				continue
 			if(findtext(icon, regex("-eyes")))
 				RS.has_eye_sprites = TRUE
+				continue
+			if(findtext(icon, regex("-rest-lights")))
+				RS.has_rest_lights_sprites = TRUE
 				continue
 			if(findtext(icon, regex("-lights")))
 				RS.has_eye_light_sprites = TRUE

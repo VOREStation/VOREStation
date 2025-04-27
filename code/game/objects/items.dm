@@ -788,7 +788,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/var/ignore_visor_zoom_restriction = FALSE
 
 /obj/item/proc/zoom(var/mob/living/M, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-
+	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
 
@@ -808,7 +808,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
 		cannotzoom = 1
-	else if(!zoom && (global_hud.darkMask[1] in M.client.screen))
+	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
 		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
 		cannotzoom = 1
 	else if(!zoom && M.get_active_hand() != src)

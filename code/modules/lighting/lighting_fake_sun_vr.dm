@@ -124,7 +124,6 @@ var/static/list/fake_sunlight_zs = list()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/fake_sun/LateInitialize()
-	. = ..()
 	if(family)	//Allows one to make multiple fake_suns to use the same settings
 		for(var/obj/effect/fake_sun/l in world_suns)	//check all the suns that exist
 			if(l.family == family && l.shared_settings)	//do you have settings we need?

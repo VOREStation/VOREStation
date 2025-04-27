@@ -101,6 +101,7 @@
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
 
 /obj/item/paper/sticky/proc/reset_persistence_tracking()
+	SIGNAL_HANDLER
 	SSpersistence.forget_value(src, /datum/persistent/paper/sticky)
 	pixel_x = 0
 	pixel_y = 0

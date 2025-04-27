@@ -40,3 +40,18 @@
 	earrings["dangle, platinum"] = /obj/item/clothing/ears/earring/dangle/platinum
 	earrings["dangle, diamond"] = /obj/item/clothing/ears/earring/dangle/diamond
 	gear_tweaks += new/datum/gear_tweak/path(earrings)
+
+
+/datum/gear/ears/earringscolour
+	display_name = "earring selection (colourable)"
+	description = "A selection of eye-catching earrings, now colourable!"
+	path = /obj/item/clothing/ears/earring
+
+/datum/gear/ears/earringscolour/New()
+	..()
+	var/earringscolour = list()
+	earringscolour["stud"] = /obj/item/clothing/ears/earring/stud
+	earringscolour["dangle"] = /obj/item/clothing/ears/earring/dangle
+
+	gear_tweaks += new/datum/gear_tweak/path(earringscolour)
+	gear_tweaks += gear_tweak_free_color_choice
