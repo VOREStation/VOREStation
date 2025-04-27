@@ -398,7 +398,7 @@
 		to_chat(M, span_notice("The alien presence fades, and you are left along in your body..."))
 		to_chat(src, span_notice("Your attempt to gather [M]'s mind has been interrupted."))
 		return
-	if(!isbelly(M.loc) && !(istype(G) && M == G.affecting && G.state == GRAB_NECK)) //CHOMPEdit - Let dominate prey work on grabbed people
+	if(!isbelly(M.loc) && !(istype(G) && M == G.affecting && G.state == GRAB_NECK)) // Let dominate prey work on grabbed people
 		to_chat(M, span_notice("The alien presence fades, and you are left along in your body..."))
 		to_chat(src, span_notice("Your attempt to gather [M]'s mind has been interrupted."))
 		return
