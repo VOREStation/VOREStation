@@ -1474,7 +1474,7 @@
 			drop.dryname = "dried something"
 			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
 			drop.fluorescent  = 0
-			drop.invisibility = 0
+			drop.invisibility = INVISIBILITY_NONE
 	//else
 		// come up with drips for other mobs someday
 

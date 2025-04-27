@@ -1,58 +1,58 @@
 /obj/effect/step_trigger/teleporter/to_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
 /obj/effect/step_trigger/teleporter/from_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
 /obj/effect/step_trigger/teleporter/to_solars
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_solars
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/wild
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/to_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/to_plains
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_plains
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b
 
 /obj/effect/step_trigger/lost_in_space
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
 
 /obj/effect/step_trigger/lost_in_space/Trigger(var/atom/movable/A) //replacement for shuttle dump zones because there's no empty space levels to dump to

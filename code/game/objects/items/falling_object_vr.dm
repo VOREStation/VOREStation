@@ -1,7 +1,7 @@
 /obj/effect/falling_effect
 	name = DEVELOPER_WARNING_NAME
 	desc = "no data"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE
