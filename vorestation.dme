@@ -2864,6 +2864,7 @@
 #include "code\modules\maint_recycler\code\client.dm"
 #include "code\modules\maint_recycler\code\maint_recycler.dm"
 #include "code\modules\maint_recycler\code\maint_vendor.dm"
+#include "code\modules\maint_recycler\code\unit_tests.dm"
 #include "code\modules\maint_recycler\code\util.dm"
 #include "code\modules\maint_recycler\code\vendor_datums\recycler_vendor_entry.dm"
 #include "code\modules\maint_recycler\code\vendor_datums\entries\bling_entries.dm"
