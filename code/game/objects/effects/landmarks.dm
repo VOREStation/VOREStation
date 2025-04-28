@@ -5,13 +5,13 @@
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
-	invisibility = 100
+	invisibility = INVISIBILITY_MAXIMUM
 	var/delete_me = FALSE
 
 /obj/effect/landmark/Initialize(mapload)
 	. = ..()
 	tag = text("landmark*[]", name)
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
@@ -91,8 +91,6 @@
 /obj/effect/landmark/start/Initialize(mapload)
 	. = ..()
 	tag = "start*[name]"
-
-	return 1
 
 /obj/effect/landmark/forbidden_level
 	delete_me = TRUE

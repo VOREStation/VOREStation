@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "move invisibility to defines"
+  - admin: "invisimin can no longer be used if your invis level is above the observer level"

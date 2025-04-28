@@ -20,7 +20,7 @@
 	var/chemical_darksight = 0
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
 
 	if (transforming)
@@ -1490,7 +1490,7 @@
 
 	..()
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science, global_hud.material, global_hud.whitense)
+	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
@@ -1697,7 +1697,7 @@
 							found_welder = 1
 				if(absorbed) found_welder = 1
 			if(found_welder)
-				client.screen |= global_hud.darkMask
+				client.screen |= GLOB.global_hud.darkMask
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()
@@ -1868,7 +1868,7 @@
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
 		if(hud_used)
-			ling_chem_display.invisibility = 0
+			ling_chem_display.invisibility = INVISIBILITY_NONE
 //			ling_chem_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(mind.changeling.chem_charges)]</font></div>"
 			switch(mind.changeling.chem_storage)
 				if(1 to 50)
@@ -1907,7 +1907,7 @@
 							ling_chem_display.icon_state = "ling_chems80e"
 	else
 		if(mind && hud_used)
-			ling_chem_display.invisibility = 101
+			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/human/handle_shock()
 	..()

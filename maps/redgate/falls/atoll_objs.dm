@@ -261,7 +261,7 @@
 	desc = "A prismatic field of... energy, probably. You should definitely rub your face in it."
 	icon = 'maps/redgate/falls/icons/decals/marble_decals.dmi'
 	icon_state = "teleporter"
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 //teleport_z must be populated but this is a gateway map
 //switching between tether or another map will change the z

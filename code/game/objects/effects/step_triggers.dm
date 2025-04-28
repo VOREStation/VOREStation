@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
-	invisibility = 99 // nope cant see this shit
+	invisibility = INVISIBILITY_BADMIN // nope cant see this shit
 	plane = ABOVE_PLANE
 	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
@@ -333,7 +333,7 @@ But for now, for what it's been used for, it works.
 	unacidable = 1
 	layer = 99
 	anchored = 1
-	invisibility = 99
+	invisibility = INVISIBILITY_BADMIN
 
 
 /obj/effect/autostriptarget/Initialize(mapload)

@@ -149,6 +149,7 @@
 	return failed
 
 /datum/unit_test/all_clothing_shall_be_valid/get_signal_data(atom/source, list/data = list())
+	SIGNAL_HANDLER
 	switch(data[1])
 		if("set_slot")
 			var/slot_name 	= data[2]

@@ -20,18 +20,40 @@
 #define MAX_TEMPERATURE 90
 #define MIN_TEMPERATURE -40
 
-//all air alarms in area are connected via magic
+//all air alarms in area are connected via freq 1439
 /area
-	var/obj/machinery/alarm/master_air_alarm
+	var/datum/weakref/main_air_alarm // The air alarm currently managing the others in the area, settings changes go to this one and propogate
 	var/list/air_vent_names = list()
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
+	var/list/air_alarms = list()
+
+/area/proc/elect_main_air_alarm(var/exclude_self = FALSE)
+	// loop through all sensors to update the area's sensor list as well
+	main_air_alarm = null
+	var/list/checks = list()
+	for(var/obj/machinery/alarm/AA in air_alarms)
+		if(exclude_self && AA == src)
+			continue
+		if(!(AA.stat & (NOPOWER|BROKEN)))
+			checks += AA
+	if(!checks.len)
+		return
+	main_air_alarm = WEAKREF(pick(checks))
+	for(var/obj/machinery/alarm/AA in checks)
+		AA.update_icon()
+
+/area/proc/main_air_alarm_is_operating()
+	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
+	return AM && !(AM.stat & (NOPOWER | BROKEN))
+
+
 
 /obj/machinery/alarm
 	name = "alarm"
 	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
-	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - Other icons
+	icon = 'icons/obj/monitors_vr.dmi'
 	icon_state = "alarm_0"
 	layer = ABOVE_WINDOW_LAYER
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
@@ -105,45 +127,34 @@
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -21 : 21)
 	pixel_y = (dir & 3) ? (dir == 1 ? -18 : 20) : 0
 
-/obj/machinery/alarm/server/Initialize(mapload)
-	. = ..()
-	req_access = list(access_rd, access_atmospherics, access_engine_equip)
-	TLV[GAS_O2] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV[GAS_CO2] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV[GAS_PHORON] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
-	TLV["temperature"] =	list(20, 40, 140, 160) // K
-	target_temperature = 90
-
 /obj/machinery/alarm/Initialize(mapload)
 	. = ..()
+	update_area()
+	set_frequency(frequency)
 	if(!pixel_x && !pixel_y)
 		offset_airalarm()
-	first_run()
+	if(!wires)
+		wires = new(src)
+	alarm_area.air_alarms += src
+	if(!alarm_area.main_air_alarm_is_operating()) // select main alarm
+		alarm_area.elect_main_air_alarm()
+	set_initial_TLV()
 
 /obj/machinery/alarm/Destroy()
 	unregister_radio(src, frequency)
 	qdel(wires)
 	wires = null
-	if(alarm_area && alarm_area.master_air_alarm == src)
-		alarm_area.master_air_alarm = null
-		elect_master(exclude_self = TRUE)
-	return ..()
+	alarm_area.air_alarms -= src
+	if(alarm_area.main_air_alarm?.resolve() == src)
+		alarm_area.elect_main_air_alarm(TRUE)
+	alarm_area = null
+	. = ..()
 
 /obj/machinery/alarm/proc/offset_airalarm()
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -26 : 26)
 	pixel_y = (dir & 3) ? (dir == 1 ? -26 : 26) : 0
 
-/obj/machinery/alarm/proc/first_run()
-	alarm_area = get_area(src)
-	area_uid = "\ref[alarm_area]"
-	if(name == "alarm")
-		name = "[alarm_area.name] Air Alarm"
-
-	if(!wires)
-		wires = new(src)
-
+/obj/machinery/alarm/proc/set_initial_TLV()
 	// breathable air according to human/Life()
 	TLV[GAS_O2] =			list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV[GAS_N2] =		list(0, 0, 135, 140) // Partial pressure, kpa
@@ -159,18 +170,9 @@
 	alarm_area = get_area(src)
 	area_uid = "\ref[alarm_area]"
 	if(name == "alarm")
-		name = "[alarm_area.name] Air Alarm"
+		name = "[alarm_area.name] Air Alarm \[[rand(9999)]\]" // random number id to help with players locating alarms, cosmetic
 
-/obj/machinery/alarm/Initialize(mapload)
-	. = ..()
-	set_frequency(frequency)
-	if(!master_is_operating())
-		elect_master()
-
-/obj/machinery/alarm/process()
-	if((stat & (NOPOWER|BROKEN)) || shorted)
-		return
-
+/obj/machinery/alarm/proc/scan_atmo()
 	var/turf/simulated/location = src.loc
 	if(!istype(location))	return//returns if loc is not simulated
 
@@ -195,7 +197,7 @@
 		mode = AALARM_MODE_FILL
 		apply_mode()
 
-	//atmos computer remote controll stuff
+	//atmos computer remote control stuff
 	switch(rcon_setting)
 		if(RCON_NO)
 			remote_control = 0
@@ -207,7 +209,16 @@
 		if(RCON_YES)
 			remote_control = 1
 
-	return
+/obj/machinery/alarm/process()
+	if(!alarm_area)
+		return
+	var/obj/machinery/alarm/MA = alarm_area.main_air_alarm?.resolve()
+	if(!MA)
+		alarm_area.elect_main_air_alarm()
+		MA = alarm_area.main_air_alarm?.resolve() // try again
+	if(!MA || (stat & (NOPOWER|BROKEN)) || shorted || MA.shorted)
+		return
+	scan_atmo()
 
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
 	DECLARE_TLV_VALUES
@@ -312,19 +323,8 @@
 
 	return 0
 
-/obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area && alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
-
-/obj/machinery/alarm/proc/elect_master(exclude_self = FALSE)
-	for(var/obj/machinery/alarm/AA in alarm_area)
-		if(exclude_self && AA == src)
-			continue
-		if(!(AA.stat & (NOPOWER|BROKEN)))
-			alarm_area.master_air_alarm = AA
-			return 1
-	return 0
-
 /obj/machinery/alarm/update_icon()
+	// start actual update!
 	cut_overlays()
 
 	if(panel_open)
@@ -332,23 +332,48 @@
 		set_light(0)
 		set_light_on(FALSE)
 		return
-	if((stat & (NOPOWER|BROKEN)) || shorted)
+	if(!alarm_area || (stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		set_light(0)
 		set_light_on(FALSE)
 		return
 
+	// sub light!
+	var/obj/machinery/alarm/MA = alarm_area.main_air_alarm?.resolve()
+	if(MA == src)
+		// I am the main alarm
+		add_overlay(mutable_appearance(icon, "alarm_Mmode"))
+		add_overlay(emissive_appearance(icon, "alarm_Mmode"))
+	if(!MA || MA.shorted)
+		// main alarm is out! don't show display!
+		icon_state = "alarmp"
+		add_overlay(mutable_appearance(icon, "alarm_Xmode"))
+		add_overlay(emissive_appearance(icon, "alarm_Xmode"))
+		set_light(0)
+		set_light_on(FALSE)
+		return
+	// passive light on
+	add_overlay(mutable_appearance(icon, "alarm_Pmode"))
+	add_overlay(emissive_appearance(icon, "alarm_Pmode"))
+
 	var/icon_level = danger_level
-	if(alarm_area?.atmosalm)
+	if(alarm_area.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
 	var/new_color = null
 	switch(icon_level)
 		if(0)
 			icon_state = "alarm_0"
-			add_overlay(mutable_appearance(icon, "alarm_ov0"))
-			add_overlay(emissive_appearance(icon, "alarm_ov0"))
-			new_color = "#03A728"
+			if(alarm_area.main_air_alarm?.resolve() == src)
+				// active controller
+				add_overlay(mutable_appearance(icon, "alarm_ov0"))
+				add_overlay(emissive_appearance(icon, "alarm_ov0"))
+				new_color = "#03A728"
+			else
+				// passive mode
+				add_overlay(mutable_appearance(icon, "alarm_ovP"))
+				add_overlay(emissive_appearance(icon, "alarm_ovP"))
+				new_color = "#0033FF"
 		if(1)
 			icon_state = "alarm_2" //yes, alarm2 is yellow alarm
 			add_overlay(mutable_appearance(icon, "alarm_ov2"))
@@ -366,12 +391,6 @@
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(alarm_area.master_air_alarm != src)
-		if(master_is_operating())
-			return
-		elect_master()
-		if(alarm_area.master_air_alarm != src)
-			return
 	if(!signal || signal.encryption)
 		return
 	var/id_tag = signal.data["tag"]
@@ -400,8 +419,7 @@
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
-	spawn(10)
-		send_signal(m_id, list("init" = new_name))
+	addtimer(CALLBACK(src, PROC_REF(send_signal),m_id, list("init" = new_name)), 10, TIMER_DELETE_ME)
 
 /obj/machinery/alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
@@ -438,10 +456,8 @@
 	return 1
 
 /obj/machinery/alarm/proc/apply_mode()
-	//propagate mode to other air alarms in the area
-	//TODO: make it so that players can choose between applying the new mode to the room they are in (related area) vs the entire alarm area
-	for(var/obj/machinery/alarm/AA in alarm_area)
-		AA.mode = mode
+	for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+		AA.mode = mode //propagate mode to other air alarms in the area
 
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
@@ -477,8 +493,8 @@
 /obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
 	if(report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
-
-	update_icon()
+	for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+		update_icon()
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
@@ -531,7 +547,7 @@
 /obj/machinery/alarm/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list(
 		"locked" = locked,
-		"siliconUser" = issilicon(user),
+		"siliconUser" = siliconaccess(user) || (isobserver(user) && is_admin(user)),
 		"remoteUser" = !!ui.parent_ui,
 		"danger_level" = danger_level,
 		"target_temperature" = "[target_temperature - T0C]C",
@@ -581,7 +597,7 @@
 			"danger_level" = TEST_TLV_VALUES
 		)))
 
-	if(!locked || issilicon(user) || data["remoteUser"])
+	if(!locked || siliconaccess(user) || data["remoteUser"] || (isobserver(user) && is_admin(user)))
 		var/list/list/vents = list()
 		data["vents"] = vents
 		for(var/id_tag in A.air_vent_names)
@@ -676,6 +692,9 @@
 				rcon_setting = RCON_AUTO
 			if(RCON_YES)
 				rcon_setting = RCON_YES
+
+		for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+			AA.rcon_setting = rcon_setting
 		return TRUE
 
 	if(action == "temperature")
@@ -687,20 +706,21 @@
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
 				to_chat(ui.user, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
-				target_temperature = input_temperature + T0C
+				for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+					AA.target_temperature = input_temperature + T0C
 		return TRUE
 
 	// Account for remote users here.
 	// Yes, this is kinda snowflaky; however, I would argue it would be far more snowflakey
 	// to include "custom hrefs" and all the other bullshit that nano states have just for the
 	// like, two UIs, that want remote access to other UIs.
-	if((locked && !issilicon(ui.user) && !istype(state, /datum/tgui_state/air_alarm_remote)) || (issilicon(ui.user) && aidisabled))
+	if((locked && !(siliconaccess(ui.user) || (isobserver(ui.user) && is_admin(ui.user))) && !istype(state, /datum/tgui_state/air_alarm_remote)) || (issilicon(ui.user) && aidisabled))
 		return
 
 	var/device_id = params["id_tag"]
 	switch(action)
 		if("lock")
-			if(issilicon(ui.user) && !wires.is_cut(WIRE_IDSCAN))
+			if((siliconaccess(ui.user) && !wires.is_cut(WIRE_IDSCAN)) || (isobserver(ui.user) && is_admin(ui.user)))
 				locked = !locked
 				. = TRUE
 		if( "power",
@@ -744,6 +764,8 @@
 					TLV[env][name] = round(value, 0.01)
 				clamp_tlv_values(env, name)
 				// investigate_log(" treshold value for [env]:[name] was set to [value] by [key_name(ui.user)]",INVESTIGATE_ATMOS)
+				for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+					AA.TLV[env][name] = TLV[env][name]
 				. = TRUE
 		if("mode")
 			mode = text2num(params["mode"])
@@ -757,7 +779,8 @@
 		if("reset")
 			atmos_reset()
 			. = TRUE
-	update_icon()
+	for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+		update_icon()
 
 // This big ol' mess just ensures that TLV always makes sense. If you set the max value below the min value,
 // it'll automatically update all the other values to keep it sane.
@@ -799,7 +822,8 @@
 /obj/machinery/alarm/proc/atmos_reset()
 	if(alarm_area.atmosalert(0, src))
 		apply_danger_level(0)
-	update_icon()
+	for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)
+		update_icon()
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user)
 	add_fingerprint(user)
@@ -830,19 +854,31 @@
 
 /obj/machinery/alarm/power_change()
 	..()
-	spawn(rand(0,15))
-		update_icon()
+	var/delay_time = rand(0, 15)
+	if(delay_time)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), delay_time, TIMER_DELETE_ME)
+		return
+	update_icon()
 
-// VOREStation Edit Start
+/obj/machinery/alarm/server/Initialize(mapload)
+	. = ..()
+	req_access = list(access_rd, access_atmospherics, access_engine_equip)
+	TLV[GAS_O2] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
+	TLV[GAS_CO2] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV[GAS_PHORON] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
+	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
+	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
+	TLV["temperature"] =	list(20, 40, 140, 160) // K
+	target_temperature = 90
+
 /obj/machinery/alarm/freezer
 	target_temperature = T0C - 13.15 // Chilly freezer room
 
-/obj/machinery/alarm/freezer/first_run()
+/obj/machinery/alarm/freezer/set_initial_TLV()
 	. = ..()
 
 	TLV["temperature"] =	list(T0C - 40, T0C - 20, T0C + 40, T0C + 66) // K, Lower Temperature for Freezer Air Alarms (This is because TLV is hardcoded to be generated on first_run, and therefore the only way to modify this without changing TLV generation)
 
-// VOREStation Edit End
 #undef LOAD_TLV_VALUES
 #undef TEST_TLV_VALUES
 #undef DECLARE_TLV_VALUES
