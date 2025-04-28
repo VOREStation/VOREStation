@@ -141,7 +141,4 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 				return
 
 			my_client.mob << browse(null, "window=[browser_id]") // Closes the window.
-			if(isnewplayer(my_client.mob))
-				var/mob/new_player/NP = my_client.mob
-				NP.new_player_panel_proc() // So the feedback button goes away, if the user gets put on cooldown.
 			qdel(src)

@@ -120,9 +120,9 @@ GLOBAL_LIST_EMPTY(latejoin_tram)
 	display_name = "Vorespawn - Pred"
 	msg = "has arrived on the station"
 
-/datum/spawnpoint/vore/itemtf
+/*/datum/spawnpoint/vore/itemtf
 	display_name = "Item TF spawn"
-	msg = "has arrived on the station"
+	msg = "has arrived on the station"*/
 
 /datum/spawnpoint/vore/New()
 	..()

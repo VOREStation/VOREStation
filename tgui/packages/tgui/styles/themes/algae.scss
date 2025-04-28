@@ -1,0 +1,13 @@
+.theme-algae:root {
+  // Base
+  --color-base: hsl(118, 100%, 13%);
+  --color-primary: hsl(118, 48%, 29%);
+  --color-label: hsl(133, 85%, 39%);
+  --button-color-selected: hsl(118, 100%, 50%);
+  --notice-box-background: hsl(123, 40%, 57%);
+  --section-background: rgba(0, 0, 0, 0.67);
+
+  .Layout__content {
+    background-image: url('../../assets/game-icons.net/algae.svg');
+  }
+}
