@@ -327,3 +327,23 @@
   - bugfix: Fixed Pandemic not printing the "virus release" notice
   Tost:
   - rscadd: Adds colour selection to earrings
+2025-04-28:
+  Kashargul:
+  - bugfix: muffle items not always working
+  - bugfix: matrix recolor not usable in char setup
+  - bugfix: item tf spawn points not assignable
+  - code_imp: move invisibility to defines
+  - admin: invisimin can no longer be used if your invis level is above the observer
+      level
+  SatinIsle:
+  - bugfix: Hides the item tf spawn option, as this is currently not functional.
+  ShadowLarkens:
+  - bugfix: Title screens work better
+  - bugfix: RIGs no longer get stuck loading
+  Willburd:
+  - qol: PAI may now climb up and down ladders, lattices, and move freely up and down
+      in zeroG
+  - qol: Air alarms show if they are controlled by an area's main alarm, or are the
+      main alarm themselves. So you can tell when all air alarms in an area are deconstructed
+  - bugfix: Air alarm settings now propagate to all other air alarms in an area
+  - rscadd: Air alarms do nothing if the main air alarm in an area is shorted
