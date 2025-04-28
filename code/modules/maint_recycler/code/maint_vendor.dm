@@ -117,7 +117,7 @@
 
 	playsound(src, 'code/modules/maint_recycler/sfx/ejectgoodies.ogg', 75, 1)
 	used_entry.spawn_with_delay(src);
-	audible_message("[src] states, \"[used_entry.tagline]\" ", "\The [src]'s screen briefly flashes an $!" , runemessage = "$$$")
+	audible_message("[src] states, \"[used_entry.tagline]\" ", "\The [src]'s screen briefly flashes a $!" , runemessage = "$$$")
 	if(prob(95))
 		set_screen_state("screen_cashout",10)
 	else
@@ -187,6 +187,7 @@
 
 /obj/machinery/maint_vendor/tgui_close(mob/user)
 	. = ..()
+	if(LAZYLEN(open_uis) > 0) return
 	set_on_state(FALSE)
 
 /obj/machinery/maint_vendor/tgui_data(mob/user)
@@ -202,7 +203,7 @@
 			"desc" = entry.desc,
 			"ad" = entry.ad_message,
 			"icon" = entry.icon_state,
-			"index" = i //TODO
+			"index" = i
 		))
 	data["items"] = items
 	data["userBalance"] = user_balance(user)

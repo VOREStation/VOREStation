@@ -196,7 +196,7 @@
 	if(!door_open)
 		if(O.has_tool_quality(TOOL_CROWBAR))
 			if(stat & (BROKEN|NOPOWER))
-				to_chat(user, span_warning("you lever \The [src]'s door open!"))
+				to_chat(user, span_warning("you lever \the \improper [src]'s door open!"))
 				open_door(user)
 				eject_item(user) //also kick out the item they're looking for
 				playsound(src,"sound/machines/door/airlock_creaking.ogg",4,FALSE)
@@ -204,11 +204,11 @@
 			else
 				to_chat(user, span_warning("\The [src]'s door won't budge!"))
 		else
-			to_chat(user, span_warning("\The [src] doesn't have it's door open!"))
+			to_chat(user, span_warning("\The [src] doesn't have its door open!"))
 		return
 
 	if(inserted_item)
-		to_chat(user, span_warning("\The [src] already has [inserted_item] in it's recycling compartment!"))
+		to_chat(user, span_warning("\The [src] already has [inserted_item] in its recycling compartment!"))
 		return
 
 	switch(get_item_whitelist(O))
@@ -220,7 +220,7 @@
 			evil_act(O,user)
 			return
 
-	to_chat(user, span_notice("you put \The [O] into \The [src]'s processing compartment!"))
+	to_chat(user, span_notice("You put \the [O] into \the \improper [src]'s processing compartment!"))
 	if(istype(O,/obj/item/holder))
 		var/obj/item/holder/h = O
 		var/mob/m = h.held_mob
@@ -250,7 +250,7 @@
 		if(prob(75))
 			if(get_item_whitelist(AM) == RECYCLER_ALLOWED)
 				if(inserted_item == null)
-					visible_message("\The [AM] lands in \the [src].")
+					visible_message("\The [AM] lands in \the [src].",runemessage = "swish")
 					AM.forceMove(src)
 					inserted_item = AM
 					update_icon()
@@ -264,7 +264,7 @@
 
 /obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
 	set_screen_state("screen_deny",10)
-	to_chat(user, span_warning("\The [src] rejects \The [O]!"))
+	to_chat(user, span_warning("\The \improper [src] rejects \the [O]!"))
 	if(prob(99))
 		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
 		return
@@ -282,7 +282,7 @@
 		if(!isRepeat) GLOB.global_announcer.autosay("HARM ALERT: Crewmember [user] recorded displaying murderous tendencies towards innocent creatures in [get_area(src)]. Please schedule psych evaluation and ensure the wellbeing of recorded victim: [h.held_mob]", "[src]", "Security")
 		audible_message("[src] states, \"AMORAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
 	else
-		if(!isRepeat) GLOB.global_announcer.autosay("PROPERTY DESTRUCTION ALERT: Crewmember [user] has been recorded attempting to destroy high priority station equipment in [get_area(src)]. Please ensure the integrity of \The [O].", "[src]", "Security")
+		if(!isRepeat) GLOB.global_announcer.autosay("PROPERTY DESTRUCTION ALERT: Crewmember [user] has been recorded attempting to destroy high priority station equipment in [get_area(src)]. Please ensure the integrity of \the [O].", "[src]", "Security")
 		audible_message("[src] states, \"CRIMINAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
 
 	playsound(src,pick(angry_sounds),80)
@@ -344,7 +344,7 @@
 
 /obj/machinery/maint_recycler/proc/eject_item_act(var/mob/user)
 	inserted_item.forceMove(get_turf(src))
-	visible_message(span_warning("[src] ejects \The [inserted_item] from it's recycling chamber!"))
+	visible_message(span_warning("[src] ejects \the [inserted_item] from its recycling chamber!"))
 	inserted_item.throw_at(get_step(src,SOUTH),5,1,src)
 	inserted_item = null;
 	update_icon()
@@ -360,7 +360,7 @@
 
 /obj/machinery/maint_recycler/proc/recycle_act(var/mob/user)
 	if(!inserted_item)
-		to_chat(user, span_warning("\The [src] doesn't have anything to recycle!"))
+		to_chat(user, span_warning("\The \improper [src] doesn't have anything to recycle!"))
 		return //sanity check
 	door_locked = TRUE
 	playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
@@ -389,7 +389,7 @@
 		//todo, assoc list for icon states from type
 		if(istype(inserted_item,/mob/living/simple_mob/animal/passive/mouse))
 			item_overlay.icon = src.icon
-			item_overlay.icon_state = "hepme" //the creature deserves it's horrible end
+			item_overlay.icon_state = "hepme" //the creature deserves its horrible end
 
 		item_overlay.vis_flags = VIS_INHERIT_ID //gotta reapply
 		item_overlay.appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PASS_MOUSE
@@ -474,6 +474,7 @@ TGUI PROCS
 
 /obj/machinery/maint_recycler/tgui_close(mob/user)
 	. = ..()
+	if(LAZYLEN(open_uis) > 0) return
 	set_on_state(FALSE)
 
 
