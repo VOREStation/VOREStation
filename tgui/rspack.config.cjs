@@ -103,6 +103,14 @@ module.exports = (env = {}, argv) => {
               options: {
                 api: 'modern-compiler',
                 implementation: 'sass-embedded',
+                url: {
+                  filter: (url, resourcePath) => {
+                    if (url.includes('.ttf')) {
+                      return false;
+                    }
+                    return true;
+                  },
+                },
               },
             },
           ],
