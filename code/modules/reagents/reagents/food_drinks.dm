@@ -1650,7 +1650,8 @@
 			if(current_addiction < 60 && prob(20))
 				M.emote(pick("pale","shiver","twitch"))
 	// end addiction with a clear message!
-	if(current_addiction == 0)
+	if(current_addiction <= 0)
+		current_addiction = 0
 		to_chat(M, span_notice("You feel your symptoms end, you no longer feel the craving for [name]."))
 	return current_addiction
 

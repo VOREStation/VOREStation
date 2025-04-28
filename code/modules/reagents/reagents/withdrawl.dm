@@ -53,6 +53,8 @@
 			else if(current_addiction <= 70)
 				if(prob(2))
 					M.emote("vomit")
+	if(current_addiction <= 0) //safety
+		current_addiction = 0
 	return current_addiction
 
 /datum/reagent/proc/addiction_cure_message()
