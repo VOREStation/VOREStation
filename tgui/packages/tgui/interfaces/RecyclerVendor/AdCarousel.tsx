@@ -5,11 +5,11 @@ export const AdCarousel = () => {
   return (
     <div>
       <Section>
-        <div className="carousel">
-          <div className="carousel-track">
+        <div className="recycler-carousel">
+          <div className="recycler-carousel-track">
             {/* shitty adverts */}
             {adverts.concat(adverts).map((item, index) => (
-              <div key={index} className="carousel-box">
+              <div key={index} className="recycler-carousel-box">
                 {item}
               </div>
             ))}
