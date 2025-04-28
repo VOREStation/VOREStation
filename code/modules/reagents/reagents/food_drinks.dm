@@ -1641,7 +1641,7 @@
 		if(prob(2))
 			if(current_addiction < 90 && prob(10))
 				to_chat(M, span_warning("[pick("You feel miserable.","You feel sluggish.","You get a small headache.")]"))
-				M.adjustHalLoss(-2)
+				M.adjustHalLoss(2)
 			else if(current_addiction <= 50)
 				to_chat(M, span_warning("You're really craving some [name]."))
 			else if(current_addiction <= 100)
