@@ -1461,6 +1461,6 @@
 			if(prob(2))
 				M.emote("vomit")
 	// Sustenance requirements cannot be escaped!
-	if(current_addiction == 0)
+	if(current_addiction <= 0)
 		current_addiction = 40
 	return current_addiction
