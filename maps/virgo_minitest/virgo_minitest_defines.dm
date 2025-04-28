@@ -6,7 +6,7 @@
 	full_name = "NSS Ade-testing"
 	path = "virgo_minitest"
 
-	lobby_screens = list('html/lobby/logo2.gif')
+	lobby_screens = list('html/lobby/logo2.png')
 
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
