@@ -29,7 +29,7 @@
   display: inline-block;
   font-weight: bold;
   font-family: 'Comic Sans MS';
-  animation: bounce 0.5s infinite;
+  animation: recycler-ad-bounce 0.5s infinite;
   transform: rotate(30deg);
   margin-right: 10px;
   margin-top: 10px;
@@ -41,12 +41,10 @@
 .RecyclerCategoryButton {
   font-family: 'VT323';
   font-size: 1.2em;
-}
-.Button {
   margin-top: 10px;
 }
 
-@keyframes bounce {
+@keyframes recycler-ad-bounce {
   0%,
   100% {
     transform: scale(0.95) rotate(3deg);
@@ -72,19 +70,19 @@
   text-shadow: 0px 0px 5px #000;
 }
 
-.carousel {
+.recycler-carousel {
   display: flex;
   overflow: hidden;
   position: relative;
   white-space: nowrap;
 }
 
-.carousel-track {
+.recycler-carousel-track {
   display: flex;
-  animation: slide 220s linear infinite;
+  animation: recycler-slide 220s linear infinite;
 }
 
-.carousel-box {
+.recycler-carousel-box {
   display: inline-block;
   width: auto;
   height: 40px;
@@ -96,7 +94,7 @@
   line-height: 40px;
 }
 
-@keyframes slide {
+@keyframes recycler-slide {
   0% {
     transform: translateX(0);
   }
@@ -105,7 +103,7 @@
   }
 }
 
-.image-container {
+.recycler-image-container {
   width: 101px;
   height: 101px;
   overflow: hidden;
