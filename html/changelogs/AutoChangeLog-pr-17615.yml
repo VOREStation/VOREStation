@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "muffle items not always working"
-  - bugfix: "matrix recolor not usable in char setup"
-  - bugfix: "item tf spawn points not assignable"
