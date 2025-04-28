@@ -1,5 +1,5 @@
 /obj/machinery/maint_vendor
-	name = "Large Decrepit Machine"
+	name = "\improper Large Decrepit Machine"
 	desc = "A long since abandoned \"trash 4 cash\" rewards kiosk. Now featuring a state of the art, monochrome holographic tube display!"
 	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
 	icon_state = "default"
@@ -187,7 +187,7 @@
 
 /obj/machinery/maint_vendor/tgui_close(mob/user)
 	. = ..()
-	if(LAZYLEN(open_uis) > 0) return
+	if(LAZYLEN(open_tguis) > 0) return
 	set_on_state(FALSE)
 
 /obj/machinery/maint_vendor/tgui_data(mob/user)

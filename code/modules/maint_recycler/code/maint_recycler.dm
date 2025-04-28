@@ -4,7 +4,7 @@
 
 
 /obj/machinery/maint_recycler //fresh outta 2288 baby
-	name = "Decrepit Machine"
+	name = "\improper Decrepit Machine"
 
 	//icon etc are self contained because it's dumb that they not to begin with.
 	//it's not a MODULE if everything required for it to work is thrown everywhere. grr.
@@ -196,7 +196,7 @@
 	if(!door_open)
 		if(O.has_tool_quality(TOOL_CROWBAR))
 			if(stat & (BROKEN|NOPOWER))
-				to_chat(user, span_warning("you lever \the \improper [src]'s door open!"))
+				to_chat(user, span_warning("you lever \the  [src]'s door open!"))
 				open_door(user)
 				eject_item(user) //also kick out the item they're looking for
 				playsound(src,"sound/machines/door/airlock_creaking.ogg",4,FALSE)
@@ -220,7 +220,7 @@
 			evil_act(O,user)
 			return
 
-	to_chat(user, span_notice("You put \the [O] into \the \improper [src]'s processing compartment!"))
+	to_chat(user, span_notice("You put \the [O] into \the  [src]'s processing compartment!"))
 	if(istype(O,/obj/item/holder))
 		var/obj/item/holder/h = O
 		var/mob/m = h.held_mob
@@ -264,7 +264,7 @@
 
 /obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
 	set_screen_state("screen_deny",10)
-	to_chat(user, span_warning("\The \improper [src] rejects \the [O]!"))
+	to_chat(user, span_warning("\The  [src] rejects \the [O]!"))
 	if(prob(99))
 		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
 		return
@@ -360,7 +360,7 @@
 
 /obj/machinery/maint_recycler/proc/recycle_act(var/mob/user)
 	if(!inserted_item)
-		to_chat(user, span_warning("\The \improper [src] doesn't have anything to recycle!"))
+		to_chat(user, span_warning("\The  [src] doesn't have anything to recycle!"))
 		return //sanity check
 	door_locked = TRUE
 	playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
@@ -474,7 +474,7 @@ TGUI PROCS
 
 /obj/machinery/maint_recycler/tgui_close(mob/user)
 	. = ..()
-	if(LAZYLEN(open_uis) > 0) return
+	if(LAZYLEN(open_tguis) > 0) return
 	set_on_state(FALSE)
 
 
