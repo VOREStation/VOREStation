@@ -11,8 +11,7 @@
 	full_name = "NCS Northern Star"
 	path = "northern_star"
 
-	lobby_icon = 'icons/misc/title.dmi'
-	lobby_screens = list("mockingjay00")
+	lobby_screens = list('html/lobby/mockingjay00.gif')
 
 	zlevel_datum_type = /datum/map_z_level/northern_star
 

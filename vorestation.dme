@@ -4514,6 +4514,7 @@
 #include "code\unit_tests\mob_tests.dm"
 #include "code\unit_tests\reagent_tests.dm"
 #include "code\unit_tests\recipe_tests.dm"
+#include "code\unit_tests\recycler_vendor_tests.dm"
 #include "code\unit_tests\research_tests.dm"
 #include "code\unit_tests\robot_tests.dm"
 #include "code\unit_tests\sqlite_tests.dm"
