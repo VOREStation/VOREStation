@@ -467,7 +467,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.viruses = source.data["viruses"]
 
 	B.fluorescent  = 0
-	B.invisibility = 0
+	B.invisibility = INVISIBILITY_NONE
 	return B
 
 #undef BLOOD_MINIMUM_STOP_PROCESS

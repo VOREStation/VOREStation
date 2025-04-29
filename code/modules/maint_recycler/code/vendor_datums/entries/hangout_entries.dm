@@ -11,13 +11,14 @@
 
 /datum/maint_recycler_vendor_entry/DIY_HardWood //this one writes itself
 	name = "Hard... Knotty Wood... "
-	desc = "Seriously! this tree sucked! Unusuable for professional construction due to how hard the knots are, the savings are passed onto YOU!!!"
+	desc = "Seriously! this tree sucked! unsuitable for professional construction due to how hard the knots are, the savings (and various aches and pains) are passed onto YOU!!!"
 	tagline = "Hehehehehe"
 	ad_message = "🤤"
 	icon_state = "knotty_wood"
 	vendor_category = MAINTVENDOR_CONSTRUCTION
 	per_person_cap = 1
 	per_round_cap = 3 //limited supply!
+	object_type_to_spawn = /obj/item/stack/material/wood/hard{amount = 20}
 
 
 /datum/maint_recycler_vendor_entry/DIY_Steel

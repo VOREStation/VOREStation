@@ -1089,7 +1089,7 @@
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
+	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)

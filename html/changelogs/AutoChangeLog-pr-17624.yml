@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "Wires UI is now extra pretty"
