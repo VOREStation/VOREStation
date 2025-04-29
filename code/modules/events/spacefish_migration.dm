@@ -99,6 +99,7 @@
 
 // If fish is bomphed, remove it from the list.
 /datum/event/spacefish_migration/proc/on_fish_destruction(var/mob/M)
+	SIGNAL_HANDLER
 	spawned_fish -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

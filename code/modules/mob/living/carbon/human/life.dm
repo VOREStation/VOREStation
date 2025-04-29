@@ -20,7 +20,7 @@
 	var/chemical_darksight = 0
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
 
 	if (transforming)
@@ -1868,7 +1868,7 @@
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
 		if(hud_used)
-			ling_chem_display.invisibility = 0
+			ling_chem_display.invisibility = INVISIBILITY_NONE
 //			ling_chem_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(mind.changeling.chem_charges)]</font></div>"
 			switch(mind.changeling.chem_storage)
 				if(1 to 50)
@@ -1907,7 +1907,7 @@
 							ling_chem_display.icon_state = "ling_chems80e"
 	else
 		if(mind && hud_used)
-			ling_chem_display.invisibility = 101
+			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/human/handle_shock()
 	..()

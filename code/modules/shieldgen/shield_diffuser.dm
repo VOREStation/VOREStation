@@ -24,7 +24,7 @@
 //If underfloor, hide the cable^H^H diffuser
 /obj/machinery/shield_diffuser/hide(var/i)
 	if(istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 /obj/machinery/shield_diffuser/hides_under_flooring()

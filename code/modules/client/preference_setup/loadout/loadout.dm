@@ -90,7 +90,7 @@ var/list/gear_datums = list()
 		if(pref.client)
 			if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(pref.client.prefs.real_name in G.character_name))
+			if(G.character_name && pref.client.prefs && !(pref.client.prefs.real_name in G.character_name))
 				continue
 		. += gear_name
 
@@ -171,7 +171,7 @@ var/list/gear_datums = list()
 		if(preference_mob && preference_mob.client)
 			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
+			if(G.character_name && preference_mob.client.prefs && !(preference_mob.client.prefs.real_name in G.character_name))
 				continue
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
@@ -279,7 +279,7 @@ var/list/gear_datums = list()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
-	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc)
+	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc, GLOB.gear_tweak_item_tf_spawn, GLOB.gear_tweak_free_matrix_recolor)
 
 /datum/gear_data
 	var/path
