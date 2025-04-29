@@ -28,6 +28,8 @@
 	return ..()
 
 /obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+	if(!istype(C))
+		return
 
 	if(!user.IsAdvancedToolUser())
 		return
@@ -215,6 +217,9 @@ var/last_chew = 0
 	return ..()
 
 /obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+	if(!istype(C))
+		return
+
 	if(!user.IsAdvancedToolUser())
 		return
 
