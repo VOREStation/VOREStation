@@ -87,6 +87,14 @@ export const SubtabLoadout = (props: {
                     {item.desc}
                   </Table.Cell>
                 </Table.Row>
+                {item.show_roles && item.allowed_roles?.length ? (
+                  <Table.Row>
+                    <Table.Cell colSpan={2} textAlign="right">
+                      Allowed Roles:
+                    </Table.Cell>
+                    <Table.Cell>{item.allowed_roles.join(',')}</Table.Cell>
+                  </Table.Row>
+                ) : null}
                 {item.name in gear_tweaks ? (
                   <Table.Row>
                     <Table.Cell colSpan={3}>

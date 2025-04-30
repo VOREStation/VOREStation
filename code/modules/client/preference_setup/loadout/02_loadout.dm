@@ -68,25 +68,21 @@ var/list/gear_datums = list()
 	save_data["gear_list"] = all_gear
 	save_data["gear_slot"] = pref.gear_slot
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/valid_gear_choices(var/max_cost)
-	. = list()
-	for(var/gear_name in gear_datums)
-		var/datum/gear/G = gear_datums[gear_name]
+/datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
+	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+			return FALSE
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
+			return FALSE
 
-		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
-			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
-				continue
-			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
-				continue
-
-		if(max_cost && G.cost > max_cost)
-			continue
-		if(pref.client)
-			if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
-				continue
-			if(G.character_name && !(pref.real_name in G.character_name))
-				continue
-		. += gear_name
+	if(max_cost && G.cost > max_cost)
+		return FALSE
+	if(pref.client)
+		if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
+			return FALSE
+		if(G.character_name && !(pref.real_name in G.character_name))
+			return FALSE
+	return TRUE
 
 /datum/category_item/player_setup_item/loadout/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
@@ -104,12 +100,12 @@ var/list/gear_datums = list()
 			active_gear_list -= gear_name
 			continue
 
-		if(!(gear_name in valid_gear_choices()))
+		var/datum/gear/G = gear_datums[gear_name]
+		if(!is_valid_gear(G))
 			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))
 			active_gear_list -= gear_name
 			continue
 
-		var/datum/gear/G = gear_datums[gear_name]
 		if(total_cost + G.cost > MAX_GEAR_COST)
 			active_gear_list -= gear_name
 			to_chat(preference_mob, span_warning("You cannot afford to take \the [gear_name]"))
@@ -147,6 +143,9 @@ var/list/gear_datums = list()
 		var/list/items = list()
 		for(var/gear in LC.gear)
 			var/datum/gear/G = LC.gear[gear]
+			if(!is_valid_gear(G))
+				continue
+
 			UNTYPED_LIST_ADD(items, list(
 				"name" = G.display_name,
 				"desc" = G.description,
