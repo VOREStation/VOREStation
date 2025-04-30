@@ -40,12 +40,12 @@
 		EQUIPMENT("Defense Equipment - Phase Pistol",			/obj/item/gun/energy/phasegun/pistol,						1500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
-		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-hasnded so whatever, same price for slight dmg increase!
-		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
-		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-handed so whatever, same price for slight dmg increase!
 		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				350),
-		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/material/fishing_rod/modern/strong,				7500),
+		EQUIPMENT("Defense Equipment - PSG-B (Melee)",			/obj/item/personal_shield_generator/belt/melee/loaded, 		5000),
+		EQUIPMENT("Defense Equipment - PSG-M (General)",		/obj/item/personal_shield_generator/belt/mining/loaded,		1000),
+		EQUIPMENT("PSG-M Upgrade Disk",							/obj/item/borg/upgrade/shield_upgrade,						50),
+		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/material/fishing_rod/modern/strong,				5000),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/material/fishing_net,								500),
 		EQUIPMENT("Fulton Beacon",								/obj/item/fulton_core,										500),
@@ -58,6 +58,7 @@
 		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",		/obj/item/storage/bag/sheetsnatcher,						500),
 		EQUIPMENT("Sheet Snatcher of Holding",					/obj/item/storage/bag/sheetsnatcher/holding,				1000),
 		EQUIPMENT("Advanced Ore Scanner",						/obj/item/mining_scanner/advanced,							500),
+		EQUIPMENT("Exotic Sample Container",					/obj/item/storage/sample_container,							100),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
@@ -114,7 +115,7 @@
 		EQUIPMENT("Hardsuit - Plasma Cutter",				/obj/item/rig_module/device/plasmacutter,						800),
 		EQUIPMENT("Hardsuit - Anomaly Scanner",				/obj/item/rig_module/device/anomaly_scanner,					2500),
 		EQUIPMENT("Hardsuit - Anomaly Drill",				/obj/item/rig_module/device/arch_drill,							2500),
-		EQUIPMENT("Hardsuit - Radiation Shield",			/obj/item/rig_module/rad_shield									2000),
+		EQUIPMENT("Hardsuit - Radiation Shield",			/obj/item/rig_module/rad_shield,								2000),
 		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",			/obj/item/rig_module/grenade_launcher/smoke,					2000),
 		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,									2000),
 	)
@@ -131,8 +132,7 @@
 		EQUIPMENT("Thalers - 100",				/obj/item/spacecash/c100,													1000),
 		EQUIPMENT("Thalers - 1000",				/obj/item/spacecash/c1000,													10000),
 		EQUIPMENT("Umbrella",					/obj/item/melee/umbrella/random,											200),
-		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/reagent_containers/food/drinks/bottle/whiskey,				125),
-		EQUIPMENT("Mining PSG Upgrade Disk",	/obj/item/borg/upgrade/shield_upgrade,										2500),
+		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/reagent_containers/food/drinks/bottle/whiskey,					125),
 	)
 	prize_list["Extra"] = list() // Used in child vendors
 
