@@ -1,4 +1,0 @@
-author: "tacoguy7765093"
-delete-after: True
-changes:
-  - code_imp: "Adjustment on self surgery proc to allow synthetics to commit self surgery."
