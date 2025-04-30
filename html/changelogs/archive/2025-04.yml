@@ -356,3 +356,10 @@
   - bugfix: Lobby screen is less colorbandy
   TeleTubby2:
   - bugfix: fixed recyclers fucking up every button ever in tgui
+2025-04-30:
+  MeepleMuncher:
+  - rscadd: Wearing specific types of footwear preserves barefoot stepping sounds
+  ShadowLarkens:
+  - rscadd: Wires UI is now extra pretty
+  tacoguy7765093:
+  - code_imp: Adjustment on self surgery proc to allow synthetics to commit self surgery.
