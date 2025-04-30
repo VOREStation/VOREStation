@@ -134,6 +134,7 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
+	var/obj/item/clothing/shoes/feet = source.shoes
 	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
@@ -144,7 +145,7 @@
 	//cache for sanic speed (lists are references anyways)
 	var/footstep_sounds = GLOB.footstep
 
-	if( source.shoes || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
+	if( ( source.shoes && feet.blocks_footsteps ) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
 		var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
