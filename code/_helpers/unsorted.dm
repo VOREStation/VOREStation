@@ -1127,10 +1127,7 @@ var/global/list/common_tools = list(
 	. = M.lying
 
 	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
-
-		if(!M.isSynthetic())
-			. = TRUE
-
+		. = TRUE
 	return .
 
 // Returns an instance of a valid surgery surface.

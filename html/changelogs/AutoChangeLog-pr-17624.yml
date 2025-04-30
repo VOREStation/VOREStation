@@ -1,4 +1,4 @@
 author: "ShadowLarkens"
 delete-after: True
 changes:
-  - bugfix: "Lobby screen is less colorbandy"
+  - rscadd: "Wires UI is now extra pretty"
