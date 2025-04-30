@@ -65,12 +65,7 @@ module.exports = (env = {}, argv) => {
             },
             {
               loader: require.resolve('css-loader'),
-            },
-            {
-              loader: require.resolve('sass-loader'),
               options: {
-                api: 'modern-compiler',
-                implementation: 'sass-embedded',
                 url: {
                   filter: (url, resourcePath) => {
                     if (url.includes('.ttf')) {
@@ -79,6 +74,13 @@ module.exports = (env = {}, argv) => {
                     return true;
                   },
                 },
+              },
+            },
+            {
+              loader: require.resolve('sass-loader'),
+              options: {
+                api: 'modern-compiler',
+                implementation: 'sass-embedded',
               },
             },
           ],
