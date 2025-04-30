@@ -1,6 +1,6 @@
 // PRESETS
 /*
-var/global/list/station_networks = list(
+GLOBAL_LIST_INIT(station_networks, list(
 //										NETWORK_CAFE_DOCK,
 										NETWORK_CARGO,
 										NETWORK_CIVILIAN,
@@ -20,15 +20,15 @@ var/global/list/station_networks = list(
 										NETWORK_PRISON,
 										NETWORK_SECURITY,
 										NETWORK_INTERROGATION
-										)
+										))
 */
-var/global/list/engineering_networks = list(
+GLOBAL_LIST_INIT(engineering_networks, list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
 										//NETWORK_ENGINEERING_OUTPOST,	//VOREStation Edit: Tether has no Engineering Outpost,
 										NETWORK_ALARM_ATMOS,
 										NETWORK_ALARM_FIRE,
-										NETWORK_ALARM_POWER)
+										NETWORK_ALARM_POWER))
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 

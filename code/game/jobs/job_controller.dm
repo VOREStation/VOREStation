@@ -29,7 +29,7 @@ var/global/datum/controller/occupations/job_master
 
 
 /datum/controller/occupations/proc/Debug(var/text)
-	if(!Debug2)	return 0
+	if(!GLOB.Debug2)	return 0
 	job_debug.Add(text)
 	return 1
 
@@ -353,7 +353,6 @@ var/global/datum/controller/occupations/job_master
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			player.ready = 0
-			player.new_player_panel_proc()
 			unassigned -= player
 	return 1
 
@@ -423,7 +422,7 @@ var/global/datum/controller/occupations/job_master
 				// Implants get special treatment
 				if(G.slot == "implant")
 					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
-					I.invisibility = 100
+					I.invisibility = INVISIBILITY_MAXIMUM
 					I.implant_loadout(H)
 					continue
 
@@ -486,7 +485,7 @@ var/global/datum/controller/occupations/job_master
 	if(H.mind && job.department_accounts)
 		var/remembered_info = ""
 		for(var/D in job.department_accounts)
-			var/datum/money_account/department_account = department_accounts[D]
+			var/datum/money_account/department_account = GLOB.department_accounts[D]
 			if(department_account)
 				remembered_info += span_bold("Department account number ([D]):") + " #[department_account.account_number]<br>"
 				remembered_info += span_bold("Department account pin ([D]):") + " [department_account.remote_access_pin]<br>"
@@ -968,11 +967,11 @@ var/global/datum/controller/occupations/job_master
 				to_chat(C, span_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice."))
 				return
 			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
-			var/spawning = pick(latejoin)
+			var/spawning = pick(GLOB.latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"
 	else if(!fail_deadly)
-		var/spawning = pick(latejoin)
+		var/spawning = pick(GLOB.latejoin)
 		.["turf"] = get_turf(spawning)
 		.["msg"] = "has arrived on the station"
 

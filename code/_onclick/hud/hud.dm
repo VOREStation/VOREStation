@@ -3,21 +3,21 @@
 	The global hud:
 	Uses the same visual objects for all players.
 */
-var/datum/global_hud/global_hud = new()
-var/list/global_huds = list(
-		global_hud.druggy,
-		global_hud.blurry,
-		global_hud.whitense,
-		global_hud.vimpaired,
-		global_hud.darkMask,
-		global_hud.centermarker,
-		global_hud.nvg,
-		global_hud.thermal,
-		global_hud.meson,
-		global_hud.science,
-		global_hud.material,
-		global_hud.holomap
-		)
+GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
+GLOBAL_LIST_INIT(global_huds, list(
+		GLOB.global_hud.druggy,
+		GLOB.global_hud.blurry,
+		GLOB.global_hud.whitense,
+		GLOB.global_hud.vimpaired,
+		GLOB.global_hud.darkMask,
+		GLOB.global_hud.centermarker,
+		GLOB.global_hud.nvg,
+		GLOB.global_hud.thermal,
+		GLOB.global_hud.meson,
+		GLOB.global_hud.science,
+		GLOB.global_hud.material,
+		GLOB.global_hud.holomap
+))
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -381,7 +381,7 @@ var/list/global_huds = list(
 		UI_style_color_new = hud_used.ui_color
 	hud_used.ui_color = UI_style_color_new
 
-	var/list/icons = hud_used.adding + hud_used.other + hud_used.hotkeybuttons
+	var/list/icons = hud_used.adding + hud_used.other + hud_used.hotkeybuttons + hud_used.other_important
 	icons.Add(zone_sel)
 	icons.Add(gun_setting_icon)
 	icons.Add(item_use_icon)
@@ -402,7 +402,8 @@ var/list/global_huds = list(
 	for(var/obj/screen/I in icons)
 		if(I.name in list(I_HELP, I_HURT, I_DISARM, I_GRAB))
 			continue
-		I.icon = ic
+		if(!(I.name in list("check known languages", "autowhisper", "autowhisper mode", "move downwards", "move upwards", "set pose")))
+			I.icon = ic
 		I.color = UI_style_color_new
 		I.alpha = UI_style_alpha_new
 

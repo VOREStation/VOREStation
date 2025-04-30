@@ -149,7 +149,7 @@
 		wind_dir = 0
 		return
 	wind_speed = new_wind_speed
-	wind_dir = pick(alldirs)
+	wind_dir = pick(GLOB.alldirs)
 	var/message = "You feel the wind blowing [wind_speed > 2 ? "strongly ": ""]towards the <b>[dir2text(wind_dir)]</b>."
 	message_all_outdoor_players(span_warning(message))
 

@@ -318,7 +318,10 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Write a /datum/preference type and return its value directly to the json.
 /mob/proc/write_preference_directly(preference_type, preference_value)
-	return client?.prefs?.write_preference_by_type(preference_type, preference_value)
+	var/success = client?.prefs?.write_preference_by_type(preference_type, preference_value)
+	if(success)
+		client?.prefs?.value_cache[preference_type] = preference_value
+	return success
 
 /// Set a /datum/preference entry.
 /// Returns TRUE for a successful preference application.

@@ -40,9 +40,6 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 	max_tox = 0 // for virgo3b survivability
-
-/mob/living/simple_mob/vore/greatwolf
-
 	vore_bump_chance = 25
 	vore_digest_chance = 5
 	vore_escape_chance = 5
@@ -56,6 +53,10 @@
 	vore_default_mode = DM_HEAL
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to snap up"
+	can_be_drop_prey = FALSE
+	species_sounds = "Canine"
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
 /mob/living/simple_mob/vore/greatwolf/black
 	name = "great black wolf"

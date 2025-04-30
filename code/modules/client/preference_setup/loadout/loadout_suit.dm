@@ -97,6 +97,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/duster_sleeveless
+	display_name = "cowboy duster, colorable, sleeveless"
+	path = /obj/item/clothing/suit/storage/duster/sleeveless
+
+/datum/gear/suit/duster_sleeveless/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest selection"
 	path = /obj/item/clothing/suit/storage/hazardvest

@@ -22,7 +22,7 @@ export const meta = {
   render: () => <Story />,
 };
 
-const Story = (props) => {
+function Story() {
   const [number, setNumber] = useState(0);
   const [text, setText] = useState('Sample text');
   return (
@@ -32,7 +32,7 @@ const Story = (props) => {
           <Input value={text} onChange={(value) => setText(value)} />
         </LabeledList.Item>
         <LabeledList.Item label="Input (onInput)">
-          <Input value={text} expensive onChange={(value) => setText(value)} />
+          <Input value={text} onChange={(value) => setText(value)} />
         </LabeledList.Item>
         <LabeledList.Item label="NumberInput (onChange)">
           <NumberInput
@@ -120,4 +120,4 @@ const Story = (props) => {
       </LabeledList>
     </Section>
   );
-};
+}

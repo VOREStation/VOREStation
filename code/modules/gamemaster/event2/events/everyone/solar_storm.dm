@@ -4,8 +4,8 @@
 	event_type = /datum/event2/event/solar_storm
 
 /datum/event2/meta/solar_storm/get_weight()
-	var/population_factor = metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
-	var/space_factor = metric.count_all_space_mobs() * 50
+	var/population_factor = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
+	var/space_factor = GLOB.metric.count_all_space_mobs() * 50
 	return (20 + population_factor + space_factor) / (times_ran + 1)
 
 

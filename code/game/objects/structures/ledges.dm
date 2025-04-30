@@ -39,7 +39,7 @@
 /obj/structure/ledge/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(solidledge && get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(solidledge && get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 

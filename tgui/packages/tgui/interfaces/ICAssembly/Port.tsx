@@ -80,6 +80,8 @@ export class Port extends Component<PortProps, PortState> {
     const { portRef: iconRef } = this.state;
     const { port, color, output } = this.props;
 
+    const style = { display: output ? 'block' : 'flex' };
+
     return (
       <Tooltip
         content={decodeHtmlEntities(port.type)}
@@ -94,6 +96,7 @@ export class Port extends Component<PortProps, PortState> {
               onContextMenu={this.handlePortRightClick}
               onMouseUp={this.handlePortMouseUp}
               textAlign="center"
+              style={style}
             >
               <svg
                 style={{ width: '100%', height: '100%', position: 'absolute' }}

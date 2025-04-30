@@ -21,6 +21,8 @@
 	var/list/colors
 	/// An associative list of signalers attached to the wires. The wire color is the key, and the signaler object reference is the value.
 	var/list/assemblies
+	/// Admin var to disable seeing wire descriptions
+	var/force_hide_wires = FALSE
 
 /datum/wires/New(atom/_holder)
 	..()
@@ -224,8 +226,14 @@
 	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
 	// if(user.can_admin_interact())
 		// return TRUE
+	if(force_hide_wires)
+		return FALSE
 	var/obj/item/I = user.get_active_hand()
 	if(istype(I, /obj/item/multitool/alien))
+		return TRUE
+	if(HAS_TRAIT(user, TRAIT_CAN_SEE_WIRES))
+		return TRUE
+	if(user.mind && HAS_TRAIT(user.mind, TRAIT_CAN_SEE_WIRES))
 		return TRUE
 	return FALSE
 

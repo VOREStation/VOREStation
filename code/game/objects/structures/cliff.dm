@@ -178,14 +178,14 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		return FALSE
 
 	var/turf/T = get_turf(L)
-	if(T && get_dir(T, loc) & reverse_dir[dir]) // dir points 'up' the cliff, e.g. cliff pointing NORTH will cause someone to fall if moving SOUTH into it.
+	if(T && get_dir(T, loc) & GLOB.reverse_dir[dir]) // dir points 'up' the cliff, e.g. cliff pointing NORTH will cause someone to fall if moving SOUTH into it.
 		return TRUE
 	return FALSE
 
 /obj/structure/cliff/proc/fall_off_cliff(mob/living/L)
 	if(!istype(L))
 		return FALSE
-	var/turf/T = get_step(src, reverse_dir[dir])
+	var/turf/T = get_step(src, GLOB.reverse_dir[dir])
 	var/displaced = FALSE
 
 	if(dir in list(EAST, WEST)) // Apply an offset if flying sideways, to help maintain the illusion of depth.

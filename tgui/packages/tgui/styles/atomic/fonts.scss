@@ -1,0 +1,43 @@
+/**
+ * All of these fonts are duplicated between interface/fonts and here because SCSS doesn't wanna play nice
+ */
+
+// Grand9K Pixel
+@font-face {
+  font-family: 'Grand9K Pixel';
+  src: url('Grand9K_Pixel.ttf');
+}
+
+.font-grand9k_pixel {
+  font-family: 'Grand9K Pixel';
+}
+
+// Pixellari
+@font-face {
+  font-family: 'Pixellari';
+  src: url('Pixellari.ttf');
+}
+
+.font-pixellari {
+  font-family: 'Pixellari';
+}
+
+// TinyUnicode
+@font-face {
+  font-family: 'TinyUnicode';
+  src: url('TinyUnicode.ttf');
+}
+
+.font-tinyunicode {
+  font-family: 'TinyUnicode';
+}
+
+// VCR_OSD_Mono
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('VCR_OSD_Mono.ttf');
+}
+
+.font-vcr_osd_mono {
+  font-family: 'VCR OSD Mono';
+}

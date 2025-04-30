@@ -125,6 +125,9 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.ooc_notes_likes = current_project.body_ooclikes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
+	H.ooc_notes_favs = current_project.body_oocfavs
+	H.ooc_notes_maybes = current_project.body_oocmaybes
+	H.ooc_notes_style = current_project.body_oocstyle
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
 	H.appearance_flags = current_project.aflags
@@ -545,7 +548,7 @@
 	if(O.anchored)
 		return 0 //mob is anchored???
 	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
+		return 0 //doesn't use adjacent() to allow for non-GLOB.cardinal (fuck my life)
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
@@ -599,6 +602,9 @@
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.ooc_notes_likes = MR.mind_ooclikes
 	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
+	occupant.ooc_notes_favs = MR.mind_oocfavs
+	occupant.ooc_notes_maybes = MR.mind_oocmaybes
+	occupant.ooc_notes_style = MR.mind_oocstyle
 
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)

@@ -159,7 +159,7 @@
 			if(prob(15))
 				M.apply_effect((rand(30,80)),IRRADIATE)
 				M.Weaken(5)
-				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				for (var/mob/V in viewers(src))
 					V.show_message(span_red("[M] writhes in pain as [TM.his] vacuoles boil."), 3, span_red("You hear the crunching of leaves."), 2)
 			if(prob(35))
@@ -338,7 +338,7 @@
 			var/armor_special = 0
 
 			if(target_armor >= 60)
-				var/turf/T = get_step(H, pick(alldirs - src.dir))
+				var/turf/T = get_step(H, pick(GLOB.alldirs - src.dir))
 				H.throw_at(T, 1, 1, src)
 				H.apply_damage(20, BURN, def_zone)
 				if(target_limb)

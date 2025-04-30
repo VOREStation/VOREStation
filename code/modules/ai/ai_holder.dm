@@ -237,6 +237,7 @@
 		STOP_AIFASTPROCESSING(src)
 
 /datum/ai_holder/proc/holder_stat_change(var/mob, old_stat, new_stat)
+	SIGNAL_HANDLER
 	if(old_stat >= DEAD && new_stat <= DEAD) //Revived
 		manage_processing(AI_PROCESSING)
 	else if(old_stat <= DEAD && new_stat >= DEAD) //Killed

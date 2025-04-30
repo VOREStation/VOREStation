@@ -7,4 +7,4 @@
 	agent = "Bluespace Exposure"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated, subject will lose grip on reality."
-	severity = HARMFUL
+	danger = HARMFUL

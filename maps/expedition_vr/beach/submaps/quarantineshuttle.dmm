@@ -141,7 +141,7 @@
 /area/submap/cave/qShuttle)
 "au" = (
 /obj/structure/closet/crate/secure/loot,
-/obj/item/reagent_containers/glass/bottle/culture/cold,
+/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -328,13 +328,6 @@
 	locked = 1;
 	name = "Cargo Bay"
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_yellow"
-	},
-/area/submap/cave/qShuttle)
-"aV" = (
-/obj/structure/closet/crate/secure/loot,
-/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -1362,7 +1355,7 @@ aa
 aa
 ab
 ad
-aV
+au
 aH
 aW
 bk

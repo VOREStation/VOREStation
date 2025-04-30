@@ -410,7 +410,7 @@
 
 /obj/item/bikehorn/rubberducky/grey/attack_self(mob/user as mob)
 	if(spam_flag == 0)
-		for(var/obj/machinery/light/L in machines)
+		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != user.z || get_dist(user,L) > 10)
 				continue
 			else
@@ -591,7 +591,7 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 				user.visible_message( \
 					span_danger("[user] was stunned by [TU.his] wet [O]!"), \
 					span_userdanger("[user] was stunned by [TU.his] wet [O]!"))

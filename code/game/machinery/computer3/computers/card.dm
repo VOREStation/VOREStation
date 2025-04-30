@@ -180,7 +180,7 @@
 	// assume linked_db since called by interact()
 	var/crew = ""
 	var/list/L = list()
-	for (var/datum/data/record/t in data_core.general)
+	for (var/datum/data/record/t in GLOB.data_core.general)
 		var/R = t.fields["name"] + " - " + t.fields["rank"]
 		L += R
 	for(var/R in sortList(L))
@@ -278,7 +278,7 @@
 		var/obj/item/paper/P = new /obj/item/paper( computer.loc )
 		P.info = span_bold("Crew Manifest:") + "<BR>"
 		var/list/L = list()
-		for (var/datum/data/record/t in data_core.general)
+		for (var/datum/data/record/t in GLOB.data_core.general)
 			var/R = t.fields["name"] + " - " + t.fields["rank"]
 			L += R
 		for(var/R in sortList(L))

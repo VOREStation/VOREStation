@@ -26,21 +26,24 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 
-	var/s_processing = FALSE
+	var/last_modified_by = "no CKEY"
+	var/resistance
+	var/stealth
+	var/stage_rate
+	var/transmission
+	var/severity
+	var/speed
 	var/list/symptoms = list()
+
+	var/s_processing = FALSE
 	var/id = ""
 
-/datum/disease/advance/New(process = 1, datum/disease/advance/D)
-	if(!istype(D))
+/datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
+	if(istype(D))
+		for(var/datum/symptom/S in D.symptoms)
+			symptoms += new S.type
+	else
 		D = null
-
-	if(!symptoms || !length(symptoms))
-
-		if(!D || !D.symptoms || !length(D.symptoms))
-			symptoms = GenerateSymptoms(0, 2)
-		else
-			for(var/datum/symptom/S in D.symptoms)
-				symptoms += new S.type
 
 	Refresh()
 	..(process, D)
@@ -80,7 +83,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	return TRUE
 
-/datum/disease/advance/cure(resistance=1)
+/datum/disease/advance/cure(resistance = TRUE)
 	if(affected_mob)
 		var/id = "[GetDiseaseID()]"
 		if(resistance && !(id in affected_mob.GetResistances()))
@@ -150,8 +153,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return generated
 
 /datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
-	var/list/properties = GenerateProperties()
-	AssignProperties(properties)
+	GenerateProperties()
+	AssignProperties()
 	id = null
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
@@ -159,83 +162,99 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			AssignName()
 		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
 		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
+	else
+		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
+		var/actual_name = A.name
+		if(actual_name != "Unknown")
+			name = actual_name
 
-	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
-	AssignName(A.name)
 
 /datum/disease/advance/proc/GenerateProperties()
+	resistance = 0
+	stealth = 0
+	stage_rate = 0
+	transmission = 0
+	severity = 0
 
-	if(!symptoms || !length(symptoms))
-		CRASH("We did not have any symptoms before generating properties.")
+	var/c1sev
+	var/c2sev
+	var/c3sev
 
-	var/list/properties = list("resistance" = 1, "stealth" = 0, "stage rate" = 1, "transmittable" = 1, "severity" = 0)
+	for(var/datum/symptom/S as() in symptoms)
+		resistance += S.resistance
+		stealth += S.stealth
+		stage_rate += S.stage_speed
+		transmission += S.transmission
+	for(var/datum/symptom/S as() in symptoms)
+		S.severityset(src)
+		switch(S.severity)
+			if(-INFINITY to 0)
+				c1sev += S.severity
+			if(1 to 2)
+				c2sev = max(c2sev, min(3, (S.severity + c2sev)))
+			if(3 to 4)
+				c2sev = max(c2sev, min(4, (S.severity + c2sev)))
+			if(5 to INFINITY)
+				if(c3sev >= 5)
+					c3sev += (S.severity -3)
+				else
+					c3sev += S.severity
 
-	for(var/datum/symptom/S in symptoms)
+	severity += (max(c2sev, c3sev) + c1sev)
 
-		properties["resistance"] += S.resistance
-		properties["stealth"] += S.stealth
-		properties["stage rate"] += S.stage_speed
-		properties["transmittable"] += S.transmittable
-		properties["severity"] = max(properties["severity"], S.severity) // severity is based on the highest severity symptom
+/datum/disease/advance/proc/AssignProperties()
 
-	return properties
-
-/datum/disease/advance/proc/AssignProperties(list/properties = list())
-
-	if(properties && length(properties))
-		switch(properties["stealth"])
-			if(2)
-				visibility_flags = HIDDEN_SCANNER
-			if(3 to INFINITY)
-				visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
-
-		// The more symptoms we have, the less transmittable it is but some symptoms can make up for it.
-		SetSpread(clamp(2 ** (properties["transmittable"] - length(symptoms)), BLOOD, AIRBORNE))
-		permeability_mod = max(CEILING(0.4 * properties["transmittable"], 1), 1)
-		cure_chance = 15 - clamp(properties["resistance"], -5, 5) // can be between 10 and 20
-		stage_prob = max(properties["stage rate"], 2)
-		SetSeverity(properties["severity"])
-		GenerateCure(properties)
+	if(stealth >= 2)
+		visibility_flags |= HIDDEN_SCANNER
 	else
-		CRASH("Our properties were empty or null!")
+		visibility_flags &= ~HIDDEN_SCANNER
 
-/datum/disease/advance/proc/SetSpread(spread_id)
-	switch(spread_id)
-		if(NON_CONTAGIOUS, SPECIAL)
-			spread_text = "Non-contagious"
-		if(CONTACT_GENERAL, CONTACT_HANDS, CONTACT_FEET)
-			spread_text = "On contact"
-		if(AIRBORNE)
-			spread_text = "Airborne"
-		if(BLOOD)
+	SetSpread()
+	permeability_mod = max(CEILING(0.4 * transmission, 1), 1)
+	cure_chance = 15 - clamp(resistance, -5, 5) // can be between 10 and 20
+	stage_prob = max(stage_rate, 2)
+	SetSeverity(severity)
+	GenerateCure()
+
+/datum/disease/advance/proc/SetSpread()
+	switch(transmission)
+		if(-INFINITY to 5)
+			spread_flags = DISEASE_SPREAD_BLOOD
 			spread_text = "Blood"
-
-	spread_flags = spread_id
+		if(6 to 10)
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
+			spread_text = "Fluids"
+		if(11 to INFINITY)
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
+			spread_text = "On Contact"
 
 /datum/disease/advance/proc/SetSeverity(level_sev)
 
 	switch(level_sev)
 
-		if(-INFINITY to 0)
-			severity = NONTHREAT
+		if(-INFINITY to -2)
+			severity = DISEASE_BENEFICIAL
+		if(-1)
+			severity = DISEASE_POSITIVE
+		if(0)
+			severity = DISEASE_NONTHREAT
 		if(1)
-			severity = MINOR
+			severity = DISEASE_MINOR
 		if(2)
-			severity = MEDIUM
+			severity = DISEASE_MEDIUM
 		if(3)
-			severity = HARMFUL
+			severity = DISEASE_HARMFUL
 		if(4)
-			severity = DANGEROUS
+			severity = DISEASE_DANGEROUS
 		if(5 to INFINITY)
-			severity = BIOHAZARD
+			severity = DISEASE_BIOHAZARD
 		else
 			severity = "Unknown"
 
-/datum/disease/advance/proc/GenerateCure(list/properties = list())
-	if(properties && length(properties))
-		var/res = clamp(properties["resistance"] - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-		cures = list(GLOB.advance_cures[res])
-		cure_text = cures[1]
+/datum/disease/advance/proc/GenerateCure()
+	var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+	cures = list(GLOB.advance_cures[res])
+	cure_text = cures[1]
 	return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
@@ -243,14 +262,15 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
-		Refresh(1)
+		Refresh(TRUE)
 	return
 
+// Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
 /datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
-		Refresh(1)
+		Refresh(TRUE)
 	return
 
 // Randomly remove a symptom.
@@ -259,13 +279,24 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/s = safepick(symptoms)
 		if(s)
 			RemoveSymptom(s)
-			Refresh(1)
+			Refresh(TRUE)
 	return
 
+// Randomly neuter a symptom.
+/datum/disease/advance/proc/Neuter()
+	if(symptoms.len)
+		var/s = safepick(symptoms)
+		if(s)
+			NeuterSymptom(s)
+			Refresh(TRUE)
+
 // Name the disease.
-/datum/disease/advance/proc/AssignName(name = "Unknown")
-	src.name = name
-	return
+/datum/disease/advance/proc/AssignName(new_name = "Unknown")
+	Refresh()
+	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
+	A.name = new_name
+	for(var/datum/disease/advance/AD in GLOB.active_diseases)
+		AD.Refresh()
 
 // Return a unique ID of the disease.
 /datum/disease/advance/GetDiseaseID()
@@ -277,6 +308,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/result = jointext(L, ":")
 		id = result
 	return id
+
+/datum/disease/advance/proc/Finalize()
+	for(var/datum/symptom/S in symptoms)
+		S.OnAdd(src)
 
 // Add a symptom, if it is over the limit (with a small chance to be able to go over)
 // we take a random symptom away and add the new one.
@@ -296,6 +331,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/RemoveSymptom(datum/symptom/S)
 	symptoms -= S
 	return
+
+// Neuters a symptom, allowing it only for stats.
+/datum/disease/advance/proc/NeuterSymptom(datum/symptom/S)
+	if(!S.neutered)
+		S.neutered = TRUE
+		S.name += " (neutered)"
+		S.OnRemove(src)
 
 // Mix a list of advance diseases and return the mixed result.
 /proc/Advance_Mix(list/D_list)
@@ -324,7 +366,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	// Should be only 1 entry left, but if not let's only return a single entry
 	var/datum/disease/advance/to_return = pick(diseases)
-	to_return.Refresh(1)
+	to_return.Refresh(new_name = TRUE)
 	return to_return
 
 /proc/SetViruses(datum/reagent/R, list/data)
@@ -342,7 +384,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	set name = "Create Advanced Virus"
 	set desc = "Create an advanced virus and release it."
 
-	if(!is_admin())
+	if(!is_admin(usr))
 		return FALSE
 
 	var/i = VIRUS_SYMPTOM_LIMIT
@@ -355,8 +397,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	symptoms += "Done"
 	symptoms += GLOB.list_symptoms.Copy()
 	do
-		if(usr)
-			var/symptom = tgui_input_list(usr, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
+		if(src)
+			var/symptom = tgui_input_list(src, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))
@@ -370,16 +412,16 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	if(length(D.symptoms) > 0)
 
-		var/new_name = tgui_input_text(usr, "Name your new disease.", "New Name")
+		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
-		D.AssignName(new_name)
-		D.Refresh()
+		D.Refresh(new_name)
+		D.Finalize()
 
-		for(var/datum/disease/advance/AD in active_diseases)
+		for(var/datum/disease/advance/AD in GLOB.active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(usr, "Choose infectee", "Infectees", human_mob_list)
+		H = tgui_input_list(src, "Choose infectee", "Infectees", human_mob_list)
 
 		if(isnull(H))
 			return FALSE
@@ -390,35 +432,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
-		message_admins("[key_name_admin(usr)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
-		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
+		message_admins("[key_name_admin(src)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
+		log_admin("[key_name_admin(src)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 		return TRUE
-
-/datum/disease/advance/proc/totalStageSpeed()
-	var/total_stage_speed = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_stage_speed += S.stage_speed
-	return total_stage_speed
-
-/datum/disease/advance/proc/totalStealth()
-	var/total_stealth = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_stealth += S.stealth
-	return total_stealth
-
-/datum/disease/advance/proc/totalResistance()
-	var/total_resistance = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_resistance += S.resistance
-	return total_resistance
-
-/datum/disease/advance/proc/totalTransmittable()
-	var/total_transmittable = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_transmittable += S.transmittable
-	return total_transmittable

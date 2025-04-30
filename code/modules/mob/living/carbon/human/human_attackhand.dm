@@ -33,7 +33,7 @@
 	return null
 
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
-	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
 
 	if(is_incorporeal())
@@ -76,7 +76,7 @@
 
 	if(istype(M,/mob/living/carbon) && has_hands)
 		for(var/datum/disease/D in M.GetViruses())
-			if(D.spread_flags & CONTACT_HANDS)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				ContractDisease(D)
 
 	switch(M.a_intent)
@@ -205,6 +205,7 @@
 		apply_effect(3, WEAKEN, armor_check)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(armor_check < 60)
+			drop_both_hands()
 			if(M.lying)
 				visible_message(span_danger("[M] swept [src] down onto the floor!"))
 			else
@@ -352,7 +353,7 @@
 				attack_message = "[H] attempted to strike [src], but missed!"
 			else
 				attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
-				src.set_dir(pick(cardinal))
+				src.set_dir(pick(GLOB.cardinal))
 			miss_type = 1
 
 	if(!miss_type && block)
@@ -499,7 +500,7 @@
 		to_chat(user,message)
 		return FALSE
 
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 
 	if(user == src)
 		user.visible_message(span_filter_notice("\The [user] starts applying pressure to [TU.his] [organ.name]!"), span_filter_notice("You start applying pressure to your [organ.name]!"))

@@ -3,6 +3,11 @@
 	entries_expire_at = 4 // This previously was at 50 rounds??? Over 10 days.
 	has_admin_data = TRUE
 
+/datum/persistent/graffiti/CheckTokenSanity(var/list/token)
+	token["pixel_x"] = istext(token["pixel_x"]) ? text2num(token["pixel_x"]) : token["pixel_x"]
+	token["pixel_y"] = istext(token["pixel_y"]) ? text2num(token["pixel_y"]) : token["pixel_y"]
+	return ..() && isnum(token["pixel_x"]) && isnum(token["pixel_y"])
+
 /datum/persistent/graffiti/GetValidTurf(var/turf/T, var/list/token)
 	var/turf/checking_turf = ..()
 	if(istype(checking_turf) && checking_turf.can_engrave())
@@ -20,6 +25,10 @@
 	var/obj/effect/decal/writing/inst = new /obj/effect/decal/writing(creating, token["age"]+1, token["message"], token["author"])
 	if(token["icon_state"])
 		inst.icon_state = token["icon_state"]
+	if(token["pixel_x"])
+		inst.pixel_x = token["pixel_x"]
+	if(token["pixel_y"])
+		inst.pixel_y = token["pixel_y"]
 
 /datum/persistent/graffiti/IsValidEntry(var/atom/entry)
 	. = ..()
@@ -37,6 +46,8 @@
 	LAZYADDASSOC(., "author", "[save_graffiti.author ? save_graffiti.author : "unknown"]")
 	LAZYADDASSOC(., "message", "[save_graffiti.message]")
 	LAZYADDASSOC(., "icon_state", "[save_graffiti.icon_state]")
+	LAZYADDASSOC(., "pixel_x", "[save_graffiti.pixel_x]")
+	LAZYADDASSOC(., "pixel_y", "[save_graffiti.pixel_y]")
 
 /datum/persistent/graffiti/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
 	var/obj/effect/decal/writing/save_graffiti = thing

@@ -413,7 +413,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/allow_character_respawn,   // Allows a ghost to respawn ,
 	/datum/admins/proc/sendFax,
-	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
+	/client/proc/getserverlog,			//allows us to fetch server logs (GLOB.diary) for other days,
 	/datum/admins/proc/view_persistent_data,
 	/client/proc/start_vote
 )

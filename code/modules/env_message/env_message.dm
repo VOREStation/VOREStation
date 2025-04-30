@@ -1,4 +1,4 @@
-var/global/list/env_messages = list()
+GLOBAL_LIST_EMPTY(env_messages)
 
 /obj/effect/env_message
 	name = "Env message"
@@ -12,10 +12,10 @@ var/global/list/env_messages = list()
 
 /obj/effect/env_message/Initialize(mapload)
 	.=..()
-	env_messages += src
+	GLOB.env_messages += src
 
 /obj/effect/env_message/Destroy()
-	env_messages -= src
+	GLOB.env_messages -= src
 	return ..()
 
 /obj/effect/env_message/examine(mob/user)
@@ -60,7 +60,7 @@ var/global/list/env_messages = list()
 	..()
 
 /proc/clear_env_message(var/tckey)
-	for(var/obj/effect/env_message/EM in env_messages)
+	for(var/obj/effect/env_message/EM in GLOB.env_messages)
 		if(tckey in EM.message_list)
 			EM.remove_message(tckey)
 

@@ -190,7 +190,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/simulated/floor/glass/proc/blend_icons()
 	var/new_junction = NONE
 
-	for(var/direction in cardinal) //Cardinal case first.
+	for(var/direction in GLOB.cardinal) //GLOB.cardinal case first.
 		var/turf/T = get_step(src, direction)
 		if(istype(T, type))
 			new_junction |= direction

@@ -6,9 +6,9 @@
 	if(!.)
 		return
 	var/dat = span_bold("Admin Log<HR>")
-	for(var/l in admin_log)
+	for(var/l in GLOB.admin_log)
 		dat += "<li>[l]</li>"
-	if(!admin_log.len)
+	if(!GLOB.admin_log.len)
 		dat += "No-one has done anything this round!"
 
 	var/datum/browser/popup = new(user, "adminlogs", "[src]", 550, 650, src)

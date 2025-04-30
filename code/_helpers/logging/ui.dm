@@ -1,6 +1,6 @@
 /proc/log_href(text)
 	//WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
-	WRITE_LOG(href_logfile, "HREF: [text]")
+	WRITE_LOG(GLOB.href_logfile, "HREF: [text]")
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.
@@ -33,4 +33,4 @@
 	if(message)
 		entry += "\n[message]"
 	//WRITE_LOG(GLOB.tgui_log, entry)
-	WRITE_LOG(diary, entry)
+	WRITE_LOG(GLOB.diary, entry)

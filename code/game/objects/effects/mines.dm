@@ -232,7 +232,7 @@
 	var/turf/O = get_turf(src)
 	if(!O)
 		return
-	src.fragmentate(O, 20, 7, list(/obj/item/projectile/bullet/pellet/fragment)) //only 20 weak fragments because you're stepping directly on it
+	src.fragmentate(O, num_fragments, spread_range, fragment_types) //only 20 weak fragments because you're stepping directly on it
 	visible_message("\The [src.name] detonates!")
 	SSmotiontracker.ping(src,100)
 	spawn(0)

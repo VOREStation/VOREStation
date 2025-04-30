@@ -44,7 +44,7 @@ var/list/ai_status_emotions = list(
 	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
 	if(!emote)
 		return
-	for (var/obj/machinery/M in machines) //change status
+	for (var/obj/machinery/M in GLOB.machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote
