@@ -908,7 +908,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
-		visible_message(span_vwarning("[src] demonstrates the voracious capabilities of their [lowertext(vore_selected.name)] by making [I] disappear!"))
+		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 		return
 	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
 	return
@@ -1100,7 +1100,6 @@
 			save_ooc_panel(usr)
 	if(href_list["print_ooc_notes_chat"])
 		print_ooc_notes_chat(usr)
-	/* Not implemented on virgo
 	if(href_list["edit_ooc_note_favs"])
 		if(usr == src)
 			set_metainfo_favs(usr)
@@ -1109,7 +1108,6 @@
 			set_metainfo_maybes(usr)
 	if(href_list["set_metainfo_ooc_style"])
 		set_metainfo_ooc_style(usr)
-	*/
 	if(href_list["save_private_notes"])
 		if(usr == src)
 			save_private_notes(usr)
@@ -1358,6 +1356,7 @@
 	qdel_null(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1373,6 +1372,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/vore_panel/proc/vore_panel_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/living/owner = user
 	if(istype(owner) && owner.vorePanel)
 		INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/living, insidePanel), owner)
@@ -1586,21 +1586,17 @@
 
 			var/soundfile
 			if(!RTB.fancy_vore)
-				soundfile = classic_release_sounds[RTB.release_sound]
+				soundfile = GLOB.classic_release_sounds[RTB.release_sound]
 			else
-				soundfile = fancy_release_sounds[RTB.release_sound]
+				soundfile = GLOB.fancy_release_sounds[RTB.release_sound]
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
 /mob/living/proc/vore_bellyrub(var/mob/living/T in view(1,src))
-	set name = "Give Bellyrubs"
-	set category = "Abilities.General"
-	set desc = "Provide bellyrubs to either yourself or another mob with a belly."
 
 	if(!T)
-		T = tgui_input_list(src, "Choose whose belly to rub", "Rub Belly?", mobs_in_view(1,src))
-		if(!T)
-			return FALSE
+		return FALSE
+
 	if(!(T in view(1,src)))
 		return FALSE
 	if(T.vore_selected)

@@ -6,11 +6,11 @@
 	event_type = /datum/event2/event/money_hacker
 
 /datum/event2/meta/money_hacker/get_weight()
-	var/command = metric.count_people_with_job(/datum/job/hop) + metric.count_people_with_job(/datum/job/captain)
+	var/command = GLOB.metric.count_people_with_job(/datum/job/hop) + GLOB.metric.count_people_with_job(/datum/job/captain)
 
 	if(!command)
 		return 0
-	return 30 + (command * 20) + (all_money_accounts.len * 5)
+	return 30 + (command * 20) + (GLOB.all_money_accounts.len * 5)
 
 
 
@@ -20,8 +20,8 @@
 	var/datum/money_account/targeted_account = null
 
 /datum/event2/event/money_hacker/set_up()
-	if(LAZYLEN(all_money_accounts))
-		targeted_account = pick(all_money_accounts)
+	if(LAZYLEN(GLOB.all_money_accounts))
+		targeted_account = pick(GLOB.all_money_accounts)
 
 	if(!targeted_account)
 		log_debug("Money hacker event could not find an account to hack. Aborting.")
@@ -34,13 +34,13 @@
 	Notifications will be sent as updates occur."
 	var/my_department = "[location_name()] Firewall Subroutines"
 
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active)
 			continue
 		MS.send_rc_message(JOB_HEAD_OF_PERSONNEL + "'s Desk", my_department, "[message]<br>", "", "", 2)
 
 	// Nobody reads the requests consoles so lets use the radio as well.
-	global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
+	GLOB.global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
 
 /datum/event2/event/money_hacker/end()
 	var/message = null
@@ -55,11 +55,11 @@
 
 	var/my_department = "[location_name()] Firewall Subroutines"
 
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active) continue
 		MS.send_rc_message(JOB_HEAD_OF_PERSONNEL + "'s Desk", my_department, message, "", "", 2)
 
-	global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
+	GLOB.global_announcer.autosay(message, my_department, DEPARTMENT_COMMAND)
 
 /datum/event2/event/money_hacker/proc/hack_account(datum/money_account/A)
 	// Subtract the money.
@@ -99,7 +99,7 @@
 
 	var/date1 = "1 January 1970" // Unix epoch.
 	var/date2 = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [rand(1000,3000)]"
-	T.date = pick("", current_date_string, date1, date2,"Nowhen")
+	T.date = pick("", GLOB.current_date_string, date1, date2,"Nowhen")
 
 	var/time1 = rand(0, 99999999)
 	var/time2 = "[round(time1 / 36000)+12]:[(time1 / 600 % 60) < 10 ? add_zero(time1 / 600 % 60, 1) : time1 / 600 % 60]"

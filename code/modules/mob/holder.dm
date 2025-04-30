@@ -155,6 +155,10 @@ var/list/holder_mob_icon_cache = list()
 		if(istype(I))
 			I.on_holder_escape(src)
 
+/obj/item/holder/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., held_mob.GetViruses())
+
 //Mob specific holders.
 /obj/item/holder/diona
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
@@ -183,6 +187,11 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_EARS | SLOT_HEAD | SLOT_ID
 	origin_tech = list(TECH_BIO = 2)
 	w_class = ITEMSIZE_TINY
+
+/obj/item/holder/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	var/mob/living/simple_mob/animal/passive/mouse/M = held_mob
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., M.rat_diseases)
 
 /obj/item/holder/mouse/white
 	item_state = "mouse_white"

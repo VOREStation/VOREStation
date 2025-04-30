@@ -93,17 +93,22 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
-/mob/observer/dead/Initialize(mapload, aghost = FALSE)
-
-	appearance = loc
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
 	alpha = 127
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
+	see_invisible = SEE_INVISIBLE_OBSERVER
+
+/mob/observer/dead/Initialize(mapload, aghost = FALSE)
+
+	appearance = loc
+	invisibility = initial(invisibility)
+	layer = initial(layer)
+	plane = initial(plane)
+	alpha = initial(alpha)
 	admin_ghosted = aghost
 
-	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
-	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
 
 	var/turf/T
@@ -132,8 +137,8 @@
 			add_overlay(H.overlays_standing)
 		default_pixel_x = M.default_pixel_x
 		default_pixel_y = M.default_pixel_y
-	if(!T && length(latejoin))
-		T = get_turf(pick(latejoin))			//Safety in case we cannot find the body's position
+	if(!T && length(GLOB.latejoin))
+		T = get_turf(pick(GLOB.latejoin))			//Safety in case we cannot find the body's position
 	if(T)
 		forceMove(T, just_spawned = TRUE)
 	else
@@ -307,14 +312,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("Another consciousness is in your body... it is resisting you."))
 		return
 	//VOREStation Add
-	if(prevent_respawns.Find(mind.name))
+	if(GLOB.prevent_respawns.Find(mind.name))
 		to_chat(src, span_warning("You already quit this round as this character, sorry!"))
 		return
 	//VOREStation Add End
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
 		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune
-			if(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]) // Found an astral journey rune.
+			if(R && R.word1 == GLOB.cultwords["hell"] && R.word2 == GLOB.cultwords["travel"] && R.word3 == GLOB.cultwords["self"]) // Found an astral journey rune.
 				found_rune = 1
 				break
 		if(!found_rune)
@@ -714,10 +719,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/timedifference = world.time - client.time_died_as_mouse
-	if(client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
+	if(client.time_died_as_mouse && timedifference <= CONFIG_GET(number/mouse_respawn_time) MINUTES)
 		var/timedifference_text
-		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
-		to_chat(src, span_warning("You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left."))
+		timedifference_text = time2text(CONFIG_GET(number/mouse_respawn_time) MINUTES - timedifference,"mm:ss")
+		to_chat(src, span_warning("You may only spawn again as a mouse more than [CONFIG_GET(number/mouse_respawn_time)] minutes after your death. You have [timedifference_text] left."))
 		return
 
 	var/response = tgui_alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?",list("Squeek!","Nope!"))
@@ -728,7 +733,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/simple_mob/animal/passive/mouse/host
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
 		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > 20)
 			found_vents.Add(v)
 	if(found_vents.len)
@@ -858,7 +863,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_ghost_visibility(TRUE)
 	else
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
 			span_warning("\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective."), \
 			span_warning("You get the feeling that the ghost can't become any more visible.") \
@@ -900,7 +905,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_info("You are now visible!"))
 
 	plane = (plane == PLANE_GHOSTS) ? PLANE_WORLD : PLANE_GHOSTS
-	invisibility = (plane == PLANE_WORLD) ? 0 : INVISIBILITY_OBSERVER
+	invisibility = (plane == PLANE_WORLD) ? INVISIBILITY_NONE : INVISIBILITY_OBSERVER
 
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
@@ -1063,7 +1068,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(choice == "Yes")
 			paiController.recruitWindow(src)
 		var/count = 0
-		for(var/obj/item/paicard/p in all_pai_cards)
+		for(var/obj/item/paicard/p in GLOB.all_pai_cards)
 			var/obj/item/paicard/PP = p
 			if(PP.pai == null)
 				count++

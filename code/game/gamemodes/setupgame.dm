@@ -57,7 +57,7 @@
 			var/summery = ""
 			for(var/path in gene.conflict_traits)
 				if(gene.conflict_traits[path]) // check if it actually conflicts
-					var/datum/trait/T = all_traits[path]
+					var/datum/trait/T = GLOB.all_traits[path]
 					if(summery != "")
 						summery += ", "
 					summery += "[T.name]"

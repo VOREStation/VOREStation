@@ -20,7 +20,7 @@
 	var/chemical_darksight = 0
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
 
 	if (transforming)
@@ -542,7 +542,7 @@
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
-
+/*
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
 	//spread some viruses while we are at it
@@ -556,7 +556,7 @@
 				continue
 			for(var/mob/living/carbon/M in view(1,src))
 				ContractDisease(D)
-
+*/
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
@@ -1490,7 +1490,7 @@
 
 	..()
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science, global_hud.material, global_hud.whitense)
+	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
@@ -1697,7 +1697,7 @@
 							found_welder = 1
 				if(absorbed) found_welder = 1
 			if(found_welder)
-				client.screen |= global_hud.darkMask
+				client.screen |= GLOB.global_hud.darkMask
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()
@@ -1735,7 +1735,7 @@
 
 		if(seer==1)
 			var/obj/effect/rune/R = locate() in loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
+			if(R && R.word1 == GLOB.cultwords["see"] && R.word2 == GLOB.cultwords["hell"] && R.word3 == GLOB.cultwords["join"])
 				see_invisible = SEE_INVISIBLE_CULT
 			else
 				see_invisible = see_invisible_default
@@ -1860,15 +1860,15 @@
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
-					playsound_local(src,pick(scawwySownds),50, 0)
+					playsound_local(src,pick(GLOB.scawwySownds),50, 0)
 					return
-			playsound_local(src,pick(scarySounds),50, 1, -1)
+			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
 		if(hud_used)
-			ling_chem_display.invisibility = 0
+			ling_chem_display.invisibility = INVISIBILITY_NONE
 //			ling_chem_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(mind.changeling.chem_charges)]</font></div>"
 			switch(mind.changeling.chem_storage)
 				if(1 to 50)
@@ -1907,7 +1907,7 @@
 							ling_chem_display.icon_state = "ling_chems80e"
 	else
 		if(mind && hud_used)
-			ling_chem_display.invisibility = 101
+			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/human/handle_shock()
 	..()
@@ -2168,9 +2168,9 @@
 			if(I)
 				perpname = I.registered_name
 
-		for(var/datum/data/record/E in data_core.general)
+		for(var/datum/data/record/E in GLOB.data_core.general)
 			if(E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.security)
+				for (var/datum/data/record/R in GLOB.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						holder.icon_state = "hudwanted"
 						break
@@ -2217,8 +2217,8 @@
 		var/image/holder = grab_hud(SPECIALROLE_HUD)
 		holder.icon_state = "hudblank"
 		if(mind && mind.special_role)
-			if(hud_icon_reference[mind.special_role])
-				holder.icon_state = hud_icon_reference[mind.special_role]
+			if(GLOB.hud_icon_reference[mind.special_role])
+				holder.icon_state = GLOB.hud_icon_reference[mind.special_role]
 			else
 				holder.icon_state = "hudsyndicate"
 		apply_hud(SPECIALROLE_HUD, holder)
@@ -2296,9 +2296,9 @@
 /mob/living/carbon/human/proc/has_virus()
 	for(var/thing in viruses)
 		var/datum/disease/D = thing
-		if(!D.discovered)
+		if(!global_flag_check(D.virus_modifiers, DISCOVERED))
 			continue
-		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.severity != NONTHREAT))
+		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.danger != DISEASE_NONTHREAT))
 			return TRUE
 	return FALSE
 

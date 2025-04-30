@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/wildlife_encounter
 
 /datum/event2/meta/wildlife_encounter/get_weight()
-	var/explorers = metric.count_people_with_job(/datum/job/explorer) + metric.count_people_with_job(/datum/job/sar)
+	var/explorers = GLOB.metric.count_people_with_job(/datum/job/explorer) + GLOB.metric.count_people_with_job(/datum/job/sar)
 
 	if(!explorers)
 		return 0

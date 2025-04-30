@@ -60,7 +60,7 @@
 
 	rarity_value = 5
 
-	// species_sounds = "Robotic"
+	species_sounds = "Robotic"
 
 	// crit_mod = 4	//Unable to go crit
 	var/obj/item/rig/protean/OurRig

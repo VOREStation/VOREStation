@@ -1,4 +1,4 @@
-var/global/list/grub_machine_overlays = list()
+GLOBAL_LIST_EMPTY(grub_machine_overlays)
 
 /mob/living/simple_mob/animal/solargrub_larva
 	name = "solargrub larva"
@@ -55,7 +55,7 @@ var/global/list/grub_machine_overlays = list()
 
 /mob/living/simple_mob/animal/solargrub_larva/Initialize(mapload)
 	. = ..()
-	existing_solargrubs += src
+	GLOB.existing_solargrubs += src
 	powermachine = new(src)
 	sparks = new(src)
 	sparks.set_up()
@@ -68,7 +68,7 @@ var/global/list/grub_machine_overlays = list()
 	return ..()
 
 /mob/living/simple_mob/animal/solargrub_larva/Destroy()
-	existing_solargrubs -= src
+	GLOB.existing_solargrubs -= src
 	QDEL_NULL(powermachine)
 	QDEL_NULL(sparks)
 	QDEL_NULL(machine_effect)
@@ -123,9 +123,9 @@ var/global/list/grub_machine_overlays = list()
 	forceMove(M)
 	powermachine.draining = 2
 	visible_message(span_warning("\The [src] finds an opening and crawls inside \the [M]."))
-	if(!(M.type in grub_machine_overlays))
+	if(!(M.type in GLOB.grub_machine_overlays))
 		generate_machine_effect(M)
-	machine_effect = image(grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
+	machine_effect = image(GLOB.grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
 	for(var/mob/L in player_list)				//because nearly every machine updates its icon by removing all overlays first
 		L << machine_effect
 
@@ -133,7 +133,7 @@ var/global/list/grub_machine_overlays = list()
 	var/icon/I = new /icon(M.icon, M.icon_state)
 	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
-	grub_machine_overlays[M.type] = I
+	GLOB.grub_machine_overlays[M.type] = I
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
 	if(!M)

@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/proc/check_nightshift(check_canfire=FALSE) //This is called from elsewhere, like setting the alert levels
 	if(check_canfire && !can_fire)
 		return
-	var/emergency = security_level > SEC_LEVEL_GREEN
+	var/emergency = GLOB.security_level > SEC_LEVEL_GREEN
 	var/announcing = TRUE
 	var/night_time = using_map.get_nightshift()
 	if(high_security_mode != emergency)

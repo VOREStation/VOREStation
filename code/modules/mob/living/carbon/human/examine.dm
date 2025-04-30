@@ -80,7 +80,7 @@
 
 	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
 	var/gender_key = get_visible_gender(user, gender_hidden)
-	var/datum/gender/T = gender_datums[gender_key]
+	var/datum/gender/T = GLOB.gender_datums[gender_key]
 	if (!T)
 		CRASH({"Null gender datum on examine: mob="[src]",hidden="[gender_hidden]",key="[gender_key]",bio="[gender]",id="[identifying_gender]""})
 
@@ -407,7 +407,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.security)
+		for (var/datum/data/record/R in GLOB.data_core.security)
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
@@ -426,7 +426,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.medical)
+		for (var/datum/data/record/R in GLOB.data_core.medical)
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 

@@ -336,6 +336,7 @@
 
 //The clean up procs!
 /obj/item/capture_crystal/proc/mob_was_deleted()
+	SIGNAL_HANDLER
 	UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
 	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	bound_mob.capture_caught = FALSE
@@ -346,6 +347,7 @@
 	update_icon()
 
 /obj/item/capture_crystal/proc/owner_was_deleted()
+	SIGNAL_HANDLER
 	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	owner = null
 	active = FALSE

@@ -350,7 +350,7 @@
 	if(!E)
 		to_chat(src,span_warning("You don't seem to have a head!"))
 		return
-	var/datum/robolimb/robohead = all_robolimbs[E.model]
+	var/datum/robolimb/robohead = GLOB.all_robolimbs[E.model]
 	if(!robohead.monitor_styles || !robohead.monitor_icon)
 		to_chat(src,span_warning("Your head doesn't have a monitor, or it doesn't support being changed!"))
 		return

@@ -17,7 +17,7 @@ var/global/list/limb_icon_cache = list()
 	s_col = null
 	h_col = null
 	if(robotic >= ORGAN_ROBOT)
-		var/datum/robolimb/franchise = all_robolimbs[model]
+		var/datum/robolimb/franchise = GLOB.all_robolimbs[model]
 		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			if(human.synth_color)
 				s_col = list(human.r_synth, human.g_synth, human.b_synth)
@@ -35,7 +35,7 @@ var/global/list/limb_icon_cache = list()
 	s_col = null
 	h_col = null
 	if(robotic >= ORGAN_ROBOT)
-		var/datum/robolimb/franchise = all_robolimbs[model]
+		var/datum/robolimb/franchise = GLOB.all_robolimbs[model]
 		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			return
 	if(!isnull(data.skin_tone) && (data.get_species_appearance_flags() & HAS_SKIN_TONE))
@@ -281,7 +281,7 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 			var/b = 0.11 * int
 			temp.color = list(r, r, r, g, g, g, b, b, b)
 		else if(model)
-			var/datum/robolimb/R = all_robolimbs[model]
+			var/datum/robolimb/R = GLOB.all_robolimbs[model]
 			if(istype(R))
 				var/r = 0.30 * R.health_hud_intensity
 				var/g = 0.59 * R.health_hud_intensity

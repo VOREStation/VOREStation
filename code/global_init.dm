@@ -16,12 +16,12 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/New()
 /* VOREStation Removal - Ours is even earlier, in world/New()
 	//logs
-	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = file("[log_path].log")
-	href_logfile = file("[log_path]-hrefs.htm")
-	error_log = file("[log_path]-error.log")
-	debug_log = file("[log_path]-debug.log")
-	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+	GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
+	diary = file("[GLOB.log_directory].log")
+	GLOB.href_logfile = file("[GLOB.log_directory]-hrefs.htm")
+	GLOB.error_log = file("[GLOB.log_directory]-error.log")
+	GLOB.debug_log = file("[GLOB.log_directory]-debug.log")
+	GLOB.debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
 */ //VOREStation Removal End
 	decls_repository = new()
 

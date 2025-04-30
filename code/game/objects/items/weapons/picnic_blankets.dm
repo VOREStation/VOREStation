@@ -49,7 +49,7 @@
 	qdel(src)
 
 /obj/structure/picnic_blanket_deployed/proc/unfold()
-	var/dirs = alldirs
+	var/dirs = GLOB.alldirs
 	var/isTableTop //Controls whether to spawn things across tables, or on ground
 	var/doWeHaveTable //Helper var set to true if ANY obj is a table
 	var/anti_spam = FALSE //Helper var to avoid spamming people if they are mired in trash.

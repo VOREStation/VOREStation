@@ -1,7 +1,7 @@
 //Space stragglers go here
 /obj/effect/overmap/visitable/sector/temporary
 	name = "Deep Space"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	known = FALSE
 	in_space = TRUE
 

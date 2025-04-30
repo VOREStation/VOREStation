@@ -206,7 +206,6 @@
 
 
 /mob/living/silicon/robot/LateInitialize()
-	. = ..()
 	pick_module()
 	update_icon()
 
@@ -412,6 +411,9 @@
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		ooc_notes_favs = read_preference(/datum/preference/text/living/ooc_notes_favs)
+		ooc_notes_maybes = read_preference(/datum/preference/text/living/ooc_notes_maybes)
+		ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
 		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 		custom_link = client.prefs.custom_link
 
@@ -1270,7 +1272,7 @@
 				to_chat(user, span_filter_notice("You assigned yourself as [src]'s operator."))
 				message_admins("[key_name_admin(user)] assigned as operator on cyborg [key_name_admin(src)]. Syndicate Operator change.")
 				log_game("[key_name(user)] assigned as operator on cyborg [key_name(src)]. Syndicate Operator change.")
-				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 				to_chat(src, span_infoplain(span_bold("Obey these laws:")))
 				laws.show_laws(src)
@@ -1302,8 +1304,8 @@
 			clear_inherent_laws()
 			laws = new /datum/ai_laws/syndicate_override
 			var/time = time2text(world.realtime,"hh:mm:ss")
-			lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-			var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+			GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+			var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 			set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 			. = 1
 			spawn()

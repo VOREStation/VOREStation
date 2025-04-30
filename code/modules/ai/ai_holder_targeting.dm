@@ -209,6 +209,7 @@
 
 // 'Hard' loss of target. Clean things up and return to idle.
 /datum/ai_holder/proc/remove_target()
+	SIGNAL_HANDLER
 	ai_log("remove_target() : Entering.", AI_LOG_TRACE)
 	if(target)
 		UnregisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_target))

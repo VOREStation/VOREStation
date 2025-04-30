@@ -16,37 +16,62 @@ Bonus
 */
 
 /datum/symptom/choking
-	name = "Choking"
-	stealth = -3
-	resistance = -2
-	stage_speed = -2
-	transmittable = -4
-	level = 3
-	severity = 3
+	name = "Acute Respiratory Distress Syndrome"
+	desc = "The virus causes shrinking of the host's lungs, causing severe asphyxiation."
+	stealth = -2
+	resistance = 0
+	stage_speed = -1
+	transmission = -2
+	level = 9
+	severity = 5
+	naturally_occuring = FALSE
+	base_message_chance = 15
+	symptom_delay_min = 10 SECONDS
+	symptom_delay_max = 30 SECONDS
+
+	var/paralysis = FALSE
+
+	threshold_descs = list(
+		"Transmission 8" = "Doubles the damage caused by the symptom."
+	)
+
+/datum/symptom/choking/severityset(datum/disease/advance/A)
+	. = ..()
+	if(A.transmission >= 8)
+		severity += 1
+
+/datum/symptom/choking/Start(datum/disease/advance/A)
+	if(!..())
+		return
+
+	if(A.transmission >= 8)
+		power = 2
 
 /datum/symptom/choking/Activate(datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
-		switch(A.stage)
-			if(1, 2)
-				to_chat(M, span_warning(pick("You're having difficulty breathing.", "Your breathing becomes heavy.")))
-			if(3, 4)
-				to_chat(M, span_boldwarning(pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")))
-				Choke_stage_3_4(M, A)
-				M.emote("gasp")
-			else
-				to_chat(M, span_userdanger(pick("You're choking!", "You can't breathe!")))
-				Choke(M, A)
-				M.emote("gasp")
+	if(!..())
+		return
+
+	var/mob/living/M = A.affected_mob
+	if(!M.needs_to_breathe() || M.stat == DEAD)
+		return
+
+	switch(A.stage)
+		if(3, 4)
+			to_chat(M, span_warning(pick("Your windpipe feels thin.", "Your lungs feel small-")))
+			Choke_stage_3_4(M, A)
+			M.emote("gasp")
+		if(5)
+			to_chat(M, span_userdanger(pick("Your lungs hurt!", "It hurts to breathe!")))
+			Choke(M, A)
+			M.emote("gasp")
 	return
 
 /datum/symptom/choking/proc/Choke_stage_3_4(mob/living/M, datum/disease/advance/A)
-	var/get_damage = sqrtor0(21+A.totalStageSpeed()*0.5)+sqrtor0(16+A.totalStealth())
+	var/get_damage = rand(5, 10) * power
 	M.adjustOxyLoss(get_damage)
-	return 1
+	return TRUE
 
 /datum/symptom/choking/proc/Choke(mob/living/M, datum/disease/advance/A)
-	var/get_damage = sqrtor0(21+A.totalStageSpeed()*0.5)+sqrtor0(16+A.totalStealth()*5)
+	var/get_damage = rand(2, 5) * power
 	M.adjustOxyLoss(get_damage)
-	return 1
+	return TRUE

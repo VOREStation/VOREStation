@@ -254,7 +254,7 @@
 		on_engagement(target)
 		if(firing_lanes && !test_projectile_safety(target))
 			// Nudge them a bit, maybe they can shoot next time.
-			var/turf/T = get_step(holder, pick(cardinal))
+			var/turf/T = get_step(holder, pick(GLOB.cardinal))
 			if(T)
 				holder.IMove(T) // IMove() will respect movement cooldown.
 				holder.face_atom(target)

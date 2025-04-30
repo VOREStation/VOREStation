@@ -50,7 +50,7 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 	var/trait_desc = list() // name:desc
 	var/trait_tutorial = list() //name:tutorial
 	for(var/trait in list_of_traits)
-		var/datum/trait/T = all_traits[trait]
+		var/datum/trait/T = GLOB.all_traits[trait]
 		trait_names += T.name
 		trait_desc[T.name] = T.desc
 		trait_tutorial[T.name] = T.tutorial

@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/gravity
 
 /datum/event2/meta/gravity/get_weight()
-	return (20 + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 20)) / (times_ran + 1)
+	return (20 + (GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 20)) / (times_ran + 1)
 
 
 
@@ -21,9 +21,9 @@
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")
 
 /datum/event2/event/gravity/start()
-	gravity_is_on = 0
+	GLOB.gravity_is_on = FALSE
 
-	for(var/obj/machinery/gravity_generator/main/GG in machines)
+	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
 		if((GG.z in get_location_z_levels()) && GG.on)
 			generators += GG
 			GG.breaker = FALSE
@@ -31,7 +31,7 @@
 			GG.charge_count = 10
 
 /datum/event2/event/gravity/end()
-	gravity_is_on = 1
+	GLOB.gravity_is_on = TRUE
 
 	var/did_anything = FALSE
 	for(var/obj/machinery/gravity_generator/main/GG in generators)

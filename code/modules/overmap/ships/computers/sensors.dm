@@ -22,7 +22,7 @@
 /obj/machinery/computer/ship/sensors/proc/find_sensors()
 	if(!linked)
 		return
-	for(var/obj/machinery/shipsensors/S in global.machines)
+	for(var/obj/machinery/shipsensors/S in GLOB.machines)
 		if(linked.check_ownership(S))
 			sensors = S
 			break

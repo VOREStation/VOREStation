@@ -136,7 +136,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 		priority_announcement.Announce(using_map.shuttle_recall_message)
 
 /datum/emergency_shuttle_controller/proc/can_call()
-	if (!universe.OnShuttleCall(null))
+	if (!GLOB.universe.OnShuttleCall(null))
 		return 0
 	if (deny_shuttle)
 		return 0
@@ -271,10 +271,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 			return
 
 /obj/effect/starender
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/starspawner
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	var/spawndir = SOUTH
 	var/spawning = 0
 

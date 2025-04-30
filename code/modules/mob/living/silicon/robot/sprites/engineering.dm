@@ -221,26 +221,58 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/engineering/dullahan
-	name = "Dullahan v1"
+	name = "Dullahan"
 	sprite_icon_state = "dullahaneng"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_eng.dmi'
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("breastplate","loincloth","eyecover")
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/engineering/dullahan/engineerv2
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahaneng_alt"
+/datum/robot_sprite/dogborg/tall/engineering/dullataurengi
+	name = "Dullataur"
+	sprite_icon_state = "dullataurengi"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/engineering/dullahan/engineerv3
+/datum/robot_sprite/dogborg/tall/engineering/dullataurengitwo
+	name = "Dullataur v2"
+	sprite_icon_state = "dullataurengitwo"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate","loincloth","maidoutfit")
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/engineering/dullahanv3
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/engineer.dmi'
 	sprite_icon_state = "dullahanengineer"
-	sprite_decals = list("decals")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
 	icon_x = 64
 	pixel_x = -16
 

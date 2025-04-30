@@ -312,6 +312,11 @@
 /area/groundbase/level2/nw)
 "aH" = (
 /obj/structure/table/glass,
+/obj/item/extrapolator,
+/obj/item/extrapolator{
+	pixel_x = -5;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "aI" = (
@@ -7028,12 +7033,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/closet/crate/medical,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "tm" = (

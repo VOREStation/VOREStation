@@ -15,29 +15,29 @@
 */
 
 // Globals.
-var/global/list/all_antag_types = list()
-var/global/list/all_antag_spawnpoints = list()
-var/global/list/antag_names_to_ids = list()
+GLOBAL_LIST_EMPTY(all_antag_types)
+GLOBAL_LIST_EMPTY(all_antag_spawnpoints)
+GLOBAL_LIST_EMPTY(antag_names_to_ids)
 
 // Global procs.
 /proc/get_antag_data(var/antag_type)
-	if(all_antag_types[antag_type])
-		return all_antag_types[antag_type]
+	if(GLOB.all_antag_types[antag_type])
+		return GLOB.all_antag_types[antag_type]
 	else
-		for(var/cur_antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
+		for(var/cur_antag_type in GLOB.all_antag_types)
+			var/datum/antagonist/antag = GLOB.all_antag_types[cur_antag_type]
 			if(antag && antag.is_type(antag_type))
 				return antag
 
 /proc/clear_antag_roles(var/datum/mind/player, var/implanted)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in GLOB.all_antag_types)
+		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 		if(!implanted || !(antag.flags & ANTAG_IMPLANT_IMMUNE))
 			antag.remove_antagonist(player, 1, implanted)
 
 /proc/update_antag_icons(var/datum/mind/player)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in GLOB.all_antag_types)
+		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 		if(player)
 			antag.update_icons_removed(player)
 			if(antag.is_antagonist(player))
@@ -48,19 +48,19 @@ var/global/list/antag_names_to_ids = list()
 /proc/populate_antag_type_list()
 	for(var/antag_type in subtypesof(/datum/antagonist))
 		var/datum/antagonist/A = new antag_type
-		all_antag_types[A.id] = A
-		all_antag_spawnpoints[A.landmark_id] = list()
-		antag_names_to_ids[A.role_text] = A.id
+		GLOB.all_antag_types[A.id] = A
+		GLOB.all_antag_spawnpoints[A.landmark_id] = list()
+		GLOB.antag_names_to_ids[A.role_text] = A.id
 
 /proc/get_antags(var/atype)
-	var/datum/antagonist/antag = all_antag_types[atype]
+	var/datum/antagonist/antag = GLOB.all_antag_types[atype]
 	if(antag && islist(antag.current_antagonists))
 		return antag.current_antagonists
 	return list()
 
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = 0)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in GLOB.all_antag_types)
+		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 		if(only_offstation_roles && !(antag.flags & ANTAG_OVERRIDE_JOB))
 			continue
 		if(player in antag.current_antagonists)

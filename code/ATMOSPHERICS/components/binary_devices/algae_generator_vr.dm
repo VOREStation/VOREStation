@@ -45,7 +45,7 @@
 	var/image/I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = dir)
 	I.color = PIPE_COLOR_BLUE
 	add_overlay(I)
-	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = reverse_dir[dir])
+	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = GLOB.reverse_dir[dir])
 	I.color = PIPE_COLOR_BLACK
 	add_overlay(I)
 
@@ -186,7 +186,7 @@
 	data["materials"] = materials_ui
 	data["last_flow_rate"] = last_flow_rate
 	data["last_power_draw"] = last_power_draw
-	data["inputDir"] = dir2text(reverse_dir[dir])
+	data["inputDir"] = dir2text(GLOB.reverse_dir[dir])
 	data["outputDir"] = dir2text(dir)
 	data["usePower"] = use_power
 	data["errorText"] = ui_error

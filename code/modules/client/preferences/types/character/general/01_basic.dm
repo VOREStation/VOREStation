@@ -115,7 +115,6 @@
 	target.ooc_notes_dislikes = value
 	return
 
-// CHOMP specific, but added here not to forget
 /datum/preference/toggle/living/ooc_notes_style
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "OOC_Notes_System"
@@ -124,7 +123,7 @@
 	can_randomize = FALSE
 
 /datum/preference/toggle/living/ooc_notes_style/apply_to_living(mob/living/target, value)
-	// target.ooc_notes_style // Not available on virgo
+	target.ooc_notes_style = value
 	return
 
 /datum/preference/text/living/ooc_notes_maybes
@@ -135,7 +134,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/living/ooc_notes_maybes/apply_to_living(mob/living/target, value)
-	// target.ooc_notes_maybes = value // Not available on virgo
+	target.ooc_notes_maybes = value
 	return
 
 /datum/preference/text/living/ooc_notes_favs
@@ -146,7 +145,7 @@
 	can_randomize = FALSE
 
 /datum/preference/text/living/ooc_notes_favs/apply_to_living(mob/living/target, value)
-	// target.ooc_notes_favs = value // Not available on virgo
+	target.ooc_notes_favs = value
 	return
 
 /datum/preference/toggle/human/name_is_always_random

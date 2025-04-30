@@ -84,7 +84,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	linked = list()	//clear the list
 	var/turf/T = loc
 
-	for(var/i in alldirs)
+	for(var/i in GLOB.alldirs)
 		T = get_step(loc, i)
 		var/obj/machinery/gateway/G = locate(/obj/machinery/gateway) in T
 		if(G)
@@ -110,7 +110,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	if(world.time < wait)
 		to_chat(user, span_notice("Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes."))
 		return
-	if(!awaygate.calibrated && !LAZYLEN(awaydestinations)) //VOREStation Edit
+	if(!awaygate.calibrated && !LAZYLEN(GLOB.awaydestinations)) //VOREStation Edit
 		to_chat(user, span_notice("Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update."))
 		return
 
@@ -164,7 +164,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 				for(var/rider in L.buckled_mobs)
 					R.force_dismount(rider)
 		//VOREStation Addition End: Prevent abuse
-		var/obj/effect/landmark/dest = pick(awaydestinations)
+		var/obj/effect/landmark/dest = pick(GLOB.awaydestinations)
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
@@ -205,7 +205,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 								if(istype(II,/obj/item/implant) || istype(II,/obj/item/nif))
 									continue
 								MI.drop_from_inventory(II, dest.loc)
-						var/obj/effect/landmark/finaldest = pick(awayabductors)
+						var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)
 						MI.forceMove(finaldest.loc)
 						sleep(1)
 						MI.Paralyse(10)
@@ -215,7 +215,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
 							continue
 						L.drop_from_inventory(I, dest.loc)
-				var/obj/effect/landmark/finaldest = pick(awayabductors)
+				var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)
 				L.forceMove(finaldest.loc)
 				sleep(1)
 				L.Paralyse(10)
@@ -286,7 +286,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	linked = list()	//clear the list
 	var/turf/T = loc
 
-	for(var/i in alldirs)
+	for(var/i in GLOB.alldirs)
 		T = get_step(loc, i)
 		var/obj/machinery/gateway/G = locate(/obj/machinery/gateway) in T
 		if(G)
