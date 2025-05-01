@@ -226,7 +226,7 @@
 			traits["name"] = disease.name
 			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
-			for(var/datum/symptom/symptom as() in adv_disease.symptoms)
+			for(var/datum/symptom/symptom as anything in adv_disease.symptoms)
 				traits["symptoms"] += list(symptom.get_symptom_data())
 			traits["resistance"] = adv_disease.resistance
 			traits["stealth"] = adv_disease.stealth

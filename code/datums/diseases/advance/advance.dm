@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/Copy()
 	var/datum/disease/advance/A = ..()
 	QDEL_LIST(A.symptoms)
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		A.symptoms += S.Copy()
 	A.disease_flags = disease_flags
 	A.resistance = resistance
@@ -189,12 +189,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/c2sev
 	var/c3sev
 
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		resistance += S.resistance
 		stealth += S.stealth
 		stage_rate += S.stage_speed
 		transmission += S.transmission
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		S.severityset(src)
 		switch(S.severity)
 			if(-INFINITY to 0)
