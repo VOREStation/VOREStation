@@ -4,5 +4,5 @@
 	var/dark_energy_infinite = FALSE
 
 /datum/component/shadekin/Initialize()
-	if(!ishuman(parent))
+	if(!ishuman(parent) && !issimplekin(parent)) //Both humankin and simplekin can have this component
 		return COMPONENT_INCOMPATIBLE

@@ -68,7 +68,7 @@
 	var/image/tailimage //Cached tail image
 
 	//Darknesssss
-	var/datum/component/shadekin/comp = /datum/component/shadekin
+	var/datum/component/shadekin/comp = /datum/component/shadekin //Component that holds all the shadekin vars.
 	var/dark_gains = 0 //Last tick's change in energy
 	var/ability_flags = 0 //Flags for active abilities
 	var/obj/screen/darkhud //Holder to update this icon
