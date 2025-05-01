@@ -1,0 +1,5 @@
+author: "SpaceMan-Jim"
+delete-after: True
+changes:
+  - rscadd: "laser5 sound file"
+  - rscadd: "bullet_pellet fire_sound to laser5 from Laser4\n:cl:"
