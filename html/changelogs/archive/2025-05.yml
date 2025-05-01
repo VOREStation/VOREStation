@@ -1,0 +1,7 @@
+2025-05-01:
+  Kashargul:
+  - bugfix: cuffing runtime flood on invalid targets
+  ShadowLarkens:
+  - bugfix: TGUI not compiling
+  tacoguy7765093:
+  - bugfix: You cant self surgery without NT's permission anymore.
