@@ -1,5 +1,5 @@
 /datum/component/xenochimera
-	var/laststress
+	var/laststress = 0
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))

@@ -1787,7 +1787,7 @@
 
 /datum/species/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
 	//first, calculate how stressed the chimera is
-	var/datum/component/xenochimera/comp = GetComponent(/datum/component/xenochimera)
+	var/datum/component/xenochimera/comp = H.GetComponent(/datum/component/xenochimera)
 	if(!comp) //No xenochimera component, no feralness.
 		return
 
