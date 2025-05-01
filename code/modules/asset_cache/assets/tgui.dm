@@ -13,11 +13,14 @@
 	)
 
 // Let TGUI use all of our custom fonts
-/datum/asset/simple/tgui_extra_fonts
-	keep_local_name = TRUE
+/datum/asset/simple/namespaced/tgui_extra_fonts
 	assets = list(
 		"Grand9K_Pixel.ttf" = file("interface/fonts/Grand9K_Pixel.ttf"),
 		"Pixellari.ttf" = file("interface/fonts/Pixellari.ttf"),
 		"TinyUnicode.ttf" = file("interface/fonts/TinyUnicode.ttf"),
 		"VCR_OSD_Mono.ttf" = file("interface/fonts/VCR_OSD_Mono.ttf"),
+	)
+
+	parents = list(
+		"fonts.css" = file("interface/fonts/fonts.css"),
 	)
