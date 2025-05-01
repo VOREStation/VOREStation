@@ -46,8 +46,8 @@
 	say_stand_down = list("Thank you for listening! Please have a safe day!", "Carry along, and keep safe.", "You're cleared to depart, thank you for not causing problems.")
 	say_escalate = list("Team, we have mice attempting to steal our salvage!", "We've warned you! Please know this is just us following orders!", "Apologies, but we have to attack due to failing to listen to our order!")
 
-	threaten_sound = 'sound/weapons/TargetOn.ogg'
-	stand_down_sound = 'sound/weapons/TargetOff.ogg'
+	threaten_sound = 'sound/weapons/targeton.ogg'
+	stand_down_sound = 'sound/weapons/targetoff.ogg'
 
 /mob/living/simple_mob/humanoid/merc/altevian/sapper
 	desc = "An Altevian Naval Sapper, adorned in the top of the line Heartbreaker suit. Armed with a giant fokken wrench."
@@ -113,7 +113,7 @@
 	reload_time = 5 SECONDS
 	reload_max = 5
 	projectiletype = /obj/item/projectile/bullet/sam48
-	projectilesound = 'sound/weapons/Gunshot_heavy.ogg'
+	projectilesound = 'sound/weapons/gunshot_heavy.ogg'
 
 /mob/living/simple_mob/humanoid/merc/altevian/neutral
 	faction = FACTION_NEUTRAL

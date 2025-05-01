@@ -4,7 +4,7 @@
 	description_info = "This weapon cannot be fired indoors, underground, or on-station."
 	icon_state = "mecha_mortar"
 	equip_cooldown = 30
-	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'
+	fire_sound = 'sound/weapons/gunshot_cannon.ogg'
 	fire_volume = 100
 	projectiles = 3
 	deviation = 0.6

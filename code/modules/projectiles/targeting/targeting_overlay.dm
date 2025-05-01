@@ -177,7 +177,7 @@
 	aiming_with = thing
 	aiming_at = target
 	if(istype(aiming_with, /obj/item/gun))
-		playsound(owner, 'sound/weapons/TargetOn.ogg', 50,1)
+		playsound(owner, 'sound/weapons/targeton.ogg', 50,1)
 	forceMove(get_turf(target))
 	START_PROCESSING(SSobj, src)
 
@@ -217,7 +217,7 @@
 	if(!aiming_with || !aiming_at)
 		return
 	if(istype(aiming_with, /obj/item/gun))
-		playsound(owner, 'sound/weapons/TargetOff.ogg', 50,1)
+		playsound(owner, 'sound/weapons/targetoff.ogg', 50,1)
 	if(!no_message)
 		owner.visible_message(span_infoplain(span_bold("\The [owner]") + " lowers \the [aiming_with]."))
 

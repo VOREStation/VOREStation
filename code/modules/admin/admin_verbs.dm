@@ -496,7 +496,7 @@
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center>" + span_filter_system(span_notice(span_bold(span_huge("Man up.<br> Deal with it.")) + "<br>Move along.")) + "</center><br>")
-		T << 'sound/voice/ManUp1.ogg'
+		T << 'sound/voice/manup1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)

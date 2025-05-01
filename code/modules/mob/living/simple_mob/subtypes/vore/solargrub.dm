@@ -134,7 +134,7 @@ List of things solar grubs should be able to do:
 		var/mob/living/L = A
 		if(prob(shock_chance))
 			A.emp_act(4) //The weakest strength of EMP
-			playsound(src, 'sound/weapons/Egloves.ogg', 75, 1)
+			playsound(src, 'sound/weapons/egloves.ogg', 75, 1)
 			L.Weaken(4)
 			L.Stun(4)
 			L.stuttering = max(L.stuttering, 4)

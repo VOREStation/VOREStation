@@ -477,7 +477,7 @@
 
 	user.visible_message(span_danger(span_italics("\The [user] shocks [H] with \the [src]!")), span_warning("You shock [H] with \the [src]!"))
 	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
-	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
+	playsound(src, 'sound/weapons/egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
 
 	H.stun_effect_act(2, 120, target_zone)

@@ -2013,13 +2013,13 @@
 			if(MECH_FACTION_NT)//The good guys category
 				if(firstactivation)//First time = long activation sound
 					firstactivation = 1
-					who << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
+					who << sound('sound/mecha/longnanoactivation.ogg',volume=50)
 				else
 					who << sound('sound/mecha/nominalnano.ogg',volume=50)
 			if(MECH_FACTION_SYNDI)//Bad guys
 				if(firstactivation)
 					firstactivation = 1
-					who << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
+					who << sound('sound/mecha/longsyndiactivation.ogg',volume=50)
 				else
 					who << sound('sound/mecha/nominalsyndi.ogg',volume=50)
 			else//Everyone else gets the normal noise

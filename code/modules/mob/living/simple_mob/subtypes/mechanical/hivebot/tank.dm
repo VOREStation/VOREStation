@@ -8,7 +8,7 @@
 	movement_cooldown = 3
 	melee_damage_lower = 3
 	melee_damage_upper = 3
-	attack_sound = 'sound/weapons/Egloves.ogg'
+	attack_sound = 'sound/weapons/egloves.ogg'
 	organ_names = /decl/mob_organ_names/hivebottank
 
 

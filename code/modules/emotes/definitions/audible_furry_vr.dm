@@ -109,17 +109,17 @@
 /decl/emote/audible/snort
 	key = "snort"
 	emote_message_3p = "snorts!"
-	emote_sound = 'sound/voice/Snort.ogg'
+	emote_sound = 'sound/voice/snort.ogg'
 	sound_vary = FALSE
 /decl/emote/audible/meow
 	key = "meow"
 	emote_message_3p = "gently meows!"
-	emote_sound = 'sound/voice/Meow.ogg'
+	emote_sound = 'sound/voice/meow.ogg'
 	sound_vary = FALSE
 /decl/emote/audible/moo
 	key = "moo"
 	emote_message_3p = "takes a breath and lets out a moo."
-	emote_sound = 'sound/voice/Moo.ogg'
+	emote_sound = 'sound/voice/moo.ogg'
 /decl/emote/audible/croak
 	key = "croak"
 	emote_message_3p = "rumbles their throat, puffs their cheeks and croaks."
@@ -131,7 +131,7 @@
 /decl/emote/audible/cackle
 	key = "cackle"
 	emote_message_3p = "cackles hysterically!"
-	emote_sound = 'sound/voice/YeenCackle.ogg'
+	emote_sound = 'sound/voice/yeencackle.ogg'
 /decl/emote/audible/spiderchitter
 	key = "spiderchitter"
 	emote_message_3p = "chitters."
@@ -247,4 +247,4 @@
 /decl/emote/audible/dook
 	key = "dook"
 	emote_message_3p = "dooks."
-	emote_sound = 'sound/voice/FerretDook.ogg'
+	emote_sound = 'sound/voice/ferretdook.ogg'

@@ -5,7 +5,7 @@
 	energy_drain = 20
 	equip_cooldown = 8
 	projectile = /obj/item/projectile/beam/stun
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser/rigged
 	name = "jury-rigged static rifle"

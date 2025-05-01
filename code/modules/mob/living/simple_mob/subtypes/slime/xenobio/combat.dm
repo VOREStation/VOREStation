@@ -20,7 +20,7 @@
 						span_danger("\The [src] has shocked \the [L]!"),
 						span_danger("\The [src] has shocked you!")
 						)
-					playsound(src, 'sound/weapons/Egloves.ogg', 75, 1)
+					playsound(src, 'sound/weapons/egloves.ogg', 75, 1)
 					L.Weaken(4)
 					L.Stun(4)
 					do_attack_animation(L)
