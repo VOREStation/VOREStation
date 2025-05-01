@@ -13,6 +13,7 @@
 	. = ..()
 	prize_list = list()
 	prize_list["Gear"] = list(
+		EQUIPMENT("Brown Webbing",									/obj/item/clothing/accessory/storage/brown_vest,							500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",					/obj/item/grenade/smokebomb,												10),
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",		/obj/item/grenade/spawnergrenade/manhacks/station/locked,					100),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",		/obj/item/grenade/spawnergrenade/ward,										150),
