@@ -28,8 +28,9 @@
 			if(prob(5))
 				L.visible_message("[L]'s body gives off a faint, sparking, haze...", "Your body gives off a faint, sparking, haze...", runemessage = "gives off a faint, sparking haze")
 		else if(istype(L.species, /datum/species/shadekin))
-			var/obj/item/organ/internal/brain/shadekin/B = L.internal_organs_by_name[O_BRAIN]
-			B.dark_energy += 10
+			var/datum/component/shadekin/comp = L.GetComponent(/datum/component/shadekin)
+			if(comp)
+				comp.dark_energy += 10
 			if(prob(10))
 				to_chat(L, span_notice("You can feel the energy flowing into you!"))
 		else
@@ -86,9 +87,9 @@
 				to_chat(L, span_danger("The more you move through this darkness, the more you can feel a throbbing, shooting ache in your bones."))
 			if(prob(5))
 				L.visible_message("[L]'s body gives off a faint, sparking, haze...", "Your body gives off a faint, sparking, haze...", runemessage = "gives off a faint, sparking haze")
-		else if(istype(L.species, /datum/species/shadekin))
-			var/obj/item/organ/internal/brain/shadekin/B = L.internal_organs_by_name[O_BRAIN]
-			B.dark_energy += 10
+		var/datum/component/shadekin/comp = L.GetComponent(/datum/component/shadekin)
+		if(comp)
+			comp.dark_energy += 10
 			if(prob(10))
 				to_chat(L, span_notice("You can feel the energy flowing into you!"))
 		else

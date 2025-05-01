@@ -6,7 +6,7 @@
 		return COMPONENT_INCOMPATIBLE
 
 /* //How to make a check to use things in this component
-var/datum/component/xenochimera/comp = GetComponent(/datum/component/xenochimera)
-	if (comp)
-
+var/datum/component/xenochimera/comp = H.GetComponent(/datum/component/xenochimera)
+if (comp)
+	thing
 */
