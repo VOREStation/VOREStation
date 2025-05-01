@@ -10,7 +10,7 @@
 		if("energy")
 			var/mob/living/simple_mob/shadekin/SK = usr
 			if(istype(SK))
-				to_chat(usr,span_notice(span_bold("Energy:") + " [SK.energy] ([SK.dark_gains])"))
+				to_chat(usr,span_notice(span_bold("Energy:") + " [SK.comp.dark_energy] ([SK.dark_gains])"))
 		if("shadekin status")
 			var/turf/T = get_turf(usr)
 			if(T)
