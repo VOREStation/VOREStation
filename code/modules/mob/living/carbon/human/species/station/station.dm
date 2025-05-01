@@ -1747,6 +1747,8 @@
 
 	reagent_tag = IS_CHIMERA
 
+	species_component = /datum/component/xenochimera
+
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
 	//If they're KO'd/dead, or reviving, they're probably not thinking a lot about much of anything.
 	if(!H.stat || !(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE))
@@ -1785,10 +1787,9 @@
 
 /datum/species/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
 	//first, calculate how stressed the chimera is
-	var/laststress = 0
-	var/obj/item/organ/internal/brain/B = H.internal_organs_by_name[O_BRAIN]
-	if(B) //if you don't have a chimera brain in a chimera body somehow, you don't get the feraless protection
-		laststress = B.laststress
+	var/datum/component/xenochimera/comp = GetComponent(/datum/component/xenochimera)
+	if(!comp) //No xenochimera component, no feralness.
+		return
 
 	//Low-ish nutrition has messages and can eventually cause feralness
 	var/hunger = max(0, 150 - H.nutrition)
@@ -1819,7 +1820,7 @@
 	//check to see if they go feral if they weren't before
 	if(!feral && !isbelly(H.loc))
 		// if stress is below 15, no chance of snapping. Also if they weren't feral before, they won't suddenly become feral unless they get MORE stressed
-		if((currentstress > laststress) && prob(clamp(currentstress-15, 0, 100)) )
+		if((currentstress > comp.laststress) && prob(clamp(currentstress-15, 0, 100)) )
 			go_feral(H, currentstress, cause)
 			feral = currentstress //update the local var
 
@@ -1833,8 +1834,8 @@
 					danger = TRUE
 
 	//now the check's done, update their brain so it remembers how stressed they were
-	if(B && !isbelly(H.loc)) //another sanity check for brain implant shenanigans, also no you don't get to hide in a belly and get your laststress set to a huge amount to skip rolls
-		B.laststress = currentstress
+	if(!isbelly(H.loc)) //another sanity check for brain implant shenanigans, also no you don't get to hide in a belly and get your laststress set to a huge amount to skip rolls
+		comp.laststress = currentstress
 
 	// Handle being feral
 	if(feral)

@@ -1311,6 +1311,7 @@
 
 	species.create_organs(src)
 
+	species.apply_components(src)
 
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor

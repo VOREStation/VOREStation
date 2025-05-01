@@ -371,6 +371,7 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -755,6 +756,10 @@
 		nif.nifsofts = nifsofts*/
 	else
 		..()
+
+/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+	if(species_component)
+		H.LoadComponent(species_component)
 
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
