@@ -5,3 +5,11 @@
   - bugfix: TGUI not compiling
   tacoguy7765093:
   - bugfix: You cant self surgery without NT's permission anymore.
+2025-05-02:
+  Arrhythmia_V:
+  - bugfix: Clothing now correctly renders over big leggies
+  SpaceMan-Jim:
+  - rscadd: laser5 sound file
+  - rscadd: 'bullet_pellet fire_sound to laser5 from Laser4
+
+      :cl:'

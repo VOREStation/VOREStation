@@ -1,4 +1,0 @@
-author: "Arrhythmia_V"
-delete-after: True
-changes:
-  - bugfix: "Clothing now correctly renders over big leggies"
