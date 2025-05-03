@@ -144,12 +144,7 @@
 	//cache for sanic speed (lists are references anyways)
 	var/footstep_sounds = GLOB.footstep
 
-	if(istype(source.shoes, /obj/item/holder))
-		// we have a micro
-
-		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
-
-	else if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
+	if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
 		var/obj/item/clothing/shoes/feet = source.shoes
