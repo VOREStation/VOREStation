@@ -22,6 +22,7 @@
 	hoodtype = /obj/item/clothing/head/hood/galahad
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
+	slowdown = 0.5
 	actions_types = list(/datum/action/item_action/toggle_knight_headgear)
 
 /obj/item/clothing/suit/storage/hooded/knight/galahad
@@ -42,7 +43,7 @@
 	icon_state = "robin"
 	hoodtype = /obj/item/clothing/head/hood/robin
 	armor = list(melee = 70, bullet = 40, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
-	slowdown = -1
+	slowdown = 0
 	siemens_coefficient = 3
 
 // Costume Knight Gear Here
