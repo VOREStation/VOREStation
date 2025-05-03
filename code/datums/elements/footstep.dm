@@ -134,7 +134,6 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/obj/item/clothing/shoes/feet = source.shoes
 	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
@@ -145,22 +144,24 @@
 	//cache for sanic speed (lists are references anyways)
 	var/footstep_sounds = GLOB.footstep
 
-	if( istype(feet, /obj/item/holder/micro) )
+	if(istype(source.shoes, /obj/item/holder))
 		// we have a micro
 
-		for( var/mob/living/M in feet.contents )
-			if( ismouse(M) )
+		var/obj/item/holder/I = source.shoes
+		for(var/mob/living/M in I.contents)
+			if(ismouse(M))
 				playsound(source.loc, 'sound/effects/mouse_squeak.ogg', 35, 1)
-			else if( ishuman(M) )
+			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if( findtext(H.custom_species, "mouse") || findtext(H.custom_species, "Mouse") )
+				if(findtext(lowertext(H.custom_species), "mouse"))
 					playsound(source.loc, 'sound/effects/mouse_squeak.ogg', 35, 1)
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 
-	else if ( feet || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
+	else if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
-		if( feet.blocks_footsteps )
+		var/obj/item/clothing/shoes/feet = source.shoes
+		if(feet.blocks_footsteps)
 			var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 			if(!isnull(shoestep_type) && footstep_sounds[shoestep_type]) // shoestep type can be null
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
