@@ -342,7 +342,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		else if(!is_alien_whitelisted(user.client, S))
 			restricted = 1
 
-		var/can_select = !!restricted
+		var/can_select = !restricted
 		if(check_rights(R_ADMIN|R_EVENT, 0) || S.spawn_flags & SPECIES_WHITELIST_SELECTABLE)
 			can_select = TRUE
 
