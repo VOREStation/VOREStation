@@ -1273,7 +1273,6 @@
 
 /datum/sprite_accessory/tail/taur/bigleggy/bird
 	name = "Big Leggies (Bird)"
-	icon_state = "bigleggy"
 	extra_overlay = "bigleggy_m_bird"
 	extra_overlay2 = "bigleggy_bird"
 	extra_overlay_w = "bigleggy_m_bird_stanced"

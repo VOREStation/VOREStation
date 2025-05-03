@@ -2654,3 +2654,34 @@ includes scars and tattoos
 	icon_state = "digigradient"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+//Big Leggies!
+/datum/sprite_accessory/marking/bigleggy
+	name = "Big Leggies - Legs"
+	icon_state = "bigleggy"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG, BP_L_LEG)
+	digitigrade_acceptance = MARKING_NONDIGI_ONLY
+
+/datum/sprite_accessory/marking/bigleggy/stanced
+	name = "Big Leggies - Legs (Stanced)"
+	icon_state = "bigleggy_stanced"
+
+/datum/sprite_accessory/marking/bigleggy/feet
+	name = "Big Leggies - Feet"
+	icon_state = "bigleggy_markings"
+	body_parts = list(BP_R_FOOT, BP_L_FOOT)
+
+/datum/sprite_accessory/marking/bigleggy/feet/stanced
+	name = "Big Leggies - Feet (Stanced)"
+	icon_state = "bigleggy_markings_stanced"
+/* //Unfortunately, these don't cover the entire feet, so can't be used. Leaving them here in case someone wants to make better feet for birds.
+/datum/sprite_accessory/marking/bigleggy/feet/bird
+	name = "Big Leggies - Feet (Bird)"
+	icon_state = "bigleggy_m_bird"
+
+/datum/sprite_accessory/marking/bigleggy/feet/bird/stanced
+	name = "Big Leggies - Feet (Bird, Stanced)"
+	icon_state = "bigleggy_m_bird_stanced"
+*/
+//Big leggy end!
