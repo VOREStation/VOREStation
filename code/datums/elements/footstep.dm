@@ -149,7 +149,7 @@
 		// we have a micro
 
 		for( var/mob/living/M in feet.contents )
-			if( M.name == "mouse" )
+			if( ismouse(M) )
 				playsound(source.loc, 'sound/effects/mouse_squeak.ogg', 35, 1)
 			else if( ishuman(M) )
 				var/mob/living/carbon/human/H = M
