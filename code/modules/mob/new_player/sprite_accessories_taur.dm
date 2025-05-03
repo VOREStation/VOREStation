@@ -1244,7 +1244,7 @@
 	fullness_icons = 3
 	ani_state = "bigleggy_stanced"
 	extra_overlay_w = "bigleggy_markings_stanced"
-	clip_mask_state = null
+	clip_mask_state = taur_clip_mask_def //Leaving this here to make it clear it it's INTENTIONAL it shows above clothes. Use the marking if you want it to show UNDER clothes!
 
 /datum/sprite_accessory/tail/taur/bigleggy/canine
 	name = "Big Leggies (Canine Tail)"
