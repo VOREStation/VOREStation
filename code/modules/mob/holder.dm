@@ -184,7 +184,7 @@ var/list/holder_mob_icon_cache = list()
 	name = "mouse"
 	desc = "It's a small rodent."
 	item_state = "mouse_gray"
-	slot_flags = SLOT_FEET | SLOT_EARS | SLOT_HEAD | SLOT_ID
+	slot_flags = SLOT_EARS | SLOT_HEAD | SLOT_ID
 	origin_tech = list(TECH_BIO = 2)
 	w_class = ITEMSIZE_TINY
 

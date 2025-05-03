@@ -147,14 +147,6 @@
 	if(istype(source.shoes, /obj/item/holder))
 		// we have a micro
 
-		var/obj/item/holder/I = source.shoes
-		for(var/mob/living/M in I.contents)
-			if(ismouse(M))
-				playsound(source.loc, 'sound/effects/mouse_squeak.ogg', 35, 1)
-			else if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(findtext(lowertext(H.custom_species), "mouse"))
-					playsound(source.loc, 'sound/effects/mouse_squeak.ogg', 35, 1)
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 
 	else if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
