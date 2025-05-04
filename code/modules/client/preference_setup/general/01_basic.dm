@@ -93,6 +93,7 @@
 	data["ooc_notes_length"] = LAZYLEN(pref.read_preference(/datum/preference/text/living/ooc_notes))
 	data["vore_egg_type"] = pref.vore_egg_type
 	data["autohiss"] = pref.autohiss
+	data["emote_sound_mode"] = pref.read_preference(/datum/preference/choiced/living/emote_sound_mode)
 
 	return data
 
@@ -272,7 +273,6 @@
 				pref.vore_egg_type = selection
 				return TOPIC_REFRESH
 
-		// VOREStation Add Start
 		if("autohiss")
 			var/list/autohiss_selection = list("Full", "Basic", "Off")
 			var/selection = tgui_input_list(user, "Choose your default autohiss setting:", "Character Preference", autohiss_selection, pref.autohiss)
@@ -280,6 +280,13 @@
 				pref.autohiss = selection
 			else if(!selection)
 				pref.autohiss = "Full"
+			return TOPIC_REFRESH
+
+		if("emote_sound_mode")
+			var/datum/preference/choiced/living/emote_sound_mode = GLOB.preference_entries_by_key["emote_sound_mode"]
+			var/selection = tgui_input_list(user, "Choose your emote sound mode", "Emote Sound Mode", emote_sound_mode.get_choices())
+			if(selection)
+				pref.update_preference(emote_sound_mode, selection)
 			return TOPIC_REFRESH
 
 	return ..()

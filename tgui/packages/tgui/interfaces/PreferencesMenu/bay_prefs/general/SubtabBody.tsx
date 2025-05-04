@@ -50,6 +50,7 @@ export const SubtabBody = (props: {
     voice_sound,
     blood_color,
     blood_reagents,
+    emote_sound_mode,
   } = data;
   const { digi_allowed } = staticData;
   const { species: species_list } = serverData;
@@ -159,6 +160,11 @@ export const SubtabBody = (props: {
                   <LabeledList.Item label="Voice Sounds">
                     <Button onClick={() => act('voice_sounds_list')}>
                       {voice_sound || 'Default'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Emote Sound Mode">
+                    <Button onClick={() => act('emote_sound_mode')}>
+                      {emote_sound_mode}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item>

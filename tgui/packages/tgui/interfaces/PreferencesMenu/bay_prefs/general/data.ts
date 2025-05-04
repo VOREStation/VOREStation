@@ -46,6 +46,7 @@ export type BasicData = {
 
   vore_egg_type: string;
   autohiss: string;
+  emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
 };
