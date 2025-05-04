@@ -13,3 +13,6 @@
   - rscadd: 'bullet_pellet fire_sound to laser5 from Laser4
 
       :cl:'
+2025-05-04:
+  ShadowLarkens:
+  - bugfix: Wires actually work on things other than airlocks again
