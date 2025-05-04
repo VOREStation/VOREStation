@@ -81,6 +81,11 @@
 			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
+			for(var/obj/item/robotic_multibelt/multibelt in target.module.modules)
+				if(istype(multibelt, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
+					continue
+				.["target"]["multibelt"] += get_mult_belt(multibelt)
+				break //We only add one...for now.
 			// Radio section
 			var/list/radio_channels = list()
 			for(var/channel in target.radio.channels)
@@ -335,6 +340,33 @@
 			var/obj/item/rem_kit = locate(params["modkit"])
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
+			return TRUE
+		if("install_tool")
+			var/new_tool = text2path(params["tool"])
+			var/obj/item/robotic_multibelt/multibelt
+			for(var/obj/item/robotic_multibelt/multibelt_search in target.module.modules)
+				if(istype(multibelt_search, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
+					continue
+				multibelt = multibelt_search
+				break
+			multibelt.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
+			multibelt.generate_tools()
+			return TRUE
+		if("remove_tool")
+			var/obj/item/robotic_multibelt/multibelt
+			for(var/obj/item/robotic_multibelt/multibelt_search in target.module.modules)
+				if(istype(multibelt_search, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
+					continue
+				multibelt = multibelt_search //We only pick one as well, for now.
+				break
+			var/obj/item/rem_tool = locate(params["tool"])
+			if(multibelt.selected_item == rem_tool)
+				multibelt.dropped() //Reset to original icon.
+			multibelt.contents -= rem_tool
+			multibelt.cyborg_integrated_tools -= rem_tool.type
+			multibelt.integrated_tools_by_name -= rem_tool.name
+			multibelt.integrated_tool_images -= rem_tool.name
+			qdel(rem_tool)
 			return TRUE
 		if("add_channel")
 			var/selected_radio_channel = params["channel"]
@@ -693,6 +725,23 @@
 	pka["capacity"] = kin.get_remaining_mod_capacity()
 	pka["max_capacity"] = kin.max_mod_capacity
 	return pka
+
+/datum/eventkit/modify_robot/proc/get_mult_belt(var/obj/item/robotic_multibelt/mult_belt)
+	var/list/multi_belt = list()
+	multi_belt["name"] = mult_belt.name
+	var/list/integrated_tools = list()
+	for(var/obj/tool in mult_belt.contents)
+		integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
+	multi_belt["integrated_tools"] = integrated_tools
+	var/list/tools = list()
+	for(var/tool in all_borg_multitool_options)
+		if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
+			continue
+		var/obj/item/tool_to_add = tool
+		tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
+	multi_belt["tools"] = tools
+	return multi_belt
+
 
 /datum/eventkit/modify_robot/proc/get_cells()
 	var/list/cell_options = list()

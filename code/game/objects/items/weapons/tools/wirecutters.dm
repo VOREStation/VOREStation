@@ -81,12 +81,6 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
-/obj/item/tool/wirecutters/cyborg
-	name = "wirecutters"
-	desc = "This cuts wires. With science."
-	usesound = 'sound/items/jaws_cut.ogg'
-	toolspeed = 0.5
-
 /obj/item/tool/wirecutters/hybrid
 	name = "strange wirecutters"
 	desc = "This cuts wires. With " + span_purple("Science!")
