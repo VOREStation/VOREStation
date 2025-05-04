@@ -55,7 +55,7 @@ Bonus
 				to_chat(M, span_warning(pick("You feel a sudden pain across your body.", "Drops of blood appear suddenly on your skin.")))
 		if(4, 5)
 			if(M.stat != DEAD)
-				to_chat(M, span_userdanger(pick("You cringe as a violent pan takes over your body.", "It feels like your body is eating itself inside out.", "IT HURTS.")))
+				to_chat(M, span_userdanger(pick("You cringe as a violent pain takes over your body.", "It feels like your body is eating itself inside out.", "IT HURTS.")))
 			Flesheat(M, A)
 
 /datum/symptom/flesh_eating/proc/Flesheat(mob/living/M, datum/disease/advance/A)
