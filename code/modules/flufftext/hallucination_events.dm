@@ -34,8 +34,15 @@
 								"The pain is excruciating!",
 								"Your whole body is going numb!",
 								"You feel like you could die any moment now!",
-								"Please, just end the pain!"
+								"Please, just end the pain!",
+								"You feel a sudden pain across your body.",
+								"You cringe as a violent pain takes over your body.",
+								"It feels like your body is eating itself inside out.",
+								"IT HURTS.",
+								"Your body feels as if it's trying to rip itself open..."
 								)
+	if(prob(20) && our_human.jitteriness < 50)
+		our_human.make_jittery(120)
 	to_chat(our_human, span_danger(pick(pain_message)))
 
 /datum/component/hallucinations/proc/event_fake_item()
