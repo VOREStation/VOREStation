@@ -11,8 +11,9 @@ Gunshots/explosions/opening doors/less rare audio (done)
 */
 
 /datum/component/hallucinations
-	VAR_PRIVATE/mob/living/carbon/human/our_human = null
+	dupe_mode = COMPONENT_DUPE_UNIQUE // First come first serve
 
+	VAR_PRIVATE/mob/living/carbon/human/our_human = null
 	VAR_PRIVATE/datum/weakref/halimage
 	VAR_PRIVATE/datum/weakref/halbody
 	VAR_PRIVATE/datum/weakref/halitem
@@ -24,6 +25,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	our_human = parent
+	our_human.hallu_component = src
 	make_timer()
 
 /datum/component/hallucinations/Destroy(force)
@@ -32,7 +34,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 /datum/component/hallucinations/proc/make_timer()
 	PROTECTED_PROC(TRUE)
-	addtimer(CALLBACK(src, PROC_REF(trigger)), (rand(200,500)/(our_human.hallucination/25)), TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / (min(our_human.hallucination,100)/25)), TIMER_DELETE_ME)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Traditional hallucinations
@@ -85,7 +87,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	hallu_component = AddComponent(/datum/component/hallucinations/xenochimera)
 
 /datum/component/hallucinations/xenochimera/make_timer()
-	addtimer(CALLBACK(src, PROC_REF(trigger)), (rand(200,500)/(our_human.feral/10)), TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / (our_human.feral/10)), TIMER_DELETE_ME)
 
 /datum/component/hallucinations/xenochimera/trigger()
 	if(QDELETED(our_human))
@@ -97,7 +99,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		qdel(src)
 		return
 	handle_hallucinating()
-	QDEL_IN(src,rand(3,8)SECONDS)
+	QDEL_IN(src,rand(1,2)SECONDS)
 
 /datum/component/hallucinations/xenochimera/handle_hallucinating()
 	var/halpick = rand(1,100)
