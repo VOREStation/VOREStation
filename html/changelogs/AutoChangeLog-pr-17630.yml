@@ -1,4 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - bugfix: "fixed recyclers fucking up every button ever in tgui"

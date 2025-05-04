@@ -1,0 +1,18 @@
+2025-05-01:
+  Kashargul:
+  - bugfix: cuffing runtime flood on invalid targets
+  ShadowLarkens:
+  - bugfix: TGUI not compiling
+  tacoguy7765093:
+  - bugfix: You cant self surgery without NT's permission anymore.
+2025-05-02:
+  Arrhythmia_V:
+  - bugfix: Clothing now correctly renders over big leggies
+  SpaceMan-Jim:
+  - rscadd: laser5 sound file
+  - rscadd: 'bullet_pellet fire_sound to laser5 from Laser4
+
+      :cl:'
+2025-05-04:
+  ShadowLarkens:
+  - bugfix: Wires actually work on things other than airlocks again
