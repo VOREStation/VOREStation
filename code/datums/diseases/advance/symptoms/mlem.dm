@@ -44,7 +44,7 @@ BONUS
 	if(A.resistance >= 5)
 		power = 1.5
 
-/datum/symptom/itching/Activate(var/datum/disease/advance/A)
+/datum/symptom/mlem/Activate(var/datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
