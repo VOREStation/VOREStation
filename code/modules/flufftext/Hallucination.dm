@@ -16,7 +16,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	VAR_PRIVATE/mob/living/carbon/human/our_human = null
 	VAR_PRIVATE/datum/weakref/halimage
 	VAR_PRIVATE/datum/weakref/halbody
-	VAR_PRIVATE/datum/weakref/halitem
+	VAR_PRIVATE/list/halitem = list() // weakref pair of obj-key, client-value
 
 	var/hal_crit = 0
 	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
@@ -30,6 +30,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 /datum/component/hallucinations/Destroy(force)
 	our_human.hallu_component = null
+	if(halitem.len)
+		remove_hallucination_item()
 	. = ..()
 
 /datum/component/hallucinations/proc/make_timer()

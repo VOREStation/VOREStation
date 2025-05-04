@@ -14,7 +14,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//Strange items
 	//to_chat(our_human, "Traitor Items")
-	if(halitem?.resolve())
+	if(halitem.len)
 		return
 
 	var/list/slots_free = list(ui_lhand,ui_rhand)
@@ -32,8 +32,9 @@
 	if(!slots_free.len)
 		return
 
-	var/image/client_only/use_screen/CI = new /image/client_only/use_screen()
+	var/obj/CI = new()
 	CI.screen_loc = pick(slots_free)
+	CI.hud_layerise()
 	switch(rand(1,6))
 		if(1) //revolver
 			CI.icon = 'icons/obj/gun.dmi'
@@ -61,10 +62,21 @@
 			CI.icon = 'icons/obj/grenade.dmi'
 			CI.icon_state = "flashbang1"
 			CI.name = "Flashbang"
+	halitem[WEAKREF(CI)] = WEAKREF(our_human.client)
+	our_human.client.screen += CI
+	addtimer(CALLBACK(src, PROC_REF(remove_hallucination_item)), rand(10,25) SECONDS, TIMER_DELETE_ME)
 
-	halitem = WEAKREF(CI)
-	CI.append_client(our_human.client)
-	QDEL_IN(CI, rand(10,25) SECONDS)
+/datum/component/hallucinations/proc/remove_hallucination_item()
+	// I can't manage this with /image/client_only due to screenloc, so key-value weakref pair it is! Called on both timer and destroying this component.
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/datum/weakref/first = halitem[1]
+	var/obj/itm = first?.resolve()
+	var/datum/weakref/CW = halitem[first]
+	var/client/C = CW?.resolve()
+	C.screen -= itm
+	qdel(itm)
+	halitem.Cut()
 
 /datum/component/hallucinations/proc/event_strange_sound()
 	PROTECTED_PROC(TRUE)
