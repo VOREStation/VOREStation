@@ -7,7 +7,7 @@
 	//Screwy HUD
 	//to_chat(our_human, "Screwy HUD")
 	hal_screwyhud = pick(1,2,3,3,4,4)
-	addtimer(VARSET_CALLBACK(src, hal_screwyhud , 0), rand(10,25) SECONDS, TIMER_DELETE_ME)
+	VARSET_IN(src, hal_screwyhud, 0, rand(10,25) SECONDS)
 
 /datum/component/hallucinations/proc/event_fake_item()
 	PROTECTED_PROC(TRUE)
@@ -48,7 +48,7 @@
 				CI.icon_state = "c4small_1"
 		if(3) //sword
 			CI.icon = 'icons/obj/weapons.dmi'
-			CI.icon_state = "sword1"
+			CI.icon_state = "longsword"
 			CI.name = "Sword"
 		if(4) //stun baton
 			CI.icon = 'icons/obj/weapons.dmi'
