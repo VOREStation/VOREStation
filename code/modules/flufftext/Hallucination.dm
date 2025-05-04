@@ -103,7 +103,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		qdel(src)
 		return
 	handle_hallucinating()
-	QDEL_IN(src,rand(1,2)SECONDS)
+	QDEL_IN(src,rand(3,9)SECONDS)
 
 /datum/component/hallucinations/xenochimera/handle_hallucinating()
 	var/halpick = rand(1,100)
