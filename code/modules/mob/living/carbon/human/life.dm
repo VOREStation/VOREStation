@@ -1295,19 +1295,14 @@
 
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
+				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
 					client.dir = pick(2,4,8)
 					spawn(rand(20,50))
 						client.dir = 1
 				*/
-
 			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
 
 		//Brain damage from Oxyloss
 		if(should_have_organ(O_BRAIN))
@@ -1371,7 +1366,7 @@
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !hal_crit && client )
+				if( prob(2) && health && !hallu_component?.hal_crit && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
