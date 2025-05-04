@@ -65,16 +65,6 @@ module.exports = (env = {}, argv) => {
             },
             {
               loader: require.resolve('css-loader'),
-              options: {
-                url: {
-                  filter: (url, resourcePath) => {
-                    if (url.includes('.ttf')) {
-                      return false;
-                    }
-                    return true;
-                  },
-                },
-              },
             },
             {
               loader: require.resolve('sass-loader'),
