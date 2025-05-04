@@ -1513,9 +1513,12 @@
 	else //Alive
 		clear_fullscreen("crit")
 		//Oxygen damage overlay
-		if(oxyloss)
+		var/OL = oxyloss
+		if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_OXY)
+			OL = max(15,oxyloss)
+		if(OL)
 			var/severity = 0
-			switch(oxyloss)
+			switch(OL)
 				if(10 to 20)		severity = 1
 				if(20 to 25)		severity = 2
 				if(25 to 30)		severity = 3
@@ -1572,7 +1575,9 @@
 			clear_fullscreen("fear")
 
 		if(healths)
-			if (chem_effects[CE_PAINKILLER] > 100)
+			if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_DEAD)
+				healths.icon_state = "health7"	//DEAD healthmeter
+			else if(chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.
@@ -1594,10 +1599,12 @@
 					health_images += E.get_damage_hud_image(limb_trauma_val)
 
 				// Apply a fire overlay if we're burning.
-				if(on_fire)
+				if(on_fire || hallu_component?.hal_screwyhud == HUD_HALLUCINATION_ONFIRE)
 					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
 
 				// Show a general pain/crit indicator if needed.
+				if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_CRIT)
+					trauma_val = 2
 				if(trauma_val)
 					if(!(species.flags & NO_PAIN))
 						if(trauma_val > 0.7)

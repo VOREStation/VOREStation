@@ -19,7 +19,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	VAR_PRIVATE/list/halitem = list() // weakref pair of obj-key, client-value
 
 	var/hal_crit = 0
-	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
+	var/hal_screwyhud = HUD_HALLUCINATION_NONE
 
 /datum/component/hallucinations/Initialize()
 	if(!ishuman(parent))
@@ -77,6 +77,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 			event_sleeping()
 		if(73 to 75) // If you don't want hallucination beatdowns, comment this out
 			event_attacker()
+		if(76 to 80)
+			event_painmessage()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Xenochimera hallucinations

@@ -1,13 +1,42 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Hallucination events
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/hallucinations/proc/event_hudscrew() // This currently does nothing
+/datum/component/hallucinations/proc/event_hudscrew()
 	PROTECTED_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//Screwy HUD
 	//to_chat(our_human, "Screwy HUD")
-	hal_screwyhud = pick(1,2,3,3,4,4)
-	VARSET_IN(src, hal_screwyhud, 0, rand(10,25) SECONDS)
+	hal_screwyhud = pick(list(
+								HUD_HALLUCINATION_CRIT,
+								HUD_HALLUCINATION_DEAD,
+								HUD_HALLUCINATION_OXY,
+								HUD_HALLUCINATION_OXY,
+								HUD_HALLUCINATION_ONFIRE,
+								HUD_HALLUCINATION_ONFIRE
+							))
+	VARSET_IN(src, hal_screwyhud, HUD_HALLUCINATION_NONE, rand(10,25) SECONDS)
+
+/datum/component/hallucinations/proc/event_painmessage()
+	PROTECTED_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	//Fake pain messages
+	//to_chat(our_human, "fake messages")
+	var/list/pain_message = list("The inside of your head hurts...",
+								"Your stomach hurts.",
+								"You feel sick.",
+								"Your upper body hurts.",
+								"Your head hurts.",
+								"Your arm hurts.",
+								"Your leg hurts.",
+								"Your lower body hurts.",
+								"Your foot hurts.",
+								"Your hand hurts.",
+								"The pain is excruciating!",
+								"Your whole body is going numb!",
+								"You feel like you could die any moment now!",
+								"Please, just end the pain!"
+								)
+	to_chat(our_human, span_danger(pick(pain_message)))
 
 /datum/component/hallucinations/proc/event_fake_item()
 	PROTECTED_PROC(TRUE)
@@ -83,35 +112,36 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	//Strange audio
+	var/send_sound
 	switch(rand(1,12))
 		if(1)
-			our_human << 'sound/machines/door/old_airlock.ogg'
+			send_sound = 'sound/machines/door/old_airlock.ogg'
 		if(2)
 			if(prob(50))
-				our_human << 'sound/effects/Explosion1.ogg'
+				send_sound = 'sound/effects/Explosion1.ogg'
 			else
-				our_human << 'sound/effects/Explosion2.ogg'
+				send_sound = 'sound/effects/Explosion2.ogg'
 		if(3)
-			our_human << 'sound/effects/explosionfar.ogg'
+			send_sound = 'sound/effects/explosionfar.ogg'
 		if(4)
-			our_human << 'sound/effects/Glassbr1.ogg'
+			send_sound = 'sound/effects/Glassbr1.ogg'
 		if(5)
-			our_human << 'sound/effects/Glassbr2.ogg'
+			send_sound = 'sound/effects/Glassbr2.ogg'
 		if(6)
-			our_human << 'sound/effects/Glassbr3.ogg'
+			send_sound = 'sound/effects/Glassbr3.ogg'
 		if(7)
-			our_human << 'sound/machines/twobeep.ogg'
+			send_sound = 'sound/machines/twobeep.ogg'
 		if(8)
-			our_human << 'sound/machines/door/windowdoor.ogg'
+			send_sound = 'sound/machines/door/windowdoor.ogg'
 		if(9)
 			//To make it more realistic, I added two gunshots (enough to kill)
-			our_human << 'sound/weapons/Gunshot1.ogg'
+			send_sound = 'sound/weapons/Gunshot1.ogg'
 			addtimer(CALLBACK(src, PROC_REF(secondary_sound), 'sound/weapons/Gunshot2.ogg'), rand(1,3) SECONDS, TIMER_DELETE_ME)
 		if(10)
-			our_human << 'sound/weapons/smash.ogg'
+			send_sound = 'sound/weapons/smash.ogg'
 		if(11)
 			//Same as above, but with tasers.
-			our_human << 'sound/weapons/Taser.ogg'
+			send_sound = 'sound/weapons/Taser.ogg'
 			addtimer(CALLBACK(src, PROC_REF(secondary_sound), 'sound/weapons/Taser.ogg'), rand(1,3) SECONDS, TIMER_DELETE_ME)
 	//Rare audio
 		if(12)
@@ -121,12 +151,14 @@
 				'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
 				'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
 				'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-			our_human << pick(creepyasssounds)
+			send_sound = pick(creepyasssounds)
+
+	our_human.playsound_local(get_turf(our_human), send_sound, vol = 75, channel = CHANNEL_AMBIENCE_FORCED)
 
 /datum/component/hallucinations/proc/secondary_sound(var/sound_path)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	our_human << sound_path
+	our_human.playsound_local(get_turf(our_human), sound_path, vol = 75, channel = CHANNEL_AMBIENCE_FORCED)
 
 /datum/component/hallucinations/proc/event_flash_environmental_threats()
 	PROTECTED_PROC(TRUE)
@@ -194,7 +226,7 @@
 	//to_chat(our_human, "fake death")
 	our_human.SetSleeping(20)
 	hal_crit = 1
-	hal_screwyhud = 1
+	hal_screwyhud = HUD_HALLUCINATION_CRIT
 	addtimer(CALLBACK(src, PROC_REF(reset_hallucination_sleeping)), rand(5,10) SECONDS, TIMER_DELETE_ME)
 
 /datum/component/hallucinations/proc/reset_hallucination_sleeping()
@@ -202,7 +234,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	our_human.SetSleeping(0)
 	hal_crit = 0
-	hal_screwyhud = 0
+	hal_screwyhud = HUD_HALLUCINATION_NONE
 
 /datum/component/hallucinations/proc/event_attacker()
 	PROTECTED_PROC(TRUE)

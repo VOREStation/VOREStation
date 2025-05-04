@@ -74,6 +74,7 @@
 #include "code\__defines\fonts.dm"
 #include "code\__defines\footsteps.dm"
 #include "code\__defines\gamemode.dm"
+#include "code\__defines\hallucination.dm"
 #include "code\__defines\holder.dm"
 #include "code\__defines\holomap.dm"
 #include "code\__defines\hoses.dm"
