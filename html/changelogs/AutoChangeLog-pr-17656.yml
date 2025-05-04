@@ -1,4 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - bugfix: "Wires actually work on things other than airlocks again"
