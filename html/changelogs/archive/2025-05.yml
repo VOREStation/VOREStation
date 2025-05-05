@@ -16,3 +16,6 @@
 2025-05-04:
   ShadowLarkens:
   - bugfix: Wires actually work on things other than airlocks again
+2025-05-05:
+  ShadowLarkens:
+  - bugfix: player_list ending up with nulls in it
