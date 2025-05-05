@@ -1,6 +1,7 @@
 /datum/component/gibbing_disability
 	var/mob/living/owner
 	var/gutdeathpressure = 0
+	var/death_time = FALSE
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 /datum/component/gibbing_disability/Initialize()
@@ -17,12 +18,22 @@
 		return
 	if(owner.transforming)
 		return
+	if(death_time)
+		if(death_time < 4)
+			owner.emote(pick("whimper","belch","shiver"))
+			death_time++
+			return
+		else
+			owner.emote(pick("belch"))
+			owner.gib()
+			return
 	gutdeathpressure += 0.01
 	if(gutdeathpressure > 0 && prob(gutdeathpressure))
 		owner.emote(pick("whimper","belch","belch","belch","choke","shiver"))
 		owner.Weaken(gutdeathpressure / 3)
 	if((gutdeathpressure/3) >= 1 && prob(gutdeathpressure/3))
 		gutdeathpressure = 0 // to stop retriggering
+		death_time = TRUE
 		spawn(1)
 			owner.emote(pick("whimper","shiver"))
 		spawn(3)

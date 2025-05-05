@@ -38,7 +38,6 @@
 #define SCHIZOPHRENIA  	0x40	// Roleplay drugs
 */
 #define WINGDINGS     	0x80	// Better handling as disability
-#define DETERIORATE     0x100	// Body melts slowly, medical loves you!
 #define CENSORED     	0x400	// Cannot swear
 // sdisabilities
 #define BLIND 0x1
