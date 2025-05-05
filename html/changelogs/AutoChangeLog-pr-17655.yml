@@ -1,0 +1,4 @@
+author: "Asher-42"
+delete-after: True
+changes:
+  - bugfix: "secborg dullahans resting sprites not head bobbing properly. (misaligned.)"
