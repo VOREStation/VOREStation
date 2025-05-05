@@ -770,6 +770,11 @@
 				spawn(0) emote(pick("giggle", "laugh"))
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
+	if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_OXY)
+		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
+	else if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_TOXIN)
+		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
+
 	// Were we able to breathe?
 	if (failed_inhale || failed_exhale)
 		failed_last_breath = 1
@@ -1513,12 +1518,9 @@
 	else //Alive
 		clear_fullscreen("crit")
 		//Oxygen damage overlay
-		var/OL = oxyloss
-		if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_OXY)
-			OL = max(15,oxyloss)
-		if(OL)
+		if(oxyloss)
 			var/severity = 0
-			switch(OL)
+			switch(oxyloss)
 				if(10 to 20)		severity = 1
 				if(20 to 25)		severity = 2
 				if(25 to 30)		severity = 3
@@ -1575,9 +1577,7 @@
 			clear_fullscreen("fear")
 
 		if(healths)
-			if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_DEAD)
-				healths.icon_state = "health7"	//DEAD healthmeter
-			else if(chem_effects[CE_PAINKILLER] > 100)
+			if(chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.

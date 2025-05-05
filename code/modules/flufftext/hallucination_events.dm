@@ -8,13 +8,11 @@
 	//to_chat(our_human, "Screwy HUD")
 	hal_screwyhud = pick(list(
 								HUD_HALLUCINATION_CRIT,
-								HUD_HALLUCINATION_DEAD,
+								HUD_HALLUCINATION_TOXIN,
 								HUD_HALLUCINATION_OXY,
-								HUD_HALLUCINATION_OXY,
-								HUD_HALLUCINATION_ONFIRE,
 								HUD_HALLUCINATION_ONFIRE
 							))
-	VARSET_IN(src, hal_screwyhud, HUD_HALLUCINATION_NONE, rand(10,25) SECONDS)
+	VARSET_IN(src, hal_screwyhud, HUD_HALLUCINATION_NONE, rand(15,35) SECONDS)
 
 /datum/component/hallucinations/proc/event_painmessage()
 	PROTECTED_PROC(TRUE)
