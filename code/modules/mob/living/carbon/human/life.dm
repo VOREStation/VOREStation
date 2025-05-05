@@ -61,7 +61,6 @@
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 		weightgain()
-		process_weaver_silk()
 		handle_shock()
 
 		handle_pain()

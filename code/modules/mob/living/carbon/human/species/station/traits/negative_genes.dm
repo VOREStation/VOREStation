@@ -24,7 +24,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	disability=EPILEPSY
 	activation_message="You get a headache."
 	primitive_expression_messages=list("shudders and twitches.")
 /datum/trait/negative/disability_epilepsy/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
@@ -46,7 +45,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	disability=COUGHING
 	activation_message="You start coughing."
 /datum/trait/negative/disability_cough/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
@@ -66,7 +64,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	mutation=CLUMSY
 	activation_message="You feel lightheaded."
 	primitive_expression_messages=list("trips.")
 
@@ -79,7 +76,6 @@
 	is_genetrait = FALSE 	//VOREStation Note: TRAITGENETICS - Disabled on VS
 	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
-	disability=TOURETTES
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
 /datum/trait/negative/disability_tourettes/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
@@ -190,7 +186,6 @@
 	is_genetrait = FALSE	//VOREStation Note: TRAITGENETICS - Disabled on VS
 	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
-	disability=DETERIORATE
 	activation_message="You feel sore..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
 /datum/trait/negative/disability_deteriorating/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
@@ -211,7 +206,6 @@
 	is_genetrait = TRUE
 	hidden = TRUE
 
-	disability=GIBBING
 	activation_message="You feel bloated..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
 /datum/trait/negative/disability_gibbing/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)

@@ -347,12 +347,6 @@
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
 	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
-	var/is_weaver = FALSE
-	var/silk_production = FALSE
-	var/silk_reserve = 100
-	var/silk_max_reserve = 500
-	var/silk_color = "#FFFFFF"
-
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
