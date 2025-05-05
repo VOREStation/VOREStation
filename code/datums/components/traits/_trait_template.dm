@@ -29,6 +29,7 @@
 	owner = parent
 
 	add_verb(owner,/mob/living/proc/example_proc) //We can add verbs to our owner.
+	RegisterSignal(owner, COMSIG_EXAMPLE_SIGNAL, PROC_REF(example_proc)) //To put this easily: Owner is the person we're attached to, COMSIG_EXAMPLE_SIGNAL is the signal we expect them to send out when they want us to use our 'example_proc'
 
 	//Register this to a signal that is sent out whenever you want this to be called. For example: We want this trait to happen every life() tick, so we register it to the COMSIG_LIVING_LIFE signal that is sent every time life() is called on a /mob.
 	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process))
@@ -47,18 +48,19 @@
 	set name = "Example proc"
 	set category = "Abilities"
 	set desc = "See example."
+	SEND_SIGNAL(src, COMSIG_EXAMPLE_SIGNAL)
+	//This sends a signal to the world saying 'We did this thing!' This is then interpreed by the component and the component calls whatever proc it needs to.
 
+
+/datum/component/template/proc/example_proc()
 	if (stat == DEAD)
 		return
-
-	var/datum/component/template/comp = GetComponent(/datum/component/template) //This is how we access the component we have.
-	if (comp) //We check to see if we actually HAVE the componnent. If we don't, comp will have no value.
-		if (comp.energy <= 0) //Check a variable on the component.
-			to_chat(src, span_danger("You currently have no energy!"))
-		else if (comp.cooldown > world.time) //Check the cooldown variable on the component and compare it.
-			var/time_to_wait = (comp.cooldown - world.time) / (1 SECONDS) //Simple cooldown
-			to_chat(src, span_warning("You're currently on cooldown! Wait for another [round(time_to_wait,0.1)] seconds!"))
-			return
-		else
-			comp.cooldown = world.time + 5 SECONDS //Set the component on a 5 second cooldown.
-			to_chat(src, span_warning("You successfully used the example proc!"))
+	if (energy <= 0) //Check a variable on the component.
+		to_chat(owner, span_danger("You currently have no energy!"))
+	else if (cooldown > world.time) //Check the cooldown variable on the component and compare it.
+		var/time_to_wait = (cooldown - world.time) / (1 SECONDS) //Simple cooldown
+		to_chat(owner, span_warning("You're currently on cooldown! Wait for another [round(time_to_wait,0.1)] seconds!"))
+		return
+	else
+		comp.cooldown = world.time + 5 SECONDS //Set the component on a 5 second cooldown.
+		to_chat(owner, span_warning("You successfully used the example proc!"))
