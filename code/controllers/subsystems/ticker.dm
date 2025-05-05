@@ -309,7 +309,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	cinematic.plane = PLANE_PLAYER_HUD
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
-	cinematic.initiating_entity = src.initiating_entity
+	cinematic.initiating_entity = initiating_entity
 
 	var/obj/structure/bed/chair/temp_buckle = new(src)
 	var/list/the_reaper = list() //Mobs that shall get exploded
