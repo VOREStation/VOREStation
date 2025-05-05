@@ -100,6 +100,9 @@
 		aiming = null
 	aimed.Cut()
 
+	if(hallu_component)
+		QDEL_NULL(hallu_component)
+
 	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
