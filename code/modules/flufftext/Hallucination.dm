@@ -30,8 +30,11 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 /datum/component/hallucinations/Destroy(force)
 	our_human.hallu_component = null
+	QDEL_NULL(halimage)
+	QDEL_NULL(halbody)
 	if(halitem.len)
 		remove_hallucination_item()
+	our_human = null
 	. = ..()
 
 /datum/component/hallucinations/proc/make_timer()
@@ -53,7 +56,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	if(!our_human.client)
 		qdel(src)
 		return
-	if(our_human.hallucination < 20)
+	if(our_human.hallucination < HALLUCINATION_THRESHOLD)
 		qdel(src)
 		return
 	handle_hallucinating()
