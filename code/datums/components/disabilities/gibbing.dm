@@ -32,17 +32,7 @@
 		owner.emote(pick("whimper","belch","belch","belch","choke","shiver"))
 		owner.Weaken(gutdeathpressure / 3)
 	if((gutdeathpressure/3) >= 1 && prob(gutdeathpressure/3))
-		gutdeathpressure = 0 // to stop retriggering
 		death_time = TRUE
-		spawn(1)
-			owner.emote(pick("whimper","shiver"))
-		spawn(3)
-			owner.emote(pick("whimper","belch","shiver"))
-		spawn(4)
-			owner.emote(pick("whimper","shiver"))
-		spawn(6)
-			owner.emote(pick("belch"))
-			owner.gib()
 
 /datum/component/gibbing_disability/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_HANDLE_DISABILITIES)
