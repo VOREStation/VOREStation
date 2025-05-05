@@ -1,12 +1,12 @@
 /datum/map/stellar_delight/New()
 	..()
 	var/choice = pickweight(list(
-		'html/lobby/logo1.gif' = 50,
-		'html/lobby/logo2.gif' = 50,
-		'html/lobby/gateway.gif' = 5,
-		'html/lobby/youcanttaketheskyfromme.gif' = 200,
-		'html/lobby/intothedark.gif' = 200,
-		'html/lobby/above3b.gif' = 200,
+		'html/lobby/logo1.png' = 50,
+		'html/lobby/logo2.png' = 50,
+		'html/lobby/gateway.png' = 5,
+		'html/lobby/youcanttaketheskyfromme.png' = 200,
+		'html/lobby/intothedark.png' = 200,
+		'html/lobby/above3b.png' = 200,
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -24,7 +24,7 @@
 
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
 
-	lobby_screens = list('html/lobby/youcanttaketheskyfromme.gif') //set back to youcanttaketheskyfromme
+	lobby_screens = list('html/lobby/youcanttaketheskyfromme.png') //set back to youcanttaketheskyfromme
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 

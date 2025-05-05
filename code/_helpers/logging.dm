@@ -156,7 +156,7 @@
 
 /proc/log_to_dd(text)
 	to_world_log(text) //this comes before the config check because it can't possibly runtime
-	if(CONFIG_GET(flag/log_world_output))
+	if(config?.loaded && CONFIG_GET(flag/log_world_output))
 		WRITE_LOG(GLOB.diary, "DD_OUTPUT: [text]")
 
 /proc/log_error(text)

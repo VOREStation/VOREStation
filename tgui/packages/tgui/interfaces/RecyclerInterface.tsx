@@ -28,7 +28,7 @@ export const RecyclerInterface = (props) => {
             </Stack.Item>
 
             <Stack.Item align="center">
-              <Box as="logo-container" inline>
+              <Box as="recycler-logo-container" inline>
                 <Image src={resolveAsset('logo.png')} />
               </Box>
             </Stack.Item>
@@ -43,7 +43,7 @@ export const RecyclerInterface = (props) => {
             </Box>
             <Stack align="center" direction="Row">
               <Stack.Item>
-                <Box className="image-container" inline>
+                <Box className="recycler-image-container" inline>
                   <Image src={itemIcon.substring(1, itemIcon.length - 1)} />
                 </Box>
               </Stack.Item>
@@ -60,19 +60,29 @@ export const RecyclerInterface = (props) => {
             </Stack>
             <Stack align="left" direction="row" wrap="wrap-reverse">
               <Stack.Item>
-                <Button content="Open the door" onClick={() => act('open')} />
-              </Stack.Item>
-              <Stack.Item>
-                <Button content="Close the door" onClick={() => act('close')} />
+                <Button
+                  className="RecyclerCategoryButton"
+                  content="Open the door"
+                  onClick={() => act('open')}
+                />
               </Stack.Item>
               <Stack.Item>
                 <Button
+                  className="RecyclerCategoryButton"
+                  content="Close the door"
+                  onClick={() => act('close')}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  className="RecyclerCategoryButton"
                   content="Eject the current item"
                   onClick={() => act('eject')}
                 />
               </Stack.Item>
               <Stack.Item>
                 <Button
+                  className="RecyclerCategoryButton"
                   content="Recycle the current item"
                   onClick={() => act('recycle')}
                 />
