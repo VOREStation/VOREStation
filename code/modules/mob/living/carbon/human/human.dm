@@ -1321,15 +1321,6 @@
 	pixel_y = default_pixel_y
 	center_offset = species.center_offset
 
-	if(LAZYLEN(descriptors))
-		descriptors = null
-
-	if(LAZYLEN(species.descriptors))
-		descriptors = list()
-		for(var/desctype in species.descriptors)
-			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
-			descriptors[desctype] = descriptor.default_value
-
 	if(vessel)
 		initialize_vessel()
 
