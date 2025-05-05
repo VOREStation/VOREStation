@@ -1,6 +1,7 @@
 /datum/component/gibbing_disability
 	var/mob/living/owner
 	var/gutdeathpressure = 0
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 /datum/component/gibbing_disability/Initialize()
 	if (!isliving(parent))

@@ -9,6 +9,8 @@
 
 	var/mob/living/owner
 
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+
 /datum/component/weaver/Initialize()
 
 	if (!isliving(parent))
