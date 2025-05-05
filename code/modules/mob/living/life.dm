@@ -84,8 +84,6 @@
 
 	handle_tf_holder()
 
-	handle_dripping()
-
 	handle_vr_derez()
 
 /mob/living/proc/handle_breathing()

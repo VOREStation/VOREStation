@@ -1479,7 +1479,6 @@
 	name = "Drippy"
 	desc = "You cannot hold your form together, or produce a constant film of sludge that drips off of your body. Hope the station has a janitor."
 	cost = 0
-	var_changes = list("drippy" = 1)
 
 	// Traitgenes Made into a genetrait
 	is_genetrait = TRUE
@@ -1487,6 +1486,15 @@
 
 	activation_message="You feel softer..."
 	primitive_expression_messages=list("drips.")
+
+/datum/trait/neutral/drippy/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	H.LoadComponent(/datum/component/drippy)
+/datum/trait/neutral/drippy/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/component/drippy/D = H.GetComponent(/datum/component/drippy)
+	if(D)
+		qdel(D) //This calls Destroy() for the component, removing it from our parent.
 
 /datum/trait/neutral/mudking
 	name = "Mudking"

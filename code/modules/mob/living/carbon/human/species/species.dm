@@ -244,7 +244,6 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
-	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
 	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
 	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
 	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.

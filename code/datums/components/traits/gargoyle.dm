@@ -40,6 +40,11 @@
 		statue.damage(-0.5)
 		energy = min(energy+0.3, 100)
 
+/datum/component/gargoyle/Destroy(force = FALSE)
+	gargoyle = null
+	statue = null
+	..()
+
 /datum/component/gargoyle/proc/unpause()
 	if (!paused || transformed)
 		paused = FALSE
