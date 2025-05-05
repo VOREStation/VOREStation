@@ -1,0 +1,38 @@
+/datum/component/gibbing_disability
+	var/mob/living/owner
+	var/gutdeathpressure = 0
+
+/datum/component/gibbing_disability/Initialize()
+	if (!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+
+	owner = parent
+	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process))
+
+/datum/component/gibbing_disability/process()
+	if(QDELETED(parent))
+		return
+	if(isbelly(owner.loc))
+		return
+	if(owner.transforming)
+		return
+	gutdeathpressure += 0.01
+	if(gutdeathpressure > 0 && prob(gutdeathpressure))
+		owner.emote(pick("whimper","belch","belch","belch","choke","shiver"))
+		owner.Weaken(gutdeathpressure / 3)
+	if((gutdeathpressure/3) >= 1 && prob(gutdeathpressure/3))
+		gutdeathpressure = 0 // to stop retriggering
+		spawn(1)
+			owner.emote(pick("whimper","shiver"))
+		spawn(3)
+			owner.emote(pick("whimper","belch","shiver"))
+		spawn(4)
+			owner.emote(pick("whimper","shiver"))
+		spawn(6)
+			owner.emote(pick("belch"))
+			owner.gib()
+
+/datum/component/gibbing_disability/Destroy(force = FALSE)
+	UnregisterSignal(owner, COMSIG_HANDLE_DISABILITIES)
+	owner = null
+	..()

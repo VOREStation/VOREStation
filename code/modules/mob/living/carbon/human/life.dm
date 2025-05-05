@@ -180,69 +180,8 @@
 	if(stat != CONSCIOUS) //Let's not worry about tourettes if you're not conscious.
 		return
 
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && prob(1) && paralysis < 1))
-			to_chat(src, span_red("You have a seizure!"))
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(span_danger("[src] starts having a seizure!"), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			emote("cough")
-	if(dna)
-		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
-			// random strange symptoms from organ/limb
-			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
-			switch(rand(1,4))
-				if(1)
-					adjustToxLoss(rand(2,8))
-				if(2)
-					adjustCloneLoss(rand(1,2))
-				if(3)
-					add_chemical_effect(CE_PAINKILLER, rand(8,28))
-				else
-					adjustOxyLoss(rand(13,26))
-			// external organs need to fall off if damaged enough
-			var/obj/item/organ/O = pick(organs)
-			if(O && !(O.organ_tag == BP_GROIN || O.organ_tag == BP_TORSO) && istype(O,/obj/item/organ/external))
-				var/obj/item/organ/external/E = O
-				if(O.damage >= O.min_broken_damage && O.robotic <= ORGAN_ASSISTED && prob(70))
-					add_chemical_effect(CE_PAINKILLER, 120) // what limb? Extreme nerve damage. Can't feel a thing + shock
-					E.droplimb(TRUE, DROPLIMB_ACID)
-		if(disabilities & GIBBING)
-			gutdeathpressure += 0.01
-			if(gutdeathpressure > 0 && prob(gutdeathpressure))
-				emote(pick("whimper","belch","belch","belch","choke","shiver"))
-				Weaken(gutdeathpressure / 3)
-			if((gutdeathpressure/3) >= 1 && prob(gutdeathpressure/3))
-				gutdeathpressure = 0 // to stop retriggering
-				spawn(1)
-					emote(pick("whimper","shiver"))
-				spawn(3)
-					emote(pick("whimper","belch","shiver"))
-				spawn(4)
-					emote(pick("whimper","shiver"))
-				spawn(6)
-					emote(pick("belch"))
-					gib()
-	if (disabilities & TOURETTES)
-		if ((prob(1) && prob(2) && paralysis <= 1))
-			Stun(10)
-			make_jittery(100)
-			switch(rand(1, 3))
-				if(1)
-					emote("twitch")
-				if(2 to 3)
-					say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-	if (disabilities & NERVOUS)
-		if (prob(5) && prob(7))
-			stuttering = max(15, stuttering)
-			if(jitteriness < 50)
-				make_jittery(65)
+	if(isbelly(loc)) //Let's not have you seizing, coughing, or falling apart if you're in a belly.
+		return
 
 	var/rn = rand(0, 200)
 	if(getBrainLoss() >= 5)

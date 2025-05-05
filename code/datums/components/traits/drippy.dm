@@ -15,7 +15,7 @@
 		var/mob/living/carbon/human/temp_owner = parent
 		blood_color = rgb(temp_owner.r_skin,temp_owner.g_skin,temp_owner.b_skin)
 
-	START_PROCESSING(SSprocessing, src)
+	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process))
 
 /datum/component/drippy/process()
 	if(QDELETED(parent))

@@ -377,6 +377,10 @@
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"
 ///sent from borg mobs to itself, for tools to catch an upcoming destroy() due to safe decon (rather than detonation)
 #define COMSIG_BORG_SAFE_DECONSTRUCT "borg_safe_decon"
+///From living/Life().
+#define COMSIG_LIVING_LIFE "living_life"
+///From /living/handle_disabilities().
+#define COMSIG_HANDLE_DISABILITIES "handle_disabilities"
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 
