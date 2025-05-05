@@ -51,13 +51,13 @@ Gunshots/explosions/opening doors/less rare audio (done)
 // Traditional hallucinations
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/living/carbon/proc/handle_hallucinations()
-	if(hallu_component)
+	if(hallu_component || !client)
 		return
 	hallu_component = AddComponent(/datum/component/hallucinations)
 
 /datum/component/hallucinations/proc/trigger()
 	PROTECTED_PROC(TRUE)
-	if (QDELETED(our_human))
+	if(QDELETED(our_human))
 		return
 	if(!our_human.client)
 		qdel(src)
@@ -95,7 +95,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 // So it destroys itself after it triggers, freeing up space for the next run of it.
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/living/carbon/human/proc/handle_feral()
-	if(hallu_component)
+	if(hallu_component || !client)
 		return
 	hallu_component = AddComponent(/datum/component/hallucinations/xenochimera)
 
