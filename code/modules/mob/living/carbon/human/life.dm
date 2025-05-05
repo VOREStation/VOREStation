@@ -1366,7 +1366,7 @@
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !hallu_component?.hal_crit && client )
+				if( prob(2) && health && !hallu_component?.get_fakecrit() && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
@@ -1514,7 +1514,7 @@
 		clear_fullscreen("crit")
 		//Oxygen damage overlay
 		var/OL = oxyloss
-		if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_OXY)
+		if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_OXY)
 			OL = max(15,oxyloss)
 		if(OL)
 			var/severity = 0
@@ -1575,7 +1575,7 @@
 			clear_fullscreen("fear")
 
 		if(healths)
-			if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_DEAD)
+			if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_DEAD)
 				healths.icon_state = "health7"	//DEAD healthmeter
 			else if(chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
@@ -1599,11 +1599,11 @@
 					health_images += E.get_damage_hud_image(limb_trauma_val)
 
 				// Apply a fire overlay if we're burning.
-				if(on_fire || hallu_component?.hal_screwyhud == HUD_HALLUCINATION_ONFIRE)
+				if(on_fire || hallu_component?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
 					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
 
 				// Show a general pain/crit indicator if needed.
-				if(hallu_component?.hal_screwyhud == HUD_HALLUCINATION_CRIT)
+				if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_CRIT)
 					trauma_val = 2
 				if(trauma_val)
 					if(!(species.flags & NO_PAIN))

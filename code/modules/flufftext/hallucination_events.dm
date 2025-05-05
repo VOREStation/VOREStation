@@ -232,7 +232,7 @@
 	//Fake death
 	//to_chat(our_human, "fake death")
 	our_human.SetSleeping(20)
-	hal_crit = 1
+	hal_crit = TRUE
 	hal_screwyhud = HUD_HALLUCINATION_CRIT
 	addtimer(CALLBACK(src, PROC_REF(reset_hallucination_sleeping)), rand(5,10) SECONDS, TIMER_DELETE_ME)
 
@@ -240,7 +240,7 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	our_human.SetSleeping(0)
-	hal_crit = 0
+	hal_crit = FALSE
 	hal_screwyhud = HUD_HALLUCINATION_NONE
 
 /datum/component/hallucinations/proc/event_attacker()

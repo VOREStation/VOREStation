@@ -18,8 +18,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	VAR_PRIVATE/datum/weakref/halbody
 	VAR_PRIVATE/list/halitem = list() // weakref pair of obj-key, client-value
 
-	var/hal_crit = 0
-	var/hal_screwyhud = HUD_HALLUCINATION_NONE
+	VAR_PRIVATE/hal_crit = FALSE
+	VAR_PRIVATE/hal_screwyhud = HUD_HALLUCINATION_NONE
 
 /datum/component/hallucinations/Initialize()
 	if(!ishuman(parent))
@@ -40,6 +40,14 @@ Gunshots/explosions/opening doors/less rare audio (done)
 /datum/component/hallucinations/proc/make_timer()
 	PROTECTED_PROC(TRUE)
 	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / (min(our_human.hallucination,100)/25)), TIMER_DELETE_ME)
+
+/datum/component/hallucinations/proc/get_fakecrit()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return hal_crit
+
+/datum/component/hallucinations/proc/get_hud_state()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return hal_screwyhud
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Traditional hallucinations
