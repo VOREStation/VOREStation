@@ -7,12 +7,24 @@
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
+"ac" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/suit/armor/combat/crusader/quizzler,
+/turf/simulated/floor/wood/alt,
+/area/redgate/fantasy/house)
 "ad" = (
 /obj/structure/bed/chair/sofa/left/purp{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/castle)
+"ae" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
+/obj/item/clothing/suit/armor/combat/crusader/pink,
+/turf/simulated/floor/wood/alt/panel,
+/area/redgate/fantasy/walls)
 "ag" = (
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/carpet/purple,
@@ -975,7 +987,7 @@
 "gg" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/clothing/gloves/combat/knight,
-/obj/item/clothing/suit/storage/hooded/knight/robin,
+/obj/item/clothing/suit/storage/hooded/knight/chain,
 /obj/item/clothing/head/welding/knight,
 /obj/item/clothing/shoes/knight/black,
 /obj/machinery/light/small/torch{
@@ -7926,8 +7938,8 @@
 /area/redgate/fantasy/streets)
 "XB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/map_effect/interval/effect_emitter/smoke/fire,
 /obj/structure/bonfire,
+/obj/effect/map_effect/interval/effect_emitter/smoke,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "XC" = (
@@ -9180,7 +9192,7 @@ Ew
 KM
 Jo
 KM
-Jo
+ae
 KM
 Cu
 KM
@@ -10809,7 +10821,7 @@ Wt
 qK
 XO
 XO
-XO
+ac
 HC
 Wt
 dL

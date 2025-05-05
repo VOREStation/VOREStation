@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/item/clothing/suit/storage/hooded/knight/chain/lezzy,
+/turf/simulated/floor/wmarble,
+/area/redgate/fantasy/dungeon)
 "ac" = (
 /turf/simulated/mineral/ignore_cavegen{
 	nitrogen = 93.7835;
@@ -2019,6 +2023,7 @@
 "OE" = (
 /obj/structure/closet/crate/chest,
 /obj/random/fantasy_item,
+/obj/item/clothing/suit/storage/hooded/knight/chain/black_white,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "OF" = (
@@ -17890,8 +17895,8 @@ kn
 kn
 kn
 kn
-kn
-kn
+cK
+cK
 kn
 cK
 Ux
@@ -18032,9 +18037,9 @@ kn
 kn
 kn
 kn
-kn
-kn
-kn
+aa
+cK
+NF
 cK
 Ux
 IB
@@ -18174,8 +18179,8 @@ kn
 kn
 kn
 kn
-kn
-kn
+cK
+cK
 kn
 cK
 Ux
