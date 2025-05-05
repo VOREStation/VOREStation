@@ -155,33 +155,39 @@
 					footstep_sounds[shoestep_type][2] * volume * volume_multiplier,
 					TRUE,
 					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
-		else
-			play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
-	else
-		// we are barefoot
+					return
 
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+		return
+	// we are barefoot
+	play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 
 /datum/element/footstep/proc/play_barefoot_sound(mob/living/carbon/human/source, list/prepared_steps, volume_multiplier, range_adjustment)
 
 	if(source.species.special_step_sounds)
 		playsound(source.loc, pick(source.species.special_step_sounds), volume, TRUE, falloff = 1, vary = sound_vary)
-	else if (istype(source.species, /datum/species/shapeshifter/promethean))
+		return
+
+	if (istype(source.species, /datum/species/shapeshifter/promethean))
 		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1)
-	else if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
+		return
+
+	if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
 		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+		return
+
+	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
+	var/bare_footstep_sounds
+	if(source.custom_footstep != FOOTSTEP_MOB_HUMAN)
+		bare_footstep_sounds = check_footstep_type(source.custom_footstep)
 	else
-		var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
-		var/bare_footstep_sounds
-		if(source.custom_footstep != FOOTSTEP_MOB_HUMAN)
-			bare_footstep_sounds = check_footstep_type(source.custom_footstep)
-		else
-			bare_footstep_sounds = GLOB.barefootstep
-		if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
-			playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
-				bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
-				TRUE,
-				bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+		bare_footstep_sounds = GLOB.barefootstep
+
+	if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
+		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
+			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
+			TRUE,
+			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 
 ///Prepares a footstep for machine walking
 /datum/element/footstep/proc/play_simplestep_machine(atom/movable/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
