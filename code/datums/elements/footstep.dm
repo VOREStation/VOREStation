@@ -155,7 +155,7 @@
 					footstep_sounds[shoestep_type][2] * volume * volume_multiplier,
 					TRUE,
 					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
-					return
+				return
 
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
 		return
