@@ -62,5 +62,5 @@
 		to_chat(owner, span_warning("You're currently on cooldown! Wait for another [round(time_to_wait,0.1)] seconds!"))
 		return
 	else
-		comp.cooldown = world.time + 5 SECONDS //Set the component on a 5 second cooldown.
+		cooldown = world.time + 5 SECONDS //Set the component on a 5 second cooldown.
 		to_chat(owner, span_warning("You successfully used the example proc!"))
