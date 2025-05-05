@@ -25,11 +25,4 @@
 
 	activation_message="You feel nervous."
 	primitive_expression_messages=list("nervously chitters.")
-/datum/trait/neutral/disability_nervousness/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/nervousness_disability)
-/datum/trait/neutral/disability_nervousness/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/nervousness_disability/D = H.GetComponent(/datum/component/nervousness_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/nervousness_disability

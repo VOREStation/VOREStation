@@ -26,14 +26,7 @@
 
 	activation_message="You get a headache."
 	primitive_expression_messages=list("shudders and twitches.")
-/datum/trait/negative/disability_epilepsy/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/epilepsy_disability)
-/datum/trait/negative/disability_epilepsy/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/epilepsy_disability/D = H.GetComponent(/datum/component/epilepsy_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/epilepsy_disability
 
 
 /datum/trait/negative/disability_cough
@@ -46,14 +39,7 @@
 	hidden = FALSE
 
 	activation_message="You start coughing."
-/datum/trait/negative/disability_cough/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/coughing_disability)
-/datum/trait/negative/disability_cough/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/coughing_disability/D = H.GetComponent(/datum/component/coughing_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/coughing_disability
 
 /datum/trait/negative/disability_clumsy
 	name = "Clumsy"
@@ -78,14 +64,7 @@
 
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
-/datum/trait/negative/disability_tourettes/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/tourettes_disability)
-/datum/trait/negative/disability_tourettes/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/tourettes_disability/D = H.GetComponent(/datum/component/tourettes_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/tourettes_disability
 
 /* Replaced by /datum/trait/negative/blindness
 /datum/trait/negative/disability_blind
@@ -188,14 +167,8 @@
 
 	activation_message="You feel sore..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
-/datum/trait/negative/disability_deteriorating/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/rotting_disability)
-/datum/trait/negative/disability_deteriorating/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/rotting_disability/D = H.GetComponent(/datum/component/rotting_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/rotting_disability
+
 
 /datum/trait/negative/disability_gibbing
 	name = "Gibbingtons"
@@ -208,14 +181,8 @@
 
 	activation_message="You feel bloated..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
-/datum/trait/negative/disability_gibbing/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	H.LoadComponent(/datum/component/gibbing_disability)
-/datum/trait/negative/disability_gibbing/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
-	..()
-	var/datum/component/gibbing_disability/D = H.GetComponent(/datum/component/gibbing_disability)
-	if(D)
-		qdel(D)
+	added_component_path = /datum/component/gibbing_disability
+
 
 /datum/trait/negative/disability_damagedspine
 	name = "Lumbar Impairment"

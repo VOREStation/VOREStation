@@ -845,6 +845,14 @@
 ///from /mob/living/proc/set_silk_color()
 #define COMSIG_SET_SILK_COLOR "set_silk_color"
 
+// Gargoyle Component
+///from /mob/living/carbon/human/proc/gargoyle_transformation()
+#define COMSIG_GARGOYLE_TRANSFORMATION "gargoyle_transformation"
+///from /mob/living/carbon/human/proc/gargoyle_pause()
+#define COMSIG_GARGOYLE_PAUSE "gargoyle_pause"
+///from /mob/living/carbon/human/proc/gargoyle_checkenergy()
+#define COMSIG_GARGOYLE_CHECK_ENERGY "gargoyle_check_energy"
+
 //Unittest data update
 #ifdef UNIT_TEST
 #define COMSIG_UNITTEST_DATA "unittest_send_data"

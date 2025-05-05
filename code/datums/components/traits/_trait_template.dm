@@ -41,6 +41,7 @@
 
 /datum/component/template/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE) //IF we registered a signal, we need to unregister it.
+	UnregisterSignal(owner, COMSIG_EXAMPLE_SIGNAL) //MAKE SURE TO UNREGISTER YOUR SIGNALS. SERIOUSLY. OR THE SERVER WILL DIE.
 	owner = null //MAKE SURE TO CLEAR YOUR REFS!
 	..()
 

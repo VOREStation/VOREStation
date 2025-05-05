@@ -17,7 +17,6 @@
 		return COMPONENT_INCOMPATIBLE
 
 	owner = parent
-
 	add_verb(owner, /mob/living/proc/check_silk_amount)
 	add_verb(owner, /mob/living/proc/toggle_silk_production)
 	add_verb(owner, /mob/living/proc/weave_structure)
