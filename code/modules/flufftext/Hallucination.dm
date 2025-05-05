@@ -30,8 +30,6 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 /datum/component/hallucinations/Destroy(force)
 	our_human.hallu_component = null
-	QDEL_NULL(halimage)
-	QDEL_NULL(halbody)
 	if(halitem.len)
 		remove_hallucination_item()
 	our_human = null
