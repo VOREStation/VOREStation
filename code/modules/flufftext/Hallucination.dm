@@ -81,7 +81,10 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		if(41 to 65)
 			event_strange_sound()
 		if(66 to 70)
-			event_flash_monsters()
+			if(prob(20) && our_human.nutrition < 100)
+				event_hunger() // Hungi, meant for xenochi but this is too funny to pass up
+			else
+				event_flash_monsters()
 		if(71 to 72)
 			event_sleeping()
 		if(73 to 75) // If you don't want hallucination beatdowns, comment this out
