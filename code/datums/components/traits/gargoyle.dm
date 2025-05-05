@@ -99,7 +99,7 @@
 	if (gargoyle.stat)
 		return
 
-	if (transformed && !paused)
+	if (!transformed && !paused)
 		paused = TRUE
 		paused_loc = gargoyle.loc
 		RegisterSignal(gargoyle, COMSIG_ATOM_ENTERING, /datum/component/gargoyle/proc/unpause)
