@@ -134,6 +134,10 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
+	if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
+		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+		return
+
 	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
@@ -169,11 +173,7 @@
 		return
 
 	if (istype(source.species, /datum/species/shapeshifter/promethean))
-		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1)
-		return
-
-	if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
-		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1, vary = sound_vary)
 		return
 
 	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
