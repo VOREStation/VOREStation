@@ -7,20 +7,20 @@
 	var/silk_generation_amount = 2
 	var/nutrtion_per_silk = 0.2
 
-	var/mob/living/carbon/human/owner
+	var/mob/living/owner
 
 /datum/component/weaver/Initialize()
 
-	if (!ishuman(parent))
+	if (!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	owner = parent
 
-	add_verb(owner, /datum/component/weaver/proc/check_silk_amount)
-	add_verb(owner, /datum/component/weaver/proc/toggle_silk_production)
-	add_verb(owner, /datum/component/weaver/proc/weave_structure)
-	add_verb(owner, /datum/component/weaver/proc/weave_item)
-	add_verb(owner, /datum/component/weaver/proc/set_silk_color)
+	add_verb(owner, /mob/living/proc/check_silk_amount)
+	add_verb(owner, /mob/living/proc/toggle_silk_production)
+	add_verb(owner, /mob/living/proc/weave_structure)
+	add_verb(owner, /mob/living/proc/weave_item)
+	add_verb(owner, /mob/living/proc/set_silk_color)
 
 	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process))
 
@@ -31,7 +31,12 @@
 
 /datum/component/weaver/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE) //IF we registered a signal, we need to unregister it.
-	owner = null //MAKE SURE TO CLEAR YOUR REFS!
+	remove_verb(owner, /mob/living/proc/check_silk_amount)
+	remove_verb(owner, /mob/living/proc/toggle_silk_production)
+	remove_verb(owner, /mob/living/proc/weave_structure)
+	remove_verb(owner, /mob/living/proc/weave_item)
+	remove_verb(owner, /mob/living/proc/set_silk_color)
+	owner = null
 	..()
 
 /datum/component/weaver/proc/process_weaver_silk()
@@ -40,121 +45,134 @@
 		owner.adjust_nutrition(-(nutrtion_per_silk*silk_generation_amount))
 
 
-/datum/component/weaver/proc/check_silk_amount()
+/mob/living/proc/check_silk_amount()
 	set name = "Check Silk Amount"
 	set category = "Abilities.Weaver"
-	to_chat(owner, "Your silk reserves are at [silk_reserve]/[silk_max_reserve].")
+	var/datum/component/weaver/W = GetComponent(/datum/component/weaver)
+	if(!W)
+		return
+	to_chat(src, "Your silk reserves are at [W.silk_reserve]/[W.silk_max_reserve].")
 
-/datum/component/weaver/proc/toggle_silk_production()
+/mob/living/proc/toggle_silk_production()
 	set name = "Toggle Silk Production"
 	set category = "Abilities.Weaver"
-	silk_production = !(silk_production)
-	to_chat(owner, "You are [silk_production ? "now" : "no longer"] producing silk.")
+	var/datum/component/weaver/W = GetComponent(/datum/component/weaver)
+	if(!W)
+		return
+	W.silk_production = !(W.silk_production)
+	to_chat(src, "You are [W.silk_production ? "now" : "no longer"] producing silk.")
 
-/datum/component/weaver/proc/weave_structure()
+/mob/living/proc/weave_structure()
 	set name = "Weave Structure"
 	set category = "Abilities.Weaver"
 
 	var/choice
 	var/datum/weaver_recipe/structure/desired_result
 	var/finalized = "No"
+	var/datum/component/weaver/W = GetComponent(/datum/component/weaver)
+	if(!W)
+		return
 
-	while(finalized == "No" && owner.client)
-		choice = tgui_input_list(owner,"What would you like to weave?", "Weave Choice", GLOB.weavable_structures)
+	while(finalized == "No" && client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", GLOB.weavable_structures)
 		desired_result  = GLOB.weavable_structures[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
 		if(choice)
-			finalized = tgui_alert(owner, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return
 
-	if(desired_result.cost > silk_reserve)
-		to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+	if(desired_result.cost > W.silk_reserve)
+		to_chat(src, span_warning("You don't have enough silk to weave that!"))
 		return
 
-	if(owner.stat)
-		to_chat(owner, span_warning("You can't do that in your current state!"))
+	if(stat)
+		to_chat(src, span_warning("You can't do that in your current state!"))
 		return
 
-	if(locate(desired_result.result_type) in owner.loc)
-		to_chat(owner, span_warning("You can't create another weaversilk [desired_result.title] here!"))
+	if(locate(desired_result.result_type) in src.loc)
+		to_chat(src, span_warning("You can't create another weaversilk [desired_result.title] here!"))
 		return
 
-	if(!isturf(owner.loc))
-		to_chat(owner, span_warning("You can't weave here!"))
+	if(!isturf(src.loc))
+		to_chat(src, span_warning("You can't weave here!"))
 		return
 
-	if(do_after(owner, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
-		if(desired_result.cost > silk_reserve)
-			to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > W.silk_reserve)
+			to_chat(src, span_warning("You don't have enough silk to weave that!"))
 			return
 
-		if(locate(desired_result.result_type) in owner.loc)
-			to_chat(owner, span_warning("You can't create another weaversilk [desired_result.title] here!"))
+		if(locate(desired_result.result_type) in src.loc)
+			to_chat(src, span_warning("You can't create another weaversilk [desired_result.title] here!"))
 			return
 
-		if(!isturf(owner.loc))
-			to_chat(owner, span_warning("You can't weave here!"))
+		if(!isturf(src.loc))
+			to_chat(src, span_warning("You can't weave here!"))
 			return
 
-		silk_reserve = max(silk_reserve - desired_result.cost, 0)
+		W.silk_reserve = max(W.silk_reserve - desired_result.cost, 0)
 
-		var/atom/O = new desired_result.result_type(owner.loc)
-		O.color = silk_color
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = W.silk_color
 
 
-/datum/component/weaver/proc/weave_item()
+/mob/living/proc/weave_item()
 	set name = "Weave Item"
 	set category = "Abilities.Weaver"
 	var/choice
 	var/datum/weaver_recipe/item/desired_result
 	var/finalized = "No"
-
-	while(finalized == "No" && owner.client)
-		choice = tgui_input_list(owner,"What would you like to weave?", "Weave Choice", GLOB.weavable_items)
+	var/datum/component/weaver/W = GetComponent(/datum/component/weaver)
+	if(!W)
+		return
+	while(finalized == "No" && client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", GLOB.weavable_items)
 		desired_result  = GLOB.weavable_items[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
 		if(choice)
-			finalized = tgui_alert(owner, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return
 
-	if(desired_result.cost > silk_reserve)
-		to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+	if(desired_result.cost > W.silk_reserve)
+		to_chat(src, span_warning("You don't have enough silk to weave that!"))
 		return
 
-	if(owner.stat)
-		to_chat(owner, span_warning("You can't do that in your current state!"))
+	if(stat)
+		to_chat(src, span_warning("You can't do that in your current state!"))
 		return
 
-	if(!isturf(owner.loc))
-		to_chat(owner, span_warning("You can't weave here!"))
+	if(!isturf(src.loc))
+		to_chat(src, span_warning("You can't weave here!"))
 		return
 
-	if(do_after(owner, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
-		if(desired_result.cost > 	silk_reserve)
-			to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > W.silk_reserve)
+			to_chat(src, span_warning("You don't have enough silk to weave that!"))
 			return
 
-		if(!isturf(owner.loc))
-			to_chat(owner, span_warning("You can't weave here!"))
+		if(!isturf(src.loc))
+			to_chat(src, span_warning("You can't weave here!"))
 			return
 
-		silk_reserve = max(silk_reserve - desired_result.cost, 0)
+		W.silk_reserve = max(W.silk_reserve - desired_result.cost, 0)
 
-		var/atom/O = new desired_result.result_type(owner.loc)
-		O.color = silk_color
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = W.silk_color
 
-/datum/component/weaver/proc/set_silk_color()
+/mob/living/proc/set_silk_color()
 	set name = "Set Silk Color"
 	set category = "Abilities.Weaver"
-
-	var/new_silk_color = tgui_color_picker(owner, "Pick a color for your woven products:","Silk Color", silk_color)
+	var/datum/component/weaver/W = GetComponent(/datum/component/weaver)
+	if(!W)
+		return
+	var/new_silk_color = tgui_color_picker(src, "Pick a color for your woven products:","Silk Color", W.silk_color)
 	if(new_silk_color)
-		silk_color = new_silk_color
+		W.silk_color = new_silk_color

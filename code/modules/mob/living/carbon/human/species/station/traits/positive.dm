@@ -197,8 +197,7 @@
 
 /datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.LoadComponent(/datum/component/weaver)
-	var/datum/component/weaver/W = H.GetComponent(/datum/component/weaver)
+	var/datum/component/weaver/W = H.LoadComponent(/datum/component/weaver)
 	if(S.get_bodytype() == SPECIES_VASILISSAN)
 		W.silk_reserve = 500
 		W.silk_max_reserve = 1000
