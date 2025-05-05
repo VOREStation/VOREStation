@@ -27,7 +27,7 @@
 /datum/component/weaver/process()
 	if (QDELETED(parent))
 		return
-	process_weaver_silk() //Add one energy per tick, up to 100
+	process_weaver_silk()
 
 /datum/component/weaver/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE) //IF we registered a signal, we need to unregister it.
