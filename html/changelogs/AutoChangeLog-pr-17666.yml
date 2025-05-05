@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added new variants of knight armours that have lower stats and small slowdown, but can be found around the fantasy redgate instead of the buffed PoI rewards."
+  - maptweak: "Replaced the murder fire smoke from the burning building with harmless smoke."
