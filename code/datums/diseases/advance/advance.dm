@@ -291,6 +291,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 // Name the disease.
 /datum/disease/advance/proc/AssignName(new_name = "Unknown")
+	Refresh()
 	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 	A.name = new_name
 	for(var/datum/disease/advance/AD in GLOB.active_diseases)
