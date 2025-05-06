@@ -298,7 +298,7 @@
 	var/old_name = adv_disease.name
 
 	use_power(active_power_usage)
-	adv_disease = adv_disease.Copy()
+	adv_disease = adv_disease.CopyDisease()
 	adv_disease.name = old_name
 	var/list/cures = get_beaker_cures(id)
 	if(cures.len)
