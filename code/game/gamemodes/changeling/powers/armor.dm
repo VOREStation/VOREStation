@@ -50,7 +50,7 @@
 
 /obj/item/clothing/suit/space/changeling/dropped(mob/user)
 	..()
-	if(!QDELETED)
+	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/clothing/head/helmet/space/changeling
