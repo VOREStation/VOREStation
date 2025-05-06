@@ -50,7 +50,8 @@
 
 /obj/item/clothing/suit/space/changeling/dropped(mob/user)
 	..()
-	qdel(src)
+	if(!QDELETED)
+		qdel(src)
 
 /obj/item/clothing/head/helmet/space/changeling
 	name = "flesh mass"
