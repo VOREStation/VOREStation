@@ -16,3 +16,16 @@
 2025-05-04:
   ShadowLarkens:
   - bugfix: Wires actually work on things other than airlocks again
+2025-05-05:
+  ShadowLarkens:
+  - bugfix: player_list ending up with nulls in it
+2025-05-06:
+  Asher-42:
+  - bugfix: secborg dullahans resting sprites not head bobbing properly. (misaligned.)
+  SatinIsle:
+  - rscadd: Added new variants of knight armours that have lower stats and small slowdown,
+      but can be found around the fantasy redgate instead of the buffed PoI rewards.
+  - maptweak: Replaced the murder fire smoke from the burning building with harmless
+      smoke.
+  Will:
+  - bugfix: Bioprinter works again
