@@ -8,6 +8,10 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
+	if((get_area(src).flags & PHASE_SHIELDED))
+		to_chat(src,span_warning("This area is preventing you from phasing!"))
+		return FALSE
+
 	if(shift_state && shift_state == AB_SHIFT_ACTIVE)
 		to_chat(src,span_warning("You can't do a shift while actively shifting!"))
 		return FALSE
@@ -185,6 +189,12 @@
 		canmove = original_canmove
 
 		var/turf/NT = get_turf(src)
+		if(!NT)
+			to_chat(src,span_warning("You've somehow phased in a non-existant space! Please contact an admin (F1) for assistance!"))
+			stack_trace("[src] managed to phase in nullspace!")
+			shift_state = AB_SHIFT_NONE //We'll do these to be nice.
+			last_shift = world.time
+			return
 
 		if(!NT.CanPass(src,NT))
 			for(var/direction in list(1,2,4,8,5,6,9,10))
