@@ -158,11 +158,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	AssignProperties()
 	id = null
 
-	if(!GLOB.archive_diseases[GetDiseaseID()])
+	var/the_id = GetDiseaseID()
+	if(!GLOB.archive_diseases[the_id])
+		GLOB.archive_diseases[the_id] = src // So we don't infinite loop
+		GLOB.archive_diseases[the_id] = CopyDisease()
 		if(new_name)
 			AssignName()
-		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
-		// GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name

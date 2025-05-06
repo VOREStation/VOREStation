@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/danger = DISEASE_MINOR
 	var/list/required_organs = list()
 	var/list/strain_data = list()
+	var/copy_type = null // if null, copies will use the type of the instance being copied
 
 /datum/disease/Destroy()
 	affected_mob = null
@@ -174,8 +175,35 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return istype(src, D.type)
 
 /datum/disease/proc/CopyDisease()
-	var/datum/disease/D = new type()
-	D.strain_data = strain_data.Copy()
+	var/static/list/copy_vars = list(
+		"visibility_flags",
+		"disease_flags",
+		"spread_flags",
+		"virus_modifiers",
+		"medical_name",
+		"form",
+		"name",
+		"desc",
+		"agent",
+		"spread_text",
+		"cure_text",
+		"viable_mobtypes",
+		"infectivity",
+		"cure_chance",
+		"spreading_modifier",
+		"permeability_mod",
+		"danger",
+		"required_organs",
+		"strain_data",
+	)
+
+	var/datum/disease/D = copy_type ? new copy_type() : new type()
+	for(var/V in copy_vars)
+		var/val = vars[V]
+		if(islist(val))
+			var/list/L = val
+			val = L.Copy()
+		D.vars[V] = val
 	return D
 
 /datum/disease/proc/GetDiseaseID()
