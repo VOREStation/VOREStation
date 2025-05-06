@@ -38,9 +38,9 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s_processing = FALSE
 	var/id = ""
 
-/datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
+/datum/disease/advance/New()
 	Refresh()
-	return ..()
+	return
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
