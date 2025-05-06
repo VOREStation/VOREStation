@@ -39,7 +39,15 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/id = ""
 
 /datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
+	if(istype(D))
+		for(var/datum/symptom/S in D.symptoms)
+			symptoms += new S.type
+	else
+		D = null
+
 	Refresh()
+	..(process, D)
+	return
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
@@ -92,6 +100,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	A.severity = severity
 	A.speed = speed
 	A.id = id
+	A.Refresh()
 	return A
 
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
@@ -152,23 +161,22 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	return generated
 
-/datum/disease/advance/proc/Refresh(new_name = FALSE)
+/datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
 	GenerateProperties()
 	AssignProperties()
 	id = null
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
-		GLOB.archive_diseases[GetDiseaseID()] = src
-		GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
 		if(new_name)
 			AssignName()
-		else
-			name = "Unknown" // Explicitly reset the name to "Unknown"
+		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
+		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name
 		if(actual_name != "Unknown")
 			name = actual_name
+
 
 /datum/disease/advance/proc/GenerateProperties()
 	resistance = 0
@@ -263,6 +271,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
+		Refresh(TRUE)
 	return
 
 // Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
@@ -270,6 +279,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(D)
 	if(s)
 		AddSymptom(new s)
+		Refresh(TRUE)
 	return
 
 // Randomly remove a symptom.
@@ -278,7 +288,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/s = safepick(symptoms)
 		if(s)
 			RemoveSymptom(s)
-			Refresh()
+			Refresh(TRUE)
 	return
 
 // Randomly neuter a symptom.
@@ -287,10 +297,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/s = safepick(symptoms)
 		if(s)
 			NeuterSymptom(s)
-			Refresh()
+			Refresh(TRUE)
 
 // Name the disease.
 /datum/disease/advance/proc/AssignName(new_name = "Unknown")
+	Refresh()
 	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 	A.name = new_name
 	for(var/datum/disease/advance/AD in GLOB.active_diseases)
@@ -326,7 +337,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	else
 		RemoveSymptom(pick(symptoms))
 		symptoms += S
-	S.OnAdd(src)
 	Refresh()
 
 // Simply removes the symptom.
