@@ -68,38 +68,37 @@
 			if(equip_type == EQUIP_SPECIAL)
 				chassis.special_equipment -= src
 				listclearnulls(chassis.special_equipment)
-			//VOREStation Addition begin: MICROMECHS
 			if(equip_type == EQUIP_MICRO_UTILITY)
 				chassis.micro_utility_equipment -= src
 				listclearnulls(chassis.micro_utility_equipment)
 			if(equip_type == EQUIP_MICRO_WEAPON)
 				chassis.micro_weapon_equipment -= src
 				listclearnulls(chassis.micro_weapon_equipment)
-			//VOREStation Addition end: MICROMECHS
 		chassis.universal_equipment -= src
 		chassis.equipment -= src
 		listclearnulls(chassis.equipment)
 		if(chassis.selected == src)
 			chassis.selected = null
 		src.update_chassis_page()
-		chassis.occupant_message(span_red("The [src] is destroyed!"))
 		chassis.log_append_to_last("[src] is destroyed.",1)
-		if(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon))//Gun
-			switch(chassis.mech_faction)
-				if(MECH_FACTION_NT)
-					src.chassis.occupant << sound('sound/mecha/weapdestrnano.ogg',volume=70)
-				if(MECH_FACTION_SYNDI)
-					src.chassis.occupant  << sound('sound/mecha/weapdestrsyndi.ogg',volume=60)
-				else
-					src.chassis.occupant  << sound('sound/mecha/weapdestr.ogg',volume=50)
-		else //Not a gun
-			switch(chassis.mech_faction)
-				if(MECH_FACTION_NT)
-					src.chassis.occupant  << sound('sound/mecha/critdestrnano.ogg',volume=70)
-				if(MECH_FACTION_SYNDI)
-					src.chassis.occupant  << sound('sound/mecha/critdestrsyndi.ogg',volume=70)
-				else
-					src.chassis.occupant  << sound('sound/mecha/critdestr.ogg',volume=50)
+		if(chassis.occupant)
+			chassis.occupant_message(span_red("The [src] is destroyed!"))
+			if(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon))//Gun
+				switch(chassis.mech_faction)
+					if(MECH_FACTION_NT)
+						chassis.occupant << sound('sound/mecha/weapdestrnano.ogg',volume=70)
+					if(MECH_FACTION_SYNDI)
+						chassis.occupant  << sound('sound/mecha/weapdestrsyndi.ogg',volume=60)
+					else
+						chassis.occupant  << sound('sound/mecha/weapdestr.ogg',volume=50)
+			else //Not a gun
+				switch(chassis.mech_faction)
+					if(MECH_FACTION_NT)
+						src.chassis.occupant  << sound('sound/mecha/critdestrnano.ogg',volume=70)
+					if(MECH_FACTION_SYNDI)
+						src.chassis.occupant  << sound('sound/mecha/critdestrsyndi.ogg',volume=70)
+					else
+						src.chassis.occupant  << sound('sound/mecha/critdestr.ogg',volume=50)
 	spawn
 		qdel(src)
 	return
@@ -158,12 +157,10 @@
 		return 1
 	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len < M.max_special_equip)
 		return 1
-	//VOREStation Addition begin: MICROMECHS
 	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len < M.max_micro_utility_equip)
 		return 1
 	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len < M.max_micro_weapon_equip)
 		return 1
-	//VOREStation Addition end: MICROMECHS
 	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
 		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
 			return 0
@@ -192,14 +189,12 @@
 	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len < M.max_special_equip && !has_equipped)
 		M.special_equipment += src
 		has_equipped = 1
-	//VOREStation Addition begin: MICROMECHS
 	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len < M.max_micro_utility_equip && !has_equipped)
 		M.micro_utility_equipment += src
 		has_equipped = 1
 	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len < M.max_micro_weapon_equip && !has_equipped)
 		M.micro_weapon_equipment += src
 		has_equipped = 1
-	//VOREStation Addition end: MICROMECHS
 	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip && !has_equipped)
 		M.universal_equipment += src
 	M.equipment += src
@@ -220,7 +215,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
-	if(!chassis)
+	if(!chassis || !get_turf(chassis))
 		return
 	moveto = moveto || get_turf(chassis)
 	forceMove(moveto)
@@ -236,12 +231,10 @@
 				chassis.utility_equipment -= src
 			if(EQUIP_SPECIAL)
 				chassis.special_equipment -= src
-			//VOREStation Addition begin: MICROMECHS
 			if(EQUIP_MICRO_UTILITY)
 				chassis.micro_utility_equipment -= src
 			if(EQUIP_MICRO_WEAPON)
 				chassis.micro_weapon_equipment -= src
-			//VOREStation Addition end: MICROMECHS
 	if(chassis.selected == src)
 		chassis.selected = null
 	update_chassis_page()
@@ -263,7 +256,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)
-	if(chassis)
+	if(chassis && chassis.occupant)
 		chassis.occupant_message("[icon2html(src, chassis.occupant.client)] [message]")
 	return
 
