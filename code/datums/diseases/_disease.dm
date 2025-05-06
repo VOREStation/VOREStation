@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		return istype(src, D)
 	return istype(src, D.type)
 
-/datum/disease/proc/Copy()
+/datum/disease/proc/CopyDisease()
 	var/datum/disease/D = new type()
 	D.strain_data = strain_data.Copy()
 	return D

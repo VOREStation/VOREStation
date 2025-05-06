@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 			return
 	CRASH("We couldn't assign an ID!")
 
-/datum/symptom/proc/Copy()
+/datum/symptom/proc/CopySymptom()
 	var/datum/symptom/new_symp = new type
 	new_symp.name = name
 	new_symp.id = id

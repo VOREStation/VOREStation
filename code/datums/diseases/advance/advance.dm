@@ -79,11 +79,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		remove_virus()
 	qdel(src)
 
-/datum/disease/advance/Copy()
+/datum/disease/advance/CopyDisease()
 	var/datum/disease/advance/A = ..()
 	QDEL_LIST(A.symptoms)
 	for(var/datum/symptom/S as anything in symptoms)
-		A.symptoms += S.Copy()
+		A.symptoms += S.CopySymptom()
 	A.disease_flags = disease_flags
 	A.resistance = resistance
 	A.stealth = stealth
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	if(!(IsSame(D)))
 		var/list/possible_symptoms = shuffle(D.symptoms)
 		for(var/datum/symptom/S in possible_symptoms)
-			AddSymptom(S.Copy())
+			AddSymptom(S.CopySymptom())
 
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)
 	for(var/datum/symptom/symp in symptoms)
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
 		GLOB.archive_diseases[GetDiseaseID()] = src
-		GLOB.archive_diseases[GetDiseaseID()] = Copy()
+		GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
 		if(new_name)
 			AssignName()
 		else
@@ -347,7 +347,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
-		diseases += A.Copy()
+		diseases += A.CopyDisease()
 
 	if(!length(diseases))
 		return null
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/list/preserve = list()
 		if(istype(data) && data["viruses"])
 			for(var/datum/disease/A in data["viruses"])
-				preserve += A.Copy()
+				preserve += A.CopyDisease()
 			R.data = data.Copy()
 		if(length(preserve))
 			R.data["viruses"] = preserve
