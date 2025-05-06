@@ -169,7 +169,6 @@ var/list/mining_overlay_cache = list()
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()
-	update_icon(1)
 	recalculate_directional_opacity()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		reconsider_lights()
@@ -214,7 +213,7 @@ var/list/mining_overlay_cache = list()
 	if(density && mineral)
 		MineralSpread()
 
-/turf/simulated/mineral/update_icon(var/update_neighbors)
+/turf/simulated/mineral/update_icon(var/update_neighbors, ignore_list)
 	cut_overlays()
 
 	//We are a wall (why does this system work like this??)
@@ -263,12 +262,16 @@ var/list/mining_overlay_cache = list()
 
 		if(update_neighbors)
 			for(var/direction in GLOB.alldirs)
-				if(istype(get_step(src, direction), /turf/simulated/mineral))
-					var/turf/simulated/mineral/M = get_step(src, direction)
-					M.update_icon()
-				if(istype(get_step(src, direction), /turf/simulated/wall/solidrock))
-					var/turf/simulated/wall/solidrock/M = get_step(src, direction)
-					M.update_icon()
+				var/turf/T = get_step(src, direction)
+				// don't double update during cave generation
+				if(LAZYACCESS(ignore_list, T))
+					continue
+
+				if(istype(T, /turf/simulated/mineral))
+					T.update_icon()
+
+				if(istype(T, /turf/simulated/wall/solidrock))
+					T.update_icon()
 
 /turf/simulated/mineral/ex_act(severity)
 
