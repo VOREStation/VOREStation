@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - qol: "added the ability to pick up floor tiles to the sheet loader gripper that borgs have"
