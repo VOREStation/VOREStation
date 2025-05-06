@@ -3,7 +3,7 @@
 	var/once = 1
 
 /obj/effect/step_trigger/message/Trigger(mob/M as mob)
-	if(M.client)
+	if(ismob(M) && M.client)
 		to_chat(M, span_info("[message]"))
 		if(once)
 			qdel(src)
