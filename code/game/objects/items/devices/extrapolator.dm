@@ -234,7 +234,7 @@
 
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
-	var/datum/disease/advance/D = disease.Copy()
+	var/datum/disease/advance/D = disease.CopyDisease()
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
