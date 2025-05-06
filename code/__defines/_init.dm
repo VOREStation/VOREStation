@@ -1,5 +1,5 @@
 // NEVER leave this on in your PR or the server will probably explode
-// #define ENABLE_BYOND_TRACY
+#define ENABLE_BYOND_TRACY
 /datum/super_early_init
 
 /datum/super_early_init/New()
