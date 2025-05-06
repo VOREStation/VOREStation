@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/New()
 	Refresh()
-	return
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
@@ -163,7 +162,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(new_name)
 			AssignName()
 		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
-		GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
+		// GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name
