@@ -155,9 +155,9 @@
 
 	cut_overlays()
 	flick("phaseout",src)
-	addtimer(CALLBACK(src, PROC_REF(phase_shift_initiate)), 3 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_initiate), original_canmove), 3 SECONDS, TIMER_DELETE_ME)
 
-/mob/living/simple_mob/vore/demon/proc/phase_shift_initiate()
+/mob/living/simple_mob/vore/demon/proc/phase_shift_initiate(var/original_canmove)
 	invisibility = INVISIBILITY_LEVEL_TWO
 	see_invisible = INVISIBILITY_LEVEL_TWO
 	update_icon()
@@ -169,9 +169,9 @@
 	density = FALSE
 	force_max_speed = TRUE
 
-	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in)), 30 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in), original_canmove), 30 SECONDS, TIMER_DELETE_ME)
 
-/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in()
+/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in(var/original_canmove)
 	shifted_out = FALSE
 	name = real_name
 	for(var/obj/belly/B as anything in vore_organs)
@@ -191,9 +191,9 @@
 	//Cosmetics mostly
 	flick("phasein",src)
 	automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
-	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in_completion)), 3 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in_completion), original_canmove), 3 SECONDS, TIMER_DELETE_ME)
 
-/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in_completion()
+/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in_completion(var/original_canmove)
 	is_shifting = FALSE
 	canmove = original_canmove
 
