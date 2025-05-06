@@ -215,7 +215,6 @@ var/list/mining_overlay_cache = list()
 		MineralSpread()
 
 /turf/simulated/mineral/update_icon(var/update_neighbors)
-
 	cut_overlays()
 
 	//We are a wall (why does this system work like this??)
@@ -231,7 +230,7 @@ var/list/mining_overlay_cache = list()
 		//Apply overlays if we should have borders
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(src,direction)
-			if(istype(T) && !T.density)
+			if(T && !T.density)
 				add_overlay(get_cached_border(rock_side_icon_state,direction,icon,rock_side_icon_state))
 
 			if(archaeo_overlay)
@@ -251,13 +250,12 @@ var/list/mining_overlay_cache = list()
 
 		//Apply overlays if there's space
 		for(var/direction in GLOB.cardinal)
-			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
+			var/turf/T = get_step(src, direction)
+			if(istype(T, /turf/space) && !istype(T, /turf/space/cracked_asteroid))
 				add_overlay(get_cached_border("asteroid_edge",direction,icon,"asteroid_edges", 0))
-
 			//Or any time
 			else
-				var/turf/T = get_step(src, direction)
-				if(istype(T) && T.density)
+				if(T?.density)
 					add_overlay(get_cached_border(rock_side_icon_state,direction,rock_icon_path,rock_side_icon_state))
 
 		if(overlay_detail)
