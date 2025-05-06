@@ -203,7 +203,7 @@ var/list/mining_overlay_cache = list()
 		make_ore()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
-	update_icon(1)
+	update_icon(!mapload)
 	if(density && mineral)
 		. = INITIALIZE_HINT_LATELOAD
 	if(random_icon)
