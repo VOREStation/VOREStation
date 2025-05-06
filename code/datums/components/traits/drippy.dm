@@ -64,4 +64,4 @@
 
 /datum/component/drippy/Destroy(force = FALSE)
 	owner = null
-	..()
+	. = ..()

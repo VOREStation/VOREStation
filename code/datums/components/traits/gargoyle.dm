@@ -51,7 +51,7 @@
 	UnregisterSignal(gargoyle, COMSIG_LIVING_LIFE)
 	gargoyle = null
 	statue = null
-	..()
+	. = ..()
 
 /datum/component/gargoyle/proc/unpause()
 	if (!paused || transformed)

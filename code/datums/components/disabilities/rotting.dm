@@ -38,4 +38,4 @@
 /datum/component/rotting_disability/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_HANDLE_DISABILITIES)
 	owner = null
-	..()
+	. = ..()

@@ -51,7 +51,7 @@
 	remove_verb(owner, /mob/living/proc/weave_item)
 	remove_verb(owner, /mob/living/proc/set_silk_color)
 	owner = null
-	..()
+	. = ..()
 
 /datum/component/weaver/proc/process_weaver_silk()
 	if(silk_reserve < silk_max_reserve && silk_production == TRUE && owner.nutrition > 100)
