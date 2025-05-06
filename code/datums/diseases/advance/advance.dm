@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
 	Refresh()
+	return ..()
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
