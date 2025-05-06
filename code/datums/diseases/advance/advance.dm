@@ -39,15 +39,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/id = ""
 
 /datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
-	if(istype(D))
-		for(var/datum/symptom/S in D.symptoms)
-			symptoms += new S.type
-	else
-		D = null
-
 	Refresh()
-	..(process, D)
-	return
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
@@ -170,13 +162,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(new_name)
 			AssignName()
 		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
-		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
+		GLOB.archive_diseases[GetDiseaseID()] = CopyDisease()
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name
 		if(actual_name != "Unknown")
 			name = actual_name
-
 
 /datum/disease/advance/proc/GenerateProperties()
 	resistance = 0
@@ -337,6 +328,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	else
 		RemoveSymptom(pick(symptoms))
 		symptoms += S
+	S.OnAdd(src)
 	Refresh()
 
 // Simply removes the symptom.
