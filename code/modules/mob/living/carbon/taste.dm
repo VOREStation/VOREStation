@@ -16,7 +16,7 @@
 
 		if(text_output != last_taste_text || last_taste_time + 100 < world.time) //We dont want to spam the same message over and over again at the person. Give it a bit of a buffer.
 			to_chat(src, span_notice("You can taste [text_output].")) //no taste means there are too many tastes and not enough flavor.
-			balloon_alert(src, "tastes like [text_output]...")
+			balloon_alert(src, "you taste [text_output]...")
 
 			last_taste_time = world.time
 			last_taste_text = text_output

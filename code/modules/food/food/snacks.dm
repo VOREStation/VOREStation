@@ -217,7 +217,7 @@
 				if(swallow_whole)
 					add_attack_logs(user,M,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
 					user.visible_message("[user] successfully forces [src] into [M]'s [belly_target].")
-					user.balloon_alert_visible("Forces [src] into [M]'s [belly_target]")
+					user.balloon_alert_visible("forces [src] into [M]'s [belly_target]")
 				else
 					add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
 					user.visible_message("[user] feeds [M] [src].")
