@@ -26,7 +26,8 @@
 	if(living_owner)
 		if(living_owner.stat != CONSCIOUS || living_owner.resting)
 			return
-	waddle_waddle(our_atom)
+	if(waddling)
+		waddle_waddle(our_atom)
 
 /datum/component/waddle_trait/Destroy(force = FALSE)
 	UnregisterSignal(our_atom, COMSIG_MOVABLE_MOVED)
