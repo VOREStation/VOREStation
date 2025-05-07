@@ -253,11 +253,12 @@
 
 /obj/item/gripper/no_use/loader //This is used to disallow building with metal.
 	name = "sheet loader"
-	desc = "A specialized loading device, designed to pick up and insert sheets of materials inside machines."
+	desc = "A specialized loading device, designed to pick up and insert sheets of materials inside machines. Also can pick up floor tiles."
 	icon_state = "gripper-sheet"
 
 	can_hold = list(
-		/obj/item/stack/material
+		/obj/item/stack/material,
+		/obj/item/stack/tile
 		)
 
 /obj/item/gripper/attack_self(mob/user as mob)

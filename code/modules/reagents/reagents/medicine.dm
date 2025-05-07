@@ -1223,8 +1223,8 @@
 
 /datum/reagent/spacomycaze/touch_obj(var/obj/O)
 	..()
-	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
-		var/obj/item/stack/medical/crude_pack/C = O
+	if(istype(O, /obj/item/stack/medical) && round(volume) >= 1)
+		var/obj/item/stack/medical/C = O
 		var/packname = C.name
 		var/to_produce = min(C.get_amount(), round(volume))
 

@@ -97,6 +97,18 @@
 	icon_state = "bedevere"
 	body_parts_covered = CHEST
 
+/obj/item/clothing/suit/armor/combat/crusader/quizzler
+	name = "knight's armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "quizzler"
+	armor = list(melee = 60, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/combat/crusader/pink
+	name = "knight's armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "pink"
+	armor = list(melee = 60, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+
 // Costume Versions Here
 /obj/item/clothing/suit/armor/combat/crusader_costume
 	name = "crusader costume armor"
