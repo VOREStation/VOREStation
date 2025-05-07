@@ -28,8 +28,7 @@
 
 		tag_door = controller.tag_door? controller.tag_door : "[id_tag]_hatch"
 
-		spawn(10)
-			signal_door("update")		//signals connected doors to update their status
+		signal_door("update")		//signals connected doors to update their status
 
 
 /datum/embedded_program/docking/simple/receive_signal(datum/signal/signal, receive_method, receive_param)

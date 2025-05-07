@@ -25,11 +25,11 @@ export const Wires = (props) => {
   return (
     <Window width={500} height={150 + wires.length * 40}>
       <Window.Content>
-        <Stack>
-          <Stack.Item>
+        <Stack vertical fill>
+          <Stack.Item grow>
             <WiresWires />
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item>
             <WiresStatus />
           </Stack.Item>
         </Stack>
@@ -50,10 +50,9 @@ export const standardizeColor = (color: any): string => {
 };
 
 export const WiresWires = (props) => {
-  const { act, data } = useBackend<WireData>();
+  const { data } = useBackend<WireData>();
 
   const { wires = [] } = data;
-  const statuses = data.status || [];
   return (
     <Section scrollable fill>
       <Stack vertical>
@@ -70,9 +69,7 @@ export const WiresWires = (props) => {
 };
 
 export const WiresStatus = (props) => {
-  const { act, data } = useBackend<WireData>();
-
-  const { wires = [] } = data;
+  const { data } = useBackend<WireData>();
   const statuses = data.status || [];
 
   return statuses.length ? (
