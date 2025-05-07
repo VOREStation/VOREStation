@@ -25,7 +25,7 @@
 	owner = null
 	. = ..()
 
-/datum/component/xenochimera/process()
+/datum/component/xenochimera/proc/handle_comp()
 	if(QDELETED(owner))
 		return
 	handle_feralness()
