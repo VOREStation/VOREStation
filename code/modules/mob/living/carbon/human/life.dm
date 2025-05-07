@@ -770,9 +770,9 @@
 				spawn(0) emote(pick("giggle", "laugh"))
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
-	if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_OXY)
+	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_OXY)
 		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
-	else if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_TOXIN)
+	else if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_TOXIN)
 		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
 
 	// Were we able to breathe?
@@ -1371,7 +1371,7 @@
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !hallu_component?.get_fakecrit() && client )
+				if( prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
@@ -1599,11 +1599,11 @@
 					health_images += E.get_damage_hud_image(limb_trauma_val)
 
 				// Apply a fire overlay if we're burning.
-				if(on_fire || hallu_component?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
+				if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
 					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
 
 				// Show a general pain/crit indicator if needed.
-				if(hallu_component?.get_hud_state() == HUD_HALLUCINATION_CRIT)
+				if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
 					trauma_val = 2
 				if(trauma_val)
 					if(!(species.flags & NO_PAIN))

@@ -25,11 +25,9 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	our_human = parent
-	our_human.hallu_component = src
 	make_timer()
 
 /datum/component/hallucinations/Destroy(force)
-	our_human.hallu_component = null
 	if(halitem.len)
 		remove_hallucination_item()
 	our_human = null
@@ -51,9 +49,13 @@ Gunshots/explosions/opening doors/less rare audio (done)
 // Traditional hallucinations
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/living/carbon/proc/handle_hallucinations()
-	if(hallu_component || !client)
+	if(get_hallucination_component() || !client)
 		return
-	hallu_component = AddComponent(/datum/component/hallucinations)
+	LoadComponent(/datum/component/hallucinations)
+
+/mob/living/carbon/proc/get_hallucination_component()
+	RETURN_TYPE(/datum/component/hallucinations)
+	return GetComponent(/datum/component/hallucinations)
 
 /datum/component/hallucinations/proc/trigger()
 	PROTECTED_PROC(TRUE)
@@ -98,9 +100,9 @@ Gunshots/explosions/opening doors/less rare audio (done)
 // So it destroys itself after it triggers, freeing up space for the next run of it.
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/living/carbon/human/proc/handle_feral()
-	if(hallu_component || !client)
+	if(get_hallucination_component() || !client)
 		return
-	hallu_component = AddComponent(/datum/component/hallucinations/xenochimera)
+	LoadComponent(/datum/component/hallucinations/xenochimera)
 
 /datum/component/hallucinations/xenochimera/make_timer()
 	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / (our_human.feral/10)), TIMER_DELETE_ME)

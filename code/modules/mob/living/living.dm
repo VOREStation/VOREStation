@@ -100,8 +100,6 @@
 		aiming = null
 	aimed.Cut()
 
-	hallu_component = null // Component will qdel in parent Destroy(), but to be safe we clear it here too
-
 	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
