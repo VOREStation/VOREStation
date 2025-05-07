@@ -56,7 +56,7 @@
 		comp.waddle_z = Z
 		var/min = tgui_input_number(src, "Desired min.", "Set min", -4)
 		comp.waddle_min = min
-		var/max = tgui_input_number(src, "Desired max.", "Set max", 4) as num
+		var/max = tgui_input_number(src, "Desired max.", "Set max", 4)
 		comp.waddle_max = max
 		var/time = tgui_input_number(src, "Desired time.", "Set time", 2)
 		comp.waddle_time = time
