@@ -29,3 +29,18 @@
       smoke.
   Will:
   - bugfix: Bioprinter works again
+2025-05-07:
+  SatinIsle:
+  - bugfix: Fixed cave-ins in fantasy dungeon around the dragon
+  ShadowLarkens:
+  - bugfix: Fixes throw passing (I didn't even know this was a thing)
+  - bugfix: Fix spacebar throwing
+  - bugfix: Fix appearance changer menu lacking data for species sounds
+  TankTheBirb:
+  - qol: added the ability to pick up floor tiles to the sheet loader gripper that
+      borgs have
+  Willburd:
+  - bugfix: Virology access buttons no longer depend on init lag to setup their state
+      correctly.
+  - code_imp: Removed spawn() behavior from airlock program. Added airlock update
+      radio command to setup doors on airlock init.

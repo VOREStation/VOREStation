@@ -1,5 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Virology access buttons no longer depend on init lag to setup their state correctly."
-  - code_imp: "Removed spawn() behavior from airlock program. Added airlock update radio command to setup doors on airlock init."
