@@ -33,8 +33,8 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
 	fluorescent = 0
-	if(invisibility != 100)
-		invisibility = 100
+	if(invisibility != INVISIBILITY_MAXIMUM)
+		invisibility = INVISIBILITY_MAXIMUM
 		amount = 0
 	..(ignore=1)
 

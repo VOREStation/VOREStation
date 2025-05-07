@@ -55,7 +55,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
 
 
-	for(var/obj/effect/debugging/camera_range/C in all_debugging_effects)
+	for(var/obj/effect/debugging/camera_range/C in GLOB.all_debugging_effects)
 		qdel(C)
 
 	if(camera_range_display_status)
@@ -114,7 +114,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	else
 		intercom_range_display_status = 1
 
-	for(var/obj/effect/debugging/marker/M in all_debugging_effects)
+	for(var/obj/effect/debugging/marker/M in GLOB.all_debugging_effects)
 		qdel(M)
 
 	if(intercom_range_display_status)

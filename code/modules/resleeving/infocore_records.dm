@@ -26,6 +26,9 @@
 	var/mind_oocnotes = ""
 	var/mind_ooclikes = ""
 	var/mind_oocdislikes = ""
+	var/mind_oocfavs = ""
+	var/mind_oocmaybes = ""
+	var/mind_oocstyle = FALSE
 	var/nif_path
 	var/nif_durability
 	var/list/nif_software
@@ -61,6 +64,9 @@
 			nif_software = nifsofts
 			nif_savedata = M.nif.save_data.Copy()
 
+	if(istype(M,/mob) && !M.read_preference(/datum/preference/toggle/autotranscore))
+		do_notify = FALSE
+
 	last_update = world.time
 
 	if(add_to_db)
@@ -81,6 +87,9 @@
 	var/body_oocnotes
 	var/body_ooclikes
 	var/body_oocdislikes
+	var/body_oocfavs
+	var/body_oocmaybes
+	var/body_oocstyle
 	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 	var/list/genetic_modifiers = list()
@@ -114,11 +123,13 @@
 	//Person OOCly doesn't want people impersonating them
 	locked = ckeylock
 
+	//Prevent people from printing restricted and whitelisted species
 	var/datum/species/S = GLOB.all_species["[M.dna.species]"]
 	if(S)
+		toocomplex = (S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_IS_RESTRICTED)
 		// Force ckey locking if species is whitelisted
-		if((S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_IS_RESTRICTED))
-			locked = TRUE
+		//if((S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_IS_RESTRICTED))
+			//locked = TRUE
 
 	//General stuff about them
 	synthetic = M.isSynthetic()

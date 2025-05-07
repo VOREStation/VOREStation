@@ -11,7 +11,7 @@
 	density = FALSE
 	ghost_query_type = /datum/ghost_query/stowaway
 	anchored = TRUE
-	invisibility = 60
+	invisibility = INVISIBILITY_OBSERVER
 
 	var/occupant_type = "stowaway"
 

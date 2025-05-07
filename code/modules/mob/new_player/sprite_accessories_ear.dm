@@ -1154,6 +1154,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "demi-tesh-kit-ears_male"
 
+/datum/sprite_accessory/ears/naga_ears
+	name = "naga ears"
+	desc = ""
+	icon_state = "naga-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"

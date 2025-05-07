@@ -1,10 +1,8 @@
 /mob/new_player/Logout()
 	ready = 0
 
-	// see login.dm
-	if(my_client)
-		my_client.screen -= lobby_image
-		my_client = null
+	QDEL_NULL(lobby_window)
+	disable_lobby_browser()
 
 	..()
 
@@ -15,3 +13,8 @@
 		key = null//We null their key before deleting the mob, so they are properly kicked out.
 		qdel(src)
 	return
+
+/mob/new_player/proc/disable_lobby_browser()
+	var/client/exiting_client = GLOB.directory[persistent_ckey]
+	if(exiting_client)
+		winset(exiting_client, "lobby_browser", "is-disabled=true;is-visible=false")

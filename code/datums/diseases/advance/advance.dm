@@ -162,6 +162,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			AssignName()
 		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
 		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
+	else
+		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
+		var/actual_name = A.name
+		if(actual_name != "Unknown")
+			name = actual_name
+
 
 /datum/disease/advance/proc/GenerateProperties()
 	resistance = 0
@@ -175,7 +181,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/c3sev
 
 	for(var/datum/symptom/S as() in symptoms)
-		resistance = S.resistance
+		resistance += S.resistance
 		stealth += S.stealth
 		stage_rate += S.stage_speed
 		transmission += S.transmission
@@ -286,8 +292,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 // Name the disease.
 /datum/disease/advance/proc/AssignName(new_name = "Unknown")
-	name = new_name
-	return
+	Refresh()
+	var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
+	A.name = new_name
+	for(var/datum/disease/advance/AD in GLOB.active_diseases)
+		AD.Refresh()
 
 // Return a unique ID of the disease.
 /datum/disease/advance/GetDiseaseID()

@@ -180,6 +180,7 @@
 				. = TRUE
 
 /datum/tgui_module/camera/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	if(!active_camera)
 		show_camera_static()
 		return TRUE

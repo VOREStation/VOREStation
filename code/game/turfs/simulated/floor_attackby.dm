@@ -1,4 +1,4 @@
-/turf/simulated/floor/attackby(var/obj/item/C, var/mob/user)
+/turf/simulated/floor/attackby(var/obj/item/C, var/mob/user, attack_modifier, click_parameters)
 
 	if(!C || !user)
 		return 0
@@ -14,7 +14,7 @@
 		if(isliving(user))
 			var/mob/living/L = user
 			if(L.a_intent == I_HELP)
-				if(try_graffiti(L, C)) // back by unpopular demand
+				try_graffiti(L, C, click_parameters) // back by unpopular demand
 					return
 */
 

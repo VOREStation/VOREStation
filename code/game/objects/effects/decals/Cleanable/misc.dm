@@ -139,6 +139,24 @@
 /obj/effect/decal/cleanable/vomit/old/Crossed(mob/living/carbon/human/perp)
 	return // Don't spread our viruses
 
+/obj/effect/decal/cleanable/blood/old
+	dryname = "nasty dried blood"
+	drydesc = "Why hasn't anyone cleaned this up yet?"
+
+/obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	basecolor = get_random_colour(rand(0, 1))
+	update_icon()
+	if(length(diseases))
+		viruses += diseases
+	if(prob(75))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
+		src.viruses += new_disease
+	dry()
+
+/obj/effect/decal/cleanable/blood/old/Crossed(mob/living/carbon/human/perp)
+	return
+
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"
 	desc = "It's red."

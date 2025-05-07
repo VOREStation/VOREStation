@@ -48,9 +48,10 @@
 	BITSET(hud_updateflag, LIFE_HUD)
 
 	//Handle species-specific deaths.
-	species.handle_death(src)
+	if(species.handle_death(src))
+		return
 	animate_tail_stop()
-	stop_flying() //VOREStation Edit.
+	stop_flying()
 
 	//Handle snowflake ling stuff.
 	if(mind && mind.changeling)
@@ -81,16 +82,19 @@
 
 	callHook("death", list(src, gibbed))
 
+	if(istype(loc, /obj/item/clothing/shoes))
+		mind?.vore_death = TRUE
+
 	if(mind)
 		var/area/A = get_area(src)
 		if(!(A?.flag_check(AREA_BLOCK_SUIT_SENSORS)) && isbelly(loc))
-			// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // VOREStation Edit - We don't use SSgame_master yet.
+			// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // We don't use SSgame_master yet.
 			for(var/mob/observer/dead/O in mob_list)
 				if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 					to_chat(O, span_deadsay(span_bold("[src]") + " has died in " + span_bold("[get_area(src)]")  + ". [ghost_follow_link(src, O)] "))
 
-	if(!gibbed && species.death_sound)
-		playsound(src, species.death_sound, 80, 1, 1)
+	if(!gibbed && !isbelly(loc))
+		playsound(src, pick(get_species_sound(get_gendered_sound(src))["death"]), src.species.death_volume, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
 
 	if(ticker && ticker.mode)
 		sql_report_death(src)
@@ -101,10 +105,12 @@
 
 	// If the body is in VR, move the mind back to the real world
 	if(vr_holder)
+		src.died_in_vr = TRUE //so avatar.dm can delete bodies
 		src.exit_vr()
 		src.vr_holder.vr_link = null
 		for(var/obj/item/W in src)
 			src.drop_from_inventory(W)
+
 
 	// If our mind is in VR, bring it back to the real world so it can die with its body
 	if(vr_link)

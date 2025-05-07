@@ -36,6 +36,7 @@
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/ExperimentConfigure.scss');
 @include meta.load-css('./interfaces/FishingMinigame.scss');
+@include meta.load-css('./interfaces/LobbyMenu.scss');
 @include meta.load-css('./interfaces/Microwave.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/Paper.scss');
@@ -50,6 +51,7 @@
 @include meta.load-css('./interfaces/IDCard.scss');
 @include meta.load-css('./interfaces/TinderMessaging.scss');
 @include meta.load-css('./interfaces/Turbolift.scss');
+@include meta.load-css('./interfaces/Wires.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');

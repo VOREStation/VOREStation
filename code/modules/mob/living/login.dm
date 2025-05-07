@@ -31,7 +31,6 @@
 
 	add_verb(src,/mob/living/proc/vore_transfer_reagents) // If mob doesnt have bellies it cant use this verb for anything
 	add_verb(src,/mob/living/proc/vore_check_reagents) // If mob doesnt have bellies it cant use this verb for anything
-	add_verb(src,/mob/living/proc/vore_bellyrub) // If mob doesnt have bellies it probably won't be needing this anyway
 	add_verb(src,/mob/proc/nsay_vore)
 	add_verb(src,/mob/proc/nme_vore)
 	add_verb(src,/mob/proc/nsay_vore_ch)

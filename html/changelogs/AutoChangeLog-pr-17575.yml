@@ -1,6 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - rscadd: "vassilian autohiss"
-  - rscadd: "yingish autohiss"
-  - code_imp: "autohiss unit testing"

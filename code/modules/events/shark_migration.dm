@@ -84,6 +84,7 @@
 
 // If shark is bomphed, remove it from the list.
 /datum/event/shark_migration/proc/on_shark_destruction(var/mob/M)
+	SIGNAL_HANDLER
 	spawned_shark -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

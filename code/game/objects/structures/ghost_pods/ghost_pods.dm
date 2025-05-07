@@ -30,6 +30,7 @@
 	Q.query()
 
 /obj/structure/ghost_pod/proc/get_winner()
+	SIGNAL_HANDLER
 	busy = FALSE
 	var/deletion_candidate = FALSE
 	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.

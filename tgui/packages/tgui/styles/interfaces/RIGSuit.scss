@@ -49,3 +49,16 @@
     0.2s -webkit-filter linear;
   -webkit-user-drag: none;
 }
+
+@keyframes wipe-in-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.RIGSuit__Animation__WipeUp {
+  animation: 1s linear wipe-in-up both;
+}

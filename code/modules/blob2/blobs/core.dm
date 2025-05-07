@@ -189,6 +189,7 @@ var/list/blob_cores = list()
 	controller = null //Controller has been set. Let's null it now.
 
 /obj/structure/blob/core/proc/get_winner()
+	SIGNAL_HANDLER
 	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
 		var/mob/observer/dead/D = Q.candidates[1]
 		var/client/C

@@ -55,7 +55,6 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
-	//VOREStation Addition Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
 		tf_mob_holder.ckey = ckey
 		if(isbelly(loc))
@@ -75,17 +74,10 @@
 			vore_organs -= B
 	if(tf_mob_holder)
 		tf_mob_holder = null
-	//VOREStation Addition End
-	if(hud_list) //prune out images in hud_list
-		for(var/item in hud_list)
-			if(item)
-				item = null
-	if(selected_image)
-		selected_image = null
-	//QDEL_NULL(vorePanel) //VOREStation Add commented and moved to /mob
-	//QDEL_LIST_NULL(vore_organs) //VOREStation Add commented and moved to /mob
-	temp_language_sources = null //VOREStation Add
-	temp_languages = null //VOREStation Add
+	QDEL_NULL_LIST(hud_list)
+	QDEL_NULL(selected_image)
+	temp_language_sources = null
+	temp_languages = null
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -173,7 +165,28 @@
 		health = 100
 		set_stat(CONSCIOUS)
 	else
+		// Pain/etc calculations, but more efficient:tm: - this should work for literally anything that applies to health. Far better than slapping emote("pain") everywhere like scream does.
+		if(health > getMaxHealth()) //Overhealth
+			health = getMaxHealth()
+		var/initialhealth = health // Getting our health before this check
 		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+		if(!((ishuman(src)) || (issilicon(src))) && src.can_pain_emote) // Only run this if we're non-human/non-silicon (bots and mechanical simplemobs should be allowed to make pain sounds) & can emote pain, bc humans + carbons already do this. human_damage doesn't call parent, but sanity is better here.
+			if(health < initialhealth) // Did we lose health?
+				// Yes. How much by?
+				var/damage = initialhealth - health // Get our damage (say, 200 - 180 = 20, etc etc)
+				var/pain_noise = (damage * rand(0.5, 1.5)) // Multiply damage by our rand mod. 50 damage becomes 50 x 0.5, means prob 25. 50 x 1.5 means prob 75, etc.
+				switch(damage)
+					if(-INFINITY to 0)
+						return
+					if(1 to 25)
+						if(prob(pain_noise) && !isbelly(loc)) // No pain noises inside bellies.
+							emote("pain")
+					if(26 to 50)
+						if(prob(pain_noise * 1.5) && !isbelly(loc)) // No pain noises inside bellies.
+							emote("pain")
+					if(51 to INFINITY)
+						if(prob(pain_noise * 3)  && !isbelly(loc)) // More likely, most severe damage. No pain noises inside bellies.
+							emote("pain")
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -254,12 +267,10 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 
-	//VOREStation Additon Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
 		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
-	//VOREStation Additon End
 
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
@@ -346,12 +357,10 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
-	//VOREStation Additon Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
 		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustFireLoss(dmgmultiplier)
-	//VOREStation Additon End
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
@@ -434,7 +443,7 @@
 	return result
 
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
-	var/h_mult = maxHealth / newMaxHealth	//VOREStation Add Start - Calculate change multiplier
+	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
 	if(bruteloss)							//In case a damage value is 0, divide by 0 bad
 		bruteloss = round(bruteloss / h_mult)		//Health is calculated on life based on damage types, so we update the damage and let life handle health
 	if(fireloss)
@@ -444,7 +453,7 @@
 	if(oxyloss)
 		oxyloss = round(oxyloss / h_mult)
 	if(cloneloss)
-		cloneloss = round(cloneloss / h_mult)	//VOREStation Add End
+		cloneloss = round(cloneloss / h_mult)
 	maxHealth = newMaxHealth
 
 /mob/living/Stun(amount)
@@ -755,7 +764,7 @@
 	do_examine_ooc(usr)
 
 /mob/living/proc/do_examine_ooc(mob/user)
-	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
+	//Makes it so SSD people have prefs with fallback to original style.
 	if(CONFIG_GET(flag/allow_metadata))
 		if(ooc_notes)
 			ooc_notes_window(user)
@@ -766,7 +775,6 @@
 			to_chat(user, span_filter_notice("[src] does not have any stored infomation!"))
 	else
 		to_chat(user, span_filter_notice("OOC Metadata is not supported by this server!"))
-	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 
 	return
 
@@ -806,7 +814,7 @@
 		else
 			resist_restraints()
 
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
+	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
 
 /mob/living/proc/resist_buckle()
 	if(buckled)
@@ -903,6 +911,12 @@
 /mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
+	/* //Segment here used downstream. Enable when deaf_loop is added.
+	if(ear_deaf > 0)
+		deaf_loop.start()
+	else if(ear_deaf <= 0)
+		deaf_loop.stop()
+	*/
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
@@ -910,6 +924,7 @@
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
+		//deaf_loop.start() // Ear Ringing/Deafness - Not sure if we need this, but, safety. NYI. Used downstream.
 
 /mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
 
@@ -1029,17 +1044,30 @@
 			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
+	if(incapacitated(INCAPACITATION_KNOCKOUT) || incapacitated(INCAPACITATION_STUNNED)) // Making sure we're in good condition to crawl
+		canmove = 0
+	else
+		canmove = 1
+
 	if(lying)
 		density = FALSE
-		if(l_hand)
-			unEquip(l_hand)
-		if(r_hand)
-			unEquip(r_hand)
-		for(var/obj/item/holder/holder in get_mob_riding_slots())
-			unEquip(holder)
 		update_water() // Submerges the mob.
+		stop_pulling()
+
+		if(!passtable_crawl_checked)
+			passtable_crawl_checked = TRUE
+			if(pass_flags & PASSTABLE)
+				passtable_reset = FALSE
+			else
+				passtable_reset = TRUE
+				pass_flags |= PASSTABLE
+
 	else
 		density = initial(density)
+		if(passtable_reset)
+			passtable_reset = FALSE
+			pass_flags &= ~PASSTABLE
+		passtable_crawl_checked = FALSE
 
 	for(var/obj/item/grab/G in grabbed_by)
 		if(G.state >= GRAB_AGGRESSIVE)
@@ -1050,7 +1078,6 @@
 		lying_prev = lying
 		update_transform()
 		update_mob_action_buttons()
-		//VOREStation Add
 		if(lying && LAZYLEN(buckled_mobs))
 			for(var/mob/living/L as anything in buckled_mobs)
 				if(buckled_mobs[L] != "riding")
@@ -1060,7 +1087,6 @@
 				else
 					unbuckle_mob(L)
 				L.Stun(5)
-		//VOREStation Add End
 
 	return canmove
 
@@ -1107,8 +1133,8 @@
 
 /mob/living/update_transform(var/instant = FALSE)
 	// First, get the correct size.
-	var/desired_scale_x = size_multiplier * icon_scale_x //VOREStation edit
-	var/desired_scale_y = size_multiplier * icon_scale_y //VOREStation edit
+	var/desired_scale_x = size_multiplier * icon_scale_x
+	var/desired_scale_y = size_multiplier * icon_scale_y
 	var/cent_offset = center_offset
 
 	// Now for the regular stuff.
@@ -1117,7 +1143,7 @@
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
 	M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
-	src.transform = M //VOREStation edit
+	src.transform = M
 	handle_status_indicators()
 
 // This handles setting the client's color variable, which makes everything look a specific color.
@@ -1232,6 +1258,7 @@
 	if(!item)
 		return FALSE //Grab processing has a chance of returning null
 
+	// Help intent + Adjacent = pass item to other
 	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
 		var/obj/item/I = item
 		var/mob/living/carbon/human/H = target
@@ -1371,6 +1398,7 @@
 		qdel_null(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1386,6 +1414,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/owner = user
 	if(owner.client?.prefs)
 		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
@@ -1457,6 +1486,42 @@
 			drop.dryname = "dried something"
 			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
 			drop.fluorescent  = 0
-			drop.invisibility = 0
+			drop.invisibility = INVISIBILITY_NONE
 	//else
 		// come up with drips for other mobs someday
+
+/mob/living/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_favs = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+		to_chat(user, span_filter_notice("OOC note favs have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note favs mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_maybes = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+		to_chat(user, span_filter_notice("OOC note maybes have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note maybes mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	ooc_notes_style = !ooc_notes_style
+	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
+	if(reopen)
+		ooc_notes_window(user)

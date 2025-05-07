@@ -184,6 +184,9 @@
 	// Loop through some slots, and add up their slowdowns.
 	// Includes slots which can provide armor, the back slot, and suit storage.
 	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
+		if(istype(I,/obj/item/rig))
+			for(var/obj/item/II in I.contents)
+				. += II.slowdown
 		. += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
@@ -202,8 +205,8 @@
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
-				turf_move_cost = CLAMP(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
-			if(shoes)
+				turf_move_cost = 0
+			if(istype(shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/feet = shoes
 				if(istype(feet) && feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -211,7 +214,7 @@
 		else if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
-			if(shoes)
+			if(istype(shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/feet = shoes
 				if(istype(feet) && feet.snow_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -269,36 +272,6 @@
 			return TRUE
 
 	return FALSE
-
-
-/mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
-	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
-
-	if(species.flags & NO_SLIP)
-		return FALSE
-
-	if(species.can_space_freemove || species.can_zero_g_move)
-		return FALSE
-
-	var/obj/item/tank/jetpack/thrust = get_jetpack()
-	if(thrust?.can_thrust(0.01))
-		return FALSE
-
-	if(stat)
-		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
-
-	//Do we have magboots or such on if so no slip
-	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.item_flags & NOSLIP))
-		prob_slip = 0
-
-	//Check hands and mod slip
-	if(!l_hand)	prob_slip -= 2
-	else if(l_hand.w_class <= 2)	prob_slip -= 1
-	if (!r_hand)	prob_slip -= 2
-	else if(r_hand.w_class <= 2)	prob_slip -= 1
-
-	prob_slip = round(prob_slip)
-	return(prob_slip)
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
