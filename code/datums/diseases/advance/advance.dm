@@ -92,7 +92,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	A.severity = severity
 	A.speed = speed
 	A.id = id
-	A.Refresh()
 	return A
 
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
@@ -104,8 +103,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)
 	for(var/datum/symptom/symp in symptoms)
 		if(symp.id == S.id)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/disease/advance/proc/GenerateSymptomsBySeverity(sev_min, sev_max, amount = 1)
 
@@ -153,7 +152,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	return generated
 
-/datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
+/datum/disease/advance/proc/Refresh(new_name = FALSE)
 	GenerateProperties()
 	AssignProperties()
 	id = null
