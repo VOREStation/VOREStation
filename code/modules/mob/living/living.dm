@@ -1260,6 +1260,18 @@
 	if(!item)
 		return FALSE //Grab processing has a chance of returning null
 
+	// Help intent + Adjacent = pass item to other
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
+		var/obj/item/I = item
+		var/mob/living/carbon/human/H = target
+		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
+			H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+			visible_message(span_filter_notice(span_bold("[src]") + " hands \the [H] \a [I]."), span_notice("You give \the [target] \a [I]."))
+		else
+			to_chat(src, span_notice("You offer \the [I] to \the [target]."))
+			do_give(H)
+		return TRUE
+
 	drop_from_inventory(item)
 
 	if(!item || QDELETED(item))

@@ -73,6 +73,9 @@
 			close()
 			addtimer(CALLBACK(src, PROC_REF(check_completion), TRUE, 0.2 SECONDS), anim_length_before_density + anim_length_before_finalize)
 
+		if("update")
+			check_completion(delayed_status = TRUE)
+
 /obj/machinery/door/airlock/proc/do_secure_open()
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -98,6 +101,9 @@
 
 		if("secure_close")
 			return (locked && density)
+
+		if("update")
+			return TRUE // We just want the send_status() call from check_completion()
 
 	return 1	//Unknown command. Just assume it's completed.
 
