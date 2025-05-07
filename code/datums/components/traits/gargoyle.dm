@@ -25,10 +25,9 @@
 	RegisterSignal(gargoyle, COMSIG_GARGOYLE_PAUSE, PROC_REF(gargoyle_pause))
 	RegisterSignal(gargoyle, COMSIG_GARGOYLE_CHECK_ENERGY, PROC_REF(gargoyle_checkenergy))
 
-	RegisterSignal(gargoyle, COMSIG_LIVING_LIFE, PROC_REF(process))
-	START_PROCESSING(SSprocessing, src)
+	RegisterSignal(gargoyle, COMSIG_LIVING_LIFE, PROC_REF(process_component))
 
-/datum/component/gargoyle/process()
+/datum/component/gargoyle/proc/process_component()
 	if (QDELETED(gargoyle))
 		return
 	if (paused && gargoyle.loc != paused_loc)

@@ -6,9 +6,9 @@
 		return COMPONENT_INCOMPATIBLE
 
 	owner = parent
-	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process))
+	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process_component))
 
-/datum/component/rotting_disability/process()
+/datum/component/rotting_disability/proc/process_component()
 	if (QDELETED(parent))
 		return
 	if(isbelly(owner.loc))

@@ -9,9 +9,9 @@
 		return COMPONENT_INCOMPATIBLE
 
 	owner = parent
-	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process))
+	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process_component))
 
-/datum/component/gibbing_disability/process()
+/datum/component/gibbing_disability/proc/process_component()
 	if(QDELETED(parent))
 		return
 	if(isbelly(owner.loc))

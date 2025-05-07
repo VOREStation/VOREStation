@@ -24,7 +24,7 @@
 	add_verb(owner, /mob/living/proc/set_silk_color)
 
 	//Processing
-	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process))
+	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process_component))
 
 	//When procs are used
 	RegisterSignal(owner, COMSIG_CHECK_SILK_AMOUNT, PROC_REF(check_silk_amount))
@@ -33,7 +33,7 @@
 	RegisterSignal(owner, COMSIG_WEAVE_ITEM, PROC_REF(weave_item))
 	RegisterSignal(owner, COMSIG_SET_SILK_COLOR, PROC_REF(set_silk_color))
 
-/datum/component/weaver/process()
+/datum/component/weaver/proc/process_component()
 	if (QDELETED(parent))
 		return
 	process_weaver_silk()
