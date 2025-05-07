@@ -17,9 +17,9 @@
 		add_verb(living_owner, /mob/living/proc/waddle_adjust)
 		//add_verb(living_owner, /mob/living/proc/waddle_debug)
 	our_atom = parent
-	RegisterSignal(our_atom, COMSIG_MOVABLE_MOVED, PROC_REF(process))
+	RegisterSignal(our_atom, COMSIG_MOVABLE_MOVED, PROC_REF(handle_comp))
 
-/datum/component/waddle_trait/process()
+/datum/component/waddle_trait/proc/handle_comp()
 	if (QDELETED(our_atom))
 		return
 	//Living owner only. No waddling while downed.
