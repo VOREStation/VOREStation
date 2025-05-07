@@ -1676,16 +1676,3 @@
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
 		/datum/trait/neutral/autohiss_vassilian/xenochimera)
-
-
-/datum/trait/neutral/waddle
-	name = "Waddler"
-	desc = "You walk with a variable waddle!"
-	cost = 0
-
-	is_genetrait = FALSE
-	hidden = FALSE
-
-	activation_message="You feel like waddling!"
-	primitive_expression_messages=list("waddles.")
-	added_component_path = /datum/component/waddle_trait
