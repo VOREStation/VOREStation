@@ -505,6 +505,7 @@
 #include "code\datums\components\crafting\recipes\primitive.dm"
 #include "code\datums\components\crafting\recipes\survival.dm"
 #include "code\datums\components\crafting\recipes\weapons.dm"
+#include "code\datums\components\traits\waddle.dm"
 #include "code\datums\diseases\_disease.dm"
 #include "code\datums\diseases\_MobProcs.dm"
 #include "code\datums\diseases\anxiety.dm"
