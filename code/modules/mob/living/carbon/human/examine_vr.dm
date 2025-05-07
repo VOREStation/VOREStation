@@ -137,4 +137,4 @@
 			else
 				return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
 		else if(xc.feral)
-				return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+			return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
