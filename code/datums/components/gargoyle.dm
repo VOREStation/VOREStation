@@ -41,6 +41,7 @@
 		energy = min(energy+0.3, 100)
 
 /datum/component/gargoyle/proc/unpause()
+	SIGNAL_HANDLER
 	if (!paused || transformed)
 		paused = FALSE
 		paused_loc = null
