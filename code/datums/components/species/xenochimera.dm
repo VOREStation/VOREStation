@@ -441,7 +441,7 @@
 	set name = "Reconstitute Form"
 	set category = "Abilities.Xenochimera"
 
-	if(owner.is_incorporeal())
+	if(is_incorporeal())
 		to_chat(src, "You cannot regenerate while incorporeal.")
 		return
 	// Sanity is mostly handled in chimera_regenerate()
