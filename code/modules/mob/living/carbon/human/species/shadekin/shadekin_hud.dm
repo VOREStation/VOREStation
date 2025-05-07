@@ -1,10 +1,7 @@
 /obj/screen/shadekin
 	name = "shadekin status"
 	icon = 'icons/mob/shadekin_hud.dmi'
-	invisibility = 101
-
-
-
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/screen/movable/ability_master/shadekin
 	name = "Shadekin Abilities"

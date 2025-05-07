@@ -18,6 +18,8 @@
 	var/vendor_category = MAINTVENDOR_GENERIC
 	var/icon_state
 
+	var/is_scam = FALSE //if we spawn nothing, this needs to be true - special handling for this in the vendor later.
+
 /datum/maint_recycler_vendor_entry/proc/initialize()
 	if(!icon_state)
 		icon_state = "generic[rand(1,10)]"

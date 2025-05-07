@@ -327,3 +327,39 @@
   - bugfix: Fixed Pandemic not printing the "virus release" notice
   Tost:
   - rscadd: Adds colour selection to earrings
+2025-04-28:
+  Kashargul:
+  - bugfix: muffle items not always working
+  - bugfix: matrix recolor not usable in char setup
+  - bugfix: item tf spawn points not assignable
+  - code_imp: move invisibility to defines
+  - admin: invisimin can no longer be used if your invis level is above the observer
+      level
+  SatinIsle:
+  - bugfix: Hides the item tf spawn option, as this is currently not functional.
+  ShadowLarkens:
+  - bugfix: Title screens work better
+  - bugfix: RIGs no longer get stuck loading
+  Willburd:
+  - qol: PAI may now climb up and down ladders, lattices, and move freely up and down
+      in zeroG
+  - qol: Air alarms show if they are controlled by an area's main alarm, or are the
+      main alarm themselves. So you can tell when all air alarms in an area are deconstructed
+  - bugfix: Air alarm settings now propagate to all other air alarms in an area
+  - rscadd: Air alarms do nothing if the main air alarm in an area is shorted
+2025-04-29:
+  Cameron-The-Raven:
+  - bugfix: Loadout items no longer disappear during migrations
+  Kashargul:
+  - code_imp: tgui-core 3.1.3
+  ShadowLarkens:
+  - bugfix: Lobby screen is less colorbandy
+  TeleTubby2:
+  - bugfix: fixed recyclers fucking up every button ever in tgui
+2025-04-30:
+  MeepleMuncher:
+  - rscadd: Wearing specific types of footwear preserves barefoot stepping sounds
+  ShadowLarkens:
+  - rscadd: Wires UI is now extra pretty
+  tacoguy7765093:
+  - code_imp: Adjustment on self surgery proc to allow synthetics to commit self surgery.

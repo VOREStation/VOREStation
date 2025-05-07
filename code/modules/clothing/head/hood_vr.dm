@@ -18,6 +18,11 @@
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 3
 
+/obj/item/clothing/head/hood/chain
+	name = "robin hood"
+	armor = list(melee = 60, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 3
+
 // Costume Versions Here
 /obj/item/clothing/head/hood/galahad_costume
 	name = "galahad costume hood"

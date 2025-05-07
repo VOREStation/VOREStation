@@ -124,8 +124,7 @@ var/list/all_maps = list()
 
 	var/datum/skybox_settings/default_skybox // What skybox do we use if a zlevel doesn't have a custom one? Provide a type.
 
-	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
-	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
+	var/list/lobby_screens = list('html/lobby/mockingjay00.webp')                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 
 	var/default_law_type = /datum/ai_laws/nanotrasen // The default lawset use by synth units, if not overriden by their laws var.
 

@@ -60,13 +60,13 @@
 				A.shorted = TRUE
 				for(var/obj/machinery/alarm/AA in A.alarm_area)
 					AA.update_icon()
-			addtimer(CALLBACK(src, PROC_REF(clear_short)), 12000, TIMER_DELETE_ME)
+			addtimer(CALLBACK(src, PROC_REF(clear_short)), 20 MINUTES, TIMER_DELETE_ME)
 
 		if(WIRE_AI_CONTROL)
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
 			A.updateDialog()
-			addtimer(VARSET_CALLBACK(A, aidisabled, FALSE), 100, TIMER_DELETE_ME)
+			addtimer(VARSET_CALLBACK(A, aidisabled, FALSE), 10 SECONDS, TIMER_DELETE_ME)
 
 		if(WIRE_SYPHON)
 			if(A.mode == 1) // MODE_SCRUB

@@ -1,16 +1,16 @@
 /datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
-		"title" = 10,
-		"tether" = 50,
-		"tether_night" = 50,
-		"tether2_night" = 50,
-		"tether2_dog" = 1,
-		"tether2_love" = 1,
-		"tether_future" = 10,
-		"logo1" = 20,
-		"logo2" = 20,
-		"gateway" = 5
+		'html/lobby/title.png' = 10,
+		'html/lobby/tether.png' = 50,
+		'html/lobby/tether_night.png' = 50,
+		'html/lobby/tether2_night.png' = 50,
+		'html/lobby/tether2_dog.png' = 1,
+		'html/lobby/tether2_love.png' = 1,
+		'html/lobby/tether_future.png' = 10,
+		'html/lobby/logo1.png' = 20,
+		'html/lobby/logo2.png' = 20,
+		'html/lobby/gateway.png' = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -28,8 +28,7 @@
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_screens = list('html/lobby/tether2_night.png')
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
