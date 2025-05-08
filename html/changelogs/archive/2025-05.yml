@@ -44,3 +44,7 @@
       correctly.
   - code_imp: Removed spawn() behavior from airlock program. Added airlock update
       radio command to setup doors on airlock init.
+2025-05-08:
+  Diana:
+  - rscadd: Optional Big Leggies as a marking. These are hidden underneath clothing.
+  - bugfix: Makes Big Leggies (tail) show back above clothing.
