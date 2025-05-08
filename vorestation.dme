@@ -2247,7 +2247,6 @@
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\glasses_vr.dm"
 #include "code\modules\clothing\glasses\hud.dm"
-#include "code\modules\clothing\glasses\hud_vr.dm"
 #include "code\modules\clothing\gloves\antagonist.dm"
 #include "code\modules\clothing\gloves\arm_guards.dm"
 #include "code\modules\clothing\gloves\arm_guards_vr.dm"
