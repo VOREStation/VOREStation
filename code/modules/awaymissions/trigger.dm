@@ -2,11 +2,13 @@
 	var/message	//the message to give to the mob
 	var/once = 1
 
-/obj/effect/step_trigger/message/Trigger(mob/M as mob)
-	if(M.client)
-		to_chat(M, span_info("[message]"))
-		if(once)
-			qdel(src)
+/obj/effect/step_trigger/message/Trigger(var/atom/movable/A)
+	if(ismob(A))
+		var/mob/M = A
+		if(M.client)
+			to_chat(M, span_info("[message]"))
+			if(once)
+				qdel(src)
 
 /obj/effect/step_trigger/teleport_fancy
 	var/locationx
