@@ -1,0 +1,4 @@
+author: "MeepleMuncher"
+delete-after: True
+changes:
+  - bugfix: "Fixes runtime errors caused by barefoot sounds."
