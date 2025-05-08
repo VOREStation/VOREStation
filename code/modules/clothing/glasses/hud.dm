@@ -431,7 +431,6 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/omnihud/prescription
-	name = "\improper AR glasses"
 	desc = "The ARG-62 AR Glasses are capable of displaying information on individuals. \
 	Commonly used to allow non-augmented crew to interact with virtual interfaces. \
 	<br>They are also fitted with toggleable cosmetic electrochromic lenses. \
