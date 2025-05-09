@@ -506,13 +506,11 @@
 	pixel_x = 0
 
 
-/datum/robot_sprite/dogborg/service/smolraptorservicesprite
-	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_serv.dmi'
+/datum/robot_sprite/dogborg/service/smolraptor
+	sprite_icon = 'modular_chomp/icons/mob/smallraptors/smolraptor_serv.dmi'
 
-/datum/robot_sprite/dogborg/service/smolraptorservicesprite/smolraptorserv
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
-	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")

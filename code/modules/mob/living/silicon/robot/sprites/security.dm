@@ -277,10 +277,13 @@
 	has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/security/smolraptor
-	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_pk.dmi'
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_sec.dmi'
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
-	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/security/smolraptor/alt
+
+	sprite_icon_state = "smolraptor_alt"
