@@ -151,6 +151,6 @@ SUBSYSTEM_DEF(sounds)
 	GLOB.talk_sound_map["goon speak pugg"] = list('sound/talksounds/goon/pugg.ogg', 'sound/talksounds/goon/pugg_ask.ogg', 'sound/talksounds/goon/pugg_exclaim.ogg')
 	GLOB.talk_sound_map["goon speak roach"] = list('sound/talksounds/goon/roach.ogg', 'sound/talksounds/goon/roach_ask.ogg', 'sound/talksounds/goon/roach_exclaim.ogg')
 	GLOB.talk_sound_map["goon speak skelly"] = list('sound/talksounds/goon/skelly.ogg', 'sound/talksounds/goon/skelly_ask.ogg', 'sound/talksounds/goon/skelly_exclaim.ogg')
-	GLOB.talk_sound_map["xeno speak"] = GLOB.xeno_speak_sound
+	GLOB.talk_sound_map["xeno speak"] = list('sound/talksounds/xeno/xenotalk.ogg', 'sound/talksounds/xeno/xenotalk2.ogg', 'sound/talksounds/xeno/xenotalk3.ogg')
 
 #undef DATUMLESS
