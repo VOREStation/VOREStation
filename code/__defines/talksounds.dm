@@ -1,4 +1,3 @@
-// This is a global define so that downstream modular files can use this, instead of making a ton of messy lists like it was before.
 #define DEFAULT_TALK_SOUNDS GLOB.talk_sound
 
 /proc/get_talk_sound(var/voice_sound)
