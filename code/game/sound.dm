@@ -308,6 +308,7 @@
 					'sound/effects/mech/powerloader_step2.ogg')
 	return soundin
 
+
 //Are these even used? //Yes
 GLOBAL_LIST_INIT(keyboard_sound, list('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg','sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg'))
 GLOBAL_LIST_INIT(bodyfall_sound, list('sound/effects/bodyfall1.ogg','sound/effects/bodyfall2.ogg','sound/effects/bodyfall3.ogg','sound/effects/bodyfall4.ogg'))
@@ -320,9 +321,6 @@ GLOBAL_LIST_INIT(wf_speak_void_sound, list ('sound/talksounds/wf/void_1.ogg', 's
 GLOBAL_LIST_INIT(wf_speak_vomva_sound, list ('sound/talksounds/wf/vomva_1.ogg', 'sound/talksounds/wf/vomva_2.ogg', 'sound/talksounds/wf/vomva_3.ogg', 'sound/talksounds/wf/vomva_4.ogg'))
 GLOBAL_LIST_INIT(xeno_speak_sound, list('sound/talksounds/xeno/xenotalk.ogg', 'sound/talksounds/xeno/xenotalk2.ogg', 'sound/talksounds/xeno/xenotalk3.ogg'))
 
-/*
- * Species sounds
-*/
 #define canine_sounds list("cough" = null, "sneeze" = null, "scream" = list('sound/voice/scream/canine/wolf_scream.ogg', 'sound/voice/scream/canine/wolf_scream2.ogg', 'sound/voice/scream/canine/wolf_scream3.ogg', 'sound/voice/scream/canine/wolf_scream4.ogg', 'sound/voice/scream/canine/wolf_scream5.ogg', 'sound/voice/scream/canine/wolf_scream6.ogg'), "pain" = list('sound/voice/pain/canine/wolf_pain.ogg', 'sound/voice/pain/canine/wolf_pain2.ogg', 'sound/voice/pain/canine/wolf_pain3.ogg', 'sound/voice/pain/canine/wolf_pain4.ogg'), "gasp" = list('sound/voice/gasp/canine/wolf_gasp.ogg'), "death" = list('sound/voice/death/canine/wolf_death1.ogg', 'sound/voice/death/canine/wolf_death2.ogg', 'sound/voice/death/canine/wolf_death3.ogg', 'sound/voice/death/canine/wolf_death4.ogg', 'sound/voice/death/canine/wolf_death5.ogg'))
 #define feline_sounds list("cough" = null, "sneeze" = null, "scream" = list('sound/voice/scream/feline/feline_scream.ogg'), "pain" = list('sound/voice/pain/feline/feline_pain.ogg'), "gasp" = list('sound/voice/gasp/feline/feline_gasp.ogg'), "death" = list('sound/voice/death/feline/feline_death.ogg'))
 #define cervine_sounds list("cough" = null, "sneeze" = null, "scream" = list('sound/voice/scream/cervine/cervine_scream.ogg'), "pain" = null, "gasp" = null, "death" = list('sound/voice/death/cervine/cervine_death.ogg'))
@@ -341,7 +339,6 @@ GLOBAL_LIST_INIT(xeno_speak_sound, list('sound/talksounds/xeno/xenotalk.ogg', 's
 #define vulpine_sounds list("cough" = null, "sneeze" = null, "scream" = list('sound/voice/scream/vulpine/fox_yip1.ogg', 'sound/voice/scream/vulpine/fox_yip2.ogg', 'sound/voice/scream/vulpine/fox_yip3.ogg'), "pain" = list('sound/voice/pain/vulpine/fox_pain1.ogg', 'sound/voice/pain/vulpine/fox_pain2.ogg', 'sound/voice/pain/vulpine/fox_pain3.ogg', 'sound/voice/pain/vulpine/fox_pain4.ogg'), "gasp" = list('sound/voice/gasp/canine/wolf_gasp.ogg'), "death" = list('sound/voice/death/canine/wolf_death1.ogg', 'sound/voice/death/canine/wolf_death2.ogg', 'sound/voice/death/canine/wolf_death3.ogg', 'sound/voice/death/canine/wolf_death4.ogg', 'sound/voice/death/canine/wolf_death5.ogg'))
 #define no_sounds list("cough" = null, "sneeze" = null, "scream" = null, "pain" = null, "gasp" = null, "death" = null)
 #define use_default list("cough" = null, "sneeze" = null, "scream" = null, "pain" = null, "gasp" = null, "death" = null)
-
 /*
  * TBD Sound Defines below
 */
