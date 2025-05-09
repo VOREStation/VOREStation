@@ -102,9 +102,7 @@ export const ListInputModal = (props) => {
     setTimeout(() => document!.getElementById(selected.toString())?.focus(), 1);
   }
 
-  function handleKeyDown<HTMLDivElement>(
-    event: React.KeyboardEvent<HTMLDivElement>,
-  ) {
+  function handleKeyDown<T>(event: React.KeyboardEvent<T>) {
     const key = event.key;
     if (key === KEY.Down || key === KEY.Up) {
       event.preventDefault();
