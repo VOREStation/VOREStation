@@ -77,7 +77,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     window.addEventListener('mouseup', this.handleStopDrag);
   };
 
-  handleStopDrag = (e: React.MouseEvent<unknown> | MouseEvent) => {
+  handleStopDrag = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const { onComponentMoved } = this.props;
     const { dragPos } = this.state;
 
@@ -152,7 +152,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     }
 
     return (
-      <Box
+      <Box<HTMLDivElement>
         className="ObjectComponent"
         position="absolute"
         left={x_pos + 'px'}
