@@ -205,7 +205,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["voice_test"])
-		var/sound/S = SSsounds.talk_sound_map[pref.voice_sound]
+		var/sound/S = sound(pick(SSsounds.talk_sound_map[pref.voice_sound])) // talk_sound_map returns a list of sounds
 		if(S)
 			S.frequency = pick(pref.voice_freq)
 			S.volume = 50
