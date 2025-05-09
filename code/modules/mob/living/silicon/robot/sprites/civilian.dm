@@ -505,9 +505,8 @@
 	icon_x = 32
 	pixel_x = 0
 
-
 /datum/robot_sprite/dogborg/service/smolraptor
-	sprite_icon = 'modular_chomp/icons/mob/smallraptors/smolraptor_serv.dmi'
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_serv.dmi'
 
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
