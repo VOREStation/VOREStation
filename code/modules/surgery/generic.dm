@@ -255,8 +255,8 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/msg = "[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool]."
 	var/self_msg = "You start to pry open the incision on [target]'s [affected.name] with \the [tool]."
-	var/msgBall = "Starts to pry open the incision on [target]'s [affected.name]"
-	var/self_msgBall = "Prying open the incision on [affected.name]"
+	var/msgBall = "starts to pry open the incision on [target]'s [affected.name]"
+	var/self_msgBall = "prying open the incision on [affected.name]"
 	if (target_zone == BP_TORSO)
 		msg = "[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
 		self_msg = "You start to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
@@ -264,8 +264,8 @@
 		self_msgBall = "Separating ribcage and rearranging organs."
 	if (target_zone == BP_GROIN)
 		msg = "[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
-		self_msg = "You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
-		msgBall = "Starts to pry open the incison and rearrange the organs in [target]'s lower abdomen"
+		self_msg = "you start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
+		msgBall = "starts to pry open the incison and rearrange the organs in [target]'s lower abdomen"
 	user.visible_message(span_filter_notice("[msg]"), span_filter_notice("[self_msg]"))
 	user.balloon_alert_visible(msgBall, self_msgBall)
 	target.custom_pain("It feels like the skin on your [affected.name] is on fire!", 40)
@@ -275,18 +275,18 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/msg = span_notice("[user] keeps the incision open on [target]'s [affected.name] with \the [tool].")
 	var/self_msg = span_notice("You keep the incision open on [target]'s [affected.name] with \the [tool].")
-	var/msgBall = "Keeps the incision open on [target]'s [affected.name]"
-	var/self_msgBall = "Keeping the incision open on \the [affected.name]"
+	var/msgBall = "keeps the incision open on [target]'s [affected.name]"
+	var/self_msgBall = "keeping the incision open on \the [affected.name]"
 	if (target_zone == BP_TORSO)
 		msg = span_notice("[user] keeps the ribcage open on [target]'s torso with \the [tool].")
 		self_msg = span_notice("You keep the ribcage open on [target]'s torso with \the [tool].")
-		msgBall = "Keeps the ribcage open on [target]'s torso."
-		self_msgBall = "Keeping the ribcage open."
+		msgBall = "keeps the ribcage open on [target]'s torso."
+		self_msgBall = "keeping the ribcage open."
 	if (target_zone == BP_GROIN)
 		msg = span_notice("[user] keeps the incision open on [target]'s lower abdomen with \the [tool].")
 		self_msg = span_notice("You keep the incision open on [target]'s lower abdomen with \the [tool].")
-		msgBall = "Keeps the incision open on [target]'s lower abdomen."
-		self_msgBall = "Keeping the incision open on the lower abdomen."
+		msgBall = "keeps the incision open on [target]'s lower abdomen."
+		self_msgBall = "keeping the incision open on the lower abdomen."
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible(msgBall, self_msgBall)
 	affected.open = 2
@@ -295,18 +295,18 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/msg = span_danger("[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!")
 	var/self_msg = span_danger("Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!")
-	var/msgBall = "Slips, tearing the edges of the incision."
-	var/self_msgBall = "Your hand slips, tearing the edges of the incision."
+	var/msgBall = "slips, tearing the edges of the incision."
+	var/self_msgBall = "your hand slips, tearing the edges of the incision."
 	if (target_zone == BP_TORSO)
 		msg = span_danger("[user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!")
 		self_msg = span_danger("Your hand slips, damaging several organs in [target]'s torso with \the [tool]!")
-		msgBall = "Slips, damaging several organs in [target]'s torso."
-		self_msgBall = "Your hand slips, damaging several organs in the torso."
+		msgBall = "slips, damaging several organs in [target]'s torso."
+		self_msgBall = "your hand slips, damaging several organs in the torso."
 	if (target_zone == BP_GROIN)
 		msg = span_danger("[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!")
 		self_msg = span_danger("Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!")
-		msgBall = "Slips, damaging several organs in [target]'s lower abdomen."
-		self_msgBall = "Your hand slips, damaging several organs in the torso."
+		msgBall = "slips, damaging several organs in [target]'s lower abdomen."
+		self_msgBall = "your hand slips, damaging several organs in the torso."
 	user.visible_message(msg, self_msg)
 	user.balloon_alert_visible(msgBall, self_msgBall)
 	target.apply_damage(12, BRUTE, affected, sharp = TRUE)
