@@ -1,12 +1,10 @@
 // This is a global define so that downstream modular files can use this, instead of making a ton of messy lists like it was before.
-#define TALK_SOUND_LIST SSsounds.talk_sound_map
 #define DEFAULT_TALK_SOUNDS GLOB.talk_sound
-#define FIND_TALK_SOUND(X) SSsounds.talk_sound_map[X]
 
 /proc/get_talk_sound(var/voice_sound)
 	if(!voice_sound)
 		return DEFAULT_TALK_SOUNDS
-	return FIND_TALK_SOUND(voice_sound)
+	return SSsounds.talk_sound_map[voice_sound]
 
 /proc/rlist(var/list/keys,var/list/values) //short for reversible list generator
 	var/list/rlist = list(list(),list(),FALSE,0)

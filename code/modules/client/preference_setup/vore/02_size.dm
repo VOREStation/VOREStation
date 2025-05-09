@@ -181,7 +181,7 @@
 		pref.voice_freq = choice
 		return TOPIC_REFRESH
 	else if(href_list["voice_sounds_list"])
-		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", TALK_SOUND_LIST)
+		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", SSsounds.talk_sound_map)
 		if(!pref.voice_sound)
 			pref.voice_sound = "goon speak 1"
 		else if(!choice)
@@ -205,7 +205,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["voice_test"])
-		var/sound/S = FIND_TALK_SOUND(pref.voice_sound)
+		var/sound/S = SSsounds.talk_sound_map[pref.voice_sound]
 		if(S)
 			S.frequency = pick(pref.voice_freq)
 			S.volume = 50
