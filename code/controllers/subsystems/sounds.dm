@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(sounds)
 
 /// Init talking sound lists
 /datum/controller/subsystem/sounds/proc/create_talk_sound_map()
-	talk_sound_map["beep-boop"] = FALLBACK_TALK_SOUND // first is DEFAULT
+	talk_sound_map["beep-boop"] = DEFAULT_TALK_SOUNDS // first is DEFAULT
 	talk_sound_map["goon speak 1"] =list('sound/talksounds/goon/speak_1.ogg', 'sound/talksounds/goon/speak_1_ask.ogg', 'sound/talksounds/goon/speak_1_exclaim.ogg')
 	talk_sound_map["goon speak 2"] = list('sound/talksounds/goon/speak_2.ogg', 'sound/talksounds/goon/speak_2_ask.ogg', 'sound/talksounds/goon/speak_2_exclaim.ogg')
 	talk_sound_map["goon speak 3"] = list('sound/talksounds/goon/speak_3.ogg', 'sound/talksounds/goon/speak_3_ask.ogg', 'sound/talksounds/goon/speak_3_exclaim.ogg')

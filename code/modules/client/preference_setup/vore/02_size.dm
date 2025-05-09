@@ -76,7 +76,7 @@
 	character.resize(pref.size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	if(!pref.voice_sound)
-		character.voice_sounds_list = FALLBACK_TALK_SOUND
+		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
 	else
 		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
@@ -181,7 +181,7 @@
 		pref.voice_freq = choice
 		return TOPIC_REFRESH
 	else if(href_list["voice_sounds_list"])
-		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", GLOB.talk_sound_map)
+		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", TALK_SOUND_LIST)
 		if(!pref.voice_sound)
 			pref.voice_sound = "goon speak 1"
 		else if(!choice)
