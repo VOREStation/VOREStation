@@ -331,12 +331,9 @@
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
-/datum/robot_sprite/dogborg/cargo/smolraptor
+/datum/robot_sprite/dogborg/mining/smolraptor/alt
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_car.dmi'
 	name = "Small Raptor Cargo"
-	sprite_icon_state = "smolraptor"
-	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "Sit")

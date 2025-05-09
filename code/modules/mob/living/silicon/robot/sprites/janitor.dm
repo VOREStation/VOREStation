@@ -262,6 +262,7 @@
 	sprite_icon_state = "smolraptor_alt"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/janitor/possum

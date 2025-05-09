@@ -512,4 +512,5 @@
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit")
