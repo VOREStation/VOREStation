@@ -564,7 +564,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)
 			points_left -= GLOB.traits_costs[T]
 
-		var/traits_left = pref.max_traits - pref.pos_traits.len // CHOMPEdit: Only positive traits have a slot limit, to prevent broken builds
+		var/traits_left = pref.max_traits - pref.pos_traits.len
 
 		var/message = "Select a trait to learn more."
 		if(mode != NEUTRAL_MODE)
