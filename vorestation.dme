@@ -151,7 +151,6 @@
 #include "code\__defines\statpanel.dm"
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\supply.dm"
-#include "code\__defines\talking_sounds.dm"
 #include "code\__defines\talksounds.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\text.dm"
