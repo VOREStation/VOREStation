@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "some coulcatcher vis and pref issues"
-  - code_imp: "update tgui core to 3.1.4"
