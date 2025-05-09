@@ -2,14 +2,12 @@ SUBSYSTEM_DEF(lobby_monitor)
 	name = "Lobby Art"
 	init_order = INIT_ORDER_LOBBY
 	// init_stage = INITSTAGE_EARLY
+	flags = SS_NO_INIT
 	wait = 1 SECONDS
 	runlevels = ALL
 
 	/// The clients who we've waited a [wait] duration to start working. If they haven't, we reboot them
 	var/to_reinitialize = list()
-
-/datum/controller/subsystem/lobby_monitor/Initialize() // move to no init once the MC supports INITSTAGE_EARLY
-	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/lobby_monitor/fire(resumed)
 	var/list/new_players = GLOB.new_player_list
