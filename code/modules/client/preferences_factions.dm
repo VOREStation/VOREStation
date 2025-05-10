@@ -23,7 +23,7 @@ var/global/list/citizenship_choices = list(
 	"Unitary Alliance of Salthan Fyrds",
 	"Elysian Colonies",
 	"Third Ares Confederation",
-	"Teshari Expeditionary Fleet",
+	"Teshari Union",
 	"Altevian Hegemony",
 	"Kosaky Fleets"
 	)
@@ -98,7 +98,8 @@ var/global/list/faction_choices = list(
 	"United Solar Defense Force",
 	"Proxima Centauri Risk Control",
 	"HIVE Security",
-	"Stealth Assault Enterprises"
+	"Stealth Assault Enterprises",
+	"Teshari Union"
 	)
 // VOREStation Edits Stop
 
