@@ -33,17 +33,11 @@
 
 // disabilities
 #define NEARSIGHTED 0x1
-#define EPILEPSY    0x2
-#define COUGHING    0x4
-#define TOURETTES   0x8
-#define NERVOUS     0x10
 /*
 #define DEPRESSION     	0x20	// Roleplay drugs
 #define SCHIZOPHRENIA  	0x40	// Roleplay drugs
 */
 #define WINGDINGS     	0x80	// Better handling as disability
-#define DETERIORATE     0x100	// Body melts slowly, medical loves you!
-#define GIBBING     	0x200	// Landmine for genetics to find
 #define CENSORED     	0x400	// Cannot swear
 // sdisabilities
 #define BLIND 0x1
