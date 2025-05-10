@@ -427,3 +427,7 @@
 	matter = list(MAT_WOOD = 50)
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
+
+/obj/item/reagent_containers/glass/beaker/vial/sustenance
+	name = "vial (artificial sustenance)"
+	prefill = list(REAGENT_ID_ASUSTENANCE = 30)

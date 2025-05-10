@@ -85,6 +85,9 @@
 		SSinternal_wiki.add_icon(subdata, initial(beaker_path.icon), initial(beaker_path.icon_state), R.color)
 		// Get internal data
 		subdata["description"] = R.description
+		subdata["addictive"] = 0
+		if(R.id in get_addictive_reagents(ADDICT_ALL))
+			subdata["addictive"] = TRUE
 		subdata["flavor"] = R.taste_description
 		subdata["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
 		subdata["beakerAmount"] = found_reagents[ID]
