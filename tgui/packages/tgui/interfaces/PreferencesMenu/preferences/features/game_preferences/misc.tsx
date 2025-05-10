@@ -96,3 +96,17 @@ export const obfuscate_job: FeatureToggle = {
   description: 'Hide your job from other players in the lobby',
   component: CheckboxInput,
 };
+
+export const EMOTE_VARY: FeatureToggle = {
+  name: 'Vary Emote Pitch',
+  category: 'SOUNDS',
+  description: 'Varies the pitch of your emotes randomly.',
+  component: CheckboxInput,
+};
+
+export const AUTOTRANSCORE: FeatureToggle = {
+  name: 'Automatically Notify Transcore on Death',
+  category: 'GAMEPLAY',
+  description: 'Do you want medbay to know you died automatically?',
+  component: CheckboxInput,
+};

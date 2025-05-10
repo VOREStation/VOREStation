@@ -26,8 +26,6 @@
 
 	if(get_restraining_bolt())	// Borgs with Restraining Bolts move slower.
 		. += 1
-	if(nutrition > 1000)
-		. += nutrition / 2000
 
 	. += CONFIG_GET(number/robot_delay)
 
