@@ -1161,6 +1161,20 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/axehorn
+	name = "axe horn"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "axehorn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/axehorn_alt
+	name = "axe horn, alt"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "axehornalt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"
