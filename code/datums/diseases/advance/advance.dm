@@ -38,16 +38,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s_processing = FALSE
 	var/id = ""
 
-/datum/disease/advance/New(process = TRUE, datum/disease/advance/D)
-	if(istype(D))
-		for(var/datum/symptom/S in D.symptoms)
-			symptoms += new S.type
-	else
-		D = null
-
+/datum/disease/advance/New()
 	Refresh()
-	..(process, D)
-	return
 
 /datum/disease/advance/Destroy()
 	if(s_processing)
@@ -72,15 +64,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return TRUE
 
 /datum/disease/advance/IsSame(datum/disease/advance/D)
-	if(ispath(D))
-		return FALSE
-
 	if(!istype(D, /datum/disease/advance))
 		return FALSE
 
 	if(GetDiseaseID() != D.GetDiseaseID())
 		return FALSE
-
 	return TRUE
 
 /datum/disease/advance/cure(resistance = TRUE)
@@ -91,20 +79,32 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		remove_virus()
 	qdel(src)
 
-/datum/disease/advance/Copy(process = 0)
-	return new /datum/disease/advance(process, src, 1)
+/datum/disease/advance/CopyDisease()
+	var/datum/disease/advance/A = ..()
+	QDEL_LIST(A.symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
+		A.symptoms += S.CopySymptom()
+	A.disease_flags = disease_flags
+	A.resistance = resistance
+	A.stealth = stealth
+	A.stage_rate = stage_rate
+	A.transmission = transmission
+	A.severity = severity
+	A.speed = speed
+	A.id = id
+	return A
 
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
 	if(!(IsSame(D)))
 		var/list/possible_symptoms = shuffle(D.symptoms)
 		for(var/datum/symptom/S in possible_symptoms)
-			AddSymptom(new S.type)
+			AddSymptom(S.CopySymptom())
 
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)
 	for(var/datum/symptom/symp in symptoms)
 		if(symp.id == S.id)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/disease/advance/proc/GenerateSymptomsBySeverity(sev_min, sev_max, amount = 1)
 
@@ -152,22 +152,22 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	return generated
 
-/datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
+/datum/disease/advance/proc/Refresh(new_name = FALSE)
 	GenerateProperties()
 	AssignProperties()
 	id = null
 
-	if(!GLOB.archive_diseases[GetDiseaseID()])
+	var/the_id = GetDiseaseID()
+	if(!GLOB.archive_diseases[the_id])
+		GLOB.archive_diseases[the_id] = src // So we don't infinite loop
+		GLOB.archive_diseases[the_id] = CopyDisease()
 		if(new_name)
 			AssignName()
-		GLOB.archive_diseases[GetDiseaseID()] = src // So we don't infinite loop
-		GLOB.archive_diseases[GetDiseaseID()] = new /datum/disease/advance(0, src, 1)
 	else
 		var/datum/disease/advance/A = GLOB.archive_diseases[GetDiseaseID()]
 		var/actual_name = A.name
 		if(actual_name != "Unknown")
 			name = actual_name
-
 
 /datum/disease/advance/proc/GenerateProperties()
 	resistance = 0
@@ -180,12 +180,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/c2sev
 	var/c3sev
 
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		resistance += S.resistance
 		stealth += S.stealth
 		stage_rate += S.stage_speed
 		transmission += S.transmission
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		S.severityset(src)
 		switch(S.severity)
 			if(-INFINITY to 0)
@@ -303,7 +303,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	if(!id)
 		var/list/L = list()
 		for(var/datum/symptom/S in symptoms)
-			L += S.id
+			if(S.neutered)
+				L += "[S.id]N"
+			else
+				L += S.id
 		L = sortList(L) // Sort the list so it doesn't matter which order the symptoms are in.
 		var/result = jointext(L, ":")
 		id = result
@@ -325,7 +328,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	else
 		RemoveSymptom(pick(symptoms))
 		symptoms += S
-	return
+	S.OnAdd(src)
+	Refresh()
 
 // Simply removes the symptom.
 /datum/disease/advance/proc/RemoveSymptom(datum/symptom/S)
@@ -345,7 +349,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
-		diseases += A.Copy()
+		diseases += A.CopyDisease()
 
 	if(!length(diseases))
 		return null
@@ -374,7 +378,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/list/preserve = list()
 		if(istype(data) && data["viruses"])
 			for(var/datum/disease/A in data["viruses"])
-				preserve += A.Copy()
+				preserve += A.CopyDisease()
 			R.data = data.Copy()
 		if(length(preserve))
 			R.data["viruses"] = preserve
