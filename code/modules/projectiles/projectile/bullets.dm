@@ -211,8 +211,7 @@
 
 /obj/item/projectile/bullet/rifle/a762/hunter // Optimized for killing simple animals and not people, because Balance(tm)
 	damage = 20
-	SA_bonus_damage = 50 // 70 total on animals.
-	SA_vulnerability = SA_ANIMAL
+	mob_bonus_damage = 50
 	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a545
@@ -233,8 +232,7 @@
 
 /obj/item/projectile/bullet/rifle/a545/hunter
 	damage = 15
-	SA_bonus_damage = 35 // 50 total on animals.
-	SA_vulnerability = SA_ANIMAL
+	mob_bonus_damage = 35
 	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a145 // 14.5×114mm is bigger than a .50 BMG round.

@@ -2,7 +2,7 @@
 
 /obj/machinery/mineral/stacking_unit_console
 	name = "stacking machine console"
-	icon = 'icons/obj/machines/mining_machines_vr.dmi'  // VOREStation Edit
+	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	layer = ABOVE_WINDOW_LAYER
 	density = TRUE
@@ -70,7 +70,7 @@
 
 /obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
-	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
+	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
 	density = TRUE
 	anchored = TRUE

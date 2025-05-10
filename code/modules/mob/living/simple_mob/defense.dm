@@ -1,10 +1,8 @@
 // Hit by a projectile.
 /mob/living/simple_mob/bullet_act(var/obj/item/projectile/P)
 	//Projectiles with bonus SA damage
-	if(!P.nodamage)
-	//	if(!P.SA_vulnerability || P.SA_vulnerability == intelligence_level)
-		if(P.SA_vulnerability & mob_class)
-			P.damage += P.SA_bonus_damage
+	if(!P.nodamage && P.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
+		P.damage += P.mob_bonus_damage
 
 	. = ..()
 

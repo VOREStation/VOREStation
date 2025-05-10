@@ -524,7 +524,8 @@
 		/obj/item/ano_scanner,
 		/obj/item/pickaxe/hand,
 		/obj/item/xenoarch_multi_tool,
-		/obj/item/pickaxe/excavationdrill
+		/obj/item/pickaxe/excavationdrill,
+		/obj/item/storage/sample_container
 		)
 
 /obj/item/storage/belt/fannypack
