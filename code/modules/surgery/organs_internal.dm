@@ -311,6 +311,7 @@
 		user.visible_message(span_filter_notice("[user] starts pulling \the [tool] from [target]'s [affected]."), \
 		span_filter_notice("You start pulling \the [tool] from [target]'s [affected]."))
 		user.balloon_alert_visible("starts pulling \the [tool] from [target]'s [affected]", "pulling \the [tool] from \the [affected]")
+		return
 
 	target.op_stage.current_organ = organ_to_remove
 
