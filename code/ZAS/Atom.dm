@@ -56,6 +56,28 @@
 	#endif
 	return (AIR_BLOCKED*!CanZASPass(other, FALSE))|(ZONE_BLOCKED*!CanZASPass(other, TRUE))
 
+/turf/proc/self_airblock()
+	if(blocks_air & AIR_BLOCKED)
+		return BLOCKED
+
+	if(blocks_air & ZONE_BLOCKED)
+		return ZONE_BLOCKED
+
+	var/result = 0
+	for(var/atom/movable/M as anything in contents)
+		switch(M.can_atmos_pass)
+			if(ATMOS_PASS_YES)
+				continue
+			if(ATMOS_PASS_NO)
+				return BLOCKED
+			if(ATMOS_PASS_DENSITY)
+				if(M.density)
+					return BLOCKED
+			if(ATMOS_PASS_PROC)
+				result |= M.c_airblock(src)
+		if(result == BLOCKED) return BLOCKED
+	return result
+
 /turf/c_airblock(turf/other)
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
