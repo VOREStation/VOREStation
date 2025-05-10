@@ -22,9 +22,12 @@ SUBSYSTEM_DEF(sounds)
 	var/channel_random_low
 	/// higher reserve position - decremented and incremented to reserve sound channels, anything above this is reserved. The channel at this index is the highest unreserved channel.
 	var/channel_reserve_high
+	/// Assoc list of character speaking sounds, contains lists of sounds per key for use with pick()
+	var/talk_sound_map = list()
 
 /datum/controller/subsystem/sounds/Initialize()
 	setup_available_channels()
+	create_talk_sound_map()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/sounds/proc/setup_available_channels()
@@ -131,5 +134,23 @@ SUBSYSTEM_DEF(sounds)
 /// How many channels we have left.
 /datum/controller/subsystem/sounds/proc/available_channels_left()
 	return length(channel_list) - random_channels_min
+
+/// Init talking sound lists
+/datum/controller/subsystem/sounds/proc/create_talk_sound_map()
+	talk_sound_map["beep-boop"] = DEFAULT_TALK_SOUNDS // first is DEFAULT
+	talk_sound_map["goon speak 1"] =list('sound/talksounds/goon/speak_1.ogg', 'sound/talksounds/goon/speak_1_ask.ogg', 'sound/talksounds/goon/speak_1_exclaim.ogg')
+	talk_sound_map["goon speak 2"] = list('sound/talksounds/goon/speak_2.ogg', 'sound/talksounds/goon/speak_2_ask.ogg', 'sound/talksounds/goon/speak_2_exclaim.ogg')
+	talk_sound_map["goon speak 3"] = list('sound/talksounds/goon/speak_3.ogg', 'sound/talksounds/goon/speak_3_ask.ogg', 'sound/talksounds/goon/speak_3_exclaim.ogg')
+	talk_sound_map["goon speak 4"] = list('sound/talksounds/goon/speak_4.ogg', 'sound/talksounds/goon/speak_4_ask.ogg', 'sound/talksounds/goon/speak_4_exclaim.ogg')
+	talk_sound_map["goon speak blub"] = list('sound/talksounds/goon/blub.ogg', 'sound/talksounds/goon/blub_ask.ogg', 'sound/talksounds/goon/blub_exclaim.ogg')
+	talk_sound_map["goon speak bottalk"] = list('sound/talksounds/goon/bottalk_1.ogg', 'sound/talksounds/goon/bottalk_2.ogg', 'sound/talksounds/goon/bottalk_3.ogg', 'sound/talksounds/goon/bottalk_4.wav')
+	talk_sound_map["goon speak buwoo"] = list('sound/talksounds/goon/buwoo.ogg', 'sound/talksounds/goon/buwoo_ask.ogg', 'sound/talksounds/goon/buwoo_exclaim.ogg')
+	talk_sound_map["goon speak cow"] = list('sound/talksounds/goon/cow.ogg', 'sound/talksounds/goon/cow_ask.ogg', 'sound/talksounds/goon/cow_exclaim.ogg')
+	talk_sound_map["goon speak lizard"] = list('sound/talksounds/goon/lizard.ogg', 'sound/talksounds/goon/lizard_ask.ogg', 'sound/talksounds/goon/lizard_exclaim.ogg')
+	talk_sound_map["goon speak pug"] = list('sound/talksounds/goon/pug.ogg', 'sound/talksounds/goon/pug_ask.ogg', 'sound/talksounds/goon/pug_exclaim.ogg')
+	talk_sound_map["goon speak pugg"] = list('sound/talksounds/goon/pugg.ogg', 'sound/talksounds/goon/pugg_ask.ogg', 'sound/talksounds/goon/pugg_exclaim.ogg')
+	talk_sound_map["goon speak roach"] = list('sound/talksounds/goon/roach.ogg', 'sound/talksounds/goon/roach_ask.ogg', 'sound/talksounds/goon/roach_exclaim.ogg')
+	talk_sound_map["goon speak skelly"] = list('sound/talksounds/goon/skelly.ogg', 'sound/talksounds/goon/skelly_ask.ogg', 'sound/talksounds/goon/skelly_exclaim.ogg')
+	talk_sound_map["xeno speak"] = list('sound/talksounds/xeno/xenotalk.ogg', 'sound/talksounds/xeno/xenotalk2.ogg', 'sound/talksounds/xeno/xenotalk3.ogg')
 
 #undef DATUMLESS

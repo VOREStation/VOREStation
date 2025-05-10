@@ -649,7 +649,7 @@ var/list/preferences_datums = list()
 					character.species.vars[to_edit] = instance.var_changes[to_edit]
 	character.update_transform()
 	if(!voice_sound)
-		character.voice_sounds_list = GLOB.talk_sound
+		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
 	else
 		character.voice_sounds_list = get_talk_sound(voice_sound)
 

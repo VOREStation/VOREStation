@@ -76,7 +76,7 @@
 	character.resize(pref.size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	if(!pref.voice_sound)
-		character.voice_sounds_list = GLOB.talk_sound
+		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
 	else
 		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
@@ -181,23 +181,7 @@
 		pref.voice_freq = choice
 		return TOPIC_REFRESH
 	else if(href_list["voice_sounds_list"])
-		var/list/possible_voice_types = list(
-			"beep-boop",
-			"goon speak 1",
-			"goon speak 2",
-			"goon speak 3",
-			"goon speak 4",
-			"goon speak blub",
-			"goon speak bottalk",
-			"goon speak buwoo",
-			"goon speak cow",
-			"goon speak lizard",
-			"goon speak pug",
-			"goon speak pugg",
-			"goon speak roach",
-			"goon speak skelly",
-			"xeno speak")
-		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
+		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", SSsounds.talk_sound_map)
 		if(!pref.voice_sound)
 			pref.voice_sound = "goon speak 1"
 		else if(!choice)
@@ -221,38 +205,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["voice_test"])
-		var/sound/S
-		switch(pref.voice_sound)
-			if("beep-boop")
-				S = sound(pick(GLOB.talk_sound))
-			if("goon speak 1")
-				S = sound(pick(GLOB.goon_speak_one_sound))
-			if("goon speak 2")
-				S = sound(pick(GLOB.goon_speak_two_sound))
-			if("goon speak 3")
-				S = sound(pick(GLOB.goon_speak_three_sound))
-			if("goon speak 4")
-				S = sound(pick(GLOB.goon_speak_four_sound))
-			if("goon speak blub")
-				S = sound(pick(GLOB.goon_speak_blub_sound))
-			if("goon speak bottalk")
-				S = sound(pick(GLOB.goon_speak_bottalk_sound))
-			if("goon speak buwoo")
-				S = sound(pick(GLOB.goon_speak_buwoo_sound))
-			if("goon speak cow")
-				S = sound(pick(GLOB.goon_speak_cow_sound))
-			if("goon speak lizard")
-				S = sound(pick(GLOB.goon_speak_lizard_sound))
-			if("goon speak pug")
-				S = sound(pick(GLOB.goon_speak_pug_sound))
-			if("goon speak pugg")
-				S = sound(pick(GLOB.goon_speak_pugg_sound))
-			if("goon speak roach")
-				S = sound(pick(GLOB.goon_speak_roach_sound))
-			if("goon speak skelly")
-				S = sound(pick(GLOB.goon_speak_skelly_sound))
-			if("xeno speak")
-				S = sound(pick(GLOB.xeno_speak_sound))
+		var/sound/S = sound(pick(SSsounds.talk_sound_map[pref.voice_sound])) // talk_sound_map returns a list of sounds
 		if(S)
 			S.frequency = pick(pref.voice_freq)
 			S.volume = 50
