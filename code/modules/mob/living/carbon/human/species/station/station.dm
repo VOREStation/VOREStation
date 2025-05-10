@@ -1038,32 +1038,33 @@
 	spawn_flags = SPECIES_IS_RESTRICTED
 /datum/species/harpy
 	name = SPECIES_RAPALA
-	name_plural = "Rapalans"
+	name_plural = "Rapala"
 	icobase = 'icons/mob/human_races/r_harpy_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_harpy_vr.dmi'
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_BIRDSONG, LANGUAGE_UNATHI)
+	secondary_langs = list(LANGUAGE_UNATHI)
 	species_language = LANGUAGE_UNATHI
-	name_language = null
+	name_language = LANGUAGE_UNATHI
 	color_mult = 1
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/flying_vore_toggle,/mob/living/proc/start_wings_hovering,/mob/living/carbon/human/proc/tie_hair)
 	digi_allowed = TRUE
 
-	min_age = 18
+	min_age = 19 //not a typo, Rapala consider adult age to be 19
 	max_age = 80
 
 	soft_landing = TRUE
 
 	base_color = "#EECEB3"
 
-	blurb = "An Avian species, coming from a distant planet, the Rapalas are the very proud race.\
-	Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
-	who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hour chasing the planet's many fish-like fauna.\
-	The Rapalan's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
+	blurb = "A coincidentally humanlike species, Rapala are a client species of the Unathi that have \
+	no genetic relation to humans in spite of the similar appearance. They have an unusual gene pairing of \
+	XX and XY, and VW and WW. They are capable of in atmosphere flight and have organs \
+	that make them more naturally attuned to learning the piloting of aircraft and spaceflight. Rapala \
+	society is hierarchical and communal, although not every individual will agree with this status quo."
 
 	wikilink="https://wiki.vore-station.net/Backstory#Rapala"
 
