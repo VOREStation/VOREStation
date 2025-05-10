@@ -226,7 +226,7 @@
 			traits["name"] = disease.name
 			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
-			for(var/datum/symptom/symptom as() in adv_disease.symptoms)
+			for(var/datum/symptom/symptom as anything in adv_disease.symptoms)
 				traits["symptoms"] += list(symptom.get_symptom_data())
 			traits["resistance"] = adv_disease.resistance
 			traits["stealth"] = adv_disease.stealth
@@ -286,7 +286,6 @@
 /obj/machinery/computer/pandemic/proc/create_culture_bottle(index)
 	var/id = get_virus_id_by_index(text2num(index))
 	var/datum/disease/advance/adv_disease = GLOB.archive_diseases[id]
-	var/old_name = adv_disease.name
 
 	if(!istype(adv_disease))
 		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
@@ -294,7 +293,9 @@
 
 	if(!beaker.reagents.has_reagent(REAGENT_ID_BLOOD, 10))
 		to_chat(usr, span_warning("ERROR: Not enough blood in the sample."))
-		return FALSE
+		return
+
+	var/old_name = adv_disease.name
 
 	use_power(active_power_usage)
 	adv_disease = adv_disease.Copy()
