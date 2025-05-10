@@ -215,6 +215,7 @@
 	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
 
 /obj/item/storage/bag/ore/proc/autoload(mob/user)
+	SIGNAL_HANDLER
 	var/obj/item/ore/O = locate() in get_turf(src)
 	if(O)
 		gather_all(get_turf(src), user)

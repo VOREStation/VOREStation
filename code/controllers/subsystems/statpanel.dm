@@ -451,9 +451,9 @@ SUBSYSTEM_DEF(statpanels)
 	on_mob_move(parent.mob)
 
 /datum/object_window_info/proc/turflist_changed(mob/source)
+	SIGNAL_HANDLER
 	if(!parent)//statbrowser hasnt fired yet and we still have a pending action
 		return
-	SIGNAL_HANDLER
 	if(!(flags & TURFLIST_UPDATED)) //Limit updates to 1 per tick
 		SSstatpanels.immediate_send_stat_data(parent)
 		flags |= TURFLIST_UPDATED
