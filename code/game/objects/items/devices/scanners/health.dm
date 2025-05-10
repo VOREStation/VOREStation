@@ -383,18 +383,18 @@
 				dat += "<br>"
 		dat += span_notice("Subject's pulse: [H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? span_red(H.get_pulse(GETPULSE_TOOL) + " bpm") : span_blue(H.get_pulse(GETPULSE_TOOL) + " bpm")].") // VORE Edit: Missed a linebreak here.
 		dat += "<br>"
-		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
-			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())
+		var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+		if(xc)
+			if(H.stat == DEAD && xc.revive_ready == REVIVING_READY && !H.hasnutriment())
 				dat += span_danger("WARNING: Protein levels low. Subject incapable of reconstitution.")
-			else if(H.revive_ready == REVIVING_NOW)
-				dat += span_warning("Subject is undergoing form reconstruction. Estimated time to finish is in: [round((H.revive_finished - world.time) / 10)] seconds.")
-			else if(H.revive_ready == REVIVING_DONE)
+			else if(xc.revive_ready == REVIVING_NOW)
+				dat += span_warning("Subject is undergoing form reconstruction. Estimated time to finish is in: [round((xc.revive_finished - world.time) / 10)] seconds.")
+			else if(xc.revive_ready == REVIVING_DONE)
 				dat += span_notice("Subject is ready to hatch. Transfer to dark room for holding with food available.")
 			else if(H.stat == DEAD)
 				dat+= span_danger("WARNING: Defib will cause extreme pain and set subject feral. Sedation recommended prior to defibrillation.")
 			else // If they bop them and they're not dead or reviving, give 'em a little notice.
 				dat += span_notice("Subject is a Xenochimera. Treat accordingly.")
-		// VOREStation Edit End
 	user.show_message(dat, 1)
 	if(guide)
 		guide(M, user)

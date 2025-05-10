@@ -32,10 +32,11 @@
 /* // Commenting this out for now, will revisit later once I can figure out how to override Click() appropriately.
 /obj/screen/alert/xenochimera/reconstitution/Click(mob/usr)
 	var/mob/living/carbon/human/H = usr
-	if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
-		if(H.revive_ready == REVIVING_NOW)
-			to_chat(usr, "We are currently reviving, and will be done in [(H.revive_finished - world.time) / 10] seconds.")
-		else if(H.revive_ready == REVIVING_DONE)
+	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+	if(xc) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
+		if(xc.revive_ready == REVIVING_NOW)
+			to_chat(usr, "We are currently reviving, and will be done in [(xc.revive_finished - world.time) / 10] seconds.")
+		else if(xc.revive_ready == REVIVING_DONE)
 			to_chat(usr, "You should have a notification + alert for this! Bug report that this is still here!")
 */
 
@@ -47,7 +48,7 @@
 /*	// Commenting this out for now, will revisit later once I can figure out how to override Click() appropriately.
 /obj/screen/alert/xenochimera/readytohatch/Click(mob/usr)
 	var/mob/living/carbon/human/H = usr
-	if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
+	if(H.get_xenochimera_component()) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
 		if(H.revive_ready == REVIVING_DONE) // Sanity check.
 			H.hatch() // Hatch.
 */

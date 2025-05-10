@@ -80,6 +80,9 @@
 	else if(stat == DEAD && !stasis)
 		handle_defib_timer()
 
+	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
+	handle_species_components()
+
 	if(skip_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -901,6 +904,9 @@
 			drowsyness = max(drowsyness, disable_severity)
 		if(species.allergen_reaction & AG_CONFUSE)
 			Confuse(disable_severity/4)
+
+/mob/living/carbon/human/proc/handle_species_components()
+	species.handle_species_components(src)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
