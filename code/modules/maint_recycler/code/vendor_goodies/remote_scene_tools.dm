@@ -12,9 +12,9 @@
 	icon_state = "sticker_inactive"
 	name = "Bluespace Sticker"
 	desc = "A stretchable, flexible sticker that induces a quasi-stable 4th dimensional bluespace buzzword rift, enabling moderate levels of touch between the two."
-	description_info = "These stickers act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other sticker! It's vauge, so use it how you want in RP! Just remember bystander consent!"
+	description_info = "These stickers act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other sticker! It's vague, so use it how you want in RP! Just remember bystander consent!"
 	slot_flags = (SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_GLOVES | SLOT_MASK | SLOT_HEAD | SLOT_FEET | SLOT_ID | SLOT_BELT | SLOT_BACK | SLOT_POCKET)
-
+	w_class = ITEMSIZE_SMALL
 	var/mob/worn_mob = null
 	var/last_loc
 
@@ -37,7 +37,7 @@
 
 	RegisterSignal(mob, COMSIG_MOB_LOGIN, PROC_REF(worn_mob_logged_in))
 	RegisterSignal(mob, COMSIG_MOB_LOGOUT, PROC_REF(worn_mob_logged_out))
-	transmit_emote(src, span_notice("The [src]\'s has been put on by [mob]!"))
+	transmit_emote(src, span_notice("\The [src]\ has been put on by [mob]!"))
 
 
 
@@ -46,13 +46,13 @@
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGIN)
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGOUT)
 	worn_mob = null
-	transmit_emote(src, span_warning("The [src]\'s wearer has removed it!"))
+	transmit_emote(src, span_warning("\The [src]\'s wearer has removed it!"))
 
 /obj/item/remote_scene_tool/proc/worn_mob_logged_out()
 	SIGNAL_HANDLER
 	if(!linked)
 		return
-	transmit_emote(src, span_warning("The [src]\'s wearer has gone SSD!"))
+	transmit_emote(src, span_warning("\The [src]\'s wearer has gone SSD!"))
 	linked?.linked_updated()
 
 	//called when the mob wearing this item logs out
@@ -62,7 +62,7 @@
 	//called when the mob wearing this item logs in
 	if(!linked)
 		return
-	transmit_emote(src, "The [src]\'s wearer has returned from SSD!")
+	transmit_emote(src, "\The [src]\'s wearer has returned from SSD!")
 	linked?.linked_updated()
 
 /obj/item/remote_scene_tool/see_emote(var/mob/M as mob, var/text, var/emote_type)
@@ -140,7 +140,7 @@
 		. += span_notice("This is linked to [linked.loc]\'s [linked.name].")
 		var/mob/m = linked.loc
 		if(!m.client)
-			. += span_warning("The wearer of \The [src]'s counterpart doesn't appear to be all there!")
+			. += span_warning("The wearer of \the [src]'s counterpart doesn't appear to be all there!")
 	if(!linked)
 		. += span_warning("This is not linked to anything!")
 	if(!ismob(linked.loc))
@@ -168,44 +168,221 @@
 	contents += RST2
 	calibrate_size()
 
+
+#define DISCARD_LAYER FALSE
+
+
+
 /obj/item/remote_scene_tool/voodoo_doll
 	name = "voodoo doll"
-	desc = "A dubiously-cursed-esq Voodoo doll that mimics whoever is wearing it's matching necklace via built in hardlight projection."
+	desc = "A dubiously cursed-esq Voodoo doll that mimics whoever is wearing its matching necklace via built in hardlight projection."
 	icon = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools.dmi'
 	icon_state = "voodoo_doll_inactive"
 	icon_root = "voodoo_doll"
-	description_info = "The Doll acts as a remote scene tool - any sort of emotes or subtles that the wearer does will go DIRECTLY to the necklace! It's vauge, so use it how you want in RP! Just remember bystander consent!"
+	description_info = "The Doll acts as a remote scene tool - any sort of emotes or subtles that the wearer does will go DIRECTLY to the necklace! It's vague, so use it how you want in RP! Just remember bystander consent!"
 	//this is just a copy of the remote scene tool, but with a different icon
 	//and a different name
 
-	var/last_loc_update = null
+	var/underlayRotation = 45
+
+
+	var/list/tail_data = list("x" = 2, "y" = -2, "scale" = 1.6)
+
+	var/list/taur_data = list("x" = 2, "y" = 2, "scale" = 1.1)
+
+	var/list/wing_data = list("x" = 2, "y" = -2, "scale" = 1) //god i wish we had structs.
+
+	var/list/ear_data = list("x" = 0, "y" = 1, "scale" = 1)
+
+	var/list/hat_data = list("x" = 0, "y" = 3, "scale" = 1)
+
+	var/earScaleX = 1.5
+	var/earScaleY = 1.5
+	var/earPixelX = 0
+	var/earPixelY = 1
+
+	var/hatScale = 1
+	var/hatPixelX = 0
+	var/hatPixelY = 3
+
+	var/outline_size = 1
+
+
+	var/list/human_layer_handling = list(
+
+
+	)
+
+
+	var/image/displacement_render_image = list(
+
+
+	)
+
+	var/list/discarded_layer_indicies = list(
+	VORE_BELLY_LAYER = fsdfsd, //no
+	TAIL_LOWER_LAYER = fasdsafasfsa,
+	TAIL_UPPER_LAYER,
+	TAIL_UPPER_LAYER_ALT, //drawn manually
+	FIRE_LAYER, //not relevant
+	TARGETED_LAYER, //not relevant
+	MOB_WATER_LAYER, //not relevant
+	L_HAND_LAYER, //not drawn, looks like ass
+	R_HAND_LAYER,
+	EARS_LAYER, //drawn manually
+	WING_LAYER,
+	WING_LOWER_LAYER, //drawn manually
+	HEAD_LAYER, //drawn manually
+	)
+
+	appearance_flags = KEEP_TOGETHER
+
+/obj/item/remote_scene_tool/voodoo_doll/Move(atom/newloc, direct, movetime)
+	. = ..()
+	dir = SOUTH //we need to do this
+
+/obj/item/remote_scene_tool/voodoo_doll/proc/get_outline_color(var/r,var/g,var/b,var/a, var/offset = 30)
+	var/new_rgba = rgb(r-offset,g-offset,b-offset,a)
+	return new_rgba
+
 
 /obj/item/remote_scene_tool/voodoo_doll/update_icon()
-	. = ..()
+	. = ..() //icon state is set to an empty img here.
+	//we have KEEP_TOGETHER appearance flags
 
-	last_loc_update = linked.loc
-
-	overlays.Cut()
+	overlays?.Cut()
+	underlays?.Cut()
+	filters = null
 
 	dir = SOUTH
-	src.alpha = 255
-
 	name = initial(name)
 	desc = initial(desc)
+
+	var/matrix/rotateMatrix = matrix()
+	transform = rotateMatrix //reset here.
 
 	if(!linked)
 		return
 	if(!ismob(linked.loc))
 		return
-	if(!ismob(loc)) //only show the person's icon if we're holding it. makes "found in the hall" interactions less weird
-		return
+
+
 
 	var/mob/M = linked.loc
-	if(ismob(M))
-		src.alpha = 190 //make it a bit transparent so it doesn't look like a mob holder.
+	if(ishuman(M)) //TODO, refactor the fuck out of this once I port the tgui filter manager stuff over.
 		name = "Voodoo doll of " + M.name
 		desc = "A small, marketable doll that looks suspiciously like [M]... "
-		overlays |= M.overlays
+		var/mob/living/carbon/human/buddy = M
+
+		if(istype(M,/mob/living/carbon/human/teshari)) return //no flesh horror, sorry
+
+		var/is_tail_taur = istaurtail(buddy.tail_style)
+
+		var/list/to_overlays = buddy.overlays_standing.Copy()
+
+		//axe layers we don't wanna touchy
+
+		for(var/layer_to_kill in discarded_layer_keys)
+			to_overlays[layer_to_kill] = null
+
+		var/icon/displacement_map = icon(src.icon,is_tail_taur ? "taurdisplacement" : "displacement",SOUTH)
+		displacement_render_image = image(icon = src.icon, icon_state = "empty", dir = SOUTH)
+		displacement_render_image.appearance_flags = KEEP_TOGETHER
+		displacement_render_image.overlays = to_overlays
+
+		displacement_render_image.filters += filter(type = "displace", size = 128, icon=displacement_map)
+		displacement_render_image.filters += filter(type="outline", size = outline_size)
+		displacement_render_image.render_target = "[ckey(name)]_mask"
+
+
+		var/image/tail_image = buddy.get_tail_image()
+		var/tailoutlinecolor = rgb(50,50,50)
+		if(buddy.tail_style?.do_colouration)
+			tailoutlinecolor = get_outline_color(buddy.r_tail,buddy.g_tail,buddy.b_tail,buddy.a_tail)
+
+		tail_image?.filters += filter(type="outline", size = outline_size, color = tailoutlinecolor)
+
+		var/image/wing_image = buddy.get_wing_image(FALSE)
+		wing_image?.filters += filter(type="outline", size = outline_size, color = get_outline_color(buddy.r_wing,buddy.g_wing,buddy.b_wing,buddy.a_wing))
+
+		var/image/under_wing_image = buddy.get_wing_image(TRUE)
+
+		var/icon/ear_icon = buddy.get_ears_overlay() //primary AND secondary, yipee.
+		var/image/ear_image = image(icon = ear_icon)
+		//ear_image?.filters += filter(type="outline", size = outline_size, color = get_outline_color(buddy.r_ears,buddy.g_ears,buddy.b_ears,buddy.a_ears,50)) way too big
+
+		var/image/hat = buddy.head?.make_worn_icon(body_type = buddy.species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+
+		tail_image?.dir = SOUTH
+		wing_image?.dir = SOUTH
+		under_wing_image?.dir = SOUTH
+		hat?.dir = SOUTH
+
+
+		var/matrix/tailMatrix = matrix()
+		if(!is_tail_taur)
+			tailMatrix.Translate(tailPixelX,tailPixelY)
+			tailMatrix.Turn(underlayRotation)
+			tailMatrix.Scale(tailScale,tailScale)
+		else
+			tailMatrix.Translate(taurPixelX,taurPixelY)
+			tailMatrix.Turn(underlayRotation)
+			tailMatrix.Scale(taurScale,taurScale)
+
+
+		var/matrix/wingsMatrix = matrix()
+		wingsMatrix.Translate(wingPixelX,wingPixelY)
+		wingsMatrix.Turn(underlayRotation)
+		wingsMatrix.Scale(wingScale,wingScale)
+
+		var/matrix/earsMatrix = matrix()
+		earsMatrix.Translate(earPixelX,earPixelY)
+		earsMatrix.Turn(underlayRotation)
+		earsMatrix.Scale(earScaleX,earScaleY)
+
+		var/matrix/hatMatrix = matrix()
+		hatMatrix.Translate(hatPixelX,hatPixelY)
+		hatMatrix.Turn(underlayRotation)
+		hatMatrix.Scale(hatScale,hatScale)
+
+
+
+		tail_image?.transform = tailMatrix
+		wing_image?.transform = wingsMatrix
+		under_wing_image?.transform = wingsMatrix
+
+		ear_image?.transform = earsMatrix
+
+		hat?.transform = hatMatrix
+
+		if(is_tail_taur)
+			tail_image.filters += filter(type="alpha",render_source = "[ckey(name)]_mask", flags = MASK_INVERSE)
+
+		overlays |= displacement_render_image
+		overlays |= hat
+		overlays |= ear_image
+
+
+		if(!is_tail_taur)
+			underlays |= tail_image
+		else
+			overlays |= tail_image
+
+
+
+
+		underlays |= wing_image
+		underlays |= under_wing_image
+
+
+
+		//filtering time
+
+		rotateMatrix.Turn(2) //very slight blur
+		transform = rotateMatrix
+
+
+
 
 /obj/item/remote_scene_tool/voodoo_necklace
 	name = "Gem-Encruseted Necklace"
@@ -213,11 +390,14 @@
 	icon_state = "necklace_inactive"
 	icon_root = "necklace"
 	slot_flags = SLOT_MASK
-	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vauge, so use it how you want in RP! Just remember bystander consent!"
+	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vague, so use it how you want in RP! Just remember bystander consent!"
 
 /obj/item/storage/box/remote_scene_tools/voodoo
 	icon_state = "voodoobox"
 	name = "Voodoo Supplies Box"
-	desc = "a horribly dusty box from 'magici-corp' with a ludicrously corny image of a voodoo doll on the front. marketed as part of a DIY magician routine, they stopped making them after someone broke their nose when the doll was dropped."
+	desc = "a horribly dusty box from 'magici-corp' with a ludicrously corny image of a voodoo doll on the front. marketed as part of a DIY magician routine, they stopped making them after people kept breaking their nose when the doll was dropped."
 	primary = /obj/item/remote_scene_tool/voodoo_doll
 	secondary = /obj/item/remote_scene_tool/voodoo_necklace
+
+
+#undef DISCARD_LAYER
