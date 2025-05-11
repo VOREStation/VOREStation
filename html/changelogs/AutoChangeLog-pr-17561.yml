@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - rscadd: "Added new species desc and changed minimum age for Rapala to 19 for lore reasons"
