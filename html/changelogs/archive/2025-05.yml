@@ -16,3 +16,50 @@
 2025-05-04:
   ShadowLarkens:
   - bugfix: Wires actually work on things other than airlocks again
+2025-05-05:
+  ShadowLarkens:
+  - bugfix: player_list ending up with nulls in it
+2025-05-06:
+  Asher-42:
+  - bugfix: secborg dullahans resting sprites not head bobbing properly. (misaligned.)
+  SatinIsle:
+  - rscadd: Added new variants of knight armours that have lower stats and small slowdown,
+      but can be found around the fantasy redgate instead of the buffed PoI rewards.
+  - maptweak: Replaced the murder fire smoke from the burning building with harmless
+      smoke.
+  Will:
+  - bugfix: Bioprinter works again
+2025-05-07:
+  SatinIsle:
+  - bugfix: Fixed cave-ins in fantasy dungeon around the dragon
+  ShadowLarkens:
+  - bugfix: Fixes throw passing (I didn't even know this was a thing)
+  - bugfix: Fix spacebar throwing
+  - bugfix: Fix appearance changer menu lacking data for species sounds
+  TankTheBirb:
+  - qol: added the ability to pick up floor tiles to the sheet loader gripper that
+      borgs have
+  Willburd:
+  - bugfix: Virology access buttons no longer depend on init lag to setup their state
+      correctly.
+  - code_imp: Removed spawn() behavior from airlock program. Added airlock update
+      radio command to setup doors on airlock init.
+2025-05-08:
+  Diana:
+  - rscadd: Optional Big Leggies as a marking. These are hidden underneath clothing.
+  - bugfix: Makes Big Leggies (tail) show back above clothing.
+2025-05-09:
+  Diana:
+  - rscadd: Rx variants of omnihuds now selectable in the loadout.
+  Kashargul:
+  - bugfix: some coulcatcher vis and pref issues
+  - code_imp: update tgui core to 3.1.4
+  MeepleMuncher:
+  - bugfix: Fixes runtime errors caused by barefoot sounds.
+  TheCaramelion:
+  - rscadd: Balloon Alerts
+  - refactor: Changed various to_chat to balloon alerts
+2025-05-10:
+  Kashargul:
+  - qol: makes lobby screen more reliable
+  - code_imp: tgui-core 3.1.5

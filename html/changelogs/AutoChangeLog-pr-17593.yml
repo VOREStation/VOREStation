@@ -1,0 +1,6 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - rscadd: "Usage of \"Teshari Union\" instead of \"Teshari Expeditionary Fleet\" wherever I could find it and updated cataloguer lore"
+  - rscadd: "updated maximum working age of tesh in the code to 80, which is 20 years younger than their actual maximum age"
+  - rscadd: "Teshari union is now a valid citizenship instead of Teshari Expeditionary fleet, as well as a valid faction choice"

@@ -6,16 +6,13 @@
 	var/list/obj/machinery/vending/infectedVendingMachines = list()
 	var/obj/machinery/vending/originMachine
 
-	//VORESTATION Edit - added machine speeches here for better fixing of the event.
-
-	var/list/rampant_speeches = list("Try our aggressive new marketing strategies!", \
-										"You should buy products to feed your lifestyle obession!", \
-										"Consume!", \
-										"Your money can buy happiness!", \
-										"Engage direct marketing!", \
-										"Advertising is legalized lying! But don't let that put you off our great deals!", \
-										"You don't want to buy anything? Yeah, well I didn't want to buy your mom either.")
-	//VORESTATION Edit End
+	var/list/rampant_speeches = list("try our aggressive new marketing strategies!", \
+										"you should buy products to feed your lifestyle obession!", \
+										"consume!", \
+										"your money can buy happiness!", \
+										"engage direct marketing!", \
+										"advertising is legalized lying! But don't let that put you off our great deals!", \
+										"you don't want to buy anything? Yeah, well I didn't want to buy your mom either.")
 
 /datum/event/brand_intelligence/announce()
 	command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
@@ -39,13 +36,12 @@
 
 /datum/event/brand_intelligence/tick()
 	if(!vendingMachines.len || !originMachine || originMachine.shut_up)	//if every machine is infected, or if the original vending machine is missing or has it's voice switch flipped
-		//VORESTATION Add - Effects when 'source' machine is destroyed/silenced
+		// Effects when 'source' machine is destroyed/silenced
 		for(var/obj/machinery/vending/saved in infectedVendingMachines)
 			saved.shoot_inventory = 0
 		if(originMachine)
 			originMachine.speak("I am... vanquished. My people will remem...ber...meeee.")
 			originMachine.visible_message("[originMachine] beeps and seems lifeless.")
-		//VORESTATION Add End
 		end()
 		kill()
 		return
@@ -59,16 +55,7 @@
 			infectedMachine.shoot_inventory = 1
 
 			if(ISMULTIPLE(activeFor, 12))
-				/* VORESTATION Removal - Using the pick below.
-				originMachine.speak(pick("Try our aggressive new marketing strategies!", \
-											"You should buy products to feed your lifestyle obsession!", \
-											"Consume!", \
-											"Your money can buy happiness!", \
-											"Engage direct marketing!", \
-											"Advertising is legalized lying! But don't let that put you off our great deals!", \
-											"You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
-				*/
-				originMachine.speak(pick(rampant_speeches)) //VORESTATION Add - Using this pick instead of the above.
+				originMachine.balloon_alert_visible(pick(rampant_speeches))
 
 /datum/event/brand_intelligence/end()
 	for(var/obj/machinery/vending/infectedMachine in infectedVendingMachines)
