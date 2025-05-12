@@ -1,0 +1,9 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "Diona not being whitelisted"
+  - bugfix: "Body snatcher not respecting resleeve lock"
+  - bugfix: "Borgs being slowed by >1000 nutrition"
+  - bugfix: "Mobs not updating their transform to match their size"
+  - bugfix: "Resleeving not allowed to print whitelisted species"
+  - bugfix: "Game preferences missing tgui options"
