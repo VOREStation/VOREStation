@@ -5,9 +5,6 @@
 /image/client_only
 	var/list/clients = list()
 
-/image/client_only/New(icon, loc, icon_state, layer, dir)
-	. = ..()
-
 /image/client_only/proc/append_client(var/client/C)
 	C.images += src
 	clients.Add(WEAKREF(C))
