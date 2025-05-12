@@ -114,6 +114,8 @@
 			if(!O) return
 			if(istype(O,/obj/item/stack/material))
 				var/obj/item/stack/material/S = O
+				if(QDELETED(S))
+					return
 				var/matname = S.material.name
 				if(!isnull(stack_storage[matname]))
 					stack_storage[matname] += S.get_amount()
