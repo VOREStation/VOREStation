@@ -829,6 +829,10 @@
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
 
+// Species Components
+///from /datum/species/xenochimera/handle_environment_special()
+#define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
+
 //Unittest data update
 #ifdef UNIT_TEST
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
