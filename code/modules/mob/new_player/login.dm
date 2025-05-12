@@ -22,6 +22,7 @@
 	initialize_lobby_screen()
 
 	player_list |= src
+	GLOB.new_player_list += src
 
 	created_for = ckey
 

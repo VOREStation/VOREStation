@@ -26,6 +26,7 @@
 	add_verb(src, /mob/proc/insidePanel)
 
 /mob/new_player/Destroy()
+	GLOB.new_player_list -= src
 	if(manifest_dialog)
 		QDEL_NULL(manifest_dialog)
 	if(late_choices_dialog)

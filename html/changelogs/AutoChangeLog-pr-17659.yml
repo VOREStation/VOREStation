@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Optional Big Leggies as a marking. These are hidden underneath clothing."
-  - bugfix: "Makes Big Leggies (tail) show back above clothing."
