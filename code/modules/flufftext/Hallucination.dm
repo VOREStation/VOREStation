@@ -60,6 +60,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 /datum/component/hallucinations/proc/trigger()
 	PROTECTED_PROC(TRUE)
 	if(QDELETED(our_human))
+		qdel(src)
 		return
 	if(!our_human.client)
 		qdel(src)
@@ -99,21 +100,20 @@ Gunshots/explosions/opening doors/less rare audio (done)
 // Unlike normal hallucinations this one is triggered from handle_feral randomly.
 // So it destroys itself after it triggers, freeing up space for the next run of it.
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-/mob/living/carbon/human/proc/handle_feral()
-	if(get_hallucination_component() || !client)
-		return
-	LoadComponent(/datum/component/hallucinations/xenochimera)
-
 /datum/component/hallucinations/xenochimera/make_timer()
-	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / (our_human.feral/10)), TIMER_DELETE_ME)
+	var/datum/component/xenochimera/XC = our_human.GetComponent(/datum/component/xenochimera)
+	var/F = XC ? (XC.feral / 10) : 1
+	addtimer(CALLBACK(src, PROC_REF(trigger)), ((rand(20,50) SECONDS) / F), TIMER_DELETE_ME)
 
 /datum/component/hallucinations/xenochimera/trigger()
 	if(QDELETED(our_human))
+		qdel(src)
 		return
 	if(!our_human.client)
 		qdel(src)
 		return
-	if(our_human.feral < 10)
+	var/datum/component/xenochimera/XC = our_human.GetComponent(/datum/component/xenochimera)
+	if(!XC || XC.feral < XENOCHIFERAL_THRESHOLD)
 		qdel(src)
 		return
 	handle_hallucinating()
