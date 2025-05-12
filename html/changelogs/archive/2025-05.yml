@@ -63,3 +63,15 @@
   Kashargul:
   - qol: makes lobby screen more reliable
   - code_imp: tgui-core 3.1.5
+2025-05-12:
+  TankTheBirb:
+  - rscadd: Two new centered horns that look more axe-like. Perfect for making worldy
+      critters that live out on the rim.
+  - rscadd: Usage of "Teshari Union" instead of "Teshari Expeditionary Fleet" wherever
+      I could find it and updated cataloguer lore
+  - rscadd: updated maximum working age of tesh in the code to 80, which is 20 years
+      younger than their actual maximum age
+  - rscadd: Teshari union is now a valid citizenship instead of Teshari Expeditionary
+      fleet, as well as a valid faction choice
+  - rscadd: Added new species desc and changed minimum age for Rapala to 19 for lore
+      reasons
