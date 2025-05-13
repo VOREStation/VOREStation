@@ -1,7 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - bugfix: "Fixed Neutered symptoms not staying neutered when moved around"
-  - bugfix: "Fixed diseases duplicating when created"
-  - bugfix: "Fixed species with immunity catching viruses"
-  - bugfix: "Fixed Pandemic runtimes when trying to duplicate a non-advanced diseases"
