@@ -26,8 +26,7 @@
 
 	created_for = ckey
 
-	if(!QDELETED(src))
-		addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
 
 /mob/new_player/proc/do_after_login()
 	PRIVATE_PROC(TRUE)
