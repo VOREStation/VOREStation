@@ -277,7 +277,7 @@
 
 /datum/gear/suit/dept/cloak/cap
 	display_name = "site manager cloak (Teshari)"
-	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs
+	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/cap
 	allowed_roles = list(JOB_SITE_MANAGER)
 
 /datum/gear/suit/dept/cloak/hop
@@ -573,14 +573,6 @@
 	display_name = "command belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
 	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,JOB_CHIEF_MEDICAL_OFFICER,JOB_RESEARCH_DIRECTOR)
-
-/datum/gear/suit/dept/beltcloak/cmd/New()
-	..()
-	var/list/cloaks = list()
-	for(var/cloak in typesof(/obj/item/clothing/suit/storage/teshari/cloak/jobs/command,/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command))
-		var/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/cloak_type = cloak
-		cloaks[initial(cloak_type.name)] = cloak_type
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
 /datum/gear/suit/cloak_hood
 	display_name = "hooded cloak selection (Teshari)"
