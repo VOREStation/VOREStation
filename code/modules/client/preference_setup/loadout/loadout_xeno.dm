@@ -550,11 +550,20 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/dept/beltcloak
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
 /datum/gear/suit/dept/beltcloak/wrdn
 	display_name = "warden belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
 	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 	sort_category = "Xenowear"
+
+/datum/gear/suit/dept/beltcloak/hos
+	display_name = "Chief of Security belted cloak (Teshari)"
+	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/hos
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/suit/dept/beltcloak/jani
 	display_name = "janitor belted cloak (Teshari)"
@@ -567,6 +576,14 @@
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
 	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,JOB_CHIEF_MEDICAL_OFFICER,JOB_RESEARCH_DIRECTOR)
 	sort_category = "Xenowear"
+
+/datum/gear/suit/dept/beltcloak/cmd/New()
+	..()
+	var/list/cloaks = list()
+	for(var/cloak in typesof(/obj/item/clothing/suit/storage/teshari/cloak/jobs/command,/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command))
+		var/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/cloak_type = cloak
+		cloaks[initial(cloak_type.name)] = cloak_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
 /datum/gear/suit/cloak_hood
 	display_name = "hooded cloak selection (Teshari)"
