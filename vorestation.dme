@@ -508,6 +508,8 @@
 #include "code\datums\components\crafting\recipes\primitive.dm"
 #include "code\datums\components\crafting\recipes\survival.dm"
 #include "code\datums\components\crafting\recipes\weapons.dm"
+#include "code\datums\components\species\shadekin.dm"
+#include "code\datums\components\species\xenochimera.dm"
 #include "code\datums\diseases\_disease.dm"
 #include "code\datums\diseases\_MobProcs.dm"
 #include "code\datums\diseases\anxiety.dm"
