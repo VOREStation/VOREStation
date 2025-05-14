@@ -273,6 +273,7 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
 

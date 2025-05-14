@@ -371,6 +371,7 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -605,6 +606,23 @@
 		env_trait.handle_environment_special(H)
 	return
 
+/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//Xenochimera Species Component
+	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+	if(xc)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
+
+	//Shadekin Species Component.
+	/* //For when shadekin actually have their component control everything.
+	var/datum/component/shadekin/sk = H.get_xenochimera_component()
+	if(sk)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
+	*/
+
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return
@@ -755,6 +773,10 @@
 		nif.nifsofts = nifsofts*/
 	else
 		..()
+
+/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+	if(species_component)
+		H.LoadComponent(species_component)
 
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)

@@ -14,7 +14,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	if(!istype(src,/mob/observer))
-		ghostize()
+		ghostize(FALSE)
 	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
@@ -77,6 +77,7 @@
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
+	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 

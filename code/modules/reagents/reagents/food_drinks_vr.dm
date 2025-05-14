@@ -101,10 +101,11 @@
 					M.adjust_nutrition(alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
@@ -466,10 +467,11 @@
 					M.nutrition += (alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
@@ -555,10 +557,11 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-			H.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
-			if(H.feral <=0) //Check if they're unferalled
-				H.feral = 0
+		var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+			xc.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
+			if(xc.feral <=0) //Check if they're unferalled
+				xc.feral = 0
 				to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 				log_and_message_admins("is no longer feral.", H)
 
