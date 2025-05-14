@@ -552,6 +552,7 @@
 
 /datum/gear/suit/dept/beltcloak
 	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/wrdn
 	display_name = "warden belted cloak (Teshari)"
