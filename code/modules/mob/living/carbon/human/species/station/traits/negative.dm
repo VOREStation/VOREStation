@@ -767,6 +767,7 @@
 	desc = "You have become chemically dependant to any alcoholic drink, and need to regularly consume it or suffer withdrawals."
 	addiction = REAGENT_ID_ETHANOL
 	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo
 
 /datum/trait/neutral/addiction_bliss
 	name = "Addiction - " + REAGENT_BLISS
