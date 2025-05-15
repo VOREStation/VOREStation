@@ -313,9 +313,8 @@
 		if(contact_type == "Custom")
 			src.visible_message(span_infoplain("[custom_text]"))
 		if(!do_after(src, 10 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
-			return
-		else
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] break contact before energy has been transferred."))
+			return
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] complete their contact."))
 		species.lleill_energy = species.lleill_energy_max
 		nutrition += (chosen_target.nutrition / 2)
