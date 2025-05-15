@@ -418,6 +418,7 @@
 #include "code\controllers\subsystems\speech_controller.dm"
 #include "code\controllers\subsystems\sqlite.dm"
 #include "code\controllers\subsystems\SSvote.dm"
+#include "code\controllers\subsystems\starmover.dm"
 #include "code\controllers\subsystems\statpanel.dm"
 #include "code\controllers\subsystems\sun.dm"
 #include "code\controllers\subsystems\supply.dm"
