@@ -469,7 +469,7 @@
 #include "code\datums\organs.dm"
 #include "code\datums\position_point_vector.dm"
 #include "code\datums\progressbar.dm"
-#include "code\datums\reference_tracking.dm"
+#include "code\datums\reference_tracking_new.dm"
 #include "code\datums\riding.dm"
 #include "code\datums\signals.dm"
 #include "code\datums\soul_link.dm"
