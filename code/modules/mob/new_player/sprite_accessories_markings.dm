@@ -2686,7 +2686,7 @@ includes scars and tattoos
 //Big leggy end!
 
 /datum/sprite_accessory/marking/moth_eyes
-    name = "Moth Eyes"
-    icon_state = "motheyes"
-    color_blend_mode = ICON_MULTIPLY
-    body_parts = list(BP_HEAD)
+	name = "Moth Eyes"
+	icon_state = "motheyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
