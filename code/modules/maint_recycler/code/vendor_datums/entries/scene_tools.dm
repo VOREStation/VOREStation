@@ -104,7 +104,7 @@
 /datum/maint_recycler_vendor_entry/NIF_laws
 	name = "COMM4ND UR N1F!"
 	ad_message = "KNEEL!"
-	icon_state = "law"
+	icon_state = "laws"
 	desc = "Unlocks the TRUE potential of your NIF! You set laws, you follow laws! Simple as! (we are not liable for usage on other parties)"
 	object_type_to_spawn = /obj/item/disk/nifsoft/compliance
 	tagline = "You didn't get it from us!"
@@ -113,7 +113,7 @@
 /datum/maint_recycler_vendor_entry/NIFlet_laws
 	name = "Implnt law?"
 	ad_message = "Niflets seething!"
-	icon_state = "law"
+	icon_state = "laws"
 	desc = "Underlings not listening to you? Someone forgetting to do whta you tell them to? No more! this implant WILL make people bend to your will! KNEEL!"
 	object_type_to_spawn = /obj/item/implanter/compliance
 	item_cost = 25
