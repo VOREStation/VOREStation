@@ -115,7 +115,7 @@
 			if(addict_counter_before > 0 && message) // Only show cure message if we were addicted to it prior!
 				to_chat(src, message)
 			LAZYREMOVE(addictions,C)
-			LAZYREMOVEASSOC(addiction_counters,C)
+			LAZYREMOVEASSOC(addiction_counters,C,0)
 
 /mob/living/carbon/proc/addict_to_reagent(var/reagentid, var/round_start)
 	PRIVATE_PROC(TRUE)
