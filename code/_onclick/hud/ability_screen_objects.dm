@@ -100,9 +100,9 @@
 
 /obj/screen/movable/ability_master/update_icon()
 	if(ability_objects.len)
-		invisibility = 0
+		invisibility = INVISIBILITY_NONE
 	else
-		invisibility = 101
+		invisibility = INVISIBILITY_ABSTRACT
 
 /obj/screen/movable/ability_master/proc/add_ability(var/name_given)
 	if(!name) return

@@ -939,7 +939,7 @@ I think I covered everything.
 				return
 			if(P.suiciding)
 				return
-			if(P.health <= (P.maxHealth * 0.95))	//Nom em'
+			if(P.health <= (P.getMaxHealth() * 0.95))	//Nom em'
 				if(vocal)
 					if(last_speak + 30 SECONDS < world.time)
 						var/message_options = list(

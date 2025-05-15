@@ -11,7 +11,7 @@
 	var/datum/tgui_module/late_choices/late_choices_dialog = null
 	universal_speak = 1
 
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	density = FALSE
 	stat = 2
@@ -26,6 +26,7 @@
 	add_verb(src, /mob/proc/insidePanel)
 
 /mob/new_player/Destroy()
+	GLOB.new_player_list -= src
 	if(manifest_dialog)
 		QDEL_NULL(manifest_dialog)
 	if(late_choices_dialog)
@@ -52,9 +53,9 @@
 		totalPlayersReady = 0
 		var/datum/job/refJob = null
 		for(var/mob/new_player/player in player_list)
-			refJob = player.client.prefs.get_highest_job()
-			var/obfuscate_key = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_key)
-			var/obfuscate_job = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_job)
+			refJob = player.client?.prefs.get_highest_job()
+			var/obfuscate_key = player.read_preference(/datum/preference/toggle/obfuscate_key)
+			var/obfuscate_job = player.read_preference(/datum/preference/toggle/obfuscate_job)
 			if(obfuscate_key && obfuscate_job)
 				. += "Anonymous User [player.ready ? "Ready!" : null]"
 			else if(obfuscate_key)

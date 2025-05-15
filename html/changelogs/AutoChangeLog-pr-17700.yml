@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Teshari HoS cloak is now selectable"
+  - bugfix: "Teshari captain cloak now selects properly"

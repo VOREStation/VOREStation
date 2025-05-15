@@ -37,7 +37,7 @@
 		C.does_not_breathe = 0	//This means they don't autoheal the oxy damage from the next step
 
 	if(C.stat != DEAD)
-		C.adjustOxyLoss(C.maxHealth * 2)
+		C.adjustOxyLoss(C.getMaxHealth() * 2)
 
 	C.forbid_seeing_deadchat = TRUE
 

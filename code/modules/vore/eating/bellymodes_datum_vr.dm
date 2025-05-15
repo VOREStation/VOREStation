@@ -191,14 +191,14 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.owner.adjust_nutrition(-5)  // More costly for the pred, since metals and stuff
 				if(B.health_impacts_size)
 					B.owner.handle_belly_update()
-			if(L.health < L.maxHealth)
+			if(L.health < L.getMaxHealth())
 				L.adjustToxLoss(-2)
 				L.adjustOxyLoss(-2)
 				L.adjustCloneLoss(-1)
 				B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
 				if(B.health_impacts_size)
 					B.owner.handle_belly_update()
-	if(B.owner.nutrition > 90 && (L.health < L.maxHealth) && !H.isSynthetic())
+	if(B.owner.nutrition > 90 && (L.health < L.getMaxHealth()) && !H.isSynthetic())
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
@@ -396,11 +396,11 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/new_percent
 
 	if(ishuman(L))
-		old_percent = ((old_health + 50) / (L.maxHealth + 50)) * 100
-		new_percent = ((L.health + 50) / (L.maxHealth + 50)) * 100
+		old_percent = ((old_health + 50) / (L.getMaxHealth() + 50)) * 100
+		new_percent = ((L.health + 50) / (L.getMaxHealth() + 50)) * 100
 	else
-		old_percent = (old_health / L.maxHealth) * 100
-		new_percent = (L.health / L.maxHealth) * 100
+		old_percent = (old_health / L.getMaxHealth()) * 100
+		new_percent = (L.health / L.getMaxHealth()) * 100
 
 	var/lets_announce = FALSE
 	if(new_percent <= 95 && old_percent > 95)
@@ -427,11 +427,11 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/new_percent
 
 	if(ishuman(L))
-		old_percent = ((old_health + 50) / (L.maxHealth + 50)) * 100
-		new_percent = ((L.health + 50) / (L.maxHealth + 50)) * 100
+		old_percent = ((old_health + 50) / (L.getMaxHealth() + 50)) * 100
+		new_percent = ((L.health + 50) / (L.getMaxHealth() + 50)) * 100
 	else
-		old_percent = (old_health / L.maxHealth) * 100
-		new_percent = (L.health / L.maxHealth) * 100
+		old_percent = (old_health / L.getMaxHealth()) * 100
+		new_percent = (L.health / L.getMaxHealth()) * 100
 
 	var/lets_announce = FALSE
 	if(new_percent >= 100 && old_percent < 100)

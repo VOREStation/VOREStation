@@ -150,7 +150,7 @@
 	minimal_access = list(access_eva, access_engine, access_atmospherics, access_maint_tunnels, access_emergency_storage, access_construction, access_external_airlocks)
 
 	alt_titles = list(JOB_ALT_ATMOSPHERIC_ENGINEER = /datum/alt_title/atmos_engi, JOB_ALT_ATMOSPHERIC_MAINTAINER = /datum/alt_title/atmos_maint, JOB_ALT_DISPOSALS_TECHNICIAN = /datum/alt_title/disposals_tech,
-						JOB_ALT_FUEL_TECHNICIAN = /datum/alt_title/refuel_tech)
+						JOB_ALT_FUEL_TECHNICIAN = /datum/alt_title/refuel_tech, JOB_ALT_FIREFIGHTER = /datum/alt_title/firefighter)
 
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)

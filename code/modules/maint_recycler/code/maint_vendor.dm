@@ -1,5 +1,5 @@
 /obj/machinery/maint_vendor
-	name = "Decrepit Machine"
+	name = "Large Decrepit Machine"
 	desc = "A long since abandoned \"trash 4 cash\" rewards kiosk. Now featuring a state of the art, monochrome holographic tube display!"
 	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
 	icon_state = "default"
@@ -111,6 +111,10 @@
 	return
 
 /obj/machinery/maint_vendor/proc/dispense_item_from_datum(var/mob/user, var/datum/maint_recycler_vendor_entry/used_entry)
+	if(!used_entry || !used_entry.object_type_to_spawn)
+		to_chat(user,span_warning("What the fuck?? this is a scam! Nothing happened!"))
+		return;
+
 	playsound(src, 'code/modules/maint_recycler/sfx/ejectgoodies.ogg', 75, 1)
 	used_entry.spawn_with_delay(src);
 	audible_message("[src] states, \"[used_entry.tagline]\" ", "\The [src]'s screen briefly flashes an $!" , runemessage = "$$$")

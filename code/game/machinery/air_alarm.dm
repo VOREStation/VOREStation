@@ -547,7 +547,7 @@
 /obj/machinery/alarm/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list(
 		"locked" = locked,
-		"siliconUser" = siliconaccess(user) || (isobserver(user) && is_admin(user)), //CHOMPEdit borg access + admin access --- do we keep this?  QUESTION
+		"siliconUser" = siliconaccess(user) || (isobserver(user) && is_admin(user)),
 		"remoteUser" = !!ui.parent_ui,
 		"danger_level" = danger_level,
 		"target_temperature" = "[target_temperature - T0C]C",
@@ -597,7 +597,7 @@
 			"danger_level" = TEST_TLV_VALUES
 		)))
 
-	if(!locked || siliconaccess(user) || data["remoteUser"] || (isobserver(user) && is_admin(user))) //CHOMPEdit borg access + admin access --- do we keep this?  QUESTION
+	if(!locked || siliconaccess(user) || data["remoteUser"] || (isobserver(user) && is_admin(user)))
 		var/list/list/vents = list()
 		data["vents"] = vents
 		for(var/id_tag in A.air_vent_names)
@@ -714,13 +714,13 @@
 	// Yes, this is kinda snowflaky; however, I would argue it would be far more snowflakey
 	// to include "custom hrefs" and all the other bullshit that nano states have just for the
 	// like, two UIs, that want remote access to other UIs.
-	if((locked && !(siliconaccess(ui.user) || (isobserver(ui.user) && is_admin(ui.user))) && !istype(state, /datum/tgui_state/air_alarm_remote)) || (issilicon(ui.user) && aidisabled)) //CHOMPedit borg access --- do we keep this?  QUESTION
+	if((locked && !(siliconaccess(ui.user) || (isobserver(ui.user) && is_admin(ui.user))) && !istype(state, /datum/tgui_state/air_alarm_remote)) || (issilicon(ui.user) && aidisabled))
 		return
 
 	var/device_id = params["id_tag"]
 	switch(action)
 		if("lock")
-			if((siliconaccess(ui.user) && !wires.is_cut(WIRE_IDSCAN)) || (isobserver(ui.user) && is_admin(ui.user))) //CHOMPEdit borg access + admin acces --- do we keep this?  QUESTION
+			if((siliconaccess(ui.user) && !wires.is_cut(WIRE_IDSCAN)) || (isobserver(ui.user) && is_admin(ui.user)))
 				locked = !locked
 				. = TRUE
 		if( "power",
@@ -854,7 +854,11 @@
 
 /obj/machinery/alarm/power_change()
 	..()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), rand(0,15), TIMER_DELETE_ME)
+	var/delay_time = rand(0, 15)
+	if(delay_time)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom,update_icon)), delay_time, TIMER_DELETE_ME)
+		return
+	update_icon()
 
 /obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()

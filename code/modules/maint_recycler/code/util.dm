@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(recycler_locations)
 /obj/effect/recycler_beacon
 	icon = 'code/modules/maint_recycler/icons/maint_recycler.dmi'
 	icon_state = "marker"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	mouse_opacity = 0
 	density = 0
 	anchored = 1
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(recycler_locations)
 /obj/effect/recycler_vendor_beacon
 	icon = 'code/modules/maint_recycler/icons/maint_vendor.dmi'
 	icon_state = "marker"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	pixel_x = -8
 	mouse_opacity = 0
 	density = 0

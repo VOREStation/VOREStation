@@ -10,7 +10,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/obj/machinery/power/shield_generator/gen = null // Owning generator
 	var/disabled_for = 0
 	var/diffused_for = 0

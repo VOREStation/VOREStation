@@ -187,7 +187,7 @@
 
 /obj/machinery/atmospherics/pipe/hide(var/i)
 	if(istype(loc, /turf/simulated))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/process()

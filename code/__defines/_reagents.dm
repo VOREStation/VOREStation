@@ -1353,18 +1353,3 @@
 #define REAGENT_ID_SLIMEBONEFIXER "slime_bone_fixer"
 #define REAGENT_SLIMEORGANFIXER "Agent C"
 #define REAGENT_ID_SLIMEORGANFIXER "slime_organ_fixer"
-
-// Vore Belly Options
-
-#define REAGENT_ID_WATER_BELLY "water_liquidbelly"
-#define REAGENT_ID_MILK_BELLY "milk_liquidbelly"
-#define REAGENT_ID_CREAM_BELLY "cream_liquidbelly"
-#define REAGENT_ID_HONEY_BELLY "honey_liquidbelly"
-#define REAGENT_ID_CHERRYJELLY_BELLY "cherry_liquidbelly"
-#define REAGENT_ID_STOMACID_BELLY "stomacid_liquidbelly"
-#define REAGENT_ID_DIETSTOMACID_BELLY "diet_stomacid_liquidbelly"
-#define REAGENT_ID_CLEANER_BELLY "cleaner_liquidbelly"
-#define REAGENT_ID_LUBE_BELLY "lube_liquidbelly"
-#define REAGENT_ID_BIOMASS_BELLY "biomass_liquidbelly"
-#define REAGENT_ID_CONCENTRATEDRADIUM_BELLY "cradium_liquidbelly"
-#define REAGENT_ID_TRICORDRAZINE_BELLY "tricordrazine_liquidbelly"

@@ -156,7 +156,7 @@
 		return
 
 	if(!(gem.setting_flags & NIF_SC_PROJECTING))
-		to_chat(src, span_warning("Projecting from this NIF has been disabled!"))
+		to_chat(src, span_warning("Projecting from this soulcatcher has been disabled!"))
 		return
 
 	if(!client || !client.prefs)

@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "New Waddle mechanic that can be turned on via 'Character' under Preferences. Allows you to have animated movement."

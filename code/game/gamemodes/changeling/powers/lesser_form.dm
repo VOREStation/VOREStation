@@ -68,7 +68,7 @@
 	C.canmove = 0
 	C.icon = null
 	C.cut_overlays()
-	C.invisibility = 101
+	C.invisibility = INVISIBILITY_ABSTRACT
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( C.loc )
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'

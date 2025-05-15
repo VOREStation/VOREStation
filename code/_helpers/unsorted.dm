@@ -1124,13 +1124,10 @@ var/global/list/common_tools = list(
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
-	. = M.lying
-
-	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
-
-		if(!M.isSynthetic())
-			. = TRUE
-
+	if(M != user)
+		. = M.lying
+	else if(user && user.allow_self_surgery && user.a_intent == I_HELP)    // You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+		. = TRUE
 	return .
 
 // Returns an instance of a valid surgery surface.
@@ -1234,7 +1231,7 @@ var/mob/dview/dview_mob
 	dview_mob.loc = null
 
 /mob/dview
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 
 	anchored = TRUE

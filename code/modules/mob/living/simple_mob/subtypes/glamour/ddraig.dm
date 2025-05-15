@@ -319,7 +319,7 @@
 		set_stance(STANCE_FLEE)
 		return
 
-	if((holder.health < (holder.maxHealth / 4)) && !used_invis)
+	if((holder.health < (holder.getMaxHealth() / 4)) && !used_invis)
 		holder.cloak()
 		used_invis = 1
 		step_away(holder, target, 8)

@@ -23,6 +23,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	disability=NERVOUS
 	activation_message="You feel nervous."
 	primitive_expression_messages=list("nervously chitters.")
+	added_component_path = /datum/component/nervousness_disability
