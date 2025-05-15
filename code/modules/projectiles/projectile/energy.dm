@@ -273,7 +273,7 @@
 /obj/item/projectile/energy/blue_pellet
 	name = "suppressive pellet"
 	icon_state = "blue_pellet"
-	fire_sound = 'sound/weapons/Laser4.ogg'
+	fire_sound = 'sound/weapons/laser5.ogg'
 	damage = 5
 	armor_penetration = 75
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
