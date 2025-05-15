@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - refactor: "Posters can now use downstream overrides to use their own dmis"
+  - code_imp: "adds a unit-test to prevent illegal icons and icon_states in poster definitions"
