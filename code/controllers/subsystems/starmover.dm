@@ -1,6 +1,5 @@
 //
-// Holo-Minimaps Generation Subsystem handles initialization of the holo minimaps.
-// Look in code/modules/holomap/generate_holomap.dm to find generateHoloMinimaps()
+// Handles the moving star effects behind overmap shuttles during travel.
 //
 SUBSYSTEM_DEF(starmover)
 	name = "Shuttle Star Movement"
