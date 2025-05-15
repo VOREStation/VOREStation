@@ -69,6 +69,9 @@ FOOTSTEP_VOLUME 65
 ## Whether or not humans show an area message when they die.
 SHOW_HUMAN_DEATH_MESSAGE
 
+## If chemicals and drinks can give addictions during a round. Otherwise they are only accessible through traits or exotic effects.
+#CAN_ADDICT_DURING_ROUND
+
 ## Alert level descriptions
 ALERT_DESC_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
 

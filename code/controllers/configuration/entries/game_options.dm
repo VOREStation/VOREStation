@@ -13,6 +13,9 @@
 	integer = FALSE
 	default = 1.0
 
+/datum/config_entry/flag/can_addict_during_round
+	default = FALSE
+
 // FIXME: Unused
 ///datum/config_entry/flag/revival_pod_plants
 //	default = TRUE

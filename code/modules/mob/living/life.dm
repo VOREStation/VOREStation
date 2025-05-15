@@ -76,6 +76,7 @@
 
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
+		handle_addictions() // Dwugs
 		handle_statuses() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
 	update_canmove()

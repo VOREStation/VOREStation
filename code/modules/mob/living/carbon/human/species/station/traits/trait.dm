@@ -34,6 +34,7 @@
 	var/mutation = 0 	// Mutation to give (or 0)
 	var/disability = 0 	// Disability to give (or 0)
 	var/sdisability = 0 // SDisability to give (or 0)
+	var/addiction = null // Addiction reagent, null otherwise
 	var/activation_message = null // If not null, shows a message when activated as a gene
 	var/deactivation_message = null // If not null, shows a message when deactivated as a gene
 	var/list/primitive_expression_messages=list() // Monkey's custom emote when they have this gene!
