@@ -268,7 +268,7 @@
 				amount *= M.incoming_healing_percent
 
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
 
@@ -358,7 +358,7 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustFireLoss(dmgmultiplier)
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
@@ -441,6 +441,16 @@
 		if(!isnull(M.max_health_percent))
 			result *= M.max_health_percent
 	return result
+
+///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+/mob/living/proc/get_crit_point()
+	return -(getMaxHealth()*0.5)
+
+/mob/living/carbon/human/get_crit_point()
+	var/crit_point = -(getMaxHealth()*0.5)
+	if(species.crit_mod)
+		crit_point *= species.crit_mod
+	return crit_point
 
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
 	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
@@ -1240,7 +1250,7 @@
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
 				var/mob/living/carbon/human/N = M
-				if((N.health + N.halloss) < CONFIG_GET(number/health_threshold_crit) || N.stat == DEAD)
+				if((N.health + N.halloss) < N.get_crit_point() || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 

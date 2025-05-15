@@ -421,7 +421,7 @@
 	//Unfreeze some things
 	does_not_breathe = FALSE
 	update_canmove()
-	weakened = 2
+	stunned = 2
 
 	xc.revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 

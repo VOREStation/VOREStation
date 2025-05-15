@@ -261,7 +261,7 @@
 /mob/living/simple_mob/shadekin/Found(var/atom/A)
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
-		var/health_percent = (L.health/L.maxHealth)*100
+		var/health_percent = (L.health/L.getMaxHealth())*100
 		if(health_percent <= 50 && will_eat(A))
 			return A
 	. = ..()
