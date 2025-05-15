@@ -1,9 +1,6 @@
 /datum/config_entry/number/health_threshold_softcrit
 	default = 0
 
-/datum/config_entry/number/health_threshold_crit
-	default = 0
-
 /datum/config_entry/flag/bones_can_break
 
 /datum/config_entry/flag/limbs_can_break

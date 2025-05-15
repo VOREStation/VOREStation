@@ -442,6 +442,16 @@
 			result *= M.max_health_percent
 	return result
 
+///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+/mob/living/proc/get_crit_point()
+	return -(getMaxHealth()*0.5)
+
+/mob/living/carbon/human/get_crit_point()
+	var/crit_point = -(getMaxHealth()*0.5)
+	if(species.crit_mod)
+		crit_point *= species.crit_mod
+	return crit_point
+
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
 	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
 	if(bruteloss)							//In case a damage value is 0, divide by 0 bad
@@ -1240,7 +1250,7 @@
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
 				var/mob/living/carbon/human/N = M
-				if((N.health + N.halloss) < CONFIG_GET(number/health_threshold_crit) || N.stat == DEAD)
+				if((N.health + N.halloss) < N.get_crit_point() || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 
