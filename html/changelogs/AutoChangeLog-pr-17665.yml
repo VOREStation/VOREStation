@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - refactor: "Weaver, Drippy, and Gargoyle has been refactored. Now uses DCS."
+  - refactor: "Disabilities have been refactored. Now uses DCS."
+  - qol: "Vasillian bodytype gets increased webbing storage if selected."
