@@ -1546,7 +1546,7 @@
 	tail = "tail" //Spider tail.
 	icobase_tail = 1
 
-	//species_component = /datum/component/weaver //Commented out for now until the other PR is merged.
+	species_component = /datum/component/weaver
 
 	inherent_verbs = list(
 	/mob/living/carbon/human/proc/tie_hair)
