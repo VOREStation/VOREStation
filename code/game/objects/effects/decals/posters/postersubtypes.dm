@@ -24,6 +24,8 @@
 
 /// Verb to change a custom poster's design
 /obj/item/poster/custom/verb/select_poster()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	set name = "Set Poster type"
 	set category = "Object"
 	set desc = "Click to choose a poster to display."

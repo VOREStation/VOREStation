@@ -16,8 +16,8 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 	force = 0
-	var/decl/poster/poster_decl = null
-	var/poster_type = /obj/structure/sign/poster
+	VAR_PROTECTED/decl/poster/poster_decl = null
+	VAR_PROTECTED/poster_type = /obj/structure/sign/poster
 
 /obj/item/poster/Initialize(mapload, var/decl/poster/P = null)
 	if(ispath(poster_decl))
@@ -27,12 +27,19 @@
 	else if(ispath(P))
 		poster_decl = get_poster_decl(P, TRUE)
 	else
+		// Randomly pick a poster, rerolls to forbid using any in the lewd subtype
 		poster_decl = get_poster_decl(/decl/poster, FALSE)
 		while (istype(poster_decl, /decl/poster/lewd))
 			poster_decl = get_poster_decl(/decl/poster, FALSE)
 
 	name += " - [poster_decl.name]"
 	return ..()
+
+/// Get the current poster_decl
+/obj/item/poster/proc/get_decl()
+	RETURN_TYPE(/decl/poster)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return poster_decl
 
 //Places the poster on a wall
 /obj/item/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
@@ -87,9 +94,9 @@
 	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
 	icon_state = "poster" //VOREStation Edit
 	anchored = TRUE
-	var/decl/poster/poster_decl = null
-	var/roll_type = /obj/item/poster
-	var/ruined = FALSE
+	VAR_PROTECTED/decl/poster/poster_decl = null // Assigned by Initialize() to a random poster decl. If this is mapset to a path, it will be used to locate the decl specified by that path.
+	VAR_PROTECTED/roll_type = /obj/item/poster
+	VAR_PRIVATE/ruined = FALSE
 
 /obj/structure/sign/poster/Initialize(mapload, var/placement_dir = null, var/obj/item/poster/P = null)
 	. = ..()
@@ -97,11 +104,12 @@
 	if(ispath(poster_decl))
 		poster_decl = get_poster_decl(poster_decl, TRUE)
 	else if(istype(P))
-		poster_decl = P.poster_decl
+		poster_decl = P.get_decl()
 		roll_type = P.type
 	else if(ispath(P))
 		poster_decl = get_poster_decl(P, TRUE)
 	else
+		// Randomly pick a poster, rerolls to forbid using any in the lewd subtype
 		poster_decl = get_poster_decl(/decl/poster, FALSE)
 		while (istype(poster_decl, /decl/poster/lewd))
 			poster_decl = get_poster_decl(/decl/poster, FALSE)
@@ -129,7 +137,7 @@
 			pixel_x = -32
 			pixel_y = 0
 
-	flick("poster_being_set", src)
+	flick("poster_being_set", src) // If you don't see this animation, check that the decl/poster's icon_override dmi file has the icon states for poster_being_set and poster_ripped in it.
 
 /obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
@@ -160,6 +168,7 @@
 
 /// Creates a poster item using roll_type as the path, and qdels the wall poster
 /obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/obj/item/poster/P = new roll_type(newloc, poster_decl)
 	P.loc = newloc
 	qdel(src)
