@@ -25,9 +25,8 @@ export const NewscasterNewChannel = (props: { setScreen: Function }) => {
         <LabeledList.Item label="Channel Name">
           <Input
             fluid
-            expensive
             value={decodeHtmlEntities(channel_name)}
-            onChange={(val: string) => act('set_channel_name', { val: val })}
+            onBlur={(val: string) => act('set_channel_name', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Channel Author" color="good">
