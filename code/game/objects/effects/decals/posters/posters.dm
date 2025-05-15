@@ -1,10 +1,14 @@
 /// Returns a randomly picked poster decl of the subtype specified by the path argument. If the exact argument is true, it will return the decl from the decls_repository of the exact path specified.
-/proc/get_poster_decl(var/path = null, var/exact = TRUE)
+/proc/get_poster_decl(var/path = null, var/exact = TRUE, var/forbid_types)
 	if(ispath(path))
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_subtype(path) // Use get_decls_of_subtype instead of get_decls_of_type, or it will get the map placing icon_state
+			// Get the list of decals and Remove some forbidden types. These two base types don't have proper icon_states so they're illegal.
+			var/list/L = decls_repository.get_decls_of_type(path)
+			L -= decls_repository.get_decl(/decl/poster/lewd)
+			if(forbid_types)
+				L -= decls_repository.get_decls_of_type(forbid_types)
 			return L[pick(L)]
 	return null
 
@@ -21,16 +25,13 @@
 
 /obj/item/poster/Initialize(mapload, var/decl/poster/P = null)
 	if(ispath(poster_decl))
-		poster_decl = get_poster_decl(poster_decl, TRUE)
+		poster_decl = get_poster_decl(poster_decl, TRUE, null)
 	else if(istype(P))
 		poster_decl = P
 	else if(ispath(P))
-		poster_decl = get_poster_decl(P, TRUE)
+		poster_decl = get_poster_decl(P, TRUE, null)
 	else
-		// Randomly pick a poster, rerolls to forbid using any in the lewd subtype
-		poster_decl = get_poster_decl(/decl/poster, FALSE)
-		while (istype(poster_decl, /decl/poster/lewd))
-			poster_decl = get_poster_decl(/decl/poster, FALSE)
+		poster_decl = get_poster_decl(/decl/poster, FALSE, /decl/poster/lewd)
 
 	name += " - [poster_decl.name]"
 	return ..()
@@ -102,17 +103,14 @@
 	. = ..()
 
 	if(ispath(poster_decl))
-		poster_decl = get_poster_decl(poster_decl, TRUE)
+		poster_decl = get_poster_decl(poster_decl, TRUE, null)
 	else if(istype(P))
 		poster_decl = P.get_decl()
 		roll_type = P.type
 	else if(ispath(P))
-		poster_decl = get_poster_decl(P, TRUE)
+		poster_decl = get_poster_decl(P, TRUE, null)
 	else
-		// Randomly pick a poster, rerolls to forbid using any in the lewd subtype
-		poster_decl = get_poster_decl(/decl/poster, FALSE)
-		while (istype(poster_decl, /decl/poster/lewd))
-			poster_decl = get_poster_decl(/decl/poster, FALSE)
+		poster_decl = get_poster_decl(/decl/poster, FALSE, /decl/poster/lewd)
 
 	name = "[initial(name)] - [poster_decl.name]"
 	desc = "[initial(desc)] [poster_decl.desc]"
