@@ -31,7 +31,6 @@
 	var/list/teleporters = list() //Used for lleill abilities
 
 	var/rest_dir = 0					//To lay down in a specific direction
-	var/gutdeathpressure = 0			//For GIBBING trait
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
