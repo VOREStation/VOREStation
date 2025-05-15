@@ -42,6 +42,11 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return poster_decl
 
+/obj/item/poster/proc/get_poster_type()
+	RETURN_TYPE(/obj/structure/sign/poster)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return poster_type
+
 //Places the poster on a wall
 /obj/item/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
 	if(!adjacent)
