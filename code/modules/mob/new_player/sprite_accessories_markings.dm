@@ -2688,5 +2688,5 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/moth_eyes
 	name = "Moth Eyes"
 	icon_state = "motheyes"
-	color_blend_mode = ICON_MULTIPLY
+	color_blend_mode = ICON_ADD
 	body_parts = list(BP_HEAD)
