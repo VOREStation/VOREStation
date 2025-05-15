@@ -44,3 +44,54 @@
       correctly.
   - code_imp: Removed spawn() behavior from airlock program. Added airlock update
       radio command to setup doors on airlock init.
+2025-05-08:
+  Diana:
+  - rscadd: Optional Big Leggies as a marking. These are hidden underneath clothing.
+  - bugfix: Makes Big Leggies (tail) show back above clothing.
+2025-05-09:
+  Diana:
+  - rscadd: Rx variants of omnihuds now selectable in the loadout.
+  Kashargul:
+  - bugfix: some coulcatcher vis and pref issues
+  - code_imp: update tgui core to 3.1.4
+  MeepleMuncher:
+  - bugfix: Fixes runtime errors caused by barefoot sounds.
+  TheCaramelion:
+  - rscadd: Balloon Alerts
+  - refactor: Changed various to_chat to balloon alerts
+2025-05-10:
+  Kashargul:
+  - qol: makes lobby screen more reliable
+  - code_imp: tgui-core 3.1.5
+2025-05-12:
+  TankTheBirb:
+  - rscadd: Two new centered horns that look more axe-like. Perfect for making worldy
+      critters that live out on the rim.
+  - rscadd: Usage of "Teshari Union" instead of "Teshari Expeditionary Fleet" wherever
+      I could find it and updated cataloguer lore
+  - rscadd: updated maximum working age of tesh in the code to 80, which is 20 years
+      younger than their actual maximum age
+  - rscadd: Teshari union is now a valid citizenship instead of Teshari Expeditionary
+      fleet, as well as a valid faction choice
+  - rscadd: Added new species desc and changed minimum age for Rapala to 19 for lore
+      reasons
+2025-05-13:
+  Asher-42:
+  - rscadd: Engi and med v3 dullahans wings now work again
+  Diana:
+  - refactor: Shadekin and Xenochimera no longer have their special powers on their
+      brain. Instead it's a component.
+  SatinIsle:
+  - bugfix: Fixes micros being able to pick themselves up.
+  ShadowLarkens:
+  - bugfix: Diona not being whitelisted
+  - bugfix: Body snatcher not respecting resleeve lock
+  - bugfix: Borgs being slowed by >1000 nutrition
+  - bugfix: Mobs not updating their transform to match their size
+  - bugfix: Resleeving not allowed to print whitelisted species
+  - bugfix: Game preferences missing tgui options
+  TheCaramelion:
+  - bugfix: Fixed Neutered symptoms not staying neutered when moved around
+  - bugfix: Fixed diseases duplicating when created
+  - bugfix: Fixed species with immunity catching viruses
+  - bugfix: Fixed Pandemic runtimes when trying to duplicate a non-advanced diseases

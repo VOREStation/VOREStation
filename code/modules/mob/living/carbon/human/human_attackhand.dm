@@ -577,7 +577,7 @@
 
 	// standard CPR ahead, adjust oxy and refresh health
 	if(health > CONFIG_GET(number/health_threshold_crit) && prob(10))
-		if(istype(species, /datum/species/xenochimera))
+		if(get_xenochimera_component())
 			visible_message(span_danger("\The [src]'s body twitches and gurgles a bit."))
 			to_chat(reviver, span_danger("You get the feeling [src] can't be revived by CPR alone."))
 			return // Handle xenochim, can't cpr them back to life
