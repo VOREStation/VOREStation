@@ -28,6 +28,12 @@
 			to_chat(user,span_danger("The target's mind is too complex to be affected!"))
 			return
 
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.resleeve_lock && user.ckey != H.resleeve_lock)
+				to_chat(src, span_danger("[H] cannot be impersonated!"))
+				return
+
 		if(M.stat == DEAD) //Are they dead?
 			to_chat(user,span_warning("A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done."))
 			return

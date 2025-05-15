@@ -158,6 +158,7 @@ rainbyplays - Protean
 ramomisama - Protean
 residentcody - Black-Eyed Shadekin
 residentcody - Protean
+residentcody - Gamma Replicant
 revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
@@ -174,6 +175,7 @@ seiga - Vox
 selter - Protean
 sepulchre - Vox
 sharplight - Protean
+shilkon - Hanner
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
@@ -198,7 +200,7 @@ terrestris - Common Skrellian
 terrestris - Vox
 thedavestdave - Protean
 theoun - Hanner
-theXDkidoflol - Xenochimera
+thexdkidoflol - Xenochimera
 timidvi - Diona
 titaania - Protean
 tombomb90 - Protean

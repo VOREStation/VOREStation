@@ -138,7 +138,7 @@
 			locked_down = R.lockcharge,
 			locstring = "[A.name] ([T.x], [T.y])",
 			status = R.stat,
-			health = round(R.health * 100 / R.maxHealth, 0.1),
+			health = round(R.health * 100 / R.getMaxHealth(), 0.1),
 			charge = R.cell ? round(R.cell.percent()) : null,
 			cell_capacity = R.cell ? R.cell.maxcharge : null,
 			module = R.module ? R.module.name : "No Module Detected",
