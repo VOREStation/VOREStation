@@ -268,7 +268,7 @@
 				amount *= M.incoming_healing_percent
 
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
 
@@ -358,7 +358,7 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustFireLoss(dmgmultiplier)
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))

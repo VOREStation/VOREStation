@@ -298,10 +298,10 @@
 	H.updatehealth()
 
 	if(H.isSynthetic())
-		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
+		if(H.health + H.getOxyLoss() + H.getToxLoss() <= -(H.getMaxHealth()))
 			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin damage restoration before further attempts.\""
 
-	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead)) //They need to be healed first.
+	else if(H.health + H.getOxyLoss() <= -(H.getMaxHealth())) //They need to be healed first.
 		return "buzzes, \"Resuscitation failed - Severe tissue damage detected. Repair of anatomical damage required.\""
 
 	else if(HUSK in H.mutations) //Husked! Need to fix their husk status first.

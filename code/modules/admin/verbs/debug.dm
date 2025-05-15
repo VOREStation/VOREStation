@@ -66,7 +66,7 @@
 			to_chat(user, span_notice("At your maximum health ([user.getMaxHealth()]), it would take approximately;"))
 			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
 			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_crit)) / DPS] seconds to hardcrit you. ([CONFIG_GET(number/health_threshold_crit)] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_dead)) / DPS] seconds to kill you. ([CONFIG_GET(number/health_threshold_dead)] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - (-user.getMaxHealth())) / DPS] seconds to kill you. ([(-user.getMaxHealth())] health)"))
 
 	else
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))

@@ -628,7 +628,7 @@
 			// A bit of sanity.
 			var/brain_damage = between(getBrainLoss(), damage_calc, brain.max_damage)
 			setBrainLoss(brain_damage)
-	else if(health > CONFIG_GET(number/health_threshold_dead))
+	else if(health > -getMaxHealth())
 		adjustOxyLoss(-(min(getOxyLoss(), 5)))
 		updatehealth()
 		to_chat(src, span_notice("You feel a breath of fresh air enter your lungs. It feels good."))
