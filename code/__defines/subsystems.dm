@@ -121,6 +121,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // The numbers just define the ordering, they are meaningless otherwise.
 #define INIT_ORDER_SERVER_MAINT		93
 #define INIT_ORDER_ADMIN_VERBS 		84 // needs to be pretty high, admins can't do much without it
+#define INIT_ORDER_LOBBY			82
 #define INIT_ORDER_WEBHOOKS			50
 #define INIT_ORDER_SQLITE			41
 #define INIT_ORDER_GARBAGE			40

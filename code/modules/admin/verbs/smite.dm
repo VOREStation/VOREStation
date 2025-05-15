@@ -122,7 +122,7 @@
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift() //Homf
-			shadekin.energy = initial(shadekin.energy)
+			shadekin.comp.dark_energy = initial(shadekin.comp.dark_energy)
 			//For fun
 			sleep(1 SECOND)
 			shadekin.dir = WEST

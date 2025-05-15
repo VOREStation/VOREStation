@@ -853,6 +853,10 @@
 ///from /mob/living/carbon/human/proc/gargoyle_checkenergy()
 #define COMSIG_GARGOYLE_CHECK_ENERGY "gargoyle_check_energy"
 
+// Species Components
+///from /datum/species/xenochimera/handle_environment_special()
+#define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
+
 //Unittest data update
 #ifdef UNIT_TEST
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
