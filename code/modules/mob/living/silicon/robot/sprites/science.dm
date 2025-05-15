@@ -228,6 +228,21 @@
 	icon_x = 32
 	pixel_x = 0
 
+/datum/robot_sprite/dogborg/tall/science/dullataursci
+	name = "Dullataur"
+	sprite_icon_state = "dullataursci"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 32
+	pixel_x = 0
+
 /datum/robot_sprite/dogborg/tall/science/dullahanv3
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'

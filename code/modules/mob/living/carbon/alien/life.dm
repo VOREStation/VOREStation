@@ -1,7 +1,7 @@
 // Alien larva are quite simple.
 /mob/living/carbon/alien/Life()
 
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 
 	if (transforming)	return
 	if(!loc)			return

@@ -17,7 +17,7 @@ export const ChemMasterBuffer = (props: {
     <Section
       title="Buffer"
       buttons={
-        <Box color="label">
+        <Box color="label" inline>
           Transferring to&nbsp;
           <Button
             icon={mode ? 'flask' : 'trash'}

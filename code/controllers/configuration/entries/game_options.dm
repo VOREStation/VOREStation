@@ -1,12 +1,6 @@
 /datum/config_entry/number/health_threshold_softcrit
 	default = 0
 
-/datum/config_entry/number/health_threshold_crit
-	default = 0
-
-/datum/config_entry/number/health_threshold_dead
-	default = -100
-
 /datum/config_entry/flag/bones_can_break
 
 /datum/config_entry/flag/limbs_can_break
@@ -18,6 +12,9 @@
 /datum/config_entry/number/organ_regeneration_multiplier
 	integer = FALSE
 	default = 1.0
+
+/datum/config_entry/flag/can_addict_during_round
+	default = FALSE
 
 // FIXME: Unused
 ///datum/config_entry/flag/revival_pod_plants

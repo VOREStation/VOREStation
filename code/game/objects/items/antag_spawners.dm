@@ -34,6 +34,7 @@
 	Q.query()
 
 /obj/item/antag_spawner/proc/get_winner()
+	SIGNAL_HANDLER
 	if(Q && Q.candidates.len)
 		var/mob/observer/dead/D = Q.candidates[1]
 		spawn_antag(D.client, get_turf(src))

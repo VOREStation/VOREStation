@@ -78,7 +78,7 @@
 					food_inserted_micros -= F
 
 	if(!reagents.total_volume)
-		M.visible_message(span_notice("[M] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
+		M.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")
 
 		M.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
@@ -96,17 +96,17 @@
 
 /obj/item/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
-		to_chat(user, span_danger("None of [src] left!"))
+		balloon_alert(user, "none of \the [src] left!")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
 
 	if(package)
-		to_chat(M, span_warning("How do you expect to eat this with the package still on?"))
+		balloon_alert(user, "the package is in the way!")
 		return FALSE
 
 	if(canned)
-		to_chat(M, span_warning("How do you expect to eat this without opening it?"))
+		balloon_alert(user, "the can is closed!")
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
@@ -124,7 +124,7 @@
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
+					balloon_alert(user, "you don't have a mouth!")
 					return
 				var/obj/item/blocked = null
 				if(survivalfood)
@@ -132,7 +132,7 @@
 				else
 					blocked = H.check_mouth_coverage()
 				if(blocked)
-					to_chat(user, span_warning("\The [blocked] is in the way!"))
+					balloon_alert(user, "\the [blocked] is in the way!")
 					return
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
@@ -165,7 +165,8 @@
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
+					// to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
+					balloon_alert(user, "\the [H] doesn't have a mouth!")
 					return
 				var/obj/item/blocked = null
 				var/unconcious = FALSE
@@ -180,28 +181,29 @@
 					var/mob/living/L = user
 					swallow_whole = L.stuffing_feeder
 				if(swallow_whole)
-					belly_target = M.vore_selected
+					belly_target = tgui_input_list(user, "Choose Belly", "Belly Choice", M.feedable_bellies())
 
 				if(unconcious)
 					to_chat(user, span_warning("You can't feed [H] through \the [blocked] while they are unconcious!"))
 					return
 
 				if(blocked)
-					to_chat(user, span_warning("\The [blocked] is in the way!"))
+					// to_chat(user, span_warning("\The [blocked] is in the way!"))
+					balloon_alert(user, "\the [blocked] is in the way!")
 					return
 
 				if(swallow_whole)
 					if(!(M.feeding))
-						to_chat(user, span_warning("You can't feed [H] a whole [src] as they refuse to be fed whole things!"))
+						balloon_alert(user, "you can't feed [H] a whole [src] as they refuse to be fed whole things!")
 						return
 					if(!belly_target)
-						to_chat(user, span_warning("You can't feed [H] a whole [src] as they don't appear to have a belly to fit it!"))
+						balloon_alert(user, "you can't feed [H] a whole [src] as they don't appear to have a belly to fit it!")
 						return
 
 				if(swallow_whole)
-					user.visible_message(span_danger("[user] attempts to make [M] consume [src] whole into their [belly_target]."))
+					user.balloon_alert_visible("[user] attempts to make [M] consume [src] whole into their [belly_target].")
 				else
-					user.visible_message(span_danger("[user] attempts to feed [M] [src]."))
+					user.balloon_alert_visible("[user] attempts to feed [M] [src].")
 
 				var/feed_duration = 3 SECONDS
 				if(swallow_whole)
@@ -214,13 +216,15 @@
 
 				if(swallow_whole)
 					add_attack_logs(user,M,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
-					user.visible_message(span_danger("[user] successfully forces [src] into [M]'s [belly_target]."))
+					user.visible_message("[user] successfully forces [src] into [M]'s [belly_target].")
+					user.balloon_alert_visible("forces [src] into [M]'s [belly_target]")
 				else
 					add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
-					user.visible_message(span_danger("[user] feeds [M] [src]."))
+					user.visible_message("[user] feeds [M] [src].")
+					user.balloon_alert_visible("feeds [M] [src].")
 
 			else
-				to_chat(user, "This creature does not seem to have a mouth!")
+				balloon_alert(user, "this creature does not seem to have a mouth!")
 				return
 
 		if(swallow_whole)
@@ -274,6 +278,7 @@
 
 		if(package || canned)
 			to_chat(user, span_warning("You cannot stuff anything into \the [src] without opening it first."))
+			balloon_alert(user, "open \the [src] first!")
 			return
 
 		var/obj/item/holder/H = W
@@ -290,7 +295,8 @@
 
 		food_inserted_micros += M
 
-		to_chat(user, span_warning("You stuff [M] into \the [src]."))
+		to_chat(user, "Stuffed [M] into \the [src].")
+		balloon_alert(user, "stuffs [M] into \the [src].")
 		to_chat(M, span_warning("[user] stuffs you into \the [src]."))
 		return
 
@@ -305,9 +311,11 @@
 
 			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [W] inside it instead?","No Cutting Surface!",list("Yes","No")) != "Yes")
 				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
+				balloon_alert(user, "you cannot slice \the [src] here! You need a table or at least a tray to do it.")
 				return
 			else
-				to_chat(user, span_warning("You slip \the [W] inside \the [src]."))
+				to_chat(user, "Slipped \the [W] inside \the [src].")
+				balloon_alert(user, "slipped \the [W] inside \the [src].")
 				user.drop_from_inventory(W, src)
 				add_fingerprint(user)
 				contents += W
@@ -316,15 +324,17 @@
 		if (has_edge(W))
 			if (!can_slice_here)
 				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
+				balloon_alert(user, "you need a table or at least a tray to slice it.")
 				return
 
 			var/slices_lost = 0
 			if (W.w_class > 3)
 				user.visible_message(span_notice("\The [user] crudely slices \the [src] with [W]!"), span_notice("You crudely slice \the [src] with your [W]!"))
+				user.balloon_alert_visible("crudely slices \the [src]", "crudely sliced \the [src]")
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
 				user.visible_message(span_notice(span_bold("\The [user]") + " slices \the [src]!"), span_notice("You slice \the [src]!"))
-
+				user.balloon_alert_visible("slices \the [src]", "sliced \the [src]!")
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
 				var/obj/slice = new slice_path (src.loc)
@@ -375,6 +385,7 @@
 /obj/item/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
 	to_chat(user, span_notice("You unwrap [src]."))
+	balloon_alert(user, "unwrapped \the [src].")
 	playsound(user,opening_sound, 15, 1)
 	if(package_trash)
 		var/obj/item/T = new package_trash
@@ -387,6 +398,7 @@
 /obj/item/reagent_containers/food/snacks/proc/uncan(mob/user)
 	canned = FALSE
 	to_chat(user, span_notice("You unseal \the [src] with a crack of metal."))
+	balloon_alert(user, "unsealed \the [src]")
 	playsound(loc,opening_sound, rand(10,50), 1)
 	if(canned_open_state)
 		icon_state = canned_open_state
@@ -398,6 +410,7 @@
 	if(!isanimal(user) && !isalien(user))
 		return
 	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
+	user.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)

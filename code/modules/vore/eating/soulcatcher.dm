@@ -35,7 +35,6 @@
 	. = ..()
 	if(ismob(loc))
 		owner = loc
-		owner.recalculate_vis()
 
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
@@ -43,6 +42,7 @@
 	if(apply_stored_belly(data["linked_belly"], TRUE))
 		return
 	linked_belly = null
+	owner.recalculate_vis()
 
 /obj/soulgem/proc/apply_stored_belly(var/belly_string, var/skip_unreg = FALSE)
 	for(var/obj/belly in owner.vore_organs)
@@ -168,11 +168,9 @@
 		brainmob.ooc_notes = L.ooc_notes
 		brainmob.ooc_notes_likes = L.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = L.ooc_notes_dislikes
-		/* Not implemented on virgo
 		brainmob.ooc_notes_favs = L.ooc_notes_favs
 		brainmob.ooc_notes_maybes = L.ooc_notes_maybes
 		brainmob.ooc_notes_style = L.ooc_notes_style
-		*/
 		brainmob.timeofhostdeath = L.timeofdeath
 		if(ishuman(L))
 			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
@@ -332,6 +330,7 @@
 
 // Handles the vore fx updates for the captured souls
 /obj/soulgem/proc/soulgem_show_vfx(var/update, var/severity = 0)
+	SIGNAL_HANDLER
 	if(linked_belly)
 		for(var/mob/living/L in brainmobs)
 			if(flag_check(SOULGEM_SHOW_VORE_SFX))

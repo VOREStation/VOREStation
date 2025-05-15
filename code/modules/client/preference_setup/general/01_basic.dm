@@ -62,10 +62,11 @@
 	. += "<br>"
 	. += span_bold("Biological Sex:") + " <a href='byond://?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += span_bold("Pronouns:") + " <a href='byond://?src=\ref[src];id_gender=1'><b>[genders_to_pronoun_set[pref.identifying_gender]]</b></a><br>"
-	. += span_bold("Age:") + " <a href='byond://?src=\ref[src];age=1'>[pref.read_preference(/datum/preference/numeric/human/age)]</a> <b>Birthday:</b> <a href='byond://?src=\ref[src];bday_month=1'>[pref.read_preference(/datum/preference/numeric/human/bday_month)]</a><b>/</b><a href='byond://?src=\ref[src];bday_day=1'>[pref.read_preference(/datum/preference/numeric/human/bday_day)]</a> - <b>Announce?:</b> <a href='byond://?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/human/bday_announce) ? "Yes" : "No"]</a><br>"
+	. += span_bold("Age:") + " <a href='byond://?src=\ref[src];age=1'>[pref.read_preference(/datum/preference/numeric/human/age)]</a> <b>Birthday:</b> <a href='byond://?src=\ref[src];bday_month=1'>[pref.read_preference(/datum/preference/numeric/human/bday_month)]</a><b>/</b><a href='byond://?src=\ref[src];bday_day=1'>[pref.read_preference(/datum/preference/numeric/human/bday_day)]</a> - <b>Announce?:</b> <a href='byond://?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/human/bday_announce) ? "Yes" : "Disabled"]</a><br>"
 	. += span_bold("Spawn Point:") + " <a href='byond://?src=\ref[src];spawnpoint=1'>[pref.read_preference(/datum/preference/choiced/living/spawnpoint)]</a><br>"
 	if(CONFIG_GET(flag/allow_metadata))
-		. += span_bold("OOC Notes: <a href='byond://?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='byond://?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='byond://?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
+		. += span_bold("OOC Notes: <a href='byond://?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='byond://?src=\ref[src];edit_ooc_note_favs=1'>Favs</a><a href='byond://?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='byond://?src=\ref[src];edit_ooc_note_maybes=1'>Maybes</a><a href='byond://?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
+		. += "Detailed field or short list system? <a href='byond://?src=\ref[src];edit_ooc_note_style=1'>[pref.read_preference(/datum/preference/toggle/living/ooc_notes_style) ? "Lists" : "Fields"]</a><br><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -202,6 +203,21 @@
 			if(new_metadata == "!clear")
 				new_metadata = ""
 			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_dislikes, new_metadata)
+	else if(href_list["edit_ooc_note_favs"])
+		var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_favs)), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			if(new_metadata == "!clear")
+				new_metadata = ""
+			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+	else if(href_list["edit_ooc_note_maybes"])
+		var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_maybes)), multiline = TRUE,  prevent_enter = TRUE))
+		if(new_metadata && CanUseTopic(user))
+			if(new_metadata == "!clear")
+				new_metadata = ""
+			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+	else if(href_list["edit_ooc_note_style"])
+		pref.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, !pref.read_preference(/datum/preference/toggle/living/ooc_notes_style))
+		return TOPIC_REFRESH
 	return ..()
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()

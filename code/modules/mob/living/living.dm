@@ -268,7 +268,7 @@
 				amount *= M.incoming_healing_percent
 
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
 
@@ -358,7 +358,7 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustFireLoss(dmgmultiplier)
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
@@ -441,6 +441,16 @@
 		if(!isnull(M.max_health_percent))
 			result *= M.max_health_percent
 	return result
+
+///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+/mob/living/proc/get_crit_point()
+	return -(getMaxHealth()*0.5)
+
+/mob/living/carbon/human/get_crit_point()
+	var/crit_point = -(getMaxHealth()*0.5)
+	if(species.crit_mod)
+		crit_point *= species.crit_mod
+	return crit_point
 
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
 	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
@@ -1240,7 +1250,7 @@
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
 				var/mob/living/carbon/human/N = M
-				if((N.health + N.halloss) < CONFIG_GET(number/health_threshold_crit) || N.stat == DEAD)
+				if((N.health + N.halloss) < N.get_crit_point() || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 
@@ -1257,6 +1267,18 @@
 
 	if(!item)
 		return FALSE //Grab processing has a chance of returning null
+
+	// Help intent + Adjacent = pass item to other
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
+		var/obj/item/I = item
+		var/mob/living/carbon/human/H = target
+		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
+			H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+			visible_message(span_filter_notice(span_bold("[src]") + " hands \the [H] \a [I]."), span_notice("You give \the [target] \a [I]."))
+		else
+			to_chat(src, span_notice("You offer \the [I] to \the [target]."))
+			do_give(H)
+		return TRUE
 
 	drop_from_inventory(item)
 
@@ -1386,6 +1408,7 @@
 		qdel_null(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1401,6 +1424,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/owner = user
 	if(owner.client?.prefs)
 		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
@@ -1432,46 +1456,38 @@
 	if(toggled_sleeping)
 		Sleeping(1)
 
-/mob/living/proc/handle_dripping()
-	if(prob(95))
+/mob/living/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
-	if(!isturf(src.loc))
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_favs = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+		to_chat(user, span_filter_notice("OOC note favs have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note favs mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.species && H.species.drippy)
-			// drip body color if human
-			var/obj/effect/decal/cleanable/blood/B
-			var/decal_type = /obj/effect/decal/cleanable/blood/splatter
-			var/turf/T = get_turf(src.loc)
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_maybes = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+		to_chat(user, span_filter_notice("OOC note maybes have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note maybes mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
 
-			// Are we dripping or splattering?
-			var/list/drips = list()
-			// Only a certain number of drips (or one large splatter) can be on a given turf.
-			for(var/obj/effect/decal/cleanable/blood/drip/drop in T)
-				drips |= drop.drips
-				qdel(drop)
-			if(drips.len < 6)
-				decal_type = /obj/effect/decal/cleanable/blood/drip
-
-			// Find a blood decal or create a new one.
-			B = locate(decal_type) in T
-			if(!B)
-				B = new decal_type(T)
-
-			var/obj/effect/decal/cleanable/blood/drip/drop = B
-			if(istype(drop) && drips && drips.len)
-				drop.add_overlay(drips)
-				drop.drips |= drips
-
-			// Update appearance.
-			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
-			drop.update_icon()
-			drop.name = "drips of something"
-			drop.desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
-			drop.dryname = "dried something"
-			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
-			drop.fluorescent  = 0
-			drop.invisibility = 0
-	//else
-		// come up with drips for other mobs someday
+/mob/living/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	ooc_notes_style = !ooc_notes_style
+	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
+	if(reopen)
+		ooc_notes_window(user)

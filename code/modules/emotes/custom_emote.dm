@@ -85,6 +85,9 @@
 	var/list/m_viewers = in_range["mobs"]
 	var/list/o_viewers = in_range["objs"]
 
+	for(var/obj/o in contents)
+		o_viewers |= o
+
 	for(var/mob/M as anything in m_viewers)
 		if(M)
 			var/final_message = message

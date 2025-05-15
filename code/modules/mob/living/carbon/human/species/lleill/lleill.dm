@@ -219,13 +219,13 @@
 					)
 	spawn (50)
 		if(H.lleill_display)
-			H.lleill_display.invisibility = 0
+			H.lleill_display.invisibility = INVISIBILITY_NONE
 			H.lleill_display.icon_state = "lleill-4"
 
 /datum/species/proc/update_lleill_hud(var/mob/living/carbon/human/H)
 	var/relative_energy = ((lleill_energy/lleill_energy_max)*100)
 	if(H.lleill_display)
-		H.lleill_display.invisibility = 0
+		H.lleill_display.invisibility = INVISIBILITY_NONE
 		switch(relative_energy)
 			if(0 to 24)
 				H.lleill_display.icon_state = "lleill-0"

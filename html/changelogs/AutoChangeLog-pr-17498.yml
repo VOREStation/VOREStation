@@ -1,0 +1,8 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - rscadd: "Addictions and consequences for not feeding or treating them."
+  - rscadd: "Various reagents are now addictive, servers can decide if reagents can be addicted to during a round, or if only with a trait."
+  - rscadd: "Artificial sustenance, a vat-clone body stabilizer using the addiction system, enabled with a trait"
+  - rscadd: "Traits to be addicted to a reagent from round start"
+  - rscadd: "inaprovaline treats addiction withdrawls in most cases"

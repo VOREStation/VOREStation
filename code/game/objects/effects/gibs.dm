@@ -8,7 +8,7 @@
 	var/list/gibdirections = list() //of lists
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
-	invisibility = 99 // So a badmin can go view these by changing their see_invisible.
+	invisibility = INVISIBILITY_BADMIN // So a badmin can go view these by changing their see_invisible.
 	icon = 'icons/effects/map_effects.dmi'
 	icon_state = "gibspawn"
 

@@ -50,7 +50,7 @@
 /obj/item/inserted_spell/asphyxiation/on_expire()
 	..()
 
-// if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
+// if((getOxyLoss() > (species.total_health/2)) || (health <= get_crit_point())
 
 /obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
 	if(pulses_remaining <= 0) // Infinite loop protection

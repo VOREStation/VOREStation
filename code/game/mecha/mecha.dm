@@ -2667,7 +2667,7 @@
 		var/duration = text2num(href_list["duration"])
 		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src)
 		var/cur_occupant = src.occupant
-		O.invisibility = 0
+		O.invisibility = INVISIBILITY_NONE
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name

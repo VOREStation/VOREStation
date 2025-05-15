@@ -5,6 +5,8 @@
 /datum/category_item/player_setup_item/vore/misc/load_character(list/save_data)
 	pref.show_in_directory		= save_data["show_in_directory"]
 	pref.directory_tag			= save_data["directory_tag"]
+	pref.directory_gendertag	= save_data["directory_gendertag"]
+	pref.directory_sexualitytag	= save_data["directory_sexualitytag"]
 	pref.directory_erptag		= save_data["directory_erptag"]
 	pref.directory_ad			= save_data["directory_ad"]
 	pref.sensorpref				= save_data["sensorpref"]
@@ -15,6 +17,8 @@
 /datum/category_item/player_setup_item/vore/misc/save_character(list/save_data)
 	save_data["show_in_directory"]		= pref.show_in_directory
 	save_data["directory_tag"]			= pref.directory_tag
+	save_data["directory_gendertag"]	= pref.directory_gendertag
+	save_data["directory_sexualitytag"]	= pref.directory_sexualitytag
 	save_data["directory_erptag"]		= pref.directory_erptag
 	save_data["directory_ad"]			= pref.directory_ad
 	save_data["sensorpref"]				= pref.sensorpref
@@ -33,6 +37,8 @@
 /datum/category_item/player_setup_item/vore/misc/sanitize_character()
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
 	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
+	pref.directory_gendertag	= sanitize_inlist(pref.directory_gendertag, GLOB.char_directory_gendertags, initial(pref.directory_gendertag))
+	pref.directory_sexualitytag	= sanitize_inlist(pref.directory_sexualitytag, GLOB.char_directory_sexualitytags, initial(pref.directory_sexualitytag))
 	pref.directory_erptag		= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
 	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, GLOB.sensorpreflist.len, initial(pref.sensorpref))
 	pref.capture_crystal		= sanitize_integer(pref.capture_crystal, 0, 1, initial(pref.capture_crystal))
@@ -43,6 +49,8 @@
 	. += "<br>"
 	. += span_bold("Appear in Character Directory:") + " <a [pref.show_in_directory ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Yes" : "No"]</b></a><br>"
 	. += span_bold("Character Directory Vore Tag:") + " <a href='byond://?src=\ref[src];directory_tag=1'><b>[pref.directory_tag]</b></a><br>"
+	. += span_bold("Character Directory Gender:") + " <a href='byond://?src=\ref[src];directory_gendertag=1'><b>[pref.directory_gendertag]</b></a><br>"
+	. += span_bold("Character Directory Sexuality:") + " <a href='byond://?src=\ref[src];directory_sexualitytag=1'><b>[pref.directory_sexualitytag]</b></a><br>"
 	. += span_bold("Character Directory ERP Tag:") + " <a href='byond://?src=\ref[src];directory_erptag=1'><b>[pref.directory_erptag]</b></a><br>"
 	. += span_bold("Character Directory Advertisement:") + " <a href='byond://?src=\ref[src];directory_ad=1'><b>Set Directory Ad</b></a><br>"
 	. += span_bold("Suit Sensors Preference:") + " <a [pref.sensorpref ? "" : ""] href='byond://?src=\ref[src];toggle_sensor_setting=1'><b>[GLOB.sensorpreflist[pref.sensorpref]]</b></a><br>"
@@ -61,6 +69,18 @@
 		if(!new_tag)
 			return
 		pref.directory_tag = new_tag
+		return TOPIC_REFRESH
+	else if(href_list["directory_gendertag"])
+		var/new_gendertag = tgui_input_list(user, "Pick a new Gender tag for the character directory. This is YOUR gender, not what you prefer.", "Character Gender Tag", GLOB.char_directory_gendertags, pref.directory_gendertag)
+		if(!new_gendertag)
+			return
+		pref.directory_gendertag = new_gendertag
+		return TOPIC_REFRESH
+	else if(href_list["directory_sexualitytag"])
+		var/new_sexualitytag = tgui_input_list(user, "Pick a new Sexuality/Orientation tag for the character directory", "Character Sexuality/Orientation Tag", GLOB.char_directory_sexualitytags, pref.directory_sexualitytag)
+		if(!new_sexualitytag)
+			return
+		pref.directory_sexualitytag = new_sexualitytag
 		return TOPIC_REFRESH
 	else if(href_list["directory_erptag"])
 		var/new_erptag = tgui_input_list(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags, pref.directory_erptag)
