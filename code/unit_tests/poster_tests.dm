@@ -2,10 +2,12 @@
 	name = "POSTERS: All poster decls shall have valid icon and icon overrides"
 
 /datum/unit_test/posters_shall_have_legal_states/start_test()
-	var/failed = FALSE
-	var/list/all_posters = get_poster_decl(/decl/poster, FALSE, null) // While this is not all decls, this is all LEGALLY ACCESSIBLE decls. You should NEVER not use this.
+	var/failed = 0
+	var/list/all_posters = decls_repository.get_decls_of_type(/decl/poster)
+	all_posters -= decls_repository.get_decl(/decl/poster/lewd) // Dumb exclusion for now. This really needs to become a valid poster instead of an illegaly made base type
 
-	for(var/decl/poster/D in all_posters)
+	for(var/path in all_posters)
+		var/decl/poster/D = all_posters[path]
 		var/obj/structure/sign/poster/P = /obj/structure/sign/poster // The base poster shows ALL subtypes except /lewd, so all posters should function here regardless!
 		var/icon/I = initial(P.icon)
 		if(D.icon_override)
@@ -15,8 +17,8 @@
 			log_unit_test("[D.type]: Poster - missing icon_state \"[D.icon_state]\" in \"[I]\", as [D.icon_override ? "override" : "base"] dmi.")
 
 	if(failed)
-		fail("One or more posters have missing icon_states or bad icon overrides.")
+		fail("[failed] posters had missing icon_states or bad icon overrides.")
 	else
-		pass("All posters have their icon_states and overrides set correctly.")
+		pass("All [all_posters.len] posters have their icon_states and overrides set correctly.")
 
 	return TRUE
