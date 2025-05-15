@@ -1438,7 +1438,8 @@
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
-		client.screen |= cam.client_huds
+		if(LAZYLEN(cam.client_huds))
+			client.screen |= cam.client_huds
 
 	if(stat == DEAD) //Dead
 		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
