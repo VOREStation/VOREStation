@@ -236,10 +236,8 @@
 		else
 			if(current_addiction < 90 && prob(10))
 				to_chat(M, span_warning("[pick("You feel a slight craving for some [name].","Your stomach feels slightly upset.","You feel a slight pain in your head.")]"))
-	// end addiction with a clear message!
-	if(current_addiction <= 0)
+	if(current_addiction <= 0) //safety
 		current_addiction = 0
-		to_chat(M, span_notice("You feel your symptoms end, you no longer feel the craving for [name]."))
 	return current_addiction
 
 

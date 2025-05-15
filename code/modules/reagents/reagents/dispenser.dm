@@ -223,7 +223,7 @@
 		current_addiction  -= 1
 	// withdrawl mechanics
 	if(!(CE_STABLE in M.chem_effects)) //Without stabilization effects
-		if(current_addiction <= 100)
+		if(current_addiction <= 60)
 			M.pulse = PULSE_2FAST
 		if(prob(2))
 			if(current_addiction < 90 && prob(10))
@@ -254,7 +254,7 @@
 				if(realistic_addiction)
 					M.add_chemical_effect(CE_WITHDRAWL, rand(4,10) * REM)
 	else //Stabilization effects
-		if(current_addiction <= 100)
+		if(current_addiction <= 60)
 			M.pulse = PULSE_FAST
 		if(prob(2))
 			if(current_addiction < 90 && prob(10))
@@ -276,13 +276,12 @@
 			if(current_addiction < 60 && prob(5)) // 1 in 50 x 1 in 20 = 1 in 1000
 				M.emote(pick("pale","shiver","twitch"))
 				M.drop_item() //Hand tremors
-
-	// end addiction with a clear message!
-	if(current_addiction <= 0)
+	if(current_addiction <= 0) //safety
 		current_addiction = 0
-		to_chat(M, span_notice("You feel your symptoms end, you no longer feel the craving for alcohol."))
 	return current_addiction
 
+/datum/reagent/ethanol/addiction_cure_message()
+	return span_notice("You feel your symptoms end, you no longer feel the craving for alcohol.")
 
 /datum/reagent/fluorine
 	name = REAGENT_FLUORINE

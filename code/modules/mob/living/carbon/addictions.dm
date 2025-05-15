@@ -23,15 +23,15 @@
 	if(!species.traits)
 		return
 	// Rebuild addictions from traits
-	addictions.Cut()
-	addiction_counters.Cut()
+	LAZYCLEARLIST(addictions)
+	LAZYCLEARLIST(addiction_counters)
 	for(var/TR in species.traits)
 		var/datum/trait/T = GLOB.all_traits[TR]
 		if(!T)
 			continue
 		if(!T.addiction)
 			continue
-		addict_to_reagent( T.addiction, TRUE)
+		addict_to_reagent(T.addiction, TRUE)
 
 /mob/living/proc/handle_addictions()
 	PROTECTED_PROC(TRUE)
@@ -60,56 +60,60 @@
 			addict.Add(reagentid)
 
 	for(var/A in addict)
-		if(!(A in addictions))
-			addictions.Add(A)
-			addiction_counters[A] = 0
-		if(addiction_counters[A] <= 0)
+		if(!LAZYFIND(addictions,A))
+			LAZYADD(addictions,A)
+			LAZYSET(addiction_counters,A,0)
+
+		if(LAZYACCESS(addiction_counters,A) <= 0)
 			// Build addiction until it procs
-			addiction_counters[A] -= rand(1,3)
-			if(addiction_counters[A] < SLOWADDICT_PROC)
-				addiction_counters[A] = SLOWADDICT_PROC
+			if(LAZYFIND(addiction_counters, A))
+				addiction_counters[A] -= rand(1,3)
+
+			if(LAZYACCESS(addiction_counters,A) < SLOWADDICT_PROC)
+				LAZYSET(addiction_counters,A,SLOWADDICT_PROC)
 			// Check for addition
 			if(A in get_addictive_reagents(ADDICT_SLOW))
 				// Slowest addictions for some medications
-				if(addiction_counters[A] <= SLOWADDICT_PROC)
+				if(LAZYACCESS(addiction_counters,A) <= SLOWADDICT_PROC)
 					addict_to_reagent(A, FALSE)
 			if(A in get_addictive_reagents(ADDICT_FAST))
 				// quickly addict to these drugs, bliss, oxyco etc
-				if(addiction_counters[A] <= FASTADDICT_PROC)
+				if(LAZYACCESS(addiction_counters,A) <= FASTADDICT_PROC)
 					addict_to_reagent(A, FALSE)
 			else
 				// slower addiction over a longer period, cigs and painkillers mostly
-				if(addiction_counters[A] <= ADDICTION_PROC)
+				if(LAZYACCESS(addiction_counters,A) <= ADDICTION_PROC)
 					addict_to_reagent(A, FALSE)
 		else
 			// satiating addiction we already have
-			if(addiction_counters[A] < ADDICTION_PEAK)
-				if(addiction_counters[A] < 100)
-					addiction_counters[A] = 100
+			if(LAZYACCESS(addiction_counters,A) < ADDICTION_PEAK)
+				if(LAZYACCESS(addiction_counters,A) < 100)
+					LAZYSET(addiction_counters,A,100)
 					var/datum/reagent/RR = SSchemistry.chemical_reagents[A]
 					var/message = RR.addiction_refresh_message()
 					if(message)
 						to_chat(src, message)
-				addiction_counters[A] += rand(8,13)
+				if(LAZYFIND(addiction_counters, A))
+					addiction_counters[A] += rand(8,13)
 
 	// For all counters above 100, count down
 	// For all under 0, count up to 0 randomly, reducing initial addiction buildup if you didn't proc it
-	if(addictions.len)
+	if(LAZYLEN(addictions))
 		var/C = pick(addictions)
 		// return to normal... we didn't haven't been addicted yet, but we shouldn't become addicted instantly next time if it's been a few hours!
-		if(addiction_counters[C] < 0)
-			if(prob(15))
+		if(LAZYACCESS(addiction_counters,C) < 0)
+			if(prob(15) && LAZYFIND(addiction_counters, C))
 				addiction_counters[C] += 1
 		// proc reagent's withdrawl
 		var/datum/reagent/RE = SSchemistry.chemical_reagents[C]
-		if(addiction_counters[C] > 0)
-			addiction_counters[C] = RE.handle_addiction(src,species.reagent_tag) // withdrawl can modify the value however it deems fit as you are affected by it
+		if(LAZYACCESS(addiction_counters,C) > 0)
+			LAZYSET(addiction_counters,C,RE.handle_addiction(src,species.reagent_tag)) // withdrawl can modify the value however it deems fit as you are affected by it
 		// remove if finished
-		if(addiction_counters[C] == 0)
+		if(LAZYACCESS(addiction_counters,C) == 0)
 			var/message = RE.addiction_cure_message()
 			if(message)
 				to_chat(src, message)
-			addictions.Remove(C)
+			LAZYREMOVE(addictions,C)
 
 /mob/living/carbon/proc/addict_to_reagent(var/reagentid, var/round_start)
 	PRIVATE_PROC(TRUE)
@@ -120,30 +124,33 @@
 	var/allow_addiction = round_start || CONFIG_GET(flag/can_addict_during_round)
 	if(!allow_addiction)
 		return
-	if(!(reagentid in addictions))
-		addictions.Add(reagentid)
-	addiction_counters[reagentid] = ADDICTION_PEAK
+	if(!LAZYFIND(addictions,reagentid))
+		LAZYADD(addictions,reagentid)
+	LAZYSET(addiction_counters,reagentid,ADDICTION_PEAK)
 
 /mob/living/carbon/proc/get_addiction_to_reagent(var/reagentid) // returns counter's value or 0
 	SHOULD_NOT_OVERRIDE(TRUE)
-	return addiction_counters ? addiction_counters[reagentid] : 0
+	return LAZYACCESS(addiction_counters,reagentid)
 
 /mob/living/carbon/proc/refresh_all_addictions()
 	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!addiction_counters)
+		return
 	for(var/reagentid in addiction_counters)
-		addiction_counters[reagentid] = ADDICTION_PEAK
+		LAZYSET(addiction_counters,reagentid,ADDICTION_PEAK)
 
 /mob/living/carbon/proc/clear_all_addictions() // This is probably not a good idea to call as some addictions are intended to be uncurable, like artificial sustenance.
 	SHOULD_NOT_OVERRIDE(TRUE)
-	addictions.Cut()
-	addiction_counters.Cut()
+	LAZYCLEARLIST(addictions)
+	LAZYCLEARLIST(addiction_counters)
 
 /mob/living/carbon/proc/get_all_addictions()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/list/addict = list()
-	for(var/key in addiction_counters)
-		addict.Add(key)
+	if(addiction_counters)
+		for(var/key in addiction_counters)
+			addict.Add(key)
 	return addict
 
 #undef ADDICTION_PROC
