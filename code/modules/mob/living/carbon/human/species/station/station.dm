@@ -489,6 +489,8 @@
 
 	reagent_tag = IS_ZADDAT
 
+	species_component = /datum/component/burninlight/zaddat // Until a parent component like xenochimera have is needed, only handles burning in light.
+
 	heat_discomfort_strings = list(
 		"Your joints itch.",
 		"You feel uncomfortably warm.",
@@ -530,24 +532,6 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/zaddat/(H), slot_wear_mask) // mask has to come first or Shroud helmet will get in the way
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/void/zaddat/(H), slot_wear_suit)
-
-/datum/species/zaddat/handle_environment_special(var/mob/living/carbon/human/H)
-
-	if(H.inStasisNow())
-		return
-
-	var/damageable = H.get_damageable_organs()
-	var/covered = H.get_coverage()
-
-	var/light_amount = 0 //how much light there is in the place, affects damage
-	if(isturf(H.loc)) //else, there's considered to be no light
-		var/turf/T = H.loc
-		light_amount = T.get_lumcount() * 5
-
-
-	for(var/K in damageable)
-		if(!(K in covered))
-			H.apply_damage(light_amount/4, BURN, K, 0, 0)
 
 /datum/species/diona
 

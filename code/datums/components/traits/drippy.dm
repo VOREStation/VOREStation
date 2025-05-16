@@ -24,6 +24,8 @@
 		return
 	if(owner.stat == DEAD)
 		return
+	if(owner.inStasisNow())
+		return
 	var/turf/T = get_turf(owner.loc)
 	if(!isturf(T))
 		return

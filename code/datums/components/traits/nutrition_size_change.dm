@@ -22,6 +22,8 @@
 		return
 	if(owner.stat == DEAD)
 		return
+	if(owner.inStasisNow())
+		return
 	if(owner.nutrition <= 0 && grow_mode == GROWMODE_SHRINK && owner.size_multiplier > RESIZE_TINY)
 		owner.nutrition = 0.1
 	if(owner.nutrition <= 0)
