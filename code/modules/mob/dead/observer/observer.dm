@@ -600,6 +600,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.following_mobs -= src
 	stop_following()
 	observer_mob_list -= src
+	for(var/datum/chunk/ghost/ghost_chunks in visibleChunks)
+		ghost_chunks.remove(src)
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
