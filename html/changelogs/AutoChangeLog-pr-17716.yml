@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "mobs can be extinguished by hand when beneath paincrit threshold"
