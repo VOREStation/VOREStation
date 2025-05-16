@@ -1806,7 +1806,7 @@
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
-					playsound_local(src,pick(GLOB.scawwySownds),50, 0)
+					playsound_local(src,pick(GLOB.scawwysownds),50, 0)
 					return
 			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 

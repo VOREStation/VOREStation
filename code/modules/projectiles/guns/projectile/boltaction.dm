@@ -15,7 +15,7 @@
 	the rural communities that dot this infinite frontier."
 	icon_state = "boltaction"
 	item_state = "boltaction"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
@@ -105,7 +105,7 @@
 	as any modern interpretation. Uses 7.62mm rounds."
 	icon_state = "surplus"
 	item_state = "rifle"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 4
 	slot_flags = null
 	caliber = "7.62mm"
@@ -132,7 +132,7 @@
 	the rural communities that dot this infinite frontier."
 	icon_state = "scoped-boltaction"
 	item_state = "boltaction_scoped"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 2)// Old as shit rifle doesn't have very good tech, but it does have a scope.
