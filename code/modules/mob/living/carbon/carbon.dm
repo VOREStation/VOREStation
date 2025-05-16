@@ -165,7 +165,7 @@
 	return shock_damage
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (health >= get_crit_point())
+	if (health >= get_crit_point() || on_fire)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
