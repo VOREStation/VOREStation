@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - refactor: "complete rebuild of hallucination code to use components and more safely handled client images"

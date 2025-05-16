@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixes the glamour drain ability showing the \"contact has been broken\" message when it is successful."

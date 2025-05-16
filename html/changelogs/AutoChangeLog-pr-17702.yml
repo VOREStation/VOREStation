@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - server: "Ref Track now goes => .log. Proper ref tracking dm ticked in the .dme"
