@@ -518,6 +518,7 @@
 #include "code\datums\components\traits\drippy.dm"
 #include "code\datums\components\traits\gargoyle.dm"
 #include "code\datums\components\traits\nutrition_size_change.dm"
+#include "code\datums\components\traits\photosynth.dm"
 #include "code\datums\components\traits\waddle.dm"
 #include "code\datums\components\traits\weaver.dm"
 #include "code\datums\components\species\shadekin.dm"

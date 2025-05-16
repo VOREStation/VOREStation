@@ -352,8 +352,8 @@
 	name = "Photosynthesis"
 	desc = "Your body is able to produce nutrition from being in light."
 	cost = 3
-	var_changes = list("photosynthesizing" = TRUE)
 	can_take = ORGANICS|SYNTHETICS //Synths actually use nutrition, just with a fancy covering.
+	added_component_path = /datum/component/photosynth
 
 /datum/trait/positive/rad_resistance
 	name = "Radiation Resistance"
