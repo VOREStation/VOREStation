@@ -36,6 +36,7 @@
 /datum/surgery_step/generic/ripper/tear_vessel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts ripping into [target] with \the [tool].", \
 	"You start ripping into [target] with \the [tool].")
+	user.balloon_alert_visible("starts ripping into [target]", "ripping into [target]")
 	target.custom_pain("[user] is  ripping into your [target.op_stage.current_organ]!", 100)
 	..()
 
@@ -43,6 +44,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] has ripped [target]'s [affected] \the [tool], blood and viscera spraying everywhere!"), \
 	span_notice("You have ripped [target]'s [target.op_stage.current_organ] out with \the [tool], spraying blood all through the room!"))
+	user.balloon_alert_visible("rips into [target]'s [affected], blood and viscera everywhere!", "ripped into [target]'s [affected], blood and viscera everywhere!")
 	var/datum/wound/internal_bleeding/I = new (30) //splurt. New severed artery.
 	affected.wounds += I
 	affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
@@ -54,6 +56,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!"), \
 	span_warning("Your hand slips, damaging [target]'s [affected.name] with \the [tool]!"))
+	user.balloon_alert_visible("slips, damaging [target]'s [affected.name]", "your hand slips, damaging \the [affected.name]")
 	affected.createwound(BRUISE, 20) //Only bruised...Sad.
 
 
@@ -68,6 +71,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts violently shifting \the [tool] in [target]'s [affected.name]!", \
 	"You start violently moving the [tool] in [target]'s [affected.name]!")
+	user.balloon_alert_visible("starts violently shifting \the [tool] in [target]'s [affected.name]!", "violently moving \the [tool] in \the [affected.name]")
 	target.custom_pain("[user] is ripping into your [target.op_stage.current_organ]!", 100)
 	..()
 

@@ -191,6 +191,8 @@
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G, ignore_size = FALSE) //second one is for the Grabber, only exists for animals to self-grab
+	if(src == M)
+		return 0
 	if(!(pickup_pref && M.pickup_pref && M.pickup_active))
 		return 0
 	if(!(M.a_intent == I_HELP))
