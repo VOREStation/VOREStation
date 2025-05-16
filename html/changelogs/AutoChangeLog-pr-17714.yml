@@ -1,0 +1,7 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - rscadd: "Photodegeneration genetrait, cannot be selected from round start"
+  - bugfix: "Drippy trait will no longer drop drips into the cryopod when a human with it is in the pod"
+  - refactor: "inStasisNow() has a base proc on mob, for ease of component compatibility between simple and human mobs"
+  - refactor: "Moved species/shadow and zaddat light-based damage code to a component"
