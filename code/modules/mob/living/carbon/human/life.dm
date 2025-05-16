@@ -1166,12 +1166,6 @@
 			take_overall_damage(1,1)
 		else //heal in the dark
 			heal_overall_damage(1,1)
-	if(species.photosynthesizing && nutrition < 1000)
-		var/light_amount = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			light_amount = T.get_lumcount() / 10
-		adjust_nutrition(light_amount)
 	// nutrition decrease
 	if(nutrition <= 0 &&  species.shrinks && size_multiplier > RESIZE_TINY)
 		nutrition = 0.1
