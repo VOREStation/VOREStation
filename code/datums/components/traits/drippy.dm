@@ -63,5 +63,6 @@
 
 
 /datum/component/drippy/Destroy(force = FALSE)
+	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 	owner = null
 	. = ..()
