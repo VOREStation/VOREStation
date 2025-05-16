@@ -270,7 +270,7 @@
 	item_state = "c-gauntlets"
 	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhouse kicked")
 	integ_light_icon = FALSE
-	w_class = ITEMSIZE_HUGE
+	w_class = ITEMSIZE_NORMAL
 	can_cleave = FALSE
 	requires_wield = TRUE
 	force = 28
