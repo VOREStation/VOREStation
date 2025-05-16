@@ -489,7 +489,7 @@
 
 	reagent_tag = IS_ZADDAT
 
-	species_component = /datum/component/burninlight/zaddat // Until a parent component like xenochimera have is needed, only handles burning in light.
+	species_component = /datum/component/burninlight // Until a parent component like xenochimera have is needed, only handles burning in light.
 
 	heat_discomfort_strings = list(
 		"Your joints itch.",

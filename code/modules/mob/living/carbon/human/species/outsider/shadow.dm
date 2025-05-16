@@ -26,7 +26,7 @@
 
 	assisted_langs = list()
 
-	species_component = /datum/component/burninlight // Until a parent component like xenochimera have is needed, only handles burning in light.
+	species_component = /datum/component/burninlight/shadow // Until a parent component like xenochimera have is needed, only handles burning in light.
 
 /datum/species/shadow/handle_death(var/mob/living/carbon/human/H)
 	spawn(1)
