@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - refactor: "Photosynthesis code moved to component"
