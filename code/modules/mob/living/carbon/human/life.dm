@@ -1167,22 +1167,6 @@
 		else //heal in the dark
 			heal_overall_damage(1,1)
 	// nutrition decrease
-	if(nutrition <= 0 &&  species.shrinks && size_multiplier > RESIZE_TINY)
-		nutrition = 0.1
-	if(nutrition > 0 && stat != DEAD)
-		var/nutrition_reduction = species.hunger_factor
-
-		for(var/datum/modifier/mod in modifiers)
-			if(!isnull(mod.metabolism_percent))
-				nutrition_reduction *= mod.metabolism_percent
-		if(nutrition > 1000 && species.grows) //Removing the strict check against normal max/min size to support dorms/VR oversizing
-			nutrition_reduction *= 5
-			resize(size_multiplier+0.01, animate = FALSE, uncapped = has_large_resize_bounds()) //Bringing this code in line with micro and macro shrooms
-		if(nutrition < 50 && species.shrinks)
-			nutrition_reduction *= 0.3
-			resize(size_multiplier-0.01, animate = FALSE, uncapped = has_large_resize_bounds()) //Bringing this code in line with micro and macro shrooms
-		adjust_nutrition(-nutrition_reduction)
-
 	if(noisy == TRUE && nutrition < 250 && prob(10))
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
