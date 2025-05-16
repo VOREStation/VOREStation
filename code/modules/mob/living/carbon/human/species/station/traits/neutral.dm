@@ -1692,3 +1692,19 @@
 	..()
 	var/datum/component/waddle_trait/G = H.GetComponent(added_component_path)
 	G.waddling = trait_prefs["waddler"]
+
+/datum/trait/neutral/nutritiongrow
+	name = "Growing"
+	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
+	excludes = list(/datum/trait/neutral/nutritionshrink)
+	cost = 0
+	hidden = TRUE //Disabled on Virgo
+	added_component_path = /datum/component/nutrition_size_change/growing
+
+/datum/trait/neutral/nutritionshrink
+	name = "Shrinking"
+	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
+	excludes = list(/datum/trait/neutral/nutritiongrow)
+	cost = 0
+	hidden = TRUE //Disabled on Virgo
+	added_component_path = /datum/component/nutrition_size_change/shrinking
