@@ -63,7 +63,7 @@
 
 /decl/chemical_reaction/instant/virus_food_uranium_stable_alt
 	name = REAGENT_STABLEURANIUMVIRUSFOOD_ALT
-	id = REAGENT_ID_STABLEURANIUMVIRUSFOOD
+	id = REAGENT_ID_STABLEURANIUMVIRUSFOOD_ALT
 	result = REAGENT_ID_STABLEURANIUMVIRUSFOOD
 	required_reagents = list(REAGENT_ID_PHORON = 5, REAGENT_ID_URANIUM = 5, REAGENT_ID_GOLD = 5)
 	result_amount = 1

@@ -288,6 +288,7 @@
 #define REAGENT_UNSTABLEURANIUMVIRUSFOOD "Unstable uranium gel"
 #define REAGENT_ID_UNSTABLEURANIUMVIRUSFOOD "unstableuraniumvirusfood"
 #define REAGENT_STABLEURANIUMVIRUSFOOD "Stable uranium gel"
+#define REAGENT_ID_UNSTABLEURANIUMVIRUSFOOD_ALT "unstableuraniumvirusfood_alt"
 #define REAGENT_STABLEURANIUMVIRUSFOOD_ALT "Stable uranium gel"
 #define REAGENT_ID_STABLEURANIUMVIRUSFOOD "stableuraniumvirusfood"
 #define REAGENT_SIZEVIRUSFOOD "Sizeoxadone virus food"
