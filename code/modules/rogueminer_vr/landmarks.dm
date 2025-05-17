@@ -7,7 +7,7 @@
 	name = "asteroid spawn"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
 	var/datum/rogue/asteroid/myasteroid
 
@@ -21,7 +21,7 @@
 	name = "mob spawn"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
 	var/mob/mymob
 

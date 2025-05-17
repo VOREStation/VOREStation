@@ -20,7 +20,7 @@
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = 101 //Nope!  Can't see me!
+	invisibility = INVISIBILITY_ABSTRACT //Nope!  Can't see me!
 	hitscan = TRUE
 	nodamage = TRUE
 	damage = 0

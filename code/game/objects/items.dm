@@ -114,7 +114,7 @@
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 	var/digestable = TRUE
 	var/item_tf_spawn_allowed = FALSE
-	var/list/ckeys_allowed_itemspawn = list()
+	var/list/ckeys_allowed_itemspawn = null
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -427,13 +427,13 @@
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
 	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
-		if(equip_sound)
+		if(equip_sound && !muffled_by_belly(user))
 			playsound(src, equip_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
-		else
+		else if(!muffled_by_belly(user))
 			playsound(src, drop_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
-		playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
-	return
+		if(!muffled_by_belly(user))
+			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)

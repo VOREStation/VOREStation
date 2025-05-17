@@ -1,6 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - qol: "Air alarms show if they are controlled by an area's main alarm, or are the main alarm themselves. So you can tell when all air alarms in an area are deconstructed"
-  - bugfix: "Air alarm settings now propagate to all other air alarms in an area"
-  - rscadd: "Air alarms do nothing if the main air alarm in an area is shorted"

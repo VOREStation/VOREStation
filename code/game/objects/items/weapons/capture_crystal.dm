@@ -44,7 +44,7 @@
 	if(user == owner && bound_mob)
 		. += span_notice("[bound_mob]'s crystal")
 		if(isanimal(bound_mob))
-			. += span_notice("[bound_mob.health / bound_mob.maxHealth * 100]%")
+			. += span_notice("[bound_mob.health / bound_mob.getMaxHealth() * 100]%")
 		if(bound_mob.ooc_notes)
 			. += span_deptradio("OOC Notes:") + " <a href='byond://?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 		. += span_deptradio("<a href='byond://?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
@@ -275,10 +275,10 @@
 /obj/item/capture_crystal/proc/capture_chance(mob/living/M, user)
 	if(capture_chance_modifier >= 100)		//Master crystal always work
 		return 100
-	var/capture_chance = ((1 - (M.health / M.maxHealth)) * 100)	//Inverted health percent! 100% = 0%
+	var/capture_chance = ((1 - (M.health / M.getMaxHealth())) * 100)	//Inverted health percent! 100% = 0%
 	//So I don't know how this works but here's a kind of explanation
 	//Basic chance + ((Mob's max health - minimum calculated health) / (Max allowed health - Min allowed health)*(Chance at Max allowed health - Chance at minimum allowed health)
-	capture_chance += 35 + ((M.maxHealth - 5)/ (1000-5)*(-100 - 35))
+	capture_chance += 35 + ((M.getMaxHealth() - 5)/ (1000-5)*(-100 - 35))
 	//Basically! Mobs over 1000 max health will be unable to be caught without using status effects.
 	//Thanks Aronai!
 	var/effect_count = 0	//This will give you a smol chance to capture if you have applied status effects, even if the chance would ordinarily be <0

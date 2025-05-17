@@ -422,7 +422,7 @@ var/global/datum/controller/occupations/job_master
 				// Implants get special treatment
 				if(G.slot == "implant")
 					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
-					I.invisibility = 100
+					I.invisibility = INVISIBILITY_MAXIMUM
 					I.implant_loadout(H)
 					continue
 
@@ -584,7 +584,7 @@ var/global/datum/controller/occupations/job_master
 		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
 		if(equipped != 1)
 			var/obj/item/clothing/glasses/G = H.glasses
-			G.prescription = 1
+			G.prescription = TRUE
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)

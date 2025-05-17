@@ -296,7 +296,7 @@
 		var/obj/item/reagent_containers/syringe/S = W
 		var/datum/reagent/blood/injected = locate() in S.reagents.reagent_list //Grab some blood
 		if(injected && injected.data)
-			loaded_dna = injected.data
+			loaded_dna = injected.data.Copy()
 			S.reagents.remove_reagent(REAGENT_ID_BLOOD, injected.volume)
 			to_chat(user, span_info("You scan the blood sample into the bioprinter."))
 		return

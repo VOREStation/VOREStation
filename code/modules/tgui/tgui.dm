@@ -141,7 +141,7 @@
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/simple/namespaced/tgfont))
 	flush_queue |= window.send_asset(get_asset_datum(
-		/datum/asset/simple/tgui_extra_fonts))
+		/datum/asset/simple/namespaced/tgui_extra_fonts))
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/json/icon_ref_map))
 	for(var/datum/asset/asset in src_object.ui_assets(user))
@@ -276,7 +276,7 @@
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
-			"layout" = null, // user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout), // unused
+			"layout" = null, // user.read_preference(/datum/preference/choiced/tgui_layout), // unused
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
@@ -287,7 +287,7 @@
 			"size" = window_size,
 			"fancy" = user.read_preference(/datum/preference/toggle/tgui_fancy),
 			"locked" = user.read_preference(/datum/preference/toggle/tgui_lock),
-			"scale" = user.client.prefs.read_preference(/datum/preference/toggle/ui_scale),
+			"scale" = user.read_preference(/datum/preference/toggle/ui_scale),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,

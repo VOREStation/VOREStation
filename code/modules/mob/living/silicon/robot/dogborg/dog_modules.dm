@@ -192,7 +192,7 @@
 			L.apply_effect(STUTTER, 1)
 			L.visible_message(span_danger("[user] has shocked [L] with its tongue!"), \
 								span_userdanger("[user] has shocked you with its tongue! You can feel the betrayal."))
-			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 		else
 			user.visible_message(span_notice("\The [user] affectionately licks all over \the [target]'s face!"), span_notice("You affectionately lick all over \the [target]'s face!"))
 			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)

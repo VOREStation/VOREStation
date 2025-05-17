@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/item/clothing/suit/storage/hooded/knight/chain/lezzy,
+/turf/simulated/floor/wmarble,
+/area/redgate/fantasy/dungeon)
 "ac" = (
 /turf/simulated/mineral/ignore_cavegen{
 	nitrogen = 93.7835;
@@ -225,7 +229,9 @@
 /area/redgate/fantasy/dungeon)
 "eW" = (
 /obj/item/instrument/violin/golden,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "ft" = (
 /mob/living/simple_mob/vore/bat{
@@ -1140,7 +1146,9 @@
 /area/redgate/fantasy/caves)
 "yE" = (
 /obj/structure/outcrop/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "yF" = (
 /obj/structure/prop/rock/crystal,
@@ -1193,7 +1201,9 @@
 /area/redgate/fantasy/underwater)
 "zn" = (
 /obj/item/toy/plushie/carp/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "zs" = (
 /obj/structure/prop/war/warhead3,
@@ -1558,7 +1568,9 @@
 /area/redgate/fantasy/alienbasement)
 "FF" = (
 /obj/fiftyspawner/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "FH" = (
 /obj/structure/table/hardwoodtable,
@@ -1632,7 +1644,9 @@
 /mob/living/simple_mob/vore/bigdragon/friendly{
 	ghostjoin = 1
 	},
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "HB" = (
 /obj/structure/reagent_dispensers/cookingoil,
@@ -1678,9 +1692,6 @@
 	},
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
-"Iq" = (
-/turf/simulated/mineral/floor/dirt,
-/area/redgate/fantasy/caves)
 "Is" = (
 /obj/structure/flora/underwater/grass1,
 /obj/random/coin,
@@ -1895,7 +1906,9 @@
 /area/redgate/fantasy/underground)
 "MC" = (
 /obj/item/roulette_ball/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "MD" = (
 /obj/machinery/light/poi{
@@ -1958,7 +1971,9 @@
 /area/redgate/fantasy/dungeon)
 "NK" = (
 /obj/item/stack/material/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "NL" = (
 /obj/item/clothing/mask/demon,
@@ -2019,6 +2034,7 @@
 "OE" = (
 /obj/structure/closet/crate/chest,
 /obj/random/fantasy_item,
+/obj/item/clothing/suit/storage/hooded/knight/chain/black_white,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "OF" = (
@@ -2135,7 +2151,9 @@
 /area/redgate/fantasy/alienbasement)
 "RZ" = (
 /obj/item/coin/gold,
-/turf/simulated/mineral/floor/dirt,
+/turf/simulated/mineral/floor/dirt{
+	ignore_mapgen = 1
+	},
 /area/redgate/fantasy/caves)
 "Sb" = (
 /obj/structure/table/alien/blue,
@@ -6789,9 +6807,9 @@ tV
 tV
 tV
 NK
-Iq
+MQ
 FF
-Iq
+MQ
 tV
 tV
 pb
@@ -6928,10 +6946,10 @@ tV
 pb
 tV
 tV
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
 zn
 RZ
 LH
@@ -7068,15 +7086,15 @@ ac
 ac
 tV
 tV
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 dy
 zJ
 tV
@@ -7210,16 +7228,16 @@ tV
 ac
 tV
 tV
-Iq
-Iq
-Iq
 MQ
-Iq
+MQ
+MQ
+MQ
+MQ
 Hz
 RZ
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
 Vo
 tV
 ac
@@ -7352,16 +7370,16 @@ tV
 tV
 tV
 tV
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 tV
 tV
 ac
@@ -7495,14 +7513,14 @@ tV
 tV
 tV
 tV
-Iq
-Iq
+MQ
+MQ
 yE
-Iq
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
+MQ
 eW
 tV
 yJ
@@ -7638,13 +7656,13 @@ tV
 tV
 tV
 tV
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 tV
 zJ
 tV
@@ -7781,10 +7799,10 @@ pb
 tV
 tV
 qV
-Iq
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
+MQ
 MC
 kP
 ez
@@ -7924,9 +7942,9 @@ tV
 tV
 tV
 LH
-Iq
-Iq
-Iq
+MQ
+MQ
+MQ
 NK
 tV
 tV
@@ -17890,8 +17908,8 @@ kn
 kn
 kn
 kn
-kn
-kn
+cK
+cK
 kn
 cK
 Ux
@@ -18032,9 +18050,9 @@ kn
 kn
 kn
 kn
-kn
-kn
-kn
+aa
+cK
+NF
 cK
 Ux
 IB
@@ -18174,8 +18192,8 @@ kn
 kn
 kn
 kn
-kn
-kn
+cK
+cK
 kn
 cK
 Ux

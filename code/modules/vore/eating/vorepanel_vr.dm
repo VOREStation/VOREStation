@@ -1589,7 +1589,7 @@
 			return TRUE
 		if("Health")
 			var/mob/living/ourtarget = target
-			to_chat(user, span_notice("Current health reading for \The [ourtarget]: [ourtarget.health] / [ourtarget.maxHealth] "))
+			to_chat(user, span_notice("Current health reading for \The [ourtarget]: [ourtarget.health] / [ourtarget.getMaxHealth()] "))
 			return TRUE
 		if("Process")
 			var/mob/living/ourtarget = target
