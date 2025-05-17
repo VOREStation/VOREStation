@@ -15,7 +15,7 @@
 	var/icon_vend = "minevend-vend"
 	circuit = /obj/item/circuitboard/mining_equipment_vendor
 	var/obj/item/card/id/inserted_id
-	var/list/prize_list = list() //Generated during Initialize
+	var/list/prize_list //Generated during Initialize
 	var/dirty_items = FALSE // Used to refresh the static/redundant data in case the machine gets VV'd
 
 /datum/data/mining_equipment
