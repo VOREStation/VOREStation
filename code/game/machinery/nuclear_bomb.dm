@@ -1,4 +1,7 @@
 GLOBAL_VAR(bomb_set)
+#define STATION_DIRECT_HIT 0
+#define STATION_GLANCING_BLOW 1
+#define STATION_COMPLETELY_MISSED 2
 
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
@@ -49,10 +52,11 @@ GLOBAL_VAR(bomb_set)
 		timeleft--
 		if(timeleft <= 0)
 			explode()
+		else
+			playsound(src, 'sound/items/timer.ogg',50)
 		for(var/mob/M in viewers(1, src))
 			if((M.client && M.machine == src))
 				attack_hand(M)
-	return ..()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
@@ -316,6 +320,7 @@ GLOBAL_VAR(bomb_set)
 					if(safety)
 						to_chat(usr, span_warning("The safety is still on."))
 						return
+					START_MACHINE_PROCESSING(src)
 					timing = !(timing)
 					if(timing)
 						if(!lighthack)
@@ -359,8 +364,6 @@ GLOBAL_VAR(bomb_set)
 /obj/machinery/nuclearbomb/ex_act(severity)
 	return
 
-
-#define NUKERANGE 80
 /obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
@@ -370,34 +373,41 @@ GLOBAL_VAR(bomb_set)
 	safety = 1
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
-	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
+	playsound(src,'sound/machines/Alarm.ogg',100,0,5, is_global = 2, pressure_affected = FALSE) //EVERYONE gets to hear it.
 	if(ticker && ticker.mode)
 		ticker.mode.explosion_in_progress = 1
 	sleep(100)
 
-	var/off_station = 0
+	var/off_station = STATION_DIRECT_HIT
 	var/turf/bomb_location = get_turf(src)
 	if(bomb_location && (bomb_location.z in using_map.station_levels))
-		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
-			off_station = 1
+		if((bomb_location.x < 10) || (bomb_location.x > world.maxx-10) || (bomb_location.y < 10) || (bomb_location.y > (world.maxy - 10))) //Putting it on the outskirts of the map.
+			off_station = STATION_GLANCING_BLOW
 	else
-		off_station = 2
+		off_station = STATION_COMPLETELY_MISSED
 
 	if(ticker)
 		if(ticker.mode && ticker.mode.name == "Mercenary")
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
-		ticker.station_explosion_cinematic(off_station,null)
+				ticker.mode.syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
+			ticker.mode.nuke_off_station = off_station
+		ticker.station_explosion_cinematic(off_station,null, src)
 		if(ticker.mode)
 			ticker.mode.explosion_in_progress = 0
-			to_world(span_boldannounce("The station was destoyed by the nuclear blast!"))
+			switch(off_station)
+				if(STATION_DIRECT_HIT) //Hit the station dead on.
+					to_world(span_boldannounce("The station was destoyed by the nuclear blast!"))
+				if(STATION_GLANCING_BLOW) //Blew up on the station Z level but on the outskirts of the map.
+					to_world(span_boldannounce("The station was hit by the remnants of a nuclear blast and heavily irradiated, requiring evacuation!"))
+				if(STATION_COMPLETELY_MISSED) //Was nowhere near the station. In space or something.
+					to_world(span_boldannounce("A nuclear blast can be seen in the sky!"))
 
-			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
+			if(off_station < STATION_COMPLETELY_MISSED)
+				ticker.mode.station_was_nuked = TRUE	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 															//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
+			if(ticker.mode.check_finished())//Let's end the gamemode if we meet the criteria (on station Z level)
 				to_world(span_boldannounce("Resetting in 30 seconds!"))
 
 				feedback_set_details("end_error","nuke - unhandled ending")
@@ -408,9 +418,8 @@ GLOBAL_VAR(bomb_set)
 				log_game("Rebooting due to nuclear detonation")
 				world.Reboot()
 				return
+	GLOB.bomb_set = 0 //Bomb has gone kaboom, let's reset it! If there's another nuke ongoing, it'll set bomb_set to 1 in it's processing tick.
 	return
-
-#undef NUKERANGE
 
 /obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
@@ -425,3 +434,7 @@ GLOBAL_VAR(bomb_set)
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)
+
+#undef STATION_DIRECT_HIT
+#undef STATION_GLANCING_BLOW
+#undef STATION_COMPLETELY_MISSED
