@@ -32,10 +32,10 @@ BONUS
 
 	threshold_descs = list(
 		"Resistance 3" = "Host will drop small items when coughing.",
-		"Resistance 10" = "Occasonally causes coughing fits that stun the host.",
+		"Resistance 10" = "Occasionally causes coughing fits that stun the host.",
 		"Stage Speed 6" = "Increases cough frequency",
 		"Stealth 4" = "The symptom remains hidden until active.",
-		"Transmission 11" = "The hosts coughing will occasonally spread the virus."
+		"Transmission 11" = "The hosts coughing will occasionally spread the virus."
 	)
 
 /datum/symptom/cough/severityset(datum/disease/advance/A)
@@ -82,5 +82,5 @@ BONUS
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 1 SECONDS)
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
 				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 6 SECONDS)
-			if(infective && prob(50))
+			if(infective && !(A.spread_flags & DISEASE_SPREAD_FALTERED) && prob(50))
 				addtimer(CALLBACK(A, TYPE_PROC_REF(/datum/disease, spread), 2), 20)

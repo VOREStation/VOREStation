@@ -162,7 +162,9 @@
 				var/list/properties
 				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
-				message += "<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], stage [advance_disease.stage]/5"
+				if(global_flag_check(advance_disease.virus_modifiers, FALTERED))
+					LAZYADD(properties, "faltered")
+				message += span_info("<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], [global_flag_check(advance_disease.virus_modifiers, DORMANT) ? "<i>dormant virus</i>" : "stage [advance_disease.stage]/5"]")
 				if(extracted_ids[advance_disease.GetDiseaseID()])
 					message += "This virus has been extracted by \the [src] previously."
 				message += "[advance_disease.name] has the following symptoms:"
@@ -234,23 +236,21 @@
 
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
-	var/datum/disease/advance/D = disease.Copy()
+	disease = disease.Copy()
+	disease.virus_modifiers &= ~DORMANT
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
 		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
-	culture_bottle.name = "[D.name] culture bottle"
-	culture_bottle.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
+	culture_bottle.name = "[disease.name] culture bottle"
+	culture_bottle.desc = "A small bottle. Contains [disease.agent] culture in synthblood medium."
 	culture_bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 5, data)
 	user.put_in_hands(culture_bottle)
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE)
 	COOLDOWN_START(src, usage_cooldown, 1 SECONDS)
-	extracted_ids[D.GetDiseaseID()] = TRUE
+	extracted_ids[disease.GetDiseaseID()] = TRUE
 	return TRUE
-
-/obj/item/extrapolator/tier4
-	default_scanning_module = /obj/item/stock_parts/scanning_module/hyper
 
 /obj/item/extrapolator/tier5
 	default_scanning_module = /obj/item/stock_parts/scanning_module/omni

@@ -48,6 +48,23 @@
 	description = "Mutates viruses when mixed in blood. This one seems to have been weakened, but still strong."
 	color = "#CEC3C6"
 
+/datum/reagent/uranium/uraniumvirusfood
+	name = REAGENT_URANIUMVIRUSFOOD
+	id = REAGENT_ID_URANIUMVIRUSFOOD
+	description = "Mutates viruses when mixed in blood. This one seems to glow lightly."
+	color = "#D18AA5"
+
+/datum/reagent/uranium/uraniumvirusfood/unstable
+	name = REAGENT_UNSTABLEURANIUMVIRUSFOOD
+	id = REAGENT_ID_UNSTABLEURANIUMVIRUSFOOD
+	description = "Mutates viruses when mixed in blood. This one seems be lightly warm."
+	color = "#D18AA5"
+
+/datum/reagent/uranium/uraniumvirusfood/stable
+	name = REAGENT_STABLEURANIUMVIRUSFOOD
+	id = REAGENT_ID_STABLEURANIUMVIRUSFOOD
+	description = "Mutates viruses when mixed in blood. This one seems to be stable."
+
 /datum/reagent/toxin/phoron/phoronvirusfood/sizevirusfood
 	name = REAGENT_SIZEVIRUSFOOD
 	id = REAGENT_ID_SIZEVIRUSFOOD

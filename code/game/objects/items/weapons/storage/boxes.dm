@@ -134,6 +134,21 @@
 	icon_state = "syringe"
 	starts_with = list(/obj/item/reagent_containers/syringe = 7)
 
+/obj/item/storage/box/old_syringes
+	name = "box of syringes"
+	desc = "A box full of syringes. They look old."
+	icon_state = "syringe"
+	starts_with = list(/obj/item/reagent_containers/syringe/old = 2) // Old syringes guaranteed in each box!
+
+/obj/item/storage/box/old_syringes/Initialize(mapload)
+	var/syringe
+	for(var/i in 1 to 8)
+		if(prob(25))
+			continue
+		syringe = pick(subtypesof(/obj/item/reagent_containers/syringe))
+		new syringe(src)
+	. = ..()
+
 /obj/item/storage/box/syringegun
 	name = "box of syringe gun cartridges"
 	desc = "A box full of compressed gas cartridges."
