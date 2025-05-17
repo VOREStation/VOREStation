@@ -58,14 +58,14 @@
 	name = REAGENT_STABLEURANIUMVIRUSFOOD
 	id = REAGENT_ID_STABLEURANIUMVIRUSFOOD
 	result = REAGENT_ID_STABLEURANIUMVIRUSFOOD
-	required_reagents = list(REAGENT_ID_PHORON = 5, REAGENT_ID_PHORON = 5, REAGENT_ID_SILVER = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5, REAGENT_ID_URANIUM = 5, REAGENT_ID_SILVER = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_uranium_stable_alt
-	name = REAGENT_STABLEURANIUMVIRUSFOOD
+	name = REAGENT_STABLEURANIUMVIRUSFOOD_ALT
 	id = REAGENT_ID_STABLEURANIUMVIRUSFOOD
 	result = REAGENT_ID_STABLEURANIUMVIRUSFOOD
-	required_reagents = list(REAGENT_ID_PHORON = 5, REAGENT_ID_PHORON = 5, REAGENT_ID_GOLD = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5, REAGENT_ID_URANIUM = 5, REAGENT_ID_GOLD = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_size
@@ -160,7 +160,7 @@
 /decl/chemical_reaction/instant/mix_virus/mix_virus_10
 	name = "Mix Virus 10"
 	id = "mixvirus10"
-	required_reagents = list(REAGENT_URANIUMVIRUSFOOD = 1)
+	required_reagents = list(REAGENT_ID_URANIUMVIRUSFOOD = 1)
 	level_min = 6
 	level_max = 7
 
