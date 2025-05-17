@@ -202,7 +202,6 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
 	var/safe_pressure = ONE_ATMOSPHERE
-	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
 
@@ -244,10 +243,6 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
-	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
-	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
-	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
-	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
@@ -347,12 +342,6 @@
 
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
 	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
-
-	var/is_weaver = FALSE
-	var/silk_production = FALSE
-	var/silk_reserve = 100
-	var/silk_max_reserve = 500
-	var/silk_color = "#FFFFFF"
 
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.

@@ -81,6 +81,7 @@
 	desc = "A unique suit of nano-enhanced armor designed for covert operations."
 	icon_state = "ninja_rig"
 	armor = list(melee = 50, bullet = 15, laser = 30, energy = 10, bomb = 25, bio = 100, rad = 30)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY, POCKET_BAYSUIT)
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0
 

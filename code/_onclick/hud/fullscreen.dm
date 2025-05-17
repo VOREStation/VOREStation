@@ -1,15 +1,16 @@
 /mob
-	var/list/screens = list()
+	var/list/screens = null
 
 /mob/proc/set_fullscreen(condition, screen_name, screen_type, arg)
 	condition ? overlay_fullscreen(screen_name, screen_type, arg) : clear_fullscreen(screen_name)
 
 /mob/proc/overlay_fullscreen(category, type, severity)
-	var/obj/screen/fullscreen/screen = screens[category]
+	var/obj/screen/fullscreen/screen = LAZYACCESS(screens, category)
 	if (!screen || screen.type != type)
 		// needs to be recreated
 		clear_fullscreen(category, FALSE)
-		screens[category] = screen = new type()
+		screen = new type()
+		LAZYSET(screens, category, screen)
 	else if ((!severity || severity == screen.severity) && (!client || screen.screen_loc != "CENTER-7,CENTER-7" || screen.view == client.view))
 		// doesn't need to be updated
 		return screen
@@ -23,11 +24,11 @@
 	return screen
 
 /mob/proc/clear_fullscreen(category, animated = 10)
-	var/obj/screen/fullscreen/screen = screens[category]
+	var/obj/screen/fullscreen/screen = LAZYACCESS(screens, category)
 	if(!screen)
 		return
 
-	screens -= category
+	LAZYREMOVE(screens, category)
 
 	if(animated)
 		spawn(0)

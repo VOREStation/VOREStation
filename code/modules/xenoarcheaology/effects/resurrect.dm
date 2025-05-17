@@ -52,7 +52,7 @@
 		target.adjustToxLoss(-5)
 		stored_life = max(0, stored_life - 5)
 
-		if(target.health > (target.maxHealth / 4))
+		if(target.health > (target.getMaxHealth() / 4))
 			attempt_revive(target)
 			stored_life = 0
 

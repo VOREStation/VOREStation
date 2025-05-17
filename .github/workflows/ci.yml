@@ -20,20 +20,10 @@ jobs:
         with:
             fetch-depth: 0
       # Caches
-      - name: Restore Yarn cache
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: ./.github/actions/setup_node
         with:
-          path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('tgui/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Restore Node cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.nvm
-          key: ${{ runner.os }}-node-${{ hashFiles('dependencies.sh') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          restore-yarn-cache: true
       - name: Restore Bootstrap cache
         uses: actions/cache@v4
         with:
@@ -57,7 +47,6 @@ jobs:
       - name: Install Tools
         run: |
           pip3 install setuptools
-          bash tools/ci/install_node.sh
           bash tools/ci/install_ripgrep.sh
           bash tools/ci/install_spaceman_dmm.sh dmm-tools
           tools/bootstrap/python -c ''
@@ -136,11 +125,11 @@ jobs:
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
-      - name: Restore BYOND Cache
-        uses: actions/cache@v4
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
         with:
-          path: $HOME/byond
-          key: ${{ runner.os }}-byond
+          major: ${{ inputs.major }}
+          minor: ${{ inputs.minor }}
       - name: Install RUST_G Dependencies
         run: |
           sudo dpkg --add-architecture i386
@@ -150,9 +139,7 @@ jobs:
           ldd libbapi_dmm_reader.so
           ldd libverdigris.so
       - name: Unit Tests
-        run: |
-          tools/ci/install_byond.sh
-          tools/ci/compile_and_run.sh
+        run: tools/ci/compile_and_run.sh
         env:
           EXTRA_ARGS: "-DUNIT_TEST -D${{ matrix.map }}"
           RUN: "1"

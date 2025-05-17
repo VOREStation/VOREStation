@@ -1,4 +1,0 @@
-author: "Kashargul & Diana"
-delete-after: True
-changes:
-  - bugfix: "Fixes an error where nulls would enter the player list."

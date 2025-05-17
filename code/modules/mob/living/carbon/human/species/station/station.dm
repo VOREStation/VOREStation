@@ -489,6 +489,8 @@
 
 	reagent_tag = IS_ZADDAT
 
+	species_component = /datum/component/burninlight // Until a parent component like xenochimera have is needed, only handles burning in light.
+
 	heat_discomfort_strings = list(
 		"Your joints itch.",
 		"You feel uncomfortably warm.",
@@ -530,24 +532,6 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/zaddat/(H), slot_wear_mask) // mask has to come first or Shroud helmet will get in the way
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/void/zaddat/(H), slot_wear_suit)
-
-/datum/species/zaddat/handle_environment_special(var/mob/living/carbon/human/H)
-
-	if(H.inStasisNow())
-		return
-
-	var/damageable = H.get_damageable_organs()
-	var/covered = H.get_coverage()
-
-	var/light_amount = 0 //how much light there is in the place, affects damage
-	if(isturf(H.loc)) //else, there's considered to be no light
-		var/turf/T = H.loc
-		light_amount = T.get_lumcount() * 5
-
-
-	for(var/K in damageable)
-		if(!(K in covered))
-			H.apply_damage(light_amount/4, BURN, K, 0, 0)
 
 /datum/species/diona
 
@@ -1547,13 +1531,10 @@
 	tail = "tail" //Spider tail.
 	icobase_tail = 1
 
+	species_component = /datum/component/weaver
+
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/check_silk_amount,
-		/mob/living/carbon/human/proc/toggle_silk_production,
-		/mob/living/carbon/human/proc/weave_structure,
-		/mob/living/carbon/human/proc/weave_item,
-		/mob/living/carbon/human/proc/set_silk_color,
-		/mob/living/carbon/human/proc/tie_hair)
+	/mob/living/carbon/human/proc/tie_hair)
 
 	min_age = 18
 	max_age = 80
@@ -1584,10 +1565,6 @@
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
 	base_color 	= "#333333" //Blackish-gray
 	blood_color = "#0952EF" //Spiders have blue blood.
-
-	is_weaver = TRUE
-	silk_reserve = 500
-	silk_max_reserve = 1000
 
 	climb_mult = 0.75
 

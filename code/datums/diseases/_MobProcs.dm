@@ -6,11 +6,11 @@
 	return FALSE
 
 /mob/proc/RemoveDisease(datum/disease/D)
-	viruses -= D
+	LAZYREMOVE(viruses, D)
 	return TRUE
 
 /mob/proc/HasResistance(resistance)
-	if(resistances.Find(resistance))
+	if(LAZYFIND(resistances, resistance))
 		return TRUE
 	return FALSE
 
