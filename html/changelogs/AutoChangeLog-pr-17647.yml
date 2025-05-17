@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Guns that do bonus damage to simple_mob/animal (phaseguns) now do bonus damage to any simple_mob"
-  - qol: "Survey Vendor and Mining Vendor have had some adjustments. PSGs are now available in them. Some price adjustments. Mining gets a expensive version of their rig."
-  - qol: "Kinetic Gauntlets can fit in your backpack now."

@@ -136,3 +136,27 @@
       definitions
   crabcube:
   - rscadd: New moth eyes marking!
+2025-05-17:
+  Diana:
+  - qol: Guns that do bonus damage to simple_mob/animal (phaseguns) now do bonus damage
+      to any simple_mob
+  - qol: Survey Vendor and Mining Vendor have had some adjustments. PSGs are now available
+      in them. Some price adjustments. Mining gets a expensive version of their rig.
+  - qol: Kinetic Gauntlets can fit in your backpack now.
+  TeleTubby2:
+  - bugfix: mob holders play nice with disposals again
+  TheCaramelion:
+  - code_imp: RemoveDisease proc now uses LAZYREMOVE
+  - code_imp: HasResistance proc now uses LAZYFIND
+  Willburd:
+  - rscadd: Nutrition resizing traits, disabled on virgo
+  - refactor: Moved nutrition resizing code to components
+  - rscadd: Photodegeneration genetrait, cannot be selected from round start
+  - bugfix: Drippy trait will no longer drop drips into the cryopod when a human with
+      it is in the pod
+  - refactor: inStasisNow() has a base proc on mob, for ease of component compatibility
+      between simple and human mobs
+  - refactor: Moved species/shadow and zaddat light-based damage code to a component
+  - refactor: Overmap shuttle star movement overlay is not controlled by a subsystem
+  - bugfix: mobs can be extinguished by hand when beneath paincrit threshold
+  - refactor: Photosynthesis code moved to component

@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - refactor: "Overmap shuttle star movement overlay is not controlled by a subsystem"
