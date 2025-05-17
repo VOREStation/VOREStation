@@ -94,6 +94,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	QDEL_LIST(A.symptoms)
 	for(var/datum/symptom/S as anything in symptoms)
 		A.symptoms += S.Copy()
+	A.virus_modifiers = virus_modifiers
+	A.spread_flags = spread_flags
 	A.disease_flags = disease_flags
 	A.resistance = resistance
 	A.stealth = stealth
@@ -467,3 +469,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		log_admin("[key_name_admin(src)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 		return TRUE
+
+/datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
+	var/datum/disease/advance/A = make_copy ? Copy() : src
+	infectee.addDisease(A)
+	A.affected_mob = infectee
+	GLOB.active_diseases += A
+
+	log_admin("[key_name(src)] has contracted the virus \"[A]\"")

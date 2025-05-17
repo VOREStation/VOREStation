@@ -252,8 +252,5 @@
 	extracted_ids[D.GetDiseaseID()] = TRUE
 	return TRUE
 
-/obj/item/extrapolator/tier4
-	default_scanning_module = /obj/item/stock_parts/scanning_module/hyper
-
 /obj/item/extrapolator/tier5
 	default_scanning_module = /obj/item/stock_parts/scanning_module/omni

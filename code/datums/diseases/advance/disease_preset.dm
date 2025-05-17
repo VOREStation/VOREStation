@@ -58,7 +58,7 @@
 		dormant_disease.spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 		dormant_disease.spread_text = "None"
 		dormant_disease.visibility_flags |= HIDDEN_SCANNER
-		AddDisease(dormant_disease, TRUE)
+		ForceContractDisease(dormant_disease, TRUE)
 		return TRUE
 
 /datum/disease/advance/random/macrophage

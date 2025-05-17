@@ -481,7 +481,7 @@
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
-/obj/item/reagent_containers/syringe/
+/obj/item/reagent_containers/syringe/old
 	name = "old syringe"
 	desc = "An old, broken syringe. Are you sure it's a good idea to pick it up without gloves?"
 	mode = SYRINGE_BROKEN
