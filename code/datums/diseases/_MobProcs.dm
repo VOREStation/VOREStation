@@ -6,11 +6,11 @@
 	return FALSE
 
 /mob/proc/RemoveDisease(datum/disease/D)
-	viruses -= D
+	LAZYREMOVE(viruses, D)
 	return TRUE
 
 /mob/proc/HasResistance(resistance)
-	if(resistances.Find(resistance))
+	if(LAZYFIND(resistances, resistance))
 		return TRUE
 	return FALSE
 
@@ -77,6 +77,9 @@
 
 /mob/living/carbon/human/ContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))
+		return FALSE
+
+	if(species.virus_immune && !global_flag_check(D.virus_modifiers, BYPASSES_IMMUNITY))
 		return FALSE
 
 	var/obj/item/clothing/Cl = null

@@ -323,7 +323,7 @@
 			cuff = FALSE
 		if(!cuff)
 			H.stun_effect_act(0, stun_strength, null)
-			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 			do_attack_animation(H)
 			busy = TRUE
 			update_icons()

@@ -61,7 +61,6 @@
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 		weightgain()
-		process_weaver_silk()
 		handle_shock()
 
 		handle_pain()
@@ -79,6 +78,9 @@
 
 	else if(stat == DEAD && !stasis)
 		handle_defib_timer()
+
+	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
+	handle_species_components()
 
 	if(skip_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
@@ -180,69 +182,8 @@
 	if(stat != CONSCIOUS) //Let's not worry about tourettes if you're not conscious.
 		return
 
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && prob(1) && paralysis < 1))
-			to_chat(src, span_red("You have a seizure!"))
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(span_danger("[src] starts having a seizure!"), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			emote("cough")
-	if(dna)
-		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
-			// random strange symptoms from organ/limb
-			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
-			switch(rand(1,4))
-				if(1)
-					adjustToxLoss(rand(2,8))
-				if(2)
-					adjustCloneLoss(rand(1,2))
-				if(3)
-					add_chemical_effect(CE_PAINKILLER, rand(8,28))
-				else
-					adjustOxyLoss(rand(13,26))
-			// external organs need to fall off if damaged enough
-			var/obj/item/organ/O = pick(organs)
-			if(O && !(O.organ_tag == BP_GROIN || O.organ_tag == BP_TORSO) && istype(O,/obj/item/organ/external))
-				var/obj/item/organ/external/E = O
-				if(O.damage >= O.min_broken_damage && O.robotic <= ORGAN_ASSISTED && prob(70))
-					add_chemical_effect(CE_PAINKILLER, 120) // what limb? Extreme nerve damage. Can't feel a thing + shock
-					E.droplimb(TRUE, DROPLIMB_ACID)
-		if(disabilities & GIBBING)
-			gutdeathpressure += 0.01
-			if(gutdeathpressure > 0 && prob(gutdeathpressure))
-				emote(pick("whimper","belch","belch","belch","choke","shiver"))
-				Weaken(gutdeathpressure / 3)
-			if((gutdeathpressure/3) >= 1 && prob(gutdeathpressure/3))
-				gutdeathpressure = 0 // to stop retriggering
-				spawn(1)
-					emote(pick("whimper","shiver"))
-				spawn(3)
-					emote(pick("whimper","belch","shiver"))
-				spawn(4)
-					emote(pick("whimper","shiver"))
-				spawn(6)
-					emote(pick("belch"))
-					gib()
-	if (disabilities & TOURETTES)
-		if ((prob(1) && prob(2) && paralysis <= 1))
-			Stun(10)
-			make_jittery(100)
-			switch(rand(1, 3))
-				if(1)
-					emote("twitch")
-				if(2 to 3)
-					say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-	if (disabilities & NERVOUS)
-		if (prob(5) && prob(7))
-			stuttering = max(15, stuttering)
-			if(jitteriness < 50)
-				make_jittery(65)
+	if(isbelly(loc)) //Let's not have you seizing, coughing, or falling apart if you're in a belly.
+		return
 
 	var/rn = rand(0, 200)
 	if(getBrainLoss() >= 5)
@@ -606,7 +547,7 @@
 
 	if(!breath || (breath.total_moles == 0))
 		failed_last_breath = 1
-		if(health > CONFIG_GET(number/health_threshold_crit))
+		if(health > get_crit_point())
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -770,6 +711,11 @@
 				spawn(0) emote(pick("giggle", "laugh"))
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
+	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_OXY)
+		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
+	else if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_TOXIN)
+		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
+
 	// Were we able to breathe?
 	if (failed_inhale || failed_exhale)
 		failed_last_breath = 1
@@ -901,6 +847,9 @@
 			drowsyness = max(drowsyness, disable_severity)
 		if(species.allergen_reaction & AG_CONFUSE)
 			Confuse(disable_severity/4)
+
+/mob/living/carbon/human/proc/handle_species_components()
+	species.handle_species_components(src)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -1208,38 +1157,7 @@
 	if(status_flags & GODMODE)
 		return 0	//godmode
 
-	if(species.light_dam)
-		var/light_amount = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			light_amount = T.get_lumcount() * 10
-		if(light_amount > species.light_dam) //if there's enough light, start dying
-			take_overall_damage(1,1)
-		else //heal in the dark
-			heal_overall_damage(1,1)
-	if(species.photosynthesizing && nutrition < 1000)
-		var/light_amount = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			light_amount = T.get_lumcount() / 10
-		adjust_nutrition(light_amount)
 	// nutrition decrease
-	if(nutrition <= 0 &&  species.shrinks && size_multiplier > RESIZE_TINY)
-		nutrition = 0.1
-	if(nutrition > 0 && stat != DEAD)
-		var/nutrition_reduction = species.hunger_factor
-
-		for(var/datum/modifier/mod in modifiers)
-			if(!isnull(mod.metabolism_percent))
-				nutrition_reduction *= mod.metabolism_percent
-		if(nutrition > 1000 && species.grows) //Removing the strict check against normal max/min size to support dorms/VR oversizing
-			nutrition_reduction *= 5
-			resize(size_multiplier+0.01, animate = FALSE, uncapped = has_large_resize_bounds()) //Bringing this code in line with micro and macro shrooms
-		if(nutrition < 50 && species.shrinks)
-			nutrition_reduction *= 0.3
-			resize(size_multiplier-0.01, animate = FALSE, uncapped = has_large_resize_bounds()) //Bringing this code in line with micro and macro shrooms
-		adjust_nutrition(-nutrition_reduction)
-
 	if(noisy == TRUE && nutrition < 250 && prob(10))
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
@@ -1282,7 +1200,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= CONFIG_GET(number/health_threshold_dead) || (should_have_organ(O_BRAIN) && !has_brain()))
+		if(health <= (-getMaxHealth()) || (should_have_organ(O_BRAIN) && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
@@ -1290,24 +1208,19 @@
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= (CONFIG_GET(number/health_threshold_crit) * species.crit_mod)))
+		if((getOxyLoss() > (species.total_health/2)) || (health <= (get_crit_point() * species.crit_mod)))
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
+			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
+				handle_hallucinations()
 				/* Stop spinning the view, it breaks too much.
 				if(client && prob(5))
 					client.dir = pick(2,4,8)
 					spawn(rand(20,50))
 						client.dir = 1
 				*/
-
 			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
 
 		//Brain damage from Oxyloss
 		if(should_have_organ(O_BRAIN))
@@ -1371,7 +1284,7 @@
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !hal_crit && client )
+				if( prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
@@ -1494,7 +1407,8 @@
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
-		client.screen |= cam.client_huds
+		if(LAZYLEN(cam.client_huds))
+			client.screen |= cam.client_huds
 
 	if(stat == DEAD) //Dead
 		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
@@ -1577,7 +1491,7 @@
 			clear_fullscreen("fear")
 
 		if(healths)
-			if (chem_effects[CE_PAINKILLER] > 100)
+			if(chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.
@@ -1599,10 +1513,12 @@
 					health_images += E.get_damage_hud_image(limb_trauma_val)
 
 				// Apply a fire overlay if we're burning.
-				if(on_fire)
+				if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
 					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
 
 				// Show a general pain/crit indicator if needed.
+				if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
+					trauma_val = 2
 				if(trauma_val)
 					if(!(species.flags & NO_PAIN))
 						if(trauma_val > 0.7)
@@ -1860,7 +1776,7 @@
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
-					playsound_local(src,pick(GLOB.scawwySownds),50, 0)
+					playsound_local(src,pick(GLOB.scawwysownds),50, 0)
 					return
 			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 
@@ -2098,7 +2014,7 @@
 		if(stat == DEAD)
 			holder.icon_state = "-100" 	// X_X
 		else
-			holder.icon_state = RoundHealth((health-CONFIG_GET(number/health_threshold_crit))/(getMaxHealth()-CONFIG_GET(number/health_threshold_crit))*100)
+			holder.icon_state = RoundHealth((health-get_crit_point())/(getMaxHealth()-get_crit_point())*100)
 		if(block_hud)
 			holder.icon_state = "hudblank"
 		health_us.icon_state = holder.icon_state

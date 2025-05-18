@@ -23,7 +23,7 @@
 		var/mob/living/carbon/human/C = src
 		var/healing_amount = 40
 		if(src.mind.changeling.recursive_enhancement)
-			healing_amount = C.maxHealth
+			healing_amount = C.getMaxHealth()
 			to_chat(src, span_notice("We completely heal ourselves."))
 		spawn(0)
 			C.adjustBruteLoss(-healing_amount)

@@ -44,7 +44,7 @@
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					user.visible_message(span_notice("[user] patches a hole in the ceiling."), span_notice("You patch a hole in the ceiling."))
 					expended_tile = TRUE
 			else
@@ -58,7 +58,7 @@
 				if(A && !A.is_outdoors())
 					if(expended_tile || R.use(1))
 						make_indoors()
-						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+						playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 						user.visible_message(span_notice("[user] roofs a tile, shielding it from the elements."), span_notice("You roof this tile, shielding it from the elements."))
 					break
 		return
@@ -84,7 +84,7 @@
 					if (S.get_amount() < 1)
 						return
 					S.use(1)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
 					return
 
