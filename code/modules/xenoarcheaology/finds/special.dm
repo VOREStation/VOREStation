@@ -1,6 +1,3 @@
-
-
-
 //endless reagents!
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
@@ -10,7 +7,7 @@
 	START_PROCESSING(SSobj, src)
 	for(var/x=1;x<=10;x++) //You got 10 chances to hit a reagent that is NOT banned.
 		var/new_chem = pick(SSchemistry.chemical_reagents)
-		if(new_chem in obtainable_chemical_blacklist)
+		if(new_chem in GLOB.obtainable_chemical_blacklist)
 			continue
 		else
 			spawning_id = new_chem

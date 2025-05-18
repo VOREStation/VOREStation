@@ -466,8 +466,8 @@
 
 			var/new_chem = pick(SSchemistry.chemical_reagents)
 			var/list/currently_banned_chems = list()
-			currently_banned_chems += obtainable_chemical_blacklist
-			if(new_chem in obtainable_chemical_blacklist)
+			currently_banned_chems += GLOB.obtainable_chemical_blacklist
+			if(new_chem in currently_banned_chems)
 				continue
 			currently_banned_chems += new_chem
 			chems[new_chem] = list(rand(1,10),rand(10,20))
