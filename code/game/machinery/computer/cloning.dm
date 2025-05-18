@@ -14,7 +14,7 @@
 	var/list/scantemp = null
 	var/menu = MENU_MAIN //Which menu screen to display
 	var/list/records = null
-	var/datum/dna2/record/active_record = null
+	var/datum/transhuman/body_record/active_BR = null
 	var/obj/item/disk/body_record/diskette = null // Traitgenes - Storing the entire body record
 	var/loading = 0 // Nice loading text
 	var/autoprocess = 0
@@ -206,15 +206,14 @@
 	. = TRUE
 	switch(tgui_modal_act(src, action, params))
 		if(TGUI_MODAL_ANSWER)
-			if(params["id"] == "del_rec" && active_record)
+			if(params["id"] == "del_rec" && active_BR)
 				var/obj/item/card/id/C = ui.user.get_active_hand()
 				if(!istype(C) && !istype(C, /obj/item/pda))
 					set_temp("ID not in hand.", "danger")
 					return
 				if(check_access(C))
-					records.Remove(active_record)
-					qdel(active_record.dna)
-					qdel(active_record)
+					records.Remove(active_BR)
+					qdel(active_BR) // Already deletes dna in destroy()
 					set_temp("Record deleted.", "success")
 					menu = MENU_RECORDS
 				else
@@ -245,28 +244,28 @@
 			var/ref = params["ref"]
 			if(!length(ref))
 				return
-			active_record = locate(ref)
-			if(istype(active_record))
-				if(isnull(active_record.ckey))
-					qdel(active_record)
+			active_BR = locate(ref)
+			if(istype(active_BR))
+				if(isnull(active_BR.ckey))
+					qdel(active_BR)
 					set_temp("Error: Record corrupt.", "danger")
 				else
 					var/obj/item/implant/health/H = null
-					if(active_record.implant)
-						H = locate(active_record.implant)
+					if(active_BR.mydna.implant)
+						H = locate(active_BR.mydna.implant)
 					var/list/payload = list(
-						activerecord = "\ref[active_record]",
+						activerecord = "\ref[active_BR]",
 						health = (H && istype(H)) ? H.sensehealth() : "",
-						realname = sanitize(active_record.dna.real_name),
-						unidentity = active_record.dna.uni_identity,
-						strucenzymes = active_record.dna.struc_enzymes,
+						realname = sanitize(active_BR.mydna.dna.real_name),
+						unidentity = active_BR.mydna.dna.uni_identity,
+						strucenzymes = active_BR.mydna.dna.struc_enzymes,
 					)
 					tgui_modal_message(src, action, "", null, payload)
 			else
-				active_record = null
+				active_BR = null
 				set_temp("Error: Record missing.", "danger")
 		if("del_rec")
-			if(!active_record)
+			if(!active_BR)
 				return
 			tgui_modal_boolean(src, action, "Please confirm that you want to delete the record by holding your ID and pressing Delete:", yes_text = "Delete", no_text = "Cancel")
 		if("disk") // Disk management.
@@ -277,20 +276,20 @@
 					if(isnull(diskette) || isnull(diskette.stored)) // Traitgenes Storing the entire body record
 						set_temp("Error: The disk's data could not be read.", "danger")
 						return
-					else if(isnull(active_record))
+					else if(isnull(active_BR))
 						set_temp("Error: No active record was found.", "danger")
 						menu = MENU_MAIN
 						return
 
-					active_record = diskette.stored.mydna // Traitgenes Storing the entire body record
+					active_BR = new(diskette.stored) // Traitgenes Storing the entire body record
 					set_temp("Successfully loaded from disk.", "success")
 				if("save")
-					if(isnull(diskette) || isnull(active_record)) // Traitgenes Removed readonly
+					if(isnull(diskette) || isnull(active_BR)) // Traitgenes Removed readonly
 						set_temp("Error: The data could not be saved.", "danger")
 						return
 
-					diskette.stored.mydna = active_record // Traitgenes Storing the entire body record
-					diskette.name = "data disk - '[active_record.dna.real_name]'"
+					diskette.stored = new(active_BR) // Traitgenes Storing the entire body record
+					diskette.name = "data disk - '[active_BR.mydna.dna.real_name]'"
 					set_temp("Successfully saved to disk.", "success")
 				if("eject")
 					if(!isnull(diskette))

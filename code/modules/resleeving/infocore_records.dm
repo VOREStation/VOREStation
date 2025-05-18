@@ -246,24 +246,35 @@
  */
 
 /// The core of resleeving, creates a mob based on the current record
-/datum/transhuman/body_record/proc/produce_human_mob(var/is_synthfab, var/force_unlock, var/backup_name)
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, mydna.dna.species)
-
-	if(!mydna.dna.real_name)
-		mydna.dna.real_name = backup_name
-	H.real_name = mydna.dna.real_name
-
-	// Setup body
+/datum/transhuman/body_record/proc/produce_human_mob(var/location, var/is_synthfab, var/force_unlock, var/backup_name)
+	// These are broken up into steps, otherwise the proc gets massive and hard to read.
+	var/mob/living/carbon/human/H = internal_producebody(location,backup_name)
 	internal_producebody_handlesleevelock(H,force_unlock)
 	internal_producebody_updatelimbandorgans(H)
 	internal_producebody_updatednastate(H,is_synthfab)
 	internal_producebody_virgocharacterdata(H)
-
-	// Finish off
-	H.suiciding = 0
-	H.mind = null
 	return H
 
+/// Creates a human mob with the correct species, name, and a stable state.
+/datum/transhuman/body_record/proc/internal_producebody(var/location,var/backup_name)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(location, mydna.dna.species)
+	if(!mydna.dna.real_name)
+		mydna.dna.real_name = backup_name
+	H.real_name = mydna.dna.real_name
+	H.gender = mydna.gender
+	H.descriptors = mydna.body_descriptors
+	for(var/datum/language/L in mydna.languages)
+		H.add_language(L.name)
+	H.suiciding = 0
+	H.losebreath = 0
+	H.mind = null
+
+	return H
+
+/// Sets the new body's sleevelock status, to prevent impersonation by transfering an incorrect mind.
 /datum/transhuman/body_record/proc/internal_producebody_handlesleevelock(var/mob/living/carbon/human/H,var/force_unlock)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
@@ -274,6 +285,7 @@
 			// Ensure even body scans without an attached ckey respect locking
 			H.resleeve_lock = "@badckey"
 
+/// Either converts limbs to robotics or prosthetic states, or removes them entirely based off record.
 /datum/transhuman/body_record/proc/internal_producebody_updatelimbandorgans(var/mob/living/carbon/human/H,var/is_synthfab)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
@@ -313,11 +325,14 @@
 		else if(status == 3) //Digital organ
 			I.digitize()
 
+/// Transfers dna data to mob, and reinits traits and appearance from it
 /datum/transhuman/body_record/proc/internal_producebody_updatednastate(var/mob/living/carbon/human/H,var/is_synthfab)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
 	//Apply DNA from record
+	if(!mydna.dna) // This case should never happen, but copied from clone pod... Who knows with this codebase.
+		mydna.dna = new /datum/dna()
 	qdel_swap(H.dna, mydna.dna.Clone())
 	H.original_player = ckey
 
@@ -338,10 +353,10 @@
 	H.regenerate_icons()
 	H.initialize_vessel()
 
+/// Transfers VORE related information cached in the mob
 /datum/transhuman/body_record/proc/internal_producebody_virgocharacterdata(var/mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	//Basically all the VORE stuff
 	H.ooc_notes = body_oocnotes
 	H.ooc_notes_likes = body_ooclikes
 	H.ooc_notes_dislikes = body_oocdislikes
@@ -354,3 +369,34 @@
 	H.weight = weight
 	if(speciesname)
 		H.custom_species = speciesname
+
+/// Rebuild a body from a record, like aheal, but without save files. Primarily used for anything that heals like xenochimera.
+/datum/transhuman/body_record/proc/rebuild_human_mob(var/mob/living/carbon/human/H,var/heal_robot_limbs)
+	// Boy this one is complex, but what do we expect when trying to heal damage and organ loss in this game!
+	if(!H || QDELETED(H)) // Someone, somewhere, will call this without any safety. I feel it in my bones cappin'
+		return
+
+	// Reset our organs/limbs.
+	H.species.create_organs(H)
+	internal_producebody_updatelimbandorgans(H)
+
+ 	//Don't boot out anyone already in the mob.
+	if(!H.client || !H.key)
+		for (var/obj/item/organ/internal/brain/CH in GLOB.all_brain_organs)
+			if(CH.brainmob)
+				if(CH.brainmob.real_name == H.real_name)
+					if(CH.brainmob.mind)
+						CH.brainmob.mind.transfer_to(H)
+						qdel(CH)
+
+	// Traitgenes Disable all traits currently active, before prefs.copy_to() is applied, as it refreshes the traits list!
+	for(var/datum/gene/trait/gene in GLOB.dna_genes)
+		if(gene.name in H.active_genes)
+			gene.deactivate(H)
+			H.active_genes -= gene.name
+	internal_producebody_updatednastate(H,heal_robot_limbs)
+
+	// Begin actual REVIVIAL. Do NOT use revive(). That uses client prefs and allows save hacking.
+	H.revival_healing_action()
+
+	return H

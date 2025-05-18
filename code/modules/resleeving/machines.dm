@@ -29,7 +29,7 @@
 	remove_biomass(CLONE_BIOMASS)
 
 	//Get the DNA and generate a new mob
-	var/mob/living/carbon/human/H = current_project.produce_human_mob(FALSE,FALSE,"clone ([rand(0,999)])")
+	var/mob/living/carbon/human/H = current_project.produce_human_mob(src,FALSE,FALSE,"clone ([rand(0,999)])")
 
 	//Give breathing equipment if needed
 	if(current_project.breath_type != null && current_project.breath_type != GAS_O2)
@@ -206,7 +206,7 @@
 		return
 
 	//Get the DNA and generate a new mob
-	var/mob/living/carbon/human/H = current_project.produce_human_mob(TRUE,FALSE,"synth ([rand(0,999)])")
+	var/mob/living/carbon/human/H = current_project.produce_human_mob(src,TRUE,FALSE,"synth ([rand(0,999)])")
 
 	//Apply damage
 	H.adjustBruteLoss(brute_value)

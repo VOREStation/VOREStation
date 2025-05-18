@@ -679,7 +679,12 @@
 			return 1
 	return 0
 
+/// Revives a body using the client's preferences if human
 /mob/living/proc/revive()
+	revival_healing_action()
+
+/// Performs the actual healing of Aheal, seperate from revive() because it does not use client prefs. Will not heal everything, and expects to be called through revive() or with a bodyrecord doing a respawn/revive.
+/mob/living/proc/revival_healing_action()
 	rejuvenate()
 	if(buckled)
 		buckled.unbuckle_mob()

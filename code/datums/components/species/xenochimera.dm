@@ -11,19 +11,28 @@
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
+	var/datum/transhuman/body_record/revival_record
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	RegisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT, PROC_REF(handle_comp))
+	RegisterSignal(owner, COMSIG_INITIAL_RECORDS, PROC_REF(handle_record))
 	add_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 
 /datum/component/xenochimera/Destroy(force)
 	UnregisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT)
+	UnregisterSignal(owner, COMSIG_INITIAL_RECORDS)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
+	qdel_null(revival_record)
 	owner = null
 	. = ..()
+
+/datum/component/xenochimera/proc/handle_record()
+	if(QDELETED(owner))
+		return
+	revival_record = new(owner)
 
 /datum/component/xenochimera/proc/handle_comp()
 	if(QDELETED(owner))
@@ -397,8 +406,8 @@
 	var/old_nutrition = nutrition
 	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=quickcheckuninjured()
-	//I did have special snowflake code, but this is easier. //It's also EXTREMELY BAD AND LETS THEM SAVEFILE HACK.
-	revive()
+	xc.revival_record.rebuild_human_mob(src,FALSE)
+
 	mutations.Remove(HUSK)
 	setBrainLoss(braindamage)
 	species.update_vore_belly_def_variant()
