@@ -29,25 +29,25 @@
 	remove_biomass(CLONE_BIOMASS)
 
 	//Get the DNA and generate a new mob
-	var/datum/dna2/record/R = current_project.mydna
-	occupant = R.produce_human_mob(FALSE,FALSE,"clone ([rand(0,999)])")
+	var/mob/living/carbon/human/H = current_project.produce_human_mob(FALSE,FALSE,"clone ([rand(0,999)])")
 
 	//Give breathing equipment if needed
-	if(breath_type != null && breath_type != GAS_O2)
-		occupant.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(occupant), slot_wear_mask)
+	if(current_project.breath_type != null && current_project.breath_type != GAS_O2)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 		var/obj/item/tank/tankpath
-		if(breath_type == GAS_PHORON)
+		if(current_project.breath_type == GAS_PHORON)
 			tankpath = /obj/item/tank/vox
 		else
-			tankpath = text2path("/obj/item/tank/" + breath_type)
+			tankpath = text2path("/obj/item/tank/" + current_project.breath_type)
 
 		if(tankpath)
-			occupant.equip_to_slot_or_del(new tankpath(occupant), slot_back)
-			occupant.internal = occupant.back
-			if(istype(occupant.internal,/obj/item/tank) && occupant.internals)
-				occupant.internals.icon_state = "internal1"
+			H.equip_to_slot_or_del(new tankpath(H), slot_back)
+			H.internal = H.back
+			if(istype(H.internal,/obj/item/tank) && H.internals)
+				H.internals.icon_state = "internal1"
 
 	//Apply damage
+	occupant = H
 	occupant.adjustCloneLoss((occupant.getMaxHealth() - (occupant.getMaxHealth()))*-0.75)
 	occupant.Paralyse(4)
 	occupant.updatehealth()

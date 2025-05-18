@@ -205,6 +205,41 @@
 		SStranscore.add_body(src, database_key = database_key)
 
 /**
+ * Make a deep copy of this record so it can be saved on a disk without modifications
+ * to the original affecting the copy.
+ * Just to be clear, this has nothing to do do with acutal biological cloning, body printing, resleeving,
+ * or anything like that! This is the computer science concept of "cloning" a data structure!
+ */
+/datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
+	ASSERT(!QDELETED(orig))
+	ASSERT(istype(orig))
+	src.mydna = new ()
+	qdel_swap(src.mydna.dna, orig.mydna.dna.Clone())
+	src.mydna.ckey = orig.mydna.ckey
+	src.mydna.id = orig.mydna.id
+	src.mydna.name = orig.mydna.name
+	src.mydna.types = orig.mydna.types
+	src.mydna.flavor = orig.mydna.flavor.Copy()
+	src.ckey = orig.ckey
+	src.locked = orig.locked
+	src.client_ref = orig.client_ref
+	src.mind_ref = orig.mind_ref
+	src.synthetic = orig.synthetic
+	src.speciesname = orig.speciesname
+	src.bodygender = orig.bodygender
+	src.body_oocnotes = orig.body_oocnotes
+	src.body_ooclikes = orig.body_ooclikes
+	src.body_oocdislikes = orig.body_oocdislikes
+	src.limb_data = orig.limb_data.Copy()
+	src.organ_data = orig.organ_data.Copy()
+	src.genetic_modifiers = orig.genetic_modifiers.Copy()
+	src.toocomplex = orig.toocomplex
+	src.sizemult = orig.sizemult
+	src.aflags = orig.aflags
+	src.breath_type = orig.breath_type
+	src.weight = orig.weight
+
+/**
  * Spawning a body was once left entirely up to the machine doing it, but bodies are massivley complex
  * objects, and doing it this way lead to huge amounts of copypasted code to do the same thing.
  * If you want to spawn a body from a BR, please use these...
@@ -319,38 +354,3 @@
 	H.weight = weight
 	if(speciesname)
 		H.custom_species = speciesname
-
-/**
- * Make a deep copy of this record so it can be saved on a disk without modifications
- * to the original affecting the copy.
- * Just to be clear, this has nothing to do do with acutal biological cloning, body printing, resleeving,
- * or anything like that! This is the computer science concept of "cloning" a data structure!
- */
-/datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
-	ASSERT(!QDELETED(orig))
-	ASSERT(istype(orig))
-	src.mydna = new ()
-	qdel_swap(src.mydna.dna, orig.mydna.dna.Clone())
-	src.mydna.ckey = orig.mydna.ckey
-	src.mydna.id = orig.mydna.id
-	src.mydna.name = orig.mydna.name
-	src.mydna.types = orig.mydna.types
-	src.mydna.flavor = orig.mydna.flavor.Copy()
-	src.ckey = orig.ckey
-	src.locked = orig.locked
-	src.client_ref = orig.client_ref
-	src.mind_ref = orig.mind_ref
-	src.synthetic = orig.synthetic
-	src.speciesname = orig.speciesname
-	src.bodygender = orig.bodygender
-	src.body_oocnotes = orig.body_oocnotes
-	src.body_ooclikes = orig.body_ooclikes
-	src.body_oocdislikes = orig.body_oocdislikes
-	src.limb_data = orig.limb_data.Copy()
-	src.organ_data = orig.organ_data.Copy()
-	src.genetic_modifiers = orig.genetic_modifiers.Copy()
-	src.toocomplex = orig.toocomplex
-	src.sizemult = orig.sizemult
-	src.aflags = orig.aflags
-	src.breath_type = orig.breath_type
-	src.weight = orig.weight
