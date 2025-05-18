@@ -172,16 +172,18 @@
 
 	// Telegraph, since getting bitten suddenly feels bad.
 	do_windup_animation(A, warning_warmup)
-	sleep(warning_warmup) // For the telegraphing.
+	addtimer(CALLBACK(src, PROC_REF(warning_leap), A), warning_warmup) // For the telegraphing.
 
+/mob/living/simple_mob/animal/giant_spider/proc/warning_leap(mob/living/A)
 	// Do the actual leap.
 	status_flags |= LEAPING // Lets us pass over everything.
 	visible_message(span_danger("\The [src] leaps at \the [A]!"))
 	throw_at(get_step(get_turf(A), get_turf(src)), 4, 1, src)
 	playsound(src, warning_sound, 75, 1)
 
-	sleep(5) // For the throw to complete. It won't hold up the AI ticker due to waitfor being false.
+	addtimer(CALLBACK(src, PROC_REF(warning_finish), A), 5) // For the throw to complete. It won't hold up the AI ticker due to waitfor being false.
 
+/mob/living/simple_mob/animal/giant_spider/proc/warning_finish(mob/living/A)
 	if(status_flags & LEAPING)
 		status_flags &= ~LEAPING // Revert special passage ability.
 
