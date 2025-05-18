@@ -181,7 +181,7 @@
 	throw_at(get_step(get_turf(A), get_turf(src)), 4, 1, src)
 	playsound(src, warning_sound, 75, 1)
 
-	addtimer(CALLBACK(src, PROC_REF(warning_finish), A), 5) // For the throw to complete. It won't hold up the AI ticker due to waitfor being false.
+	addtimer(CALLBACK(src, PROC_REF(warning_finish), A), 0.5 SECONDS) // For the throw to complete. It won't hold up the AI ticker due to waitfor being false.
 
 /mob/living/simple_mob/animal/giant_spider/proc/warning_finish(mob/living/A)
 	if(status_flags & LEAPING)
