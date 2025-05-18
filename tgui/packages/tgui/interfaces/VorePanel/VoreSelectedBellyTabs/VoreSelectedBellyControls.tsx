@@ -3,7 +3,11 @@ import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { digestModeToColor } from '../constants';
 import type { bellyModeData } from '../types';
-import { VorePanelEditText } from '../VorePanelElements/VorePanelEditables';
+import {
+  VorePanelEditCheckboxes,
+  VorePanelEditDropdown,
+  VorePanelEditText,
+} from '../VorePanelElements/VorePanelEditables';
 
 export const VoreSelectedBellyControls = (props: {
   editMode: boolean;
@@ -13,7 +17,14 @@ export const VoreSelectedBellyControls = (props: {
   const { act } = useBackend();
 
   const { belly_name, bellyModeData, editMode } = props;
-  const { mode, item_mode, addons, name_length } = bellyModeData;
+  const {
+    mode,
+    item_mode,
+    addons,
+    name_length,
+    mode_options,
+    item_mode_options,
+  } = bellyModeData;
 
   return (
     <LabeledList>
@@ -49,27 +60,32 @@ export const VoreSelectedBellyControls = (props: {
         />
       </LabeledList.Item>
       <LabeledList.Item label="Mode">
-        <Button
+        <VorePanelEditDropdown
+          editMode={editMode}
+          options={mode_options}
+          entry={mode}
+          action={'set_attribute'}
+          subAction={'b_mode'}
           color={digestModeToColor[mode]}
-          onClick={() => act('set_attribute', { attribute: 'b_mode' })}
-        >
-          {mode}
-        </Button>
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Mode Addons">
-        {(addons.length && addons.join(', ')) || 'None'}
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_addons' })}
-          ml={1}
-          icon="plus"
+        <VorePanelEditCheckboxes
+          editMode={editMode}
+          options={addons}
+          action={'set_attribute'}
+          subAction={'b_addons'}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Item Mode">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_item_mode' })}
-        >
-          {item_mode}
-        </Button>
+        <VorePanelEditDropdown
+          editMode={editMode}
+          options={item_mode_options}
+          entry={item_mode}
+          action={'set_attribute'}
+          subAction={'b_item_mode'}
+          color={digestModeToColor[item_mode]}
+        />
       </LabeledList.Item>
       <LabeledList.Item>
         <Button.Confirm

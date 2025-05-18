@@ -1316,18 +1316,16 @@
 			host.vore_selected.wet_loop = !host.vore_selected.wet_loop
 			. = TRUE
 		if("b_mode")
-			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			var/new_mode = tgui_input_list(user, "Choose Mode (currently [host.vore_selected.digest_mode])", "Mode Choice", menu_list)
-			if(!new_mode)
+			var/new_mode = params["val"]
+			if(!(new_mode in host.vore_selected.digest_modes))
 				return FALSE
 
 			host.vore_selected.digest_mode = new_mode
 			host.vore_selected.updateVRPanels()
 			. = TRUE
 		if("b_addons")
-			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Addon", "Addon Choice", menu_list)
-			if(!toggle_addon)
+			var/toggle_addon = params["val"]
+			if(!(toggle_addon in host.vore_selected.mode_flag_list))
 				return FALSE
 			host.vore_selected.mode_flags ^= host.vore_selected.mode_flag_list[toggle_addon]
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on
@@ -1347,10 +1345,8 @@
 					to_chat(user, span_warning("TURBO MODE deactivated. Belly processing returned to normal speed."))
 			. = TRUE
 		if("b_item_mode")
-			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
-
-			var/new_mode = tgui_input_list(user, "Choose Mode (currently [host.vore_selected.item_digest_mode])", "Mode Choice", menu_list)
-			if(!new_mode)
+			var/new_mode = params["val"]
+			if(!(new_mode in host.vore_selected.item_digest_modes))
 				return FALSE
 
 			host.vore_selected.item_digest_mode = new_mode

@@ -19,6 +19,8 @@ export const digestModeToColor = {
   'Size Steal': 'teal',
   Heal: 'green',
   'Encase In Egg': 'blue',
+  'Digest (Food Only)': 'red',
+  'Digest (Dispersed Damage)': 'red',
 };
 
 export const reagentToColor = {

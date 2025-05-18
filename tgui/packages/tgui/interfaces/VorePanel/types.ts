@@ -67,8 +67,10 @@ export type bellyData = {
 export type bellyModeData = {
   mode: string;
   item_mode: string;
-  addons: string[];
+  addons: checkBoxEntry[];
   name_length: number;
+  mode_options: string[];
+  item_mode_options: string[];
 };
 
 export type selectedData = {
@@ -332,6 +334,11 @@ export type soulcatcherData = {
 export type DropdownEntry = {
   displayText: string;
   value: string;
+};
+
+export type checkBoxEntry = {
+  label: string;
+  selection: BooleanLike;
 };
 
 export type localPrefs = {

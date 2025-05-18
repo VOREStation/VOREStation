@@ -94,13 +94,14 @@
 		if(tab == CONTROL_TAB)
 			var/list/addons = list()
 			for(var/flag_name in selected.mode_flag_list)
-				if(selected.mode_flags & selected.mode_flag_list[flag_name])
-					addons.Add(flag_name)
+				addons += list(list("label" = flag_name, "selection" = selected.mode_flags & selected.mode_flag_list[flag_name]))
 			var/list/belly_mode_data = list(
 				"mode" = selected.digest_mode,
 				"item_mode" = selected.item_digest_mode,
 				"addons" = addons,
-				"name_length" = BELLIES_NAME_MAX
+				"name_length" = BELLIES_NAME_MAX,
+				"mode_options" = host.vore_selected.digest_modes,
+				"item_mode_options" = host.vore_selected.item_digest_modes,
 
 			)
 			selected_list["belly_mode_data"] = belly_mode_data
