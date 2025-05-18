@@ -39,7 +39,7 @@
 	. = FALSE
 	var/sickrisk = 1
 
-	if(isSynthetic()) // Don't bother
+	if(isSynthetic() || species.virus_immune) // Don't bother
 		return
 
 	switch(get_species())
