@@ -146,7 +146,7 @@
 		data["our_bellies"] = get_vorebellies(host)
 
 		// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
-		data["selected"] = get_selected_data(host, active_vore_tab)
+		data["selected"] = get_selected_data(host)
 
 	if(active_tab == SOULCATCHER_TAB)
 		// Soulcatcher and abilities

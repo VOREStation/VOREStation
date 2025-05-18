@@ -1,5 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Dropdown, Input } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Floating,
+  Input,
+  Stack,
+} from 'tgui-core/components';
 
 import type { checkBoxEntry, DropdownEntry } from '../types';
 
@@ -15,13 +22,13 @@ export const VorePanelEditText = (props: {
 
   const { entry, editMode, limit, action, subAction, color } = props;
 
+  function doAct(value: string) {
+    if (entry === value) return;
+    act(action, { attribute: subAction, val: value });
+  }
+
   return editMode ? (
-    <Input
-      fluid
-      maxLength={limit}
-      value={entry}
-      onBlur={(value) => act(action, { attribute: subAction, val: value })}
-    />
+    <Input fluid maxLength={limit} value={entry} onBlur={(value) => doAct} />
   ) : (
     <Box textColor={color}>{entry}</Box>
   );
@@ -61,24 +68,47 @@ export const VorePanelEditCheckboxes = (props: {
 
   const { editMode, options, action, subAction } = props;
 
-  return editMode ? (
-    options.map((value) => (
-      <Button.Checkbox
-        key={value.label}
-        checked={value.selection}
-        onClick={() => act(action, { attribute: subAction, val: value.label })}
-      >
-        {value.label}
-      </Button.Checkbox>
-    ))
-  ) : (
-    <Box>
-      {(options.length &&
-        options
-          .filter((option) => option.selection)
-          .map((value) => value.label)
-          .join(', ')) ||
-        'None'}
-    </Box>
+  return (
+    <Stack>
+      <Stack.Item grow>
+        <Box>
+          {(options.length &&
+            options
+              .filter((option) => option.selection)
+              .map((value) => value.label)
+              .join(', ')) ||
+            'None'}
+        </Box>
+      </Stack.Item>
+      <Stack.Item>
+        {editMode && (
+          <Floating
+            placement="bottom-end"
+            contentClasses="VorePanel__fLoating"
+            content={
+              <Stack vertical fill>
+                {options.map((value) => (
+                  <Stack.Item key={value.label}>
+                    <Button.Checkbox
+                      checked={value.selection}
+                      onClick={() =>
+                        act(action, {
+                          attribute: subAction,
+                          val: value.label,
+                        })
+                      }
+                    >
+                      {value.label}
+                    </Button.Checkbox>
+                  </Stack.Item>
+                ))}
+              </Stack>
+            }
+          >
+            <Box backgroundColor="blue">+/-</Box>
+          </Floating>
+        )}
+      </Stack.Item>
+    </Stack>
   );
 };

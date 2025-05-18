@@ -1,4 +1,11 @@
 #define CONTROL_TAB 0
+#define DESCRIPTIONS_TAB 1
+#define OPTIONS_TAB 2
+#define SOUNDS_TAB 3
+#define VISUALS_TAB 4
+#define INTERACTIONS_TAB 5
+#define CONTENTS_TAB 6
+#define LIQUID_OPTIONS_TAB 7
 
 /datum/vore_look/proc/get_vorebellies(mob/owner, full_data = TRUE)
 	var/list/our_bellies = list()
@@ -86,12 +93,12 @@
 		host_mobtype["is_vore_simple_mob"] = TRUE
 	return host_mobtype
 
-/datum/vore_look/proc/get_selected_data(mob/owner, tab)
+/datum/vore_look/proc/get_selected_data(mob/owner)
 	var/list/selected_list = null
 	if(owner.vore_selected)
 		var/obj/belly/selected = owner.vore_selected
 		selected_list = list("belly_name" = selected.name)
-		if(tab == CONTROL_TAB)
+		if(active_vore_tab == CONTROL_TAB)
 			var/list/addons = list()
 			for(var/flag_name in selected.mode_flag_list)
 				UNTYPED_LIST_ADD(addons, list("label" = flag_name, "selection" = selected.mode_flags & selected.mode_flag_list[flag_name]))
@@ -106,15 +113,22 @@
 			)
 			selected_list["belly_mode_data"] = belly_mode_data
 
+		if(active_vore_tab == DESCRIPTIONS_TAB)
+			var/list/belly_description_data = list(
+				"verb" = selected.vore_verb,
+				"release_verb" = selected.release_verb,
+				"desc" = selected.desc,
+				"absorbed_desc" = selected.absorbed_desc,
+				"mode" = selected.digest_mode,
+				"message_mode" = selected.message_mode,
+				"escapable" = selected.escapable,
+			)
+			selected_list["belly_description_data"] = belly_description_data
+
 
 		selected_list += list(list(
-			"message_mode" = selected.message_mode,
 			"is_wet" = selected.is_wet,
 			"wet_loop" = selected.wet_loop,
-			"verb" = selected.vore_verb,
-			"release_verb" = selected.release_verb,
-			"desc" = selected.desc,
-			"absorbed_desc" = selected.absorbed_desc,
 			"fancy" = selected.fancy_vore,
 			"sound" = selected.vore_sound,
 			"release_sound" = selected.release_sound,
@@ -378,3 +392,10 @@
 	return selected_list
 
 #undef CONTROL_TAB
+#undef DESCRIPTIONS_TAB
+#undef OPTIONS_TAB
+#undef SOUNDS_TAB
+#undef VISUALS_TAB
+#undef INTERACTIONS_TAB
+#undef CONTENTS_TAB
+#undef LIQUID_OPTIONS_TAB
