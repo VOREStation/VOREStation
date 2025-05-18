@@ -15,7 +15,7 @@
 				"contents" = LAZYLEN(B.contents),
 				"prevent_saving" = B.prevent_saving
 			)
-		our_bellies += list(belly_data)
+		UNTYPED_LIST_ADD(our_bellies, belly_data)
 	return our_bellies
 
 /datum/vore_look/proc/get_inside_data(mob/owner)
@@ -74,7 +74,7 @@
 				info["stat"] = M.stat
 				if(M.absorbed)
 					info["absorbed"] = TRUE
-			inside_contents.Add(list(info))
+			UNTYPED_LIST_ADD(inside_contents, info)
 		inside["contents"] = inside_contents
 	return inside
 
@@ -94,7 +94,7 @@
 		if(tab == CONTROL_TAB)
 			var/list/addons = list()
 			for(var/flag_name in selected.mode_flag_list)
-				addons += list(list("label" = flag_name, "selection" = selected.mode_flags & selected.mode_flag_list[flag_name]))
+				UNTYPED_LIST_ADD(addons, list("label" = flag_name, "selection" = selected.mode_flags & selected.mode_flag_list[flag_name]))
 			var/list/belly_mode_data = list(
 				"mode" = selected.digest_mode,
 				"item_mode" = selected.item_digest_mode,
