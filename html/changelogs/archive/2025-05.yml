@@ -160,3 +160,9 @@
   - refactor: Overmap shuttle star movement overlay is not controlled by a subsystem
   - bugfix: mobs can be extinguished by hand when beneath paincrit threshold
   - refactor: Photosynthesis code moved to component
+2025-05-18:
+  Diana:
+  - code_imp: Gibbing is now 75% FASTER!!!
+  - qol: TTS device now costs 0 points
+  Willburd:
+  - code_imp: Prepared signal handling code for future work
