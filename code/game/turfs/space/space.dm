@@ -89,7 +89,7 @@
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
 			to_chat(user, span_notice("Constructing support lattice ..."))
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
 
@@ -100,7 +100,7 @@
 			if (S.get_amount() < 1)
 				return
 			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 			S.use(1)
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
@@ -125,7 +125,7 @@
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					user.visible_message(span_notice("[user] expands the ceiling."), span_notice("You expand the ceiling."))
 			else
 				to_chat(user, span_warning("There aren't any holes in the ceiling to patch here."))

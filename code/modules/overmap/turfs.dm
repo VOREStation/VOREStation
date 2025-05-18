@@ -89,20 +89,3 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_exited(src, O, newloc)
-
-//list used to track which zlevels are being 'moved' by the proc below
-var/list/moving_levels = list()
-//Proc to 'move' stars in spess
-//yes it looks ugly, but it should only fire when state actually change.
-//null direction stops movement
-/proc/toggle_move_stars(zlevel, direction)
-	if(!zlevel)
-		return
-
-	if (moving_levels["[zlevel]"] != direction)
-		moving_levels["[zlevel]"] = direction
-
-		var/list/spaceturfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
-		for(var/turf/space/T in spaceturfs)
-			T.toggle_transit(direction)
-			CHECK_TICK

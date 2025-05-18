@@ -202,7 +202,6 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
 	var/safe_pressure = ONE_ATMOSPHERE
-	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
 
@@ -244,10 +243,6 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
-	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
-	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
-	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
-	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
@@ -348,12 +343,6 @@
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
 	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
-	var/is_weaver = FALSE
-	var/silk_production = FALSE
-	var/silk_reserve = 100
-	var/silk_max_reserve = 500
-	var/silk_color = "#FFFFFF"
-
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
@@ -371,6 +360,7 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -605,6 +595,23 @@
 		env_trait.handle_environment_special(H)
 	return
 
+/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//Xenochimera Species Component
+	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+	if(xc)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
+
+	//Shadekin Species Component.
+	/* //For when shadekin actually have their component control everything.
+	var/datum/component/shadekin/sk = H.get_xenochimera_component()
+	if(sk)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
+	*/
+
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return
@@ -755,6 +762,10 @@
 		nif.nifsofts = nifsofts*/
 	else
 		..()
+
+/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+	if(species_component)
+		H.LoadComponent(species_component)
 
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
