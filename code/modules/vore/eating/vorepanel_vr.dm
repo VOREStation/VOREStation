@@ -118,7 +118,7 @@
 	if(!host)
 		return data
 
-	 // General Data
+	// General Data
 	data["unsaved_changes"] = unsaved_changes
 	data["active_tab"] = active_tab
 
