@@ -73,15 +73,15 @@ export const tabToNames = [
 ];
 
 export const modeToTooltip = {
-  Numbing: 'Todo',
-  Stripping: 'Todo',
-  'Leave Remains': 'Todo',
-  Muffles: 'Todo',
-  'Affect Worn Items': 'Todo',
-  'Jams Sensors': 'Todo',
-  'Complete Absorb': 'Todo',
-  'Spare Prosthetics': 'Todo',
-  'Slow Body Digestion': 'Todo',
-  'Muffle Items': 'Todo',
-  'TURBO MODE': 'Todo',
+  Numbing: 'Prey will recieve no pain from vorgan damage.',
+  Stripping: 'Strips prey of all equipped items.',
+  'Leave Remains': 'Prey might leave remains like bones.',
+  Muffles: 'Causes all prey messages to become subtles.',
+  'Affect Worn Items': 'Allows vorgan to coat and digest equipped items.',
+  'Jams Sensors': 'Blocks medical sensors, but not GPS.',
+  'Complete Absorb': 'Limits conversation to direct pred / prey.',
+  'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
+  'Slow Body Digestion': 'Leaves the body persistent for a while longer.',
+  'Muffle Items': ' Muffles noise from items inside the vorgan.',
+  'TURBO MODE': 'Heavily increases tick speed of the vorgan.',
 };

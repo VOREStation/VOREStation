@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 
 import { SYNTAX_COLOR, SYNTAX_REGEX } from '../constants';
-import type { selectedData } from '../types';
+import type { bellyDescriptionData } from '../types';
 import { VoreSelectedBellyDescriptionsBellymode } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsBellymode';
 import { VoreSelectedBellyDescriptionsEscape } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsEscape';
 import { VoreSelectedBellyDescriptionsIdle } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsIdle';
@@ -53,13 +53,13 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
 };
 
 export const VoreSelectedBellyDescriptions = (props: {
-  belly: selectedData;
+  bellyDescriptionData: bellyDescriptionData;
   vore_words: Record<string, string[]>;
 }) => {
   const { act } = useBackend();
   const [showFormatHelp, setShowFormatHelp] = useState(false);
 
-  const { belly, vore_words } = props;
+  const { bellyDescriptionData, vore_words } = props;
   const {
     verb,
     release_verb,
@@ -72,7 +72,7 @@ export const VoreSelectedBellyDescriptions = (props: {
     autotransfer_enabled,
     autotransfer,
     emote_active,
-  } = belly;
+  } = bellyDescriptionData;
 
   return (
     <Box>

@@ -35,7 +35,8 @@ export const VoreSelectedBelly = (props: {
     vore_words,
     editMode,
   } = props;
-  const { belly_name, belly_mode_data, contents } = belly;
+  const { belly_name, belly_mode_data, belly_description_data, contents } =
+    belly;
 
   const tabs: (React.JSX.Element | undefined)[] = [];
 
@@ -46,8 +47,11 @@ export const VoreSelectedBelly = (props: {
       bellyModeData={belly_mode_data}
     />
   );
-  tabs[1] = (
-    <VoreSelectedBellyDescriptions belly={belly} vore_words={vore_words} />
+  tabs[1] = belly_description_data && (
+    <VoreSelectedBellyDescriptions
+      bellyDescriptionData={belly_description_data}
+      vore_words={vore_words}
+    />
   );
   tabs[2] = (
     <VoreSelectedBellyOptions belly={belly} host_mobtype={host_mobtype} />

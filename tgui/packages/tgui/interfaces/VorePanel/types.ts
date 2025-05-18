@@ -73,17 +73,29 @@ export type bellyModeData = {
   item_mode_options: string[];
 };
 
-export type selectedData = {
-  belly_name: string;
-  belly_mode_data?: bellyModeData;
-
-  message_mode: BooleanLike;
-  is_wet: BooleanLike;
-  wet_loop: BooleanLike;
+export type bellyDescriptionData = {
   verb: string;
   release_verb: string;
   desc: string;
   absorbed_desc: string;
+  mode: string;
+  message_mode: BooleanLike;
+  escapable: BooleanLike;
+  interacts: interactData;
+  autotransfer_enabled: BooleanLike;
+  autotransfer: autotransferData;
+  emote_active: BooleanLike;
+  show_liq_fullness: BooleanLike;
+};
+
+export type selectedData = {
+  belly_name: string;
+  belly_mode_data?: bellyModeData;
+  belly_description_data?: bellyDescriptionData;
+
+  interacts: interactData;
+  is_wet: BooleanLike;
+  wet_loop: BooleanLike;
   fancy: BooleanLike;
   sound: string;
   release_sound: string;
@@ -154,6 +166,7 @@ export type selectedData = {
   resist_animation: BooleanLike;
   voresprite_size_factor: number;
   belly_sprite_to_affect: string;
+  escapable: BooleanLike;
   undergarment_chosen: string;
   undergarment_if_none: string;
   undergarment_color: string;
@@ -170,8 +183,6 @@ export type selectedData = {
   contaminates: BooleanLike;
   contaminate_flavor: string | null;
   contaminate_color: string | null;
-  escapable: BooleanLike;
-  interacts: interactData;
   autotransfer_enabled: BooleanLike;
   autotransfer: autotransferData;
   disable_hud: BooleanLike;

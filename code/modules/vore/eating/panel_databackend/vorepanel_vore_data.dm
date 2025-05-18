@@ -122,10 +122,17 @@
 				"mode" = selected.digest_mode,
 				"message_mode" = selected.message_mode,
 				"escapable" = selected.escapable,
+				"interacts" = compile_interact_data(selected),
+				"autotransfer_enabled" = selected.autotransfer_enabled,
+				"autotransfer" = compile_autotransfer_data(selected),
+				"emote_active" = selected.emote_active,
+				"show_liq_fullness" = selected.show_fullness_messages
 			)
 			selected_list["belly_description_data"] = belly_description_data
 
 
+
+		// TODO wipe this list-....
 		selected_list += list(list(
 			"is_wet" = selected.is_wet,
 			"wet_loop" = selected.wet_loop,
@@ -239,70 +246,10 @@
 		selected_list["escapable"] = selected.escapable
 		selected_list["interacts"] = list()
 		if(selected.escapable)
-			selected_list["interacts"]["escapechance"] = selected.escapechance
-			selected_list["interacts"]["escapechance_absorbed"] = selected.escapechance_absorbed
-			selected_list["interacts"]["escapetime"] = selected.escapetime
-			selected_list["interacts"]["transferchance"] = selected.transferchance
-			selected_list["interacts"]["transferlocation"] = selected.transferlocation
-			selected_list["interacts"]["transferchance_secondary"] = selected.transferchance_secondary
-			selected_list["interacts"]["transferlocation_secondary"] = selected.transferlocation_secondary
-			selected_list["interacts"]["absorbchance"] = selected.absorbchance
-			selected_list["interacts"]["digestchance"] = selected.digestchance
-			selected_list["interacts"]["belchchance"] = selected.belchchance
+			selected_list["interacts"] = compile_interact_data(selected)
 
 		selected_list["autotransfer_enabled"] = selected.autotransfer_enabled
-		selected_list["autotransfer"] = list()
-		if(selected.autotransfer_enabled)
-			selected_list["autotransfer"]["autotransferchance"] = selected.autotransferchance
-			selected_list["autotransfer"]["autotransferwait"] = selected.autotransferwait
-			selected_list["autotransfer"]["autotransferlocation"] = selected.autotransferlocation
-			selected_list["autotransfer"]["autotransferextralocation"] = selected.autotransferextralocation
-			selected_list["autotransfer"]["autotransferchance_secondary"] = selected.autotransferchance_secondary
-			selected_list["autotransfer"]["autotransferlocation_secondary"] = selected.autotransferlocation_secondary
-			selected_list["autotransfer"]["autotransferextralocation_secondary"] = selected.autotransferextralocation_secondary
-			selected_list["autotransfer"]["autotransfer_min_amount"] = selected.autotransfer_min_amount
-			selected_list["autotransfer"]["autotransfer_max_amount"] = selected.autotransfer_max_amount
-			//auto-transfer flags
-			var/list/at_whitelist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name])
-					at_whitelist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_whitelist"] = at_whitelist
-			var/list/at_blacklist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name])
-					at_blacklist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_blacklist"] = at_blacklist
-			var/list/at_whitelist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_whitelist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_whitelist_items"] = at_whitelist_items
-			var/list/at_blacklist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_blacklist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_blacklist_items"] = at_blacklist_items
-			var/list/at_secondary_whitelist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name])
-					at_secondary_whitelist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_whitelist"] = at_secondary_whitelist
-			var/list/at_secondary_blacklist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name])
-					at_secondary_blacklist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_blacklist"] = at_secondary_blacklist
-			var/list/at_secondary_whitelist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_secondary_whitelist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_whitelist_items"] = at_secondary_whitelist_items
-			var/list/at_secondary_blacklist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_secondary_blacklist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_blacklist_items"] = at_secondary_blacklist_items
+		selected_list["autotransfer"] = compile_autotransfer_data(selected)
 
 		selected_list["disable_hud"] = selected.disable_hud
 		selected_list["colorization_enabled"] = selected.colorization_enabled
@@ -390,6 +337,86 @@
 			selected_list["liq_messages"]["liq_msg4"] = selected.liquid_fullness4_messages
 			selected_list["liq_messages"]["liq_msg5"] = selected.liquid_fullness5_messages
 	return selected_list
+
+
+
+
+
+
+/datum/vore_look/proc/compile_interact_data(obj/belly/selected)
+	var/list/interact_data = list()
+	if(selected.escapable)
+		interact_data += list(
+			"escapechance" = selected.escapechance,
+			"escapechance_absorbed" = selected.escapechance_absorbed,
+			"escapetime" = selected.escapetime,
+			"transferchance" = selected.transferchance,
+			"transferlocation" = selected.transferlocation,
+			"transferchance_secondary" = selected.transferchance_secondary,
+			"transferlocation_secondary" = selected.transferlocation_secondary,
+			"absorbchance" = selected.absorbchance,
+			"digestchance" = selected.digestchance,
+			"belchchance" = selected.belchchance
+		)
+	return interact_data
+
+/datum/vore_look/proc/compile_autotransfer_data(obj/belly/selected)
+	var/list/autotransfer_data = list()
+	if(selected.autotransfer_enabled)
+		//auto-transfer flags
+		var/list/at_whitelist = list()
+		for(var/flag_name in selected.autotransfer_flags_list)
+			if(selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name])
+				at_whitelist.Add(flag_name)
+		var/list/at_blacklist = list()
+		for(var/flag_name in selected.autotransfer_flags_list)
+			if(selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name])
+				at_blacklist.Add(flag_name)
+		var/list/at_whitelist_items = list()
+		for(var/flag_name in selected.autotransfer_flags_list_items)
+			if(selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
+				at_whitelist_items.Add(flag_name)
+		var/list/at_blacklist_items = list()
+		for(var/flag_name in selected.autotransfer_flags_list_items)
+			if(selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
+				at_blacklist_items.Add(flag_name)
+		var/list/at_secondary_whitelist = list()
+		for(var/flag_name in selected.autotransfer_flags_list)
+			if(selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name])
+				at_secondary_whitelist.Add(flag_name)
+		var/list/at_secondary_blacklist = list()
+		for(var/flag_name in selected.autotransfer_flags_list)
+			if(selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name])
+				at_secondary_blacklist.Add(flag_name)
+		var/list/at_secondary_whitelist_items = list()
+		for(var/flag_name in selected.autotransfer_flags_list_items)
+			if(selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
+				at_secondary_whitelist_items.Add(flag_name)
+		var/list/at_secondary_blacklist_items = list()
+		for(var/flag_name in selected.autotransfer_flags_list_items)
+			if(selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
+				at_secondary_blacklist_items.Add(flag_name)
+
+		autotransfer_data += list(
+			"autotransferchance" = selected.autotransferchance,
+			"autotransferwait" = selected.autotransferwait,
+			"autotransferlocation" = selected.autotransferlocation,
+			"autotransferextralocation" = selected.autotransferextralocation,
+			"autotransferchance_secondary" = selected.autotransferchance_secondary,
+			"autotransferlocation_secondary" = selected.autotransferlocation_secondary,
+			"autotransferextralocation_secondary" = selected.autotransferextralocation_secondary,
+			"autotransfer_min_amount" = selected.autotransfer_min_amount,
+			"autotransfer_max_amount" = selected.autotransfer_max_amount,
+			"autotransfer_whitelist" = at_whitelist,
+			"autotransfer_blacklist" = at_blacklist,
+			"autotransfer_whitelist_items" = at_whitelist_items,
+			"autotransfer_blacklist_items" = at_blacklist_items,
+			"autotransfer_secondary_whitelist" = at_secondary_whitelist,
+			"autotransfer_secondary_blacklist" = at_secondary_blacklist,
+			"autotransfer_secondary_whitelist_items" = at_secondary_whitelist_items,
+			"autotransfer_secondary_blacklist_items" = at_secondary_blacklist_items,
+		)
+	return autotransfer_data
 
 #undef CONTROL_TAB
 #undef DESCRIPTIONS_TAB
