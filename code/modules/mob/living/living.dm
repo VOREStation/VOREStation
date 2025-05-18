@@ -937,6 +937,13 @@
 		//deaf_loop.start() // Ear Ringing/Deafness - Not sure if we need this, but, safety. NYI. Used downstream.
 
 /mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
+	if(!lastpuke)
+		lastpuke = TRUE
+		to_chat(src, span_warning("You feel nauseous..."))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, span_warning("You feel like you're about to throw up!")), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_vomit), lost_nutrition, blood, stun, distance, message, toxic, purge), 25 SECONDS)
+
+/mob/living/proc/do_vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
 
 	if(!check_has_mouth())
 		return TRUE
@@ -975,6 +982,14 @@
 		if(message)
 			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
 
+	// Hurt liver means throwing up blood
+	if(!blood && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(!H.isSynthetic())
+			var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+			if(!L || L.is_broken())
+				blood = TRUE
+
 	if(stun)
 		Stun(stun)
 
@@ -1004,6 +1019,9 @@
 			else if(T)
 				T.add_vomit_floor(src, vomit_type, purge)
 			T = get_step(T, dir)
+
+	VARSET_IN(src, lastpuke, FALSE, 10 SECONDS)
+
 	return TRUE
 
 /mob/living/proc/check_vomit_goal()
