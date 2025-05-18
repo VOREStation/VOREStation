@@ -124,7 +124,7 @@
 	pain_emote_1p = list("chitter", "click")
 	pain_emote_3p = list("chitters", "clicks")
 
-	var/warning_warmup = 3 SECONDS // How long the leap telegraphing is.
+	var/warning_warmup = 2 SECONDS // How long the leap telegraphing is.
 	var/warning_sound = 'sound/weapons/spiderlunge.ogg'
 
 

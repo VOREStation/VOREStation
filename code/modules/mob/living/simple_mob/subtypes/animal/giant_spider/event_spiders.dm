@@ -83,5 +83,5 @@
 			intruders |= L
 	if(intruders.len)
 		intruder = pick(intruders)
-		next_warning = world.time + 2 MINUTES
+		next_warning = world.time + 30 SECONDS
 		S.warning_bite(intruder)
