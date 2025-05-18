@@ -1,5 +1,5 @@
 .VorePanel__fLoating {
-  height: 150px;
+  height: 200px;
   background-color: var(--color-section);
   backdrop-filter: var(--blur-medium);
   border: var(--border-thickness-tiny) solid var(--color-border);
@@ -10,8 +10,4 @@
   overflow-y: scroll;
   overflow-x: hidden;
   padding: var(--space-m);
-
-  tr:not(:last-of-type) {
-    margin-bottom: var(--space-m);
-  }
 }
