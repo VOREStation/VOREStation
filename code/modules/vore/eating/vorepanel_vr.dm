@@ -2,8 +2,10 @@
 // Vore management panel for players
 //
 
-#define VORE_RESIZE_COST 125
 #define STATION_PREF_NAME "Virgo"
+#define VORE_BELLY_TAB 0
+#define SOULCATCHER_TAB 1
+#define PREFERENCE_TAB 2
 
 /mob
 	var/datum/vore_look/vorePanel
@@ -38,6 +40,8 @@
 	var/show_pictures = TRUE
 	var/icon_overflow = FALSE
 	var/max_icon_content = 21 //Contents above this disable icon mode. 21 for nice 3 rows to fill the default panel window.
+	var/active_tab = 0 // our current tab
+	var/active_vore_tab = 0 // our vore sub tab
 
 /datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
@@ -114,467 +118,45 @@
 	if(!host)
 		return data
 
+	 // General Data
 	data["unsaved_changes"] = unsaved_changes
-	data["show_pictures"] = show_pictures
-	data["icon_overflow"] = icon_overflow
+	data["active_tab"] = active_tab
 
-	var/atom/hostloc = host.loc
-	//Allow VorePanel to show pred belly details even while indirectly inside
-	if(istype(host, /mob/living))
-		var/mob/living/H = host
-		hostloc = H.surrounding_belly()
-	//End of indirect vorefx additions
-	var/list/inside = list()
-	if(isbelly(hostloc))
-		var/obj/belly/inside_belly = hostloc
-		var/mob/living/pred = inside_belly.owner
+	// Inisde Data
+	data["inside"] = get_inside_data(host)
 
-		var/inside_desc = "No description."
-		if(host.absorbed && inside_belly.absorbed_desc)
-			inside_desc = inside_belly.absorbed_desc
-		else if(inside_belly.desc)
-			inside_desc = inside_belly.desc
-
-		if(inside_desc != "No description.")
-			inside_desc = inside_belly.belly_format_string(inside_desc, host, use_first_only = TRUE)
-
-		inside = list(
-			"absorbed" = host.absorbed,
-			"belly_name" = inside_belly.name,
-			"belly_mode" = inside_belly.digest_mode,
-			"desc" = inside_desc,
-			"pred" = pred,
-			"ref" = "\ref[inside_belly]",
-			"liq_lvl" = inside_belly.reagents.total_volume,
-			"liq_reagent_type" = inside_belly.reagent_chosen,
-			"liuq_name" = inside_belly.reagent_name,
-		)
-
-		var/list/inside_contents = list()
-		for(var/atom/movable/O in inside_belly)
-			if(O == host)
-				continue
-
-			var/list/info = list(
-				"name" = "[O]",
-				"absorbed" = FALSE,
-				"stat" = 0,
-				"ref" = "\ref[O]",
-				"outside" = FALSE,
-			)
-			if(show_pictures) //disables icon mode
-				if(inside_belly.contents.len <= max_icon_content)
-					icon_overflow = FALSE
-					info["icon"] = cached_nom_icon(O)
-				else
-					icon_overflow = TRUE
-			if(isliving(O))
-				var/mob/living/M = O
-				info["stat"] = M.stat
-				if(M.absorbed)
-					info["absorbed"] = TRUE
-			inside_contents.Add(list(info))
-		inside["contents"] = inside_contents
-	data["inside"] = inside
-
-	var/is_cyborg = FALSE
-	var/is_vore_simple_mob = FALSE
-	if(isrobot(host))
-		is_cyborg = TRUE
-	else if(istype(host, /mob/living/simple_mob/vore))	//So far, this does nothing. But, creating this for future belly work
-		is_vore_simple_mob = TRUE
-	data["host_mobtype"] = list(
-		"is_cyborg" = is_cyborg,
-		"is_vore_simple_mob" = is_vore_simple_mob
-	)
-
-	var/list/our_bellies = list()
-	for(var/obj/belly/B as anything in host.vore_organs)
-		our_bellies.Add(list(list(
-			"selected" = (B == host.vore_selected),
-			"name" = B.name,
-			"ref" = "\ref[B]",
-			"digest_mode" = B.digest_mode,
-			"contents" = LAZYLEN(B.contents),
-			"prevent_saving" = B.prevent_saving,
-		)))
-	data["our_bellies"] = our_bellies
-
-	var/list/selected_list = null
-	if(host.vore_selected)
-		var/obj/belly/selected = host.vore_selected
-		selected_list = list(
-			"belly_name" = selected.name,
-			"message_mode" = selected.message_mode,
-			"is_wet" = selected.is_wet,
-			"wet_loop" = selected.wet_loop,
-			"mode" = selected.digest_mode,
-			"item_mode" = selected.item_digest_mode,
-			"verb" = selected.vore_verb,
-			"release_verb" = selected.release_verb,
-			"desc" = selected.desc,
-			"absorbed_desc" = selected.absorbed_desc,
-			"fancy" = selected.fancy_vore,
-			"sound" = selected.vore_sound,
-			"release_sound" = selected.release_sound,
-			// "messages" // TODO
-			"can_taste" = selected.can_taste,
-			"is_feedable" = selected.is_feedable,
-			"egg_type" = selected.egg_type,
-			"egg_name" = selected.egg_name,
-			"egg_size" = selected.egg_size,
-			"recycling" = selected.recycling,
-			"storing_nutrition" = selected.storing_nutrition,
-			"entrance_logs" = selected.entrance_logs,
-			"nutrition_percent" = selected.nutrition_percent,
-			"digest_brute" = selected.digest_brute,
-			"digest_burn" = selected.digest_burn,
-			"digest_oxy" = selected.digest_oxy,
-			"digest_tox" = selected.digest_tox,
-			"digest_clone" = selected.digest_clone,
-			"bulge_size" = selected.bulge_size,
-			"save_digest_mode" = selected.save_digest_mode,
-			"display_absorbed_examine" = selected.display_absorbed_examine,
-			"shrink_grow_size" = selected.shrink_grow_size,
-			"emote_time" = selected.emote_time,
-			"emote_active" = selected.emote_active,
-			"selective_preference" = selected.selective_preference,
-			"nutrition_ex" = host.nutrition_message_visible,
-			"weight_ex" = host.weight_message_visible,
-			"belly_fullscreen" = selected.belly_fullscreen,
-			"eating_privacy_local" = selected.eating_privacy_local,
-			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
-			"belly_mob_mult" = selected.belly_mob_mult,
-			"belly_item_mult" = selected.belly_item_mult,
-			"belly_overall_mult" = selected.belly_overall_mult,
-			"drainmode" = selected.drainmode,
-			"affects_voresprite" = selected.affects_vore_sprites,
-			"absorbed_voresprite" = selected.count_absorbed_prey_for_sprite,
-			"absorbed_multiplier" = selected.absorbed_multiplier,
-			"liquid_voresprite" = selected.count_liquid_for_sprite,
-			"liquid_multiplier" = selected.liquid_multiplier,
-			"item_voresprite" = selected.count_items_for_sprite,
-			"item_multiplier" = selected.item_multiplier,
-			"health_voresprite" = selected.health_impacts_size,
-			"resist_animation" = selected.resist_triggers_animation,
-			"voresprite_size_factor" = selected.size_factor_for_sprite,
-			"belly_sprite_to_affect" = selected.belly_sprite_to_affect,
-			"belly_sprite_option_shown" = LAZYLEN(host.vore_icon_bellies) >= 1 ? TRUE : FALSE,
-			"tail_option_shown" = ishuman(host),
-			"tail_to_change_to" = selected.tail_to_change_to,
-			"tail_colouration" = selected.tail_colouration,
-			"tail_extra_overlay" = selected.tail_extra_overlay,
-			"tail_extra_overlay2" = selected.tail_extra_overlay2,
-			"undergarment_chosen" = selected.undergarment_chosen,
-			"undergarment_if_none" = selected.undergarment_if_none || "None",
-			"undergarment_color" = selected.undergarment_color,
-			"belly_fullscreen_color" = selected.belly_fullscreen_color,
-			"belly_fullscreen_color2" = selected.belly_fullscreen_color2,
-			"belly_fullscreen_color3" = selected.belly_fullscreen_color3,
-			"belly_fullscreen_color4" = selected.belly_fullscreen_color4,
-			"belly_fullscreen_alpha" = selected.belly_fullscreen_alpha,
-			"colorization_enabled" = selected.colorization_enabled,
-			"custom_reagentcolor" = selected.custom_reagentcolor,
-			"custom_reagentalpha" = selected.custom_reagentalpha,
-			"liquid_overlay" = selected.liquid_overlay,
-			"max_liquid_level" = selected.max_liquid_level,
-			"reagent_touches" = selected.reagent_touches,
-			"mush_overlay" = selected.mush_overlay,
-			"mush_color" = selected.mush_color,
-			"mush_alpha" = selected.mush_alpha,
-			"max_mush" = selected.max_mush,
-			"min_mush" = selected.min_mush,
-			"item_mush_val" = selected.item_mush_val,
-			"metabolism_overlay" = selected.metabolism_overlay,
-			"metabolism_mush_ratio" = selected.metabolism_mush_ratio,
-			"max_ingested" = selected.max_ingested,
-			"custom_ingested_color" = selected.custom_ingested_color,
-			"custom_ingested_alpha" = selected.custom_ingested_alpha,
-			"vorespawn_blacklist" = selected.vorespawn_blacklist,
-			"vorespawn_whitelist" = selected.vorespawn_whitelist,
-			"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
-			"sound_volume" = selected.sound_volume,
-			"noise_freq" = selected.noise_freq,
-			"item_digest_logs" = selected.item_digest_logs,
-			"private_struggle" = selected.private_struggle,
-			//"marking_to_add" = selected.marking_to_add
-		)
-
-		var/list/addons = list()
-		for(var/flag_name in selected.mode_flag_list)
-			if(selected.mode_flags & selected.mode_flag_list[flag_name])
-				addons.Add(flag_name)
-		selected_list["addons"] = addons
-
-		var/list/vs_flags = list()
-		for(var/flag_name in selected.vore_sprite_flag_list)
-			if(selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name])
-				vs_flags.Add(flag_name)
-		selected_list["vore_sprite_flags"] = vs_flags
-
-
-		selected_list["egg_type"] = selected.egg_type
-		selected_list["egg_name"] = selected.egg_name
-		selected_list["egg_size"] = selected.egg_size
-		selected_list["recycling"] = selected.recycling
-		selected_list["storing_nutrition"] = selected.storing_nutrition
-		selected_list["item_digest_logs"] = selected.item_digest_logs
-		selected_list["contaminates"] = selected.contaminates
-		selected_list["contaminate_flavor"] = null
-		selected_list["contaminate_color"] = null
-		if(selected.contaminates)
-			selected_list["contaminate_flavor"] = selected.contamination_flavor
-			selected_list["contaminate_color"] = selected.contamination_color
-
-		selected_list["escapable"] = selected.escapable
-		selected_list["interacts"] = list()
-		if(selected.escapable)
-			selected_list["interacts"]["escapechance"] = selected.escapechance
-			selected_list["interacts"]["escapechance_absorbed"] = selected.escapechance_absorbed
-			selected_list["interacts"]["escapetime"] = selected.escapetime
-			selected_list["interacts"]["transferchance"] = selected.transferchance
-			selected_list["interacts"]["transferlocation"] = selected.transferlocation
-			selected_list["interacts"]["transferchance_secondary"] = selected.transferchance_secondary
-			selected_list["interacts"]["transferlocation_secondary"] = selected.transferlocation_secondary
-			selected_list["interacts"]["absorbchance"] = selected.absorbchance
-			selected_list["interacts"]["digestchance"] = selected.digestchance
-			selected_list["interacts"]["belchchance"] = selected.belchchance
-
-		selected_list["autotransfer_enabled"] = selected.autotransfer_enabled
-		selected_list["autotransfer"] = list()
-		if(selected.autotransfer_enabled)
-			selected_list["autotransfer"]["autotransferchance"] = selected.autotransferchance
-			selected_list["autotransfer"]["autotransferwait"] = selected.autotransferwait
-			selected_list["autotransfer"]["autotransferlocation"] = selected.autotransferlocation
-			selected_list["autotransfer"]["autotransferextralocation"] = selected.autotransferextralocation
-			selected_list["autotransfer"]["autotransferchance_secondary"] = selected.autotransferchance_secondary
-			selected_list["autotransfer"]["autotransferlocation_secondary"] = selected.autotransferlocation_secondary
-			selected_list["autotransfer"]["autotransferextralocation_secondary"] = selected.autotransferextralocation_secondary
-			selected_list["autotransfer"]["autotransfer_min_amount"] = selected.autotransfer_min_amount
-			selected_list["autotransfer"]["autotransfer_max_amount"] = selected.autotransfer_max_amount
-			//auto-transfer flags
-			var/list/at_whitelist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name])
-					at_whitelist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_whitelist"] = at_whitelist
-			var/list/at_blacklist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name])
-					at_blacklist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_blacklist"] = at_blacklist
-			var/list/at_whitelist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_whitelist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_whitelist_items"] = at_whitelist_items
-			var/list/at_blacklist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_blacklist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_blacklist_items"] = at_blacklist_items
-			var/list/at_secondary_whitelist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name])
-					at_secondary_whitelist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_whitelist"] = at_secondary_whitelist
-			var/list/at_secondary_blacklist = list()
-			for(var/flag_name in selected.autotransfer_flags_list)
-				if(selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name])
-					at_secondary_blacklist.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_blacklist"] = at_secondary_blacklist
-			var/list/at_secondary_whitelist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_secondary_whitelist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_whitelist_items"] = at_secondary_whitelist_items
-			var/list/at_secondary_blacklist_items = list()
-			for(var/flag_name in selected.autotransfer_flags_list_items)
-				if(selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-					at_secondary_blacklist_items.Add(flag_name)
-			selected_list["autotransfer"]["autotransfer_secondary_blacklist_items"] = at_secondary_blacklist_items
-
-		selected_list["disable_hud"] = selected.disable_hud
-		selected_list["colorization_enabled"] = selected.colorization_enabled
-		selected_list["belly_fullscreen_color"] = selected.belly_fullscreen_color
-		selected_list["belly_fullscreen_color2"] = selected.belly_fullscreen_color2
-		selected_list["belly_fullscreen_color3"] = selected.belly_fullscreen_color3
-		selected_list["belly_fullscreen_color4"] = selected.belly_fullscreen_color4
-		selected_list["belly_fullscreen_alpha"] = selected.belly_fullscreen_alpha
-
-		if(selected.colorization_enabled)
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
-		else
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
-
-		var/list/selected_contents = list()
-		for(var/O in selected)
-			var/list/info = list(
-				"name" = "[O]",
-				"absorbed" = FALSE,
-				"stat" = 0,
-				"ref" = "\ref[O]",
-				"outside" = TRUE,
-			)
-			if(show_pictures) //disables icon mode
-				if(selected.contents.len <= max_icon_content)
-					icon_overflow = FALSE
-					info["icon"] = cached_nom_icon(O)
-				else
-					icon_overflow = TRUE
-
-			if(isliving(O))
-				var/mob/living/M = O
-				info["stat"] = M.stat
-				if(M.absorbed)
-					info["absorbed"] = TRUE
-			selected_contents.Add(list(info))
-		selected_list["contents"] = selected_contents
-
-		// liquid belly options
-		selected_list["show_liq"] = selected.show_liquids
-		selected_list["liq_interacts"] = list()
-		if(selected.show_liquids)
-			selected_list["liq_interacts"]["liq_reagent_gen"] = selected.reagentbellymode
-			selected_list["liq_interacts"]["liq_reagent_type"] = selected.reagent_chosen
-			selected_list["liq_interacts"]["liq_reagent_name"] = selected.reagent_name
-			selected_list["liq_interacts"]["liq_reagent_transfer_verb"] = selected.reagent_transfer_verb
-			selected_list["liq_interacts"]["liq_reagent_nutri_rate"] = selected.gen_time
-			selected_list["liq_interacts"]["liq_reagent_capacity"] = selected.custom_max_volume
-			selected_list["liq_interacts"]["liq_sloshing"] = selected.vorefootsteps_sounds
-			selected_list["liq_interacts"]["liq_reagent_addons"] = list()
-			for(var/flag_name in selected.reagent_mode_flag_list)
-				if(selected.reagent_mode_flags & selected.reagent_mode_flag_list[flag_name])
-					var/list/selected_list_member = selected_list["liq_interacts"]["liq_reagent_addons"]
-					ASSERT(islist(selected_list_member))
-					selected_list_member.Add(flag_name)
-			selected_list["liq_interacts"]["custom_reagentcolor"] = selected.custom_reagentcolor ? selected.custom_reagentcolor : selected.reagentcolor
-			selected_list["liq_interacts"]["custom_reagentalpha"] = selected.custom_reagentalpha ? selected.custom_reagentalpha : "Default"
-			selected_list["liq_interacts"]["liquid_overlay"] = selected.liquid_overlay
-			selected_list["liq_interacts"]["max_liquid_level"] = selected.max_liquid_level
-			selected_list["liq_interacts"]["reagent_touches"] = selected.reagent_touches
-			selected_list["liq_interacts"]["mush_overlay"] = selected.mush_overlay
-			selected_list["liq_interacts"]["mush_color"] = selected.mush_color
-			selected_list["liq_interacts"]["mush_alpha"] = selected.mush_alpha
-			selected_list["liq_interacts"]["max_mush"] = selected.max_mush
-			selected_list["liq_interacts"]["min_mush"] = selected.min_mush
-			selected_list["liq_interacts"]["item_mush_val"] = selected.item_mush_val
-			selected_list["liq_interacts"]["metabolism_overlay"] = selected.metabolism_overlay
-			selected_list["liq_interacts"]["metabolism_mush_ratio"] = selected.metabolism_mush_ratio
-			selected_list["liq_interacts"]["max_ingested"] = selected.max_ingested
-			selected_list["liq_interacts"]["custom_ingested_color"] = selected.custom_ingested_color ? selected.custom_ingested_color : "#3f6088"
-			selected_list["liq_interacts"]["custom_ingested_alpha"] = selected.custom_ingested_alpha
-
-		selected_list["show_liq_fullness"] = selected.show_fullness_messages
-		selected_list["liq_messages"] = list()
-		if(selected.show_fullness_messages)
-			selected_list["liq_messages"]["liq_msg_toggle1"] = selected.liquid_fullness1_messages
-			selected_list["liq_messages"]["liq_msg_toggle2"] = selected.liquid_fullness2_messages
-			selected_list["liq_messages"]["liq_msg_toggle3"] = selected.liquid_fullness3_messages
-			selected_list["liq_messages"]["liq_msg_toggle4"] = selected.liquid_fullness4_messages
-			selected_list["liq_messages"]["liq_msg_toggle5"] = selected.liquid_fullness5_messages
-
-			selected_list["liq_messages"]["liq_msg1"] = selected.liquid_fullness1_messages
-			selected_list["liq_messages"]["liq_msg2"] = selected.liquid_fullness2_messages
-			selected_list["liq_messages"]["liq_msg3"] = selected.liquid_fullness3_messages
-			selected_list["liq_messages"]["liq_msg4"] = selected.liquid_fullness4_messages
-			selected_list["liq_messages"]["liq_msg5"] = selected.liquid_fullness5_messages
-
-	data["selected"] = selected_list
-	data["prefs"] = list(
-		"digestable" = host.digestable,
-		"devourable" = host.devourable,
-		"resizable" = host.resizable,
-		"feeding" = host.feeding,
-		"absorbable" = host.absorbable,
-		"digest_leave_remains" = host.digest_leave_remains,
-		"allowmobvore" = host.allowmobvore,
-		"permit_healbelly" = host.permit_healbelly,
-		"show_vore_fx" = host.show_vore_fx,
-		"can_be_drop_prey" = host.can_be_drop_prey,
-		"can_be_drop_pred" = host.can_be_drop_pred,
-		"latejoin_vore" = host.latejoin_vore,
-		"latejoin_prey" = host.latejoin_prey,
-		"no_spawnpred_warning" = host.no_latejoin_vore_warning,
-		"no_spawnprey_warning" = host.no_latejoin_prey_warning,
-		"no_spawnpred_warning_time" = host.no_latejoin_vore_warning_time,
-		"no_spawnprey_warning_time" = host.no_latejoin_prey_warning_time,
-		"no_spawnpred_warning_save" = host.no_latejoin_vore_warning_persists,
-		"no_spawnprey_warning_save" = host.no_latejoin_prey_warning_persists,
-		"allow_spontaneous_tf" = host.allow_spontaneous_tf,
-		"step_mechanics_active" = host.step_mechanics_pref,
-		"pickup_mechanics_active" = host.pickup_pref,
-		"strip_mechanics_active" = host.strip_pref,
-		"noisy" = host.noisy,
-		//liquid belly prefs
-		"liq_rec" = host.receive_reagents,
-		"liq_giv" = host.give_reagents,
-		"liq_apply" = host.apply_reagents,
-		"autotransferable" = host.autotransferable,
-		"noisy_full" = host.noisy_full, //Belching while full
-		"selective_active" = host.selective_preference, //Reveal active selective mode in prefs
-
-		"allow_mind_transfer" = host.allow_mind_transfer,
-		"drop_vore" = host.drop_vore,
-		"slip_vore" = host.slip_vore,
-		"stumble_vore" = host.stumble_vore,
-		"throw_vore" = host.throw_vore,
-		"phase_vore" = host.phase_vore,
-		"food_vore" = host.food_vore,
-		"consume_liquid_belly" = host.consume_liquid_belly,
-		"digest_pain" = host.digest_pain,
-		"nutrition_message_visible" = host.nutrition_message_visible,
-		"nutrition_messages" = host.nutrition_messages,
-		"weight_message_visible" = host.weight_message_visible,
-		"weight_messages" = host.weight_messages,
-		"eating_privacy_global" = host.eating_privacy_global,
-		"allow_mimicry" = host.allow_mimicry,
-		// start, vore sprites
-		"belly_rub_target" = host.belly_rub_target,
-		"vore_sprite_color" = host.vore_sprite_color,
-		"vore_sprite_multiply" = host.vore_sprite_multiply,
-		//Soulcatcher
-		"soulcatcher_allow_capture" = host.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE,
-		"soulcatcher_allow_transfer" = host.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TRANSFER,
-		"soulcatcher_allow_takeover" = host.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TAKEOVER,
-		"soulcatcher_allow_deletion" = (global_flag_check(host.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION) + global_flag_check(host.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION_INSTANT))
-	)
-	// Soulcatcher
-	var/list/stored_souls = list()
+	data["host_mobtype"] = null
+	data["show_pictures"] = null
+	data["icon_overflow"] = null
+	data["our_bellies"] = null
+	data["selected"] = null
 	data["soulcatcher"] = null
-	if(host.soulgem)
-		data["soulcatcher"] = list()
-		for(var/soul in host.soulgem.brainmobs)
-			var/list/info = list("displayText" = "[soul]", "value" = "\ref[soul]")
-			stored_souls.Add(list(info))
-		data["soulcatcher"]["active"] = host.soulgem.flag_check(SOULGEM_ACTIVE)
-		data["soulcatcher"]["name"] = host.soulgem.name
-		data["soulcatcher"]["caught_souls"] = stored_souls
-		data["soulcatcher"]["selected_soul"] = host.soulgem.selected_soul
-		data["soulcatcher"]["selected_sfx"] = host.soulgem.linked_belly
-		data["soulcatcher"]["interior_design"] =  host.soulgem.inside_flavor
-		data["soulcatcher"]["taken_over"] = host.soulgem.is_taken_over()
-		data["soulcatcher"]["catch_self"] = host.soulgem.flag_check(NIF_SC_CATCHING_ME)
-		data["soulcatcher"]["catch_prey"] = host.soulgem.flag_check(NIF_SC_CATCHING_OTHERS)
-		data["soulcatcher"]["catch_drain"] = host.soulgem.flag_check(SOULGEM_CATCHING_DRAIN)
-		data["soulcatcher"]["catch_ghost"] = host.soulgem.flag_check(SOULGEM_CATCHING_GHOSTS)
-		data["soulcatcher"]["ext_hearing"] = host.soulgem.flag_check(NIF_SC_ALLOW_EARS)
-		data["soulcatcher"]["ext_vision"] = host.soulgem.flag_check(NIF_SC_ALLOW_EYES)
-		data["soulcatcher"]["mind_backups"] = host.soulgem.flag_check(NIF_SC_BACKUPS)
-		data["soulcatcher"]["sr_projecting"] = host.soulgem.flag_check(NIF_SC_PROJECTING)
-		data["soulcatcher"]["show_vore_sfx"] = host.soulgem.flag_check(SOULGEM_SHOW_VORE_SFX)
-		data["soulcatcher"]["see_sr_projecting"] = host.soulgem.flag_check(SOULGEM_SEE_SR_SOULS)
-	var/nutri_value = 0
-	if(istype(host, /mob/living))
-		var/mob/living/H = host
-		nutri_value = H.nutrition
-	data["abilities"] = list (
-		"nutrition" = nutri_value,
-		"current_size" = host.size_multiplier,
-		"minimum_size" = host.has_large_resize_bounds() ? RESIZE_MINIMUM_DORMS : RESIZE_MINIMUM,
-		"maximum_size" = host.has_large_resize_bounds() ? RESIZE_MAXIMUM_DORMS : RESIZE_MAXIMUM,
-		"resize_cost" = VORE_RESIZE_COST
-	)
+	data["abilities"] = null
+	data["prefs"] = null
+
+	if(active_tab == VORE_BELLY_TAB)
+		data["active_vore_tab"] = active_vore_tab
+		data["host_mobtype"] = get_host_mobtype(host)
+
+		// Content Data
+		data["show_pictures"] = show_pictures
+		data["icon_overflow"] = icon_overflow
+
+		// List of all our bellies
+		data["our_bellies"] = get_vorebellies(host)
+
+		// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
+		data["selected"] = get_selected_data(host, active_vore_tab)
+
+	if(active_tab == SOULCATCHER_TAB)
+		// Soulcatcher and abilities
+		data["our_bellies"] = get_vorebellies(host, FALSE)
+		data["soulcatcher"] = get_soulcatcher_data(host)
+		data["abilities"] = get_ability_data(host)
+
+	if(active_tab == PREFERENCE_TAB)
+		// Preference data, we only ever need that when we go to the pref page!
+		data["prefs"] = get_preference_data(host)
 
 	return data
 
@@ -583,15 +165,18 @@
 		return TRUE
 
 	switch(action)
+		if("change_tab")
+			var/new_tab = params["tab"]
+			if(isnum(new_tab))
+				active_tab = new_tab
+			return TRUE
+		if("change_vore_tab")
+			var/new_tab = params["tab"]
+			if(isnum(new_tab))
+				active_vore_tab = new_tab
+			return TRUE
 		if("show_pictures")
 			show_pictures = !show_pictures
-			return TRUE
-		if("int_help")
-			tgui_alert(ui.user, "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
-					and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \
-					These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) \
-					will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, \
-					only the first in the order of 'Escape > Transfer > Absorb > Digest' will occur.","Interactions Help")
 			return TRUE
 
 		// Host is inside someone else, and is trying to interact with something else inside that person.
@@ -1703,7 +1288,7 @@
 	var/attr = params["attribute"]
 	switch(attr)
 		if("b_name")
-			var/new_name = html_encode(tgui_input_text(user,"Belly's new name:","New Name"))
+			var/new_name = html_encode(params["val"])
 
 			var/failure_msg
 			if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
@@ -3155,5 +2740,7 @@
 	if(.)
 		unsaved_changes = TRUE
 
-#undef VORE_RESIZE_COST
 #undef STATION_PREF_NAME
+#undef VORE_BELLY_TAB
+#undef SOULCATCHER_TAB
+#undef PREFERENCE_TAB

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
+import { tabToNames } from './constants';
 import type { hostMob, selectedData } from './types';
 import { VoreContentsPanel } from './VoreContentsPanel';
 import { VoreSelectedBellyControls } from './VoreSelectedBellyTabs/VoreSelectedBellyControls';
@@ -16,21 +17,35 @@ import { VoreSelectedBellyVisuals } from './VoreSelectedBellyTabs/VoreSelectedBe
  * Subtemplate of VoreBellySelectionAndCustomization
  */
 export const VoreSelectedBelly = (props: {
+  activeVoreTab: number;
   belly: selectedData;
   show_pictures: BooleanLike;
   host_mobtype: hostMob;
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
+  editMode: boolean;
 }) => {
-  const { belly, show_pictures, host_mobtype, icon_overflow, vore_words } =
-    props;
-  const { contents } = belly;
+  const { act } = useBackend();
+  const {
+    activeVoreTab,
+    belly,
+    show_pictures,
+    host_mobtype,
+    icon_overflow,
+    vore_words,
+    editMode,
+  } = props;
+  const { belly_name, belly_mode_data, contents } = belly;
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const tabs: (React.JSX.Element | undefined)[] = [];
 
-  const tabs: React.JSX.Element[] = [];
-
-  tabs[0] = <VoreSelectedBellyControls belly={belly} />;
+  tabs[0] = belly_mode_data && (
+    <VoreSelectedBellyControls
+      editMode={editMode}
+      belly_name={belly_name}
+      bellyModeData={belly_mode_data}
+    />
+  );
   tabs[1] = (
     <VoreSelectedBellyDescriptions belly={belly} vore_words={vore_words} />
   );
@@ -54,35 +69,17 @@ export const VoreSelectedBelly = (props: {
   return (
     <>
       <Tabs>
-        <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
-          Controls
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 1} onClick={() => setTabIndex(1)}>
-          Descriptions
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 2} onClick={() => setTabIndex(2)}>
-          Options
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 3} onClick={() => setTabIndex(3)}>
-          Sounds
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 4} onClick={() => setTabIndex(4)}>
-          Visuals
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 5} onClick={() => setTabIndex(5)}>
-          Interactions
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 6} onClick={() => setTabIndex(6)}>
-          Contents ({contents.length})
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 7} onClick={() => setTabIndex(7)}>
-          Liquid Options
-        </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 8} onClick={() => setTabIndex(8)}>
-          Liquid Messages
-        </Tabs.Tab>
+        {tabToNames.map((name, index) => (
+          <Tabs.Tab
+            key={name}
+            selected={activeVoreTab === index}
+            onClick={() => act('change_vore_tab', { tab: index })}
+          >
+            {tabToNames[index]} {!!(index === 6) && '(' + contents.length + ')'}
+          </Tabs.Tab>
+        ))}
       </Tabs>
-      {tabs[tabIndex] || 'Error'}
+      {tabs[activeVoreTab] || 'Error'}
     </>
   );
 };

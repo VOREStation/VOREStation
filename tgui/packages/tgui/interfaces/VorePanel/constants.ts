@@ -57,3 +57,15 @@ export const SYNTAX_COLOR = {
   '%pred': 'bad',
   '%prey': 'good',
 };
+
+export const tabToNames = [
+  'Controls',
+  'Descriptions',
+  'Options',
+  'Sounds',
+  'Visuals',
+  'Interationc',
+  'Contents',
+  'Liquid Options',
+  'Liquid Messages',
+];

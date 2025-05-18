@@ -1,21 +1,27 @@
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
+  vore_words: Record<string, string[]>;
   unsaved_changes: BooleanLike;
+  inside: insideData;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
-  inside: insideData;
-  host_mobtype: hostMob;
-  our_bellies: bellyData[];
-  selected: selectedData | null;
-  prefs: prefData;
-  soulcatcher: soulcatcherData | null;
-  abilities: abilities;
-  vore_words: Record<string, string[]>;
+  active_tab: number;
+  host_mobtype: hostMob | null;
+  our_bellies?: bellyData[] | null;
+  selected?: selectedData | null;
+  prefs?: prefData | null;
+  soulcatcher?: soulcatcherData | null;
+  abilities?: abilities | null;
+  active_vore_tab?: number;
 };
 
 export type abilities = {
   nutrition: number;
+  size_change: abilitySizeChange;
+};
+
+export type abilitySizeChange = {
   current_size: number;
   minimum_size: number;
   maximum_size: number;
@@ -50,21 +56,28 @@ export type contentData = {
 };
 
 export type bellyData = {
-  selected: BooleanLike;
   name: string;
   ref: string;
-  digest_mode: string;
-  contents: number;
-  prevent_saving: BooleanLike;
+  selected?: BooleanLike;
+  digest_mode?: string;
+  contents?: number;
+  prevent_saving?: BooleanLike;
+};
+
+export type bellyModeData = {
+  mode: string;
+  item_mode: string;
+  addons: string[];
+  name_length: number;
 };
 
 export type selectedData = {
   belly_name: string;
+  belly_mode_data?: bellyModeData;
+
   message_mode: BooleanLike;
   is_wet: BooleanLike;
   wet_loop: BooleanLike;
-  mode: string;
-  item_mode: string;
   verb: string;
   release_verb: string;
   desc: string;
@@ -151,7 +164,6 @@ export type selectedData = {
   noise_freq: number;
   item_digest_logs: BooleanLike;
   private_struggle: BooleanLike;
-  addons: string[];
   vore_sprite_flags: string[];
   contaminates: BooleanLike;
   contaminate_flavor: string | null;

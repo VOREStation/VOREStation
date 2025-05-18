@@ -153,6 +153,8 @@ export const VorePanel = () => {
   const { act, data } = useBackend<Data>();
 
   const {
+    active_tab,
+    active_vore_tab,
     inside,
     our_bellies,
     selected,
@@ -166,31 +168,34 @@ export const VorePanel = () => {
     vore_words,
   } = data;
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   const tabs: React.JSX.Element[] = [];
 
   tabs[0] = (
     <VoreBellySelectionAndCustomization
-      our_bellies={our_bellies}
-      selected={selected}
+      activeVoreTab={active_vore_tab}
+      our_bellies={our_bellies!}
+      selected={selected!}
       show_pictures={show_pictures}
-      host_mobtype={host_mobtype}
+      host_mobtype={host_mobtype!}
       icon_overflow={icon_overflow}
       vore_words={vore_words}
+      toggleEditMode={setEditMode}
+      editMode={editMode}
     />
   );
   tabs[1] = (
     <VoreSoulcatcher
-      our_bellies={our_bellies}
-      soulcatcher={soulcatcher}
-      abilities={abilities}
+      our_bellies={our_bellies!}
+      soulcatcher={soulcatcher!}
+      abilities={abilities!}
     />
   );
   tabs[2] = (
     <VoreUserPreferences
-      prefs={prefs}
-      selected={selected}
+      prefs={prefs!}
+      selected={selected!}
       show_pictures={show_pictures}
       icon_overflow={icon_overflow}
     />
@@ -236,29 +241,29 @@ export const VorePanel = () => {
           <Stack.Item>
             <Tabs>
               <Tabs.Tab
-                selected={tabIndex === 0}
-                onClick={() => setTabIndex(0)}
+                selected={active_tab === 0}
+                onClick={() => act('change_tab', { tab: 0 })}
               >
                 Bellies
                 <Icon name="list" ml={0.5} />
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tabIndex === 1}
-                onClick={() => setTabIndex(1)}
+                selected={active_tab === 1}
+                onClick={() => act('change_tab', { tab: 1 })}
               >
                 Soulcatcher
                 <Icon name="ghost" ml={0.5} />
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tabIndex === 2}
-                onClick={() => setTabIndex(2)}
+                selected={active_tab === 2}
+                onClick={() => act('change_tab', { tab: 2 })}
               >
                 Preferences
                 <Icon name="user-cog" ml={0.5} />
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
-          <Stack.Item grow>{tabs[tabIndex] || 'Error'}</Stack.Item>
+          <Stack.Item grow>{tabs[active_tab] || 'Error'}</Stack.Item>
         </Stack>
       </Window.Content>
     </Window>

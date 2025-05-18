@@ -2,13 +2,18 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { digestModeToColor } from '../constants';
-import type { selectedData } from '../types';
+import type { bellyModeData } from '../types';
+import { VorePanelEditText } from '../VorePanelElements/VorePanelEditables';
 
-export const VoreSelectedBellyControls = (props: { belly: selectedData }) => {
+export const VoreSelectedBellyControls = (props: {
+  editMode: boolean;
+  belly_name: string;
+  bellyModeData: bellyModeData;
+}) => {
   const { act } = useBackend();
 
-  const { belly } = props;
-  const { belly_name, mode, item_mode, addons } = belly;
+  const { belly_name, bellyModeData, editMode } = props;
+  const { mode, item_mode, addons, name_length } = bellyModeData;
 
   return (
     <LabeledList>
@@ -35,9 +40,13 @@ export const VoreSelectedBellyControls = (props: { belly: selectedData }) => {
           </Stack>
         }
       >
-        <Button onClick={() => act('set_attribute', { attribute: 'b_name' })}>
-          {belly_name}
-        </Button>
+        <VorePanelEditText
+          editMode={editMode}
+          limit={name_length}
+          entry={belly_name}
+          action={'set_attribute'}
+          subAction={'b_name'}
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Mode">
         <Button

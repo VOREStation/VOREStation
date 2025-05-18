@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import {
+  Button,
   Divider,
   Icon,
   Section,
@@ -14,22 +15,28 @@ import type { bellyData, hostMob, selectedData } from './types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {
+  activeVoreTab?: number;
   our_bellies: bellyData[];
   selected: selectedData | null;
   show_pictures: BooleanLike;
   host_mobtype: hostMob;
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
+  toggleEditMode: Function;
+  editMode: boolean;
 }) => {
   const { act } = useBackend();
 
   const {
+    activeVoreTab = 0,
     our_bellies,
     selected,
     show_pictures,
     host_mobtype,
     icon_overflow,
     vore_words,
+    toggleEditMode,
+    editMode,
   } = props;
 
   return (
@@ -54,14 +61,14 @@ export const VoreBellySelectionAndCustomization = (props: {
               <Tabs.Tab
                 key={belly.name}
                 selected={!!belly.selected}
-                textColor={digestModeToColor[belly.digest_mode]}
+                textColor={digestModeToColor[belly.digest_mode!]}
                 onClick={() => act('bellypick', { bellypick: belly.ref })}
                 backgroundColor={belly.prevent_saving ? '#180000' : undefined}
               >
                 <Stack
                   fill
                   textColor={
-                    (belly.selected && digestModeToColor[belly.digest_mode]) ||
+                    (belly.selected && digestModeToColor[belly.digest_mode!]) ||
                     null
                   }
                 >
@@ -87,13 +94,27 @@ export const VoreBellySelectionAndCustomization = (props: {
       </Stack.Item>
       <Stack.Item grow>
         {selected && (
-          <Section title={selected.belly_name} fill scrollable>
+          <Section
+            title={selected.belly_name}
+            buttons={
+              <Button
+                icon="pencil"
+                color={editMode ? 'green' : undefined}
+                tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode'}
+                onClick={() => toggleEditMode(!editMode)}
+              />
+            }
+            fill
+            scrollable
+          >
             <VoreSelectedBelly
+              activeVoreTab={activeVoreTab}
               vore_words={vore_words}
               belly={selected}
               show_pictures={show_pictures}
               host_mobtype={host_mobtype}
               icon_overflow={icon_overflow}
+              editMode={editMode}
             />
           </Section>
         )}
