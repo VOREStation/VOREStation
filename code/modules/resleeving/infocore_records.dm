@@ -204,6 +204,121 @@
 	if(add_to_db)
 		SStranscore.add_body(src, database_key = database_key)
 
+/**
+ * Spawning a body was once left entirely up to the machine doing it, but bodies are massivley complex
+ * objects, and doing it this way lead to huge amounts of copypasted code to do the same thing.
+ * If you want to spawn a body from a BR, please use these...
+ */
+
+/// The core of resleeving, creates a mob based on the current record
+/datum/transhuman/body_record/proc/produce_human_mob(var/is_synthfab, var/force_unlock, var/backup_name)
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, mydna.dna.species)
+
+	if(!mydna.dna.real_name)
+		mydna.dna.real_name = backup_name
+	H.real_name = mydna.dna.real_name
+
+	// Setup body
+	internal_producebody_handlesleevelock(H,force_unlock)
+	internal_producebody_updatelimbandorgans(H)
+	internal_producebody_updatednastate(H,is_synthfab)
+	internal_producebody_virgocharacterdata(H)
+
+	// Finish off
+	H.suiciding = 0
+	H.mind = null
+	return H
+
+/datum/transhuman/body_record/proc/internal_producebody_handlesleevelock(var/mob/living/carbon/human/H,var/force_unlock)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(locked && !force_unlock)
+		if(ckey)
+			H.resleeve_lock = ckey
+		else
+			// Ensure even body scans without an attached ckey respect locking
+			H.resleeve_lock = "@badckey"
+
+/datum/transhuman/body_record/proc/internal_producebody_updatelimbandorgans(var/mob/living/carbon/human/H,var/is_synthfab)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//Fix the external organs
+	for(var/part in limb_data)
+		var/status = limb_data[part]
+		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
+
+		var/obj/item/organ/external/O = H.organs_by_name[part]
+		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
+
+		if(status == 1) //Normal limbs
+			continue
+		else if(status == 0) //Missing limbs
+			O.remove_rejuv()
+		else if(status) //Anything else is a manufacturer
+			if(!is_synthfab)
+				O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
+			else
+				O.robotize(status)
+
+	//Then the internal organs
+	for(var/part in organ_data)
+		var/status = organ_data[part]
+		if(status == null) continue //Species doesn't have organ? Child of missing part?
+
+		var/obj/item/organ/I = H.internal_organs_by_name[part]
+		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
+
+		if(status == 0) //Normal organ
+			continue
+		else if(status == 1) //Assisted organ
+			I.mechassist()
+		else if(status == 2) //Mechanical organ
+			I.robotize()
+		else if(status == 3) //Digital organ
+			I.digitize()
+
+/datum/transhuman/body_record/proc/internal_producebody_updatednastate(var/mob/living/carbon/human/H,var/is_synthfab)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//Apply DNA from record
+	qdel_swap(H.dna, mydna.dna.Clone())
+	H.original_player = ckey
+
+	//Apply genetic modifiers, synths don't use these
+	if(!is_synthfab)
+		for(var/modifier_type in mydna.genetic_modifiers)
+			H.add_modifier(modifier_type)
+
+	//Apply legs
+	H.digitigrade = mydna.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
+	if(H.dna.digitigrade <> mydna.dna.digitigrade)
+		H.dna.digitigrade = mydna.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
+
+	//Update appearance, remake icons
+	H.UpdateAppearance()
+	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
+	H.sync_organ_dna()
+	H.regenerate_icons()
+	H.initialize_vessel()
+
+/datum/transhuman/body_record/proc/internal_producebody_virgocharacterdata(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	//Basically all the VORE stuff
+	H.ooc_notes = body_oocnotes
+	H.ooc_notes_likes = body_ooclikes
+	H.ooc_notes_dislikes = body_oocdislikes
+	H.ooc_notes_favs = body_oocfavs
+	H.ooc_notes_maybes = body_oocmaybes
+	H.ooc_notes_style = body_oocstyle
+	H.flavor_texts = mydna.flavor.Copy()
+	H.resize(sizemult, FALSE)
+	H.appearance_flags = aflags
+	H.weight = weight
+	if(speciesname)
+		H.custom_species = speciesname
 
 /**
  * Make a deep copy of this record so it can be saved on a disk without modifications

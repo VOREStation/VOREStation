@@ -30,116 +30,27 @@
 
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = current_project.mydna
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
-	if(current_project.locked)
-		if(current_project.ckey)
-			H.resleeve_lock = current_project.ckey
-		else
-			// Ensure even body scans without an attached ckey respect locking
-			H.resleeve_lock = "@badckey"
+	occupant = R.produce_human_mob(FALSE,FALSE,"clone ([rand(0,999)])")
 
-	//Fix the external organs
-	for(var/part in current_project.limb_data)
-
-		var/status = current_project.limb_data[part]
-		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-
-		var/obj/item/organ/external/O = H.organs_by_name[part]
-		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
-
-		if(status == 1) //Normal limbs
-			continue
-		else if(status == 0) //Missing limbs
-			O.remove_rejuv()
-		else if(status) //Anything else is a manufacturer
-			O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
-
-	//Look, this machine can do this because [reasons] okay?!
-	for(var/part in current_project.organ_data)
-
-		var/status = current_project.organ_data[part]
-		if(status == null) continue //Species doesn't have organ? Child of missing part?
-
-		var/obj/item/organ/I = H.internal_organs_by_name[part]
-		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
-
-		if(status == 0) //Normal organ
-			continue
-		else if(status == 1) //Assisted organ
-			I.mechassist()
-		else if(status == 2) //Mechanical organ
-			I.robotize()
-		else if(status == 3) //Digital organ
-			I.digitize()
-
-
-	occupant = H
-
-	//Set the name or generate one
-	if(!R.dna.real_name)
-		R.dna.real_name = "clone ([rand(0,999)])"
-	H.real_name = R.dna.real_name
-
-	//Apply DNA
-	qdel_swap(H.dna, R.dna.Clone())
-	H.original_player = current_project.ckey
-
-	//Apply genetic modifiers
-	for(var/modifier_type in R.genetic_modifiers)
-		H.add_modifier(modifier_type)
-
-	//Apply legs
-	H.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(H.dna.digitigrade <> R.dna.digitigrade)
-		H.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
-
-	//Apply damage
-	H.adjustCloneLoss((H.getMaxHealth() - (H.getMaxHealth()))*-0.75)
-	H.Paralyse(4)
-	H.updatehealth()
-
-	//Update appearance, remake icons
-	H.UpdateAppearance()
-	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
-	H.sync_organ_dna()
-	H.regenerate_icons()
-	H.initialize_vessel()
-
-	// Traitgenes Moved breathing equipment to AFTER the genes set it
 	//Give breathing equipment if needed
-	if(current_project.breath_type != null && current_project.breath_type != GAS_O2)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+	if(breath_type != null && breath_type != GAS_O2)
+		occupant.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(occupant), slot_wear_mask)
 		var/obj/item/tank/tankpath
-		if(current_project.breath_type == GAS_PHORON)
+		if(breath_type == GAS_PHORON)
 			tankpath = /obj/item/tank/vox
 		else
-			tankpath = text2path("/obj/item/tank/" + current_project.breath_type)
+			tankpath = text2path("/obj/item/tank/" + breath_type)
 
 		if(tankpath)
-			H.equip_to_slot_or_del(new tankpath(H), slot_back)
-			H.internal = H.back
-			if(istype(H.internal,/obj/item/tank) && H.internals)
-				H.internals.icon_state = "internal1"
+			occupant.equip_to_slot_or_del(new tankpath(occupant), slot_back)
+			occupant.internal = occupant.back
+			if(istype(occupant.internal,/obj/item/tank) && occupant.internals)
+				occupant.internals.icon_state = "internal1"
 
-	//Basically all the VORE stuff
-	H.ooc_notes = current_project.body_oocnotes
-	H.ooc_notes_likes = current_project.body_ooclikes
-	H.ooc_notes_dislikes = current_project.body_oocdislikes
-	H.ooc_notes_favs = current_project.body_oocfavs
-	H.ooc_notes_maybes = current_project.body_oocmaybes
-	H.ooc_notes_style = current_project.body_oocstyle
-	H.flavor_texts = current_project.mydna.flavor.Copy()
-	H.resize(current_project.sizemult, FALSE)
-	H.appearance_flags = current_project.aflags
-	H.weight = current_project.weight
-	if(current_project.speciesname)
-		H.custom_species = current_project.speciesname
-
-	//Suiciding var
-	H.suiciding = 0
-
-	//Making double-sure this is not set
-	H.mind = null
+	//Apply damage
+	occupant.adjustCloneLoss((occupant.getMaxHealth() - (occupant.getMaxHealth()))*-0.75)
+	occupant.Paralyse(4)
+	occupant.updatehealth()
 
 	//Machine specific stuff at the end
 	update_icon()
@@ -295,94 +206,14 @@
 		return
 
 	//Get the DNA and generate a new mob
-	var/datum/dna2/record/R = current_project.mydna
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
-	if(current_project.locked)
-		if(current_project.ckey)
-			H.resleeve_lock = current_project.ckey
-		else
-			// Ensure even body scans without an attached ckey respect locking
-			H.resleeve_lock = "@badckey"
-
-	//Fix the external organs
-	for(var/part in current_project.limb_data)
-
-		var/status = current_project.limb_data[part]
-		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-
-		var/obj/item/organ/external/O = H.organs_by_name[part]
-		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
-
-		if(status == 1) //Normal limbs
-			continue
-		else if(status == 0) //Missing limbs
-			O.remove_rejuv()
-		else if(status) //Anything else is a manufacturer
-			O.robotize(status)
-
-	//Then the internal organs
-	for(var/part in current_project.organ_data)
-
-		var/status = current_project.organ_data[part]
-		if(status == null) continue //Species doesn't have organ? Child of missing part?
-
-		var/obj/item/organ/I = H.internal_organs_by_name[part]
-		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
-
-		if(status == 0) //Normal organ
-			continue
-		else if(status == 1) //Assisted organ
-			I.mechassist()
-		else if(status == 2) //Mechanical organ
-			I.robotize()
-		else if(status == 3) //Digital organ
-			I.digitize()
-
-	//Set the name or generate one
-	if(!R.dna.real_name)
-		R.dna.real_name = "synth ([rand(0,999)])"
-	H.real_name = R.dna.real_name
-
-	//Apply DNA
-	qdel_swap(H.dna, R.dna.Clone())
-	H.original_player = current_project.ckey
-
-	//Apply legs
-	H.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(H.dna.digitigrade <> R.dna.digitigrade)
-		H.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
+	var/mob/living/carbon/human/H = current_project.produce_human_mob(TRUE,FALSE,"synth ([rand(0,999)])")
 
 	//Apply damage
 	H.adjustBruteLoss(brute_value)
 	H.adjustFireLoss(burn_value)
 	H.updatehealth()
 
-	//Update appearance, remake icons
-	H.UpdateAppearance()
-	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
-	H.sync_organ_dna()
-	H.regenerate_icons()
-	H.initialize_vessel()
-
-	//Basically all the VORE stuff
-	H.ooc_notes = current_project.body_oocnotes
-	H.ooc_notes_likes = current_project.body_ooclikes
-	H.ooc_notes_dislikes = current_project.body_oocdislikes
-	H.flavor_texts = current_project.mydna.flavor.Copy()
-	H.resize(current_project.sizemult)
-	H.appearance_flags = current_project.aflags
-	H.weight = current_project.weight
-	if(current_project.speciesname)
-		H.custom_species = current_project.speciesname
-
-	//Suiciding var
-	H.suiciding = 0
-
-	//Making double-sure this is not set
-	H.mind = null
-
 	//Plonk them here.
-	H.regenerate_icons()
 	H.loc = get_turf(src)
 
 	//Machine specific stuff at the end
