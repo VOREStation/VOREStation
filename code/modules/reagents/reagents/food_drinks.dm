@@ -1629,6 +1629,28 @@
 		//M.apply_effect(3, STUTTER) //VOREStation Edit end
 	M.make_jittery(5)
 
+/datum/reagent/drink/coffee/handle_addiction(var/mob/living/carbon/M, var/alien)
+	// A copy of the base with withdrawl, but with much less effects, no vomiting and sometimes halloss
+	var/current_addiction = M.get_addiction_to_reagent(id)
+	// slow degrade
+	if(prob(8))
+		current_addiction  -= 1
+	// withdrawl mechanics
+	if(prob(2))
+		if(current_addiction < 90 && prob(10))
+			to_chat(M, span_warning("[pick("You feel miserable.","You feel sluggish.","You get a small headache.")]"))
+			M.adjustHalLoss(2)
+		else if(current_addiction <= 50)
+			to_chat(M, span_warning("You're really craving some [name]."))
+		else if(current_addiction <= 100)
+			to_chat(M, span_notice("You're feeling the need for some [name]."))
+		// effects
+		if(current_addiction < 60 && prob(20))
+			M.emote(pick("pale","shiver","twitch"))
+	if(current_addiction <= 0) //safety
+		current_addiction = 0
+	return current_addiction
+
 /datum/reagent/drink/coffee/icecoffee
 	name = REAGENT_ICECOFFEE
 	id = REAGENT_ID_ICECOFFEE

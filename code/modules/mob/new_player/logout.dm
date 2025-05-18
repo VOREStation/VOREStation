@@ -1,6 +1,7 @@
 /mob/new_player/Logout()
 	ready = 0
 
+	GLOB.new_player_list -= src
 	QDEL_NULL(lobby_window)
 	disable_lobby_browser()
 

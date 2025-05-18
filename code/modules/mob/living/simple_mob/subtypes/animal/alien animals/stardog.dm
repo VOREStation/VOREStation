@@ -519,13 +519,6 @@
 
 	can_paint = TRUE
 
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/carpet1.ogg',
-		'sound/effects/footstep/carpet2.ogg',
-		'sound/effects/footstep/carpet3.ogg',
-		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg'))
-
 /obj/structure/flora/tree/fur
 	name = "tall fur"
 	desc = "Tall stalks of fur block your path! Someone needs a trim!"

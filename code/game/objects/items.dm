@@ -114,7 +114,7 @@
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 	var/digestable = TRUE
 	var/item_tf_spawn_allowed = FALSE
-	var/list/ckeys_allowed_itemspawn = list()
+	var/list/ckeys_allowed_itemspawn = null
 
 /obj/item/Initialize(mapload)
 	. = ..()

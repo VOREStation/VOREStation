@@ -377,6 +377,10 @@
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"
 ///sent from borg mobs to itself, for tools to catch an upcoming destroy() due to safe decon (rather than detonation)
 #define COMSIG_BORG_SAFE_DECONSTRUCT "borg_safe_decon"
+///From living/Life().
+#define COMSIG_LIVING_LIFE "living_life"
+///From /living/handle_disabilities().
+#define COMSIG_HANDLE_DISABILITIES "handle_disabilities"
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 
@@ -828,6 +832,30 @@
 #define COMSIG_BELLY_UPDATE_PREY_LOOP "update_prey_loop"
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
+
+// Weaver Component
+///from /mob/living/proc/check_silk_amount()
+#define COMSIG_CHECK_SILK_AMOUNT "check_silk_amount"
+///from /mob/living/proc/weave_structure()
+#define COMSIG_WEAVE_STRUCTURE "weave_structure"
+///from /mob/living/proc/toggle_silk_production()
+#define COMSIG_TOGGLE_SILK_PRODUCTION "toggle_silk_production"
+///from /mob/living/proc/weave_item()
+#define COMSIG_WEAVE_ITEM "weave_item"
+///from /mob/living/proc/set_silk_color()
+#define COMSIG_SET_SILK_COLOR "set_silk_color"
+
+// Gargoyle Component
+///from /mob/living/carbon/human/proc/gargoyle_transformation()
+#define COMSIG_GARGOYLE_TRANSFORMATION "gargoyle_transformation"
+///from /mob/living/carbon/human/proc/gargoyle_pause()
+#define COMSIG_GARGOYLE_PAUSE "gargoyle_pause"
+///from /mob/living/carbon/human/proc/gargoyle_checkenergy()
+#define COMSIG_GARGOYLE_CHECK_ENERGY "gargoyle_check_energy"
+
+// Species Components
+///from /datum/species/xenochimera/handle_environment_special()
+#define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
 
 //Unittest data update
 #ifdef UNIT_TEST
