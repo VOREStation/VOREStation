@@ -71,3 +71,17 @@ export const tabToNames = [
   'Liquid Options',
   'Liquid Messages',
 ];
+
+export const modeToTooltip = {
+  Numbing: 'Todo',
+  Stripping: 'Todo',
+  'Leave Remains': 'Todo',
+  Muffles: 'Todo',
+  'Affect Worn Items': 'Todo',
+  'Jams Sensors': 'Todo',
+  'Complete Absorb': 'Todo',
+  'Spare Prosthetics': 'Todo',
+  'Slow Body Digestion': 'Todo',
+  'Muffle Items': 'Todo',
+  'TURBO MODE': 'Todo',
+};

@@ -63,25 +63,16 @@ export const VorePanelEditCheckboxes = (props: {
   options: checkBoxEntry[];
   action: string;
   subAction: string;
+  tooltipList?: Record<string, string>;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, options, action, subAction } = props;
+  const { editMode, options, action, subAction, tooltipList } = props;
 
   return (
     <Stack>
-      <Stack.Item grow>
-        <Box>
-          {(options.length &&
-            options
-              .filter((option) => option.selection)
-              .map((value) => value.label)
-              .join(', ')) ||
-            'None'}
-        </Box>
-      </Stack.Item>
-      <Stack.Item>
-        {editMode && (
+      {editMode && (
+        <Stack.Item>
           <Floating
             placement="bottom-end"
             contentClasses="VorePanel__fLoating"
@@ -90,6 +81,7 @@ export const VorePanelEditCheckboxes = (props: {
                 {options.map((value) => (
                   <Stack.Item key={value.label}>
                     <Button.Checkbox
+                      tooltip={tooltipList && tooltipList[value.label]}
                       checked={value.selection}
                       onClick={() =>
                         act(action, {
@@ -105,9 +97,19 @@ export const VorePanelEditCheckboxes = (props: {
               </Stack>
             }
           >
-            <Box backgroundColor="blue">+/-</Box>
+            <Box className="VorePanel__floatingButton">+/-</Box>
           </Floating>
-        )}
+        </Stack.Item>
+      )}
+      <Stack.Item grow>
+        <Box>
+          {(options.length &&
+            options
+              .filter((option) => option.selection)
+              .map((value) => value.label)
+              .join(', ')) ||
+            'None'}
+        </Box>
       </Stack.Item>
     </Stack>
   );

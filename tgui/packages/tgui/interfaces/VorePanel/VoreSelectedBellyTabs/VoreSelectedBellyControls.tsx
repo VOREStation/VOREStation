@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
-import { digestModeToColor } from '../constants';
+import { digestModeToColor, modeToTooltip } from '../constants';
 import type { bellyModeData } from '../types';
 import {
   VorePanelEditCheckboxes,
@@ -75,6 +75,7 @@ export const VoreSelectedBellyControls = (props: {
           options={addons}
           action={'set_attribute'}
           subAction={'b_addons'}
+          tooltipList={modeToTooltip}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Item Mode">
