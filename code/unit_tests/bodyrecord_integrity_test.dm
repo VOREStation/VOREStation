@@ -1,5 +1,5 @@
 /datum/unit_test/bodyrecord_integrity_test
-	name = "GENETICS: Bodyrecords must ensure integrity."
+	name = "BODY RECORD: Body records must ensure integrity."
 
 /datum/unit_test/bodyrecord_integrity_test/start_test()
 	var/failed = FALSE
