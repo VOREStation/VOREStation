@@ -225,3 +225,21 @@
 	if(dna.GetUIState(DNA_UI_GENDER) ^ gender == FEMALE) // XOR will catch both cases where they do not match
 		dna.SetUIState(DNA_UI_GENDER, gender == FEMALE)
 		sync_organ_dna(dna)
+
+/// Handle roundstart/respawn record sync with transcore. Called by timer from pref/resleeving's copy_to_mob()
+/mob/living/carbon/human/proc/initial_record_sync(var/datum/preferences/pref)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(QDELETED(src) || QDELETED(pref))
+		return // They might have been deleted during the wait
+	if(!virtual_reality_mob && !(/mob/living/carbon/human/proc/perform_exit_vr in verbs)) //Janky fix to prevent resleeving VR avatars but beats refactoring transcore
+		if(pref.resleeve_scan)
+			var/datum/transhuman/body_record/BR = new()
+			BR.init_from_mob(src, pref.resleeve_scan, pref.resleeve_lock)
+		if(mind && pref.mind_scan)
+			var/datum/transcore_db/our_db = SStranscore.db_by_key(null)
+			if(our_db)
+				our_db.m_backup(mind,nif,one_time = TRUE)
+	if(pref.resleeve_lock)
+		resleeve_lock = ckey
+	original_player = ckey
+	SEND_SIGNAL(src, COMSIG_INITIAL_RECORDS)
