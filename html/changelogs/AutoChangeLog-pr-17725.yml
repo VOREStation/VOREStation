@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - balance: "Spider spawned by the spider event have had their behaviour changed. They are no longer violently aggressive UNLESS they are attacked. However, they remain territorial and will infrequently \"warning bite\" anyone who is hanging out too close to them. This bite does very little toxic damage (you'll outheal it), but does make you jittery, gives you the drug overlay and slows you down."
