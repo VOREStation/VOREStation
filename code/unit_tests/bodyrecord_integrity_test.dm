@@ -195,6 +195,8 @@
 		H.dna.SetSEState(G.block,FALSE)
 	G = GLOB.trait_to_dna_genes[/datum/trait/negative/breathes/phoron]
 	H.dna.SetSEState(G.block,TRUE)
+	UpdateUI()
+	UpdateSE()
 
 	// Finish off
 	H.UpdateAppearance()
