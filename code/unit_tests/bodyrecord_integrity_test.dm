@@ -160,7 +160,6 @@
 	H.flavor_texts = list("general" = "Test. This doesn't need to be a real flavor entry...")
 	H.size_multiplier = 1.2
 	H.weight = 123
-	H.species.breath_type = GAS_PHORON
 	H.digitigrade = TRUE
 
 	// Randomize that dna, you should really be using the UI system in dna, and not raw vars when adding new cosmetic layers or color blending. Otherwise they're not easily testable...
@@ -168,9 +167,18 @@
 	H.dna.ResetUI()
 
 	// Get some genes going
+	var/datum/gene/G = null
+	var/list/muts = list()
 	for(var/i = 1 to 20)
-		var/datum/gene/G = pick(GLOB.dna_genes)
+		G = pick(GLOB.dna_genes)
 		H.dna.SetSEState(G.block,TRUE)
+	// Breath phoron
+	for(var/trait in subtypesof(/datum/trait/negative/breathes))
+		G = trait_to_dna_genes[trait]
+		H.dna.SetSEState(G.block,FALSE)
+	G = trait_to_dna_genes[/datum/trait/negative/breathes/phoron]
+	H.dna.SetSEState(G.block,TRUE)
+	// Finish off
 	H.dna.UpdateSE()
 	domutcheck( H, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
 	H.UpdateAppearance()
