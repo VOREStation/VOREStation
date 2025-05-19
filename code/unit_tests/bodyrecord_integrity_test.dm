@@ -78,6 +78,10 @@
 	var/datum/dna/descendant_dna = descendant.dna
 	descendant.Stasis(1000) // We are a HIGHLY unstable mob. Lets not life tick.
 
+	var/datum/transhuman/body_record/third_interation = new(descendant)
+	var/datum/dna2/record/third_record = third_interation.mydna
+	var/datum/dna/third_dna = third_interation.mydna.dna
+
 	// Testing...
 
 	// dna datum
@@ -100,6 +104,8 @@
 						failed = TRUE
 					if(list_test(descendant_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: second clone vs origin body."))
 						failed = TRUE
+					if(list_test(third_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: third record vs origin body."))
+						failed = TRUE
 				else
 					// Test the var
 					if(var_test(first_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: first record vs origin body."))
@@ -111,6 +117,8 @@
 					if(var_test(second_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: second record vs origin body."))
 						failed = TRUE
 					if(var_test(descendant_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: second clone vs origin body."))
+						failed = TRUE
+					if(var_test(third_dna.vars[A],first_dna.vars[A], "var \"[A]\" DNA ERROR: third record vs first record."))
 						failed = TRUE
 
 	// dna2record
@@ -127,11 +135,11 @@
 			else
 				if(islist(first_record.vars[A]))
 					// Test the list
-					if(list_test(first_record.vars[A],second_record.vars[A], "list \"[A]\" DNA2/RECORD ERROR: first vs second."))
+					if(list_test(first_record.vars[A],third_record.vars[A], "list \"[A]\" DNA2/RECORD ERROR: first vs third."))
 						failed = TRUE
 				else
 					// Test the var
-					if(var_test(first_record.vars[A],second_record.vars[A], "var \"[A]\" DNA2/RECORD ERROR: first vs second."))
+					if(var_test(first_record.vars[A],third_record.vars[A], "var \"[A]\" DNA2/RECORD ERROR: first vs third."))
 						failed = TRUE
 
 	// bodyrecord
@@ -148,11 +156,11 @@
 			else
 				if(islist(first_iteration.vars[A]))
 					// Test the list
-					if(list_test(first_iteration.vars[A],second_interation.vars[A], "list \"[A]\" BODY_RECORD ERROR: first vs second."))
+					if(list_test(first_iteration.vars[A],third_interation.vars[A], "list \"[A]\" BODY_RECORD ERROR: first vs third."))
 						failed = TRUE
 				else
 					// Test the var
-					if(var_test(first_iteration.vars[A],second_interation.vars[A], "var \"[A]\" BODY_RECORD ERROR: first vs second."))
+					if(var_test(first_iteration.vars[A],third_interation.vars[A], "var \"[A]\" BODY_RECORD ERROR: first vs third."))
 						failed = TRUE
 
 	// Cleanup

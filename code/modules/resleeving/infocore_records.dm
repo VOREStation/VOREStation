@@ -371,7 +371,7 @@
 
 	// Reset our organs/limbs.
 	H.species.create_organs(H)
-	internal_producebody_updatelimbandorgans(H)
+	internal_producebody_updatelimbandorgans(H, heal_robot_limbs)
 
 	//Don't boot out anyone already in the mob.
 	if(!H.client || !H.key)
@@ -387,7 +387,7 @@
 		if(gene.name in H.active_genes)
 			gene.deactivate(H)
 			H.active_genes -= gene.name
-	internal_producebody_updatednastate(H,heal_robot_limbs)
+	internal_producebody_updatednastate(H,FALSE)
 
 	// Begin actual REVIVIAL. Do NOT use revive(). That uses client prefs and allows save hacking.
 	H.revival_healing_action()
