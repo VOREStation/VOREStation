@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.custom_species = character.custom_species
 	src.base_species = character.species.base_species
 	src.blood_color = character.species.blood_color
-	//src.blood_reagents = character.species.blood_reagents
+	src.blood_reagents = character.species.blood_reagents
 	src.scale_appearance = character.fuzzy
 	src.offset_override = character.offset_override
 	src.synth_markings = character.synth_markings
