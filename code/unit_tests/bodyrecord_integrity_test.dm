@@ -7,7 +7,9 @@
 	var/obj/holder = new()
 
 	// We must find the lost data through intensive reiteration.
-	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/monkey/punpun(holder) // I have a new use for you, my son.
+	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/nevrean(holder) // I have a new use for you, my son.
+	prepare_test_monkey(subject)
+
 	var/datum/dna/org_dna = subject.dna
 
 	var/datum/transhuman/body_record/first_iteration = new(subject)
@@ -138,3 +140,36 @@
 		log_unit_test(message + ": Lists did not have matching contents")
 		return TRUE
 	return FALSE
+
+/// Setup the test subject for various data entries only set by players
+/datum/unit_test/bodyrecord_integrity_test/proc/prepare_test_monkey(var/mob/living/carbon/human/H)
+	// Non-dna tied flags
+	H.resleeve_lock = TRUE
+	H.synthetic = TRUE
+	H.custom_species = "A Carl"
+	H.gender = "female"
+
+	// OOC
+	H.ooc_notes = "A test note"
+	H.ooc_notes_likes = "A test like!"
+	H.ooc_notes_dislikes = "A test dislike!"
+	H.ooc_notes_favs = "A test fave!"
+	H.ooc_notes_maybes = "A test maybe!"
+	H.ooc_notes_style = TRUE
+
+	// Cosmetics
+	H.flavor_texts = list("general" = "Test. This doesn't need to be a real flavor entry...")
+	H.size_multiplier = 1.2
+	H.weight = 123
+	H.species.breath_type = GAS_N2O
+	H.digitigrade = TRUE
+
+	// Randomize that dna, you should really be using the UI system in dna, and not raw vars when adding new cosmetic layers or color blending. Otherwise they're not easily testable...
+	H.dna.ResetSE()
+	H.dna.ResetUI()
+
+	// Get some genes going
+	for(var/i = 1 to 20)
+		var/datum/gene/G = pick(GLOB.dna_genes)
+		H.dna.SetSEState(G.block,TRUE)
+	H.dna.UpdateSE()

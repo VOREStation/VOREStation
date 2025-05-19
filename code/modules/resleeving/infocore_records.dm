@@ -134,6 +134,11 @@
 	speciesname = M.custom_species ? M.custom_species : null
 	bodygender = M.gender
 	body_oocnotes = M.ooc_notes
+	body_ooclikes = M.ooc_notes_likes
+	body_oocdislikes = M.ooc_notes_dislikes
+	body_oocfavs = M.ooc_notes_favs
+	body_oocmaybes = M.ooc_notes_maybes
+	body_oocstyle = M.ooc_notes_style
 	sizemult = M.size_multiplier
 	weight = M.weight
 	aflags = M.appearance_flags
