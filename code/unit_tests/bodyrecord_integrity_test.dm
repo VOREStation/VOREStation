@@ -197,6 +197,6 @@
 	H.dna.SetSEState(G.block,TRUE)
 
 	// Finish off
-	H.dna.UpdateSE()
-	domutcheck( H, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
+	H.sync_dna_traits(FALSE,TRUE)
+	H.sync_organ_dna()
 	H.UpdateAppearance()
