@@ -145,7 +145,6 @@
 /datum/unit_test/bodyrecord_integrity_test/proc/prepare_test_monkey(var/mob/living/carbon/human/H)
 	// Non-dna tied flags
 	H.resleeve_lock = TRUE
-	H.synthetic = TRUE
 	H.custom_species = "A Carl"
 	H.gender = "female"
 
@@ -161,7 +160,7 @@
 	H.flavor_texts = list("general" = "Test. This doesn't need to be a real flavor entry...")
 	H.size_multiplier = 1.2
 	H.weight = 123
-	H.species.breath_type = GAS_N2O
+	H.species.breath_type = GAS_PHORON
 	H.digitigrade = TRUE
 
 	// Randomize that dna, you should really be using the UI system in dna, and not raw vars when adding new cosmetic layers or color blending. Otherwise they're not easily testable...
@@ -173,3 +172,5 @@
 		var/datum/gene/G = pick(GLOB.dna_genes)
 		H.dna.SetSEState(G.block,TRUE)
 	H.dna.UpdateSE()
+	domutcheck( H, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
+	H.UpdateAppearance()
