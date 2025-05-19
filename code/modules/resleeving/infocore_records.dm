@@ -366,7 +366,7 @@
 	H.species.create_organs(H)
 	internal_producebody_updatelimbandorgans(H)
 
- 	//Don't boot out anyone already in the mob.
+	//Don't boot out anyone already in the mob.
 	if(!H.client || !H.key)
 		for (var/obj/item/organ/internal/brain/CH in GLOB.all_brain_organs)
 			if(CH.brainmob)
