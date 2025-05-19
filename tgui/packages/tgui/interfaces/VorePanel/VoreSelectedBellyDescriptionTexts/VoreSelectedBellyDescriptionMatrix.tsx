@@ -29,16 +29,21 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
       fill
       buttons={
         <Stack>
-          <Stack.Item>
-            <Button
-              color="red"
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_msgs', msgtype: 'reset' })
-              }
-            >
-              Reset Messages
-            </Button>
-          </Stack.Item>
+          {editMode && (
+            <Stack.Item>
+              <Button
+                color="red"
+                onClick={() =>
+                  act('set_attribute', {
+                    attribute: 'b_msgs',
+                    msgtype: 'reset',
+                  })
+                }
+              >
+                Reset Messages
+              </Button>
+            </Stack.Item>
+          )}
           <Stack.Item>
             <Button
               icon="question"
