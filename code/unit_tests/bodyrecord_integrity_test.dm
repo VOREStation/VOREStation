@@ -149,7 +149,7 @@
 		switch(A)
 			if(BLACKLISTED_COPY_VARS)
 				continue
-			if("UI","SE","dirtyUI","dirtySE","genetic_modifiers")
+			if("UI","SE","dirtyUI","dirtySE","genetic_modifiers","body_markings") // Don't scramblize these
 				continue
 			else
 				if(islist(H.dna.vars[A]))
