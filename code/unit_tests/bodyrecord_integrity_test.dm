@@ -44,6 +44,8 @@
  * moving all vars in dna to UI... Which isn't really feasable.
  *
  *
+ * Unfortunately, it's also not possible to catch all cases. Especially ones where the data is not written to the BR to begin with! Try to keep
+ * stuff in the DNA datum, and it'll be able to catch it. If it's in the body_record, you might need to do your own digging for exactly what is wrong.
  * Good luck out there - Willbird
  */
 
