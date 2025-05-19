@@ -1,0 +1,5 @@
+author: "aKromatopzia"
+delete-after: True
+changes:
+  - image: "added new smolraptors (sec blue, sec red, syndicate); \"pk\" sec white smolraptor moved to crisis"
+  - image: "new rest mode for smolraptors"
