@@ -35,7 +35,6 @@
 	. = ..()
 	if(ismob(loc))
 		owner = loc
-		owner.recalculate_vis()
 
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
@@ -43,6 +42,7 @@
 	if(apply_stored_belly(data["linked_belly"], TRUE))
 		return
 	linked_belly = null
+	owner.recalculate_vis()
 
 /obj/soulgem/proc/apply_stored_belly(var/belly_string, var/skip_unreg = FALSE)
 	for(var/obj/belly in owner.vore_organs)

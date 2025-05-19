@@ -769,9 +769,9 @@
 	data["blood_color"] = owner.dna.blood_color
 	data["species_sound"] = owner.species.species_sounds
 	// Are these needed? It seems to be only used if above is unset??
-	//data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
-	//data["species_sounds_female"] = owner.species.species_sounds_female
-	//data["species_sounds_male"] = owner.species.species_sounds_male
+	data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
+	data["species_sounds_female"] = owner.species.species_sounds_female
+	data["species_sounds_male"] = owner.species.species_sounds_male
 	// flavor
 	if(!owner.flavor_texts.len)
 		owner.flavor_texts["general"] = ""
@@ -1000,7 +1000,6 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
-	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner)
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)

@@ -31,7 +31,6 @@
 	var/list/teleporters = list() //Used for lleill abilities
 
 	var/rest_dir = 0					//To lay down in a specific direction
-	var/gutdeathpressure = 0			//For GIBBING trait
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
@@ -832,7 +831,7 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
-	if(feral)
+	if(get_feralness())
 		to_chat(src, span_warning("Your primitive mind can't grasp the concept of that thing."))
 		return 0
 	if(species.has_fine_manipulation)
@@ -1311,6 +1310,7 @@
 
 	species.create_organs(src)
 
+	species.apply_components(src)
 
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor

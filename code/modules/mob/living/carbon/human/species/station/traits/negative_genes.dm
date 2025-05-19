@@ -24,9 +24,10 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	disability=EPILEPSY
 	activation_message="You get a headache."
 	primitive_expression_messages=list("shudders and twitches.")
+	added_component_path = /datum/component/epilepsy_disability
+
 
 /datum/trait/negative/disability_cough
 	name = "Coughing Fits"
@@ -37,8 +38,8 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	disability=COUGHING
 	activation_message="You start coughing."
+	added_component_path = /datum/component/coughing_disability
 
 /datum/trait/negative/disability_clumsy
 	name = "Clumsy"
@@ -49,7 +50,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 
-	mutation=CLUMSY
 	activation_message="You feel lightheaded."
 	primitive_expression_messages=list("trips.")
 
@@ -62,9 +62,9 @@
 	is_genetrait = FALSE 	//VOREStation Note: TRAITGENETICS - Disabled on VS
 	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
-	disability=TOURETTES
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
+	added_component_path = /datum/component/tourettes_disability
 
 /* Replaced by /datum/trait/negative/blindness
 /datum/trait/negative/disability_blind
@@ -165,9 +165,10 @@
 	is_genetrait = FALSE	//VOREStation Note: TRAITGENETICS - Disabled on VS
 	hidden = TRUE			//VOREStation Note: TRAITGENETICS - Disabled on VS
 
-	disability=DETERIORATE
 	activation_message="You feel sore..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
+	added_component_path = /datum/component/rotting_disability
+
 
 /datum/trait/negative/disability_gibbing
 	name = "Gibbingtons"
@@ -178,9 +179,10 @@
 	is_genetrait = TRUE
 	hidden = TRUE
 
-	disability=GIBBING
 	activation_message="You feel bloated..."
 	primitive_expression_messages=list("shudders.","gasps.","chokes.")
+	added_component_path = /datum/component/gibbing_disability
+
 
 /datum/trait/negative/disability_damagedspine
 	name = "Lumbar Impairment"

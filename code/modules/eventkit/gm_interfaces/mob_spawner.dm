@@ -65,7 +65,7 @@
 					intent  = (L.a_intent ? L.a_intent : I_HELP)
 					new_path = FALSE
 
-					data["max_health"] = L.maxHealth
+					data["max_health"] = L.getMaxHealth()
 					data["health"] = L.health
 					if(isanimal(L))
 						var/mob/living/simple_mob/S = L
