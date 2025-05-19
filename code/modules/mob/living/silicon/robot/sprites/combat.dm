@@ -64,13 +64,23 @@
 	sprite_icon_state = "uptall"
 
 // Wide/dogborg sprites
-/*
+
 /datum/robot_sprite/dogborg/combat
 	module_type = "Combat"
-	sprite_icon = 'icons/mob/robot/combat_wide.dmi'
+/*	sprite_icon = 'icons/mob/robot/combat_wide.dmi'
 
 		// None yet
 */
+
+/datum/robot_sprite/dogborg/combat/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_syndie.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
+
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/combat
