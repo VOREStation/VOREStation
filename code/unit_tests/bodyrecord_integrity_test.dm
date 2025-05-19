@@ -1,3 +1,45 @@
+/*
+ * And so you've reached it. You just wanted to add a new cosmetic system, and realized that it isn't persisting through
+ * resleeves, and now you need to edit DNA code, and body records. Except, as you do, this begins to scream at you. So you
+ * have come here seeking awnsers to your plight. Thankfully, I have some goods news for you! There are likely several easy
+ * to handle solutions to finish what you are working on! Here are some common fixes.
+ *
+ *
+ * 1) Where is your data stored? Mobs do not persist data through resleeves themselves. Cosmetic data should be moved to the
+ * DNA datum of the human mob. The dna datum AUTOMATICALLY copies all of its vars when its Clone() proc is called. If you
+ * already have your var in the DNA datum. Check to see if it is being written, and read from it when the human mob runs
+ * its UpdateAppearance() proc. This is where the data is read from dna, and written to the mob.
+ *
+ * Check that the order is correct. Sometimes procs in the UpdateAppearance() order will reset the var you want to edit, your
+ * var needs to be changed after them. A pretty ugly example is blood_color. As the species blood color gets set, but then because
+ * of how custom species code works, it needs to set the color in the dna, then set the color in the copy of species it makes!
+ *
+ *
+ * 2) You should be using the UI system in dna if possible for anything using colors or icon_state. While preferable, you can still
+ * use standalone vars instead. The UI system is a large list DNA_UI_LENGTH entries long. Each entry can store a value from 0 to 4096.
+ * There are several helper procs to handle this system. Allowing you to encode that range of numbers into anything you want.
+ *
+ * Commonly, the UI system will store the INDEX of a cosmetic in their global cosmetic list. Take a look at hair or wings. They just
+ * use the helper to stretch the length of the hair/wing list over the length of the UI range(4096), and decode it back. This is the
+ * same thing done by colors. Colors encoding the range between 0 to 255, and writing those colors back to the mob when read.
+ *
+ * Just be certain to make DNA_UI_LENGTH match the HIGHEST number in the define section you'll need to edit, as each UI is set by a
+ * define macro in code\__defines\dna.dm. Some types of cosmetic may be impossible to use as a UI, for example, marking code is entirely
+ * incompatible with how UIs work, and requires it's own kind of system using standalone vars. There is no single perfect solution.
+ *
+ *
+ * 3) Avoid using species to store vars. You may be working on a "custom species" var, but the species datum is not shared between resleeves.
+ * Only your dna, dna2/record, and body_record are used for resleeving. The autosleever is a cheat machine that uses admin healing, and
+ * does NOT use any of this to spawn your character. It should not be used as reference while testing. the DNA datum is exchanged cleanly
+ * between your mob, body record, and back. You only need to ensure that the dna datum is reading and writing to your mob correctly.
+ *
+ * Hopefully in the future, it will be possible to return to a system that does not edit the species datum at all, and properly uses DNA to
+ * transfer data between resleeves. However that still requires extensive refactoring.
+ *
+ *
+ * Good luck out there - Willbird
+ */
+
 /datum/unit_test/bodyrecord_integrity_test
 	name = "BODY RECORD: Body records must ensure integrity."
 
