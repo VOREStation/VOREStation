@@ -76,7 +76,9 @@ export const SubtabLoadout = (props: {
                 <Table.Row>
                   <Table.Cell collapsing>
                     <Button
-                      selected={item.name in active_gear_list}
+                      selected={
+                        active_gear_list ? item.name in active_gear_list : false
+                      }
                       onClick={() => act('toggle_gear', { gear: item.name })}
                     >
                       {item.name}
