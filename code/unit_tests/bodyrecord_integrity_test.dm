@@ -172,12 +172,14 @@
 	for(var/i = 1 to 20)
 		G = pick(GLOB.dna_genes)
 		H.dna.SetSEState(G.block,TRUE)
+
 	// Breath phoron
 	for(var/trait in subtypesof(/datum/trait/negative/breathes))
-		G = trait_to_dna_genes[trait]
+		G = GLOB.trait_to_dna_genes[trait]
 		H.dna.SetSEState(G.block,FALSE)
-	G = trait_to_dna_genes[/datum/trait/negative/breathes/phoron]
+	G = GLOB.trait_to_dna_genes[/datum/trait/negative/breathes/phoron]
 	H.dna.SetSEState(G.block,TRUE)
+
 	// Finish off
 	H.dna.UpdateSE()
 	domutcheck( H, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
