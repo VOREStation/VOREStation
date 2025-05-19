@@ -31,6 +31,8 @@
 		switch(A)
 			if(BLACKLISTED_COPY_VARS)
 				continue
+			if("dirtyUI","dirtySE")
+				continue
 			else
 				if(islist(org_dna.vars[A]))
 					// Test the list
@@ -65,6 +67,8 @@
 			if("dna") // We tested this above
 				continue
 			if("mind")
+				continue
+			if("id")
 				continue
 			else
 				if(islist(first_record.vars[A]))
