@@ -59,3 +59,110 @@
   TheCaramelion:
   - rscadd: Balloon Alerts
   - refactor: Changed various to_chat to balloon alerts
+2025-05-10:
+  Kashargul:
+  - qol: makes lobby screen more reliable
+  - code_imp: tgui-core 3.1.5
+2025-05-12:
+  TankTheBirb:
+  - rscadd: Two new centered horns that look more axe-like. Perfect for making worldy
+      critters that live out on the rim.
+  - rscadd: Usage of "Teshari Union" instead of "Teshari Expeditionary Fleet" wherever
+      I could find it and updated cataloguer lore
+  - rscadd: updated maximum working age of tesh in the code to 80, which is 20 years
+      younger than their actual maximum age
+  - rscadd: Teshari union is now a valid citizenship instead of Teshari Expeditionary
+      fleet, as well as a valid faction choice
+  - rscadd: Added new species desc and changed minimum age for Rapala to 19 for lore
+      reasons
+2025-05-13:
+  Asher-42:
+  - rscadd: Engi and med v3 dullahans wings now work again
+  Diana:
+  - refactor: Shadekin and Xenochimera no longer have their special powers on their
+      brain. Instead it's a component.
+  SatinIsle:
+  - bugfix: Fixes micros being able to pick themselves up.
+  ShadowLarkens:
+  - bugfix: Diona not being whitelisted
+  - bugfix: Body snatcher not respecting resleeve lock
+  - bugfix: Borgs being slowed by >1000 nutrition
+  - bugfix: Mobs not updating their transform to match their size
+  - bugfix: Resleeving not allowed to print whitelisted species
+  - bugfix: Game preferences missing tgui options
+  TheCaramelion:
+  - bugfix: Fixed Neutered symptoms not staying neutered when moved around
+  - bugfix: Fixed diseases duplicating when created
+  - bugfix: Fixed species with immunity catching viruses
+  - bugfix: Fixed Pandemic runtimes when trying to duplicate a non-advanced diseases
+2025-05-16:
+  Cameron-The-Raven:
+  - bugfix: 'Loaf sprites on Fat Wolf 3 and Fat Wolf 3 Alt are fixed (Note: ALT variant
+      currently still needs spritework.)'
+  Diana:
+  - refactor: Weaver, Drippy, and Gargoyle has been refactored. Now uses DCS.
+  - refactor: Disabilities have been refactored. Now uses DCS.
+  - qol: Vasillian bodytype gets increased webbing storage if selected.
+  - bugfix: Endurance traits now are properly calculated when it comes to death &
+      crit.
+  - bugfix: Xenochimera can no longer move while dead
+  - rscadd: New Waddle mechanic that can be turned on via 'Character' under Preferences.
+      Allows you to have animated movement.
+  - server: Ref Track now goes => .log. Proper ref tracking dm ticked in the .dme
+  - bugfix: Teshari HoS cloak is now selectable
+  - bugfix: Teshari captain cloak now selects properly
+  Kashargul & Diana:
+  - bugfix: Fixes an error where nulls would enter the player list.
+  SatinIsle:
+  - rscadd: Added the ability to recolour material stacks (such as plastic). Some
+      items crafted from stacks (such as curtains or beds) inherit the color variable
+      of the stack, now you can actually recolour your stack to take advantage of
+      this!
+  - bugfix: Fixes the glamour drain ability showing the "contact has been broken"
+      message when it is successful.
+  Willburd:
+  - rscadd: Addictions and consequences for not feeding or treating them.
+  - rscadd: Various reagents are now addictive, servers can decide if reagents can
+      be addicted to during a round, or if only with a trait.
+  - rscadd: Artificial sustenance, a vat-clone body stabilizer using the addiction
+      system, enabled with a trait
+  - rscadd: Traits to be addicted to a reagent from round start
+  - rscadd: inaprovaline treats addiction withdrawls in most cases
+  - refactor: complete rebuild of hallucination code to use components and more safely
+      handled client images
+  - refactor: Talk sounds are more convenient to add to or change downstream
+  - refactor: Posters can now use downstream overrides to use their own dmis
+  - code_imp: adds a unit-test to prevent illegal icons and icon_states in poster
+      definitions
+  crabcube:
+  - rscadd: New moth eyes marking!
+2025-05-17:
+  Diana:
+  - qol: Guns that do bonus damage to simple_mob/animal (phaseguns) now do bonus damage
+      to any simple_mob
+  - qol: Survey Vendor and Mining Vendor have had some adjustments. PSGs are now available
+      in them. Some price adjustments. Mining gets a expensive version of their rig.
+  - qol: Kinetic Gauntlets can fit in your backpack now.
+  TeleTubby2:
+  - bugfix: mob holders play nice with disposals again
+  TheCaramelion:
+  - code_imp: RemoveDisease proc now uses LAZYREMOVE
+  - code_imp: HasResistance proc now uses LAZYFIND
+  Willburd:
+  - rscadd: Nutrition resizing traits, disabled on virgo
+  - refactor: Moved nutrition resizing code to components
+  - rscadd: Photodegeneration genetrait, cannot be selected from round start
+  - bugfix: Drippy trait will no longer drop drips into the cryopod when a human with
+      it is in the pod
+  - refactor: inStasisNow() has a base proc on mob, for ease of component compatibility
+      between simple and human mobs
+  - refactor: Moved species/shadow and zaddat light-based damage code to a component
+  - refactor: Overmap shuttle star movement overlay is not controlled by a subsystem
+  - bugfix: mobs can be extinguished by hand when beneath paincrit threshold
+  - refactor: Photosynthesis code moved to component
+2025-05-18:
+  Diana:
+  - code_imp: Gibbing is now 75% FASTER!!!
+  - qol: TTS device now costs 0 points
+  Willburd:
+  - code_imp: Prepared signal handling code for future work

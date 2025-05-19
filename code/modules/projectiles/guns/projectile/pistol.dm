@@ -151,7 +151,7 @@
 	item_state = "deagle"
 	force = 14.0
 	caliber = ".44"
-	fire_sound = 'sound/weapons/Gunshot_deagle.ogg'
+	fire_sound = 'sound/weapons/gunshot_deagle.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m44
 	allowed_magazines = list(/obj/item/ammo_magazine/m44)

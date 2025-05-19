@@ -3,12 +3,6 @@
 ## level of health at which a mob goes into continual shock (soft crit)
 HEALTH_THRESHOLD_SOFTCRIT 0
 
-## level of health at which a mob becomes unconscious (crit)
-HEALTH_THRESHOLD_CRIT -50
-
-## level of health at which a mob becomes dead
-HEALTH_THRESHOLD_DEAD -100
-
 ## Determines whether bones can be broken through excessive damage to the organ
 ## 0 means bones can't break, 1 means they can
 BONES_CAN_BREAK 1
@@ -74,6 +68,9 @@ FOOTSTEP_VOLUME 65
 
 ## Whether or not humans show an area message when they die.
 SHOW_HUMAN_DEATH_MESSAGE
+
+## If chemicals and drinks can give addictions during a round. Otherwise they are only accessible through traits or exotic effects.
+#CAN_ADDICT_DURING_ROUND
 
 ## Alert level descriptions
 ALERT_DESC_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.

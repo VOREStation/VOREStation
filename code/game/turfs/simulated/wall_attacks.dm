@@ -87,7 +87,7 @@
 	if(!can_open)
 		if(!material.wall_touch_special(src, user))
 			to_chat(user, span_notice("You push the wall, but nothing happens."))
-			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	else
 		toggle_open(user)
 	return 0
@@ -174,7 +174,7 @@
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					user.visible_message(span_notice("[user] patches a hole in the ceiling."), span_notice("You patch a hole in the ceiling."))
 					expended_tile = TRUE
 			else
@@ -186,7 +186,7 @@
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
 				make_indoors()
 				if(!expended_tile) // Would've already played a sound
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				user.visible_message(span_notice("[user] roofs \the [src], shielding it from the elements."), span_notice("You roof \the [src] tile, shielding it from the elements."))
 		return
 

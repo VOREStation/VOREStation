@@ -454,7 +454,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(src, 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
+			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
 			visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [src] flies apart!"), span_warning("You hear a bang!"))
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
@@ -658,7 +658,6 @@ var/list/global/tank_gauge_cache = list()
 		tank.cut_overlay("bomb_assembly")
 
 /obj/item/tankassemblyproxy/HasProximity(turf/T, datum/weakref/WF, old_loc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()
