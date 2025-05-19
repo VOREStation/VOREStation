@@ -136,7 +136,7 @@
 	body_oocnotes = M.ooc_notes
 	body_ooclikes = M.ooc_notes_likes
 	body_oocdislikes = M.ooc_notes_dislikes
-	body_oocfavs = M.ooc_notes_favs
+	//body_oocfavs = M.ooc_notes_favs
 	body_oocmaybes = M.ooc_notes_maybes
 	body_oocstyle = M.ooc_notes_style
 	sizemult = M.size_multiplier
@@ -349,7 +349,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	H.ooc_notes = body_oocnotes
-	H.ooc_notes_likes = body_ooclikes
+	//H.ooc_notes_likes = body_ooclikes
 	H.ooc_notes_dislikes = body_oocdislikes
 	H.ooc_notes_favs = body_oocfavs
 	H.ooc_notes_maybes = body_oocmaybes
