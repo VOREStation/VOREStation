@@ -28,8 +28,6 @@
 #define GROW_MESSAGE  "Grow"
 #define UNABSORB_MESSAGE  "Unabsorb"
 
-
-
 /datum/vore_look/proc/compile_message_data(obj/belly/selected)
 	if(message_option == VPANEL_DESCRIPTION_TAB)
 		var/list/tab_data = list(
@@ -627,3 +625,33 @@
 			"autotransfer_secondary_blacklist_items" = at_secondary_blacklist_items,
 		)
 	return autotransfer_data
+
+#undef DEFAULT_MESSAGE
+#undef ABSORBED_MESSAGE
+#undef WITH_PREY
+#undef WITH_ABSORBED_PREY
+#undef TRASH_EAT
+#undef TRASH_EXPEL
+#undef OUTSIDE_MESSAGE
+#undef INSIDE_MESSAGE
+#undef TO_YOU
+#undef TO_PREY
+#undef ATTEMPT_MESSAGE
+#undef SUCCESS_MESSAGE
+#undef ITEM_MESSAGE
+#undef FAIL_MESSAGE
+#undef PRIMARY_MESSAGE
+#undef SECONARY_MESSAGE
+#undef PRIMARY_AUTO_MESSAGE
+#undef SECONARY_AUTO_MESSAGE
+#undef DIGEST_MESSAGE
+#undef HOLD_MESSAGE
+#undef HOLDABSORBED_MESSAGE
+#undef ABSORB_MESSAGE
+#undef HEAL_MESSAGE
+#undef DRAIN_MESSAGE
+#undef STEAL_MESSAGE
+#undef EGG_MESSAGE
+#undef SHRINK_MESSAGE
+#undef GROW_MESSAGE
+#undef UNABSORB_MESSAGE
