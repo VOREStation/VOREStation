@@ -60,7 +60,7 @@
 	DD.affected_mob = src
 	GLOB.active_diseases += DD
 
-	var/list/skipped = list("affected_mob", "holder", "carrier", "stage", "type", "parent_type", "vars", "transformed", "_active_timers")
+	var/list/skipped = list(BLACKLISTED_COPY_VARS,"affected_mob","holder","carrier","stage","transformed")
 	if(respect_carrier)
 		skipped -= "carrier"
 	for(var/V in DD.vars)

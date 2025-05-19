@@ -41,6 +41,8 @@
 	var/datum/dna2/record/newrecord = new /datum/dna2/record
 	for(var/A in vars)
 		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
 			if("id")
 				newrecord.id = copytext(md5(dna.real_name), 2, 6) // update this specially
 				continue

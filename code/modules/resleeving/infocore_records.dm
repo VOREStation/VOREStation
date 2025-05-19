@@ -214,9 +214,12 @@
 	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
 	for(var/A in vars)
-		if(A == "mydna")
-			mydna = orig.mydna.copy()
-			continue
+		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
+			if("mydna")
+				mydna = orig.mydna.copy()
+				continue
 		if(islist(vars[A]))
 			var/list/L = orig.vars[A]
 			vars[A] = L.Copy()

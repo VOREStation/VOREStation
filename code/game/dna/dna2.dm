@@ -88,6 +88,8 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/datum/dna/new_dna = new()
 	for(var/A in vars)
 		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
 			if("dirtyUI")
 				dirtyUI=1
 				continue
