@@ -276,7 +276,6 @@
 		H.custom_ask = dna.custom_ask
 		H.custom_whisper = dna.custom_whisper
 		H.custom_exclaim = dna.custom_exclaim
-		H.species.blood_color = dna.blood_color
 		H.fuzzy = dna.scale_appearance
 		H.offset_override = dna.offset_override
 		H.synth_markings = dna.synth_markings
