@@ -149,6 +149,9 @@
 		switch(A)
 			if(BLACKLISTED_COPY_VARS)
 				continue
+			if("species") // Everything explodes if scrambled
+				H.dna.species = SPECIES_HUMAN
+				continue
 			if("UI","SE","dirtyUI","dirtySE","genetic_modifiers","body_markings") // Don't scramblize these
 				continue
 			else
@@ -159,7 +162,6 @@
 
 	// Stablize anything that shouldn't be wagoozleized by above
 	H.resleeve_lock = TRUE
-	H.species = SPECIES_HUMAN
 	H.custom_species = "A Carl"
 	H.gender = "female"
 
