@@ -42,7 +42,7 @@
 	for(var/A in vars)
 		switch(A)
 			if("id")
-				newrecord.id = copytext(md5(real_name), 2, 6) // update this specially
+				newrecord.id = copytext(md5(dna.real_name), 2, 6) // update this specially
 				continue
 			if("dna")
 				qdel_swap(newrecord.dna, dna.Clone())
