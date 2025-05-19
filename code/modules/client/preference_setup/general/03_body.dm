@@ -95,6 +95,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.synth_color		= save_data["synth_color"]
 	pref.synth_markings		= save_data["synth_markings"]
 	pref.bgstate			= save_data["bgstate"]
+	pref.body_descriptors	= check_list_copy(save_data["body_descriptors"])
 	pref.ear_style			= save_data["ear_style"]
 	pref.ear_secondary_style = save_data["ear_secondary_style"]
 	pref.ear_secondary_colors = save_data["ear_secondary_colors"]
@@ -120,6 +121,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	save_data["synth_color"]		= pref.synth_color
 	save_data["synth_markings"]		= pref.synth_markings
 	save_data["bgstate"]			= pref.bgstate
+	save_data["body_descriptors"]	= check_list_copy(pref.body_descriptors)
 	save_data["ear_style"]			= pref.ear_style
 	save_data["ear_secondary_style"] = pref.ear_secondary_style
 	save_data["ear_secondary_colors"] = pref.ear_secondary_colors
@@ -249,6 +251,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				O.markings[M] = list("color" = pref.body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = pref.body_markings[M][BP]["on"])
 	character.markings_len = priority
 
+	var/list/last_descriptors = list()
+	if(islist(pref.body_descriptors))
+		last_descriptors = pref.body_descriptors.Copy()
+	pref.body_descriptors = list()
+
+	var/datum/species/mob_species = GLOB.all_species[pref.species]
+	if(LAZYLEN(mob_species.descriptors))
+		for(var/entry in mob_species.descriptors)
+			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
+			if(istype(descriptor))
+				if(isnull(last_descriptors[entry]))
+					pref.body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
+				else
+					pref.body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
+
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
 	. = list()
 
@@ -369,6 +386,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += "<br><br>"
 
+	if(LAZYLEN(pref.body_descriptors))
+		. += "<table>"
+		for(var/entry in pref.body_descriptors)
+			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
+			. += "<tr><td>" + span_bold("[capitalize(descriptor.chargen_label)]:") + "</td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='byond://?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
+		. += "</table><br>"
+
 	. += "</td><td>" + span_bold("Preview") + "<br>"
 	. += "<br><a href='byond://?src=\ref[src];cycle_bg=1'>Cycle background</a>"
 	. += "<br><a href='byond://?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
@@ -481,6 +505,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(href_list["random"])
 		pref.randomize_appearance_and_body_for()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["change_descriptor"])
+		if(mob_species.descriptors)
+			var/desc_id = href_list["change_descriptor"]
+			if(pref.body_descriptors[desc_id])
+				var/datum/mob_descriptor/descriptor = mob_species.descriptors[desc_id]
+				var/choice = tgui_input_list(user, "Please select a descriptor.", "Descriptor", descriptor.chargen_value_descriptors)
+				if(choice && mob_species.descriptors[desc_id]) // Check in case they sneakily changed species.
+					pref.body_descriptors[desc_id] = descriptor.chargen_value_descriptors[choice]
+					return TOPIC_REFRESH
 
 	else if(href_list["blood_type"])
 		var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", valid_bloodtypes)

@@ -79,6 +79,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
 	var/list/body_markings_genetic = list()
+	var/list/body_descriptors = null
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
 // Make a copy of this strand.
