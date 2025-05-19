@@ -129,7 +129,8 @@
 	if(A.len != B.len)
 		log_unit_test(message + ": Lists did not have matching lengths")
 		return TRUE
-	if(!same_entries(A,B))
+	var/list/check_list = difflist(A,B)
+	if(check_list.len)
 		log_unit_test(message + ": Lists did not have matching contents")
 		return TRUE
 	return FALSE
