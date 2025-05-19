@@ -361,8 +361,10 @@
 	if(speciesname)
 		H.custom_species = speciesname
 
-/// Rebuild a body from a record, like aheal, but without save files. Primarily used for anything that heals like xenochimera.
-/datum/transhuman/body_record/proc/rebuild_human_mob(var/mob/living/carbon/human/H,var/heal_robot_limbs)
+/**
+ * Specialty revival procs. Uses the BR for data, but needs to handle some weird logic for xenochi/slimes
+ */
+/datum/transhuman/body_record/proc/revive_xenochimera(var/mob/living/carbon/human/H,var/heal_robot_limbs)
 	// Boy this one is complex, but what do we expect when trying to heal damage and organ loss in this game!
 	if(!H || QDELETED(H)) // Someone, somewhere, will call this without any safety. I feel it in my bones cappin'
 		return
@@ -391,3 +393,7 @@
 	H.revival_healing_action()
 
 	return H
+
+/datum/transhuman/body_record/proc/revive_promethean(var/mob/living/carbon/human/H)
+	// TODO - See note in code\modules\organs\internal\brain.dm for slime brains
+	return

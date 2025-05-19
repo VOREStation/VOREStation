@@ -406,7 +406,7 @@
 	var/old_nutrition = nutrition
 	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=quickcheckuninjured()
-	xc.revival_record.rebuild_human_mob(src,FALSE)
+	xc.revival_record.revive_xenochimera(src,FALSE)
 
 	mutations.Remove(HUSK)
 	setBrainLoss(braindamage)

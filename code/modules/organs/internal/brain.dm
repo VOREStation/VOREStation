@@ -216,6 +216,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	..()
 
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
+	// TODO - Reference how xenochimera component handles revival from bodyrecord in the future.
+	// This requires a promie/protean component for transformation and regeneration.
+	// This shouldn't use a brain mob for caching dna. That's what BRs are for.
 	var/datum/dna2/record/R = new /datum/dna2/record()
 	qdel_swap(R.dna, brainmob.dna.Clone())
 	R.ckey = brainmob.ckey
