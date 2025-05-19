@@ -63,10 +63,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/gender_specific_species_sounds = FALSE
 	var/species_sounds_male = "None"
 	var/species_sounds_female = "None"
-	var/grad_style = 0
-	var/r_grad = 0
-	var/g_grad = 0
-	var/b_grad = 0
 	var/custom_say
 	var/custom_ask
 	var/custom_whisper
@@ -162,6 +158,11 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	if(character.wing_style)
 		wing_style = wing_styles_list.Find(character.wing_style.type)
 
+	// Hairgrad
+	var/grad_style = 0
+	if(character.grad_style)
+		grad_style = GLOB.hair_gradients.Find(character.grad_style)
+
 	// Playerscale (This assumes list is sorted big->small)
 	var/size_multiplier = GLOB.player_sizes_list.len // If fail to find, take smallest
 	for(var/N in GLOB.player_sizes_list)
@@ -184,10 +185,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.species_sounds_male = character.species.species_sounds_male
 	src.species_sounds_female = character.species.species_sounds_female
 	*/
-	src.grad_style = character.grad_style
-	src.r_grad = character.r_grad
-	src.g_grad = character.g_grad
-	src.b_grad = character.b_grad
 	src.species_traits = character.species.traits.Copy()
 	src.custom_say = character.custom_say
 	src.custom_ask = character.custom_ask
@@ -203,6 +200,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              tail_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             GLOB.player_sizes_list.len,     1)
 	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              wing_styles_list.len + 1,  1)
+	SetUIValueRange(DNA_UI_GRAD_STYLE,            grad_style + 1,			   GLOB.hair_gradients.len + 1,  1)
 
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)
@@ -242,6 +240,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_EARS3_G,   character.g_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_B,   character.b_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS_ALPHA,character.a_ears,    255,    1)
+
+	SetUIValueRange(DNA_UI_GRAD_R,    character.r_grad,    255,    1)
+	SetUIValueRange(DNA_UI_GRAD_G,    character.g_grad,    255,    1)
+	SetUIValueRange(DNA_UI_GRAD_B,    character.b_grad,    255,    1)
 
 	for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
 		var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3

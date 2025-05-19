@@ -158,6 +158,10 @@
 		H.b_eyes   = dna.GetUIValueRange(DNA_UI_EYES_B,    255)
 		H.update_eyes()
 
+		H.r_grad   = dna.GetUIValueRange(DNA_UI_GRAD_R,    255)
+		H.g_grad   = dna.GetUIValueRange(DNA_UI_GRAD_G,    255)
+		H.b_grad   = dna.GetUIValueRange(DNA_UI_GRAD_B,    255)
+
 		H.s_tone   = 35 - dna.GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
 
 		if(H.gender != NEUTER)
@@ -261,6 +265,11 @@
 		H.b_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_B,   255)
 		H.a_tail = dna.GetUIValueRange(DNA_UI_TAIL_ALPHA,  255)
 
+		// Hair gradiant
+		var/grad = dna.GetUIValueRange(DNA_UI_GRAD_STYLE,GLOB.hair_gradients.len)
+		if((0 < grad) && (grad <= GLOB.hair_gradients.len))
+			H.grad_style = GLOB.hair_gradients[grad]
+
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
 		H.custom_say = dna.custom_say
@@ -272,10 +281,6 @@
 		H.offset_override = dna.offset_override
 		H.synth_markings = dna.synth_markings
 		H.custom_speech_bubble = dna.custom_speech_bubble
-		H.grad_style = dna.grad_style
-		H.r_grad = dna.r_grad
-		H.g_grad = dna.g_grad
-		H.b_grad = dna.b_grad
 		H.custom_heat = dna.custom_heat
 		H.custom_cold = dna.custom_cold
 		var/datum/species/S = H.species
