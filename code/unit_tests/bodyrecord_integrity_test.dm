@@ -37,6 +37,13 @@
  * transfer data between resleeves. However that still requires extensive refactoring.
  *
  *
+ * 4) If you var requires extremely specific and safe data to function. You may need to alter the test. This is not usually the case however,
+ * check the above sections for the most common solutions. If you need to edit the test, add a condition to the var randomization during the
+ * proc prepare_test_monkey() in this test. The vars are normally randomized to ensure that normally nulled or otherwise unused vars are also
+ * checked for if they are being copied correctly or not to the mob, and back to the records. There is no other good solution without somhow
+ * moving all vars in dna to UI... Which isn't really feasable.
+ *
+ *
  * Good luck out there - Willbird
  */
 
@@ -195,6 +202,9 @@
 				H.dna.species = SPECIES_HUMAN
 				continue
 			if("UI","SE","dirtyUI","dirtySE","genetic_modifiers","body_markings","species_traits") // Don't scramblize these
+				continue
+			if("blood_color")
+				H.dna.blood_color = pick(list("#576347","#067234","#982319")) // Can't use randoms for this one
 				continue
 			else
 				if(islist(H.dna.vars[A]))
