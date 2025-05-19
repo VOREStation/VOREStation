@@ -7,7 +7,7 @@
 	var/obj/holder = new()
 
 	// We must find the lost data through intensive reiteration.
-	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/nevrean(holder) // I have a new use for you, my son.
+	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/monkey(holder) // I have a new use for you, my son.
 	prepare_test_monkey(subject)
 
 	var/datum/dna/org_dna = subject.dna
@@ -113,6 +113,7 @@
 
 	qdel(holder)
 
+
 	if(failed)
 		fail("Bodyrecord integrity failed. Check that any new vars added to dna, dna2record, or bodyrecord are properly read from the mob, copied between datum cloning, and when reapplied to the mob.")
 	else
@@ -143,7 +144,20 @@
 
 /// Setup the test subject for various data entries only set by players
 /datum/unit_test/bodyrecord_integrity_test/proc/prepare_test_monkey(var/mob/living/carbon/human/H)
-	// Non-dna tied flags
+	// Absolutely brutalize this monkey. Yes this would HORRIDLY BREAK under almost any circumstance. Good thing it's going to vanish quickly!
+	for(var/A in H.dna.vars)
+		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
+			if("UI","SE","dirtyUI","dirtySE","genetic_modifiers")
+				continue
+			else
+				if(islist(H.dna.vars[A]))
+					H.dna.vars[A] = list("rand","test[rand(1,200)]","hello",rand(1,200))
+				else
+					H.dna.vars[A] = pick(list("rand","test[rand(1,200)]","hello",rand(1,200)))
+
+	// Stablize anything that shouldn't be wagoozleized by above
 	H.resleeve_lock = TRUE
 	H.custom_species = "A Carl"
 	H.gender = "female"
@@ -168,7 +182,6 @@
 
 	// Get some genes going
 	var/datum/gene/G = null
-	var/list/muts = list()
 	for(var/i = 1 to 20)
 		G = pick(GLOB.dna_genes)
 		H.dna.SetSEState(G.block,TRUE)
