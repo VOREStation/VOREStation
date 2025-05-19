@@ -197,6 +197,8 @@
 	H.dna.SetSEState(G.block,TRUE)
 
 	// Finish off
+	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE,TRUE)
 	H.sync_organ_dna()
-	H.UpdateAppearance()
+	H.initialize_vessel()
+	H.regenerate_icons()
