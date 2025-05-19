@@ -166,3 +166,7 @@
   - qol: TTS device now costs 0 points
   Willburd:
   - code_imp: Prepared signal handling code for future work
+2025-05-19:
+  Guti:
+  - bugfix: Fixed mailman suit's sprites
+  - qol: Adjusted the vomit proc.
