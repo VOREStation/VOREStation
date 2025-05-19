@@ -67,7 +67,7 @@
 			if("mind")
 				continue
 			else
-				if(islist(org_dna.vars[A]))
+				if(islist(first_record.vars[A]))
 					// Test the list
 					if(list_test(first_record.vars[A],second_record.vars[A], "list \"[A]\" DNA2/RECORD ERROR: first vs second."))
 						failed = TRUE
@@ -88,7 +88,7 @@
 			if("mind_ref")
 				continue
 			else
-				if(islist(org_dna.vars[A]))
+				if(islist(first_iteration.vars[A]))
 					// Test the list
 					if(list_test(first_iteration.vars[A],second_interation.vars[A], "list \"[A]\" BODY_RECORD ERROR: first vs second."))
 						failed = TRUE
