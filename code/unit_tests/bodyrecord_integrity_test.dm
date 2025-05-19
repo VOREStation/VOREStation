@@ -159,6 +159,7 @@
 
 	// Stablize anything that shouldn't be wagoozleized by above
 	H.resleeve_lock = TRUE
+	H.species = SPECIES_HUMAN
 	H.custom_species = "A Carl"
 	H.gender = "female"
 
