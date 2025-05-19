@@ -213,31 +213,15 @@
 /datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
 	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
-	src.mydna = new ()
-	qdel_swap(src.mydna.dna, orig.mydna.dna.Clone())
-	src.mydna.ckey = orig.mydna.ckey
-	src.mydna.id = orig.mydna.id
-	src.mydna.name = orig.mydna.name
-	src.mydna.types = orig.mydna.types
-	src.mydna.flavor = orig.mydna.flavor.Copy()
-	src.ckey = orig.ckey
-	src.locked = orig.locked
-	src.client_ref = orig.client_ref
-	src.mind_ref = orig.mind_ref
-	src.synthetic = orig.synthetic
-	src.speciesname = orig.speciesname
-	src.bodygender = orig.bodygender
-	src.body_oocnotes = orig.body_oocnotes
-	src.body_ooclikes = orig.body_ooclikes
-	src.body_oocdislikes = orig.body_oocdislikes
-	src.limb_data = orig.limb_data.Copy()
-	src.organ_data = orig.organ_data.Copy()
-	src.genetic_modifiers = orig.genetic_modifiers.Copy()
-	src.toocomplex = orig.toocomplex
-	src.sizemult = orig.sizemult
-	src.aflags = orig.aflags
-	src.breath_type = orig.breath_type
-	src.weight = orig.weight
+	for(var/A in vars)
+		if(A == "mydna")
+			mydna = orig.mydna.copy()
+			continue
+		if(islist(vars[A]))
+			var/list/L = orig.vars[A]
+			vars[A] = L.Copy()
+			continue
+		vars[A] = orig.vars[A]
 
 /**
  * Spawning a body was once left entirely up to the machine doing it, but bodies are massivley complex
@@ -264,8 +248,7 @@
 	if(!mydna.dna.real_name)
 		mydna.dna.real_name = backup_name
 	H.real_name = mydna.dna.real_name
-	H.gender = mydna.gender
-	H.descriptors = mydna.body_descriptors
+	H.descriptors = mydna.body_descriptors ? mydna.body_descriptors.Copy() : null
 	for(var/datum/language/L in mydna.languages)
 		H.add_language(L.name)
 	H.suiciding = 0

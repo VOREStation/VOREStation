@@ -39,18 +39,19 @@
 
 /datum/dna2/record/proc/copy()
 	var/datum/dna2/record/newrecord = new /datum/dna2/record
-	qdel_swap(newrecord.dna, dna.Clone())
-	newrecord.types = types
-	newrecord.name = name
-	newrecord.mind = mind
-	newrecord.ckey = ckey
-	newrecord.languages = languages
-	newrecord.implant = implant
-	newrecord.flavor = flavor
-	newrecord.gender = gender
-	if(body_descriptors)
-		newrecord.body_descriptors = body_descriptors.Copy()
-	newrecord.genetic_modifiers = genetic_modifiers.Copy()
+	for(var/A in vars)
+		switch(A)
+			if("id")
+				newrecord.id = copytext(md5(real_name), 2, 6) // update this specially
+				continue
+			if("dna")
+				qdel_swap(newrecord.dna, dna.Clone())
+				continue
+		if(islist(vars[A]))
+			var/list/L = vars[A]
+			newrecord.vars[A] = L.Copy()
+			continue
+		newrecord.vars[A] = vars[A]
 	return newrecord
 
 
@@ -617,7 +618,7 @@
 							var/mob/living/carbon/human/H = WC
 							databuf.mydna.dna.real_name = H.dna.real_name
 							databuf.mydna.gender = H.gender
-							databuf.mydna.body_descriptors = H.descriptors
+							databuf.mydna.body_descriptors = H.descriptors ? H.descriptors.Copy() : null
 						buffers[bufferId] = databuf
 					return TRUE
 				if("clear")

@@ -35,7 +35,7 @@
 		if(pref.resleeve_scan)
 			var/datum/transhuman/body_record/BR = new()
 			BR.init_from_mob(src, pref.resleeve_scan, pref.resleeve_lock)
-		if(pref.mind_scan)
+		if(mind && pref.mind_scan)
 			var/datum/transcore_db/our_db = SStranscore.db_by_key(null)
 			if(our_db)
 				our_db.m_backup(mind,nif,one_time = TRUE)
