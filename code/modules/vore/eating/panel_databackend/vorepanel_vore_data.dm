@@ -114,19 +114,34 @@
 			selected_list["belly_mode_data"] = belly_mode_data
 
 		if(active_vore_tab == DESCRIPTIONS_TAB)
+			// Compile our displayed options
+			var/list/displayed_options = list(
+				VPANEL_DESCRIPTION_TAB,
+				VPANEL_EXAMINE_TAB,
+				VPANEL_TRASH_EATER_TAB
+			)
+			if(selected.message_mode || selected.escapable)
+				displayed_options += VPANEL_STRUGGLE_TAB
+				displayed_options += VPANEL_ESCAPE_TAB
+				displayed_options += VPANEL_ESCAPE_ABSORBED_TAB
+			if(selected.message_mode || (selected.escapable && (selected.transferlocation || selected.transferlocation_secondary)) || selected.autotransfer_enabled && (selected.autotransferlocation || selected.autotransferlocation_secondary))
+				displayed_options += VPANEL_TRANSFER_TAB
+			if(selected.message_mode || selected.escapable && (selected.digestchance || selected.absorbchance))
+				displayed_options += VPANEL_INTERACTION_TAB
+			if(selected.message_mode || selected.digest_mode == DM_DIGEST || selected.digest_mode == DM_SELECT || selected.digest_mode == DM_ABSORB || selected.digest_mode == DM_UNABSORB)
+				displayed_options += VPANEL_BELLYMODE_TAB
+			if(selected.message_mode || selected.emote_active)
+				displayed_options += VPANEL_IDLE_TAB
+
 			var/list/belly_description_data = list(
 				"verb" = selected.vore_verb,
 				"release_verb" = selected.release_verb,
-				"desc" = selected.desc,
-				"absorbed_desc" = selected.absorbed_desc,
-				"mode" = selected.digest_mode,
 				"message_mode" = selected.message_mode,
-				"escapable" = selected.escapable,
-				"interacts" = compile_interact_data(selected),
-				"autotransfer_enabled" = selected.autotransfer_enabled,
-				"autotransfer" = compile_autotransfer_data(selected),
-				"emote_active" = selected.emote_active,
-				"show_liq_fullness" = selected.show_fullness_messages
+				"displayed_options" = displayed_options,
+				"message_option" = message_option,
+				"message_subtab" = message_subtab,
+				"selected_message" = selected_message,
+				"displayed_message_types" = compile_message_data(selected)
 			)
 			selected_list["belly_description_data"] = belly_description_data
 
@@ -337,86 +352,6 @@
 			selected_list["liq_messages"]["liq_msg4"] = selected.liquid_fullness4_messages
 			selected_list["liq_messages"]["liq_msg5"] = selected.liquid_fullness5_messages
 	return selected_list
-
-
-
-
-
-
-/datum/vore_look/proc/compile_interact_data(obj/belly/selected)
-	var/list/interact_data = list()
-	if(selected.escapable)
-		interact_data += list(
-			"escapechance" = selected.escapechance,
-			"escapechance_absorbed" = selected.escapechance_absorbed,
-			"escapetime" = selected.escapetime,
-			"transferchance" = selected.transferchance,
-			"transferlocation" = selected.transferlocation,
-			"transferchance_secondary" = selected.transferchance_secondary,
-			"transferlocation_secondary" = selected.transferlocation_secondary,
-			"absorbchance" = selected.absorbchance,
-			"digestchance" = selected.digestchance,
-			"belchchance" = selected.belchchance
-		)
-	return interact_data
-
-/datum/vore_look/proc/compile_autotransfer_data(obj/belly/selected)
-	var/list/autotransfer_data = list()
-	if(selected.autotransfer_enabled)
-		//auto-transfer flags
-		var/list/at_whitelist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name])
-				at_whitelist.Add(flag_name)
-		var/list/at_blacklist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name])
-				at_blacklist.Add(flag_name)
-		var/list/at_whitelist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_whitelist_items.Add(flag_name)
-		var/list/at_blacklist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_blacklist_items.Add(flag_name)
-		var/list/at_secondary_whitelist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name])
-				at_secondary_whitelist.Add(flag_name)
-		var/list/at_secondary_blacklist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name])
-				at_secondary_blacklist.Add(flag_name)
-		var/list/at_secondary_whitelist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_secondary_whitelist_items.Add(flag_name)
-		var/list/at_secondary_blacklist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_secondary_blacklist_items.Add(flag_name)
-
-		autotransfer_data += list(
-			"autotransferchance" = selected.autotransferchance,
-			"autotransferwait" = selected.autotransferwait,
-			"autotransferlocation" = selected.autotransferlocation,
-			"autotransferextralocation" = selected.autotransferextralocation,
-			"autotransferchance_secondary" = selected.autotransferchance_secondary,
-			"autotransferlocation_secondary" = selected.autotransferlocation_secondary,
-			"autotransferextralocation_secondary" = selected.autotransferextralocation_secondary,
-			"autotransfer_min_amount" = selected.autotransfer_min_amount,
-			"autotransfer_max_amount" = selected.autotransfer_max_amount,
-			"autotransfer_whitelist" = at_whitelist,
-			"autotransfer_blacklist" = at_blacklist,
-			"autotransfer_whitelist_items" = at_whitelist_items,
-			"autotransfer_blacklist_items" = at_blacklist_items,
-			"autotransfer_secondary_whitelist" = at_secondary_whitelist,
-			"autotransfer_secondary_blacklist" = at_secondary_blacklist,
-			"autotransfer_secondary_whitelist_items" = at_secondary_whitelist_items,
-			"autotransfer_secondary_blacklist_items" = at_secondary_blacklist_items,
-		)
-	return autotransfer_data
 
 #undef CONTROL_TAB
 #undef DESCRIPTIONS_TAB

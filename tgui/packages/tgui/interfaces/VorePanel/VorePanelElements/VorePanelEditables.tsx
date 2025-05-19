@@ -28,7 +28,12 @@ export const VorePanelEditText = (props: {
   }
 
   return editMode ? (
-    <Input fluid maxLength={limit} value={entry} onBlur={(value) => doAct} />
+    <Input
+      fluid
+      maxLength={limit}
+      value={entry}
+      onBlur={(value) => doAct(value)}
+    />
   ) : (
     <Box textColor={color}>{entry}</Box>
   );

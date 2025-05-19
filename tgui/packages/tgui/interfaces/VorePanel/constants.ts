@@ -81,7 +81,20 @@ export const modeToTooltip = {
   'Jams Sensors': 'Blocks medical sensors, but not GPS.',
   'Complete Absorb': 'Limits conversation to direct pred / prey.',
   'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
-  'Slow Body Digestion': 'Leaves the body persistent for a while longer.',
+  'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
   'Muffle Items': ' Muffles noise from items inside the vorgan.',
-  'TURBO MODE': 'Heavily increases tick speed of the vorgan.',
+  'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
 };
+
+export const messageTabLabel = [
+  'Description',
+  'Examine',
+  'Trash Eater',
+  'Struggle',
+  'Escape',
+  'Escape (Absorbed)',
+  'Transfer',
+  'Interaction Chance',
+  'Bellymode',
+  'Idle',
+];

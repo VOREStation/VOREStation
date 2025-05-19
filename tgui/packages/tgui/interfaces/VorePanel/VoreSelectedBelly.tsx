@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Tabs } from 'tgui-core/components';
+import { Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from './constants';
@@ -49,6 +49,7 @@ export const VoreSelectedBelly = (props: {
   );
   tabs[1] = belly_description_data && (
     <VoreSelectedBellyDescriptions
+      editMode={editMode}
       bellyDescriptionData={belly_description_data}
       vore_words={vore_words}
     />
@@ -71,19 +72,22 @@ export const VoreSelectedBelly = (props: {
   tabs[8] = <VoreSelectedBellyLiquidMessages belly={belly} />;
 
   return (
-    <>
-      <Tabs>
-        {tabToNames.map((name, index) => (
-          <Tabs.Tab
-            key={name}
-            selected={activeVoreTab === index}
-            onClick={() => act('change_vore_tab', { tab: index })}
-          >
-            {tabToNames[index]} {!!(index === 6) && '(' + contents.length + ')'}
-          </Tabs.Tab>
-        ))}
-      </Tabs>
-      {tabs[activeVoreTab] || 'Error'}
-    </>
+    <Stack vertical fill>
+      <Stack.Item>
+        <Tabs>
+          {tabToNames.map((name, index) => (
+            <Tabs.Tab
+              key={name}
+              selected={activeVoreTab === index}
+              onClick={() => act('change_vore_tab', { tab: index })}
+            >
+              {tabToNames[index]}
+              {!!(index === 6) && '(' + contents.length + ')'}
+            </Tabs.Tab>
+          ))}
+        </Tabs>
+      </Stack.Item>
+      <Stack.Item grow>{tabs[activeVoreTab] || 'Error'}</Stack.Item>
+    </Stack>
   );
 };

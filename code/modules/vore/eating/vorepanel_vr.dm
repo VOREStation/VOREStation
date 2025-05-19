@@ -42,6 +42,9 @@
 	var/max_icon_content = 21 //Contents above this disable icon mode. 21 for nice 3 rows to fill the default panel window.
 	var/active_tab = 0 // our current tab
 	var/active_vore_tab = 0 // our vore sub tab
+	var/message_option = 0 // our examine subtab
+	var/message_subtab // our examine subtab
+	var/selected_message
 
 /datum/vore_look/New(mob/new_host)
 	if(istype(new_host))
@@ -170,11 +173,34 @@
 			if(isnum(new_tab))
 				active_tab = new_tab
 			return TRUE
+
 		if("change_vore_tab")
 			var/new_tab = params["tab"]
 			if(isnum(new_tab))
 				active_vore_tab = new_tab
 			return TRUE
+
+		if("change_message_option")
+			var/new_tab = params["tab"]
+			if(isnum(new_tab))
+				message_option = new_tab
+				message_subtab = null
+				selected_message = null
+			return TRUE
+
+		if("change_message_type")
+			var/new_tab = params["tab"]
+			if(istext(new_tab))
+				message_subtab = new_tab
+				selected_message = null
+			return TRUE
+
+		if("set_current_message")
+			var/new_tab = params["tab"]
+			if(istext(new_tab))
+				selected_message = new_tab
+			return TRUE
+
 		if("show_pictures")
 			show_pictures = !show_pictures
 			return TRUE
@@ -751,36 +777,36 @@
 			return TRUE
 		if("soulcatcher_capture_message")
 			var/message = tgui_input_text(host, "Type what the prey sees while being 'caught'. This will be \
-				printed before the iterior design to the prey. Limit [MAX_MESSAGE_LEN / 4] chars.", \
-				"VR Capture", html_decode(host.soulgem.capture_message), MAX_MESSAGE_LEN / 4, TRUE, prevent_enter = TRUE)
+				printed before the iterior design to the prey. Limit [BELLIES_MESSAGE_MAX] chars.", \
+				"VR Capture", html_decode(host.soulgem.capture_message), BELLIES_MESSAGE_MAX, TRUE, prevent_enter = TRUE)
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, "capture")
 			return TRUE
 		if("soulcatcher_transit_message")
 			var/message = tgui_input_text(host, "Type what the prey sees when you change the interior with them already captured. \
-				Limit [MAX_MESSAGE_LEN / 4] chars.", "VR Transit", html_decode(host.soulgem.transit_message), MAX_MESSAGE_LEN / 4, TRUE, prevent_enter = TRUE)
+				Limit [BELLIES_MESSAGE_MAX] chars.", "VR Transit", html_decode(host.soulgem.transit_message), BELLIES_MESSAGE_MAX, TRUE, prevent_enter = TRUE)
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, "transit")
 			return TRUE
 		if("soulcatcher_release_message")
 			var/message = tgui_input_text(host, "Type what the prey sees when they are released. \
-				Limit [MAX_MESSAGE_LEN / 4] chars.", "VR Release", html_decode(host.soulgem.release_message), MAX_MESSAGE_LEN / 4, TRUE, prevent_enter = TRUE)
+				Limit [BELLIES_MESSAGE_MAX] chars.", "VR Release", html_decode(host.soulgem.release_message), BELLIES_MESSAGE_MAX, TRUE, prevent_enter = TRUE)
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, "release")
 			return TRUE
 		if("soulcatcher_transfer_message")
 			var/message = tgui_input_text(host, "Type what the prey sees when they are transfered. \
-				Limit [MAX_MESSAGE_LEN / 4] chars.", "VR Transfer", html_decode(host.soulgem.transfer_message), MAX_MESSAGE_LEN / 4, TRUE, prevent_enter = TRUE)
+				Limit [BELLIES_MESSAGE_MAX] chars.", "VR Transfer", html_decode(host.soulgem.transfer_message), BELLIES_MESSAGE_MAX, TRUE, prevent_enter = TRUE)
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, "transfer")
 			return TRUE
 		if("soulcatcher_delete_message")
 			var/message = tgui_input_text(host, "Type what the prey sees when they are deleted. \
-				Limit [MAX_MESSAGE_LEN / 4] chars.", "VR Transfer", html_decode(host.soulgem.delete_message), MAX_MESSAGE_LEN / 4, TRUE, prevent_enter = TRUE)
+				Limit [BELLIES_MESSAGE_MAX] chars.", "VR Transfer", html_decode(host.soulgem.delete_message), BELLIES_MESSAGE_MAX, TRUE, prevent_enter = TRUE)
 			if(message)
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, "delete")
@@ -1403,8 +1429,8 @@
 		if("b_storing_nutrition")
 			host.vore_selected.storing_nutrition = !host.vore_selected.storing_nutrition
 			. = TRUE
-		if("b_desc")
-			var/new_desc = html_encode(tgui_input_text(user,"Belly Description, '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.desc, multiline = TRUE, prevent_enter = TRUE))
+		if(BELLY_DESCRIPTION_MESSAGE)
+			var/new_desc = html_encode(params["val"])
 
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)
@@ -1413,8 +1439,8 @@
 					return FALSE
 				host.vore_selected.desc = new_desc
 				. = TRUE
-		if("b_absorbed_desc")
-			var/new_desc = html_encode(tgui_input_text(user,"Belly Description for absorbed prey, '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.absorbed_desc, multiline = TRUE, prevent_enter = TRUE))
+		if(BELLY_DESCRIPTION_MESSAGE_ABSROED)
+			var/new_desc = html_encode(params["val"])
 
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)
@@ -1424,214 +1450,129 @@
 				host.vore_selected.absorbed_desc = new_desc
 				. = TRUE
 		if("b_msgs")
-			if(user.text_warnings)
-				if(tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max [MAX_MESSAGE_LEN / 4] characters per message ([MAX_MESSAGE_LEN / 2] for examines, [MAX_MESSAGE_LEN / 4] for idle messages), max 10 messages per topic or a total of [MAX_MESSAGE_LEN * 1.5] characters.","Really, don't.",list("OK", "Disable Warnings")) == "Disable Warnings") // Should remain tgui_alert() (blocking)
-					user.text_warnings = FALSE
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
 			switch(params["msgtype"])
 				if(DIGEST_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they expire. Write them in 2nd person ('you feel X'). Avoid using %prey in this type."+help,"Digest Message (to prey)",host.vore_selected.get_messages(DIGEST_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,DIGEST_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], DIGEST_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(DIGEST_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey expires in you. Write them in 2nd person ('you feel X'). Avoid using %pred in this type."+help,"Digest Message (to you)",host.vore_selected.get_messages(DIGEST_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,DIGEST_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], DIGEST_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORB_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when their absorption finishes. Write them in 2nd person ('you feel X'). Avoid using %prey in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorb Message (to prey)",host.vore_selected.get_messages(ABSORB_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORB_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORB_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORB_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey's absorption finishes. Write them in 2nd person ('you feel X'). Avoid using %pred in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorb Message (to you)",host.vore_selected.get_messages(ABSORB_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORB_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORB_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(UNABSORBS_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when their unnabsorption finishes. Write them in 2nd person ('you feel X'). Avoid using %prey in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Unabsorb Message (to prey)",host.vore_selected.get_messages(UNABSORBS_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,UNABSORBS_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], UNABSORBS_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(UNABSORBS_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey's unabsorption finishes. Write them in 2nd person ('you feel X'). Avoid using %pred in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Unabsorb Message (to you)",host.vore_selected.get_messages(UNABSORBS_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,UNABSORBS_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], UNABSORBS_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(STRUGGLE_OUTSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those nearby when prey struggles. Write them in 3rd person ('X's Y bulges')."+help,"Struggle Message (outside)",host.vore_selected.get_messages(STRUGGLE_OUTSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,STRUGGLE_OUTSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], STRUGGLE_OUTSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(STRUGGLE_INSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they struggle. Write them in 2nd person ('you feel X'). Avoid using %prey in this type."+help,"Struggle Message (inside)",host.vore_selected.get_messages(STRUGGLE_INSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,STRUGGLE_INSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], STRUGGLE_INSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_STRUGGLE_OUSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those nearby when absorbed prey struggles. Write them in 3rd person ('X's Y bulges'). %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed Struggle Message (outside)",host.vore_selected.get_messages(ABSORBED_STRUGGLE_OUSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_STRUGGLE_OUSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_STRUGGLE_OUSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_STRUGGLE_INSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they struggle. Write them in 2nd person ('you feel X'). Avoid using %prey in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed Struggle Message (inside)",host.vore_selected.get_messages(ABSORBED_STRUGGLE_INSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_STRUGGLE_INSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_STRUGGLE_INSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_ATTEMPT_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they try to escape from within you. Write them in 2nd person ('you start to X')."+help,"Escape Attempt Message (to prey)",host.vore_selected.get_messages(ESCAPE_ATTEMPT_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_ATTEMPT_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_ATTEMPT_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_ATTEMPT_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey tries to escape from within you. Write them in 2nd person ('X ... from your Y')."+help,"Escape Attempt Message (to you)",host.vore_selected.get_messages(ESCAPE_ATTEMPT_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_ATTEMPT_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_ATTEMPT_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they escape from within you. Write them in 2nd person ('you climb out of Y)."+help,"Escape Message (to prey)",host.vore_selected.get_messages(ESCAPE_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey escapes from within you. Write them in 2nd person ('X ... from your Y')."+help,"Escape Message (to you)",host.vore_selected.get_messages(ESCAPE_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_OUTSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those around you when prey escapes from within you. Write them in 3rd person ('X climbs out of Z's Y')."+help,"Escape Message (outside)",host.vore_selected.get_messages(ESCAPE_OUTSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_OUTSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_OUTSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_ITEM_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they manage to eject an item from within you. Write them in 2nd person ('you manage to O'). Use %item to refer to the ejected item in this type."+help,"Escape Item Message (to prey)",host.vore_selected.get_messages(ESCAPE_ITEM_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_ITEM_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_ITEM_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_ITEM_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey manages to eject an item from within you. Write them in 2nd person ('O slips from Y'). Use %item to refer to the ejected item in this type."+help,"Escape Item Message (to you)",host.vore_selected.get_messages(ESCAPE_ITEM_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_ITEM_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_ITEM_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_ITEM_OUTSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those around you when prey manages to eject an item from within you. Write them in 3rd person ('O from Y'). Use %item to refer to the ejected item in this type."+help,"Escape Item Message (outside)",host.vore_selected.get_messages(ESCAPE_ITEM_OUTSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_ITEM_OUTSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_ITEM_OUTSIDE, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_FAIL_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they fail to escape from within you. Write them in 2nd person ('you failed to Y')."+help,"Escape Fail Message (to prey)",host.vore_selected.get_messages(ESCAPE_FAIL_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_FAIL_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_FAIL_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ESCAPE_FAIL_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey fails to escape from within you. Write them in 2nd person ('X failed ... your Y')."+help,"Escape Fail Message (to you)",host.vore_selected.get_messages(ESCAPE_FAIL_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ESCAPE_FAIL_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ESCAPE_FAIL_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_ESCAPE_ATTEMPT_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they try to escape from within you. Write them in 2nd person ('you start to X')."+help,"Absorbed Escape Attempt Message (to prey)",host.vore_selected.get_messages(ABSORBED_ESCAPE_ATTEMPT_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_ESCAPE_ATTEMPT_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_ATTEMPT_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_ESCAPE_ATTEMPT_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when absorbed prey tries to escape from within you. Write them in 2nd person ('X ... from your Y')."+help,"Absorbed Escape Attempt Message (to you)",host.vore_selected.get_messages(ABSORBED_ESCAPE_ATTEMPT_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_ESCAPE_ATTEMPT_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_ATTEMPT_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_ESCAPE_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they escape from within you. Write them in 2nd person ('you escape from Y')."+help,"Absorbed Escape Message (to prey)",host.vore_selected.get_messages(ABSORBED_ESCAPE_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_ESCAPE_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_ESCAPE_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when absorbed prey escapes from within you. Write them in 2nd person ('X ... from your Y')."+help,"Absorbed Escape Message (to you)",host.vore_selected.get_messages(ABSORBED_ESCAPE_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_ESCAPE_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORBED_ESCAPE_OUTSIDE)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those around you when absorbed prey escapes from within you. Write them in 3rd person ('X escapes from Z's Y')."+help,"Absorbed Escape Message (outside)",host.vore_selected.get_messages(ABSORBED_ESCAPE_OUTSIDE), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORBED_ESCAPE_OUTSIDE, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_OUTSIDE, limit = BELLIES_MESSAGE_MAX)
 
-				if(FULL_ABSORBED_ESCAPE_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they fail to escape from within you. Write them in 2nd person ('you failed to Y')."+help,"Absorbed Escape Fail Message (to prey)",host.vore_selected.get_messages(FULL_ABSORBED_ESCAPE_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,FULL_ABSORBED_ESCAPE_PREY, limit = MAX_MESSAGE_LEN / 4)
+				if(ABSORBED_ESCAPE_FAIL_PREY)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_FAIL_PREY, limit = BELLIES_MESSAGE_MAX)
 
-				if(FULL_ABSORBED_ESCAPE_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when absorbed prey fails to escape from within you. Write them in 2nd person ('X failed ... your Y')."+help,"Absorbed Escape Fail Message (to you)",host.vore_selected.get_messages(FULL_ABSORBED_ESCAPE_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,FULL_ABSORBED_ESCAPE_OWNER, limit = MAX_MESSAGE_LEN / 4)
+				if(ABSORBED_ESCAPE_FAIL_OWNER)
+					host.vore_selected.set_messages(params["val"], ABSORBED_ESCAPE_FAIL_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(PRIMARY_TRANSFER_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they struggle and are transferred into your primary destination. Write them in 2nd person ('you slide into Y'). Use %dest to refer to the target location in this type."+help,"Primary Transfer Message (to prey)",host.vore_selected.get_messages(PRIMARY_TRANSFER_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,PRIMARY_TRANSFER_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], PRIMARY_TRANSFER_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(PRIMARY_TRANSFER_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey struggle and are transferred into your primary destination. Write them in 2nd person ('X slid into your Y'). Use %dest to refer to the target location in this type."+help,"Primary Transfer Message (to you)",host.vore_selected.get_messages(PRIMARY_TRANSFER_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,PRIMARY_TRANSFER_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], PRIMARY_TRANSFER_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(SECONDARY_TRANSFER_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they struggle and are transferred into your secondary destination. Write them in 2nd person ('you slide into Y'). Use %dest to refer to the target location in this type."+help,"Secondary Transfer Message (to prey)",host.vore_selected.get_messages(SECONDARY_TRANSFER_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,SECONDARY_TRANSFER_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], SECONDARY_TRANSFER_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(SECONDARY_TRANSFER_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey struggle and are transferred into your primary destination. Write them in 2nd person ('X slid into your Y'). Use %dest to refer to the target location in this type."+help,"Secondary Transfer Message (to you)",host.vore_selected.get_messages(SECONDARY_TRANSFER_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,SECONDARY_TRANSFER_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], SECONDARY_TRANSFER_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(PRIMARY_AUTO_TRANSFER_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they are automatically transferred into your primary destination. Write them in 2nd person ('you slide into Y'). Use %dest to refer to the target location in this type."+help,"Primary Auto-Transfer Message (to prey)",host.vore_selected.get_messages(PRIMARY_AUTO_TRANSFER_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,PRIMARY_AUTO_TRANSFER_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], PRIMARY_AUTO_TRANSFER_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(PRIMARY_AUTO_TRANSFER_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey is automatically transferred into your primary destination. Write them in 2nd person ('X slid into your Y'). Use %dest to refer to the target location in this type."+help,"Primary Auto-Transfer Message (to you)",host.vore_selected.get_messages(PRIMARY_AUTO_TRANSFER_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,PRIMARY_AUTO_TRANSFER_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], PRIMARY_AUTO_TRANSFER_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(SECONDARY_AUTO_TRANSFER_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they are automatically transferred into your secondary destination. Write them in 2nd person ('you slide into Y'). Use %dest to refer to the target location in this type."+help,"Secondary Auto-Transfer Message (to prey)",host.vore_selected.get_messages(SECONDARY_AUTO_TRANSFER_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,SECONDARY_AUTO_TRANSFER_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], SECONDARY_AUTO_TRANSFER_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(SECONDARY_AUTO_TRANSFER_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey is automatically transferred into your primary destination. Write them in 2nd person ('X slid into your Y'). Use %dest to refer to the target location in this type."+help,"Secondary Auto-Transfer Message (to you)",host.vore_selected.get_messages(SECONDARY_AUTO_TRANSFER_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,SECONDARY_AUTO_TRANSFER_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], SECONDARY_AUTO_TRANSFER_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(DIGEST_CHANCE_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they trigger the interaction digest chance. Write them in 2nd person ('you feel X')."+help,"Stomach Mode Digest Message (to prey)",host.vore_selected.get_messages(DIGEST_CHANCE_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,DIGEST_CHANCE_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], DIGEST_CHANCE_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(DIGEST_CHANCE_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey triggers the interaction digest chance. Write them in 2nd person ('you feel X')."+help,"Stomach Mode Digest Message (to you)",host.vore_selected.get_messages(DIGEST_CHANCE_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,DIGEST_CHANCE_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], DIGEST_CHANCE_OWNER, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORB_CHANCE_PREY)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey when they trigger the interaction absorb chance. Write them in 2nd person ('you feel X')."+help,"Stomach Mode Digest Message (to prey)",host.vore_selected.get_messages(ABSORB_CHANCE_PREY), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORB_CHANCE_PREY, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORB_CHANCE_PREY, limit = BELLIES_MESSAGE_MAX)
 
 				if(ABSORB_CHANCE_OWNER)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to you when prey triggers the interaction absorb chance. Write them in 2nd person ('you feel X')."+help,"Stomach Mode Digest Message (to you)",host.vore_selected.get_messages(ABSORB_CHANCE_OWNER), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,ABSORB_CHANCE_OWNER, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], ABSORB_CHANCE_OWNER, limit = BELLIES_MESSAGE_MAX)
+
 				if(EXAMINES)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to people who examine you when this belly has contents. Write them in 3rd person ('Their %belly is bulging')."+help,"Examine Message (when full)",host.vore_selected.get_messages(EXAMINES), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,EXAMINES, limit = MAX_MESSAGE_LEN / 2)
+					host.vore_selected.set_messages(params["val"], EXAMINES, limit = BELLIES_EXAMINE_MAX)
 
 				if(EXAMINES_ABSORBED)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to people who examine you when this belly has absorbed victims. Write them in 3rd person ('Their %belly is larger'). %count will not work for this type, and %countprey will only count absorbed victims."+help,"Examine Message (with absorbed victims)",host.vore_selected.get_messages(EXAMINES_ABSORBED), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,EXAMINES_ABSORBED, limit = MAX_MESSAGE_LEN / 2)
+					host.vore_selected.set_messages(params["val"], EXAMINES_ABSORBED, limit = BELLIES_EXAMINE_MAX)
 
 				if("en")
 					var/list/indices = list(1,2,3,4,5,6,7,8,9,10)
@@ -1660,112 +1601,91 @@
 									host.weight_messages[index] = new_message
 
 				if(BELLY_MODE_DIGEST)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Digest mode. Write them in 2nd person ('%pred's %belly squishes down on you.')."+help,"Idle Message (Digest)",host.vore_selected.get_messages(BELLY_MODE_DIGEST), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_DIGEST, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_DIGEST, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_HOLD)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Hold mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Hold)",host.vore_selected.get_messages(BELLY_MODE_HOLD), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_HOLD, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_HOLD_ABSORB)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are absorbed. Write them in 2nd person ('%pred's %belly squishes down on you.') %count will not work for this type, and %countprey will only count absorbed victims."+help,"Idle Message (Hold Absorbed)",host.vore_selected.get_messages(BELLY_MODE_HOLD_ABSORB), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_HOLD_ABSORB, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD_ABSORB, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_ABSORB)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Absorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Absorb)",host.vore_selected.get_messages(BELLY_MODE_ABSORB), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_ABSORB, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_ABSORB, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_HEAL)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Heal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Heal)",host.vore_selected.get_messages(BELLY_MODE_HEAL), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_HEAL, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HEAL, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_DRAIN)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Drain mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Drain)",host.vore_selected.get_messages(BELLY_MODE_DRAIN), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_DRAIN, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_DRAIN, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_STEAL)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Size Steal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Size Steal)",host.vore_selected.get_messages(BELLY_MODE_STEAL), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_STEAL, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_STEAL, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_EGG)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Encase In Egg mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Encase In Egg)",host.vore_selected.get_messages(BELLY_MODE_EGG), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_EGG, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_EGG, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_SHRINK)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Shrink mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Shrink)",host.vore_selected.get_messages(BELLY_MODE_SHRINK), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_SHRINK, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_SHRINK, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_GROW)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Grow mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Grow)",host.vore_selected.get_messages(BELLY_MODE_GROW), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_GROW, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_GROW, limit = BELLIES_MESSAGE_MAX)
 
 				if(BELLY_MODE_UNABSORB)
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to prey every [host.vore_selected.emote_time] seconds when you are on Unabsorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Unabsorb)",host.vore_selected.get_messages(BELLY_MODE_UNABSORB), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_MODE_UNABSORB, limit = MAX_MESSAGE_LEN / 4)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_UNABSORB, limit = BELLIES_MESSAGE_MAX)
 
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
-					if(confirm == "DELETE")
-						var/obj/belly/default_belly = new /obj/belly(null)
-						host.vore_selected.digest_messages_prey = default_belly.digest_messages_prey.Copy()
-						host.vore_selected.digest_messages_owner = default_belly.digest_messages_owner.Copy()
-						host.vore_selected.absorb_messages_prey = default_belly.absorb_messages_prey.Copy()
-						host.vore_selected.absorb_messages_owner = default_belly.absorb_messages_owner.Copy()
-						host.vore_selected.unabsorb_messages_prey = default_belly.unabsorb_messages_prey.Copy()
-						host.vore_selected.unabsorb_messages_owner = default_belly.unabsorb_messages_owner.Copy()
-						host.vore_selected.struggle_messages_outside = default_belly.struggle_messages_outside.Copy()
-						host.vore_selected.struggle_messages_inside = default_belly.struggle_messages_inside.Copy()
-						host.vore_selected.absorbed_struggle_messages_outside = default_belly.absorbed_struggle_messages_outside.Copy()
-						host.vore_selected.absorbed_struggle_messages_inside = default_belly.absorbed_struggle_messages_inside.Copy()
-						host.vore_selected.escape_attempt_messages_owner = default_belly.escape_attempt_messages_owner.Copy()
-						host.vore_selected.escape_attempt_messages_prey = default_belly.escape_attempt_messages_prey.Copy()
-						host.vore_selected.escape_messages_owner = default_belly.escape_messages_owner.Copy()
-						host.vore_selected.escape_messages_prey = default_belly.escape_messages_prey.Copy()
-						host.vore_selected.escape_messages_outside = default_belly.escape_messages_outside.Copy()
-						host.vore_selected.escape_item_messages_owner = default_belly.escape_item_messages_owner.Copy()
-						host.vore_selected.escape_item_messages_prey = default_belly.escape_item_messages_prey.Copy()
-						host.vore_selected.escape_item_messages_outside = default_belly.escape_item_messages_outside.Copy()
-						host.vore_selected.escape_fail_messages_owner = default_belly.escape_fail_messages_owner.Copy()
-						host.vore_selected.escape_fail_messages_prey = default_belly.escape_fail_messages_prey.Copy()
-						host.vore_selected.escape_attempt_absorbed_messages_owner = default_belly.escape_attempt_absorbed_messages_owner.Copy()
-						host.vore_selected.escape_attempt_absorbed_messages_prey = default_belly.escape_attempt_absorbed_messages_prey.Copy()
-						host.vore_selected.escape_absorbed_messages_owner = default_belly.escape_absorbed_messages_owner.Copy()
-						host.vore_selected.escape_absorbed_messages_prey = default_belly.escape_absorbed_messages_prey.Copy()
-						host.vore_selected.escape_absorbed_messages_outside = default_belly.escape_absorbed_messages_outside.Copy()
-						host.vore_selected.escape_fail_absorbed_messages_owner = default_belly.escape_fail_absorbed_messages_owner.Copy()
-						host.vore_selected.escape_fail_absorbed_messages_prey = default_belly.escape_fail_absorbed_messages_prey.Copy()
-						host.vore_selected.primary_transfer_messages_owner = default_belly.primary_transfer_messages_owner.Copy()
-						host.vore_selected.primary_transfer_messages_prey = default_belly.primary_transfer_messages_prey.Copy()
-						host.vore_selected.secondary_transfer_messages_owner = default_belly.secondary_transfer_messages_owner.Copy()
-						host.vore_selected.secondary_transfer_messages_prey = default_belly.secondary_transfer_messages_prey.Copy()
-						host.vore_selected.primary_autotransfer_messages_owner = default_belly.primary_autotransfer_messages_owner.Copy()
-						host.vore_selected.primary_autotransfer_messages_prey = default_belly.primary_autotransfer_messages_prey.Copy()
-						host.vore_selected.secondary_autotransfer_messages_owner = default_belly.secondary_autotransfer_messages_owner.Copy()
-						host.vore_selected.secondary_autotransfer_messages_prey = default_belly.secondary_autotransfer_messages_prey.Copy()
-						host.vore_selected.digest_chance_messages_owner = default_belly.digest_chance_messages_owner.Copy()
-						host.vore_selected.digest_chance_messages_prey = default_belly.digest_chance_messages_prey.Copy()
-						host.vore_selected.absorb_chance_messages_owner = default_belly.absorb_chance_messages_owner.Copy()
-						host.vore_selected.absorb_chance_messages_prey = default_belly.absorb_chance_messages_prey.Copy()
-						host.vore_selected.examine_messages = default_belly.examine_messages.Copy()
-						host.vore_selected.examine_messages_absorbed = default_belly.examine_messages_absorbed.Copy()
-						host.vore_selected.emote_lists = default_belly.emote_lists.Copy()
-						host.vore_selected.trash_eater_in = default_belly.trash_eater_in.Copy()
-						host.vore_selected.trash_eater_out = default_belly.trash_eater_out.Copy()
-						qdel(default_belly)
+					if(!confirm == "DELETE")
+						return FALSE
+					var/obj/belly/default_belly = new /obj/belly(null)
+					host.vore_selected.digest_messages_prey = default_belly.digest_messages_prey.Copy()
+					host.vore_selected.digest_messages_owner = default_belly.digest_messages_owner.Copy()
+					host.vore_selected.absorb_messages_prey = default_belly.absorb_messages_prey.Copy()
+					host.vore_selected.absorb_messages_owner = default_belly.absorb_messages_owner.Copy()
+					host.vore_selected.unabsorb_messages_prey = default_belly.unabsorb_messages_prey.Copy()
+					host.vore_selected.unabsorb_messages_owner = default_belly.unabsorb_messages_owner.Copy()
+					host.vore_selected.struggle_messages_outside = default_belly.struggle_messages_outside.Copy()
+					host.vore_selected.struggle_messages_inside = default_belly.struggle_messages_inside.Copy()
+					host.vore_selected.absorbed_struggle_messages_outside = default_belly.absorbed_struggle_messages_outside.Copy()
+					host.vore_selected.absorbed_struggle_messages_inside = default_belly.absorbed_struggle_messages_inside.Copy()
+					host.vore_selected.escape_attempt_messages_owner = default_belly.escape_attempt_messages_owner.Copy()
+					host.vore_selected.escape_attempt_messages_prey = default_belly.escape_attempt_messages_prey.Copy()
+					host.vore_selected.escape_messages_owner = default_belly.escape_messages_owner.Copy()
+					host.vore_selected.escape_messages_prey = default_belly.escape_messages_prey.Copy()
+					host.vore_selected.escape_messages_outside = default_belly.escape_messages_outside.Copy()
+					host.vore_selected.escape_item_messages_owner = default_belly.escape_item_messages_owner.Copy()
+					host.vore_selected.escape_item_messages_prey = default_belly.escape_item_messages_prey.Copy()
+					host.vore_selected.escape_item_messages_outside = default_belly.escape_item_messages_outside.Copy()
+					host.vore_selected.escape_fail_messages_owner = default_belly.escape_fail_messages_owner.Copy()
+					host.vore_selected.escape_fail_messages_prey = default_belly.escape_fail_messages_prey.Copy()
+					host.vore_selected.escape_attempt_absorbed_messages_owner = default_belly.escape_attempt_absorbed_messages_owner.Copy()
+					host.vore_selected.escape_attempt_absorbed_messages_prey = default_belly.escape_attempt_absorbed_messages_prey.Copy()
+					host.vore_selected.escape_absorbed_messages_owner = default_belly.escape_absorbed_messages_owner.Copy()
+					host.vore_selected.escape_absorbed_messages_prey = default_belly.escape_absorbed_messages_prey.Copy()
+					host.vore_selected.escape_absorbed_messages_outside = default_belly.escape_absorbed_messages_outside.Copy()
+					host.vore_selected.escape_fail_absorbed_messages_owner = default_belly.escape_fail_absorbed_messages_owner.Copy()
+					host.vore_selected.escape_fail_absorbed_messages_prey = default_belly.escape_fail_absorbed_messages_prey.Copy()
+					host.vore_selected.primary_transfer_messages_owner = default_belly.primary_transfer_messages_owner.Copy()
+					host.vore_selected.primary_transfer_messages_prey = default_belly.primary_transfer_messages_prey.Copy()
+					host.vore_selected.secondary_transfer_messages_owner = default_belly.secondary_transfer_messages_owner.Copy()
+					host.vore_selected.secondary_transfer_messages_prey = default_belly.secondary_transfer_messages_prey.Copy()
+					host.vore_selected.primary_autotransfer_messages_owner = default_belly.primary_autotransfer_messages_owner.Copy()
+					host.vore_selected.primary_autotransfer_messages_prey = default_belly.primary_autotransfer_messages_prey.Copy()
+					host.vore_selected.secondary_autotransfer_messages_owner = default_belly.secondary_autotransfer_messages_owner.Copy()
+					host.vore_selected.secondary_autotransfer_messages_prey = default_belly.secondary_autotransfer_messages_prey.Copy()
+					host.vore_selected.digest_chance_messages_owner = default_belly.digest_chance_messages_owner.Copy()
+					host.vore_selected.digest_chance_messages_prey = default_belly.digest_chance_messages_prey.Copy()
+					host.vore_selected.absorb_chance_messages_owner = default_belly.absorb_chance_messages_owner.Copy()
+					host.vore_selected.absorb_chance_messages_prey = default_belly.absorb_chance_messages_prey.Copy()
+					host.vore_selected.examine_messages = default_belly.examine_messages.Copy()
+					host.vore_selected.examine_messages_absorbed = default_belly.examine_messages_absorbed.Copy()
+					host.vore_selected.emote_lists = default_belly.emote_lists.Copy()
+					host.vore_selected.trash_eater_in = default_belly.trash_eater_in.Copy()
+					host.vore_selected.trash_eater_out = default_belly.trash_eater_out.Copy()
+					qdel(default_belly)
 			. = TRUE
 		if("b_verb")
-			var/new_verb = html_encode(tgui_input_text(user,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb"))
+			var/new_verb = html_encode(params["val"])
 
 			if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
 				tgui_alert_async(user, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -1774,7 +1694,7 @@
 			host.vore_selected.vore_verb = new_verb
 			. = TRUE
 		if("b_release_verb")
-			var/new_release_verb = html_encode(tgui_input_text(user,"New verb when releasing from stomach (e.g. expels or coughs or drops):","New Release Verb"))
+			var/new_release_verb = html_encode(params["val"])
 
 			if(length(new_release_verb) > BELLIES_NAME_MAX || length(new_release_verb) < BELLIES_NAME_MIN)
 				tgui_alert_async(user, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -2425,12 +2345,12 @@
 				if("in")
 					var/new_message = sanitize(tgui_input_text(user,"This is sent upon eating anything with the trash eater perk. Write them in 3rd person ('%pred demonstrates their voracious capabilities by swallowing %item whole!') Try to keep it brief!"+help,"Trash Eater Insert",host.vore_selected.get_messages(BELLY_TRASH_EATER_IN), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_IN, limit = MAX_MESSAGE_LEN / 4)
+						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_IN, limit = BELLIES_MESSAGE_MAX)
 						. = TRUE
 				if("out")
 					var/new_message = sanitize(tgui_input_text(user,"This is sent upon expeling any item in your belly. Write them in 3rd person ('%pred expels %item from their %belly!') Try to keep it brief!"+help,"Item Expel",host.vore_selected.get_messages(BELLY_TRASH_EATER_OUT), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_OUT, limit = MAX_MESSAGE_LEN / 4)
+						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_OUT, limit = BELLIES_MESSAGE_MAX)
 						. = TRUE
 
 	if(.)

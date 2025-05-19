@@ -76,16 +76,19 @@ export type bellyModeData = {
 export type bellyDescriptionData = {
   verb: string;
   release_verb: string;
-  desc: string;
-  absorbed_desc: string;
-  mode: string;
   message_mode: BooleanLike;
-  escapable: BooleanLike;
-  interacts: interactData;
-  autotransfer_enabled: BooleanLike;
-  autotransfer: autotransferData;
-  emote_active: BooleanLike;
-  show_liq_fullness: BooleanLike;
+  displayed_options: number[];
+  message_option: number;
+  message_subtab: string;
+  selected_message: string;
+  displayed_message_types: {
+    subtypes?: string[];
+    possible_messages?: string[] | null;
+    max_length: number;
+    set_action: string;
+    tooltip: string;
+    active_message: string | string[] | null;
+  } | null;
 };
 
 export type selectedData = {

@@ -1,1 +1,0 @@
-#define VORE_RESIZE_COST 125
