@@ -264,8 +264,6 @@
 	if(!mydna.dna.real_name)
 		mydna.dna.real_name = backup_name
 	H.real_name = mydna.dna.real_name
-	H.gender = mydna.gender
-	H.descriptors = mydna.body_descriptors
 	for(var/datum/language/L in mydna.languages)
 		H.add_language(L.name)
 	H.suiciding = 0

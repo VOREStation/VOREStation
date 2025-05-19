@@ -97,8 +97,6 @@ var/list/preferences_datums = list()
 	var/list/flavour_texts_robot = list()
 	var/custom_link = null
 
-	var/list/body_descriptors = list()
-
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
@@ -351,10 +349,6 @@ var/list/preferences_datums = list()
 		character.update_underwear()
 		character.update_hair()
 
-	if(LAZYLEN(character.descriptors))
-		for(var/entry in body_descriptors)
-			character.descriptors[entry] = body_descriptors[entry]
-
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
 		to_chat(user, span_warning("You already have a slot selection dialog open!"))
@@ -582,22 +576,6 @@ var/list/preferences_datums = list()
 			if(O)
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
-
-	var/list/last_descriptors = list()
-	if(islist(body_descriptors))
-		last_descriptors = body_descriptors.Copy()
-	body_descriptors = list()
-
-	var/datum/species/mob_species = GLOB.all_species[species]
-	if(LAZYLEN(mob_species.descriptors))
-		for(var/entry in mob_species.descriptors)
-			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
-			if(istype(descriptor))
-				if(isnull(last_descriptors[entry]))
-					body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
-				else
-					body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
-	character.descriptors = body_descriptors
 
 	if (copy_flavour)
 		character.flavor_texts["general"]	= flavor_texts["general"]
