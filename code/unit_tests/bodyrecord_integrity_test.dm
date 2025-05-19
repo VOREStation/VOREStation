@@ -58,6 +58,7 @@
 	// We must find the lost data through intensive reiteration.
 	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/monkey(holder) // I have a new use for you, my son.
 	prepare_test_monkey(subject)
+	subject.Stasis(1000) // We are a HIGHLY unstable mob. Lets not life tick.
 
 	var/datum/dna/org_dna = subject.dna
 
@@ -67,6 +68,7 @@
 
 	var/mob/living/carbon/human/clone = first_iteration.produce_human_mob(holder,FALSE,FALSE,"TESTING TED")
 	var/datum/dna/clone_dna = clone.dna
+	clone.Stasis(1000) // We are a HIGHLY unstable mob. Lets not life tick.
 
 	var/datum/transhuman/body_record/second_interation = new(clone)
 	var/datum/dna2/record/second_record = second_interation.mydna
@@ -74,6 +76,7 @@
 
 	var/mob/living/carbon/human/descendant = second_interation.produce_human_mob(holder,FALSE,FALSE,"TESTING FRED")
 	var/datum/dna/descendant_dna = descendant.dna
+	descendant.Stasis(1000) // We are a HIGHLY unstable mob. Lets not life tick.
 
 	// Testing...
 
@@ -208,9 +211,9 @@
 				continue
 			else
 				if(islist(H.dna.vars[A]))
-					H.dna.vars[A] = list("rand","test[rand(1,200)]","hello",rand(1,200))
+					H.dna.vars[A] = list("rand","test[rand(1,200)]","hello","[rand(1,200)]")
 				else
-					H.dna.vars[A] = pick(list("rand","test[rand(1,200)]","hello",rand(1,200)))
+					H.dna.vars[A] = pick(list("rand","test[rand(1,200)]","hello","[rand(1,200)]"))
 
 	// Stablize anything that shouldn't be wagoozleized by above
 	H.resleeve_lock = TRUE
