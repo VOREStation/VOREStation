@@ -34,34 +34,68 @@
 			else
 				if(islist(org_dna.vars[A]))
 					// Test the list
-					if(list_test(first_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: first record vs origin body."))
+					if(list_test(first_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: first record vs origin body."))
 						failed = TRUE
-					if(list_test(second_dna.vars[A],first_dna.vars[A], "var [A] DNA ERROR: second record vs first record."))
+					if(list_test(second_dna.vars[A],first_dna.vars[A], "list \"[A]\" DNA ERROR: second record vs first record."))
 						failed = TRUE
-					if(list_test(clone_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: clone body vs origin body."))
+					if(list_test(clone_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: clone body vs origin body."))
 						failed = TRUE
-					if(list_test(second_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: second record vs origin body."))
+					if(list_test(second_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: second record vs origin body."))
 						failed = TRUE
-					if(list_test(descendant_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: second clone vs origin body."))
+					if(list_test(descendant_dna.vars[A],org_dna.vars[A], "list \"[A]\" DNA ERROR: second clone vs origin body."))
 						failed = TRUE
 				else
 					// Test the var
-					if(var_test(first_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: first record vs origin body."))
+					if(var_test(first_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: first record vs origin body."))
 						failed = TRUE
-					if(var_test(second_dna.vars[A],first_dna.vars[A], "var [A] DNA ERROR: second record vs first record."))
+					if(var_test(second_dna.vars[A],first_dna.vars[A], "var \"[A]\" DNA ERROR: second record vs first record."))
 						failed = TRUE
-					if(var_test(clone_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: clone body vs origin body."))
+					if(var_test(clone_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: clone body vs origin body."))
 						failed = TRUE
-					if(var_test(second_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: second record vs origin body."))
+					if(var_test(second_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: second record vs origin body."))
 						failed = TRUE
-					if(var_test(descendant_dna.vars[A],org_dna.vars[A], "var [A] DNA ERROR: second clone vs origin body."))
+					if(var_test(descendant_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: second clone vs origin body."))
 						failed = TRUE
 
 	// dna2record
-
+	for(var/A in first_record.vars)
+		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
+			if("dna") // We tested this above
+				continue
+			if("mind")
+				continue
+			else
+				if(islist(org_dna.vars[A]))
+					// Test the list
+					if(list_test(first_record.vars[A],second_record.vars[A], "list \"[A]\" DNA2/RECORD ERROR: first vs second."))
+						failed = TRUE
+				else
+					// Test the var
+					if(var_test(first_record.vars[A],second_record.vars[A], "var \"[A]\" DNA2/RECORD ERROR: first vs second."))
+						failed = TRUE
 
 	// bodyrecord
-
+	for(var/A in first_iteration.vars)
+		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
+			if("mydna") // We tested this above
+				continue
+			if("client_ref")
+				continue
+			if("mind_ref")
+				continue
+			else
+				if(islist(org_dna.vars[A]))
+					// Test the list
+					if(list_test(first_iteration.vars[A],second_interation.vars[A], "list \"[A]\" BODY_RECORD ERROR: first vs second."))
+						failed = TRUE
+				else
+					// Test the var
+					if(var_test(first_iteration.vars[A],second_interation.vars[A], "var \"[A]\" BODY_RECORD ERROR: first vs second."))
+						failed = TRUE
 
 	// Cleanup
 	qdel(first_iteration)
@@ -92,7 +126,10 @@
 	if(isnull(B))
 		log_unit_test(message + ": Second was null")
 		return TRUE
+	if(A.len != B.len)
+		log_unit_test(message + ": Lists did not have matching lengths")
+		return TRUE
 	if(!same_entries(A,B))
-		log_unit_test(message + ": Lists did not match")
+		log_unit_test(message + ": Lists did not have matching contents")
 		return TRUE
 	return FALSE
