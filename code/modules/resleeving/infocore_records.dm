@@ -349,7 +349,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	H.ooc_notes = body_oocnotes
-	//H.ooc_notes_likes = body_ooclikes
+	H.ooc_notes_likes = body_ooclikes
 	H.ooc_notes_dislikes = body_oocdislikes
 	H.ooc_notes_favs = body_oocfavs
 	H.ooc_notes_maybes = body_oocmaybes

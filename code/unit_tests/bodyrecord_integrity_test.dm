@@ -118,7 +118,7 @@
 						failed = TRUE
 					if(var_test(descendant_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: second clone vs origin body."))
 						failed = TRUE
-					if(var_test(third_dna.vars[A],first_dna.vars[A], "var \"[A]\" DNA ERROR: third record vs first record."))
+					if(var_test(third_dna.vars[A],org_dna.vars[A], "var \"[A]\" DNA ERROR: third record vs origin body."))
 						failed = TRUE
 
 	// dna2record
