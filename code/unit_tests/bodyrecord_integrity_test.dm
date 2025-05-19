@@ -8,18 +8,21 @@
 
 	// We must find the lost data through intensive reiteration.
 	var/mob/living/carbon/human/subject = new /mob/living/carbon/human/monkey/punpun(holder) // I have a new use for you, my son.
-	var/org_dna = subject.dna
+	var/datum/dna/org_dna = subject.dna
 
 	var/datum/transhuman/body_record/first_iteration = new(subject)
+	var/datum/dna2/record/first_record = first_iteration.mydna
+	var/datum/dna/first_dna = first_iteration.mydna.dna
+
 	var/mob/living/carbon/human/clone = first_iteration.produce_human_mob(holder,FALSE,FALSE,"TESTING TED")
-	var/first_dna = first_iteration.mydna.dna
-	var/clone_dna = clone.dna
+	var/datum/dna/clone_dna = clone.dna
 
 	var/datum/transhuman/body_record/second_interation = new(clone)
-	var/interation_dna = second_interation.mydna.dna
+	var/datum/dna2/record/second_record = second_interation.mydna
+	var/datum/dna/second_dna = second_interation.mydna.dna
+
 	var/mob/living/carbon/human/descendant = second_interation.produce_human_mob(holder,FALSE,FALSE,"TESTING FRED")
-	var/second_dna = first_iteration.mydna.dna
-	var/descendant_dna = descendant.dna
+	var/datum/dna/descendant_dna = descendant.dna
 
 	// Testing...
 
@@ -82,7 +85,7 @@
 		return TRUE
 	return FALSE
 
-/datum/unit_test/bodyrecord_integrity_test_/proc/list_test(var/list/A,var/list/B,var/message)
+/datum/unit_test/bodyrecord_integrity_test/proc/list_test(var/list/A,var/list/B,var/message)
 	if(isnull(A))
 		log_unit_test(message + ": First was null")
 		return TRUE
