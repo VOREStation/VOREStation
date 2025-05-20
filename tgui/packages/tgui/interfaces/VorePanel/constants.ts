@@ -96,7 +96,7 @@ export const messageTabLabel = [
   'Interaction Chance',
   'Bellymode',
   'Idle',
-  'Liquids',
+  'Liquid Fullness',
 ];
 
 export const eatingMessagePrivacy = {

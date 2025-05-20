@@ -10,6 +10,7 @@ export const VorePanelEditNumber = (props: {
   minValue: number;
   maxValue: number;
   step: number;
+  stepPixel?: number;
   unit?: string;
   color?: string;
   tooltip?: string;
@@ -24,6 +25,7 @@ export const VorePanelEditNumber = (props: {
     maxValue,
     minValue,
     step,
+    stepPixel = 1,
     editMode,
     unit,
     color,
@@ -40,6 +42,7 @@ export const VorePanelEditNumber = (props: {
             val: value,
           })
         }
+        stepPixelSize={stepPixel}
         value={value}
         maxValue={maxValue}
         minValue={minValue}

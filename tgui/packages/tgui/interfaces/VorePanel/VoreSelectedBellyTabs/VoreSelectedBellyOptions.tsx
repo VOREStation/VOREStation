@@ -150,6 +150,7 @@ export const VoreSelectedBellyOptions = (props: {
               minValue={0.01}
               maxValue={100}
               step={0.01}
+              stepPixel={0.1}
               digits={2}
               unit="%"
               tooltip="The multiplier for nutrition you'll fain from prey."
