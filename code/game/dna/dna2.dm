@@ -122,6 +122,9 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	if(!defer)
 		UpdateUI()
 
+/**
+ * Ensure that ResetUIFrom() and ApplyToMob() mirror each other. All vars should be read FROM the mob, and written back to it!
+ */
 /datum/dna/proc/ResetUIFrom(var/mob/living/carbon/human/character)
 	// INITIALIZE!
 	ResetUI(1)
@@ -285,6 +288,178 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 			body_markings[E.organ_tag] = E.markings.Copy()
 
 	UpdateUI()
+
+/datum/dna/proc/ApplyToMob(var/mob/living/carbon/human/H)
+	////////////////////////////////////////////////////////////////////////////////
+	// Apply UIs to character
+	//Hair color
+	H.r_hair   = GetUIValueRange(DNA_UI_HAIR_R,    255)
+	H.g_hair   = GetUIValueRange(DNA_UI_HAIR_G,    255)
+	H.b_hair   = GetUIValueRange(DNA_UI_HAIR_B,    255)
+
+	//Facial hair color
+	H.r_facial = GetUIValueRange(DNA_UI_BEARD_R,   255)
+	H.g_facial = GetUIValueRange(DNA_UI_BEARD_G,   255)
+	H.b_facial = GetUIValueRange(DNA_UI_BEARD_B,   255)
+
+	//Skin color (Tone for humans is seperate)
+	H.r_skin   = GetUIValueRange(DNA_UI_SKIN_R,    255)
+	H.g_skin   = GetUIValueRange(DNA_UI_SKIN_G,    255)
+	H.b_skin   = GetUIValueRange(DNA_UI_SKIN_B,    255)
+
+	H.s_tone   = 35 - GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
+
+	//Eye color
+	H.r_eyes   = GetUIValueRange(DNA_UI_EYES_R,    255)
+	H.g_eyes   = GetUIValueRange(DNA_UI_EYES_G,    255)
+	H.b_eyes   = GetUIValueRange(DNA_UI_EYES_B,    255)
+	H.update_eyes()
+
+	//Hair gradient color
+	H.r_grad   = GetUIValueRange(DNA_UI_GRAD_R,    255)
+	H.g_grad   = GetUIValueRange(DNA_UI_GRAD_G,    255)
+	H.b_grad   = GetUIValueRange(DNA_UI_GRAD_B,    255)
+
+	//Sex... Needs future support for properly handling things other then just male/female. UIs have the capability to do so!
+	if(H.gender != NEUTER)
+		if (GetUIState(DNA_UI_GENDER))
+			H.gender = FEMALE
+		else
+			H.gender = MALE
+
+	//Body markings
+	for(var/tag in body_markings)
+		var/obj/item/organ/external/E = H.organs_by_name[tag]
+		if(E)
+			var/list/marklist = body_markings[tag]
+			E.markings = marklist.Copy()
+
+	//Hair style
+	var/hair = GetUIValueRange(DNA_UI_HAIR_STYLE,hair_styles_list.len)
+	if((0 < hair) && (hair <= hair_styles_list.len))
+		H.h_style = hair_styles_list[hair]
+
+	//Facial Hair
+	var/beard = GetUIValueRange(DNA_UI_BEARD_STYLE,facial_hair_styles_list.len)
+	if((0 < beard) && (beard <= facial_hair_styles_list.len))
+		H.f_style = facial_hair_styles_list[beard]
+
+	// Ears
+	var/ears = GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
+	if(ears < 1)
+		H.ear_style = null
+	else if((0 < ears) && (ears <= ear_styles_list.len))
+		H.ear_style = ear_styles_list[ear_styles_list[ears]]
+	var/ears_secondary = GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, ear_styles_list.len + 1) - 1
+	if(ears_secondary < 1)
+		H.ear_secondary_style = null
+	else if((0 < ears_secondary) && (ears_secondary <= ear_styles_list.len))
+		H.ear_secondary_style = ear_styles_list[ear_styles_list[ears_secondary]]
+
+	// Ear Color
+	H.r_ears  = GetUIValueRange(DNA_UI_EARS_R,    255)
+	H.g_ears  = GetUIValueRange(DNA_UI_EARS_G,    255)
+	H.b_ears  = GetUIValueRange(DNA_UI_EARS_B, 	  255)
+	H.r_ears2 = GetUIValueRange(DNA_UI_EARS2_R,   255)
+	H.g_ears2 = GetUIValueRange(DNA_UI_EARS2_G,   255)
+	H.b_ears2 = GetUIValueRange(DNA_UI_EARS2_B,	  255)
+	H.r_ears3 = GetUIValueRange(DNA_UI_EARS3_R,   255)
+	H.g_ears3 = GetUIValueRange(DNA_UI_EARS3_G,   255)
+	H.b_ears3 = GetUIValueRange(DNA_UI_EARS3_B,	  255)
+	H.a_ears = GetUIValueRange(DNA_UI_EARS_ALPHA, 255)
+	H.a_ears2 = GetUIValueRange(DNA_UI_EARS_SECONDARY_ALPHA, 255)
+
+	LAZYINITLIST(H.ear_secondary_colors)
+	H.ear_secondary_colors.len = max(length(H.ear_secondary_colors), DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
+	for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
+		var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
+		H.ear_secondary_colors[channel] = rgb(
+			GetUIValueRange(offset, 255),
+			GetUIValueRange(offset + 1, 255),
+			GetUIValueRange(offset + 2, 255),
+		)
+
+	//Tail
+	var/tail = GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
+	if(tail < 1)
+		H.tail_style = null
+	else if((0 < tail) && (tail <= tail_styles_list.len))
+		H.tail_style = tail_styles_list[tail_styles_list[tail]]
+
+	//Wing
+	var/wing = GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
+	if(wing < 1)
+		H.wing_style = null
+	else if((0 < wing) && (wing <= wing_styles_list.len))
+		H.wing_style = wing_styles_list[wing_styles_list[wing]]
+
+	//Wing Color
+	H.r_wing   = GetUIValueRange(DNA_UI_WING_R,     255)
+	H.g_wing   = GetUIValueRange(DNA_UI_WING_G,     255)
+	H.b_wing   = GetUIValueRange(DNA_UI_WING_B,     255)
+	H.r_wing2  = GetUIValueRange(DNA_UI_WING2_R,    255)
+	H.g_wing2  = GetUIValueRange(DNA_UI_WING2_G,    255)
+	H.b_wing2  = GetUIValueRange(DNA_UI_WING2_B,    255)
+	H.r_wing3  = GetUIValueRange(DNA_UI_WING3_R,    255)
+	H.g_wing3  = GetUIValueRange(DNA_UI_WING3_G,    255)
+	H.b_wing3  = GetUIValueRange(DNA_UI_WING3_B,    255)
+	H.a_wing = GetUIValueRange(DNA_UI_WING_ALPHA,	255)
+
+	// Playerscale
+	var/size = GetUIValueRange(DNA_UI_PLAYERSCALE, GLOB.player_sizes_list.len)
+	if((0 < size) && (size <= GLOB.player_sizes_list.len))
+		H.resize(GLOB.player_sizes_list[GLOB.player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
+
+	// Tail/Taur Color
+	H.r_tail   = GetUIValueRange(DNA_UI_TAIL_R,    255)
+	H.g_tail   = GetUIValueRange(DNA_UI_TAIL_G,    255)
+	H.b_tail   = GetUIValueRange(DNA_UI_TAIL_B,    255)
+	H.r_tail2  = GetUIValueRange(DNA_UI_TAIL2_R,   255)
+	H.g_tail2  = GetUIValueRange(DNA_UI_TAIL2_G,   255)
+	H.b_tail2  = GetUIValueRange(DNA_UI_TAIL2_B,   255)
+	H.r_tail3  = GetUIValueRange(DNA_UI_TAIL3_R,   255)
+	H.g_tail3  = GetUIValueRange(DNA_UI_TAIL3_G,   255)
+	H.b_tail3  = GetUIValueRange(DNA_UI_TAIL3_B,   255)
+	H.a_tail = GetUIValueRange(DNA_UI_TAIL_ALPHA,  255)
+
+	// Hair gradiant
+	var/grad = GetUIValueRange(DNA_UI_GRAD_STYLE,GLOB.hair_gradients.len)
+	if((0 < grad) && (grad <= GLOB.hair_gradients.len))
+		H.grad_style = GLOB.hair_gradients[grad]
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Custom species and other cosmetic vars
+	H.custom_species = custom_species
+	H.custom_say = custom_say
+	H.custom_ask = custom_ask
+	H.custom_whisper = custom_whisper
+	H.custom_exclaim = custom_exclaim
+	H.custom_speech_bubble = custom_speech_bubble
+	H.custom_heat = custom_heat
+	H.custom_cold = custom_cold
+
+	// If synths have character markings
+	H.synth_markings = synth_markings
+
+	// Scaling style
+	H.fuzzy = scale_appearance
+	H.offset_override = offset_override
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Get a copy of the species datum to edit for ourselves
+	// anything that sets stuff in species MUST be done beyond here!
+	H.species.produceCopy(species_traits, H, base_species, FALSE) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
+
+	// Update species blood with our blood color from dna!
+	H.species.blood_reagents = blood_reagents
+	H.species.blood_color = blood_color
+
+	/*//TODO: Get these to work as well.
+	H.species.species_sounds = species_sounds
+	H.species.gender_specific_species_sounds = gender_specific_species_sounds
+	H.species.species_sounds_male = species_sounds_male
+	H.species.species_sounds_female = species_sounds_female
+	*///TODO End
 
 // Set a DNA UI block's raw value.
 /datum/dna/proc/SetUIValue(var/block,var/value,var/defer=0)

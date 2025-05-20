@@ -706,6 +706,8 @@
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
+	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
+
 /mob/living/proc/rejuvenate()
 	if(reagents)
 		reagents.clear_reagents()

@@ -30,6 +30,7 @@
 
 	//Get the DNA and generate a new mob
 	var/mob/living/carbon/human/H = current_project.produce_human_mob(src,FALSE,FALSE,"clone ([rand(0,999)])")
+	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
 
 	//Give breathing equipment if needed
 	if(current_project.breath_type != null && current_project.breath_type != GAS_O2)
@@ -207,6 +208,7 @@
 
 	//Get the DNA and generate a new mob
 	var/mob/living/carbon/human/H = current_project.produce_human_mob(src,TRUE,FALSE,"synth ([rand(0,999)])")
+	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
 
 	//Apply damage
 	H.adjustBruteLoss(brute_value)

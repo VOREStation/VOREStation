@@ -291,8 +291,10 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
-	qdel(R.dna)
-	qdel(R)
+
+	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
+
+	qdel(R) // Record already deletes dna
 	qdel(src)
 	return 1
 

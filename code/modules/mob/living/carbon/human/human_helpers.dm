@@ -18,7 +18,6 @@
 	if(pref.resleeve_lock)
 		resleeve_lock = ckey
 	original_player = ckey
-	SEND_SIGNAL(src, COMSIG_INITIAL_RECORDS)
 
 /mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
 	var/list/status = can_eat_status()
