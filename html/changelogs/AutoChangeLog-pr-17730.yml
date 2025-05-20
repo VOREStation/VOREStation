@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Gorka sprites now properly show"
-  - bugfix: "Vox will no longer have a green suit when equipping an unsprited suit"
-  - bugfix: "Missing teshari uniform sprites will fallback to a rainbow suit instead of naked"
-  - bugfix: "Missing rolled down/sleeves up uniform sprites will now fallback to an owlsuit instead of a giant floating SUIT"
-  - rscadd: "Missing uniform sprites show up as an owlsuit instead of a giant floating SUIT"
