@@ -305,7 +305,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = src.loc
+	occupant.forceMove(get_turf(src))
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
 		var/mob/living/carbon/human/patient = occupant
@@ -396,21 +396,21 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+				A.forceMove(get_turf(src))
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
