@@ -97,6 +97,13 @@
 	build_path = /obj/item/healthanalyzer/advanced
 	sort_string = "KBAAC"
 
+/datum/design/item/medical/gene_scanner
+	name = "Gene Scanner"
+	id = "gene_scanner"
+	req_tech = list(TECH_DATA = 1, TECH_BIO = 2)
+	build_path = /obj/item/gene_scanner
+	sort_string = "KBAAD"
+
 /datum/design/item/medical/advanced_roller
 	name = "advanced roller bed"
 	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
