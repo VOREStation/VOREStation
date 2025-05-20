@@ -18,7 +18,7 @@
 #define SECONARY_AUTO_MESSAGE "Secondary (Auto)"
 #define DIGEST_MESSAGE "Digest"
 #define HOLD_MESSAGE "Hold"
-#define HOLDABSORBED_MESSAGE "Holdabsorbed"
+#define HOLDABSORBED_MESSAGE "Hold (Absorbed)"
 #define ABSORB_MESSAGE "Absorb"
 #define HEAL_MESSAGE  "Heal"
 #define DRAIN_MESSAGE  "Drain"
@@ -127,7 +127,7 @@
 
 	if(message_option == VPANEL_ESCAPE_TAB)
 		var/list/tab_data = list(
-			"subtypes" = list(ATTEMPT_MESSAGE, ITEM_MESSAGE, FAIL_MESSAGE)
+			"subtypes" = list(ITEM_MESSAGE, ATTEMPT_MESSAGE, FAIL_MESSAGE)
 			)
 		if(selected.message_mode || selected.escapechance)
 			tab_data["subtypes"] += SUCCESS_MESSAGE
@@ -483,67 +483,67 @@
 		if(!selected_message)
 			selected_message = DIGEST_MESSAGE
 		if(selected_message == DIGEST_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_DIGEST])
 			tab_data["set_action"] = BELLY_MODE_DIGEST
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting digested."
 			return tab_data
 		if(selected_message == HOLD_MESSAGE)
-			tab_data["max_length"] = BELLY_MODE_HOLD
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HOLD])
-			tab_data["set_action"] = DIGEST_OWNER
+			tab_data["set_action"] = BELLY_MODE_HOLD
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is being held."
 			return tab_data
 		if(selected_message == HOLDABSORBED_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HOLD_ABSORBED])
 			tab_data["set_action"] = BELLY_MODE_HOLD_ABSORB
 			tab_data["tooltip"] = "Cyclic idle messages while your absorbed prey is being held."
 			return tab_data
 		if(selected_message == ABSORB_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_ABSORB])
 			tab_data["set_action"] = BELLY_MODE_ABSORB
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting absorbed."
 			return tab_data
 		if(selected_message == HEAL_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HEAL])
 			tab_data["set_action"] = BELLY_MODE_HEAL
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting healed."
 			return tab_data
 		if(selected_message == DRAIN_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_DRAIN])
 			tab_data["set_action"] = BELLY_MODE_DRAIN
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting drained."
 			return tab_data
 		if(selected_message == STEAL_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_SIZE_STEAL])
 			tab_data["set_action"] = BELLY_MODE_STEAL
 			tab_data["tooltip"] = "Cyclic idle messages while your prey's size is stolen."
 			return tab_data
 		if(selected_message == EGG_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_EGG])
 			tab_data["set_action"] = BELLY_MODE_EGG
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting getting encased in an egg."
 			return tab_data
 		if(selected_message == SHRINK_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_SHRINK])
 			tab_data["set_action"] = BELLY_MODE_SHRINK
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting shrunk."
 			return tab_data
 		if(selected_message == GROW_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_GROW])
 			tab_data["set_action"] = BELLY_MODE_GROW
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting grown."
 			return tab_data
 		if(selected_message == UNABSORB_MESSAGE)
-			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_UNABSORB])
 			tab_data["set_action"] = BELLY_MODE_UNABSORB
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting unabsorbed."

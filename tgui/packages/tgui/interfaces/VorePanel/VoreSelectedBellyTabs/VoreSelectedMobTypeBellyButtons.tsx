@@ -2,19 +2,20 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import type { hostMob, selectedData } from '../types';
+import type { hostMob, siliconeBellyControls } from '../types';
 
 export const VoreSelectedMobTypeBellyButtons = (props: {
-  belly: selectedData;
+  editMode: boolean;
+  bellyControl: siliconeBellyControls;
   host_mobtype: hostMob;
 }) => {
   const { act } = useBackend();
-  const { belly, host_mobtype } = props;
+  const { editMode, bellyControl, host_mobtype } = props;
   const {
     silicon_belly_overlay_preference,
     belly_sprite_option_shown,
     belly_sprite_to_affect,
-  } = belly;
+  } = bellyControl;
 
   const { is_cyborg, is_vore_simple_mob } = host_mobtype;
 

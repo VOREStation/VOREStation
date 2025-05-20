@@ -378,52 +378,52 @@
 		if(islist(belly_data["emotes_hold"]))
 			var/new_emotes_hold = sanitize(jointext(belly_data["emotes_hold"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_hold)
-				new_belly.set_messages(new_emotes_hold,BELLY_MODE_HOLD, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_hold,BELLY_MODE_HOLD, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_holdabsorbed"]))
 			var/new_emotes_holdabsorbed = sanitize(jointext(belly_data["emotes_holdabsorbed"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_holdabsorbed)
-				new_belly.set_messages(new_emotes_holdabsorbed,BELLY_MODE_HOLD_ABSORB, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_holdabsorbed,BELLY_MODE_HOLD_ABSORB, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_absorb"]))
 			var/new_emotes_absorb = sanitize(jointext(belly_data["emotes_absorb"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_absorb)
-				new_belly.set_messages(new_emotes_absorb,BELLY_MODE_ABSORB, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_absorb,BELLY_MODE_ABSORB, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_heal"]))
 			var/new_emotes_heal = sanitize(jointext(belly_data["emotes_heal"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_heal)
-				new_belly.set_messages(new_emotes_heal,BELLY_MODE_HEAL, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_heal,BELLY_MODE_HEAL, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_drain"]))
 			var/new_emotes_drain = sanitize(jointext(belly_data["emotes_drain"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_drain)
-				new_belly.set_messages(new_emotes_drain,BELLY_MODE_DRAIN, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_drain,BELLY_MODE_DRAIN, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_steal"]))
 			var/new_emotes_steal = sanitize(jointext(belly_data["emotes_steal"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_steal)
-				new_belly.set_messages(new_emotes_steal,BELLY_MODE_STEAL, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_steal,BELLY_MODE_STEAL, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_egg"]))
 			var/new_emotes_egg = sanitize(jointext(belly_data["emotes_egg"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_egg)
-				new_belly.set_messages(new_emotes_egg,BELLY_MODE_EGG, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_egg,BELLY_MODE_EGG, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_shrink"]))
 			var/new_emotes_shrink = sanitize(jointext(belly_data["emotes_shrink"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_shrink)
-				new_belly.set_messages(new_emotes_shrink,BELLY_MODE_SHRINK, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_shrink,BELLY_MODE_SHRINK, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_grow"]))
 			var/new_emotes_grow = sanitize(jointext(belly_data["emotes_grow"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_grow)
-				new_belly.set_messages(new_emotes_grow,BELLY_MODE_GROW, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_grow,BELLY_MODE_GROW, limit = BELLIES_IDLE_MAX)
 
 		if(islist(belly_data["emotes_unabsorb"]))
 			var/new_emotes_unabsorb = sanitize(jointext(belly_data["emotes_unabsorb"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_emotes_unabsorb)
-				new_belly.set_messages(new_emotes_unabsorb,BELLY_MODE_UNABSORB, limit = BELLIES_MESSAGE_MAX)
+				new_belly.set_messages(new_emotes_unabsorb,BELLY_MODE_UNABSORB, limit = BELLIES_IDLE_MAX)
 
 		// Options
 		if(isnum(belly_data["can_taste"]))

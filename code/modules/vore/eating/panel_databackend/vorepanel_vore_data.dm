@@ -134,17 +134,59 @@
 				displayed_options += VPANEL_IDLE_TAB
 
 			var/list/belly_description_data = list(
+				"displayed_message_types" = compile_message_data(selected),
 				"verb" = selected.vore_verb,
 				"release_verb" = selected.release_verb,
 				"message_mode" = selected.message_mode,
+				"display_absorbed_examine" = selected.display_absorbed_examine,
 				"displayed_options" = displayed_options,
 				"message_option" = message_option,
 				"message_subtab" = message_subtab,
 				"selected_message" = selected_message,
-				"displayed_message_types" = compile_message_data(selected)
+				"emote_time" = selected.emote_time,
+				"emote_active" = selected.emote_active,
 			)
 			selected_list["belly_description_data"] = belly_description_data
 
+		if(active_vore_tab == OPTIONS_TAB)
+
+			var/list/silicon_control = list(
+				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
+				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
+				"belly_sprite_to_affect" = selected.belly_sprite_to_affect
+			)
+			var/list/belly_option_data = list(
+				"can_taste" = selected.can_taste,
+				"is_feedable" = selected.is_feedable,
+				"nutrition_percent" = selected.nutrition_percent,
+				"digest_brute" = selected.digest_brute,
+				"digest_burn" = selected.digest_burn,
+				"digest_oxy" = selected.digest_oxy,
+				"digest_tox" = selected.digest_tox,
+				"digest_clone" = selected.digest_clone,
+				"bulge_size" = selected.bulge_size,
+				"shrink_grow_size" = selected.shrink_grow_size,
+				"contaminates" = selected.contaminates,
+				"contaminate_flavor" = (selected.contaminates ? selected.contamination_flavor : null),
+				"contaminate_color" = (selected.contaminates ? selected.contamination_color : null),
+				"egg_type" = selected.egg_type,
+				"egg_name" = selected.egg_name,
+				"egg_size" = selected.egg_size,
+				"recycling" = selected.recycling,
+				"storing_nutrition" = selected.storing_nutrition,
+				"entrance_logs" = selected.entrance_logs,
+				"item_digest_logs" = selected.item_digest_logs,
+				"selective_preference" = selected.selective_preference,
+				"save_digest_mode" = selected.save_digest_mode,
+				"eating_privacy_local" = selected.eating_privacy_local,
+				"vorespawn_blacklist" = selected.vorespawn_blacklist,
+				"vorespawn_whitelist" = selected.vorespawn_whitelist,
+				"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
+				"private_struggle" = selected.private_struggle,
+				"drainmode" = selected.drainmode,
+				"mob_belly_controls" = silicon_control
+			)
+			selected_list["belly_option_data"] = belly_option_data
 
 
 		// TODO wipe this list-....
@@ -155,36 +197,12 @@
 			"sound" = selected.vore_sound,
 			"release_sound" = selected.release_sound,
 			// "messages" // TODO
-			"can_taste" = selected.can_taste,
-			"is_feedable" = selected.is_feedable,
-			"egg_type" = selected.egg_type,
-			"egg_name" = selected.egg_name,
-			"egg_size" = selected.egg_size,
-			"recycling" = selected.recycling,
-			"storing_nutrition" = selected.storing_nutrition,
-			"entrance_logs" = selected.entrance_logs,
-			"nutrition_percent" = selected.nutrition_percent,
-			"digest_brute" = selected.digest_brute,
-			"digest_burn" = selected.digest_burn,
-			"digest_oxy" = selected.digest_oxy,
-			"digest_tox" = selected.digest_tox,
-			"digest_clone" = selected.digest_clone,
-			"bulge_size" = selected.bulge_size,
-			"save_digest_mode" = selected.save_digest_mode,
-			"display_absorbed_examine" = selected.display_absorbed_examine,
-			"shrink_grow_size" = selected.shrink_grow_size,
-			"emote_time" = selected.emote_time,
-			"emote_active" = selected.emote_active,
-			"selective_preference" = selected.selective_preference,
 			"nutrition_ex" = owner.nutrition_message_visible,
 			"weight_ex" = owner.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
-			"eating_privacy_local" = selected.eating_privacy_local,
-			"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
 			"belly_mob_mult" = selected.belly_mob_mult,
 			"belly_item_mult" = selected.belly_item_mult,
 			"belly_overall_mult" = selected.belly_overall_mult,
-			"drainmode" = selected.drainmode,
 			"affects_voresprite" = selected.affects_vore_sprites,
 			"absorbed_voresprite" = selected.count_absorbed_prey_for_sprite,
 			"absorbed_multiplier" = selected.absorbed_multiplier,
@@ -195,8 +213,6 @@
 			"health_voresprite" = selected.health_impacts_size,
 			"resist_animation" = selected.resist_triggers_animation,
 			"voresprite_size_factor" = selected.size_factor_for_sprite,
-			"belly_sprite_to_affect" = selected.belly_sprite_to_affect,
-			"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
 			"tail_option_shown" = ishuman(owner),
 			"tail_to_change_to" = selected.tail_to_change_to,
 			"tail_colouration" = selected.tail_colouration,
@@ -227,13 +243,8 @@
 			"max_ingested" = selected.max_ingested,
 			"custom_ingested_color" = selected.custom_ingested_color,
 			"custom_ingested_alpha" = selected.custom_ingested_alpha,
-			"vorespawn_blacklist" = selected.vorespawn_blacklist,
-			"vorespawn_whitelist" = selected.vorespawn_whitelist,
-			"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
 			"sound_volume" = selected.sound_volume,
 			"noise_freq" = selected.noise_freq,
-			"item_digest_logs" = selected.item_digest_logs,
-			"private_struggle" = selected.private_struggle,
 			//"marking_to_add" = selected.marking_to_add
 		))
 
@@ -251,12 +262,6 @@
 		selected_list["recycling"] = selected.recycling
 		selected_list["storing_nutrition"] = selected.storing_nutrition
 		selected_list["item_digest_logs"] = selected.item_digest_logs
-		selected_list["contaminates"] = selected.contaminates
-		selected_list["contaminate_flavor"] = null
-		selected_list["contaminate_color"] = null
-		if(selected.contaminates)
-			selected_list["contaminate_flavor"] = selected.contamination_flavor
-			selected_list["contaminate_color"] = selected.contamination_color
 
 		selected_list["escapable"] = selected.escapable
 		selected_list["interacts"] = list()

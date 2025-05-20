@@ -3,11 +3,9 @@ import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { digestModeToColor, modeToTooltip } from '../constants';
 import type { bellyModeData } from '../types';
-import {
-  VorePanelEditCheckboxes,
-  VorePanelEditDropdown,
-  VorePanelEditText,
-} from '../VorePanelElements/VorePanelEditables';
+import { VorePanelEditCheckboxes } from '../VorePanelElements/VorePanelEditCheckboxes';
+import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
+import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
 
 export const VoreSelectedBellyControls = (props: {
   editMode: boolean;

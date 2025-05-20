@@ -1,11 +1,13 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack, Tabs } from 'tgui-core/components';
+import { type BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../constants';
 import type { bellyDescriptionData } from '../types';
 import { VorePanelEditTextArea } from '../VorePanelElements/VorePanelTextArea';
 
 export const VoreSelectedBellyDescriptionMatrix = (props: {
+  showAll: BooleanLike;
   showFormatHelp: boolean;
   onShowFormatHelp: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
@@ -13,8 +15,13 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
 }) => {
   const { act } = useBackend();
 
-  const { showFormatHelp, onShowFormatHelp, editMode, bellyDescriptionData } =
-    props;
+  const {
+    showAll,
+    showFormatHelp,
+    onShowFormatHelp,
+    editMode,
+    bellyDescriptionData,
+  } = props;
   const {
     displayed_options,
     message_option,
@@ -46,6 +53,20 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
           )}
           <Stack.Item>
             <Button
+              tooltip={
+                (showAll ? 'Hides' : 'Shows') + ' all possible belly messages.'
+              }
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_message_mode',
+                })
+              }
+              icon={'eye'}
+              selected={showAll}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
               icon="question"
               tooltip="Formatting help"
               onClick={() => onShowFormatHelp(!showFormatHelp)}
@@ -56,7 +77,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
       }
     >
       <Stack fill>
-        <Stack.Item basis="20%">
+        <Stack.Item basis="16%">
           <Stack vertical>
             <Stack.Item basis="1.667rem" />
             <Stack.Item>

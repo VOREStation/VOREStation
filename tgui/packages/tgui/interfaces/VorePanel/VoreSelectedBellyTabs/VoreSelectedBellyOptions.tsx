@@ -3,16 +3,17 @@ import { Button, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
 import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../constants';
-import type { hostMob, selectedData } from '../types';
+import type { bellyOptionData, hostMob } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const VoreSelectedBellyOptions = (props: {
-  belly: selectedData;
+  editMode: boolean;
+  bellyOptionData: bellyOptionData;
   host_mobtype: hostMob;
 }) => {
   const { act } = useBackend();
 
-  const { belly, host_mobtype } = props;
+  const { editMode, bellyOptionData, host_mobtype } = props;
   const {
     can_taste,
     is_feedable,
@@ -23,10 +24,7 @@ export const VoreSelectedBellyOptions = (props: {
     digest_tox,
     digest_clone,
     bulge_size,
-    display_absorbed_examine,
     shrink_grow_size,
-    emote_time,
-    emote_active,
     contaminates,
     contaminate_flavor,
     contaminate_color,
@@ -45,7 +43,8 @@ export const VoreSelectedBellyOptions = (props: {
     vorespawn_absorbed,
     private_struggle,
     drainmode,
-  } = belly;
+    mob_belly_controls,
+  } = bellyOptionData;
 
   return (
     <Stack wrap="wrap">
@@ -126,19 +125,6 @@ export const VoreSelectedBellyOptions = (props: {
               {bulge_size * 100 + '%'}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Display Absorbed Examines">
-            <Button
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_display_absorbed_examine',
-                })
-              }
-              icon={display_absorbed_examine ? 'toggle-on' : 'toggle-off'}
-              selected={display_absorbed_examine}
-            >
-              {display_absorbed_examine ? 'True' : 'False'}
-            </Button>
-          </LabeledList.Item>
           <LabeledList.Item label="Toggle Vore Privacy">
             <Button
               onClick={() =>
@@ -173,30 +159,13 @@ export const VoreSelectedBellyOptions = (props: {
           </LabeledList.Item>
         </LabeledList>
         <VoreSelectedMobTypeBellyButtons
-          belly={belly}
+          editMode={editMode}
+          bellyControl={mob_belly_controls}
           host_mobtype={host_mobtype}
         />
       </Stack.Item>
       <Stack.Item basis="49%" grow>
         <LabeledList>
-          <LabeledList.Item label="Idle Emotes">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_emoteactive' })
-              }
-              icon={emote_active ? 'toggle-on' : 'toggle-off'}
-              selected={emote_active}
-            >
-              {emote_active ? 'Active' : 'Inactive'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Idle Emote Delay">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_emotetime' })}
-            >
-              {emote_time + ' seconds'}
-            </Button>
-          </LabeledList.Item>
           <LabeledList.Item label="Digest Brute Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_brute_dmg' })}

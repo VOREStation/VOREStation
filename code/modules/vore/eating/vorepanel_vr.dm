@@ -1601,37 +1601,37 @@
 									host.weight_messages[index] = new_message
 
 				if(BELLY_MODE_DIGEST)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_DIGEST, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_DIGEST, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_HOLD)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_HOLD_ABSORB)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD_ABSORB, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HOLD_ABSORB, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_ABSORB)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_ABSORB, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_ABSORB, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_HEAL)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_HEAL, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_HEAL, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_DRAIN)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_DRAIN, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_DRAIN, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_STEAL)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_STEAL, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_STEAL, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_EGG)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_EGG, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_EGG, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_SHRINK)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_SHRINK, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_SHRINK, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_GROW)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_GROW, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_GROW, limit = BELLIES_IDLE_MAX)
 
 				if(BELLY_MODE_UNABSORB)
-					host.vore_selected.set_messages(params["val"], BELLY_MODE_UNABSORB, limit = BELLIES_MESSAGE_MAX)
+					host.vore_selected.set_messages(params["val"], BELLY_MODE_UNABSORB, limit = BELLIES_IDLE_MAX)
 
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
@@ -1924,11 +1924,8 @@
 				host.vore_selected.selective_preference = DM_DIGEST
 			. = TRUE
 		if("b_emotetime")
-			var/new_time = tgui_input_number(user, "Choose the period it takes for idle belly emotes to be shown to prey. Measured in seconds, Minimum 1 minute, Maximum 10 minutes.", "Set Belly Emote Delay.", host.vore_selected.digest_brute, 600, 60)
-			if(new_time == null)
-				return FALSE
-			var/new_new_time = CLAMP(new_time, 60, 600)
-			host.vore_selected.emote_time = new_new_time
+			var/new_time = CLAMP(text2num(params["val"]), 60, 600)
+			host.vore_selected.emote_time = new_time
 			. = TRUE
 		if("b_escapable")
 			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.

@@ -79,8 +79,11 @@ export type bellyDescriptionData = {
   message_mode: BooleanLike;
   displayed_options: number[];
   message_option: number;
+  display_absorbed_examine: BooleanLike;
   message_subtab: string;
   selected_message: string;
+  emote_time: number;
+  emote_active: BooleanLike;
   displayed_message_types: {
     subtypes?: string[];
     possible_messages?: string[] | null;
@@ -91,10 +94,49 @@ export type bellyDescriptionData = {
   } | null;
 };
 
+export type bellyOptionData = {
+  can_taste: BooleanLike;
+  is_feedable: BooleanLike;
+  nutrition_percent: number;
+  digest_brute: number;
+  digest_burn: number;
+  digest_oxy: number;
+  digest_tox: number;
+  digest_clone: number;
+  bulge_size: number;
+  shrink_grow_size: number;
+  contaminates: BooleanLike;
+  contaminate_flavor: string | null;
+  contaminate_color: string | null;
+  egg_type: string;
+  egg_name: string;
+  egg_size: number;
+  recycling: BooleanLike;
+  storing_nutrition: BooleanLike;
+  entrance_logs: BooleanLike;
+  item_digest_logs: BooleanLike;
+  selective_preference: string;
+  save_digest_mode: BooleanLike;
+  eating_privacy_local: string;
+  vorespawn_blacklist: BooleanLike;
+  vorespawn_whitelist: string[];
+  vorespawn_absorbed: number;
+  private_struggle: BooleanLike;
+  drainmode: string;
+  mob_belly_controls: siliconeBellyControls;
+};
+
+export type siliconeBellyControls = {
+  silicon_belly_overlay_preference: string;
+  belly_sprite_option_shown: BooleanLike;
+  belly_sprite_to_affect: string;
+};
+
 export type selectedData = {
   belly_name: string;
   belly_mode_data?: bellyModeData;
   belly_description_data?: bellyDescriptionData;
+  belly_option_data?: bellyOptionData;
 
   interacts: interactData;
   is_wet: BooleanLike;
@@ -104,20 +146,6 @@ export type selectedData = {
   release_sound: string;
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
-  egg_type: string;
-  egg_name: string;
-  egg_size: number;
-  recycling: BooleanLike;
-  storing_nutrition: BooleanLike;
-  entrance_logs: BooleanLike;
-  nutrition_percent: number;
-  digest_brute: number;
-  digest_burn: number;
-  digest_oxy: number;
-  digest_tox: number;
-  digest_clone: number;
-  bulge_size: number;
-  save_digest_mode: BooleanLike;
   display_absorbed_examine: BooleanLike;
   shrink_grow_size: number;
   emote_time: number;
@@ -131,7 +159,6 @@ export type selectedData = {
   belly_mob_mult: number;
   belly_item_mult: number;
   belly_overall_mult: number;
-  drainmode: string;
   belly_fullscreen_color: string;
   belly_fullscreen_color2: string;
   belly_fullscreen_color3: string;
@@ -154,9 +181,6 @@ export type selectedData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
-  vorespawn_blacklist: BooleanLike;
-  vorespawn_whitelist: string[];
-  vorespawn_absorbed: number;
   sound_volume: number;
   affects_voresprite: BooleanLike;
   absorbed_voresprite: BooleanLike;
@@ -180,12 +204,7 @@ export type selectedData = {
   tail_extra_overlay: BooleanLike;
   tail_extra_overlay2: BooleanLike;
   noise_freq: number;
-  item_digest_logs: BooleanLike;
-  private_struggle: BooleanLike;
   vore_sprite_flags: string[];
-  contaminates: BooleanLike;
-  contaminate_flavor: string | null;
-  contaminate_color: string | null;
   autotransfer_enabled: BooleanLike;
   autotransfer: autotransferData;
   disable_hud: BooleanLike;
