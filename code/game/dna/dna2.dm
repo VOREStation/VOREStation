@@ -123,7 +123,9 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		UpdateUI()
 
 /**
+ * Beginning of mob to dna, and dna to mob transfer procs.
  * Ensure that ResetUIFrom() and ApplyToMob() mirror each other. All vars should be read FROM the mob, and written back to it!
+ * ALL dna logic for reading from the mob, storing the dna data, and writing that dna data back to the mob should be here, and ONLY here.
  */
 /datum/dna/proc/ResetUIFrom(var/mob/living/carbon/human/character)
 	// INITIALIZE!
@@ -460,6 +462,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	H.species.species_sounds_male = species_sounds_male
 	H.species.species_sounds_female = species_sounds_female
 	*///TODO End
+
+/**
+ * End of mob to dna, and dna to mob transfer procs.
+ */
 
 // Set a DNA UI block's raw value.
 /datum/dna/proc/SetUIValue(var/block,var/value,var/defer=0)
