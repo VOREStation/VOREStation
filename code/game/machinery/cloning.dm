@@ -403,14 +403,14 @@
 		if(2.0)
 			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(get_turf(src))
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(get_turf(src))
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
