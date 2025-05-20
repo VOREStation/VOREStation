@@ -153,18 +153,18 @@
 			if(pod.efficiency > 5)
 				canpodautoprocess = 1
 
-			var/mob/living/has_occupant = pod.get_occupant()
+			var/mob/living/occupant = pod.get_occupant()
 			var/status = "idle"
 			if(pod.mess)
 				status = "mess"
-			else if(has_occupant && !(pod.stat & NOPOWER))
+			else if(occupant && !(pod.stat & NOPOWER))
 				status = "cloning"
 			tempods.Add(list(list(
 				"pod" = "\ref[pod]",
 				"name" = sanitize(capitalize(pod.name)),
 				"biomass" = pod.get_biomass(),
 				"status" = status,
-				"progress" = (has_occupant && has_occupant.stat != DEAD) ? pod.get_completion() : 0
+				"progress" = (occupant && occupant.stat != DEAD) ? pod.get_completion() : 0
 			)))
 			data["pods"] = tempods
 
@@ -407,8 +407,8 @@
 		return
 
 	for(var/obj/machinery/clonepod/pod in pods)
-		var/mob/living/has_occupant = pod.get_occupant()
-		if(has_occupant && has_occupant.mind == subject.mind)
+		var/mob/living/occupant = pod.get_occupant()
+		if(occupant && occupant.mind == subject.mind)
 			set_scan_temp("Subject already getting cloned.")
 			SStgui.update_uis(src)
 			return

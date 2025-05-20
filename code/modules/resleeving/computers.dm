@@ -148,17 +148,17 @@
 	var/list/clonepods = list()
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		var/status = "idle"
-		var/mob/living/has_occupant = pod.get_occupant()
+		var/mob/living/occupant = pod.get_occupant()
 		if(pod.mess)
 			status = "mess"
-		else if(has_occupant && !(pod.stat & NOPOWER))
+		else if(occupant && !(pod.stat & NOPOWER))
 			status = "cloning"
 		clonepods += list(list(
 			"pod" = REF(pod),
 			"name" = sanitize(capitalize(pod.name)),
 			"biomass" = pod.get_biomass(),
 			"status" = status,
-			"progress" = (has_occupant && has_occupant.stat != DEAD) ? pod.get_completion() : 0
+			"progress" = (occupant && occupant.stat != DEAD) ? pod.get_completion() : 0
 		))
 	data["pods"] = clonepods
 

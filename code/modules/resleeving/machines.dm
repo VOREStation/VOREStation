@@ -59,39 +59,39 @@
 	return 1
 
 /obj/machinery/clonepod/transhuman/process()
-	var/mob/living/has_occupant = get_occupant()
+	var/mob/living/occupant = get_occupant()
 	if(stat & NOPOWER)
-		if(has_occupant)
+		if(occupant)
 			locked = 0
 			go_out()
 		return
 
-	if((has_occupant) && (has_occupant.loc == src))
-		if(has_occupant.stat == DEAD)
+	if((occupant) && (occupant.loc == src))
+		if(occupant.stat == DEAD)
 			locked = 0
 			go_out()
 			connected_message("Clone Rejected: Deceased.")
 			return
 
-		else if(has_occupant.health < heal_level && has_occupant.getCloneLoss() > 0)
+		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
 
 			//Slowly get that clone healed and finished.
-			has_occupant.adjustCloneLoss(-3 * heal_rate)
+			occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
-			has_occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
+			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(has_occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
-				has_occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
+			if(occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
+				occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
 
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
-			has_occupant.adjustOxyLoss(-4)
+			occupant.adjustOxyLoss(-4)
 
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((has_occupant.health == has_occupant.getMaxHealth())) && (!eject_wait))
+		else if(((occupant.health == occupant.getMaxHealth())) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
@@ -99,7 +99,7 @@
 			go_out()
 			return
 
-	else if((!has_occupant) || (has_occupant.loc != src))
+	else if((!occupant) || (occupant.loc != src))
 		set_occupant(null)
 		if(locked)
 			locked = 0
@@ -109,9 +109,9 @@
 	return
 
 /obj/machinery/clonepod/transhuman/get_completion()
-	var/mob/living/has_occupant = get_occupant()
-	if(has_occupant)
-		return 100 * ((has_occupant.health + (has_occupant.getMaxHealth()))) / (has_occupant.getMaxHealth() + abs(has_occupant.getMaxHealth()))
+	var/mob/living/occupant = get_occupant()
+	if(occupant)
+		return 100 * ((occupant.health + (occupant.getMaxHealth()))) / (occupant.getMaxHealth() + abs(occupant.getMaxHealth()))
 	return 0
 
 /obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)
@@ -420,8 +420,8 @@
 	add_fingerprint(user)
 
 /obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null, var/db_key)
-	var/mob/living/carbon/human/has_occupant = get_occupant()
-	if((!has_occupant || !istype(has_occupant) || has_occupant.stat >= DEAD) && mode == 1)
+	var/mob/living/carbon/human/occupant = get_occupant()
+	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
 	if(mode == 2 && sleevecards) //Card sleeving
@@ -433,83 +433,83 @@
 	//If we're sleeving a subtarget, briefly swap them to not need to duplicate tons of code.
 	var/mob/living/carbon/human/original_occupant
 	if(override)
-		original_occupant = has_occupant
-		has_occupant = override
+		original_occupant = occupant
+		occupant = override
 
 	//In case they already had a mind!
-	if(has_occupant && has_occupant.mind)
-		to_chat(has_occupant, span_warning("You feel your mind being overwritten..."))
-		log_and_message_admins("was resleeve-wiped from their body.",has_occupant.mind)
-		has_occupant.ghostize()
+	if(occupant && occupant.mind)
+		to_chat(occupant, span_warning("You feel your mind being overwritten..."))
+		log_and_message_admins("was resleeve-wiped from their body.",occupant.mind)
+		occupant.ghostize()
 
 	//Attach as much stuff as possible to the mob.
 	for(var/datum/language/L in MR.languages)
-		has_occupant.add_language(L.name)
+		occupant.add_language(L.name)
 	MR.mind_ref.active = 1 //Well, it's about to be.
-	MR.mind_ref.transfer_to(has_occupant) //Does mind+ckey+client.
-	has_occupant.identifying_gender = MR.id_gender
-	has_occupant.ooc_notes = MR.mind_oocnotes
-	has_occupant.ooc_notes_likes = MR.mind_ooclikes
-	has_occupant.ooc_notes_dislikes = MR.mind_oocdislikes
-	has_occupant.ooc_notes_favs = MR.mind_oocfavs
-	has_occupant.ooc_notes_maybes = MR.mind_oocmaybes
-	has_occupant.ooc_notes_style = MR.mind_oocstyle
+	MR.mind_ref.transfer_to(occupant) //Does mind+ckey+client.
+	occupant.identifying_gender = MR.id_gender
+	occupant.ooc_notes = MR.mind_oocnotes
+	occupant.ooc_notes_likes = MR.mind_ooclikes
+	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
+	occupant.ooc_notes_favs = MR.mind_oocfavs
+	occupant.ooc_notes_maybes = MR.mind_oocmaybes
+	occupant.ooc_notes_style = MR.mind_oocstyle
 
-	has_occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
+	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)
 		var/how_long = round((world.time - MR.last_update)/10/60)
-		to_chat(has_occupant, span_danger("Your mind backup was a 'one-time' backup. \
+		to_chat(occupant, span_danger("Your mind backup was a 'one-time' backup. \
 		You will not be able to remember anything since the backup, [how_long] minutes ago."))
 
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
-		var/obj/item/nif/nif = new MR.nif_path(has_occupant,null,MR.nif_savedata)
+		var/obj/item/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
 		spawn(0)			//Delay to not install software before NIF is fully installed
 			for(var/path in MR.nif_software)
 				new path(nif)
 		nif.durability = MR.nif_durability //Restore backed up durability after restoring the softs.
 
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
-	if(!has_occupant.original_player)
-		has_occupant.real_name = has_occupant.mind.name
-		has_occupant.name = has_occupant.real_name
-		has_occupant.dna.real_name = has_occupant.real_name
+	if(!occupant.original_player)
+		occupant.real_name = occupant.mind.name
+		occupant.name = occupant.real_name
+		occupant.dna.real_name = occupant.real_name
 
 	//Give them a backup implant
 	var/obj/item/implant/backup/new_imp = new()
-	if(new_imp.handle_implant(has_occupant, BP_HEAD))
-		new_imp.post_implant(has_occupant)
+	if(new_imp.handle_implant(occupant, BP_HEAD))
+		new_imp.post_implant(occupant)
 
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)
-		to_chat(has_occupant, span_notice("You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however."))
+		to_chat(occupant, span_notice("You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however."))
 	else
-		to_chat(has_occupant, span_warning("You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least."))
+		to_chat(occupant, span_warning("You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least."))
 
-	has_occupant.confused = max(has_occupant.confused, confuse_amount)									// Apply immedeate effects
-	has_occupant.eye_blurry = max(has_occupant.eye_blurry, blur_amount)
+	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
+	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
 	// Vore deaths get a fake modifier labeled as such
-	if(!has_occupant.mind)
-		log_debug("[has_occupant] didn't have a mind to check for vore_death, which may be problematic.")
+	if(!occupant.mind)
+		log_debug("[occupant] didn't have a mind to check for vore_death, which may be problematic.")
 
-	if(has_occupant.mind && has_occupant.original_player && ckey(has_occupant.mind.key) != has_occupant.original_player)
-		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [has_occupant.real_name]. Mind is now [has_occupant.mind.name].",has_occupant)
+	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
+		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
 
 	if(original_occupant)
-		has_occupant = original_occupant
+		occupant = original_occupant
 
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1) // Play our sound at the end of the mind injection!
 	return 1
 
 /obj/machinery/transhuman/resleever/proc/go_out(var/mob/M)
-	var/mob/living/carbon/human/has_occupant = get_occupant()
-	if(!has_occupant)
+	var/mob/living/carbon/human/occupant = get_occupant()
+	if(!occupant)
 		return
-	if (has_occupant.client)
-		has_occupant.client.eye = has_occupant.client.mob
-		has_occupant.client.perspective = MOB_PERSPECTIVE
-	has_occupant.forceMove(get_turf(src))
+	if (occupant.client)
+		occupant.client.eye = occupant.client.mob
+		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.forceMove(get_turf(src))
 	set_occupant(null)
 	icon_state = "implantchair"
 	return
