@@ -132,17 +132,19 @@
 				displayed_options += VPANEL_BELLYMODE_TAB
 			if(selected.message_mode || selected.emote_active)
 				displayed_options += VPANEL_IDLE_TAB
+			if(selected.message_mode || selected.show_fullness_messages)
+				displayed_options += VPANEL_LIQUIDS_TAB
 
 			var/list/belly_description_data = list(
 				"displayed_message_types" = compile_message_data(selected),
 				"verb" = selected.vore_verb,
 				"release_verb" = selected.release_verb,
 				"message_mode" = selected.message_mode,
-				"display_absorbed_examine" = selected.display_absorbed_examine,
 				"displayed_options" = displayed_options,
 				"message_option" = message_option,
 				"message_subtab" = message_subtab,
 				"selected_message" = selected_message,
+				"show_liq_fullness" = selected.show_fullness_messages,
 				"emote_time" = selected.emote_time,
 				"emote_active" = selected.emote_active,
 			)
@@ -342,20 +344,6 @@
 			selected_list["liq_interacts"]["custom_ingested_color"] = selected.custom_ingested_color ? selected.custom_ingested_color : "#3f6088"
 			selected_list["liq_interacts"]["custom_ingested_alpha"] = selected.custom_ingested_alpha
 
-		selected_list["show_liq_fullness"] = selected.show_fullness_messages
-		selected_list["liq_messages"] = list()
-		if(selected.show_fullness_messages)
-			selected_list["liq_messages"]["liq_msg_toggle1"] = selected.liquid_fullness1_messages
-			selected_list["liq_messages"]["liq_msg_toggle2"] = selected.liquid_fullness2_messages
-			selected_list["liq_messages"]["liq_msg_toggle3"] = selected.liquid_fullness3_messages
-			selected_list["liq_messages"]["liq_msg_toggle4"] = selected.liquid_fullness4_messages
-			selected_list["liq_messages"]["liq_msg_toggle5"] = selected.liquid_fullness5_messages
-
-			selected_list["liq_messages"]["liq_msg1"] = selected.liquid_fullness1_messages
-			selected_list["liq_messages"]["liq_msg2"] = selected.liquid_fullness2_messages
-			selected_list["liq_messages"]["liq_msg3"] = selected.liquid_fullness3_messages
-			selected_list["liq_messages"]["liq_msg4"] = selected.liquid_fullness4_messages
-			selected_list["liq_messages"]["liq_msg5"] = selected.liquid_fullness5_messages
 	return selected_list
 
 #undef CONTROL_TAB

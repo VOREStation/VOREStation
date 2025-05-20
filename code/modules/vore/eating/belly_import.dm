@@ -1154,29 +1154,29 @@
 				new_belly.liquid_fullness5_messages = TRUE
 
 		if(islist(belly_data["fullness1_messages"]))
-			var/new_fullness1_messages = sanitize(jointext(belly_data["fullness1_messages"],"\n\n"),MAX_MESSAGE_LEN,0,0,0)
+			var/new_fullness1_messages = sanitize(jointext(belly_data["fullness1_messages"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_fullness1_messages)
-				new_belly.set_reagent_messages(new_fullness1_messages,"full1")
+				new_belly.set_messages(new_fullness1_messages,BELLY_LIQUID_MESSAGE1, limit = BELLIES_MESSAGE_MAX)
 
 		if(islist(belly_data["fullness2_messages"]))
-			var/new_fullness2_messages = sanitize(jointext(belly_data["fullness2_messages"],"\n\n"),MAX_MESSAGE_LEN,0,0,0)
+			var/new_fullness2_messages = sanitize(jointext(belly_data["fullness2_messages"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_fullness2_messages)
-				new_belly.set_reagent_messages(new_fullness2_messages,"full2")
+				new_belly.set_messages(new_fullness2_messages,BELLY_LIQUID_MESSAGE2, limit = BELLIES_MESSAGE_MAX)
 
 		if(islist(belly_data["fullness3_messages"]))
-			var/new_fullness3_messages = sanitize(jointext(belly_data["fullness3_messages"],"\n\n"),MAX_MESSAGE_LEN,0,0,0)
+			var/new_fullness3_messages = sanitize(jointext(belly_data["fullness3_messages"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_fullness3_messages)
-				new_belly.set_reagent_messages(new_fullness3_messages,"full3")
+				new_belly.set_messages(new_fullness3_messages,BELLY_LIQUID_MESSAGE3, limit = BELLIES_MESSAGE_MAX)
 
 		if(islist(belly_data["fullness4_messages"]))
-			var/new_fullness4_messages = sanitize(jointext(belly_data["fullness4_messages"],"\n\n"),MAX_MESSAGE_LEN,0,0,0)
+			var/new_fullness4_messages = sanitize(jointext(belly_data["fullness4_messages"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_fullness4_messages)
-				new_belly.set_reagent_messages(new_fullness4_messages,"full4")
+				new_belly.set_messages(new_fullness4_messages,BELLY_LIQUID_MESSAGE4, limit = BELLIES_MESSAGE_MAX)
 
 		if(islist(belly_data["fullness5_messages"]))
-			var/new_fullness5_messages = sanitize(jointext(belly_data["fullness5_messages"],"\n\n"),MAX_MESSAGE_LEN,0,0,0)
+			var/new_fullness5_messages = sanitize(jointext(belly_data["fullness5_messages"],"\n\n"),BELLIES_MESSAGE_COMBINED,0,0,0)
 			if(new_fullness5_messages)
-				new_belly.set_reagent_messages(new_fullness5_messages,"full5")
+				new_belly.set_messages(new_fullness5_messages,BELLY_LIQUID_MESSAGE5, limit = BELLIES_MESSAGE_MAX)
 
 		// After import updates
 		new_belly.items_preserved.Cut()

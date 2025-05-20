@@ -485,8 +485,6 @@
 		// liquid belly code
 		if("liq_set_attribute")
 			return liq_set_attr(ui.user, params)
-		if("liq_set_messages")
-			return liq_set_msg(ui.user, params)
 		if("toggle_liq_rec")
 			host.receive_reagents = !host.receive_reagents
 			if(host.client.prefs_vr)
@@ -1600,6 +1598,12 @@
 								if(new_message)
 									host.weight_messages[index] = new_message
 
+				if(BELLY_TRASH_EATER_IN)
+					host.vore_selected.set_messages(params["val"], BELLY_TRASH_EATER_IN, limit = BELLIES_MESSAGE_MAX)
+
+				if(BELLY_TRASH_EATER_OUT)
+					host.vore_selected.set_messages(params["val"], BELLY_TRASH_EATER_OUT, limit = BELLIES_MESSAGE_MAX)
+
 				if(BELLY_MODE_DIGEST)
 					host.vore_selected.set_messages(params["val"], BELLY_MODE_DIGEST, limit = BELLIES_IDLE_MAX)
 
@@ -1632,6 +1636,21 @@
 
 				if(BELLY_MODE_UNABSORB)
 					host.vore_selected.set_messages(params["val"], BELLY_MODE_UNABSORB, limit = BELLIES_IDLE_MAX)
+
+				if(BELLY_LIQUID_MESSAGE1)
+					host.vore_selected.set_messages(params["val"], BELLY_LIQUID_MESSAGE1, limit = BELLIES_MESSAGE_MAX)
+
+				if(BELLY_LIQUID_MESSAGE2)
+					host.vore_selected.set_messages(params["val"], BELLY_LIQUID_MESSAGE2, limit = BELLIES_MESSAGE_MAX)
+
+				if(BELLY_LIQUID_MESSAGE3)
+					host.vore_selected.set_messages(params["val"], BELLY_LIQUID_MESSAGE3, limit = BELLIES_MESSAGE_MAX)
+
+				if(BELLY_LIQUID_MESSAGE4)
+					host.vore_selected.set_messages(params["val"], BELLY_LIQUID_MESSAGE4, limit = BELLIES_MESSAGE_MAX)
+
+				if(BELLY_LIQUID_MESSAGE5)
+					host.vore_selected.set_messages(params["val"], BELLY_LIQUID_MESSAGE5, limit = BELLIES_MESSAGE_MAX)
 
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
@@ -1682,6 +1701,11 @@
 					host.vore_selected.emote_lists = default_belly.emote_lists.Copy()
 					host.vore_selected.trash_eater_in = default_belly.trash_eater_in.Copy()
 					host.vore_selected.trash_eater_out = default_belly.trash_eater_out.Copy()
+					host.vore_selected.liquid_fullness1_messages = default_belly.fullness1_messages.Copy()
+					host.vore_selected.liquid_fullness2_messages = default_belly.fullness2_messages.Copy()
+					host.vore_selected.liquid_fullness3_messages = default_belly.fullness3_messages.Copy()
+					host.vore_selected.liquid_fullness4_messages = default_belly.fullness4_messages.Copy()
+					host.vore_selected.liquid_fullness5_messages = default_belly.fullness5_messages.Copy()
 					qdel(default_belly)
 			. = TRUE
 		if("b_verb")
@@ -2336,19 +2360,29 @@
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay2 = newcolor
 			. = TRUE
-		if("b_trasheater")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' AND '%item will be replaced with the item's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
-			switch(params["msgtype"])
-				if("in")
-					var/new_message = sanitize(tgui_input_text(user,"This is sent upon eating anything with the trash eater perk. Write them in 3rd person ('%pred demonstrates their voracious capabilities by swallowing %item whole!') Try to keep it brief!"+help,"Trash Eater Insert",host.vore_selected.get_messages(BELLY_TRASH_EATER_IN), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_IN, limit = BELLIES_MESSAGE_MAX)
-						. = TRUE
-				if("out")
-					var/new_message = sanitize(tgui_input_text(user,"This is sent upon expeling any item in your belly. Write them in 3rd person ('%pred expels %item from their %belly!') Try to keep it brief!"+help,"Item Expel",host.vore_selected.get_messages(BELLY_TRASH_EATER_OUT), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
-					if(new_message)
-						host.vore_selected.set_messages(new_message,BELLY_TRASH_EATER_OUT, limit = BELLIES_MESSAGE_MAX)
-						. = TRUE
+		if("b_show_liq_fullness")
+			if(!host.vore_selected.show_fullness_messages)
+				host.vore_selected.show_fullness_messages = 1
+				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] now has liquid examination options."))
+			else
+				host.vore_selected.show_fullness_messages = 0
+				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] no longer has liquid examination options."))
+			. = TRUE
+		if("b_liq_msg_toggle1")
+			host.vore_selected.liquid_fullness1_messages = !host.vore_selected.liquid_fullness1_messages
+			. = TRUE
+		if("b_liq_msg_toggle2")
+			host.vore_selected.liquid_fullness2_messages = !host.vore_selected.liquid_fullness2_messages
+			. = TRUE
+		if("b_liq_msg_toggle3")
+			host.vore_selected.liquid_fullness3_messages = !host.vore_selected.liquid_fullness3_messages
+			. = TRUE
+		if("b_liq_msg_toggle4")
+			host.vore_selected.liquid_fullness4_messages = !host.vore_selected.liquid_fullness4_messages
+			. = TRUE
+		if("b_liq_msg_toggle5")
+			host.vore_selected.liquid_fullness5_messages = !host.vore_selected.liquid_fullness5_messages
+			. = TRUE
 
 	if(.)
 		unsaved_changes = TRUE
@@ -2576,79 +2610,6 @@
 				return FALSE
 			else
 				host.vore_selected.reagents.clear_reagents()
-			. = TRUE
-	if(.)
-		unsaved_changes = TRUE
-
-/datum/vore_look/proc/liq_set_msg(mob/user, params)
-	if(!host.vore_selected)
-		tgui_alert(user, "No belly selected to modify.")
-		return FALSE
-
-	var/attr = params["liq_messages"]
-	switch(attr)
-		if("b_show_liq_fullness")
-			if(!host.vore_selected.show_fullness_messages)
-				host.vore_selected.show_fullness_messages = 1
-				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] now has liquid examination options."))
-			else
-				host.vore_selected.show_fullness_messages = 0
-				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] no longer has liquid examination options."))
-			. = TRUE
-		if("b_liq_msg_toggle1")
-			host.vore_selected.liquid_fullness1_messages = !host.vore_selected.liquid_fullness1_messages
-			. = TRUE
-		if("b_liq_msg_toggle2")
-			host.vore_selected.liquid_fullness2_messages = !host.vore_selected.liquid_fullness2_messages
-			. = TRUE
-		if("b_liq_msg_toggle3")
-			host.vore_selected.liquid_fullness3_messages = !host.vore_selected.liquid_fullness3_messages
-			. = TRUE
-		if("b_liq_msg_toggle4")
-			host.vore_selected.liquid_fullness4_messages = !host.vore_selected.liquid_fullness4_messages
-			. = TRUE
-		if("b_liq_msg_toggle5")
-			host.vore_selected.liquid_fullness5_messages = !host.vore_selected.liquid_fullness5_messages
-			. = TRUE
-		if("b_liq_msg1")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
-
-			var/new_message = tgui_input_text(user,"These are sent to people who examine you when this belly is 0 to 20% full. Write them in 3rd person ('Their %belly is bulging')."+help,"Liquid Examine Message (0 - 20%)",host.vore_selected.get_reagent_messages("full1"))
-			if(new_message)
-				host.vore_selected.set_reagent_messages(new_message,"full1")
-			. = TRUE
-		if("b_liq_msg2")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
-
-			var/new_message = tgui_input_text(user,"These are sent to people who examine you when this belly is 20 to 40% full. Write them in 3rd person ('Their %belly is bulging')."+help,"Liquid Examine Message (20 - 40%)",host.vore_selected.get_reagent_messages("full2"))
-			if(new_message)
-				host.vore_selected.set_reagent_messages(new_message,"full2")
-			. = TRUE
-		if("b_liq_msg3")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
-
-			var/new_message = tgui_input_text(user,"These are sent to people who examine you when this belly is 40 to 60% full. Write them in 3rd person ('Their %belly is bulging')."+help,"Liquid Examine Message (40 - 60%)",host.vore_selected.get_reagent_messages("full3"))
-			if(new_message)
-				host.vore_selected.set_reagent_messages(new_message,"full3")
-			. = TRUE
-		if("b_liq_msg4")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
-
-			var/new_message = tgui_input_text(user,"These are sent to people who examine you when this belly is 60 to 80% full. Write them in 3rd person ('Their %belly is bulging')."+help,"Liquid Examine Message (60 - 80%)",host.vore_selected.get_reagent_messages("full4"))
-			if(new_message)
-				host.vore_selected.set_reagent_messages(new_message,"full4")
-			. = TRUE
-		if("b_liq_msg5")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
-
-			var/new_message = tgui_input_text(user,"These are sent to people who examine you when this belly is 80 to 100% full. Write them in 3rd person ('Their %belly is bulging')."+help,"Liquid Examine Message (80 - 100%)",host.vore_selected.get_reagent_messages("full5"))
-			if(new_message)
-				host.vore_selected.set_reagent_messages(new_message,"full5")
 			. = TRUE
 	if(.)
 		unsaved_changes = TRUE

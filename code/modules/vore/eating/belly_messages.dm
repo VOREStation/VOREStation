@@ -396,6 +396,16 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = trash_eater_in
 		if(BELLY_TRASH_EATER_OUT)
 			raw_messages = trash_eater_out
+		if(BELLY_LIQUID_MESSAGE1)
+			raw_messages = fullness1_messages
+		if(BELLY_LIQUID_MESSAGE2)
+			raw_messages = fullness2_messages
+		if(BELLY_LIQUID_MESSAGE3)
+			raw_messages = fullness3_messages
+		if(BELLY_LIQUID_MESSAGE4)
+			raw_messages = fullness4_messages
+		if(BELLY_LIQUID_MESSAGE5)
+			raw_messages = fullness5_messages
 
 	var/messages = null
 	if(raw_messages)
@@ -554,3 +564,13 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			trash_eater_in = raw_list
 		if(BELLY_TRASH_EATER_OUT)
 			trash_eater_out = raw_list
+		if(BELLY_LIQUID_MESSAGE1)
+			fullness1_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE2)
+			fullness2_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE3)
+			fullness3_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE4)
+			fullness4_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE5)
+			fullness5_messages = raw_list

@@ -27,6 +27,11 @@
 #define SHRINK_MESSAGE  "Shrink"
 #define GROW_MESSAGE  "Grow"
 #define UNABSORB_MESSAGE  "Unabsorb"
+#define LIQUID0 "Liquid 0-20%"
+#define LIQUID20 "Liquid 20-40%"
+#define LIQUID40 "Liquid 40-60%"
+#define LIQUID60 "Liquid 60-80%"
+#define LIQUID80 "Liquid 80-100%"
 
 /datum/vore_look/proc/compile_message_data(obj/belly/selected)
 	if(message_option == VPANEL_DESCRIPTION_TAB)
@@ -46,6 +51,10 @@
 			tab_data["active_message"] = selected.absorbed_desc
 			tab_data["set_action"] = BELLY_DESCRIPTION_MESSAGE_ABSROED
 			tab_data["tooltip"] = "Displayed to prey after absorption."
+			tab_data["button_label"] = "Display Absorbed Examine"
+			tab_data["button_action"] = "b_display_absorbed_examine"
+			tab_data["button_data"] = selected.display_absorbed_examine
+			tab_data["button_tooltip"] = "the absorbed description on examine." // those will automatically be preceeded by Enables / Disables!
 		return tab_data
 
 	if(message_option == VPANEL_EXAMINE_TAB)
@@ -547,6 +556,63 @@
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_UNABSORB])
 			tab_data["set_action"] = BELLY_MODE_UNABSORB
 			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting unabsorbed."
+		return tab_data
+
+	if(message_option == VPANEL_LIQUIDS_TAB)
+		var/list/tab_data = list(
+			"possible_messages" = list(LIQUID0, LIQUID20, LIQUID40, LIQUID60, LIQUID80)
+			)
+		if(!selected_message)
+			selected_message = LIQUID0
+		if(selected_message == LIQUID0)
+			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["active_message"] = SANITIZE_LIST(selected.fullness1_messages)
+			tab_data["set_action"] = BELLY_LIQUID_MESSAGE1
+			tab_data["tooltip"] = "Displayed on examine when the belly contains 0 to 20% of liquids."
+			tab_data["button_label"] = "Display Fullness 0-20%"
+			tab_data["button_action"] = "b_liq_msg_toggle1"
+			tab_data["button_data"] = selected.liquid_fullness1_messages
+			tab_data["button_tooltip"] = "the 0-20% examine description." // those will automatically be preceeded by Enables / Disables!
+			return tab_data
+		if(selected_message == LIQUID20)
+			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["active_message"] = SANITIZE_LIST(selected.fullness2_messages)
+			tab_data["set_action"] = BELLY_LIQUID_MESSAGE2
+			tab_data["tooltip"] = "Displayed on examine when the belly contains 20 to 40% of liquids."
+			tab_data["button_label"] = "Display Fullness 20-40%"
+			tab_data["button_action"] = "b_liq_msg_toggle2"
+			tab_data["button_data"] = selected.liquid_fullness2_messages
+			tab_data["button_tooltip"] = "the 20-40% examine description." // those will automatically be preceeded by Enables / Disables!
+			return tab_data
+		if(selected_message == LIQUID40)
+			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["active_message"] = SANITIZE_LIST(selected.fullness3_messages)
+			tab_data["set_action"] = BELLY_LIQUID_MESSAGE3
+			tab_data["tooltip"] = "Displayed on examine when the belly contains 40 to 60% of liquids."
+			tab_data["button_label"] = "Display Fullness 40-60%"
+			tab_data["button_action"] = "b_liq_msg_toggle3"
+			tab_data["button_data"] = selected.liquid_fullness3_messages
+			tab_data["button_tooltip"] = "the 40-60% examine description." // those will automatically be preceeded by Enables / Disables!
+			return tab_data
+		if(selected_message == LIQUID60)
+			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["active_message"] = SANITIZE_LIST(selected.fullness4_messages)
+			tab_data["set_action"] = BELLY_LIQUID_MESSAGE4
+			tab_data["tooltip"] = "Displayed on examine when the belly contains 60 to 80% of liquids."
+			tab_data["button_label"] = "Display Fullness 60-80%"
+			tab_data["button_action"] = "b_liq_msg_toggle4"
+			tab_data["button_data"] = selected.liquid_fullness4_messages
+			tab_data["button_tooltip"] = "the 60-80% examine description." // those will automatically be preceeded by Enables / Disables!
+			return tab_data
+		if(selected_message == LIQUID80)
+			tab_data["max_length"] = BELLIES_MESSAGE_MAX
+			tab_data["active_message"] = SANITIZE_LIST(selected.fullness5_messages)
+			tab_data["set_action"] = BELLY_LIQUID_MESSAGE5
+			tab_data["tooltip"] = "Displayed on examine when the belly contains 80 to 100% of liquids."
+			tab_data["button_label"] = "Display Fullness 80-100%"
+			tab_data["button_action"] = "b_liq_msg_toggle5"
+			tab_data["button_data"] = selected.liquid_fullness5_messages
+			tab_data["button_tooltip"] = "the 80-100% examine description." // those will automatically be preceeded by Enables / Disables!
 		return tab_data
 
 

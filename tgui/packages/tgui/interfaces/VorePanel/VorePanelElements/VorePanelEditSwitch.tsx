@@ -24,11 +24,11 @@ export const VorePanelEditSwitch = (props: {
       icon={active ? 'toggle-on' : 'toggle-off'}
       selected={active}
     >
-      {active ? 'True' : 'False'}
+      {content ? content : active ? 'Enabled' : 'Disabled'}
     </Button>
   ) : (
     <Box textColor={active ? 'green' : 'red'}>
-      {content ? content : active ? 'True' : 'False'}
+      {content ? content : active ? 'Enabled' : 'Disabled'}
     </Box>
   );
 };

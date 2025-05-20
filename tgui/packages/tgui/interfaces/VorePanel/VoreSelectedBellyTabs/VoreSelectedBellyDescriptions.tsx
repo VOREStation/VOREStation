@@ -29,7 +29,7 @@ export const VoreSelectedBellyDescriptions = (props: {
     message_mode,
     emote_active,
     emote_time,
-    display_absorbed_examine,
+    show_liq_fullness,
   } = bellyDescriptionData;
 
   return (
@@ -111,18 +111,6 @@ export const VoreSelectedBellyDescriptions = (props: {
               />
             </LabeledList.Item>
             <LabeledList.Divider />
-            <LabeledList.Item label="Display Absorbed Examines">
-              <VorePanelEditSwitch
-                action="set_attribute"
-                subAction="b_display_absorbed_examine"
-                editMode={editMode}
-                active={!!display_absorbed_examine}
-                tooltip={
-                  (display_absorbed_examine ? 'Dis' : 'En') +
-                  'ables the absorbed description on examine.'
-                }
-              />
-            </LabeledList.Item>
             <LabeledList.Item label="Idle Emotes">
               <VorePanelEditSwitch
                 action="set_attribute"
@@ -146,8 +134,22 @@ export const VoreSelectedBellyDescriptions = (props: {
                 step={1}
               />
             </LabeledList.Item>
+            <LabeledList.Item label="Liquid Fullness Examines">
+              <VorePanelEditSwitch
+                action="set_attribute"
+                subAction="b_show_liq_fullness"
+                editMode={editMode}
+                active={!!show_liq_fullness}
+                content={show_liq_fullness ? 'Active' : 'Inactive'}
+                tooltip={
+                  (show_liq_fullness ? 'Dis' : 'En') +
+                  'ables liquid fullness examine messages.'
+                }
+              />
+            </LabeledList.Item>
           </LabeledList>
         </Stack.Item>
+        <Stack.Divider />
         <Stack.Item grow>
           <VoreSelectedBellyDescriptionMatrix
             showAll={message_mode}

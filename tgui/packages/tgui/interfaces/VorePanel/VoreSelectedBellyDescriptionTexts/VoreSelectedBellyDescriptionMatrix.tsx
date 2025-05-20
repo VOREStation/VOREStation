@@ -1,9 +1,16 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack, Tabs } from 'tgui-core/components';
+import {
+  Button,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 import { type BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../constants';
 import type { bellyDescriptionData } from '../types';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { VorePanelEditTextArea } from '../VorePanelElements/VorePanelTextArea';
 
 export const VoreSelectedBellyDescriptionMatrix = (props: {
@@ -152,15 +159,42 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
             </Stack.Item>
             <Stack.Item grow>
               {!!selected_message && !!displayed_message_types && (
-                <VorePanelEditTextArea
-                  editMode={editMode}
-                  tooltip={displayed_message_types.tooltip}
-                  limit={displayed_message_types.max_length}
-                  entry={displayed_message_types.active_message || ''}
-                  action={'set_attribute'}
-                  listAction={'b_msgs'}
-                  subAction={displayed_message_types.set_action}
-                />
+                <Stack vertical fill>
+                  {!!displayed_message_types.button_action && (
+                    <Stack.Item mb="10px">
+                      <LabeledList>
+                        <LabeledList.Item
+                          label={displayed_message_types.button_label}
+                        >
+                          <VorePanelEditSwitch
+                            action="set_attribute"
+                            subAction={displayed_message_types.button_action}
+                            editMode={editMode}
+                            active={!!displayed_message_types.button_data}
+                            tooltip={
+                              (displayed_message_types.button_data
+                                ? 'Dis'
+                                : 'En') +
+                              'ables ' +
+                              displayed_message_types.button_tooltip
+                            }
+                          />
+                        </LabeledList.Item>
+                      </LabeledList>
+                    </Stack.Item>
+                  )}
+                  <Stack.Item grow>
+                    <VorePanelEditTextArea
+                      editMode={editMode}
+                      tooltip={displayed_message_types.tooltip}
+                      limit={displayed_message_types.max_length}
+                      entry={displayed_message_types.active_message || ''}
+                      action={'set_attribute'}
+                      listAction={'b_msgs'}
+                      subAction={displayed_message_types.set_action}
+                    />
+                  </Stack.Item>
+                </Stack>
               )}
             </Stack.Item>
           </Stack>

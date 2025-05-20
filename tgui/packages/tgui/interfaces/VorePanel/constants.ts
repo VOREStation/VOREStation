@@ -69,7 +69,6 @@ export const tabToNames = [
   'Interationc',
   'Contents',
   'Liquid Options',
-  'Liquid Messages',
 ];
 
 export const modeToTooltip = {
@@ -97,4 +96,5 @@ export const messageTabLabel = [
   'Interaction Chance',
   'Bellymode',
   'Idle',
+  'Liquids',
 ];

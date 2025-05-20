@@ -8,7 +8,6 @@ import { VoreContentsPanel } from './VoreContentsPanel';
 import { VoreSelectedBellyControls } from './VoreSelectedBellyTabs/VoreSelectedBellyControls';
 import { VoreSelectedBellyDescriptions } from './VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
 import { VoreSelectedBellyInteractions } from './VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
-import { VoreSelectedBellyLiquidMessages } from './VoreSelectedBellyTabs/VoreSelectedBellyLiquidMessages';
 import { VoreSelectedBellyLiquidOptions } from './VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';
 import { VoreSelectedBellyOptions } from './VoreSelectedBellyTabs/VoreSelectedBellyOptions';
 import { VoreSelectedBellySounds } from './VoreSelectedBellyTabs/VoreSelectedBellySounds';
@@ -78,7 +77,6 @@ export const VoreSelectedBelly = (props: {
     />
   );
   tabs[7] = <VoreSelectedBellyLiquidOptions belly={belly} />;
-  tabs[8] = <VoreSelectedBellyLiquidMessages belly={belly} />;
 
   return (
     <Stack vertical fill>

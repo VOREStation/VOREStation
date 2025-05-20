@@ -79,11 +79,11 @@ export type bellyDescriptionData = {
   message_mode: BooleanLike;
   displayed_options: number[];
   message_option: number;
-  display_absorbed_examine: BooleanLike;
   message_subtab: string;
   selected_message: string;
   emote_time: number;
   emote_active: BooleanLike;
+  show_liq_fullness: BooleanLike;
   displayed_message_types: {
     subtypes?: string[];
     possible_messages?: string[] | null;
@@ -91,6 +91,10 @@ export type bellyDescriptionData = {
     set_action: string;
     tooltip: string;
     active_message: string | string[] | null;
+    button_action?: string;
+    button_data?: BooleanLike;
+    button_label?: string;
+    button_tooltip?: string;
   } | null;
 };
 
