@@ -99,4 +99,8 @@ export const messageTabLabel = [
   'Liquids',
 ];
 
-export const eatingMessagePrivacy = ['default', 'subtle', 'loud'];
+export const eatingMessagePrivacy = {
+  default: undefined,
+  subtle: 'green',
+  loud: 'red',
+};

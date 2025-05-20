@@ -112,6 +112,7 @@ export const VoreSelectedBellyOptions = (props: {
                   entry={contaminate_flavor ? contaminate_flavor : ''}
                   action="set_attribute"
                   subAction="b_contamination_flavor"
+                  tooltip="The flavour of your item contamination."
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Contamination Color">
@@ -123,6 +124,7 @@ export const VoreSelectedBellyOptions = (props: {
                       entry={contaminate_color ? contaminate_color : ''}
                       action="set_attribute"
                       subAction="b_contamination_color"
+                      tooltip="The color overlay of your item contamination."
                     />
                   </Stack.Item>
                   {!editMode && (
@@ -169,10 +171,12 @@ export const VoreSelectedBellyOptions = (props: {
           <LabeledList.Item label="Toggle Vore Privacy">
             <VorePanelEditDropdown
               editMode={editMode}
-              options={eatingMessagePrivacy}
-              entry={eating_privacy_local ? eating_privacy_local : ''}
+              options={Object.keys(eatingMessagePrivacy)}
+              entry={eating_privacy_local}
               action="set_attribute"
               subAction="b_eating_privacy"
+              color={eatingMessagePrivacy[eating_privacy_local]}
+              tooltip="Allows to override the global audible range of your attempt and success messages for this belly."
             />
           </LabeledList.Item>
           <LabeledList.Item label="Toggle Struggle Privacy">

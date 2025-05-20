@@ -65,6 +65,7 @@ export const VoreSelectedBellyControls = (props: {
           action={'set_attribute'}
           subAction={'b_mode'}
           color={digestModeToColor[mode]}
+          tooltip="The digest mode which will be applied for prey."
         />
       </LabeledList.Item>
       <LabeledList.Item label="Mode Addons">
@@ -84,6 +85,7 @@ export const VoreSelectedBellyControls = (props: {
           action={'set_attribute'}
           subAction={'b_item_mode'}
           color={digestModeToColor[item_mode]}
+          tooltip="The digest mode which will be applied for items."
         />
       </LabeledList.Item>
       {editMode && (
