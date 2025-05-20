@@ -60,7 +60,7 @@
 	cam_screen.name = "screen"
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
+	cam_screen.screen_loc = "[map_name]:3:-32,3:-48"
 
 	cam_plane_masters = get_tgui_plane_masters()
 
@@ -82,6 +82,13 @@
 	check_whitelist = check_species_whitelist
 	whitelist = species_whitelist
 	blacklist = species_blacklist
+
+/datum/tgui_module/appearance_changer/proc/jiggle_map()
+    // Fix for weird byond bug, jiggles the map around a little
+    sleep(0.1 SECONDS)
+    cam_screen.screen_loc = "[map_name]:1,1"
+    sleep(0.1 SECONDS)
+    cam_screen.screen_loc = "[map_name]:3:-32,3:-48" // Align for larger icons and scales
 
 /datum/tgui_module/appearance_changer/tgui_close(mob/user)
 	. = ..()
@@ -1097,52 +1104,10 @@
 	if(owner)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 		qdel_null(owner)
-	//Get the DNA and generate a new mob
-	var/datum/dna2/record/R = current_project.mydna
-	owner = new /mob/living/carbon/human(src, R.dna.species)
-	//Fix the external organs
-	for(var/part in current_project.limb_data)
-		var/status = current_project.limb_data[part]
-		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-		var/obj/item/organ/external/O = owner.organs_by_name[part]
-		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
-		if(status == 1) //Normal limbs
-			continue
-		else if(status == 0) //Missing limbs
-			O.remove_rejuv()
-		else if(status) //Anything else is a manufacturer
-			O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
-	for(var/part in current_project.organ_data)
-		var/status = current_project.organ_data[part]
-		if(status == null) continue //Species doesn't have organ? Child of missing part?
-		var/obj/item/organ/I = owner.internal_organs_by_name[part]
-		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
-		if(status == 0) //Normal organ
-			continue
-		else if(status == 1) //Assisted organ
-			I.mechassist()
-		else if(status == 2) //Mechanical organ
-			I.robotize()
-		else if(status == 3) //Digital organ
-			I.digitize()
-	//Set the name or generate one
-	owner.real_name = R.dna.real_name
-	owner.name = owner.real_name
-	//Apply DNA
-	owner.dna = R.dna.Clone()
-	owner.original_player = current_project.ckey
-	//Apply legs
-	owner.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(owner.dna.digitigrade <> R.dna.digitigrade)
-		owner.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
-	//Update appearance, remake icons
-	owner.UpdateAppearance()
-	owner.sync_dna_traits(FALSE)
-	owner.sync_organ_dna()
-	owner.initialize_vessel()
-	owner.dna.blood_reagents = R.dna.blood_reagents
-	owner.dna.blood_color = R.dna.blood_color
-	owner.regenerate_icons()
+	owner = current_project.produce_human_mob(src,FALSE,FALSE,"Designer [rand(999)]")
+	// Update some specifics from the current record
+	owner.dna.blood_reagents = current_project.mydna.dna.blood_reagents
+	owner.dna.blood_color = current_project.mydna.dna.blood_color
 	owner.flavor_texts = current_project.mydna.flavor.Copy()
 	owner.resize(current_project.sizemult, FALSE)
 	owner.appearance_flags = current_project.aflags

@@ -256,6 +256,7 @@
 	if(!mydna.dna.real_name)
 		mydna.dna.real_name = backup_name
 	H.real_name = mydna.dna.real_name
+	H.name = H.real_name
 	H.descriptors = mydna.body_descriptors ? mydna.body_descriptors.Copy() : null
 	for(var/datum/language/L in mydna.languages)
 		H.add_language(L.name)
