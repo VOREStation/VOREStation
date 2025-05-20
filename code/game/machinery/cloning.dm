@@ -34,7 +34,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(access_genetics) // For premature unlocking.
-	var/mob/living/occupant
+	VAR_PRIVATE/datum/weakref/weakref_occupant = null
 	var/heal_level = 20				// The clone is released once its health reaches this level.
 	var/heal_rate = 1
 	var/locked = 0
@@ -54,16 +54,29 @@
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!L)
+		weakref_occupant = null
+		return
+	weakref_occupant = WEAKREF(L)
+
+/obj/machinery/clonepod/proc/get_occupant()
+	RETURN_TYPE(/mob/living)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return weakref_occupant?.resolve()
+
 /obj/machinery/clonepod/attack_ai(mob/user as mob)
 
 	add_hiddenprint(user)
 	return attack_hand(user)
 
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
-	if((isnull(occupant)) || (stat & NOPOWER))
+	var/mob/living/has_occupant = get_occupant()
+	if((isnull(has_occupant)) || (stat & NOPOWER))
 		return
-	if((!isnull(occupant)) && (occupant.stat != 2))
-		var/completion = (100 * ((occupant.health + 50) / (heal_level + 100))) // Clones start at -150 health
+	if((!isnull(has_occupant)) && (has_occupant.stat != 2))
+		var/completion = (100 * ((has_occupant.health + 50) / (heal_level + 100))) // Clones start at -150 health
 		to_chat(user, "Current clone cycle is [round(completion)]% complete.")
 	return
 
@@ -137,46 +150,47 @@
 
 	// Finished!
 	update_icon()
-	occupant = H
+	set_occupant(H)
 	attempting = 0
 
 	return 1
 
 //Grow clones to maturity then kick them out.  FREELOADERS
 /obj/machinery/clonepod/process()
+	var/mob/living/has_occupant = get_occupant()
 	if(stat & NOPOWER) //Autoeject if power is lost
-		if(occupant)
+		if(has_occupant)
 			locked = 0
 			go_out()
 		return
 
-	if((occupant) && (occupant.loc == src))
-		if((occupant.stat == DEAD) || (occupant.suiciding) || !occupant.key)  //Autoeject corpses and suiciding dudes.
+	if((has_occupant) && (has_occupant.loc == src))
+		if((has_occupant.stat == DEAD) || (has_occupant.suiciding) || !has_occupant.key)  //Autoeject corpses and suiciding dudes.
 			locked = 0
 			go_out()
 			connected_message("Clone Rejected: Deceased.")
 			return
 
-		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
-			occupant.Paralyse(4)
+		else if(has_occupant.health < heal_level && has_occupant.getCloneLoss() > 0)
+			has_occupant.Paralyse(4)
 
 			//Slowly get that clone healed and finished.
-			occupant.adjustCloneLoss(-2 * heal_rate)
+			has_occupant.adjustCloneLoss(-2 * heal_rate)
 
 			//Premature clones may have brain damage.
-			occupant.adjustBrainLoss(-(CEILING(0.5*heal_rate, 1)))
+			has_occupant.adjustBrainLoss(-(CEILING(0.5*heal_rate, 1)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
-				occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
-			occupant.Sleeping(30)
+			if(has_occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
+				has_occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
+			has_occupant.Sleeping(30)
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
-			occupant.adjustOxyLoss(-4)
+			has_occupant.adjustOxyLoss(-4)
 
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if((occupant.health >= heal_level || occupant.health == occupant.getMaxHealth()) && (!eject_wait))
+		else if((has_occupant.health >= heal_level || has_occupant.health == has_occupant.getMaxHealth()) && (!eject_wait))
 			playsound(src, 'sound/machines/medbayscanner1.ogg', 50, 1)
 			audible_message("\The [src] signals that the cloning process is complete.", runemessage = "ding")
 			connected_message("Cloning Process Complete.")
@@ -184,8 +198,8 @@
 			go_out()
 			return
 
-	else if((!occupant) || (occupant.loc != src))
-		occupant = null
+	else if((!has_occupant) || (has_occupant.loc != src))
+		set_occupant(null)
 		if(locked)
 			locked = 0
 		return
@@ -194,7 +208,8 @@
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
-	if(isnull(occupant))
+	var/mob/living/has_occupant = get_occupant()
+	if(isnull(has_occupant))
 		if(default_deconstruction_screwdriver(user, W))
 			return
 		if(default_deconstruction_crowbar(user, W))
@@ -205,9 +220,9 @@
 		if(!check_access(W))
 			to_chat(user, span_warning("Access Denied."))
 			return
-		if((!locked) || (isnull(occupant)))
+		if((!locked) || (isnull(has_occupant)))
 			return
-		if((occupant.health < -20) && (occupant.stat != 2))
+		if((has_occupant.health < -20) && (has_occupant.stat != 2))
 			to_chat(user, span_warning("Access Refused."))
 			return
 		else
@@ -223,7 +238,7 @@
 			W.forceMove(src)
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
-		if(locked && (anchored || occupant))
+		if(locked && (anchored || has_occupant))
 			to_chat(user, span_warning("Can not do that while [src] is in use."))
 		else
 			if(anchored)
@@ -247,7 +262,7 @@
 		..()
 
 /obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
-	if(isnull(occupant))
+	if(isnull(get_occupant()))
 		return
 	to_chat(user, "You force an emergency ejection.")
 	locked = 0
@@ -276,7 +291,7 @@
 	heal_level = max(min((efficiency * 15) + 10, 100), MINIMUM_HEAL_LEVEL)
 
 /obj/machinery/clonepod/proc/get_completion()
-	. = (100 * ((occupant.health + 100) / (heal_level + 100)))
+	. = (100 * ((get_occupant().health + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/verb/eject()
 	set name = "Eject Cloner"
@@ -299,20 +314,21 @@
 		update_icon()
 		return
 
-	if(!(occupant))
+	var/mob/living/has_occupant = get_occupant()
+	if(!(has_occupant))
 		return
 
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.forceMove(get_turf(src))
+	if(has_occupant.client)
+		has_occupant.client.eye = has_occupant.client.mob
+		has_occupant.client.perspective = MOB_PERSPECTIVE
+	has_occupant.forceMove(get_turf(src))
 	eject_wait = 0 //If it's still set somehow.
-	if(ishuman(occupant)) //Need to be safe.
-		var/mob/living/carbon/human/patient = occupant
+	if(ishuman(has_occupant)) //Need to be safe.
+		var/mob/living/carbon/human/patient = has_occupant
 		if(!(patient.species.flags & NO_DNA)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
-			domutcheck(occupant) //Waiting until they're out before possible transforming.
-			occupant.UpdateAppearance()
-	occupant = null
+			domutcheck(has_occupant) //Waiting until they're out before possible transforming.
+			has_occupant.UpdateAppearance()
+	set_occupant(null)
 
 	update_icon()
 	return
@@ -375,12 +391,13 @@
 	return 0
 
 /obj/machinery/clonepod/proc/malfunction()
-	if(occupant)
+	var/mob/living/has_occupant = get_occupant()
+	if(has_occupant)
 		connected_message("Critical Error!")
 		mess = 1
 		update_icon()
-		occupant.ghostize()
-		QDEL_IN(occupant, 0.5 SECONDS)
+		has_occupant.ghostize()
+		QDEL_IN(has_occupant, 0.5 SECONDS)
 
 /obj/machinery/clonepod/relaymove(mob/user)
 	if(user.stat)
@@ -419,7 +436,7 @@
 /obj/machinery/clonepod/update_icon()
 	..()
 	icon_state = "pod_0"
-	if(occupant && !(stat & NOPOWER))
+	if(get_occupant() && !(stat & NOPOWER))
 		icon_state = "pod_1"
 	else if(mess)
 		icon_state = "pod_g"

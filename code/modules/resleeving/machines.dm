@@ -48,10 +48,10 @@
 				H.internals.icon_state = "internal1"
 
 	//Apply damage
-	occupant = H
-	occupant.adjustCloneLoss((occupant.getMaxHealth() - (occupant.getMaxHealth()))*-0.75)
-	occupant.Paralyse(4)
-	occupant.updatehealth()
+	set_occupant(H)
+	H.adjustCloneLoss((H.getMaxHealth() - (H.getMaxHealth()))*-0.75)
+	H.Paralyse(4)
+	H.updatehealth()
 
 	//Machine specific stuff at the end
 	update_icon()
@@ -59,38 +59,39 @@
 	return 1
 
 /obj/machinery/clonepod/transhuman/process()
+	var/mob/living/has_occupant = get_occupant()
 	if(stat & NOPOWER)
-		if(occupant)
+		if(has_occupant)
 			locked = 0
 			go_out()
 		return
 
-	if((occupant) && (occupant.loc == src))
-		if(occupant.stat == DEAD)
+	if((has_occupant) && (has_occupant.loc == src))
+		if(has_occupant.stat == DEAD)
 			locked = 0
 			go_out()
 			connected_message("Clone Rejected: Deceased.")
 			return
 
-		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
+		else if(has_occupant.health < heal_level && has_occupant.getCloneLoss() > 0)
 
 			//Slowly get that clone healed and finished.
-			occupant.adjustCloneLoss(-3 * heal_rate)
+			has_occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
-			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
+			has_occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
-				occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
+			if(has_occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
+				has_occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
 
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
-			occupant.adjustOxyLoss(-4)
+			has_occupant.adjustOxyLoss(-4)
 
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((occupant.health == occupant.getMaxHealth())) && (!eject_wait))
+		else if(((has_occupant.health == has_occupant.getMaxHealth())) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
@@ -98,8 +99,8 @@
 			go_out()
 			return
 
-	else if((!occupant) || (occupant.loc != src))
-		occupant = null
+	else if((!has_occupant) || (has_occupant.loc != src))
+		set_occupant(null)
 		if(locked)
 			locked = 0
 		update_icon()
@@ -108,13 +109,14 @@
 	return
 
 /obj/machinery/clonepod/transhuman/get_completion()
-	if(occupant)
-		return 100 * ((occupant.health + (occupant.getMaxHealth()))) / (occupant.getMaxHealth() + abs(occupant.getMaxHealth()))
+	var/mob/living/has_occupant = get_occupant()
+	if(has_occupant)
+		return 100 * ((has_occupant.health + (has_occupant.getMaxHealth()))) / (has_occupant.getMaxHealth() + abs(has_occupant.getMaxHealth()))
 	return 0
 
 /obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)
 	. = ..()
-	if(occupant)
+	if(get_occupant())
 		var/completion = get_completion()
 		. += "Progress: [round(completion)]% [chat_progress_bar(round(completion), TRUE)]"
 
@@ -216,7 +218,7 @@
 	H.updatehealth()
 
 	//Plonk them here.
-	H.loc = get_turf(src)
+	H.forceMove(get_turf(src))
 
 	//Machine specific stuff at the end
 	stored_material[MAT_STEEL] -= body_cost

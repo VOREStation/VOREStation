@@ -42,16 +42,16 @@
 	if(!scanner || !pods.len || !autoprocess || stat & NOPOWER)
 		return
 
-	if(scanner.occupant?.resolve() && can_autoprocess())
-		scan_mob(scanner.occupant?.resolve())
+	if(scanner.get_occupant() && can_autoprocess())
+		scan_mob(scanner.get_occupant())
 
 	if(!LAZYLEN(records))
 		return
 
 	for(var/obj/machinery/clonepod/pod in pods)
-		if(!(pod.occupant || pod.mess) && (pod.efficiency > 5))
+		if(!(pod.get_occupant() || pod.mess) && (pod.efficiency > 5))
 			for(var/datum/transhuman/body_record/BR in records)
-				if(!(pod.occupant || pod.mess))
+				if(!(pod.get_occupant() || pod.mess))
 					if(pod.growclone(BR))
 						records.Remove(BR)
 
@@ -96,7 +96,7 @@
 	if(istype(W, /obj/item/disk/body_record/)) //Traitgenes Storing the entire body record
 		if(!diskette)
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			diskette = W
 			to_chat(user, "You insert [W].")
 			SStgui.update_uis(src)
@@ -153,17 +153,18 @@
 			if(pod.efficiency > 5)
 				canpodautoprocess = 1
 
+			var/mob/living/has_occupant = pod.get_occupant()
 			var/status = "idle"
 			if(pod.mess)
 				status = "mess"
-			else if(pod.occupant && !(pod.stat & NOPOWER))
+			else if(has_occupant && !(pod.stat & NOPOWER))
 				status = "cloning"
 			tempods.Add(list(list(
 				"pod" = "\ref[pod]",
 				"name" = sanitize(capitalize(pod.name)),
 				"biomass" = pod.get_biomass(),
 				"status" = status,
-				"progress" = (pod.occupant && pod.occupant.stat != DEAD) ? pod.get_completion() : 0
+				"progress" = (has_occupant && has_occupant.stat != DEAD) ? pod.get_completion() : 0
 			)))
 			data["pods"] = tempods
 
@@ -177,7 +178,7 @@
 	else
 		data["autoallowed"] = 0
 	if(scanner)
-		data["occupant"] = scanner.occupant?.resolve()
+		data["occupant"] = scanner.get_occupant()
 		data["locked"] = scanner.locked
 	data["temp"] = temp
 	data["scantemp"] = scantemp
@@ -219,7 +220,7 @@
 					set_temp("Access denied.", "danger")
 			return
 
-	var/mob/living/carbon/human/scanner_occupant = scanner.occupant?.resolve()
+	var/mob/living/carbon/human/scanner_occupant = scanner.get_occupant()
 
 	switch(action)
 		if("scan")
@@ -294,7 +295,7 @@
 					set_temp("Successfully saved to disk.", "success")
 				if("eject")
 					if(!isnull(diskette))
-						diskette.loc = loc
+						diskette.forceMove(get_turf(src))
 						diskette = null
 		if("refresh")
 			SStgui.update_uis(src)
@@ -321,7 +322,7 @@
 					var/cloneresult
 					if(!selected_pod)
 						set_temp("Error: No cloning pod selected.", "danger")
-					else if(pod.occupant)
+					else if(pod.get_occupant())
 						set_temp("Error: The cloning pod is currently occupied.", "danger")
 					else if(pod.get_biomass() < CLONE_BIOMASS)
 						set_temp("Error: Not enough biomass.", "danger")
@@ -406,7 +407,8 @@
 		return
 
 	for(var/obj/machinery/clonepod/pod in pods)
-		if(pod.occupant && pod.occupant.mind == subject.mind)
+		var/mob/living/has_occupant = pod.get_occupant()
+		if(has_occupant && has_occupant.mind == subject.mind)
 			set_scan_temp("Subject already getting cloned.")
 			SStgui.update_uis(src)
 			return

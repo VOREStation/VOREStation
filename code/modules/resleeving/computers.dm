@@ -148,16 +148,17 @@
 	var/list/clonepods = list()
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		var/status = "idle"
+		var/mob/living/has_occupant = pod.get_occupant()
 		if(pod.mess)
 			status = "mess"
-		else if(pod.occupant && !(pod.stat & NOPOWER))
+		else if(has_occupant && !(pod.stat & NOPOWER))
 			status = "cloning"
 		clonepods += list(list(
 			"pod" = REF(pod),
 			"name" = sanitize(capitalize(pod.name)),
 			"biomass" = pod.get_biomass(),
 			"status" = status,
-			"progress" = (pod.occupant && pod.occupant.stat != DEAD) ? pod.get_completion() : 0
+			"progress" = (has_occupant && has_occupant.stat != DEAD) ? pod.get_completion() : 0
 		))
 	data["pods"] = clonepods
 
@@ -322,7 +323,7 @@
 							return
 
 						//Already doing someone.
-						if(pod.occupant)
+						if(pod.get_occupant())
 							set_temp("Error: Growpod is currently occupied.", "danger")
 							active_br = null
 							return

@@ -71,7 +71,7 @@
 	interact_offline = 1
 	circuit = /obj/item/circuitboard/clonescanner
 	var/locked = 0
-	var/datum/weakref/occupant = null
+	VAR_PRIVATE/datum/weakref/weakref_occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/opened = 0
 	var/damage_coeff
@@ -86,6 +86,18 @@
 /obj/machinery/dna_scannernew/Destroy()
 	eject_occupant()
 	. = ..()
+
+/obj/machinery/dna_scannernew/proc/set_occupant(var/mob/living/L)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!L)
+		weakref_occupant = null
+		return
+	weakref_occupant = WEAKREF(L)
+
+/obj/machinery/dna_scannernew/proc/get_occupant()
+	RETURN_TYPE(/mob/living)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return weakref_occupant?.resolve()
 
 /obj/machinery/dna_scannernew/RefreshParts()
 	scan_level = 0
@@ -118,7 +130,7 @@
 	return
 
 /obj/machinery/dna_scannernew/proc/eject_occupant()
-	var/mob/living/carbon/WC = occupant?.resolve()
+	var/mob/living/carbon/WC = get_occupant()
 	go_out()
 	for(var/obj/O in src)
 		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
@@ -128,7 +140,7 @@
 			M.forceMove(get_turf(src))
 
 /obj/machinery/dna_scannernew/MouseDrop_T(var/mob/target, var/mob/user) //Allows borgs to clone people without external assistance
-	var/mob/living/carbon/WC = occupant?.resolve()
+	var/mob/living/carbon/WC = get_occupant()
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target) || WC)
 		return
 	// Traitgenes Do not allow buckled or ridden mobs
@@ -150,13 +162,13 @@
 	if(!ishuman(usr) && !issmall(usr)) //Make sure they're a mob that has dna
 		to_chat(usr, span_notice("Try as you might, you can not climb up into the scanner."))
 		return
-	if(occupant)
+	var/mob/living/carbon/WC = get_occupant()
+	if(WC)
 		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
 		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
-	var/mob/living/carbon/WC = occupant?.resolve()
 	if(WC)
 		to_chat(usr, span_warning("There is already something inside."))
 		return
@@ -164,7 +176,7 @@
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
 	usr.forceMove(src)
-	occupant = WEAKREF(usr)
+	set_occupant(usr)
 	icon_state = "scanner_1"
 	add_fingerprint(usr)
 	SStgui.update_uis(src)
@@ -188,7 +200,7 @@
 		return
 
 	else if(istype(item, /obj/item/organ/internal/brain))
-		if(occupant)
+		if(get_occupant())
 			to_chat(user, span_warning("The scanner is already occupied!"))
 			return
 		var/obj/item/organ/internal/brain/brain = item
@@ -208,7 +220,7 @@
 	var/obj/item/grab/G = item
 	if(!ismob(G.affecting))
 		return
-	if(occupant)
+	if(get_occupant())
 		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 	if(G.affecting.abiotic())
@@ -225,10 +237,10 @@
 	if(beaker)
 		beaker.forceMove(get_turf(src))
 		beaker = null
-	if(occupant)
-		var/mob/living/carbon/WC = occupant.resolve()
+	var/mob/living/carbon/WC = get_occupant()
+	if(WC)
 		WC.forceMove(get_turf(src))
-		occupant = null
+		set_occupant(null)
 	// Disconnect from our terminal
 	for(var/dirfind in GLOB.cardinal)
 		var/obj/machinery/computer/scan_consolenew/console = locate(/obj/machinery/computer/scan_consolenew, get_step(src, dirfind))
@@ -243,7 +255,7 @@
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.forceMove(src)
-	occupant = WEAKREF(M)
+	set_occupant(M)
 	icon_state = "scanner_1"
 
 	// search for ghosts, if the corpse is empty and the scanner is connected to a cloner
@@ -260,9 +272,9 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/dna_scannernew/proc/go_out()
-	if((!(occupant) || locked))
+	var/mob/living/carbon/WC = get_occupant()
+	if((!WC || locked))
 		return
-	var/mob/living/carbon/WC = occupant.resolve()
 	if(WC.client)
 		WC.client.eye = WC.client.mob
 		WC.client.perspective = MOB_PERSPECTIVE
@@ -274,7 +286,7 @@
 				break
 	else
 		WC.forceMove(loc)
-	occupant = null
+	set_occupant(null)
 	icon_state = "scanner_0"
 	SStgui.update_uis(src)
 
@@ -401,7 +413,7 @@
 		tgui_interact(user)
 
 /obj/machinery/computer/scan_consolenew/tgui_interact(mob/user, datum/tgui/ui)
-	var/mob/living/carbon/WC = connected?.occupant?.resolve()
+	var/mob/living/carbon/WC = connected?.get_occupant()
 	if(!connected || user == WC || user.stat)
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -414,7 +426,7 @@
 	var/data[0]
 	data["selectedMenuKey"] = selected_menu_key
 	data["locked"] = src.connected.locked
-	data["hasOccupant"] = connected.occupant ? 1 : 0
+	data["hasOccupant"] = connected.get_occupant() ? 1 : 0
 
 	data["isInjectorReady"] = injector_ready
 
@@ -454,7 +466,7 @@
 	data["selectedUITargetHex"] = selected_ui_target_hex
 
 	var/occupantData[0]
-	var/mob/living/carbon/WC = connected?.occupant?.resolve()
+	var/mob/living/carbon/WC = connected?.get_occupant()
 	if(!WC || !WC.dna)
 		occupantData["name"] = null
 		occupantData["stat"] = null
@@ -528,7 +540,7 @@
 			return TRUE
 		if("toggleLock")
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
-			if(connected && connected.occupant)
+			if(connected && connected.get_occupant())
 				connected.locked = !(connected.locked)
 			return TRUE
 
@@ -547,9 +559,9 @@
 			return TRUE
 		if("injectRejuvenators")
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
-			if(!connected.occupant || !connected.beaker)
+			if(!connected.get_occupant() || !connected.beaker)
 				return TRUE
-			var/mob/living/carbon/WC = connected?.occupant?.resolve()
+			var/mob/living/carbon/WC = connected?.get_occupant()
 			var/inject_amount = clamp(round(text2num(params["amount"]), 5), 0, 50) // round to nearest 5 and clamp to 0-50
 			if(!inject_amount)
 				return TRUE
@@ -567,9 +579,9 @@
 			selected_se_subblock = clamp(select_subblock, 1, DNA_BLOCK_SIZE)
 			return TRUE
 		if("pulseSERadiation")
-			if(!connected?.occupant)
+			if(!connected?.get_occupant())
 				return TRUE
-			var/mob/living/carbon/WC = connected?.occupant?.resolve()
+			var/mob/living/carbon/WC = connected?.get_occupant()
 			playsound(src, "keyboard", 40)
 			var/block = WC.dna.GetSESubBlock(selected_se_block,selected_se_subblock)
 			//var/original_block=block
@@ -610,7 +622,7 @@
 				// Traitgenes Moved SE and UI saves to storing the entire body record
 				if("saveDNA")
 					playsound(src, "keyboard", 40) // into console
-					var/mob/living/carbon/WC = connected?.occupant?.resolve()
+					var/mob/living/carbon/WC = connected?.get_occupant()
 					if(WC && WC.dna)
 						// Traitgenes Properly clone records
 						var/datum/transhuman/body_record/databuf = new /datum/transhuman/body_record()
@@ -638,7 +650,7 @@
 					tgui_modal_input(src, "changeBufferLabel", "Please enter the new buffer label:", null, list("id" = bufferId), buffer.mydna.name, TGUI_MODAL_INPUT_MAX_LENGTH_NAME)
 					return TRUE
 				if("transfer")
-					var/mob/living/carbon/WC = connected?.occupant?.resolve()
+					var/mob/living/carbon/WC = connected?.get_occupant()
 					if(!WC || (NOCLONE in WC.mutations) || !WC.dna)
 						return TRUE
 					irradiating = 2
@@ -786,7 +798,7 @@
 		to_chat(user, span_danger( "Error: No growpods detected."))
 		return
 	//Already doing someone.
-	if(pod.occupant)
+	if(pod.get_occupant())
 		to_chat(user, span_danger( "Error: Growpod is currently occupied."))
 		return
 	//Not enough materials.
@@ -812,7 +824,7 @@
 	to_chat(user, span_notice( "Initiating growing cycle..."))
 
 /obj/machinery/computer/scan_consolenew/proc/do_irradiate(var/lock_state, var/block)
-	var/mob/living/carbon/WC = connected?.occupant?.resolve()
+	var/mob/living/carbon/WC = connected?.get_occupant()
 	irradiating = 0
 	connected.locked = lock_state
 	if(!WC)
@@ -847,7 +859,7 @@
 	WC.regenerate_icons()
 
 /obj/machinery/computer/scan_consolenew/proc/do_pulse(var/lock_state)
-	var/mob/living/carbon/WC = connected?.occupant?.resolve()
+	var/mob/living/carbon/WC = connected?.get_occupant()
 	irradiating = 0
 	connected.locked = lock_state
 
@@ -879,7 +891,7 @@
 
 	playsound(src, "keyboard", 40)
 
-	var/mob/living/carbon/WC = connected?.occupant?.resolve()
+	var/mob/living/carbon/WC = connected?.get_occupant()
 	if(!WC)
 		return TRUE
 	var/datum/transhuman/body_record/buf = buffers[bufferId] // Traitgenes- Use bodyrecords
