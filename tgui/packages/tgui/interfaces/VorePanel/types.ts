@@ -112,7 +112,10 @@ export type bellyOptionData = {
   contaminates: BooleanLike;
   contaminate_flavor: string | null;
   contaminate_color: string | null;
+  contaminate_options: Record<string, string>[] | null;
+  contaminate_colors: string[] | null;
   egg_type: string;
+  egg_types: string[];
   egg_name: string;
   egg_size: number;
   recycling: BooleanLike;

@@ -2,8 +2,17 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../constants';
+import {
+  eatingMessagePrivacy,
+  vorespawnAbsorbedColor,
+  vorespawnAbsorbedText,
+} from '../constants';
+import { sanitize_color } from '../functions';
 import type { bellyOptionData, hostMob } from '../types';
+import { VorePanelColorBox } from '../VorePanelElements/VorePanelCommonElements';
+import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
+import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const VoreSelectedBellyOptions = (props: {
@@ -28,7 +37,10 @@ export const VoreSelectedBellyOptions = (props: {
     contaminates,
     contaminate_flavor,
     contaminate_color,
+    contaminate_options,
+    contaminate_colors,
     egg_type,
+    egg_types,
     egg_name,
     egg_size,
     recycling,
@@ -51,111 +63,143 @@ export const VoreSelectedBellyOptions = (props: {
       <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Can Taste">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_tastes' })}
-              icon={can_taste ? 'toggle-on' : 'toggle-off'}
-              selected={can_taste}
-            >
-              {can_taste ? 'Yes' : 'No'}
-            </Button>
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_tastes"
+              editMode={editMode}
+              active={!!can_taste}
+              content={can_taste ? 'Yes' : 'No'}
+              tooltip={
+                (can_taste ? 'Dis' : 'En') +
+                'ables the ability for this belly to taste prey.'
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Feedable">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_feedable' })}
-              icon={is_feedable ? 'toggle-on' : 'toggle-off'}
-              selected={is_feedable}
-            >
-              {is_feedable ? 'Yes' : 'No'}
-            </Button>
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_feedable"
+              editMode={editMode}
+              active={!!is_feedable}
+              content={is_feedable ? 'Yes' : 'No'}
+              tooltip={
+                (is_feedable ? 'Dis' : 'En') +
+                'ables the ability for this belly to have prey fed to.'
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Contaminates">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_contaminates' })
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_contaminates"
+              editMode={editMode}
+              active={!!contaminates}
+              content={contaminates ? 'Yes' : 'No'}
+              tooltip={
+                (contaminates ? 'Dis' : 'En') +
+                'ables the ability for this belly to contaminate items, requiring them to be washed clean.'
               }
-              icon={contaminates ? 'toggle-on' : 'toggle-off'}
-              selected={contaminates}
-            >
-              {contaminates ? 'Yes' : 'No'}
-            </Button>
+            />
           </LabeledList.Item>
-          {contaminates ? (
+          {!!contaminates && (
             <>
               <LabeledList.Item label="Contamination Flavor">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_contamination_flavor',
-                    })
+                <VorePanelEditDropdown
+                  editMode={editMode}
+                  options={
+                    contaminate_options ? Object.keys(contaminate_options) : []
                   }
-                  icon="pen"
-                >
-                  {contaminate_flavor}
-                </Button>
+                  entry={contaminate_flavor ? contaminate_flavor : ''}
+                  action="set_attribute"
+                  subAction="b_contamination_flavor"
+                />
               </LabeledList.Item>
               <LabeledList.Item label="Contamination Color">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', { attribute: 'b_contamination_color' })
-                  }
-                  icon="pen"
-                >
-                  {!!contaminate_color && capitalize(contaminate_color)}
-                </Button>
+                <Stack>
+                  <Stack.Item>
+                    <VorePanelEditDropdown
+                      editMode={editMode}
+                      options={contaminate_colors ? contaminate_colors : []}
+                      entry={contaminate_color ? contaminate_color : ''}
+                      action="set_attribute"
+                      subAction="b_contamination_color"
+                    />
+                  </Stack.Item>
+                  {!editMode && (
+                    <Stack.Item>
+                      <VorePanelColorBox
+                        size="15px"
+                        back_color={
+                          sanitize_color(contaminate_color) || 'white'
+                        }
+                      />
+                    </Stack.Item>
+                  )}
+                </Stack>
               </LabeledList.Item>
             </>
-          ) : (
-            ''
           )}
           <LabeledList.Item label="Nutritional Gain">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_nutritionpercent' })
-              }
-            >
-              {nutrition_percent + '%'}
-            </Button>
+            <VorePanelEditNumber
+              action="set_attribute"
+              subAction="b_nutritionpercent"
+              editMode={editMode}
+              value={nutrition_percent}
+              minValue={0.01}
+              maxValue={100}
+              step={0.01}
+              digits={2}
+              unit="%"
+              tooltip="The multiplier for nutrition you'll fain from prey."
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Required Examine Size">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_bulge_size' })
-              }
-            >
-              {bulge_size * 100 + '%'}
-            </Button>
+            <VorePanelEditNumber
+              action="set_attribute"
+              subAction="b_bulge_size"
+              editMode={editMode}
+              value={bulge_size * 100}
+              minValue={0}
+              maxValue={200}
+              step={1}
+              unit="%"
+              tooltip="The minimum size for prey to show in examine. Type 0 to disable."
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Toggle Vore Privacy">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_eating_privacy' })
-              }
-            >
-              {capitalize(eating_privacy_local)}
-            </Button>
+            <VorePanelEditDropdown
+              editMode={editMode}
+              options={eatingMessagePrivacy}
+              entry={eating_privacy_local ? eating_privacy_local : ''}
+              action="set_attribute"
+              subAction="b_eating_privacy"
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Toggle Struggle Privacy">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_private_struggle' })
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_private_struggle"
+              editMode={editMode}
+              active={!!private_struggle}
+              content={private_struggle ? 'Private' : 'Loud'}
+              tooltip={
+                (private_struggle ? 'Dis' : 'En') +
+                'ables subtle struggle messages.'
               }
-              icon={private_struggle ? 'toggle-on' : 'toggle-off'}
-              selected={private_struggle}
-            >
-              {private_struggle ? 'Private' : 'Loud'}
-            </Button>
+            />
           </LabeledList.Item>
 
           <LabeledList.Item label="Save Digest Mode">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_save_digest_mode' })
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_save_digest_mode"
+              editMode={editMode}
+              active={!!save_digest_mode}
+              tooltip={
+                (save_digest_mode ? 'Dis' : 'En') +
+                'ables persistent digest mode.'
               }
-              icon={save_digest_mode ? 'toggle-on' : 'toggle-off'}
-              selected={save_digest_mode}
-            >
-              {save_digest_mode ? 'True' : 'False'}
-            </Button>
+            />
           </LabeledList.Item>
         </LabeledList>
         <VoreSelectedMobTypeBellyButtons

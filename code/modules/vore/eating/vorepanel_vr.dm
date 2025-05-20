@@ -1380,16 +1380,14 @@
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
-			var/list/menu_list = GLOB.contamination_flavors.Copy()
-			var/new_flavor = tgui_input_list(user, "Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])", "Flavor Choice", menu_list)
-			if(!new_flavor)
+			var/new_flavor = params["val"]
+			if(!(new_flavor in GLOB.contamination_flavors))
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
 			. = TRUE
 		if("b_contamination_color")
-			var/list/menu_list = GLOB.contamination_colors.Copy()
-			var/new_color = tgui_input_list(user, "Choose Contamination Color (currently [host.vore_selected.contamination_color])", "Color Choice", menu_list)
-			if(!new_color)
+			var/new_color = params["val"]
+			if(!(new_color in GLOB.contamination_colors))
 				return FALSE
 			host.vore_selected.contamination_color = new_color
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
@@ -1727,8 +1725,8 @@
 			host.vore_selected.release_verb = new_release_verb
 			. = TRUE
 		if("b_eating_privacy")
-			var/privacy_choice = tgui_input_list(user, "Choose your belly-specific preference. Default uses global preference!", "Eating message privacy", list("default", "subtle", "loud"), "default")
-			if(privacy_choice == null)
+			var/privacy_choice = params["val"]
+			if(!(privacy_choice in list("default", "subtle", "loud")))
 				return FALSE
 			host.vore_selected.eating_privacy_local = privacy_choice
 			. = TRUE
@@ -1860,16 +1858,14 @@
 			host.vore_selected.item_digest_logs = !host.vore_selected.item_digest_logs
 			. = TRUE
 		if("b_bulge_size")
-			var/new_bulge = tgui_input_number(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.", max_value = 200, min_value = 0)
-			if(new_bulge == null)
+			var/new_bulge = text2num(params["val"])
+			if(!isnum(new_bulge))
 				return FALSE
 			if(new_bulge == 0) //Disable.
 				host.vore_selected.bulge_size = 0
 				to_chat(user,span_notice("Your stomach will not be seen on examine."))
-			else if (!ISINRANGE(new_bulge,25,200))
-				host.vore_selected.bulge_size = 0.25 //Set it to the default.
-				to_chat(user,span_notice("Invalid size."))
 			else if(new_bulge)
+				new_bulge = CLAMP(new_bulge, 25, 200)
 				host.vore_selected.bulge_size = (new_bulge/100)
 			. = TRUE
 		if("b_display_absorbed_examine")
@@ -1886,11 +1882,10 @@
 				host.vore_selected.shrink_grow_size = (new_grow*0.01)
 			. = TRUE
 		if("b_nutritionpercent")
-			var/new_nutrition = tgui_input_number(user, "Choose the nutrition gain percentage you will receive per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent, 100, 0.01, round_value=FALSE)
-			if(new_nutrition == null)
+			var/new_nutrition = text2num(params["val"])
+			if(!isnum(new_nutrition))
 				return FALSE
-			var/new_new_nutrition = CLAMP(new_nutrition, 0.01, 100)
-			host.vore_selected.nutrition_percent = new_new_nutrition
+			host.vore_selected.nutrition_percent = CLAMP(new_nutrition, 0.01, 100)
 			. = TRUE
 		// modified these to be flexible rather than maxing at 6/6/12/6/6
 		if("b_burn_dmg")
@@ -1948,8 +1943,10 @@
 				host.vore_selected.selective_preference = DM_DIGEST
 			. = TRUE
 		if("b_emotetime")
-			var/new_time = CLAMP(text2num(params["val"]), 60, 600)
-			host.vore_selected.emote_time = new_time
+			var/new_time = text2num(params["val"])
+			if(!isnum(new_time))
+				return FALSE
+			host.vore_selected.emote_time = CLAMP(new_time, 60, 600)
 			. = TRUE
 		if("b_escapable")
 			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.

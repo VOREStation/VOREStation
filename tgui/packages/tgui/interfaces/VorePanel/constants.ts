@@ -98,3 +98,5 @@ export const messageTabLabel = [
   'Idle',
   'Liquids',
 ];
+
+export const eatingMessagePrivacy = ['default', 'subtle', 'loud'];

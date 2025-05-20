@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
   Divider,
   Icon,
+  Input,
   Section,
   Stack,
   Tabs,
   Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 import { digestModeToColor } from './constants';
 import type { bellyData, hostMob, selectedData } from './types';
@@ -39,10 +42,31 @@ export const VoreBellySelectionAndCustomization = (props: {
     editMode,
   } = props;
 
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchedBellies, setSearchedBellies] = useState('');
+
+  const bellySearch = createSearch(
+    searchedBellies,
+    (belly: bellyData) => belly.name,
+  );
+
+  const belliesToDisplay = our_bellies.filter(bellySearch);
+
   return (
     <Stack fill>
       <Stack.Item shrink basis="20%">
-        <Section title="My Bellies" scrollable fill>
+        <Section
+          title="My Bellies"
+          scrollable
+          fill
+          buttons={
+            <Button
+              icon="magnifying-glass"
+              selected={showSearch}
+              onClick={() => setShowSearch(!showSearch)}
+            />
+          }
+        >
           <Tabs vertical>
             <Tabs.Tab onClick={() => act('newbelly')}>
               New
@@ -57,7 +81,17 @@ export const VoreBellySelectionAndCustomization = (props: {
               <Icon name="file-import" ml={0.5} />
             </Tabs.Tab>
             <Divider />
-            {our_bellies.map((belly) => (
+            {showSearch && (
+              <>
+                <Input
+                  fluid
+                  placeholder="Search for bellies..."
+                  onChange={(value) => setSearchedBellies(value)}
+                />
+                <Divider />
+              </>
+            )}
+            {belliesToDisplay.map((belly) => (
               <Tabs.Tab
                 key={belly.name}
                 selected={!!belly.selected}

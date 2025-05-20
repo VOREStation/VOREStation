@@ -169,9 +169,8 @@
 				"bulge_size" = selected.bulge_size,
 				"shrink_grow_size" = selected.shrink_grow_size,
 				"contaminates" = selected.contaminates,
-				"contaminate_flavor" = (selected.contaminates ? selected.contamination_flavor : null),
-				"contaminate_color" = (selected.contaminates ? selected.contamination_color : null),
 				"egg_type" = selected.egg_type,
+				"egg_types" = GLOB.global_vore_egg_types,
 				"egg_name" = selected.egg_name,
 				"egg_size" = selected.egg_size,
 				"recycling" = selected.recycling,
@@ -188,6 +187,15 @@
 				"drainmode" = selected.drainmode,
 				"mob_belly_controls" = silicon_control
 			)
+			if(selected.contaminates)
+				belly_option_data += list(
+				"contaminate_flavor" = selected.contamination_flavor,
+				"contaminate_options" = GLOB.contamination_flavors,
+				"contaminate_color" = selected.contamination_color,
+				"contaminate_colors" = GLOB.contamination_colors
+
+				)
+
 			selected_list["belly_option_data"] = belly_option_data
 
 

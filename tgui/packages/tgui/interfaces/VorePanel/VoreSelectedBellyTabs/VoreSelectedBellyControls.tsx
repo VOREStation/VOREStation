@@ -86,18 +86,20 @@ export const VoreSelectedBellyControls = (props: {
           color={digestModeToColor[item_mode]}
         />
       </LabeledList.Item>
-      <LabeledList.Item>
-        <Button.Confirm
-          fluid
-          icon="exclamation-triangle"
-          confirmIcon="trash"
-          color="red"
-          confirmContent="This is irreversable!"
-          onClick={() => act('set_attribute', { attribute: 'b_del' })}
-        >
-          Delete Belly
-        </Button.Confirm>
-      </LabeledList.Item>
+      {editMode && (
+        <LabeledList.Item>
+          <Button.Confirm
+            fluid
+            icon="exclamation-triangle"
+            confirmIcon="trash"
+            color="red"
+            confirmContent="This is irreversable!"
+            onClick={() => act('set_attribute', { attribute: 'b_del' })}
+          >
+            Delete Belly
+          </Button.Confirm>
+        </LabeledList.Item>
+      )}
     </LabeledList>
   );
 };

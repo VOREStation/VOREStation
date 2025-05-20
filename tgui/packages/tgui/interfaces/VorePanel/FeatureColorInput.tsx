@@ -1,6 +1,8 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Stack } from 'tgui-core/components';
+import { Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+
+import { VorePanelColorBox } from './VorePanelElements/VorePanelCommonElements';
 
 export const FeatureColorInput = (props: {
   action_name: string;
@@ -13,16 +15,7 @@ export const FeatureColorInput = (props: {
   return (
     <>
       <Stack.Item shrink>
-        <Box
-          backgroundColor={
-            back_color.startsWith('#') ? back_color : `#${back_color}`
-          }
-          style={{
-            border: '2px solid white',
-          }}
-          width="20px"
-          height="20px"
-        />
+        <VorePanelColorBox back_color={back_color} />
       </Stack.Item>
       <Stack.Item grow>
         <Button
