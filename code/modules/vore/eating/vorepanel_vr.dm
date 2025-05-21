@@ -1732,7 +1732,7 @@
 			. = TRUE
 		if("b_silicon_belly")
 			var/belly_choice = params["Val"]
-			if(!(belly_choice) in list("Sleeper", "Vorebelly", "Both"))
+			if(!(belly_choice in list("Sleeper", "Vorebelly", "Both")))
 				return FALSE
 			for (var/belly in host.vore_organs)
 				var/obj/belly/B = belly
@@ -1886,24 +1886,24 @@
 			. = TRUE
 		// modified these to be flexible rather than maxing at 6/6/12/6/6
 		if("b_burn_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of burn damage prey will take per tick. Max of [host.vore_selected.digest_max] across all damage types. [host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_burn] remaining.", "Set Belly Burn Damage.", host.vore_selected.digest_burn, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_burn, 0, round_value=FALSE)
-			if(new_damage == null)
+			var/new_damage = text2num(params["val"])
+			if(!isnum(new_damage))
 				return FALSE
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_burn) // sanity check following tgui input
 			host.vore_selected.digest_burn = new_damage
 			host.vore_selected.items_preserved.Cut()
 			. = TRUE
 		if("b_brute_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of brute damage prey will take per tick. Max of [host.vore_selected.digest_max] across all damage types. [host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_brute] remaining.", "Set Belly Brute Damage.", host.vore_selected.digest_brute, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_brute, 0, round_value=FALSE)
-			if(new_damage == null)
+			var/new_damage = text2num(params["val"])
+			if(!isnum(new_damage))
 				return FALSE
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_brute)
 			host.vore_selected.digest_brute = new_damage
 			host.vore_selected.items_preserved.Cut()
 			. = TRUE
 		if("b_oxy_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of oxygen damage prey will take per tick. Max of [host.vore_selected.digest_max] across all damage types. [host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_oxy] remaining.", "Set Belly Oxygen Damage.", host.vore_selected.digest_oxy, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_oxy, 0, round_value=FALSE)
-			if(new_damage == null)
+			var/new_damage = text2num(params["val"])
+			if(!isnum(new_damage))
 				return FALSE
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_oxy)
 			host.vore_selected.digest_oxy = new_damage

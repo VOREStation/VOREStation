@@ -166,6 +166,8 @@
 				"digest_oxy" = selected.digest_oxy,
 				"digest_tox" = selected.digest_tox,
 				"digest_clone" = selected.digest_clone,
+				"digest_max" = selected.digest_max,
+				"digest_free" = selected.get_unused_digestion_damage(),
 				"bulge_size" = selected.bulge_size,
 				"shrink_grow_size" = selected.shrink_grow_size,
 				"contaminates" = selected.contaminates,

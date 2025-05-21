@@ -107,6 +107,8 @@ export type bellyOptionData = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  digest_max: number;
+  digest_free: number;
   bulge_size: number;
   shrink_grow_size: number;
   contaminates: BooleanLike;

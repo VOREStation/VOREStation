@@ -131,7 +131,6 @@ export const VoreSelectedBellyDescriptions = (props: {
                 tooltip="Choose the period it takes for idle belly emotes to be shown to prey."
                 maxValue={600}
                 minValue={60}
-                step={1}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Liquid Fullness Examines">

@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, NumberInput, Tooltip } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
+import { round, toFixed } from 'tgui-core/math';
 
 export const VorePanelEditNumber = (props: {
   action: string;
@@ -9,7 +9,7 @@ export const VorePanelEditNumber = (props: {
   value: number;
   minValue: number;
   maxValue: number;
-  step: number;
+  step?: number;
   stepPixel?: number;
   unit?: string;
   color?: string;
@@ -24,7 +24,7 @@ export const VorePanelEditNumber = (props: {
     value,
     maxValue,
     minValue,
-    step,
+    step = 1,
     stepPixel = 1,
     editMode,
     unit,
@@ -39,7 +39,7 @@ export const VorePanelEditNumber = (props: {
         onChange={(value) =>
           act(action, {
             attribute: subAction,
-            val: value,
+            val: round(value, digits),
           })
         }
         stepPixelSize={stepPixel}
@@ -57,6 +57,9 @@ export const VorePanelEditNumber = (props: {
       )}
     </>
   ) : (
-    <Box textColor={color}>{value + ' ' + unit}</Box>
+    <Box textColor={color}>
+      {value}
+      {!!unit && ' ' + unit}
+    </Box>
   );
 };
