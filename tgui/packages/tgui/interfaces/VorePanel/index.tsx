@@ -4,10 +4,10 @@ import { Window } from 'tgui/layouts';
 import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
 
 import type { Data } from './types';
-import { VoreBellySelectionAndCustomization } from './VoreBellySelectionAndCustomization';
-import { VoreInsidePanel } from './VoreInsidePanel';
-import { VoreSoulcatcher } from './VoreSoulcatcher';
-import { VoreUserPreferences } from './VoreUserPreferences';
+import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
+import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
+import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher';
+import { VoreUserPreferences } from './VorePanelMainTabs/VoreUserPreferences';
 
 /**
  * There are three main sections to this UI.

@@ -4,7 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import type { localPrefs } from '../types';
-import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
+import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesDevouring = (props: {
   devourable: BooleanLike;

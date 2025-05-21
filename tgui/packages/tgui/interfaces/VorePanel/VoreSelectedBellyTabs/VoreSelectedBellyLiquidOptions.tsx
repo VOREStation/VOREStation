@@ -2,8 +2,8 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { reagentToColor } from '../constants';
-import { LiquidColorInput } from '../LiquidColorInput';
 import type { selectedData } from '../types';
+import { LiquidColorInput } from '../VorePanelElements/LiquidColorInput';
 
 export const VoreSelectedBellyLiquidOptions = (props: {
   belly: selectedData;

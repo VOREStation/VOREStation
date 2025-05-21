@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { VorePanelColorBox } from './VorePanelElements/VorePanelCommonElements';
+import { VorePanelColorBox } from './VorePanelCommonElements';
 
 export const FeatureColorInput = (props: {
   action_name: string;

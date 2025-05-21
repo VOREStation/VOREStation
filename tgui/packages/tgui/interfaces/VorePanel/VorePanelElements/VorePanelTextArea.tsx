@@ -1,8 +1,9 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Stack, TextArea } from 'tgui-core/components';
+import { Box, Floating, Icon, Stack, TextArea } from 'tgui-core/components';
 
 import { SYNTAX_COLOR, SYNTAX_REGEX } from '../constants';
+import { calcLineHeight } from '../functions';
 
 const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
   const { desc } = props;
@@ -49,12 +50,12 @@ const CountedTextElement = (props: {
   const ref = useRef<HTMLTextAreaElement | null>(null);
 
   const currentCount = ref.current?.value.length || 0;
-
   return (
     <>
       <Stack.Item grow>
         <TextArea
           height="100%"
+          minHeight={calcLineHeight(limit, 16)}
           fluid
           ref={ref}
           maxLength={limit}
@@ -141,6 +142,10 @@ export const VorePanelEditTextArea = (props: {
     act(action, { attribute: subAction, val: value });
   }
 
+  function applyPaste(value: string) {
+    Array.isArray(entry) ? doAct(value.split('\n\n')) : doAct(value);
+  }
+
   return editMode ? (
     <Stack fill vertical>
       {!!tooltip && (
@@ -148,16 +153,46 @@ export const VorePanelEditTextArea = (props: {
           <Box color="label">{tooltip}</Box>
         </Stack.Item>
       )}
-      {Array.isArray(entry) ? (
-        <AreaMapper
-          limit={limit}
-          entry={entry}
-          action={doAct}
-          maxEntries={maxEntries}
-        />
-      ) : (
-        <CountedTextElement limit={limit} entry={entry} action={doAct} />
-      )}
+      <Stack.Item>
+        <Floating
+          placement="bottom-start"
+          contentClasses="VorePanel__pasteArea"
+          content={
+            <Stack fill vertical>
+              <Stack.Item>
+                <Box color="label">
+                  Copy paste the fields as legacy block text. Use enter to
+                  apply. Shift + Enter for new lines.
+                </Box>
+              </Stack.Item>
+              <Stack.Item grow>
+                <TextArea
+                  height="100%"
+                  fluid
+                  value={Array.isArray(entry) ? entry.join('\n\n') : entry}
+                  onEnter={(value) => applyPaste(value)}
+                />
+              </Stack.Item>
+            </Stack>
+          }
+        >
+          <Box className="VorePanel__floatingButton">
+            <Icon name="paste" />
+          </Box>
+        </Floating>
+      </Stack.Item>
+      <Stack.Item>
+        {Array.isArray(entry) ? (
+          <AreaMapper
+            limit={limit}
+            entry={entry}
+            action={doAct}
+            maxEntries={maxEntries}
+          />
+        ) : (
+          <CountedTextElement limit={limit} entry={entry} action={doAct} />
+        )}
+      </Stack.Item>
     </Stack>
   ) : Array.isArray(entry) ? (
     <Stack vertical g={2}>

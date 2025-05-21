@@ -2,8 +2,8 @@ import { useBackend } from 'tgui/backend';
 import { LabeledList, Section, Slider, Stack } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
-import { abilitiy_usable } from './functions';
-import type { abilities, abilitySizeChange } from './types';
+import { abilitiy_usable } from '../functions';
+import type { abilities, abilitySizeChange } from '../types';
 
 export const VoreAbilities = (props: { abilities: abilities }) => {
   const { abilities } = props;

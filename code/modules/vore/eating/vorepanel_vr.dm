@@ -1731,11 +1731,8 @@
 			host.vore_selected.eating_privacy_local = privacy_choice
 			. = TRUE
 		if("b_silicon_belly")
-			var/belly_choice = tgui_alert(user, "Choose whether you'd like your belly overlay to show from sleepers, \
-			normal vore bellies, or an average of the two. NOTE: This ONLY applies to silicons, not human mobs!", "Belly Overlay \
-			Preference",
-			list("Sleeper", "Vorebelly", "Both"))
-			if(belly_choice == null)
+			var/belly_choice = params["Val"]
+			if(!(belly_choice) in list("Sleeper", "Vorebelly", "Both"))
 				return FALSE
 			for (var/belly in host.vore_organs)
 				var/obj/belly/B = belly

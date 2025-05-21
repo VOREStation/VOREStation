@@ -2,16 +2,16 @@ import { useBackend } from 'tgui/backend';
 import { Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { tabToNames } from './constants';
-import type { hostMob, selectedData } from './types';
-import { VoreContentsPanel } from './VoreContentsPanel';
-import { VoreSelectedBellyControls } from './VoreSelectedBellyTabs/VoreSelectedBellyControls';
-import { VoreSelectedBellyDescriptions } from './VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
-import { VoreSelectedBellyInteractions } from './VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
-import { VoreSelectedBellyLiquidOptions } from './VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';
-import { VoreSelectedBellyOptions } from './VoreSelectedBellyTabs/VoreSelectedBellyOptions';
-import { VoreSelectedBellySounds } from './VoreSelectedBellyTabs/VoreSelectedBellySounds';
-import { VoreSelectedBellyVisuals } from './VoreSelectedBellyTabs/VoreSelectedBellyVisuals';
+import { tabToNames } from '../constants';
+import type { hostMob, selectedData } from '../types';
+import { VoreContentsPanel } from '../VoreSelectedBellyTabs/SubElements/VoreContentsPanel';
+import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
+import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
+import { VoreSelectedBellyInteractions } from '../VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
+import { VoreSelectedBellyLiquidOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';
+import { VoreSelectedBellyOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyOptions';
+import { VoreSelectedBellySounds } from '../VoreSelectedBellyTabs/VoreSelectedBellySounds';
+import { VoreSelectedBellyVisuals } from '../VoreSelectedBellyTabs/VoreSelectedBellyVisuals';
 /**
  * Subtemplate of VoreBellySelectionAndCustomization
  */

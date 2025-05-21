@@ -1,15 +1,14 @@
-import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { Box, LabeledList, Section } from 'tgui-core/components';
 
-import type { hostMob, siliconeBellyControls } from '../types';
+import { robotBellyOptions } from '../../constants';
+import type { hostMob, siliconeBellyControls } from '../../types';
+import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 
 export const VoreSelectedMobTypeBellyButtons = (props: {
   editMode: boolean;
   bellyControl: siliconeBellyControls;
   host_mobtype: hostMob;
 }) => {
-  const { act } = useBackend();
   const { editMode, bellyControl, host_mobtype } = props;
   const {
     silicon_belly_overlay_preference,
@@ -25,13 +24,14 @@ export const VoreSelectedMobTypeBellyButtons = (props: {
         <Section title={'Cyborg Controls'} width={'80%'}>
           <LabeledList>
             <LabeledList.Item label="Toggle Belly Overlay Mode">
-              <Button
-                onClick={() =>
-                  act('set_attribute', { attribute: 'b_silicon_belly' })
-                }
-              >
-                {capitalize(silicon_belly_overlay_preference)}
-              </Button>
+              <VorePanelEditDropdown
+                tooltip="Choose whether you'd like your belly overlay to show from sleepers, normal vore bellies, or an average of the two. NOTE: This ONLY applies to silicons, not human mobs!"
+                action="set_attribute"
+                subAction="b_silicon_belly"
+                editMode={editMode}
+                options={robotBellyOptions}
+                entry={silicon_belly_overlay_preference}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -39,11 +39,11 @@ export const VoreSelectedMobTypeBellyButtons = (props: {
     } else {
       return (
         <Section title={'Cyborg Controls'} width={'80%'}>
-          <span style={{ color: 'red' }}>
+          <Box color="red">
             Your module does either not support vore sprites or you&apos;ve
             selected a belly sprite other than the sleeper within the Visuals
             section.
-          </span>
+          </Box>
         </Section>
       );
     }

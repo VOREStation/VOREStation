@@ -721,3 +721,8 @@
 #undef SHRINK_MESSAGE
 #undef GROW_MESSAGE
 #undef UNABSORB_MESSAGE
+#undef LIQUID0
+#undef LIQUID20
+#undef LIQUID40
+#undef LIQUID60
+#undef LIQUID80

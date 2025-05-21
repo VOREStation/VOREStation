@@ -13,7 +13,7 @@ import { VorePanelColorBox } from '../VorePanelElements/VorePanelCommonElements'
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
-import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
+import { VoreSelectedMobTypeBellyButtons } from './SubElements/VoreSelectedMobTypeBellyButtons';
 
 export const VoreSelectedBellyOptions = (props: {
   editMode: boolean;

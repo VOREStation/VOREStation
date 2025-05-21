@@ -13,8 +13,8 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
-import { digestModeToColor } from './constants';
-import type { bellyData, hostMob, selectedData } from './types';
+import { digestModeToColor } from '../constants';
+import type { bellyData, hostMob, selectedData } from '../types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {

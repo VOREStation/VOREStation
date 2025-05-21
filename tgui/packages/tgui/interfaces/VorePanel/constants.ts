@@ -104,3 +104,5 @@ export const eatingMessagePrivacy = {
   subtle: 'green',
   loud: 'red',
 };
+
+export const robotBellyOptions = ['Sleeper', 'Vorebelly', 'Both'];

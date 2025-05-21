@@ -8,12 +8,12 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import type { abilities, DropdownEntry, soulcatcherData } from './types';
+import type { abilities, DropdownEntry, soulcatcherData } from '../types';
+import { CatchSettings } from '../VoreSoulcatcherSettings/CatchSettings';
+import { GlobalOptions } from '../VoreSoulcatcherSettings/GlobalOptions';
+import { GlobalSettings } from '../VoreSoulcatcherSettings/GlobalSettings';
+import { SoulOptions } from '../VoreSoulcatcherSettings/SoulOptions';
 import { VoreAbilities } from './VoreAbilities';
-import { CatchSettings } from './VoreSoulcatcherSettings/CatchSettings';
-import { GlobalOptions } from './VoreSoulcatcherSettings/GlobalOptions';
-import { GlobalSettings } from './VoreSoulcatcherSettings/GlobalSettings';
-import { SoulOptions } from './VoreSoulcatcherSettings/SoulOptions';
 
 export const VoreSoulcatcher = (props: {
   soulcatcher: soulcatcherData | null;
