@@ -1909,15 +1909,15 @@
 			host.vore_selected.digest_oxy = new_damage
 			. = TRUE
 		if("b_tox_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of toxin damage prey will take per tick. Max of [host.vore_selected.digest_max] across all damage types. [host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_tox] remaining.", "Set Belly Toxin Damage.", host.vore_selected.digest_tox, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_tox, 0, round_value=FALSE)
-			if(new_damage == null)
+			var/new_damage = text2num(params["val"])
+			if(!isnum(new_damage))
 				return FALSE
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_tox)
 			host.vore_selected.digest_tox = new_damage
 			. = TRUE
 		if("b_clone_dmg")
-			var/new_damage = tgui_input_number(user, "Choose the amount of genetic (clone) damage prey will take per tick. Max of [host.vore_selected.digest_max] across all damage types. [host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone] remaining.", "Set Belly Genetic Damage.", host.vore_selected.digest_clone, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone, 0, round_value=FALSE)
-			if(new_damage == null)
+			var/new_damage = text2num(params["val"])
+			if(!isnum(new_damage))
 				return FALSE
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone)
 			host.vore_selected.digest_clone = new_damage
