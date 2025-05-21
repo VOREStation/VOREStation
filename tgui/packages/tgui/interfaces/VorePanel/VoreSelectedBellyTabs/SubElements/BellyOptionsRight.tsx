@@ -28,8 +28,6 @@ export const BellyOptionsRight = (props: {
     egg_size,
     recycling,
     storing_nutrition,
-    entrance_logs,
-    item_digest_logs,
     selective_preference,
     vorespawn_blacklist,
     vorespawn_whitelist,
@@ -239,26 +237,6 @@ export const BellyOptionsRight = (props: {
           selected={storing_nutrition}
         >
           {storing_nutrition ? 'Storing' : 'Absorbing'}
-        </Button>
-      </LabeledList.Item>
-      <LabeledList.Item label="Entrance Logs">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_entrance_logs' })}
-          icon={entrance_logs ? 'toggle-on' : 'toggle-off'}
-          selected={entrance_logs}
-        >
-          {entrance_logs ? 'Enabled' : 'Disabled'}
-        </Button>
-      </LabeledList.Item>
-      <LabeledList.Item label="Item Digestion Logs">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_item_digest_logs' })
-          }
-          icon={item_digest_logs ? 'toggle-on' : 'toggle-off'}
-          selected={item_digest_logs}
-        >
-          {item_digest_logs ? 'Enabled' : 'Disabled'}
         </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Selective Mode Preference">

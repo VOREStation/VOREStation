@@ -51,10 +51,6 @@
 			tab_data["active_message"] = selected.absorbed_desc
 			tab_data["set_action"] = BELLY_DESCRIPTION_MESSAGE_ABSROED
 			tab_data["tooltip"] = "Displayed to prey after absorption."
-			tab_data["button_label"] = "Display Absorbed Examine"
-			tab_data["button_action"] = "b_display_absorbed_examine"
-			tab_data["button_data"] = selected.display_absorbed_examine
-			tab_data["button_tooltip"] = "the absorbed description on examine." // those will automatically be preceeded by Enables / Disables!
 		return tab_data
 
 	if(message_option == VPANEL_EXAMINE_TAB)
@@ -74,6 +70,10 @@
 			tab_data["active_message"] = selected.examine_messages_absorbed
 			tab_data["set_action"] = EXAMINES_ABSORBED
 			tab_data["tooltip"] = "Displayed to nearby players during examination when the vorgan contains absorbed prey."
+			tab_data["button_label"] = "Display Absorbed Examine"
+			tab_data["button_action"] = "b_display_absorbed_examine"
+			tab_data["button_data"] = selected.display_absorbed_examine
+			tab_data["button_tooltip"] = "the absorbed description on examine." // those will automatically be preceeded by Enables / Disables!
 		return tab_data
 
 	if(message_option == VPANEL_TRASH_EATER_TAB)

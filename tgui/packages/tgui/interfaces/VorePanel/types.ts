@@ -84,6 +84,8 @@ export type bellyDescriptionData = {
   emote_time: number;
   emote_active: BooleanLike;
   show_liq_fullness: BooleanLike;
+  entrance_logs: BooleanLike;
+  item_digest_logs: BooleanLike;
   displayed_message_types: {
     subtypes?: string[];
     possible_messages?: string[] | null;
@@ -122,8 +124,6 @@ export type bellyOptionData = {
   egg_size: number;
   recycling: BooleanLike;
   storing_nutrition: BooleanLike;
-  entrance_logs: BooleanLike;
-  item_digest_logs: BooleanLike;
   selective_preference: string;
   save_digest_mode: BooleanLike;
   eating_privacy_local: string;

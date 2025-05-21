@@ -30,6 +30,8 @@ export const VoreSelectedBellyDescriptions = (props: {
     emote_active,
     emote_time,
     show_liq_fullness,
+    entrance_logs,
+    item_digest_logs,
   } = bellyDescriptionData;
 
   return (
@@ -143,6 +145,31 @@ export const VoreSelectedBellyDescriptions = (props: {
                 tooltip={
                   (show_liq_fullness ? 'Dis' : 'En') +
                   'ables liquid fullness examine messages.'
+                }
+              />
+            </LabeledList.Item>
+            <LabeledList.Divider />
+            <LabeledList.Item label="Entrance Logs">
+              <VorePanelEditSwitch
+                action="set_attribute"
+                subAction="b_entrance_logs"
+                editMode={editMode}
+                active={!!entrance_logs}
+                tooltip={
+                  (entrance_logs ? 'Dis' : 'En') +
+                  'ables auto transfer messages and spawn messages being shown to yourself.'
+                }
+              />
+            </LabeledList.Item>
+            <LabeledList.Item label="Item Digestion Logs">
+              <VorePanelEditSwitch
+                action="set_attribute"
+                subAction="b_item_digest_logs"
+                editMode={editMode}
+                active={!!item_digest_logs}
+                tooltip={
+                  (item_digest_logs ? 'Dis' : 'En') +
+                  'ables item digest messages being shown to yourself.'
                 }
               />
             </LabeledList.Item>

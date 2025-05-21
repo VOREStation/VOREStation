@@ -147,6 +147,8 @@
 				"show_liq_fullness" = selected.show_fullness_messages,
 				"emote_time" = selected.emote_time,
 				"emote_active" = selected.emote_active,
+				"entrance_logs" = selected.entrance_logs,
+				"item_digest_logs" = selected.item_digest_logs
 			)
 			selected_list["belly_description_data"] = belly_description_data
 
@@ -177,8 +179,6 @@
 				"egg_size" = selected.egg_size,
 				"recycling" = selected.recycling,
 				"storing_nutrition" = selected.storing_nutrition,
-				"entrance_logs" = selected.entrance_logs,
-				"item_digest_logs" = selected.item_digest_logs,
 				"selective_preference" = selected.selective_preference,
 				"save_digest_mode" = selected.save_digest_mode,
 				"eating_privacy_local" = selected.eating_privacy_local,

@@ -1,6 +1,13 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Floating, Icon, Stack, TextArea } from 'tgui-core/components';
+import {
+  Box,
+  Divider,
+  Floating,
+  Icon,
+  Stack,
+  TextArea,
+} from 'tgui-core/components';
 
 import { SYNTAX_COLOR, SYNTAX_REGEX } from '../constants';
 import { calcLineHeight } from '../functions';
@@ -199,6 +206,7 @@ export const VorePanelEditTextArea = (props: {
       {entry.map((singleEntry, index) => (
         <Stack.Item key={index}>
           <DescriptionSyntaxHighlighting desc={singleEntry} />
+          <Divider />
         </Stack.Item>
       ))}
     </Stack>
