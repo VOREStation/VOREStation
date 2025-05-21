@@ -161,7 +161,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
               {!!selected_message && !!displayed_message_types && (
                 <Stack vertical fill>
                   {!!displayed_message_types.button_action && (
-                    <Stack.Item mb="10px">
+                    <Stack.Item>
                       <LabeledList>
                         <LabeledList.Item
                           label={displayed_message_types.button_label}

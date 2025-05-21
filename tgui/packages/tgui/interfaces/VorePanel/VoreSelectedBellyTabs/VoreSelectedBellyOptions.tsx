@@ -12,7 +12,7 @@ export const VoreSelectedBellyOptions = (props: {
   const { editMode, bellyOptionData, host_mobtype } = props;
 
   return (
-    <Stack wrap="wrap">
+    <Stack fill>
       <Stack.Item basis="49%" grow>
         <BellyOptionsLeft
           editMode={editMode}

@@ -202,11 +202,11 @@ export const VorePanelEditTextArea = (props: {
       </Stack.Item>
     </Stack>
   ) : Array.isArray(entry) ? (
-    <Stack vertical g={2}>
+    <Stack vertical g={1}>
       {entry.map((singleEntry, index) => (
         <Stack.Item key={index}>
-          <DescriptionSyntaxHighlighting desc={singleEntry} />
           <Divider />
+          <DescriptionSyntaxHighlighting desc={singleEntry} />
         </Stack.Item>
       ))}
     </Stack>
