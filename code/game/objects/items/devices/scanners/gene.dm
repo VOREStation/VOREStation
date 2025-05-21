@@ -72,7 +72,10 @@
 				continue
 			if(istype(G,/datum/gene/trait))
 				var/datum/gene/trait/TG = G
-				output += span_info("-[TG.linked_trait.name]") + "<br>"
+				if(ishuman(L))
+					output += span_info("-[TG.linked_trait.name]") + span_warning((TG.has_conflict(H.species.traits) ? " (Suppressed)" : "")) + "<br>"
+				else
+					output += span_info("-[TG.linked_trait.name]") + "<br>"
 				output += span_infoplain("  [TG.linked_trait.desc]") + "<br>"
 			else
 				output += span_info("-[G.name]") + "<br>"
