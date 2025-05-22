@@ -1,6 +1,6 @@
-import { type PropsWithChildren, useCallback } from 'react';
+import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, ImageButton, Section } from 'tgui-core/components';
+import { Button, ImageButton, Input, Section } from 'tgui-core/components';
 
 import {
   ColorizedImageButton,
@@ -78,7 +78,10 @@ export const FacialDimmer = (props: {
   ) as Species;
   const hairColor = data.facial_color;
 
-  const hair_styles = staticData.available_facial_styles;
+  const [search, setSearch] = useState('');
+  const hair_styles = staticData.available_facial_styles.filter((x) =>
+    search ? x.toLowerCase().includes(search.toLowerCase()) : true,
+  );
   hair_styles.sort();
 
   return (
@@ -101,6 +104,13 @@ export const FacialDimmer = (props: {
           color_one={hairColor}
         />
       ) : null}
+      <Input
+        fluid
+        expensive
+        onChange={(val) => setSearch(val)}
+        value={search}
+        mt={1}
+      />
 
       {hair_styles.map((hairStyle) => (
         <FacialImageButton

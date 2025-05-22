@@ -1,6 +1,6 @@
-import { type PropsWithChildren } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, ImageButton, Section } from 'tgui-core/components';
+import { Button, ImageButton, Input, Section } from 'tgui-core/components';
 
 import { ColorizedImageButton, ColorPicker } from '../../helper_components';
 import {
@@ -55,7 +55,10 @@ export const GradientDimmer = (props: {
   const { setShow, data, serverData, staticData } = props;
   const color = data.grad_color;
 
-  const grad_styles = Object.keys(serverData.grad_styles);
+  const [search, setSearch] = useState('');
+  const grad_styles = Object.keys(serverData.grad_styles).filter((x) =>
+    search ? x.toLowerCase().includes(search.toLowerCase()) : true,
+  );
   grad_styles.sort();
 
   return (
@@ -75,6 +78,13 @@ export const GradientDimmer = (props: {
           act('set_grad_color');
         }}
         color_one={color}
+      />
+      <Input
+        fluid
+        expensive
+        onChange={(val) => setSearch(val)}
+        value={search}
+        mt={1}
       />
 
       {grad_styles.map((style) => (

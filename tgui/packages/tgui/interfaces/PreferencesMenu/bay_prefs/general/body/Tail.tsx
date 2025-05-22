@@ -1,6 +1,6 @@
-import { type PropsWithChildren, useCallback } from 'react';
+import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, ImageButton, Section } from 'tgui-core/components';
+import { Box, Button, ImageButton, Input, Section } from 'tgui-core/components';
 
 import {
   ColorizedImageButton,
@@ -107,7 +107,10 @@ export const TailDimmer = (props: {
   const color3 = data.tail_color3;
   const alpha = data.tail_alpha;
 
-  const styles = staticData.available_tail_styles;
+  const [search, setSearch] = useState('');
+  const styles = staticData.available_tail_styles.filter((x) =>
+    search ? x.toLowerCase().includes(search.toLowerCase()) : true,
+  );
   styles.sort();
 
   return (
@@ -143,6 +146,13 @@ export const TailDimmer = (props: {
         color_two={color2 || '#FFFFFF'}
         color_three={color3 || '#FFFFFF'}
         alpha={alpha}
+      />
+      <Input
+        fluid
+        expensive
+        onChange={(val) => setSearch(val)}
+        value={search}
+        mt={1}
       />
 
       {styles.map((style) => (

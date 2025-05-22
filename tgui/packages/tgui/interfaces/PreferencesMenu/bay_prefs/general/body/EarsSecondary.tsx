@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Section } from 'tgui-core/components';
+import { Button, Input, Section } from 'tgui-core/components';
 
 import { ColorPicker, ColorType } from '../../helper_components';
 import {
@@ -27,7 +28,11 @@ export const EarsSecondaryDimmer = (props: {
   const color3 = colors[2] || null;
   const alpha = data.ear_secondary_alpha;
 
-  const styles = staticData.available_ear_styles;
+  const [search, setSearch] = useState('');
+
+  const styles = staticData.available_ear_styles.filter((x) =>
+    search ? x.toLowerCase().includes(search.toLowerCase()) : true,
+  );
   styles.sort();
 
   return (
@@ -62,6 +67,13 @@ export const EarsSecondaryDimmer = (props: {
         color_two={color2 || '#FFFFFF'}
         color_three={color3 || '#FFFFFF'}
         alpha={alpha}
+      />
+      <Input
+        fluid
+        expensive
+        onChange={(val) => setSearch(val)}
+        value={search}
+        mt={1}
       />
 
       {styles.map((style) => (
