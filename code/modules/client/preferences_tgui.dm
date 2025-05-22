@@ -41,6 +41,7 @@
 	data["character_preferences"] = compile_character_preferences(user)
 
 	data["active_slot"] = default_slot
+	data["saved_notification"] = saved_notification
 
 	for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 		data += preference_middleware.get_ui_data(user)
@@ -141,6 +142,8 @@
 		if("save")
 			save_character()
 			save_preferences()
+			saved_notification = TRUE
+			VARSET_IN(src, saved_notification, FALSE, 1 SECONDS)
 			. = TRUE
 		if("reload")
 			load_preferences()

@@ -28,6 +28,7 @@ export const CharacterPreferenceWindow = (props) => {
     preview_loadout,
     preview_job_gear,
     preview_animations,
+    saved_notification,
   } = data;
 
   return (
@@ -52,11 +53,12 @@ export const CharacterPreferenceWindow = (props) => {
     >
       <Window.Content>
         <Stack height="100%">
-          <Stack.Item
-            basis="70%"
-            className="PreferencesMenu__OldStyle"
-            position="relative"
-          >
+          <Stack.Item basis="70%" position="relative">
+            {saved_notification ? (
+              <Box className="PreferencesMenu__SaveNotif">
+                <Box className="PreferencesMenu__SaveNotif__Inner">Saved!</Box>
+              </Box>
+            ) : null}
             <center>
               <Box>
                 <Button onClick={() => act('load')}>Load slot</Button>
