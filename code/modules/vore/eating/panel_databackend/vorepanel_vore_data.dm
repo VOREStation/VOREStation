@@ -153,7 +153,6 @@
 			selected_list["belly_description_data"] = belly_description_data
 
 		if(active_vore_tab == OPTIONS_TAB)
-
 			var/list/silicon_control = list(
 				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
 				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
@@ -200,14 +199,20 @@
 
 			selected_list["belly_option_data"] = belly_option_data
 
+		if(active_vore_tab == SOUNDS_TAB)
+			var/list/belly_sound_data = list(
+				"is_wet" = selected.is_wet,
+				"wet_loop" = selected.wet_loop,
+				"fancy" = selected.fancy_vore,
+				"sound" = selected.vore_sound,
+				"release_sound" = selected.release_sound,
+				"sound_volume" = selected.sound_volume,
+				"noise_freq" = selected.noise_freq,
+			)
+			selected_list["belly_sound_data"] = belly_sound_data
 
 		// TODO wipe this list-....
 		selected_list += list(list(
-			"is_wet" = selected.is_wet,
-			"wet_loop" = selected.wet_loop,
-			"fancy" = selected.fancy_vore,
-			"sound" = selected.vore_sound,
-			"release_sound" = selected.release_sound,
 			// "messages" // TODO
 			"nutrition_ex" = owner.nutrition_message_visible,
 			"weight_ex" = owner.weight_message_visible,
@@ -255,8 +260,6 @@
 			"max_ingested" = selected.max_ingested,
 			"custom_ingested_color" = selected.custom_ingested_color,
 			"custom_ingested_alpha" = selected.custom_ingested_alpha,
-			"sound_volume" = selected.sound_volume,
-			"noise_freq" = selected.noise_freq,
 			//"marking_to_add" = selected.marking_to_add
 		))
 

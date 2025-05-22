@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useBackend } from 'tgui/backend';
 import {
   Button,
   Dimmer,
@@ -19,7 +18,6 @@ export const VoreSelectedBellyDescriptions = (props: {
   bellyDescriptionData: bellyDescriptionData;
   vore_words: Record<string, string[]>;
 }) => {
-  const { act } = useBackend();
   const [showFormatHelp, setShowFormatHelp] = useState(false);
 
   const { editMode, bellyDescriptionData, vore_words } = props;

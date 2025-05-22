@@ -39,6 +39,7 @@ export const VoreSelectedBelly = (props: {
     belly_mode_data,
     belly_description_data,
     belly_option_data,
+    belly_sound_data,
     contents,
   } = belly;
 
@@ -65,7 +66,12 @@ export const VoreSelectedBelly = (props: {
       host_mobtype={host_mobtype}
     />
   );
-  tabs[3] = <VoreSelectedBellySounds belly={belly} />;
+  tabs[3] = belly_sound_data && (
+    <VoreSelectedBellySounds
+      editMode={editMode}
+      bellySoundData={belly_sound_data}
+    />
+  );
   tabs[4] = <VoreSelectedBellyVisuals belly={belly} />;
   tabs[5] = <VoreSelectedBellyInteractions belly={belly} />;
   tabs[6] = (

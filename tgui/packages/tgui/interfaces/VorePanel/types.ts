@@ -136,6 +136,16 @@ export type bellyOptionData = {
   mob_belly_controls: siliconeBellyControls;
 };
 
+export type bellySoundData = {
+  is_wet: BooleanLike;
+  wet_loop: BooleanLike;
+  fancy: BooleanLike;
+  sound: string;
+  release_sound: string;
+  sound_volume: number;
+  noise_freq: number;
+};
+
 export type siliconeBellyControls = {
   silicon_belly_overlay_preference: string;
   belly_sprite_option_shown: BooleanLike;
@@ -147,13 +157,9 @@ export type selectedData = {
   belly_mode_data?: bellyModeData;
   belly_description_data?: bellyDescriptionData;
   belly_option_data?: bellyOptionData;
+  belly_sound_data?: bellySoundData;
 
   interacts: interactData;
-  is_wet: BooleanLike;
-  wet_loop: BooleanLike;
-  fancy: BooleanLike;
-  sound: string;
-  release_sound: string;
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
   display_absorbed_examine: BooleanLike;
@@ -191,7 +197,6 @@ export type selectedData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
-  sound_volume: number;
   affects_voresprite: BooleanLike;
   absorbed_voresprite: BooleanLike;
   absorbed_multiplier: number;
@@ -213,7 +218,6 @@ export type selectedData = {
   tail_colouration: BooleanLike;
   tail_extra_overlay: BooleanLike;
   tail_extra_overlay2: BooleanLike;
-  noise_freq: number;
   vore_sprite_flags: string[];
   autotransfer_enabled: BooleanLike;
   autotransfer: autotransferData;

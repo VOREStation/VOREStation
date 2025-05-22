@@ -1,12 +1,13 @@
-import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
-import type { selectedData } from '../types';
+import type { bellySoundData } from '../types';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 
-export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
-  const { act } = useBackend();
-
-  const { belly } = props;
+export const VoreSelectedBellySounds = (props: {
+  editMode: boolean;
+  bellySoundData: bellySoundData;
+}) => {
+  const { editMode, bellySoundData } = props;
   const {
     is_wet,
     wet_loop,
@@ -15,41 +16,43 @@ export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
     release_sound,
     sound_volume,
     noise_freq,
-  } = belly;
+  } = bellySoundData;
 
   return (
-    <Stack wrap="wrap">
+    <Stack>
       <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Fleshy Belly">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_wetness' })}
-              icon={is_wet ? 'toggle-on' : 'toggle-off'}
-              selected={is_wet}
-            >
-              {is_wet ? 'Yes' : 'No'}
-            </Button>
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_wetness"
+              editMode={editMode}
+              content={is_wet ? 'Yes' : 'No'}
+              active={!!is_wet}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Internal Loop">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_wetloop' })}
-              icon={wet_loop ? 'toggle-on' : 'toggle-off'}
-              selected={wet_loop}
-            >
-              {wet_loop ? 'Yes' : 'No'}
-            </Button>
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_wetloop"
+              editMode={editMode}
+              content={wet_loop ? 'Yes' : 'No'}
+              active={!!wet_loop}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Use Fancy Sounds">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_fancy_sound' })
-              }
-              icon={fancy ? 'toggle-on' : 'toggle-off'}
-              selected={fancy}
-            >
-              {fancy ? 'Yes' : 'No'}
-            </Button>
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_fancy_sound"
+              editMode={editMode}
+              content={fancy ? 'Yes' : 'No'}
+              active={!!fancy}
+            />
           </LabeledList.Item>
+        </LabeledList>
+      </Stack.Item>
+      <Stack.Item basis="49%" grow>
+        <LabeledList>
           <LabeledList.Item label="Vore Sound">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_sound' })}

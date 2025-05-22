@@ -1,4 +1,3 @@
-import { useBackend } from 'tgui/backend';
 import { LabeledList } from 'tgui-core/components';
 
 import { digestModeToColor, selectiveBellyOptions } from '../../constants';
@@ -12,8 +11,6 @@ export const BellyOptionsRight = (props: {
   editMode: boolean;
   bellyOptionData: bellyOptionData;
 }) => {
-  const { act } = useBackend();
-
   const { editMode, bellyOptionData } = props;
   const {
     digest_brute,
