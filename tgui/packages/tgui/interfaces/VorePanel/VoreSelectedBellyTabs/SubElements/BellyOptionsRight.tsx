@@ -1,10 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { LabeledList } from 'tgui-core/components';
 
-import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../../constants';
+import { digestModeToColor, selectiveBellyOptions } from '../../constants';
 import type { bellyOptionData } from '../../types';
+import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
+import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
 
 export const BellyOptionsRight = (props: {
   editMode: boolean;
@@ -29,9 +31,7 @@ export const BellyOptionsRight = (props: {
     recycling,
     storing_nutrition,
     selective_preference,
-    vorespawn_blacklist,
-    vorespawn_whitelist,
-    vorespawn_absorbed,
+    drainmode_options,
     drainmode,
   } = bellyOptionData;
 
@@ -143,112 +143,96 @@ export const BellyOptionsRight = (props: {
         />
       </LabeledList.Item>
       <LabeledList.Item label="Drain Finishing Mode">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_drainmode' })}
-        >
-          {drainmode}
-        </Button>
+        <VorePanelEditDropdown
+          action="set_attribute"
+          subAction="b_drainmode"
+          editMode={editMode}
+          options={drainmode_options}
+          entry={drainmode}
+          tooltip="Event trigger once prey is fully drained of nutrition."
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Shrink/Grow Size">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_grow_shrink' })}
-        >
-          {shrink_grow_size * 100 + '%'}
-        </Button>
+        <VorePanelEditNumber
+          tooltip="Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%"
+          action="set_attribute"
+          subAction="b_grow_shrink"
+          editMode={editMode}
+          value={shrink_grow_size * 100}
+          minValue={25}
+          maxValue={200}
+          unit="%"
+        />
       </LabeledList.Item>
-      <LabeledList.Item label="Vore Spawn Blacklist">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_vorespawn_blacklist' })
-          }
-          icon={vorespawn_blacklist ? 'toggle-on' : 'toggle-off'}
-          selected={vorespawn_blacklist}
-        >
-          {vorespawn_blacklist ? 'Yes' : 'No'}
-        </Button>
-      </LabeledList.Item>
-      {vorespawn_blacklist ? (
-        ''
-      ) : (
-        <>
-          <LabeledList.Item label="Vore Spawn Whitelist">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_vorespawn_whitelist' })
-              }
-              icon="pen"
-            >
-              {vorespawn_whitelist.length
-                ? vorespawn_whitelist.join(', ')
-                : 'Anyone!'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Vore Spawn Absorbed">
-            <Button
-              color={vorespawnAbsorbedColor[vorespawn_absorbed]}
-              tooltip="Click to toggle between No, Yes and Prey's Choice."
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_vorespawn_absorbed' })
-              }
-            >
-              {vorespawnAbsorbedText[vorespawn_absorbed]}
-            </Button>
-          </LabeledList.Item>
-        </>
-      )}
       <LabeledList.Item label="Egg Type">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_egg_type' })}
-          icon="pen"
-        >
-          {capitalize(egg_type)}
-        </Button>
+        <VorePanelEditDropdown
+          tooltip="Select the displayed egg type when you encase prey in one."
+          action="set_attribute"
+          subAction="b_egg_type"
+          editMode={editMode}
+          options={egg_types}
+          entry={egg_type}
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Custom Egg Name">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_egg_name' })}
-          icon="pen"
-        >
-          {egg_name ? egg_name : 'Default'}
-        </Button>
+        <VorePanelEditText
+          action="set_attribute"
+          subAction="b_egg_name"
+          editMode={editMode}
+          limit={0}
+          entry={editMode ? egg_name : egg_name ? egg_name : 'Default'}
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Custom Egg Size">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_egg_size' })}
-        >
-          {egg_size ? egg_size * 100 + '%' : 'Automatic'}
-        </Button>
+        {!egg_size && !editMode ? (
+          'Automatic'
+        ) : (
+          <VorePanelEditNumber
+            tooltip="Custom Egg Size 25% to 200% (0 for automatic item depending egg size from 25% to 200%)"
+            action="set_attribute"
+            subAction="b_egg_size"
+            editMode={editMode}
+            value={egg_size * 100}
+            minValue={0}
+            maxValue={200}
+            unit="%"
+          />
+        )}
       </LabeledList.Item>
       <LabeledList.Item label="Recycling">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_recycling' })}
-          icon={recycling ? 'toggle-on' : 'toggle-off'}
-          selected={recycling}
-        >
-          {recycling ? 'Enabled' : 'Disabled'}
-        </Button>
+        <VorePanelEditSwitch
+          action="set_attribute"
+          subAction="b_recycling"
+          editMode={editMode}
+          tooltip="Allows you to recycle items into small amounts of resources during digestion."
+          active={!!recycling}
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Storing Nutrition">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_storing_nutrition' })
+        <VorePanelEditSwitch
+          action="set_attribute"
+          subAction="b_storing_nutrition"
+          editMode={editMode}
+          content={storing_nutrition ? 'Storing' : 'Absorbing'}
+          active={!!storing_nutrition}
+          tooltip={
+            'Toggle nutirion ' +
+            (storing_nutrition ? 'storing' : 'absorbing') +
+            '. Currently nutrition will be ' +
+            (storing_nutrition ? 'stored as items' : 'absorbed') +
+            '.'
           }
-          icon={storing_nutrition ? 'toggle-on' : 'toggle-off'}
-          selected={storing_nutrition}
-        >
-          {storing_nutrition ? 'Storing' : 'Absorbing'}
-        </Button>
+        />
       </LabeledList.Item>
       <LabeledList.Item label="Selective Mode Preference">
-        <Button
-          onClick={() =>
-            act('set_attribute', {
-              attribute: 'b_selective_mode_pref_toggle',
-            })
-          }
-        >
-          {capitalize(selective_preference)}
-        </Button>
+        <VorePanelEditDropdown
+          action="set_attribute"
+          subAction="b_selective_mode_pref_toggle"
+          editMode={editMode}
+          options={selectiveBellyOptions}
+          entry={selective_preference}
+          color={digestModeToColor[selective_preference]}
+        />
       </LabeledList.Item>
     </LabeledList>
   );

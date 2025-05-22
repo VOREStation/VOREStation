@@ -187,6 +187,7 @@
 				"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
 				"private_struggle" = selected.private_struggle,
 				"drainmode" = selected.drainmode,
+				"drainmode_options" = selected.drainmodes,
 				"mob_belly_controls" = silicon_control
 			)
 			if(selected.contaminates)
@@ -195,7 +196,6 @@
 				"contaminate_options" = GLOB.contamination_flavors,
 				"contaminate_color" = selected.contamination_color,
 				"contaminate_colors" = GLOB.contamination_colors
-
 				)
 
 			selected_list["belly_option_data"] = belly_option_data

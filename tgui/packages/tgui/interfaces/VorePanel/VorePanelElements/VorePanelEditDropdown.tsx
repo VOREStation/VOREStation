@@ -5,11 +5,11 @@ import { capitalize } from 'tgui-core/string';
 import type { DropdownEntry } from '../types';
 
 export const VorePanelEditDropdown = (props: {
+  action: string;
+  subAction: string;
   editMode: boolean;
   options: (string | DropdownEntry)[];
   entry: string;
-  action: string;
-  subAction: string;
   color?: string;
   icon?: string;
   tooltip?: string;

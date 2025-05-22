@@ -5,13 +5,24 @@ export const VorePanelEditSwitch = (props: {
   action: string;
   subAction: string;
   editMode: boolean;
-  active: boolean;
+  active?: boolean;
   content?: string;
   tooltip?: string;
+  color?: string;
+  hideIcon?: boolean;
 }) => {
   const { act } = useBackend();
 
-  const { action, subAction, active, editMode, content, tooltip } = props;
+  const {
+    action,
+    subAction,
+    active,
+    editMode,
+    content,
+    tooltip,
+    color,
+    hideIcon,
+  } = props;
 
   return editMode ? (
     <Button
@@ -21,13 +32,14 @@ export const VorePanelEditSwitch = (props: {
           attribute: subAction,
         })
       }
-      icon={active ? 'toggle-on' : 'toggle-off'}
+      icon={!hideIcon && (active ? 'toggle-on' : 'toggle-off')}
       selected={active}
+      color={color}
     >
       {content ? content : active ? 'Enabled' : 'Disabled'}
     </Button>
   ) : (
-    <Box textColor={active ? 'green' : 'red'}>
+    <Box textColor={color ? color : active ? 'green' : 'red'}>
       {content ? content : active ? 'Enabled' : 'Disabled'}
     </Box>
   );

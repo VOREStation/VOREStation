@@ -1393,30 +1393,24 @@
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
 			. = TRUE
 		if("b_egg_type")
-			var/list/menu_list = GLOB.global_vore_egg_types.Copy()
-			var/new_egg_type = tgui_input_list(user, "Choose Egg Type (currently [host.vore_selected.egg_type])", "Egg Choice", menu_list)
-			if(!new_egg_type)
+			var/new_egg_type = params["val"]
+			if(!(new_egg_type in GLOB.global_vore_egg_types))
 				return FALSE
 			host.vore_selected.egg_type = new_egg_type
 			. = TRUE
 		if("b_egg_name")
-			var/new_egg_name = html_encode(tgui_input_text(user,"Custom Egg Name (Leave empty for default egg name)","New Egg Name"))
-			if(length(new_egg_name) > BELLIES_NAME_MAX)
-				tgui_alert_async(user, "Entered name too long (max [BELLIES_NAME_MAX]).","Error")
-				return FALSE
+			var/new_egg_name = sanitize(params["val"], BELLIES_NAME_MAX)
 			host.vore_selected.egg_name = new_egg_name
 			. = TRUE
 		if("b_egg_size")
-			var/new_egg_size = tgui_input_number(user,"Custom Egg Size 25% to 200% (0 for automatic item depending egg size from 25% to 100%)","New Egg Size", 0, 200)
-			if(new_egg_size == null)
+			var/new_egg_size = text2num(params["val"])
+			if(isnum(new_egg_size))
 				return FALSE
 			if(new_egg_size == 0) //Disable.
 				host.vore_selected.egg_size = 0
 				to_chat(user,span_notice("Eggs will automatically calculate size depending on contents."))
-			else if (!ISINRANGE(new_egg_size,25,200))
-				host.vore_selected.egg_size = 0.25 //Set it to the default.
-				to_chat(user,span_notice("Invalid size."))
-			else if(new_egg_size)
+			else
+				new_egg_size = CLAMP(new_egg_size, 25, 200)
 				host.vore_selected.egg_size = (new_egg_size/100)
 			. = TRUE
 		if("b_recycling")
@@ -1869,14 +1863,10 @@
 			host.vore_selected.display_absorbed_examine = !host.vore_selected.display_absorbed_examine
 			. = TRUE
 		if("b_grow_shrink")
-			var/new_grow = tgui_input_number(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.", host.vore_selected.shrink_grow_size, 200, 25)
-			if (new_grow == null)
-				return FALSE
-			if (!ISINRANGE(new_grow,25,200))
-				host.vore_selected.shrink_grow_size = 1 //Set it to the default
-				to_chat(user,span_notice("Invalid size."))
-			else if(new_grow)
-				host.vore_selected.shrink_grow_size = (new_grow*0.01)
+			var/new_grow = text2num(params["val"])
+			if (!isnum(new_grow))
+				return
+			host.vore_selected.shrink_grow_size = CLAMP(new_grow, 25, 200) * 0.01
 			. = TRUE
 		if("b_nutritionpercent")
 			var/new_nutrition = text2num(params["val"])
@@ -1923,21 +1913,21 @@
 			host.vore_selected.digest_clone = new_damage
 			. = TRUE
 		if("b_drainmode")
-			var/list/menu_list = host.vore_selected.drainmodes.Copy()
-			var/new_drainmode = tgui_input_list(user, "Choose Mode (currently [host.vore_selected.digest_mode])", "Mode Choice", menu_list)
-			if(!new_drainmode)
+			var/new_drainmode = params["val"]
+			if(!(new_drainmode in host.vore_selected.drainmodes))
 				return FALSE
-
 			host.vore_selected.drainmode = new_drainmode
 			host.vore_selected.updateVRPanels()
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
 			. = TRUE
 		if("b_selective_mode_pref_toggle")
-			if(host.vore_selected.selective_preference == DM_DIGEST)
-				host.vore_selected.selective_preference = DM_ABSORB
-			else
-				host.vore_selected.selective_preference = DM_DIGEST
+			var/new_mode = params["val"]
+			switch(new_mode)
+				if(DM_DIGEST)
+					host.vore_selected.selective_preference = DM_DIGEST
+				if(DM_ABSORB)
+					host.vore_selected.selective_preference = DM_ABSORB
 			. = TRUE
 		if("b_emotetime")
 			var/new_time = text2num(params["val"])
@@ -2229,24 +2219,23 @@
 			host.vore_selected.vorespawn_blacklist = !host.vore_selected.vorespawn_blacklist
 			. = TRUE
 		if("b_vorespawn_whitelist")
-			var/new_vorespawn_whitelist = sanitize(tgui_input_text(user,"Input ckeys allowed to vorespawn on separate lines. Cancel will clear the list.","Allowed Players",jointext(host.vore_selected.vorespawn_whitelist,"\n"), multiline = TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN,0,0,0)
+			var/new_vorespawn_whitelist = sanitize(params["val"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_vorespawn_whitelist)
 				host.vore_selected.vorespawn_whitelist = splittext(lowertext(new_vorespawn_whitelist),"\n")
 			else
 				host.vore_selected.vorespawn_whitelist = list()
 			. = TRUE
 		if("b_vorespawn_absorbed")
-			var/current_number = global_flag_check(host.vore_selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(host.vore_selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)
+			var/current_number = params["val"]
 			switch(current_number)
-				if(0)
+				if("Yes")
 					host.vore_selected.vorespawn_absorbed |= VS_FLAG_ABSORB_YES
-				if(1)
+				if("Prey Choice")
 					host.vore_selected.vorespawn_absorbed |= VS_FLAG_ABSORB_PREY
-				if(2)
+				if("No")
 					host.vore_selected.vorespawn_absorbed &= ~(VS_FLAG_ABSORB_YES)
 					host.vore_selected.vorespawn_absorbed &= ~(VS_FLAG_ABSORB_PREY)
-			unsaved_changes = TRUE
-			return TRUE
+			. = TRUE
 		if("b_belly_sprite_to_affect")
 			var/belly_choice = tgui_input_list(user, "Which belly sprite do you want your [lowertext(host.vore_selected.name)] to affect?","Select Region", host.vore_icon_bellies)
 			if(!belly_choice) //They cancelled, no changes

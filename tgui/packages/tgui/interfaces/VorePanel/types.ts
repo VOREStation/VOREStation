@@ -131,6 +131,7 @@ export type bellyOptionData = {
   vorespawn_whitelist: string[];
   vorespawn_absorbed: number;
   private_struggle: BooleanLike;
+  drainmode_options: string[];
   drainmode: string;
   mob_belly_controls: siliconeBellyControls;
 };

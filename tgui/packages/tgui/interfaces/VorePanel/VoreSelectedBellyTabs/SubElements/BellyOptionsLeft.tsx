@@ -7,6 +7,7 @@ import { VorePanelColorBox } from '../../VorePanelElements/VorePanelCommonElemen
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VoreSelectedWhitelist } from './VoreSelecetedWhitelist';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const BellyOptionsLeft = (props: {
@@ -29,6 +30,9 @@ export const BellyOptionsLeft = (props: {
     eating_privacy_local,
     private_struggle,
     mob_belly_controls,
+    vorespawn_blacklist,
+    vorespawn_whitelist,
+    vorespawn_absorbed,
   } = bellyOptionData;
 
   return (
@@ -179,6 +183,12 @@ export const BellyOptionsLeft = (props: {
         editMode={editMode}
         bellyControl={mob_belly_controls}
         host_mobtype={host_mobtype}
+      />
+      <VoreSelectedWhitelist
+        editMode={editMode}
+        vorespawnBlacklist={vorespawn_blacklist}
+        vorespawnWhitelist={vorespawn_whitelist}
+        vorespawnAbsorbed={vorespawn_absorbed}
       />
     </>
   );

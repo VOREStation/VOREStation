@@ -127,6 +127,7 @@ export const VorePanelEditTextArea = (props: {
   listAction?: string;
   subAction: string;
   maxEntries?: number;
+  disableLegacyInput?: boolean;
 }) => {
   const { act } = useBackend();
 
@@ -139,6 +140,7 @@ export const VorePanelEditTextArea = (props: {
     listAction,
     subAction,
     maxEntries = 10,
+    disableLegacyInput = false,
   } = props;
 
   function doAct(value: string | string[]) {
@@ -160,34 +162,36 @@ export const VorePanelEditTextArea = (props: {
           <Box color="label">{tooltip}</Box>
         </Stack.Item>
       )}
-      <Stack.Item>
-        <Floating
-          placement="bottom-start"
-          contentClasses="VorePanel__pasteArea"
-          content={
-            <Stack fill vertical>
-              <Stack.Item>
-                <Box color="label">
-                  Copy paste the fields as legacy block text. Use enter to
-                  apply. Shift + Enter for new lines.
-                </Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <TextArea
-                  height="100%"
-                  fluid
-                  value={Array.isArray(entry) ? entry.join('\n\n') : entry}
-                  onEnter={(value) => applyPaste(value)}
-                />
-              </Stack.Item>
-            </Stack>
-          }
-        >
-          <Box className="VorePanel__floatingButton">
-            <Icon name="paste" />
-          </Box>
-        </Floating>
-      </Stack.Item>
+      {!disableLegacyInput && Array.isArray(entry) && (
+        <Stack.Item>
+          <Floating
+            placement="bottom-start"
+            contentClasses="VorePanel__pasteArea"
+            content={
+              <Stack fill vertical>
+                <Stack.Item>
+                  <Box color="label">
+                    Copy paste the fields as legacy block text. Use enter to
+                    apply. Shift + Enter for new lines.
+                  </Box>
+                </Stack.Item>
+                <Stack.Item grow>
+                  <TextArea
+                    height="100%"
+                    fluid
+                    value={Array.isArray(entry) ? entry.join('\n\n') : entry}
+                    onEnter={(value) => applyPaste(value)}
+                  />
+                </Stack.Item>
+              </Stack>
+            }
+          >
+            <Box className="VorePanel__floatingButton">
+              <Icon name="paste" />
+            </Box>
+          </Floating>
+        </Stack.Item>
+      )}
       <Stack.Item>
         {Array.isArray(entry) ? (
           <AreaMapper
