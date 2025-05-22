@@ -70,7 +70,7 @@ export const tabToNames = [
   'Options',
   'Sounds',
   'Visuals',
-  'Interationc',
+  'Interactions',
   'Contents',
   'Liquid Options',
 ];

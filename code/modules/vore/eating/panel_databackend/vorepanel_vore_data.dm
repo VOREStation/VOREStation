@@ -208,6 +208,8 @@
 				"release_sound" = selected.release_sound,
 				"sound_volume" = selected.sound_volume,
 				"noise_freq" = selected.noise_freq,
+				"min_voice_freq" = MIN_VOICE_FREQ,
+				"max_voice_freq" = MAX_VOICE_FREQ,
 			)
 			selected_list["belly_sound_data"] = belly_sound_data
 

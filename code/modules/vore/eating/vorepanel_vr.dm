@@ -1815,25 +1815,18 @@
 				SEND_SOUND(user, voretest)
 			. = TRUE
 		if("b_sound_volume")
-			var/sound_volume_input = tgui_input_number(user, "Set belly sound volume percentage.", "Sound Volume", null, 100, 0)
-			if(!isnull(sound_volume_input)) //These have to be 'null' because both cancel and 0 are valid, separate options
-				host.vore_selected.sound_volume = sanitize_integer(sound_volume_input, 0, 100, initial(host.vore_selected.sound_volume))
+			var/sound_volume_input = text2num(params["val"])
+			if(!isnum(sound_volume_input))
+				return FALSE
+			host.vore_selected.sound_volume = sanitize_integer(sound_volume_input, 0, 100, initial(host.vore_selected.sound_volume))
 			. = TRUE
 		if("b_noise_freq")
-			var/list/preset_noise_freqs = list("high" = MAX_VOICE_FREQ, "middle-high" = 56250, "middle" = 42500, "middle-low"= 28750, "low" = MIN_VOICE_FREQ, "custom" = 1, "random" = 0)
-			var/choice = tgui_input_list(user, "What would you like to set your noise frequency to? ([MIN_VOICE_FREQ] - [MAX_VOICE_FREQ])", "Noise Frequency", preset_noise_freqs)
-			if(!choice)
-				return
-			choice = preset_noise_freqs[choice]
+			var/choice = text2num(params["val"])
+			if(!isnum(choice))
+				return FALSE
 			if(choice == 0)
-				host.vore_selected.noise_freq = 42500
-				return TOPIC_REFRESH
-			else if(choice == 1)
-				choice = tgui_input_number(user, "Choose your organ's noise frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Noise Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ, round_value = TRUE)
-			if(choice > MAX_VOICE_FREQ)
-				choice = MAX_VOICE_FREQ
-			else if(choice < MIN_VOICE_FREQ)
-				choice = MIN_VOICE_FREQ
+				choice = rand(MIN_VOICE_FREQ, MAX_VOICE_FREQ)
+			CLAMP(choice, MIN_VOICE_FREQ, MAX_VOICE_FREQ)
 			host.vore_selected.noise_freq = choice
 			. = TRUE
 		if("b_tastes")
