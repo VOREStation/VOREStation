@@ -1,12 +1,12 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   ColorBox,
   Divider,
+  Floating,
   LabeledList,
-  Popper,
   Stack,
   Tooltip,
 } from 'tgui-core/components';
@@ -57,13 +57,9 @@ export const GenderButton = (props: {
   usePronouns?: boolean;
   setGender: (gender: Gender) => void;
 }) => {
-  const [genderMenuOpen, setGenderMenuOpen] = useState(false);
-
   return (
     <Box width={4}>
-      <Popper
-        isOpen={genderMenuOpen}
-        onClickOutside={() => setGenderMenuOpen(false)}
+      <Floating
         placement="right-end"
         content={
           <Stack backgroundColor="black" ml={0.5} pl={0.5} pr={0.5}>
@@ -85,7 +81,6 @@ export const GenderButton = (props: {
         }
       >
         <Button
-          onClick={() => setGenderMenuOpen((x) => !x)}
           icon={gender2icon(props.gender)}
           tooltipPosition="top"
           verticalAlignContent="middle"
@@ -93,7 +88,7 @@ export const GenderButton = (props: {
         >
           {props.usePronouns ? gender2pronouns(props.gender) : props.gender}
         </Button>
-      </Popper>
+      </Floating>
     </Box>
   );
 };
