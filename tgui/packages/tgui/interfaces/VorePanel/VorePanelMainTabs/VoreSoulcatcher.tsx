@@ -27,7 +27,7 @@ export const VoreSoulcatcher = (props: {
   const { soulcatcher, our_bellies, abilities } = props;
 
   const getBellies = our_bellies.map((belly) => {
-    return { ...belly, displayText: belly.name, value: belly.ref };
+    return { displayText: belly.name, value: belly.ref };
   });
 
   return (

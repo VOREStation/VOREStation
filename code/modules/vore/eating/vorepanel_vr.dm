@@ -1766,15 +1766,12 @@
 			// defaults as to avoid potential bugs
 			. = TRUE
 		if("b_release")
-			var/choice
+			var/choice = params["val"]
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.fancy_release_sounds)
-			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.classic_release_sounds)
-
-			if(!choice)
+				if(!(choice in GLOB.fancy_release_sounds))
+					return FALSE
+			else if (!(choice in GLOB.classic_release_sounds))
 				return FALSE
-
 			host.vore_selected.release_sound = choice
 			. = TRUE
 		if("b_releasesoundtest")
@@ -1791,15 +1788,12 @@
 				SEND_SOUND(user, releasetest)
 			. = TRUE
 		if("b_sound")
-			var/choice
+			var/choice = params["val"]
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.fancy_vore_sounds)
-			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.classic_vore_sounds)
-
-			if(!choice)
+				if(!(choice in GLOB.fancy_vore_sounds))
+					return FALSE
+			else if (!(choice in GLOB.classic_vore_sounds))
 				return FALSE
-
 			host.vore_selected.vore_sound = choice
 			. = TRUE
 		if("b_soundtest")
@@ -1826,7 +1820,7 @@
 				return FALSE
 			if(choice == 0)
 				choice = rand(MIN_VOICE_FREQ, MAX_VOICE_FREQ)
-			CLAMP(choice, MIN_VOICE_FREQ, MAX_VOICE_FREQ)
+			choice = CLAMP(choice, MIN_VOICE_FREQ, MAX_VOICE_FREQ)
 			host.vore_selected.noise_freq = choice
 			. = TRUE
 		if("b_tastes")

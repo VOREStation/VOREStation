@@ -210,6 +210,8 @@
 				"noise_freq" = selected.noise_freq,
 				"min_voice_freq" = MIN_VOICE_FREQ,
 				"max_voice_freq" = MAX_VOICE_FREQ,
+				"vore_sound_list" = (selected.fancy_vore ? GLOB.fancy_vore_sounds : GLOB.classic_vore_sounds),
+				"release_sound_list" = (selected.fancy_vore ? GLOB.fancy_release_sounds : GLOB.classic_release_sounds)
 			)
 			selected_list["belly_sound_data"] = belly_sound_data
 

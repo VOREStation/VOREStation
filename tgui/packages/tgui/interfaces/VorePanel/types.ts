@@ -146,6 +146,8 @@ export type bellySoundData = {
   noise_freq: number;
   min_voice_freq: number;
   max_voice_freq: number;
+  vore_sound_list: Record<string, string>;
+  release_sound_list: Record<string, string>;
 };
 
 export type siliconeBellyControls = {

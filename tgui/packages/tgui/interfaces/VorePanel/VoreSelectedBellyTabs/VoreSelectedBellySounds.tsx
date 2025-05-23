@@ -1,5 +1,6 @@
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
+import { useBackend } from '../../../backend';
 import type { bellySoundData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
@@ -9,6 +10,8 @@ export const VoreSelectedBellySounds = (props: {
   editMode: boolean;
   bellySoundData: bellySoundData;
 }) => {
+  const { act } = useBackend();
+
   const { editMode, bellySoundData } = props;
   const {
     is_wet,
@@ -20,6 +23,8 @@ export const VoreSelectedBellySounds = (props: {
     noise_freq,
     min_voice_freq,
     max_voice_freq,
+    vore_sound_list,
+    release_sound_list,
   } = bellySoundData;
 
   const ourPresets: DropdownEntry[] = [
@@ -52,6 +57,7 @@ export const VoreSelectedBellySounds = (props: {
               editMode={editMode}
               content={is_wet ? 'Yes' : 'No'}
               active={!!is_wet}
+              tooltip="When enabled, noises are more fleshy and less rustly."
             />
           </LabeledList.Item>
           <LabeledList.Item label="Internal Loop">
@@ -61,6 +67,7 @@ export const VoreSelectedBellySounds = (props: {
               editMode={editMode}
               content={wet_loop ? 'Yes' : 'No'}
               active={!!wet_loop}
+              tooltip="Loops belly sounds."
             />
           </LabeledList.Item>
           <LabeledList.Item label="Use Fancy Sounds">
@@ -70,6 +77,7 @@ export const VoreSelectedBellySounds = (props: {
               editMode={editMode}
               content={fancy ? 'Yes' : 'No'}
               active={!!fancy}
+              tooltip="Switch between the fancy and classic sound set."
             />
           </LabeledList.Item>
           <LabeledList.Item label="Sound Volume">
@@ -113,28 +121,48 @@ export const VoreSelectedBellySounds = (props: {
       <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Vore Sound">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_sound' })}
-            >
-              {sound}
-            </Button>
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_soundtest' })}
-              icon="volume-up"
-            />
+            <Stack>
+              <Stack.Item>
+                <VorePanelEditDropdown
+                  action="set_attribute"
+                  subAction="b_sound"
+                  editMode={editMode}
+                  options={Object.keys(vore_sound_list)}
+                  entry={sound}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  onClick={() =>
+                    act('set_attribute', { attribute: 'b_soundtest' })
+                  }
+                  icon="volume-up"
+                  tooltip="Test your selected belly sound. Usually played to prey inside your belly."
+                />
+              </Stack.Item>
+            </Stack>
           </LabeledList.Item>
           <LabeledList.Item label="Release Sound">
-            <Button
-              onClick={() => act('set_attribute', { attribute: 'b_release' })}
-            >
-              {release_sound}
-            </Button>
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_releasesoundtest' })
-              }
-              icon="volume-up"
-            />
+            <Stack>
+              <Stack.Item>
+                <VorePanelEditDropdown
+                  action="set_attribute"
+                  subAction="b_release"
+                  editMode={editMode}
+                  options={Object.keys(release_sound_list)}
+                  entry={release_sound}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  onClick={() =>
+                    act('set_attribute', { attribute: 'b_releasesoundtest' })
+                  }
+                  icon="volume-up"
+                  tooltip="Test your selected release sound. Usually played once prey is released."
+                />
+              </Stack.Item>
+            </Stack>
           </LabeledList.Item>
         </LabeledList>
       </Stack.Item>
