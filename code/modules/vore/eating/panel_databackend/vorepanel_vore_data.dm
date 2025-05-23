@@ -215,15 +215,33 @@
 			)
 			selected_list["belly_sound_data"] = belly_sound_data
 
-		// TODO wipe this list-....
-		selected_list += list(list(
-			// "messages" // TODO
-			"nutrition_ex" = owner.nutrition_message_visible,
-			"weight_ex" = owner.weight_message_visible,
+		if(active_vore_tab == VISUALS_TAB)
+			var/list/belly_fullscreens
+			if(selected.colorization_enabled)
+				belly_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
+			else
+				belly_fullscreens = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
+
+			var/list/vs_flags = list()
+			for(var/flag_name in selected.vore_sprite_flag_list)
+				UNTYPED_LIST_ADD(vs_flags, list("label" = flag_name, "selection" = selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name]))
+
+			var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+			var/list/undergarments
+			if(UWC)
+				undergarments = UWC.items
+
+			var/list/belly_visual_data = list(
 			"belly_fullscreen" = selected.belly_fullscreen,
-			"belly_mob_mult" = selected.belly_mob_mult,
-			"belly_item_mult" = selected.belly_item_mult,
-			"belly_overall_mult" = selected.belly_overall_mult,
+			"colorization_enabled" = selected.colorization_enabled,
+			"belly_fullscreen_color" = selected.belly_fullscreen_color,
+			"belly_fullscreen_color2" = selected.belly_fullscreen_color2,
+			"belly_fullscreen_color3" = selected.belly_fullscreen_color3,
+			"belly_fullscreen_color4" = selected.belly_fullscreen_color4,
+			"belly_fullscreen_alpha" = selected.belly_fullscreen_alpha,
+			"possible_fullscreens" = belly_fullscreens,
+			"disable_hud" = selected.disable_hud,
+			"vore_sprite_flags" = vs_flags,
 			"affects_voresprite" = selected.affects_vore_sprites,
 			"absorbed_voresprite" = selected.count_absorbed_prey_for_sprite,
 			"absorbed_multiplier" = selected.absorbed_multiplier,
@@ -234,20 +252,30 @@
 			"health_voresprite" = selected.health_impacts_size,
 			"resist_animation" = selected.resist_triggers_animation,
 			"voresprite_size_factor" = selected.size_factor_for_sprite,
+			"belly_sprite_to_affect" = selected.belly_sprite_to_affect,
+			"belly_sprite_options" = host.vore_icon_bellies,
+			"undergarment_chosen" = selected.undergarment_chosen,
+			"undergarment_if_none" = selected.undergarment_if_none || "None",
+			"undergarment_options" = global_underwear.categories,
+			"undergarment_options_if_none" = undergarments,
+			"undergarment_color" = selected.undergarment_color,
 			"tail_option_shown" = ishuman(owner),
 			"tail_to_change_to" = selected.tail_to_change_to,
+			"tail_sprite_options" = global.tail_styles_list
+			)
+			selected_list["belly_visual_data"] = belly_visual_data
+
+		// TODO wipe this list-....
+		selected_list += list(list(
+			// "messages" // TODO
+			"nutrition_ex" = owner.nutrition_message_visible,
+			"weight_ex" = owner.weight_message_visible,
+			"belly_mob_mult" = selected.belly_mob_mult,
+			"belly_item_mult" = selected.belly_item_mult,
+			"belly_overall_mult" = selected.belly_overall_mult,
 			"tail_colouration" = selected.tail_colouration,
 			"tail_extra_overlay" = selected.tail_extra_overlay,
 			"tail_extra_overlay2" = selected.tail_extra_overlay2,
-			"undergarment_chosen" = selected.undergarment_chosen,
-			"undergarment_if_none" = selected.undergarment_if_none || "None",
-			"undergarment_color" = selected.undergarment_color,
-			"belly_fullscreen_color" = selected.belly_fullscreen_color,
-			"belly_fullscreen_color2" = selected.belly_fullscreen_color2,
-			"belly_fullscreen_color3" = selected.belly_fullscreen_color3,
-			"belly_fullscreen_color4" = selected.belly_fullscreen_color4,
-			"belly_fullscreen_alpha" = selected.belly_fullscreen_alpha,
-			"colorization_enabled" = selected.colorization_enabled,
 			"custom_reagentcolor" = selected.custom_reagentcolor,
 			"custom_reagentalpha" = selected.custom_reagentalpha,
 			"liquid_overlay" = selected.liquid_overlay,
@@ -268,19 +296,7 @@
 		))
 
 
-		var/list/vs_flags = list()
-		for(var/flag_name in selected.vore_sprite_flag_list)
-			if(selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name])
-				vs_flags.Add(flag_name)
-		selected_list["vore_sprite_flags"] = vs_flags
 
-
-		selected_list["egg_type"] = selected.egg_type
-		selected_list["egg_name"] = selected.egg_name
-		selected_list["egg_size"] = selected.egg_size
-		selected_list["recycling"] = selected.recycling
-		selected_list["storing_nutrition"] = selected.storing_nutrition
-		selected_list["item_digest_logs"] = selected.item_digest_logs
 
 		selected_list["escapable"] = selected.escapable
 		selected_list["interacts"] = list()
@@ -289,19 +305,6 @@
 
 		selected_list["autotransfer_enabled"] = selected.autotransfer_enabled
 		selected_list["autotransfer"] = compile_autotransfer_data(selected)
-
-		selected_list["disable_hud"] = selected.disable_hud
-		selected_list["colorization_enabled"] = selected.colorization_enabled
-		selected_list["belly_fullscreen_color"] = selected.belly_fullscreen_color
-		selected_list["belly_fullscreen_color2"] = selected.belly_fullscreen_color2
-		selected_list["belly_fullscreen_color3"] = selected.belly_fullscreen_color3
-		selected_list["belly_fullscreen_color4"] = selected.belly_fullscreen_color4
-		selected_list["belly_fullscreen_alpha"] = selected.belly_fullscreen_alpha
-
-		if(selected.colorization_enabled)
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
-		else
-			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
 
 		var/list/selected_contents = list()
 		for(var/O in selected)

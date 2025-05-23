@@ -89,6 +89,13 @@ export const modeToTooltip = {
   'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
 };
 
+export const spriteToTooltip = {
+  'Normal Belly Sprite':
+    "This belly will effect the mob's belly sprite if available.",
+  'Undergarment addition':
+    "This belly will effect the mob's undergarment sprite if available.",
+};
+
 export const messageTabLabel = [
   'Description',
   'Examine',

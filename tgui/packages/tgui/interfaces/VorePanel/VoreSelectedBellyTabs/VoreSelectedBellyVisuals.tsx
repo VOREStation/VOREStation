@@ -2,248 +2,52 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
-import type { selectedData } from '../types';
+import type { bellyVisualData } from '../types';
 import { FeatureColorInput } from '../VorePanelElements/FeatureColorInput';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
+import { VoreSpriteAffects } from './SubElements/VoreSpriteAffect';
 
-export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
+export const VoreSelectedBellyVisuals = (props: {
+  editMode: boolean;
+  bellyVisualData: bellyVisualData;
+}) => {
   const { act } = useBackend();
 
-  const { belly } = props;
+  const { editMode, bellyVisualData } = props;
   const {
     belly_fullscreen,
+    colorization_enabled,
     belly_fullscreen_color,
     belly_fullscreen_color2,
     belly_fullscreen_color3,
     belly_fullscreen_color4,
-    colorization_enabled,
+    belly_fullscreen_alpha,
     possible_fullscreens,
     disable_hud,
-    vore_sprite_flags,
     affects_voresprite,
-    absorbed_voresprite,
-    absorbed_multiplier,
-    liquid_voresprite,
-    liquid_multiplier,
-    item_voresprite,
-    item_multiplier,
-    health_voresprite,
-    resist_animation,
-    voresprite_size_factor,
-    belly_sprite_option_shown,
-    belly_sprite_to_affect,
-    undergarment_chosen,
-    undergarment_if_none,
-    undergarment_color,
-    tail_option_shown,
-    tail_to_change_to,
-  } = belly;
+  } = bellyVisualData;
 
   return (
     <>
-      <Section title="Vore Sprites">
-        <Stack direction="row">
-          <LabeledList>
-            <LabeledList.Item label="Affect Vore Sprites">
-              <Button
-                onClick={() =>
-                  act('set_attribute', { attribute: 'b_affects_vore_sprites' })
-                }
-                icon={affects_voresprite ? 'toggle-on' : 'toggle-off'}
-                selected={affects_voresprite}
-              >
-                {affects_voresprite ? 'Yes' : 'No'}
-              </Button>
-            </LabeledList.Item>
-            {affects_voresprite ? (
-              <>
-                <LabeledList.Item label="Vore Sprite Mode">
-                  {(vore_sprite_flags.length && vore_sprite_flags.join(', ')) ||
-                    'None'}
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', { attribute: 'b_vore_sprite_flags' })
-                    }
-                    ml={1}
-                    icon="plus"
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Count Absorbed prey for vore sprites">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_count_absorbed_prey_for_sprites',
-                      })
-                    }
-                    icon={absorbed_voresprite ? 'toggle-on' : 'toggle-off'}
-                    selected={absorbed_voresprite}
-                  >
-                    {absorbed_voresprite ? 'Yes' : 'No'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Absorbed Multiplier">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_absorbed_multiplier',
-                      })
-                    }
-                  >
-                    {absorbed_multiplier}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Count liquid reagents for vore sprites">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_count_liquid_for_sprites',
-                      })
-                    }
-                    icon={liquid_voresprite ? 'toggle-on' : 'toggle-off'}
-                    selected={liquid_voresprite}
-                  >
-                    {liquid_voresprite ? 'Yes' : 'No'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Liquid Multiplier">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', { attribute: 'b_liquid_multiplier' })
-                    }
-                  >
-                    {liquid_multiplier}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Count items for vore sprites">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_count_items_for_sprites',
-                      })
-                    }
-                    icon={item_voresprite ? 'toggle-on' : 'toggle-off'}
-                    selected={item_voresprite}
-                  >
-                    {item_voresprite ? 'Yes' : 'No'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Items Multiplier">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', { attribute: 'b_item_multiplier' })
-                    }
-                  >
-                    {item_multiplier}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Prey health affects vore sprites">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_health_impacts_size',
-                      })
-                    }
-                    icon={health_voresprite ? 'toggle-on' : 'toggle-off'}
-                    selected={health_voresprite}
-                  >
-                    {health_voresprite ? 'Yes' : 'No'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Animation when prey resist">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', { attribute: 'b_resist_animation' })
-                    }
-                    icon={resist_animation ? 'toggle-on' : 'toggle-off'}
-                    selected={resist_animation}
-                  >
-                    {resist_animation ? 'Yes' : 'No'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Vore Sprite Size Factor">
-                  <Button
-                    onClick={() =>
-                      act('set_attribute', {
-                        attribute: 'b_size_factor_sprites',
-                      })
-                    }
-                  >
-                    {voresprite_size_factor}
-                  </Button>
-                </LabeledList.Item>
-                {belly_sprite_option_shown ? (
-                  <LabeledList.Item label="Belly Sprite to affect">
-                    <Button
-                      onClick={() =>
-                        act('set_attribute', {
-                          attribute: 'b_belly_sprite_to_affect',
-                        })
-                      }
-                    >
-                      {belly_sprite_to_affect}
-                    </Button>
-                  </LabeledList.Item>
-                ) : (
-                  <LabeledList.Item label="Belly Sprite to affect">
-                    <Box textColor="red">You do not have any bellysprites.</Box>
-                  </LabeledList.Item>
-                )}
-                {tail_option_shown &&
-                vore_sprite_flags.includes('Undergarment addition') ? (
-                  <>
-                    <LabeledList.Item label="Undergarment type to affect">
-                      <Button
-                        onClick={() =>
-                          act('set_attribute', {
-                            attribute: 'b_undergarment_choice',
-                          })
-                        }
-                      >
-                        {undergarment_chosen}
-                      </Button>
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Undergarment if none equipped">
-                      <Button
-                        onClick={() =>
-                          act('set_attribute', {
-                            attribute: 'b_undergarment_if_none',
-                          })
-                        }
-                      >
-                        {undergarment_if_none}
-                      </Button>
-                    </LabeledList.Item>
-                    <FeatureColorInput
-                      action_name="b_undergarment_color"
-                      value_of={null}
-                      back_color={undergarment_color}
-                      name_of="Undergarment Color if none"
-                    />
-                  </>
-                ) : (
-                  ''
-                )}
-                {tail_option_shown &&
-                vore_sprite_flags.includes('Tail adjustment') ? (
-                  <LabeledList.Item label="Tail to change to">
-                    <Button
-                      onClick={() =>
-                        act('set_attribute', {
-                          attribute: 'b_tail_to_change_to',
-                        })
-                      }
-                    >
-                      {tail_to_change_to}
-                    </Button>
-                  </LabeledList.Item>
-                ) : (
-                  ''
-                )}
-              </>
-            ) : (
-              ''
-            )}
-          </LabeledList>
-        </Stack>
+      <Section
+        title="Affect Vore Sprites"
+        buttons={
+          <VorePanelEditSwitch
+            action="set_attribute"
+            subAction="b_affects_vore_sprites"
+            editMode={editMode}
+            tooltip="Allows you to toggle if this belly should effect voresprites"
+            content={affects_voresprite ? 'Yes' : 'No'}
+            active={!!affects_voresprite}
+          />
+        }
+      >
+        {!!affects_voresprite && (
+          <VoreSpriteAffects
+            editMode={editMode}
+            bellyVisualData={bellyVisualData}
+          />
+        )}
       </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Stack align="center">
