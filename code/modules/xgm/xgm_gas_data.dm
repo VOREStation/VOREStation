@@ -29,7 +29,9 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 		specific_heat[gas.id] = gas.specific_heat
 		molar_mass[gas.id] = gas.molar_mass
 		if(gas.tile_overlay)
-			tile_overlay[gas.id] = new /atom/movable/gas_visuals(null, gas.tile_overlay)
+			var/atom/movable/gas_visuals/GV = new(null)
+			GV.icon_state = gas.tile_overlay
+			tile_overlay[gas.id] = GV
 		if(gas.overlay_limit)
 			overlay_limit[gas.id] = gas.overlay_limit
 		flags[gas.id] = gas.flags
@@ -51,10 +53,3 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 	icon = 'icons/effects/tile_effects.dmi'
 	mouse_opacity = 0
 	plane = ABOVE_MOB_PLANE
-
-// This CANNOT be Initialize because it causes a race condition between
-// GLOB init and SSatoms/Initialize
-// therefore possibly dropping the second argument.
-/atom/movable/gas_visuals/New(loc, ico)
-	. = ..()
-	icon_state = ico
