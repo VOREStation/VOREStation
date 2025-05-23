@@ -52,6 +52,9 @@
 	mouse_opacity = 0
 	plane = ABOVE_MOB_PLANE
 
-/atom/movable/gas_visuals/Initialize(mapload, ico)
+// This CANNOT be Initialize because it causes a race condition between
+// /hook/startup/proc/generateGasData() and SSatoms/Initialize
+// therefore possibly dropping the second argument.
+/atom/movable/gas_visuals/New(loc, ico)
 	. = ..()
 	icon_state = ico
