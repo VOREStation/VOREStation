@@ -1,28 +1,25 @@
 import { useBackend } from 'tgui/backend';
 
-import type { Data } from './types';
+import { Data } from './types';
 import { generateBellyString } from './VorePanelExportBellyString';
-import { generateSoulcatcherString } from './VorePanelExportSoulcatcherString';
 import { getCurrentTimestamp } from './VorePanelExportTimestamp';
 
 export const downloadPrefs = (extension: string) => {
   const { data } = useBackend<Data>();
 
-  const { db_version, db_repo, mob_name, bellies, soulcatcher } = data;
+  const { db_version, db_repo, mob_name, bellies } = data;
 
   if (!bellies) {
     return;
   }
 
-  const validBellies = bellies.filter((belly) => !belly.prevent_saving);
+  let datesegment = getCurrentTimestamp();
 
-  const datesegment = getCurrentTimestamp();
-
-  const filename = mob_name + datesegment + extension;
+  let filename = mob_name + datesegment + extension;
   let blob;
 
   if (extension === '.html') {
-    const style = '<style>' + '</style>';
+    let style = '<style>' + '</style>';
 
     blob = new Blob(
       [
@@ -30,7 +27,7 @@ export const downloadPrefs = (extension: string) => {
           '<meta charset="utf-8">' +
           '<meta name="viewport" content="width=device-width, initial-scale=1">' +
           '<title>' +
-          validBellies.length +
+          bellies.length +
           ' Exported Bellies (DB_VER: ' +
           db_repo +
           '-' +
@@ -49,16 +46,11 @@ export const downloadPrefs = (extension: string) => {
         type: 'text/html',
       },
     );
-    validBellies.forEach((belly, i) => {
+    bellies.forEach((belly, i) => {
       blob = new Blob([blob, generateBellyString(belly, i)], {
         type: 'text/html',
       });
     });
-    if (soulcatcher) {
-      blob = new Blob([blob, generateSoulcatcherString(soulcatcher)], {
-        type: 'text/html',
-      });
-    }
     blob = new Blob(
       [
         blob,
@@ -71,12 +63,7 @@ export const downloadPrefs = (extension: string) => {
   }
 
   if (extension === '.vrdb') {
-    blob = new Blob(
-      [JSON.stringify({ bellies: validBellies, soulcatcher: soulcatcher })],
-      {
-        type: 'application/json',
-      },
-    );
+    blob = new Blob([JSON.stringify(bellies)], { type: 'application/json' });
   }
 
   Byond.saveBlob(blob, filename, extension);

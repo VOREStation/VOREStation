@@ -485,7 +485,7 @@
 		counter = 0
 		// Needs to be done early because it uses the length of the list for sizing
 		var/list/offmap_jobs = list()
-		for(var/dept in GLOB.offmap_departments)
+		for(var/dept in offmap_departments)
 			offmap_jobs += SSjob.get_job_titles_in_department(dept)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		jobs += "<tr bgcolor='00ffff'><th colspan='[length(offmap_jobs)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=offmapdept;jobban4=\ref[M]'>Offmap Positions</a></th></tr><tr align='center'>"
@@ -555,11 +555,11 @@
 		counter = 0
 		var/isbanned_dept = jobban_isbanned(M, JOB_SYNDICATE)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(GLOB.all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
+		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
 		// Antagonists.
-		for(var/antag_type in GLOB.all_antag_types)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+		for(var/antag_type in all_antag_types)
+			var/datum/antagonist/antag = all_antag_types[antag_type]
 			if(!antag || !antag.bantype)
 				continue
 
@@ -668,7 +668,7 @@
 					if(!temp) continue
 					joblist += temp.title
 			if("offmapdept")
-				for(var/dept in GLOB.offmap_departments)
+				for(var/dept in offmap_departments)
 					for(var/jobPos in SSjob.get_job_titles_in_department(dept))
 						if(!jobPos)	continue
 						var/datum/job/temp = job_master.GetJob(jobPos)
@@ -924,7 +924,7 @@
 			dat += {"<A href='byond://?src=\ref[src];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [GLOB.master_mode]"}
+		dat += {"Now: [master_mode]"}
 		usr << browse("<html>[dat]</html>", "window=c_mode")
 
 	else if(href_list["f_secret"])
@@ -932,13 +932,13 @@
 
 		if(ticker && ticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
-		if(GLOB.master_mode != "secret")
+		if(master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
 		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='byond://?src=\ref[src];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [GLOB.secret_force_mode]"}
+		dat += {"Now: [secret_force_mode]"}
 		usr << browse("<html>[dat]</html>", "window=f_secret")
 
 	else if(href_list["c_mode2"])
@@ -946,12 +946,12 @@
 
 		if (ticker && ticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
-		GLOB.master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [config.mode_names[GLOB.master_mode]].")
-		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[GLOB.master_mode]]."), 1)
-		to_world(span_world(span_blue("The mode is now: [config.mode_names[GLOB.master_mode]]")))
+		master_mode = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the mode as [config.mode_names[master_mode]].")
+		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[master_mode]]."), 1)
+		to_world(span_world(span_blue("The mode is now: [config.mode_names[master_mode]]")))
 		Game() // updates the main game menu
-		world.save_mode(GLOB.master_mode)
+		world.save_mode(master_mode)
 		.(href, list("c_mode"=1))
 
 	else if(href_list["f_secret2"])
@@ -959,11 +959,11 @@
 
 		if(ticker && ticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
-		if(GLOB.master_mode != "secret")
+		if(master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
-		GLOB.secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
-		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."), 1)
+		secret_force_mode = href_list["f_secret2"]
+		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
+		message_admins(span_blue("[key_name_admin(usr)] set the forced secret mode as [secret_force_mode]."), 1)
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -1019,7 +1019,7 @@
 			to_chat(usr, span_filter_adminlog("This cannot be used on instances of type /mob/living/silicon/ai"))
 			return
 
-		var/turf/prison_cell = pick(GLOB.prisonwarp)
+		var/turf/prison_cell = pick(prisonwarp)
 		if(!prison_cell)	return
 
 		var/obj/structure/closet/secure_closet/brig/locker = new /obj/structure/closet/secure_closet/brig(prison_cell)
@@ -1087,7 +1087,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOB.tdome1)
+		M.loc = pick(tdome1)
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
@@ -1112,7 +1112,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOB.tdome2)
+		M.loc = pick(tdome2)
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
@@ -1134,7 +1134,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOB.tdomeadmin)
+		M.loc = pick(tdomeadmin)
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
@@ -1163,7 +1163,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOB.tdomeobserve)
+		M.loc = pick(tdomeobserve)
 		spawn(50)
 			to_chat(M, span_filter_system(span_notice("You have been sent to the Thunderdome.")))
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
@@ -1837,7 +1837,7 @@
 					WANTED.backup_author = src.admincaster_signature                  //Submitted by
 					WANTED.is_admin_message = 1
 					news_network.wanted_issue = WANTED
-					for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
+					for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 						NEWSCASTER.newsAlert()
 						NEWSCASTER.update_icon()
 					src.admincaster_screen = 15
@@ -1853,7 +1853,7 @@
 		var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 		if(choice=="Confirm")
 			news_network.wanted_issue = null
-			for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
+			for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 				NEWSCASTER.update_icon()
 			src.admincaster_screen=17
 		src.access_news_network()

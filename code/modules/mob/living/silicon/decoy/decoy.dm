@@ -5,5 +5,8 @@
 	anchored = TRUE // -- TLE
 	canmove = 0
 
-/mob/living/silicon/decoy/Initialize(mapload)
-	. = ..(mapload, TRUE)
+/mob/living/silicon/decoy/New()
+	src.icon = 'icons/mob/AI.dmi'
+	src.icon_state = "ai"
+	src.anchored = TRUE
+	src.canmove = 0

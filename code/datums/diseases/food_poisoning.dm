@@ -3,14 +3,16 @@
 	max_stages = 3
 	stage_prob = 5
 	spread_text = "Non-Contagious"
-	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
+	spread_flags = NON_CONTAGIOUS
 	cure_text = "Sleep"
 	agent = REAGENT_SALMONELLA
 	cures = list(REAGENT_ID_CHICKENSOUP)
 	cure_chance = 10
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = "Nausea, sickness, and vomiting."
-	danger = DISEASE_MINOR
+	desc = "Nausea, sickness, and vomitting."
+	severity = MINOR
+	disease_flags = CURABLE|CAN_NOT_POPULATE
+	virus_heal_resistant = TRUE
 
 /datum/disease/food_poisoning/stage_act()
 	if(!..())

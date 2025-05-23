@@ -2,7 +2,7 @@
 	MERCENARY ROUNDTYPE
 */
 
-GLOBAL_LIST_EMPTY(nuke_disks)
+var/list/nuke_disks = list()
 
 /datum/game_mode/nuclear
 	name = "Mercenary"
@@ -22,12 +22,12 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 
 //delete all nuke disks not on a station zlevel
 /datum/game_mode/nuclear/proc/check_nuke_disks()
-	for(var/obj/item/disk/nuclear/N in GLOB.nuke_disks)
+	for(var/obj/item/disk/nuclear/N in nuke_disks)
 		if(isNotStationLevel(N.z)) qdel(N)
 
 //checks if L has a nuke disk on their person
 /datum/game_mode/nuclear/proc/check_mob(mob/living/L)
-	for(var/obj/item/disk/nuclear/N in GLOB.nuke_disks)
+	for(var/obj/item/disk/nuclear/N in nuke_disks)
 		if(N.storage_depth(L) >= 0)
 			return 1
 	return 0
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 		..()
 		return
 	var/disk_rescued = 1
-	for(var/obj/item/disk/nuclear/D in GLOB.nuke_disks)
+	for(var/obj/item/disk/nuclear/D in nuke_disks)
 		var/disk_area = get_area(D)
 		if(!is_type_in_list(disk_area, centcom_areas))
 			disk_rescued = 0

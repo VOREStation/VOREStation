@@ -28,7 +28,7 @@ export const CommunicationsConsoleMessage = (props) => {
     );
   }
 
-  const messageRows = messages.map((m) => {
+  let messageRows = messages.map((m) => {
     return (
       <LabeledList.Item key={m.id} label={m.title}>
         <Button

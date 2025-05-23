@@ -627,8 +627,7 @@
 			/obj/item/melee/telebaton,
 			/obj/item/shield/riot/tele,
 			/obj/item/clothing/head/beret/sec/corporate/hos,
-			/obj/item/flashlight/maglight,
-			/obj/item/personal_shield_generator/belt/security/loaded
+			/obj/item/flashlight/maglight
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanotrasen

@@ -6,7 +6,6 @@ import {
   LabeledList,
   NoticeBox,
   Section,
-  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -74,23 +73,19 @@ export const TelecommsMachineBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <Stack>
-                  <Stack.Item>
-                    <Button icon="search" onClick={() => act('scan')}>
-                      Probe Network
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      color="bad"
-                      icon="exclamation-triangle"
-                      disabled={machinelist.length === 0}
-                      onClick={() => act('release')}
-                    >
-                      Flush Buffer
-                    </Button>
-                  </Stack.Item>
-                </Stack>
+                <>
+                  <Button icon="search" onClick={() => act('scan')}>
+                    Probe Network
+                  </Button>
+                  <Button
+                    color="bad"
+                    icon="exclamation-triangle"
+                    disabled={machinelist.length === 0}
+                    onClick={() => act('release')}
+                  >
+                    Flush Buffer
+                  </Button>
+                </>
               }
             >
               <Button icon="pen" onClick={() => act('network')}>

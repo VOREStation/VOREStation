@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled/steel,
-/area/redgate/hotsprings/outdoors)
 "as" = (
 /turf/simulated/floor/water{
 	name = "hotspring";
@@ -20516,7 +20512,7 @@ La
 iF
 fB
 iF
-aa
+iF
 iF
 be
 iF

@@ -14,8 +14,8 @@
 	icon_state = "cag_black"
 	blanks = 0
 
-/obj/item/deck/cah/Initialize(mapload)
-	. = ..()
+/obj/item/deck/cah/New()
+	..()
 	var/datum/playingcard/P
 	for(var/cardtext in card_text_list)
 		P = new()

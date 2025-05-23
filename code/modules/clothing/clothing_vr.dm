@@ -9,7 +9,7 @@
 		SPECIES_VOX = 'icons/inventory/feet/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/feet/mob_vr_werebeast.dmi')
 
-/obj/item/clothing/shoes/Initialize(mapload)
+/obj/item/clothing/shoes/New()
 	inside_emotes = list(
 		span_red("You feel weightless for a moment as \the [name] moves upwards."),
 		span_red("\The [name] are a ride you've got no choice but to participate in as the wearer moves."),
@@ -17,7 +17,7 @@
 		span_red("More motion while \the [name] move, feet pressing down against you.")
 	)
 
-	. = ..()
+	..()
 /* //Must be handled in clothing.dm
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	if(prob(1) && !recent_squish)
@@ -168,12 +168,8 @@
 		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/uniform/mob_vr_werebeast.dmi')
 
-/obj/item/clothing/under/Initialize(mapload)
-	. = ..()
-	if(!ishuman(loc))
-		return
-
-	var/mob/living/carbon/human/H = loc
+/obj/item/clothing/under/New(var/mob/living/carbon/human/H)
+	..()
 	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
 	switch(sensorpref)
 		if(1) sensor_mode = 0				//Sensors off

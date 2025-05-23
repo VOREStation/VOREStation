@@ -7,7 +7,6 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -186,59 +185,49 @@ const OvermapShieldGeneratorControls = (props) => {
     <Section
       title="Controls"
       buttons={
-        <Stack>
+        <>
           {(running >= 2 && (
-            <>
-              <Stack.Item>
+            <Box>
+              <Button
+                icon="power-off"
+                onClick={() => act('begin_shutdown')}
+                selected
+              >
+                Turn off
+              </Button>
+              {(running === 3 && (
                 <Button
                   icon="power-off"
-                  onClick={() => act('begin_shutdown')}
+                  onClick={() => act('toggle_idle', { toggle_idle: 0 })}
+                >
+                  Activate
+                </Button>
+              )) || (
+                <Button
+                  icon="power-off"
+                  onClick={() => act('toggle_idle', { toggle_idle: 1 })}
                   selected
                 >
-                  Turn off
+                  Deactivate
                 </Button>
-              </Stack.Item>
-              {(running === 3 && (
-                <Stack.Item>
-                  <Button
-                    icon="power-off"
-                    onClick={() => act('toggle_idle', { toggle_idle: 0 })}
-                  >
-                    Activate
-                  </Button>
-                </Stack.Item>
-              )) || (
-                <Stack.Item>
-                  <Button
-                    icon="power-off"
-                    onClick={() => act('toggle_idle', { toggle_idle: 1 })}
-                    selected
-                  >
-                    Deactivate
-                  </Button>
-                </Stack.Item>
               )}
-            </>
+            </Box>
           )) || (
-            <Stack.Item>
-              <Button icon="power-off" onClick={() => act('start_generator')}>
-                Turn on
-              </Button>
-            </Stack.Item>
+            <Button icon="power-off" onClick={() => act('start_generator')}>
+              Turn on
+            </Button>
           )}
           {(running && hacked && (
-            <Stack.Item>
-              <Button
-                icon="exclamation-triangle"
-                onClick={() => act('emergency_shutdown')}
-                color="bad"
-              >
-                EMERGENCY SHUTDOWN
-              </Button>
-            </Stack.Item>
+            <Button
+              icon="exclamation-triangle"
+              onClick={() => act('emergency_shutdown')}
+              color="bad"
+            >
+              EMERGENCY SHUTDOWN
+            </Button>
           )) ||
             ''}
-        </Stack>
+        </>
       }
     >
       <Button icon="expand-arrows-alt" onClick={() => act('set_range')}>

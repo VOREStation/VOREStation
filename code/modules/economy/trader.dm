@@ -265,7 +265,7 @@
 	desc = "A trader can be moved to here!"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 	mouse_opacity = 0
 	density = 0
 	anchored = 1

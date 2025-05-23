@@ -1,6 +1,6 @@
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
-import type { field } from '../GeneralRecords/types';
+import { field } from '../GeneralRecords/types';
 
 export type Data = {
   temp: { color: string; text: string } | null;

@@ -8,12 +8,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import type {
-  abilities,
-  bellyData,
-  DropdownEntry,
-  soulcatcherData,
-} from './types';
+import { abilities, bellyData, DropdownEntry, soulcatcherData } from './types';
 import { VoreAbilities } from './VoreAbilities';
 import { CatchSettings } from './VoreSoulcatcherSettings/CatchSettings';
 import { GlobalOptions } from './VoreSoulcatcherSettings/GlobalOptions';
@@ -78,29 +73,25 @@ const VoreSoulcatcherSection = (props: {
     <Section
       title={'Soulcatcher (' + name + ')'}
       buttons={
-        <Stack>
-          <Stack.Item>
-            <Button
-              onClick={() => act('soulcatcher_rename')}
-              icon="pen"
-              tooltip="Click here to rename your soulcatcher."
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <Button
-              onClick={() => act('soulcatcher_toggle')}
-              icon={active ? 'toggle-on' : 'toggle-off'}
-              tooltip={
-                (active ? 'Disables' : 'Enables') +
-                ' the ability to capture souls upon vore death.'
-              }
-              tooltipPosition="top"
-              selected={active}
-            >
-              {active ? 'Soulcatcher On' : 'Soulcatcher Off'}
-            </Button>
-          </Stack.Item>
-        </Stack>
+        <>
+          <Button
+            onClick={() => act('soulcatcher_rename')}
+            icon="pen"
+            tooltip="Click here to rename your soulcatcher."
+          />
+          <Button
+            onClick={() => act('soulcatcher_toggle')}
+            icon={active ? 'toggle-on' : 'toggle-off'}
+            tooltip={
+              (active ? 'Disables' : 'Enables') +
+              ' the ability to capture souls upon vore death.'
+            }
+            tooltipPosition="top"
+            selected={active}
+          >
+            {active ? 'Soulcatcher On' : 'Soulcatcher Off'}
+          </Button>
+        </>
       }
     >
       {active ? (
@@ -166,28 +157,20 @@ const VoreSoulcatcherSection = (props: {
             />
           </LabeledList.Item>
           <LabeledList.Item label="Custom Messages">
-            <Stack>
-              <Stack.Item>
-                <Button onClick={() => act('soulcatcher_capture_message')}>
-                  Capture Message
-                </Button>
-              </Stack.Item>
-              <Stack.Item>
-                <Button onClick={() => act('soulcatcher_transit_message')}>
-                  Transit Message
-                </Button>
-              </Stack.Item>
-              <Stack.Item>
-                <Button onClick={() => act('soulcatcher_release_message')}>
-                  Release Message
-                </Button>
-              </Stack.Item>
-              <Stack.Item>
-                <Button onClick={() => act('soulcatcher_delete_message')}>
-                  Delete Message
-                </Button>
-              </Stack.Item>
-            </Stack>
+            <Box>
+              <Button onClick={() => act('soulcatcher_capture_message')}>
+                Capture Message
+              </Button>
+              <Button onClick={() => act('soulcatcher_transit_message')}>
+                Transit Message
+              </Button>
+              <Button onClick={() => act('soulcatcher_release_message')}>
+                Release Message
+              </Button>
+              <Button onClick={() => act('soulcatcher_delete_message')}>
+                Delete Message
+              </Button>
+            </Box>
           </LabeledList.Item>
         </LabeledList>
       ) : (

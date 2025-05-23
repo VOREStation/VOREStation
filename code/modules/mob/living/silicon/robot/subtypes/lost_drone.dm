@@ -75,7 +75,6 @@
 			laws.show_laws(src)
 			law_retries --
 		else
-			law_retries = 0
 			break
 	return
 

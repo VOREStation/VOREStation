@@ -94,7 +94,7 @@
 		H.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
 
 	//Apply damage
-	H.adjustCloneLoss((H.getMaxHealth() - (H.getMaxHealth()))*-0.75)
+	H.adjustCloneLoss((H.getMaxHealth() - CONFIG_GET(number/health_threshold_dead))*-0.75)
 	H.Paralyse(4)
 	H.updatehealth()
 
@@ -125,9 +125,6 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.ooc_notes_likes = current_project.body_ooclikes
 	H.ooc_notes_dislikes = current_project.body_oocdislikes
-	H.ooc_notes_favs = current_project.body_oocfavs
-	H.ooc_notes_maybes = current_project.body_oocmaybes
-	H.ooc_notes_style = current_project.body_oocstyle
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
 	H.appearance_flags = current_project.aflags
@@ -162,7 +159,7 @@
 
 		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
 
-			//Slowly get that clone healed and finished.
+			 //Slowly get that clone healed and finished.
 			occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
@@ -178,7 +175,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((occupant.health == occupant.getMaxHealth())) && (!eject_wait))
+		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
@@ -197,7 +194,7 @@
 
 /obj/machinery/clonepod/transhuman/get_completion()
 	if(occupant)
-		return 100 * ((occupant.health + (occupant.getMaxHealth()))) / (occupant.getMaxHealth() + abs(occupant.getMaxHealth()))
+		return 100 * ((occupant.health + abs(CONFIG_GET(number/health_threshold_dead))) / (occupant.maxHealth + abs(CONFIG_GET(number/health_threshold_dead))))
 	return 0
 
 /obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)
@@ -506,7 +503,7 @@
 	if(occupant)
 		data["name"] = occupant.name
 		data["health"] = occupant.health
-		data["maxHealth"] = occupant.getMaxHealth()
+		data["maxHealth"] = occupant.maxHealth
 		data["stat"] = occupant.stat
 		data["mindStatus"] = !!occupant.mind
 		data["mindName"] = occupant.mind?.name
@@ -548,7 +545,7 @@
 	if(O.anchored)
 		return 0 //mob is anchored???
 	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return 0 //doesn't use adjacent() to allow for non-GLOB.cardinal (fuck my life)
+		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
@@ -602,9 +599,6 @@
 	occupant.ooc_notes = MR.mind_oocnotes
 	occupant.ooc_notes_likes = MR.mind_ooclikes
 	occupant.ooc_notes_dislikes = MR.mind_oocdislikes
-	occupant.ooc_notes_favs = MR.mind_oocfavs
-	occupant.ooc_notes_maybes = MR.mind_oocmaybes
-	occupant.ooc_notes_style = MR.mind_oocstyle
 
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)

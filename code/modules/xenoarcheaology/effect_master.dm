@@ -220,7 +220,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
  */
 
 /datum/component/artifact_master/proc/on_exact()
-	SIGNAL_HANDLER
 	var/severity = args[2]
 	var/triggered = FALSE
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -244,7 +243,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	return
 
 /datum/component/artifact_master/proc/on_bullet()
-	SIGNAL_HANDLER
 	var/obj/item/projectile/P = args[2]
 	var/triggered = TRUE
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -266,7 +264,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	return
 
 /datum/component/artifact_master/proc/on_bump()
-	SIGNAL_HANDLER
 	var/atom/bumped = args[2]
 	var/warn = FALSE
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -289,7 +286,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		to_chat(bumped, span_filter_notice(span_bold("You accidentally touch \the [holder] as it hits you.")))
 
 /datum/component/artifact_master/proc/on_bumped()
-	SIGNAL_HANDLER
 	var/atom/movable/M = args[2]
 	var/warn = FALSE
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -313,7 +309,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		to_chat(M, span_filter_notice(span_bold("You accidentally touch \the [holder].")))
 
 /datum/component/artifact_master/proc/on_attack_hand()
-	SIGNAL_HANDLER
 	var/mob/living/user = args[2]
 	if(!istype(user))
 		return
@@ -343,7 +338,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 
 /datum/component/artifact_master/proc/on_attackby()
-	SIGNAL_HANDLER
 	var/obj/item/W = args[2]
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -394,7 +388,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 				my_effect.ToggleActivate()
 
 /datum/component/artifact_master/proc/on_reagent()
-	SIGNAL_HANDLER
 	//A strange bug here is that, when a reagent is splashed on an artifact, it calls this proc twice.
 	//Why? I have no clue. I only accidentally stumbled upon it during debugging!
 	//I left one of the debug logs commented out so others can confirm this.
@@ -417,7 +410,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 				my_effect.ToggleActivate()
 
 /datum/component/artifact_master/proc/on_moved()
-	SIGNAL_HANDLER
 	for(var/datum/artifact_effect/my_effect in my_effects)
 		if(my_effect)
 			my_effect.UpdateMove()

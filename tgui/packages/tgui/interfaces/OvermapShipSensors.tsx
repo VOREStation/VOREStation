@@ -6,7 +6,6 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -51,26 +50,22 @@ export const OvermapShipSensorsContent = (props) => {
       <Section
         title="Status"
         buttons={
-          <Stack>
-            <Stack.Item>
-              <Button
-                icon="eye"
-                selected={viewing}
-                onClick={() => act('viewing')}
-              >
-                Map View
-              </Button>
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="power-off"
-                selected={on}
-                onClick={() => act('toggle_sensor')}
-              >
-                {on ? 'Sensors Enabled' : 'Sensors Disabled'}
-              </Button>
-            </Stack.Item>
-          </Stack>
+          <>
+            <Button
+              icon="eye"
+              selected={viewing}
+              onClick={() => act('viewing')}
+            >
+              Map View
+            </Button>
+            <Button
+              icon="power-off"
+              selected={on}
+              onClick={() => act('toggle_sensor')}
+            >
+              {on ? 'Sensors Enabled' : 'Sensors Disabled'}
+            </Button>
+          </>
         }
       >
         <LabeledList>

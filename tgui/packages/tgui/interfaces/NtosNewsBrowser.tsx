@@ -9,7 +9,6 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
-  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -73,18 +72,14 @@ const SelectedArticle = (props) => {
     <Section
       title={'Viewing: ' + title}
       buttons={
-        <Stack>
-          <Stack.Item>
-            <Button icon="save" onClick={() => act('PRG_savearticle')}>
-              Save
-            </Button>
-          </Stack.Item>
-          <Stack.Item>
-            <Button icon="times" onClick={() => act('PRG_reset')}>
-              Close
-            </Button>
-          </Stack.Item>
-        </Stack>
+        <>
+          <Button icon="save" onClick={() => act('PRG_savearticle')}>
+            Save
+          </Button>
+          <Button icon="times" onClick={() => act('PRG_reset')}>
+            Close
+          </Button>
+        </>
       }
     >
       {!!cover && <Image src={resolveAsset(cover)} />}

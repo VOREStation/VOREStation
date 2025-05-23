@@ -50,32 +50,26 @@ export const GenericUplink = (props: {
         </Box>
       }
       buttons={
-        <Stack>
-          <Stack.Item>Search</Stack.Item>{' '}
-          <Stack.Item>
-            <Input
-              autoFocus
-              value={searchText}
-              onChange={(value: string) => setSearchText(value)}
-              mx={1}
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <Button
-              icon={compactMode ? 'list' : 'info'}
-              onClick={() => act('compact_toggle')}
-            >
-              {compactMode ? 'Compact' : 'Detailed'}
-            </Button>
-          </Stack.Item>
+        <>
+          Search
+          <Input
+            autoFocus
+            value={searchText}
+            onInput={(e, value: string) => setSearchText(value)}
+            mx={1}
+          />
+          <Button
+            icon={compactMode ? 'list' : 'info'}
+            onClick={() => act('compact_toggle')}
+          >
+            {compactMode ? 'Compact' : 'Detailed'}
+          </Button>
           {!!lockable && (
-            <Stack.Item>
-              <Button icon="lock" onClick={() => act('lock')}>
-                Lock
-              </Button>
-            </Stack.Item>
+            <Button icon="lock" onClick={() => act('lock')}>
+              Lock
+            </Button>
           )}
-        </Stack>
+        </>
       }
     >
       <Stack>

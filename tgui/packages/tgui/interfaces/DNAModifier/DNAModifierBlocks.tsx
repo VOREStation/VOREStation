@@ -14,10 +14,10 @@ export const DNAModifierBlocks = (props: {
     props;
 
   const characters: string[] = dnaString.split('');
-  const dnaBlocks: React.JSX.Element[] = [];
+  let dnaBlocks: React.JSX.Element[] = [];
   for (let block = 0; block < characters.length; block += blockSize) {
     const realBlock: number = block / blockSize + 1;
-    const subBlocks: React.JSX.Element[] = [];
+    let subBlocks: React.JSX.Element[] = [];
     for (let subblock = 0; subblock < blockSize; subblock++) {
       const realSubblock: number = subblock + 1;
       subBlocks.push(

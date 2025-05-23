@@ -1,4 +1,4 @@
-GLOBAL_VAR_INIT(file_uid, 0)
+var/global/file_uid = 0
 
 /datum/computer_file/
 	/// Placeholder. Whitespace and most special characters are not allowed.
@@ -26,8 +26,8 @@ GLOBAL_VAR_INIT(file_uid, 0)
 
 /datum/computer_file/New(list/md = null)
 	..()
-	uid = GLOB.file_uid
-	GLOB.file_uid++
+	uid = file_uid
+	file_uid++
 	if(islist(md))
 		metadata = md.Copy()
 

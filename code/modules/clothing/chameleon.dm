@@ -42,8 +42,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/under/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/under/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/clothing/under/gimmick)//Prevent infinite loops and bad jumpsuits.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/under, blocked)
@@ -79,8 +79,8 @@
 	body_parts_covered = 0
 	var/global/list/clothing_choices
 
-/obj/item/clothing/head/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/head/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type)//Prevent infinite loops and bad hats.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/head, blocked)
@@ -114,8 +114,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/suit/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/suit/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/clothing/suit/cyborg_suit, /obj/item/clothing/suit/justice, /obj/item/clothing/suit/greatcoat)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
@@ -148,8 +148,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/shoes/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/shoes/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/clothing/shoes/syndigaloshes, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
@@ -182,8 +182,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/storage/backpack/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/storage/backpack/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
@@ -235,8 +235,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/gloves/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/gloves/chameleon/New()
+	..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/gloves, list(src.type))
 
@@ -269,8 +269,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/mask/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/mask/chameleon/New()
+	..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/mask, list(src.type))
 
@@ -338,8 +338,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/storage/belt/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/storage/belt/chameleon/New()
+	..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/belt, list(src.type))
 
@@ -378,8 +378,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/clothing/accessory/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/accessory/chameleon/New()
+	..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/clothing/accessory/storage)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/accessory, blocked)
@@ -413,7 +413,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	matter = list()
 
-	fire_sound = 'sound/weapons/gunshot1.ogg'
+	fire_sound = 'sound/weapons/Gunshot1.ogg'
 	projectile_type = /obj/item/projectile/chameleon
 	charge_meter = 0
 	charge_cost = 48 //uses next to no power, since it's just holograms
@@ -422,14 +422,15 @@
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices
 
-/obj/item/gun/energy/chameleon/Initialize(mapload)
-	. = ..()
+/obj/item/gun/energy/chameleon/New()
+	..()
 
 	if(!gun_choices)
 		gun_choices = list()
 		for(var/gun_type in typesof(/obj/item/gun/) - src.type)
 			var/obj/item/gun/G = gun_type
 			src.gun_choices[initial(G.name)] = gun_type
+	return
 
 /obj/item/gun/energy/chameleon/consume_next_projectile()
 	var/obj/item/projectile/P = ..()

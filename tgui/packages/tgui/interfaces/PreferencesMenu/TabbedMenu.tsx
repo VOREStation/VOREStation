@@ -1,9 +1,9 @@
 import {
   Component,
-  type ComponentProps,
+  ComponentProps,
   createRef,
-  type ReactNode,
-  type RefObject,
+  ReactNode,
+  RefObject,
 } from 'react';
 import { Button, Section, Stack } from 'tgui-core/components';
 
@@ -13,10 +13,10 @@ type TabbedMenuProps = {
 };
 
 export class TabbedMenu extends Component<TabbedMenuProps> {
-  categoryRefs: Record<string, RefObject<HTMLDivElement | null>> = {};
-  sectionRef: RefObject<HTMLDivElement | null> = createRef();
+  categoryRefs: Record<string, RefObject<HTMLDivElement>> = {};
+  sectionRef: RefObject<HTMLDivElement> = createRef();
 
-  getCategoryRef(category: string): RefObject<HTMLDivElement | null> {
+  getCategoryRef(category: string): RefObject<HTMLDivElement> {
     if (!this.categoryRefs[category]) {
       this.categoryRefs[category] = createRef();
     }

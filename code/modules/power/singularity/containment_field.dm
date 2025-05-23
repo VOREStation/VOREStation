@@ -53,6 +53,7 @@
 	shock(L)
 
 /obj/machinery/containment_field/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()
@@ -82,7 +83,9 @@
 		var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
 		user.throw_at(target, 200, 4)
 
-		VARSET_IN(src, hasShocked, FALSE, 2 SECONDS)
+		sleep(20)
+
+		hasShocked = 0
 
 /obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
 	if(!master1 || !master2)

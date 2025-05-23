@@ -162,8 +162,8 @@
 		stat_panel.reinitialize()
 
 	//Logs all hrefs
-	if(config && CONFIG_GET(flag/log_hrefs) && GLOB.href_logfile)
-		WRITE_LOG(GLOB.href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
+	if(config && CONFIG_GET(flag/log_hrefs) && href_logfile)
+		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
@@ -296,21 +296,18 @@
 	)
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
-	INVOKE_ASYNC(src, PROC_REF(acquire_dpi))
-
-	tgui_panel.initialize()
-
 	// Initialize tgui panel
 	tgui_say.initialize()
+	tgui_panel.initialize()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 
-	if(GLOB.custom_event_msg && GLOB.custom_event_msg != "")
+	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, span_alert("[GLOB.custom_event_msg]"))
+		to_chat(src, span_alert("[custom_event_msg]"))
 		to_chat(src, "<br>")
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
@@ -815,10 +812,6 @@
 			return
 	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
 	. = ..()
-
-/// This grabs the DPI of the user per their skin
-/client/proc/acquire_dpi()
-	window_scaling = text2num(winget(src, null, "dpi"))
 
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE

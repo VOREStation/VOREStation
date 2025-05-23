@@ -9,7 +9,7 @@ export const LayerSection = (props) => {
   const { category: rootCategoryIndex, piping_layer, pipe_layers } = data;
   const previews = data.preview_rows.flatMap((row) => row.previews);
   return (
-    <Section fill width="100px">
+    <Section fill width={7.5}>
       {rootCategoryIndex === 0 && (
         <Stack vertical mb={1}>
           {Object.keys(pipe_layers).map((layer) => (
@@ -28,7 +28,7 @@ export const LayerSection = (props) => {
           ))}
         </Stack>
       )}
-      <Stack wrap mt="30px">
+      <Box width="120px">
         {previews.map((preview) => (
           <Button
             ml={0}
@@ -58,7 +58,7 @@ export const LayerSection = (props) => {
             />
           </Button>
         ))}
-      </Stack>
+      </Box>
     </Section>
   );
 };

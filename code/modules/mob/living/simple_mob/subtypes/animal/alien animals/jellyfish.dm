@@ -122,12 +122,12 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 		if(prob(25))
 			L.adjustHalLoss(leech)
 
-/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize(mapload, jellyfish)
-	. = ..()
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/New(newloc, jellyfish)
 	GLOB.jellyfish_count ++
 	var/mob/living/simple_mob/vore/alienanimals/space_jellyfish/parent = jellyfish
 	if(parent)
 		parent.faction = faction
+	..()
 
 /mob/living/simple_mob/vore/alienanimals/space_jellyfish/death()
 	. = ..()
@@ -176,7 +176,11 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/inherited_nutriment = 0
 
-/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize(mapload, inherit)
+/obj/item/reagent_containers/food/snacks/jellyfishcore/New(newloc, inherit)
+	inherited_nutriment	= inherit
 	. = ..()
-	nutriment_amt += inherit
+
+/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize(mapload)
+	nutriment_amt += inherited_nutriment
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, nutriment_amt, nutriment_desc)

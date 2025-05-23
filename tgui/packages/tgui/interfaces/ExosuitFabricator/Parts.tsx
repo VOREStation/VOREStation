@@ -76,7 +76,7 @@ export const PartLists = (props: {
   let partsObj: { Parts: internalPart[] } = {
     Parts: [],
   };
-  const partsList: internalPart[] = [];
+  let partsList: internalPart[] = [];
   // Build list of sub-categories if not using a search filter.
   if (!searchText) {
     partsObj = { Parts: [] };
@@ -110,7 +110,7 @@ export const PartLists = (props: {
               fluid
               placeholder="Search for..."
               value={searchText}
-              onChange={(v) => setSearchText(v)}
+              onInput={(e, v) => setSearchText(v)}
             />
           </Stack.Item>
         </Stack>

@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/dust
 
 /datum/event2/meta/dust/get_weight()
-	return GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20
+	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20
 
 
 

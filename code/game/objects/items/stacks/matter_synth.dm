@@ -59,6 +59,3 @@
 
 /datum/matter_synth/cloth
 	name = "Cloth Synthesizer"
-
-/datum/matter_synth/beacon
-	name = "Beacon Synthesizer"

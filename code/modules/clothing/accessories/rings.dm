@@ -19,7 +19,6 @@
 	force = 7	//base punch strength is 5
 	punch_force = 2	//added to base punch strength when added as a glove accessory
 	siemens_coefficient = 1
-	slowdown = 0
 
 /////////////////////////////////////////
 //Standard Rings
@@ -137,7 +136,6 @@
 /obj/item/clothing/accessory/ring/material
 	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "material"
-	material_slowdown_multiplier = 0 //it's a ring, it's never gonna be heavy enough to matter
 
 /obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
 	. = ..()

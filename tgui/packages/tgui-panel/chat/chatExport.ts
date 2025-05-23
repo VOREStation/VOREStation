@@ -48,7 +48,7 @@ async function getRound(
 ) {
   const settings = useSettings();
   const { ckey, token } = game.userData;
-  const messages: message[] = [];
+  let messages: message[] = [];
 
   const d = new Date();
   const utcOffset = d.getTimezoneOffset() / -60;
@@ -110,7 +110,7 @@ async function getRound(
 
             let messagesHtml = '';
             if (messages) {
-              for (const message of messages) {
+              for (let message of messages) {
                 // Filter messages according to active tab for export
                 if (page && canPageAcceptType(page, message.type)) {
                   messagesHtml += message.html + '\n';

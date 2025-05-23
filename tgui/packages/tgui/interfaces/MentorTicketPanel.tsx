@@ -1,7 +1,7 @@
 /* eslint react/no-danger: "off" */
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { round, toFixed } from 'tgui-core/math';
 
 const State = {
@@ -42,16 +42,12 @@ export const MentorTicketPanel = (props) => {
         <Section
           title={'Ticket #' + id}
           buttons={
-            <Stack>
-              <Stack.Item>
-                <Button icon="arrow-up" onClick={() => act('escalate')}>
-                  Escalate
-                </Button>
-              </Stack.Item>
-              <Stack.Item>
-                <Button onClick={() => act('legacy')}>Legacy UI</Button>
-              </Stack.Item>
-            </Stack>
+            <Box nowrap>
+              <Button icon="arrow-up" onClick={() => act('escalate')}>
+                Escalate
+              </Button>
+              <Button onClick={() => act('legacy')}>Legacy UI</Button>
+            </Box>
           }
         >
           <LabeledList>

@@ -1,4 +1,4 @@
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 import { REVOLUTIONARY_MECHANICAL_DESCRIPTION } from './headrevolutionary';
 
 const Provocateur: Antagonist = {

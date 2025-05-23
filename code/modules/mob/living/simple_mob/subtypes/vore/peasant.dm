@@ -30,8 +30,8 @@
 
 	faction = FACTION_PEASANT
 
-/mob/living/simple_mob/vore/peasant/Initialize(mapload)
-	. = ..()
+/mob/living/simple_mob/vore/peasant/New()
+	..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Autofocus, Button, Input, Section, Stack } from 'tgui-core/components';
@@ -31,7 +31,7 @@ export const ListInputModal = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   // User presses up or down on keyboard
   // Simulates clicking an item
-
+  const inputRef = useRef<HTMLDivElement>(null);
   const onArrowKey = (key: KEY) => {
     const len = filteredItems.length - 1;
     if (key === KEY.Down) {
@@ -102,7 +102,7 @@ export const ListInputModal = (props) => {
     setTimeout(() => document!.getElementById(selected.toString())?.focus(), 1);
   }
 
-  function handleKeyDown<T>(event: React.KeyboardEvent<T>) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     const key = event.key;
     if (key === KEY.Down || key === KEY.Up) {
       event.preventDefault();
@@ -160,17 +160,11 @@ export const ListInputModal = (props) => {
               />
             </Stack.Item>
             {searchBarVisible && (
-              <Input
-                autoFocus
-                autoSelect
-                fluid
-                expensive
-                onEnter={() => {
-                  act('submit', { entry: filteredItems[selected] });
-                }}
-                onChange={onSearch}
-                placeholder="Search..."
-                value={searchQuery}
+              <SearchBar
+                filteredItems={filteredItems}
+                onSearch={onSearch}
+                searchQuery={searchQuery}
+                selected={selected}
               />
             )}
             <Stack.Item>
@@ -206,7 +200,6 @@ const ListDisplay = (props) => {
       {filteredItems.map((item, index) => {
         return (
           <Button
-            className="candystripe"
             color="transparent"
             fluid
             id={index}
@@ -230,5 +223,29 @@ const ListDisplay = (props) => {
         );
       })}
     </Section>
+  );
+};
+
+/**
+ * Renders a search bar input.
+ * Closing the bar defaults input to an empty string.
+ */
+const SearchBar = (props) => {
+  const { act } = useBackend<ListInputData>();
+  const { filteredItems, onSearch, searchQuery, selected } = props;
+
+  return (
+    <Input
+      autoFocus
+      autoSelect
+      fluid
+      onEnter={(event) => {
+        event.preventDefault();
+        act('submit', { entry: filteredItems[selected] });
+      }}
+      onInput={(_, value) => onSearch(value)}
+      placeholder="Search..."
+      value={searchQuery}
+    />
   );
 };

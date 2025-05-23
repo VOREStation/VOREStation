@@ -172,7 +172,8 @@
 /mob/living/carbon/human/proc/update_dna()
 	check_dna()
 	dna.ready_dna(src)
-	sync_organ_dna(dna)
+	for(var/obj/item/organ/O in organs)
+		qdel_swap(O.dna, dna.Clone()) // Update all of those because apparently they're separate, and icons won't update properly
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()
@@ -197,7 +198,7 @@
 
 	var/use_species = species.get_bodytype(src)
 	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
-	if(H) use_species = H.data.get_species_bodytype(src)
+	if(H) use_species = H.species.get_bodytype(src)
 
 	var/list/valid_hairstyles = new()
 	for(var/hairstyle in hair_styles_list)
@@ -223,7 +224,7 @@
 
 	var/use_species = species.get_bodytype(src)
 	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
-	if(H) use_species = H.data.get_species_bodytype(src)
+	if(H) use_species = H.species.get_bodytype(src)
 
 	var/list/valid_facial_hairstyles = new()
 	for(var/facialhairstyle in facial_hair_styles_list)

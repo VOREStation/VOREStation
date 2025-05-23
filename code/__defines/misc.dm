@@ -5,7 +5,6 @@
 #define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 
 // Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
-#define INVISIBILITY_NONE                  0
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
@@ -22,7 +21,6 @@
 #define SEE_INVISIBLE_OBSERVER            61
 
 #define SEE_INVISIBLE_MINIMUM 5
-#define INVISIBILITY_BADMIN 99 // Used for objects that badmins should see
 #define INVISIBILITY_MAXIMUM 100
 #define INVISIBILITY_ABSTRACT 101 //only used for abstract objects, things that are not really there.
 
@@ -82,7 +80,8 @@
 #define WAIT_FINISH  4
 #define DO_AUTOPILOT 5
 
-#define MAX_MESSAGE_LEN       4096
+// Setting this much higher than 1024 could allow spammers to DOS the server easily.
+#define MAX_MESSAGE_LEN       4096 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
@@ -118,10 +117,6 @@
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
-#define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
-#define AREA_LIMIT_DARK_RESPITE		0x200000 // Shadekin will die normally in those areas //VOREStation Note: Not implemented on VS. Used downstream.
-#define AREA_ALLOW_CLOCKOUT			0x400000 // The PDA timeclock app can only be used in these areas //VOREStation Note: Not implemented on VS. Used downstream.
-
 // OnTopic return values
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
@@ -144,10 +139,10 @@
 #define WALL_CAN_OPEN 1
 #define WALL_OPENING 2
 
-#define BOMBCAP_DVSTN_RADIUS (GLOB.max_explosion_range/4)
-#define BOMBCAP_HEAVY_RADIUS (GLOB.max_explosion_range/2)
-#define BOMBCAP_LIGHT_RADIUS GLOB.max_explosion_range
-#define BOMBCAP_FLASH_RADIUS (GLOB.max_explosion_range*1.5)
+#define BOMBCAP_DVSTN_RADIUS (max_explosion_range/4)
+#define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
+#define BOMBCAP_LIGHT_RADIUS max_explosion_range
+#define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
 #define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
 #define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
@@ -214,10 +209,9 @@
 #define DEPARTMENT_RESEARCH			"Research"
 #define DEPARTMENT_CARGO			"Cargo"
 #define DEPARTMENT_CIVILIAN			"Civilian"
-#define DEPARTMENT_PLANET			"Exploration" // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
+#define DEPARTMENT_PLANET			"Exploration" //VOREStation Edit // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
 #define DEPARTMENT_SYNTHETIC		"Synthetic"
 
-#define DEPARTMENT_NONCREW			"Non crew"
 // These are mostly for the department guessing code and event system.
 #define DEPARTMENT_UNKNOWN			"Unknown"
 #define DEPARTMENT_EVERYONE			"Everyone"
@@ -270,15 +264,15 @@
 // Second argument is the path the list is expected to contain. Note that children will also get added to the global list.
 // If the GLOB system is ever ported, you can change this macro in one place and have less work to do than you otherwise would.
 #define GLOBAL_LIST_BOILERPLATE(LIST_NAME, PATH)\
-GLOBAL_LIST_EMPTY(##LIST_NAME);\
+var/global/list/##LIST_NAME = list();\
 ##PATH/Initialize(mapload, ...)\
 	{\
-	GLOB.##LIST_NAME += src;\
+	##LIST_NAME += src;\
 	return ..();\
 	}\
 ##PATH/Destroy(force, ...)\
 	{\
-	GLOB.##LIST_NAME -= src;\
+	##LIST_NAME -= src;\
 	return ..();\
 	}\
 
@@ -340,11 +334,6 @@ GLOBAL_LIST_EMPTY(##LIST_NAME);\
 #define JOB_SILICON_ROBOT	0x2
 #define JOB_SILICON_AI		0x4
 #define JOB_SILICON			0x6 // 2|4, probably don't set jobs to this, but good for checking
-
-//Job defines
-#define JOB_OUTSIDER	"Outsider" //VOREStation Note: Not implemented on VS. Used downstream.
-#define JOB_ANOMALY 	"Anomaly" //VOREStation Note: Not implemented on VS. Used downstream.
-#define JOB_VR			"VR Avatar"
 
 #define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
 
@@ -445,13 +434,6 @@ GLOBAL_LIST_EMPTY(##LIST_NAME);\
 #define VOLUME_CHANNEL_VORE "Vore"
 #define VOLUME_CHANNEL_DOORS "Doors"
 #define VOLUME_CHANNEL_INSTRUMENTS "Instruments"
-#define VOLUME_CHANNEL_WEATHER "Weather"
-#define VOLUME_CHANNEL_SPECIES_SOUNDS "Species Sounds (Verbal Injury Feedback)"
-#define VOLUME_CHANNEL_HUD_WARNINGS "SS13 HUD (Clientside-only sounds)" //NYI
-#define VOLUME_CHANNEL_DEATH_SOUNDS "Death Sounds"
-#define VOLUME_CHANNEL_INJURY_SOUNDS "Mob Injury Sounds (Non-Verbal Feedback)" //NYI
-#define VOLUME_CHANNEL_MACHINERY "Machinery Noises"
-#define VOLUME_CHANNEL_MACHINERY_IDLE "Machinery Idle Noises"
 
 // Make sure you update this or clients won't be able to adjust the channel
 GLOBAL_LIST_INIT(all_volume_channels, list(
@@ -460,14 +442,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_ALARMS,
 	VOLUME_CHANNEL_VORE,
 	VOLUME_CHANNEL_DOORS,
-	VOLUME_CHANNEL_INSTRUMENTS,
-	VOLUME_CHANNEL_WEATHER,
-	VOLUME_CHANNEL_SPECIES_SOUNDS,
-	VOLUME_CHANNEL_HUD_WARNINGS,
-	VOLUME_CHANNEL_DEATH_SOUNDS,
-	VOLUME_CHANNEL_INJURY_SOUNDS,
-	VOLUME_CHANNEL_MACHINERY,
-	VOLUME_CHANNEL_MACHINERY_IDLE
+	VOLUME_CHANNEL_INSTRUMENTS
 ))
 
 #define APPEARANCECHANGER_CHANGED_RACE "Race"

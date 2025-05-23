@@ -50,7 +50,7 @@ In short:
 	OverlayAndAmbientSet()
 	lightsout(0,0)
 
-	GLOB.runedec += 9000	//basically removing the rune cap
+	runedec += 9000	//basically removing the rune cap
 
 
 /datum/universal_state/hell/proc/AreaSet()
@@ -73,7 +73,7 @@ In short:
 		if(!T.holy && prob(1))
 			new /obj/effect/gateway/active/cult(T)
 
-	for (var/obj/machinery/firealarm/alm in GLOB.machines)
+	for (var/obj/machinery/firealarm/alm in machines)
 		if (!(alm.stat & BROKEN))
 			alm.ex_act(2)
 

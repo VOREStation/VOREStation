@@ -36,7 +36,8 @@
 /obj/item/projectile/bullet/magnetic/flechette/hunting
 	name = "shredder slug"
 	armor_penetration = 30
-	mob_bonus_damage = 40
+	SA_bonus_damage = 40
+	SA_vulnerability = SA_ANIMAL
 	hud_state = "alloy_spike"
 
 /obj/item/projectile/bullet/magnetic/heated

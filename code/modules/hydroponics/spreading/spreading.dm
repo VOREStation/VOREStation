@@ -3,8 +3,8 @@
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
-		if(GLOB.vinestart.len) //Pick a turf to spawn at if we can
-			var/turf/simulated/floor/T = pick(GLOB.vinestart)
+		if(vinestart.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(vinestart)
 			var/datum/seed/seed = SSplants.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -76,12 +76,12 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/Initialize(mapload, var/datum/seed/newseed, var/obj/effect/plant/newparent)
-	. = ..()
+/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
 	//VOREStation Edit Start
-	if(isopenturf(loc))
-		return INITIALIZE_HINT_QDEL
+	if(istype(loc, /turf/simulated/open))
+		qdel(src)
 	//VOREStation Edit End
+	..()
 
 	if(!newparent)
 		parent = src
@@ -89,14 +89,18 @@
 		parent = newparent
 
 	if(!SSplants)
+		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
+	if(!SSplants)
 		to_world(span_danger("Plant controller does not exist and [src] requires it. Aborting."))
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 
 	if(!istype(newseed))
 		newseed = SSplants.seeds[DEFAULT_SEED]
 	seed = newseed
 	if(!seed)
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
@@ -206,7 +210,7 @@
 
 	var/direction = 16
 
-	for(var/wallDir in GLOB.cardinal)
+	for(var/wallDir in cardinal)
 		var/turf/newTurf = get_step(T,wallDir)
 		if(newTurf.density)
 			direction |= wallDir

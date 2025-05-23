@@ -1,3 +1,8 @@
+var/list/exploration_cartridges = list(
+	/obj/item/cartridge/explorer,
+	/obj/item/cartridge/sar
+	)
+
 /obj/item/cartridge
 	slot_flags = SLOT_EARS
 

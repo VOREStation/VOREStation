@@ -210,7 +210,6 @@
 	#define JOB_ALT_ATMOSPHERIC_MAINTAINER "Atmospheric Maintainer"
 	#define JOB_ALT_DISPOSALS_TECHNICIAN "Disposals Technician"
 	#define JOB_ALT_FUEL_TECHNICIAN "Fuel Technician"
-	#define JOB_ALT_FIREFIGHTER "Firefighter"
 //___________________________________________________________
 
 

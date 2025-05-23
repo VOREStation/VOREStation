@@ -3,20 +3,21 @@
 
 /obj/machinery/mineral/unloading_machine
 	name = "unloading machine"
-	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "unloader"
 	density = TRUE
 	anchored = TRUE
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 
+
 /obj/machinery/mineral/unloading_machine/Initialize(mapload)
 	. = ..()
-	for(var/dir in GLOB.cardinal)
+	for(var/dir in cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)
 			break
-	for(var/dir in GLOB.cardinal)
+	for(var/dir in cardinal)
 		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(output)
 			break

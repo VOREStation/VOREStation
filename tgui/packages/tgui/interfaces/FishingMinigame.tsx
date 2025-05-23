@@ -1,8 +1,8 @@
 import {
   Component,
-  type ComponentProps,
-  type PropsWithChildren,
-  type ReactNode,
+  ComponentProps,
+  PropsWithChildren,
+  ReactNode,
   useEffect,
   useState,
 } from 'react';

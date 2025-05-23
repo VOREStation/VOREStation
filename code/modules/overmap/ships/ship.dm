@@ -133,7 +133,7 @@
 	else if(still)
 		STOP_PROCESSING(SSprocessing, src)
 		for(var/zz in map_z)
-			SSstarmover.toggle_move_stars(zz)
+			toggle_move_stars(zz)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
@@ -148,7 +148,7 @@
 		START_PROCESSING(SSprocessing, src)
 		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
 		for(var/zz in map_z)
-			SSstarmover.toggle_move_stars(zz, fore_dir)
+			toggle_move_stars(zz, fore_dir)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
@@ -284,7 +284,7 @@
 
 /obj/effect/overmap/visitable/ship/populate_sector_objects()
 	..()
-	for(var/obj/machinery/computer/ship/S in GLOB.machines)
+	for(var/obj/machinery/computer/ship/S in global.machines)
 		S.attempt_hook_up(src)
 	for(var/datum/ship_engine/E in ship_engines)
 		if(check_ownership(E.holder))

@@ -56,26 +56,22 @@ export const MiningOreProcessingConsole = (props) => {
             <Section
               title="Status"
               buttons={
-                <Stack>
-                  <Stack.Item>
-                    <Button
-                      icon="bolt"
-                      selected={speed}
-                      onClick={() => act('speed_toggle')}
-                    >
-                      {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      icon="power-off"
-                      selected={power}
-                      onClick={() => act('power')}
-                    >
-                      {power ? 'Smelting' : 'Not Smelting'}
-                    </Button>
-                  </Stack.Item>
-                </Stack>
+                <>
+                  <Button
+                    icon="bolt"
+                    selected={speed}
+                    onClick={() => act('speed_toggle')}
+                  >
+                    {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
+                  </Button>
+                  <Button
+                    icon="power-off"
+                    selected={power}
+                    onClick={() => act('power')}
+                  >
+                    {power ? 'Smelting' : 'Not Smelting'}
+                  </Button>
+                </>
               }
             >
               <LabeledList>

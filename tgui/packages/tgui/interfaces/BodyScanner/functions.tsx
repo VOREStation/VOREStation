@@ -4,7 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 /*
  */
 export function mapTwoByTwo(a: any[][], c: any) {
-  const result: any[] = [];
+  let result: any[] = [];
   for (let i = 0; i < a.length; i += 2) {
     result.push(c(a[i], a[i + 1], i));
   }

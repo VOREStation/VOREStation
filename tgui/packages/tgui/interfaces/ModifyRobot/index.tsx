@@ -178,7 +178,7 @@ export const ModifyRobot = (props) => {
                     <Input
                       width="200px"
                       value={robotName}
-                      onChange={(value) => setRobotName(value)}
+                      onChange={(e, value) => setRobotName(value)}
                     />
                   </Stack.Item>
                   <Stack.Item>
@@ -210,8 +210,8 @@ export const ModifyRobot = (props) => {
               )}
             </Stack>
           </LabeledList.Item>
-          {!!target?.module && (
-            <LabeledList.Item label="AI Selection">
+          <LabeledList.Item label="AI Selection">
+            {!!target?.module && (
               <Stack align="baseline">
                 <Stack.Item>
                   <Dropdown
@@ -247,8 +247,8 @@ export const ModifyRobot = (props) => {
                   </Button>
                 </Stack.Item>
               </Stack>
-            </LabeledList.Item>
-          )}
+            )}
+          </LabeledList.Item>
         </LabeledList>
         <Divider />
         {!!target &&

@@ -218,7 +218,7 @@
 		other_connections = list("0", "0", "0", "0")
 		return FALSE
 
-	for(var/direction in GLOB.cardinal)
+	for(var/direction in cardinal)
 		var/turf/T = get_step(src, direction)
 		var/success = 0
 		for(var/b_type in blend_objects)

@@ -1026,10 +1026,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"abR" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "abS" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -4149,7 +4145,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "ahh" = (
@@ -4463,10 +4458,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
-"ahN" = (
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "ahO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7851,10 +7842,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
-"anA" = (
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
 "anB" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -12553,7 +12540,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/railing,
-/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "avN" = (
@@ -12586,10 +12572,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
-"avQ" = (
-/obj/machinery/maint_recycler,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
 "avR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/structure/disposalpipe/segment,
@@ -13808,7 +13790,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "axD" = (
@@ -15341,7 +15322,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "azV" = (
@@ -15648,10 +15628,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
-"aAu" = (
-/obj/machinery/maint_vendor,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aAv" = (
@@ -16580,11 +16556,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
-"aCc" = (
-/obj/structure/railing,
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
 "aCd" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -16809,7 +16780,6 @@
 /area/maintenance/lower/research)
 "aCv" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aCw" = (
@@ -18000,18 +17970,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
-"aEQ" = (
-/obj/structure/catwalk,
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
-"aER" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
 "aES" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -19100,10 +19058,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
-"aGF" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/solars)
 "aGG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/heavyduty{
@@ -19112,14 +19066,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/surfacebase/outside/outside1)
-"aGH" = (
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/solars)
-"aGI" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
 "aGJ" = (
 /obj/structure/table/glass,
 /obj/effect/floor_decal/borderfloor{
@@ -21153,17 +21099,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aKn" = (
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
-"aKo" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/solars)
 "aKp" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -27580,13 +27515,6 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/crew_quarters/visitor_laundry)
-"aWo" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
 "aWp" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -28330,13 +28258,6 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
-"aXN" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
 "aXO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -28373,35 +28294,6 @@
 /obj/effect/decal/cleanable/vomit,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aXT" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"aXU" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"aXV" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
-"aXW" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/mining_eva)
 "aXX" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -28418,10 +28310,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
-"aXZ" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/mining_eva)
 "aYa" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -28505,24 +28393,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aYl" = (
-/obj/structure/railing,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
 "aYm" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aYn" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
 "aYo" = (
 /obj/machinery/light_construct{
 	dir = 8
@@ -28562,13 +28438,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/vacant/vacant_bar)
-"aYt" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/public_garden_maintenence)
 "aYu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -28607,13 +28476,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/maintDorm3)
-"aYw" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/recycler_vendor_beacon,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/public_garden_maintenence)
 "aYx" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -29114,7 +28976,6 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bba" = (
@@ -32381,7 +32242,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "gWO" = (
@@ -32436,7 +32296,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "haz" = (
@@ -34621,7 +34480,6 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
-/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "mIw" = (
@@ -35045,7 +34903,12 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/mouse/white/virology,
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/glass/bottle/culture/cold{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "nMH" = (
@@ -35735,7 +35598,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "pZb" = (
@@ -37575,11 +37437,6 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/extrapolator{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/extrapolator,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "vBy" = (
@@ -44084,7 +43941,7 @@ auF
 avb
 avI
 ahl
-aGF
+rJv
 aws
 abN
 aeR
@@ -44185,7 +44042,7 @@ aah
 aah
 ajL
 aLm
-aYw
+ajQ
 aah
 aah
 aah
@@ -44368,7 +44225,7 @@ auG
 avc
 avJ
 ahl
-aGH
+rJv
 aws
 abN
 aeR
@@ -44759,7 +44616,7 @@ qJT
 uiK
 ajM
 aby
-aYt
+aki
 akz
 akG
 ahl
@@ -44789,7 +44646,7 @@ apl
 apl
 apl
 auK
-aKo
+aum
 aum
 avd
 avL
@@ -46616,7 +46473,7 @@ auM
 baZ
 bbw
 bbU
-aXZ
+cGJ
 bch
 air
 ahl
@@ -46949,7 +46806,7 @@ aIa
 aIa
 aIa
 aIa
-anA
+aIa
 aOR
 aPn
 aPO
@@ -47055,7 +46912,7 @@ aqz
 apW
 arh
 axS
-aGI
+axS
 bcl
 apu
 agy
@@ -47085,7 +46942,7 @@ aCh
 aIG
 aBO
 aKh
-avQ
+aIa
 aDx
 aBO
 aMM
@@ -47193,7 +47050,7 @@ adh
 adO
 ahl
 bcn
-aGI
+axS
 bcl
 azb
 apW
@@ -47223,7 +47080,7 @@ aDi
 aah
 aah
 aBO
-aAu
+aIa
 aIG
 aJF
 aJF
@@ -47365,7 +47222,7 @@ aDi
 aah
 aah
 aBO
-anA
+aIa
 aIG
 aJF
 aKi
@@ -47485,7 +47342,7 @@ apu
 bcd
 apu
 aqb
-aWo
+ate
 apu
 apu
 apu
@@ -47911,7 +47768,7 @@ aoH
 bcd
 apu
 eyq
-aWo
+ate
 apu
 bcd
 apu
@@ -48101,7 +47958,7 @@ xdD
 mut
 wxk
 nAK
-abR
+aTZ
 aWt
 aVn
 aUT
@@ -48195,7 +48052,7 @@ apu
 apu
 apu
 aqb
-aWo
+ate
 apu
 bcd
 apu
@@ -48333,7 +48190,7 @@ aqb
 aqb
 aqb
 arw
-aXN
+ate
 arX
 apu
 aqb
@@ -48769,7 +48626,7 @@ apu
 bcz
 azb
 bcv
-aGI
+axS
 agM
 axW
 ayI
@@ -49033,7 +48890,7 @@ eQz
 eQz
 abT
 tCV
-aXW
+ahs
 ahZ
 aiV
 aaQ
@@ -49376,7 +49233,7 @@ aTo
 aTQ
 aTQ
 aIh
-ahN
+aTZ
 aTZ
 aVn
 aVZ
@@ -49476,7 +49333,7 @@ asL
 apu
 agM
 agM
-aKn
+atL
 atL
 agM
 agM
@@ -49627,14 +49484,14 @@ ayc
 ayG
 dCc
 aAR
-aER
+aBQ
 aAL
 aBQ
 aBQ
 aAU
 aFl
 aFN
-aEQ
+ohi
 ohi
 loc
 aec
@@ -49802,7 +49659,7 @@ aRM
 aPG
 aTY
 aIh
-ahN
+aTZ
 aTZ
 aVn
 aWb
@@ -49944,7 +49801,7 @@ aTo
 aTS
 aTS
 aIh
-ahN
+aTZ
 aEx
 aVn
 aWc
@@ -50341,7 +50198,7 @@ agM
 aah
 aah
 aBO
-aCc
+aEz
 aFl
 aBO
 aah
@@ -50773,7 +50630,7 @@ aBO
 aah
 aBO
 aBO
-aCc
+aEz
 aHD
 aIh
 aKx
@@ -52430,7 +52287,7 @@ lbd
 itj
 cqg
 jcT
-aYl
+ksK
 tdg
 aef
 aFa
@@ -52714,7 +52571,7 @@ idk
 uIU
 sOx
 vuO
-aYl
+ksK
 tdg
 aef
 aef
@@ -53010,7 +52867,7 @@ aaU
 qJl
 aaU
 aaU
-aXV
+bwr
 bwr
 cZL
 haw
@@ -53301,7 +53158,7 @@ qPs
 qhr
 apF
 aqP
-aXT
+arl
 apF
 apF
 ash
@@ -53566,7 +53423,7 @@ axP
 axP
 aeJ
 aAz
-aYn
+aAI
 uVK
 lCH
 iwQ
@@ -53869,7 +53726,7 @@ lry
 lry
 lry
 aql
-aXU
+arl
 apF
 aah
 ash
@@ -54011,7 +53868,7 @@ yey
 nmb
 lry
 aql
-aXT
+arl
 apF
 aah
 aah

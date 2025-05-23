@@ -24,9 +24,9 @@
 /obj/item/storage/laundry_basket/attack_hand(mob/living/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.get_organ(BP_R_HAND)
+		var/obj/item/organ/external/temp = H.get_organ("r_hand")
 		if (user.hand)
-			temp = H.get_organ(BP_L_HAND)
+			temp = H.get_organ("l_hand")
 		if(!temp)
 			to_chat(user, span_warning("You need two hands to pick this up!"))
 			return

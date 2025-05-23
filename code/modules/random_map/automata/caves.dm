@@ -2,7 +2,6 @@
 	iterations = 5
 	descriptor = "moon caves"
 	var/list/ore_turfs = list()
-	var/list/turfs_changed
 	var/make_cracked_turfs = TRUE
 
 /datum/random_map/automata/cave_system/no_cracks
@@ -67,7 +66,6 @@
 				T.make_floor()
 			else
 				T.make_wall()
-			LAZYSET(turfs_changed, T, TRUE)
 
 		if(T.density && !T.ignore_oregen)
 			if(map[current_cell] == DOOR_CHAR)
@@ -77,11 +75,3 @@
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	//VOREStation Edit End
 	return T
-
-/datum/random_map/automata/cave_system/apply_to_map()
-	. = ..()
-
-	for(var/turf/simulated/mineral/T as anything in turfs_changed)
-		T.update_icon(1, turfs_changed)
-
-	LAZYCLEARLIST(turfs_changed)

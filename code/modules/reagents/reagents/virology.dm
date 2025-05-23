@@ -11,7 +11,7 @@
 			var/datum/disease/D = thing
 			if(D.GetDiseaseID() in data)
 				D.cure()
-		M.AddResistances(data)
+		M.resistances |= data
 
 /datum/reagent/vaccines/mix_data(newdata, newamount)
 	if(islist(newdata))
@@ -30,14 +30,17 @@
 	color = "#41B0C0"
 	taste_mult = 1.5
 
-/datum/reagent/adranol/adranolvirusfood
+/datum/reagent/medicine
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
+/datum/reagent/medicine/adranol/adranolvirusfood
 	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_ADRANOLVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems rather weak."
 	color = "#D18AA5"
 
 /datum/reagent/toxin/phoron/phoronvirusfood
-	name = REAGENT_PHORONVIRUSFOOD
+	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_PHORONVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems to be the strongest."
 	color = "#A69DA9"

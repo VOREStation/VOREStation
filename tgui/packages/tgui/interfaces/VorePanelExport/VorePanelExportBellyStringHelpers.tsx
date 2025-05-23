@@ -1,9 +1,9 @@
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
 import { AddonIcon, AutotransferFlagIcon, ReagentAddonIcon } from './constants';
 
 export const GetAddons = (addons: string[]) => {
-  const result: string[] = [];
+  let result: string[] = [];
 
   addons?.forEach((addon) => {
     result.push(
@@ -23,7 +23,7 @@ export const GetAddons = (addons: string[]) => {
 };
 
 export const GetLiquidAddons = (addons: string[]) => {
-  const result: string[] = [];
+  let result: string[] = [];
 
   addons?.forEach((addon) => {
     result.push(
@@ -46,7 +46,7 @@ export const GetAutotransferFlags = (
   addons: string[],
   whitelist: BooleanLike,
 ) => {
-  const result: string[] = [];
+  let result: string[] = [];
 
   addons?.forEach((addon) => {
     result.push(

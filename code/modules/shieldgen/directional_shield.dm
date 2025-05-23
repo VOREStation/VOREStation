@@ -16,8 +16,7 @@
 	var/x_offset = 0 // Offset from the 'center' of where the projector is, so that if it moves, the shield can recalc its position.
 	var/y_offset = 0 // Ditto.
 
-/obj/effect/directional_shield/Initialize(mapload, var/new_projector)
-	. = ..()
+/obj/effect/directional_shield/New(var/newloc, var/new_projector)
 	if(new_projector)
 		projector = new_projector
 		var/turf/us = get_turf(src)
@@ -27,6 +26,7 @@
 			y_offset = us.y - them.y
 	else
 		update_color()
+	..(newloc)
 
 /obj/effect/directional_shield/proc/relocate()
 	if(!projector)
@@ -115,7 +115,6 @@
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()
-	SIGNAL_HANDLER
 	update_shield_positions()
 
 /obj/item/shield_projector/proc/create_shield(var/newloc, var/new_dir)
@@ -139,7 +138,6 @@
 	active = FALSE
 
 /obj/item/shield_projector/proc/update_shield_positions()
-	SIGNAL_HANDLER
 	for(var/obj/effect/directional_shield/S in active_shields)
 		S.relocate()
 

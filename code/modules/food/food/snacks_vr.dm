@@ -15,7 +15,6 @@
 	bitesize = 5
 
 /obj/item/reagent_containers/food/snacks/slice/sushi/filled
-	name = "stuffed sushi roll"
 	name = "piece of sushi"
 	desc = "A slice of a larger sushi roll, ready to devour."
 	icon = 'icons/obj/food_vr.dmi'
@@ -650,7 +649,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/grub_purple
-	name = "purple candy grub"
+	name = "pink candy grub"
 	desc = "A thoroughly candied grub, it smells of grape."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_purple"
@@ -662,7 +661,7 @@
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/grub_blue
-	name = "blue candy grub"
+	name = "pink candy grub"
 	desc = "A thoroughly candied grub, it smells of blueberry."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_blue"
@@ -1221,17 +1220,3 @@
 /obj/item/reagent_containers/food/snacks/packaged/porkpie/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 2)
-
-/obj/item/reagent_containers/food/snacks/acorn
-	name = "acorn"
-	desc = "A small nut that could potentially grow into a beautiful oak tree! Or, just get eaten by squirrels."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "acorn"
-	w_class = ITEMSIZE_TINY
-	nutriment_amt = 1
-	bitesize = 2
-	nutriment_desc = list("earthy goodness" = 6)
-
-/obj/item/reagent_containers/food/snacks/acorn/Initialize(mapload)
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PEANUTBUTTER, 2) //Just to make it so people can be allergic to it without making a new reagent

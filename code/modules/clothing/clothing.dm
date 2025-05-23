@@ -38,8 +38,8 @@
 	gunshot_residue = null
 
 
-/obj/item/clothing/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/New()
+	..()
 	if(starting_accessories)
 		for(var/T in starting_accessories)
 			var/obj/item/clothing/accessory/tie = new T(src)
@@ -288,10 +288,8 @@
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
-/obj/item/clothing/ears/offear/Initialize(mapload)
-	. = ..()
-	if(isobj(loc))
-		var/obj/O = loc
+/obj/item/clothing/ears/offear/New(var/obj/O)
+	if(O)
 		name = O.name
 		desc = O.desc
 		icon = O.icon
@@ -446,8 +444,8 @@
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
 	var/special_attack_type = null
 
-/obj/item/clothing/gloves/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/gloves/New()
+	..()
 	if(special_attack_type && ispath(special_attack_type))
 		special_attack = new special_attack_type
 
@@ -645,7 +643,6 @@
 
 	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
 	var/obj/item/clothing/shoes/shoes = null	//If we are wearing shoes in our shoes. Used primarily for magboots.
-	var/blocks_footsteps = TRUE //Does this shoe block custom footstep sounds?
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -702,9 +699,9 @@
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if((can_hold_knife == 1) && (istype(I, /obj/item/material/shard) || \
-		istype(I, /obj/item/material/butterfly) || \
-		istype(I, /obj/item/material/kitchen/utensil) || \
-		istype(I, /obj/item/material/knife/tacknife)))
+	 istype(I, /obj/item/material/butterfly) || \
+	 istype(I, /obj/item/material/kitchen/utensil) || \
+	 istype(I, /obj/item/material/knife/tacknife)))
 		if(holding)
 			to_chat(user, span_warning("\The [src] is already holding \a [holding]."))
 			return
@@ -1006,8 +1003,8 @@
 		return
 	..()
 
-/obj/item/clothing/under/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/under/New()
+	..()
 	if(worn_state)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 	else
@@ -1201,9 +1198,9 @@
 		to_chat(usr, span_notice("You roll down your [src]'s sleeves."))
 	update_clothing_icon()
 
-/obj/item/clothing/under/rank/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)
+	..()
 
 /obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)

@@ -5,6 +5,7 @@
 	plane = DIRTY_PLANE
 	layer = DIRTY_LAYER
 	anchored = TRUE
+
 	var/art_type
 	var/art_color
 	var/art_shade

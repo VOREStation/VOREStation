@@ -243,9 +243,12 @@ export const ColorMateMatrix = (props) => {
         <LabeledList>
           <LabeledList.Item label="Config">
             <Input
+              updateOnPropsChange
               fluid
               value={Object.values(matrixcolors).toString()}
-              onBlur={(value: string) => act('set_matrix_string', { value })}
+              onChange={(e, value: string) =>
+                act('set_matrix_string', { value })
+              }
             />
           </LabeledList.Item>
         </LabeledList>

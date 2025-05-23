@@ -104,7 +104,7 @@
 			playsound(src, W.usesound, 100, 1)
 			anchored = !anchored
 			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
-									span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor."))
+								 span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor."))
 			return
 
 	//window placing begin //TODO CONVERT PROPERLY TO MATERIAL DATUM
@@ -117,7 +117,7 @@
 		if(loc == user.loc)
 			dir_to_set = user.dir
 		else
-			if( ( x == user.x ) || (y == user.y) ) //Only supposed to work for GLOB.cardinal directions.
+			if( ( x == user.x ) || (y == user.y) ) //Only supposed to work for cardinal directions.
 				if( x == user.x )
 					if( y > user.y )
 						dir_to_set = 2
@@ -130,7 +130,7 @@
 						dir_to_set = 4
 			else
 				to_chat(user, span_notice("You can't reach."))
-				return //Only works for GLOB.cardinal direcitons, diagonals aren't supposed to work like this.
+				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
 				to_chat(user, span_notice("There is already a window facing this way there."))
@@ -225,8 +225,8 @@
 	icon_state = "grille-b"
 	density = FALSE
 
-/obj/structure/grille/broken/Initialize(mapload)
-	. = ..()
+/obj/structure/grille/broken/New()
+	..()
 	health = rand(-5, -1) //In the destroyed but not utterly threshold.
 	healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 

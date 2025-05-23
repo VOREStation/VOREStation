@@ -4,7 +4,7 @@ import { NtosWindow } from 'tgui/layouts';
 import { Box, Button, Section, Table } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import type { file } from './NtosFileManager';
+import { file } from './NtosFileManager';
 
 type Data = {
   PC_device_theme: string;

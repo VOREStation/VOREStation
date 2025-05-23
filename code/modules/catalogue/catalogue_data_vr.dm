@@ -1,3 +1,6 @@
+/datum/category_item/catalogue/information/organization/solgov
+	name = "Government - Commonwealth of Sol-Procyon"
+
 //TODO: VIRGO_LORE_WRITING_WIP - this whole file
 
 /datum/category_item/catalogue/fauna/akula

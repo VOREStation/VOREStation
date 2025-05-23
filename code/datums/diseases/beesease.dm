@@ -3,16 +3,17 @@
 	form = "Infection"
 	max_stages = 4
 	spread_text = "On contact"
-	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
+	spread_flags = CONTACT_GENERAL
 	cure_text = REAGENT_SUGAR
 	cures = list(REAGENT_ID_SUGAR)
 	agent = "Apidae Infection"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated, subject will regurgitate bees."
-	danger = DISEASE_MEDIUM
+	severity = BIOHAZARD
 
 /datum/disease/beesease/stage_act()
-	..()
+	if(!..())
+		return FALSE
 	switch(stage)
 		if(2)
 			if(prob(2))

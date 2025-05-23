@@ -79,7 +79,7 @@
 
 	if(known)
 		plane = PLANE_LIGHTING_ABOVE
-		for(var/obj/machinery/computer/ship/helm/H in GLOB.machines)
+		for(var/obj/machinery/computer/ship/helm/H in global.machines)
 			H.get_known_sectors()
 	else
 		real_appearance = image(icon, src, icon_state)
@@ -148,7 +148,7 @@
 
 /obj/effect/overmap/visitable/proc/register_z_levels()
 	for(var/zlevel in map_z)
-		GLOB.map_sectors["[zlevel]"] = src
+		map_sectors["[zlevel]"] = src
 
 	global.using_map.player_levels |= map_z
 	if(!in_space)
@@ -161,7 +161,7 @@
 	*/
 
 /obj/effect/overmap/visitable/proc/unregister_z_levels()
-	GLOB.map_sectors -= map_z
+	map_sectors -= map_z
 
 	global.using_map.player_levels -= map_z
 	if(!in_space)

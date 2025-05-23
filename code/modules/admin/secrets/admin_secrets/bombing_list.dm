@@ -7,6 +7,6 @@
 		return
 
 	var/dat = span_bold("Bombing List")
-	for(var/l in GLOB.bombers)
+	for(var/l in bombers)
 		dat += text("[l]<BR>")
 	user << browse("<html>[dat]</html>", "window=bombers")

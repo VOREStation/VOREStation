@@ -1,3 +1,5 @@
+$color-background: hsla(0, 0%, 0%, 0.33) !default;
+
 .NanoMap__container {
   overflow: hiddden;
   width: 100%;
@@ -12,7 +14,7 @@
 
 .NanoMap__zoomer {
   z-index: 20;
-  background-color: hsla(0, 0%, 0%, 0.33);
+  background-color: $color-background;
   position: absolute;
   top: 40px;
   left: 0;

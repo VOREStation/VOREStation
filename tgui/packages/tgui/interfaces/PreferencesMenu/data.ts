@@ -1,4 +1,4 @@
-import type { sendAct } from '../../backend';
+import { sendAct } from '../../backend';
 
 export enum GamePreferencesSelectedPage {
   Settings,

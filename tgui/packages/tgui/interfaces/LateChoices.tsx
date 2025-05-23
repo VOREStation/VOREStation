@@ -42,14 +42,14 @@ type Data = {
 const splitJobs = (
   jobs: Job[],
 ): { favorites: Job[]; departments: { [key: string]: Job[] } } => {
-  const favorites: Job[] = [];
-  const departments: { [key: string]: Job[] } = {};
+  let favorites: Job[] = [];
+  let departments: { [key: string]: Job[] } = {};
 
-  for (const job of jobs) {
+  for (let job of jobs) {
     if (job.priority !== 0) {
       favorites.push(job);
     } else {
-      for (const department of job.departments) {
+      for (let department of job.departments) {
         if (department in departments) {
           departments[department].push(job);
         } else {

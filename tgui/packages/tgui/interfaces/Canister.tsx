@@ -8,7 +8,6 @@ import {
   Knob,
   LabeledControls,
   LabeledList,
-  RoundGauge,
   Section,
   Tooltip,
 } from 'tgui-core/components';
@@ -42,7 +41,7 @@ export const Canister = (props) => {
     holding,
   } = data;
   return (
-    <Window width={360} height={300}>
+    <Window width={360} height={242}>
       <Window.Content>
         <Section
           title="Canister"
@@ -58,28 +57,19 @@ export const Canister = (props) => {
         >
           <LabeledControls>
             <LabeledControls.Item minWidth="66px" label="Tank Pressure">
-              <RoundGauge
-                size={2}
+              <AnimatedNumber
                 value={pressure}
-                ranges={{
-                  bad: [0, 101.325],
-                  average: [101.325, 101.325 * 15],
-                  good: [101.325 * 15, 10000],
-                }}
                 format={(value) => {
                   if (value < 10000) {
                     return toFixed(value) + ' kPa';
                   }
                   return formatSiUnit(value * 1000, 1, 'Pa');
                 }}
-                minValue={0}
-                maxValue={10000}
               />
             </LabeledControls.Item>
             <LabeledControls.Item label="Regulator">
               <Box position="relative" left="-8px">
                 <Knob
-                  format={(value) => toFixed(value, 2)}
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
                   value={releasePressure}

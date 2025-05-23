@@ -9,7 +9,7 @@
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
 
-	for(var/obj/machinery/gravity_generator/main/GG in GLOB.machines)
+	for(var/obj/machinery/gravity_generator/main/GG in machines)
 		if((GG.z in zLevels) && GG.on)
 			generators += GG
 
@@ -27,7 +27,7 @@
 										reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure")
 
 /datum/event/gravity/start()
-	GLOB.gravity_is_on = FALSE
+	gravity_is_on = 0
 	if(generators.len)
 		for(var/obj/machinery/gravity_generator/main/GG in generators)
 			if((GG.z in zLevels) && GG.on)
@@ -37,11 +37,11 @@
 	else
 		for(var/area/A in world)
 			if(A.z in zLevels)
-				A.gravitychange(GLOB.gravity_is_on)
+				A.gravitychange(gravity_is_on)
 
 /datum/event/gravity/end()
-	if(!GLOB.gravity_is_on)
-		GLOB.gravity_is_on = TRUE
+	if(!gravity_is_on)
+		gravity_is_on = 1
 
 
 		var/did_anything = FALSE
@@ -55,7 +55,7 @@
 		else
 			for(var/area/A in world)
 				if(A.z in zLevels)
-					A.gravitychange(GLOB.gravity_is_on)
+					A.gravitychange(gravity_is_on)
 					did_anything = TRUE
 
 		if(did_anything)

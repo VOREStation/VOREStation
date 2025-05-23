@@ -1,12 +1,12 @@
 import {
-  type ComponentType,
+  ComponentType,
   createElement,
-  type ReactNode,
+  ReactNode,
   useEffect,
   useState,
 } from 'react';
 import React from 'react';
-import { type sendAct, useBackend } from 'tgui/backend';
+import { sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -265,7 +265,7 @@ export const FeatureShortTextInput = (
       width="100%"
       value={props.value}
       maxLength={props.serverData.maximum_length}
-      onChange={(value) => props.handleSetValue(value)}
+      onChange={(_, value) => props.handleSetValue(value)}
     />
   );
 };

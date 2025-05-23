@@ -4,9 +4,9 @@
  * @license MIT
  */
 
-import fs from 'node:fs';
-import os from 'node:os';
-import { basename } from 'node:path';
+import fs from 'fs';
+import os from 'os';
+import { basename } from 'path';
 
 import { DreamSeeker } from './dreamseeker.js';
 import { createLogger } from './logging.js';
@@ -31,13 +31,13 @@ const SEARCH_LOCATIONS = [
 
 let cacheRoot;
 
-export async function findCacheRoot() {
+export const findCacheRoot = async () => {
   if (cacheRoot) {
     return cacheRoot;
   }
   logger.log('looking for byond cache');
   // Find BYOND cache folders
-  for (const pattern of SEARCH_LOCATIONS) {
+  for (let pattern of SEARCH_LOCATIONS) {
     if (!pattern) {
       continue;
     }
@@ -51,62 +51,62 @@ export async function findCacheRoot() {
   // Query the Windows Registry
   if (process.platform === 'win32') {
     logger.log('querying windows registry');
-    const userpath = await regQuery(
-      'HKCU\\Software\\Dantom\\BYOND',
-      'userpath',
-    );
+    let userpath = await regQuery('HKCU\\Software\\Dantom\\BYOND', 'userpath');
     if (userpath) {
-      cacheRoot = userpath.replace(/\\$/, '').replace(/\\/g, '/') + '/cache';
+      // prettier-ignore
+      cacheRoot = userpath
+        .replace(/\\$/, '')
+        .replace(/\\/g, '/')
+        + '/cache';
       onCacheRootFound(cacheRoot);
       return cacheRoot;
     }
   }
   logger.log('found no cache directories');
-}
+};
 
-function onCacheRootFound(cacheRoot) {
+const onCacheRootFound = (cacheRoot) => {
   logger.log(`found cache at '${cacheRoot}'`);
   // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 514.
-  fs.closeSync(fs.openSync(cacheRoot + '/dummy.htm', 'w'));
-}
+  fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
+};
 
-export async function reloadByondCache(bundleDir) {
+export const reloadByondCache = async (bundleDir) => {
   const cacheRoot = await findCacheRoot();
   if (!cacheRoot) {
     return;
   }
   // Find tmp folders in cache
-  const cacheDirs = resolveGlob(cacheRoot, './tmp*');
+  const cacheDirs = await resolveGlob(cacheRoot, './tmp*');
   if (cacheDirs.length === 0) {
     logger.log('found no tmp folder in cache');
     return;
   }
-
-  const pids = cacheDirs.map((cacheDir) => {
-    return parseInt(cacheDir.split('\\cache\\tmp')[1], 10);
-  });
-
+  // Get dreamseeker instances
+  const pids = cacheDirs.map((cacheDir) =>
+    parseInt(cacheDir.split('/cache/tmp').pop(), 10),
+  );
   const dssPromise = DreamSeeker.getInstancesByPids(pids);
   // Copy assets
   const assets = await resolveGlob(
     bundleDir,
     './*.+(bundle|chunk|hot-update).*',
   );
-  for (const cacheDir of cacheDirs) {
+  for (let cacheDir of cacheDirs) {
     // Clear garbage
     const garbage = await resolveGlob(
       cacheDir,
       './*.+(bundle|chunk|hot-update).*',
     );
     try {
-      // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 515-516.
-      fs.closeSync(fs.openSync(cacheDir + '/dummy.htm', 'w'));
+      // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 515.
+      fs.closeSync(fs.openSync(cacheDir + '/dummy', 'w'));
 
-      for (const file of garbage) {
+      for (let file of garbage) {
         fs.unlinkSync(file);
       }
       // Copy assets
-      for (const asset of assets) {
+      for (let asset of assets) {
         const destination = resolvePath(cacheDir, basename(asset));
         fs.writeFileSync(destination, fs.readFileSync(asset));
       }
@@ -120,11 +120,11 @@ export async function reloadByondCache(bundleDir) {
   const dss = await dssPromise;
   if (dss.length > 0) {
     logger.log(`notifying dreamseeker`);
-    for (const dreamseeker of dss) {
+    for (let dreamseeker of dss) {
       dreamseeker.topic({
         tgui: 1,
         type: 'cacheReloaded',
       });
     }
   }
-}
+};

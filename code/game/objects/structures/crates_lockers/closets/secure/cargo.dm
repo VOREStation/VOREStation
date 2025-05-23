@@ -89,8 +89,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
 		/obj/item/clothing/shoes/boots/winter/mining,
 		/obj/item/emergency_beacon,
-		/obj/item/stack/marker_beacon/thirty,
-		/obj/item/storage/sample_container)
+		/obj/item/stack/marker_beacon/thirty)
 
 /obj/structure/closet/secure_closet/miner/Initialize(mapload)
 	if(prob(50))

@@ -26,15 +26,15 @@
 /obj/item/holowarrant/attack_self(mob/living/user as mob)
 	active = null
 	var/list/warrants = list()
-	if(!isnull(GLOB.data_core.general))
-		for(var/datum/data/record/warrant/W in GLOB.data_core.warrants)
+	if(!isnull(data_core.general))
+		for(var/datum/data/record/warrant/W in data_core.warrants)
 			warrants += W.fields["namewarrant"]
 	if(warrants.len == 0)
 		to_chat(user,span_notice("There are no warrants available"))
 		return
 	var/temp
 	temp = tgui_input_list(user, "Which warrant would you like to load?", "Warrant Selection", warrants)
-	for(var/datum/data/record/warrant/W in GLOB.data_core.warrants)
+	for(var/datum/data/record/warrant/W in data_core.warrants)
 		if(W.fields["namewarrant"] == temp)
 			active = W
 	update_icon()
@@ -118,7 +118,7 @@
 	name = "holowarrant devices"
 	desc = "A box of holowarrant displays for security use."
 
-/obj/item/storage/box/holowarrants/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/holowarrants/New()
+	..()
 	for(var/i = 0 to 3)
 		new /obj/item/holowarrant(src) // VOREStation addition ends

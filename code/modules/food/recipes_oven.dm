@@ -81,7 +81,6 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat
 	)
 	result = /obj/item/reagent_containers/food/snacks/zestfish
-	wiki_flag = WIKI_SPOILER // secret if you know!
 
 
 //Predesigned breads
@@ -167,7 +166,6 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
-	wiki_flag = WIKI_SPOILER // Synthflesh secret
 
 /datum/recipe/xenomeatbread
 	appliance = OVEN
@@ -401,7 +399,6 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
-	wiki_flag = WIKI_SPOILER // Synthflesh spoiler
 
 /datum/recipe/mushroompizza
 	appliance = OVEN

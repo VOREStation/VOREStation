@@ -242,7 +242,7 @@ var/list/preferences_datums = list()
 	BG.icon_state = bgstate
 	BG.screen_loc = preview_screen_locs["BG"]
 
-	for(var/D in global.GLOB.cardinal)
+	for(var/D in global.cardinal)
 		var/obj/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
@@ -292,7 +292,7 @@ var/list/preferences_datums = list()
 			to_chat(usr,span_notice("Character [player_setup?.preferences?.real_name] saved!"))
 		save_preferences()
 	else if(href_list["reload"])
-		load_preferences(TRUE)
+		load_preferences()
 		load_character()
 		attempt_vr(client.prefs_vr,"load_vore","")
 		sanitize_preferences()
@@ -314,7 +314,8 @@ var/list/preferences_datums = list()
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
-		//Mannequin removal code needed here...For the far future once harddels are solved.
+		if(GLOB.mannequins[client_ckey])
+			qdel_null(GLOB.mannequins[client_ckey])
 		return 1
 	else
 		return 0
@@ -390,7 +391,7 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
-	load_preferences(TRUE)
+	load_preferences()
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
@@ -613,9 +614,6 @@ var/list/preferences_datums = list()
 		character.ooc_notes 				= read_preference(/datum/preference/text/living/ooc_notes)
 		character.ooc_notes_dislikes 		= read_preference(/datum/preference/text/living/ooc_notes_dislikes)
 		character.ooc_notes_likes 			= read_preference(/datum/preference/text/living/ooc_notes_likes)
-		character.ooc_notes_favs 			= read_preference(/datum/preference/text/living/ooc_notes_favs)
-		character.ooc_notes_maybes 			= read_preference(/datum/preference/text/living/ooc_notes_maybes)
-		character.ooc_notes_style 			= read_preference(/datum/preference/toggle/living/ooc_notes_style)
 
 	character.weight			= weight_vr
 	character.weight_gain		= weight_gain
@@ -642,14 +640,14 @@ var/list/preferences_datums = list()
 		character.species.icon_scale_y = 1
 		for (var/trait in neu_traits)
 			if (trait in traits_to_copy)
-				var/datum/trait/instance = GLOB.all_traits[trait]
+				var/datum/trait/instance = all_traits[trait]
 				if (!instance)
 					continue
 				for (var/to_edit in instance.var_changes)
 					character.species.vars[to_edit] = instance.var_changes[to_edit]
 	character.update_transform()
 	if(!voice_sound)
-		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
+		character.voice_sounds_list = talk_sound
 	else
 		character.voice_sounds_list = get_talk_sound(voice_sound)
 

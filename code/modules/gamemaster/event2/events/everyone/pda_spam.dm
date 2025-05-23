@@ -4,7 +4,7 @@
 	event_type = /datum/event2/event/pda_spam
 
 /datum/event2/meta/pda_spam/get_weight()
-	return GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
+	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
 
 
 /datum/event2/event/pda_spam

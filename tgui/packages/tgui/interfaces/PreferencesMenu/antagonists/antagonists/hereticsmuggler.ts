@@ -1,4 +1,4 @@
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 import { HERETIC_MECHANICAL_DESCRIPTION } from './heretic';
 
 const HereticSmuggler: Antagonist = {

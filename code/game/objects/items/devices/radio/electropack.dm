@@ -90,9 +90,11 @@
 		var/turf/T = M.loc
 		if(istype(T, /turf))
 			if(!M.moved_recently && M.last_move)
-				M.moved_recently = TRUE
+				M.moved_recently = 1
 				step(M, M.last_move)
-				addtimer(VARSET_CALLBACK(M, moved_recently, FALSE), 5 SECONDS, TIMER_DELETE_ME)
+				sleep(50)
+				if(M)
+					M.moved_recently = 0
 		to_chat(M, span_danger("You feel a sharp shock!"))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)

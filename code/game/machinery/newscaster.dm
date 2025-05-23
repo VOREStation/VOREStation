@@ -99,7 +99,7 @@
 	alert_readers(FC.announcement)
 
 /datum/feed_network/proc/alert_readers(var/annoncement)
-	for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
+	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 /obj/machinery/newscaster/Initialize(mapload)
 	..()
-	GLOB.allCasters += src
+	allCasters += src
 	unit_no = ++unit_no_cur
 	paper_remaining = 15
 	update_icon()
@@ -184,7 +184,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	update_icon()
 
 /obj/machinery/newscaster/Destroy()
-	GLOB.allCasters -= src
+	allCasters -= src
 	node = null
 	return ..()
 
@@ -276,12 +276,12 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	tgui_interact(user)
 
 /**
- * Sets a temporary message to display to the user
- *
- * Arguments:
- * * text - Text to display, null/empty to clear the message from the UI
- * * style - The style of the message: (color name), info, success, warning, danger, virus
- */
+  * Sets a temporary message to display to the user
+  *
+  * Arguments:
+  * * text - Text to display, null/empty to clear the message from the UI
+  * * style - The style of the message: (color name), info, success, warning, danger, virus
+  */
 /obj/machinery/newscaster/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
@@ -541,7 +541,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			var/choice = tgui_alert(ui.user, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
-				for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
+				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 					NEWSCASTER.update_icon()
 				set_temp("Wanted issue taken down.", "success", FALSE)
 			return TRUE

@@ -1,5 +1,5 @@
 /datum/material/flockium
-	name = MAT_FLOKIUM
+	name = "flockium"
 	//stack_type = /obj/item/stack/material/sandstone
 	icon_base = "flock"
 	icon_reinf = "flock"
@@ -13,12 +13,11 @@
 	door_icon_base = "flockdoor"
 	sheet_singular_name = "quanta"
 	sheet_plural_name = "quanta"
-	wiki_flag = WIKI_SPOILER
 
 /obj/structure/simple_door/flock
 	name = "aperture"
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "flockdoor"
 
-/obj/structure/simple_door/flock/Initialize(mapload, var/newmat)
-	. = ..(mapload, MAT_FLOKIUM)
+/obj/structure/simple_door/flock/New(var/newloc, var/newmat)
+	..(newloc, "flockium")

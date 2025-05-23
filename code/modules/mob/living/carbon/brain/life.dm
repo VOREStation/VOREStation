@@ -93,7 +93,7 @@
 		blinded = 1
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
-		if( !container && (health < -getMaxHealth() || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
+		if( !container && (health < CONFIG_GET(number/health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
 			death()
 			blinded = 1
 			silent = 0
@@ -201,7 +201,7 @@
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
 	if (client)
-		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
+		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
 	if (stat != 2)
 		if ((blinded))

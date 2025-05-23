@@ -4,32 +4,23 @@
  * @license MIT
  */
 
-import { type ComponentProps } from 'react';
-import {
-  Box,
-  Button,
-  type Floating,
-  Section,
-  Tooltip,
-} from 'tgui-core/components';
+import { Box, Button, Section, Tooltip } from 'tgui-core/components';
 
 export const meta = {
   title: 'Tooltip',
   render: () => <Story />,
 };
 
-type Placement = ComponentProps<typeof Floating>['placement'];
+const Story = () => {
+  const positions = [
+    'top',
+    'left',
+    'right',
+    'bottom',
+    'bottom-start',
+    'bottom-end',
+  ];
 
-const positions = [
-  'top',
-  'left',
-  'right',
-  'bottom',
-  'bottom-start',
-  'bottom-end',
-] as Placement[];
-
-function Story() {
   return (
     <Section>
       <Box>
@@ -54,4 +45,4 @@ function Story() {
       </Box>
     </Section>
   );
-}
+};

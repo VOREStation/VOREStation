@@ -114,11 +114,11 @@
 	///Average ping of the client
 	var/avgping = 0
 
-	///world.time they connected
+ 	///world.time they connected
 	var/connection_time
-	///world.realtime they connected
+ 	///world.realtime they connected
 	var/connection_realtime
-	///world.timeofday they connected
+ 	///world.timeofday they connected
 	var/connection_timeofday
 
 	// Runechat messages
@@ -165,12 +165,12 @@
 
 	/// Bitfield of movement dirs that were released *this* cycle (even if currently held).
 	/// Note that only dirs that were already held at the start of this cycle are included, if it pressed then released it won't be in here.
-	/// On next move, subtract this dir from the move that would otherwise be done
+ 	/// On next move, subtract this dir from the move that would otherwise be done
 	var/next_move_dir_sub
 
 	#ifdef CARDINAL_INPUT_ONLY
 
-	/// Movement dir of the most recently pressed movement key.  Used in GLOB.cardinal-only movement mode.
+	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
 	var/last_move_dir_pressed = NONE
 
 	#endif
@@ -180,6 +180,3 @@
 
 	/// Token used for the external chatlog api. Only valid for the current round.
 	var/chatlog_token
-
-	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
-	var/window_scaling

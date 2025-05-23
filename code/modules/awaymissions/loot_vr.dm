@@ -11,9 +11,8 @@
 	name = "low prob loot spawner"
 	icon_state = "grabbed"
 	low_probability = 1
-	delete_me = TRUE
 
-/obj/effect/landmark/loot_spawn/Initialize(mapload)
+/obj/effect/landmark/loot_spawn/New()
 
 	switch(pick( \
 	low_probability * 1000;"nothing", \
@@ -346,7 +345,7 @@
 			//for(var/i=0,i<num,i++) //VORESTATION AI TEMPORARY REMOVAL
 				//new /mob/living/simple_mob/hostile/viscerator(C)  //VORESTATION AI TEMPORARY REMOVAL
 
-	. = ..()
+	qdel(src)
 
 
 /**********************************/

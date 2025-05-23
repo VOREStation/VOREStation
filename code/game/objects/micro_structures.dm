@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(micro_tunnels)
+var/global/list/micro_tunnels = list()
 
 /obj/structure/micro_tunnel
 	name = "mouse hole"
@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 /obj/structure/micro_tunnel/Initialize(mapload)
 	. = ..()
-	GLOB.micro_tunnels.Add(src)
+	micro_tunnels.Add(src)
 	if(name == initial(name))
 		var/area/our_area = get_area(src)
 		name = "[our_area.name] [name]"
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 		thing.forceMove(get_turf(src.loc))
 		thing.cancel_camera()
 
-	GLOB.micro_tunnels.Remove(src)
+	micro_tunnels.Remove(src)
 
 	return ..()
 
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 	for(var/datum/planet/P in SSplanets.planets)
 		if(myturf.z in P.expected_z_levels)
 			planet = P
-	for(var/obj/structure/micro_tunnel/t in GLOB.micro_tunnels)
+	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
 		if(t == src)
 			continue
 		if(magic || t.magic)
@@ -448,7 +448,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 	name = "mouse hole spawner"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 	var/chance_to_spawn = 25
 

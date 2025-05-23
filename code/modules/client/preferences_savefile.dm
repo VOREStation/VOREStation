@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	17
+#define SAVEFILE_VERSION_MAX	16
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -79,15 +79,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v16.")
 		to_chat(client, span_danger("v16 savefile migration complete."))
 
-	// Migration for old named tails so downstream doesn't have their savefiles borked
-	if(current_version < 17)
-		log_debug("[client_ckey] preferences migrating from [current_version] to v17....")
-		to_chat(client, span_danger("Migrating savefile from version [current_version] to v17..."))
-
-		migration_17_tails(S)
-
-		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v17.")
-		to_chat(client, span_danger("v17 savefile migration complete."))
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
 	// Migration from BYOND savefiles to JSON: Important milemark.
@@ -140,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	savefile.set_entry("lastnews",		lastnews)
 	savefile.set_entry("lastlorenews",	lastlorenews)
 
-/datum/preferences/proc/load_preferences(skip_client)
+/datum/preferences/proc/load_preferences()
 	if(!savefile)
 		stack_trace("Attempted to load the preferences of [client] without a savefile; did you forget to call load_savefile?")
 		load_savefile()
@@ -156,8 +147,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		fcopy(savefile.path, bacpath) //byond helpfully lets you use a savefile for the first arg.
 		return FALSE
 
-	if(!skip_client)
-		apply_all_client_preferences()
+	apply_all_client_preferences()
 
 	load_early_prefs()
 	sanitize_early_prefs()

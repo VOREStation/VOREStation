@@ -114,7 +114,7 @@ const BiogeneratorItems = (props: {
   );
 
   let has_contents = false;
-  const contents = Object.entries(items).map((kv) => {
+  let contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {
@@ -169,7 +169,7 @@ const BiogeneratorSearch = (props: {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onChange={(value: string) => props.onSearchText(value)}
+            onInput={(e, value: string) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

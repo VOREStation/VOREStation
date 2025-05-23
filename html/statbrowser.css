@@ -23,6 +23,7 @@ h3 {
 
 
 img {
+	-ms-interpolation-mode: nearest-neighbor;
 	image-rendering: pixelated;
 }
 
@@ -65,6 +66,7 @@ img {
 	display: inline-table;
 	cursor: pointer;
 	user-select: none;
+	-ms-user-select: none; /* Remove after Byond 516 */
 	text-align: center;
 	font-size: 1em;
 	min-width: 2.9em;
@@ -107,6 +109,7 @@ img {
 	display: inline-flex;
 	position: relative;
 	user-select: none;
+	-ms-user-select: none; /* Remove after Byond 516 */
 	width: 100%;
 	max-height: 1.85em;
 	text-decoration: none;
@@ -276,15 +279,4 @@ body.dark {
 
 .linkelem:hover {
 	text-decoration: underline;
-}
-
-.spoiler{
-	background-color: gray;
-	color: transparent;
-	user-select: none;
-}
-
-.spoiler:hover{
-	background-color: inherit;
-	color: inherit;
 }

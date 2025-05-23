@@ -1872,7 +1872,7 @@
 	src.log_message("Toggled strafing mode [strafing?"on":"off"].")
 	return
 
-/obj/mecha/MouseDrop_T(mob/O, mob/user)
+/obj/mecha/MouseDrop_T(mob/O, mob/user as mob)
 	//Humans can pilot mechs.
 	if(!ishuman(O))
 		return
@@ -1881,13 +1881,13 @@
 	if(O != user)
 		return
 
-	move_inside(user)
+	move_inside()
 
 /obj/mecha/verb/enter()
 	set category = "Object"
 	set name = "Enter Exosuit"
 	set src in oview(1)
-	move_inside(usr)
+	move_inside()
 
 //returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
 //since is_type_in_list uses caching, this is a slower operation, so only use it if needed
@@ -1897,65 +1897,65 @@
 			return ME
 	return null
 
-/obj/mecha/proc/move_inside(mob/user)
-	if (user.stat || !ishuman(user) || user.is_incorporeal())
+/obj/mecha/proc/move_inside()
+	if (usr.stat || !ishuman(usr))
 		return
 
-	if (user.buckled)
-		to_chat(user, span_warning("You can't climb into the exosuit while buckled!"))
+	if (usr.buckled)
+		to_chat(usr, span_warning("You can't climb into the exosuit while buckled!"))
 		return
 
-	src.log_message("[user] tries to move in.")
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
+	src.log_message("[usr] tries to move in.")
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			to_chat(user, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
+			to_chat(usr, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 	if (src.occupant)
-		to_chat(user, span_danger("The [src.name] is already occupied!"))
+		to_chat(usr, span_danger("The [src.name] is already occupied!"))
 		src.log_append_to_last("Permission denied.")
 		return
 /*
-	if (user.abiotic())
-		to_chat(user, span_notice("Subject cannot have abiotic items on."))
+	if (usr.abiotic())
+		to_chat(usr, span_notice("Subject cannot have abiotic items on."))
 		return
 */
 	var/passed
 	if(src.dna)
-		if(user.dna.unique_enzymes==src.dna)
+		if(usr.dna.unique_enzymes==src.dna)
 			passed = 1
-	else if(src.operation_allowed(user))
+	else if(src.operation_allowed(usr))
 		passed = 1
 	if(!passed)
 		to_chat(usr, span_warning("Access denied"))
 		src.log_append_to_last("Permission denied.")
 		return
-	if(isliving(user))
-		var/mob/living/L = user
+	if(isliving(usr))
+		var/mob/living/L = usr
 		if(L.has_buckled_mobs())
 			to_chat(L, span_warning("You have other entities attached to yourself. Remove them first."))
 			return
 
-//	to_chat(user, "You start climbing into [src.name]")
+//	to_chat(usr, "You start climbing into [src.name]")
 	if(get_equipment(/obj/item/mecha_parts/mecha_equipment/runningboard))
-		visible_message(span_notice("\The [user] is instantly lifted into [src.name] by the running board!"))
-		moved_inside(user)
+		visible_message(span_notice("\The [usr] is instantly lifted into [src.name] by the running board!"))
+		moved_inside(usr)
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message(span_infoplain(span_bold("\The [user]") + " starts to climb into [src.name]"))
-		if(enter_after(40, user))
+		visible_message(span_infoplain(span_bold("\The [usr]") + " starts to climb into [src.name]"))
+		if(enter_after(40,usr))
 			if(!src.occupant)
-				moved_inside(user)
+				moved_inside(usr)
 				if(ishuman(occupant)) //Aeiou
 					GrantActions(occupant, 1)
-			else if(src.occupant != user)
+			else if(src.occupant!=usr)
 				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
 		else
-			to_chat(user, "You stop entering the exosuit.")
+			to_chat(usr, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
+/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
@@ -2013,13 +2013,13 @@
 			if(MECH_FACTION_NT)//The good guys category
 				if(firstactivation)//First time = long activation sound
 					firstactivation = 1
-					who << sound('sound/mecha/longnanoactivation.ogg',volume=50)
+					who << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
 				else
 					who << sound('sound/mecha/nominalnano.ogg',volume=50)
 			if(MECH_FACTION_SYNDI)//Bad guys
 				if(firstactivation)
 					firstactivation = 1
-					who << sound('sound/mecha/longsyndiactivation.ogg',volume=50)
+					who << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
 				else
 					who << sound('sound/mecha/nominalsyndi.ogg',volume=50)
 			else//Everyone else gets the normal noise
@@ -2193,7 +2193,7 @@
 						</div>
 						</body>
 						</html>
-					"}
+					 "}
 	return output
 
 
@@ -2322,14 +2322,14 @@
 		for(var/obj/item/mecha_parts/mecha_equipment/W in micro_weapon_equipment)
 			output += "Micro Weapon Module: [W.name] <a href='byond://?src=\ref[W];detach=1'>Detach</a><br>"
 	output += {"<b>Available hull slots:</b> [max_hull_equip-hull_equipment.len]<br>
-		<b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
-		<b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
-		<b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
-		<b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
-		<b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
-		<b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
-		</div></div>
-	"}
+	 <b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
+	 <b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
+	 <b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
+	 <b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
+	 <b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
+	 <b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
+	 </div></div>
+	 "}
 	return output
 
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
@@ -2345,7 +2345,7 @@
 /obj/mecha/proc/get_log_html()
 	var/output = "<html><head><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"
 	for(var/list/entry in log)
-		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [GLOB.game_year]</div>
+		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [game_year]</div>
 						<div style='margin-left:15px; margin-bottom:10px;'>[entry["message"]]</div>
 						"}
 	output += "</body></html>"
@@ -2356,7 +2356,7 @@
 	for(var/list/entry in log)
 		data.Add(list(list(
 			"time" = time2text(entry["time"], "DDD MMM DD hh:mm:ss"),
-			"year" = GLOB.game_year,
+			"year" = game_year,
 			"message" = entry["message"],
 		)))
 	return data
@@ -2667,7 +2667,7 @@
 		var/duration = text2num(href_list["duration"])
 		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src)
 		var/cur_occupant = src.occupant
-		O.invisibility = INVISIBILITY_NONE
+		O.invisibility = 0
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name
@@ -2847,8 +2847,8 @@
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
-						</body>
-					</html>"}
+ 					   </body>
+						</html>"}
 
 	occupant << browse(output, "window=ex_debug")
 	//src.health = initial(src.health)/2.2

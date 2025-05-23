@@ -29,7 +29,7 @@ const DestroyButton = (props: { destroyer: LinkedDestroyer }) => {
   const { act } = useBackend();
   const { destroyer } = props;
 
-  const [buttonPressed, setButtonPressed] = useState(false);
+  let [buttonPressed, setButtonPressed] = useState(false);
 
   return (
     <Stack fill>

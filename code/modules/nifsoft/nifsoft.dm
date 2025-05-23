@@ -297,8 +297,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_sec"
 
-/obj/item/storage/box/nifsofts_security/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_security/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/security(src)
 
@@ -323,8 +323,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_eng"
 
-/obj/item/storage/box/nifsofts_engineering/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_engineering/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/engineering(src)
 
@@ -348,8 +348,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_med"
 
-/obj/item/storage/box/nifsofts_medical/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_medical/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/medical(src)
 
@@ -377,8 +377,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/storage/box/nifsofts_mining/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_mining/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/mining(src)
 
@@ -406,8 +406,8 @@
 	icon = 'icons/obj/boxes_vr.dmi'
 	icon_state = "nifsoft_kit_pilot"
 
-/obj/item/storage/box/nifsofts_pilot/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_pilot/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/pilot(src)
 
@@ -429,7 +429,7 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/storage/box/nifsofts_sizechange/Initialize(mapload)
-	. = ..()
+/obj/item/storage/box/nifsofts_sizechange/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/sizechange(src)

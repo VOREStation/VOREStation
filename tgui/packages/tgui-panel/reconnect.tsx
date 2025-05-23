@@ -1,5 +1,5 @@
 import { useDispatch } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
+import { Button } from 'tgui-core/components';
 
 import { dismissWarning } from './game/actions';
 
@@ -20,39 +20,33 @@ export const ReconnectButton = (props) => {
   }
   const dispatch = useDispatch();
   return (
-    <Stack>
-      <Stack.Item>
-        <Button
-          color="white"
-          onClick={() => {
-            Byond.command('.reconnect');
-          }}
-        >
-          Reconnect
-        </Button>
-      </Stack.Item>
-      <Stack.Item>
-        <Button
-          color="white"
-          icon="power-off"
-          tooltip="Relaunch game"
-          tooltipPosition="bottom-end"
-          onClick={() => {
-            location.href = `byond://${url}`;
-            Byond.command('.quit');
-          }}
-        />
-      </Stack.Item>
-      <Stack.Item>
-        <Button
-          color="white"
-          onClick={() => {
-            dispatch(dismissWarning());
-          }}
-        >
-          Dismiss
-        </Button>
-      </Stack.Item>
-    </Stack>
+    <>
+      <Button
+        color="white"
+        onClick={() => {
+          Byond.command('.reconnect');
+        }}
+      >
+        Reconnect
+      </Button>
+      <Button
+        color="white"
+        icon="power-off"
+        tooltip="Relaunch game"
+        tooltipPosition="bottom-end"
+        onClick={() => {
+          location.href = `byond://${url}`;
+          Byond.command('.quit');
+        }}
+      />
+      <Button
+        color="white"
+        onClick={() => {
+          dispatch(dismissWarning());
+        }}
+      >
+        Dismiss
+      </Button>
+    </>
   );
 };

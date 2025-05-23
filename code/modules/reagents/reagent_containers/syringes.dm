@@ -68,7 +68,7 @@
 	switch(mode)
 		if(SYRINGE_CAPPED)
 			mode = SYRINGE_DRAW
-			balloon_alert(user, "[src] uncapped")
+			to_chat(user,span_notice("You uncap the syringe."))
 		if(SYRINGE_DRAW)
 			mode = SYRINGE_INJECT
 		if(SYRINGE_INJECT)
@@ -83,10 +83,6 @@
 
 /obj/item/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	return
-
-/obj/item/reagent_containers/syringe/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
-	. = ..()
-	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
 
 /obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !target.reagents)
@@ -275,7 +271,7 @@
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 
 		if (!affecting || affecting.is_stump())
-			balloon_alert(user, "they are missing that limb!") // CHOMPEdit - Changed to balloon_alert
+			to_chat(user, span_danger("They are missing that limb!"))
 			return
 
 		var/hit_area = affecting.name
@@ -293,13 +289,13 @@
 
 			return
 
-		balloon_alert_visible("stabs [target] in \the [hit_area] with [src.name]!")
+		user.visible_message(span_danger("[user] stabs [target] in \the [hit_area] with [src.name]!"))
 
 		if(affecting.take_damage(3))
 			H.UpdateDamageIcon()
 
 	else
-		balloon_alert_visible("stabs [user] in \the [target] with [src.name]!")
+		user.visible_message(span_danger("[user] stabs [target] with [src.name]!"))
 		target.take_organ_damage(3)// 7 is the same as crowbar punch
 
 
@@ -411,9 +407,9 @@
 	targets |= hash
 
 	//Grab any viruses they have
-	if(iscarbon(target) && LAZYLEN(target.IsInfected()))
+	if(iscarbon(target) && LAZYLEN(target.viruses.len))
 		LAZYINITLIST(viruses)
-		var/datum/disease/virus = pick(target.IsInfected())
+		var/datum/disease/virus = pick(target.viruses.len)
 		viruses[hash] = virus.Copy()
 
 	//Dirtiness should be very low if you're the first injectee. If you're spam-injecting 4 people in a row around you though,

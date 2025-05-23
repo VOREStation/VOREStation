@@ -95,7 +95,6 @@
 
 	var/last_shot = 0			//records the last shot fired
 	var/recoil_mode = 0			//If the gun will hurt micros if shot or not. Disabled on Virgo, used downstream.
-	var/mounted_gun = 0				//If the gun is mounted within a rigsuit or elsewhere. This makes it so the gun can be shot even if it's loc != a mob
 
 //VOREStation Add - /tg/ icon system
 	var/charge_sections = 4
@@ -127,8 +126,8 @@
 	update_icon()
 //VOREStation Add End
 
-/obj/item/gun/Initialize(mapload)
-	. = ..()
+/obj/item/gun/New()
+	..()
 	for(var/i in 1 to firemodes.len)
 		firemodes[i] = new /datum/firemode(src, firemodes[i])
 
@@ -183,19 +182,6 @@
 			return 0
 
 	var/mob/living/M = user
-	if(istype(M))
-		if(M.has_modifier_of_type(/datum/modifier/underwater_stealth))
-			to_chat(user,span_warning("You cannot use guns whilst hiding underwater!"))
-			return 0
-		else if(M.has_modifier_of_type(/datum/modifier/rednet))
-			to_chat(user,span_warning("Your gun refuses to fire!"))
-			return 0
-		else if(M.has_modifier_of_type(/datum/modifier/trait/thickdigits))
-			to_chat(user,span_warning("Your hands can't pull the trigger!!"))
-			return 0
-		else if(M.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
-			to_chat(user,span_warning("The shield projection around you prevents you from using anything but melee!!"))
-			return 0
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
@@ -217,9 +203,9 @@
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
+			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
-				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
+				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 				user.visible_message(
 					span_danger("\The [user] shoots [TU.himself] in the foot with \the [src]!"),
 					span_danger("You shoot yourself in the foot with \the [src]!")
@@ -264,7 +250,7 @@
 		else//Otherwise just make a new one
 			auto_target = new/obj/screen/auto_target(get_turf(A), src)
 			visible_message(span_danger("\The [user] readies the [src]!"))
-			playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
+			playsound(src, 'sound/weapons/TargetOn.ogg', 50, 1)
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
 			return
 	Fire(A,user,params) //Otherwise, fire normally.
@@ -354,10 +340,8 @@
 		src.add_fingerprint(usr)
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target)
-		return
-	if(target.z != user.z)
-		return
+	if(!user || !target) return
+	if(target.z != user.z) return
 
 	add_fingerprint(user)
 
@@ -385,7 +369,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
 		return //we're done here
-	if(!ismob(loc) && !mounted_gun) //We've been dropped and we are NOT a mounted gun.
+	if(!ismob(loc)) //We've been dropped.
 		return
 	if(user.stat) //We've been KO'd or have died. No shooting while dead.
 		return
@@ -430,8 +414,7 @@
 				if(one_handed_penalty >= 20)
 					to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
 
-			if(!zoom) //If we're not zoomed, reset our accuracy to our initial accuracy.
-				accuracy = initial(accuracy) //Reset our accuracy
+			accuracy = initial(accuracy) //Reset our accuracy
 			last_shot = world.time
 			user.hud_used.update_ammo_hud(user, src)
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -743,7 +726,7 @@
 		in_chamber.on_hit(M)
 		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
 			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", sharp = TRUE, used_weapon = src)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
 			to_chat(user, span_notice("Ow..."))
@@ -756,7 +739,7 @@
 		mouthshoot = 0
 		return
 
-/obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
+/obj/item/gun/proc/toggle_scope(var/zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	var/zoom_offset = round(world.view * zoom_amount)

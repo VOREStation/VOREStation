@@ -21,7 +21,7 @@
 /********
 * photo *
 ********/
-GLOBAL_VAR_INIT(photo_count, 0)
+var/global/photo_count = 0
 
 /obj/item/photo
 	name = "photo"
@@ -39,7 +39,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 
 /obj/item/photo/Initialize(mapload)
 	. = ..()
-	id = GLOB.photo_count++
+	id = photo_count++
 
 /obj/item/photo/attack_self(mob/user as mob)
 	user.examinate(src)

@@ -1,4 +1,4 @@
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 import { BLOB_MECHANICAL_DESCRIPTION } from './blob';
 
 const BlobInfection: Antagonist = {

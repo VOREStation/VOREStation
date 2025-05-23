@@ -12,6 +12,9 @@
 /obj/item/robot_parts/set_dir()
 	return
 
+/obj/item/robot_parts/New(var/newloc, var/model)
+	..(newloc)
+
 /obj/item/robot_parts/l_arm
 	name = "cyborg left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -68,9 +71,9 @@
 	var/obj/item/robot_parts/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_parts/robot_suit/Initialize(mapload)
-	. = ..()
-	update_icon()
+/obj/item/robot_parts/robot_suit/New()
+	..()
+	src.update_icon()
 
 /obj/item/robot_parts/robot_suit/update_icon()
 	cut_overlays()
@@ -192,14 +195,14 @@
 					to_chat(user, span_warning("This [W] does not seem to fit."))
 					return
 
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), FALSE, TRUE)
+			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
 			if(!O)	return
 
 			user.drop_item()
 
 			O.mmi = W
 			O.post_mmi_setup()
-			O.invisibility = INVISIBILITY_NONE
+			O.invisibility = 0
 			O.custom_name = created_name
 			O.updatename("Default")
 

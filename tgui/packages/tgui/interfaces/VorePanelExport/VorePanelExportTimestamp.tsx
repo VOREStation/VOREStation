@@ -1,5 +1,5 @@
 export const getCurrentTimestamp = (): string => {
-  const now = new Date();
+  let now = new Date();
   let hours = String(now.getHours());
   if (hours.length < 2) {
     hours = '0' + hours;
@@ -16,7 +16,7 @@ export const getCurrentTimestamp = (): string => {
   if (month.length < 2) {
     month = '0' + month;
   }
-  const year = String(now.getFullYear());
+  let year = String(now.getFullYear());
 
   return (
     ' ' +

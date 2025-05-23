@@ -39,7 +39,7 @@
 	name = "Null-Field"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
-	invisibility = INVISIBILITY_NONE
+	invisibility = 0
 
 /spell/aoe_turf/conjure/zeropointwell
 	name = "Zero-Point Well"

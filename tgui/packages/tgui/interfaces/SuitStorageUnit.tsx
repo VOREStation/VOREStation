@@ -57,28 +57,24 @@ const SuitStorageUnitContent = (props) => {
       title="Storage"
       minHeight="260px"
       buttons={
-        <Stack>
+        <>
           {!open && (
-            <Stack.Item>
-              <Button
-                icon={locked ? 'unlock' : 'lock'}
-                onClick={() => act('lock')}
-              >
-                {locked ? 'Unlock' : 'Lock'}
-              </Button>
-            </Stack.Item>
+            <Button
+              icon={locked ? 'unlock' : 'lock'}
+              onClick={() => act('lock')}
+            >
+              {locked ? 'Unlock' : 'Lock'}
+            </Button>
           )}
           {!locked && (
-            <Stack.Item>
-              <Button
-                icon={open ? 'sign-out-alt' : 'sign-in-alt'}
-                onClick={() => act('door')}
-              >
-                {open ? 'Close' : 'Open'}
-              </Button>
-            </Stack.Item>
+            <Button
+              icon={open ? 'sign-out-alt' : 'sign-in-alt'}
+              onClick={() => act('door')}
+            >
+              {open ? 'Close' : 'Open'}
+            </Button>
           )}
-        </Stack>
+        </>
       }
     >
       {!!(occupied && safeties) && (

@@ -179,7 +179,7 @@
 	data["name"] = seed_name
 	data["uid"] = uid
 	data["endurance"] = get_trait(TRAIT_ENDURANCE)
-	data["crop_yield"] = get_trait(TRAIT_YIELD)
+	data["yield"] = get_trait(TRAIT_YIELD)
 	data["maturation_time"] = get_trait(TRAIT_MATURATION)
 	data["production_time"] = get_trait(TRAIT_PRODUCTION)
 	data["potency"] = get_trait(TRAIT_POTENCY)
@@ -297,7 +297,7 @@
 				amount = "large amounts of "
 			else if (exude_gasses[gas] < 5)
 				amount = "small amounts of "
-			data["trait_info"] += "It will release [amount][GLOB.gas_data.name[gas]] into the environment."
+			data["trait_info"] += "It will release [amount][gas_data.name[gas]] into the environment."
 
 	if(consume_gasses && consume_gasses.len)
 		for(var/gas in consume_gasses)
@@ -306,6 +306,6 @@
 				amount = "large amounts of "
 			else if (consume_gasses[gas] < 5)
 				amount = "small amounts of "
-			data["trait_info"] += "It will consume [amount][GLOB.gas_data.name[gas]] from the environment."
+			data["trait_info"] += "It will consume [amount][gas_data.name[gas]] from the environment."
 
 	return data

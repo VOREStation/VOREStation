@@ -86,23 +86,19 @@ export const TelecommsLogBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <Stack>
-                  <Stack.Item>
-                    <Button icon="search" onClick={() => act('scan')}>
-                      Refresh
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      color="bad"
-                      icon="exclamation-triangle"
-                      disabled={servers.length === 0}
-                      onClick={() => act('release')}
-                    >
-                      Flush Buffer
-                    </Button>
-                  </Stack.Item>
-                </Stack>
+                <>
+                  <Button icon="search" onClick={() => act('scan')}>
+                    Refresh
+                  </Button>
+                  <Button
+                    color="bad"
+                    icon="exclamation-triangle"
+                    disabled={servers.length === 0}
+                    onClick={() => act('release')}
+                  >
+                    Flush Buffer
+                  </Button>
+                </>
               }
             >
               <Button icon="pen" onClick={() => act('network')}>

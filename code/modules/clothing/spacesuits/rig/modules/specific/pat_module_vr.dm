@@ -50,7 +50,6 @@
 	UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
 
 /obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
-	SIGNAL_HANDLER
 	if(!istype(user) || !istype(To) || !istype(Tn))
 		deactivate() //They were picked up or something, or put themselves in a locker, who knows. Just turn off.
 		return
@@ -85,6 +84,6 @@
 
 	var/username = FindNameFromID(H) || "Unknown"
 	var/message = "[username] has overridden [A] (airlock) in \the [get_area(A)] at [A.x],[A.y],[A.z] with \the [src]."
-	GLOB.global_announcer.autosay(message, "Security Subsystem", "Command")
-	GLOB.global_announcer.autosay(message, "Security Subsystem", "Security")
+	global_announcer.autosay(message, "Security Subsystem", "Command")
+	global_announcer.autosay(message, "Security Subsystem", "Security")
 	return 1

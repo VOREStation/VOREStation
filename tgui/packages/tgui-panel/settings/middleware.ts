@@ -15,7 +15,6 @@ import {
   removeHighlightSetting,
   updateHighlightSetting,
   updateSettings,
-  updateToggle,
 } from './actions';
 import { FONTS_DISABLED } from './constants';
 import { selectSettings } from './selectors';
@@ -101,7 +100,6 @@ export function settingsMiddleware(store) {
     }
     if (
       type !== updateSettings.type &&
-      type !== updateToggle.type &&
       type !== loadSettings.type &&
       type !== addHighlightSetting.type &&
       type !== removeHighlightSetting.type &&

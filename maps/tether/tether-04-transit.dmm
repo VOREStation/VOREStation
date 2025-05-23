@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/recycler_beacon,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
 "ag" = (
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/midpoint_glass/reinf,
@@ -9378,8 +9374,8 @@ pK
 pK
 Dz
 iK
-aa
-aa
+pM
+pM
 El
 Dz
 oN

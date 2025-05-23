@@ -1,5 +1,3 @@
-GLOBAL_VAR_INIT(global_vantag_hud, 0)
-
 /client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
 	set category = null
 	set name = "Drop Everything"
@@ -35,7 +33,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 		//teleport person to cell
 		M.Paralyse(5)
 		sleep(5)	//so they black out before warping
-		M.loc = pick(GLOB.prisonwarp)
+		M.loc = pick(prisonwarp)
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
@@ -487,13 +485,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					return
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
-			if(LAZYLEN(GLOB.latejoin))
-				spawnloc = get_turf(pick(GLOB.latejoin))
-			else if(LAZYLEN(GLOB.latejoin_tram))
-				spawnloc = pick(GLOB.latejoin_tram)
-			else
-				to_chat(src, "This map has no latejoin spawnpoint.")
-				return
+			spawnloc = pick(latejoin)
 
 		else //I have no idea how you're here
 			to_chat(src, "Invalid spawn location choice.")
@@ -525,7 +517,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
-	new_character.sync_addictions() // These are addicitions our profile wants... May as well give them!
 	new_character.initialize_vessel()
 	if(inhabit)
 		new_character.key = player_key
@@ -556,7 +547,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//If desired, add records.
 	if(records)
-		GLOB.data_core.manifest_inject(new_character)
+		data_core.manifest_inject(new_character)
 
 	//A redraw for good measure
 	new_character.regenerate_icons()
@@ -1066,7 +1057,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/list/human_cryopods = list()
 	var/list/robot_cryopods = list()
 
-	for(var/obj/machinery/cryopod/CP in GLOB.machines)
+	for(var/obj/machinery/cryopod/CP in machines)
 		if(!CP.control_computer)
 			continue //Broken pod w/o computer, move on.
 
@@ -1092,8 +1083,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else if(issilicon(M))
 		if(isAI(M))
 			var/mob/living/silicon/ai/ai = M
-			GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
-			GLOB.global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+			empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
+			global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 			ai.clear_client()
 			return
 		else
@@ -1178,17 +1169,3 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new /obj/structure/drop_pod/polite(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
 
 	feedback_add_details("admin_verb","DPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/toggle_vantag_hud_global(mob/target as mob)
-	set category = "Fun.Event Kit"
-	set name = "Toggle Global Event HUD"
-	set desc = "Give everyone the Event HUD."
-
-	GLOB.global_vantag_hud = !GLOB.global_vantag_hud
-	if(GLOB.global_vantag_hud)
-		for(var/mob/living/L in living_mob_list)
-			if(L.ckey)
-				L.vantag_hud = TRUE
-				L.recalculate_vis()
-
-	to_chat(src, span_warning("Global Event HUD has been turned [GLOB.global_vantag_hud ? "on" : "off"]."))

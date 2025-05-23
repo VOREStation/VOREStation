@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useRef, useState } from 'react';
+import { KeyboardEvent } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Modal } from 'tgui-core/components';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
-const bodyOverrides = {};
+let bodyOverrides = {};
 
 /**
  * Sends a call to BYOND to open a modal
@@ -105,10 +105,8 @@ export const ComplexModal = (props) => {
 
   const { id, text, type } = modal;
 
-  const modalOnEscape:
-    | ((e: KeyboardEvent<HTMLDivElement>) => void)
-    | undefined = (e) => modalClose(id);
   let modalOnEnter: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
+  let modalOnEscape: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
   let modalBody: React.JSX.Element | undefined;
   let modalFooter: React.JSX.Element = (
     <Button icon="arrow-left" color="grey" onClick={() => modalClose(null)}>
@@ -116,30 +114,24 @@ export const ComplexModal = (props) => {
     </Button>
   );
 
+  modalOnEscape = (e) => modalClose(id);
   // Different contents depending on the type
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    const lastValue = useRef(modal.value);
-    const [curValue, setCurValue] = useState(modal.value);
-
-    if (lastValue.current !== modal.value) {
-      lastValue.current = modal.value;
-      setCurValue(modal.value);
-    }
-
+    let curValue = modal.value;
     modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
         key={id}
-        value={curValue}
+        value={modal.value}
         placeholder="ENTER to submit"
         width="100%"
         my="0.5rem"
         autoFocus
         autoSelect
-        onChange={(val) => {
-          setCurValue(val);
+        onChange={(_e, val) => {
+          curValue = val;
         }}
       />
     );

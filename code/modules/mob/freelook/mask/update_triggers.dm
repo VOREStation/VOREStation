@@ -18,8 +18,8 @@
 
 #undef CULT_UPDATE_BUFFER
 
-/mob/living/Initialize(mapload)
-	. = ..()
+/mob/living/New()
+	..()
 	cultnet.updateVisibility(src, 0)
 
 /mob/living/rejuvenate()

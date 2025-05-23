@@ -33,9 +33,6 @@ export const setupPanelFocusHacks = () => {
       if (dist >= MIN_SELECTION_DISTANCE) {
         focusStolen = true;
       }
-      if (document.activeElement?.className.includes('Button')) {
-        focusStolen = true;
-      }
     }
     if (!focusStolen) {
       deferredFocusMap();

@@ -66,7 +66,6 @@
 
 // If vermin is kill, remove it from the list.
 /datum/event/infestation/proc/on_vermin_destruction(var/mob/M)
-	SIGNAL_HANDLER
 	spawned_vermin -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

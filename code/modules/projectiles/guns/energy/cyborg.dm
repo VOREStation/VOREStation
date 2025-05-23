@@ -250,12 +250,12 @@
 			else
 				target.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
 
-	playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
+	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	target.stun_effect_act(0, agony, hit_zone, src)
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(GLOB.hit_appends)
+		H.forcesay(hit_appends)
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
@@ -416,12 +416,12 @@
 		target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 	else
 		target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-	playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
+	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	target.stun_effect_act(stun, agony, hit_zone, src)
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(GLOB.hit_appends)
+		H.forcesay(hit_appends)
 
 /obj/item/melee/robotic/baton/arm
 	name = "electrified arm"
@@ -447,15 +447,7 @@
 		target.taunt(user)
 
 /obj/item/melee/robotic/baton/slime
-	name = "slimebaton"
-	desc = "A modified stun baton designed to stun slimes and other lesser slimy xeno lifeforms for handling."
-	icon_state = "slimebaton_active"
-	item_state = "slimebaton"
-	force = 10 //we like round numbers here
-	lightcolor = "#33CCFF"
-	agonyforce = 10	//It's not supposed to be great at stunning human beings.
-	hitcost = 48	//Less zap for less cost
-
+	hitcost = 200
 
 /obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/user, hit_zone)
 	if(!istype(L))

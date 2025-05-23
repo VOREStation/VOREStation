@@ -18,6 +18,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/eggsac/grey/colormatch/LateInitialize()
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -60,6 +61,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/LateInitialize()
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -98,6 +100,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/acidgland/grey/colormatch/LateInitialize()
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -116,6 +119,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/hivenode/grey/colormatch/LateInitialize()
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -139,6 +143,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/xenos/resinspinner/grey/colormatch/LateInitialize()
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -149,61 +154,72 @@
 /obj/item/organ/external/chest/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
+	thick_skin = TRUE
 
 /obj/item/organ/external/groin/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/arm/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/arm/right/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/leg/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/leg/right/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/foot/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/foot/right/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/hand/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/hand/right/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
 	stapled_nerves = TRUE
 	encased = TRUE
+	thick_skin = TRUE
 
 /obj/item/organ/external/head/unseverable/xeno
 	cannot_gib = 1
 	cannot_amputate = 1
+	thick_skin = TRUE
 	eye_icon = "blank_eyes"

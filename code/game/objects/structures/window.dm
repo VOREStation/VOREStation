@@ -138,7 +138,7 @@
 		return TRUE
 	if(is_fulltile())
 		return FALSE	//full tile window, you can't move into it!
-	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	else
 		return TRUE
@@ -386,8 +386,8 @@
 	update_nearby_tiles(need_rebuild=1)
 	return
 
-/obj/structure/window/Initialize(mapload, start_dir=null, constructed=0)
-	. = ..()
+/obj/structure/window/New(Loc, start_dir=null, constructed=0)
+	..()
 
 	if (start_dir)
 		set_dir(start_dir)

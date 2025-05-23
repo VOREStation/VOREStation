@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
-  type FeatureNumeric,
+  FeatureNumeric,
   FeatureSliderInput,
-  type FeatureToggle,
+  FeatureToggle,
 } from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {
@@ -66,13 +66,6 @@ export const TGUI_SAY_LIGHT_MODE: FeatureToggle = {
   name: 'Say: Light mode',
   category: 'UI',
   description: 'Sets TGUI Say to use a light mode.',
-  component: CheckboxInput,
-};
-
-export const ui_scale: FeatureToggle = {
-  name: 'Toggle UI scaling',
-  category: 'UI',
-  description: 'If UIs should scale up to match your monitor scaling.',
   component: CheckboxInput,
 };
 

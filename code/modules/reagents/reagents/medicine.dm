@@ -57,7 +57,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(4 * removed * chem_effective, 0)
+		M.heal_organ_damage(4 * removed * chem_effective, 0) //VOREStation Edit
 
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -139,7 +139,7 @@
 		chem_effective = 0.5
 		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 4 * removed * chem_effective)
+		M.heal_organ_damage(0, 4 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dermaline
 	name = REAGENT_DERMALINE
@@ -158,7 +158,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 8 * removed * chem_effective)
+		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dermaline/topical
 	name = REAGENT_DERMALAZE
@@ -254,21 +254,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
-	metabolism = REM * 0.25
+	metabolism = REM * 0.25 //VOREStation Edit
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 24)
+		M.adjustToxLoss(removed * 24) //VOREStation Edit
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15 * M.species.chem_strength_pain)
 		if(prob(15))
 			to_chat(M, span_notice("You have a moment of clarity as you collapse."))
-			M.adjustBrainLoss(-20 * removed)
+			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-15 * removed * M.species.chem_strength_heal)
 
-	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed)
+	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed) //VOREStation Edit
 
 /datum/reagent/dexalinp
 	name = REAGENT_DEXALINP
@@ -413,14 +413,18 @@
 	color = "#6b4de3"
 	metabolism = REM * 0.5
 	mrate_static = TRUE
-	affects_dead = FALSE //Clarifying this here since the original intent was this ONLY works on people that have the bloodpump_corpse modifier.
 	scannable = 1
 
 /datum/reagent/mortiferin/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
+	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
+		affects_dead = TRUE
+	else
+		affects_dead = FALSE
+
 	. = ..(M, alien, location)
 
 /datum/reagent/mortiferin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD))
+	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
@@ -637,7 +641,7 @@
 			M.Weaken(5)
 		if(dose >= 10 && M.paralysis < 40)
 			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
-	M.adjustBrainLoss(-8 * removed * chem_effective)
+	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
 	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective * M.species.chem_strength_pain)
 
 /datum/reagent/imidazoline
@@ -924,6 +928,9 @@
 	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
 		strength_mod = 1.3
 
+	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
+		strength_mod = 0.66
+
 	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
 		strength_mod = 0.6
 
@@ -972,6 +979,9 @@
 
 /datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 0.5 * M.species.chem_strength_heal
+
+	if(alien == IS_SKRELL)
+		strength_mod = 1
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -1223,8 +1233,8 @@
 
 /datum/reagent/spacomycaze/touch_obj(var/obj/O)
 	..()
-	if(istype(O, /obj/item/stack/medical) && round(volume) >= 1)
-		var/obj/item/stack/medical/C = O
+	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
+		var/obj/item/stack/medical/crude_pack/C = O
 		var/packname = C.name
 		var/to_produce = min(C.get_amount(), round(volume))
 
@@ -1271,9 +1281,11 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
+	//VOREstation edit. Floor polishing.
 	if(istype(T, /turf/simulated))
 		var/turf/simulated/S = T
 		S.dirt = -50
+	//VOREstation edit end
 
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -1364,7 +1376,6 @@
 	metabolism = REM * 4 // Nanomachines gotta go fast.
 	scannable = 1
 	affects_robots = TRUE
-	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/healing_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)
@@ -1401,64 +1412,3 @@
 	M.druggy = max(M.druggy, 20)
 	M.hallucination = max(M.hallucination, 3)
 	M.adjustBrainLoss(1 * removed) //your life for your mind. The Earthmother's Tithe.
-
-
-// Vat clone stablizer
-/datum/reagent/acid/artificial_sustenance
-	name = REAGENT_ASUSTENANCE
-	id = REAGENT_ID_ASUSTENANCE
-	description = "A drug used to stablize vat grown bodies. Often used to control the lifespan of biological experiments." // Who else remembers Cybersix?
-	taste_description = "burning metal"
-	reagent_state = LIQUID
-	color = "#31d422"
-	overdose = 15
-	overdose_mod = 1.2
-	scannable = 1
-
-/datum/reagent/acid/artificial_sustenance/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	// You need me...
-	if(M.get_addiction_to_reagent(REAGENT_ID_ASUSTENANCE))
-		return
-	// Continue to acid damage, no changes on injection or splashing, as this is meant to be edible only to those pre-addicted to it! Not a snowflake acid that doesn't hurt you!
-	. = ..()
-
-/datum/reagent/acid/artificial_sustenance/handle_addiction(var/mob/living/carbon/M, var/alien)
-	// A copy of the base with withdrawl, but with death, and different messages
-	var/current_addiction = M.get_addiction_to_reagent(id)
-	// slow degrade
-	if(prob(2))
-		current_addiction  -= 1
-	// withdrawl mechanics
-	if(prob(2))
-		if(current_addiction <= 40)
-			to_chat(M, span_danger("You're dying for some [name]!"))
-		else if(current_addiction <= 60)
-			to_chat(M, span_warning("You're really craving some [name]."))
-		else if(current_addiction <= 100)
-			to_chat(M, span_notice("You're feeling the need for some [name]."))
-		// effects
-		if(current_addiction < 60 && prob(20))
-			M.emote(pick("pale","shiver","twitch"))
-	// Agony and death!
-	if(current_addiction <= 20)
-		if(prob(12))
-			M.adjustToxLoss( rand(1,4) )
-			M.adjustBruteLoss( rand(1,4) )
-			M.adjustOxyLoss( rand(1,4) )
-	// proc side effect
-	if(current_addiction <= 30)
-		if(prob(3))
-			M.Weaken(2)
-			M.emote("vomit")
-			M.add_chemical_effect(CE_WITHDRAWL, rand(9,14) * REM)
-	else if(current_addiction <= 40)
-		if(prob(3))
-			M.emote("vomit")
-			M.add_chemical_effect(CE_WITHDRAWL, rand(5,9) * REM)
-	else if(current_addiction <= 50)
-		if(prob(2))
-			M.emote("vomit")
-	// Sustenance requirements cannot be escaped!
-	if(current_addiction <= 0)
-		current_addiction = 40
-	return current_addiction

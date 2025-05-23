@@ -19,13 +19,14 @@
 
 	var/datum/material/material
 
-/obj/structure/gravemarker/Initialize(mapload, var/material_name)
-	. = ..()
+/obj/structure/gravemarker/New(var/newloc, var/material_name)
+	..(newloc)
 	if(!material_name)
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	color = material.icon_colour
 
 /obj/structure/gravemarker/examine(mob/user)
@@ -38,7 +39,7 @@
 /obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 

@@ -1,13 +1,8 @@
-#define IMPORT_ALL_BELLIES "Import all bellies from VRDB"
-#define IMPORT_ONE_BELLY "Import one belly from VRDB"
-#define IMPORT_SOULCATCHER "Import Soulcatcher from VRDB"
-
-
 /datum/vore_look/proc/import_belly(mob/host)
-	var/panel_choice = tgui_input_list(host, "Belly Import", "Pick an option", list(IMPORT_ALL_BELLIES, IMPORT_ONE_BELLY, IMPORT_SOULCATCHER))
+	var/panel_choice = tgui_input_list(host, "Belly Import", "Pick an option", list("Import all bellies from VRDB","Import one belly from VRDB"))
 	if(!panel_choice) return
 	var/pickOne = FALSE
-	if(panel_choice == IMPORT_ONE_BELLY)
+	if(panel_choice == "Import one belly from VRDB")
 		pickOne = TRUE
 	var/input_file = input(host,"Please choose a valid VRDB file to import from.","Belly Import") as file
 	var/input_data
@@ -16,21 +11,6 @@
 	catch(var/exception/e)
 		tgui_alert_async(host, "The supplied file contains errors: [e]", "Error!")
 		return FALSE
-
-	if(panel_choice == IMPORT_SOULCATCHER)
-		if(!islist(input_data["soulcatcher"]))
-			tgui_alert_async(host, "The supplied file was not a valid VRDB >= v0.2 file.", "Error!")
-			return FALSE
-
-		var/list/soulcatcher_data = input_data["soulcatcher"]
-		var/return_val = import_soulcatcher(host, soulcatcher_data)
-		if(return_val)
-			host.updateVRPanel()
-			unsaved_changes = TRUE
-		return return_val
-
-	if(islist(input_data["bellies"]))
-		input_data = input_data["bellies"]
 
 	if(!islist(input_data))
 		tgui_alert_async(host, "The supplied file was not a valid VRDB file.", "Error!")
@@ -365,16 +345,6 @@
 			if(new_emotes_digest)
 				new_belly.set_messages(new_emotes_digest,BELLY_MODE_DIGEST, limit = MAX_MESSAGE_LEN / 4)
 
-		if(islist(belly_data["trash_eater_in"]))
-			var/new_trash_eater_in = sanitize(jointext(belly_data["trash_eater_in"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
-			if(new_trash_eater_in)
-				new_belly.set_messages(new_trash_eater_in ,BELLY_TRASH_EATER_IN, limit = MAX_MESSAGE_LEN / 2)
-
-		if(islist(belly_data["trash_eater_out"]))
-			var/new_trash_eater_out = sanitize(jointext(belly_data["trash_eater_out"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
-			if(new_trash_eater_out)
-				new_belly.set_messages(new_trash_eater_out,BELLY_TRASH_EATER_OUT, limit = MAX_MESSAGE_LEN / 2)
-
 		if(islist(belly_data["emotes_hold"]))
 			var/new_emotes_hold = sanitize(jointext(belly_data["emotes_hold"],"\n\n"),MAX_MESSAGE_LEN * 1.5,0,0,0)
 			if(new_emotes_hold)
@@ -450,13 +420,13 @@
 		if(istext(belly_data["contamination_flavor"]))
 			var/new_contamination_flavor = sanitize(belly_data["contamination_flavor"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_contamination_flavor)
-				if(new_contamination_flavor in GLOB.contamination_flavors)
+				if(new_contamination_flavor in contamination_flavors)
 					new_belly.contamination_flavor = new_contamination_flavor
 
 		if(istext(belly_data["contamination_color"]))
 			var/new_contamination_color = sanitize(belly_data["contamination_color"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_contamination_color)
-				if(new_contamination_color in GLOB.contamination_colors)
+				if(new_contamination_color in contamination_colors)
 					new_belly.contamination_color = new_contamination_color
 
 		if(isnum(belly_data["nutrition_percent"]))
@@ -545,7 +515,7 @@
 		if(istext(belly_data["egg_type"]))
 			var/new_egg_type = sanitize(belly_data["egg_type"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_egg_type)
-				if(new_egg_type in GLOB.global_vore_egg_types)
+				if(new_egg_type in global_vore_egg_types)
 					new_belly.egg_type = new_egg_type
 
 		if(istext(belly_data["egg_name"]))
@@ -632,30 +602,30 @@
 				new_belly.fancy_vore = TRUE
 
 		if(new_belly.fancy_vore)
-			if(!(new_belly.vore_sound in GLOB.fancy_vore_sounds))
+			if(!(new_belly.vore_sound in fancy_vore_sounds))
 				new_belly.vore_sound = "Gulp"
-			if(!(new_belly.release_sound in GLOB.fancy_vore_sounds))
+			if(!(new_belly.release_sound in fancy_vore_sounds))
 				new_belly.release_sound = "Splatter"
 		else
-			if(!(new_belly.vore_sound in GLOB.classic_vore_sounds))
+			if(!(new_belly.vore_sound in classic_vore_sounds))
 				new_belly.vore_sound = "Gulp"
-			if(!(new_belly.release_sound in GLOB.classic_vore_sounds))
+			if(!(new_belly.release_sound in classic_vore_sounds))
 				new_belly.release_sound = "Splatter"
 
 		if(istext(belly_data["vore_sound"]))
 			var/new_vore_sound = sanitize(belly_data["vore_sound"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_vore_sound)
-				if (new_belly.fancy_vore && (new_vore_sound in GLOB.fancy_vore_sounds))
+				if (new_belly.fancy_vore && (new_vore_sound in fancy_vore_sounds))
 					new_belly.vore_sound = new_vore_sound
-				if (!new_belly.fancy_vore && (new_vore_sound in GLOB.classic_vore_sounds))
+				if (!new_belly.fancy_vore && (new_vore_sound in classic_vore_sounds))
 					new_belly.vore_sound = new_vore_sound
 
 		if(istext(belly_data["release_sound"]))
 			var/new_release_sound = sanitize(belly_data["release_sound"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_release_sound)
-				if (new_belly.fancy_vore && (new_release_sound in GLOB.fancy_release_sounds))
+				if (new_belly.fancy_vore && (new_release_sound in fancy_release_sounds))
 					new_belly.release_sound = new_release_sound
-				if (!new_belly.fancy_vore && (new_release_sound in GLOB.classic_release_sounds))
+				if (!new_belly.fancy_vore && (new_release_sound in classic_release_sounds))
 					new_belly.release_sound = new_release_sound
 
 		if(isnum(belly_data["sound_volume"]))
@@ -1185,7 +1155,3 @@
 	host.handle_belly_update()
 	host.updateVRPanel()
 	unsaved_changes = TRUE
-
-#undef IMPORT_ALL_BELLIES
-#undef IMPORT_ONE_BELLY
-#undef IMPORT_SOULCATCHER

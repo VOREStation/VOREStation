@@ -1,8 +1,10 @@
 // Hit by a projectile.
 /mob/living/simple_mob/bullet_act(var/obj/item/projectile/P)
 	//Projectiles with bonus SA damage
-	if(!P.nodamage && P.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
-		P.damage += P.mob_bonus_damage
+	if(!P.nodamage)
+	//	if(!P.SA_vulnerability || P.SA_vulnerability == intelligence_level)
+		if(P.SA_vulnerability & mob_class)
+			P.damage += P.SA_bonus_damage
 
 	. = ..()
 
@@ -76,7 +78,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
-			var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
+			var/datum/gender/T = gender_datums[src.get_visible_gender()]
 			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
 		harvest(user, O)

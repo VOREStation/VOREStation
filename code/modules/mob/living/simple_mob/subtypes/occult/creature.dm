@@ -29,9 +29,6 @@
 	speak_emote = list("gibbers")
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
-	can_be_drop_prey = FALSE
-	can_pain_emote = FALSE
-
 
 // Strong Variant
 /mob/living/simple_mob/creature/strong

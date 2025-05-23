@@ -11,7 +11,6 @@
 	set_dir(new_dir)
 
 /datum/proc/qdel_self()
-	SIGNAL_HANDLER
 	qdel(src)
 
 /*

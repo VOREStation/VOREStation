@@ -1,4 +1,4 @@
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   unsaved_changes: BooleanLike;
@@ -55,7 +55,6 @@ export type bellyData = {
   ref: string;
   digest_mode: string;
   contents: number;
-  prevent_saving: BooleanLike;
 };
 
 export type selectedData = {

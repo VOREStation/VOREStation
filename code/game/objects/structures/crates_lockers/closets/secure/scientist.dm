@@ -71,8 +71,7 @@
 		/obj/item/radio/headset/headset_sci,
 		/obj/item/storage/belt/archaeology,
 		/obj/item/storage/excavation,
-		/obj/item/pickaxe/excavationdrill,
-		/obj/item/storage/sample_container)
+		/obj/item/pickaxe/excavationdrill)
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"

@@ -6,7 +6,8 @@
 	full_name = "The Test Map"
 	path = "example"
 
-	lobby_screens = list('html/lobby/mockingjay00.webp')
+	lobby_icon = 'icons/misc/title.dmi'
+	lobby_screens = list("mockingjay00")
 
 	zlevel_datum_type = /datum/map_z_level/example
 

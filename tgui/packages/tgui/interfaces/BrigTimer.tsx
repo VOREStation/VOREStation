@@ -36,29 +36,25 @@ export const BrigTimer = (props) => {
         <Section
           title="Cell Timer"
           buttons={
-            <Stack>
-              <Stack.Item>
-                <Button
-                  icon="clock-o"
-                  selected={timing}
-                  onClick={() => act(timing ? 'stop' : 'start')}
-                >
-                  {timing ? 'Stop' : 'Start'}
-                </Button>
-              </Stack.Item>
+            <>
+              <Button
+                icon="clock-o"
+                selected={timing}
+                onClick={() => act(timing ? 'stop' : 'start')}
+              >
+                {timing ? 'Stop' : 'Start'}
+              </Button>
               {(flash_found && (
-                <Stack.Item>
-                  <Button
-                    icon="lightbulb-o"
-                    disabled={flash_charging}
-                    onClick={() => act('flash')}
-                  >
-                    {flash_charging ? 'Recharging' : 'Flash'}
-                  </Button>
-                </Stack.Item>
+                <Button
+                  icon="lightbulb-o"
+                  disabled={flash_charging}
+                  onClick={() => act('flash')}
+                >
+                  {flash_charging ? 'Recharging' : 'Flash'}
+                </Button>
               )) ||
                 null}
-            </Stack>
+            </>
           }
         >
           <NumberInput

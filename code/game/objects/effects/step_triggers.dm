@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
-	invisibility = INVISIBILITY_BADMIN // nope cant see this shit
+	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
 	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
@@ -287,7 +287,7 @@ But for now, for what it's been used for, it works.
 			return
 	if(Mtarget)
 		H.forceMove(Mtarget.loc)
-	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, H.mind)
+	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, mind_target = H.mind)
 	for(var/obj/item/W in H)
 		if(istype(W, /obj/item/implant/backup || istype(W, /obj/item/nif)))
 			continue
@@ -333,7 +333,7 @@ But for now, for what it's been used for, it works.
 	unacidable = 1
 	layer = 99
 	anchored = 1
-	invisibility = INVISIBILITY_BADMIN
+	invisibility = 99
 
 
 /obj/effect/autostriptarget/Initialize(mapload)
@@ -345,6 +345,5 @@ But for now, for what it's been used for, it works.
 	name = "Autostrip target to send mobs to."
 
 /obj/effect/autostriptarget/mob/Initialize(mapload)
-	. = ..()
 	if(targetid)
 		GLOB.mapped_autostrips_mob[targetid] = src

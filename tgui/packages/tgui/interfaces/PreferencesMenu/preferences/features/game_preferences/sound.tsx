@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
   FeatureNumberInput,
-  type FeatureNumeric,
-  type FeatureToggle,
+  FeatureNumeric,
+  FeatureToggle,
 } from '../base';
 
 export const SOUND_MIDI: FeatureToggle = {

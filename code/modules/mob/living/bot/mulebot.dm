@@ -267,7 +267,7 @@
 
 /mob/living/bot/mulebot/proc/GetBeaconList()
 	var/list/beaconlist = list()
-	for(var/obj/machinery/navbeacon/N in GLOB.navbeacons)
+	for(var/obj/machinery/navbeacon/N in navbeacons)
 		if(!N.codes["delivery"])
 			continue
 		beaconlist.Add(N.location)

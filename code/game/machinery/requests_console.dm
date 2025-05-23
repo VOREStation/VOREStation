@@ -12,10 +12,10 @@
 #define RCS_MESSAUTH 7	// Authentication before sending
 #define RCS_ANNOUNCE 8	// Send announcement
 
-GLOBAL_LIST_EMPTY(req_console_assistance)
-GLOBAL_LIST_EMPTY(req_console_supplies)
-GLOBAL_LIST_EMPTY(req_console_information)
-GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
+var/req_console_assistance = list()
+var/req_console_supplies = list()
+var/req_console_information = list()
+var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console
 	name = "requests console"
@@ -61,30 +61,30 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	announcement.newscast = 1
 
 	name = "[department] requests console"
-	GLOB.allConsoles += src
+	allConsoles += src
 	if(departmentType & RC_ASSIST)
-		GLOB.req_console_assistance |= department
+		req_console_assistance |= department
 	if(departmentType & RC_SUPPLY)
-		GLOB.req_console_supplies |= department
+		req_console_supplies |= department
 	if(departmentType & RC_INFO)
-		GLOB.req_console_information |= department
+		req_console_information |= department
 
 	update_icon()
 
 /obj/machinery/requests_console/Destroy()
-	GLOB.allConsoles -= src
+	allConsoles -= src
 	var/lastDeptRC = 1
-	for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
+	for (var/obj/machinery/requests_console/Console in allConsoles)
 		if(Console.department == department)
 			lastDeptRC = 0
 			break
 	if(lastDeptRC)
 		if(departmentType & RC_ASSIST)
-			GLOB.req_console_assistance -= department
+			req_console_assistance -= department
 		if(departmentType & RC_SUPPLY)
-			GLOB.req_console_supplies -= department
+			req_console_supplies -= department
 		if(departmentType & RC_INFO)
-			GLOB.req_console_information -= department
+			req_console_information -= department
 	return ..()
 
 /obj/machinery/requests_console/power_change()
@@ -125,9 +125,9 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	data["silent"] = silent
 	data["announcementConsole"] = announcementConsole
 
-	data["assist_dept"] = GLOB.req_console_assistance
-	data["supply_dept"] = GLOB.req_console_supplies
-	data["info_dept"]   = GLOB.req_console_information
+	data["assist_dept"] = req_console_assistance
+	data["supply_dept"] = req_console_supplies
+	data["info_dept"]   = req_console_information
 
 	data["message"] = message
 	data["recipient"] = recipient
@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			var/log_msg = message
 			var/pass = 0
 			screen = RCS_SENTFAIL
-			for(var/obj/machinery/message_server/MS in GLOB.machines)
+			for(var/obj/machinery/message_server/MS in machines)
 				if(!MS.active)
 					continue
 				MS.send_rc_message(ckey(params["department"]), department, log_msg, msgStamped, msgVerified, priority)
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			if(tempScreen == RCS_ANNOUNCE && !announcementConsole)
 				return
 			if(tempScreen == RCS_VIEWMSGS)
-				for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
+				for (var/obj/machinery/requests_console/Console in allConsoles)
 					if(Console.department == department)
 						Console.newmessagepriority = 0
 						Console.update_icon()
@@ -242,13 +242,13 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 		announcement.newscast = 1
 
 		name = "[department] Requests Console"
-		GLOB.allConsoles += src
+		allConsoles += src
 		if(departmentType & RC_ASSIST)
-			GLOB.req_console_assistance |= department
+			req_console_assistance |= department
 		if(departmentType & RC_SUPPLY)
-			GLOB.req_console_supplies |= department
+			req_console_supplies |= department
 		if(departmentType & RC_INFO)
-			GLOB.req_console_information |= department
+			req_console_information |= department
 		return
 
 	if(istype(O, /obj/item/card/id))

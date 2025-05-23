@@ -19,6 +19,6 @@ SUBSYSTEM_DEF(holomaps)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/holomaps/stat_entry(msg)
-	if (!GLOB.Debug2)
+	if (!Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	. = ..()

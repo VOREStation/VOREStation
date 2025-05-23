@@ -24,11 +24,10 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/passive/cow/Initialize(mapload)
-	. = ..()
-
+/mob/living/simple_mob/animal/passive/cow/New()
 	udder = new(50)
 	udder.my_atom = src
+	..()
 
 /mob/living/simple_mob/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O

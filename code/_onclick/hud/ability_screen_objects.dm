@@ -100,9 +100,9 @@
 
 /obj/screen/movable/ability_master/update_icon()
 	if(ability_objects.len)
-		invisibility = INVISIBILITY_NONE
+		invisibility = 0
 	else
-		invisibility = INVISIBILITY_ABSTRACT
+		invisibility = 101
 
 /obj/screen/movable/ability_master/proc/add_ability(var/name_given)
 	if(!name) return
@@ -210,7 +210,7 @@
 		ability_master.update_icon()
 //		qdel(ability_master)
 	ability_master = null
-	. = ..()
+	..()
 
 /obj/screen/ability/update_icon()
 //	if(!spell)

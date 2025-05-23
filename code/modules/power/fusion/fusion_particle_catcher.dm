@@ -2,7 +2,7 @@
 	icon = 'icons/effects/effects.dmi'
 	density = TRUE
 	anchored = TRUE
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 	var/obj/effect/fusion_em_field/parent
 	var/mysize = 0
 

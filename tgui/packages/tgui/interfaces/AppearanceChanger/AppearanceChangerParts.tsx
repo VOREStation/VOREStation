@@ -39,37 +39,35 @@ export const AppearanceChangerParts = (props: {
                 fluid
                 placeholder={'Search for ' + section.toLowerCase() + '...'}
                 value={searchText}
-                onChange={(val) => setSearchText(val)}
+                onInput={(e, val) => setSearchText(val)}
               />
             )}
           </Stack.Item>
           <Stack.Item grow>
             <Section title={section} fill scrollable>
-              <Stack wrap="wrap" justify="center">
-                {canClear && (
-                  <ImageButton
-                    tooltip="-- Not Set --"
-                    onClick={() => act(actions[i], { clear: true })}
-                    selected={currentStyle[i] === null}
-                  >
-                    -- Not Set --
-                  </ImageButton>
-                )}
-                {selectableStyles[i].map((style) => (
-                  <ImageButton
-                    tooltip={style.name}
-                    dmIcon={style.icon}
-                    dmIconState={style.icon_state}
-                    key={style.name}
-                    onClick={() => {
-                      act(actions[i], { ref: style.instance });
-                    }}
-                    selected={style.name === currentStyle[i]}
-                  >
-                    {style.name}
-                  </ImageButton>
-                ))}
-              </Stack>
+              {canClear && (
+                <ImageButton
+                  tooltip="-- Not Set --"
+                  onClick={() => act(actions[i], { clear: true })}
+                  selected={currentStyle[i] === null}
+                >
+                  -- Not Set --
+                </ImageButton>
+              )}
+              {selectableStyles[i].map((style) => (
+                <ImageButton
+                  tooltip={style.name}
+                  dmIcon={style.icon}
+                  dmIconState={style.icon_state}
+                  key={style.name}
+                  onClick={() => {
+                    act(actions[i], { ref: style.instance });
+                  }}
+                  selected={style.name === currentStyle[i]}
+                >
+                  {style.name}
+                </ImageButton>
+              ))}
             </Section>
           </Stack.Item>
         </Fragment>
@@ -109,27 +107,25 @@ export const AppearanceChangerHair = (props: {
               fluid
               placeholder={'Search for ' + section.toLowerCase() + '...'}
               value={searchText}
-              onChange={(val) => setSearchText(val)}
+              onInput={(e, val) => setSearchText(val)}
             />
           </Stack.Item>
           <Stack.Item grow>
             <Section title={section} fill scrollable>
-              <Stack wrap="wrap" justify="center">
-                {selectableStyles[i].map((style) => (
-                  <ImageButton
-                    tooltip={style.name}
-                    dmIcon={style.icon}
-                    dmIconState={style.icon_state}
-                    key={style.name}
-                    onClick={() => {
-                      act(actions[i], { name: style.name });
-                    }}
-                    selected={style.name === currentStyle[i]}
-                  >
-                    {style.name}
-                  </ImageButton>
-                ))}
-              </Stack>
+              {selectableStyles[i].map((style) => (
+                <ImageButton
+                  tooltip={style.name}
+                  dmIcon={style.icon}
+                  dmIconState={style.icon_state}
+                  key={style.name}
+                  onClick={() => {
+                    act(actions[i], { name: style.name });
+                  }}
+                  selected={style.name === currentStyle[i]}
+                >
+                  {style.name}
+                </ImageButton>
+              ))}
             </Section>
           </Stack.Item>
         </Fragment>

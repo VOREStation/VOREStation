@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Section } from 'tgui-core/components';
 
-import type { Data } from './types';
+import { Data } from './types';
 import { downloadPrefs } from './VorePanelExportDownload';
 
 export const VorePanelExport = () => {

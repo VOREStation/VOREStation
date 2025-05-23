@@ -37,7 +37,7 @@ export const MaterialStack = (props) => {
                 fluid
                 placeholder="Search for recipe..."
                 value={searchText}
-                onChange={(val) => setSearchText(val)}
+                onInput={(e, val) => setSearchText(val)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -81,7 +81,7 @@ const RecipeList = (props: {
     //     </Box>
     //   );
     // }
-    const recipe = recipes[title];
+    let recipe = recipes[title];
     if (recipe.ref === undefined) {
       return (
         <Collapsible key={index} ml={1} mb={-0.7} color="label" title={title}>
@@ -109,7 +109,7 @@ const Multipliers = (props) => {
 
   const { recipe, maxMultiplier } = props;
 
-  const maxM = Math.min(
+  let maxM = Math.min(
     maxMultiplier,
     Math.floor(recipe.max_res_amount / recipe.res_amount),
   );
@@ -118,7 +118,7 @@ const Multipliers = (props) => {
 
   const finalResult: React.JSX.Element[] = [];
 
-  for (const multiplier of multipliers) {
+  for (let multiplier of multipliers) {
     if (maxM >= multiplier) {
       finalResult.push(
         <Button
@@ -172,7 +172,7 @@ const Recipe = (props: { recipe: recipe; title: string }) => {
     buttonName = res_amount + 'x ' + buttonName;
   }
 
-  const maxMultiplier = buildMultiplier(recipe, amount);
+  let maxMultiplier = buildMultiplier(recipe, amount);
 
   return (
     <Box>

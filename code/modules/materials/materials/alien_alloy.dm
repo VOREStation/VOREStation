@@ -11,7 +11,6 @@
 	hardness = 500
 	weight = 500
 	protectiveness = 80 // 80%
-	wiki_flag = WIKI_SPOILER
 
 /datum/material/alienalloy/elevatorium
 	name = "elevatorium"

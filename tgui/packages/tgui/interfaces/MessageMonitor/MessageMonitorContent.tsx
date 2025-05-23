@@ -17,7 +17,7 @@ export const MessageMonitorContent = (props) => {
 
   const [tabIndex, setTabIndex] = useState<number>(0);
 
-  const tab: React.JSX.Element[] = [];
+  let tab: React.JSX.Element[] = [];
 
   tab[0] = <MessageMonitorMain />;
   tab[1] = <MessageMonitorLogs logs={linkedServer.pda_msgs} pda />;

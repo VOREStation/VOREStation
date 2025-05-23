@@ -30,9 +30,6 @@
 	mob_class = MOB_CLASS_SLIME
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-	can_be_drop_prey = FALSE
-	can_pain_emote = FALSE
-
 /mob/living/simple_mob/blob/speech_bubble_appearance()
 	return "slime"
 

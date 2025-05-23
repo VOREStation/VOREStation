@@ -84,7 +84,6 @@
 
 // If carp is bomphed, remove it from the list.
 /datum/event/carp_migration/proc/on_carp_destruction(var/mob/M)
-	SIGNAL_HANDLER
 	spawned_carp -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

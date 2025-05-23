@@ -89,7 +89,7 @@ const RadioSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for channels..."
-        onChange={(value: string) => onSearchText(value)}
+        onInput={(e, value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

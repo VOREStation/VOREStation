@@ -55,7 +55,7 @@
 
 /obj/item/pinpointer/examine(mob/user)
 	. = ..()
-	for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
+	for(var/obj/machinery/nuclearbomb/bomb in machines)
 		if(bomb.timing)
 			. += "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
 
@@ -212,7 +212,7 @@
 			worklocation()
 
 /obj/item/pinpointer/nukeop/proc/workdisk()
-	if(GLOB.bomb_set)	//If the bomb is set, lead to the shuttle
+	if(bomb_set)	//If the bomb is set, lead to the shuttle
 		mode = 1	//Ensures worklocation() continues to work
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
 		visible_message(span_notice("Shuttle Locator active."))			//Lets the mob holding it know that the mode has changed
@@ -237,7 +237,7 @@
 			icon_state = "pinonfar"
 
 /obj/item/pinpointer/nukeop/proc/worklocation()
-	if(!GLOB.bomb_set)
+	if(!bomb_set)
 		mode = 0
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		visible_message(span_notice("Authentication Disk Locator active."))
@@ -287,7 +287,7 @@
 		return PROCESS_KILL
 
 	if(!our_shuttle)
-		for(var/obj/machinery/computer/shuttle_control/S in GLOB.machines)
+		for(var/obj/machinery/computer/shuttle_control/S in machines)
 			if(S.shuttle_tag == shuttle_comp_id) // Shuttle tags are used so that it will work if the computer path changes, as it does on the southern cross map.
 				our_shuttle = S
 				break

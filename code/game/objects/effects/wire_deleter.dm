@@ -5,7 +5,7 @@
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = 100
 
 /obj/effect/wire_deleter/Initialize(mapload)
 	. = ..()

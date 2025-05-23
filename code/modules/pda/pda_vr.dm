@@ -1,10 +1,11 @@
 /obj/item/pda
 	var/delete_id = FALSE			//Guaranteed deletion of ID upon deletion of PDA
 
-/obj/item/pda/multicaster/exploration
+/obj/item/pda/multicaster/exploration/New()
+	..()
 	owner = "Away Team"
 	name = "Away Team (Relay)"
-	cartridges_to_send_to = list(/obj/item/cartridge/explorer,/obj/item/cartridge/sar)
+	cartridges_to_send_to = exploration_cartridges
 
 /obj/item/pda/centcom
 	default_cartridge = /obj/item/cartridge/captain

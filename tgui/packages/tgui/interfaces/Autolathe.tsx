@@ -71,7 +71,7 @@ const Designs = (props) => {
   const [searchText, setSearchText] = useSharedState('search_text', '');
 
   const materials = useMemo(() => {
-    const materials = {};
+    let materials = {};
     for (const material of data.materials) {
       materials[material.name] = material.amount;
     }
@@ -130,9 +130,9 @@ const Designs = (props) => {
               <Input
                 fluid
                 placeholder="Search all designs..."
-                expensive
+                updateOnPropsChange
                 value={searchText}
-                onChange={(val) => setSearchText(val)}
+                onChange={(e, val) => setSearchText(val)}
               />
             </Stack.Item>
           </Stack>
@@ -159,7 +159,7 @@ const canBeMade = (
   available: Record<string, number>,
   multiplier: number = 1,
 ): boolean => {
-  for (const [id, amt] of Object.entries(required)) {
+  for (let [id, amt] of Object.entries(required)) {
     if ((available[id] || 0) < amt * multiplier) {
       return false;
     }

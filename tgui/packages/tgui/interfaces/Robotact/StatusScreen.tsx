@@ -208,7 +208,7 @@ const Status = (props) => {
               width="5em"
               monospace
               value={light_color}
-              onChange={(value: string) => act('set_light_col', { value })}
+              onChange={(e, value: string) => act('set_light_col', { value })}
             />
           </Box>
         </LabeledList.Item>

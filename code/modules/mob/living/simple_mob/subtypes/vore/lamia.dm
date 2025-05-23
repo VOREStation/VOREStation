@@ -341,8 +341,7 @@ GLOBAL_LIST_INIT(valid_random_lamias, list(
 ))
 
 /mob/living/simple_mob/vore/lamia/random
-
-/mob/living/simple_mob/vore/lamia/random/Initialize(mapload)
+/mob/living/simple_mob/vore/lamia/random/New()
 	var/mob/living/simple_mob/vore/lamia/new_attrs = pick(GLOB.valid_random_lamias)
 
 	name = initial(new_attrs.name)

@@ -24,23 +24,23 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/melee/energy/sword/green
+/obj/item/melee/energy/sword/green/New()
 	colorable = FALSE
 	lcolor = "#008000"
 
-/obj/item/melee/energy/sword/red
+/obj/item/melee/energy/sword/red/New()
 	colorable = FALSE
 	lcolor = "#FF0000"
 
-/obj/item/melee/energy/sword/blue
+/obj/item/melee/energy/sword/blue/New()
 	colorable = FALSE
 	lcolor = "#0000FF"
 
-/obj/item/melee/energy/sword/purple
+/obj/item/melee/energy/sword/purple/New()
 	colorable = FALSE
 	lcolor = "#800080"
 
-/obj/item/melee/energy/sword/white
+/obj/item/melee/energy/sword/white/New()
 	colorable = FALSE
 	lcolor = "#FFFFFF"
 
@@ -102,7 +102,7 @@
 			to_chat(user, span_notice("\The [src] does not seem to have power."))
 			return
 
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(span_danger("\The [user] accidentally cuts [TU.himself] with \the [src]."),\
@@ -250,8 +250,8 @@
 	use_cell = TRUE
 	hitcost = 120
 
-/obj/item/melee/energy/axe/charge/loaded/Initialize(mapload)
-	. = ..()
+/obj/item/melee/energy/axe/charge/loaded/New()
+	..()
 	bcell = new/obj/item/cell/device/weapon(src)
 
 /*
@@ -410,8 +410,8 @@
 
 	hitcost = 75
 
-/obj/item/melee/energy/sword/charge/loaded/Initialize(mapload)
-	. = ..()
+/obj/item/melee/energy/sword/charge/loaded/New()
+	..()
 	bcell = new/obj/item/cell/device/weapon(src)
 
 //Energy Blade (ninja uses this)
@@ -438,8 +438,8 @@
 	projectile_parry_chance = 60
 	lcolor = "#00FF00"
 
-/obj/item/melee/energy/blade/Initialize(mapload)
-	. = ..()
+/obj/item/melee/energy/blade/New()
+
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -449,15 +449,15 @@
 
 /obj/item/melee/energy/blade/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	..()
 
 /obj/item/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	QDEL_IN(src, 1)
+	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/dropped(mob/user)
 	..()
-	QDEL_IN(src, 1)
+	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/process()
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))
@@ -472,7 +472,7 @@
 			host.pinned -= src
 			host.embedded -= src
 			host.drop_from_inventory(src)
-		QDEL_IN(src, 1)
+		spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(60))

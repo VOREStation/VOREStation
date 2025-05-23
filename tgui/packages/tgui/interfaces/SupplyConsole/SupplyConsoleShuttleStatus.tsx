@@ -4,7 +4,6 @@ import {
   Button,
   LabeledList,
   Section,
-  Stack,
 } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
 
@@ -56,7 +55,7 @@ export const SupplyConsoleShuttleStatus = (props) => {
   }
 
   return (
-    <>
+    <Section>
       <LabeledList>
         <LabeledList.Item label="Supply Points">
           <AnimatedNumber value={supply_points} />
@@ -67,21 +66,21 @@ export const SupplyConsoleShuttleStatus = (props) => {
           <LabeledList.Item
             label="Location"
             buttons={
-              <Stack>
-                <Stack.Item>{shuttle_buttons}</Stack.Item>
-                {!!showShuttleForce && (
-                  <Stack.Item>
-                    <Button
-                      icon="exclamation-triangle"
-                      onClick={() =>
-                        act('send_shuttle', { mode: 'force_shuttle' })
-                      }
-                    >
-                      Force Launch
-                    </Button>
-                  </Stack.Item>
+              <>
+                {shuttle_buttons}
+                {showShuttleForce ? (
+                  <Button
+                    icon="exclamation-triangle"
+                    onClick={() =>
+                      act('send_shuttle', { mode: 'force_shuttle' })
+                    }
+                  >
+                    Force Launch
+                  </Button>
+                ) : (
+                  ''
                 )}
-              </Stack>
+              </>
             }
           >
             {shuttle.location}
@@ -96,6 +95,6 @@ export const SupplyConsoleShuttleStatus = (props) => {
           )}
         </LabeledList>
       </Section>
-    </>
+    </Section>
   );
 };

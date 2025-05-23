@@ -23,7 +23,7 @@
 	icon_state = "stairs"
 
 /obj/effect/floor_decal/atoll/stairs/Initialize(mapload)
-	dir = pick(GLOB.cardinal)
+	dir = pick(cardinal)
 	. = ..()
 
 /obj/effect/floor_decal/atoll/moss
@@ -31,7 +31,7 @@
 	icon_state = "moss"
 
 /obj/effect/floor_decal/atoll/moss/random/Initialize(mapload)
-	dir = pick(GLOB.alldirs)
+	dir = pick(alldirs)
 	. = ..()
 
 /obj/effect/floor_decal/atoll/power

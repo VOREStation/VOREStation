@@ -363,12 +363,6 @@
 	ckeywhitelist = list("dickfreedomjohnson")
 	character_name = list("Elliot Richards")
 
-/datum/gear/fluff/acorn_branch
-	path = /obj/item/toy/acorn_branch
-	display_name = "Oak Staff"
-	ckeywhitelist = list("digitalsquirrel95")
-	character_name = list("Tilly Reed")
-
 /datum/gear/fluff/donald_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Donald's Conduct Medal"
@@ -1183,12 +1177,6 @@
 	display_name = "Tasy's Clown PDA"
 	ckeywhitelist = list("silvertalismen")
 	character_name = list("Tasy Ruffles")
-
-/datum/gear/fluff/kintacts_aquamarine
-	path = /obj/item/clothing/glasses/fluff/kintacts_aquamarine
-	display_name = "Aquamarine KINtacts"
-	ckeywhitelist = list("sixberry")
-	character_name = list("Thistle")
 
 /datum/gear/fluff/fortune_backpack
 	path = /obj/item/storage/backpack/satchel/fluff/swat43bag

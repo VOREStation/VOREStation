@@ -6,7 +6,7 @@
 
 import { useBackend } from './backend';
 import { useDebug } from './debug';
-import { LoadingScreen } from './interfaces/common/LoadingScreen';
+import { LoadingScreen } from './interfaces/common/LoadingToolbox';
 import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
@@ -32,16 +32,16 @@ export const routingError =
   };
 
 // Displays an empty Window with scrollable content
-function SuspendedWindow() {
+const SuspendedWindow = () => {
   return (
     <Window>
       <Window.Content scrollable />
     </Window>
   );
-}
+};
 
 // Displays a loading screen with a spinning icon
-function RefreshingWindow() {
+const RefreshingWindow = () => {
   return (
     <Window title="Loading">
       <Window.Content>
@@ -49,10 +49,10 @@ function RefreshingWindow() {
       </Window.Content>
     </Window>
   );
-}
+};
 
 // Get the component for the current route
-export function getRoutedComponent() {
+export const getRoutedComponent = () => {
   const { suspended, config } = useBackend();
   const { kitchenSink = false } = useDebug();
 
@@ -62,7 +62,6 @@ export function getRoutedComponent() {
   if (config?.refreshing) {
     return RefreshingWindow;
   }
-
   if (process.env.NODE_ENV !== 'production') {
     // Show a kitchen sink
     if (kitchenSink) {
@@ -70,14 +69,13 @@ export function getRoutedComponent() {
     }
   }
 
-  const name = config?.interface?.name;
+  const name = config?.interface;
   const interfacePathBuilders = [
     (name: string) => `./${name}.tsx`,
     (name: string) => `./${name}.jsx`,
     (name: string) => `./${name}/index.tsx`,
     (name: string) => `./${name}/index.jsx`,
   ];
-
   let esModule;
   while (!esModule && interfacePathBuilders.length > 0) {
     const interfacePathBuilder = interfacePathBuilders.shift()!;
@@ -90,15 +88,12 @@ export function getRoutedComponent() {
       }
     }
   }
-
   if (!esModule) {
     return routingError('notFound', name);
   }
-
   const Component = esModule[name];
   if (!Component) {
     return routingError('missingExport', name);
   }
-
   return Component;
-}
+};

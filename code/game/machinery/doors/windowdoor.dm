@@ -85,7 +85,7 @@
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
@@ -112,11 +112,8 @@
 		operating = 1
 	flick(text("[src.base_state]opening"), src)
 	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
-	addtimer(CALLBACK(src, PROC_REF(finish_open)), 1 SECONDS, TIMER_DELETE_ME)
+	sleep(10)
 
-/obj/machinery/door/window/proc/finish_open()
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
 	explosion_resistance = 0
 	density = FALSE
 	update_icon()
@@ -137,11 +134,8 @@
 	update_icon()
 	explosion_resistance = initial(explosion_resistance)
 	update_nearby_tiles()
-	addtimer(CALLBACK(src, PROC_REF(finish_close)), 1 SECONDS, TIMER_DELETE_ME)
 
-/obj/machinery/door/window/proc/finish_close()
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	sleep(10)
 	operating = FALSE
 	return TRUE
 

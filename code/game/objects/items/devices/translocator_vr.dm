@@ -116,7 +116,7 @@
 
 /obj/item/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
 	if(loc_network)
-		for(var/obj/item/perfect_tele_beacon/stationary/nb in GLOB.premade_tele_beacons)
+		for(var/obj/item/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
 			if(nb.tele_network == loc_network)
 				beacons[nb.tele_name] = nb
 		loc_network = null //Consumed
@@ -375,7 +375,10 @@ This device records all warnings given and teleport events for admin review in c
 	var/creator
 	var/warned_users = list()
 	var/tele_network = null
-	flags = NOBLUDGEON
+
+/obj/item/perfect_tele_beacon/New()
+	..()
+	flags |= NOBLUDGEON
 
 /obj/item/perfect_tele_beacon/Destroy()
 	tele_name = null

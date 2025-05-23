@@ -147,7 +147,6 @@ h1.alert, h2.alert		{color: #000000;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
 .marish 				{color: #9e31a4;}
 .shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
-.rainbow-text			{color: #ff00ff;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 
@@ -181,8 +180,5 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 
 .pnarrate				{color: #009AB2;}
 
-.spoiler				{background-color: gray;color: transparent;user-select: none;}
-
-.spoiler:hover			{background-color: inherit;color: inherit;}
 
 </style>"}

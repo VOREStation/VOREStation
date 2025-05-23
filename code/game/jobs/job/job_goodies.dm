@@ -295,19 +295,7 @@
 	)
 /datum/job/entrepreneur // Same for these guys! What could they get?
 	mail_goodies = list(
-		/obj/item/entrepreneur/crystal_ball = 40,
-		/obj/item/entrepreneur/horoscope = 40,
-		/obj/random/plushie = 40,
-		/obj/item/entrepreneur/dumbbell = 40,
-		/obj/item/entrepreneur/emf = 40,
-		/obj/item/entrepreneur/spirit_board = 40,
-		/obj/item/reagent_containers/glass/bottle/essential_oil = 40,
-		/obj/random/nukies_can_legal = 100,
-		/obj/random/mega_nukies = 20,
-		/obj/item/bikehorn/rubberducky = 50,
-		/obj/random/cash = 100,
-		/obj/item/pen/fountain7 = 50,
-		/obj/item/megaphone = 10
+		/obj/item/reagent_containers/food/drinks/coffee = 1000, // For now, they'll get extra on coffee.
 	)
 	mail_color = COMMS_COLOR_SERVICE
 
@@ -371,11 +359,12 @@
 		/obj/item/stack/material/steel{amount = 10} = 235,
 		/obj/item/stack/material/lead{amount = 10} = 235,
 		/obj/item/stack/material/glass/reinforced{amount = 10} = 235,
-		/obj/item/rcd_ammo = 165,
+		/obj/item/rcd_ammo = 155,
 		/obj/item/stack/material/plasteel{amount = 10} = 100,
-		/obj/item/tool/transforming/jawsoflife = 10,
-		/obj/item/tool/transforming/powerdrill = 10,
+		/obj/item/tool/screwdriver/power = 10,
+		/obj/item/tool/wirecutters/power = 10,
 		/obj/item/weldingtool/experimental = 10,
+		/obj/item/tool/wrench/power = 10,
 	)
 	mail_color = COMMS_COLOR_ENGINEER
 
@@ -383,11 +372,12 @@
 	mail_goodies = list(
 		/obj/item/storage/box/lights/mixed = 250,
 		/obj/item/stack/cable_coil = 250,
-		/obj/item/clothing/gloves/yellow = 210,
+		/obj/item/clothing/gloves/yellow = 200,
 		/obj/item/stack/cable_coil/heavyduty = 210,
-		/obj/item/tool/transforming/jawsoflife = 10,
-		/obj/item/tool/transforming/powerdrill = 10,
+		/obj/item/tool/screwdriver/power = 10,
+		/obj/item/tool/wirecutters/power = 10,
 		/obj/item/weldingtool/experimental = 10,
+		/obj/item/tool/wrench/power = 10,
 	)
 
 /datum/job/atmos
@@ -396,8 +386,8 @@
 		/obj/item/analyzer = 300,
 		/obj/item/holosign_creator/combifan = 230,
 		/obj/item/pipe_dispenser = 130,
-		/obj/item/tool/transforming/jawsoflife = 10,
-		/obj/item/tool/transforming/powerdrill = 10,
+		/obj/item/tool/screwdriver/power = 10,
+		/obj/item/tool/wirecutters/power = 10,
 		/obj/item/weldingtool/experimental = 10,
 	)
 	mail_color = COMMS_COLOR_ENGINEER
@@ -511,8 +501,8 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 150,
 		/obj/item/clothing/mask/surgical = 150,
 		/obj/item/clothing/gloves/sterile/latex = 150,
-		/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus/minor = 150,
-		/obj/item/reagent_containers/glass/beaker/vial/culture/random_virus = 150,
+		/obj/item/reagent_containers/glass/bottle/culture/cold = 150,
+		/obj/item/reagent_containers/glass/bottle/culture/flu = 150,
 		/obj/item/reagent_containers/blood/OMinus = 100,
 	)
 
@@ -630,8 +620,8 @@
 		/obj/item/kit/paint/ripley/flames_red = 30,
 		/obj/item/kit/paint/gygax/recitence = 25,
 		/obj/item/kit/paint/ripley/flames_blue = 25,
-		/obj/item/tool/transforming/jawsoflife = 10,
-		/obj/item/tool/transforming/powerdrill = 10,
+		/obj/item/tool/screwdriver/power = 10,
+		/obj/item/tool/wirecutters/power = 10,
 		/obj/item/weldingtool/experimental = 10,
 	)
 	mail_color = COMMS_COLOR_SCIENCE

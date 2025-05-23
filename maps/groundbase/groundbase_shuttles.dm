@@ -23,9 +23,9 @@
 	fuel_consumption = 5
 	ceiling_type = /turf/simulated/floor/reinforced/airless
 
-/obj/effect/shuttle_landmark/shuttle_initializer/axolotl/Initialize(mapload)
+/obj/effect/shuttle_landmark/shuttle_initializer/axolotl/New(loc, ...)
 	shuttle_type = /datum/shuttle/autodock/overmap/axolotl
-	. = ..()
+	..()
 
 // Escape shuttle
 /datum/shuttle/autodock/ferry/emergency/escape/New()

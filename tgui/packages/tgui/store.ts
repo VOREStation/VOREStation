@@ -8,9 +8,9 @@ import {
   applyMiddleware,
   combineReducers,
   createStore,
-  type Middleware,
-  type Reducer,
-  type Store,
+  Middleware,
+  Reducer,
+  Store,
 } from 'common/redux';
 import { flow } from 'tgui-core/fp';
 

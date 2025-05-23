@@ -7,8 +7,8 @@
 
 /datum/event2/meta/rogue_drones/get_weight()
 	. = 10 // Start with a base weight, since this event does provide some value even if no sec is around.
-	. += GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY) * 20
-	. += GLOB.metric.count_all_space_mobs() * 40
+	. += metric.count_people_in_department(DEPARTMENT_SECURITY) * 20
+	. += metric.count_all_space_mobs() * 40
 
 
 /datum/event2/event/mob_spawning/rogue_drones

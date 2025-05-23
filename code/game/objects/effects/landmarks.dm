@@ -5,59 +5,59 @@
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = 100
 	var/delete_me = FALSE
 
 /obj/effect/landmark/Initialize(mapload)
 	. = ..()
 	tag = text("landmark*[]", name)
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
-			GLOB.monkeystart += loc
+			monkeystart += loc
 			delete_me = TRUE
 		if("start")
-			GLOB.newplayer_start += loc
+			newplayer_start += loc
 			delete_me = TRUE
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
-			GLOB.latejoin += src
+			latejoin += src
 			simulated = TRUE
-			//delete_me = TRUE // see above, moving, always use this list with get_turf
+		//	delete_me = TRUE
 		if("JoinLateGateway")
-			GLOB.latejoin_gateway += loc
-			GLOB.latejoin += loc				//VOREStation Addition
-			delete_me = TRUE
+			latejoin_gateway += loc
+			latejoin += src				//VOREStation Addition
+			// delete_me = TRUE
 		if("JoinLateElevator")
-			GLOB.latejoin_elevator += loc
+			latejoin_elevator += loc
 			delete_me = TRUE
 		if("JoinLateCryo")
-			GLOB.latejoin_cryo += loc
+			latejoin_cryo += loc
 			delete_me = TRUE
 		if("JoinLateCyborg")
-			GLOB.latejoin_cyborg += loc
+			latejoin_cyborg += loc
 			delete_me = TRUE
 		if("prisonwarp")
-			GLOB.prisonwarp += loc
+			prisonwarp += loc
 			delete_me = TRUE
 		if("Holding Facility")
-			GLOB.holdingfacility += loc
+			holdingfacility += loc
 		if("tdome1")
-			GLOB.tdome1 += loc
+			tdome1 += loc
 		if("tdome2")
-			GLOB.tdome2 += loc
+			tdome2 += loc
 		if("tdomeadmin")
-			GLOB.tdomeadmin += loc
+			tdomeadmin += loc
 		if("tdomeobserve")
-			GLOB.tdomeobserve += loc
+			tdomeobserve += loc
 		if("prisonsecuritywarp")
-			GLOB.prisonsecuritywarp += loc
+			prisonsecuritywarp += loc
 			delete_me = TRUE
 		if("blobstart")
-			GLOB.blobstart += loc
+			blobstart += loc
 			delete_me = TRUE
 		if("xeno_spawn")
-			GLOB.xeno_spawn += loc
+			xeno_spawn += loc
 			delete_me = TRUE
 		if("endgame_exit")
 			endgame_safespawns += loc
@@ -67,17 +67,17 @@
 			delete_me = TRUE
 		//VOREStation Add Start
 		if("vinestart")
-			GLOB.vinestart += loc
+			vinestart += loc
 			delete_me = TRUE
 		//VORE Station Add End
 
+	landmarks_list += src
+
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
-	else
-		landmarks_list += src
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
-	if(force)
+	if(delete_me || force)
 		landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE
@@ -91,6 +91,8 @@
 /obj/effect/landmark/start/Initialize(mapload)
 	. = ..()
 	tag = "start*[name]"
+
+	return 1
 
 /obj/effect/landmark/forbidden_level
 	delete_me = TRUE

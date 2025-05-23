@@ -1,5 +1,5 @@
 /mob/living/silicon/robot/Life()
-	set invisibility = INVISIBILITY_NONE
+	set invisibility = 0
 
 	if (transforming)
 		return
@@ -80,7 +80,7 @@
 	//if(resting) // VOREStation edit. Our borgos would rather not.
 	//	Weaken(5)
 
-	if(health < (-getMaxHealth()) && stat != 2) //die only once
+	if(health < CONFIG_GET(number/health_threshold_dead) && stat != 2) //die only once
 		death()
 
 	if (stat != 2) //Alive.
@@ -204,7 +204,7 @@
 		sight &= ~SEE_OBJS
 		see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so, tajaran have it at 8
 		see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
-											// has a "invisible" value of 15
+							 // has a "invisible" value of 15
 
 	if(plane_holder)
 		plane_holder.set_vis(VIS_FULLBRIGHT,fullbright)
@@ -242,7 +242,7 @@
 					healths.icon_state = "health3"
 				else if(health >= 0)
 					healths.icon_state = "health4"
-				else if(health >= (-getMaxHealth()))
+				else if(health >= CONFIG_GET(number/health_threshold_dead))
 					healths.icon_state = "health5"
 				else
 					healths.icon_state = "health6"

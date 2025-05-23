@@ -58,7 +58,7 @@
 	var/allergen_damage_severity = 2.5							// How bad are reactions to the allergen? Touch with extreme caution.
 	var/allergen_disable_severity = 10							// Whilst this determines how long nonlethal effects last and how common emotes are.
 
-	var/min_age = 18
+	var/min_age = 17
 	var/max_age = 70
 
 	var/icodigi = 'icons/mob/human_races/r_digi.dmi'
@@ -76,28 +76,17 @@
 
 	// The languages the species can't speak without an assisted organ.
 	// This list is a guess at things that no one other than the parent species should be able to speak
-	var/list/assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN)
+	var/list/assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN) //VOREStation Edit
 
 	//Soundy emotey things.
 	var/scream_verb_1p = "scream"
 	var/scream_verb_3p = "screams"
-	var/pain_verb_1p = list("shout", "growl", "grunt", "gasp")
-	var/pain_verb_3p = list("shouts", "growls", "grunts", "gasps")
-	/* Our base species sounds.
-	 * Note that species_sounds is meant to be used in the place of gendered sound.
-	 * If your species has gendered sounds, set 'gender_specific_species_sounds' to TRUE, and define your gendered sounds below.
-	*/
-	var/species_sounds = "None"
-	var/gender_specific_species_sounds = FALSE // This variable controls if our audible emotes pick based off of gender. Only humans have these so far.
-	var/species_sounds_male = "None" // Safely ignored if the above is set FALSE
-	var/species_sounds_female = "None" // Safely ignored if the above is set FALSE
-	var/cough_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
-	var/sneeze_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
-	var/scream_volume = 60 // Self-explanatory, define this separately on your species if the sound files are louder.
-	var/pain_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
-	var/gasp_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
-	var/death_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
-	// var/species_sounds_herm // If you want a custom sound played for other genders, just add them like so
+	var/male_scream_sound		//= 'sound/goonstation/voice/male_scream.ogg' Removed due to licensing, replace!
+	var/female_scream_sound		//= 'sound/goonstation/voice/female_scream.ogg' Removed due to licensing, replace!
+	var/male_cough_sounds = list('sound/effects/mob_effects/m_cougha.ogg','sound/effects/mob_effects/m_coughb.ogg', 'sound/effects/mob_effects/m_coughc.ogg')
+	var/female_cough_sounds = list('sound/effects/mob_effects/f_cougha.ogg','sound/effects/mob_effects/f_coughb.ogg')
+	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
+	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
 
 	var/footstep = FOOTSTEP_MOB_HUMAN
 	var/list/special_step_sounds = null
@@ -121,15 +110,12 @@
 
 	var/chem_strength_heal =    1						// Multiplier to most beneficial chem strength
 	var/chem_strength_pain =    1						// Multiplier to painkiller strength (could be used in a negative trait to simulate long-term addiction reducing effects, etc.)
-	var/chem_strength_tox =	    1						// Multiplier to the strength of toxic or deabilitating chemicals (inc. chloral/sopo/mindbreaker/ambrosia/etc. thresholds)
+	var/chem_strength_tox =	    1						// Multiplier to toxic chem strength (inc. chloral/sopo/mindbreaker/etc. thresholds)
 	var/chem_strength_alcohol = 1						// Multiplier to alcohol effect thresholds; higher means more is needed to reach a given effect tier
 
 	var/chemOD_threshold =		1						// Multiplier to overdose threshold; lower = easier overdosing
 	var/chemOD_mod =		1						// Damage modifier for overdose; higher = more damage from ODs
 	var/pain_mod =			1						// Multiplier to pain effects; 0.5 = half, 0 = no effect (equal to NO_PAIN, really), 2 = double, etc.
-	var/stun_mod =			1						// Multiplier to stun effects; 0.5 = half, - = no effect (immune), 2 = double, etc.
-	var/weaken_mod =		1						// Multiplier to weakness effects; 0.5 = half, - = no effect (immune), 2 = double, etc.
-													// Stuns + Weakens will be rounded to the nearest whole #. If you set 0.5 mod, on a base stun of 3, the return will be 1.5, which rounds to 1. Be careful.
 	var/spice_mod =			1						// Multiplier to spice/capsaicin/frostoil effects; 0.5 = half, 0 = no effect (immunity), 2 = double, etc.
 	var/trauma_mod = 		1						// Affects traumatic shock (how fast pain crit happens). 0 = no effect (immunity to pain crit), 2 = double etc.Overriden by "can_feel_pain" var
 	// set below is EMP interactivity for nonsynth carbons
@@ -202,6 +188,7 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
 	var/safe_pressure = ONE_ATMOSPHERE
+	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
 
@@ -222,7 +209,6 @@
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
 	var/slowdown = 0										// Passive movement speed malus (or boost, if negative)
-	var/unusual_running = 0									// Trait var to change movement speed in human_movement.dm when nothing in hands
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0								// Whether the eyes can be shown above other icons
@@ -239,10 +225,14 @@
 	var/item_slowdown_mod = 1								// How affected by item slowdown the species is.
 	var/primitive_form										// Lesser form, if any (ie. monkey for humans)
 	var/greater_form										// Greater form, if any, ie. human for monkeys.
-	var/holder_type = /obj/item/holder/micro 				//This allows you to pick up crew
+	var/holder_type
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
+	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
+	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
+	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
+	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
@@ -259,8 +249,6 @@
 	var/mudking = FALSE										// If we dirty up tiles quicker
 
 	var/vore_belly_default_variant = "H"
-
-	var/list/default_emotes = list()
 
 	// Determines the organs that the species spawns with and
 	var/list/has_organ = list(								// which required-organ checks are conducted.
@@ -302,7 +290,10 @@
 
 	var/pass_flags = 0
 
-	var/list/descriptors = list()
+	var/list/descriptors = list(
+		/datum/mob_descriptor/height,
+		/datum/mob_descriptor/build
+		)
 
 	//This is used in character setup preview generation (prefences_setup.dm) and human mob
 	//rendering (update_icons.dm)
@@ -323,56 +314,6 @@
 	var/gun_accuracy_dispersion_mod = 0	// More is worse
 
 	var/sort_hint = SPECIES_SORT_NORMAL
-	//This is so that if a race is using the chimera revive they can't use it more than once.
-	//Shouldn't really be seen in play too often, but it's case an admin event happens and they give a non chimera the chimera revive. Only one person can use the chimera revive at a time per race.
-	//var/reviving = 0 //commented out 'cause moved to mob
-
-	var/organic_food_coeff = 1
-	var/synthetic_food_coeff = 0
-	var/robo_ethanol_proc = 0 //can we get fuel from booze, as a synth?
-	var/robo_ethanol_drunk = 0 //can we get *drunk* from booze, as a synth?
-	var/digestion_efficiency = 1 //VORE specific digestion var
-	//var/vore_numbing = 0
-	var/metabolism = 0.0015
-	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.
-	var/trashcan = FALSE //It's always sunny in the wrestling ring.
-	var/eat_minerals = FALSE //HEAVY METAL DIET
-	var/base_species = null // Unused outside of a few species
-	var/selects_bodytype = SELECTS_BODYTYPE_FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
-
-	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
-	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
-
-	var/list/traits = list()
-	//Vars that need to be copied when producing a copy of species.
-	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
-	var/trait_points = 0
-
-	var/ideal_air_type = null	// Set to something else if you breathe something else from default composition. Used for inbelly air.
-
-	var/micro_size_mod = 0		// How different is our size for interactions that involve us being small?
-	var/macro_size_mod = 0		// How different is our size for interactions that involve us being big?
-	var/digestion_nutrition_modifier = 1
-	var/center_offset = 0.5
-	var/can_climb = FALSE
-	var/climbing_delay = 1.5	// We climb with a quarter delay
-
-	var/list/food_preference = list() //RS edit
-	var/food_preference_bonus = 0
-
-	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
-
-	// For Lleill and Hanner
-	var/lleill_energy = 200
-	var/lleill_energy_max = 200
-
-	var/bite_mod = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_victims = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_self = 1 //NYI - Used Downstream
-	var/grab_power_victims = 0 //NYI - Used Downstream
-	var/grab_power_self = 0 //NYI - Used Downstream
-	var/waking_speed = 1 //NYI - Used Downstream
-	var/lightweight_light = 0 //NYI - Used Downstream
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
@@ -405,6 +346,7 @@
 	if(gluttonous)
 		if(!inherent_verbs)
 			inherent_verbs = list()
+		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
 	update_sort_hint()
 
@@ -531,7 +473,8 @@
 			span_notice("[target] moves to avoid being touched by you!"), )
 		return
 
-	if(H.zone_sel.selecting == BP_HEAD)
+	//VOREStation Edit Start - Headpats and Handshakes.
+	if(H.zone_sel.selecting == "head")
 		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
@@ -544,7 +487,7 @@
 			H.visible_message( \
 				span_notice("[H] pats [target] on the head."), \
 				span_notice("You pat [target] on the head."), )
-	else if(H.zone_sel.selecting == BP_R_HAND || H.zone_sel.selecting == BP_L_HAND)
+	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
 		H.visible_message( \
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
@@ -561,8 +504,7 @@
 			H.visible_message( \
 				span_notice("[H] boops [target]'s nose."), \
 				span_notice("You boop [target] on the nose."), )
-	/*else if(H.zone_sel.selecting == BP_GROIN) //Disabled on Virgo. Used downstream.
-		H.vore_bellyrub(target)*/ //Disabled on Virgo. Used downstream.
+	//VOREStation Edit End
 	else
 		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
 						span_notice("You hug [target] to make [t_him] feel better!"))
@@ -589,28 +531,9 @@
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Used for traits and species that have special environmental effects.
+// Only used for alien plasma weeds atm, but could be used for Dionaea later.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
-	for(var/datum/trait/env_trait in env_traits)
-		env_trait.handle_environment_special(H)
 	return
-
-/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
-	SHOULD_NOT_OVERRIDE(TRUE)
-
-	//Xenochimera Species Component
-	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
-	if(xc)
-		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
-			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
-
-	//Shadekin Species Component.
-	/* //For when shadekin actually have their component control everything.
-	var/datum/component/shadekin/sk = H.get_xenochimera_component()
-	if(sk)
-		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
-			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
-	*/
 
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
@@ -743,89 +666,3 @@
 		if(!QDELETED(baseHead) && baseHead)
 			qdel(baseHead)
 	return
-
-/datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.
-	unarmed_attacks = list()
-	unarmed_types += /datum/unarmed_attack/bite/sharp/numbing
-	for(var/u_type in unarmed_types)
-		unarmed_attacks += new u_type()
-
-/datum/species/create_organs(var/mob/living/carbon/human/H)
-	if(H.nif)
-		/*var/type = H.nif.type
-		var/durability = H.nif.durability
-		var/list/nifsofts = H.nif.nifsofts
-		var/list/nif_savedata = H.nif.save_data.Copy()*/
-		..()
-		H.nif = null //A previous call during the rejuvenation path deleted it, so we no longer should have it here
-		/*var/obj/item/nif/nif = new type(H,durability,nif_savedata)
-		nif.nifsofts = nifsofts*/
-	else
-		..()
-
-/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
-	if(species_component)
-		H.LoadComponent(species_component)
-
-/datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
-	ASSERT(src)
-	ASSERT(istype(H))
-	var/datum/species/new_copy = new src.type()
-	new_copy.race_key = race_key
-	if (selects_bodytype && custom_base)
-		new_copy.base_species = custom_base
-		if(selects_bodytype == SELECTS_BODYTYPE_CUSTOM) //If race selects a bodytype, retrieve the custom_base species and copy needed variables.
-			var/datum/species/S = GLOB.all_species[custom_base]
-			S.copy_variables(new_copy, copy_vars)
-
-		if(selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
-			H.shapeshifter_change_shape(custom_base, FALSE)
-
-	for(var/organ in has_limbs) //Copy important organ data generated by species.
-		var/list/organ_data = has_limbs[organ]
-		new_copy.has_limbs[organ] = organ_data.Copy()
-
-	new_copy.traits = traits
-	//If you had traits, apply them
-	if(new_copy.traits)
-		for(var/trait in new_copy.traits)
-			var/datum/trait/T = GLOB.all_traits[trait]
-			T.apply(new_copy, H, new_copy.traits[trait])
-
-	//Set up a mob
-	H.species = new_copy
-	H.icon_state = new_copy.get_bodytype()
-
-	if(new_copy.holder_type)
-		H.holder_type = new_copy.holder_type
-
-	if(H.dna && reset_dna)
-		H.dna.ready_dna(H)
-	handle_base_eyes(H, custom_base)
-
-	if(H.species.has_vibration_sense)
-		H.motiontracker_subscribe()
-
-	return new_copy
-
-//We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515
-/datum/species/proc/copy_variables(var/datum/species/S, var/list/whitelist)
-	//List of variables to ignore, trying to copy type will runtime.
-	//var/list/blacklist = list("type", "loc", "client", "ckey")
-	//Makes thorough copy of species datum.
-	for(var/i in whitelist)
-		if(!(i in S.vars)) //Don't copy incompatible vars.
-			continue
-		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
-			S.vars[i] = vars[i]
-
-/datum/species/get_bodytype()
-	return base_species
-
-/datum/species/proc/update_vore_belly_def_variant()
-	// Determine the actual vore_belly_default_variant, if the base species in the VORE tab is set
-	switch (base_species)
-		if("Teshari")
-			vore_belly_default_variant = "T"
-		if("Unathi")
-			vore_belly_default_variant = "L"

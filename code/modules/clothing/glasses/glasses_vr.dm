@@ -119,7 +119,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "tajblind"
 	item_state = "tajblind"
-	prescription = TRUE
+	prescription = 1
 	body_parts_covered = EYES
 	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
@@ -140,7 +140,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "tajblind_sec"
 	item_state = "tajblind_sec"
-	prescription = TRUE
+	prescription = 1
 	body_parts_covered = EYES
 	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 

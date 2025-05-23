@@ -6,7 +6,7 @@
 	transforming = 1
 	canmove = 0
 	icon = null
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 	update_canmove()
 	dead_mob_list -= src
 
@@ -32,7 +32,7 @@
 	transforming = 1
 	canmove = 0
 	icon = null
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 	animation = new(loc)
 	animation.icon_state = "blank"
@@ -53,7 +53,7 @@
 	transforming = 1
 	canmove = 0
 	icon = null
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 	animation = new(loc)
 	animation.icon_state = "blank"

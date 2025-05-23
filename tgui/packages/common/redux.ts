@@ -56,7 +56,7 @@ export const createStore = <State, ActionType extends Action = AnyAction>(
   }
 
   let currentState: State;
-  const listeners: Array<() => void> = [];
+  let listeners: Array<() => void> = [];
 
   const getState = (): State => currentState;
 

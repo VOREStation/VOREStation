@@ -67,7 +67,7 @@ export const Pda = (props) => {
     );
   }
 
-  const App = getPdaApp(app.template);
+  let App = getPdaApp(app.template);
 
   const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
@@ -76,7 +76,7 @@ export const Pda = (props) => {
   }
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>
+    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : undefined}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}

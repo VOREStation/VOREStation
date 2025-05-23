@@ -8,7 +8,6 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-  Stack,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
@@ -23,33 +22,29 @@ export const ICAssembly = (props) => {
   return (
     <Window
       buttons={
-        <Stack>
-          <Stack.Item>
-            <Button
-              color="transparent"
-              width={2.5}
-              height={2}
-              textAlign="center"
-              icon="pencil"
-              tooltip="Edit Name"
-              tooltipPosition="bottom-start"
-              onClick={() => act('rename')}
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <Button
-              color="transparent"
-              width={2.5}
-              height={2}
-              textAlign="center"
-              icon="info"
-              tooltip="Circuit Info"
-              tooltipPosition="bottom-start"
-              selected={showInfo}
-              onClick={() => setShowInfo(!showInfo)}
-            />
-          </Stack.Item>
-        </Stack>
+        <>
+          <Button
+            color="transparent"
+            width={2.5}
+            height={2}
+            textAlign="center"
+            icon="pencil"
+            tooltip="Edit Name"
+            tooltipPosition="bottom-start"
+            onClick={() => act('rename')}
+          />
+          <Button
+            color="transparent"
+            width={2.5}
+            height={2}
+            textAlign="center"
+            icon="info"
+            tooltip="Circuit Info"
+            tooltipPosition="bottom-start"
+            selected={showInfo}
+            onClick={() => setShowInfo(!showInfo)}
+          />
+        </>
       }
       width={1280}
       height={800}

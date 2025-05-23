@@ -1,4 +1,4 @@
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 
 const Spy: Antagonist = {
   key: 'spy',

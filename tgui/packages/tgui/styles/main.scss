@@ -4,12 +4,10 @@
  */
 
 @use 'sass:meta';
-@use 'base';
-@use '~tgui-core/styles';
+@use './base.scss';
 
 // Core styles
 @include meta.load-css('./reset.scss');
-@include meta.load-css('./css-variables.scss');
 
 // Atomic classes
 @include meta.load-css('./atomic/candystripe.scss');
@@ -22,7 +20,33 @@
 @include meta.load-css('./atomic/text.scss');
 
 // Components
+@include meta.load-css('~tgui-core/styles/components/BlockQuote.scss');
+@include meta.load-css('~tgui-core/styles/components/Button.scss');
+@include meta.load-css('~tgui-core/styles/components/ColorBox.scss');
+@include meta.load-css('~tgui-core/styles/components/Dialog.scss');
+@include meta.load-css('~tgui-core/styles/components/Dimmer.scss');
+@include meta.load-css('~tgui-core/styles/components/Divider.scss');
+@include meta.load-css('~tgui-core/styles/components/Dropdown.scss');
+@include meta.load-css('~tgui-core/styles/components/Flex.scss');
+@include meta.load-css('~tgui-core/styles/components/Icon.scss');
+@include meta.load-css('~tgui-core/styles/components/ImageButton.scss');
+@include meta.load-css('~tgui-core/styles/components/Input.scss');
+@include meta.load-css('~tgui-core/styles/components/Knob.scss');
+@include meta.load-css('~tgui-core/styles/components/LabeledList.scss');
+@include meta.load-css('~tgui-core/styles/components/MenuBar.scss');
+@include meta.load-css('~tgui-core/styles/components/Modal.scss');
 @include meta.load-css('./components/NanoMap.scss');
+@include meta.load-css('~tgui-core/styles/components/NoticeBox.scss');
+@include meta.load-css('~tgui-core/styles/components/NumberInput.scss');
+@include meta.load-css('~tgui-core/styles/components/ProgressBar.scss');
+@include meta.load-css('~tgui-core/styles/components/RoundGauge.scss');
+@include meta.load-css('~tgui-core/styles/components/Section.scss');
+@include meta.load-css('~tgui-core/styles/components/Slider.scss');
+@include meta.load-css('~tgui-core/styles/components/Stack.scss');
+@include meta.load-css('~tgui-core/styles/components/Table.scss');
+@include meta.load-css('~tgui-core/styles/components/Tabs.scss');
+@include meta.load-css('~tgui-core/styles/components/TextArea.scss');
+@include meta.load-css('~tgui-core/styles/components/Tooltip.scss');
 
 // Interfaces
 @include meta.load-css('./interfaces/AutomatedTellerMachine.scss');
@@ -36,14 +60,11 @@
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/ExperimentConfigure.scss');
 @include meta.load-css('./interfaces/FishingMinigame.scss');
-@include meta.load-css('./interfaces/LobbyMenu.scss');
-@include meta.load-css('./interfaces/Microwave.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/Paper.scss');
 @include meta.load-css('./interfaces/Pda.scss');
 @include meta.load-css('./interfaces/ResearchConsole.scss');
 @include meta.load-css('./interfaces/ResleevingConsole.scss');
-@include meta.load-css('./interfaces/RIGSuit.scss');
 @include meta.load-css('./interfaces/Roulette.scss');
 @include meta.load-css('./interfaces/Safe.scss');
 @include meta.load-css('./interfaces/TachyonArray.scss');
@@ -51,7 +72,6 @@
 @include meta.load-css('./interfaces/IDCard.scss');
 @include meta.load-css('./interfaces/TinderMessaging.scss');
 @include meta.load-css('./interfaces/Turbolift.scss');
-@include meta.load-css('./interfaces/Wires.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
@@ -68,9 +88,4 @@
   background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-// A default, in case someone uses the vp() function outside of a <Window>
-:root {
-  --scaling-amount: 1;
 }

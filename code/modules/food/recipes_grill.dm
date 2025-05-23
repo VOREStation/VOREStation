@@ -5,7 +5,6 @@
 		/obj/item/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/reagent_containers/food/snacks/human/burger
-	wiki_flag = WIKI_SPOILER // Alt recipie doesn't need to be shown(breaks tgui)
 
 /datum/recipe/plainburger
 	appliance = GRILL
@@ -22,7 +21,6 @@
 		/obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	)
 	result = /obj/item/reagent_containers/food/snacks/monkeyburger
-	wiki_flag = WIKI_SPOILER // Alt recipie doesn't need to be shown(breaks tgui)
 
 /datum/recipe/brainburger
 	appliance = GRILL
@@ -103,7 +101,6 @@
 		/obj/item/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/reagent_containers/food/snacks/bunbun
-	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/hotdog
 	appliance = GRILL
@@ -121,7 +118,6 @@
 		/obj/item/reagent_containers/food/snacks/meat/human,
 	)
 	result = /obj/item/reagent_containers/food/snacks/human/kabob
-	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/kabob	//Do not put before humankabob
 	appliance = GRILL
@@ -140,7 +136,6 @@
 		/obj/item/reagent_containers/food/snacks/meat/monkey
 	)
 	result = /obj/item/reagent_containers/food/snacks/monkeykabob
-	wiki_flag = WIKI_SPOILER // Alt recipie doesn't need to be shown(breaks tgui)
 
 /datum/recipe/syntikabob
 	appliance = GRILL
@@ -150,7 +145,6 @@
 		/obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	)
 	result = /obj/item/reagent_containers/food/snacks/monkeykabob
-	wiki_flag = WIKI_SPOILER // Alt recipie doesn't need to be shown(breaks tgui)
 
 /datum/recipe/tofukabob
 	appliance = GRILL
@@ -168,7 +162,6 @@
 		/obj/item/clothing/head/wizard/fake,
 	)
 	result = /obj/item/reagent_containers/food/snacks/spellburger
-	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/spellburger
 	appliance = GRILL

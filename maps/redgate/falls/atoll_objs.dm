@@ -81,7 +81,7 @@
 
 /obj/structure/canopy/Initialize(mapload)
 	. = ..()
-	dir = pick(GLOB.alldirs)
+	dir = pick(alldirs)
 
 /obj/structure/canopy/edge
 	icon_state = "left"
@@ -102,7 +102,7 @@
 
 /obj/structure/canopy/edge/south/Initialize(mapload)
 	. = ..()
-	dir = pick(GLOB.cardinal)
+	dir = pick(cardinal)
 
 //Because I'm terrible at planning
 /obj/structure/canopy_corner
@@ -261,7 +261,7 @@
 	desc = "A prismatic field of... energy, probably. You should definitely rub your face in it."
 	icon = 'maps/redgate/falls/icons/decals/marble_decals.dmi'
 	icon_state = "teleporter"
-	invisibility = INVISIBILITY_NONE
+	invisibility = 0
 
 //teleport_z must be populated but this is a gateway map
 //switching between tether or another map will change the z

@@ -34,6 +34,7 @@ FLOOR SAFES
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/safe/LateInitialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
@@ -185,7 +186,7 @@ FLOOR SAFES
 	update_icon()
 
 /obj/structure/safe/floor/hide(var/intact)
-	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
+	invisibility = intact ? 101 : 0
 
 /obj/structure/safe/floor/hides_under_flooring()
 	return 1

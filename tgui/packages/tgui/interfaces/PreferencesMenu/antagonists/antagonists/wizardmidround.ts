@@ -1,4 +1,4 @@
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 import { WIZARD_MECHANICAL_DESCRIPTION } from './wizard';
 
 const WizardMidround: Antagonist = {

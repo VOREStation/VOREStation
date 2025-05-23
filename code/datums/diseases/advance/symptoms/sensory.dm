@@ -20,7 +20,7 @@ Bonus
 	stealth = -3
 	resistance = -4
 	stage_speed = -4
-	transmission = -3
+	transmittable = -3
 	level = 5
 	severity = 0
 
@@ -47,7 +47,7 @@ Bonus
 	stealth = -1
 	resistance = -3
 	stage_speed = -2
-	transmission = -4
+	transmittable = -4
 	level = 4
 
 /datum/symptom/sensory_restoration/Activate(datum/disease/advance/A)

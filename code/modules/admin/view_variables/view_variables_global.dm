@@ -36,6 +36,11 @@
 
 /decl/global_vars/VV_hidden()
 	return list(
+		"forumsqladdress",
+		"forumsqldb",
+		"forumsqllogin",
+		"forumsqlpass",
+		"forumsqlport",
 		"sqladdress",
 		"sqldb",
 		"sqllogin",
@@ -68,11 +73,11 @@
 		"admin_ranks",
 		"admin_state",
 		"alien_whitelist",
-		"GLOB.alldirs",
+		"alldirs",
 		"ahelp_tickets",
 		"adminfaxes",
 		"adminlogs",
-		"GLOB.cardinal",
+		"cardinal",
 		"cardinalz",
 		"IClog"
 	)

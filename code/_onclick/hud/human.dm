@@ -416,19 +416,19 @@
 	regenerate_icons()
 
 /obj/screen/ling
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 /obj/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
 
 /obj/screen/wizard
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 /obj/screen/wizard/instability
 	name = "instability"
 	icon_state = "instability-1"
-	invisibility = INVISIBILITY_NONE
+	invisibility = 0
 
 /obj/screen/wizard/energy
 	name = "energy"

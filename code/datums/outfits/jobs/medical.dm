@@ -50,7 +50,6 @@
 	mask = /obj/item/clothing/mask/surgical
 	backpack = /obj/item/storage/backpack/virology
 	satchel_one = /obj/item/storage/backpack/satchel/vir
-	belt = /obj/item/extrapolator
 
 /decl/hierarchy/outfit/job/medical/doctor/nurse
 	name = OUTFIT_JOB_NAME(JOB_ALT_NURSE)

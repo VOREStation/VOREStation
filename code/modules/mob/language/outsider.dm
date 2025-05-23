@@ -86,7 +86,7 @@
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
-	name = LANGUAGE_HIVEMIND
+	name = "Hivemind"
 	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
 	speech_verb = "hisses"
 	ask_verb = "hisses"

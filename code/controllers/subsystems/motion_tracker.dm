@@ -43,12 +43,10 @@ SUBSYSTEM_DEF(motiontracker)
 		if(Rt && At && count)
 			while(count-- > 0)
 				// Place at root turf offset from signal responder's turf using px offsets. So it will show up over visblocking.
-				var/image/client_only/motion_echo/E = new /image/client_only/motion_echo('icons/effects/effects.dmi', Rt, "motion_echo", OBFUSCATION_LAYER, SOUTH)
+				var/image/motion_echo/E = new /image/motion_echo('icons/effects/effects.dmi', Rt, "motion_echo", OBFUSCATION_LAYER, SOUTH)
 				E.place_from_root(At)
-				for(var/datum/weakref/CW in clients)
-					var/client/C = CW?.resolve()
-					if(C)
-						E.append_client(C)
+				for(var/datum/weakref/C in clients)
+					E.append_client(C)
 		currentrun.Remove(key)
 		expended_echos[key] = data
 		if(MC_TICK_CHECK)
@@ -67,7 +65,7 @@ SUBSYSTEM_DEF(motiontracker)
 	if(!prob(hear_chance))
 		return
 	if(hear_chance <= 40)
-		T = get_step(T,pick(GLOB.cardinal))
+		T = get_step(T,pick(cardinal))
 		if(!T) // incase...
 			return
 	// Echo time, we have a turf

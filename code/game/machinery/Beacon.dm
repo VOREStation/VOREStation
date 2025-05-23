@@ -26,7 +26,7 @@
 
 // update the invisibility and icon
 /obj/machinery/bluespace_beacon/hide(var/intact)
-	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
+	invisibility = intact ? 101 : 0
 	update_icon()
 
 // update the icon_state

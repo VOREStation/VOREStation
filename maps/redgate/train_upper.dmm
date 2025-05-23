@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled/dark,
-/area/redgate/train/staff)
 "ai" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/redgate/train/gym)
@@ -220,7 +216,7 @@
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm1)
 "dW" = (
-/obj/structure/ladder,
+/obj/structure/ladder/updown,
 /turf/simulated/floor{
 	outdoors = 1
 	},
@@ -2226,7 +2222,7 @@
 	},
 /area/redgate/train/helipad)
 "Ho" = (
-/obj/structure/ladder{
+/obj/structure/ladder/updown{
 	pixel_y = 19
 	},
 /turf/simulated/floor{
@@ -7973,7 +7969,7 @@ wl
 dL
 yp
 Wy
-aa
+ua
 wl
 zj
 tK

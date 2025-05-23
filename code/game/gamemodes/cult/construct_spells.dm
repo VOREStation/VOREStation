@@ -167,7 +167,7 @@
 	icon_state = "m_shield_cult"
 	light_color = "#B40000"
 	light_range = 2
-	invisibility = INVISIBILITY_NONE
+	invisibility = 0
 
 /obj/effect/forcefield/cult/cultify()
 	return

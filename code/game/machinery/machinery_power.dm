@@ -102,7 +102,6 @@
 	*/
 
 /obj/machinery/proc/update_power_on_move(atom/movable/mover, atom/old_loc, atom/new_loc)
-	SIGNAL_HANDLER
 	var/area/old_area = get_area(old_loc)
 	var/area/new_area = get_area(new_loc)
 	if(old_area != new_area)

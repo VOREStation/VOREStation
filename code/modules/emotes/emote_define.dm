@@ -134,7 +134,7 @@ var/global/list/emotes_by_key
 	if (!use_range)
 		use_range = world.view
 
-	if(ismob(user) && (use_3p || use_1p)) //Adds functionality for emotes that don't give use feedback, such as bellyrubs.
+	if(ismob(user))
 		var/mob/M = user
 		if(message_type == AUDIBLE_MESSAGE)
 			if(isliving(user))
@@ -153,7 +153,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
 	. = msg
 	if(istype(target))
-		var/datum/gender/target_gender = GLOB.gender_datums[target.get_visible_gender()]
+		var/datum/gender/target_gender = gender_datums[target.get_visible_gender()]
 		. = replacetext(., "TARGET_THEM",  target_gender.him)
 		. = replacetext(., "TARGET_THEIR", target_gender.his)
 		. = replacetext(., "TARGET_SELF",  target_gender.himself)
@@ -162,7 +162,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
 	. = msg
 	if(istype(user))
-		var/datum/gender/user_gender = GLOB.gender_datums[user.get_visible_gender()]
+		var/datum/gender/user_gender = gender_datums[user.get_visible_gender()]
 		. = replacetext(., "USER_THEM",  user_gender.him)
 		. = replacetext(., "USER_THEIR", user_gender.his)
 		. = replacetext(., "USER_SELF",  user_gender.himself)
@@ -189,11 +189,7 @@ var/global/list/emotes_by_key
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		if(istype(user, /mob))
-			var/mob/u = user
-			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = u.voice_freq, preference = sound_preferences, volume_channel = use_sound["volchannel"])
-		else
-			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
+		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

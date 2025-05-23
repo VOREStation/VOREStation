@@ -9,7 +9,6 @@
 	explosion_resistance = 200
 	hardness = 500
 	weight = 500
-	wiki_flag = WIKI_SPOILER
 
 /datum/material/fluff //This is to allow for 2 handed weapons that don't want to have a prefix.
 	name = " "
@@ -19,7 +18,6 @@
 	sheet_plural_name = "fluffs"
 	hardness = 60
 	weight = 20 //Strong as iron.
-	wiki_flag = WIKI_SPOILER
 
 /datum/material/darkglass
 	name = MAT_DARKGLASS
@@ -27,7 +25,6 @@
 	icon_base = MAT_DARKGLASS
 	table_icon_base = MAT_DARKGLASS
 	icon_colour = "#FFFFFF"
-	wiki_flag = WIKI_SPOILER
 
 /datum/material/fancyblack
 	name = MAT_FANCYBLACK
@@ -35,4 +32,3 @@
 	icon_base = MAT_FANCYBLACK
 	table_icon_base = MAT_FANCYBLACK
 	icon_colour = "#FFFFFF"
-	wiki_flag = WIKI_SPOILER

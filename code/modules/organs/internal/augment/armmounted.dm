@@ -108,8 +108,6 @@
 	icon_state = "augment_armframe"
 
 	organ_tag = O_AUG_R_UPPERARM
-	parent_organ = BP_R_ARM
-	target_slot = slot_r_hand
 
 	w_class = ITEMSIZE_HUGE
 
@@ -165,6 +163,8 @@
 	desc = "A large implant that fits into a subject's arm. It deploys an array of tools by some painful means."
 
 	icon_state = "augment_toolkit"
+
+	organ_tag = O_AUG_R_UPPERARM
 
 	w_class = ITEMSIZE_HUGE
 

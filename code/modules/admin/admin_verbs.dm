@@ -83,21 +83,15 @@
 	set name = "Invisimin"
 	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
-
 	if(holder && mob)
-		if(mob.invisibility > INVISIBILITY_OBSERVER)
-			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
-			return
-
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
 			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
 			mob.alpha = max(mob.alpha + 100, 255)
-			return
-
-		mob.invisibility = INVISIBILITY_OBSERVER
-		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
-		mob.alpha = max(mob.alpha - 100, 0)
+		else
+			mob.invisibility = INVISIBILITY_OBSERVER
+			to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
+			mob.alpha = max(mob.alpha - 100, 0)
 
 
 /client/proc/player_panel()
@@ -496,7 +490,7 @@
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center>" + span_filter_system(span_notice(span_bold(span_huge("Man up.<br> Deal with it.")) + "<br>Move along.")) + "</center><br>")
-		T << 'sound/voice/manup1.ogg'
+		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
@@ -640,12 +634,12 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(GLOB.security_printer_tickets.len >= 1)
-		var/input = tgui_input_list(usr, "Which message?", "Security Tickets", GLOB.security_printer_tickets)
+	if(security_printer_tickets.len >= 1)
+		var/input = tgui_input_list(usr, "Which message?", "Security Tickets", security_printer_tickets)
 		if(!input)
 			return
 		if(tgui_alert(usr, "Do you want to remove the following message from the global list? \"[input]\"", "Remove Ticket", list("Yes", "No")) == "Yes")
-			GLOB.security_printer_tickets -= input
+			security_printer_tickets -= input
 			log_and_message_admins("removed a security ticket from the global list: \"[input]\"", usr)
 
 	else
@@ -715,13 +709,3 @@
 		if("Simple Mob")
 			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
-
-/client/proc/modify_shift_end()
-	set name = "Modify Shift End"
-	set desc = "Modifies the hard shift end time."
-	set category = "Server.Game"
-
-	if(!check_rights_for(src, R_ADMIN|R_EVENT|R_SERVER))
-		return
-
-	transfer_controller.modify_hard_end(src)

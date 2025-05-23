@@ -1,23 +1,23 @@
-/obj/effect/step_trigger/teleporter/roguemine_loop/north/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/roguemine_loop/north/New()
+	..()
 	teleport_x = x
 	teleport_y = 16
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/south/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/roguemine_loop/south/New()
+	..()
 	teleport_x = x
 	teleport_y = world.maxy - 16
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/west/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/roguemine_loop/west/New()
+	..()
 	teleport_x = world.maxx - 16
 	teleport_y = y
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/east/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/roguemine_loop/east/New()
+	..()
 	teleport_x = 16
 	teleport_y = y
 	teleport_z = z
@@ -45,8 +45,8 @@
 	var/rel_x
 	var/rel_y
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/New()
+	..()
 
 
 	//Figure out where I am on the map and set up vars.
@@ -82,29 +82,29 @@
 		return
 
 //These are placed ON the side they are named after.
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft/New()
+	..()
 	teleport_x = quad_R - margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_U - margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_L + margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_U - margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_D + margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom/Initialize(mapload)
-	. = ..()
+/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom/New()
+	..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_U - margin
@@ -112,21 +112,21 @@
 */
 //Sure, I could probably do this with math. But I'm tired.
 /*
- *		    S1      300
- *  -----------------------------------
- *  |015/285  135/285|166/285  285/285|
- *  |                |                |S
- *  |       A3       |       A4       |2
- *  |                |                |
- * 0|015/166  135/166|166/166  285/166|3
- * 0|---------------------------------|0
- * 0|015/135  135/135|166/135  285/135|0
- *  |                |                |
- * S|       A1       |       A2       |
- * 4|                |                |
- *  |015/015  135/015|166/015  285/015|
- *  -----------------------------------
-*					000      S3
+         S1      300
+ -----------------------------------
+ |015/285  135/285|166/285  285/285|
+ |                |                |S
+ |       A3       |       A4       |2
+ |                |                |
+0|015/166  135/166|166/166  285/166|3
+0|---------------------------------|0
+0|015/135  135/135|166/135  285/135|0
+ |                |                |
+S|       A1       |       A2       |
+4|                |                |
+ |015/015  135/015|166/015  285/015|
+ -----------------------------------
+                 000      S3
 */
 /*
 //////////// AREA 1

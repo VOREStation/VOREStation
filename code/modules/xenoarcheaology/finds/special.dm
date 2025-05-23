@@ -1,3 +1,6 @@
+
+
+
 //endless reagents!
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
@@ -5,9 +8,18 @@
 /obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
+	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
+	var/list/banned_chems = list(
+		REAGENT_ID_ADMINORDRAZINE,
+		REAGENT_ID_NUTRIMENT,
+		REAGENT_ID_MACROCILLIN,
+		REAGENT_ID_MICROCILLIN,
+		REAGENT_ID_NORMALCILLIN,
+		REAGENT_ID_MAGICDUST
+		)
 	for(var/x=1;x<=10;x++) //You got 10 chances to hit a reagent that is NOT banned.
 		var/new_chem = pick(SSchemistry.chemical_reagents)
-		if(new_chem in GLOB.obtainable_chemical_blacklist)
+		if(new_chem in banned_chems)
 			continue
 		else
 			spawning_id = new_chem
@@ -23,8 +35,7 @@
 	var/last_twitch = 0
 	var/max_stored_messages = 100
 
-/obj/item/clothing/mask/gas/poltergeist/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/mask/gas/poltergeist/New()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/gas/poltergeist/process()
@@ -57,8 +68,8 @@
 	var/wight_check_index = 1
 	var/list/shadow_wights = list()
 
-/obj/item/vampiric/Initialize(mapload)
-	. = ..()
+/obj/item/vampiric/New()
+	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()
@@ -146,8 +157,8 @@
 	var/turf/target_turf
 	var/loc_last_process
 
-/obj/effect/decal/cleanable/blood/splatter/animated/Initialize(mapload, _age)
-	. = ..()
+/obj/effect/decal/cleanable/blood/splatter/animated/New()
+	..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = src.loc
 
@@ -177,8 +188,7 @@
 	icon_state = "shade"
 	density = TRUE
 
-/obj/effect/shadow_wight/Initialize(mapload)
-	. = ..()
+/obj/effect/shadow_wight/New()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()

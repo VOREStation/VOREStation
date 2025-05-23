@@ -26,7 +26,7 @@ export const ModuleSection = (props: {
           fluid
           value={searchText}
           placeholder="Search for modules..."
-          onChange={(value: string) => setSearchText(value)}
+          onInput={(e, value: string) => setSearchText(value)}
         />
       </Stack.Item>
       <Stack.Item>

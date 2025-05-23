@@ -197,7 +197,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	character.set_gender(pref.biological_gender)
 
-	character.synthetic = pref.species == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	character.synthetic = pref.species == "Protean" ? all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
 	var/list/organs_to_edit = list()
 	for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -334,16 +334,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if(ind > 1)
 				. += ", "
 
-			var/datum/robolimb/R = GLOB.basic_robolimb
+			var/datum/robolimb/R = basic_robolimb
 			var/key = pref.rlimb_data[name]
 			if(!istext(key))
 				log_debug("Bad rlimb_data for [key_name(pref.client)], [name] was set to [key]")
 				to_chat(usr, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
 				pref.rlimb_data -= name
 			else
-				R = LAZYACCESS(GLOB.all_robolimbs, key)
+				R = LAZYACCESS(all_robolimbs, key)
 				if(!istype(R))
-					R = GLOB.basic_robolimb
+					R = basic_robolimb
 			. += "\t[R.company] [organ_name] prosthesis"
 		else if(status == "amputated")
 			++ind
@@ -845,7 +845,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		// Full prosthetic bodies without a brain are borderline unkillable so make sure they have a brain to remove/destroy.
 		var/datum/species/current_species = GLOB.all_species[pref.species]
-		if(!current_species.has_organ[O_BRAIN])
+		if(!current_species.has_organ["brain"])
 			limb_selection_list -= "Full Body"
 		else if(pref.organ_data[BP_TORSO] == "cyborg")
 			limb_selection_list |= "Head"
@@ -924,8 +924,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("Prosthesis")
 				var/tmp_species = pref.species ? pref.species : SPECIES_HUMAN
 				var/list/usable_manufacturers = list()
-				for(var/company in GLOB.chargen_robolimbs)
-					var/datum/robolimb/M = GLOB.chargen_robolimbs[company]
+				for(var/company in chargen_robolimbs)
+					var/datum/robolimb/M = chargen_robolimbs[company]
 					if(!(limb in M.parts))
 						continue
 					if(tmp_species in M.species_cannot_use)
@@ -990,7 +990,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if(pref.organ_data[BP_HEAD] != "cyborg")
 					to_chat(user, span_warning("You may only select a cybernetic or synthetic brain if you have a full prosthetic body."))
 					return
-				organ = O_BRAIN
+				organ = "brain"
 
 		var/datum/species/current_species = GLOB.all_species[pref.species]
 		var/list/organ_choices = list("Normal")
@@ -1084,14 +1084,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if (href_list["ears_alpha"])
 		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
-			pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+			 pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
 		if(new_ear_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if (href_list["secondary_ears_alpha"])
 		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
-			pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+		 	pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
 		if(new_ear_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -1151,7 +1151,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["tail_alpha"])
 		var/new_tail_alpha = tgui_input_number(user, "Choose how transparent your character's tail is.", "Character Preference",
-			pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
+		 pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
 		if(new_tail_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -1185,7 +1185,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	else if(href_list["wing_alpha"])
 		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
-			pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+		 pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
 		if(new_wing_alpha)
 			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW

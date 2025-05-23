@@ -113,7 +113,6 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	power_change()
 
 /obj/machinery/computer/security/telescreen/entertainment/Destroy()
-	GLOB.entertainment_screens -= src
 	if(showing)
 		stop_showing()
 	vis_contents.Cut()
@@ -196,7 +195,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	light_color = "#FAC54B"
 
 /obj/machinery/computer/security/engineering/get_default_networks()
-	. = GLOB.engineering_networks.Copy()
+	. = engineering_networks.Copy()
 
 /obj/machinery/computer/security/nuclear
 	name = "head mounted camera monitor"

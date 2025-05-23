@@ -81,7 +81,7 @@ const CasinoPrizeDispenserSearch = (props: {
           <Input
             placeholder="Search by item name.."
             width="100%"
-            onChange={(value) => props.onSearchText(value)}
+            onInput={(_e, value) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">
@@ -125,7 +125,7 @@ const CasinoPrizeDispenserItems = (props: {
   );
 
   let has_contents = false;
-  const contents = Object.entries(items).map((kv) => {
+  let contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {

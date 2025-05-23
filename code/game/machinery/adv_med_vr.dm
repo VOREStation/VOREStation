@@ -35,7 +35,7 @@
 	else
 		var/h_ratio
 		if(occupant)
-			h_ratio = occupant.health / occupant.getMaxHealth()
+			h_ratio = occupant.health / occupant.maxHealth
 			switch(h_ratio)
 				if(1.000)
 					icon_state = "scanner_green"

@@ -111,19 +111,32 @@
 			to_chat(user, span_notice("You secure the welder."))
 		else
 			to_chat(user, span_notice("The welder can now be attached and modified."))
-		add_fingerprint(user)
+		src.add_fingerprint(user)
 		return
 
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/flamethrower/F = new/obj/item/flamethrower(get_turf(user))
-		user.drop_from_inventory(src,F)
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
+		src.loc = F
 		F.weldtool = src
-		add_fingerprint(user)
+		if (user.client)
+			user.client.screen -= src
+		if (user.r_hand == src)
+			user.remove_from_mob(src)
+		else
+			user.remove_from_mob(src)
+		src.master = F
+		src.layer = initial(src.layer)
+		user.remove_from_mob(src)
+		if (user.client)
+			user.client.screen -= src
+		src.loc = F
+		src.add_fingerprint(user)
 		return
 
 	..()
+	return
 
 /obj/item/weldingtool/process()
 	if(welding)
@@ -313,8 +326,6 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
-			return
-		if(user.isSynthetic()) //Fixes robots going blind when doing the equivalent of a bruise pack.
 			return
 		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
 		switch(safety)

@@ -13,7 +13,6 @@ import {
   Tabs,
   TextArea,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -190,7 +189,7 @@ const GeneralMobSettings = (props: {
             <Input
               fluid
               value={data.path_name}
-              onChange={(val: string) => props.onName(val)}
+              onChange={(e, val: string) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -209,7 +208,6 @@ const GeneralMobSettings = (props: {
           </LabeledList.Item>
           <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
             <Knob
-              format={(value) => toFixed(value)}
               value={props.sizeMultiplier}
               minValue={50}
               maxValue={200}
@@ -363,9 +361,8 @@ const GeneralMobSettings = (props: {
             Description:
             <br />
             <TextArea
-              fluid
               height={'18rem'}
-              onBlur={(val: string) => props.onDesc(val)}
+              onChange={(e, val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Stack.Item>
@@ -373,10 +370,9 @@ const GeneralMobSettings = (props: {
             Flavor Text:
             <br />
             <TextArea
-              fluid
               height={'18rem'}
               value={data.flavor_text}
-              onBlur={(val: string) => props.onFlavor(val)}
+              onChange={(e, val: string) => props.onFlavor(val)}
             />
           </Stack.Item>
         </Stack>

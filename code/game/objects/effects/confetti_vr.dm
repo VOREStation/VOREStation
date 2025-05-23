@@ -32,9 +32,9 @@
 			src.total_sparks++
 			var/direction
 			if(src.cardinals)
-				direction = pick(GLOB.cardinal)
+				direction = pick(cardinal)
 			else
-				direction = pick(GLOB.alldirs)
+				direction = pick(alldirs)
 			for(i=0, i<pick(1,2,3), i++)
 				sleep(5)
 				step(confetti,direction)

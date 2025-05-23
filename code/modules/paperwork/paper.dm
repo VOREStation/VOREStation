@@ -224,10 +224,10 @@
 				H.update_icons_body()
 			else
 				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
-										span_notice("You begin to wipe off [H]'s lipstick."))
+								 	 span_notice("You begin to wipe off [H]'s lipstick."))
 				if(do_after(user, 10) && do_after(H, 10, 5, 0))	//user needs to keep their active hand, H does not.
 					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
-											span_notice("You wipe off [H]'s lipstick."))
+										 span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
 					H.update_icons_body()
 
@@ -377,7 +377,7 @@
 
 /obj/item/paper/proc/burnpaper(obj/item/flame/P, mob/user)
 	var/class = "warning"
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 
 	if(P.lit && !user.restrained())
 		if(istype(P, /obj/item/flame/lighter/zippo))

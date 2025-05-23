@@ -7,5 +7,5 @@
 	entry += " | DATA: "
 	entry += data
 
-	WRITE_LOG(GLOB.diary, entry)
+	WRITE_LOG(diary, entry)
 	SEND_TEXT(world.log, text)

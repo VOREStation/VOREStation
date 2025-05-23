@@ -22,7 +22,7 @@
 	virus_immune = 1
 
 	has_organ = list(
-		O_BRAIN = /obj/item/organ/internal/brain/golem
+		"brain" = /obj/item/organ/internal/brain/golem
 		)
 
 	death_message = "becomes completely motionless..."

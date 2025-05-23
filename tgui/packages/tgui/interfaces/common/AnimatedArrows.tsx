@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
 export const AnimatedArrows = (

@@ -39,14 +39,10 @@
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 			H.electrocute_act(rand(25, 40), holder, H.get_siemens_coefficient_organ(affected), affected)
-			var/turf/T = get_turf(H)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(H.loc, TRUE)
 		else
 			L.electrocute_act(rand(25, 40), holder, 0.75, BP_TORSO)
-			var/turf/T = get_turf(L)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(L.loc, TRUE)
 
 /datum/artifact_effect/electric_field/DoEffectAura()
 	var/atom/holder = get_master_holder()
@@ -81,14 +77,10 @@
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 			H.electrocute_act(rand(1, 10), holder, H.get_siemens_coefficient_organ(affected), affected)
-			var/turf/T = get_turf(L)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(H.loc, TRUE)
 		else
 			L.electrocute_act(rand(1, 10), holder, 0.75, BP_TORSO)
-			var/turf/T = get_turf(L)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(L.loc, TRUE)
 
 /datum/artifact_effect/electric_field/DoEffectPulse()
 	var/atom/holder = get_master_holder()
@@ -123,11 +115,7 @@
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 			H.electrocute_act(rand(10, 30), holder, H.get_siemens_coefficient_organ(affected), affected)
-			var/turf/T = get_turf(L)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(H.loc, TRUE)
 		else
 			L.electrocute_act(rand(10, 30), holder, 0.75, BP_TORSO)
-			var/turf/T = get_turf(L)
-			if(istype(T))
-				lightning_strike(T, TRUE)
+			lightning_strike(L.loc, TRUE)

@@ -5,7 +5,6 @@ import {
   LabeledList,
   NoticeBox,
   Section,
-  Stack,
 } from 'tgui-core/components';
 
 import type { Data } from './types';
@@ -46,43 +45,37 @@ export const CloningConsoleStatus = (props) => {
     <Section
       title="Status"
       buttons={
-        <Stack>
+        <>
           {!!autoallowed && (
             <>
-              <Stack.Item>
-                <Box inline color="label">
-                  Auto-processing:&nbsp;
-                </Box>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  selected={autoprocess}
-                  icon={autoprocess ? 'toggle-on' : 'toggle-off'}
-                  onClick={() =>
-                    act('autoprocess', {
-                      on: autoprocess ? 0 : 1,
-                    })
-                  }
-                >
-                  {autoprocess ? 'Enabled' : 'Disabled'}
-                </Button>
-              </Stack.Item>
+              <Box inline color="label">
+                Auto-processing:&nbsp;
+              </Box>
+              <Button
+                selected={autoprocess}
+                icon={autoprocess ? 'toggle-on' : 'toggle-off'}
+                onClick={() =>
+                  act('autoprocess', {
+                    on: autoprocess ? 0 : 1,
+                  })
+                }
+              >
+                {autoprocess ? 'Enabled' : 'Disabled'}
+              </Button>
             </>
           )}
-          <Stack.Item>
-            <Button
-              disabled={!disk}
-              icon="eject"
-              onClick={() =>
-                act('disk', {
-                  option: 'eject',
-                })
-              }
-            >
-              Eject Disk
-            </Button>
-          </Stack.Item>
-        </Stack>
+          <Button
+            disabled={!disk}
+            icon="eject"
+            onClick={() =>
+              act('disk', {
+                option: 'eject',
+              })
+            }
+          >
+            Eject Disk
+          </Button>
+        </>
       }
     >
       <LabeledList>

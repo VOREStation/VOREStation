@@ -205,44 +205,26 @@
 	rest_sprite_options = list("Default", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan
-	name = "Dullahan"
+	name = "Dullahan v1"
 	sprite_icon_state = "dullahanjani"
 	module_type = "Janitor"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_jani.dmi'
 	has_eye_light_sprites = TRUE
-	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_vore_belly_resting_sprites = TRUE
-	has_rest_lights_sprites = TRUE
-	has_rest_eyes_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
-	sprite_decals = list("breastplate", "eyecover")
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/janitor/dullataurjani
-	name = "Dullataur"
-	sprite_icon_state = "dullataurjani"
-	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
-	rest_sprite_options = list("Default")
-	has_eye_light_sprites = TRUE
-	has_rest_sprites = TRUE
-	has_vore_belly_sprites = FALSE
-	has_vore_belly_resting_sprites = FALSE
-	has_rest_lights_sprites = TRUE
-	has_rest_eyes_sprites = TRUE
-	sprite_decals = list("breastplate")
+/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahanjani_alt"
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/janitor/dullahanv3
+/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt2
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/janitor.dmi'
 	sprite_icon_state = "dullahanjanitor"
-	has_eye_light_sprites = TRUE
-	has_rest_sprites = TRUE
-	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
@@ -255,15 +237,15 @@
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 
-/datum/robot_sprite/dogborg/janitor/smolraptor
-	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_serv.dmi'
+/datum/robot_sprite/dogborg/smolraptorjanitorsprite
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_jani.dmi'
 	module_type = "Janitor"
 	name = "Small Raptor"
-	sprite_icon_state = "smolraptor_alt"
+	sprite_icon_state = "smolraptor"
+	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_dead_sprite_overlay = FALSE
-	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/janitor/possum
 	name = "0-P0SSm"

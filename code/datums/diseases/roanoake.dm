@@ -10,9 +10,10 @@
 	cure_chance = 10
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated, subject will become a xenochimera upon perishing."
-	danger = DISEASE_BIOHAZARD
+	severity = BIOHAZARD
 	disease_flags = CURABLE
-	//allow_dead = TRUE //Unused
+	virus_heal_resistant = TRUE
+	allow_dead = TRUE
 
 	var/list/obj/item/organ/organ_list = list()
 	var/obj/item/organ/O

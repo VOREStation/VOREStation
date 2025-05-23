@@ -17,10 +17,10 @@
 	var/fire_resist = 1
 	var/expandType = /obj/effect/blob
 
-/obj/effect/blob/Initialize(mapload)
-	. = ..()
+/obj/effect/blob/New(loc)
 	health = maxHealth
 	update_icon()
+	return ..(loc)
 
 /obj/effect/blob/CanPass(var/atom/movable/mover, var/turf/target)
 	return FALSE
@@ -164,9 +164,9 @@
 /obj/effect/blob/core/update_icon()
 	return
 
-/obj/effect/blob/core/Initialize(mapload)
-	. = ..()
+/obj/effect/blob/core/New(loc)
 	START_PROCESSING(SSobj, src)
+	return ..(loc)
 
 /obj/effect/blob/core/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -188,14 +188,14 @@
 	brute_resist = 1
 	fire_resist = 2
 
-/obj/effect/blob/shield/Initialize(mapload)
-	. = ..()
+/obj/effect/blob/shield/New()
+	..()
 	update_nearby_tiles()
 
 /obj/effect/blob/shield/Destroy()
 	density = FALSE
 	update_nearby_tiles()
-	. = ..()
+	..()
 
 /obj/effect/blob/shield/update_icon()
 	if(health > maxHealth * 2 / 3)

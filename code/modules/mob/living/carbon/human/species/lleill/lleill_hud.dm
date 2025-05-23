@@ -1,7 +1,7 @@
 /obj/screen/lleill
 	name = "glamour"
 	icon = 'icons/mob/lleill_hud.dmi'
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 
 
 /obj/screen/movable/ability_master/lleill

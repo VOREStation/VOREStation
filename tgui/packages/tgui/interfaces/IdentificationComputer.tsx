@@ -168,16 +168,18 @@ export const IdentificationComputerAccessModification = (props: {
             <LabeledList>
               <LabeledList.Item label="Registered Name">
                 <Input
+                  updateOnPropsChange
                   value={target_owner!}
                   fluid
-                  onChange={(val) => act('reg', { reg: val })}
+                  onInput={(e, val) => act('reg', { reg: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
                 <Input
-                  value={account_number?.toString()}
+                  updateOnPropsChange
+                  value={account_number!}
                   fluid
-                  onChange={(val) => act('account', { account: val })}
+                  onInput={(e, val) => act('account', { account: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Dismissals">
@@ -276,7 +278,7 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
   if (regions) {
     regions.sort((a, b) => a.name.localeCompare(b.name));
 
-    for (const region of regions) {
+    for (let region of regions) {
       region.accesses.sort((a, b) => a.desc.localeCompare(b.desc));
     }
   }

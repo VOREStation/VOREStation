@@ -209,8 +209,7 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/tech/stored
 
-/obj/item/disk/tech_disk/Initialize(mapload)
-	. = ..()
+/obj/item/disk/tech_disk/New()
 	randpixel_xy()
 
 /obj/item/disk/design_disk
@@ -224,6 +223,5 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/design/blueprint
 
-/obj/item/disk/design_disk/Initialize(mapload)
-	. = ..()
+/obj/item/disk/design_disk/New()
 	randpixel_xy()

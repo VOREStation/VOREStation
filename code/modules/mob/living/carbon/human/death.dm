@@ -1,5 +1,5 @@
 /mob/living/carbon/human/gib()
-	transforming = 1 //Tells the gib system to NOT SEND MESSAGES FOR EVERYTHING when we gib.
+
 	if(vr_holder)
 		exit_vr()
 		// Delete the link, because this mob won't be around much longer
@@ -13,7 +13,7 @@
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if(isturf(I?.loc)) // Some organs qdel themselves or other things when removed
-			I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
+			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
@@ -22,7 +22,7 @@
 
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)), rand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	..(species.gibbed_anim) // uses the default mob.dmi file for these, so we only need to specify the first argument
 	gibs(loc, dna, null, species.get_flesh_colour(src), species.get_blood_colour(src))
@@ -48,10 +48,9 @@
 	BITSET(hud_updateflag, LIFE_HUD)
 
 	//Handle species-specific deaths.
-	if(species.handle_death(src))
-		return
+	species.handle_death(src)
 	animate_tail_stop()
-	stop_flying()
+	stop_flying() //VOREStation Edit.
 
 	//Handle snowflake ling stuff.
 	if(mind && mind.changeling)
@@ -82,19 +81,16 @@
 
 	callHook("death", list(src, gibbed))
 
-	if(istype(loc, /obj/item/clothing/shoes))
-		mind?.vore_death = TRUE
-
 	if(mind)
 		var/area/A = get_area(src)
 		if(!(A?.flag_check(AREA_BLOCK_SUIT_SENSORS)) && isbelly(loc))
-			// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // We don't use SSgame_master yet.
+			// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // VOREStation Edit - We don't use SSgame_master yet.
 			for(var/mob/observer/dead/O in mob_list)
 				if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 					to_chat(O, span_deadsay(span_bold("[src]") + " has died in " + span_bold("[get_area(src)]")  + ". [ghost_follow_link(src, O)] "))
 
-	if(!gibbed && !isbelly(loc))
-		playsound(src, pick(get_species_sound(get_gendered_sound(src))["death"]), src.species.death_volume, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
+	if(!gibbed && species.death_sound)
+		playsound(src, species.death_sound, 80, 1, 1)
 
 	if(ticker && ticker.mode)
 		sql_report_death(src)
@@ -105,12 +101,10 @@
 
 	// If the body is in VR, move the mind back to the real world
 	if(vr_holder)
-		src.died_in_vr = TRUE //so avatar.dm can delete bodies
 		src.exit_vr()
 		src.vr_holder.vr_link = null
 		for(var/obj/item/W in src)
 			src.drop_from_inventory(W)
-
 
 	// If our mind is in VR, bring it back to the real world so it can die with its body
 	if(vr_link)

@@ -34,13 +34,14 @@ export const PlayerNotes = (props) => {
           </Button>
           <Divider />
           <Button.Input
-            buttonText="CKEY to Open"
-            onCommit={(value) =>
+            onCommit={(e, value) =>
               act('show_player_info', {
                 name: value,
               })
             }
-          />
+          >
+            CKEY to Open
+          </Button.Input>
           <Divider vertical />
           <Button color="green" onClick={() => act('clear_player_info_filter')}>
             {filter}

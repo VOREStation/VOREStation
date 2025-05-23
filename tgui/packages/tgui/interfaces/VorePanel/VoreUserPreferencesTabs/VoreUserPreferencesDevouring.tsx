@@ -1,9 +1,9 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
-import type { localPrefs } from '../types';
+import { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesDevouring = (props: {
@@ -20,15 +20,22 @@ export const VoreUserPreferencesDevouring = (props: {
     <Section
       title="Devouring Preferences"
       buttons={
-        <VoreUserPreferenceItem
-          spec={preferences.devour}
-          tooltipPosition="top"
-        />
+        <Box nowrap>
+          <VoreUserPreferenceItem
+            spec={preferences.devour}
+            tooltipPosition="top"
+          />
+        </Box>
       }
     >
       {devourable ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item basis="32%">
+          <Stack.Item
+            basis="32%"
+            style={{
+              marginLeft: '0.5em', // Remove if tgui core implements gap
+            }}
+          >
             <VoreUserPreferenceItem
               spec={preferences.healbelly}
               tooltipPosition="right"

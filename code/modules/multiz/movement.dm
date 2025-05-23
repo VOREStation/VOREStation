@@ -255,16 +255,6 @@
 		if(T.density)
 			return TRUE
 
-/mob/living/silicon/pai/can_ztravel()
-	if(incapacitated())
-		return FALSE
-
-	if(Process_Spacemove())
-		return TRUE
-
-	if(!restrained())
-		return TRUE
-
 // TODO - Leshana Experimental
 
 //Execution by grand piano!

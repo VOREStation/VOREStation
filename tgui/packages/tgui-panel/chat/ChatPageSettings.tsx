@@ -33,8 +33,9 @@ export const ChatPageSettings = (props) => {
         <Stack.Item grow>
           <Input
             fluid
+            updateOnPropsChange
             value={page.name}
-            onChange={(value) =>
+            onChange={(e, value) =>
               dispatch(
                 updateChatPage({
                   pageId: page.id,

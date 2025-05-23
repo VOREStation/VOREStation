@@ -145,7 +145,7 @@
 	if(get_dist(linked_node, src) > linked_node.node_range)
 		return
 
-	for(var/dirn in GLOB.cardinal)
+	for(var/dirn in cardinal)
 		var/turf/T1 = get_turf(src)
 		var/turf/T2 = get_step(src, dirn)
 

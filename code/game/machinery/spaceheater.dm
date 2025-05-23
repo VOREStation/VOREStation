@@ -3,10 +3,6 @@
 #define SHEATER_HEAT 2
 #define SHEATER_COOL 3
 
-#define DEFAULT_MIN_TEMP T0C
-#define DEFAULT_MAX_TEMP T0C + 90
-#define DEFAULT_HEATING_POWER 40000
-
 /obj/machinery/space_heater
 	anchored = FALSE
 	density = TRUE
@@ -24,38 +20,16 @@
 	var/cell_type = /obj/item/cell/high
 	var/state = 0
 	var/set_temperature = T0C + 20	//K
-	var/min_temperature = DEFAULT_MIN_TEMP
-	var/max_temperature = DEFAULT_MAX_TEMP
 	var/heating_power = 40000
-	var/power_efficiency = 1 //Inverse. The lower, the more power efficient we are.
 	clicksound = "switch"
 	interact_offline = TRUE
-	bubble_icon = "engineering"
-	circuit = /obj/item/circuitboard/space_heater
 
 /obj/machinery/space_heater/Initialize(mapload)
 	. = ..()
 	if(cell_type)
 		cell = new cell_type(src)
-	default_apply_parts()
 	update_icon()
 
-/obj/machinery/space_heater/RefreshParts(var/limited = 0)
-	min_temperature = DEFAULT_MIN_TEMP
-	max_temperature = DEFAULT_MAX_TEMP
-	heating_power = DEFAULT_HEATING_POWER
-	power_efficiency = 1
-	for(var/obj/item/stock_parts/P in component_parts)
-		if(P.rating <= 1) //We don't care about calculating if the rating is 1
-			continue
-		if(istype(P, /obj/item/stock_parts/micro_laser))
-			heating_power += ((P.rating-1) * 25000) // Increases the maximum heating/cooling possible. Doesn't affect the heat it pumps out/sucks in. That depends on the difference between the thermostat and the environment. This just clamps that temp change.
-		else if(istype(P, /obj/item/stock_parts/manipulator)) //Nothing really fits this so w/e. Capacitor it is.
-			min_temperature -= ((P.rating-1) * 23)	//min_temperature starts at 273. A level 5 (omni) will decrease it by 92. -92 x 3 = 276, which we clamp to 0. It still sucks cooling down normal temp areas, but whatever it's a heater. Get a temp pump if you want to cool.
-			max_temperature += ((P.rating-1) * 121)	//max_temperature starts at 363. A level 5 (omni) will increase it by 484. 484 x 3 = 1936. Giving us a total of 2299K/2026C.
-		else if(istype(P, /obj/item/stock_parts/capacitor))
-			power_efficiency -= ((P.rating-1) * 0.06) //Four T2 parts = 24% more efficient. Four T5 parts = 96% more efficient
-	min_temperature = max(1, min_temperature)
 /obj/machinery/space_heater/update_icon()
 	cut_overlays()
 	icon_state = "sheater[state]"
@@ -116,8 +90,6 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(default_part_replacement(user, I))
-		return
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
@@ -163,8 +135,8 @@
 	data["cell"] = !!cell
 	data["power"] = round(cell?.percent(), 1)
 	data["temp"] = set_temperature
-	data["minTemp"] = min_temperature
-	data["maxTemp"] = max_temperature
+	data["minTemp"] = T0C
+	data["maxTemp"] = T0C + 90
 
 	return data
 
@@ -178,7 +150,7 @@
 	switch(action)
 		if("temp")
 			// limit to 0-90 degC
-			set_temperature = clamp(text2num(params["newtemp"]), min_temperature, max_temperature)
+			set_temperature = clamp(text2num(params["newtemp"]), T0C, T0C + 90)
 			. = TRUE
 
 		if("cellremove")
@@ -213,6 +185,7 @@
 		if(env && abs(env.temperature - set_temperature) > 0.1)
 			var/transfer_moles = 0.25 * env.total_moles
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
+
 			if(removed)
 				var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
 				if(heat_transfer > 0)	//heating air
@@ -222,7 +195,7 @@
 					heat_transfer = min(heat_transfer , heating_power) //limit by the power rating of the heater
 
 					removed.add_thermal_energy(heat_transfer)
-					cell.use(heat_transfer*CELLRATE*power_efficiency)
+					cell.use(heat_transfer*CELLRATE)
 				else	//cooling air
 					if(state == SHEATER_STANDBY)
 						state = SHEATER_COOL
@@ -232,10 +205,11 @@
 					//Assume the heat is being pumped into the hull which is fixed at 20 C
 					var/cop = removed.temperature/T20C	//coefficient of performance from thermodynamics -> power used = heat_transfer/cop
 					heat_transfer = min(heat_transfer, cop * heating_power)	//limit heat transfer by available power
+
 					heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 
 					var/power_used = abs(heat_transfer)/cop
-					cell.use(power_used*CELLRATE*power_efficiency)
+					cell.use(power_used*CELLRATE)
 
 			env.merge(removed)
 	else
@@ -247,6 +221,3 @@
 #undef SHEATER_STANDBY
 #undef SHEATER_HEAT
 #undef SHEATER_COOL
-#undef DEFAULT_MIN_TEMP
-#undef DEFAULT_MAX_TEMP
-#undef DEFAULT_HEATING_POWER

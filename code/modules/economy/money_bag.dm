@@ -88,8 +88,8 @@
 
 /obj/item/moneybag/vault
 
-/obj/item/moneybag/vault/Initialize(mapload)
-	. = ..()
+/obj/item/moneybag/vault/New()
+	..()
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)

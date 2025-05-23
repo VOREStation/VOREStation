@@ -66,9 +66,9 @@
 		return ..()
 
 /obj/item/stack/material/stick
-	name = MAT_WOODEN_STICK
+	name = "wooden stick"
 	icon_state = "sheet-stick"
-	default_type = MAT_WOODEN_STICK
+	default_type = "wooden stick"
 	strict_color_stacking = TRUE
 	apply_colour = 1
 	drop_sound = 'sound/items/drop/wooden.ogg'

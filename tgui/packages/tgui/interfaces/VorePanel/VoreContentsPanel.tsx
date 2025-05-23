@@ -1,9 +1,9 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Image, LabeledList, Stack } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
+import { BooleanLike } from 'tgui-core/react';
 
 import { stats } from './constants';
-import type { contentData } from './types';
+import { contentData } from './types';
 
 export const VoreContentsPanel = (props: {
   contents: contentData[];

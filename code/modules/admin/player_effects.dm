@@ -94,7 +94,7 @@
 			var/turf/Ts //Turf for shadekin
 
 			//Try to find nondense turf
-			for(var/direction in GLOB.cardinal)
+			for(var/direction in cardinal)
 				var/turf/T = get_step(target,direction)
 				if(T && !T.density)
 					Ts = T //Found shadekin spawn turf
@@ -164,7 +164,7 @@
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift() //Homf
-			shadekin.comp.dark_energy = initial(shadekin.comp.dark_energy)
+			shadekin.energy = initial(shadekin.energy)
 			//For fun
 			sleep(1 SECOND)
 			shadekin.dir = WEST

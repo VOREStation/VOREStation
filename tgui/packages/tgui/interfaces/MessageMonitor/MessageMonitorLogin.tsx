@@ -25,7 +25,7 @@ export const MessageMonitorLogin = (props) => {
         <Input
           placeholder="Decryption Key"
           ml="0.5rem"
-          onBlur={(val) => act('auth', { key: val })}
+          onChange={(e, val) => act('auth', { key: val })}
         />
       </Box>
       {!!isMalfAI && (

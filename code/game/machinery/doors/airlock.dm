@@ -672,7 +672,6 @@ About the new airlock wires panel:
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
 			to_chat(user, span_danger("You feel a powerful shock course through your body!"))
-			user.playsound_local(get_turf(user), get_sfx("sparks"), vol = 75)
 			user.halloss += 10
 			user.stunned += 10
 			return
@@ -1553,7 +1552,7 @@ About the new airlock wires panel:
 	. = ..()
 
 	if(src.closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in GLOB.machines)
+		for (var/obj/machinery/door/airlock/A in machines)
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break

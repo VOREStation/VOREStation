@@ -93,9 +93,11 @@
 
 /obj/item/organ/internal/regennetwork/Initialize(mapload)
 	. = ..()
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		color = H.species.get_blood_colour(H)
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.get_blood_colour(H)
 
 /obj/item/organ/internal/regennetwork/proc/get_strain_percent(var/cost)
 	adjust_strain(cost)

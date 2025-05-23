@@ -13,25 +13,26 @@
 	var/set_temperature = T0C + 30	//K
 	var/heating_power = 80000
 
-/obj/structure/bonfire/Initialize(mapload, material_name)
-	. = ..()
+/obj/structure/bonfire/New(newloc, material_name)
+	..(newloc)
 	if(!material_name)
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	color = material.icon_colour
 
 // Blue wood.
-/obj/structure/bonfire/sifwood/Initialize(mapload, material_name)
-	. = ..(mapload, MAT_SIFWOOD)
+/obj/structure/bonfire/sifwood/New(newloc, material_name)
+	..(newloc, MAT_SIFWOOD)
 
-/obj/structure/bonfire/permanent/Initialize(mapload, material_name)
-	. = ..()
+/obj/structure/bonfire/permanent/New(newloc, material_name)
+	..()
 	ignite()
 
-/obj/structure/bonfire/permanent/sifwood/Initialize(mapload, material_name)
-	. = ..(mapload, MAT_SIFWOOD)
+/obj/structure/bonfire/permanent/sifwood/New(newloc, material_name)
+	..(newloc, MAT_SIFWOOD)
 
 /obj/structure/bonfire/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)

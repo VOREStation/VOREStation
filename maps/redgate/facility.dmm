@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
-/turf/simulated/floor/tiled,
-/area/redgate/facility/nw)
 "aau" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/simulated/floor/tiled/white,
@@ -18583,7 +18579,7 @@ wCZ
 mnq
 tTv
 xEz
-aaa
+rzR
 xqm
 gCf
 gCf

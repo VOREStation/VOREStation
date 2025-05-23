@@ -26,14 +26,11 @@
 
 // Claim machine ID
 /obj/machinery/cash_register/Initialize(mapload)
-	machine_id = "[station_name()] RETAIL #[GLOB.num_financial_terminals++]"
+	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	. = ..()
 	cash_stored = rand(10, 70)*10
-	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
+	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
-/obj/machinery/cash_register/Destroy()
-	GLOB.transaction_devices -= src
-	. = ..()
 
 /obj/machinery/cash_register/examine(mob/user as mob)
 	. = ..(user)
@@ -48,7 +45,7 @@
 
 /obj/machinery/cash_register/attack_hand(mob/user as mob)
 	// Don't be accessible from the wrong side of the machine
-	if(get_dir(src, user) & GLOB.reverse_dir[src.dir]) return
+	if(get_dir(src, user) & reverse_dir[src.dir]) return
 
 	if(cash_open)
 		if(cash_stored)
@@ -261,7 +258,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "([transaction_amount])"
 					T.source_terminal = machine_id
-					T.date = GLOB.current_date_string
+					T.date = current_date_string
 					T.time = stationtime2text()
 					D.transaction_log.Add(T)
 
@@ -271,7 +268,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "[transaction_amount]"
 					T.source_terminal = machine_id
-					T.date = GLOB.current_date_string
+					T.date = current_date_string
 					T.time = stationtime2text()
 					linked_account.transaction_log.Add(T)
 
@@ -309,7 +306,7 @@
 			T.purpose = transaction_purpose
 			T.amount = "[transaction_amount]"
 			T.source_terminal = machine_id
-			T.date = GLOB.current_date_string
+			T.date = current_date_string
 			T.time = stationtime2text()
 			linked_account.transaction_log.Add(T)
 

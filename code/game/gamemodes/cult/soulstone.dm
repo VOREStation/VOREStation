@@ -109,7 +109,7 @@
 	if(src.imprinted != "empty")
 		to_chat(U, span_danger("Capture failed!") + ": The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
-	if ((T.health + T.halloss) > T.get_crit_point() && T.stat != DEAD)
+	if ((T.health + T.halloss) > CONFIG_GET(number/health_threshold_crit) && T.stat != DEAD)
 		to_chat(U, span_danger("Capture failed!") + ": Kill or maim the victim first!")
 		return
 	if(T.client == null)
@@ -123,7 +123,7 @@
 		T.drop_from_inventory(W)
 
 	new /obj/effect/decal/remains/human(T.loc) //Spawns a skeleton
-	T.invisibility = INVISIBILITY_ABSTRACT
+	T.invisibility = 101
 
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( T.loc )
 	animation.icon_state = "blank"

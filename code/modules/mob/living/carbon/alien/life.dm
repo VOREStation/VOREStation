@@ -1,7 +1,7 @@
 // Alien larva are quite simple.
 /mob/living/carbon/alien/Life()
 
-	set invisibility = INVISIBILITY_NONE
+	set invisibility = 0
 
 	if (transforming)	return
 	if(!loc)			return
@@ -121,7 +121,7 @@
 			healths.icon_state = "health7"
 
 	if (client)
-		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
+		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
 	if ( stat != 2)
 		if ((blinded))

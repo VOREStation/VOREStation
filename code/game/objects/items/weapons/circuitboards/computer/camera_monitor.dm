@@ -25,7 +25,7 @@
 
 /obj/item/circuitboard/security/engineering/Initialize(mapload)
 	. = ..()
-	network = GLOB.engineering_networks
+	network = engineering_networks
 
 /obj/item/circuitboard/security/mining
 	name = T_BOARD("mining camera monitor")

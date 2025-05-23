@@ -19,7 +19,6 @@ var/list/blob_cores = list()
 	var/point_rate = 2
 	var/ai_controlled = TRUE
 	var/datum/ghost_query/Q //This is used so we can unregister ourself.
-	var/client/controller = null //Whoever is set to be controlling the blob. Used when the blob is created.
 
 // Spawn this if you want a ghost to be able to play as the blob.
 /obj/structure/blob/core/player
@@ -102,16 +101,11 @@ var/list/blob_cores = list()
 	blob_cores += src
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
-	point_rate = new_rate
-	controller = new_overmind
-
 	if(!placed && !overmind)
-		return INITIALIZE_HINT_LATELOAD
-
-/obj/structure/blob/core/LateInitialize()
-	create_overmind(controller)
+		create_overmind(new_overmind)
 	if(overmind)
 		update_icon()
+	point_rate = new_rate
 
 /obj/structure/blob/core/Destroy()
 	var/turf/T = get_turf(src)
@@ -154,8 +148,7 @@ var/list/blob_cores = list()
 		if(prob(5))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 
-	if(overmind) //Doing this as we might be alive for a bit before a ghost possesses us.
-		overmind.blob_type.on_core_process(src)
+	overmind.blob_type.on_core_process(src)
 
 /obj/structure/blob/core/proc/create_overmind(client/new_overmind, override_delay)
 	if(overmind_get_delay > world.time && !override_delay)
@@ -186,10 +179,8 @@ var/list/blob_cores = list()
 	else
 		C = new_overmind
 		overmind_creation(C)
-	controller = null //Controller has been set. Let's null it now.
 
 /obj/structure/blob/core/proc/get_winner()
-	SIGNAL_HANDLER
 	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
 		var/mob/observer/dead/D = Q.candidates[1]
 		var/client/C

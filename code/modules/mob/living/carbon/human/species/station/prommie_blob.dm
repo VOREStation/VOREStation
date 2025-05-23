@@ -101,28 +101,29 @@
 	return
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/slime/promethean/Initialize(mapload, var/mob/living/carbon/human/H)
-	. = ..()
-	if(!H)
-		return INITIALIZE_HINT_QDEL
+/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
+	..()
+	if(H)
+		humanform = H
+		updatehealth()
 
-	humanform = H
-	calculate_health()
+	else
+		qdel(src)
 
 /mob/living/simple_mob/slime/promethean/updatehealth()
 	if(!humanform)
 		return ..()
-	calculate_health()
-	if((stat < DEAD) && (health <= 0))
-		death()
 
-/mob/living/simple_mob/slime/promethean/proc/calculate_health()
 	//Set the max
 	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
 	//Set us to their health, but, human health ignores robolimbs so we do it 'the hard way'
 	human_brute = humanform.getActualBruteLoss()
 	human_burn = humanform.getActualFireLoss()
 	health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - human_brute - human_burn
+
+	//Alive, becoming dead
+	if((stat < DEAD) && (health <= 0))
+		death()
 
 	//Overhealth
 	if(health > getMaxHealth())
@@ -220,7 +221,11 @@
 		return ..()
 
 /mob/living/simple_mob/slime/promethean/death(gibbed, deathmessage = "rapidly loses cohesion, splattering across the ground...")
-	humanform.death(gibbed, deathmessage)
+	if(humanform)
+		humanform.death(gibbed, deathmessage)
+	else
+		animate(src, alpha = 0, time = 2 SECONDS)
+		sleep(2 SECONDS)
 
 	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
 		qdel(src)
@@ -378,9 +383,6 @@
 	blob.ooc_notes = ooc_notes
 	blob.ooc_notes_likes = ooc_notes_likes
 	blob.ooc_notes_dislikes = ooc_notes_dislikes
-	blob.ooc_notes_favs = ooc_notes_favs
-	blob.ooc_notes_maybes = ooc_notes_maybes
-	blob.ooc_notes_style = ooc_notes_style
 	blob.transforming = FALSE
 	blob.name = name
 	blob.real_name = real_name
@@ -470,9 +472,6 @@
 	ooc_notes = blob.ooc_notes // Updating notes incase they change them in blob form.
 	ooc_notes_likes = blob.ooc_notes_likes
 	ooc_notes_dislikes = blob.ooc_notes_dislikes
-	ooc_notes_favs = blob.ooc_notes_favs
-	ooc_notes_maybes = blob.ooc_notes_maybes
-	ooc_notes_style = blob.ooc_notes_style
 	transforming = FALSE
 	blob.name = "Promethean Blob"
 	var/obj/item/hat = blob.hat

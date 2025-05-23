@@ -1,4 +1,4 @@
-import { CheckboxInput, type FeatureToggle } from '../base';
+import { CheckboxInput, FeatureToggle } from '../base';
 
 export const AMBIENT_OCCLUSION_PREF: FeatureToggle = {
   name: 'Enable ambient occlusion',
@@ -94,19 +94,5 @@ export const obfuscate_job: FeatureToggle = {
   name: 'Obfuscate Job',
   category: 'UI',
   description: 'Hide your job from other players in the lobby',
-  component: CheckboxInput,
-};
-
-export const EMOTE_VARY: FeatureToggle = {
-  name: 'Vary Emote Pitch',
-  category: 'SOUNDS',
-  description: 'Varies the pitch of your emotes randomly.',
-  component: CheckboxInput,
-};
-
-export const AUTOTRANSCORE: FeatureToggle = {
-  name: 'Automatically Notify Transcore on Death',
-  category: 'GAMEPLAY',
-  description: 'Do you want medbay to know you died automatically?',
   component: CheckboxInput,
 };

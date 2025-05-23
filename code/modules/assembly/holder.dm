@@ -71,6 +71,7 @@
 		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 /obj/item/assembly_holder/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()
@@ -78,9 +79,9 @@
 		log_debug("DEBUG: HasProximity called without reference on [src].")
 		return
 	if(a_left)
-		a_left.HasProximity(T, WF, old_loc)
+		a_left.HasProximity(T, AM, old_loc)
 	if(a_right)
-		a_right.HasProximity(T, WF, old_loc)
+		a_right.HasProximity(T, AM, old_loc)
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())

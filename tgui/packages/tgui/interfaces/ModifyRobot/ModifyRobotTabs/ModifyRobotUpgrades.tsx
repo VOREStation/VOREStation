@@ -122,7 +122,7 @@ const UpgradeSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for upgrades..."
-        onChange={(value: string) => onSearchText(value)}
+        onInput={(e, value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

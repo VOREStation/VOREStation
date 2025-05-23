@@ -299,6 +299,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/hull_corner/LateInitialize()
+	. = ..()
 	update_look()
 
 /obj/structure/hull_corner/proc/get_dirs_to_test()
@@ -359,7 +360,7 @@
 
 /turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
 	..()
-	for(var/direction in GLOB.cardinal)
+	for(var/direction in cardinal)
 		var/turf/T = get_step(src, direction)
 		var/decided_to_blend = FALSE
 		blend_obj_loop:
@@ -407,7 +408,7 @@
 
 /turf/simulated/wall/bay/special_wall_connections(list/dirs, list/inrange)
 	..()
-	for(var/direction in GLOB.cardinal)
+	for(var/direction in cardinal)
 		var/turf/T = get_step(src, direction)
 		var/decided_to_blend = FALSE
 		blend_obj_loop:
@@ -473,7 +474,7 @@
 	if(!material)
 		return
 	var/dirs = 0
-	var/list_to_use = diagonal_blending ? GLOB.alldirs : GLOB.cardinal
+	var/list_to_use = diagonal_blending ? alldirs : cardinal
 	main_direction_loop:
 		for(var/direction in list_to_use)
 			var/turf/simulated/wall/tgmc/W = get_step(src, direction)

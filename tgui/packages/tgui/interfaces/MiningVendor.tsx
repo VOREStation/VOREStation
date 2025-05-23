@@ -84,7 +84,7 @@ const MiningVendorItems = (props: {
   );
 
   let has_contents = false;
-  const contents = Object.entries(items).map((kv, _i) => {
+  let contents = Object.entries(items).map((kv, _i) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {
@@ -137,7 +137,7 @@ const MiningVendorSearch = (props: {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onChange={(value) => props.onSearchText(value)}
+            onInput={(_e, value) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

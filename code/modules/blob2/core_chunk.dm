@@ -23,8 +23,8 @@
 /obj/item/blobcore_chunk/is_open_container()
 	return 1
 
-/obj/item/blobcore_chunk/Initialize(mapload, var/datum/blob_type/parentblob = null)
-	. = ..()
+/obj/item/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
+	..(newloc)
 
 	create_reagents(120)
 	setup_blobtype(parentblob)
@@ -34,7 +34,7 @@
 
 	blob_type = null
 
-	. = ..()
+	..()
 
 /obj/item/blobcore_chunk/proc/setup_blobtype(var/datum/blob_type/parentblob = null)
 	if(!parentblob)
@@ -62,7 +62,6 @@
 		START_PROCESSING(SSobj, src)
 
 /obj/item/blobcore_chunk/proc/call_chunk_unique()
-	SIGNAL_HANDLER
 	if(blob_type)
 		blob_type.chunk_unique(src, args)
 	return

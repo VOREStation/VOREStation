@@ -179,8 +179,8 @@ const findClassMessage = (
       : 'TinderMessage_First_Received';
   }
 
-  const thisSent = IsIMOurs(im, targetAddress);
-  const lastSent = IsIMOurs(filterArray[lastIndex], targetAddress);
+  let thisSent = IsIMOurs(im, targetAddress);
+  let lastSent = IsIMOurs(filterArray[lastIndex], targetAddress);
   if (thisSent && lastSent) {
     return 'TinderMessage_Subsequent_Sent';
   } else if (!thisSent && !lastSent) {

@@ -1,6 +1,5 @@
 /decl/chemical_reaction/instant/food
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
-	wiki_flag = WIKI_FOOD
 
 /decl/chemical_reaction/instant/food/hot_ramen
 	name = REAGENT_HOTRAMEN
@@ -31,8 +30,8 @@
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar
-	name = "Chocolate Bar Soy"
-	id = "chocolate_bar_soy"
+	name = "Chocolate Bar"
+	id = "chocolate_bar"
 	result = null
 	required_reagents = list(REAGENT_ID_SOYMILK = 2, REAGENT_ID_COCO = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list(REAGENT_ID_ENZYME = 5)
@@ -45,8 +44,8 @@
 	return
 
 /decl/chemical_reaction/instant/food/chocolate_bar2
-	name = "Chocolate Bar Milk"
-	id = "chocolate_bar_milk"
+	name = "Chocolate Bar"
+	id = "chocolate_bar"
 	result = null
 	required_reagents = list(REAGENT_ID_MILK = 2, REAGENT_ID_COCO = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list(REAGENT_ID_ENZYME = 5)
@@ -59,7 +58,7 @@
 	return
 
 /decl/chemical_reaction/instant/food/cookingoilcorn
-	name = "corn " + REAGENT_COOKINGOIL
+	name = REAGENT_COOKINGOIL
 	id = "cookingoilcorn"
 	result = REAGENT_ID_COOKINGOIL
 	required_reagents = list(REAGENT_ID_CORNOIL = 10)
@@ -67,7 +66,7 @@
 	result_amount = 10
 
 /decl/chemical_reaction/instant/food/cookingoilpeanut
-	name = "peanut " + REAGENT_ID_COOKINGOIL
+	name = REAGENT_COOKINGOIL
 	id = "cookingoilpeanut"
 	result = REAGENT_ID_COOKINGOIL
 	required_reagents = list(REAGENT_ID_PEANUTOIL = 10)

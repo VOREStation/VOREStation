@@ -130,8 +130,10 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
+/obj/screen/plane_master/New()
+	..(null) //Never be in anything ever.
+
 /obj/screen/plane_master/proc/backdrop(mob/mymob)
-	return
 
 /obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
@@ -143,9 +145,9 @@
 	//Invisibility-managed
 	if(invis_toggle)
 		if(want && invisibility)
-			invisibility = INVISIBILITY_NONE //Does not need a mouse_opacity toggle because these are for effects
+			invisibility = 0 //Does not need a mouse_opacity toggle because these are for effects
 		else if(!want && !invisibility)
-			invisibility = INVISIBILITY_ABSTRACT
+			invisibility = 101
 	//Alpha-managed
 	else
 		if(want && !alpha)
@@ -179,7 +181,7 @@
 	layer = LAYER_HUD_BASE+1 // This MUST be above the lighting plane_master
 	color = null //To break lighting when visible (this is sorta backwards)
 	alpha = 0 //Starts full opaque
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = 101
 	invis_toggle = TRUE
 
 /obj/screen/plane_master/lighting

@@ -275,7 +275,9 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!B.data["viruses"])
 		B.data["viruses"] = list()
 
-	for(var/datum/disease/D in GetSpreadableViruses())
+	for(var/datum/disease/D in GetViruses())
+		if(D.spread_flags & SPECIAL)
+			continue
 		B.data["viruses"] |= D.Copy()
 
 	if(!B.data["resistances"])
@@ -318,7 +320,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
 		var/datum/disease/D = ID
-		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+		if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
 			continue
 		ContractDisease(D)
 	if (injected.data["resistances"] && prob(5))
@@ -467,7 +469,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.viruses = source.data["viruses"]
 
 	B.fluorescent  = 0
-	B.invisibility = INVISIBILITY_NONE
+	B.invisibility = 0
 	return B
 
 #undef BLOOD_MINIMUM_STOP_PROCESS

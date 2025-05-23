@@ -8,7 +8,6 @@ import {
   LabeledList,
   Section,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -30,7 +29,7 @@ export const SpaceHeater = (props) => {
         <Section title="Status">
           <LabeledList>
             <LabeledList.Item label="Target Temperature">
-              {toFixed(temp, 2)} K ({toFixed(temp - T0C, 2)}&deg; C)
+              {temp} K ({temp - T0C}&deg; C)
             </LabeledList.Item>
             <LabeledList.Item label="Current Charge">
               {power}% {!cell && '(No Cell Inserted)'}
@@ -42,7 +41,6 @@ export const SpaceHeater = (props) => {
             <LabeledControls.Item label="Thermostat">
               <Knob
                 animated
-                format={(value) => toFixed(value, 2)}
                 value={temp - T0C}
                 minValue={minTemp - T0C}
                 maxValue={maxTemp - T0C}

@@ -29,8 +29,7 @@
 		/obj/item/clothing,
 		/obj/item/storage/backpack,
 		/obj/item/storage/belt,
-		/obj/item/toy,
-		/obj/item/stack/material
+		/obj/item/toy
 	)
 
 /obj/machinery/gear_painter/Initialize(mapload)
@@ -69,8 +68,6 @@
 		return
 
 	if(is_type_in_list(I, allowed_types) && !inoperable())
-		if(istype(I,/obj/item/stack/material/cyborg)) //Needs an exception for borg materials to avoid glitches.
-			return
 		user.visible_message(span_notice("[user] inserts \the [I] into the Color Mate receptable."))
 		user.drop_from_inventory(I)
 		I.forceMove(src)

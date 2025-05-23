@@ -8,7 +8,7 @@
 #define GD_UNLIMITED	8		// will not deplete amount when gear is taken
 #define GD_UNIQUE		16		// each instance of this will allow people to take 1 thing
 
-GLOBAL_LIST_EMPTY(dispenser_presets)
+var/list/dispenser_presets = list()
 
 // Standard generic item list
 /datum/gear_disp
