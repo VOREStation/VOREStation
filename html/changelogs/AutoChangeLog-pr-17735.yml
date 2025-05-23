@@ -1,0 +1,5 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "Gas overlays work again"
+  - code_imp: "xgm gas_data is now a GLOB"
