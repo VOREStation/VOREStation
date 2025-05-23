@@ -431,9 +431,9 @@
 	if(!.)
 		return _AddComponent(arguments)
 /**
-  * Removes the component from parent, ends up with a null parent
+ * Removes the component from parent, ends up with a null parent
  * Used as a helper proc by the component transfer proc, does not clean up the component like Destroy does
-  */
+ */
 /datum/component/proc/RemoveComponent()
 	if(!parent)
 		return

@@ -3488,6 +3488,11 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
+"afs" = (
+/obj/structure/catwalk,
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "aft" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -6451,6 +6456,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
+"akp" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/readingrooms)
 "akq" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/bathroom)
@@ -8171,6 +8183,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "amW" = (
@@ -8226,6 +8239,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "and" = (
@@ -8475,6 +8489,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "anA" = (
@@ -8625,6 +8640,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "anQ" = (
@@ -9435,6 +9451,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "apl" = (
@@ -12529,6 +12546,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
 "auD" = (
@@ -13419,6 +13437,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
 	dir = 1
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "awl" = (
@@ -13860,6 +13879,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "axk" = (
@@ -17493,6 +17513,20 @@
 	},
 /turf/simulated/floor,
 /area/bridge_hallway)
+"aEN" = (
+/obj/structure/railing,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "aEO" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -17709,6 +17743,7 @@
 	},
 /obj/structure/railing,
 /obj/effect/floor_decal/rust,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aFl" = (
@@ -18122,6 +18157,8 @@
 	name = "Bridge RC";
 	pixel_y = 32
 	},
+/obj/structure/table/hardwoodtable,
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "aGc" = (
@@ -24663,6 +24700,20 @@
 /obj/effect/landmark/free_ai_shell,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"aTk" = (
+/obj/effect/floor_decal/techfloor,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/south)
 "aTl" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/research,
@@ -24683,6 +24734,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aTm" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
+"aTn" = (
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "aTo" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
@@ -24700,6 +24762,45 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aTq" = (
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
+"aTr" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/atmos)
+"aTs" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
+"aTt" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
+"aTu" = (
+/obj/structure/railing,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/asmaint2)
+"aTv" = (
+/obj/structure/railing,
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/asmaint2)
 "aTw" = (
 /obj/structure/flora/pottedplant/stoutbush,
 /obj/machinery/camera/network/research{
@@ -24953,6 +25054,10 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
+"aTR" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/rnd)
 "aTS" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -25002,6 +25107,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"aTX" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/asmaint2)
+"aTY" = (
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/rnd)
 "aTZ" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -25040,6 +25156,23 @@
 "aUc" = (
 /turf/simulated/wall,
 /area/janitor)
+"aUd" = (
+/obj/effect/floor_decal/techfloor,
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/north)
+"aUe" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/mining)
+"aUf" = (
+/obj/effect/recycler_vendor_beacon,
+/turf/simulated/floor,
+/area/maintenance/lower/north)
+"aUg" = (
+/obj/effect/recycler_beacon,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/north)
 "aUj" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -28444,6 +28577,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "bda" = (
@@ -28605,6 +28739,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bdt" = (
@@ -29011,6 +29146,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/effect/floor_decal/rust,
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "beG" = (
@@ -29601,6 +29737,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bhk" = (
@@ -31878,6 +32015,7 @@
 	pixel_y = 22
 	},
 /obj/structure/railing,
+/obj/effect/recycler_vendor_beacon,
 /turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "etU" = (
@@ -32884,13 +33022,6 @@
 /obj/machinery/computer/timeclock/premade/east,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
-"opK" = (
-/obj/move_trader_landmark{
-	dir = 4;
-	trader_type = /obj/trader/general
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/rnd)
 "oXH" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -39786,7 +39917,7 @@ aHm
 aHm
 aHm
 aqp
-aYD
+aTX
 arg
 aJz
 arm
@@ -41488,7 +41619,7 @@ axR
 axR
 awY
 awY
-aEc
+aTY
 aql
 aIP
 aJm
@@ -41940,7 +42071,7 @@ aWD
 aUm
 aUm
 aUm
-aZa
+aTu
 azT
 aZX
 aCe
@@ -42199,7 +42330,7 @@ axR
 awY
 aGw
 aGw
-aEc
+aTR
 aEc
 aEc
 aJJ
@@ -42343,7 +42474,7 @@ aGw
 aqm
 aEc
 aEc
-aEc
+aTR
 aJJ
 aBb
 aKW
@@ -42508,7 +42639,7 @@ aUm
 aXu
 aYc
 aUm
-aZe
+aTv
 aZD
 aHE
 aHE
@@ -42745,7 +42876,7 @@ arG
 asF
 ann
 auy
-auA
+aUf
 ajE
 aAA
 axe
@@ -42768,7 +42899,7 @@ aGy
 aGw
 aGw
 aIp
-aEc
+aTY
 aJq
 aJM
 aKm
@@ -42797,7 +42928,7 @@ aZC
 aAX
 aCf
 baz
-baU
+aTq
 baU
 baU
 baz
@@ -43239,7 +43370,7 @@ baz
 baz
 baz
 baW
-baW
+afs
 aLs
 bhR
 baz
@@ -43738,7 +43869,7 @@ aqQ
 arL
 asL
 anr
-auA
+aUf
 auy
 ajE
 ajE
@@ -43753,7 +43884,7 @@ avD
 aBJ
 aCw
 avD
-opK
+aTR
 aED
 aFi
 aFT
@@ -43799,7 +43930,7 @@ aHo
 aHJ
 baW
 baW
-bcT
+aTm
 baz
 baz
 aIQ
@@ -44168,7 +44299,7 @@ amZ
 avv
 avX
 awH
-aoa
+aUd
 ajE
 ayB
 ayW
@@ -44321,7 +44452,7 @@ aPI
 aBN
 aCA
 ayW
-aEc
+aTR
 aFh
 aFm
 aEc
@@ -44365,7 +44496,7 @@ aXB
 bbK
 bbJ
 aVP
-baU
+aTq
 bbf
 baz
 baz
@@ -44386,7 +44517,7 @@ baz
 baz
 baz
 bbf
-baW
+afs
 baz
 adt
 adt
@@ -44474,7 +44605,7 @@ apj
 apj
 apj
 aLH
-aEc
+aTR
 avD
 aLd
 ayd
@@ -44751,7 +44882,7 @@ aEc
 apg
 aEc
 aFl
-aEc
+aTR
 aGw
 aqk
 aqo
@@ -45217,7 +45348,7 @@ aXB
 bbA
 bcf
 aVP
-bcu
+aTr
 baW
 bcX
 baz
@@ -45785,7 +45916,7 @@ aXB
 bbA
 bbJ
 aVP
-bcu
+aTr
 aIh
 baz
 baz
@@ -46010,7 +46141,7 @@ boI
 boI
 kRb
 ylZ
-anC
+aUg
 avD
 awd
 awO
@@ -46356,7 +46487,7 @@ bbI
 baU
 baW
 baz
-bdr
+aEN
 aLX
 aLY
 adt
@@ -47148,7 +47279,7 @@ asW
 amV
 anD
 anD
-anD
+aUe
 avD
 axz
 ahH
@@ -47198,7 +47329,7 @@ aZs
 aZQ
 aNo
 aLX
-baK
+aTs
 aLY
 bbn
 aZr
@@ -47482,7 +47613,7 @@ aZs
 aZS
 aNo
 aLX
-baK
+aTt
 baY
 aZr
 bbM
@@ -48192,7 +48323,7 @@ adt
 aLY
 bak
 aLX
-baK
+aTt
 aLY
 aLY
 aLY
@@ -48202,7 +48333,7 @@ aLY
 vok
 bdQ
 bdb
-aIo
+aTk
 aLY
 adt
 adt
@@ -48618,7 +48749,7 @@ adt
 aLY
 ban
 aLX
-baK
+aTs
 aLY
 aLY
 aLY
@@ -48769,7 +48900,7 @@ aLY
 aId
 aIf
 baY
-aZr
+aTn
 bdy
 aLY
 bax
@@ -48916,7 +49047,7 @@ bdy
 aLY
 cJh
 dRq
-dRq
+akp
 gsU
 jtj
 jtj

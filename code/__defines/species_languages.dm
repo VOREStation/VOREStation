@@ -12,6 +12,7 @@
 #define NO_INFECT		0x400	// Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
 #define NO_DEFIB		0x800	// Don't allow them to be defibbed
 #define NO_DNA          0x1000	// Cannot have mutations or have their dna changed by genetics/radiation/genome-stolen.
+#define THICK_SKIN		0x2000	// Needles have a chain to fail when attempted to be used on them.
 // unused: 0x8000 - higher than this will overflow
 
 // Species EMP vuln for carbons
@@ -98,6 +99,8 @@
 #define LANGUAGE_ZADDAT "Vedahq"
 #define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
 #define LANGUAGE_GIBBERISH "Babel"
+#define LANGUAGE_ROBOT_TALK "Robot Talk"
+#define LANGUAGE_DRONE_TALK "Drone Talk"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

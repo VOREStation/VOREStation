@@ -2,7 +2,7 @@ import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
 import { modalOpen } from '../common/ComplexModal';
-import { field, record } from './types';
+import type { field, record } from './types';
 
 export function doEdit(field: field) {
   modalOpen('edit', {

@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/outdoors/grass/seasonal,
+/area/redgate/wilds)
 "ae" = (
 /turf/simulated/floor/beach/sand{
 	outdoors = 1
@@ -18130,7 +18134,7 @@ cs
 cs
 cs
 cs
-cs
+aa
 cs
 cs
 cs

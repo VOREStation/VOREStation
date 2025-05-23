@@ -8,11 +8,11 @@ var/inactive_keys = "None<br>"
 	var/dat = span_bold("Inactive players with custom items") + "<br>"
 	dat += "<br>"
 	dat += "The list below contains players with custom items that have not logged\
-	 in for the past two months, or have not logged in since this system was implemented.\
-	 This system requires the feedback SQL database to be properly setup and linked.<br>"
+		in for the past two months, or have not logged in since this system was implemented.\
+		This system requires the feedback SQL database to be properly setup and linked.<br>"
 	dat += "<br>"
 	dat += "Populating this list is done automatically, but must be manually triggered on a per\
-	 round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
+		round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
 	dat += "<hr>"
 	if(checked_for_inactives)
 		dat += inactive_keys

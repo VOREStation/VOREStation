@@ -45,18 +45,26 @@ const virusModalBodyOverride = (modal: modalData) => {
       m="-1rem"
       title={virus.name || 'Virus'}
       buttons={
-        <>
-          <Button
-            disabled={!can_print}
-            icon="print"
-            onClick={() =>
-              act('print', { type: 'virus_record', vir: virus.record })
-            }
-          >
-            Print
-          </Button>
-          <Button icon="times" color="red" onClick={() => act('modal_close')} />
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              disabled={!can_print}
+              icon="print"
+              onClick={() =>
+                act('print', { type: 'virus_record', vir: virus.record })
+              }
+            >
+              Print
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="times"
+              color="red"
+              onClick={() => act('modal_close')}
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <Box mx="0.5rem">
@@ -143,22 +151,26 @@ const PathogenicIsolatorTabHome = (props) => {
     <Section
       title="Pathogens"
       buttons={
-        <>
-          <Button
-            icon="print"
-            disabled={!can_print}
-            onClick={() => act('print', { type: 'patient_diagnosis' })}
-          >
-            Print
-          </Button>
-          <Button
-            icon="eject"
-            disabled={!syringe_inserted}
-            onClick={() => act('eject')}
-          >
-            Eject Syringe
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="print"
+              disabled={!can_print}
+              onClick={() => act('print', { type: 'patient_diagnosis' })}
+            >
+              Print
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="eject"
+              disabled={!syringe_inserted}
+              onClick={() => act('eject')}
+            >
+              Eject Syringe
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {(pathogen_pool.length &&

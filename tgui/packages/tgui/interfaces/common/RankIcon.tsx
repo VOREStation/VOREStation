@@ -639,7 +639,7 @@ type rank_icon = { rank: string; color: string };
 export const RankIcon = (props: rank_icon) => {
   const { rank, color = 'label' } = props;
 
-  let rankObj = rank2icon[rank];
+  const rankObj = rank2icon[rank];
   if (typeof rankObj === 'string') {
     return <Icon inline color={color} name={rankObj} size={2} />;
   } else if (Array.isArray(rankObj)) {

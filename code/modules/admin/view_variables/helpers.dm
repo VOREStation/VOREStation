@@ -194,6 +194,6 @@
 	return TRUE
 
 /proc/forbidden_varedit_object_types()
- 	return list(
+	return list(
 		/datum/admins						//Admins editing their own admin-power object? Yup, sounds like a good idea.
 	)

@@ -1,16 +1,13 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
-	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
-	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
-	var/prey_controlled = FALSE			//VOREStation Addition
+	var/list/temp_language_sources = list()	//Absorbs add languages to the pred
+	var/list/temp_languages = list()		// Absorbs add languages to the pred
+	var/prey_controlled = FALSE			// If the mob is currently controlled by their prey.
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/vore_egg_type = "egg" 			// Default egg type.
-	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
-	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
-	var/revive_finished = 0				// Only used for xenochimera regen, allows us to find out when the regen will finish.
+	var/vore_egg_type = "egg" 			// Default egg type.	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/no_vore = FALSE					// If the character/mob can vore.
 	var/restrict_vore_ventcrawl = FALSE // Self explanatory
@@ -25,18 +22,11 @@
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
 	var/appendage_alt_setting = FALSE	// Dictates if 'long_vore' user pulls prey to them or not. 1 = user thrown towards target.
 	var/digestion_in_progress = FALSE	// Gradual corpse gurgles
-	var/regen_sounds = list(
-		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
-	)
-	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
+	var/trash_catching = FALSE					//Toggle for trash throw vore
 	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
-	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
-	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
-	var/trait_injection_verb = "bites"			//RSEdit: Which fluffy manner you're doing the injecting.
+	var/trait_injection_selected = null			//What trait reagent you're injecting.
+	var/trait_injection_amount = 5				//How much you're injecting with traits.
+	var/trait_injection_verb = "bite"			//Which fluffy manner you're doing the injecting.
 
 	var/mute_entry = FALSE					//Toggleable vorgan entry logs.
 	var/parasitic = FALSE					//Digestion immunity and nutrition leeching variable
@@ -250,62 +240,12 @@
 
 	var/datum/vore_preferences/P = client.prefs_vr
 
-	P.digestable = src.digestable
-	P.devourable = src.devourable
-	P.feeding = src.feeding
-	P.absorbable = src.absorbable
-	P.resizable = src.resizable
-	P.digest_leave_remains = src.digest_leave_remains
-	P.allowmobvore = src.allowmobvore
-	P.vore_taste = src.vore_taste
-	P.vore_smell = src.vore_smell
-	P.permit_healbelly = src.permit_healbelly
-	P.noisy = src.noisy
-	P.selective_preference = src.selective_preference
-	P.show_vore_fx = src.show_vore_fx
-	P.can_be_drop_prey = src.can_be_drop_prey
-	P.can_be_drop_pred = src.can_be_drop_pred
-	P.allow_spontaneous_tf = src.allow_spontaneous_tf
-	P.step_mechanics_pref = src.step_mechanics_pref
-	P.pickup_pref = src.pickup_pref
-	P.drop_vore = src.drop_vore
-	P.slip_vore = src.slip_vore
-	P.throw_vore = src.throw_vore
-	P.food_vore = src.food_vore
-	P.consume_liquid_belly = src.consume_liquid_belly
-	P.digest_pain = src.digest_pain
-	P.stumble_vore = src.stumble_vore
-	P.eating_privacy_global = src.eating_privacy_global
-	P.allow_mimicry = src.allow_mimicry
-
-	P.nutrition_message_visible = src.nutrition_message_visible
-	P.nutrition_messages = src.nutrition_messages
-	P.weight_message_visible = src.weight_message_visible
-	P.weight_messages = src.weight_messages
-	P.vore_sprite_color = src.vore_sprite_color
-	P.allow_mind_transfer = src.allow_mind_transfer
-
-	P.phase_vore = src.phase_vore
-	P.noisy_full = src.noisy_full
-	P.latejoin_vore = src.latejoin_vore
-	P.latejoin_prey = src.latejoin_prey
-	P.receive_reagents = src.receive_reagents
-	P.give_reagents = src.give_reagents
-	P.apply_reagents = src.apply_reagents
-	P.autotransferable = src.autotransferable
-	P.strip_pref = src.strip_pref
-	P.vore_sprite_multiply = src.vore_sprite_multiply
-	P.no_latejoin_vore_warning = src.no_latejoin_vore_warning
-	P.no_latejoin_prey_warning = src.no_latejoin_prey_warning
-	P.no_latejoin_vore_warning_time = src.no_latejoin_vore_warning_time
-	P.no_latejoin_prey_warning_time = src.no_latejoin_prey_warning_time
-	P.no_latejoin_vore_warning_persists = src.no_latejoin_vore_warning_persists
-	P.no_latejoin_prey_warning_persists = src.no_latejoin_prey_warning_persists
-	P.belly_rub_target = src.belly_rub_target
-	P.soulcatcher_pref_flags = src.soulcatcher_pref_flags
+	VORE_PREF_TRANSFER(P, src)
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
+		if(B.prevent_saving) // Dont save bellies marked as unsavable.
+			continue
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
 
 	P.belly_prefs = serialized
@@ -323,59 +263,7 @@
 
 	var/datum/vore_preferences/P = client.prefs_vr
 
-	digestable = P.digestable
-	devourable = P.devourable
-	feeding = P.feeding
-	absorbable = P.absorbable
-	resizable = P.resizable
-	digest_leave_remains = P.digest_leave_remains
-	allowmobvore = P.allowmobvore
-	vore_taste = P.vore_taste
-	vore_smell = P.vore_smell
-	permit_healbelly = P.permit_healbelly
-	selective_preference = P.selective_preference
-	noisy = P.noisy
-	show_vore_fx = P.show_vore_fx
-	can_be_drop_prey = P.can_be_drop_prey
-	can_be_drop_pred = P.can_be_drop_pred
-	allow_spontaneous_tf = P.allow_spontaneous_tf
-	step_mechanics_pref = P.step_mechanics_pref
-	pickup_pref = P.pickup_pref
-	drop_vore = P.drop_vore
-	slip_vore = P.slip_vore
-	throw_vore = P.throw_vore
-	stumble_vore = P.stumble_vore
-	food_vore = P.food_vore
-	consume_liquid_belly = P.consume_liquid_belly
-	digest_pain = P.digest_pain
-	eating_privacy_global = P.eating_privacy_global
-	allow_mimicry = P.allow_mimicry
-
-	nutrition_message_visible = P.nutrition_message_visible
-	nutrition_messages = P.nutrition_messages
-	weight_message_visible = P.weight_message_visible
-	weight_messages = P.weight_messages
-	vore_sprite_color = P.vore_sprite_color
-	allow_mind_transfer = P.allow_mind_transfer
-
-	phase_vore = P.phase_vore
-	noisy_full = P.noisy_full
-	latejoin_vore = P.latejoin_vore
-	latejoin_prey = P.latejoin_prey
-	receive_reagents = P.receive_reagents
-	give_reagents = P.give_reagents
-	apply_reagents = P.apply_reagents
-	autotransferable = P.autotransferable
-	strip_pref = P.strip_pref
-	vore_sprite_multiply = P.vore_sprite_multiply
-	no_latejoin_vore_warning = P.no_latejoin_vore_warning
-	no_latejoin_prey_warning = P.no_latejoin_prey_warning
-	no_latejoin_vore_warning_time = P.no_latejoin_vore_warning_time
-	no_latejoin_prey_warning_time = P.no_latejoin_prey_warning_time
-	no_latejoin_vore_warning_persists = P.no_latejoin_vore_warning_persists
-	no_latejoin_prey_warning_persists = P.no_latejoin_prey_warning_persists
-	belly_rub_target = P.belly_rub_target
-	soulcatcher_pref_flags = P.soulcatcher_pref_flags
+	VORE_PREF_TRANSFER(src, P)
 
 	if(bellies)
 		if(isliving(src))
@@ -764,7 +652,7 @@
 //
 // Master vore proc that actually does vore procedures
 //
-/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
 		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
@@ -801,9 +689,6 @@
 			if("subtle")
 				message_range = 1
 
-
-
-	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
 	if(prey.is_slipping)
 		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!")
@@ -820,14 +705,14 @@
 
 	// Announce that we start the attempt!
 
-
 	user.visible_message(attempt_msg, range = message_range)
-
 
 	// Now give the prey time to escape... return if they did
 	var/swallow_time
-	if(delay)
-		swallow_time = delay
+	if(delay_time < 0)
+		swallow_time = 0 //No delay!
+	else if(delay_time)
+		swallow_time = delay_time
 	else
 		swallow_time = ishuman(prey) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
@@ -838,7 +723,7 @@
 	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
 		prey.Stun(min(prey.weakened, 2)) // stop crwaling instantly break swallow attempt for mobvore
 	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Prey escpaed (or user disabled) before timer expired.
+		return FALSE // Prey escaped (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
 	user.visible_message(success_msg, range = message_range)
@@ -950,7 +835,7 @@
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
+	return perform_the_nom(user, prey, user, belly, -1)
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
@@ -1013,7 +898,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
-		visible_message(span_vwarning("[src] demonstrates the voracious capabilities of their [lowertext(vore_selected.name)] by making [I] disappear!"))
+		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 		return
 	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
 	return
@@ -1205,7 +1090,6 @@
 			save_ooc_panel(usr)
 	if(href_list["print_ooc_notes_chat"])
 		print_ooc_notes_chat(usr)
-	/* Not implemented on virgo
 	if(href_list["edit_ooc_note_favs"])
 		if(usr == src)
 			set_metainfo_favs(usr)
@@ -1214,7 +1098,6 @@
 			set_metainfo_maybes(usr)
 	if(href_list["set_metainfo_ooc_style"])
 		set_metainfo_ooc_style(usr)
-	*/
 	if(href_list["save_private_notes"])
 		if(usr == src)
 			save_private_notes(usr)
@@ -1463,6 +1346,7 @@
 	qdel_null(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1478,6 +1362,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/vore_panel/proc/vore_panel_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/living/owner = user
 	if(istype(owner) && owner.vorePanel)
 		INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/living, insidePanel), owner)
@@ -1684,31 +1569,24 @@
 			else
 				user.custom_emote_vr(1, span_vnotice("spills [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] onto the floor!"))
 
-			var/obj/effect/decal/cleanable/blood/reagent/puddle = null
 			if (RTB.custom_reagentcolor)
-				puddle = new /obj/effect/decal/cleanable/blood/reagent(RTB.reagent_name, RTB.custom_reagentcolor, RTB.reagentid, puddle_amount, user.ckey, TG.ckey)
+				new /obj/effect/decal/cleanable/blood/reagent(TG.loc, RTB.reagent_name, RTB.custom_reagentcolor, RTB.reagentid, puddle_amount, user.ckey, TG.ckey)
 			else
-				puddle = new /obj/effect/decal/cleanable/blood/reagent(RTB.reagent_name, RTB.reagentcolor, RTB.reagentid, puddle_amount, user.ckey, TG.ckey)
-
-			puddle.loc = TG.loc
+				new /obj/effect/decal/cleanable/blood/reagent(TG.loc, RTB.reagent_name, RTB.reagentcolor, RTB.reagentid, puddle_amount, user.ckey, TG.ckey)
 
 			var/soundfile
 			if(!RTB.fancy_vore)
-				soundfile = classic_release_sounds[RTB.release_sound]
+				soundfile = GLOB.classic_release_sounds[RTB.release_sound]
 			else
-				soundfile = fancy_release_sounds[RTB.release_sound]
+				soundfile = GLOB.fancy_release_sounds[RTB.release_sound]
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
 /mob/living/proc/vore_bellyrub(var/mob/living/T in view(1,src))
-	set name = "Give Bellyrubs"
-	set category = "Abilities.General"
-	set desc = "Provide bellyrubs to either yourself or another mob with a belly."
 
 	if(!T)
-		T = tgui_input_list(src, "Choose whose belly to rub", "Rub Belly?", mobs_in_view(1,src))
-		if(!T)
-			return FALSE
+		return FALSE
+
 	if(!(T in view(1,src)))
 		return FALSE
 	if(T.vore_selected)
@@ -1717,7 +1595,7 @@
 			if(T == src)
 				custom_emote_vr(1, "rubs their [belly_rub_target ? belly_rub_target : lowertext(B.name)].")
 			else
-				custom_emote_vr(1, "gives some rubs over [T]'s [belly_rub_target ? belly_rub_target : lowertext(B.name)].")
+				custom_emote_vr(1, "gives some rubs over [T]'s [T.belly_rub_target ? T.belly_rub_target : lowertext(B.name)].")
 			B.quick_cycle()
 			return TRUE
 	to_chat(src, span_vwarning("There is no suitable belly for rubs."))

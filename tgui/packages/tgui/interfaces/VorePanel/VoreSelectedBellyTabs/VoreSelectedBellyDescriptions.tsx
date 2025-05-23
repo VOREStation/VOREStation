@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -6,6 +6,7 @@ import {
   Dimmer,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { SYNTAX_COLOR, SYNTAX_REGEX } from '../constants';
@@ -27,7 +28,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
       return;
     }
 
-    let elements: ReactNode[] = [];
+    const elements: ReactNode[] = [];
 
     const regexCopy = new RegExp(SYNTAX_REGEX);
 
@@ -115,7 +116,8 @@ export const VoreSelectedBellyDescriptions = (props: {
                 Number of prey digested in this belly.
               </LabeledList.Item>
               <LabeledList.Item label="%item">
-                Only used in resist messages - item the prey is using to escape.
+                item the prey is using to escape in resist messages, or the item
+                ingested via trash eater
               </LabeledList.Item>
               <LabeledList.Item label="%dest">
                 Only used in transfer messages - belly prey is going to.
@@ -129,21 +131,29 @@ export const VoreSelectedBellyDescriptions = (props: {
           </Section>
         </Dimmer>
       )}
-      <Box color="label" mt={1} mb={1}>
-        Description:{' '}
-        <Button
-          icon="pencil"
-          onClick={() => act('set_attribute', { attribute: 'b_desc' })}
-        >
-          Edit
-        </Button>
-        <Button
-          icon="question"
-          tooltip="Formatting help"
-          onClick={() => setShowFormatHelp(!showFormatHelp)}
-          selected={showFormatHelp}
-        />
-      </Box>
+      <Stack>
+        <Stack.Item>
+          <Box color="label" mt={1} mb={1}>
+            Description:
+          </Box>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="pencil"
+            onClick={() => act('set_attribute', { attribute: 'b_desc' })}
+          >
+            Edit
+          </Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="question"
+            tooltip="Formatting help"
+            onClick={() => setShowFormatHelp(!showFormatHelp)}
+            selected={showFormatHelp}
+          />
+        </Stack.Item>
+      </Stack>
       <DescriptionSyntaxHighlighting desc={desc} />
       <Box color="label" mt={2} mb={1}>
         Description (Absorbed):{' '}
@@ -198,6 +208,25 @@ export const VoreSelectedBellyDescriptions = (props: {
             }
           >
             Examine Message (with absorbed victims)
+          </Button>
+        </LabeledList.Item>
+        <LabeledList.Item label="Trash Eater Messages">
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_trasheater', msgtype: 'in' })
+            }
+          >
+            Item Eat Message
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_trasheater',
+                msgtype: 'out',
+              })
+            }
+          >
+            Item Expel Message
           </Button>
         </LabeledList.Item>
         {message_mode || escapable ? (

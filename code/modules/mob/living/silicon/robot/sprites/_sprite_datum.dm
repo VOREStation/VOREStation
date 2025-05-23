@@ -17,6 +17,8 @@
 	var/has_vore_struggle_sprite = FALSE
 	var/max_belly_size = 1 //If larger bellies are made, set this to the value of the largest size
 	var/has_rest_sprites = FALSE
+	var/has_rest_eyes_sprites = FALSE
+	var/has_rest_lights_sprites = FALSE
 	var/list/rest_sprite_options
 	var/has_dead_sprite = FALSE
 	var/has_dead_sprite_overlay = FALSE
@@ -34,6 +36,7 @@
 	var/list/belly_light_list = list() // Support multiple sleepers with r/g light "sleeper"
 	var/list/belly_capacity_list = list() //Support multiple bellies with multiple sizes, default: "sleeper" = 1
 	var/list/sprite_decals = list() // Allow extra decals
+	var/list/sprite_animations = list() // Allows to flick animations
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
@@ -138,15 +141,20 @@
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-eyes"
+	else if(ourborg.resting && has_rest_eyes_sprites)
+		return "[get_rest_sprite(ourborg)]-eyes"
 	else
 		return
 
 /datum/robot_sprite/proc/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-lights"
+	else if(ourborg.resting && has_rest_lights_sprites)
+		return "[get_rest_sprite(ourborg)]-lights"
 	else
 		return
 
+// This can not use the get_rest_sprite function as it could use belly overlays as decals
 /datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
 	if(LAZYLEN(sprite_decals))
 		if(!ourborg.resting)

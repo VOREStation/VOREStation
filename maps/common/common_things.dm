@@ -1,58 +1,58 @@
 /obj/effect/step_trigger/teleporter/to_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
 /obj/effect/step_trigger/teleporter/from_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
 /obj/effect/step_trigger/teleporter/to_solars
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_solars
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/wild
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/to_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/to_plains
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/from_plains
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b
 
 /obj/effect/step_trigger/lost_in_space
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
 
 /obj/effect/step_trigger/lost_in_space/Trigger(var/atom/movable/A) //replacement for shuttle dump zones because there's no empty space levels to dump to
@@ -151,13 +151,12 @@
 	return ..()
 
 /obj/machinery/cryopod/robot/door/tram/Bumped(var/atom/movable/AM)
-	if(!ishuman(AM))
+	if(!isliving(AM))
 		return
 
-	var/mob/living/carbon/human/user = AM
-
-	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
-	if(user && Adjacent(user) && choice == "Yes")
+	var/mob/living/user = AM
+	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"), timeout = 5 SECONDS)
+	if(!QDELETED(user) && Adjacent(user) && choice == "Yes")
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time
 		despawn_occupant(user)
@@ -254,9 +253,6 @@
 	item_state = "newscodex"
 	author = "Central Command"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Stellar Delight User's Guide"
-
-/obj/item/book/manual/sd_guide/New()
-	..()
 	dat = {"<html>
 				<head>
 				<style>

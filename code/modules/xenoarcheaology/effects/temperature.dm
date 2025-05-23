@@ -1,11 +1,11 @@
 /// Verified to work with the Artifact Harvester
-//inverse of /datum/artifact_effect/heat, the two effects split up for neatness' sake
 #define COLD 1
 #define HOT 2
 /datum/artifact_effect/temperature
 	name = "Atmospheric Temperature Change"
 	var/target_temp
 	var/temp_change = COLD
+	can_start_activated = FALSE
 
 	effect_color = "#b3f6ff"
 

@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import { CheckboxInput, type FeatureToggle } from '../base';
 
 // Vorey sounds
 export const BELCH_NOISES: FeatureToggle = {

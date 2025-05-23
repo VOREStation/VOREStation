@@ -85,11 +85,13 @@
 
 	if (istype(W, /obj/item/flamethrower))
 		var/obj/item/flamethrower/F = W
-		if ((!F.status)||(F.ptank))	return
-		src.master = F
+		if ((!F.status)||(F.ptank))
+			return
+		master = F
 		F.ptank = src
 		user.remove_from_mob(src)
-		src.loc = F
+		forceMove(F)
+		F.update_icon()
 	return
 
 /obj/item/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.

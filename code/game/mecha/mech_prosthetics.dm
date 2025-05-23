@@ -72,7 +72,7 @@
 
 /obj/machinery/mecha_part_fabricator/pros/Initialize(mapload)
 	. = ..()
-	manufacturer = basic_robolimb.company
+	manufacturer = GLOB.basic_robolimb.company
 
 /obj/machinery/mecha_part_fabricator/pros/dispense_built_part(datum/design/D)
 	var/obj/item/I = ..()
@@ -86,10 +86,10 @@
 	data["species_types"] = species_types
 	data["species"] = species
 
-	if(all_robolimbs)
+	if(GLOB.all_robolimbs)
 		var/list/T = list()
-		for(var/A in all_robolimbs)
-			var/datum/robolimb/R = all_robolimbs[A]
+		for(var/A in GLOB.all_robolimbs)
+			var/datum/robolimb/R = GLOB.all_robolimbs[A]
 			if(R.unavailable_to_build)
 				continue
 			if(species in R.species_cannot_use)
@@ -118,8 +118,8 @@
 			return
 		if("manufacturer")
 			var/list/new_manufacturers = list()
-			for(var/A in all_robolimbs)
-				var/datum/robolimb/R = all_robolimbs[A]
+			for(var/A in GLOB.all_robolimbs)
+				var/datum/robolimb/R = GLOB.all_robolimbs[A]
 				if(R.unavailable_to_build)
 					continue
 				if(species in R.species_cannot_use)
@@ -138,12 +138,12 @@
 
 	if(istype(I,/obj/item/disk/limb))
 		var/obj/item/disk/limb/D = I
-		if(!D.company || !(D.company in all_robolimbs))
+		if(!D.company || !(D.company in GLOB.all_robolimbs))
 			to_chat(user, span_warning("This disk seems to be corrupted!"))
 		else
 			to_chat(user, span_notice("Installing blueprint files for [D.company]..."))
 			if(do_after(user,50,src))
-				var/datum/robolimb/R = all_robolimbs[D.company]
+				var/datum/robolimb/R = GLOB.all_robolimbs[D.company]
 				R.unavailable_to_build = 0
 				to_chat(user, span_notice("Installed [D.company] blueprints!"))
 				qdel(I)

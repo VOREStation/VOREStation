@@ -58,57 +58,66 @@
 
 /datum/material/cloth/teal
 	name = MAT_CLOTH_TEAL
-	display_name =MAT_CLOTH_TEAL
+	display_name = MAT_CLOTH_TEAL
 	use_name = "teal cloth"
 	icon_colour = "#00EAFA"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/black
 	name = MAT_CLOTH_BLACK
 	display_name = MAT_CLOTH_BLACK
 	use_name = "black cloth"
 	icon_colour = "#505050"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/green
 	name = MAT_CLOTH_GREEN
 	display_name = MAT_CLOTH_GREEN
 	use_name = "green cloth"
 	icon_colour = "#01C608"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/puple
 	name = MAT_CLOTH_PURPLE
 	display_name = MAT_CLOTH_PURPLE
 	use_name = "purple cloth"
 	icon_colour = "#9C56C4"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/blue
 	name = MAT_CLOTH_BLUE
 	display_name = MAT_CLOTH_BLUE
 	use_name = "blue cloth"
 	icon_colour = "#6B6FE3"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/beige
 	name = MAT_CLOTH_BEIGE
 	display_name = MAT_CLOTH_BEIGE
 	use_name = "beige cloth"
 	icon_colour = "#E8E7C8"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/lime
 	name = MAT_CLOTH_LIME
 	display_name = MAT_CLOTH_LIME
 	use_name = "lime cloth"
 	icon_colour = "#62E36C"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/yellow
 	name = MAT_CLOTH_YELLOW
 	display_name = MAT_CLOTH_YELLOW
 	use_name = "yellow cloth"
 	icon_colour = "#EEF573"
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/orange
 	name = MAT_CLOTH_ORANGE
 	display_name = MAT_CLOTH_ORANGE
 	use_name = "orange cloth"
 	icon_colour = "#E3BF49"
+	wiki_flag = WIKI_SPOILER
 
 
 
@@ -126,6 +135,7 @@
 	conductive = 0
 	hardness = 5
 	integrity = 40
+	wiki_flag = WIKI_SPOILER
 
 /datum/material/cotton
 	name = MAT_COTTON

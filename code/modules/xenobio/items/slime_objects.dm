@@ -217,3 +217,4 @@
 	color = "#FABA3A"
 	nutriment_factor = 30
 	taste_description = "slimy nectar"
+	wiki_flag = WIKI_FOOD|WIKI_SPOILER

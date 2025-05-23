@@ -98,7 +98,6 @@
 	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(turf/T, datum/weakref/WF, oldloc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 
@@ -143,7 +142,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/flasher/M in machines)
+	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
 			spawn()
 				M.flash()

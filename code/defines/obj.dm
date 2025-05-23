@@ -10,7 +10,7 @@
 /obj/structure/signpost/attack_hand(mob/user as mob)
 	if(tgui_alert(user, "Travel back to ss13?","Return?",list("Yes","No")) == "Yes")
 		if(user.z != src.z)	return
-		user.forceMove(pick(latejoin))
+		user.forceMove(get_turf(pick(GLOB.latejoin)))
 
 /obj/structure/signpost_fake
 	icon = 'icons/obj/stationobjs.dmi'
@@ -71,10 +71,10 @@
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
  */
 
-/var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
+GLOBAL_LIST_INIT(acting_rank_prefixes, list("acting", "temporary", "interim", "provisional"))
 
 /proc/make_list_rank(rank)
-	for(var/prefix in acting_rank_prefixes)
+	for(var/prefix in GLOB.acting_rank_prefixes)
 		if(findtext(rank, "[prefix] ", 1, 2+length(prefix)))
 			return copytext(rank, 2+length(prefix))
 	return rank

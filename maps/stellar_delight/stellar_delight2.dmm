@@ -5726,9 +5726,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/engineering/engine_room)
 "lW" = (
-/obj/machinery/medical_kiosk{
-	pixel_y = 6
-	},
+/obj/structure/bed/chair,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
 "lX" = (
@@ -12824,6 +12822,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portfore)
 "Cv" = (
@@ -12879,6 +12878,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/effect/recycler_beacon,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portsolars)
 "CB" = (
@@ -18731,9 +18731,7 @@
 /obj/machinery/firealarm/angled{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant/smallcactus{
-	pixel_y = 14
-	},
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)
 "Pm" = (
@@ -19287,11 +19285,13 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Qq" = (
-/obj/structure/bed/chair,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/medical_kiosk{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
 "Qr" = (

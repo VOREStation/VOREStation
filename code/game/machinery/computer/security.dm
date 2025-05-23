@@ -113,13 +113,13 @@
 	if(authenticated)
 		switch(screen)
 			if(SEC_DATA_R_LIST)
-				if(!isnull(data_core.general))
+				if(!isnull(GLOB.data_core.general))
 					var/list/records = list()
 					data["records"] = records
-					for(var/datum/data/record/R in sortRecord(data_core.general))
+					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 						var/color = null
 						var/criminal = "None"
-						for(var/datum/data/record/M in data_core.security)
+						for(var/datum/data/record/M in GLOB.data_core.security)
 							if(M.fields["name"] == R.fields["name"] && M.fields["id"] == R.fields["id"])
 								switch(M.fields["criminal"])
 									if("*Arrest*")
@@ -142,7 +142,7 @@
 			if(SEC_DATA_RECORD)
 				var/list/general = list()
 				data["general"] = general
-				if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+				if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 					var/list/fields = list()
 					general["fields"] = fields
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], "name")
@@ -166,7 +166,7 @@
 
 				var/list/security = list()
 				data["security"] = security
-				if(istype(active2, /datum/data/record) && data_core.security.Find(active2))
+				if(istype(active2, /datum/data/record) && GLOB.data_core.security.Find(active2))
 					var/list/fields = list()
 					security["fields"] = fields
 					fields[++fields.len] = FIELD("Criminal Status", active2.fields["criminal"], "criminal")
@@ -189,9 +189,9 @@
 	if(..())
 		return TRUE
 
-	if(!data_core.general.Find(active1))
+	if(!GLOB.data_core.general.Find(active1))
 		active1 = null
-	if(!data_core.security.Find(active2))
+	if(!GLOB.data_core.security.Find(active2))
 		active2 = null
 
 	. = TRUE
@@ -254,7 +254,7 @@
 				active1 = null
 				active2 = null
 			if("del_all")
-				for(var/datum/data/record/R in data_core.security)
+				for(var/datum/data/record/R in GLOB.data_core.security)
 					qdel(R)
 				set_temp("All security records deleted.")
 			if("del_r")
@@ -264,7 +264,7 @@
 			if("del_r_2")
 				set_temp("All records for [active1.fields["name"]] deleted.")
 				if(active1)
-					for(var/datum/data/record/R in data_core.medical)
+					for(var/datum/data/record/R in GLOB.data_core.medical)
 						if((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 							qdel(R)
 					qdel(active1)
@@ -282,12 +282,12 @@
 							active2.fields["notes"] = new_notes
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
-				if(!data_core.general.Find(general_record))
+				if(!GLOB.data_core.general.Find(general_record))
 					set_temp("Record not found.", "danger")
 					return
 
 				var/datum/data/record/security_record
-				for(var/datum/data/record/M in data_core.security)
+				for(var/datum/data/record/M in GLOB.data_core.security)
 					if(M.fields["name"] == general_record.fields["name"] && M.fields["id"] == general_record.fields["id"])
 						security_record = M
 						break
@@ -309,7 +309,7 @@
 					R.fields["ma_crim_d"]	= "No major crime convictions."
 					R.fields["notes"]		= "No notes."
 					R.fields["notes"]		= "No notes."
-					data_core.security += R
+					GLOB.data_core.security += R
 					active2 = R
 					screen = SEC_DATA_RECORD
 					set_temp("Security record created.", "success")
@@ -329,14 +329,14 @@
 				if(!length(t1))
 					return
 
-				for(var/datum/data/record/R in data_core.general)
+				for(var/datum/data/record/R in GLOB.data_core.general)
 					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["fingerprint"]))
 						active1 = R
 						break
 				if(!active1)
 					set_temp("Security record not found. You must enter the person's exact name, ID, or fingerprint.", "danger")
 					return
-				for(var/datum/data/record/E in data_core.security)
+				for(var/datum/data/record/E in GLOB.data_core.security)
 					if(E.fields["name"] == active1.fields["name"] && E.fields["id"] == active1.fields["id"])
 						active2 = E
 						break
@@ -361,12 +361,12 @@
 				return FALSE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/secure_data/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -428,12 +428,12 @@
 
 
 /**
-  * Called when the print timer finishes
-  */
+ * Called when the print timer finishes
+ */
 /obj/machinery/computer/secure_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Security Record") + "</center><br>"
-	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+	if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
 		<br>\nSpecies: [active1.fields["species"]]
@@ -443,7 +443,7 @@
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
 		P.info += span_bold("General Record Lost!") + "<br>"
-	if(istype(active2, /datum/data/record) && data_core.security.Find(active2))
+	if(istype(active2, /datum/data/record) && GLOB.data_core.security.Find(active2))
 		P.info += {"<br>\n<center><b>Security Data</b></center>
 		<br>\nCriminal Status: [active2.fields["criminal"]]<br>\n
 		<br>\nMinor Crimes: [active2.fields["mi_crim"]]
@@ -465,12 +465,12 @@
 
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/computer/secure_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
@@ -494,7 +494,7 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.security)
+	for(var/datum/data/record/R in GLOB.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
@@ -507,8 +507,8 @@
 					R.fields["criminal"] = pick("None", "*Arrest*", "Incarcerated", "Parolled", "Released")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconcious*", "Active", "Physically Unfit")
-					if(PDA_Manifest.len)
-						PDA_Manifest.Cut()
+					if(GLOB.PDA_Manifest.len)
+						GLOB.PDA_Manifest.Cut()
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
 			continue

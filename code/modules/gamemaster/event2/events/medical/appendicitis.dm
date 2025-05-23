@@ -6,11 +6,11 @@
 	event_type = /datum/event2/event/appendicitis
 
 /datum/event2/meta/appendicitis/get_weight()
-	var/list/doctors = metric.get_people_with_job(/datum/job/doctor)
+	var/list/doctors = GLOB.metric.get_people_with_job(/datum/job/doctor)
 
-	doctors -= metric.get_people_with_alt_title(/datum/job/doctor, /datum/alt_title/nurse)
-	doctors -= metric.get_people_with_alt_title(/datum/job/doctor, /datum/alt_title/virologist)
-	doctors += metric.get_people_with_job(/datum/job/cmo)
+	doctors -= GLOB.metric.get_people_with_alt_title(/datum/job/doctor, /datum/alt_title/nurse)
+	doctors -= GLOB.metric.get_people_with_alt_title(/datum/job/doctor, /datum/alt_title/virologist)
+	doctors += GLOB.metric.get_people_with_job(/datum/job/cmo)
 
 	return doctors.len * 10
 
@@ -27,7 +27,7 @@
 			continue
 
 		// Or doctors (otherwise it could be possible for the only surgeon to need surgery).
-		if(H in metric.get_people_with_job(/datum/job/doctor) )
+		if(H in GLOB.metric.get_people_with_job(/datum/job/doctor) )
 			continue
 
 		if(H.appendicitis())

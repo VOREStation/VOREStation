@@ -16,41 +16,49 @@ export const ChemDispenserRecipes = (props) => {
       fill
       scrollable
       buttons={
-        <>
+        <Stack>
           {!recording && (
-            <Button icon="circle" onClick={() => act('record_recipe')}>
-              Record
-            </Button>
+            <Stack.Item>
+              <Button icon="circle" onClick={() => act('record_recipe')}>
+                Record
+              </Button>
+            </Stack.Item>
           )}
           {recording && (
-            <Button
-              icon="ban"
-              color="bad"
-              onClick={() => act('cancel_recording')}
-            >
-              Discard
-            </Button>
+            <Stack.Item>
+              <Button
+                icon="ban"
+                color="bad"
+                onClick={() => act('cancel_recording')}
+              >
+                Discard
+              </Button>
+            </Stack.Item>
           )}
           {recording && (
-            <Button
-              icon="save"
-              color="green"
-              onClick={() => act('save_recording')}
-            >
-              Save
-            </Button>
+            <Stack.Item>
+              <Button
+                icon="save"
+                color="green"
+                onClick={() => act('save_recording')}
+              >
+                Save
+              </Button>
+            </Stack.Item>
           )}
           {!recording && (
-            <Button.Confirm
-              icon="trash"
-              confirmIcon="trash"
-              color="bad"
-              onClick={() => act('clear_recipes')}
-            >
-              Clear All
-            </Button.Confirm>
+            <Stack.Item>
+              <Button.Confirm
+                icon="trash"
+                confirmIcon="trash"
+                color="bad"
+                onClick={() => act('clear_recipes')}
+              >
+                Clear All
+              </Button.Confirm>
+            </Stack.Item>
           )}
-        </>
+        </Stack>
       }
     >
       {recording && (

@@ -1,11 +1,11 @@
 /datum/map/groundbase/New()
 	..()
 	var/choice = pickweight(list(
-		"virgo3C" = 200,
-		"rp2" = 200,
-		"logo1" = 20,
-		"logo2" = 20,
-		"gateway" = 5
+		'html/lobby/virgo3C.png' = 200,
+		'html/lobby/rp2.png' = 200,
+		'html/lobby/logo1.png' = 20,
+		'html/lobby/logo2.png' = 20,
+		'html/lobby/gateway.png' = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -23,8 +23,7 @@
 
 	zlevel_datum_type = /datum/map_z_level/groundbase
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("logo1")
+	lobby_screens = list('html/lobby/logo1.png')
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 
@@ -500,7 +499,7 @@
 /*
 /datum/map_template/gb_lateload/wilds/south/type3/on_map_loaded(z)
 	. = ..()
-	 Using landmarks for this now.
+	Using landmarks for this now.
 	seed_submaps(list(z), 6, /area/submap/groundbase/poi/wildvillage/plot/square, /datum/map_template/groundbase/wildvillage/square)	//POI seeding
 	seed_submaps(list(z), 2, /area/submap/groundbase/poi/wildvillage/plot/wide, /datum/map_template/groundbase/wildvillage/wide)
 	seed_submaps(list(z), 1, /area/submap/groundbase/poi/wildvillage/plot/long, /datum/map_template/groundbase/wildvillage/long)

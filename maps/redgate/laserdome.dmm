@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/white,
+/area/redgate/laserdome/lobby/showers)
 "aeW" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -14677,7 +14681,7 @@ xLH
 xLH
 yjF
 lcP
-lcP
+aaa
 lcP
 lcP
 jho

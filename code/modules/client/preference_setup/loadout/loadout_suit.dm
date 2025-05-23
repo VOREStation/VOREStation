@@ -97,6 +97,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/duster_sleeveless
+	display_name = "cowboy duster, colorable, sleeveless"
+	path = /obj/item/clothing/suit/storage/duster/sleeveless
+
+/datum/gear/suit/duster_sleeveless/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest selection"
 	path = /obj/item/clothing/suit/storage/hazardvest
@@ -137,7 +145,8 @@
 	"Purple labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/purple,
 	"Pink labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/pink,
 	"Red labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/red,
-	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	"Yellow labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/yellow,
+	"Modern labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/modern
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
@@ -834,6 +843,20 @@
 	"Oldschool Chemist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/chem
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
+
+/datum/gear/suit/roles/neo_robo_coat
+	display_name = "robotics labcoat"
+	description = "A black version of the classic labcoat for roboticists."
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/neo_robo_coat
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR, JOB_ROBOTICIST)
+	show_roles = FALSE
+
+/datum/gear/suit/traffic_jacket
+	display_name = "traffic officer's jacket"
+	description = "A high visibility jacket for security personnel inclined to direct vehicles rather than people."
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/neo_police
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE)
+	show_roles = FALSE
 
 /datum/gear/suit/jacket_modular
 	display_name = "jacket, modular"

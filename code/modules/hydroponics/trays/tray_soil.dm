@@ -51,11 +51,9 @@
 	icon_state = "blank"
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload,var/datum/seed/newseed)
-	//VOREStation Addition Start
-	if(istype(loc, /turf/simulated/open) || istype(loc, /turf/space))
-		return INITIALIZE_HINT_QDEL
-	//VOREStation Addition End
 	. = ..()
+	if(isopenturf(loc))
+		return INITIALIZE_HINT_QDEL
 	seed = newseed
 	dead = 0
 	age = 1

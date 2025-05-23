@@ -200,7 +200,7 @@
 /// All icons have the same y coordinate, and their x coordinate is equal to `icon_width * position`.
 ///
 /// hash_icons is a boolean (0 or 1), and determines if the generator will spend time creating hashes for the output field dmi_hashes.
-/// These hashes can be heplful for 'smart' caching (see rustg_iconforge_cache_valid), but require extra computation.
+/// These hashes can be helpful for 'smart' caching (see rustg_iconforge_cache_valid), but require extra computation.
 ///
 /// Spritesheet will contain all sprites listed within "sprites".
 /// "sprites" format:

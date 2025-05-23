@@ -1,12 +1,12 @@
 import './styles/main.scss';
 
-import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
 import { type BooleanLike, classes } from 'tgui-core/react';
 
-import { Channel, ChannelIterator } from './ChannelIterator';
+import { type Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
 import {
@@ -20,8 +20,6 @@ import { byondMessages } from './timers';
 
 type ByondOpen = {
   channel: Channel;
-  minimumWidth: number;
-  minimumHeight: number;
 };
 
 type ByondProps = {
@@ -29,22 +27,17 @@ type ByondProps = {
   minimumHeight: number;
   minimumWidth: number;
   lightMode: BooleanLike;
+  scale: BooleanLike;
 };
-
-const ROWS: Record<keyof typeof WindowSize, number> = {
-  Small: 1,
-  Medium: 2,
-  Large: 3,
-  Max: 20,
-  Width: 360,
-  MaxWidth: 800,
-} as const;
 
 export function TguiSay() {
   const innerRef = useRef<HTMLTextAreaElement>(null);
   const channelIterator = useRef(new ChannelIterator());
   const chatHistory = useRef(new ChatHistory());
   const messages = useRef(byondMessages);
+  const scale = useRef(true);
+  const minimumHeight = useRef(WindowSize.Small);
+  const minimumWidth = useRef(WindowSize.Width);
 
   // I initially wanted to make these an object or a reducer, but it's not really worth it.
   // You lose the granulatity and add a lot of boilerplate.
@@ -52,13 +45,13 @@ export function TguiSay() {
   const [currentPrefix, setCurrentPrefix] = useState<
     keyof typeof RADIO_PREFIXES | null
   >(null);
-  const [size, setSize] = useState(WindowSize.Small);
   const [maxLength, setMaxLength] = useState(4096);
-  const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
-  const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
+  const [size, setSize] = useState(WindowSize.Small);
   const [lightMode, setLightMode] = useState(false);
-  const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
+
+  const position = useRef([window.screenX, window.screenY]);
+  const isDragging = useRef(false);
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
     const chat = chatHistory.current;
@@ -104,9 +97,33 @@ export function TguiSay() {
     }
   }
 
+  function handleButtonClick(event: React.MouseEvent<HTMLButtonElement>): void {
+    isDragging.current = true;
+
+    setTimeout(() => {
+      // So the button doesn't jump around accidentally
+      if (isDragging.current) {
+        dragStartHandler(event.nativeEvent);
+      }
+    }, 50);
+  }
+
+  // Prevents the button from changing channels if it's dragged
+  function handleButtonRelease(): void {
+    isDragging.current = false;
+    const currentPosition = [window.screenX, window.screenY];
+
+    if (JSON.stringify(position.current) !== JSON.stringify(currentPosition)) {
+      position.current = currentPosition;
+      return;
+    }
+
+    handleIncrementChannel();
+  }
+
   function handleClose(): void {
     innerRef.current?.blur();
-    windowClose();
+    windowClose(minimumWidth.current, minimumHeight.current, scale.current);
 
     setTimeout(() => {
       chatHistory.current.reset();
@@ -151,9 +168,6 @@ export function TguiSay() {
   }
 
   function handleIncrementChannel(): void {
-    const xPos = window.screenX;
-    const yPos = window.screenY;
-    if (JSON.stringify(position) !== JSON.stringify([xPos, yPos])) return;
     const iterator = channelIterator.current;
 
     iterator.next();
@@ -177,11 +191,11 @@ export function TguiSay() {
     );
   }
 
-  function handleInput(event: FormEvent<HTMLTextAreaElement>): void {
+  function handleInput(event: React.FormEvent<HTMLTextAreaElement>): void {
     const iterator = channelIterator.current;
     let newValue = event.currentTarget.value;
 
-    let newPrefix = getPrefix(newValue) || currentPrefix;
+    const newPrefix = getPrefix(newValue) || currentPrefix;
     // Handles switching prefixes
     if (newPrefix && newPrefix !== currentPrefix) {
       setButtonContent(RADIO_PREFIXES[newPrefix]);
@@ -202,7 +216,9 @@ export function TguiSay() {
     setValue(newValue);
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
+  function handleKeyDown(
+    event: React.KeyboardEvent<HTMLTextAreaElement>,
+  ): void {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
@@ -279,41 +295,33 @@ export function TguiSay() {
     }
   }
 
-  function handleButtonDrag(e: React.MouseEvent<Element, MouseEvent>): void {
-    const xPos = window.screenX;
-    const yPos = window.screenY;
-    setPosition([xPos, yPos]);
-    dragStartHandler(e);
-  }
-
   function handleOpen(data: ByondOpen): void {
-    setTimeout(() => {
-      innerRef.current?.focus();
-      setSize(minimumHeight);
-      windowSet(minimumWidth, minimumHeight);
-    }, 1);
+    setSize(minimumHeight.current);
+    channelIterator.current.set(data.channel);
 
-    const { channel } = data;
-    const iterator = channelIterator.current;
-    // Catches the case where the modal is already open
-    if (iterator.isSay()) {
-      iterator.set(channel);
-    }
+    setCurrentPrefix(null);
+    setButtonContent(channelIterator.current.current());
+    windowOpen(
+      channelIterator.current.current(),
+      minimumWidth.current,
+      minimumHeight.current,
+      scale.current,
+    );
 
-    setButtonContent(iterator.current());
-    windowOpen(iterator.current());
+    innerRef.current?.focus();
   }
 
   function handleProps(data: ByondProps): void {
     setMaxLength(data.maxLength);
-    setMinimumHeight(data.minimumHeight);
     const minWidth = clamp(
       data.minimumWidth,
       WindowSize.Width,
       WindowSize.MaxWidth,
     );
-    setMinimumWidth(minWidth);
+    minimumHeight.current = data.minimumHeight;
+    minimumWidth.current = minWidth;
     setLightMode(!!data.lightMode);
+    scale.current = !!data.scale;
   }
 
   function unloadChat(): void {
@@ -341,11 +349,11 @@ export function TguiSay() {
     } else {
       newSize = WindowSize.Small;
     }
-    newSize = clamp(newSize, minimumHeight, WindowSize.Max);
+    newSize = clamp(newSize, minimumHeight.current, WindowSize.Max);
 
     if (size !== newSize) {
+      windowSet(minimumWidth.current, newSize, scale.current);
       setSize(newSize);
-      windowSet(minimumWidth, newSize);
     }
   }, [value]);
 
@@ -358,15 +366,23 @@ export function TguiSay() {
     <>
       <div
         className={`window window-${theme} window-${size}`}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
         onMouseDown={dragStartHandler}
       >
         {!lightMode && <div className={`shine shine-${theme}`} />}
       </div>
-      <div className={classes(['content', lightMode && 'content-lightMode'])}>
+      <div
+        className={classes(['content', lightMode && 'content-lightMode'])}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
+      >
         <button
           className={`button button-${theme}`}
-          onClick={handleIncrementChannel}
-          onMouseDown={handleButtonDrag}
+          onMouseDown={handleButtonClick}
+          onMouseUp={handleButtonRelease}
           type="button"
         >
           {buttonContent}
@@ -374,12 +390,15 @@ export function TguiSay() {
         <textarea
           spellCheck
           autoCorrect="off"
-          className={`textarea textarea-${theme}`}
+          className={classes([
+            'textarea',
+            `textarea-${theme}`,
+            value.length > LineLength.Large && 'textarea-large',
+          ])}
           maxLength={maxLength}
           onInput={handleInput}
           onKeyDown={handleKeyDown}
           ref={innerRef}
-          rows={ROWS[size] || 1}
           value={value}
         />
         <button

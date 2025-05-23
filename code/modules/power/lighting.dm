@@ -1076,8 +1076,8 @@ var/global/list/light_type_cache = list()
 			desc = "A broken [name]."
 
 
-/obj/item/light/New(atom/newloc, obj/machinery/light/fixture = null)
-	..()
+/obj/item/light/Initialize(mapload, obj/machinery/light/fixture = null)
+	. = ..()
 	if(fixture)
 		status = fixture.status
 		rigged = fixture.rigged

@@ -172,7 +172,7 @@
 	else
 		to_world("Going to move away randomly")
 		var/turf/move_to = get_turf(L)
-		move_to = get_step(move_to, pick(cardinal))
+		move_to = get_step(move_to, pick(GLOB.cardinal))
 		for(var/i = 1 to vision_range) // Move them this many steps away from where they were before.
 			move_to = get_step_away(move_to, L, 7)
 		if(move_to)

@@ -2,7 +2,7 @@
 	name = "Brainrot"
 	max_stages = 4
 	spread_text = "On contact"
-	spread_flags = CONTACT_GENERAL
+	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
 	cure_text = REAGENT_ALKYSINE
 	cures = list(REAGENT_ID_ALKYSINE)
 	agent = "Cryptococcus Cosmosis"
@@ -10,11 +10,10 @@
 	cure_chance = 15
 	desc = "This disease destroys the braincells, causing brain fever, brain necrosis and general intoxication."
 	required_organs = list(/obj/item/organ/internal/brain)
-	severity = HARMFUL
+	danger = DISEASE_HARMFUL
 
 /datum/disease/brainrot/stage_act()
-	if(!..())
-		return FALSE
+	..()
 	switch(stage)
 		if(2)
 			if(prob(2))

@@ -12,9 +12,13 @@
 
 	var/obj/item/loaded_item	//What is currently inside the analyzer.
 
-/obj/item/portable_destructive_analyzer/New()
-	..()
+/obj/item/portable_destructive_analyzer/Initialize(mapload)
+	. = ..()
 	files = new /datum/research/techonly(src) //Setup the research data holder.
+
+/obj/item/portable_destructive_analyzer/Destroy()
+	qdel_null(files)
+	. = ..()
 
 /obj/item/portable_destructive_analyzer/attack_self(user as mob)
 	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
@@ -57,7 +61,7 @@
 			to_chat(user, span_filter_notice("The [src] is empty.  Put something inside it first."))
 	if(response == "Sync")
 		var/success = 0
-		for(var/obj/machinery/r_n_d/server/S in machines)
+		for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 			for(var/datum/tech/T in files.known_tech) //Uploading
 				S.files.AddTech2Known(T)
 			for(var/datum/tech/T in S.files.known_tech) //Downloading
@@ -140,7 +144,7 @@
 /obj/item/card/robot/Destroy()
 	qdel(dummy_card)
 	dummy_card = null
-	..()
+	. = ..()
 
 /obj/item/card/robot/GetID()
 	return dummy_card
@@ -606,13 +610,13 @@
 	var/overload_time = 0			//Stores the time of overload
 	var/last_flash = 0				//Stores the time of last flash
 
-/obj/item/borg/combat/shield/New()
+/obj/item/borg/combat/shield/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/borg/combat/shield/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/borg/combat/shield/attack_self(var/mob/living/user)
 	set_shield_level()

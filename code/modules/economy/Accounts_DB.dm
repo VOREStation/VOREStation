@@ -27,7 +27,7 @@
 	T.target_name = target
 	T.purpose = reason
 	T.amount = amount
-	T.date = current_date_string
+	T.date = GLOB.current_date_string
 	T.time = stationtime2text()
 	T.source_terminal = machine_id
 	return T
@@ -41,7 +41,7 @@
 	"}
 
 /obj/machinery/account_database/Initialize(mapload)
-	machine_id = "[station_name()] Acc. DB #[num_financial_terminals++]"
+	machine_id = "[station_name()] Acc. DB #[GLOB.num_financial_terminals++]"
 	. = ..()
 
 /obj/machinery/account_database/attackby(obj/O, mob/user)
@@ -77,7 +77,7 @@
 	data["machine_id"] = machine_id
 	data["creating_new_account"] = creating_new_account
 	data["detailed_account_view"] = !!detailed_account_view
-	data["station_account_number"] = station_account.account_number
+	data["station_account_number"] = GLOB.station_account.account_number
 
 	data["account_number"] = null
 	data["owner_name"] = null
@@ -104,8 +104,8 @@
 		data["transactions"] = trx
 
 	var/list/accounts = list()
-	for(var/i in 1 to LAZYLEN(all_money_accounts))
-		var/datum/money_account/D = all_money_accounts[i]
+	for(var/i in 1 to LAZYLEN(GLOB.all_money_accounts))
+		var/datum/money_account/D = GLOB.all_money_accounts[i]
 		if(D.offmap)
 			continue
 		accounts.Add(list(list(\
@@ -145,17 +145,17 @@
 			var/account_name = params["holder_name"]
 			var/starting_funds = max(text2num(params["starting_funds"]), 0)
 
-			starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
+			starting_funds = CLAMP(starting_funds, 0, GLOB.station_account.money)	// Not authorized to put the station in debt.
 			starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
 
 			create_account(account_name, starting_funds, src)
 			if(starting_funds > 0)
 				//subtract the money
-				station_account.money -= starting_funds
+				GLOB.station_account.money -= starting_funds
 
 				//create a transaction log entry
 				var/trx = create_transation(account_name, "New account activation", "([starting_funds])")
-				station_account.transaction_log.Add(trx)
+				GLOB.station_account.transaction_log.Add(trx)
 
 				creating_new_account = 0
 
@@ -178,8 +178,8 @@
 
 		if("view_account_detail")
 			var/index = text2num(params["account_index"])
-			if(index && index <= all_money_accounts.len)
-				detailed_account_view = all_money_accounts[index]
+			if(index && index <= GLOB.all_money_accounts.len)
+				detailed_account_view = GLOB.all_money_accounts[index]
 
 		if("view_accounts_list")
 			detailed_account_view = null
@@ -187,14 +187,14 @@
 
 		if("revoke_payroll")
 			var/funds = detailed_account_view.money
-			var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
+			var/account_trx = create_transation(GLOB.station_account.owner_name, "Revoke payroll", "([funds])")
 			var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
 
-			station_account.money += funds
+			GLOB.station_account.money += funds
 			detailed_account_view.money = 0
 
 			detailed_account_view.transaction_log.Add(account_trx)
-			station_account.transaction_log.Add(station_trx)
+			GLOB.station_account.transaction_log.Add(station_trx)
 
 			callHook("revoke_payroll", list(detailed_account_view))
 
@@ -261,8 +261,8 @@
 				<tbody>
 		"}
 
-		for(var/i=1, i<=all_money_accounts.len, i++)
-			var/datum/money_account/D = all_money_accounts[i]
+		for(var/i=1, i <= GLOB.all_money_accounts.len, i++)
+			var/datum/money_account/D = GLOB.all_money_accounts[i]
 			text += {"
 					<tr>
 						<td>#[D.account_number]</td>

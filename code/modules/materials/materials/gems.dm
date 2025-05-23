@@ -103,7 +103,7 @@
 	icon_base = "stone"
 	door_icon_base = "stone"
 	icon_reinf = "reinf_mesh"
-	icon_colour = "##FFF3B2"
+	icon_colour = "#FFF3B2"
 	protectiveness = 30
 	integrity = 240
 	weight = 30

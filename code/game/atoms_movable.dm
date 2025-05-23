@@ -31,6 +31,8 @@
 	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
 	var/belly_cycles = 0 // Counting current belly process cycles for autotransfer.
 	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
+	var/recursive_listeners
+	var/listening_recursive = NON_LISTENING_ATOM
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -57,6 +59,9 @@
 			AddComponent(/datum/component/overlay_lighting, starts_on = light_on)
 		if(MOVABLE_LIGHT_DIRECTIONAL)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
+	if (listening_recursive)
+		set_listening(listening_recursive)
+
 
 /atom/movable/Destroy()
 	if(em_block)
@@ -84,7 +89,8 @@
 
 	if(orbiting)
 		stop_orbit()
-	QDEL_NULL(riding_datum) //VOREStation Add
+	QDEL_NULL(riding_datum)
+	set_listening(NON_LISTENING_ATOM)
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
@@ -107,7 +113,7 @@
 	if(loc != newloc)
 		if(!direct)
 			direct = get_dir(oldloc, newloc)
-		if (IS_CARDINAL(direct)) //Cardinal move
+		if (IS_CARDINAL(direct)) //GLOB.cardinal move
 			// Track our failure if any in this value
 			. = TRUE
 
@@ -167,7 +173,7 @@
 			else if(. && newloc)
 				. = doMove(newloc)
 
-		//Diagonal move, split it into cardinal moves
+		//Diagonal move, split it into GLOB.cardinal moves
 		else
 			moving_diagonally = FIRST_DIAG_STEP
 			var/first_step_dir
@@ -657,6 +663,7 @@
 	return
 
 /atom/movable/proc/emblocker_gc(var/datum/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 	cut_overlay(source)
 	if(em_block == source)
@@ -673,4 +680,46 @@
 	return
 
 /atom/movable/proc/exit_belly(obj/belly/B)
+	return
+
+/atom/movable/proc/set_listening(var/set_to)
+	if (listening_recursive && !set_to)
+		LAZYREMOVE(recursive_listeners, src)
+		if (!LAZYLEN(recursive_listeners))
+			for (var/atom/movable/location as anything in get_nested_locs(src))
+				LAZYREMOVE(location.recursive_listeners, src)
+	if (!listening_recursive && set_to)
+		LAZYOR(recursive_listeners, src)
+		for (var/atom/movable/location as anything in get_nested_locs(src))
+			LAZYOR(location.recursive_listeners, src)
+	listening_recursive = set_to
+
+///Returns a list of all locations (except the area) the movable is within.
+/proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
+	. = list()
+	var/atom/location = atom_on_location.loc
+	var/turf/our_turf = get_turf(atom_on_location)
+	while(location && location != our_turf)
+		. += location
+		location = location.loc
+	if(our_turf && include_turf) //At this point, only the turf is left, provided it exists.
+		. += our_turf
+
+/atom/movable/Exited(atom/movable/gone, atom/new_loc)
+	. = ..()
+
+	if (!LAZYLEN(gone.recursive_listeners))
+		return
+	for (var/atom/movable/location as anything in get_nested_locs(src)|src)
+		LAZYREMOVE(location.recursive_listeners, gone.recursive_listeners)
+
+/atom/movable/Entered(atom/movable/arrived, atom/old_loc)
+	. = ..()
+
+	if (!LAZYLEN(arrived.recursive_listeners))
+		return
+	for (var/atom/movable/location as anything in get_nested_locs(src)|src)
+		LAZYOR(location.recursive_listeners, arrived.recursive_listeners)
+
+/atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return

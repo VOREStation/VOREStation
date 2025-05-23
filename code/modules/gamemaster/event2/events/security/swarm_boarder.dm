@@ -12,11 +12,11 @@
 	if(istype(ticker.mode, /datum/game_mode/extended) && !safe_for_extended)
 		return 0
 
-	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
-	var/engineering = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
-	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE) - (engineering + security)
+	var/security = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/engineering = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING)
+	var/everyone = GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) - (engineering + security)
 
-	var/ghost_activity = metric.assess_all_dead_mobs() / 100
+	var/ghost_activity = GLOB.metric.assess_all_dead_mobs() / 100
 
 	return ( (security * 20) + (engineering * 10) + (everyone * 2) ) * ghost_activity
 

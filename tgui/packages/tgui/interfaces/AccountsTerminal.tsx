@@ -115,10 +115,10 @@ const NewAccountView = (props) => {
     <Section title="Create Account">
       <LabeledList>
         <LabeledList.Item label="Account Holder">
-          <Input value={holder} fluid onInput={(e, val) => setHolder(val)} />
+          <Input value={holder} fluid onChange={(val) => setHolder(val)} />
         </LabeledList.Item>
         <LabeledList.Item label="Initial Deposit">
-          <Input value={newMoney} fluid onInput={(e, val) => setMoney(val)} />
+          <Input value={newMoney} fluid onChange={(val) => setMoney(val)} />
         </LabeledList.Item>
       </LabeledList>
       <Button

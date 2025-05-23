@@ -42,6 +42,10 @@
 			for(var/decal in RS.sprite_decals)
 				if(check_state(RS,"-[decal]"))
 					failed = TRUE
+		if(LAZYLEN(RS.sprite_animations))
+			for(var/animation in RS.sprite_animations)
+				if(check_state(RS,"-[animation]"))
+					failed = TRUE
 		// Control panel
 		if(RS.has_custom_open_sprites)
 			if(check_state(RS,"-openpanel_nc"))
@@ -173,6 +177,12 @@
 				failed = TRUE
 			if(RS.has_glow_sprites)
 				if(check_state(RS,"-[rest_style]-glow"))
+					failed = TRUE
+			if(RS.has_rest_lights_sprites)
+				if(check_state(RS,"-[rest_style]-lights"))
+					failed = TRUE
+			if(RS.has_rest_eyes_sprites)
+				if(check_state(RS,"-[rest_style]-eyes"))
 					failed = TRUE
 		// death
 		if(RS.has_dead_sprite)

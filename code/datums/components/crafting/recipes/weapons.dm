@@ -14,10 +14,10 @@
 	reqs = list(list(/obj/item/handcuffs/cable = 1),
 				list(/obj/item/stack/rods = 1),
 				list(/obj/item/material/shard = 1,
-					 /obj/item/material/butterflyblade = 1)
+						/obj/item/material/butterflyblade = 1)
 				)
 	parts = list(/obj/item/material/shard = 1,
-				 /obj/item/material/butterflyblade = 1)
+					/obj/item/material/butterflyblade = 1)
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

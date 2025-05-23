@@ -245,9 +245,9 @@
 		H.a_wing = dna.GetUIValueRange(DNA_UI_WING_ALPHA,	255)
 
 		// Playerscale
-		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
-		if((0 < size) && (size <= player_sizes_list.len))
-			H.resize(player_sizes_list[player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
+		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, GLOB.player_sizes_list.len)
+		if((0 < size) && (size <= GLOB.player_sizes_list.len))
+			H.resize(GLOB.player_sizes_list[GLOB.player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
@@ -301,12 +301,10 @@
 	else
 		return 0
 
-//VOREStation Add
 /mob/living/carbon/human/proc/force_update_organs()
 	for(var/obj/item/organ/O as anything in organs + internal_organs)
-		O.species = species
+		O.data.setup_from_species(species)
 	species.post_spawn_special(src)
-//VOREStation Add End
 
 // Used below, simple injection modifier.
 /proc/probinj(var/pr, var/inj)

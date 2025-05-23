@@ -8,6 +8,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -205,42 +206,50 @@ const ApcContent = (props) => {
                 key={channel.title}
                 label={channel.title}
                 buttons={
-                  <>
-                    <Box
-                      inline
-                      mx={2}
-                      color={channel.status >= 2 ? 'good' : 'bad'}
-                    >
-                      {channel.status >= 2 ? 'On' : 'Off'}
-                    </Box>
-                    <Button
-                      icon="sync"
-                      selected={
-                        !is_locked &&
-                        (channel.status === 1 || channel.status === 3)
-                      }
-                      disabled={is_locked}
-                      onClick={() => act('channel', topicParams.auto)}
-                    >
-                      Auto
-                    </Button>
-                    <Button
-                      icon="power-off"
-                      selected={!is_locked && channel.status === 2}
-                      disabled={is_locked}
-                      onClick={() => act('channel', topicParams.on)}
-                    >
-                      On
-                    </Button>
-                    <Button
-                      icon="times"
-                      selected={!is_locked && channel.status === 0}
-                      disabled={is_locked}
-                      onClick={() => act('channel', topicParams.off)}
-                    >
-                      Off
-                    </Button>
-                  </>
+                  <Stack>
+                    <Stack.Item>
+                      <Box
+                        inline
+                        mx={2}
+                        color={channel.status >= 2 ? 'good' : 'bad'}
+                      >
+                        {channel.status >= 2 ? 'On' : 'Off'}
+                      </Box>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="sync"
+                        selected={
+                          !is_locked &&
+                          (channel.status === 1 || channel.status === 3)
+                        }
+                        disabled={is_locked}
+                        onClick={() => act('channel', topicParams.auto)}
+                      >
+                        Auto
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="power-off"
+                        selected={!is_locked && channel.status === 2}
+                        disabled={is_locked}
+                        onClick={() => act('channel', topicParams.on)}
+                      >
+                        On
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="times"
+                        selected={!is_locked && channel.status === 0}
+                        disabled={is_locked}
+                        onClick={() => act('channel', topicParams.off)}
+                      >
+                        Off
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
                 }
               >
                 {channel.powerLoad} W
@@ -285,41 +294,47 @@ const ApcContent = (props) => {
           <LabeledList.Item
             label="Night Shift Lighting"
             buttons={
-              <>
-                <Button
-                  icon="lightbulb-o"
-                  selected={nightshiftSetting === 2}
-                  onClick={() =>
-                    act('nightshift', {
-                      nightshift: 2,
-                    })
-                  }
-                >
-                  Disabled
-                </Button>
-                <Button
-                  icon="lightbulb-o"
-                  selected={nightshiftSetting === 1}
-                  onClick={() =>
-                    act('nightshift', {
-                      nightshift: 1,
-                    })
-                  }
-                >
-                  Automatic
-                </Button>
-                <Button
-                  icon="lightbulb-o"
-                  selected={nightshiftSetting === 3}
-                  onClick={() =>
-                    act('nightshift', {
-                      nightshift: 3,
-                    })
-                  }
-                >
-                  Enabled
-                </Button>
-              </>
+              <Stack>
+                <Stack.Item>
+                  <Button
+                    icon="lightbulb-o"
+                    selected={nightshiftSetting === 2}
+                    onClick={() =>
+                      act('nightshift', {
+                        nightshift: 2,
+                      })
+                    }
+                  >
+                    Disabled
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="lightbulb-o"
+                    selected={nightshiftSetting === 1}
+                    onClick={() =>
+                      act('nightshift', {
+                        nightshift: 1,
+                      })
+                    }
+                  >
+                    Automatic
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="lightbulb-o"
+                    selected={nightshiftSetting === 3}
+                    onClick={() =>
+                      act('nightshift', {
+                        nightshift: 3,
+                      })
+                    }
+                  >
+                    Enabled
+                  </Button>
+                </Stack.Item>
+              </Stack>
             }
           />
           <LabeledList.Item

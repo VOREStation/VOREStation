@@ -542,26 +542,29 @@
 				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
-		/*if("species_sound") //TODO: UP PORT SPECIES_SOUNDS
+		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice && can_change(owner, APPEARANCE_RACE))
 				owner.species.species_sounds = choice
 				return TRUE
-		*/
 		if("flavor_text")
 			var/select_key = params["target"]
 			if(select_key && can_change(owner, APPEARANCE_RACE))
 				if(select_key in owner.flavor_texts)
 					switch(select_key)
 						if("general")
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 						else
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 		// ***********************************
@@ -686,6 +689,8 @@
 		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
+			if(marking_style == DEVELOPER_WARNING_NAME)
+				continue
 			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
 			var/our_iconstate = S.icon_state
 			if(LAZYLEN(S.body_parts))
@@ -762,11 +767,11 @@
 	data["digitigrade"] = owner.digitigrade
 	data["blood_reagent"] = owner.dna.blood_reagents
 	data["blood_color"] = owner.dna.blood_color
-	//data["species_sound"] = owner.species.species_sounds //TODO: RAISE UP FROM CHOMP
+	data["species_sound"] = owner.species.species_sounds //TODO: RAISE UP FROM CHOMP
 	// Are these needed? It seems to be only used if above is unset??
-	//data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
-	//data["species_sounds_female"] = owner.species.species_sounds_female
-	//data["species_sounds_male"] = owner.species.species_sounds_male
+	data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
+	data["species_sounds_female"] = owner.species.species_sounds_female
+	data["species_sounds_male"] = owner.species.species_sounds_male
 	// flavor
 	if(!owner.flavor_texts.len)
 		owner.flavor_texts["general"] = ""
@@ -861,6 +866,7 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner) // Copied from the vore version.
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -1082,7 +1088,7 @@
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
+	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)

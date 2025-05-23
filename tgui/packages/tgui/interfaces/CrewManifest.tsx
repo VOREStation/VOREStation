@@ -43,7 +43,7 @@ export const CrewManifestContent = (props) => {
     return <Box color="average">No Manifest Data</Box>;
   }
 
-  let crew_count = manifest
+  const crew_count = manifest
     .map((val) => val.elems.length)
     .reduce((a, c) => a + c, 0);
   if (!crew_count) {

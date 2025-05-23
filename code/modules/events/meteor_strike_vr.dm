@@ -23,14 +23,14 @@
 	icon_state = "large"
 	anchored = TRUE
 
-/obj/effect/meteor_falling/New()
-	..()
+/obj/effect/meteor_falling/Initialize(mapload)
+	. = ..()
 	SpinAnimation()
 	meteor_fall()
 
 /obj/effect/meteor_falling/proc/meteor_fall()
 	var/turf/current = get_turf(src)
-	if(istype(current, /turf/simulated/open) || istype(current, /turf/space))
+	if(isopenturf(current))
 		var/turf/below = GetBelow(src)
 		if(below.density)
 			meteor_impact()
@@ -76,8 +76,8 @@
 	density = TRUE
 	climbable = TRUE
 
-/obj/structure/meteorite/New()
-	..()
+/obj/structure/meteorite/Initialize(mapload)
+	. = ..()
 	icon = turn(icon, 90)
 	switch(rand(1,100))
 		if(1 to 60)

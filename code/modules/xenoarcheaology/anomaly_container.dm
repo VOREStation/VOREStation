@@ -50,6 +50,6 @@
 	. = ..()
 
 	if(istype(over_object))
-		if(!QDELETED(src) && istype(loc, /turf) && is_anomalous() && Adjacent(over_object) && CanMouseDrop(over_object, usr))
+		if(!QDELETED(src) && isturf(loc) && is_anomalous() && Adjacent(over_object) && CanMouseDrop(over_object, usr))
 			Bumped(usr)
 			over_object.contain(src)

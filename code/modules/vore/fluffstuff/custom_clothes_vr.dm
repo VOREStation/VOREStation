@@ -978,6 +978,7 @@
 	desc = "Ankle coverings for digitigrade creatures. Gilded!"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "gildedcuffs"
+	blocks_footsteps = FALSE
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_icons = null

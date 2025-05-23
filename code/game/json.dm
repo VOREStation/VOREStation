@@ -24,7 +24,7 @@ var/makejson = 1 //temp
 		else if(ticker.hide_mode)
 			mode = "SECRET"
 		else
-			mode = master_mode
+			mode = GLOB.master_mode
 	var/playerscount = 0
 	var/players = ""
 	var/admins = "no"
@@ -83,7 +83,7 @@ var/makejson = 1 //temp
 	world.Reboot("Switching to [newmap]")
 
 /obj/mapinfo
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	var/mapname = "thismap"
 	var/decks = 4
 /proc/GetMapInfo()

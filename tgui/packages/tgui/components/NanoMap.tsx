@@ -1,4 +1,4 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { Component, type PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { KeyListener } from 'tgui-core/components';
@@ -10,7 +10,7 @@ import {
   Slider,
   Tooltip,
 } from 'tgui-core/components';
-import { KeyEvent } from 'tgui-core/events';
+import type { KeyEvent } from 'tgui-core/events';
 import { KEY } from 'tgui-core/keys';
 
 import { logger } from '../logging';
@@ -64,12 +64,12 @@ export class NanoMap extends Component<Props, State> {
   setZoom(zoom: number) {
     const newZoom = Math.min(Math.max(zoom, 1), 8);
     this.setState((state) => {
-      let zoomDifference = -(state.zoom - newZoom);
+      const zoomDifference = -(state.zoom - newZoom);
 
-      let newOffsetX =
+      const newOffsetX =
         state.offsetX - (this.props.zoomScale / 2) * zoomDifference;
 
-      let newOffsetY =
+      const newOffsetY =
         state.offsetY - (this.props.zoomScale / 2) * zoomDifference;
 
       return {

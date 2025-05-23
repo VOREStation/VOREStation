@@ -253,7 +253,8 @@
 
 /obj/machinery/microwave/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes)
+		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes),
+		get_asset_datum(/datum/asset/simple/microwave)
 	)
 
 /obj/machinery/microwave/tgui_static_data(mob/user)
@@ -603,6 +604,7 @@
 		/obj/item/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))

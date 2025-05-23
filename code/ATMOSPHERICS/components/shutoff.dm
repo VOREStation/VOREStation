@@ -58,8 +58,8 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 
 	if(close_on_leaks)
 		if(open && (network_node1.leaks.len || network_node2.leaks.len))
-			find_leaks() // If we can see the leak, then this will find it, close the valve, and cut off that network
-						 // If we cannot see the leak, then this will not close the valve, and any valves that can see the leak will cut it off from us
+			find_leaks()	// If we can see the leak, then this will find it, close the valve, and cut off that network
+							// If we cannot see the leak, then this will not close the valve, and any valves that can see the leak will cut it off from us
 		else if(!open && !network_node1.leaks.len && !network_node2.leaks.len)
 			open()
 	return

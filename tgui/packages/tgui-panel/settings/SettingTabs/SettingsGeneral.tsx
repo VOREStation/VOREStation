@@ -95,7 +95,7 @@ export const SettingsGeneral = (props) => {
                 <Input
                   width={'100%'}
                   value={fontFamily}
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     dispatch(
                       updateSettings({
                         fontFamily: value,
@@ -187,7 +187,7 @@ export const SettingsGeneral = (props) => {
               monospace
               placeholder="#ffffff"
               value={interleaveColor}
-              onInput={(e, value) =>
+              onBlur={(value) =>
                 dispatch(
                   updateSettings({
                     interleaveColor: value,

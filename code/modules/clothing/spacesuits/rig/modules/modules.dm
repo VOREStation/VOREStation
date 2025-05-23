@@ -53,7 +53,7 @@
 	var/activate_string = "Activate"
 	var/deactivate_string = "Deactivate"
 
-	var/list/stat_rig_module/stat_modules = new()
+	var/list/stat_modules = new()
 
 /obj/item/rig_module/examine()
 	. = ..()
@@ -129,11 +129,11 @@
 
 		charges = processed_charges
 
-	stat_modules +=	new/stat_rig_module/activate(src)
-	stat_modules +=	new/stat_rig_module/deactivate(src)
-	stat_modules +=	new/stat_rig_module/engage(src)
-	stat_modules +=	new/stat_rig_module/select(src)
-	stat_modules +=	new/stat_rig_module/charge(src)
+	stat_modules +=	new/atom/movable/stat_rig_module/activate(src)
+	stat_modules +=	new/atom/movable/stat_rig_module/deactivate(src)
+	stat_modules +=	new/atom/movable/stat_rig_module/engage(src)
+	stat_modules +=	new/atom/movable/stat_rig_module/select(src)
+	stat_modules +=	new/atom/movable/stat_rig_module/charge(src)
 
 /obj/item/rig_module/Destroy()
 	holder.installed_modules -= src
@@ -236,28 +236,27 @@
 /obj/item/rig_module/proc/accepts_item(var/obj/item/input_device)
 	return 0
 
-/stat_rig_module
-	parent_type = /atom/movable
+/atom/movable/stat_rig_module
 	var/module_mode = ""
 	var/obj/item/rig_module/module
 
-/stat_rig_module/Initialize(mapload)
+/atom/movable/stat_rig_module/Initialize(mapload)
 	. = ..()
 	module = loc
 	if(!istype(module))
 		return INITIALIZE_HINT_QDEL
 
-/stat_rig_module/Destroy()
+/atom/movable/stat_rig_module/Destroy()
 	module = null
 	. = ..()
 
-/stat_rig_module/proc/AddHref(var/list/href_list)
+/atom/movable/stat_rig_module/proc/AddHref(var/list/href_list)
 	return
 
-/stat_rig_module/proc/CanUse()
+/atom/movable/stat_rig_module/proc/CanUse()
 	return 0
 
-/stat_rig_module/Click()
+/atom/movable/stat_rig_module/Click()
 	if(CanUse())
 		switch(module_mode)
 			if("select")
@@ -276,10 +275,10 @@
 			if("select_charge_type")
 				module.charge_selected = module.charges[module.charges.Find(module.charge_selected)]
 
-/stat_rig_module/DblClick()
+/atom/movable/stat_rig_module/DblClick()
 	return Click()
 
-/stat_rig_module/activate/Initialize(mapload)
+/atom/movable/stat_rig_module/activate/Initialize(mapload)
 	. = ..()
 	if(!istype(module))
 		return INITIALIZE_HINT_QDEL
@@ -288,10 +287,10 @@
 		name += " ([module.active_power_cost*10]A)"
 	module_mode = "activate"
 
-/stat_rig_module/activate/CanUse()
+/atom/movable/stat_rig_module/activate/CanUse()
 	return module.toggleable && !module.active
 
-/stat_rig_module/deactivate/Initialize(mapload)
+/atom/movable/stat_rig_module/deactivate/Initialize(mapload)
 	. = ..()
 	if(!istype(module))
 		return INITIALIZE_HINT_QDEL
@@ -302,10 +301,10 @@
 
 	module_mode = "deactivate"
 
-/stat_rig_module/deactivate/CanUse()
+/atom/movable/stat_rig_module/deactivate/CanUse()
 	return module.toggleable && module.active
 
-/stat_rig_module/engage/Initialize(mapload)
+/atom/movable/stat_rig_module/engage/Initialize(mapload)
 	. = ..()
 	if(!istype(module))
 		return INITIALIZE_HINT_QDEL
@@ -314,26 +313,26 @@
 		name += " ([module.use_power_cost*10]E)"
 	module_mode = "engage"
 
-/stat_rig_module/engage/CanUse()
+/atom/movable/stat_rig_module/engage/CanUse()
 	return module.usable
 
-/stat_rig_module/select/Initialize(mapload)
+/atom/movable/stat_rig_module/select/Initialize(mapload)
 	. = ..()
 	name = "Select"
 	module_mode = "select"
 
-/stat_rig_module/select/CanUse()
+/atom/movable/stat_rig_module/select/CanUse()
 	if(module.selectable)
 		name = module.holder.selected_module == module ? "Selected" : "Select"
 		return 1
 	return 0
 
-/stat_rig_module/charge/Initialize(mapload)
+/atom/movable/stat_rig_module/charge/Initialize(mapload)
 	. = ..()
 	name = "Change Charge"
 	module_mode = "select_charge_type"
 
-/stat_rig_module/charge/AddHref(var/list/href_list)
+/atom/movable/stat_rig_module/charge/AddHref(var/list/href_list)
 	var/charge_index = module.charges.Find(module.charge_selected)
 	if(!charge_index)
 		charge_index = 0
@@ -342,7 +341,7 @@
 
 	href_list["charge_type"] = module.charges[charge_index]
 
-/stat_rig_module/charge/CanUse()
+/atom/movable/stat_rig_module/charge/CanUse()
 	if(module.charges && module.charges.len)
 		var/datum/rig_charge/charge = module.charges[module.charge_selected]
 		name = "[charge.display_name] ([charge.charges]C) - Change"

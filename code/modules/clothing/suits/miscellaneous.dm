@@ -469,6 +469,13 @@
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_EXPLO)
 	flags_inv = HIDEHOLSTER
 
+/obj/item/clothing/suit/storage/duster/sleeveless
+	name = "sleeveless duster"
+	desc = "A duster is a light, loose-fitting long coat. Dusters are meant to protect your clothing from dust and rain. And you know what's cooler than a normal duster? A sleeveless duster! Show off those guns, cowboy. Or cowgirl. Or whatever you identify as."
+	icon_state = "duster_sleeveless"
+	blood_overlay_type = "coat"
+	body_parts_covered = CHEST|LEGS
+
 /obj/item/clothing/suit/storage/toggle/cardigan
 	name = "cardigan"
 	desc = "A cozy cardigan in a classic style."

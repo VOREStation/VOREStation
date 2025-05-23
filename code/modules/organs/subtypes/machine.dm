@@ -48,7 +48,7 @@
 
 /obj/item/organ/internal/mmi_holder/Initialize(mapload, var/internal, var/obj/item/mmi/installed)
 	. = ..(mapload, internal)
-	if(!ishuman(loc) || istype(loc, /mob/living/carbon/human/dummy/mannequin))
+	if(!ishuman(loc) || ismannequin(loc))
 		return
 	if(installed)
 		stored_mmi = installed
@@ -57,7 +57,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/mmi_holder/LateInitialize()
-	. = ..()
 	update_from_mmi()
 
 // This sits in the brain organ slot, but is not a brain. Posibrains and dronecores aren't brains either.

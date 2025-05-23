@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/atoll,
+/area/gateway/atoll/falls)
 "af" = (
 /obj/effect/decal/shadow/floor,
 /obj/effect/floor_decal/atoll{
@@ -19602,7 +19606,7 @@ YG
 gI
 vl
 Du
-VM
+aa
 jD
 Jk
 PC

@@ -30,13 +30,9 @@
 	var/mob/living/simple_mob/vore/overmap/parent_mob_type
 	var/mob/living/simple_mob/vore/overmap/parent
 
-/obj/effect/overmap/visitable/simplemob/New(newloc, new_parent)
-	if(new_parent)
-		parent = new_parent
-	return ..()
-
-/obj/effect/overmap/visitable/simplemob/Initialize(mapload)
+/obj/effect/overmap/visitable/simplemob/Initialize(mapload, new_parent)
 	. = ..()
+	parent = new_parent
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")
 		return INITIALIZE_HINT_QDEL
@@ -76,6 +72,7 @@
 	return dat
 
 /obj/effect/overmap/visitable/simplemob/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
 	forceMove(parent.loc)
 	set_dir(parent.dir)
 
@@ -140,13 +137,9 @@
 	var/om_child_type
 	var/shipvore = FALSE	//Enable this to allow the mob to eat spaceships by dragging them onto its sprite.
 
-/mob/living/simple_mob/vore/overmap/New(mapload, new_child)
-	if(new_child)
-		child_om_marker = new_child
-	return ..()
-
-/mob/living/simple_mob/vore/overmap/Initialize(mapload)
+/mob/living/simple_mob/vore/overmap/Initialize(mapload, new_child)
 	. = ..()
+	child_om_marker = new_child
 	if(!om_child_type)
 		log_and_message_admins("An improperly configured OM mob tried to spawn, and was deleted.")
 		return INITIALIZE_HINT_QDEL
@@ -174,13 +167,9 @@
 	var/mob/living/simple_mob/vore/overmap/parent_mob_type
 	var/mob/living/simple_mob/vore/overmap/parent
 
-/obj/effect/overmap/visitable/ship/simplemob/New(newloc, new_parent)
-	if(new_parent)
-		parent = new_parent
-	return ..()
-
-/obj/effect/overmap/visitable/ship/simplemob/Initialize(mapload)
+/obj/effect/overmap/visitable/ship/simplemob/Initialize(mapload, new_parent)
 	. = ..()
+	parent = new_parent
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")
 		return INITIALIZE_HINT_QDEL

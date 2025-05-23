@@ -1,5 +1,5 @@
 import { ItemModeSpan, ModeSpan } from './constants';
-import { Belly } from './types';
+import type { Belly } from './types';
 import {
   GetAddons,
   GetAutotransferFlags,
@@ -94,7 +94,8 @@ export const generateBellyString = (belly: Belly, index: number) => {
     unabsorb_messages_prey,
     examine_messages,
     examine_messages_absorbed,
-
+    trash_eater_in,
+    trash_eater_out,
     // emote_list,
     emotes_digest,
     emotes_hold,
@@ -290,6 +291,8 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#unabsorbMessagesPrey' + index + '" role="tab">Unabsorb Messages (Prey)</a>';
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessages' + index + '" role="tab">Examine Messages</a>';
   result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessagesAbsorbed' + index + '" role="tab">Examine Messages (Absorbed)</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_in' + index + '" role="tab">Trash Eater Ingest Messages</a>';
+  result += '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_out' + index + '" role="tab">Item Expel Messages</a>';
   result += '</div></div>';
 
   result += '<div class="col-8">';
@@ -537,6 +540,18 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="tab-pane fade" id="examineMessagesAbsorbed' + index + '" role="messagesTabpanel">';
   examine_messages_absorbed?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="trash_eater_in' + index + '" role="messagesTabpanel">';
+  trash_eater_in?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div>';
+
+  result += '<div class="tab-pane fade" id="trash_eater_out' + index + '" role="messagesTabpanel">';
+  trash_eater_out?.forEach((msg) => {
     result += msg + '<br>';
   });
   result += '</div>';

@@ -87,7 +87,7 @@
 /obj/item/melee/changeling/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	creator = null
-	..()
+	. = ..()
 
 /obj/item/melee/changeling/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))

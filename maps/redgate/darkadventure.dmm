@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/outdoors/ironsand{
+	outdoors = 0
+	},
+/area/redgate/wilds)
 "af" = (
 /obj/structure/prop/rock/round,
 /turf/simulated/floor/outdoors/ironsand,
@@ -15018,7 +15024,7 @@ tV
 YU
 ax
 ax
-ax
+aa
 ax
 ax
 YU

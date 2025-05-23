@@ -1,9 +1,9 @@
-var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
+GLOBAL_LIST_EMPTY_TYPED(allfaxes, /obj/machinery/photocopier/faxmachine)
 var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply")
-var/list/alldepartments = list()
-var/global/last_fax_role_request
+GLOBAL_LIST_EMPTY(alldepartments)
+GLOBAL_VAR(last_fax_role_request)
 
-var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
+GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"
@@ -30,10 +30,10 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
-	allfaxes += src
+	GLOB.allfaxes += src
 	if(!destination) destination = "[using_map.boss_name]"
-	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
-		alldepartments |= department
+	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in admin_departments)) )
+		GLOB.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -76,7 +76,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return
 	if(L.stat || L.restrained())
 		return
-	if(last_fax_role_request && (world.time - last_fax_role_request < 5 MINUTES))
+	if(GLOB.last_fax_role_request && (world.time - GLOB.last_fax_role_request < 5 MINUTES))
 		to_chat(L, span_warning("The global automated relays are still recalibrating. Try again later or relay your request in written form for processing."))
 		return
 
@@ -146,7 +146,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	message_color = ping_dept.color
 
 	message_chat_rolerequest(message_color, ping_name, reason, role)
-	last_fax_role_request = world.time
+	GLOB.last_fax_role_request = world.time
 	to_chat(L, span_notice("Your request was transmitted."))
 
 /obj/machinery/photocopier/faxmachine/tgui_interact(mob/user, datum/tgui/ui)
@@ -249,7 +249,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 		if("dept")
 			var/lastdestination = destination
-			destination = tgui_input_list(ui.user, "Which department?", "Choose a department", (alldepartments + admin_departments))
+			destination = tgui_input_list(ui.user, "Which department?", "Choose a department", (GLOB.alldepartments + admin_departments))
 			if(!destination)
 				destination = lastdestination
 
@@ -300,8 +300,8 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 			to_chat(user, "No input found. Please hang up and try your call again.")
 			return
 		department = input
-		if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
-			alldepartments |= department
+		if( !(("[department]" in GLOB.alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
+			GLOB.alldepartments |= department
 	else if(istype(O, /obj/item/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
@@ -324,7 +324,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	use_power(200)
 
 	var/success = 0
-	for(var/obj/machinery/photocopier/faxmachine/F in allfaxes)
+	for(var/obj/machinery/photocopier/faxmachine/F in GLOB.allfaxes)
 		if( F.department == destination )
 			success = F.receivefax(copyitem)
 
@@ -379,7 +379,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		return
 
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
-	adminfaxes += rcvdcopy
+	GLOB.adminfaxes += rcvdcopy
 
 	//message badmins that a fax has arrived
 

@@ -25,6 +25,7 @@
 
 /obj/machinery/chem_master/Initialize(mapload)
 	. = ..()
+	default_apply_parts()
 	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents.
 	reagents = R	//There should be a nano ui thingy to warn of this.
 	R.my_atom = src
@@ -131,12 +132,12 @@
 	return data
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/chem_master/proc/tgui_act_modal(action, params, datum/tgui/ui, datum/tgui_state/state)
 	. = TRUE
 	var/id = params["id"] // The modal's ID

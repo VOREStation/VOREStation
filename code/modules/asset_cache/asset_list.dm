@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /// Simply takes any generated file and saves it to the round-specific /logs folder. Useful for debugging potential issues with spritesheet generation/display.
 /// Only called when the SAVE_SPRITESHEETS config option is uncommented.
 /datum/asset/proc/save_to_logs(file_name, file_location)
-	var/asset_path = "[log_path]/generated_assets/[file_name]"
+	var/asset_path = "[GLOB.log_directory]/generated_assets/[file_name]"
 	fdel(asset_path) // just in case, sadly we can't use rust_g stuff here.
 	fcopy(file_location, asset_path)
 

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { LabeledList, Section, Slider, Stack } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
-import { abilities } from './types';
+import type { abilities } from './types';
 
 export const VoreAbilities = (props: { abilities: abilities }) => {
   const { act } = useBackend();

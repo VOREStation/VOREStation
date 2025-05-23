@@ -145,8 +145,8 @@
 	var/obj/item/grenade/attached_grenade
 	var/pre_attached_grenade_type
 
-/obj/item/integrated_circuit/manipulation/grenade/New()
-	..()
+/obj/item/integrated_circuit/manipulation/grenade/Initialize(mapload)
+	. = ..()
 	if(pre_attached_grenade_type)
 		var/grenade = new pre_attached_grenade_type(src)
 		attach_grenade(grenade)
@@ -193,6 +193,7 @@
 	desc += " \An [attached_grenade] is attached to it!"
 
 /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
+	SIGNAL_HANDLER
 	if(!attached_grenade)
 		return
 	UnregisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED)

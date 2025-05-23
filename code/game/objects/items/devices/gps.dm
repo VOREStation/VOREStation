@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	return (target.z in reachable_z_levels)
 
 /obj/item/gps/proc/update_compass(var/update_compass_icon)
+	SIGNAL_HANDLER
 	compass.hide_waypoints(FALSE)
 	var/turf/my_turf = get_turf(src)
 	for(var/thing in tracking_devices)
@@ -183,8 +184,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 /obj/item/gps/attack_self(mob/user)
 	display(user)
 
- // Compiles all the data not available directly from the GPS
- // Like the positions and directions to all other GPS units
+// Compiles all the data not available directly from the GPS
+// Like the positions and directions to all other GPS units
 /obj/item/gps/proc/display_list()
 	var/list/dat = list()
 

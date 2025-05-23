@@ -2,9 +2,7 @@
 	gender = MALE
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE // BLEH, this could be improved for transparent species and stuff! And blocks glowing eyes?!
 	var/datum/species/species //Contains icon generation and language information, set during New().
-	var/list/stomach_contents = list()
 	var/list/antibodies = list()
-	var/last_eating = 0 	//Not sure what this does... I found it hidden in food.dm
 
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
 
@@ -24,6 +22,9 @@
 	var/pulse = PULSE_NORM	//current pulse level
 
 	var/does_not_breathe = 0 //Used for specific mobs that can't take advantage of the species flags (changelings)
+
+	VAR_PROTECTED/list/addictions = null // contains currently addicted chem reagent IDs
+	VAR_PROTECTED/list/addiction_counters = null // contains counters by reagent ID
 
 	//these two help govern taste. The first is the last time a taste message was shown to the plaer.
 	//the second is the message in question.

@@ -151,7 +151,7 @@
 	item_state = "deagle"
 	force = 14.0
 	caliber = ".44"
-	fire_sound = 'sound/weapons/Gunshot_deagle.ogg'
+	fire_sound = 'sound/weapons/gunshot_deagle.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m44
 	allowed_magazines = list(/obj/item/ammo_magazine/m44)
@@ -351,13 +351,13 @@
 		/obj/item/ammo_casing/a545              = "5.45mm"
 		)
 
-/obj/item/gun/projectile/pirate/New()
+/obj/item/gun/projectile/pirate/Initialize(mapload)
 	ammo_type = pick(ammo_types)
 	desc += " Uses [ammo_types[ammo_type]] rounds."
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
-	..()
+	. = ..()
 
 /*
  * Derringer

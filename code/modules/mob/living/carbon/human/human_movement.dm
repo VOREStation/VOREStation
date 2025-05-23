@@ -35,8 +35,8 @@
 	var/hungry = (500 - nutrition) / 5 //Fixed 500 here instead of our huge MAX_NUTRITION
 	if (hungry >= 70) . += hungry/50
 
-	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
-		. = max(species.slowdown, species.slowdown+((.-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
+	if (get_feralness() >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
+		. = max(species.slowdown, species.slowdown+((.-species.slowdown)/(get_feralness()/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
 		if(shock_stage >= 10) . -= 1.5 //this gets a +3 later, feral critters take reduced penalty
 	if(riding_datum) //Bit of slowdown for taur rides if rider is bigger or fatter than mount.
 		var/datum/riding/R = riding_datum
@@ -115,6 +115,14 @@
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
+	if(ishuman(src)) //r u human
+		var/mob/living/carbon/human/H = src //wowie you are, take this badge
+		if(species.unusual_running == 1) // do you have the trait
+			var/obj/item/I = H.get_active_hand() // checking their hand
+			var/obj/item/OH = H.get_inactive_hand() // and their other hand
+			if(!istype(I,/obj/item) && !istype(OH,/obj/item)) //better not have any items on you mfer
+				. -= 0.5 // ok vibe check passed, take this small movement buff and leave
+
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
@@ -176,6 +184,9 @@
 	// Loop through some slots, and add up their slowdowns.
 	// Includes slots which can provide armor, the back slot, and suit storage.
 	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
+		if(istype(I,/obj/item/rig))
+			for(var/obj/item/II in I.contents)
+				. += II.slowdown
 		. += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
@@ -194,8 +205,8 @@
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
-				turf_move_cost = CLAMP(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
-			if(shoes)
+				turf_move_cost = 0
+			if(istype(shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/feet = shoes
 				if(istype(feet) && feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -203,7 +214,7 @@
 		else if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
-			if(shoes)
+			if(istype(shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/feet = shoes
 				if(istype(feet) && feet.snow_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -224,7 +235,7 @@
 				if(direct & WH.wind_dir)
 					. = max(. - WH.wind_speed, -1) // Wind speedup is capped to prevent supersonic speeds from a storm.
 				// Against it.
-				else if(direct & reverse_dir[WH.wind_dir])
+				else if(direct & GLOB.reverse_dir[WH.wind_dir])
 					. += WH.wind_speed
 
 */
@@ -261,36 +272,6 @@
 			return TRUE
 
 	return FALSE
-
-
-/mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
-	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
-
-	if(species.flags & NO_SLIP)
-		return FALSE
-
-	if(species.can_space_freemove || species.can_zero_g_move)
-		return FALSE
-
-	var/obj/item/tank/jetpack/thrust = get_jetpack()
-	if(thrust?.can_thrust(0.01))
-		return FALSE
-
-	if(stat)
-		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
-
-	//Do we have magboots or such on if so no slip
-	if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.item_flags & NOSLIP))
-		prob_slip = 0
-
-	//Check hands and mod slip
-	if(!l_hand)	prob_slip -= 2
-	else if(l_hand.w_class <= 2)	prob_slip -= 1
-	if (!r_hand)	prob_slip -= 2
-	else if(r_hand.w_class <= 2)	prob_slip -= 1
-
-	prob_slip = round(prob_slip)
-	return(prob_slip)
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)

@@ -209,7 +209,7 @@
 	if(ishuman(victim) && user.zone_sel.selecting != BP_GROIN && user.zone_sel.selecting != BP_TORSO)
 		var/mob/living/carbon/human/H = victim
 		E = H.get_organ(user.zone_sel.selecting)
-		if(!E || E.species.flags & NO_PAIN)
+		if(!E || E.data.get_species_flags() & NO_PAIN)
 			nopain = 2
 		else if(E.robotic >= ORGAN_ROBOT)
 			nopain = 1

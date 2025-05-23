@@ -65,7 +65,6 @@
 	update_light_color()
 	icon_state = "restruct_1"
 	addtimer(CALLBACK(src, PROC_REF(spawn_slime), user), 3 SECONDS, TIMER_DELETE_ME)
-		spawn(30)
 
 /obj/machinery/slime/replicator/proc/spawn_slime(mob/user)
 	PRIVATE_PROC(TRUE)

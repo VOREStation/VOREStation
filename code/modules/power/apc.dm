@@ -217,7 +217,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/apc/LateInitialize()
-	. = ..()
 	update()
 
 /obj/machinery/power/apc/Destroy()
@@ -765,7 +764,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 			cell = null
 			user.visible_message(span_warning("[user.name] removes the power cell from [name]!"),\
-								 span_notice("You remove the power cell."))
+									span_notice("You remove the power cell."))
 			charging = 0
 			update_icon()
 		return

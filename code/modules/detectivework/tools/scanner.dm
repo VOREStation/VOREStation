@@ -28,7 +28,7 @@
 			to_chat(user, span_notice("No fingerprints found on [M]"))
 			flick("[icon_state]0",src)
 			return 0
-		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+		else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 			var/obj/item/sample/print/P = new /obj/item/sample/print(user.loc)
 			P.attack(M, user)
 			to_chat(user, span_notice("Done printing."))

@@ -11,9 +11,6 @@
 	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
-
-/obj/item/book/manual/engineering_particle_accelerator/New()
-	..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -59,9 +56,6 @@
 	item_state = "book15"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
-
-/obj/item/book/manual/supermatter_engine/New()
-	..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -215,9 +209,6 @@
 	item_state = "book15"
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
-
-/obj/item/book/manual/rust_engine/New()
-	..()
 	dat = {"<html>
 				<head>
 				<style>

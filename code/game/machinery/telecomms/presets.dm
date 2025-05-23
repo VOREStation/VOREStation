@@ -47,7 +47,7 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("hub_cent", "c_relay", "s_relay", "m_relay", "r_relay", "hb_relay",
-	 "centcom", "receiverCent", "broadcasterCent") //VOREStation Edit - Added "hb_relay"
+		"centcom", "receiverCent", "broadcasterCent") //VOREStation Edit - Added "hb_relay"
 
 //Receivers
 

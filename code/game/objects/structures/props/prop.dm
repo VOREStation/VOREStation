@@ -61,7 +61,7 @@
 
 /**
  *
- Notes on change_state
+ * Notes on change_state
  *
  * tl;dr "You can varedit 'state' on these to the things in the comments below to get cool animations"
  *

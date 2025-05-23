@@ -57,6 +57,7 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/glamour_scaling/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!(/mob/living/proc/set_size in target.verbs))

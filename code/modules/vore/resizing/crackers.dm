@@ -173,7 +173,7 @@
 	var/style = pick(styles)
 	icon_state = style
 	item_state = style
-	..()
+	. = ..()
 
 /obj/item/paper/cracker_joke
 	name = "joke"

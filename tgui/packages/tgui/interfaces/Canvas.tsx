@@ -1,4 +1,4 @@
-import { Component, createRef, RefObject, useState } from 'react';
+import { Component, createRef, type RefObject, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Stack } from 'tgui-core/components';
@@ -16,7 +16,7 @@ type PaintCanvasProps = Partial<{
 }>;
 
 class PaintCanvas extends Component<PaintCanvasProps> {
-  canvasRef: RefObject<HTMLCanvasElement>;
+  canvasRef: RefObject<HTMLCanvasElement | null>;
   mouseIsDown: boolean;
   lastSuccessfulPaint: number;
   onCVClick: (x: number, y: number) => void;
@@ -50,13 +50,13 @@ class PaintCanvas extends Component<PaintCanvasProps> {
     y0 = y0 - 1;
     y1 = y1 - 1;
 
-    let dx = Math.abs(x1 - x0);
-    let sx = x0 < x1 ? 1 : -1;
-    let dy = -Math.abs(y1 - y0);
-    let sy = y0 < y1 ? 1 : -1;
+    const dx = Math.abs(x1 - x0);
+    const sx = x0 < x1 ? 1 : -1;
+    const dy = -Math.abs(y1 - y0);
+    const sy = y0 < y1 ? 1 : -1;
     let error = dx + dy;
 
-    let pixels: [number, number][] = [];
+    const pixels: [number, number][] = [];
 
     while (true) {
       pixels.push([x0, y0]);
@@ -66,7 +66,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
         break;
       }
 
-      let e2 = error * 2;
+      const e2 = error * 2;
       if (e2 >= dy) {
         error = error + dy;
         x0 = x0 + sx;
@@ -81,12 +81,12 @@ class PaintCanvas extends Component<PaintCanvasProps> {
   }
 
   drawLine(grid: string[][]) {
-    let pixels = this.getLinePixels();
+    const pixels = this.getLinePixels();
     if (!pixels) {
       return;
     }
 
-    for (let [x, y] of pixels) {
+    for (const [x, y] of pixels) {
       if (x < grid.length && y < grid[0].length) {
         grid[x][y] = '#000000';
       }
@@ -110,15 +110,15 @@ class PaintCanvas extends Component<PaintCanvasProps> {
       return grid[x_c][y_c] === origPixelColor;
     };
 
-    let s: [number, number, number, number][] = [];
+    const s: [number, number, number, number][] = [];
     s.push([x_start, x_start, y_start, 1]);
     s.push([x_start, x_start, y_start - 1, -1]);
 
-    let pixels_touched: [number, number][] = [];
+    const pixels_touched: [number, number][] = [];
 
     while (s.length) {
       // This can't fail because of our while condition
-      let [x1, x2, y, dy] = s.pop()!;
+      const [x1, x2, y, dy] = s.pop()!;
 
       let x = x1;
       if (inside(x, y)) {
@@ -132,23 +132,24 @@ class PaintCanvas extends Component<PaintCanvasProps> {
         }
       }
 
-      while (x1 <= x2) {
-        while (inside(x1, y)) {
-          grid[x1][y] = '#000000';
-          pixels_touched.push([x1, y]);
-          x1 = x1 + 1;
+      let mutX = x1;
+      while (mutX <= x2) {
+        while (inside(mutX, y)) {
+          grid[mutX][y] = '#000000';
+          pixels_touched.push([mutX, y]);
+          mutX = mutX + 1;
         }
-        if (x1 > x) {
-          s.push([x, x1 - 1, y + dy, dy]);
+        if (mutX > x) {
+          s.push([x, mutX - 1, y + dy, dy]);
         }
-        if (x1 - 1 > x2) {
-          s.push([x2 + 1, x1 - 1, y - dy, -dy]);
+        if (mutX - 1 > x2) {
+          s.push([x2 + 1, mutX - 1, y - dy, -dy]);
         }
-        x1 = x1 + 1;
-        while (x1 < x2 && !inside(x1, y)) {
-          x1 = x1 + 1;
+        mutX = mutX + 1;
+        while (mutX < x2 && !inside(mutX, y)) {
+          mutX = mutX + 1;
         }
-        x = x1;
+        x = mutX;
       }
     }
 
@@ -214,7 +215,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
   mouseDown(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
     this.mouseIsDown = true;
 
-    let coord = this.getCoord(event);
+    const coord = this.getCoord(event);
     if (!coord) {
       return;
     }
@@ -225,10 +226,10 @@ class PaintCanvas extends Component<PaintCanvasProps> {
     if (this.props.tool === Tool.Paintbrush) {
       this.onCVClick(coord[0], coord[1]);
     } else if (this.props.tool === Tool.Fill) {
-      let gridCopy = JSON.parse(JSON.stringify(this.props.value));
-      let pixels_touched = this.areaFill(gridCopy);
+      const gridCopy = JSON.parse(JSON.stringify(this.props.value));
+      const pixels_touched = this.areaFill(gridCopy);
       if (pixels_touched) {
-        for (let [x, y] of pixels_touched) {
+        for (const [x, y] of pixels_touched) {
           this.onCVClick(x + 1, y + 1);
         }
       }
@@ -238,7 +239,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
   mouseUp(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
     this.mouseIsDown = false;
 
-    let coord = this.getCoord(event);
+    const coord = this.getCoord(event);
     if (!coord) {
       return;
     }
@@ -246,9 +247,9 @@ class PaintCanvas extends Component<PaintCanvasProps> {
     this.lastHovered = coord;
 
     if (this.props.tool === Tool.Line) {
-      let line = this.getLinePixels();
+      const line = this.getLinePixels();
       if (line) {
-        for (let [x, y] of line) {
+        for (const [x, y] of line) {
           this.onCVClick(x + 1, y + 1);
         }
       }
@@ -263,7 +264,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
 
     this.lastHovered = coord;
 
-    let time = new Date().getTime();
+    const time = new Date().getTime();
 
     if (this.lastSuccessfulPaint + 50 > time) {
       return;

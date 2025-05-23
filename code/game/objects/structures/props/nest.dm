@@ -32,7 +32,7 @@
 /obj/structure/prop/nest/Destroy()
 	den_mobs = null
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/structure/prop/nest/attack_hand(mob/living/user) // Used to tell the player that this isn't useful for anything.
 	..()

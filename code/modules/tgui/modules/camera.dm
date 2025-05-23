@@ -83,7 +83,7 @@
 	var/turf/newturf = get_turf(active_camera)
 	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use() || B.flag_check(AREA_BLOCK_TRACKING))
+	if(!active_camera?.can_use() || B?.flag_check(AREA_BLOCK_TRACKING))
 		show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
@@ -143,9 +143,10 @@
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		if(active_camera)
 			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
-		active_camera = C
-		active_camera.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+		if(C)
+			active_camera = C
+			active_camera.AddComponent(/datum/component/recursive_move)
+			RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 		update_active_camera_screen()
 		return TRUE
@@ -179,10 +180,15 @@
 				. = TRUE
 
 /datum/tgui_module/camera/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
+	if(!active_camera)
+		show_camera_static()
+		return TRUE
+
 	var/turf/newturf = get_turf(active_camera)
 	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use() || B.flag_check(AREA_BLOCK_TRACKING))
+	if(!active_camera.can_use() || B?.flag_check(AREA_BLOCK_TRACKING))
 		show_camera_static()
 		return TRUE
 

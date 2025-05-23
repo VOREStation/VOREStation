@@ -11,7 +11,8 @@
 	var/tamper_proof = FALSE //Set to TRUE if the die needs to be unable to be weighted, such as for events
 	attack_verb = list("diced")
 
-/obj/item/dice/New()
+/obj/item/dice/Initialize(mapload)
+	. = ..()
 	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/dice/attackby(obj/item/W, mob/user)
@@ -111,8 +112,8 @@
 			comment = "Ouch, bad luck."
 
 		user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
-							 span_notice("You throw [src]. It lands on a [result]. [comment]"), \
-							 span_notice("You hear [src] landing on a [result]. [comment]"))
+								span_notice("You throw [src]. It lands on a [result]. [comment]"), \
+								span_notice("You hear [src] landing on a [result]. [comment]"))
 
 /*
  * Dice packs
@@ -126,10 +127,10 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/storage/pill_bottle/dice/New()
-	..()
+/obj/item/storage/pill_bottle/dice/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to 7)
-		new /obj/item/dice( src )
+		new /obj/item/dice(src)
 
 /obj/item/storage/pill_bottle/dice_nerd	//DnD dice
 	name = "bag of gaming dice"
@@ -139,15 +140,15 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/storage/pill_bottle/dice_nerd/New()
-	..()
-	new /obj/item/dice/d4( src )
-	new /obj/item/dice( src )
-	new /obj/item/dice/d8( src )
-	new /obj/item/dice/d10( src )
-	new /obj/item/dice/d12( src )
-	new /obj/item/dice/d20( src )
-	new /obj/item/dice/d100( src )
+/obj/item/storage/pill_bottle/dice_nerd/Initialize(mapload)
+	. = ..()
+	new /obj/item/dice/d4(src)
+	new /obj/item/dice(src)
+	new /obj/item/dice/d8(src)
+	new /obj/item/dice/d10(src)
+	new /obj/item/dice/d12(src)
+	new /obj/item/dice/d20(src)
+	new /obj/item/dice/d100(src)
 
 /*
  *Liar's Dice cup
@@ -166,8 +167,8 @@
 
 /obj/item/storage/dicecup/attack_self(mob/user as mob)
 	user.visible_message(span_notice("[user] shakes [src]."), \
-							 span_notice("You shake [src]."), \
-							 span_notice("You hear dice rolling."))
+							span_notice("You shake [src]."), \
+							span_notice("You hear dice rolling."))
 	rollCup(user)
 
 /obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
@@ -198,7 +199,7 @@
 		revealDice(player)
 
 
-/obj/item/storage/dicecup/loaded/New()
-	..()
+/obj/item/storage/dicecup/loaded/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to 5)
-		new /obj/item/dice( src )
+		new /obj/item/dice(src)

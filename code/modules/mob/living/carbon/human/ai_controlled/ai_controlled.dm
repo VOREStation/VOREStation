@@ -8,7 +8,6 @@
 	low_sorting_priority = TRUE
 
 	var/generate_species = SPECIES_HUMAN
-	var/generate_dead = FALSE
 
 	var/generate_gender = FALSE
 	var/generate_id_gender = FALSE
@@ -109,9 +108,6 @@
 			W.assignment = to_wear_id_job
 		W.registered_name = real_name
 		equip_to_slot_or_del(W, slot_wear_id)
-
-	if(generate_dead)
-		death()
 
 /*
  * Subtypes.

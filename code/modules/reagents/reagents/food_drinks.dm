@@ -12,6 +12,7 @@
 	var/injectable = 0
 	color = "#664330"
 	affects_robots = 1	//VOREStation Edit
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
@@ -411,6 +412,7 @@
 	nutriment_factor = 1
 	color = "#482000"
 	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Again, coffee contains coffee
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/tea
 	name = REAGENT_TEAPOWDER
@@ -421,6 +423,7 @@
 	nutriment_factor = 1
 	color = "#101000"
 	allergen_type = ALLERGEN_STIMULANT //Strong enough to contain caffeine
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/decaf_tea
 	name = REAGENT_DECAFTEAPOWDER
@@ -430,6 +433,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	color = "#101000"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/coco
 	name = REAGENT_COCO
@@ -461,6 +465,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	allergen_type = ALLERGEN_FRUIT //I suppose it's implied here that the juice is from dehydrated fruit.
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/instantjuice/grape
 	name = REAGENT_INSTANTGRAPE
@@ -691,6 +696,7 @@
 	ingest_met = REM
 	color = "#000000"
 	cup_prefix = "peppery"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/enzyme
 	name = REAGENT_ENZYME
@@ -701,6 +707,7 @@
 	reagent_state = LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/spacespice
 	name = REAGENT_SPACESPICE
@@ -709,6 +716,7 @@
 	reagent_state = SOLID
 	color = "#e08702"
 	cup_prefix = "spicy"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/browniemix
 	name = REAGENT_BROWNIEMIX
@@ -717,6 +725,7 @@
 	reagent_state = SOLID
 	color = "#441a03"
 	allergen_type = ALLERGEN_CHOCOLATE
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/cakebatter
 	name = REAGENT_CAKEBATTER
@@ -724,6 +733,7 @@
 	description = "A batter for making delicious cakes."
 	reagent_state = LIQUID
 	color = "#F0EDDA"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/frostoil
 	name = REAGENT_FROSTOIL
@@ -734,6 +744,7 @@
 	reagent_state = LIQUID
 	ingest_met = REM
 	color = "#B31008"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -783,6 +794,7 @@
 	ingest_met = REM
 	color = "#B31008"
 	cup_prefix = "hot"
+	wiki_flag = WIKI_FOOD
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -790,6 +802,10 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	// Do not call parent, we don't want this absorbed into our bloodstream!
+	handle_spicy(M, alien, removed)
+
+/datum/reagent/proc/handle_spicy(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
@@ -845,8 +861,6 @@
 
 	var/effective_strength = 5
 
-	if(alien == IS_SKRELL)	//Larger eyes means bigger targets.
-		effective_strength = 8
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -971,6 +985,7 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 	var/water_based = TRUE
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 1
@@ -1613,6 +1628,28 @@
 		//M.adjustToxLoss(4 * REM)
 		//M.apply_effect(3, STUTTER) //VOREStation Edit end
 	M.make_jittery(5)
+
+/datum/reagent/drink/coffee/handle_addiction(var/mob/living/carbon/M, var/alien)
+	// A copy of the base with withdrawl, but with much less effects, no vomiting and sometimes halloss
+	var/current_addiction = M.get_addiction_to_reagent(id)
+	// slow degrade
+	if(prob(8))
+		current_addiction  -= 1
+	// withdrawl mechanics
+	if(prob(2))
+		if(current_addiction < 90 && prob(10))
+			to_chat(M, span_warning("[pick("You feel miserable.","You feel sluggish.","You get a small headache.")]"))
+			M.adjustHalLoss(2)
+		else if(current_addiction <= 50)
+			to_chat(M, span_warning("You're really craving some [name]."))
+		else if(current_addiction <= 100)
+			to_chat(M, span_notice("You're feeling the need for some [name]."))
+		// effects
+		if(current_addiction < 60 && prob(20))
+			M.emote(pick("pale","shiver","twitch"))
+	if(current_addiction <= 0) //safety
+		current_addiction = 0
+	return current_addiction
 
 /datum/reagent/drink/coffee/icecoffee
 	name = REAGENT_ICECOFFEE
@@ -2491,9 +2528,7 @@
 
 /datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
-	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+	handle_spicy(M, alien, removed)
 
 /datum/reagent/drink/sweetsundaeramen
 	name = REAGENT_DESSERTRAMEN
@@ -4240,12 +4275,14 @@
 			return
 
 		var/drug_strength = 10
-		if(alien == IS_SKRELL)
-			drug_strength = drug_strength * 0.8
+		if(M.species.chem_strength_tox > 0)
+			drug_strength *= M.species.chem_strength_tox
+		if(alien == IS_SLIME)
+			drug_strength *= 0.15 //~ 1/6
 
 		M.druggy = max(M.druggy, drug_strength)
 		if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 
 /datum/reagent/ethanol/sakebomb
 	name = REAGENT_SAKEBOMB
@@ -4467,9 +4504,7 @@
 
 /datum/reagent/ethanol/soemmerfire/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
-	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+	handle_spicy(M, alien, removed)
 
 /datum/reagent/ethanol/winebrandy
 	name = REAGENT_WINEBRANDY

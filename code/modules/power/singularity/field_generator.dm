@@ -1,16 +1,16 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 
-/*
-field_generator power level display
-   The icon used for the field_generator need to have 'num_power_levels' number of icon states
-   named 'Field_Gen +p[num]' where 'num' ranges from 1 to 'num_power_levels'
-
-   The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
-   The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
-   no power level overlay is currently in the overlays list.
-   -Aygar
-*/
+/**
+ * field_generator power level display
+ * The icon used for the field_generator need to have 'num_power_levels' number of icon states
+ * named 'Field_Gen +p[num]' where 'num' ranges from 1 to 'num_power_levels'
+ *
+ * The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
+ * The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
+ * no power level overlay is currently in the overlays list.
+ * -Aygar
+ */
 
 #define field_generator_max_power 250000
 /obj/machinery/field_generator
@@ -347,7 +347,7 @@ field_generator power level display
 	//I want to avoid using global variables.
 	spawn(1)
 		var/temp = 1 //stops spam
-		for(var/obj/singularity/O in machines)
+		for(var/obj/singularity/O in GLOB.machines)
 			if(O.last_warning && temp)
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0

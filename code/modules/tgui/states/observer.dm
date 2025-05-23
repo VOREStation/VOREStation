@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: observer_state
-  *
-  * Checks that the user is an observer/ghost.
+/**
+ * tgui state: observer_state
+ *
+ * Checks that the user is an observer/ghost.
  **/
 
 GLOBAL_DATUM_INIT(tgui_observer_state, /datum/tgui_state/observer_state, new)

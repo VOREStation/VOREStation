@@ -118,6 +118,7 @@
 				unlook(M)
 
 /datum/tgui_module/uav/proc/current_uav_changed_z(old_z, new_z)
+	SIGNAL_HANDLER
 	signal_strength = get_signal_to(current_uav)
 	if(!signal_strength)
 		clear_current()

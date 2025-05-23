@@ -49,7 +49,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/arrivals/New()
 	..()
-	turfs = latejoin
+	turfs = GLOB.latejoin
 
 /datum/spawnpoint/gateway
 	display_name = "Gateway"
@@ -57,7 +57,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/gateway/New()
 	..()
-	turfs = latejoin_gateway
+	turfs = GLOB.latejoin_gateway
 /* VOREStation Edit
 /datum/spawnpoint/elevator
 	display_name = "Elevator"
@@ -74,7 +74,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/cryo/New()
 	..()
-	turfs = latejoin_cryo
+	turfs = GLOB.latejoin_cryo
 
 /datum/spawnpoint/cyborg
 	display_name = "Cyborg Storage"
@@ -83,25 +83,25 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/cyborg/New()
 	..()
-	turfs = latejoin_cyborg
+	turfs = GLOB.latejoin_cyborg
 
 /obj/effect/landmark/arrivals
 	name = "JoinLateShuttle"
 	delete_me = 1
 
-/obj/effect/landmark/arrivals/New()
-	latejoin += loc
-	..()
+/obj/effect/landmark/arrivals/Initialize(mapload)
+	GLOB.latejoin += loc
+	. = ..()
 
-var/global/list/latejoin_tram   = list()
+GLOBAL_LIST_EMPTY(latejoin_tram)
 
 /obj/effect/landmark/tram
 	name = "JoinLateTram"
 	delete_me = 1
 
-/obj/effect/landmark/tram/New()
-	latejoin_tram += loc // There's no tram but you know whatever man!
-	..()
+/obj/effect/landmark/tram/Initialize(mapload)
+	GLOB.latejoin_tram += loc // There's no tram but you know whatever man!
+	. = ..()
 
 /datum/spawnpoint/tram
 	display_name = "Tram Station"
@@ -109,7 +109,7 @@ var/global/list/latejoin_tram   = list()
 
 /datum/spawnpoint/tram/New()
 	..()
-	turfs = latejoin_tram
+	turfs = GLOB.latejoin_tram
 
 /datum/spawnpoint/vore
 	display_name = "Vorespawn - Prey"
@@ -119,3 +119,11 @@ var/global/list/latejoin_tram   = list()
 /datum/spawnpoint/vore/pred
 	display_name = "Vorespawn - Pred"
 	msg = "has arrived on the station"
+
+/*/datum/spawnpoint/vore/itemtf
+	display_name = "Item TF spawn"
+	msg = "has arrived on the station"*/
+
+/datum/spawnpoint/vore/New()
+	..()
+	turfs = GLOB.latejoin

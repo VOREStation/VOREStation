@@ -107,8 +107,8 @@ export function settingsReducer(
           ...payload,
         };
         nextState.initialized = true;
-        let newFilters = {};
-        for (let typeDef of MESSAGE_TYPES) {
+        const newFilters = {};
+        for (const typeDef of MESSAGE_TYPES) {
           if (
             nextState.storedTypes[typeDef.type] === null ||
             nextState.storedTypes[typeDef.type] === undefined

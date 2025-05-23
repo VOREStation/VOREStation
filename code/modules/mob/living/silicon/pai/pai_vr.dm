@@ -287,6 +287,12 @@
 /mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
 	. = ..()
 
+	if(istype(A,/obj/structure/ladder))
+		// Zmovement already allows these to be used with the verbs anyway
+		var/obj/structure/ladder/L = A
+		L.attack_hand(src)
+		return
+
 	if(!ismob(A) || A == src)
 		return
 
@@ -298,7 +304,7 @@
 			pai_nom(A)
 
 // Allow card inhabited machines to be interacted with
-// This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in machines
+// This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in GLOB.machines
 /mob/living/silicon/pai/ClickOn(var/atom/A, var/params)
 	if(istype(A, /obj/machinery))
 		var/obj/machinery/M = A
@@ -336,11 +342,11 @@
 			else
 				t_him = "them"
 
-	if(H.zone_sel.selecting == "head")
+	if(H.zone_sel.selecting == BP_HEAD)
 		H.visible_message( \
 			span_notice("[H] pats [target] on the head."), \
 			span_notice("You pat [target] on the head."), )
-	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
+	else if(H.zone_sel.selecting == BP_R_HAND || H.zone_sel.selecting == BP_L_HAND)
 		H.visible_message( \
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )

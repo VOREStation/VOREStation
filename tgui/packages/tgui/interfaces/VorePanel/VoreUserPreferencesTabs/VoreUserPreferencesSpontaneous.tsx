@@ -1,7 +1,7 @@
-import { Box, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import { Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesSpontaneous = (props: {
@@ -15,26 +15,25 @@ export const VoreUserPreferencesSpontaneous = (props: {
     <Section
       title="Spontaneous Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.dropnom_prey}
-            tooltipPosition="top"
-          />
-          <VoreUserPreferenceItem
-            spec={preferences.dropnom_pred}
-            tooltipPosition="top"
-          />
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.dropnom_prey}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.dropnom_pred}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       {can_be_drop_prey || can_be_drop_pred ? (
         <Stack wrap="wrap" justify="center">
-          <Stack.Item
-            basis="32%"
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item basis="32%">
             <VoreUserPreferenceItem
               spec={preferences.toggle_drop_vore}
               tooltipPosition="right"

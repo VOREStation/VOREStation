@@ -38,8 +38,8 @@
 	pixel_y = 0
 	faction = FACTION_WOLFTAUR
 
-/mob/living/simple_mob/vore/wolftaur/New()
-	..()
+/mob/living/simple_mob/vore/wolftaur/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]_rest"

@@ -8,5 +8,6 @@
 /obj/item/paper/target
 	name = "target notice"
 
-/obj/item/paper/target/New()
+/obj/item/paper/target/Initialize(mapload, text, title)
+	. = ..()
 	info = "Your target is " + span_bold("[random_name(pick(MALE,FEMALE))]") + ". Make sure they don't get out of there alive."

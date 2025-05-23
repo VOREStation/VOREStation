@@ -24,10 +24,9 @@
 	var/grip_safety = TRUE
 	var/taped_safety = FALSE
 
-/obj/item/melee/baton/New()
-	..()
+/obj/item/melee/baton/Initialize(mapload)
+	. = ..()
 	update_icon()
-	return
 
 /obj/item/melee/baton/get_cell()
 	return bcell
@@ -64,11 +63,9 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/melee/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
+/obj/item/melee/baton/loaded/Initialize(mapload) //this one starts with a cell pre-installed.
 	bcell = new/obj/item/cell/device/weapon(src)
-	update_icon()
-	return
+	. = ..()
 
 /obj/item/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
@@ -204,7 +201,7 @@
 			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
 			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	//stun effects
 	if(status)
@@ -213,7 +210,7 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
+			H.forcesay(GLOB.hit_appends)
 	powercheck()
 
 /obj/item/melee/baton/emp_act(severity)

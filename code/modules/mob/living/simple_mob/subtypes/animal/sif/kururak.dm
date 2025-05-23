@@ -77,12 +77,36 @@
 	special_attack_max_range = 4
 	special_attack_cooldown = 1 MINUTE
 
+	vore_active = TRUE
+	vore_capacity = 1
+	vore_pounce_chance = 15
+
 	// Players have 2 seperate cooldowns for these, while the AI must choose one. Both respect special_attack_cooldown
 	var/last_strike_time = 0
 	var/last_flash_time = 0
 
 	var/instinct	// The points used by Kururaks to decide Who Is The Boss
 	var/obey_pack_rule = TRUE	// Decides if the Kururak will automatically assign itself to follow the one with the highest instinct.
+
+/mob/living/simple_mob/animal/sif/kururak/init_vore()
+	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
+		return
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.name = "stomach"
+	B.desc = "Blue innards of a sleek creature surround you in an overwhelmingly tight pressure. Walls, coated in slick, reflective mucus reflect \
+		light from the pool of teal stomach juices, flashing you from random angles. The texture of the surroundings is only mildly soft, it feels \
+		firm, muscular body ensuring you stay in your place, drenched in fluids, pacified by constant churning motions. Effective and agile predator \
+		made sure you were helpless during the hunt, now its gut ensures you are as disoriented in this pit of flashing lights and bubbling acid."
+	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
+	B.digest_brute = 3
+	B.digest_burn = 2
+	B.digestchance = 0
+	B.absorbchance = 0
+	B.escapechance = 25
+	B.escape_stun = 5
 
 /datum/say_list/kururak
 	speak = list("Kurr?","|R|rrh..", "Ksss...")

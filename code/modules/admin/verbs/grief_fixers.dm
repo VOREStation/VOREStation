@@ -15,7 +15,7 @@
 	var/current_time = world.timeofday
 
 	// Depower the supermatter, as it would quickly blow up once we remove all gases from the pipes.
-	for(var/obj/machinery/power/supermatter/S in machines)
+	for(var/obj/machinery/power/supermatter/S in GLOB.machines)
 		S.power = 0
 	to_chat(usr, "\[1/5\] - Supermatter depowered")
 
@@ -34,8 +34,8 @@
 	to_chat(usr, "\[3/5\] - All ZAS Zones removed.")
 
 	var/list/unsorted_overlays = list()
-	for(var/id in gas_data.tile_overlay)
-		unsorted_overlays |= gas_data.tile_overlay[id]
+	for(var/id in GLOB.gas_data.tile_overlay)
+		unsorted_overlays |= GLOB.gas_data.tile_overlay[id]
 
 
 	for(var/turf/simulated/T in world)

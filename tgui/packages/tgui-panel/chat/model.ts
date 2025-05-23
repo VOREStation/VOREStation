@@ -14,7 +14,7 @@ export const canPageAcceptType = (page: Page, type: string): string | boolean =>
 
 export const typeIsImportant = (type: string): boolean => {
   let isImportant = false;
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     if (typeDef.type === type && !!typeDef.important) {
       isImportant = true;
       break;
@@ -26,7 +26,7 @@ export const typeIsImportant = (type: string): boolean => {
 export const adminPageOnly = (page: Page): boolean => {
   let adminTab = true;
   let checked = 0;
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     if (
       page.acceptedTypes[typeDef.type] &&
       !(!!typeDef.important || !!typeDef.admin)
@@ -47,9 +47,9 @@ export const canStoreType = (
 ) => storedTypes[type];
 
 export const createPage = (obj?: Object): Page => {
-  let acceptedTypes = {};
+  const acceptedTypes = {};
 
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = !!typeDef.important;
   }
 
@@ -67,7 +67,7 @@ export const createPage = (obj?: Object): Page => {
 
 export const createMainPage = (): Page => {
   const acceptedTypes = {};
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = true;
   }
   return createPage({

@@ -26,9 +26,9 @@
 /*one proc, four uses
 swapping: if it's 1, the mobs are trying to switch, if 0, non-passive is pushing passive
 default behaviour is:
- - non-passive mob passes the passive version
- - passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
- - if si, the proc returns
+	- non-passive mob passes the passive version
+	- passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
+	- if si, the proc returns
 */
 /mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
 	if(!swapped)
@@ -48,7 +48,7 @@ default behaviour is:
 		return 0
 
 /mob/living/Bump(atom/movable/AM)
-	if(now_pushing || !loc || buckled == AM)
+	if(now_pushing || !loc || buckled == AM || AM.is_incorporeal())
 		return
 	now_pushing = 1
 	if (isliving(AM))
@@ -313,6 +313,9 @@ default behaviour is:
 	else if(!isspace(loc))
 		inertia_dir = 0
 		make_floating(0)
+	if(status_flags & HIDING)
+		layer = HIDING_LAYER
+		plane = OBJ_PLANE
 
 /mob/living/proc/inertial_drift()
 	if(x > 1 && x < (world.maxx) && y > 1 && y < (world.maxy))
@@ -320,16 +323,19 @@ default behaviour is:
 			inertia_dir = 0
 			return
 
-		var/locthen = loc
-		spawn(5)
-			if(!anchored && !pulledby && loc == locthen)
-				var/stepdir = inertia_dir ? inertia_dir : last_move
-				if(!stepdir)
-					return
-				var/turf/T = get_step(src, stepdir)
-				if(!T)
-					return
-				Move(T, stepdir, 5)
+		addtimer(CALLBACK(src, PROC_REF(handle_inertial_drift), loc), 0.5 SECONDS, TIMER_DELETE_ME)
+
+/mob/living/proc/handle_inertial_drift(var/locthen)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!anchored && !pulledby && loc == locthen)
+		var/stepdir = inertia_dir ? inertia_dir : last_move
+		if(!stepdir)
+			return
+		var/turf/T = get_step(src, stepdir)
+		if(!T)
+			return
+		Move(T, stepdir, 5)
 
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE

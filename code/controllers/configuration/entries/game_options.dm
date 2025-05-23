@@ -1,12 +1,6 @@
 /datum/config_entry/number/health_threshold_softcrit
 	default = 0
 
-/datum/config_entry/number/health_threshold_crit
-	default = 0
-
-/datum/config_entry/number/health_threshold_dead
-	default = -100
-
 /datum/config_entry/flag/bones_can_break
 
 /datum/config_entry/flag/limbs_can_break
@@ -18,6 +12,9 @@
 /datum/config_entry/number/organ_regeneration_multiplier
 	integer = FALSE
 	default = 1.0
+
+/datum/config_entry/flag/can_addict_during_round
+	default = FALSE
 
 // FIXME: Unused
 ///datum/config_entry/flag/revival_pod_plants
@@ -106,3 +103,7 @@
 
 /datum/config_entry/string/alert_desc_delta
 	default = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+
+// Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
+/datum/config_entry/number/mouse_respawn_time
+	default = 2.5

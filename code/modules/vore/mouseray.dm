@@ -85,23 +85,30 @@
 	var/mob/living/M = target
 	if(!istype(M))
 		return
+	if(istype(M,/mob/living/carbon) && !M.mind)
+		return
 	if(target != firer)	//If you shot yourself, you probably want to be TFed so don't bother with prefs.
 		if(!M.allow_spontaneous_tf && !tf_admin_pref_override)
 			return
-	if(M.tf_mob_holder)
+	M.drop_both_hands()
+	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
+		new /obj/effect/effect/teleport_greyscale(M.loc)
 		var/mob/living/ourmob = M.tf_mob_holder
 		if(ourmob.ai_holder)
 			var/datum/ai_holder/our_AI = ourmob.ai_holder
 			our_AI.set_stance(STANCE_IDLE)
 		M.tf_mob_holder = null
-		ourmob.ckey = M.ckey
 		var/turf/get_dat_turf = get_turf(target)
 		ourmob.loc = get_dat_turf
 		ourmob.forceMove(get_dat_turf)
-		ourmob.vore_selected = M.vore_selected
-		M.vore_selected = null
-		ourmob.mob_belly_transfer(M)
-		M.soulgem.transfer_self(ourmob) // Soulcatcher
+		if(!M.tf_form_ckey)
+			ourmob.vore_selected = M.vore_selected
+			M.vore_selected = null
+			ourmob.mob_belly_transfer(M)
+			ourmob.nutrition = M.nutrition
+			M.soulgem.transfer_self(ourmob)
+
+		ourmob.ckey = M.ckey
 
 		ourmob.Life(1)
 		if(ishuman(M))
@@ -110,13 +117,20 @@
 					continue
 				M.drop_from_inventory(W)
 
-		qdel(target)
+		if(M.tf_form == ourmob)
+			if(M.tf_form_ckey)
+				M.ckey = M.tf_form_ckey
+			else
+				M.mind = null
+			ourmob.tf_form = M
+			M.forceMove(ourmob)
+		else
+			qdel(target)
 		return
 	else
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
 		new_mob.mob_tf(M)
 
@@ -182,19 +196,21 @@
 			var/datum/ai_holder/our_AI = ourmob.ai_holder
 			our_AI.set_stance(STANCE_IDLE)
 		M.tf_mob_holder = null
-		ourmob.ckey = M.ckey
 		var/turf/get_dat_turf = get_turf(target)
 		ourmob.loc = get_dat_turf
 		ourmob.forceMove(get_dat_turf)
-		ourmob.vore_selected = M.vore_selected
-		M.vore_selected = null
-		for(var/obj/belly/B as anything in M.vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			M.vore_organs -= B
-			ourmob.vore_organs += B
-		M.soulgem.transfer_self(ourmob) // Soulcatcher
+		if(!M.tf_form_ckey)
+			ourmob.vore_selected = M.vore_selected
+			M.vore_selected = null
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = ourmob
+				B.forceMove(ourmob)
+				B.owner = ourmob
+				M.vore_organs -= B
+				ourmob.vore_organs += B
+			ourmob.nutrition = M.nutrition
+			M.soulgem.transfer_self(ourmob)
+		ourmob.ckey = M.ckey
 
 		ourmob.Life(1)
 
@@ -204,7 +220,15 @@
 					continue
 				M.drop_from_inventory(W)
 
-		qdel(target)
+		if(M.tf_form == ourmob)
+			if(M.tf_form_ckey)
+				M.ckey = M.tf_form_ckey
+			else
+				M.mind = null
+			ourmob.tf_form = M
+			M.forceMove(ourmob)
+		else
+			qdel(target)
 		firer.visible_message(span_notice("\The [shot_from] boops pleasantly."))
 		return
 	else

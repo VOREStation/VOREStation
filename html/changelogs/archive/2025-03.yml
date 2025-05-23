@@ -390,3 +390,201 @@
   TeleTubby2:
   - rscadd: The belly visibility pref is now a client one, so you don't need to adjust
       it on a per-character basis anymore.
+2025-03-20:
+  Kashargul:
+  - bugfix: tgui asset loading retries
+2025-03-21:
+  Cameron-The-Raven:
+  - code_imp: Removes accidental glass endurance duplicate
+  - bugfix: Makes toxins no longer infinitely multiply  in strength
+  - bugfix: Makes Sensitive Biochemistry make you WEAKER to stoxin and chloralhydrate
+      instead of making you STRONGER against it, like it was intended to do.
+  - rscadd: Adds a moderate and major version of sensitive biochemistry.
+  - rscadd: Makes some drugs like ambrosia extract have stronger negative effects
+      if you have sensitive biochemistry.
+  - qol: Clamps the strength of mindbreaker. No more infinite hallucinations.
+  Diana:
+  - bugfix: Replicant pods now let you be NOT just a human! You can be yourself!
+  - bugfix: Replicant pods will no longer break movement related things.
+  - code_imp: VR pods and Replicant pods work a bit better on the backend
+  - rscadd: Zaddat now have security and Engineering specific subtypes they can choose
+      in the xenowear loadout...We have Zaddat players...Right?
+  - bugfix: Voidsuits can now properly integrate oxygen tanks into them
+  - qol: Voidsuit oxygentanks now no longer deploy into your suit storage slot, but
+      are integrated.
+  - qol: Vox can put phoron tanks into voidsuits
+  - spellcheck: Adjusts the fluff text you get when pushing someone onto the floor
+      while you're on the floor.
+  - bugfix: You can no longer grab/disarm/do cpr while restrained (or pinned)
+  - rscdel: Removes vore. (The old, unused version.)
+  - balance: You can no longer buckle/have someone buckle you to break free from grabs.
+  - balance: You can no longer crawl while grabbed
+  - bugfix: Sci borg baton no longer looks like a normal baton
+  - bugfix: Peacekeeper borgs have their shield sprite enabled now
+  - balance: sci borg baton now does ONE EXTRA DAMAGE. 9->10
+  Kashargul:
+  - qol: updates server logs verbs
+  - rscadd: item muffling in bellies
+  - bugfix: belly liquids
+  - bugfix: hiding layer properly set after movement
+  - bugfix: incorp pushing
+  - bugfix: changeling extract dna proc
+  - rscadd: animation flick support to robot sprites
+  SatinIsle:
+  - rscadd: Added a new subtype of maint lurker spawns to each redgate map. These
+      ghost pods spawn you in a similar way, but because they are guaranteed spawns,
+      they do not allow you to use the redgate to leave. Any person with redgate access
+      can give permission to these people simply by clicking on the redgate with an
+      empty hand when they are nearby. This is explained to the redgate inhabitant
+      on spawn and when they try to use the redgate.
+  TankTheBirb:
+  - rscadd: Added human compatible tesh ears and tail
+  - image: added new sprite states to tails.dmi and ears.dmi
+  Will:
+  - bugfix: The flamethrower UI now works properly.
+  - rscadd: Flamethrower now is more useful than spawning a few fire tiles. It's now
+      an actual threat!
+  Willburd:
+  - rscadd: Added Antimatter core RTG for POIs
+2025-03-22:
+  Cameron-The-Raven:
+  - qol: Teshari no longer have double slowdown from radsuits
+  - bugfix: Liquid bellies won't create nonexistent chems
+  Diana:
+  - bugfix: Makes mouse rays no longer crash the server under certain circumstances
+  - bugfix: Makes VR pods no longer crash the server
+  - bugfix: Updates TF and makes it no longer cause runtimes & crashes.
+  - bugfix: Makes it so you can no longer repeatedly spawn in VR and clog up the server
+      with hundreds of yourself (humanoids are expensive!)
+  - bugfix: You can no longer escape VR and enter the Real World
+  - qol: Adds a greyscale / glowing effect for TF rays
+  - code_imp: Added a toggle for VR pods to spawn people with clothing or not
+  - rscadd: Ghosts now have a button to enter the VR space if it's spawned in!
+  - rscadd: Ghosts can now enter VR if it's spawned in!
+  - rscadd: Adds the ability to TF into different creatures while in VR
+  - bugfix: Internals will now not randomly turn off
+  Will:
+  - rscadd: The CHEM ANALYZER has been COMPLETELY reworked. Give it a look!
+  - qol: Chem analyzer will give you MUCH more information now.
+  - bugfix: frostoil reaction for steel+plasteel now works properly
+  - bugfix: vaccine -> antibody reaction fixed
+  - code_imp: Backend stuff to ensure broken chemical reactions will never happen
+      again.
+2025-03-23:
+  BigBababooey:
+  - balance: Adjusted cost and wear of Mass Alteration
+  Kashargul:
+  - rscadd: admin verb to modify the shift end
+  - code_imp: tgui core to 1.8.4
+  - rscdel: vchat
+  - rscadd: option to export and import the soulcatcher settings
+  - code_imp: adjust the im and export for the new additions VRDB 0.1 -> VRDB 0.2
+  KillianKirilenko:
+  - qol: changing your scale under the VORE tab will autofill your *current* scale
+      instead of defaulting to the minimum of 25
+  SatinIsle:
+  - bugfix: Fixed train redgate top layer using updown ladders rather than just down
+      ladders.
+  SpadesNeil:
+  - bugfix: Missing internal overlays on grubs and jelly blobs are restored.
+  - code_imp: Fleshed out grubs and jelly blobs.
+  TankTheBirb:
+  - config: contaminates set to FALSE to prevent new bellies from having contamination.
+      Shouldn't affect existing bellies.
+  TheGreatKitsune:
+  - bugfix: Fixes how the teshari radiation hood appears when on the ground.
+  Willburd:
+  - code_imp: fixed various issues related to placing and cutting heavy cables
+  - code_imp: added option in code to allow players to cut heavy cables with a welder
+2025-03-24:
+  Kashargul:
+  - rscadd: text surrounded by || text || will now be spoilered in the statpanel
+  - bugfix: examine will be auto focussed again if the setting is enabled
+  - code_imp: enables tab only indentation test
+  PastelPrinceDan:
+  - maptweak: added xenoarch storage to the stellar delight
+  SatinIsle:
+  - bugfix: Fixed a bug with the private notes panel that showed it in right click
+      menus of other mobs (forcing them to see your notes).
+  Vorestation Staff Consensus (VORESTATION ONLY):
+  - rscdel: Tourettes disabled
+  - rscdel: Rotting Genetics Disabled
+  - rscdel: Xray disabled
+  - spellcheck: Anxiety Disorder name changed to Nervousness
+  - balance: Censored move to Neutral (RP trait)
+  - balance: Nervousness moved to Neutral (RP Trait)
+  - bugfix: FBP dionas will no longer explode
+  xnqm8h:
+  - bugfix: Fixes demuxer output not pushing to other circuits.
+2025-03-25:
+  Cameron-The-Raven:
+  - qol: Xenobio monkey gun (bio6 bluespace5) now only requires gold and silver.
+  - qol: Portable slime processor (magnet 4 bio 5) now only requires  silver and gold.
+  Diana:
+  - qol: Temperature artifacts can no longer randomly spawn active.
+  - balance: Laser gun artifacts can spawn with pulse beams if you are lucky.
+  - code_imp: Consolidates a bunch of species files for backend cleanup.
+  - bugfix: Gets rid of an override that overrode tajaran being able to lick wounds
+  - bugfix: Xenochimera brains will no longer runtime under certain circumstances.
+  Kashargul:
+  - code_imp: next set of NEW to INIT
+2025-03-26:
+  Cameron-The-Raven:
+  - bugfix: Proteans can select icon base again
+2025-03-27:
+  Kashargul:
+  - bugfix: missing spawn datum handling
+  SatinIsle:
+  - rscadd: Added mail options for entrepreneurs.
+2025-03-28:
+  Diana:
+  - bugfix: Environmental traits now work properly
+  - bugfix: Lightning strikes will no longer strike people in nullspace
+  - bugfix: Humans now have their proper skin color selection back
+  TankTheBirb:
+  - rscadd: Unusual gait positive trait for 2 points. This trait makes you move faster
+      when your hands are empty.
+  Tost:
+  - bugfix: You can now see what pronouns you are choosing for your character on setup.
+2025-03-29:
+  Cerami:
+  - rscadd: Adds a vore belly to kururak
+  Diana:
+  - bugfix: Mounted rigsuit guns now properly work
+  - bugfix: Protean rigs can no longer be removed by proteans
+  - bugfix: Protean rigs can no longer be removed if one is on your back and the protean
+      is dead
+  - bugfix: Protean rigs no longer be in a 'limbo state' of being enabled but not
+      enabled.
+  Kashargul:
+  - rscadd: next grep check to ensure space / tab sanity
+  SatinIsle:
+  - rscadd: Added a new system for announcing horribly corporate appreciation days.
+  - rscadd: Added a bingle computer to each library and command briefing room.
+  Will, Kash:
+  - rscadd: Bingle
+  - qol: ChemAnalyser Pro now uses tgui
+  - bugfix: chat scroll tracking failing on large displayed count when huge messages
+      blocks were sent
+2025-03-30:
+  Kashargul:
+  - admin: 'fix spawn at arrivals will not either pick from the secondary list or
+      sanely fail
+
+      fix latespawn loc code'
+2025-03-31:
+  Kashargul:
+  - bugfix: useless light recalcs, which might even have caused darker than supposed
+      areas
+  - bugfix: multiple bugs in outdoor and turf open / space handling
+  SatinIsle:
+  - rscadd: Added a treadmill fitness machine.
+  - rscadd: Added a non-alcohol version of the booze-o-mat, the virgin-o-mat!
+  - maptweak: Major changes to the pool area to include a poolside bar, new gym, locker
+      room, sauna and massage room.
+  - maptweak: Added a designated smoking area to the stellar delight.
+  - qol: Changed the default setting for Save Organs and Save Markings to No in character
+      setup
+  Tost:
+  - rscadd: Adds modern labcoat to loadout, under the public labcoat selector.
+  - rscadd: Adds 3 different leg warmers accessories.

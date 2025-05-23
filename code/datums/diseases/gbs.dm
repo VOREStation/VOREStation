@@ -2,13 +2,13 @@
 	name = "GBS"
 	max_stages = 5
 	spread_text = "On contact"
-	spread_flags = CONTACT_GENERAL
+	spread_flags = DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
 	cure_text = REAGENT_ADRANOL + " & " + REAGENT_SULFUR
 	cures = list(REAGENT_ID_ADRANOL, REAGENT_ID_SULFUR)
 	cure_chance = 15
 	agent = "Gravitokinetic Bipotential SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	severity = BIOHAZARD
+	danger = DISEASE_PANDEMIC
 	disease_flags = CAN_NOT_POPULATE
 
 /datum/disease/gbs/stage_act()
@@ -42,7 +42,7 @@
 	name = "Non-Contagious GBS"
 	stage_prob = 5
 	spread_text = "Non-contagious"
-	spread_flags = NON_CONTAGIOUS
+	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = REAGENT_CRYOXADONE
 	cures = list(REAGENT_ID_CRYOXADONE)
 	cure_chance = 10

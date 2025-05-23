@@ -458,7 +458,9 @@
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
 		if(holder && holder.my_atom)
-			lightning_strike(get_turf(holder.my_atom))
+			var/turf/T = get_turf(holder.my_atom)
+			if(istype(T))
+				lightning_strike(T)
 	..()
 
 

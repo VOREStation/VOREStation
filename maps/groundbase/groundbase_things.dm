@@ -10,8 +10,8 @@
 	teleport_y = y --
 	teleport_z = Z_LEVEL_GB_BOTTOM
 
-/turf/simulated/floor/maglev/New(loc, ...)
-	..()
+/turf/simulated/floor/maglev/Initialize(mapload)
+	. = ..()
 	shock_area = /area/centcom/terminal/tramfluff
 
 // Shelter Capsule extra restrictions

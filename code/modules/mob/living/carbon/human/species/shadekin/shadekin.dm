@@ -59,11 +59,6 @@
 	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
 	death_message = "phases to somewhere far away!"
-	male_cough_sounds = null
-	female_cough_sounds = null
-	male_sneeze_sound = null
-	female_sneeze_sound = null
-
 	speech_bubble_appearance = "ghost"
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
@@ -113,6 +108,7 @@
 	var/kin_type
 	var/energy_light = 0.25
 	var/energy_dark = 0.75
+	species_component = /datum/component/shadekin
 
 /datum/species/shadekin/New()
 	..()
@@ -188,38 +184,35 @@
 	update_shadekin_hud(H)
 
 /datum/species/shadekin/proc/get_energy(var/mob/living/carbon/human/H)
-	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
+	if(!comp)
+		return FALSE //No component, no energy to be had.
 
-	if(!istype(shade_organ))
-		return 0
-	if(shade_organ.dark_energy_infinite)
-		return shade_organ.max_dark_energy
+	if(comp.dark_energy_infinite)
+		return comp.max_dark_energy
 
-	return shade_organ.dark_energy
+	return comp.dark_energy
 
 /datum/species/shadekin/proc/get_max_energy(var/mob/living/carbon/human/H)
-	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
+	if(!comp)
+		return FALSE //No component, no energy to be had.
 
-	if(!istype(shade_organ))
-		return 0
-
-	return shade_organ.max_dark_energy
+	return comp.max_dark_energy
 
 /datum/species/shadekin/proc/set_energy(var/mob/living/carbon/human/H, var/new_energy)
-	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
+	if(!comp)
+		return FALSE //No component, no energy to be had.
 
-	if(!istype(shade_organ))
-		return
-
-	shade_organ.dark_energy = CLAMP(new_energy, 0, get_max_energy(H))
+	comp.dark_energy = CLAMP(new_energy, 0, get_max_energy(H))
 
 /datum/species/shadekin/proc/set_max_energy(var/mob/living/carbon/human/H, var/new_max_energy)
-	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
+	if(!comp)
+		return FALSE //No component, no energy to be had.
 
-	if(!istype(shade_organ))
-		return 0
-
-	shade_organ.max_dark_energy = new_max_energy
+	comp.max_dark_energy = new_max_energy
 
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
@@ -227,7 +220,7 @@
 		var/l_icon = 0
 		var/e_icon = 0
 
-		H.shadekin_display.invisibility = 0
+		H.shadekin_display.invisibility = INVISIBILITY_NONE
 		if(T)
 			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 			var/darkness = 1-brightness //Invert
@@ -330,7 +323,7 @@
 
 	H.maxHealth = total_health
 
-	H.health = H.maxHealth
+	H.health = H.getMaxHealth()
 
 /datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 

@@ -58,18 +58,18 @@
 	return 0 //not in range and not telekinetic
 
 /**
-  * this proc combines "sleep" while also checking for if the battle should continue
-  *
-  * this goes through some of the checks - the toys need to be next to each other to fight!
-  * if it's player vs themself: They need to be able to "control" both mechs (either must be adjacent or using TK).
-  * if it's player vs player: Both players need to be able to "control" their mechs (either must be adjacent or using TK).
-  * if all the checks are TRUE, it does the sleeps, and returns TRUE. Otherwise, it returns FALSE.
-  * Arguments:
-  * * delay - the amount of time the sleep at the end of the check will sleep for
-  * * attacker - the attacking toy in the battle.
-  * * attacker_controller - the controller of the attacking toy. there should ALWAYS be an attacker_controller
-  * * opponent - (optional) the defender controller in the battle, for PvP
-  */
+ * this proc combines "sleep" while also checking for if the battle should continue
+ *
+ * this goes through some of the checks - the toys need to be next to each other to fight!
+ * if it's player vs themself: They need to be able to "control" both mechs (either must be adjacent or using TK).
+ * if it's player vs player: Both players need to be able to "control" their mechs (either must be adjacent or using TK).
+ * if all the checks are TRUE, it does the sleeps, and returns TRUE. Otherwise, it returns FALSE.
+ * Arguments:
+ * * delay - the amount of time the sleep at the end of the check will sleep for
+ * * attacker - the attacking toy in the battle.
+ * * attacker_controller - the controller of the attacking toy. there should ALWAYS be an attacker_controller
+ * * opponent - (optional) the defender controller in the battle, for PvP
+ */
 
 /obj/item/toy/mecha/proc/combat_sleep(var/delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
 	if(!attacker_controller) // If the attacker for whatever reason is null, don't continue.
@@ -130,8 +130,8 @@
 		attack_self(user)
 
 /**
-  * If you attack a mech with a mech, initiate combat between them
-  */
+ * If you attack a mech with a mech, initiate combat between them
+ */
 /obj/item/toy/mecha/attackby(obj/item/user_toy, mob/living/user)
 	if(istype(user_toy, /obj/item/toy/mecha))
 		var/obj/item/toy/mecha/M = user_toy
@@ -140,8 +140,8 @@
 	..()
 
 /**
-  * Attack is called from the user's toy, aimed at target(another human), checking for target's toy.
-  */
+ * Attack is called from the user's toy, aimed at target(another human), checking for target's toy.
+ */
 /obj/item/toy/mecha/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
 	if(target == user)
 		to_chat(user, span_notice("Target another toy mech if you want to start a battle with yourself."))
@@ -166,7 +166,7 @@
 					return
 
 		//extend the offer of battle to the other mech
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		to_chat(user, span_notice("You offer battle to [target.name]!"))
 		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [T.His] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
 		wants_to_battle = TRUE
@@ -176,8 +176,8 @@
 	..()
 
 /**
-  * Overrides attack_tk - Sorry, you have to be face to face to initiate a battle, it's good sportsmanship
-  */
+ * Overrides attack_tk - Sorry, you have to be face to face to initiate a battle, it's good sportsmanship
+ */
 /obj/item/toy/mecha/attack_tk(mob/user)
 	if(timer < world.time)
 		to_chat(user, span_notice("You telekinetically play with [src]."))
@@ -185,12 +185,12 @@
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, TRUE)
 
 /**
-  * Resets the request for battle.
-  *
-  * For use in a timer, this proc resets the wants_to_battle variable after a short period.
-  * Arguments:
-  * * user - the user wanting to do battle
-  */
+ * Resets the request for battle.
+ *
+ * For use in a timer, this proc resets the wants_to_battle variable after a short period.
+ * Arguments:
+ * * user - the user wanting to do battle
+ */
 /obj/item/toy/mecha/proc/withdraw_offer(mob/living/carbon/user)
 	if(wants_to_battle)
 		wants_to_battle = FALSE
@@ -209,18 +209,18 @@
 		. += span_notice("This toy has [wins] wins, and [losses] losses.")
 
 /**
-  * The 'master' proc of the mech battle. Processes the entire battle's events and makes sure it start and finishes correctly.
-  *
-  * src is the defending toy, and the battle proc is called on it to begin the battle.
-  * After going through a few checks at the beginning to ensure the battle can start properly, the battle begins a loop that lasts
-  * until either toy has no more health. During this loop, it also ensures the mechs stay in combat range of each other.
-  * It will then randomly decide attacks for each toy, occasionally making one or the other use their special attack.
-  * When either mech has no more health, the loop ends, and it displays the victor and the loser while updating their stats and resetting them.
-  * Arguments:
-  * * attacker - the attacking toy, the toy in the attacker_controller's hands
-  * * attacker_controller - the user, the one who is holding the toys / controlling the fight
-  * * opponent - optional arg used in Mech PvP battles: the other person who is taking part in the fight (controls src)
-  */
+ * The 'master' proc of the mech battle. Processes the entire battle's events and makes sure it start and finishes correctly.
+ *
+ * src is the defending toy, and the battle proc is called on it to begin the battle.
+ * After going through a few checks at the beginning to ensure the battle can start properly, the battle begins a loop that lasts
+ * until either toy has no more health. During this loop, it also ensures the mechs stay in combat range of each other.
+ * It will then randomly decide attacks for each toy, occasionally making one or the other use their special attack.
+ * When either mech has no more health, the loop ends, and it displays the victor and the loser while updating their stats and resetting them.
+ * Arguments:
+ * * attacker - the attacking toy, the toy in the attacker_controller's hands
+ * * attacker_controller - the user, the one who is holding the toys / controlling the fight
+ * * opponent - optional arg used in Mech PvP battles: the other person who is taking part in the fight (controls src)
+ */
 /obj/item/toy/mecha/proc/mecha_brawl(obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
 	//A GOOD DAY FOR A SWELL BATTLE!
 	attacker_controller.visible_message(span_danger(" [attacker_controller.name] collides [attacker] with [src]! Looks like they're preparing for a brawl! "), \
@@ -380,20 +380,20 @@
 	return
 
 /**
-  * This proc checks if a battle can be initiated between src and attacker.
-  *
-  * Both SRC and attacker (if attacker is included) timers are checked if they're on cooldown, and
-  * both SRC and attacker (if attacker is included) are checked if they are in combat already.
-  * If any of the above are true, the proc returns FALSE and sends a message to user (and target, if included) otherwise, it returns TRUE
-  * Arguments:
-  * * user: the user who is initiating the battle
-  * * attacker: optional arg for checking two mechs at once
-  * * target: optional arg used in Mech PvP battles (if used, attacker is target's toy)
-  */
+ * This proc checks if a battle can be initiated between src and attacker.
+ *
+ * Both SRC and attacker (if attacker is included) timers are checked if they're on cooldown, and
+ * both SRC and attacker (if attacker is included) are checked if they are in combat already.
+ * If any of the above are true, the proc returns FALSE and sends a message to user (and target, if included) otherwise, it returns TRUE
+ * Arguments:
+ * * user: the user who is initiating the battle
+ * * attacker: optional arg for checking two mechs at once
+ * * target: optional arg used in Mech PvP battles (if used, attacker is target's toy)
+ */
 /obj/item/toy/mecha/proc/check_battle_start(mob/living/carbon/user, obj/item/toy/mecha/attacker, mob/living/carbon/target)
 	var/datum/gender/T
 	if(target)
-		T = gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.
+		T = GLOB.gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.
 	if(attacker && attacker.in_combat)
 		to_chat(user, span_notice("[target ? T.His : "Your" ] [attacker.name] is in combat."))
 		if(target)
@@ -418,12 +418,12 @@
 	return TRUE
 
 /**
-  * Processes any special attack moves that happen in the battle (called in the mechaBattle proc).
-  *
-  * Makes the toy shout their special attack cry and updates its cooldown. Then, does the special attack.
-  * Arguments:
-  * * victim - the toy being hit by the special move
-  */
+ * Processes any special attack moves that happen in the battle (called in the mechaBattle proc).
+ *
+ * Makes the toy shout their special attack cry and updates its cooldown. Then, does the special attack.
+ * Arguments:
+ * * victim - the toy being hit by the special move
+ */
 /obj/item/toy/mecha/proc/special_attack_move(obj/item/toy/mecha/victim)
 	visible_message(special_attack_cry + "!!")
 
@@ -447,12 +447,12 @@
 			visible_message("I FORGOT MY SPECIAL ATTACK...")
 
 /**
-  * Base proc for 'other' special attack moves.
-  *
-  * This one is only for inheritance, each mech with an 'other' type move has their procs below.
-  * Arguments:
-  * * victim - the toy being hit by the super special move (doesn't necessarily need to be used)
-  */
+ * Base proc for 'other' special attack moves.
+ *
+ * This one is only for inheritance, each mech with an 'other' type move has their procs below.
+ * Arguments:
+ * * victim - the toy being hit by the super special move (doesn't necessarily need to be used)
+ */
 /obj/item/toy/mecha/proc/super_special_attack(obj/item/toy/mecha/victim)
 	visible_message(span_notice(" [src] does a cool flip."))
 

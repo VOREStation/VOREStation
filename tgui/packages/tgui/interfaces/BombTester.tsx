@@ -156,8 +156,8 @@ class BombTesterSimulation extends Component {
     const BOUND_Y: number = 205;
     const MOVEMENT_SPEED: number = 2;
 
-    let startRight: boolean = Math.random() > 0.5;
-    let startBottom: boolean = Math.random() > 0.5;
+    const startRight: boolean = Math.random() > 0.5;
+    const startBottom: boolean = Math.random() > 0.5;
 
     this.state = {
       x: startRight ? BOUND_X : 0,

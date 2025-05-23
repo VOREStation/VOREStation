@@ -18,6 +18,7 @@
 			setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
+	SIGNAL_HANDLER
 	if(length(parents)) // safety check just incase this was called without clearing
 		reset_parents()
 	var/atom/movable/cur_parent = holder?.loc // first loc could be null
@@ -85,11 +86,13 @@
 //Some things will move their contents on qdel so we should prepare ourselves to be moved.
 //If this qdel does destroy our holder, on_holder_qdel will handle preperations for GC
 /datum/component/recursive_move/proc/on_qdel()
+	SIGNAL_HANDLER
 	reset_parents()
 	noparents = TRUE
 	RegisterSignal(holder, COMSIG_ATOM_ENTERING, PROC_REF(setup_parents))
 
 /datum/component/recursive_move/proc/on_holder_qdel()
+	SIGNAL_HANDLER
 	UnregisterSignal(holder, COMSIG_PARENT_QDELETING)
 	reset_parents()
 	holder = null
@@ -111,6 +114,7 @@
 	desc = "spams world log with debugging information"
 
 /obj/item/bananapeel/testing/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
+	SIGNAL_HANDLER
 	world.log << "the [source] moved from [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) to [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])"
 
 /obj/item/bananapeel/testing/Initialize(mapload)

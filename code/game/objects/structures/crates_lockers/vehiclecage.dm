@@ -73,8 +73,8 @@
 /obj/structure/vehiclecage/proc/load_vehicle(var/obj/vehicle/V, mob/user as mob)
 	if(user)
 		user.visible_message(span_notice("[user] loads \the [V] into \the [src]."), \
-							 span_notice("You load \the [V] into \the [src]."), \
-							 span_notice("You hear creaking metal."))
+								span_notice("You load \the [V] into \the [src]."), \
+								span_notice("You hear creaking metal."))
 
 	V.forceMove(src)
 
@@ -92,8 +92,8 @@
 
 	my_vehicle = null
 	user.visible_message(span_notice("[user] release \the [src]."), \
-						 span_notice("You finally release \the [src]."), \
-						 span_notice("You hear creaking metal."))
+							span_notice("You finally release \the [src]."), \
+							span_notice("You hear creaking metal."))
 	qdel(src)
 
 /obj/structure/vehiclecage/spacebike

@@ -149,7 +149,7 @@
 		wind_dir = 0
 		return
 	wind_speed = new_wind_speed
-	wind_dir = pick(alldirs)
+	wind_dir = pick(GLOB.alldirs)
 	var/message = "You feel the wind blowing [wind_speed > 2 ? "strongly ": ""]towards the <b>[dir2text(wind_dir)]</b>."
 	message_all_outdoor_players(span_warning(message))
 
@@ -202,6 +202,7 @@
 	var/datum/looping_sound/indoor_sounds = null
 	var/outdoor_sounds_type = null
 	var/indoor_sounds_type = null
+	var/effect_flags = NONE
 
 /datum/weather/New()
 	if(outdoor_sounds_type)
@@ -215,6 +216,29 @@
 		if(world.time >= last_message + message_delay)
 			last_message = world.time	// Reset the timer
 			show_message = TRUE			// Tell the rest of the process that we need to make a message
+	if(effect_flags & HAS_PLANET_EFFECT)
+		if(effect_flags & EFFECT_ALL_MOBS)
+			for(var/mob/M as anything in mob_list)
+				if(M.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
+					continue
+				planet_effect(M)
+		if(effect_flags & EFFECT_ONLY_LIVING)
+			for(var/mob/living/L as anything in living_mob_list)
+				if(L.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
+					continue
+				planet_effect(L)
+		if(effect_flags & EFFECT_ONLY_HUMANS)
+			for(var/mob/living/carbon/H as anything in human_mob_list)
+				if(H.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
+					continue
+				planet_effect(H)
+		if(effect_flags & EFFECT_ONLY_ROBOTS)
+			for(var/mob/living/silicon/R as anything in silicon_mob_list)
+				if(R.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
+					continue
+				planet_effect(R)
+
+/datum/weather/proc/planet_effect(mob/living/L)
 	return
 
 /datum/weather/proc/process_sounds()

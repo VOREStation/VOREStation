@@ -187,7 +187,7 @@
 		var/scannedtitle = "Paper"
 		if(!isnull(notes.notetitle) && notes.notetitle != "")
 			scannedtitle = "'[notes.notetitle]'"
-		to_chat(user, span_notice("[scannedtitle] scanned to Notekeeper in note [alphabet_uppercase[notes.currentnote]]."))//concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, span_notice("[scannedtitle] scanned to Notekeeper in note [GLOB.alphabet_upper[notes.currentnote]]."))//concept of scanning paper copyright brainoblivion 2009
 
 	else
 		to_chat(user, span_warning("Error scanning [A]."))

@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { Icon } from 'tgui-core/components';
+import type { ComponentProps } from 'react';
+import type { Icon } from 'tgui-core/components';
 
 type IconProps = ComponentProps<typeof Icon>;
 

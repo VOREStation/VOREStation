@@ -13,7 +13,8 @@
 	var/custombasedesc = null
 	var/custombasecolor = null
 
-/obj/effect/decal/cleanable/blood/reagent/New(var/spill_name, var/spill_color, var/spill_reagentid, var/new_amount, var/ckey_user, var/ckey_spawn)
+/obj/effect/decal/cleanable/blood/reagent/Initialize(mapload, var/spill_name, var/spill_color, var/spill_reagentid, var/new_amount, var/ckey_user, var/ckey_spawn)
+	. = ..()
 	switch(spill_reagentid)	//To ensure that if people spill some liquids, it wont cause issues with spawning, like spilling blood. Also allow for spilling of certain things to
 		if("blood")
 			return

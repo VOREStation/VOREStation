@@ -103,7 +103,7 @@ export const replaceInTextNode =
     if (words) {
       let i = 0;
       let wordRegexStr = '(';
-      for (let word of words) {
+      for (const word of words) {
         // Capture if the word is at the beginning, end, middle,
         // or by itself in a message
         wordRegexStr += `^${word}\\s\\W|\\s\\W${word}\\s\\W|\\s\\W${word}$|^${word}\\s\\W$`;
@@ -115,7 +115,7 @@ export const replaceInTextNode =
       wordRegexStr += ')';
       const wordRegex = new RegExp(wordRegexStr, 'gi');
       if (regex && nodes) {
-        for (let a_node of nodes) {
+        for (const a_node of nodes) {
           result = regexParseNode({
             node: a_node,
             regex: wordRegex,

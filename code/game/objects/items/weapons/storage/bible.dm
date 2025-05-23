@@ -68,11 +68,11 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	to_chat(user, span_notice("You invoke [user.mind.my_religion.deity] and prepare a copy of [src]."))
 
 /**
-  * Checks if we are allowed to interact with a radial menu
-  *
-  * Arguments:
-  * * user The mob interacting with the menu
-  */
+ * Checks if we are allowed to interact with a radial menu
+ *
+ * Arguments:
+ * * user The mob interacting with the menu
+ */
 /obj/item/storage/bible/proc/check_menu(mob/living/carbon/human/user)
 	if(user.mind.my_religion.configured)
 		return FALSE

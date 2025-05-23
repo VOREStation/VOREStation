@@ -1,8 +1,8 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, NumberInput, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesSpawn = (props: {
@@ -29,27 +29,26 @@ export const VoreUserPreferencesSpawn = (props: {
     <Section
       title="Spawn Preferences"
       buttons={
-        <Box nowrap>
-          <VoreUserPreferenceItem
-            spec={preferences.spawnbelly}
-            tooltipPosition="top"
-          />
-          <VoreUserPreferenceItem
-            spec={preferences.spawnprey}
-            tooltipPosition="top"
-          />
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.spawnbelly}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <VoreUserPreferenceItem
+              spec={preferences.spawnprey}
+              tooltipPosition="top"
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack wrap="wrap" justify="center">
         {latejoin_vore ? (
           <>
-            <Stack.Item
-              basis="31%"
-              style={{
-                marginLeft: '0.5em', // Remove if tgui core implements gap
-              }}
-            >
+            <Stack.Item basis="31%">
               <VoreUserPreferenceItem
                 spec={preferences.no_spawnpred_warning}
                 tooltipPosition="top"

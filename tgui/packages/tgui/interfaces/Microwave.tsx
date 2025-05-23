@@ -1,9 +1,12 @@
+import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
   DmIcon,
+  Icon,
+  Image,
   Section,
   Stack,
   Tooltip,
@@ -44,30 +47,78 @@ export const Microwave = (props) => {
 
   let inner;
 
+  const first_item = items[0] || null;
+
   if (broken) {
     inner = (
       <Section fill>
-        <Box color="bad">Bzzzzttttt!!</Box>
+        <Stack vertical fill align="center" justify="center">
+          <Stack.Item>
+            <Box color="bad" fontSize={6}>
+              Bzzzzttttt!!
+            </Box>
+          </Stack.Item>
+          <Stack.Item>
+            <Stack align="center" justify="space-around">
+              <Stack.Item>
+                <Icon name="fire" color="orange" size={10} />
+              </Stack.Item>
+              <Stack.Item>
+                <Icon name="fire" color="orange" size={10} />
+              </Stack.Item>
+              <Stack.Item>
+                <Icon name="fire" color="orange" size={10} />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
       </Section>
     );
   } else if (operating) {
     inner = (
       <Section fill>
-        <Box color="good">
-          Microwaving in progress!
-          <br />
-          Please wait...!
-        </Box>
+        <Stack fill vertical align="center" justify="center">
+          <Stack.Item>
+            <Box position="relative" className="Microwave__Hover">
+              <Image src={resolveAsset('microwave.png')} />
+              {first_item ? (
+                <Box
+                  position="absolute"
+                  className="Microwave__Hover"
+                  left={8}
+                  top={10}
+                >
+                  <DmIcon
+                    icon={first_item.icon.icon}
+                    icon_state={first_item.icon.icon_state}
+                    width="64px"
+                    height="64px"
+                  />
+                </Box>
+              ) : null}
+              <Image
+                position="absolute"
+                left={0}
+                top={0}
+                src={resolveAsset('microwave.gif')}
+              />
+            </Box>
+          </Stack.Item>
+        </Stack>
       </Section>
     );
   } else if (dirty) {
     inner = (
-      <Section fill>
-        <Box color="bad">
-          This microwave is dirty!
-          <br />
-          Please clean it before use!
-        </Box>
+      <Section fill textAlign="center">
+        <Stack fill vertical align="center" justify="center" fontSize={2}>
+          <Stack.Item>
+            <Box color="bad">
+              This microwave is dirty!
+              <br />
+              Please clean it before use!
+            </Box>
+          </Stack.Item>
+        </Stack>
       </Section>
     );
   } else if (items.length) {
@@ -75,14 +126,20 @@ export const Microwave = (props) => {
   } else {
     inner = (
       <Section fill>
-        <Box color="bad">{config.title} is empty.</Box>
+        <Stack fill align="center" justify="center">
+          <Stack.Item>
+            <Box color="bad" fontSize={2}>
+              {config.title} is empty.
+            </Box>
+          </Stack.Item>
+        </Stack>
       </Section>
     );
   }
 
   return (
     <Window width={520} height={300}>
-      <Window.Content scrollable>{inner}</Window.Content>
+      <Window.Content>{inner}</Window.Content>
     </Window>
   );
 };
@@ -96,15 +153,20 @@ const MicrowaveContents = (props) => {
     <Section
       fill
       title="Ingredients"
+      scrollable
       buttons={
-        <>
-          <Button icon="radiation" onClick={() => act('cook')}>
-            Microwave
-          </Button>
-          <Button icon="eject" onClick={() => act('dispose')}>
-            Eject
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button icon="radiation" onClick={() => act('cook')}>
+              Microwave
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button icon="eject" onClick={() => act('dispose')}>
+              Eject
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack fill align="center">
@@ -197,6 +259,10 @@ const MicrowaveContents = (props) => {
                   ml="16px"
                   mt="16px"
                   className={classes(['kitchen_recipes32x32', recipe])}
+                  style={{
+                    transform: 'scale(3)',
+                    imageRendering: 'pixelated',
+                  }}
                 />
               ) : (
                 <DmIcon

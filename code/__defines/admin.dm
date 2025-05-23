@@ -77,5 +77,10 @@
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS 1
+#define BROWSE_ROOT_RUNTIME_LOGS 2
+#define BROWSE_ROOT_CURRENT_LOGS 3
+
 /// A value for /datum/admins/cached_feedback_link to indicate empty, rather than unobtained
 #define NO_FEEDBACK_LINK "no_feedback_link"
