@@ -1,15 +1,17 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 
-import type { selectedData } from '../types';
+import type { bellyInteractionData } from '../types';
 
 export const VoreSelectedBellyInteractions = (props: {
-  belly: selectedData;
+  editMode: boolean;
+  bellyInteractData: bellyInteractionData;
 }) => {
   const { act } = useBackend();
 
-  const { belly } = props;
-  const { escapable, interacts, autotransfer_enabled, autotransfer } = belly;
+  const { editMode, bellyInteractData } = props;
+  const { escapable, interacts, autotransfer_enabled, autotransfer } =
+    bellyInteractData;
 
   return (
     <Section

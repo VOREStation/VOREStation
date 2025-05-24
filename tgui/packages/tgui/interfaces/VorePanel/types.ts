@@ -183,6 +183,13 @@ export type bellyVisualData = {
   tail_sprite_options: string[];
 };
 
+export type bellyInteractionData = {
+  escapable: BooleanLike;
+  interacts: interactData;
+  autotransfer_enabled: BooleanLike;
+  autotransfer: autotransferData;
+};
+
 export type siliconeBellyControls = {
   silicon_belly_overlay_preference: string;
   belly_sprite_option_shown: BooleanLike;
@@ -196,8 +203,8 @@ export type selectedData = {
   belly_option_data?: bellyOptionData;
   belly_sound_data?: bellySoundData;
   belly_visual_data?: bellyVisualData;
+  belly_interaction_data?: bellyInteractionData;
 
-  interacts: interactData;
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
   display_absorbed_examine: BooleanLike;
@@ -209,9 +216,6 @@ export type selectedData = {
   weight_ex: BooleanLike;
   eating_privacy_local: string;
   silicon_belly_overlay_preference: string;
-  belly_mob_mult: number;
-  belly_item_mult: number;
-  belly_overall_mult: number;
   custom_reagentcolor: string;
   custom_reagentalpha: number;
   liquid_overlay: BooleanLike;
@@ -228,13 +232,10 @@ export type selectedData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
-  escapable: BooleanLike;
   belly_sprite_option_shown: BooleanLike;
   tail_colouration: BooleanLike;
   tail_extra_overlay: BooleanLike;
   tail_extra_overlay2: BooleanLike;
-  autotransfer_enabled: BooleanLike;
-  autotransfer: autotransferData;
   contents: contentData[];
   show_liq: BooleanLike;
   liq_interacts: liqInteractData;

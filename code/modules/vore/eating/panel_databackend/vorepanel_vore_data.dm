@@ -265,17 +265,20 @@
 			)
 			selected_list["belly_visual_data"] = belly_visual_data
 
+		if(active_vore_tab == INTERACTIONS_TAB)
+			var/list/belly_interaction_data = list(
+				"escapable": selected.escapable,
+				"interacts": compile_interact_data(selected),
+				"autotransfer_enabled": selected.autotransfer_enabled,
+				"autotransfer": compile_autotransfer_data(selected)
+			)
+			selected_list["belly_interaction_data"] = belly_interaction_data
+
 		// TODO wipe this list-....
 		selected_list += list(list(
 			// "messages" // TODO
 			"nutrition_ex" = owner.nutrition_message_visible,
 			"weight_ex" = owner.weight_message_visible,
-			"belly_mob_mult" = selected.belly_mob_mult,
-			"belly_item_mult" = selected.belly_item_mult,
-			"belly_overall_mult" = selected.belly_overall_mult,
-			"tail_colouration" = selected.tail_colouration,
-			"tail_extra_overlay" = selected.tail_extra_overlay,
-			"tail_extra_overlay2" = selected.tail_extra_overlay2,
 			"custom_reagentcolor" = selected.custom_reagentcolor,
 			"custom_reagentalpha" = selected.custom_reagentalpha,
 			"liquid_overlay" = selected.liquid_overlay,
@@ -294,17 +297,6 @@
 			"custom_ingested_alpha" = selected.custom_ingested_alpha,
 			//"marking_to_add" = selected.marking_to_add
 		))
-
-
-
-
-		selected_list["escapable"] = selected.escapable
-		selected_list["interacts"] = list()
-		if(selected.escapable)
-			selected_list["interacts"] = compile_interact_data(selected)
-
-		selected_list["autotransfer_enabled"] = selected.autotransfer_enabled
-		selected_list["autotransfer"] = compile_autotransfer_data(selected)
 
 		var/list/selected_contents = list()
 		for(var/O in selected)
