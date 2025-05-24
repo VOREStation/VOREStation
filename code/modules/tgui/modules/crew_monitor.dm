@@ -4,7 +4,7 @@
 
 /datum/tgui_module/crew_monitor/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/simple/nanomaps),
+		get_asset_datum(/datum/asset/simple/holo_nanomap),
 	)
 
 /datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
