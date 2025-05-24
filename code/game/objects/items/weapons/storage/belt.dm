@@ -248,7 +248,8 @@
 		/obj/item/mass_spectrometer,
 		/obj/item/surgical,
 		/obj/item/clothing/mask/chewable/candy/lolli,
-		/obj/item/extrapolator
+		/obj/item/extrapolator,
+		/obj/item/gene_scanner,
 		)
 
 /obj/item/storage/belt/medical/emt
