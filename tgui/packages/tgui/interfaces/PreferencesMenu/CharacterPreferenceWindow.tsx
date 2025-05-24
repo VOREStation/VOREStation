@@ -13,6 +13,7 @@ type Data = {
   };
   selected_category_static: any;
 
+  saved_notification: BooleanLike;
   preview_loadout: BooleanLike;
   preview_job_gear: BooleanLike;
   preview_animations: BooleanLike;
