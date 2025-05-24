@@ -326,9 +326,9 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = escape_absorbed_messages_prey
 		if(ABSORBED_ESCAPE_OUTSIDE)
 			raw_messages = escape_absorbed_messages_outside
-		if(FULL_ABSORBED_ESCAPE_OWNER)
+		if(ABSORBED_ESCAPE_FAIL_OWNER)
 			raw_messages = escape_fail_absorbed_messages_owner
-		if(FULL_ABSORBED_ESCAPE_PREY)
+		if(ABSORBED_ESCAPE_FAIL_PREY)
 			raw_messages = escape_fail_absorbed_messages_prey
 		if(PRIMARY_TRANSFER_OWNER)
 			raw_messages = primary_transfer_messages_owner
@@ -396,6 +396,16 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_messages = trash_eater_in
 		if(BELLY_TRASH_EATER_OUT)
 			raw_messages = trash_eater_out
+		if(BELLY_LIQUID_MESSAGE1)
+			raw_messages = fullness1_messages
+		if(BELLY_LIQUID_MESSAGE2)
+			raw_messages = fullness2_messages
+		if(BELLY_LIQUID_MESSAGE3)
+			raw_messages = fullness3_messages
+		if(BELLY_LIQUID_MESSAGE4)
+			raw_messages = fullness4_messages
+		if(BELLY_LIQUID_MESSAGE5)
+			raw_messages = fullness5_messages
 
 	var/messages = null
 	if(raw_messages)
@@ -413,11 +423,15 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 
 	var/list/raw_list
 
-	if(findtext(raw_text, delim))
-		raw_list = splittext(html_encode(raw_text), delim)
+	if(islist(raw_text))
+		raw_list = raw_text
+	else if(findtext(raw_text, delim))
+		raw_list = splittext(raw_text, delim)
 	else
 		raw_list = list(raw_text)
+
 	for(var/i = 1, i <= raw_list.len, i++)
+		raw_list[i] = html_encode(raw_list[i])
 		if(!length(raw_list[i]))
 			raw_list.Cut(i, i + 1)
 			i--
@@ -480,9 +494,9 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			escape_absorbed_messages_prey = raw_list
 		if(ABSORBED_ESCAPE_OUTSIDE)
 			escape_absorbed_messages_outside = raw_list
-		if(FULL_ABSORBED_ESCAPE_OWNER)
+		if(ABSORBED_ESCAPE_FAIL_OWNER)
 			escape_fail_absorbed_messages_owner = raw_list
-		if(FULL_ABSORBED_ESCAPE_PREY)
+		if(ABSORBED_ESCAPE_FAIL_PREY)
 			escape_fail_absorbed_messages_prey = raw_list
 		if(PRIMARY_TRANSFER_OWNER)
 			primary_transfer_messages_owner = raw_list
@@ -550,3 +564,13 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			trash_eater_in = raw_list
 		if(BELLY_TRASH_EATER_OUT)
 			trash_eater_out = raw_list
+		if(BELLY_LIQUID_MESSAGE1)
+			fullness1_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE2)
+			fullness2_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE3)
+			fullness3_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE4)
+			fullness4_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE5)
+			fullness5_messages = raw_list

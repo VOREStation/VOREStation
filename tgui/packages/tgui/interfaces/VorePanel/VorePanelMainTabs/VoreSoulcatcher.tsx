@@ -8,29 +8,26 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import type {
-  abilities,
-  bellyData,
-  DropdownEntry,
-  soulcatcherData,
-} from './types';
+import type { abilities, DropdownEntry, soulcatcherData } from '../types';
+import { CatchSettings } from '../VoreSoulcatcherSettings/CatchSettings';
+import { GlobalOptions } from '../VoreSoulcatcherSettings/GlobalOptions';
+import { GlobalSettings } from '../VoreSoulcatcherSettings/GlobalSettings';
+import { SoulOptions } from '../VoreSoulcatcherSettings/SoulOptions';
 import { VoreAbilities } from './VoreAbilities';
-import { CatchSettings } from './VoreSoulcatcherSettings/CatchSettings';
-import { GlobalOptions } from './VoreSoulcatcherSettings/GlobalOptions';
-import { GlobalSettings } from './VoreSoulcatcherSettings/GlobalSettings';
-import { SoulOptions } from './VoreSoulcatcherSettings/SoulOptions';
 
 export const VoreSoulcatcher = (props: {
   soulcatcher: soulcatcherData | null;
-  our_bellies: Required<bellyData[]> & {
-    map(arg0: (belly: bellyData) => DropdownEntry): DropdownEntry[];
+  our_bellies: Required<{ name: string; ref: string }[]> & {
+    map(
+      arg0: (belly: { name: string; ref: string }) => DropdownEntry,
+    ): DropdownEntry[];
   };
   abilities: abilities;
 }) => {
   const { soulcatcher, our_bellies, abilities } = props;
 
   const getBellies = our_bellies.map((belly) => {
-    return { ...belly, displayText: belly.name, value: belly.ref };
+    return { displayText: belly.name, value: belly.ref };
   });
 
   return (

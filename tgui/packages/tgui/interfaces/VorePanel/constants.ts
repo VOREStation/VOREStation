@@ -1,10 +1,14 @@
 export const stats: (string | undefined)[] = [undefined, 'average', 'bad'];
+
 export const vorespawnAbsorbedText: string[] = ['No', 'Yes', 'Prey Choice'];
+
 export const vorespawnAbsorbedColor: (string | undefined)[] = [
   undefined,
   'green',
   'orange',
 ];
+
+export const selectiveBellyOptions = ['Digest', 'Absorb'];
 
 export const digestModeToColor = {
   Default: undefined,
@@ -19,6 +23,8 @@ export const digestModeToColor = {
   'Size Steal': 'teal',
   Heal: 'green',
   'Encase In Egg': 'blue',
+  'Digest (Food Only)': 'red',
+  'Digest (Dispersed Damage)': 'red',
 };
 
 export const reagentToColor = {
@@ -57,3 +63,59 @@ export const SYNTAX_COLOR = {
   '%pred': 'bad',
   '%prey': 'good',
 };
+
+export const tabToNames = [
+  'Controls',
+  'Descriptions',
+  'Options',
+  'Sounds',
+  'Visuals',
+  'Interactions',
+  'Contents',
+  'Liquid Options',
+];
+
+export const modeToTooltip = {
+  Numbing: 'Prey will recieve no pain from vorgan damage.',
+  Stripping: 'Strips prey of all equipped items.',
+  'Leave Remains': 'Prey might leave remains like bones.',
+  Muffles: 'Causes all prey messages to become subtles.',
+  'Affect Worn Items': 'Allows vorgan to coat and digest equipped items.',
+  'Jams Sensors': 'Blocks medical sensors, but not GPS.',
+  'Complete Absorb': 'Limits conversation to direct pred / prey.',
+  'Spare Prosthetics': 'Applies no damage to synthetic limbs. ',
+  'Slow Body Digestion': 'Continues to digest a body after the prey has died.',
+  'Muffle Items': ' Muffles noise from items inside the vorgan.',
+  'TURBO MODE': 'Heavily increases tick speed of the vorgan (6x).',
+};
+
+export const spriteToTooltip = {
+  'Normal Belly Sprite':
+    "This belly will effect the mob's belly sprite if available.",
+  'Undergarment addition':
+    "This belly will effect the mob's undergarment sprite if available.",
+};
+
+export const messageTabLabel = [
+  'Description',
+  'Examine',
+  'Trash Eater',
+  'Struggle',
+  'Escape',
+  'Escape (Absorbed)',
+  'Transfer',
+  'Interaction Chance',
+  'Bellymode',
+  'Idle',
+  'Liquid Fullness',
+];
+
+export const eatingMessagePrivacy = {
+  default: undefined,
+  subtle: 'green',
+  loud: 'red',
+};
+
+export const robotBellyOptions = ['Sleeper', 'Vorebelly', 'Both'];
+
+export const noSelectionName = { displayText: 'None - Remove', value: '' };

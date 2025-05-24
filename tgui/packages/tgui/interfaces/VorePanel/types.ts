@@ -1,21 +1,27 @@
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
+  vore_words: Record<string, string[]>;
   unsaved_changes: BooleanLike;
+  inside: insideData;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
-  inside: insideData;
-  host_mobtype: hostMob;
-  our_bellies: bellyData[];
-  selected: selectedData | null;
-  prefs: prefData;
-  soulcatcher: soulcatcherData | null;
-  abilities: abilities;
-  vore_words: Record<string, string[]>;
+  active_tab: number;
+  host_mobtype: hostMob | null;
+  our_bellies?: bellyData[] | null;
+  selected?: selectedData | null;
+  prefs?: prefData | null;
+  soulcatcher?: soulcatcherData | null;
+  abilities?: abilities | null;
+  active_vore_tab?: number;
 };
 
 export type abilities = {
   nutrition: number;
+  size_change: abilitySizeChange;
+};
+
+export type abilitySizeChange = {
   current_size: number;
   minimum_size: number;
   maximum_size: number;
@@ -50,44 +56,157 @@ export type contentData = {
 };
 
 export type bellyData = {
-  selected: BooleanLike;
   name: string;
   ref: string;
-  digest_mode: string;
-  contents: number;
-  prevent_saving: BooleanLike;
+  selected?: BooleanLike;
+  digest_mode?: string;
+  contents?: number;
+  prevent_saving?: BooleanLike;
 };
 
-export type selectedData = {
-  belly_name: string;
-  message_mode: BooleanLike;
-  is_wet: BooleanLike;
-  wet_loop: BooleanLike;
+export type bellyModeData = {
   mode: string;
   item_mode: string;
+  addons: checkBoxEntry[];
+  name_length: number;
+  mode_options: string[];
+  item_mode_options: string[];
+};
+
+export type bellyDescriptionData = {
   verb: string;
   release_verb: string;
-  desc: string;
-  absorbed_desc: string;
-  fancy: BooleanLike;
-  sound: string;
-  release_sound: string;
+  message_mode: BooleanLike;
+  displayed_options: number[];
+  message_option: number;
+  message_subtab: string;
+  selected_message: string;
+  emote_time: number;
+  emote_active: BooleanLike;
+  show_liq_fullness: BooleanLike;
+  entrance_logs: BooleanLike;
+  item_digest_logs: BooleanLike;
+  displayed_message_types: {
+    subtypes?: string[];
+    possible_messages?: string[] | null;
+    max_length: number;
+    set_action: string;
+    tooltip: string;
+    active_message: string | string[] | null;
+    button_action?: string;
+    button_data?: BooleanLike;
+    button_label?: string;
+    button_tooltip?: string;
+  } | null;
+};
+
+export type bellyOptionData = {
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
-  egg_type: string;
-  egg_name: string;
-  egg_size: number;
-  recycling: BooleanLike;
-  storing_nutrition: BooleanLike;
-  entrance_logs: BooleanLike;
   nutrition_percent: number;
   digest_brute: number;
   digest_burn: number;
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  digest_max: number;
+  digest_free: number;
   bulge_size: number;
+  shrink_grow_size: number;
+  contaminates: BooleanLike;
+  contaminate_flavor: string | null;
+  contaminate_color: string | null;
+  contaminate_options: Record<string, string>[] | null;
+  contaminate_colors: string[] | null;
+  egg_type: string;
+  egg_types: string[];
+  egg_name: string;
+  egg_size: number;
+  recycling: BooleanLike;
+  storing_nutrition: BooleanLike;
+  selective_preference: string;
   save_digest_mode: BooleanLike;
+  eating_privacy_local: string;
+  vorespawn_blacklist: BooleanLike;
+  vorespawn_whitelist: string[];
+  vorespawn_absorbed: number;
+  private_struggle: BooleanLike;
+  drainmode_options: string[];
+  drainmode: string;
+  mob_belly_controls: siliconeBellyControls;
+};
+
+export type bellySoundData = {
+  is_wet: BooleanLike;
+  wet_loop: BooleanLike;
+  fancy: BooleanLike;
+  sound: string;
+  release_sound: string;
+  sound_volume: number;
+  noise_freq: number;
+  min_voice_freq: number;
+  max_voice_freq: number;
+  vore_sound_list: Record<string, string>;
+  release_sound_list: Record<string, string>;
+};
+
+export type bellyVisualData = {
+  belly_fullscreen: string;
+  colorization_enabled: BooleanLike;
+  belly_fullscreen_color: string;
+  belly_fullscreen_color2: string;
+  belly_fullscreen_color3: string;
+  belly_fullscreen_color4: string;
+  belly_fullscreen_alpha: number;
+  possible_fullscreens: string[];
+  disable_hud: BooleanLike;
+  vore_sprite_flags: checkBoxEntry[];
+  affects_voresprite: BooleanLike;
+  absorbed_voresprite: BooleanLike;
+  absorbed_multiplier: number;
+  liquid_voresprite: BooleanLike;
+  liquid_multiplier: number;
+  item_voresprite: BooleanLike;
+  item_multiplier: number;
+  health_voresprite: number;
+  resist_animation: BooleanLike;
+  voresprite_size_factor: number;
+  belly_sprite_to_affect: string;
+  belly_sprite_options: string[] | null;
+  undergarment_chosen: string;
+  undergarment_if_none: string;
+  undergarment_options: string[];
+  undergarment_options_if_none: string[];
+  undergarment_color: string;
+  tail_option_shown: BooleanLike;
+  tail_to_change_to: BooleanLike | string;
+  tail_sprite_options: string[];
+};
+
+export type bellyInteractionData = {
+  escapable: BooleanLike;
+  interacts: interactData;
+  autotransfer_enabled: BooleanLike;
+  autotransfer: autotransferData;
+};
+
+export type siliconeBellyControls = {
+  silicon_belly_overlay_preference: string;
+  belly_sprite_option_shown: BooleanLike;
+  belly_sprite_to_affect: string;
+};
+
+export type selectedData = {
+  belly_name: string;
+  belly_mode_data?: bellyModeData;
+  belly_description_data?: bellyDescriptionData;
+  belly_option_data?: bellyOptionData;
+  belly_sound_data?: bellySoundData;
+  belly_visual_data?: bellyVisualData;
+  belly_interaction_data?: bellyInteractionData;
+
+  can_taste: BooleanLike;
+  is_feedable: BooleanLike;
   display_absorbed_examine: BooleanLike;
   shrink_grow_size: number;
   emote_time: number;
@@ -95,19 +214,8 @@ export type selectedData = {
   selective_preference: string;
   nutrition_ex: BooleanLike;
   weight_ex: BooleanLike;
-  belly_fullscreen: string;
   eating_privacy_local: string;
   silicon_belly_overlay_preference: string;
-  belly_mob_mult: number;
-  belly_item_mult: number;
-  belly_overall_mult: number;
-  drainmode: string;
-  belly_fullscreen_color: string;
-  belly_fullscreen_color2: string;
-  belly_fullscreen_color3: string;
-  belly_fullscreen_color4: string;
-  belly_fullscreen_alpha: number;
-  colorization_enabled: BooleanLike;
   custom_reagentcolor: string;
   custom_reagentalpha: number;
   liquid_overlay: BooleanLike;
@@ -124,44 +232,10 @@ export type selectedData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
-  vorespawn_blacklist: BooleanLike;
-  vorespawn_whitelist: string[];
-  vorespawn_absorbed: number;
-  sound_volume: number;
-  affects_voresprite: BooleanLike;
-  absorbed_voresprite: BooleanLike;
-  absorbed_multiplier: number;
-  liquid_voresprite: BooleanLike;
-  liquid_multiplier: number;
-  item_voresprite: BooleanLike;
-  item_multiplier: number;
-  health_voresprite: number;
-  resist_animation: BooleanLike;
-  voresprite_size_factor: number;
-  belly_sprite_to_affect: string;
-  undergarment_chosen: string;
-  undergarment_if_none: string;
-  undergarment_color: string;
   belly_sprite_option_shown: BooleanLike;
-  tail_option_shown: BooleanLike;
-  tail_to_change_to: BooleanLike | string;
   tail_colouration: BooleanLike;
   tail_extra_overlay: BooleanLike;
   tail_extra_overlay2: BooleanLike;
-  noise_freq: number;
-  item_digest_logs: BooleanLike;
-  private_struggle: BooleanLike;
-  addons: string[];
-  vore_sprite_flags: string[];
-  contaminates: BooleanLike;
-  contaminate_flavor: string | null;
-  contaminate_color: string | null;
-  escapable: BooleanLike;
-  interacts: interactData;
-  autotransfer_enabled: BooleanLike;
-  autotransfer: autotransferData;
-  disable_hud: BooleanLike;
-  possible_fullscreens: string[];
   contents: contentData[];
   show_liq: BooleanLike;
   liq_interacts: liqInteractData;
@@ -320,6 +394,11 @@ export type soulcatcherData = {
 export type DropdownEntry = {
   displayText: string;
   value: string;
+};
+
+export type checkBoxEntry = {
+  label: string;
+  selection: BooleanLike;
 };
 
 export type localPrefs = {

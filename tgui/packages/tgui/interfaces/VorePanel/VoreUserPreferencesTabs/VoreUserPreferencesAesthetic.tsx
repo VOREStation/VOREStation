@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 
 import type { localPrefs, selectedData } from '../types';
-import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
+import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesAesthetic = (props: {
   belly_rub_target: string | null;

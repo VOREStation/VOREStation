@@ -1,0 +1,41 @@
+.VorePanel__fLoating {
+  height: 200px;
+  background-color: var(--color-section);
+  backdrop-filter: var(--blur-medium);
+  border: var(--border-thickness-tiny) solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-glow-medium) hsla(0, 0%, 0%, 0.5);
+  margin: var(--space-m);
+  color: var(--color-text);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: var(--space-m);
+}
+
+.VorePanel__floatingButton {
+  cursor: var(--cursor-pointer);
+  display: inline-block;
+  line-height: 1.667em;
+  padding: 0 var(--space-m);
+  outline: 0;
+  border-radius: var(--button-border-radius);
+  transition-property: background-color, color, opacity;
+  transition-duration: var(--button-transition);
+  transition-timing-function: var(--button-transition-timing);
+  user-select: none;
+  background-color: var(--button-background-default);
+}
+
+.VorePanel__pasteArea {
+  height: 200px;
+  width: 600px;
+  background-color: var(--color-section);
+  backdrop-filter: var(--blur-medium);
+  border: var(--border-thickness-tiny) solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-glow-medium) hsla(0, 0%, 0%, 0.5);
+  margin: var(--space-m);
+  color: var(--color-text);
+  overflow: hidden;
+  padding: var(--space-m);
+}
