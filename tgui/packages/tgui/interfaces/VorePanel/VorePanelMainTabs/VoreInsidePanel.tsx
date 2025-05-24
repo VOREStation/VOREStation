@@ -4,7 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { digestModeToPreyMode, reagentToColor } from '../constants';
 import { digestModeToColor } from '../constants';
 import type { insideData } from '../types';
-import { VoreContentsPanel } from '../VoreSelectedBellyTabs/SubElements/VoreContentsPanel';
+import { VoreContentsPanel } from '../VoreSelectedBellyTabs/ContentTab/VoreContentsPanel';
 
 export const VoreInsidePanel = (props: {
   inside: insideData;

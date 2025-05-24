@@ -18,38 +18,42 @@ export const BellyFullscreenSelection = (props: {
   } = props;
 
   return editMode ? (
-    <Section title="Belly Fullscreens Styles" width="800px">
-      <Button
-        fluid
-        selected={belly_fullscreen === '' || belly_fullscreen === null}
-        onClick={() =>
-          act('set_attribute', { attribute: 'b_fullscreen', val: null })
-        }
-      >
-        Disabled
-      </Button>
-      {Object.keys(possible_fullscreens).map((key, index) => (
-        <span key={index} style={{ width: '256px' }}>
+    <Section title="Belly Fullscreens Styles">
+      <Stack wrap="wrap" justify="center">
+        <Stack.Item basis="100%">
           <Button
-            width="256px"
-            height="256px"
-            selected={key === belly_fullscreen}
+            fluid
+            selected={belly_fullscreen === '' || belly_fullscreen === null}
             onClick={() =>
-              act('set_attribute', { attribute: 'b_fullscreen', val: key })
+              act('set_attribute', { attribute: 'b_fullscreen', val: null })
             }
           >
-            <Box
-              className={classes([
-                colorization_enabled ? 'vore240x240' : 'fixedvore240x240',
-                key,
-              ])}
-              style={{
-                transform: 'translate(0%, 4%)',
-              }}
-            />
+            Disabled
           </Button>
-        </span>
-      ))}
+        </Stack.Item>
+        {Object.keys(possible_fullscreens).map((key, index) => (
+          <Stack.Item key={index} basis="32%">
+            <Button
+              width="256px"
+              height="256px"
+              selected={key === belly_fullscreen}
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_fullscreen', val: key })
+              }
+            >
+              <Box
+                className={classes([
+                  colorization_enabled ? 'vore240x240' : 'fixedvore240x240',
+                  key,
+                ])}
+                style={{
+                  transform: 'translate(0%, 4%)',
+                }}
+              />
+            </Button>
+          </Stack.Item>
+        ))}
+      </Stack>
     </Section>
   ) : (
     <Section fill title="Belly Fullscreen">

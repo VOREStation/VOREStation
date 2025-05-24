@@ -1,8 +1,8 @@
 import { Stack } from 'tgui-core/components';
 
 import type { bellyOptionData, hostMob } from '../types';
-import { BellyOptionsLeft } from './SubElements/BellyOptionsLeft';
-import { BellyOptionsRight } from './SubElements/BellyOptionsRight';
+import { BellyOptionsLeft } from './OptionTab/BellyOptionsLeft';
+import { BellyOptionsRight } from './OptionTab/BellyOptionsRight';
 
 export const VoreSelectedBellyOptions = (props: {
   editMode: boolean;

@@ -4,8 +4,8 @@ import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import type { bellyVisualData } from '../types';
 import { FeatureColorInput } from '../VorePanelElements/FeatureColorInput';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
-import { BellyFullscreenSelection } from './SubElements/BellyFullscreenSelection';
-import { VoreSpriteAffects } from './SubElements/VoreSpriteAffect';
+import { BellyFullscreenSelection } from './VisualTab/BellyFullscreenSelection';
+import { VoreSpriteAffects } from './VisualTab/VoreSpriteAffect';
 
 export const VoreSelectedBellyVisuals = (props: {
   editMode: boolean;

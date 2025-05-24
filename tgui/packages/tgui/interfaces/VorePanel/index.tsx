@@ -202,7 +202,7 @@ export const VorePanel = () => {
   );
 
   return (
-    <Window width={1000} height={660} theme="abstract">
+    <Window width={1030} height={760} theme="abstract">
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>

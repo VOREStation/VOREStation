@@ -29,7 +29,7 @@ export const VoreSelectedBellyInteractions = (props: {
         </Button>
       }
     >
-      {escapable ? (
+      {escapable && (
         <LabeledList>
           <LabeledList.Item label="Escape Chance">
             <Button
@@ -134,8 +134,6 @@ export const VoreSelectedBellyInteractions = (props: {
           </LabeledList.Item>
           <LabeledList.Divider />
         </LabeledList>
-      ) : (
-        'These options only display while interactions are turned on.'
       )}
       <Section
         title="Auto-Transfer Options"
@@ -153,7 +151,7 @@ export const VoreSelectedBellyInteractions = (props: {
           </Button>
         }
       >
-        {autotransfer_enabled ? (
+        {autotransfer_enabled && (
           <LabeledList>
             <LabeledList.Item label="Auto-Transfer Time">
               <Button
@@ -377,8 +375,6 @@ export const VoreSelectedBellyInteractions = (props: {
               />
             </LabeledList.Item>
           </LabeledList>
-        ) : (
-          'These options only display while Auto-Transfer is enabled.'
         )}
       </Section>
     </Section>

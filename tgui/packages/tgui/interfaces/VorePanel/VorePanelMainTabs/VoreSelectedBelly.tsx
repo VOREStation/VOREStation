@@ -4,8 +4,8 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
 import type { hostMob, selectedData } from '../types';
-import { VoreContentsPanel } from '../VoreSelectedBellyTabs/SubElements/VoreContentsPanel';
-import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/SubElements/VoreSelectedBellyDescriptions';
+import { VoreContentsPanel } from '../VoreSelectedBellyTabs/ContentTab/VoreContentsPanel';
+import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/DescriptionTab/VoreSelectedBellyDescriptions';
 import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
 import { VoreSelectedBellyInteractions } from '../VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
 import { VoreSelectedBellyLiquidOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';

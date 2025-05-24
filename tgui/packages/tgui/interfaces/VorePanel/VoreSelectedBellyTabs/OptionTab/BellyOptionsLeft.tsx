@@ -7,8 +7,8 @@ import { VorePanelColorBox } from '../../VorePanelElements/VorePanelCommonElemen
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
-import { VoreSelectedWhitelist } from './VoreSelecetedWhitelist';
-import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
+import { VoreSelectedWhitelist } from '../VisualTab/VoreSelecetedWhitelist';
+import { VoreSelectedMobTypeBellyButtons } from '../VisualTab/VoreSelectedMobTypeBellyButtons';
 
 export const BellyOptionsLeft = (props: {
   editMode: boolean;
