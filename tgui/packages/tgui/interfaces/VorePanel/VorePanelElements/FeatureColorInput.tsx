@@ -38,7 +38,7 @@ export const FeatureColorInput = (props: {
         <VorePanelColorBox back_color={back_color} alpha={alpha} />
       </Stack.Item>
       {editMode && (
-        <Stack.Item basis={alpha !== undefined ? '45px' : undefined}>
+        <Stack.Item basis={alpha !== undefined ? '65px' : undefined}>
           {alpha !== undefined ? (
             <VorePanelEditNumber
               action="set_attribute"
@@ -47,6 +47,7 @@ export const FeatureColorInput = (props: {
               value={alpha}
               minValue={0}
               maxValue={255}
+              tooltip={tooltip}
             />
           ) : (
             <Button
