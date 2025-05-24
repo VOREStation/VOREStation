@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - rscadd: "Gene scanner tool for genetics to detect traits in monkeys and humans."
+  - qol: "Virus extrapolator not being store-able in the medical belt and pouch"
