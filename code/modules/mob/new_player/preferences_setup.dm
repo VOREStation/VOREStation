@@ -33,37 +33,6 @@
 			write_preference(preference, preference.create_random_value(src))
 */
 
-	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
-	var/datum/species/current_species = GLOB.all_species[species ? species : "Human"]
-	set_biological_gender(pick(current_species.genders))
-
-	h_style = random_hair_style(biological_gender, species)
-	f_style = random_facial_hair_style(biological_gender, species)
-	if(current_species)
-		if(current_species.appearance_flags & HAS_SKIN_TONE)
-			s_tone = random_skin_tone()
-		if(current_species.appearance_flags & HAS_SKIN_COLOR)
-			update_preference_by_type(/datum/preference/color/human/skin_color, rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
-		if(current_species.appearance_flags & HAS_EYE_COLOR)
-			randomize_eyes_color()
-		if(current_species.appearance_flags & HAS_HAIR_COLOR)
-			randomize_hair_color("hair")
-			randomize_hair_color("facial")
-	if(current_species.appearance_flags & HAS_UNDERWEAR)
-		all_underwear.Cut()
-		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
-			var/datum/category_item/underwear/WRI = pick(WRC.items)
-			all_underwear[WRC.name] = WRI.name
-
-
-	headset = rand(1,3)
-	backbag = rand(1,6)
-	pdachoice = rand(1,7)
-	randomise_appearance_prefs_update(current_species = current_species)
-	b_type = RANDOM_BLOOD_TYPE
-	if(H)
-		copy_to(H,1)
 
 
 /datum/preferences/proc/randomize_hair_color(var/target = "hair")
@@ -242,7 +211,8 @@
 
 	if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 		var/list/equipped_slots = list()
-		for(var/thing in gear)
+		var/list/active_gear_list = LAZYACCESS(gear_list, "[gear_slot]")
+		for(var/thing in active_gear_list)
 			var/datum/gear/G = gear_datums[thing]
 			if(G)
 				var/permitted = 0
@@ -262,7 +232,7 @@
 					continue
 
 				if(G.slot && !(G.slot in equipped_slots))
-					var/metadata = gear[G.display_name]
+					var/metadata = active_gear_list[G.display_name]
 					if(mannequin.equip_to_slot_or_del(G.spawn_item(mannequin, metadata), G.slot))
 						if(G.slot != slot_tie)
 							equipped_slots += G.slot

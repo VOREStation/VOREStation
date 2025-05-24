@@ -59,3 +59,8 @@
 
 /// These preferences will not be rendered on the preferences page, and are practically invisible unless specifically rendered. Used for quirks, currently.
 #define PREFERENCE_CATEGORY_MANUALLY_RENDERED "manually_rendered_features"
+
+/// Emote switch preferences
+#define EMOTE_SOUND_NO_FREQ "Default"
+#define EMOTE_SOUND_VOICE_FREQ "Voice Frequency"
+#define EMOTE_SOUND_VOICE_LIST "Voice Sound"
