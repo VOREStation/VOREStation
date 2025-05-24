@@ -134,6 +134,11 @@
 	speciesname = M.custom_species ? M.custom_species : null
 	bodygender = M.gender
 	body_oocnotes = M.ooc_notes
+	body_ooclikes = M.ooc_notes_likes
+	body_oocdislikes = M.ooc_notes_dislikes
+	body_oocfavs = M.ooc_notes_favs
+	body_oocmaybes = M.ooc_notes_maybes
+	body_oocstyle = M.ooc_notes_style
 	sizemult = M.size_multiplier
 	weight = M.weight
 	aflags = M.appearance_flags
@@ -204,7 +209,6 @@
 	if(add_to_db)
 		SStranscore.add_body(src, database_key = database_key)
 
-
 /**
  * Make a deep copy of this record so it can be saved on a disk without modifications
  * to the original affecting the copy.
@@ -214,28 +218,183 @@
 /datum/transhuman/body_record/proc/init_from_br(var/datum/transhuman/body_record/orig)
 	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
-	src.mydna = new ()
-	qdel_swap(src.mydna.dna, orig.mydna.dna.Clone())
-	src.mydna.ckey = orig.mydna.ckey
-	src.mydna.id = orig.mydna.id
-	src.mydna.name = orig.mydna.name
-	src.mydna.types = orig.mydna.types
-	src.mydna.flavor = orig.mydna.flavor.Copy()
-	src.ckey = orig.ckey
-	src.locked = orig.locked
-	src.client_ref = orig.client_ref
-	src.mind_ref = orig.mind_ref
-	src.synthetic = orig.synthetic
-	src.speciesname = orig.speciesname
-	src.bodygender = orig.bodygender
-	src.body_oocnotes = orig.body_oocnotes
-	src.body_ooclikes = orig.body_ooclikes
-	src.body_oocdislikes = orig.body_oocdislikes
-	src.limb_data = orig.limb_data.Copy()
-	src.organ_data = orig.organ_data.Copy()
-	src.genetic_modifiers = orig.genetic_modifiers.Copy()
-	src.toocomplex = orig.toocomplex
-	src.sizemult = orig.sizemult
-	src.aflags = orig.aflags
-	src.breath_type = orig.breath_type
-	src.weight = orig.weight
+	for(var/A in vars)
+		switch(A)
+			if(BLACKLISTED_COPY_VARS)
+				continue
+			if("mydna")
+				mydna = orig.mydna.copy()
+				continue
+		if(islist(vars[A]))
+			var/list/L = orig.vars[A]
+			vars[A] = L.Copy()
+			continue
+		vars[A] = orig.vars[A]
+
+/**
+ * Spawning a body was once left entirely up to the machine doing it, but bodies are massivley complex
+ * objects, and doing it this way lead to huge amounts of copypasted code to do the same thing.
+ * If you want to spawn a body from a BR, please use these...
+ */
+
+/// The core of resleeving, creates a mob based on the current record
+/datum/transhuman/body_record/proc/produce_human_mob(var/location, var/is_synthfab, var/force_unlock, var/backup_name)
+	// These are broken up into steps, otherwise the proc gets massive and hard to read.
+	var/mob/living/carbon/human/H = internal_producebody(location,backup_name)
+	internal_producebody_handlesleevelock(H,force_unlock)
+	internal_producebody_updatelimbandorgans(H)
+	internal_producebody_updatednastate(H,is_synthfab)
+	internal_producebody_virgocharacterdata(H)
+	return H
+
+/// Creates a human mob with the correct species, name, and a stable state.
+/datum/transhuman/body_record/proc/internal_producebody(var/location,var/backup_name)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(location, mydna.dna.species)
+	if(!mydna.dna.real_name)
+		mydna.dna.real_name = backup_name
+	H.real_name = mydna.dna.real_name
+	H.name = H.real_name
+	H.descriptors = mydna.body_descriptors ? mydna.body_descriptors.Copy() : null
+	for(var/datum/language/L in mydna.languages)
+		H.add_language(L.name)
+	H.suiciding = 0
+	H.losebreath = 0
+	H.mind = null
+
+	return H
+
+/// Sets the new body's sleevelock status, to prevent impersonation by transfering an incorrect mind.
+/datum/transhuman/body_record/proc/internal_producebody_handlesleevelock(var/mob/living/carbon/human/H,var/force_unlock)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(locked && !force_unlock)
+		if(ckey)
+			H.resleeve_lock = ckey
+		else
+			// Ensure even body scans without an attached ckey respect locking
+			H.resleeve_lock = "@badckey"
+
+/// Either converts limbs to robotics or prosthetic states, or removes them entirely based off record.
+/datum/transhuman/body_record/proc/internal_producebody_updatelimbandorgans(var/mob/living/carbon/human/H,var/is_synthfab)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//Fix the external organs
+	for(var/part in limb_data)
+		var/status = limb_data[part]
+		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
+
+		var/obj/item/organ/external/O = H.organs_by_name[part]
+		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
+
+		if(status == 1) //Normal limbs
+			continue
+		else if(status == 0) //Missing limbs
+			O.remove_rejuv()
+		else if(status) //Anything else is a manufacturer
+			if(!is_synthfab)
+				O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
+			else
+				O.robotize(status)
+
+	//Then the internal organs
+	for(var/part in organ_data)
+		var/status = organ_data[part]
+		if(status == null) continue //Species doesn't have organ? Child of missing part?
+
+		var/obj/item/organ/I = H.internal_organs_by_name[part]
+		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
+
+		if(status == 0) //Normal organ
+			continue
+		else if(status == 1) //Assisted organ
+			I.mechassist()
+		else if(status == 2) //Mechanical organ
+			I.robotize()
+		else if(status == 3) //Digital organ
+			I.digitize()
+
+/// Transfers dna data to mob, and reinits traits and appearance from it
+/datum/transhuman/body_record/proc/internal_producebody_updatednastate(var/mob/living/carbon/human/H,var/is_synthfab)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	//Apply DNA from record
+	if(!mydna.dna) // This case should never happen, but copied from clone pod... Who knows with this codebase.
+		mydna.dna = new /datum/dna()
+	qdel_swap(H.dna, mydna.dna.Clone())
+	H.original_player = ckey
+
+	//Apply genetic modifiers, synths don't use these
+	if(!is_synthfab)
+		for(var/modifier_type in mydna.genetic_modifiers)
+			H.add_modifier(modifier_type)
+
+	//Apply legs
+	H.digitigrade = mydna.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
+	if(H.dna.digitigrade <> mydna.dna.digitigrade)
+		H.dna.digitigrade = mydna.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
+
+	//Update appearance, remake icons
+	H.UpdateAppearance()
+	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
+	H.sync_organ_dna()
+	H.regenerate_icons()
+	H.initialize_vessel()
+
+/// Transfers VORE related information cached in the mob
+/datum/transhuman/body_record/proc/internal_producebody_virgocharacterdata(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	H.ooc_notes = body_oocnotes
+	H.ooc_notes_likes = body_ooclikes
+	H.ooc_notes_dislikes = body_oocdislikes
+	H.ooc_notes_favs = body_oocfavs
+	H.ooc_notes_maybes = body_oocmaybes
+	H.ooc_notes_style = body_oocstyle
+	H.flavor_texts = mydna.flavor.Copy()
+	H.resize(sizemult, FALSE)
+	H.appearance_flags = aflags
+	H.weight = weight
+	if(speciesname)
+		H.custom_species = speciesname
+
+/**
+ * Specialty revival procs. Uses the BR for data, but needs to handle some weird logic for xenochi/slimes
+ */
+/datum/transhuman/body_record/proc/revive_xenochimera(var/mob/living/carbon/human/H,var/heal_robot_limbs)
+	// Boy this one is complex, but what do we expect when trying to heal damage and organ loss in this game!
+	if(!H || QDELETED(H)) // Someone, somewhere, will call this without any safety. I feel it in my bones cappin'
+		return
+
+	// Reset our organs/limbs.
+	H.species.create_organs(H)
+	internal_producebody_updatelimbandorgans(H, heal_robot_limbs)
+
+	//Don't boot out anyone already in the mob.
+	if(!H.client || !H.key)
+		for (var/obj/item/organ/internal/brain/CH in GLOB.all_brain_organs)
+			if(CH.brainmob)
+				if(CH.brainmob.real_name == H.real_name)
+					if(CH.brainmob.mind)
+						CH.brainmob.mind.transfer_to(H)
+						qdel(CH)
+
+	// Traitgenes Disable all traits currently active, before prefs.copy_to() is applied, as it refreshes the traits list!
+	for(var/datum/gene/trait/gene in GLOB.dna_genes)
+		if(gene.name in H.active_genes)
+			gene.deactivate(H)
+			H.active_genes -= gene.name
+	internal_producebody_updatednastate(H,FALSE)
+
+	// Begin actual REVIVIAL. Do NOT use revive(). That uses client prefs and allows save hacking.
+	H.revival_healing_action()
+
+	return H
+
+/datum/transhuman/body_record/proc/revive_promethean(var/mob/living/carbon/human/H)
+	// TODO - See note in code\modules\organs\internal\brain.dm for slime brains
+	return
