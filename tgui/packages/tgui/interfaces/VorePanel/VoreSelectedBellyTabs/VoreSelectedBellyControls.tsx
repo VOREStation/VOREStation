@@ -2,20 +2,20 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { digestModeToColor, modeToTooltip } from '../constants';
-import type { bellyModeData } from '../types';
+import type { bellyModeData, DropdownEntry } from '../types';
 import { VorePanelEditCheckboxes } from '../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
 
 export const VoreSelectedBellyControls = (props: {
-  bellyNames: string[];
+  bellyDropdownNames: DropdownEntry[];
   editMode: boolean;
   belly_name: string;
   bellyModeData: bellyModeData;
 }) => {
   const { act } = useBackend();
 
-  const { bellyNames, belly_name, bellyModeData, editMode } = props;
+  const { bellyDropdownNames, belly_name, bellyModeData, editMode } = props;
   const {
     mode,
     item_mode,
@@ -24,6 +24,10 @@ export const VoreSelectedBellyControls = (props: {
     mode_options,
     item_mode_options,
   } = bellyModeData;
+
+  const bellyNames = bellyDropdownNames.map((belly) => {
+    return belly.displayText;
+  });
 
   return (
     <LabeledList>

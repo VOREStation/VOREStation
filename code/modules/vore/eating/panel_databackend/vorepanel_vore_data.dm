@@ -267,10 +267,10 @@
 
 		if(active_vore_tab == INTERACTIONS_TAB)
 			var/list/belly_interaction_data = list(
-				"escapable": selected.escapable,
-				"interacts": compile_interact_data(selected),
-				"autotransfer_enabled": selected.autotransfer_enabled,
-				"autotransfer": compile_autotransfer_data(selected)
+				"escapable" = selected.escapable,
+				"interacts" = compile_interact_data(selected),
+				"autotransfer_enabled" = selected.autotransfer_enabled,
+				"autotransfer" = compile_autotransfer_data(selected)
 			)
 			selected_list["belly_interaction_data"] = belly_interaction_data
 

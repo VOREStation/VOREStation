@@ -117,3 +117,5 @@ export const eatingMessagePrivacy = {
 };
 
 export const robotBellyOptions = ['Sleeper', 'Vorebelly', 'Both'];
+
+export const noSelectionName = { displayText: 'None - Remove', value: '' };

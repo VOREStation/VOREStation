@@ -3,7 +3,7 @@ import { Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
-import type { hostMob, selectedData } from '../types';
+import type { DropdownEntry, hostMob, selectedData } from '../types';
 import { VoreContentsPanel } from '../VoreSelectedBellyTabs/ContentTab/VoreContentsPanel';
 import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/DescriptionTab/VoreSelectedBellyDescriptions';
 import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
@@ -16,7 +16,7 @@ import { VoreSelectedBellyVisuals } from '../VoreSelectedBellyTabs/VoreSelectedB
  * Subtemplate of VoreBellySelectionAndCustomization
  */
 export const VoreSelectedBelly = (props: {
-  bellyNames: string[];
+  bellyDropdownNames: DropdownEntry[];
   activeVoreTab: number;
   belly: selectedData;
   show_pictures: BooleanLike;
@@ -27,7 +27,7 @@ export const VoreSelectedBelly = (props: {
 }) => {
   const { act } = useBackend();
   const {
-    bellyNames,
+    bellyDropdownNames,
     activeVoreTab,
     belly,
     show_pictures,
@@ -51,8 +51,8 @@ export const VoreSelectedBelly = (props: {
 
   tabs[0] = belly_mode_data && (
     <VoreSelectedBellyControls
-      bellyNames={bellyNames}
       editMode={editMode}
+      bellyDropdownNames={bellyDropdownNames}
       belly_name={belly_name}
       bellyModeData={belly_mode_data}
     />
@@ -86,6 +86,7 @@ export const VoreSelectedBelly = (props: {
   tabs[5] = belly_interaction_data && (
     <VoreSelectedBellyInteractions
       editMode={editMode}
+      bellyDropdownNames={bellyDropdownNames}
       bellyInteractData={belly_interaction_data}
     />
   );

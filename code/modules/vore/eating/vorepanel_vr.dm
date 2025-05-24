@@ -1934,64 +1934,68 @@
 				host.vore_selected.escapable = 0
 			. = TRUE
 		if("b_escapechance")
-			var/escape_chance_input = tgui_input_number(user, "Set prey escape chance on resist (as %)", "Prey Escape Chance", null, 100, 0)
-			if(!isnull(escape_chance_input)) //These have to be 'null' because both cancel and 0 are valid, separate options
-				host.vore_selected.escapechance = sanitize_integer(escape_chance_input, 0, 100, initial(host.vore_selected.escapechance))
+			var/escape_chance_input = text2num(params["val"])
+			if(!isnum(escape_chance_input))
+				return FALSE
+			host.vore_selected.escapechance = sanitize_integer(escape_chance_input, 0, 100, initial(host.vore_selected.escapechance))
 			. = TRUE
 		if("b_belchchance")
-			var/belch_chance_input = tgui_input_number(user, "Set chance for belch emote on prey resist (as %)", "Resist Belch Chance", host.vore_selected.belchchance , 100, 0)
-			if(!isnull(belch_chance_input))
-				host.vore_selected.belchchance = sanitize_integer(belch_chance_input, 0, 100, initial(host.vore_selected.belchchance))
+			var/belch_chance_input = text2num(params["val"])
+			if(!isnum(belch_chance_input))
+				return FALSE
+			host.vore_selected.belchchance = sanitize_integer(belch_chance_input, 0, 100, initial(host.vore_selected.belchchance))
 			. = TRUE
 		if("b_escapechance_absorbed")
-			var/escape_absorbed_chance_input = tgui_input_number(user, "Set absorbed prey escape chance on resist (as %)", "Prey Absorbed Escape Chance", null, 100, 0)
-			if(!isnull(escape_absorbed_chance_input)) //These have to be 'null' because both cancel and 0 are valid, separate options
-				host.vore_selected.escapechance_absorbed = sanitize_integer(escape_absorbed_chance_input, 0, 100, initial(host.vore_selected.escapechance_absorbed))
+			var/escape_absorbed_chance_input = text2num(params["val"])
+			if(!isnum(escape_absorbed_chance_input))
+				return FALSE
+			host.vore_selected.escapechance_absorbed = sanitize_integer(escape_absorbed_chance_input, 0, 100, initial(host.vore_selected.escapechance_absorbed))
 			. = TRUE
 		if("b_escapetime")
-			var/escape_time_input = tgui_input_number(user, "Set number of seconds for prey to escape on resist (1-60)", "Prey Escape Time", null, 60, 1)
-			if(!isnull(escape_time_input))
-				host.vore_selected.escapetime = sanitize_integer(escape_time_input*10, 10, 600, initial(host.vore_selected.escapetime))
+			var/escape_time_input = text2num(params["val"])
+			if(!isnum(escape_time_input))
+				return FALSE
+			host.vore_selected.escapetime = sanitize_integer(escape_time_input*10, 10, 600, initial(host.vore_selected.escapetime))
 			. = TRUE
 		if("b_transferchance")
-			var/transfer_chance_input = tgui_input_number(user, "Set belly transfer chance on resist (as %). You must also set the location for this to have any effect.", "Prey Escape Time", null, 100, 0)
-			if(!isnull(transfer_chance_input))
-				host.vore_selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(host.vore_selected.transferchance))
+			var/transfer_chance_input = text2num(params["val"])
+			if(!isnum(transfer_chance_input))
+				return FALSE
+			host.vore_selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(host.vore_selected.transferchance))
 			. = TRUE
 		if("b_transferlocation")
-			var/obj/belly/choice = tgui_input_list(user, "Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
+			var/obj/belly/choice = locate(params["val"])
 
-			if(!choice) //They cancelled, no changes
-				return FALSE
-			else if(choice == "None - Remove")
+			if(!choice)
 				host.vore_selected.transferlocation = null
 			else
 				host.vore_selected.transferlocation = choice.name
 			. = TRUE
 		if("b_transferchance_secondary")
-			var/transfer_secondary_chance_input = tgui_input_number(user, "Set secondary belly transfer chance on resist (as %). You must also set the location for this to have any effect.", "Prey Escape Time", null, 100, 0)
-			if(!isnull(transfer_secondary_chance_input))
-				host.vore_selected.transferchance_secondary = sanitize_integer(transfer_secondary_chance_input, 0, 100, initial(host.vore_selected.transferchance_secondary))
+			var/transfer_secondary_chance_input = text2num(params["val"])
+			if(!isnum(transfer_secondary_chance_input))
+				return FALSE
+			host.vore_selected.transferchance_secondary = sanitize_integer(transfer_secondary_chance_input, 0, 100, initial(host.vore_selected.transferchance_secondary))
 			. = TRUE
 		if("b_transferlocation_secondary")
-			var/obj/belly/choice_secondary = tgui_input_list(user, "Where do you want your [lowertext(host.vore_selected.name)] to alternately lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
+			var/obj/belly/choice_secondary = locate(params["val"])
 
-			if(!choice_secondary) //They cancelled, no changes
-				return FALSE
-			else if(choice_secondary == "None - Remove")
+			if(!choice_secondary)
 				host.vore_selected.transferlocation_secondary = null
 			else
 				host.vore_selected.transferlocation_secondary = choice_secondary.name
 			. = TRUE
 		if("b_absorbchance")
-			var/absorb_chance_input = tgui_input_number(user, "Set belly absorb mode chance on resist (as %)", "Prey Absorb Chance", null, 100, 0)
-			if(!isnull(absorb_chance_input))
-				host.vore_selected.absorbchance = sanitize_integer(absorb_chance_input, 0, 100, initial(host.vore_selected.absorbchance))
+			var/absorb_chance_input = text2num(params["val"])
+			if(!isnum(absorb_chance_input))
+				return FALSE
+			host.vore_selected.absorbchance = sanitize_integer(absorb_chance_input, 0, 100, initial(host.vore_selected.absorbchance))
 			. = TRUE
 		if("b_digestchance")
-			var/digest_chance_input = tgui_input_number(user, "Set belly digest mode chance on resist (as %)", "Prey Digest Chance", null, 100, 0)
-			if(!isnull(digest_chance_input))
-				host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
+			var/digest_chance_input = text2num(params["val"])
+			if(!isnum(digest_chance_input))
+				return FALSE
+			host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
 			. = TRUE
 		if("b_autotransferchance")
 			var/autotransferchance_input = tgui_input_number(user, "Set belly auto-transfer chance (as %). You must also set the location for this to have any effect.", "Auto-Transfer Chance", host.vore_selected.autotransferchance, 100)
