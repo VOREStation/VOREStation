@@ -1,42 +1,66 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
+import { Box, Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { VorePanelColorBox } from './VorePanelCommonElements';
+import { VorePanelEditNumber } from './VorePanelEditNumber';
 
 export const FeatureColorInput = (props: {
   editMode: boolean;
   action_name: string;
   value_of: BooleanLike | string;
   back_color: string;
+  alpha?: number;
   name_of?: string;
   tooltip?: string;
+  removePlaceholder?: boolean;
 }) => {
   const { act } = useBackend();
-  const { editMode, action_name, value_of, back_color, name_of, tooltip } =
-    props;
-
-  const shownName = name_of ? 'Change' + name_of : undefined;
+  const {
+    editMode,
+    action_name,
+    value_of,
+    back_color,
+    alpha,
+    name_of,
+    tooltip,
+    removePlaceholder,
+  } = props;
 
   return (
     <>
-      <Stack.Item shrink>
-        <VorePanelColorBox back_color={back_color} />
-      </Stack.Item>
-      {editMode && (
-        <Stack.Item grow>
-          <Button
-            fluid
-            icon="eye-dropper"
-            onClick={() => {
-              act('set_attribute', { attribute: action_name, val: value_of });
-            }}
-            tooltip="tooltip"
-          >
-            {shownName}
-          </Button>
+      {!!name_of && (
+        <Stack.Item>
+          <Box color="label">{name_of}</Box>
         </Stack.Item>
       )}
+      <Stack.Item shrink>
+        <VorePanelColorBox back_color={back_color} alpha={alpha} />
+      </Stack.Item>
+      {editMode && (
+        <Stack.Item basis={alpha !== undefined ? '45px' : undefined}>
+          {alpha !== undefined ? (
+            <VorePanelEditNumber
+              action="set_attribute"
+              subAction={action_name}
+              editMode={editMode}
+              value={alpha}
+              minValue={0}
+              maxValue={255}
+            />
+          ) : (
+            <Button
+              fluid
+              icon="eye-dropper"
+              onClick={() => {
+                act('set_attribute', { attribute: action_name, val: value_of });
+              }}
+              tooltip={tooltip}
+            />
+          )}
+        </Stack.Item>
+      )}
+      {!removePlaceholder && <Stack.Item grow />}
     </>
   );
 };

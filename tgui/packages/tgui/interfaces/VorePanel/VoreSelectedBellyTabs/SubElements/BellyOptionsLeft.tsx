@@ -106,7 +106,7 @@ export const BellyOptionsLeft = (props: {
                 {!editMode && (
                   <Stack.Item>
                     <VorePanelColorBox
-                      size="15px"
+                      pixelSize={15}
                       back_color={sanitize_color(contaminate_color) || 'white'}
                     />
                   </Stack.Item>

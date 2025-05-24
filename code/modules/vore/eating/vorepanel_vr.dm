@@ -2156,10 +2156,11 @@
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_fullscreen_alpha")
-			var/newalpha = tgui_input_number(user, "Set alpha transparency between 0-255", "Vore Alpha",host.vore_selected.belly_fullscreen_alpha,255,0,0,1)
-			if(newalpha)
-				host.vore_selected.belly_fullscreen_alpha = newalpha
-				host.vore_selected.update_internal_overlay()
+			var/newalpha = text2num(params["val"])
+			if(!isnum(newalpha))
+				return FALSE
+			host.vore_selected.belly_fullscreen_alpha = newalpha
+			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
