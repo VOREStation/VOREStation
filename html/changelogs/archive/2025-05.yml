@@ -200,3 +200,9 @@
 2025-05-22:
   ShadowLarkens:
   - server: Server starts faster now
+2025-05-24:
+  ShadowLarkens:
+  - bugfix: Gas overlays work again
+  - code_imp: xgm gas_data is now a GLOB
+  Willburd:
+  - bugfix: Capsaicin no longer causes toxin damage when eaten
