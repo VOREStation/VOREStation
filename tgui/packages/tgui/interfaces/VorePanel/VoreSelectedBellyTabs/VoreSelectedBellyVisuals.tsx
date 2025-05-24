@@ -37,7 +37,6 @@ export const VoreSelectedBellyVisuals = (props: {
             subAction="b_affects_vore_sprites"
             editMode={editMode}
             tooltip="Allows you to toggle if this belly should effect voresprites"
-            content={affects_voresprite ? 'Yes' : 'No'}
             active={!!affects_voresprite}
           />
         }

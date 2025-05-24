@@ -95,16 +95,6 @@ export const VoreSpriteAffects = (props: {
                   active={!!health_voresprite}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Animation when prey resist">
-                <VorePanelEditSwitch
-                  action="set_attribute"
-                  subAction="b_resist_animation"
-                  editMode={editMode}
-                  tooltip="Allows you to toggle if prey resists trigger struggle animations if the sprite supports it."
-                  content={resist_animation ? 'Yes' : 'No'}
-                  active={!!resist_animation}
-                />
-              </LabeledList.Item>
               {belly_sprite_options?.length ? (
                 <LabeledList.Item label="Belly Sprite to affect">
                   <VorePanelEditDropdown
@@ -236,6 +226,15 @@ export const VoreSpriteAffects = (props: {
                   unit="x"
                   digits={1}
                   tooltip="Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)"
+                />
+              </LabeledList.Item>
+              <LabeledList.Item label="Animation when prey resist">
+                <VorePanelEditSwitch
+                  action="set_attribute"
+                  subAction="b_resist_animation"
+                  editMode={editMode}
+                  tooltip="Allows you to toggle if prey resists trigger struggle animations if the sprite supports it."
+                  active={!!resist_animation}
                 />
               </LabeledList.Item>
             </LabeledList>

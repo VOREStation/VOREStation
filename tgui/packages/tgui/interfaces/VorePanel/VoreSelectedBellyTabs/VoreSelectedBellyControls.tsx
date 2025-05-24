@@ -8,13 +8,14 @@ import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdow
 import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
 
 export const VoreSelectedBellyControls = (props: {
+  bellyNames: string[];
   editMode: boolean;
   belly_name: string;
   bellyModeData: bellyModeData;
 }) => {
   const { act } = useBackend();
 
-  const { belly_name, bellyModeData, editMode } = props;
+  const { bellyNames, belly_name, bellyModeData, editMode } = props;
   const {
     mode,
     item_mode,
@@ -26,29 +27,41 @@ export const VoreSelectedBellyControls = (props: {
 
   return (
     <LabeledList>
-      <LabeledList.Item
-        label="Name"
-        buttons={
-          <Stack>
-            <Stack.Item>
-              <Button
-                icon="arrow-up"
-                tooltipPosition="left"
-                tooltip="Move this belly tab up."
-                onClick={() => act('move_belly', { dir: -1 })}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="arrow-down"
-                tooltipPosition="left"
-                tooltip="Move this belly tab down."
-                onClick={() => act('move_belly', { dir: 1 })}
-              />
-            </Stack.Item>
-          </Stack>
-        }
-      >
+      {editMode && (
+        <LabeledList.Item
+          buttons={
+            <Stack>
+              {bellyNames.indexOf(belly_name) !== 0 && (
+                <Stack.Item
+                  mr={
+                    bellyNames.indexOf(belly_name) === bellyNames.length - 1
+                      ? '28px'
+                      : undefined
+                  }
+                >
+                  <Button
+                    icon="arrow-up"
+                    tooltipPosition="left"
+                    tooltip="Move this belly tab up."
+                    onClick={() => act('move_belly', { dir: -1 })}
+                  />
+                </Stack.Item>
+              )}
+              {bellyNames.indexOf(belly_name) !== bellyNames.length - 1 && (
+                <Stack.Item>
+                  <Button
+                    icon="arrow-down"
+                    tooltipPosition="left"
+                    tooltip="Move this belly tab down."
+                    onClick={() => act('move_belly', { dir: 1 })}
+                  />
+                </Stack.Item>
+              )}
+            </Stack>
+          }
+        />
+      )}
+      <LabeledList.Item label="Name">
         <VorePanelEditText
           editMode={editMode}
           limit={name_length}

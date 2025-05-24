@@ -16,6 +16,7 @@ import { VoreSelectedBellyVisuals } from '../VoreSelectedBellyTabs/VoreSelectedB
  * Subtemplate of VoreBellySelectionAndCustomization
  */
 export const VoreSelectedBelly = (props: {
+  bellyNames: string[];
   activeVoreTab: number;
   belly: selectedData;
   show_pictures: BooleanLike;
@@ -26,6 +27,7 @@ export const VoreSelectedBelly = (props: {
 }) => {
   const { act } = useBackend();
   const {
+    bellyNames,
     activeVoreTab,
     belly,
     show_pictures,
@@ -48,6 +50,7 @@ export const VoreSelectedBelly = (props: {
 
   tabs[0] = belly_mode_data && (
     <VoreSelectedBellyControls
+      bellyNames={bellyNames}
       editMode={editMode}
       belly_name={belly_name}
       bellyModeData={belly_mode_data}

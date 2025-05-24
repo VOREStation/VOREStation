@@ -52,6 +52,10 @@ export const VoreBellySelectionAndCustomization = (props: {
 
   const belliesToDisplay = our_bellies.filter(bellySearch);
 
+  const bellyNames = our_bellies.map((belly) => {
+    return belly.name;
+  });
+
   return (
     <Stack fill>
       <Stack.Item shrink basis="20%">
@@ -142,6 +146,7 @@ export const VoreBellySelectionAndCustomization = (props: {
             scrollable
           >
             <VoreSelectedBelly
+              bellyNames={bellyNames}
               activeVoreTab={activeVoreTab}
               vore_words={vore_words}
               belly={selected}
