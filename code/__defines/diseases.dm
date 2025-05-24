@@ -18,6 +18,7 @@
 #define DISEASE_SPREAD_FLUIDS			(1<<3)
 #define DISEASE_SPREAD_CONTACT			(1<<4)
 #define DISEASE_SPREAD_AIRBORNE			(1<<5)
+#define DISEASE_SPREAD_FALTERED			(1<<6)
 
 //Severity Defines
 #define DISEASE_BENEFICIAL	"Beneficial"
@@ -39,6 +40,8 @@
 #define CARRIER					0x20	/// If we are a carrier for the virus but we will not be affected by it.
 #define BYPASSES_IMMUNITY 		0x40	/// If this virus bypasses immunity.
 #define DISCOVERED				0x80	/// If applied, this virus will show up on medical HUDs. Automatically set when it reaches mid-stage.
+#define DORMANT					0x100	/// If applied, the virus is dormant and will not act or spread.
+#define FALTERED				0x200	/// If applied, the virus is faltered and will only spread by intentional injection.
 
 #define EXTRAPOLATOR_RESULT_DISEASES		"extrapolator_result_disease"
 #define EXTRAPOLATOR_RESULT_ACT_PRIORITY	"extrapolator_result_action_priority"

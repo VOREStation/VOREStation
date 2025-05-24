@@ -1708,3 +1708,15 @@
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/shrinking
+
+/datum/trait/neutral/disease_carrier
+	name = "Disease Carrier"
+	desc = "Your species is a carrier of diseases! Watch out for virologists."
+	// excludes = list(/datum/trait/positive/virus_immune)
+	cost = 0
+	can_take = ORGANICS
+	custom_only = FALSE
+
+/datum/trait/neutral/disease_carrier/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	H.give_random_dormant_disease(200, 2, 3, 1, 9)
