@@ -54,7 +54,7 @@
 
 /obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
 	. = ..()
-	if(!proximity || !check_allowed_items(target))
+	if(!proximity)
 		return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
@@ -73,11 +73,11 @@
 			var/turf/T = target
 			T.wash(CLEAN_SCRUB)
 			decreaseUses(user)
-	else if(ishuman(target) && user.zone_sel == O_MOUTH)
+	else if(ishuman(target) && user.zone_sel.selecting == O_MOUTH)
 		if(target == user)
 			var/mob/living/carbon/human/H = user
-			to_chat(user, "You take a bite of \the [src] and swallow it.")
-			H.ingested.add_reagent(reagents, 1)
+			to_chat(user, span_notice("You take a bite of \the [src] and swallow it."))
+			reagents.trans_to_holder(H.ingested, 1)
 		else
 			user.visible_message(span_danger("\The [user] washes \the [target]'s mouth out with \the [src]!"))
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
