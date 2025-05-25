@@ -1,6 +1,3 @@
-
-
-
 //endless reagents!
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
@@ -8,18 +5,9 @@
 /obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
-	var/list/banned_chems = list(
-		REAGENT_ID_ADMINORDRAZINE,
-		REAGENT_ID_NUTRIMENT,
-		REAGENT_ID_MACROCILLIN,
-		REAGENT_ID_MICROCILLIN,
-		REAGENT_ID_NORMALCILLIN,
-		REAGENT_ID_MAGICDUST
-		)
 	for(var/x=1;x<=10;x++) //You got 10 chances to hit a reagent that is NOT banned.
 		var/new_chem = pick(SSchemistry.chemical_reagents)
-		if(new_chem in banned_chems)
+		if(new_chem in GLOB.obtainable_chemical_blacklist)
 			continue
 		else
 			spawning_id = new_chem
