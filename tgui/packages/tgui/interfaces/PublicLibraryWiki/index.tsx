@@ -167,7 +167,7 @@ export const PublicLibraryWiki = (props) => {
         <Stack vertical fill>
           {!!errorText && (
             <Stack.Item>
-              <NoticeBox warning>
+              <NoticeBox color="average">
                 <Box textAlign="center">{errorText}</Box>
               </NoticeBox>
             </Stack.Item>

@@ -1997,28 +1997,29 @@
 				return FALSE
 			host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
 			. = TRUE
-		if("b_autotransferchance")
-			var/autotransferchance_input = tgui_input_number(user, "Set belly auto-transfer chance (as %). You must also set the location for this to have any effect.", "Auto-Transfer Chance", host.vore_selected.autotransferchance, 100)
-			if(!isnull(autotransferchance_input))
-				host.vore_selected.autotransferchance = sanitize_integer(autotransferchance_input, 0, 100, initial(host.vore_selected.autotransferchance))
+		if("b_autotransferchance_primary")
+			var/autotransferchance_input = params["val"]
+			if(!isnum(autotransferchance_input))
+				return FALSE
+			host.vore_selected.autotransferchance = sanitize_integer(autotransferchance_input, 0, 100, initial(host.vore_selected.autotransferchance))
 			. = TRUE
 		if("b_autotransferwait")
-			var/autotransferwait_input = tgui_input_number(user, "Set minimum number of seconds for auto-transfer wait delay.", "Auto-Transfer Time", host.vore_selected.autotransferwait, 1800, 1)
-			if(!isnull(autotransferwait_input))
-				host.vore_selected.autotransferwait = sanitize_integer(autotransferwait_input*10, 10, 18000, initial(host.vore_selected.autotransferwait))
-			. = TRUE
-		if("b_autotransferlocation")
-			var/obj/belly/choice = tgui_input_list(user, "Where do you want your [lowertext(host.vore_selected.name)] auto-transfer to?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
-			if(!choice) //They cancelled, no changes
+			var/autotransferwait_input = params["val"]
+			if(!isnum(autotransferwait_input))
 				return FALSE
-			else if(choice == "None - Remove")
+			host.vore_selected.autotransferwait = sanitize_integer(autotransferwait_input*10, 10, 18000, initial(host.vore_selected.autotransferwait))
+			. = TRUE
+		if("b_autotransferlocation_primary")
+			var/obj/belly/choice = locate(params["val"])
+
+			if(!choice)
 				host.vore_selected.autotransferlocation = null
 			else
 				host.vore_selected.autotransferlocation = choice.name
 			. = TRUE
-		if("b_autotransferextralocation")
-			var/obj/belly/choice = tgui_input_list(user, "What extra places do you want your [lowertext(host.vore_selected.name)] auto-transfer to?","Select Belly", (host.vore_organs - host.vore_selected - host.vore_selected.autotransferlocation))
-			if(!choice) //They cancelled, no changes
+		if("b_autotransferextralocation_primary")
+			var/obj/belly/choice = locate(params["val"])
+			if(!choice)
 				return FALSE
 			else if(choice.name in host.vore_selected.autotransferextralocation)
 				host.vore_selected.autotransferextralocation -= choice.name
@@ -2026,21 +2027,21 @@
 				host.vore_selected.autotransferextralocation += choice.name
 			. = TRUE
 		if("b_autotransferchance_secondary")
-			var/autotransferchance_secondary_input = tgui_input_number(user, "Set secondary belly auto-transfer chance (as %). You must also set the location for this to have any effect.", "Secondary Auto-Transfer Chance")
-			if(!isnull(autotransferchance_secondary_input))
-				host.vore_selected.autotransferchance_secondary = sanitize_integer(autotransferchance_secondary_input, 0, 100, initial(host.vore_selected.autotransferchance_secondary))
+			var/autotransferchance_secondary_input = params["val"]
+			if(!isnum(autotransferchance_secondary_input))
+				return FALSE
+			host.vore_selected.autotransferchance_secondary = sanitize_integer(autotransferchance_secondary_input, 0, 100, initial(host.vore_selected.autotransferchance_secondary))
 			. = TRUE
 		if("b_autotransferlocation_secondary")
-			var/obj/belly/choice = tgui_input_list(user, "Where do you want your secondary [lowertext(host.vore_selected.name)] auto-transfer to?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
-			if(!choice) //They cancelled, no changes
-				return FALSE
-			else if(choice == "None - Remove")
+			var/obj/belly/choice = locate(params["val"])
+
+			if(!choice)
 				host.vore_selected.autotransferlocation_secondary = null
 			else
 				host.vore_selected.autotransferlocation_secondary = choice.name
 			. = TRUE
 		if("b_autotransferextralocation_secondary")
-			var/obj/belly/choice = tgui_input_list(user, "What extra places do you want your [lowertext(host.vore_selected.name)] auto-transfer to?","Select Belly", (host.vore_organs - host.vore_selected - host.vore_selected.autotransferlocation_secondary))
+			var/obj/belly/choice = locate(params["val"])
 			if(!choice) //They cancelled, no changes
 				return FALSE
 			else if(choice.name in host.vore_selected.autotransferextralocation_secondary)
@@ -2048,72 +2049,66 @@
 			else
 				host.vore_selected.autotransferextralocation_secondary += choice.name
 			. = TRUE
-		if("b_autotransfer_whitelist")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Whitelist", "Whitelist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_whitelist_primary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_whitelist ^= host.vore_selected.autotransfer_flags_list[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_blacklist")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Blacklist", "Blacklist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_blacklist_primary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_blacklist ^= host.vore_selected.autotransfer_flags_list[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_secondary_whitelist")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Whitelist", "Whitelist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_whitelist_secondary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_secondary_whitelist ^= host.vore_selected.autotransfer_flags_list[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_secondary_blacklist")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Blacklist", "Blacklist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_blacklist_secondary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_secondary_blacklist ^= host.vore_selected.autotransfer_flags_list[toggle_addon]
 			. = TRUE
 			. = TRUE
-		if("b_autotransfer_whitelist_items")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list_items.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Whitelist", "Whitelist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_whitelist_items_primary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list_items[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_whitelist_items ^= host.vore_selected.autotransfer_flags_list_items[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_blacklist_items")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list_items.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Blacklist", "Blacklist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_blacklist_items_primary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list_items[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_blacklist_items ^= host.vore_selected.autotransfer_flags_list_items[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_secondary_whitelist_items")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list_items.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Whitelist", "Whitelist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_whitelist_items_secondary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list_items[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_secondary_whitelist_items ^= host.vore_selected.autotransfer_flags_list_items[toggle_addon]
 			. = TRUE
-		if("b_autotransfer_secondary_blacklist_items")
-			var/list/menu_list = host.vore_selected.autotransfer_flags_list_items.Copy()
-			var/toggle_addon = tgui_input_list(user, "Toggle Blacklist", "Blacklist Choice", menu_list)
-			if(!toggle_addon)
+		if("b_autotransfer_blacklist_items_secondary")
+			var/toggle_addon = params["val"]
+			if(!(host.vore_selected.autotransfer_flags_list_items[toggle_addon]))
 				return FALSE
 			host.vore_selected.autotransfer_secondary_blacklist_items ^= host.vore_selected.autotransfer_flags_list_items[toggle_addon]
 			. = TRUE
 		if("b_autotransfer_min_amount")
-			var/autotransfer_min_amount_input = tgui_input_number(user, "Set the minimum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit.", "Auto-Transfer Min Amount", host.vore_selected.autotransfer_min_amount, 100)
-			if(!isnull(autotransfer_min_amount_input))
-				host.vore_selected.autotransfer_min_amount = sanitize_integer(autotransfer_min_amount_input, 0, 100, initial(host.vore_selected.autotransfer_min_amount))
+			var/autotransfer_min_amount_input = params["val"]
+			if(!isnum(autotransfer_min_amount_input))
+				return FALSE
+			host.vore_selected.autotransfer_min_amount = sanitize_integer(autotransfer_min_amount_input, 0, 100, initial(host.vore_selected.autotransfer_min_amount))
 			. = TRUE
 		if("b_autotransfer_max_amount")
-			var/autotransfer_max_amount_input = tgui_input_number(user, "Set the maximum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit.", "Auto-Transfer Max Amount", host.vore_selected.autotransfer_max_amount, 100)
-			if(!isnull(autotransfer_max_amount_input))
-				host.vore_selected.autotransfer_max_amount = sanitize_integer(autotransfer_max_amount_input, 0, 100, initial(host.vore_selected.autotransfer_max_amount))
+			var/autotransfer_max_amount_input = params["val"]
+			if(!isnum(autotransfer_max_amount_input))
+				return FALSE
+			host.vore_selected.autotransfer_max_amount = sanitize_integer(autotransfer_max_amount_input, 0, 100, initial(host.vore_selected.autotransfer_max_amount))
 			. = TRUE
 		if("b_autotransfer_enabled")
 			host.vore_selected.autotransfer_enabled = !host.vore_selected.autotransfer_enabled

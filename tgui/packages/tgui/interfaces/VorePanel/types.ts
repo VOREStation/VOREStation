@@ -257,23 +257,21 @@ export type interactData = {
 };
 
 export type autotransferData = {
-  autotransferchance: number;
   autotransferwait: number;
-  autotransferlocation: string;
-  autotransferextralocation: string[];
-  autotransferchance_secondary: number;
-  autotransferlocation_secondary: string;
-  autotransferextralocation_secondary: string[];
   autotransfer_min_amount: number;
   autotransfer_max_amount: number;
-  autotransfer_whitelist: string[];
-  autotransfer_blacklist: string[];
-  autotransfer_whitelist_items: string[];
-  autotransfer_blacklist_items: string[];
-  autotransfer_secondary_whitelist: string[];
-  autotransfer_secondary_blacklist: string[];
-  autotransfer_secondary_whitelist_items: string[];
-  autotransfer_secondary_blacklist_items: string[];
+  primary_transfer: autoTransferOption;
+  secondary_transfer: autoTransferOption;
+};
+
+export type autoTransferOption = {
+  autotransferchance: number;
+  autotransferlocation: string | null;
+  autotransferextralocation: string[];
+  autotransfer_whitelist: checkBoxEntry[];
+  autotransfer_blacklist: checkBoxEntry[];
+  autotransfer_whitelist_items: checkBoxEntry[];
+  autotransfer_blacklist_items: checkBoxEntry[];
 };
 
 type liqInteractData = {
@@ -399,6 +397,7 @@ export type DropdownEntry = {
 export type checkBoxEntry = {
   label: string;
   selection: BooleanLike;
+  ref?: string;
 };
 
 export type localPrefs = {

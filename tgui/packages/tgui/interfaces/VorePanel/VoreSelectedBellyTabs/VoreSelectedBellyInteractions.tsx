@@ -1,11 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { noSelectionName } from '../constants';
 import type { bellyInteractionData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
+import { AutoTransferOptions } from './InteractionTab/AutoTransferOptions';
 
 export const VoreSelectedBellyInteractions = (props: {
   editMode: boolean;
@@ -19,6 +20,7 @@ export const VoreSelectedBellyInteractions = (props: {
     bellyInteractData;
 
   const escapeTimeSeconds = interacts.escapetime / 10;
+  const autoTransferTimeSeconds = autotransfer.autotransferwait / 10;
 
   const locationNames = [...bellyDropdownNames, noSelectionName];
 
@@ -191,251 +193,91 @@ export const VoreSelectedBellyInteractions = (props: {
           </Stack>
         </Section>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item mt="5px">
         <Section
           title="Auto-Transfer Options"
           buttons={
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_autotransfer_enabled' })
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_autotransfer_enabled"
+              editMode={editMode}
+              active={!!escapable}
+              content={
+                'Auto-Transfer ' +
+                (autotransfer_enabled ? 'En' : 'Dis') +
+                'abled'
               }
-              icon={autotransfer_enabled ? 'toggle-on' : 'toggle-off'}
-              selected={autotransfer_enabled}
-            >
-              {autotransfer_enabled
-                ? 'Auto-Transfer Enabled'
-                : 'Auto-Transfer Disabled'}
-            </Button>
+              tooltip={
+                'Allows you to setup auto transfer options for this belly. So that prey is automatically moved depending on a timer or content count.'
+              }
+            />
           }
         >
           {!!autotransfer_enabled && (
-            <LabeledList>
-              <LabeledList.Item label="Auto-Transfer Time">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', { attribute: 'b_autotransferwait' })
-                  }
-                >
-                  {autotransfer.autotransferwait / 10 + 's'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Min Amount">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_min_amount',
-                    })
-                  }
-                >
-                  {autotransfer.autotransfer_min_amount}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Max Amount">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_max_amount',
-                    })
-                  }
-                >
-                  {autotransfer.autotransfer_max_amount}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Divider />
-              <LabeledList.Item label="Auto-Transfer Primary Chance">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', { attribute: 'b_autotransferchance' })
-                  }
-                >
-                  {autotransfer.autotransferchance + '%'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Location">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransferlocation',
-                    })
-                  }
-                >
-                  {autotransfer.autotransferlocation
-                    ? autotransfer.autotransferlocation
-                    : 'Disabled'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Location Extras">
-                {(autotransfer.autotransferextralocation &&
-                  autotransfer.autotransferextralocation.join(', ')) ||
-                  ''}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransferextralocation',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
+            <Stack vertical fill>
+              <Stack.Item>
+                <Stack>
+                  <Stack.Item basis="49%" grow>
+                    <LabeledList.Item label="Auto-Transfer Min Amount">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransfer_min_amount"
+                        editMode={editMode}
+                        value={autotransfer.autotransfer_min_amount}
+                        minValue={0}
+                        maxValue={100}
+                        tooltip="Set the minimum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit."
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Auto-Transfer Max Amount">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransfer_max_amount"
+                        editMode={editMode}
+                        value={autotransfer.autotransfer_max_amount}
+                        minValue={0}
+                        maxValue={100}
+                        tooltip="Set the minimum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit."
+                      />
+                    </LabeledList.Item>
+                  </Stack.Item>
+                  <Stack.Item basis="49%" grow>
+                    <LabeledList.Item label="Auto-Transfer Time">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransferwait"
+                        editMode={editMode}
+                        value={autoTransferTimeSeconds}
+                        unit={
+                          autoTransferTimeSeconds === 1 ? 'second' : 'seconds'
+                        }
+                        minValue={1}
+                        maxValue={1800}
+                        tooltip="Set minimum number of seconds for auto-transfer wait delay."
+                      />
+                    </LabeledList.Item>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <AutoTransferOptions
+                  editMode={editMode}
+                  title={'primary'}
+                  bellyDropdownNames={bellyDropdownNames}
+                  locationNames={locationNames}
+                  autotransferData={autotransfer.primary_transfer}
                 />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Whitelist (Mobs)">
-                {(autotransfer.autotransfer_whitelist.length &&
-                  autotransfer.autotransfer_whitelist.join(', ')) ||
-                  'Everything'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_whitelist',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
+              </Stack.Item>
+              <Stack.Item>
+                <AutoTransferOptions
+                  editMode={editMode}
+                  title={'secondary'}
+                  bellyDropdownNames={bellyDropdownNames}
+                  locationNames={locationNames}
+                  autotransferData={autotransfer.secondary_transfer}
                 />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Whitelist (Items)">
-                {(autotransfer.autotransfer_whitelist_items.length &&
-                  autotransfer.autotransfer_whitelist_items.join(', ')) ||
-                  'Everything'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_whitelist_items',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Blacklist (Mobs)">
-                {(autotransfer.autotransfer_blacklist.length &&
-                  autotransfer.autotransfer_blacklist.join(', ')) ||
-                  'Nothing'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_blacklist',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Primary Blacklist (Items)">
-                {(autotransfer.autotransfer_blacklist_items.length &&
-                  autotransfer.autotransfer_blacklist_items.join(', ')) ||
-                  'Nothing'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_blacklist_items',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Divider />
-              <LabeledList.Item label="Auto-Transfer Secondary Chance">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransferchance_secondary',
-                    })
-                  }
-                >
-                  {autotransfer.autotransferchance_secondary + '%'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Location">
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransferlocation_secondary',
-                    })
-                  }
-                >
-                  {autotransfer.autotransferlocation_secondary
-                    ? autotransfer.autotransferlocation_secondary
-                    : 'Disabled'}
-                </Button>
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Location Extras">
-                {(autotransfer.autotransferextralocation_secondary &&
-                  autotransfer.autotransferextralocation_secondary.join(
-                    ', ',
-                  )) ||
-                  ''}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransferextralocation_secondary',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Whitelist (Mobs)">
-                {(autotransfer.autotransfer_secondary_whitelist.length &&
-                  autotransfer.autotransfer_secondary_whitelist.join(', ')) ||
-                  'Everything'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_secondary_whitelist',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Whitelist (Items)">
-                {(autotransfer.autotransfer_secondary_whitelist_items.length &&
-                  autotransfer.autotransfer_secondary_whitelist_items.join(
-                    ', ',
-                  )) ||
-                  'Everything'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_secondary_whitelist_items',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Blacklist (Mobs)">
-                {(autotransfer.autotransfer_secondary_blacklist.length &&
-                  autotransfer.autotransfer_secondary_blacklist.join(', ')) ||
-                  'Nothing'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_secondary_blacklist',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Auto-Transfer Secondary Blacklist (Items)">
-                {(autotransfer.autotransfer_secondary_blacklist_items.length &&
-                  autotransfer.autotransfer_secondary_blacklist_items.join(
-                    ', ',
-                  )) ||
-                  'Nothing'}
-                <Button
-                  onClick={() =>
-                    act('set_attribute', {
-                      attribute: 'b_autotransfer_secondary_blacklist_items',
-                    })
-                  }
-                  ml={1}
-                  icon="plus"
-                />
-              </LabeledList.Item>
-            </LabeledList>
+              </Stack.Item>
+            </Stack>
           )}
         </Section>
       </Stack.Item>

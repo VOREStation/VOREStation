@@ -4,7 +4,7 @@ export const NoSpriteWarning = (props: { name: string }) => {
   const { name } = props;
 
   return (
-    <NoticeBox warning>
+    <NoticeBox color="average">
       Warning, {name} has not yet chosen a sprite. Functionality might be
       limited.
     </NoticeBox>

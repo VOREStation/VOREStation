@@ -78,20 +78,20 @@ export const BotanyIsolator = (props) => {
                   </Button>
                 </Box>
               )) || (
-                <NoticeBox mt={1} warning>
+                <NoticeBox mt={1} color="average">
                   No disk inserted.
                 </NoticeBox>
               )}
             </Box>
           )) || (
             <Box>
-              <NoticeBox warning>No Data Buffered.</NoticeBox>
+              <NoticeBox color="average">No Data Buffered.</NoticeBox>
               {(disk && (
                 <Button icon="eject" onClick={() => act('eject_disk')}>
                   Eject Loaded Disk
                 </Button>
               )) || (
-                <NoticeBox mt={1} warning>
+                <NoticeBox mt={1} color="average">
                   No disk inserted.
                 </NoticeBox>
               )}
@@ -113,7 +113,7 @@ export const BotanyIsolator = (props) => {
                 Eject Packet
               </Button>
             </Box>
-          )) || <NoticeBox warning>No packet loaded.</NoticeBox>}
+          )) || <NoticeBox color="average">No packet loaded.</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

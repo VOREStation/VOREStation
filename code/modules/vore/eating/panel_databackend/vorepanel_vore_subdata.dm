@@ -639,56 +639,49 @@
 	if(selected.autotransfer_enabled)
 		//auto-transfer flags
 		var/list/at_whitelist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name])
-				at_whitelist.Add(flag_name)
-		var/list/at_blacklist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name])
-				at_blacklist.Add(flag_name)
-		var/list/at_whitelist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_whitelist_items.Add(flag_name)
-		var/list/at_blacklist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_blacklist_items.Add(flag_name)
 		var/list/at_secondary_whitelist = list()
-		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name])
-				at_secondary_whitelist.Add(flag_name)
+		var/list/at_blacklist = list()
 		var/list/at_secondary_blacklist = list()
 		for(var/flag_name in selected.autotransfer_flags_list)
-			if(selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name])
-				at_secondary_blacklist.Add(flag_name)
+			UNTYPED_LIST_ADD(at_whitelist, list("label" = flag_name, "selection" = selected.autotransfer_whitelist & selected.autotransfer_flags_list[flag_name]))
+			UNTYPED_LIST_ADD(at_blacklist, list("label" = flag_name, "selection" = selected.autotransfer_blacklist & selected.autotransfer_flags_list[flag_name]))
+			UNTYPED_LIST_ADD(at_secondary_whitelist, list("label" = flag_name, "selection" = selected.autotransfer_secondary_whitelist & selected.autotransfer_flags_list[flag_name]))
+			UNTYPED_LIST_ADD(at_secondary_blacklist, list("label" = flag_name, "selection" = selected.autotransfer_secondary_blacklist & selected.autotransfer_flags_list[flag_name]))
+		var/list/at_whitelist_items = list()
+		var/list/at_blacklist_items = list()
 		var/list/at_secondary_whitelist_items = list()
-		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_secondary_whitelist_items.Add(flag_name)
 		var/list/at_secondary_blacklist_items = list()
 		for(var/flag_name in selected.autotransfer_flags_list_items)
-			if(selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name])
-				at_secondary_blacklist_items.Add(flag_name)
+			UNTYPED_LIST_ADD(at_whitelist_items, list("label" = flag_name, "selection" = selected.autotransfer_whitelist_items & selected.autotransfer_flags_list_items[flag_name]))
+			UNTYPED_LIST_ADD(at_blacklist_items, list("label" = flag_name, "selection" = selected.autotransfer_blacklist_items & selected.autotransfer_flags_list_items[flag_name]))
+			UNTYPED_LIST_ADD(at_secondary_whitelist_items, list("label" = flag_name, "selection" = selected.autotransfer_secondary_whitelist_items & selected.autotransfer_flags_list_items[flag_name]))
+			UNTYPED_LIST_ADD(at_secondary_blacklist_items, list("label" = flag_name, "selection" = selected.autotransfer_secondary_blacklist_items & selected.autotransfer_flags_list_items[flag_name]))
 
-		autotransfer_data += list(
+		var/list/primary_transfer = list(
 			"autotransferchance" = selected.autotransferchance,
-			"autotransferwait" = selected.autotransferwait,
 			"autotransferlocation" = selected.autotransferlocation,
 			"autotransferextralocation" = selected.autotransferextralocation,
-			"autotransferchance_secondary" = selected.autotransferchance_secondary,
-			"autotransferlocation_secondary" = selected.autotransferlocation_secondary,
-			"autotransferextralocation_secondary" = selected.autotransferextralocation_secondary,
-			"autotransfer_min_amount" = selected.autotransfer_min_amount,
-			"autotransfer_max_amount" = selected.autotransfer_max_amount,
 			"autotransfer_whitelist" = at_whitelist,
 			"autotransfer_blacklist" = at_blacklist,
 			"autotransfer_whitelist_items" = at_whitelist_items,
-			"autotransfer_blacklist_items" = at_blacklist_items,
-			"autotransfer_secondary_whitelist" = at_secondary_whitelist,
-			"autotransfer_secondary_blacklist" = at_secondary_blacklist,
-			"autotransfer_secondary_whitelist_items" = at_secondary_whitelist_items,
-			"autotransfer_secondary_blacklist_items" = at_secondary_blacklist_items,
+			"autotransfer_blacklist_items" = at_blacklist_items
+		)
+		var/list/secondary_transfer = list(
+			"autotransferchance" = selected.autotransferchance_secondary,
+			"autotransferlocation" = selected.autotransferlocation_secondary,
+			"autotransferextralocation" = selected.autotransferextralocation_secondary,
+			"autotransfer_whitelist" = at_secondary_whitelist,
+			"autotransfer_blacklist" = at_secondary_blacklist,
+			"autotransfer_whitelist_items" = at_secondary_whitelist_items,
+			"autotransfer_blacklist_items" = at_secondary_blacklist_items
+		)
+
+		autotransfer_data += list(
+			"autotransferwait" = selected.autotransferwait,
+			"autotransfer_min_amount" = selected.autotransfer_min_amount,
+			"autotransfer_max_amount" = selected.autotransfer_max_amount,
+			"primary_transfer" = primary_transfer,
+			"secondary_transfer" = secondary_transfer
 		)
 	return autotransfer_data
 

@@ -46,7 +46,7 @@ export function WikiDonationBanner(props: {
 
   if (progress < 0.66) {
     return (
-      <NoticeBox warning>
+      <NoticeBox color="average">
         <WikiDonationContent
           donated={donated}
           goal={goal}

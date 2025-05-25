@@ -125,7 +125,7 @@ const Evacuation = (props: { evac: Evac }) => {
       return null;
     case Evac.CrewTransfer:
       return (
-        <NoticeBox warning>
+        <NoticeBox color="average">
           The vessel is currently undergoing crew transfer procedures.
         </NoticeBox>
       );

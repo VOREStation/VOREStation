@@ -50,7 +50,7 @@ export const TelecommsMachineBrowser = (props) => {
           </NoticeBox>
         )) ||
           (temp && temp.color !== 'bad' && (
-            <NoticeBox warning>
+            <NoticeBox color="average">
               <Box inline verticalAlign="middle">
                 {temp.text}
               </Box>
