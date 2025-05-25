@@ -25,7 +25,7 @@ export const VoreContentsPanel = (props: {
 
   const {
     contents,
-    targetBelly,
+    targetBelly = '',
     onTargetBely,
     bellyDropdownNames,
     belly,
@@ -82,7 +82,7 @@ export const VoreContentsPanel = (props: {
               Move All
             </Button.Confirm>
           </Stack.Item>
-          {!!bellyDropdownNames && !!onTargetBely && !!targetBelly && (
+          {!!bellyDropdownNames && !!onTargetBely && (
             <Stack.Item>
               <Dropdown
                 onSelected={(value) => onTargetBely(value)}
