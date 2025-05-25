@@ -2360,7 +2360,7 @@
 		tgui_alert(user, "No belly selected to modify.")
 		return FALSE
 
-	var/attr = params["liq_attribute"]
+	var/attr = params["attribute"]
 	switch(attr)
 		if("b_show_liq")
 			if(!host.vore_selected.show_liquids)
@@ -2379,16 +2379,15 @@
 				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] wont produce liquids, liquids already in your [lowertext(host.vore_selected.name)] must be emptied out or removed with purge."))
 			. = TRUE
 		if("b_liq_reagent_type")
-			var/list/menu_list = host.vore_selected.reagent_choices.Copy() //Useful if we want to make certain races, synths, borgs, and other things result in additional reagents to produce - Jack
-			var/new_reagent = tgui_input_list(user, "Current reagent: [host.vore_selected.reagent_chosen]", "Choose Reagent", menu_list)
-			if(!new_reagent)
+			var/new_reagent = params["val"]
+			if(!(new_reagent in host.vore_selected.reagent_choices))
 				return FALSE
 
 			host.vore_selected.reagent_chosen = new_reagent
 			host.vore_selected.ReagentSwitch() // For changing variables when a new reagent is chosen
 			. = TRUE
 		if("b_liq_reagent_name")
-			var/new_name = html_encode(tgui_input_text(user,"New name for liquid shown when transfering and dumping on floor (The actual liquid's name is still the same):","New Name",host.vore_selected.reagent_name))
+			var/new_name = params["val"]
 
 			if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
 				tgui_alert(user, "Entered name length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -2397,7 +2396,7 @@
 			host.vore_selected.reagent_name = new_name
 			. = TRUE
 		if("b_liq_reagent_transfer_verb")
-			var/new_verb = html_encode(tgui_input_text(user,"New verb when liquid is transfered from this belly:","New Verb", host.vore_selected.reagent_transfer_verb))
+			var/new_verb = params["val"]
 
 			if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
 				tgui_alert(user, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -2406,7 +2405,7 @@
 			host.vore_selected.reagent_transfer_verb = new_verb
 			. = TRUE
 		if("b_liq_reagent_nutri_rate")
-			host.vore_selected.gen_time_display = tgui_input_list(user, "Choose the time it takes to fill the belly from empty state using nutrition.", "Set Liquid Production Time.",list("10 minutes","30 minutes","1 hour","3 hours","6 hours","12 hours","24 hours"))
+			host.vore_selected.gen_time_display = params["val"]
 			switch(host.vore_selected.gen_time_display)
 				if("10 minutes")
 					host.vore_selected.gen_time = 0
@@ -2422,15 +2421,12 @@
 					host.vore_selected.gen_time = 71
 				if("24 hours")
 					host.vore_selected.gen_time = 143
-				if(null)
-					return FALSE
 			. = TRUE
 		if("b_liq_reagent_capacity")
-			var/new_custom_vol = tgui_input_number(user, "Choose the amount of liquid the belly can contain at most. Ranges from 10 to 300.", "Set Custom Belly Capacity.", host.vore_selected.custom_max_volume, 300, 10)
-			if(new_custom_vol == null)
+			var/new_custom_vol = text2num(params["val"])
+			if(!isnum(new_custom_vol))
 				return FALSE
-			var/new_new_custom_vol = CLAMP(new_custom_vol, 10, 300)
-			host.vore_selected.custom_max_volume = new_new_custom_vol
+			host.vore_selected.custom_max_volume = CLAMP(new_custom_vol, 10, 300)
 			. = TRUE
 		if("b_liq_sloshing")
 			if(!host.vore_selected.vorefootsteps_sounds)
@@ -2441,8 +2437,7 @@
 				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] wont make any liquid sounds no matter how full it is."))
 			. = TRUE
 		if("b_liq_reagent_addons")
-			var/list/menu_list = host.vore_selected.reagent_mode_flag_list.Copy()
-			var/reagent_toggle_addon = tgui_input_list(user, "Toggle your addons", "Toggle Addon", menu_list)
+			var/reagent_toggle_addon = params["val"]
 			if(!reagent_toggle_addon)
 				return FALSE
 			host.vore_selected.reagent_mode_flags ^= host.vore_selected.reagent_mode_flag_list[reagent_toggle_addon]
@@ -2456,11 +2451,10 @@
 				to_chat(user,span_warning("Your [lowertext(host.vore_selected.name)] no longer has liquid overlay enabled."))
 			. = TRUE
 		if("b_max_liquid_level")
-			var/new_max_liquid_level = tgui_input_number(user, "Set custom maximum liquid level. 0-100%", "Set Custom Max Level.", host.vore_selected.max_liquid_level, 100)
-			if(new_max_liquid_level == null)
+			var/new_max_liquid_level = params["val"]
+			if(!isnum(new_max_liquid_level))
 				return FALSE
-			var/new_new_max_liquid_level = CLAMP(new_max_liquid_level, 0, 100)
-			host.vore_selected.max_liquid_level = new_new_max_liquid_level
+			host.vore_selected.max_liquid_level = CLAMP(new_max_liquid_level, 0, 100)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_reagentcolor")
@@ -2472,9 +2466,11 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_reagentalpha")
-			var/newalpha = tgui_input_number(user, "Set alpha transparency between 0-255. Leave blank to use capacity based alpha.", "Custom Liquid Alpha",255,255,0,0,1)
-			if(newalpha != null)
-				host.vore_selected.custom_reagentalpha = newalpha
+			var/newalpha = text2num(params["val"])
+			if(!isnum(newalpha))
+				return FALSE
+			if(newalpha)
+				host.vore_selected.custom_reagentalpha = CLAMP(newalpha, 0, 255)
 			else
 				host.vore_selected.custom_reagentalpha = null
 			host.vore_selected.update_internal_overlay()
@@ -2503,33 +2499,31 @@
 				host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_mush_alpha")
-			var/newalpha = tgui_input_number(user, "Set alpha transparency between 0-255", "Mush Alpha",255,255)
-			if(newalpha != null)
-				host.vore_selected.mush_alpha = newalpha
-				host.vore_selected.update_internal_overlay()
+			var/newalpha = text2num(params["val"])
+			if(!isnum(newalpha))
+				return FALSE
+			host.vore_selected.mush_alpha = CLAMP(newalpha, 0, 255)
+			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_max_mush")
-			var/new_max_mush = tgui_input_number(user, "Choose the amount of nutrition required for full mush overlay. Ranges from 0 to 6000. Default 500.", "Set Fullness Overlay Scaling.", host.vore_selected.max_mush, 6000)
-			if(new_max_mush == null)
+			var/new_max_mush = text2num(params["val"])
+			if(!isnum(new_max_mush))
 				return FALSE
-			var/new_new_max_mush = CLAMP(new_max_mush, 0, 6000)
-			host.vore_selected.max_mush = new_new_max_mush
+			host.vore_selected.max_mush = CLAMP(new_max_mush, 0, 6000)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_min_mush")
-			var/new_min_mush = tgui_input_number(user, "Set custom minimum mush level. 0-100%", "Set Custom Minimum.", host.vore_selected.min_mush, 100)
-			if(new_min_mush == null)
+			var/new_min_mush = text2num(params["val"])
+			if(!isnum(new_min_mush))
 				return FALSE
-			var/new_new_min_mush = CLAMP(new_min_mush, 0, 100)
-			host.vore_selected.min_mush = new_new_min_mush
+			host.vore_selected.min_mush = CLAMP(new_min_mush, 0, 100)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_item_mush_val")
-			var/new_item_mush_val = tgui_input_number(user, "Set how much solid belly contents affect mush level. 0-1000 fullness per item.", "Set Item Mush Value.", host.vore_selected.item_mush_val, 1000)
-			if(new_item_mush_val == null)
+			var/new_item_mush_val = text2num(params["val"])
+			if(!isnum(new_item_mush_val))
 				return FALSE
-			var/new_new_item_mush_val = CLAMP(new_item_mush_val, 0, 1000)
-			host.vore_selected.item_mush_val = new_new_item_mush_val
+			host.vore_selected.item_mush_val = CLAMP(new_item_mush_val, 0, 1000)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_metabolism_overlay")
@@ -2542,19 +2536,17 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_metabolism_mush_ratio")
-			var/new_metabolism_mush_ratio = tgui_input_number(user, "How much should ingested reagents affect fullness overlay compared to nutrition? Nutrition units per reagent unit. Default 15.", "Set Metabolism Mush Ratio.", host.vore_selected.metabolism_mush_ratio, 500)
-			if(new_metabolism_mush_ratio == null)
+			var/new_metabolism_mush_ratio = text2num(params["val"])
+			if(!isnum(new_metabolism_mush_ratio))
 				return FALSE
-			var/new_new_metabolism_mush_ratio = CLAMP(new_metabolism_mush_ratio, 0, 500)
-			host.vore_selected.metabolism_mush_ratio = new_new_metabolism_mush_ratio
+			host.vore_selected.metabolism_mush_ratio = CLAMP(new_metabolism_mush_ratio, 0, 500)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_max_ingested")
-			var/new_max_ingested = tgui_input_number(user, "Choose the amount of reagents within ingested metabolism required for full mush overlay when not using mush overlay option. Ranges from 0 to 6000. Default 500.", "Set Metabolism Overlay Scaling.", host.vore_selected.max_ingested, 6000)
-			if(new_max_ingested == null)
+			var/new_max_ingested = text2num(params["val"])
+			if(!isnum(new_max_ingested))
 				return FALSE
-			var/new_new_max_ingested = CLAMP(new_max_ingested, 0, 6000)
-			host.vore_selected.max_ingested = new_new_max_ingested
+			host.vore_selected.max_ingested = CLAMP(new_max_ingested, 0, 6000)
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_ingested_color")
@@ -2566,17 +2558,14 @@
 			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_custom_ingested_alpha")
-			var/newalpha = tgui_input_number(user, "Set alpha transparency between 0-255 when not using mush overlay option.", "Custom Ingested Alpha",255,255)
-			if(newalpha != null)
-				host.vore_selected.custom_ingested_alpha = newalpha
-				host.vore_selected.update_internal_overlay()
+			var/newalpha = text2num(params["val"])
+			if(!isnum(newalpha))
+				return FALSE
+			host.vore_selected.custom_ingested_alpha = newalpha
+			host.vore_selected.update_internal_overlay()
 			. = TRUE
 		if("b_liq_purge")
-			var/alert = tgui_alert(user, "Are you sure you want to delete the liquids in your [lowertext(host.vore_selected.name)]?","Confirmation",list("Delete","Cancel"))
-			if(alert != "Delete")
-				return FALSE
-			else
-				host.vore_selected.reagents.clear_reagents()
+			host.vore_selected.reagents.clear_reagents()
 			. = TRUE
 	if(.)
 		unsaved_changes = TRUE

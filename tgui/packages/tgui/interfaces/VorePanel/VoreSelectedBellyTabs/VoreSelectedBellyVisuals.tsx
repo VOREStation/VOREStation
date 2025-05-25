@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import type { bellyVisualData } from '../types';
-import { FeatureColorInput } from '../VorePanelElements/FeatureColorInput';
+import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { BellyFullscreenSelection } from './VisualTab/BellyFullscreenSelection';
 import { VoreSpriteAffects } from './VisualTab/VoreSpriteAffect';
@@ -106,42 +106,47 @@ export const VoreSelectedBellyVisuals = (props: {
                 <Stack.Divider />
                 <Stack.Item>
                   <Stack align="center">
-                    <FeatureColorInput
+                    <VorePanelEditColor
                       editMode={editMode}
-                      action_name="b_fullscreen_color"
+                      action="set_attribute"
+                      subAction="b_fullscreen_color"
                       value_of={null}
                       back_color={belly_fullscreen_color}
                       name_of="Color 1:"
                       tooltip="Set the Vore FX overlay's first color."
                     />
-                    <FeatureColorInput
+                    <VorePanelEditColor
                       editMode={editMode}
-                      action_name="b_fullscreen_color2"
+                      action="set_attribute"
+                      subAction="b_fullscreen_color2"
                       value_of={null}
                       back_color={belly_fullscreen_color2}
                       name_of="Color 2:"
                       tooltip="Set the Vore FX overlay's second color."
                     />
-                    <FeatureColorInput
+                    <VorePanelEditColor
                       editMode={editMode}
-                      action_name="b_fullscreen_color3"
+                      action="set_attribute"
+                      subAction="b_fullscreen_color3"
                       value_of={null}
                       back_color={belly_fullscreen_color3}
                       name_of="Color 3:"
                       tooltip="Set the Vore FX overlay's third color."
                     />
-                    <FeatureColorInput
+                    <VorePanelEditColor
                       editMode={editMode}
-                      action_name="b_fullscreen_color4"
+                      action="set_attribute"
+                      subAction="b_fullscreen_color4"
                       value_of={null}
                       back_color={belly_fullscreen_color4}
                       name_of="Color 4:"
                       tooltip="Set the Vore FX overlay's fourth color."
                     />
-                    <FeatureColorInput
+                    <VorePanelEditColor
                       removePlaceholder
                       editMode={editMode}
-                      action_name="b_fullscreen_alpha"
+                      action="set_attribute"
+                      subAction="b_fullscreen_alpha"
                       value_of={null}
                       back_color="#FFFFFF"
                       alpha={belly_fullscreen_alpha}

@@ -16,7 +16,7 @@ export const VorePanelEditCheckboxes = (props: {
   const { editMode, options, action, subAction, tooltipList, tooltip } = props;
 
   return (
-    <Stack>
+    <Stack align="center">
       {editMode && (
         <>
           <Stack.Item>

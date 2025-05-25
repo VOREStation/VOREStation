@@ -2,8 +2,8 @@ import { Box, LabeledList, Stack } from 'tgui-core/components';
 
 import { spriteToTooltip } from '../../constants';
 import type { bellyVisualData } from '../../types';
-import { FeatureColorInput } from '../../VorePanelElements/FeatureColorInput';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
+import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
@@ -44,8 +44,8 @@ export const VoreSpriteAffects = (props: {
             <VorePanelEditCheckboxes
               editMode={editMode}
               options={vore_sprite_flags}
-              action={'set_attribute'}
-              subAction={'b_vore_sprite_flags'}
+              action="set_attribute"
+              subAction="b_vore_sprite_flags"
               tooltipList={spriteToTooltip}
             />
           </LabeledList.Item>
@@ -127,7 +127,7 @@ export const VoreSpriteAffects = (props: {
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Undergarment if none equipped">
-                      <Stack>
+                      <Stack align="center">
                         <Stack.Item>
                           <VorePanelEditDropdown
                             action="set_attribute"
@@ -138,9 +138,10 @@ export const VoreSpriteAffects = (props: {
                             tooltip="If no undergarment is equipped, which undergarment style do you want to use?"
                           />
                         </Stack.Item>
-                        <FeatureColorInput
+                        <VorePanelEditColor
                           editMode={editMode}
-                          action_name="b_undergarment_color"
+                          action="liq_set_attribute"
+                          subAction="b_undergarment_color"
                           value_of={null}
                           back_color={undergarment_color}
                           tooltip="Select your undergarment color."

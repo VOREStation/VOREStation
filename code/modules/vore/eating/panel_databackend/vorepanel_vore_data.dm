@@ -107,6 +107,7 @@
 				"item_mode" = selected.item_digest_mode,
 				"addons" = addons,
 				"name_length" = BELLIES_NAME_MAX,
+				"name_min" = BELLIES_NAME_MIN,
 				"mode_options" = host.vore_selected.digest_modes,
 				"item_mode_options" = host.vore_selected.item_digest_modes,
 
@@ -148,7 +149,9 @@
 				"emote_time" = selected.emote_time,
 				"emote_active" = selected.emote_active,
 				"entrance_logs" = selected.entrance_logs,
-				"item_digest_logs" = selected.item_digest_logs
+				"item_digest_logs" = selected.item_digest_logs,
+				"name_min" = BELLIES_NAME_MIN,
+				"name_length" = BELLIES_NAME_MAX,
 			)
 			selected_list["belly_description_data"] = belly_description_data
 
@@ -305,39 +308,13 @@
 
 		selected_list["content_length"] = total_content_count
 
-		// liquid belly options
-		selected_list["show_liq"] = selected.show_liquids
-		selected_list["liq_interacts"] = list()
-		if(selected.show_liquids)
-			selected_list["liq_interacts"]["liq_reagent_gen"] = selected.reagentbellymode
-			selected_list["liq_interacts"]["liq_reagent_type"] = selected.reagent_chosen
-			selected_list["liq_interacts"]["liq_reagent_name"] = selected.reagent_name
-			selected_list["liq_interacts"]["liq_reagent_transfer_verb"] = selected.reagent_transfer_verb
-			selected_list["liq_interacts"]["liq_reagent_nutri_rate"] = selected.gen_time
-			selected_list["liq_interacts"]["liq_reagent_capacity"] = selected.custom_max_volume
-			selected_list["liq_interacts"]["liq_sloshing"] = selected.vorefootsteps_sounds
-			selected_list["liq_interacts"]["liq_reagent_addons"] = list()
-			for(var/flag_name in selected.reagent_mode_flag_list)
-				if(selected.reagent_mode_flags & selected.reagent_mode_flag_list[flag_name])
-					var/list/selected_list_member = selected_list["liq_interacts"]["liq_reagent_addons"]
-					ASSERT(islist(selected_list_member))
-					selected_list_member.Add(flag_name)
-			selected_list["liq_interacts"]["custom_reagentcolor"] = selected.custom_reagentcolor ? selected.custom_reagentcolor : selected.reagentcolor
-			selected_list["liq_interacts"]["custom_reagentalpha"] = selected.custom_reagentalpha ? selected.custom_reagentalpha : "Default"
-			selected_list["liq_interacts"]["liquid_overlay"] = selected.liquid_overlay
-			selected_list["liq_interacts"]["max_liquid_level"] = selected.max_liquid_level
-			selected_list["liq_interacts"]["reagent_touches"] = selected.reagent_touches
-			selected_list["liq_interacts"]["mush_overlay"] = selected.mush_overlay
-			selected_list["liq_interacts"]["mush_color"] = selected.mush_color
-			selected_list["liq_interacts"]["mush_alpha"] = selected.mush_alpha
-			selected_list["liq_interacts"]["max_mush"] = selected.max_mush
-			selected_list["liq_interacts"]["min_mush"] = selected.min_mush
-			selected_list["liq_interacts"]["item_mush_val"] = selected.item_mush_val
-			selected_list["liq_interacts"]["metabolism_overlay"] = selected.metabolism_overlay
-			selected_list["liq_interacts"]["metabolism_mush_ratio"] = selected.metabolism_mush_ratio
-			selected_list["liq_interacts"]["max_ingested"] = selected.max_ingested
-			selected_list["liq_interacts"]["custom_ingested_color"] = selected.custom_ingested_color ? selected.custom_ingested_color : "#3f6088"
-			selected_list["liq_interacts"]["custom_ingested_alpha"] = selected.custom_ingested_alpha
+		if(active_vore_tab == LIQUID_OPTIONS_TAB)
+			// liquid belly options
+			var/list/belly_liquid_data = list(
+				"show_liq" = selected.show_liquids,
+				"liq_interacts" = compile_liquid_interact_data(selected)
+			)
+			selected_list["belly_liquid_data"] = belly_liquid_data
 
 	return selected_list
 

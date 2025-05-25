@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, NumberInput, Tooltip } from 'tgui-core/components';
+import { Box, NumberInput, Stack, Tooltip } from 'tgui-core/components';
 import { round, toFixed } from 'tgui-core/math';
 
 export const VorePanelEditNumber = (props: {
@@ -34,28 +34,32 @@ export const VorePanelEditNumber = (props: {
   } = props;
 
   return editMode ? (
-    <>
-      <NumberInput
-        onChange={(value) =>
-          act(action, {
-            attribute: subAction,
-            val: round(value, digits),
-          })
-        }
-        stepPixelSize={stepPixel}
-        value={value}
-        maxValue={maxValue}
-        minValue={minValue}
-        step={step}
-        unit={unit}
-        format={(val) => toFixed(val, digits)}
-      />
+    <Stack>
+      <Stack.Item>
+        <NumberInput
+          onChange={(value) =>
+            act(action, {
+              attribute: subAction,
+              val: round(value, digits),
+            })
+          }
+          stepPixelSize={stepPixel}
+          value={value}
+          maxValue={maxValue}
+          minValue={minValue}
+          step={step}
+          unit={unit}
+          format={(val) => toFixed(val, digits)}
+        />
+      </Stack.Item>
       {tooltip && (
-        <Tooltip content={tooltip}>
-          <Box className="VorePanel__floatingButton">?</Box>
-        </Tooltip>
+        <Stack.Item>
+          <Tooltip content={tooltip}>
+            <Box className="VorePanel__floatingButton">?</Box>
+          </Tooltip>
+        </Stack.Item>
       )}
-    </>
+    </Stack>
   ) : (
     <Box textColor={color}>
       {value}

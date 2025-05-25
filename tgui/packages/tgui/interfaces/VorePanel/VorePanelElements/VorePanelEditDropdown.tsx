@@ -20,7 +20,7 @@ export const VorePanelEditDropdown = (props: {
     props;
 
   return editMode ? (
-    <Stack g={0.2}>
+    <Stack>
       <Stack.Item>
         <Dropdown
           color={color}

@@ -30,6 +30,8 @@ export const VoreSelectedBellyDescriptions = (props: {
     show_liq_fullness,
     entrance_logs,
     item_digest_logs,
+    name_length,
+    name_min,
   } = bellyDescriptionData;
 
   return (
@@ -95,19 +97,35 @@ export const VoreSelectedBellyDescriptions = (props: {
             <LabeledList.Item label="Vore Verb">
               <VorePanelEditText
                 editMode={editMode}
-                limit={40}
+                limit={name_length}
+                min={name_min}
                 entry={verb}
                 action={'set_attribute'}
                 subAction={'b_verb'}
+                tooltip={
+                  'Adjust vore verb. [' +
+                  name_min +
+                  '-' +
+                  name_length +
+                  ' characters].'
+                }
               />
             </LabeledList.Item>
             <LabeledList.Item label="Release Verb">
               <VorePanelEditText
                 editMode={editMode}
-                limit={40}
+                limit={name_length}
+                min={name_min}
                 entry={release_verb}
                 action={'set_attribute'}
                 subAction={'b_release_verb'}
+                tooltip={
+                  'Adjust release verb. [' +
+                  name_min +
+                  '-' +
+                  name_length +
+                  ' characters].'
+                }
               />
             </LabeledList.Item>
           </LabeledList>

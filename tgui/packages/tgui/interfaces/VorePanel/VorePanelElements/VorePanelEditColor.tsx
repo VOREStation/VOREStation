@@ -5,9 +5,10 @@ import type { BooleanLike } from 'tgui-core/react';
 import { VorePanelColorBox } from './VorePanelCommonElements';
 import { VorePanelEditNumber } from './VorePanelEditNumber';
 
-export const FeatureColorInput = (props: {
+export const VorePanelEditColor = (props: {
   editMode: boolean;
-  action_name: string;
+  action: string;
+  subAction: string;
   value_of: BooleanLike | string;
   back_color: string;
   alpha?: number;
@@ -18,7 +19,8 @@ export const FeatureColorInput = (props: {
   const { act } = useBackend();
   const {
     editMode,
-    action_name,
+    action,
+    subAction,
     value_of,
     back_color,
     alpha,
@@ -41,8 +43,8 @@ export const FeatureColorInput = (props: {
         <Stack.Item basis={alpha !== undefined ? '65px' : undefined}>
           {alpha !== undefined ? (
             <VorePanelEditNumber
-              action="set_attribute"
-              subAction={action_name}
+              action={action}
+              subAction={subAction}
               editMode={editMode}
               value={alpha}
               minValue={0}
@@ -54,7 +56,7 @@ export const FeatureColorInput = (props: {
               fluid
               icon="eye-dropper"
               onClick={() => {
-                act('set_attribute', { attribute: action_name, val: value_of });
+                act(action, { attribute: subAction, val: value_of });
               }}
               tooltip={tooltip}
             />

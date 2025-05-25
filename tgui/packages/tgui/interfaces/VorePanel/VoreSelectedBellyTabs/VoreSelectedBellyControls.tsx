@@ -21,6 +21,7 @@ export const VoreSelectedBellyControls = (props: {
     item_mode,
     addons,
     name_length,
+    name_min,
     mode_options,
     item_mode_options,
   } = bellyModeData;
@@ -69,9 +70,17 @@ export const VoreSelectedBellyControls = (props: {
         <VorePanelEditText
           editMode={editMode}
           limit={name_length}
+          min={name_min}
           entry={belly_name}
           action={'set_attribute'}
           subAction={'b_name'}
+          tooltip={
+            'Adjust the name of your belly. [' +
+            name_min +
+            '-' +
+            name_length +
+            ' characters].'
+          }
         />
       </LabeledList.Item>
       <LabeledList.Item label="Mode">

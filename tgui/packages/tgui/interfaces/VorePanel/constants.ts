@@ -96,6 +96,16 @@ export const spriteToTooltip = {
     "This belly will effect the mob's undergarment sprite if available.",
 };
 
+export const liquidToTooltip = {
+  'Produce Liquids': 'Enables automatic belly liquid porduction.',
+  'Digestion Liquids':
+    'Enables belly liquid production while prey is being diegested.',
+  'Absorption Liquids':
+    'Enables belly liquid production while prey is being absorbed.',
+  'Draining Liquids':
+    'Enables belly liquid production while prey is being drained.',
+};
+
 export const messageTabLabel = [
   'Description',
   'Examine',
@@ -119,3 +129,13 @@ export const eatingMessagePrivacy = {
 export const robotBellyOptions = ['Sleeper', 'Vorebelly', 'Both'];
 
 export const noSelectionName = { displayText: 'None - Remove', value: '' };
+
+export const nutriTimeToText = {
+  0: '10 minutes',
+  2: '30 minutes',
+  5: '1 hour',
+  17: '3 hours',
+  35: '6 hours',
+  71: '12 hours',
+  143: '24 hours',
+};

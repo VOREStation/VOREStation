@@ -60,6 +60,7 @@ export type bellyModeData = {
   item_mode: string;
   addons: checkBoxEntry[];
   name_length: number;
+  name_min: number;
   mode_options: string[];
   item_mode_options: string[];
 };
@@ -77,6 +78,8 @@ export type bellyDescriptionData = {
   show_liq_fullness: BooleanLike;
   entrance_logs: BooleanLike;
   item_digest_logs: BooleanLike;
+  name_length: number;
+  name_min: number;
   displayed_message_types: {
     subtypes?: string[];
     possible_messages?: string[] | null;
@@ -190,6 +193,11 @@ export type contentData = {
   icon: string;
 };
 
+export type bellyLiquidData = {
+  show_liq: BooleanLike;
+  liq_interacts: liqInteractData;
+};
+
 export type siliconeBellyControls = {
   silicon_belly_overlay_preference: string;
   belly_sprite_option_shown: BooleanLike;
@@ -206,9 +214,7 @@ export type selectedData = {
   belly_interaction_data?: bellyInteractionData;
   contents?: contentData[] | null;
   content_length: number;
-
-  show_liq: BooleanLike;
-  liq_interacts: liqInteractData;
+  belly_liquid_data?: bellyLiquidData;
 };
 
 export type interactData = {
@@ -242,17 +248,20 @@ export type autoTransferOption = {
   autotransfer_blacklist_items: checkBoxEntry[];
 };
 
-type liqInteractData = {
+export type liqInteractData = {
   liq_reagent_gen: BooleanLike;
   liq_reagent_type: string;
+  liq_reagent_types: string[];
   liq_reagent_name: string;
+  liq_custom_name_max: number;
+  liq_custom_name_min: number;
   liq_reagent_transfer_verb: string;
   liq_reagent_nutri_rate: number;
   liq_reagent_capacity: number;
   liq_sloshing: BooleanLike;
-  liq_reagent_addons: string[];
+  liq_reagent_addons: checkBoxEntry[];
   custom_reagentcolor: string;
-  custom_reagentalpha: number | string;
+  custom_reagentalpha: number | null;
   liquid_overlay: BooleanLike;
   max_liquid_level: number;
   reagent_touches: BooleanLike;

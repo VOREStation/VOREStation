@@ -45,6 +45,7 @@ export const VoreSelectedBelly = (props: {
     belly_sound_data,
     belly_visual_data,
     belly_interaction_data,
+    belly_liquid_data,
     contents,
     content_length,
   } = belly;
@@ -105,7 +106,12 @@ export const VoreSelectedBelly = (props: {
       icon_overflow={icon_overflow}
     />
   );
-  tabs[7] = <VoreSelectedBellyLiquidOptions belly={belly} />;
+  tabs[7] = belly_liquid_data && (
+    <VoreSelectedBellyLiquidOptions
+      editMode={editMode}
+      bellyLiquidData={belly_liquid_data}
+    />
+  );
 
   return (
     <Stack vertical fill>

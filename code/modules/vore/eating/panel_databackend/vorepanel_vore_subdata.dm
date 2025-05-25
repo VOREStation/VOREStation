@@ -685,6 +685,44 @@
 		)
 	return autotransfer_data
 
+/datum/vore_look/proc/compile_liquid_interact_data(obj/belly/selected)
+	var/list/liq_interacts = list()
+	if(selected.show_liquids)
+		var/list/liquid_addon_list = list()
+		for(var/flag_name in selected.reagent_mode_flag_list)
+			UNTYPED_LIST_ADD(liquid_addon_list, list("label" = flag_name, "selection" = selected.reagent_mode_flags & selected.reagent_mode_flag_list[flag_name]))
+
+		liq_interacts += list(
+			"liq_reagent_gen" = selected.reagentbellymode,
+			"liq_reagent_type" = selected.reagent_chosen,
+			"liq_reagent_types" = selected.reagent_choices,
+			"liq_reagent_name" = selected.reagent_name,
+			"liq_custom_name_max" = BELLIES_NAME_MAX,
+			"liq_custom_name_min" = BELLIES_NAME_MIN,
+			"liq_reagent_transfer_verb" = selected.reagent_transfer_verb,
+			"liq_reagent_nutri_rate" = selected.gen_time,
+			"liq_reagent_capacity" = selected.custom_max_volume,
+			"liq_sloshing" = selected.vorefootsteps_sounds,
+			"liq_reagent_addons" = liquid_addon_list,
+			"custom_reagentcolor" = (selected.custom_reagentcolor ? selected.custom_reagentcolor : selected.reagentcolor),
+			"custom_reagentalpha" = selected.custom_reagentalpha,
+			"liquid_overlay" = selected.liquid_overlay,
+			"max_liquid_level" = selected.max_liquid_level,
+			"reagent_touches" = selected.reagent_touches,
+			"mush_overlay" = selected.mush_overlay,
+			"mush_color" = selected.mush_color,
+			"mush_alpha" = selected.mush_alpha,
+			"max_mush" = selected.max_mush,
+			"min_mush" = selected.min_mush,
+			"item_mush_val" = selected.item_mush_val,
+			"metabolism_overlay" = selected.metabolism_overlay,
+			"metabolism_mush_ratio" = selected.metabolism_mush_ratio,
+			"max_ingested" = selected.max_ingested,
+			"custom_ingested_color" = (selected.custom_ingested_color ? selected.custom_ingested_color : "#3f6088"),
+			"custom_ingested_alpha" = selected.custom_ingested_alpha
+		)
+	return liq_interacts
+
 #undef DEFAULT_MESSAGE
 #undef ABSORBED_MESSAGE
 #undef WITH_PREY
