@@ -8,14 +8,6 @@
 	var/waddle_max = 12
 	var/waddle_time = 2
 
-/mob/living/silicon/robot/verb/enable_waddle() //Included in here because robots dont have it by default!
-	set name = "Enable Waddle"
-	set desc = "Allows you to waddle!"
-	set category = "Preferences.Character"
-	LoadComponent(/datum/component/waddle_trait)
-	to_chat(src, span_notice("You will now waddle! You can customize it via the Waddle Adjust verb!"))
-	remove_verb(src, /mob/living/silicon/robot/verb/enable_waddle)
-
 /datum/component/waddle_trait/Initialize()
 	if (!isobj(parent) && !ismob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -47,7 +39,7 @@
 	. = ..()
 
 /mob/living/verb/toggle_waddle()
-	set name = "Toggle Waddling"
+	set name = "Toggle or Enable Waddling"
 	set desc = "Allows you to toggle if you want to walk with a waddle or not!"
 	set category = "Preferences.Character"
 	var/datum/component/waddle_trait/comp = LoadComponent(/datum/component/waddle_trait)
