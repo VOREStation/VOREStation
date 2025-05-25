@@ -11,7 +11,7 @@
 	set name = "Toggle Darkvision"
 	set desc = "We are able see in the dark."
 
-	var/datum/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
 

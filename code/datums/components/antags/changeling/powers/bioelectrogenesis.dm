@@ -15,7 +15,7 @@
 	set name = "Bioelectrogenesis (20 + 10/shock)"
 	set desc = "Recharges anything in your hand, or shocks people."
 
-	var/datum/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
 
 	var/obj/held_item = get_active_hand()
 

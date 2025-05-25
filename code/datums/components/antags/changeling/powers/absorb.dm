@@ -11,7 +11,7 @@
 	set category = "Changeling"
 	set name = "Absorb DNA"
 
-	var/datum/changeling/changeling = changeling_power(0,0,100)
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100) //Our changeling power
 	if(!changeling)	return
 
 	var/obj/item/grab/G = src.get_active_hand()
@@ -28,8 +28,10 @@
 		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return
 
+	var/datum/component/antag/changeling/target_changeling = T.GetComponent(/datum/component/antag/changeling) //If the target is a changeling
+
 	if(HUSK in T.mutations) //Lings can always absorb other lings, unless someone beat them to it first.
-		if(!T.mind.changeling || T.mind.changeling && T.mind.changeling.geneticpoints < 0)
+		if(!target_changeling || target_changeling && target_changeling.geneticpoints < 0)
 			to_chat(src, span_warning("This creature's DNA is ruined beyond useability!"))
 			return
 
@@ -80,30 +82,30 @@
 	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts, T.modifiers)
 	absorbDNA(newDNA)
 
-	if(T.mind && T.mind.changeling)
-		if(T.mind.changeling.absorbed_dna)
-			for(var/datum/absorbed_dna/dna_data in T.mind.changeling.absorbed_dna)	//steal all their loot
+	if(T.mind && target_changeling)
+		if(target_changeling.absorbed_dna)
+			for(var/datum/absorbed_dna/dna_data in target_changeling.absorbed_dna)	//steal all their loot
 				if(dna_data in changeling.absorbed_dna)
 					continue
 				absorbDNA(dna_data)
 				changeling.absorbedcount++
 
-			T.mind.changeling.absorbed_dna.len = 1
+			target_changeling.absorbed_dna.len = 1
 
 		// This is where lings get boosts from eating eachother
-		if(T.mind.changeling.lingabsorbedcount)
-			for(var/a = 1 to T.mind.changeling.lingabsorbedcount)
+		if(target_changeling.lingabsorbedcount)
+			for(var/a = 1 to target_changeling.lingabsorbedcount)
 				changeling.lingabsorbedcount++
 				changeling.geneticpoints += 4
 				changeling.max_geneticpoints += 4
 
 		to_chat(src, span_notice("We absorbed another changeling, and we grow stronger.  Our genomes increase."))
 
-		T.mind.changeling.chem_charges = 0
-		T.mind.changeling.geneticpoints = -1
-		T.mind.changeling.max_geneticpoints = -1 //To prevent revival.
-		T.mind.changeling.absorbedcount = 0
-		T.mind.changeling.lingabsorbedcount = 0
+		target_changeling.chem_charges = 0
+		target_changeling.geneticpoints = -1
+		target_changeling.max_geneticpoints = -1 //To prevent revival.
+		target_changeling.absorbedcount = 0
+		target_changeling.lingabsorbedcount = 0
 
 	changeling.absorbedcount++
 	changeling.isabsorbing = 0

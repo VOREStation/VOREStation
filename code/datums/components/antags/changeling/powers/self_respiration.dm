@@ -12,7 +12,7 @@
 	set name = "Toggle Breathing"
 	set desc = "We choose whether or not to breathe."
 
-	var/datum/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
 

@@ -13,7 +13,7 @@
 	set name = "Electric Lockpick (5 + 10/use)"
 	set desc = "Bruteforces open most electrical locking systems, at 10 chemicals per use."
 
-	var/datum/changeling/changeling = changeling_power(5,0,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(5,0,100,CONSCIOUS)
 
 	var/obj/held_item = get_active_hand()
 
@@ -52,7 +52,7 @@
 	if(!user.mind.changeling)
 		return
 
-	var/datum/changeling/ling_datum = user.mind.changeling
+	var/datum/component/antag/changeling/ling_datum = user.mind.changeling
 
 	if(ling_datum.chem_charges < 10)
 		to_chat(user, span_warning("We require more chemicals to do that."))

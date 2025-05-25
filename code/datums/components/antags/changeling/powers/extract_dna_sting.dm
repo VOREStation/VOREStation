@@ -12,7 +12,7 @@
 	set name = "Extract DNA Sting (40)"
 	set desc="Stealthily sting a target to extract their DNA."
 
-	var/datum/changeling/changeling = null
+	var/datum/component/antag/changeling/changeling = null
 	if(src.mind && src.mind.changeling)
 		changeling = src.mind.changeling
 	if(!changeling)

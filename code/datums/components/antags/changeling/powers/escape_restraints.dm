@@ -15,7 +15,7 @@
 
 	var/escape_cooldown = 5 MINUTES		//This is used later to prevent spamming
 	var/mob/living/carbon/human/C = src
-	var/datum/changeling/changeling = changeling_power(40,0,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(40,0,100,CONSCIOUS)
 	if(!changeling)
 		return 0
 	if(world.time < changeling.next_escape)

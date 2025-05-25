@@ -30,52 +30,53 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	var/thermal_sight = FALSE	// Is our Vision Augmented? With thermals?
 
 /datum/component/antag/changeling/Initialize()
-	if(GLOB.possible_changeling_IDs.len)
-		changelingID = pick(possible_changeling_IDs)
-		possible_changeling_IDs -= changelingID
-		changelingID = "[changelingID]"
-	else
-		changelingID = "[rand(1,999)]"
-	..()
+	. = ..()
+	if(owner)
+		if(GLOB.possible_changeling_IDs.len)
+			changelingID = pick(GLOB.possible_changeling_IDs)
+			GLOB.possible_changeling_IDs -= changelingID
+			changelingID = "[changelingID]"
+		else
+			changelingID = "[rand(1,999)]"
+
+	add_verb(owner, /datum/component/antag/changeling/proc/EvolutionMenu)
+	add_verb(owner, /mob/proc/changeling_respec)
+	owner.add_language("Changeling")
 
 /datum/component/antag/changeling/Destroy(force = FALSE)
 	. = ..()
 
 //Former /datum/changeling procs
-/datum/changeling/proc/regenerate()
+/datum/component/antag/changeling/proc/regenerate()
 	chem_charges = min(max(0, chem_charges+chem_recharge_rate), chem_storage)
 	geneticdamage = max(0, geneticdamage-1)
 
-/datum/changeling/proc/GetDNA(var/dna_owner)
+/datum/component/antag/changeling/proc/GetDNA(var/dna_owner)
 	for(var/datum/absorbed_dna/DNA in absorbed_dna)
 		if(dna_owner == DNA.name)
 			return DNA
 
 //Former /mob procs
 /mob/proc/absorbDNA(var/datum/absorbed_dna/newDNA)
-	var/datum/changeling/changeling = null
-	if(src.mind && src.mind.changeling)
-		changeling = src.mind.changeling
-	if(!changeling)
+	var/datum/component/antag/changeling/changeling = null
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
 		return
 
-	for(var/language in newDNA.languages)
-		changeling.absorbed_languages |= language
 
-	changeling_update_languages(changeling.absorbed_languages)
+	for(var/language in newDNA.languages)
+		comp.absorbed_languages |= language
+
+	changeling_update_languages(comp.absorbed_languages)
 
 	if(!changeling.GetDNA(newDNA.name)) // Don't duplicate - I wonder if it's possible for it to still be a different DNA? DNA code could use a rewrite
-		changeling.absorbed_dna += newDNA
+		comp.absorbed_dna += newDNA
 
 //Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human
 /mob/proc/make_changeling()
 
 	if(!mind)				return
-	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
-
-	add_verb(src, /datum/changeling/proc/EvolutionMenu)
-	add_verb(src, /mob/proc/changeling_respec)
-	add_language("Changeling")
+	var/datum/component/antag/changeling/comp = LoadComponent(/datum/component/antag/changeling)
 
 	var/lesser_form = !ishuman(src)
 
@@ -86,10 +87,10 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	// Code to auto-purchase free powers.
 	for(var/datum/power/changeling/P in powerinstances)
 		if(!P.genomecost) // Is it free?
-			if(!(P in mind.changeling.purchased_powers)) // Do we not have it already?
-				mind.changeling.purchasePower(mind, P.name, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
+			if(!(P in comp.purchased_powers)) // Do we not have it already?
+				comp.purchasePower(mind, P.name, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
 
-	for(var/datum/power/changeling/P in mind.changeling.purchased_powers)
+	for(var/datum/power/changeling/P in comp.purchased_powers)
 		if(P.isVerb)
 			if(lesser_form && !P.allowduringlesserform)	continue
 			if(!(P in src.verbs))
@@ -106,7 +107,7 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 					)
 
 	for(var/language in languages)
-		mind.changeling.absorbed_languages |= language
+		comp.absorbed_languages |= language
 
 	var/mob/living/carbon/human/H = src
 	if(istype(H))
@@ -118,8 +119,12 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 //removes our changeling verbs
 /mob/proc/remove_changeling_powers()
-	if(!mind || !mind.changeling)	return
-	for(var/datum/power/changeling/P in mind.changeling.purchased_powers)
+	if(!mind)
+		return
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		return
+	for(var/datum/power/changeling/P in comp.purchased_powers)
 		if(P.isVerb)
 			remove_verb(src, P.verbpath)
 			var/obj/screen/ability/verb_based/changeling/C = ability_master.get_ability_by_proc_ref(P.verbpath)
@@ -133,8 +138,8 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	if(!src.mind)		return
 	if(!iscarbon(src))	return
 
-	var/datum/changeling/changeling = src.mind.changeling
-	if(!changeling)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
 		to_world_log("[src] has the changeling_transform() verb but is not a changeling.")
 		return
 
@@ -142,19 +147,19 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 		to_chat(src, span_warning("We are incapacitated."))
 		return
 
-	if(changeling.absorbed_dna.len < required_dna)
+	if(comp.absorbed_dna.len < required_dna)
 		to_chat(src, span_warning("We require at least [required_dna] samples of compatible DNA."))
 		return
 
-	if(changeling.chem_charges < required_chems)
+	if(comp.chem_charges < required_chems)
 		to_chat(src, span_warning("We require at least [required_chems] units of chemicals to do that!"))
 		return
 
-	if(changeling.geneticdamage > max_genetic_damage)
+	if(comp.geneticdamage > max_genetic_damage)
 		to_chat(src, span_warning("Our genomes are still reassembling. We need time to recover first."))
 		return
 
-	return changeling
+	return comp
 
 //Used to dump the languages from the changeling datum into the actual mob.
 /mob/proc/changeling_update_languages(var/updated_languages)
@@ -183,11 +188,12 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 //Handles the general sting code to reduce on copypasta (seeming as somebody decided to make SO MANY dumb abilities)
 /mob/proc/changeling_sting(var/required_chems=0, var/verb_path)
-	var/datum/changeling/changeling = changeling_power(required_chems)
-	if(!changeling)								return
+	var/datum/component/antag/changeling/comp = changeling_power(required_chems)
+	if(!comp)
+		return
 
 	var/list/victims = list()
-	for(var/mob/living/carbon/C in oview(changeling.sting_range))
+	for(var/mob/living/carbon/C in oview(comp.sting_range))
 		victims += C
 	var/mob/living/carbon/T = tgui_input_list(src, "Who will we sting?", "Sting!", victims)
 
@@ -196,17 +202,18 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	if(T.isSynthetic())
 		to_chat(src, span_notice("We are unable to pierce the outer shell of [T]."))
 		return
-	if(!(T in view(changeling.sting_range))) return
-	if(!sting_can_reach(T, changeling.sting_range)) return
+	if(!(T in view(comp.sting_range))) return
+	if(!sting_can_reach(T, comp.sting_range)) return
 	if(!changeling_power(required_chems)) return
 
-	changeling.chem_charges -= required_chems
-	changeling.sting_range = 1
+	comp.chem_charges -= required_chems
+	comp.sting_range = 1
 	remove_verb(src, verb_path)
-	spawn(10)	add_verb(src, verb_path) //WTF?
+	spawn(10)	add_verb(src, verb_path) //WTF? THIS IS NOT HOW YOU DO A COOLDOWN, WHAT THE FUCK
 
 	to_chat(src, span_notice("We stealthily sting [T]."))
-	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
+	var/datum/component/antag/changeling/target_comp = T.GetComponent(/datum/component/antag/changeling)
+	if(!T.mind || !target_comp)	return T	//T will be affected by the sting
 	to_chat(T, span_warning("You feel a tiny prick."))
 	return
 
@@ -384,7 +391,7 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 	if(href_list["evolve"])
 		var/datum/mind/M = my_client.mob.mind
-		var/datum/changeling/C = my_client.mob.mind.changeling
+		var/datum/component/antag/changeling/C = my_client.mob.mind.changeling
 		var/datum/power/changeling/Thepower = href_list["evolve"]
 
 		for (var/datum/power/changeling/P in powerinstances)

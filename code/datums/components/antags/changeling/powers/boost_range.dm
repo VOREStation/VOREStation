@@ -14,7 +14,7 @@
 	set name = "Ranged Sting (10)"
 	set desc="Your next sting ability can be used against targets 2 squares away."
 
-	var/datum/changeling/changeling = changeling_power(10,0,100)
+	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100)
 	if(!changeling)
 		return 0
 	changeling.chem_charges -= 10

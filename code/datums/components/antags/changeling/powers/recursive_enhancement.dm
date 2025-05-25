@@ -11,7 +11,7 @@
 	set category = "Changeling"
 	set name = "Recursive Enhancement"
 	set desc = "Empowers our abilities."
-	var/datum/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
 	if(src.mind.changeling.recursive_enhancement)

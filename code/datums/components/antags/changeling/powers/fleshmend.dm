@@ -13,7 +13,7 @@
 	set name = "Fleshmend (10)"
 	set desc = "Begins a slow rengeration of our form.  Does not effect stuns or chemicals."
 
-	var/datum/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
 	src.mind.changeling.chem_charges -= 10

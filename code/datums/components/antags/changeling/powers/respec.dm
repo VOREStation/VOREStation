@@ -3,7 +3,7 @@
 	set name = "Re-adapt"
 	set desc = "Allows us to refund our purchased abilities."
 
-	var/datum/changeling/changeling = changeling_power(0,0,100)
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100)
 	if(!changeling)
 		return
 	if(src.mind.changeling.readapts <= 0)
@@ -12,7 +12,7 @@
 		return
 
 	src.remove_changeling_powers() //First, remove the verbs.
-	var/datum/changeling/ling_datum = src.mind.changeling
+	var/datum/component/antag/changeling/ling_datum = src.mind.changeling
 	ling_datum.readapts--
 	ling_datum.purchased_powers = list() //Then wipe all the powers we bought.
 	ling_datum.geneticpoints = ling_datum.max_geneticpoints //Now refund our points to the maximum.

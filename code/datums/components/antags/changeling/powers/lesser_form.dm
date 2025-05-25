@@ -9,7 +9,7 @@
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
 
-	var/datum/changeling/changeling = changeling_power(1,0,0)
+	var/datum/component/antag/changeling/changeling = changeling_power(1,0,0)
 	if(!changeling)	return
 
 	if(src.has_brain_worms())
@@ -39,7 +39,7 @@
 	set category = "Changeling"
 	set name = "Transform (1)"
 
-	var/datum/changeling/changeling = changeling_power(1,1,0)
+	var/datum/component/antag/changeling/changeling = changeling_power(1,1,0)
 	if(!changeling)	return
 
 	var/list/names = list()

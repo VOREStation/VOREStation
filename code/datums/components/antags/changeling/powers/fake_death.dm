@@ -12,7 +12,7 @@
 	set category = "Changeling"
 	set name = "Regenerative Stasis (20)"
 
-	var/datum/changeling/changeling = changeling_power(CHANGELING_STASIS_COST,1,100,DEAD)
+	var/datum/component/antag/changeling/changeling = changeling_power(CHANGELING_STASIS_COST,1,100,DEAD)
 	if(!changeling)
 		return
 

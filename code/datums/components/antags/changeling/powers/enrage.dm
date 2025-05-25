@@ -17,7 +17,7 @@
 	set name = "Enrage (30)"
 	set desc = "Causes you to go Berserk."
 
-	var/datum/changeling/changeling = changeling_power(30,0,100)
+	var/datum/component/antag/changeling/changeling = changeling_power(30,0,100)
 	if(!changeling)
 		return 0
 

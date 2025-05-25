@@ -25,7 +25,7 @@ var/list/datum/dna/hivemind_bank = list()
 	set name = "Hive Channel (10)"
 	set desc = "Allows you to channel DNA in the airwaves to allow other changelings to absorb it."
 
-	var/datum/changeling/changeling = changeling_power(10,1)
+	var/datum/component/antag/changeling/changeling = changeling_power(10,1)
 	if(!changeling)	return
 
 	var/list/names = list()
@@ -55,7 +55,7 @@ var/list/datum/dna/hivemind_bank = list()
 	set name = "Hive Absorb (20)"
 	set desc = "Allows you to absorb DNA that is being channeled in the airwaves."
 
-	var/datum/changeling/changeling = changeling_power(20,1)
+	var/datum/component/antag/changeling/changeling = changeling_power(20,1)
 	if(!changeling)	return
 
 	var/list/names = list()

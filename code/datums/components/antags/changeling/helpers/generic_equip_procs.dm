@@ -9,7 +9,7 @@
 	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
 		chem_cost = 0
 
-	var/datum/changeling/changeling = changeling_power(chem_cost, 1, 100, CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(chem_cost, 1, 100, CONSCIOUS)
 
 	if(!changeling)
 		return
@@ -44,7 +44,7 @@
 	var/obj/item/clothing/shoes/B = new boot_type(src)
 	src.equip_to_slot_or_del(B, slot_shoes)
 
-	src.mind.changeling.chem_charges -= chem_cost
+	changeling.chem_charges -= chem_cost
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	M.update_inv_wear_suit()
 	M.update_inv_head()
@@ -53,7 +53,7 @@
 	return 1
 
 /mob/proc/changeling_generic_equip_all_slots(var/list/stuff_to_equip, var/cost)
-	var/datum/changeling/changeling = changeling_power(cost,1,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(cost,1,100,CONSCIOUS)
 	if(!changeling)
 		return
 
@@ -66,7 +66,7 @@
 
 	//First, check if we're already wearing the armor, and if so, take it off.
 
-	if(M.mind.changeling.armor_deployed)
+	if(changeling.armor_deployed)
 		if(M.head && stuff_to_equip["head"])
 			if(istype(M.head, stuff_to_equip["head"]))
 				qdel(M.head)
@@ -122,7 +122,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			visible_message(span_warning("[src] pulls on their clothes, peeling it off along with parts of their skin attached!"),
 			span_notice("We remove and deform our equipment."))
-		M.mind.changeling.armor_deployed = 0
+		changeling.armor_deployed = 0
 		return success
 
 	else
@@ -226,13 +226,13 @@
 		to_chat(M, span_notice("We have grown [feedback]."))
 
 		if(success)
-			M.mind.changeling.armor_deployed = 1
-			M.mind.changeling.chem_charges -= 10
+			changeling.armor_deployed = 1
+			changeling.chem_charges -= 10
 		return success
 
 //This is a generic proc that should be called by other ling weapon procs to equip them.
 /mob/proc/changeling_generic_weapon(var/weapon_type, var/make_sound = 1, var/cost = 20)
-	var/datum/changeling/changeling = changeling_power(cost,1,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = changeling_power(cost,1,100,CONSCIOUS)
 	if(!changeling)
 		return
 
@@ -248,7 +248,7 @@
 	var/obj/item/W = new weapon_type(src)
 	src.put_in_hands(W)
 
-	src.mind.changeling.chem_charges -= cost
+	changeling.chem_charges -= cost
 	if(make_sound)
 		playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	return 1

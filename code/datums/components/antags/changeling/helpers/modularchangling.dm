@@ -21,13 +21,10 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 // Modularchangling, totally stolen from the new player panel.  YAYY
-/datum/changeling/proc/EvolutionMenu()//The new one
+/datum/component/antag/changeling/proc/EvolutionMenu()//The new one
 	set name = "-Evolution Menu-"
 	set category = "Changeling"
 	set desc = "Adapt yourself carefully."
-
-	if(!usr || !usr.mind || !usr.mind.changeling)	return
-	src = usr.mind.changeling
 
 	if(!powerinstances.len)
 		for(var/P in powers)
@@ -294,7 +291,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	usr << browse(dat, "window=powers;size=900x480")
 
 
-/datum/changeling/Topic(href, href_list)
+/datum/component/antag/changeling/Topic(href, href_list)
 	..()
 	if(!ismob(usr))
 		return
@@ -304,12 +301,12 @@ var/list/datum/power/changeling/powerinstances = list()
 		if(!istype(M))
 			return
 		purchasePower(M, href_list["P"])
-		call(/datum/changeling/proc/EvolutionMenu)()
+		call(/datum/component/antag/changeling/proc/EvolutionMenu)()
 
 
 
-/datum/changeling/proc/purchasePower(var/datum/mind/M, var/Pname, var/remake_verbs = 1)
-	if(!M || !M.changeling)
+/datum/component/antag/changeling/proc/purchasePower(var/datum/mind/M, var/Pname, var/remake_verbs = 1)
+	if(!M)
 		return
 
 	var/datum/power/changeling/Thepower = Pname

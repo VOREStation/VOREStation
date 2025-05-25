@@ -13,7 +13,7 @@
 	set name = "Toggle Digital Camoflague"
 	set desc = "The AI can no longer track us, but we will look different if examined.  Has a constant cost while active."
 
-	var/datum/changeling/changeling = changeling_power()
+	var/datum/component/antag/changeling/changeling = changeling_power()
 	if(!changeling)
 		return 0
 

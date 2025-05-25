@@ -14,7 +14,7 @@
 	set desc = "Shape our vocal glands to form a voice of someone we choose. We cannot regenerate chemicals when mimicing."
 
 
-	var/datum/changeling/changeling = changeling_power()
+	var/datum/component/antag/changeling/changeling = changeling_power()
 	if(!changeling)	return
 
 	if(changeling.mimicing)

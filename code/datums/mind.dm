@@ -41,7 +41,6 @@
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
 	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
@@ -78,7 +77,7 @@
 	if(current)					//remove ourself from our old body's mind variable
 		if(changeling)
 			current.remove_changeling_powers()
-			remove_verb(current, /datum/changeling/proc/EvolutionMenu)
+			remove_verb(current, /datum/component/antag/changeling/proc/EvolutionMenu)
 		current.mind = null
 
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable

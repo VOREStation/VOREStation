@@ -63,7 +63,7 @@
 		expire()
 		return
 
-	var/datum/changeling/changeling = L.changeling_power(0,0,100,CONSCIOUS)
+	var/datum/component/antag/changeling/changeling = L.changeling_power(0,0,100,CONSCIOUS)
 
 	if(!changeling)
 		expire()
@@ -85,7 +85,7 @@
 		L = holder
 
 	if(L)
-		var/datum/changeling/changeling = L.changeling_power(0,0,100,CONSCIOUS)
+		var/datum/component/antag/changeling/changeling = L.changeling_power(0,0,100,CONSCIOUS)
 
 		if(changeling)
 			changeling.thermal_sight = FALSE

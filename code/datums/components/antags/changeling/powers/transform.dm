@@ -10,7 +10,7 @@
 	set category = "Changeling"
 	set name = "Transform (5)"
 
-	var/datum/changeling/changeling = changeling_power(5,1,0)
+	var/datum/component/antag/changeling/changeling = changeling_power(5,1,0)
 	if(!changeling)	return
 
 	if(!isturf(loc))

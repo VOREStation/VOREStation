@@ -81,7 +81,7 @@
 	var/text = print_player_lite(ply)
 
 	if(ply.changeling)
-		var/datum/changeling/ling_datum = ply.changeling
+		var/datum/component/antag/changeling/ling_datum = ply.changeling
 		text += " (had [ling_datum.max_geneticpoints] genomes)"
 		text += "<br>Bought [english_list(ling_datum.purchased_powers_history)]."
 
