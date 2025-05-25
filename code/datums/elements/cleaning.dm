@@ -1,30 +1,37 @@
+/datum/element/cleaning
+
 /datum/element/cleaning/Attach(datum/target)
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(Clean))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(clean))
 
 /datum/element/cleaning/Detach(datum/target)
 	. = ..()
 	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 
-/datum/element/cleaning/proc/Clean(datum/source)
+/datum/element/cleaning/proc/clean(datum/source)
 	SIGNAL_HANDLER
+
 	var/atom/movable/AM = source
 	var/turf/tile = AM.loc
 	if(!isturf(tile))
 		return
 
 	tile.wash(CLEAN_WASH)
-	for(var/A in tile)
-		// Clean small items that are lying on the ground
-		if(isitem(A))
-			var/obj/item/I = A
-			if(I.w_class <= ITEMSIZE_SMALL && !ismob(I.loc))
-				I.wash(CLEAN_WASH)
-		// Clean humans that are lying down
-		else if(ishuman(A))
-			var/mob/living/carbon/human/cleaned_human = A
-			if(cleaned_human.lying)
-				cleaned_human.wash(CLEAN_WASH)
-				to_chat(cleaned_human, span_danger("[AM] cleans your face!"))
+
+	for(var/atom/cleaned as anything in tile)
+		if(isitem(cleaned))
+			var/obj/item/cleaned_item = cleaned
+			if(cleaned_item.w_class <= ITEMSIZE_SMALL)
+				cleaned_item.wash(CLEAN_SCRUB)
+			continue
+		if(istype(cleaned, /obj/effect/decal/cleanable))
+			var/obj/effect/decal/cleanable/cleaned_decal = cleaned
+			cleaned_decal.wash(CLEAN_SCRUB)
+		if(!ishuman(cleaned))
+			continue
+		var/mob/living/carbon/human/cleaned_human = cleaned
+		if(cleaned_human.lying)
+			cleaned_human.wash(CLEAN_SCRUB)
+			to_chat(cleaned_human, span_danger("[AM] washes your face!"))
