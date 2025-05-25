@@ -502,6 +502,7 @@
 #include "code\datums\components\recursive_move.dm"
 #include "code\datums\components\resize_guard.dm"
 #include "code\datums\components\swarm.dm"
+#include "code\datums\components\antags\antag.dm"
 #include "code\datums\components\crafting\crafting.dm"
 #include "code\datums\components\crafting\crafting_external.dm"
 #include "code\datums\components\crafting\recipes.dm"
