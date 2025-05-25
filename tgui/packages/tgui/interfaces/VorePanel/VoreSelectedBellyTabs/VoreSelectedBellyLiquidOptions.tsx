@@ -44,7 +44,6 @@ export const VoreSelectedBellyLiquidOptions = (props: {
               tooltip={
                 'These are the settings for liquid bellies, every belly has a liquid storage.'
               }
-              content={show_liq ? 'Liquids On' : 'Liquids Off'}
             />
           </Stack.Item>
         </Stack>

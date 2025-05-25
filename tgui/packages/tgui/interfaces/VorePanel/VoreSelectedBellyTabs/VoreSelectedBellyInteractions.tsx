@@ -35,7 +35,6 @@ export const VoreSelectedBellyInteractions = (props: {
               subAction="b_escapable"
               editMode={editMode}
               active={!!escapable}
-              content={escapable ? 'Interactions On' : 'Interactions Off'}
               tooltip={
                 "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, and you can change them to whatever you see fit. " +
                 "Setting them to 0% will disable the possibility of that interaction. These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) " +
@@ -202,11 +201,6 @@ export const VoreSelectedBellyInteractions = (props: {
               subAction="b_autotransfer_enabled"
               editMode={editMode}
               active={!!escapable}
-              content={
-                'Auto-Transfer ' +
-                (autotransfer_enabled ? 'En' : 'Dis') +
-                'abled'
-              }
               tooltip={
                 'Allows you to setup auto transfer options for this belly. So that prey is automatically moved depending on a timer or content count.'
               }
