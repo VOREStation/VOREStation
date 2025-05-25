@@ -79,7 +79,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
 	var/list/body_markings_genetic = list()
-	var/list/body_descriptors = null
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
 // Make a copy of this strand.
@@ -191,12 +190,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.offset_override = character.offset_override
 	src.synth_markings = character.synth_markings
 	src.custom_speech_bubble = character.custom_speech_bubble
-	/* Currently not implemented on virgo
 	src.species_sounds = character.species.species_sounds
 	src.gender_specific_species_sounds = character.species.gender_specific_species_sounds
 	src.species_sounds_male = character.species.species_sounds_male
 	src.species_sounds_female = character.species.species_sounds_female
-	*/
 	src.grad_style = character.grad_style
 	src.r_grad = character.r_grad
 	src.g_grad = character.g_grad
