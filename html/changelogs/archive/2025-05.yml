@@ -206,3 +206,10 @@
   - code_imp: xgm gas_data is now a GLOB
   Willburd:
   - bugfix: Capsaicin no longer causes toxin damage when eaten
+2025-05-25:
+  ShadowLarkens:
+  - bugfix: qdeleted new_players causing havoc
+  - qol: Entire character setup menu rewritten in TGUI
+  Willburd:
+  - rscadd: Gene scanner tool for genetics to detect traits in monkeys and humans.
+  - qol: Virus extrapolator not being store-able in the medical belt and pouch

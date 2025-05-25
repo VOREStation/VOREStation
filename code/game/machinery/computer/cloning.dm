@@ -422,7 +422,6 @@
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages
 	R.gender = subject.gender
-	R.body_descriptors = subject.descriptors
 	R.flavor = subject.flavor_texts.Copy()
 	for(var/datum/modifier/mod in subject.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
