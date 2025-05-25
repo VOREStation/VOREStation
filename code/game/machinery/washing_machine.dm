@@ -86,7 +86,7 @@
 	set category = "Object"
 	set src in usr.loc
 
-	if(state in list(1,3,6) && do_after(usr, 20))
+	if(state in list(1,3,6) && do_after(user, 20))
 		usr.loc = src.loc
 
 /obj/machinery/washing_machine/update_icon()
