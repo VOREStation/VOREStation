@@ -53,6 +53,7 @@
 	. = ..()
 
 /datum/component/gargoyle/proc/unpause()
+	SIGNAL_HANDLER
 	if (!paused || transformed)
 		paused = FALSE
 		paused_loc = null

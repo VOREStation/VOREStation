@@ -11,16 +11,6 @@
 	desc = "Red and gritty."
 	icon = 'icons/turf/flooring/ironsand_vr.dmi'
 	icon_base = "ironsand1"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg',
-		'sound/effects/footstep/MedDirt1.ogg',
-		'sound/effects/footstep/MedDirt2.ogg',
-		'sound/effects/footstep/MedDirt3.ogg',
-		'sound/effects/footstep/MedDirt4.ogg'))
 
 /turf/simulated/floor/outdoors/ironsand/Initialize(mapload)
 	var/possiblesands = list(

@@ -49,16 +49,6 @@
 	if(!T)
 		return PROXIMITY_OFF_CAMERANET
 
-	// Security is also a concern, so we need to see if any cameras are in use.
-	// Note that this will trigger upon the security console being used, regardless if someone is actually watching,
-	// because there isn't a nice way to test if someone is actually looking.  Probably better that way too.
-	var/list/our_local_area = range(range_alert, T)
-	for(var/obj/machinery/camera/C in our_local_area)
-		if(C.camera_computers_using_this.len) // Only check cameras actively being used.
-			var/list/their_local_area = C.can_see(range_alert)
-			if(T in their_local_area)
-				return PROXIMITY_ON_SCREEN
-
 	// Now for the somewhat harder AI cameranet checks.
 
 	// Check if we are even on the cameranet.

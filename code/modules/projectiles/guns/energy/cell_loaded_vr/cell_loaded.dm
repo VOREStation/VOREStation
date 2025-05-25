@@ -15,7 +15,7 @@
 
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 6, TECH_MAGNET = 4)
 
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 
 	load_method = MAGAZINE //Nyeh heh hehhh.
 	magazine_type = null

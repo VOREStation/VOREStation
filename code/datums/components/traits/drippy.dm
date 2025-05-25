@@ -24,6 +24,8 @@
 		return
 	if(owner.stat == DEAD)
 		return
+	if(owner.inStasisNow())
+		return
 	var/turf/T = get_turf(owner.loc)
 	if(!isturf(T))
 		return
@@ -63,5 +65,6 @@
 
 
 /datum/component/drippy/Destroy(force = FALSE)
+	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 	owner = null
 	. = ..()

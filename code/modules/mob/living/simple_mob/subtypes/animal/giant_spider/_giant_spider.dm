@@ -124,6 +124,10 @@
 	pain_emote_1p = list("chitter", "click")
 	pain_emote_3p = list("chitters", "clicks")
 
+	var/warning_warmup = 2 SECONDS // How long the leap telegraphing is.
+	var/warning_sound = 'sound/weapons/spiderlunge.ogg'
+
+
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/swarming)
@@ -160,6 +164,54 @@
 
 	if(poison_per_bite)
 		poison_per_bite *= 1.3
+
+// A different type of much weaker bite with different effects for event spawned spiders before becoming hostile
+/mob/living/simple_mob/animal/giant_spider/proc/warning_bite(mob/living/A)
+	set waitfor = FALSE
+	set_AI_busy(TRUE)
+
+	// Telegraph, since getting bitten suddenly feels bad.
+	do_windup_animation(A, warning_warmup)
+	addtimer(CALLBACK(src, PROC_REF(warning_leap), A), warning_warmup) // For the telegraphing.
+
+/mob/living/simple_mob/animal/giant_spider/proc/warning_leap(mob/living/A)
+	// Do the actual leap.
+	status_flags |= LEAPING // Lets us pass over everything.
+	visible_message(span_danger("\The [src] leaps at \the [A]!"))
+	throw_at(get_step(get_turf(A), get_turf(src)), 4, 1, src)
+	playsound(src, warning_sound, 75, 1)
+
+	addtimer(CALLBACK(src, PROC_REF(warning_finish), A), 0.5 SECONDS) // For the throw to complete. It won't hold up the AI ticker due to waitfor being false.
+
+/mob/living/simple_mob/animal/giant_spider/proc/warning_finish(mob/living/A)
+	if(status_flags & LEAPING)
+		status_flags &= ~LEAPING // Revert special passage ability.
+
+	. = FALSE
+
+	// Now for the bite.
+	var/mob/living/victim = null
+	for(var/mob/living/L in oview(1,src)) // So player-controlled spiders only need to click the tile to stun them.
+		if(L == src)
+			continue
+
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.check_shields(damage = 0, damage_source = src, attacker = src, def_zone = null, attack_text = "the leap"))
+				continue // We were blocked.
+
+		victim = L
+		break
+
+	if(victim)
+		A.reagents.add_reagent(REAGENT_ID_WARNINGTOXIN, poison_per_bite)
+		victim.visible_message(span_danger("\The [src] has bitten \the [victim]!"))
+		to_chat(victim, span_critical("\The [src] bites you and retreats!"))
+		. = TRUE
+
+	step_away(src,victim,3)
+
+	set_AI_busy(FALSE)
 
 /decl/mob_organ_names/spider
 	hit_zones = list("cephalothorax", "abdomen", "left forelegs", "right forelegs", "left hind legs", "right hind legs", "pedipalp", "mouthparts")

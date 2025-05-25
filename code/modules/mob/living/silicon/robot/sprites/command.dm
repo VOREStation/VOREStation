@@ -109,14 +109,14 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 
-/datum/robot_sprite/dogborg/command/smolraptorcommand
+/datum/robot_sprite/dogborg/command/smolraptor
 	name = "Small Raptor"
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_cc.dmi'
 	sprite_icon_state = "smolraptor"
-	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "Sit")
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
 /datum/robot_sprite/dogborg/tall/command/dullataurcommand
 	name = "Dullataur"

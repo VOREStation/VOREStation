@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added the ability to recolour material stacks (such as plastic). Some items crafted from stacks (such as curtains or beds) inherit the color variable of the stack, now you can actually recolour your stack to take advantage of this!"
