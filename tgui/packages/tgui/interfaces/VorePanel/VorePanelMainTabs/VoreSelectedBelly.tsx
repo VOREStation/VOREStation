@@ -46,6 +46,7 @@ export const VoreSelectedBelly = (props: {
     belly_visual_data,
     belly_interaction_data,
     contents,
+    content_length,
   } = belly;
 
   const [targetBelly, setTargetBelly] = useState('');
@@ -117,7 +118,7 @@ export const VoreSelectedBelly = (props: {
               onClick={() => act('change_vore_tab', { tab: index })}
             >
               {tabToNames[index]}
-              {!!(index === 6) && '(' + contents.length + ')'}
+              {!!(index === 6) && '(' + content_length + ')'}
             </Tabs.Tab>
           ))}
         </Tabs>

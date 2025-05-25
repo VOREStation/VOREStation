@@ -12,7 +12,7 @@ import { stats } from '../constants';
 import type { contentData, DropdownEntry } from '../types';
 
 export const VoreContentsPanel = (props: {
-  contents: contentData[];
+  contents?: contentData[] | null;
   targetBelly?: string;
   onTargetBely?: React.Dispatch<React.SetStateAction<string>>;
   bellyDropdownNames?: DropdownEntry[];
@@ -24,7 +24,7 @@ export const VoreContentsPanel = (props: {
   const { act } = useBackend();
 
   const {
-    contents,
+    contents = [],
     targetBelly = '',
     onTargetBely,
     bellyDropdownNames,
@@ -95,7 +95,7 @@ export const VoreContentsPanel = (props: {
       )}
       {(show_pictures && !icon_overflow && (
         <Stack wrap="wrap" justify="center" align="center">
-          {contents.map((thing) => (
+          {contents?.map((thing) => (
             <Stack.Item key={thing.ref} basis="32%">
               <Button
                 width="64px"
@@ -130,7 +130,7 @@ export const VoreContentsPanel = (props: {
         </Stack>
       )) || (
         <LabeledList>
-          {contents.map((thing) => (
+          {contents?.map((thing) => (
             <LabeledList.Item key={thing.ref} label={thing.name}>
               <Button
                 fluid

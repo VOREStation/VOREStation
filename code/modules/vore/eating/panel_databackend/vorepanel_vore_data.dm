@@ -274,53 +274,36 @@
 			)
 			selected_list["belly_interaction_data"] = belly_interaction_data
 
-		// TODO wipe this list-....
-		selected_list += list(list(
-			// "messages" // TODO
-			"nutrition_ex" = owner.nutrition_message_visible,
-			"weight_ex" = owner.weight_message_visible,
-			"custom_reagentcolor" = selected.custom_reagentcolor,
-			"custom_reagentalpha" = selected.custom_reagentalpha,
-			"liquid_overlay" = selected.liquid_overlay,
-			"max_liquid_level" = selected.max_liquid_level,
-			"reagent_touches" = selected.reagent_touches,
-			"mush_overlay" = selected.mush_overlay,
-			"mush_color" = selected.mush_color,
-			"mush_alpha" = selected.mush_alpha,
-			"max_mush" = selected.max_mush,
-			"min_mush" = selected.min_mush,
-			"item_mush_val" = selected.item_mush_val,
-			"metabolism_overlay" = selected.metabolism_overlay,
-			"metabolism_mush_ratio" = selected.metabolism_mush_ratio,
-			"max_ingested" = selected.max_ingested,
-			"custom_ingested_color" = selected.custom_ingested_color,
-			"custom_ingested_alpha" = selected.custom_ingested_alpha,
-			//"marking_to_add" = selected.marking_to_add
-		))
 
-		var/list/selected_contents = list()
+		var/list/selected_contents
+		var/total_content_count = 0
 		for(var/O in selected)
-			var/list/info = list(
-				"name" = "[O]",
-				"absorbed" = FALSE,
-				"stat" = 0,
-				"ref" = "\ref[O]",
-				"outside" = TRUE,
-			)
-			if(show_pictures) //disables icon mode
-				if(selected.contents.len <= max_icon_content)
-					icon_overflow = FALSE
-					info["icon"] = cached_nom_icon(O)
-				else
-					icon_overflow = TRUE
+			total_content_count++
+			if(active_vore_tab == CONTENTS_TAB)
+				var/list/info = list(
+					"name" = "[O]",
+					"absorbed" = FALSE,
+					"stat" = 0,
+					"ref" = "\ref[O]",
+					"outside" = TRUE,
+				)
+				if(show_pictures) //disables icon mode
+					if(selected.contents.len <= max_icon_content)
+						icon_overflow = FALSE
+						info["icon"] = cached_nom_icon(O)
+					else
+						icon_overflow = TRUE
 
-			if(isliving(O))
-				var/mob/living/M = O
-				info["stat"] = M.stat
-				if(M.absorbed)
-					info["absorbed"] = TRUE
-			selected_contents.Add(list(info))
-		selected_list["contents"] = selected_contents
+				if(isliving(O))
+					var/mob/living/M = O
+					info["stat"] = M.stat
+					if(M.absorbed)
+						info["absorbed"] = TRUE
+				LAZYADD(selected_contents, list(info))
+		if(active_vore_tab == CONTENTS_TAB)
+			selected_list["contents"] = selected_contents
+
+		selected_list["content_length"] = total_content_count
 
 		// liquid belly options
 		selected_list["show_liq"] = selected.show_liquids

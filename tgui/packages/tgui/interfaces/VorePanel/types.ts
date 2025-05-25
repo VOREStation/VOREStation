@@ -46,15 +46,6 @@ export type insideData = {
   contents?: contentData[];
 };
 
-export type contentData = {
-  name: string;
-  absorbed: BooleanLike;
-  stat: number;
-  ref: string;
-  outside: BooleanLike;
-  icon: string;
-};
-
 export type bellyData = {
   name: string;
   ref: string;
@@ -190,6 +181,15 @@ export type bellyInteractionData = {
   autotransfer: autotransferData;
 };
 
+export type contentData = {
+  name: string;
+  absorbed: BooleanLike;
+  stat: number;
+  ref: string;
+  outside: BooleanLike;
+  icon: string;
+};
+
 export type siliconeBellyControls = {
   silicon_belly_overlay_preference: string;
   belly_sprite_option_shown: BooleanLike;
@@ -204,43 +204,11 @@ export type selectedData = {
   belly_sound_data?: bellySoundData;
   belly_visual_data?: bellyVisualData;
   belly_interaction_data?: bellyInteractionData;
+  contents?: contentData[] | null;
+  content_length: number;
 
-  can_taste: BooleanLike;
-  is_feedable: BooleanLike;
-  display_absorbed_examine: BooleanLike;
-  shrink_grow_size: number;
-  emote_time: number;
-  emote_active: BooleanLike;
-  selective_preference: string;
-  nutrition_ex: BooleanLike;
-  weight_ex: BooleanLike;
-  eating_privacy_local: string;
-  silicon_belly_overlay_preference: string;
-  custom_reagentcolor: string;
-  custom_reagentalpha: number;
-  liquid_overlay: BooleanLike;
-  max_liquid_level: number;
-  reagent_touches: BooleanLike;
-  mush_overlay: BooleanLike;
-  mush_color: string;
-  mush_alpha: number;
-  max_mush: number;
-  min_mush: number;
-  item_mush_val: number;
-  metabolism_overlay: BooleanLike;
-  metabolism_mush_ratio: number;
-  max_ingested: number;
-  custom_ingested_color: string;
-  custom_ingested_alpha: number;
-  belly_sprite_option_shown: BooleanLike;
-  tail_colouration: BooleanLike;
-  tail_extra_overlay: BooleanLike;
-  tail_extra_overlay2: BooleanLike;
-  contents: contentData[];
   show_liq: BooleanLike;
   liq_interacts: liqInteractData;
-  show_liq_fullness: BooleanLike;
-  liq_messages: liqMessageData;
 };
 
 export type interactData = {
@@ -299,19 +267,6 @@ type liqInteractData = {
   max_ingested: number;
   custom_ingested_color: string;
   custom_ingested_alpha: number;
-};
-
-type liqMessageData = {
-  liq_msg_toggle1: BooleanLike;
-  liq_msg_toggle2: BooleanLike;
-  liq_msg_toggle3: BooleanLike;
-  liq_msg_toggle4: BooleanLike;
-  liq_msg_toggle5: BooleanLike;
-  liq_msg1: BooleanLike;
-  liq_msg2: BooleanLike;
-  liq_msg3: BooleanLike;
-  liq_msg4: BooleanLike;
-  liq_msg5: BooleanLike;
 };
 
 export type prefData = {
