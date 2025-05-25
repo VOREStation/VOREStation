@@ -62,7 +62,7 @@ export const TelecommsLogBrowser = (props) => {
           </NoticeBox>
         )) ||
           (temp && temp.color !== 'bad' && (
-            <NoticeBox color="average">
+            <NoticeBox>
               <Box inline verticalAlign="middle">
                 {temp.text}
               </Box>

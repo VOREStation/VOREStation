@@ -127,9 +127,7 @@ export const PathogenicIsolator = (props) => {
       <ComplexModal maxHeight="100%" maxWidth="95%" />
       <Window.Content scrollable>
         {(isolating && (
-          <NoticeBox color="average">
-            The Isolator is currently isolating...
-          </NoticeBox>
+          <NoticeBox>The Isolator is currently isolating...</NoticeBox>
         )) ||
           ''}
         <Tabs>

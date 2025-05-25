@@ -50,7 +50,7 @@ export const BotanyEditor = (props) => {
                 Eject Loaded Disk
               </Button>
             </Box>
-          )) || <NoticeBox color="average">No disk loaded.</NoticeBox>}
+          )) || <NoticeBox>No disk loaded.</NoticeBox>}
         </Section>
         <Section title="Loaded Material">
           {(loaded && (
@@ -65,9 +65,7 @@ export const BotanyEditor = (props) => {
                 Eject Target
               </Button>
             </Box>
-          )) || (
-            <NoticeBox color="average">No target seed packet loaded.</NoticeBox>
-          )}
+          )) || <NoticeBox>No target seed packet loaded.</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>
