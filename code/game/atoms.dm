@@ -824,13 +824,13 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	SEND_SIGNAL(src, COMSIG_ATOM_EXTRAPOLATOR_ACT, user, extrapolator, dry_run, .)
 
 /**
-  * Wash this atom
-  *
-  * This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
-  * Returns true if any washing was necessary and thus performed
-  * Arguments:
-  * * clean_types: any of the CLEAN_ constants
-  */
+*	Wash this atom
+*
+*	This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
+*	Returns true if any washing was necessary and thus performed
+*	Arguments:
+*	clean_types: any of the CLEAN_ constants
+*/
 /atom/proc/wash(clean_types)
 	SHOULD_CALL_PARENT(TRUE)
 
