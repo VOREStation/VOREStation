@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - code_imp: "Prepared signal handling code for future work"

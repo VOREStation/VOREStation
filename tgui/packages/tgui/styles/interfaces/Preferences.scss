@@ -1,0 +1,33 @@
+.PreferencesMenu__SaveNotif {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  z-index: 10;
+  height: 100px;
+  overflow: hidden;
+  color: #00ba00;
+  user-select: none;
+}
+
+@keyframes slide-in-out {
+  0% {
+    transform: translate(0, 100px);
+  }
+
+  50% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, -100px);
+  }
+}
+
+.PreferencesMenu__SaveNotif__Inner {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 16px;
+  padding: 16px;
+  animation: slide-in-out 1s ease-in-out forwards;
+}

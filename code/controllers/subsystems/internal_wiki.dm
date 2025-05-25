@@ -955,14 +955,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(S.consume_gasses && S.consume_gasses.len > 0)
 		var/list/consumed = list()
 		for(var/CG in S.consume_gasses)
-			consumed["[gas_data.name[CG]]"] = S.consume_gasses[CG]
+			consumed["[GLOB.gas_data.name[CG]]"] = S.consume_gasses[CG]
 		data["gas_consumed"] = consumed
 
 	data["gas_exuded"] = null
 	if(S.exude_gasses && S.exude_gasses.len > 0)
 		var/list/exude = list()
 		for(var/EG in S.exude_gasses)
-			exude["[gas_data.name[EG]]"] = S.exude_gasses[EG]
+			exude["[GLOB.gas_data.name[EG]]"] = S.exude_gasses[EG]
 		data["gas_exuded"] = exude
 
 	data["mutations"] = null

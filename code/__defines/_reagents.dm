@@ -1258,6 +1258,8 @@
 #define REAGENT_ID_PHORON "phoron"
 #define REAGENT_SPIDERTOXIN "Spidertoxin"
 #define REAGENT_ID_SPIDERTOXIN "spidertoxin"
+#define REAGENT_WARNINGTOXIN "Warningtoxin"
+#define REAGENT_ID_WARNINGTOXIN "warningtoxin"
 #define REAGENT_LEAD "Lead"
 #define REAGENT_ID_LEAD "lead"
 #define REAGENT_PLASTICIDE "Plasticide"
