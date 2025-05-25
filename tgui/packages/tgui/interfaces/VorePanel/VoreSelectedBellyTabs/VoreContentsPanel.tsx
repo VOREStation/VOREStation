@@ -1,12 +1,21 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Image, LabeledList, Stack } from 'tgui-core/components';
+import {
+  Button,
+  Dropdown,
+  Image,
+  LabeledList,
+  Stack,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { stats } from '../../constants';
-import type { contentData } from '../../types';
+import { stats } from '../constants';
+import type { contentData, DropdownEntry } from '../types';
 
 export const VoreContentsPanel = (props: {
   contents: contentData[];
+  targetBelly?: string;
+  onTargetBely?: React.Dispatch<React.SetStateAction<string>>;
+  bellyDropdownNames?: DropdownEntry[];
   belly?: string;
   outside?: BooleanLike;
   show_pictures: BooleanLike;
@@ -16,30 +25,78 @@ export const VoreContentsPanel = (props: {
 
   const {
     contents,
+    targetBelly,
+    onTargetBely,
+    bellyDropdownNames,
     belly,
     outside = false,
     show_pictures,
     icon_overflow,
   } = props;
 
+  function bellyValueToName(value: string) {
+    const bellyName = bellyDropdownNames
+      ?.map((entry) => {
+        if (entry.value === value) {
+          return entry.displayText;
+        }
+      })
+      .filter((value) => value !== undefined);
+    if (Array.isArray(bellyName) && bellyName.length) {
+      return bellyName[0];
+    }
+    return '';
+  }
+
   return (
     <>
-      {outside ? (
-        <Button
-          textAlign="center"
-          fluid
-          mb={1}
-          onClick={() => act('pick_from_outside', { pickall: true })}
-        >
-          All
-        </Button>
-      ) : (
-        ''
+      {!!outside && (
+        <Stack>
+          <Stack.Item grow>
+            <Button.Confirm
+              textAlign="center"
+              confirmContent="Confirm Eject All?"
+              fluid
+              mb={1}
+              onClick={() =>
+                act('pick_from_outside', { pickall: true, intent: 'eject_all' })
+              }
+            >
+              Eject All
+            </Button.Confirm>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Button.Confirm
+              textAlign="center"
+              confirmContent="Confirm Move All?"
+              fluid
+              mb={1}
+              onClick={() =>
+                act('pick_from_outside', {
+                  pickall: true,
+                  intent: 'move_all',
+                  val: targetBelly,
+                })
+              }
+            >
+              Move All
+            </Button.Confirm>
+          </Stack.Item>
+          {!!bellyDropdownNames && !!onTargetBely && !!targetBelly && (
+            <Stack.Item>
+              <Dropdown
+                onSelected={(value) => onTargetBely(value)}
+                options={bellyDropdownNames!}
+                selected={bellyValueToName(targetBelly)}
+              />
+            </Stack.Item>
+          )}
+        </Stack>
       )}
       {(show_pictures && !icon_overflow && (
         <Stack wrap="wrap" justify="center" align="center">
           {contents.map((thing) => (
-            <Stack.Item key={thing.name} basis="32%">
+            <Stack.Item key={thing.ref} basis="32%">
               <Button
                 width="64px"
                 color={thing.absorbed ? 'purple' : stats[thing.stat]}
@@ -73,8 +130,8 @@ export const VoreContentsPanel = (props: {
         </Stack>
       )) || (
         <LabeledList>
-          {contents.map((thing, i) => (
-            <LabeledList.Item key={i} label={thing.name}>
+          {contents.map((thing) => (
+            <LabeledList.Item key={thing.ref} label={thing.name}>
               <Button
                 fluid
                 mt={-1}

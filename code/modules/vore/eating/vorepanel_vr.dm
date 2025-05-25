@@ -900,12 +900,9 @@
 
 	//Handle the [All] choice. Ugh inelegant. Someone make this pretty.
 	if(params["pickall"])
-		intent = tgui_alert(user, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
+		intent = params["intent"]
 		switch(intent)
-			if("Cancel")
-				return TRUE
-
-			if("Eject all")
+			if("eject_all")
 				if(host.stat)
 					to_chat(user,span_warning("You can't do that in your state!"))
 					return TRUE
@@ -913,12 +910,12 @@
 				host.vore_selected.release_all_contents()
 				return TRUE
 
-			if("Move all")
+			if("move_all")
 				if(host.stat)
 					to_chat(user,span_warning("You can't do that in your state!"))
 					return TRUE
 
-				var/obj/belly/choice = tgui_input_list(user, "Move all where?","Select Belly", host.vore_organs)
+				var/obj/belly/choice = locate(params["val"])
 				if(!choice)
 					return FALSE
 
@@ -928,7 +925,7 @@
 					to_chat(host.vore_selected.get_belly_surrounding(target.contents),span_warning("You're squished along with [target] from [host]'s [lowertext(host.vore_selected)] to their [lowertext(choice.name)]!"))
 					host.vore_selected.transfer_contents(target, choice, 1)
 				return TRUE
-		return
+		return FALSE
 
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))

@@ -4,7 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { digestModeToPreyMode, reagentToColor } from '../constants';
 import { digestModeToColor } from '../constants';
 import type { insideData } from '../types';
-import { VoreContentsPanel } from '../VoreSelectedBellyTabs/ContentTab/VoreContentsPanel';
+import { VoreContentsPanel } from '../VoreSelectedBellyTabs/VoreContentsPanel';
 
 export const VoreInsidePanel = (props: {
   inside: insideData;
@@ -43,7 +43,7 @@ export const VoreInsidePanel = (props: {
       <Box color="red" inline>
         {belly_name}
       </Box>
-      {liq_lvl! > 0 ? (
+      {!!liq_lvl && liq_lvl > 0 && (
         <>
           ,&nbsp;
           <Box color="yellow" inline>
@@ -54,8 +54,6 @@ export const VoreInsidePanel = (props: {
             {liuq_name}
           </Box>
         </>
-      ) : (
-        ''
       )}
       &nbsp;
       <Box color="yellow" inline>
@@ -67,17 +65,18 @@ export const VoreInsidePanel = (props: {
       </Box>
       &nbsp;
       <Box color="label">{desc}</Box>
-      {(contents!.length && (
+      {contents && contents.length ? (
         <Collapsible title="Belly Contents">
           <VoreContentsPanel
-            contents={contents!}
+            contents={contents}
             belly={ref}
             show_pictures={show_pictures}
             icon_overflow={icon_overflow}
           />
         </Collapsible>
-      )) ||
-        'There is nothing else around you.'}
+      ) : (
+        'There is nothing else around you.'
+      )}
     </Section>
   );
 };

@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
 import type { DropdownEntry, hostMob, selectedData } from '../types';
-import { VoreContentsPanel } from '../VoreSelectedBellyTabs/ContentTab/VoreContentsPanel';
 import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/DescriptionTab/VoreSelectedBellyDescriptions';
+import { VoreContentsPanel } from '../VoreSelectedBellyTabs/VoreContentsPanel';
 import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
 import { VoreSelectedBellyInteractions } from '../VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
 import { VoreSelectedBellyLiquidOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';
@@ -46,6 +47,8 @@ export const VoreSelectedBelly = (props: {
     belly_interaction_data,
     contents,
   } = belly;
+
+  const [targetBelly, setTargetBelly] = useState('');
 
   const tabs: (React.JSX.Element | undefined)[] = [];
 
@@ -93,6 +96,9 @@ export const VoreSelectedBelly = (props: {
   tabs[6] = (
     <VoreContentsPanel
       outside
+      targetBelly={targetBelly}
+      onTargetBely={setTargetBelly}
+      bellyDropdownNames={bellyDropdownNames}
       contents={contents}
       show_pictures={show_pictures}
       icon_overflow={icon_overflow}
