@@ -29,7 +29,7 @@
 	//When procs are used
 	RegisterSignal(owner, COMSIG_CHECK_SILK_AMOUNT, PROC_REF(check_silk_amount))
 	RegisterSignal(owner, COMSIG_WEAVE_STRUCTURE, PROC_REF(weave_structure))
-	RegisterSignal(owner, COMSIG_TOGGLE_SILK_PRODUCTION, PROC_REF(weave_item))
+	RegisterSignal(owner, COMSIG_TOGGLE_SILK_PRODUCTION, PROC_REF(toggle_silk_production))
 	RegisterSignal(owner, COMSIG_WEAVE_ITEM, PROC_REF(weave_item))
 	RegisterSignal(owner, COMSIG_SET_SILK_COLOR, PROC_REF(set_silk_color))
 
