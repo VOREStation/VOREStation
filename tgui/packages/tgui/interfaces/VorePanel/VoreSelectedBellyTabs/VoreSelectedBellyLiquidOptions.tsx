@@ -61,7 +61,7 @@ export const VoreSelectedBellyLiquidOptions = (props: {
                   action="liq_set_attribute"
                   subAction="b_liq_reagent_addons"
                   tooltipList={liquidToTooltip}
-                  tooltip='Liquid production modes as soon as "Produce Liquids" is turned on.'
+                  tooltip='Liquid production modes to apply as soon as "Produce Liquids" is turned on.'
                 />
               </LabeledList.Item>
             </LabeledList>
