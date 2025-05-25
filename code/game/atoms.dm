@@ -439,17 +439,6 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
-		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-
-		for(var/datum/disease/D in M.GetViruses())
-			this.viruses |= D.Copy()
-
-		// Make toxins vomit look different
-		if(toxvomit)
-			this.icon_state = "vomittox_[pick(1,4)]"
-
 /atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	wash(CLEAN_WASH)
 	R.reagents.splash(src, 1)
