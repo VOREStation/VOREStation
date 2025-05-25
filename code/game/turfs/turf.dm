@@ -495,8 +495,8 @@
 		H.ingested.remove_reagent(R, min(R.volume, 10))
 
 /**
-  * Called when this turf is being washed. Washing a turf will also wash any mopable floor decals
-  */
+* 	Called when this turf is being washed. Washing a turf will also wash any mopable floor decals
+*/
 /turf/wash(clean_types)
 	. = ..()
 
