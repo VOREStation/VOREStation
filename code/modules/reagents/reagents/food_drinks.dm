@@ -802,7 +802,7 @@
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
+	// Do not call parent, we don't want this absorbed into our bloodstream!
 	handle_spicy(M, alien, removed)
 
 /datum/reagent/proc/handle_spicy(var/mob/living/carbon/M, var/alien, var/removed)

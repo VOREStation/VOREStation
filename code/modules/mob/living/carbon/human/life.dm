@@ -866,7 +866,7 @@
 
 	//Check for contaminants before anything else because we don't want to skip it.
 	for(var/g in environment.gas)
-		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+		if(GLOB.gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > GLOB.gas_data.overlay_limit[g] + 1)
 			pl_effects()
 			break
 

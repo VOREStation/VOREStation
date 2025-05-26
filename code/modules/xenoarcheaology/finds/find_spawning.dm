@@ -617,21 +617,14 @@
 			//However, in that case Initialize will set the maximum volume to the volume for us, so we don't need to do anything.
 			S.reagents?.maximum_volume = 15
 			item_type = new_item.name
-			//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
-			var/list/banned_chems = list(
-				REAGENT_ID_ADMINORDRAZINE,
-				REAGENT_ID_NUTRIMENT,
-				REAGENT_ID_MACROCILLIN,
-				REAGENT_ID_MICROCILLIN,
-				REAGENT_ID_NORMALCILLIN,
-				REAGENT_ID_MAGICDUST
-				)
 			var/additional_chems = 5 //5 random chems added to the syringe! 15u of RANDOM stuff! (I tried to keep this 30, but this was...Horribly bugged. There is no icon_state for 16-30, so the icon was invisible when filled.)
 			for(var/x=1;x<=additional_chems;x++)
 				var/new_chem = pick(SSchemistry.chemical_reagents)
-				if(new_chem in banned_chems)
+				var/list/currently_banned_chems = list()
+				currently_banned_chems += GLOB.obtainable_chemical_blacklist
+				if(new_chem in currently_banned_chems)
 					continue
-				banned_chems += new_chem
+				currently_banned_chems += new_chem
 				S.reagents.add_reagent(new_chem, 3)
 
 		if(ARCHAEO_RING)
