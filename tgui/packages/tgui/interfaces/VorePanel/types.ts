@@ -333,13 +333,22 @@ export type prefData = {
   soulcatcher_allow_takeover: BooleanLike;
 };
 
+export type scMessageData = {
+  sc_subtab: string;
+  possible_messages: string[];
+  max_length: number;
+  active_message: string;
+  set_action: string;
+  tooltip: string;
+};
+
 export type soulcatcherData = {
   active: BooleanLike;
   name: string;
   caught_souls: DropdownEntry[];
-  selected_sfx: string;
+  selected_sfx: string | null;
   selected_soul: string;
-  interior_design: string;
+  sc_message_data: scMessageData;
   catch_self: BooleanLike;
   taken_over: BooleanLike;
   catch_prey: BooleanLike;

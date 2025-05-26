@@ -16,6 +16,9 @@
 #define BELLIES_MESSAGE_COMBINED 1024 * 10 + 18
 #define FLAVOR_MAX 400
 
+#define VORE_SC_MAX 2048
+#define VORE_SC_DESC_MAX 8192
+
 #define VORE_VERSION	2	//This is a Define so you don't have to worry about magic numbers.
 
 #define VPANEL_DESCRIPTION_TAB 0

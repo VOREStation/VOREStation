@@ -5,9 +5,9 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
 import type { DropdownEntry, hostMob, selectedData } from '../types';
-import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/DescriptionTab/VoreSelectedBellyDescriptions';
 import { VoreContentsPanel } from '../VoreSelectedBellyTabs/VoreContentsPanel';
 import { VoreSelectedBellyControls } from '../VoreSelectedBellyTabs/VoreSelectedBellyControls';
+import { VoreSelectedBellyDescriptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
 import { VoreSelectedBellyInteractions } from '../VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
 import { VoreSelectedBellyLiquidOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyLiquidOptions';
 import { VoreSelectedBellyOptions } from '../VoreSelectedBellyTabs/VoreSelectedBellyOptions';

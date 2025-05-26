@@ -1,5 +1,6 @@
+import type { ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Stack } from 'tgui-core/components';
+import { Box, Button, type Floating, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { VorePanelColorBox } from './VorePanelCommonElements';
@@ -14,6 +15,7 @@ export const VorePanelEditColor = (props: {
   alpha?: number;
   name_of?: string;
   tooltip?: string;
+  tooltipPosition?: ComponentProps<typeof Floating>['placement'];
   removePlaceholder?: boolean;
 }) => {
   const { act } = useBackend();
@@ -26,6 +28,7 @@ export const VorePanelEditColor = (props: {
     alpha,
     name_of,
     tooltip,
+    tooltipPosition,
     removePlaceholder,
   } = props;
 
@@ -59,6 +62,7 @@ export const VorePanelEditColor = (props: {
                 act(action, { attribute: subAction, val: value_of });
               }}
               tooltip={tooltip}
+              tooltipPosition={tooltipPosition}
             />
           )}
         </Stack.Item>

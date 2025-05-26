@@ -7,11 +7,11 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import type { bellyDescriptionData } from '../../types';
-import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
-import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
-import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
-import { VoreSelectedBellyDescriptionMatrix } from '../../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionMatrix';
+import type { bellyDescriptionData } from '../types';
+import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
+import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
+import { VoreSelectedBellyDescriptionMatrix } from './DescriptionTab/VoreSelectedBellyDescriptionMatrix';
 
 export const VoreSelectedBellyDescriptions = (props: {
   editMode: boolean;
@@ -204,7 +204,6 @@ export const VoreSelectedBellyDescriptions = (props: {
             </Stack.Item>
           </Stack>
         </Stack.Item>
-        <Stack.Divider />
         <Stack.Item grow>
           <VoreSelectedBellyDescriptionMatrix
             showAll={message_mode}

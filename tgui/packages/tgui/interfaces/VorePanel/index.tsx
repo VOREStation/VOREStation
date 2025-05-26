@@ -190,6 +190,8 @@ export const VorePanel = () => {
       our_bellies={our_bellies!}
       soulcatcher={soulcatcher!}
       abilities={abilities!}
+      toggleEditMode={setEditMode}
+      editMode={editMode}
     />
   );
   tabs[2] = (

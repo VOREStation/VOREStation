@@ -1,5 +1,12 @@
+import type { ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, NumberInput, Stack, Tooltip } from 'tgui-core/components';
+import {
+  Box,
+  type Floating,
+  NumberInput,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
 import { round, toFixed } from 'tgui-core/math';
 
 export const VorePanelEditNumber = (props: {
@@ -14,6 +21,7 @@ export const VorePanelEditNumber = (props: {
   unit?: string;
   color?: string;
   tooltip?: string;
+  tooltipPosition?: ComponentProps<typeof Floating>['placement'];
   digits?: number;
 }) => {
   const { act } = useBackend();
@@ -30,6 +38,7 @@ export const VorePanelEditNumber = (props: {
     unit,
     color,
     tooltip,
+    tooltipPosition,
     digits = 0,
   } = props;
 
@@ -54,7 +63,7 @@ export const VorePanelEditNumber = (props: {
       </Stack.Item>
       {tooltip && (
         <Stack.Item>
-          <Tooltip content={tooltip}>
+          <Tooltip content={tooltip} position={tooltipPosition}>
             <Box className="VorePanel__floatingButton">?</Box>
           </Tooltip>
         </Stack.Item>

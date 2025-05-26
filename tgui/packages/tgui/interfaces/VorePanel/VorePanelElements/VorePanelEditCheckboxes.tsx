@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Floating, Stack, Tooltip } from 'tgui-core/components';
 
@@ -10,10 +11,19 @@ export const VorePanelEditCheckboxes = (props: {
   subAction: string;
   tooltipList?: Record<string, string>;
   tooltip?: string;
+  tooltipPosition?: ComponentProps<typeof Floating>['placement'];
 }) => {
   const { act } = useBackend();
 
-  const { editMode, options, action, subAction, tooltipList, tooltip } = props;
+  const {
+    editMode,
+    options,
+    action,
+    subAction,
+    tooltipList,
+    tooltip,
+    tooltipPosition,
+  } = props;
 
   return (
     <Stack align="center">
@@ -48,7 +58,7 @@ export const VorePanelEditCheckboxes = (props: {
             </Floating>
           </Stack.Item>
           <Stack.Item>
-            <Tooltip content={tooltip}>
+            <Tooltip content={tooltip} position={tooltipPosition}>
               <Box className="VorePanel__floatingButton">?</Box>
             </Tooltip>
           </Stack.Item>

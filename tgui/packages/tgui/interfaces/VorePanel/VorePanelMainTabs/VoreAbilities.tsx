@@ -48,7 +48,7 @@ const SizeChange = (props: {
                 : { black: [0, 600] }
             }
             format={(value: number) => toFixed(value, 2) + '%'}
-            value={current_size * 100}
+            value={Math.round(current_size * 10000) / 100}
             minValue={minimum_size * 100}
             maxValue={maximum_size * 100}
             onChange={(e, value: number) =>

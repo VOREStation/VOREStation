@@ -8,10 +8,10 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike } from 'tgui-core/react';
 
-import { messageTabLabel } from '../constants';
-import type { bellyDescriptionData } from '../types';
-import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
-import { VorePanelEditTextArea } from '../VorePanelElements/VorePanelTextArea';
+import { messageTabLabel } from '../../constants';
+import type { bellyDescriptionData } from '../../types';
+import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VorePanelEditTextArea } from '../../VorePanelElements/VorePanelTextArea';
 
 export const VoreSelectedBellyDescriptionMatrix = (props: {
   showAll: BooleanLike;
