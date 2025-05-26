@@ -193,7 +193,7 @@ export const TraitComponent = (props: {
                     trait={traitPath}
                     prefKey={prefKey}
                     prefData={prefData}
-                    data={data[prefKey]}
+                    data={data ? data[prefKey] : undefined}
                   />
                 </LabeledList.Item>
               ),
@@ -213,6 +213,12 @@ export const TraitSubprefSelector = (props: {
 }) => {
   const { act } = useBackend();
   const { trait, prefKey, prefData, data } = props;
+
+  if (data === undefined) {
+    return (
+      <Box>Preference Error, please remove and readd this preference.</Box>
+    );
+  }
 
   switch (prefData[0]) {
     case TraitPrefType.TRAIT_PREF_TYPE_BOOLEAN:
