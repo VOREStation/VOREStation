@@ -13,7 +13,7 @@ import type { DropdownEntry } from '../types';
 
 export const VorePanelEditDropdown = (props: {
   action: string;
-  subAction: string;
+  subAction?: string;
   editMode: boolean;
   options: (string | DropdownEntry)[];
   entry: string;
@@ -29,7 +29,7 @@ export const VorePanelEditDropdown = (props: {
     editMode,
     options,
     action,
-    subAction,
+    subAction = '',
     color,
     icon,
     tooltip,

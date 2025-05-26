@@ -7,6 +7,7 @@ import type { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
 import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher';
+import { VoreUserGeneral } from './VorePanelMainTabs/VoreUserGeneral';
 import { VoreUserPreferences } from './VorePanelMainTabs/VoreUserPreferences';
 
 /**
@@ -166,6 +167,7 @@ export const VorePanel = () => {
     host_mobtype,
     unsaved_changes,
     vore_words,
+    general_pref_data,
   } = data;
 
   const [editMode, setEditMode] = useState(false);
@@ -195,9 +197,16 @@ export const VorePanel = () => {
     />
   );
   tabs[2] = (
+    <VoreUserGeneral
+      generalPrefData={general_pref_data}
+      our_bellies={our_bellies!}
+      editMode={editMode}
+      toggleEditMode={setEditMode}
+    />
+  );
+  tabs[3] = (
     <VoreUserPreferences
       prefs={prefs!}
-      selected={selected!}
       show_pictures={show_pictures}
       icon_overflow={icon_overflow}
     />
@@ -259,6 +268,13 @@ export const VorePanel = () => {
               <Tabs.Tab
                 selected={active_tab === 2}
                 onClick={() => act('change_tab', { tab: 2 })}
+              >
+                General
+                <Icon name="user-circle" ml={0.5} />
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={active_tab === 3}
+                onClick={() => act('change_tab', { tab: 3 })}
               >
                 Preferences
                 <Icon name="user-cog" ml={0.5} />

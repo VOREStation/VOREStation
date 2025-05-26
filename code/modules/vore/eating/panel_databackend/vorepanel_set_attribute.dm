@@ -92,7 +92,7 @@
 			host.vore_selected.egg_type = new_egg_type
 			. = TRUE
 		if("b_egg_name")
-			var/new_egg_name = sanitize(params["val"], BELLIES_NAME_MAX)
+			var/new_egg_name = sanitize(params["val"], BELLIES_NAME_MAX, FALSE, TRUE, FALSE)
 			host.vore_selected.egg_name = new_egg_name
 			. = TRUE
 		if("b_egg_size")
@@ -257,31 +257,11 @@
 				if(EXAMINES_ABSORBED)
 					host.vore_selected.set_messages(params["val"], EXAMINES_ABSORBED, limit = BELLIES_EXAMINE_MAX)
 
-				if("en")
-					var/list/indices = list(1,2,3,4,5,6,7,8,9,10)
-					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
-					if(index && index <= 10)
-						var/alert = tgui_alert(user, "What do you wish to do with this message?","Selection",list("Edit","Clear","Cancel"))
-						switch(alert)
-							if("Clear")
-								host.nutrition_messages[index] = ""
-							if("Edit")
-								var/new_message = sanitize(tgui_input_text(user, "Input a message", "Input", host.nutrition_messages[index], multiline = TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN,0,0,0)
-								if(new_message)
-									host.nutrition_messages[index] = new_message
+				if(GENERAL_EXAMINE_NUTRI)
+					sanitize_fixed_list(params["val"], GENERAL_EXAMINE_NUTRI, limit = BELLIES_EXAMINE_MAX)
 
-				if("ew")
-					var/list/indices = list(1,2,3,4,5,6,7,8,9,10)
-					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
-					if(index && index <= 10)
-						var/alert = tgui_alert(user, "What do you wish to do with this message?","Selection",list("Edit","Clear","Cancel"))
-						switch(alert)
-							if("Clear")
-								host.weight_messages[index] = ""
-							if("Edit")
-								var/new_message = sanitize(tgui_input_text(user, "Input a message", "Input", host.weight_messages[index], multiline = TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN,0,0,0)
-								if(new_message)
-									host.weight_messages[index] = new_message
+				if(GENERAL_EXAMINE_WEIGHT)
+					sanitize_fixed_list(params["val"], GENERAL_EXAMINE_WEIGHT, limit = BELLIES_EXAMINE_MAX)
 
 				if(BELLY_TRASH_EATER_IN)
 					host.vore_selected.set_messages(params["val"], BELLY_TRASH_EATER_IN, limit = BELLIES_MESSAGE_MAX)
@@ -899,7 +879,7 @@
 			host.vore_selected.vorespawn_blacklist = !host.vore_selected.vorespawn_blacklist
 			. = TRUE
 		if("b_vorespawn_whitelist")
-			var/new_vorespawn_whitelist = sanitize(params["val"],MAX_MESSAGE_LEN,0,0,0)
+			var/new_vorespawn_whitelist = sanitize(params["val"], MAX_MESSAGE_LEN, FALSE, TRUE, FALSE)
 			if(new_vorespawn_whitelist)
 				host.vore_selected.vorespawn_whitelist = splittext(lowertext(new_vorespawn_whitelist),"\n")
 			else

@@ -1,4 +1,4 @@
-import { Box } from 'tgui-core/components';
+import { Box, Button } from 'tgui-core/components';
 
 export const VorePanelColorBox = (props: {
   back_color: string;
@@ -29,5 +29,21 @@ export const VorePanelColorBox = (props: {
         height={childSize}
       />
     </Box>
+  );
+};
+
+export const VorePanelEditToggle = (props: {
+  editMode: boolean;
+  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const { editMode, toggleEditMode } = props;
+
+  return (
+    <Button
+      icon="pencil"
+      color={editMode ? 'green' : undefined}
+      tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode'}
+      onClick={() => toggleEditMode(!editMode)}
+    />
   );
 };

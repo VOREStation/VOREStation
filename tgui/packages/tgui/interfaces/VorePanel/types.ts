@@ -14,6 +14,7 @@ export type Data = {
   soulcatcher?: soulcatcherData | null;
   abilities?: abilities | null;
   active_vore_tab?: number;
+  general_pref_data?: generalPrefData;
 };
 
 export type abilities = {
@@ -318,15 +319,8 @@ export type prefData = {
   phase_vore: BooleanLike;
   food_vore: BooleanLike;
   digest_pain: BooleanLike;
-  nutrition_message_visible: BooleanLike;
-  nutrition_messages: string[];
-  weight_message_visible: BooleanLike;
-  weight_messages: string[];
   eating_privacy_global: BooleanLike;
   allow_mimicry: BooleanLike;
-  belly_rub_target: string | null;
-  vore_sprite_color: { stomach: string; 'taur belly': string };
-  vore_sprite_multiply: { stomach: BooleanLike; 'taur belly': BooleanLike };
   soulcatcher_allow_capture: BooleanLike;
   soulcatcher_allow_transfer: BooleanLike;
   soulcatcher_allow_deletion: BooleanLike;
@@ -373,6 +367,29 @@ export type checkBoxEntry = {
   ref?: string;
 };
 
+export type generalPrefData = {
+  active_belly: string;
+  belly_rub_target: string | null;
+  aestethic_messages: aestMessageData;
+  vore_sprite_color: Record<string, string>;
+  vore_sprite_multiply: Record<string, BooleanLike>;
+  vore_icon_options: string[];
+};
+
+export type aestMessageData = {
+  possible_messages: string[];
+  aest_subtab: string;
+  max_length: number;
+  active_message: string | string[] | null;
+  set_action: string;
+  tooltip: string;
+  sub_action?: string;
+  button_action?: string;
+  button_data?: BooleanLike;
+  button_label?: string;
+  button_tooltip?: string;
+};
+
 export type localPrefs = {
   digestion: preferenceData;
   absorbable: preferenceData;
@@ -400,8 +417,6 @@ export type localPrefs = {
   pickuppref: preferenceData;
   spontaneous_tf: preferenceData;
   mind_transfer: preferenceData;
-  examine_nutrition: preferenceData;
-  examine_weight: preferenceData;
   strippref: preferenceData;
   eating_privacy_global: preferenceData;
   allow_mimicry: preferenceData;

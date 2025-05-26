@@ -8,7 +8,7 @@ export const VorePanelEditCheckboxes = (props: {
   editMode: boolean;
   options: checkBoxEntry[];
   action: string;
-  subAction: string;
+  subAction?: string;
   tooltipList?: Record<string, string>;
   tooltip?: string;
   tooltipPosition?: ComponentProps<typeof Floating>['placement'];
@@ -19,7 +19,7 @@ export const VorePanelEditCheckboxes = (props: {
     editMode,
     options,
     action,
-    subAction,
+    subAction = '',
     tooltipList,
     tooltip,
     tooltipPosition,

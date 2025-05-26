@@ -102,3 +102,13 @@
 #define SC_RELEASE_MESSAGE "sc_rel"
 #define SC_TRANSFERE_MESSAGE "sc_transfer"
 #define SC_DELETE_MESSAGE "sc_del"
+
+// General Message Options
+#define TASTE_FLAVOR "setflavor"
+#define SMELL_FLAVOR "setsmell"
+
+// General Examine Messages
+#define GENERAL_EXAMINE_NUTRI "en"
+#define GENERAL_EXAMINE_WEIGHT "ew"
+
+#define VPPREF_MESSAGE_SANITY(type) ASSERT(type == GENERAL_EXAMINE_NUTRI || type == GENERAL_EXAMINE_WEIGHT)

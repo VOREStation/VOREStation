@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import {
   Box,
-  Button,
   Dropdown,
   LabeledList,
   Section,
@@ -10,13 +9,14 @@ import {
 
 import { noSelectionName } from '../constants';
 import type { abilities, DropdownEntry, soulcatcherData } from '../types';
+import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
+import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { VorePanelEditText } from '../VorePanelElements/VorePanelEditText';
 import { CatchSettings } from '../VoreSoulcatcherSettings/CatchSettings';
 import { GlobalOptions } from '../VoreSoulcatcherSettings/GlobalOptions';
 import { GlobalSettings } from '../VoreSoulcatcherSettings/GlobalSettings';
-import { SoulcatcherMessages } from '../VoreSoulcatcherSettings/SoulcatcherMessages/SoulcatcherMessages';
 import { SoulOptions } from '../VoreSoulcatcherSettings/SoulOptions';
 import { VoreAbilities } from './VoreAbilities';
 
@@ -28,7 +28,7 @@ export const VoreSoulcatcher = (props: {
     ): DropdownEntry[];
   };
   abilities: abilities;
-  toggleEditMode: Function;
+  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
 }) => {
   const { soulcatcher, our_bellies, abilities, toggleEditMode, editMode } =
@@ -42,15 +42,21 @@ export const VoreSoulcatcher = (props: {
 
   return (
     <Section scrollable fill>
-      {soulcatcher && (
-        <VoreSoulcatcherSection
-          soulcatcher={soulcatcher}
-          overlayBellies={locationNames}
-          toggleEditMode={toggleEditMode}
-          editMode={editMode}
-        />
-      )}
-      <VoreAbilities abilities={abilities} />
+      <Stack vertical fill>
+        {soulcatcher && (
+          <Stack.Item>
+            <VoreSoulcatcherSection
+              soulcatcher={soulcatcher}
+              overlayBellies={locationNames}
+              toggleEditMode={toggleEditMode}
+              editMode={editMode}
+            />
+          </Stack.Item>
+        )}
+        <Stack.Item>
+          <VoreAbilities abilities={abilities} />
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
@@ -58,7 +64,7 @@ export const VoreSoulcatcher = (props: {
 const VoreSoulcatcherSection = (props: {
   soulcatcher: soulcatcherData;
   overlayBellies: DropdownEntry[];
-  toggleEditMode: Function;
+  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
 }) => {
   const { act } = useBackend();
@@ -82,17 +88,18 @@ const VoreSoulcatcherSection = (props: {
     selected_sfx,
     show_vore_sfx,
     taken_over,
+    sc_message_data,
   } = soulcatcher;
 
   return (
     <Section
       title={'Soulcatcher (' + name + ')'}
+      fill
       buttons={
         <Stack>
           <Stack.Item>
             <VorePanelEditSwitch
               action="soulcatcher_toggle"
-              subAction={''}
               editMode={editMode}
               active={!!active}
               tooltipPosition="top"
@@ -103,11 +110,9 @@ const VoreSoulcatcherSection = (props: {
             />
           </Stack.Item>
           <Stack.Item>
-            <Button
-              icon="pencil"
-              color={editMode ? 'green' : undefined}
-              tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode'}
-              onClick={() => toggleEditMode(!editMode)}
+            <VorePanelEditToggle
+              editMode={editMode}
+              toggleEditMode={toggleEditMode}
             />
           </Stack.Item>
         </Stack>
@@ -159,7 +164,6 @@ const VoreSoulcatcherSection = (props: {
               <LabeledList.Item label="Interior SFX">
                 <VorePanelEditDropdown
                   action="soulcatcher_sfx"
-                  subAction={''}
                   editMode={editMode}
                   options={overlayBellies}
                   color={!editMode && !selected_sfx ? 'red' : undefined}
@@ -171,7 +175,6 @@ const VoreSoulcatcherSection = (props: {
                 <LabeledList.Item label="Edit Name">
                   <VorePanelEditText
                     action="soulcatcher_rename"
-                    subAction={''}
                     editMode={editMode}
                     tooltipPosition="top"
                     limit={60}
@@ -187,9 +190,16 @@ const VoreSoulcatcherSection = (props: {
           </Stack.Item>
           <Stack.Divider />
           <Stack.Item>
-            <SoulcatcherMessages
+            <VorePanelEditTextTabs
+              noHighlight
               editMode={editMode}
-              soulcatcherMessageData={soulcatcher.sc_message_data}
+              messsageOptions={sc_message_data.possible_messages}
+              activeTab={sc_message_data.sc_subtab}
+              tabAction="change_sc_message_option"
+              tooltip={sc_message_data.tooltip}
+              maxLength={sc_message_data.max_length}
+              activeMessage={sc_message_data.active_message}
+              action={sc_message_data.set_action}
             />
           </Stack.Item>
         </Stack>

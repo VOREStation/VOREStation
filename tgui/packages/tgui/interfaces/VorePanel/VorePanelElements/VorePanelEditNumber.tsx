@@ -11,7 +11,7 @@ import { round, toFixed } from 'tgui-core/math';
 
 export const VorePanelEditNumber = (props: {
   action: string;
-  subAction: string;
+  subAction?: string;
   editMode: boolean;
   value: number;
   minValue: number;
@@ -28,7 +28,7 @@ export const VorePanelEditNumber = (props: {
 
   const {
     action,
-    subAction,
+    subAction = '',
     value,
     maxValue,
     minValue,

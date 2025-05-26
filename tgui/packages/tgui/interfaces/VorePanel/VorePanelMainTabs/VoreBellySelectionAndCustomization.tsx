@@ -15,6 +15,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { digestModeToColor } from '../constants';
 import type { bellyData, hostMob, selectedData } from '../types';
+import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {
@@ -25,7 +26,7 @@ export const VoreBellySelectionAndCustomization = (props: {
   host_mobtype: hostMob;
   icon_overflow: BooleanLike;
   vore_words: Record<string, string[]>;
-  toggleEditMode: Function;
+  toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
 }) => {
   const { act } = useBackend();
@@ -135,11 +136,9 @@ export const VoreBellySelectionAndCustomization = (props: {
           <Section
             title={selected.belly_name}
             buttons={
-              <Button
-                icon="pencil"
-                color={editMode ? 'green' : undefined}
-                tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode'}
-                onClick={() => toggleEditMode(!editMode)}
+              <VorePanelEditToggle
+                editMode={editMode}
+                toggleEditMode={toggleEditMode}
               />
             }
             fill

@@ -139,3 +139,10 @@ export const nutriTimeToText = {
   71: '12 hours',
   143: '24 hours',
 };
+
+export const aestehticTabsToIcons = {
+  'Set Taste': 'grin-tongue',
+  'Set Smell': 'wind',
+  'Set Nutrition Examine': 'flask',
+  'Set Weight Examine': 'weight-hanging',
+};

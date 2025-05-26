@@ -4,7 +4,7 @@ import { Box, Button, type Floating } from 'tgui-core/components';
 
 export const VorePanelEditSwitch = (props: {
   action: string;
-  subAction: string;
+  subAction?: string;
   editMode: boolean;
   active?: boolean;
   content?: string;
@@ -18,7 +18,7 @@ export const VorePanelEditSwitch = (props: {
 
   const {
     action,
-    subAction,
+    subAction = '',
     active,
     editMode,
     content,
@@ -41,7 +41,7 @@ export const VorePanelEditSwitch = (props: {
       tooltipPosition={tooltipPosition}
       onClick={() =>
         act(action, {
-          attribute: subAction,
+          attribute: subAction || '',
         })
       }
       icon={!hideIcon && currentIcon}

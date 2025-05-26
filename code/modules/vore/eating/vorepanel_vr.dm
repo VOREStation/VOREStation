@@ -5,7 +5,8 @@
 #define STATION_PREF_NAME "Virgo"
 #define VORE_BELLY_TAB 0
 #define SOULCATCHER_TAB 1
-#define PREFERENCE_TAB 2
+#define GENERAL_TAB 2
+#define PREFERENCE_TAB 3
 
 /mob
 	var/datum/vore_look/vorePanel
@@ -45,6 +46,7 @@
 	var/message_option = 0 // our examine subtab
 	var/message_subtab // our examine subtab
 	var/sc_message_subtab // our soulcatcher message subtab
+	var/aset_message_subtab
 	var/selected_message
 
 /datum/vore_look/New(mob/new_host)
@@ -161,6 +163,13 @@
 	if(active_tab == PREFERENCE_TAB)
 		// Preference data, we only ever need that when we go to the pref page!
 		data["prefs"] = get_preference_data(host)
+		// Content Data
+		data["show_pictures"] = show_pictures
+		data["icon_overflow"] = icon_overflow
+
+	if(active_tab == GENERAL_TAB)
+		data["general_pref_data"] = get_general_data(host)
+		data["our_bellies"] = get_vorebellies(host, FALSE)
 
 	return data
 
@@ -206,6 +215,12 @@
 			var/new_tab = params["tab"]
 			if(istext(new_tab))
 				sc_message_subtab = new_tab
+			return TRUE
+
+		if("change_aset_message_option")
+			var/new_tab = params["tab"]
+			if(istext(new_tab))
+				aset_message_subtab = new_tab
 			return TRUE
 
 		if("show_pictures")
@@ -334,28 +349,12 @@
 			exportPanel.open_export_panel(ui.user)
 
 			return TRUE
-		if("setflavor")
-			var/new_flavor = html_encode(tgui_input_text(ui.user,"What your character tastes like (400ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste))
-			if(!new_flavor)
-				return FALSE
-
-			new_flavor = readd_quotes(new_flavor)
-			if(length(new_flavor) > FLAVOR_MAX)
-				tgui_alert_async(ui.user, "Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
-				return FALSE
-			host.vore_taste = new_flavor
+		if(TASTE_FLAVOR)
+			host.vore_taste = sanitize(params["val"], FLAVOR_MAX, FALSE, TRUE, FALSE)
 			unsaved_changes = TRUE
 			return TRUE
-		if("setsmell")
-			var/new_smell = html_encode(tgui_input_text(ui.user,"What your character smells like (400ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell))
-			if(!new_smell)
-				return FALSE
-
-			new_smell = readd_quotes(new_smell)
-			if(length(new_smell) > FLAVOR_MAX)
-				tgui_alert_async(ui.user, "Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
-				return FALSE
-			host.vore_smell = new_smell
+		if(SMELL_FLAVOR)
+			host.vore_smell = sanitize(params["val"], FLAVOR_MAX, FALSE, TRUE, FALSE)
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_dropnom_pred")
@@ -584,24 +583,34 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("set_vs_color")
-			var/belly_choice = tgui_input_list(ui.user, "Which vore sprite are you going to edit the color of?", "Vore Sprite Color", host.vore_icon_bellies)
-			if(belly_choice)
-				var/newcolor = tgui_color_picker(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice])
-				if(newcolor)
-					host.vore_sprite_color[belly_choice] = newcolor
-					var/multiply = tgui_input_list(ui.user, "Set the color to be applied multiplicatively or additively? Currently in [host.vore_sprite_multiply[belly_choice] ? "Multiply" : "Add"]", "Vore Sprite Color", list("Multiply", "Add"))
-					if(multiply == "Multiply")
-						host.vore_sprite_multiply[belly_choice] = TRUE
-					else if(multiply == "Add")
-						host.vore_sprite_multiply[belly_choice] = FALSE
-					host.update_icons_body()
-					unsaved_changes = TRUE
+			var/belly_choice = params["attribute"]
+			if(!(belly_choice in host.vore_icon_bellies))
+				return FALSE
+			var/newcolor = tgui_color_picker(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice])
+			if(!newcolor)
+				return FALSE
+			host.vore_sprite_color[belly_choice] = newcolor
+			host.update_icons_body()
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_vs_multiply")
+			var/belly_choice = params["attribute"]
+			if(!(belly_choice in host.vore_icon_bellies))
+				return FALSE
+			if(!host.vore_sprite_multiply[belly_choice])
+				host.vore_sprite_multiply[belly_choice] = TRUE
+			else
+				host.vore_sprite_multiply[belly_choice] = !host.vore_sprite_multiply[belly_choice]
+			host.update_icons_body()
+			unsaved_changes = TRUE
 			return TRUE
 		//vore sprites color
 		if("set_belly_rub")
-			host.belly_rub_target = tgui_input_list(ui.user, "Which belly would you prefer to be rubbed?","Select Target", host.vore_organs)
-			if(!(host.belly_rub_target))
+			var/rub_target = params["val"]
+			if(rub_target == "Current Selected")
 				host.belly_rub_target = null
+			else
+				host.belly_rub_target = rub_target
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.belly_rub_target = host.belly_rub_target
 			unsaved_changes = TRUE
@@ -1300,7 +1309,25 @@
 				to_chat(user, span_vwarning("\The [target] is currently [condition], they will not be able to [condition_consequences]."))
 			return FALSE
 
+/datum/vore_look/proc/sanitize_fixed_list(var/list/messages, type, delim = "\n\n", limit)
+	if(!limit)
+		CRASH("[type] set message called without limit!")
+	VPPREF_MESSAGE_SANITY(type)
+
+	if(!islist(messages) || LAZYLEN(messages) != 10)
+		CRASH("[type] set message lists with invalid length!")
+
+	for(var/i = 1, i <= messages.len, i++)
+		messages[i] = sanitize(messages[i], limit, FALSE, TRUE, FALSE)
+
+	switch(type)
+		if(GENERAL_EXAMINE_NUTRI)
+			host.nutrition_messages = messages
+		if(GENERAL_EXAMINE_WEIGHT)
+			host.weight_messages = messages
+
 #undef STATION_PREF_NAME
 #undef VORE_BELLY_TAB
 #undef SOULCATCHER_TAB
 #undef PREFERENCE_TAB
+#undef GENERAL_TAB

@@ -91,9 +91,10 @@ const AreaMapper = (props: {
   limit: number;
   entry: string[];
   action: Function;
+  exactLength: boolean;
   maxEntries: number;
 }) => {
-  const { entry, limit, action, maxEntries } = props;
+  const { entry, limit, action, exactLength, maxEntries } = props;
 
   const filledArray = [
     ...entry,
@@ -101,8 +102,12 @@ const AreaMapper = (props: {
   ];
 
   function performAction(value: string, index: number) {
-    const newEntry = [...entry];
+    const newEntry = [...filledArray];
     newEntry[index] = value;
+    if (exactLength) {
+      action(newEntry);
+      return;
+    }
     const filtered = newEntry.filter(Boolean);
     action(filtered);
   }
@@ -124,10 +129,12 @@ export const VorePanelEditTextArea = (props: {
   limit: number;
   entry: string | string[];
   action: string;
+  exactLength?: boolean;
   listAction?: string;
-  subAction: string;
+  subAction?: string;
   maxEntries?: number;
   disableLegacyInput?: boolean;
+  noHighlight?: boolean;
 }) => {
   const { act } = useBackend();
 
@@ -137,10 +144,12 @@ export const VorePanelEditTextArea = (props: {
     tooltip,
     limit,
     action,
+    exactLength = false,
     listAction,
-    subAction,
+    subAction = '',
     maxEntries = 10,
     disableLegacyInput = false,
+    noHighlight,
   } = props;
 
   function doAct(value: string | string[]) {
@@ -197,6 +206,7 @@ export const VorePanelEditTextArea = (props: {
           <AreaMapper
             limit={limit}
             entry={entry}
+            exactLength={exactLength}
             action={doAct}
             maxEntries={maxEntries}
           />
@@ -210,10 +220,16 @@ export const VorePanelEditTextArea = (props: {
       {entry.map((singleEntry, index) => (
         <Stack.Item key={index}>
           <Divider />
-          <DescriptionSyntaxHighlighting desc={singleEntry} />
+          {noHighlight ? (
+            <Box preserveWhitespace>{singleEntry}</Box>
+          ) : (
+            <DescriptionSyntaxHighlighting desc={singleEntry} />
+          )}
         </Stack.Item>
       ))}
     </Stack>
+  ) : !noHighlight ? (
+    <Box preserveWhitespace>{entry}</Box>
   ) : (
     <DescriptionSyntaxHighlighting desc={entry} />
   );

@@ -9,7 +9,7 @@ import { VorePanelEditNumber } from './VorePanelEditNumber';
 export const VorePanelEditColor = (props: {
   editMode: boolean;
   action: string;
-  subAction: string;
+  subAction?: string;
   value_of: BooleanLike | string;
   back_color: string;
   alpha?: number;
@@ -22,7 +22,7 @@ export const VorePanelEditColor = (props: {
   const {
     editMode,
     action,
-    subAction,
+    subAction = '',
     value_of,
     back_color,
     alpha,

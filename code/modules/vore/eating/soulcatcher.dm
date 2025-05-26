@@ -198,7 +198,7 @@
 
 // Allows to adjust the interior of the soulcatcher
 /obj/soulgem/proc/adjust_interior(var/new_flavor)
-	new_flavor = sanitize(new_flavor, VORE_SC_DESC_MAX)
+	new_flavor = sanitize(new_flavor, VORE_SC_DESC_MAX, FALSE, TRUE, FALSE)
 	inside_flavor = new_flavor
 	notify_holder("Updating environment...")
 	for(var/mob/living/carbon/brain/caught_soul/vore/CS as anything in brainmobs)
@@ -225,7 +225,7 @@
 
 // Sets the custom messages depending on the input
 /obj/soulgem/proc/set_custom_message(var/message, var/target)
-	message = sanitize(message, VORE_SC_MAX)
+	message = sanitize(message, VORE_SC_MAX, FALSE, TRUE, FALSE)
 	switch(target)
 		if(SC_CAPTURE_MEESAGE)
 			capture_message = message
@@ -243,7 +243,7 @@
 	if(length(new_name) < 3 || length(new_name) > 60)
 		to_chat(owner, span_warning("Your soulcatcher's name needs to be between 3 and 60 characters long!"))
 		return FALSE
-	new_name = sanitize(new_name, 60)
+	new_name = sanitize(new_name, 60, FALSE, TRUE, FALSE)
 	name = new_name
 	return TRUE
 

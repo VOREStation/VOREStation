@@ -10,7 +10,7 @@ import {
 
 export const VorePanelEditText = (props: {
   action: string;
-  subAction: string;
+  subAction?: string;
   editMode: boolean;
   limit: number;
   min?: number;
@@ -27,7 +27,7 @@ export const VorePanelEditText = (props: {
     editMode,
     limit,
     action,
-    subAction,
+    subAction = '',
     color,
     tooltip,
     tooltipPosition,
