@@ -139,6 +139,7 @@
 	data["soulcatcher"] = null
 	data["abilities"] = null
 	data["prefs"] = null
+	data["general_pref_data"] = null
 
 	if(active_tab == VORE_BELLY_TAB)
 		data["active_vore_tab"] = active_vore_tab

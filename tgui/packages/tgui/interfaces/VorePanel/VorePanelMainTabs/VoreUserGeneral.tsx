@@ -7,29 +7,29 @@ import { VoreUserPreferencesAesthetic } from '../VoreUserPreferencesTabs/VoreUse
  * Subtemplate of VoreBellySelectionAndCustomization
  */
 export const VoreUserGeneral = (props: {
-  generalPrefData?: generalPrefData;
+  general_pref_data?: generalPrefData;
   editMode: boolean;
   our_bellies: bellyData[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act } = useBackend();
-  const { generalPrefData, editMode, our_bellies, toggleEditMode } = props;
+  const { general_pref_data, editMode, our_bellies, toggleEditMode } = props;
 
   return (
     <Section fill>
       <Stack vertical fill>
-        {!!generalPrefData && (
+        {!!general_pref_data && (
           <Stack.Item grow>
             <VoreUserPreferencesAesthetic
               editMode={editMode}
               toggleEditMode={toggleEditMode}
-              active_belly={generalPrefData.active_belly}
-              belly_rub_target={generalPrefData.belly_rub_target}
-              aestethicMessages={generalPrefData.aestethic_messages}
+              active_belly={general_pref_data.active_belly}
+              belly_rub_target={general_pref_data.belly_rub_target}
+              aestethicMessages={general_pref_data.aestethic_messages}
               our_bellies={our_bellies}
-              vore_sprite_color={generalPrefData.vore_sprite_color}
-              vore_sprite_multiply={generalPrefData.vore_sprite_multiply}
-              vore_icon_options={generalPrefData.vore_icon_options}
+              vore_sprite_color={general_pref_data.vore_sprite_color}
+              vore_sprite_multiply={general_pref_data.vore_sprite_multiply}
+              vore_icon_options={general_pref_data.vore_icon_options}
             />
           </Stack.Item>
         )}

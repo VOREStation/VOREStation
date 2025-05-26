@@ -172,41 +172,41 @@ export const VorePanel = () => {
 
   const [editMode, setEditMode] = useState(false);
 
-  const tabs: React.JSX.Element[] = [];
+  const tabs: (React.JSX.Element | null | undefined)[] = [];
 
-  tabs[0] = (
+  tabs[0] = our_bellies && selected && host_mobtype && (
     <VoreBellySelectionAndCustomization
       activeVoreTab={active_vore_tab}
-      our_bellies={our_bellies!}
-      selected={selected!}
+      our_bellies={our_bellies}
+      selected={selected}
       show_pictures={show_pictures}
-      host_mobtype={host_mobtype!}
+      host_mobtype={host_mobtype}
       icon_overflow={icon_overflow}
       vore_words={vore_words}
       toggleEditMode={setEditMode}
       editMode={editMode}
     />
   );
-  tabs[1] = (
+  tabs[1] = our_bellies && soulcatcher && abilities && (
     <VoreSoulcatcher
-      our_bellies={our_bellies!}
-      soulcatcher={soulcatcher!}
-      abilities={abilities!}
+      our_bellies={our_bellies}
+      soulcatcher={soulcatcher}
+      abilities={abilities}
       toggleEditMode={setEditMode}
       editMode={editMode}
     />
   );
-  tabs[2] = (
+  tabs[2] = general_pref_data && our_bellies && (
     <VoreUserGeneral
-      generalPrefData={general_pref_data}
-      our_bellies={our_bellies!}
+      general_pref_data={general_pref_data}
+      our_bellies={our_bellies}
       editMode={editMode}
       toggleEditMode={setEditMode}
     />
   );
-  tabs[3] = (
+  tabs[3] = prefs && (
     <VoreUserPreferences
-      prefs={prefs!}
+      prefs={prefs}
       show_pictures={show_pictures}
       icon_overflow={icon_overflow}
     />

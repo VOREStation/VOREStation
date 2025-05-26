@@ -14,7 +14,7 @@ export type Data = {
   soulcatcher?: soulcatcherData | null;
   abilities?: abilities | null;
   active_vore_tab?: number;
-  general_pref_data?: generalPrefData;
+  general_pref_data?: generalPrefData | null;
 };
 
 export type abilities = {
