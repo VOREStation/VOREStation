@@ -13,7 +13,7 @@ import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 export const VoreUserPreferencesAesthetic = (props: {
   editMode: boolean;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  active_belly: string;
+  active_belly: string | null;
   our_bellies: bellyData[];
   belly_rub_target: string | null;
   vore_sprite_color: Record<string, string>;
@@ -46,6 +46,8 @@ export const VoreUserPreferencesAesthetic = (props: {
   });
 
   const locationNames = [...getBellies, 'Current Selected'];
+
+  const capitalizedName = active_belly && capitalize(active_belly);
 
   return (
     <Section
@@ -114,7 +116,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                     entry={
                       belly_rub_target
                         ? belly_rub_target
-                        : 'Current Selected (' + capitalize(active_belly) + ')'
+                        : 'Current Selected (' + capitalizedName + ')'
                     }
                   />
                 </LabeledList.Item>

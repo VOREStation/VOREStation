@@ -368,7 +368,7 @@ export type checkBoxEntry = {
 };
 
 export type generalPrefData = {
-  active_belly: string;
+  active_belly: string | null;
   belly_rub_target: string | null;
   aestethic_messages: aestMessageData;
   vore_sprite_color: Record<string, string>;
