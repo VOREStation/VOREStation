@@ -1,8 +1,9 @@
-import { LabeledList, Section, Stack } from 'tgui-core/components';
+import { LabeledList, NoticeBox, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import { aestehticTabsToIcons } from '../constants';
+import { fixCorruptedData } from '../functions';
 import type { aestMessageData, bellyData } from '../types';
 import { VorePanelEditToggle } from '../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditTextTabs } from '../VorePanelElements/VorePaneldEditTextTabs';
@@ -33,13 +34,7 @@ export const VoreUserPreferencesAesthetic = (props: {
     aestethicMessages,
   } = props;
 
-  const sanitizeCorruption =
-    aestethicMessages.active_message === null
-      ? ''
-      : Array.isArray(aestethicMessages.active_message) ||
-          typeof aestethicMessages.active_message === 'string'
-        ? aestethicMessages.active_message
-        : [];
+  const sanitizeCorruption = fixCorruptedData(aestethicMessages.active_message);
 
   const getBellies = our_bellies.map((belly) => {
     return belly.name;
@@ -128,6 +123,14 @@ export const VoreUserPreferencesAesthetic = (props: {
         <Stack.Divider />
         <Stack.Item grow>
           <Section fill>
+            {!!sanitizeCorruption.corrupted && (
+              <Stack.Item>
+                <NoticeBox danger>
+                  Your {'>' + aestethicMessages.aest_subtab + '<'} messages are
+                  corrupted, please edit and save them!
+                </NoticeBox>
+              </Stack.Item>
+            )}
             <VorePanelEditTextTabs
               exactLength
               editMode={editMode}
@@ -137,7 +140,7 @@ export const VoreUserPreferencesAesthetic = (props: {
               tabsToIcons={aestehticTabsToIcons}
               tooltip={aestethicMessages.tooltip}
               maxLength={aestethicMessages.max_length}
-              activeMessage={sanitizeCorruption}
+              activeMessage={sanitizeCorruption.data}
               action={aestethicMessages.set_action}
               listAction="b_msgs"
               disableLegacyInput={!Array.isArray(sanitizeCorruption)}
