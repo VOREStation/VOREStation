@@ -120,7 +120,8 @@
 	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
 
 	//Get the clone body ready
-	H.adjustCloneLoss(150) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
+	var/damage_to_deal = H.getMaxHealth() * 1.5 //If you have 100, you get 150. Have 200? Get 300. 25hp? get 37.5
+	H.adjustCloneLoss(damage_to_deal) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
 	H.Paralyse(4)
 	H.updatehealth()
 	H.set_cloned_appearance()
