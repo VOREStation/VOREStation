@@ -14,10 +14,11 @@
 	set desc="Sting target:"
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_deaf_sting)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)	return 0
 	add_attack_logs(src,T,"Deaf sting (changeling)")
 	var/duration = 300
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		duration = duration + 100
 		to_chat(src, span_notice("They will be unable to hear for a little longer."))
 	to_chat(T, span_danger("Your ears pop and begin ringing loudly!"))

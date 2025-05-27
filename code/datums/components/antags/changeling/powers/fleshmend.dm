@@ -16,11 +16,11 @@
 	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
-	src.mind.changeling.chem_charges -= 10
+	changeling.chem_charges -= 10
 
 	var/mob/living/carbon/human/C = src
 	var/heal_amount = 2
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2
 		to_chat(src, span_notice("We will heal much faster."))
 

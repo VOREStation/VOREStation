@@ -13,8 +13,8 @@
 	set desc="Stealthily sting a target to extract their DNA."
 
 	var/datum/component/antag/changeling/changeling = null
-	if(src.mind && src.mind.changeling)
-		changeling = src.mind.changeling
+	if(src.mind && changeling)
+		changeling = changeling
 	if(!changeling)
 		return 0
 

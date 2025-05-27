@@ -23,7 +23,7 @@
 		return 0
 
 	if(held_item == null)
-		if(src.mind.changeling.recursive_enhancement)
+		if(changeling.recursive_enhancement)
 			if(changeling_generic_weapon(/obj/item/electric_hand/efficent,0))
 				to_chat(src, span_notice("We will shock others more efficently."))
 				return 1
@@ -55,7 +55,7 @@
 					span_warningplain("You hear sparks!"))
 				else
 					to_chat(src, span_warning("Our gloves block us from shocking \the [G.affecting]."))
-				src.mind.changeling.chem_charges -= 10
+				changeling.chem_charges -= 10
 				return 1
 
 		//Otherwise, charge up whatever's in their hand.
@@ -94,7 +94,7 @@
 			if(success == 0) //If we couldn't do anything with the ability, don't deduct the chemicals.
 				to_chat(src, span_warning("We are unable to affect \the [held_item]."))
 			else
-				src.mind.changeling.chem_charges -= 10
+				changeling.chem_charges -= 10
 			return success
 
 /obj/item/electric_hand
@@ -141,10 +141,11 @@
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(istype(target,/mob/living/carbon))
 		var/mob/living/carbon/C = target
 
-		if(user.mind.changeling.chem_charges < shock_cost)
+		if(comp.chem_charges < shock_cost)
 			to_chat(src, span_warning("We require more chemicals to electrocute [C]!"))
 			return 0
 
@@ -160,13 +161,13 @@
 		else
 			to_chat(src, span_warning("Our gloves block us from shocking \the [C]."))
 		//qdel(src)  //Since we're no longer a one hit stun, we need to stick around.
-		user.mind.changeling.chem_charges -= shock_cost
+		comp.chem_charges -= shock_cost
 		return 1
 
 	else if(istype(target,/mob/living/silicon))
 		var/mob/living/silicon/S = target
 
-		if(user.mind.changeling.chem_charges < 10)
+		if(comp.chem_charges < 10)
 			to_chat(src, span_warning("We require more chemicals to electrocute [S]!"))
 			return 0
 
@@ -177,7 +178,7 @@
 			span_warningplain("You hear sparks!"))
 			to_chat(S, span_danger("Warning: Electrical surge detected!"))
 		//qdel(src)
-		user.mind.changeling.chem_charges -= 10
+		comp.chem_charges -= 10
 		return 1
 
 	else

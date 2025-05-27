@@ -49,10 +49,9 @@
 		return
 	if(!proximity)
 		return
-	if(!user.mind.changeling)
+	var/datum/component/antag/changeling/ling_datum = GetComponent(/datum/component/antag/changeling)
+	if(!ling_datum)
 		return
-
-	var/datum/component/antag/changeling/ling_datum = user.mind.changeling
 
 	if(ling_datum.chem_charges < 10)
 		to_chat(user, span_warning("We require more chemicals to do that."))

@@ -22,7 +22,7 @@
 		return 0
 
 	var/modifier_to_use = /datum/modifier/berserk/changeling
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		modifier_to_use = /datum/modifier/berserk/changeling/recursive
 		to_chat(src, span_notice("We optimize our levels of anger, which will avoid excessive stress on ourselves."))
 

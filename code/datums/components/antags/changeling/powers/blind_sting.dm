@@ -11,7 +11,7 @@
 	set category = "Changeling"
 	set name = "Blind sting (20)"
 	set desc="Sting target"
-
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
 		return 0
@@ -19,7 +19,7 @@
 	to_chat(T, span_danger("Your eyes burn horrificly!"))
 	T.disabilities |= NEARSIGHTED
 	var/duration = 300
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		duration = duration + 150
 		to_chat(src, span_notice("They will be deprived of sight for longer."))
 	spawn(duration)

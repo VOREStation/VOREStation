@@ -77,7 +77,7 @@
 	C.shock_stage = 0 //Pain
 	to_chat(C, span_notice("We have regenerated."))
 	C.update_canmove()
-	C.mind.changeling.purchased_powers -= C
+	changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")
 	C.set_stat(CONSCIOUS)
 	C.forbid_seeing_deadchat = FALSE

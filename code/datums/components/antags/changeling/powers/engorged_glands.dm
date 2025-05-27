@@ -8,6 +8,7 @@
 
 //Increases macimum chemical storage
 /mob/proc/changeling_engorgedglands()
-	src.mind.changeling.chem_storage += 30
-	src.mind.changeling.chem_recharge_rate *= 2
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	comp.chem_storage += 30
+	comp.chem_recharge_rate *= 2
 	return 1

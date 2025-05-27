@@ -14,11 +14,12 @@
 	set desc = "Chills and freezes a biological creature."
 
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Cryo sting (changeling)")
 	var/inject_amount = 10
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		inject_amount = inject_amount * 1.5
 		to_chat(src, span_notice("We inject extra chemicals."))
 	if(T.reagents)

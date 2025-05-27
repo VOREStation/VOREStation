@@ -47,7 +47,7 @@
 
 	changeling.chem_charges -= 20
 	var/range = 4
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		range = range * 2
 		to_chat(src, span_notice("We are extra loud."))
 
@@ -55,7 +55,8 @@
 	var/list/affected = list()
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))
-			if(!M.mind || !M.mind.changeling)
+			var/datum/component/antag/changeling/m_comp = M.GetComponent(/datum/component/antag/changeling)
+			if(!M.mind || !m_comp)
 				if(M.get_ear_protection() >= 2)
 					continue
 				to_chat(M, span_danger("You hear an extremely loud screeching sound!  It \
@@ -120,13 +121,13 @@
 	var/range_med = 2
 	var/range_light = 4
 	var/range_long = 6
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		range_heavy = range_heavy * 2
 		range_med = range_med * 2
 		range_light = range_light * 2
 		range_long = range_long * 2
 		to_chat(src, span_notice("We are extra loud."))
-		src.mind.changeling.recursive_enhancement = 0
+		changeling.recursive_enhancement = 0
 
 	visible_message(span_notice("[src] appears to shout."))
 

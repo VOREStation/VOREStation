@@ -38,7 +38,7 @@
 //	C.reagents.add_reagent(REAGENT_ID_TOXIN, 10)
 	C.reagents.add_reagent("epinephrine", 20)
 
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		C.add_modifier(/datum/modifier/unstoppable, 30 SECONDS)
 
 	feedback_add_details("changeling_powers","UNS")

@@ -12,7 +12,10 @@
 	set category = "Changeling"
 	set name = "Arm Blade (20)"
 
-	if(src.mind.changeling.recursive_enhancement)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		return
+	if(comp.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/melee/changeling/arm_blade/greater))
 			to_chat(src, span_notice("We prepare an extra sharp blade."))
 			return 1
@@ -36,8 +39,11 @@
 /mob/proc/changeling_claw()
 	set category = "Changeling"
 	set name = "Claw (15)"
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		return
 
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/melee/changeling/claw/greater, 1, 15))
 			to_chat(src, span_notice("We prepare an extra sharp claw."))
 			return 1

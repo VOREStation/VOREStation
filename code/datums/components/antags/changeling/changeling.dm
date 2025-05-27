@@ -28,9 +28,10 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	var/last_shriek = null // world.time when the ling last used a shriek.
 	var/next_escape = 0	// world.time when the ling can next use Escape Restraints
 	var/thermal_sight = FALSE	// Is our Vision Augmented? With thermals?
+	dupe_mode = COMPONENT_DUPE_UNIQUE //Only the first changeling application survives!
 
 /datum/component/antag/changeling/Initialize()
-	. = ..()
+	..()
 	if(owner)
 		if(GLOB.possible_changeling_IDs.len)
 			changelingID = pick(GLOB.possible_changeling_IDs)
@@ -39,12 +40,13 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 		else
 			changelingID = "[rand(1,999)]"
 
-	add_verb(owner, /datum/component/antag/changeling/proc/EvolutionMenu)
-	add_verb(owner, /mob/proc/changeling_respec)
-	owner.add_language("Changeling")
+		add_verb(owner,/mob/proc/EvolutionMenu)
+		add_verb(owner,/mob/proc/changeling_respec)
+		owner.add_language("Changeling")
 
 /datum/component/antag/changeling/Destroy(force = FALSE)
 	. = ..()
+	//TODO: Clear all the lists and stuff here
 
 //Former /datum/changeling procs
 /datum/component/antag/changeling/proc/regenerate()
@@ -58,7 +60,6 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 //Former /mob procs
 /mob/proc/absorbDNA(var/datum/absorbed_dna/newDNA)
-	var/datum/component/antag/changeling/changeling = null
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!comp)
 		return
@@ -69,7 +70,7 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 	changeling_update_languages(comp.absorbed_languages)
 
-	if(!changeling.GetDNA(newDNA.name)) // Don't duplicate - I wonder if it's possible for it to still be a different DNA? DNA code could use a rewrite
+	if(!comp.GetDNA(newDNA.name)) // Don't duplicate - I wonder if it's possible for it to still be a different DNA? DNA code could use a rewrite
 		comp.absorbed_dna += newDNA
 
 //Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human

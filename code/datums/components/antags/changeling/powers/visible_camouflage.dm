@@ -13,30 +13,32 @@
 	set category = "Changeling"
 	set name = "Visible Camouflage (10)"
 	set desc = "Turns yourself almost invisible, as long as you move slowly."
-
+	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,CONSCIOUS)
+	if(!changeling)
+		return
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 
-		if(H.mind.changeling.cloaked)
-			H.mind.changeling.cloaked = 0
+		if(changeling.cloaked)
+			changeling.cloaked = 0
 			return 1
 
 		//We delay the check, so that people can uncloak without needing 10 chemicals to do so.
-		var/datum/component/antag/changeling/changeling = changeling_power(10,0,100,CONSCIOUS)
+		changeling = changeling_power(10,0,100,CONSCIOUS)
 
 		if(!changeling)
 			return 0
 		changeling.chem_charges -= 10
-		var/old_regen_rate = H.mind.changeling.chem_recharge_rate
+		var/old_regen_rate = changeling.chem_recharge_rate
 
 		to_chat(H, span_notice("We vanish from sight, and will remain hidden, so long as we move carefully."))
-		H.mind.changeling.cloaked = 1
-		H.mind.changeling.chem_recharge_rate = 0
+		changeling.cloaked = 1
+		changeling.chem_recharge_rate = 0
 		animate(src,alpha = 255, alpha = 10, time = 10)
 
 		var/must_walk = TRUE
-		if(src.mind.changeling.recursive_enhancement)
+		if(changeling.recursive_enhancement)
 			must_walk = FALSE
 			to_chat(src, span_notice("We may move at our normal speed while hidden."))
 
@@ -49,16 +51,16 @@
 
 			if(H.m_intent != I_WALK && must_walk) // Moving too fast uncloaks you.
 				remain_cloaked = 0
-			if(!H.mind.changeling.cloaked)
+			if(!changeling.cloaked)
 				remain_cloaked = 0
 			if(H.stat) // Dead or unconscious lings can't stay cloaked.
 				remain_cloaked = 0
 			if(H.incapacitated(INCAPACITATION_DISABLED)) // Stunned lings also can't stay cloaked.
 				remain_cloaked = 0
 
-			if(mind.changeling.chem_recharge_rate != 0) //Without this, there is an exploit that can be done, if one buys engorged chem sacks while cloaked.
-				old_regen_rate += mind.changeling.chem_recharge_rate //Unfortunately, it has to occupy this part of the proc.  This fixes it while at the same time
-				mind.changeling.chem_recharge_rate = 0 //making sure nobody loses out on their bonus regeneration after they're done hiding.
+			if(changeling.chem_recharge_rate != 0) //Without this, there is an exploit that can be done, if one buys engorged chem sacks while cloaked.
+				old_regen_rate += changeling.chem_recharge_rate //Unfortunately, it has to occupy this part of the proc.  This fixes it while at the same time
+				changeling.chem_recharge_rate = 0 //making sure nobody loses out on their bonus regeneration after they're done hiding.
 
 
 
@@ -66,7 +68,7 @@
 		visible_message(span_warning("[src] suddenly fades in, seemingly from nowhere!"),
 		span_notice("We revert our camouflage, revealing ourselves."))
 		H.set_m_intent(I_RUN)
-		H.mind.changeling.cloaked = 0
-		H.mind.changeling.chem_recharge_rate = old_regen_rate
+		changeling.cloaked = 0
+		changeling.chem_recharge_rate = old_regen_rate
 
 		animate(src,alpha = 10, alpha = 255, time = 10)

@@ -17,12 +17,12 @@
 	var/datum/component/antag/changeling/changeling = changeling_power(50,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
-	src.mind.changeling.chem_charges -= 50
+	changeling.chem_charges -= 50
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/C = src
 		var/healing_amount = 40
-		if(src.mind.changeling.recursive_enhancement)
+		if(changeling.recursive_enhancement)
 			healing_amount = C.getMaxHealth()
 			to_chat(src, span_notice("We completely heal ourselves."))
 		spawn(0)

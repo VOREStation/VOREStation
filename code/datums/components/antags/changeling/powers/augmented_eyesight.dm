@@ -12,19 +12,18 @@
 	set category = "Changeling"
 	set name = "Augmented Eyesight (5)"
 	set desc = "We evolve our eyes to sense the infrared."
-
-	var/datum/component/antag/changeling/changeling = changeling_power(5,0,100,CONSCIOUS)
-	if(!changeling)
+	var/datum/component/antag/changeling/comp = changeling_power(5,0,100,CONSCIOUS)
+	if(!comp)
 		return 0
 
 	var/mob/living/carbon/human/C = src
 
-	changeling.thermal_sight = !changeling.thermal_sight
+	comp.thermal_sight = !comp.thermal_sight
 
-	var/active = changeling.thermal_sight
+	var/active = comp.thermal_sight
 
 	if(active)
-		src.mind.changeling.chem_charges -= 5
+		comp.chem_charges -= 5
 		to_chat(C, span_notice("We feel a minute twitch in our eyes, and a hidden layer to the world is revealed."))
 		C.add_modifier(/datum/modifier/changeling/thermal_sight, 0, src)
 //		C.permanent_sight_flags |= SEE_MOBS

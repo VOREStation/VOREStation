@@ -58,7 +58,7 @@
 		C.wear_suit = null
 		escape_cooldown *= 1.5	// Straight jackets are tedious compared to cuffs.
 
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		escape_cooldown *= 0.5
 
 	changeling.next_escape = world.time + escape_cooldown	//And now we set the timer

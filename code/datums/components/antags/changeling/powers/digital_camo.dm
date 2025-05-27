@@ -25,8 +25,8 @@
 	C.digitalcamo = !C.digitalcamo
 
 	spawn(0)
-		while(C && C.digitalcamo && C.mind && C.mind.changeling)
-			C.mind.changeling.chem_charges = max(C.mind.changeling.chem_charges - 1, 0)
+		while(C && C.digitalcamo && C.mind && changeling)
+			changeling.chem_charges = max(changeling.chem_charges - 1, 0)
 			sleep(40)
 
 	remove_verb(src, /mob/proc/changeling_digitalcamo)

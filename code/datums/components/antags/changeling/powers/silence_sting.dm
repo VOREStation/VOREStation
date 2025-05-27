@@ -14,10 +14,11 @@
 	set desc="Sting target"
 
 	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)	return 0
 	add_attack_logs(src,T,"Silence sting (changeling)")
 	var/duration = 30
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		duration = duration + 10
 		to_chat(src, span_notice("They will be unable to cry out in fear for a little longer."))
 	T.silent += duration

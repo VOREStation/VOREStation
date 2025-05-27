@@ -34,8 +34,8 @@
 	feedback_add_details("changeling_powers","MV")
 
 	spawn(0)
-		while(src && src.mind && src.mind.changeling && src.mind.changeling.mimicing)
-			src.mind.changeling.chem_charges = max(src.mind.changeling.chem_charges - 1, 0)
+		while(src && src.mind && changeling && changeling.mimicing)
+			changeling.chem_charges = max(changeling.chem_charges - 1, 0)
 			sleep(40)
-		if(src && src.mind && src.mind.changeling)
-			src.mind.changeling.mimicing = ""
+		if(src && src.mind && changeling)
+			changeling.mimicing = ""

@@ -14,11 +14,11 @@
 	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return 0
-	if(src.mind.changeling.recursive_enhancement)
+	if(changeling.recursive_enhancement)
 		to_chat(src, span_warning("We will no longer empower our abilities."))
-		src.mind.changeling.recursive_enhancement = 0
+		changeling.recursive_enhancement = 0
 		return 0
 	to_chat(src, span_notice("We empower ourselves. Our abilities will now be extra potent."))
-	src.mind.changeling.recursive_enhancement = 1
+	changeling.recursive_enhancement = 1
 	feedback_add_details("changeling_powers","RE")
 	return 1

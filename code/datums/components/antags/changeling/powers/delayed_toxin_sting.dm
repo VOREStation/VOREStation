@@ -26,11 +26,12 @@
 	set desc = "Injects the target with a toxin that will take effect after a few minutes."
 
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_delayed_toxic_sting)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Delayed toxic sting (chagneling)")
 	var/type_to_give = /datum/modifier/delayed_toxin_sting
-	if(src.mind.changeling.recursive_enhancement)
+	if(comp.recursive_enhancement)
 		type_to_give = /datum/modifier/delayed_toxin_sting/strong
 		to_chat(src, span_notice("Our toxin will be extra potent, when it strikes."))
 

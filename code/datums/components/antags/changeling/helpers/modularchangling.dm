@@ -20,11 +20,14 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/genomecost = 500000 // Cost for the changling to evolve this power.
 
 
-// Modularchangling, totally stolen from the new player panel.  YAYY
-/datum/component/antag/changeling/proc/EvolutionMenu()//The new one
+/mob/proc/EvolutionMenu()//The new one
 	set name = "-Evolution Menu-"
 	set category = "Changeling"
 	set desc = "Adapt yourself carefully."
+
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		return
 
 	if(!powerinstances.len)
 		for(var/P in powers)
@@ -225,7 +228,7 @@ var/list/datum/power/changeling/powerinstances = list()
 				<td align='center'>
 					<font size='5'><b>Changling Evolution Menu</b></font><br>
 					Hover over a power to see more information<br>
-					Current evolution points left to evolve with: [geneticpoints]<br>
+					Current evolution points left to evolve with: [comp.geneticpoints]<br>
 					Absorb other changelings to acquire more evolution points
 					<p>
 				</td>
@@ -248,7 +251,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	for(var/datum/power/changeling/P in powerinstances)
 		var/ownsthis = 0
 
-		if(P in purchased_powers)
+		if(P in comp.purchased_powers)
 			ownsthis = 1
 
 
@@ -301,7 +304,7 @@ var/list/datum/power/changeling/powerinstances = list()
 		if(!istype(M))
 			return
 		purchasePower(M, href_list["P"])
-		call(/datum/component/antag/changeling/proc/EvolutionMenu)()
+		call(/mob/proc/EvolutionMenu)()
 
 
 

@@ -30,6 +30,7 @@
 	set desc = "Reduces the maximum health of a victim for a few minutes.."
 
 	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_enfeebling_string)
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)
 		return 0
 	if(ishuman(T))
@@ -38,7 +39,7 @@
 		add_attack_logs(src,T,"Enfeebling sting (changeling)")
 
 		var/type_to_give = /datum/modifier/enfeeble
-		if(src.mind.changeling.recursive_enhancement)
+		if(comp.recursive_enhancement)
 			type_to_give = /datum/modifier/enfeeble/strong
 			to_chat(src, span_notice("We make them extremely weak."))
 		H.add_modifier(type_to_give, 2 MINUTES)
