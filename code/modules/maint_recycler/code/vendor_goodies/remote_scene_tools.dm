@@ -180,20 +180,16 @@
 	icon_state = "voodoo_doll_inactive"
 	icon_root = "voodoo_doll"
 	description_info = "The Doll acts as a remote scene tool - any sort of emotes or subtles that the wearer does will go DIRECTLY to the necklace! It's vague, so use it how you want in RP! Just remember bystander consent!"
+
 	//this is just a copy of the remote scene tool, but with a different icon
 	//and a different name
 
 	var/underlayRotation = 45
-
-
+	//TODO: make this generic so it's easier for other stuff to use. ideally there's a magical thing that just has all the various greebles set up so u can pick and choose which ones are rendered traditionally
 	var/list/tail_data = list("x" = 2, "y" = -2, "scale" = 1.6)
-
 	var/list/taur_data = list("x" = 2, "y" = 2, "scale" = 1.1)
-
-	var/list/wing_data = list("x" = 2, "y" = -2, "scale" = 1) //god i wish we had structs.
-
+	var/list/wing_data = list("x" = 2, "y" = -2, "scale" = 1)
 	var/list/ear_data = list("x" = 0, "y" = 1, "scale" = 1)
-
 	var/list/hat_data = list("x" = 0, "y" = 3, "scale" = 1)
 
 	var/earScaleX = 1.5
@@ -204,24 +200,12 @@
 	var/hatScale = 1
 	var/hatPixelX = 0
 	var/hatPixelY = 3
-
 	var/outline_size = 1
 
 
-	var/list/human_layer_handling = list(
-
-
-	)
-
-
-	var/image/displacement_render_image = list(
-
-
-	)
-
 	var/list/discarded_layer_indicies = list(
-	VORE_BELLY_LAYER = fsdfsd, //no
-	TAIL_LOWER_LAYER = fasdsafasfsa,
+	VORE_BELLY_LAYER, //not even gonna try with this lmfao
+	TAIL_LOWER_LAYER,
 	TAIL_UPPER_LAYER,
 	TAIL_UPPER_LAYER_ALT, //drawn manually
 	FIRE_LAYER, //not relevant
@@ -236,6 +220,14 @@
 	)
 
 	appearance_flags = KEEP_TOGETHER
+
+	var/no_fun_mode = FALSE //if true, we just draw the mob as an overlay
+
+/obj/item/remote_scene_tool/voodoo_doll/verb/toggle_fun_mode
+	set name = "Disable Special Rendering"
+	set desc = "Sometimes you don't want your victim be scrungly, that's alright."
+	no_fun_mode = !no_fun_mode
+	to_chat(usr,span_notice("you turn the dial on the back of \the [src], and turn the advanced projection matrix [no_fun_mode ? "off" : "on"]"))
 
 /obj/item/remote_scene_tool/voodoo_doll/Move(atom/newloc, direct, movetime)
 	. = ..()
@@ -278,22 +270,9 @@
 
 		var/is_tail_taur = istaurtail(buddy.tail_style)
 
-		var/list/to_overlays = buddy.overlays_standing.Copy()
-
-		//axe layers we don't wanna touchy
-
-		for(var/layer_to_kill in discarded_layer_keys)
-			to_overlays[layer_to_kill] = null
-
 		var/icon/displacement_map = icon(src.icon,is_tail_taur ? "taurdisplacement" : "displacement",SOUTH)
-		displacement_render_image = image(icon = src.icon, icon_state = "empty", dir = SOUTH)
-		displacement_render_image.appearance_flags = KEEP_TOGETHER
-		displacement_render_image.overlays = to_overlays
 
-		displacement_render_image.filters += filter(type = "displace", size = 128, icon=displacement_map)
-		displacement_render_image.filters += filter(type="outline", size = outline_size)
-		displacement_render_image.render_target = "[ckey(name)]_mask"
-
+		var/image/displacement_render_image = get_humanoid_displacement_map_image(buddy,discarded_layer_indicies,)
 
 		var/image/tail_image = buddy.get_tail_image()
 		var/tailoutlinecolor = rgb(50,50,50)

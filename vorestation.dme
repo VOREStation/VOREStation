@@ -2872,6 +2872,7 @@
 #include "code\modules\maint_recycler\code\vendor_datums\entries\misc_entries.dm"
 #include "code\modules\maint_recycler\code\vendor_datums\entries\scene_tools.dm"
 #include "code\modules\maint_recycler\code\vendor_datums\entries\weapons_and_arms.dm"
+#include "code\modules\maint_recycler\code\vendor_goodies\displacement_map_generation.dm"
 #include "code\modules\maint_recycler\code\vendor_goodies\remote_scene_tools.dm"
 #include "code\modules\maint_recycler\code\vendor_goodies\vendor_goodies.dm"
 #include "code\modules\makeup\nailpolish.dm"
