@@ -17,23 +17,21 @@ var/list/datum/power/changeling/powerinstances = list()
 
 /datum/power/changeling
 	var/allowduringlesserform = 0
-	var/genomecost = 500000 // Cost for the changling to evolve this power.
+	var/genomecost = 500000 // Cost for the changeling to evolve this power.
 
 
-/mob/proc/EvolutionMenu()//The new one
+/mob/proc/EvolutionMenu() //Needs to be replaced w/ TGUI because LMAO
 	set name = "-Evolution Menu-"
 	set category = "Changeling"
 	set desc = "Adapt yourself carefully."
 
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
-	if(!comp)
-		return
 
 	if(!powerinstances.len)
-		for(var/P in powers)
-			powerinstances += new P()
+		for(var/changeling_power in powers)
+			powerinstances += new changeling_power()
 
-	var/dat = "<html><head><title>Changling Evolution Menu</title></head>"
+	var/dat = "<html><head><title>Changeling Evolution Menu</title></head>"
 
 	//javascript, the part that does most of the work~
 	dat += {"
@@ -113,7 +111,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 					if(!ownsthis)
 					{
-						body += "<a href='byond://?src=\ref[src];P="+power+"'>Evolve</a>"
+						body += "<a href='byond://?src=\ref[src];changeling_power="+power+"'>Evolve</a>"
 					}
 
 					body += "</td><td align='center'>";
@@ -226,7 +224,7 @@ var/list/datum/power/changeling/powerinstances = list()
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					<font size='5'><b>Changling Evolution Menu</b></font><br>
+					<font size='5'><b>Changeling Evolution Menu</b></font><br>
 					Hover over a power to see more information<br>
 					Current evolution points left to evolve with: [comp.geneticpoints]<br>
 					Absorb other changelings to acquire more evolution points
@@ -248,10 +246,10 @@ var/list/datum/power/changeling/powerinstances = list()
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
 	var/i = 1
-	for(var/datum/power/changeling/P in powerinstances)
+	for(var/datum/power/changeling/changeling_power in powerinstances)
 		var/ownsthis = 0
 
-		if(P in comp.purchased_powers)
+		if(changeling_power in comp.purchased_powers)
 			ownsthis = 1
 
 
@@ -266,9 +264,9 @@ var/list/datum/power/changeling/powerinstances = list()
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[P.name]","[P.desc]","[P.helptext]","[P.enhancedtext]","[P]",[ownsthis])'
+					onmouseover='expand("item[i]","[changeling_power.name]","[changeling_power.desc]","[changeling_power.helptext]","[changeling_power.enhancedtext]","[changeling_power]",[ownsthis])'
 					>
-					<span id='search[i]'><b>Evolve [P] - Cost: [ownsthis ? "Purchased" : P.genomecost]</b></span>
+					<span id='search[i]'><b>Evolve [changeling_power] - Cost: [ownsthis ? "Purchased" : changeling_power.genomecost]</b></span>
 					</a>
 					<br><span id='item[i]'></span>
 				</td>
@@ -294,26 +292,20 @@ var/list/datum/power/changeling/powerinstances = list()
 	usr << browse(dat, "window=powers;size=900x480")
 
 
-/datum/component/antag/changeling/Topic(href, href_list)
+/mob/Topic(href, href_list) //Needs to be replaced w/ TGUI because LMAO
 	..()
-	if(!ismob(usr))
+	var/datum/component/antag/changeling/comp = usr.GetComponent(/datum/component/antag/changeling)
+	if(!comp)
 		return
-
-	if(href_list["P"])
-		var/datum/mind/M = usr.mind
-		if(!istype(M))
-			return
-		purchasePower(M, href_list["P"])
-		call(/mob/proc/EvolutionMenu)()
+	if(href_list["changeling_power"])
+		comp.purchasePower(comp.owner, href_list["changeling_power"])
+		comp.owner.EvolutionMenu()
 
 
 
-/datum/component/antag/changeling/proc/purchasePower(var/datum/mind/M, var/Pname, var/remake_verbs = 1)
-	if(!M)
-		return
+/datum/component/antag/changeling/proc/purchasePower(var/mob/owner, var/Pname, var/remake_verbs = 1)
 
 	var/datum/power/changeling/Thepower = Pname
-
 
 	for (var/datum/power/changeling/P in powerinstances)
 		//to_world("[P] - [Pname] = [P.name == Pname ? "True" : "False"]")
@@ -323,16 +315,16 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 	if(Thepower == null)
-		to_chat(M.current, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
+		to_chat(owner, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
 		return
 
 	if(Thepower in purchased_powers)
-		to_chat(M.current, "We have already evolved this ability!")
+		to_chat(owner, "We have already evolved this ability!")
 		return
 
 
 	if(geneticpoints < Thepower.genomecost)
-		to_chat(M.current, "We cannot evolve this... yet.  We must acquire more DNA.")
+		to_chat(owner, "We cannot evolve this... yet.  We must acquire more DNA.")
 		return
 
 	geneticpoints -= Thepower.genomecost
@@ -343,10 +335,10 @@ var/list/datum/power/changeling/powerinstances = list()
 		purchased_powers_history.Add("[Pname] ([Thepower.genomecost] points)")
 
 	if(Thepower.make_hud_button && Thepower.isVerb)
-		if(!M.current.ability_master)
-			M.current.ability_master = new /obj/screen/movable/ability_master(M.current)
-		M.current.ability_master.add_ling_ability(
-			object_given = M.current,
+		if(owner.ability_master)
+			owner.ability_master = new /obj/screen/movable/ability_master(owner)
+		owner.ability_master.add_ling_ability(
+			object_given = owner,
 			verb_given = Thepower.verbpath,
 			name_given = Thepower.name,
 			ability_icon_given = Thepower.ability_icon_state,
@@ -354,6 +346,6 @@ var/list/datum/power/changeling/powerinstances = list()
 			)
 
 	if(!Thepower.isVerb && Thepower.verbpath)
-		call(M.current, Thepower.verbpath)()
+		call(owner, Thepower.verbpath)()
 	else if(remake_verbs)
-		M.current.make_changeling()
+		owner.make_changeling()

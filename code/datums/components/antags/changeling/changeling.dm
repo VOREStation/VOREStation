@@ -2,7 +2,6 @@
 ///Stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsilon","Eta","Gamma","Iota","Kappa","Lambda","Mu","Nu","Omega","Omicron","Phi","Pi","Psi","Rho","Sigma","Tau","Theta","Upsilon","Xi","Zeta")) //ALPHABETICAL ORDER.
 
-
 /datum/component/antag/changeling
 	var/list/datum/absorbed_dna/absorbed_dna = list()
 	var/list/absorbed_languages = list() // Necessary because of set_species stuff
@@ -89,7 +88,7 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	for(var/datum/power/changeling/P in powerinstances)
 		if(!P.genomecost) // Is it free?
 			if(!(P in comp.purchased_powers)) // Do we not have it already?
-				comp.purchasePower(mind, P.name, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
+				comp.purchasePower(comp.owner, P.name, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
 
 	for(var/datum/power/changeling/P in comp.purchased_powers)
 		if(P.isVerb)
@@ -259,7 +258,12 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 			L.Add(t)
 	return L
 
-
+//Debug item. Here because during debugging I DO NOT want to have to open the player panel 5000 times.
+/obj/item/toy/katana/katana_that_makes_you_a_changeling
+	name = "Katana of the Changeling"
+	desc = "A katana imbued with special powers. It is said that those who wield it will become a changeling."
+/obj/item/toy/katana/katana_that_makes_you_a_changeling/attack_self(mob/user)
+	user.make_changeling()
 
 
 
