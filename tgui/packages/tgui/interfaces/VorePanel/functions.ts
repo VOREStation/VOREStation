@@ -22,7 +22,11 @@ export function calcLineHeight(lim: number, height: number) {
 }
 
 export function fixCorruptedData(
-  toSanitize: string | string[] | null | Record<string, string>,
+  toSanitize:
+    | string
+    | string[]
+    | null
+    | Record<string | number, string | number>,
 ) {
   if (toSanitize === null) {
     return { data: '' };

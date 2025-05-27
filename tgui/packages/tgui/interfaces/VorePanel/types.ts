@@ -380,7 +380,11 @@ export type aestMessageData = {
   possible_messages: string[];
   aest_subtab: string;
   max_length: number;
-  active_message: string | string[] | null | Record<string, string>; // The record is an ancient data corruption, it's not valid!
+  active_message:
+    | string
+    | string[]
+    | null
+    | Record<string | number, string | number>; // The record is an ancient data corruption, it's not valid!
   set_action: string;
   tooltip: string;
   sub_action?: string;
