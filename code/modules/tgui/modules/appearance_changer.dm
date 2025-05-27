@@ -1049,7 +1049,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
@@ -1062,7 +1062,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/superpower
 	name ="Appearance Editor (Superpower)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
@@ -1076,7 +1076,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/xenochimera
 	name ="Appearance Editor (Xenochimera)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/xenochimera/tgui_status(mob/user, datum/tgui_state/state)
