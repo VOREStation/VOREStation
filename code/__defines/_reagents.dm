@@ -573,6 +573,8 @@
 #define REAGENT_ID_NUKIEMEGASHRINK "nukie_mega_shrink"
 #define REAGENT_NUKIEMEGAGROWTH "Nukie Mega Growth"
 #define REAGENT_ID_NUKIEMEGAGROWTH "nukie_mega_growth"
+#define REAGENT_NUKIEONE "Nukie One"
+#define REAGENT_ID_NUKIEONE "nukie_one"
 #define REAGENT_COATING "coating"
 #define REAGENT_ID_COATING "coating"
 #define REAGENT_BATTER "batter mix"
