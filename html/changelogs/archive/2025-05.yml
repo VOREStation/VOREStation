@@ -213,3 +213,6 @@
   Willburd:
   - rscadd: Gene scanner tool for genetics to detect traits in monkeys and humans.
   - qol: Virus extrapolator not being store-able in the medical belt and pouch
+2025-05-27:
+  ShadowLarkens:
+  - bugfix: Weird pref data causing a UI crash
