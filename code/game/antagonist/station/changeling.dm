@@ -22,6 +22,14 @@
 	..()
 	player.current.make_changeling()
 
+/datum/antagonist/changeling/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+	if(comp)
+		comp.owner.remove_changeling_powers()
+		remove_verb(comp.owner, /mob/proc/EvolutionMenu)
+		comp.RemoveComponent()
+
 /datum/antagonist/changeling/create_objectives(var/datum/mind/changeling)
 	if(!..())
 		return

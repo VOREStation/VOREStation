@@ -259,10 +259,10 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	return L
 
 //Debug item. Here because during debugging I DO NOT want to have to open the player panel 5000 times.
-/obj/item/toy/katana/katana_that_makes_you_a_changeling
+/obj/item/toy/katana/changeling_debug
 	name = "Katana of the Changeling"
 	desc = "A katana imbued with special powers. It is said that those who wield it will become a changeling."
-/obj/item/toy/katana/katana_that_makes_you_a_changeling/attack_self(mob/user)
+/obj/item/toy/katana/changeling_debug/attack_self(mob/user)
 	user.make_changeling()
 
 
