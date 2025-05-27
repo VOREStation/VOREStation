@@ -72,6 +72,7 @@
 			SJ.forceMove(H.loc)
 			SJ.dropped(H)
 			H.wear_suit = null
+		H.UpdateAppearance()
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain

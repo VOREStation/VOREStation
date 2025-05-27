@@ -42,6 +42,7 @@
 
 			// make the icons look correct
 			C.regenerate_icons()
+			C.UpdateAppearance()
 
 			// now make it obvious that we're not human (or whatever xeno race they are impersonating)
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
