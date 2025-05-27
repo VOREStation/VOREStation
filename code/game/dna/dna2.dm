@@ -452,14 +452,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	// Update species blood with our blood color from dna!
 	H.species.blood_reagents = blood_reagents
 	H.species.blood_color = blood_color
-
-	/*//TODO: Get these to work as well.
 	H.species.species_sounds = species_sounds
 	H.species.gender_specific_species_sounds = gender_specific_species_sounds
 	H.species.species_sounds_male = species_sounds_male
 	H.species.species_sounds_female = species_sounds_female
-	*///TODO End
-
 /**
  * End of mob to dna, and dna to mob transfer procs.
  */
