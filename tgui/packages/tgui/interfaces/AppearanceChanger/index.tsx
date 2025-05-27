@@ -328,14 +328,6 @@ export const AppearanceChanger = (props) => {
                     Gender & Sex
                   </Tabs.Tab>
                 ) : null}
-                {change_misc ? (
-                  <Tabs.Tab
-                    selected={tabIndex === TAB_MISC}
-                    onClick={() => setTabIndex(TAB_MISC)}
-                  >
-                    Misc
-                  </Tabs.Tab>
-                ) : null}
                 {change_color ? (
                   <Tabs.Tab
                     selected={tabIndex === TAB_COLORS}
@@ -393,6 +385,14 @@ export const AppearanceChanger = (props) => {
                       Markings
                     </Tabs.Tab>
                   </>
+                ) : null}
+                {change_misc ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_MISC}
+                    onClick={() => setTabIndex(TAB_MISC)}
+                  >
+                    Misc
+                  </Tabs.Tab>
                 ) : null}
               </Tabs>
             </Stack.Item>
