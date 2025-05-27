@@ -9,7 +9,7 @@ export const AppearanceChangerMisc = (props) => {
   return (
     <Section title="Misc" fill scrollable>
       <Stack vertical fill>
-        <Section title="Scaling">
+        <Section title="Appearance">
           <LabeledList.Item label="Species Appearance">
             <Button
               icon="pen"
