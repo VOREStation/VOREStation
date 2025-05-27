@@ -154,7 +154,6 @@
 	new_mob.ooc_notes_dislikes = ooc_notes_dislikes
 	new_mob.appendage_color = appendage_color
 	new_mob.appendage_alt_setting = appendage_alt_setting
-	new_mob.text_warnings = text_warnings
 
 	VORE_PREF_TRANSFER(new_mob, src)
 
