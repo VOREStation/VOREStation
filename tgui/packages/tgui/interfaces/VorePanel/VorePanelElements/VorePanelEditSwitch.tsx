@@ -3,15 +3,25 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, type Floating } from 'tgui-core/components';
 
 export const VorePanelEditSwitch = (props: {
-  action: string;
-  subAction?: string;
+  /** Switch between Element editing and display */
   editMode: boolean;
+  /** Our backend action on text area blur */
+  action: string;
+  /** Our secondary backend action on text area blur */
+  subAction?: string;
+  /** Is the button currently active / selected */
   active?: boolean;
+  /** Displayed text content */
   content?: string;
+  /** Our displayed tooltip on button hover */
   tooltip?: string;
+  /** The position of the tooltip if static */
   tooltipPosition?: ComponentProps<typeof Floating>['placement'];
+  /** Color of the button and displayed text */
   color?: string;
+  /** Hides the button icon */
   hideIcon?: boolean;
+  /** Allows to pass custom icon options */
   customIcon?: string;
 }) => {
   const { act } = useBackend();

@@ -1,4 +1,3 @@
-import { useBackend } from 'tgui/backend';
 import { LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { noSelectionName } from '../constants';
@@ -13,8 +12,6 @@ export const VoreSelectedBellyInteractions = (props: {
   bellyDropdownNames: DropdownEntry[];
   bellyInteractData: bellyInteractionData;
 }) => {
-  const { act } = useBackend();
-
   const { editMode, bellyDropdownNames, bellyInteractData } = props;
   const { escapable, interacts, autotransfer_enabled, autotransfer } =
     bellyInteractData;

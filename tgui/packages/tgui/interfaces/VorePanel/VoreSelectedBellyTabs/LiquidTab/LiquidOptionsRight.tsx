@@ -13,32 +13,16 @@ export const LiquidOptionsRight = (props: {
 }) => {
   const { editMode, liquidInteract } = props;
   const {
-    liq_reagent_gen,
-    liq_reagent_type,
-    liq_reagent_name,
     liq_reagent_transfer_verb,
     liq_reagent_nutri_rate,
     liq_reagent_capacity,
     liq_custom_name_max,
     liq_custom_name_min,
-    liq_sloshing,
-    liq_reagent_addons,
-    custom_reagentcolor,
-    custom_reagentalpha,
-    liquid_overlay,
     max_liquid_level,
     reagent_touches,
-    mush_overlay,
-    mush_color,
-    mush_alpha,
     max_mush,
-    min_mush,
     item_mush_val,
-    metabolism_overlay,
-    metabolism_mush_ratio,
     max_ingested,
-    custom_ingested_color,
-    custom_ingested_alpha,
   } = liquidInteract;
 
   return (

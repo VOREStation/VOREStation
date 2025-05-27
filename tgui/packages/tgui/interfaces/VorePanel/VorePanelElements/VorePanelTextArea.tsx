@@ -124,16 +124,27 @@ const AreaMapper = (props: {
 };
 
 export const VorePanelEditTextArea = (props: {
+  /** Switch between Element editing and display */
   editMode: boolean;
-  tooltip?: string;
-  limit: number;
-  entry: string | string[];
+  /** Our backend action on text area blur */
   action: string;
-  exactLength?: boolean;
-  listAction?: string;
+  /** Our secondary backend action on text area blur */
   subAction?: string;
+  /** Our secondary backend action if we used a list as input on text area blur */
+  listAction?: string;
+  /** Our displayed tooltip displayed above all texts */
+  tooltip?: string;
+  /** The maximum length of each message */
+  limit: number;
+  /** The current displayed message or message array */
+  entry: string | string[];
+  /** Do we force the input to always send the maxEntries as list length to byond */
+  exactLength?: boolean;
+  /** The amount of possible list entries. By default 10 */
   maxEntries?: number;
+  /** Should we disbale the copy paste legacy field for text to list inputs */
   disableLegacyInput?: boolean;
+  /** Disable our special highlighting used on belly messages */
   noHighlight?: boolean;
 }) => {
   const { act } = useBackend();

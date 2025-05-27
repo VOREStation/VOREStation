@@ -12,14 +12,23 @@ import { capitalize } from 'tgui-core/string';
 import type { DropdownEntry } from '../types';
 
 export const VorePanelEditDropdown = (props: {
-  action: string;
-  subAction?: string;
+  /** Switch between Element editing and display */
   editMode: boolean;
+  /** Our backend action on text area blur */
+  action: string;
+  /** Our secondary backend action on text area blur */
+  subAction?: string;
+  /** Our dropdown inouts and actions */
   options: (string | DropdownEntry)[];
+  /** The currently shown selection */
   entry: string;
+  /** Color of the dropdown and text */
   color?: string;
+  /** Icon of the dropdown */
   icon?: string;
+  /** Our displayed tooltip behind the input element */
   tooltip?: string;
+  /** The position of the tooltip if static */
   tooltipPosition?: ComponentProps<typeof Floating>['placement'];
 }) => {
   const { act } = useBackend();
