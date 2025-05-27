@@ -325,6 +325,8 @@
 		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
+	var/datum/tgui_module/appearance_changer/xenochimera/X = new(src, src)
+	X.tgui_interact(src)
 
 /mob/living/carbon/human/proc/chimera_regenerate_nutrition()
 	var/datum/component/xenochimera/xc = get_xenochimera_component()

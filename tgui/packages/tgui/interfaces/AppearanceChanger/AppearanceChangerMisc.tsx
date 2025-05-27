@@ -1,5 +1,11 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import {
+  Button,
+  ColorBox,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import type { Data } from './types';
 
@@ -22,6 +28,16 @@ export const AppearanceChangerMisc = (props) => {
           <LabeledList.Item label="Digitigrade">
             <Button icon="pen" onClick={() => act('digitigrade')}>
               {data.digitigrade ? 'Yes' : 'No'}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Custom Species Name">
+            <Button icon="pen" onClick={() => act('race_name')}>
+              {data.species_name ? data.species_name : specimen}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Species Sound">
+            <Button icon="pen" onClick={() => act('species_sound')}>
+              {data.species_sound}
             </Button>
           </LabeledList.Item>
         </Section>
@@ -47,6 +63,25 @@ export const AppearanceChangerMisc = (props) => {
             <Button icon="pen" onClick={() => act('weight')}>
               {data.weight}
             </Button>
+          </LabeledList.Item>
+        </Section>
+        <Section title="Blood">
+          <LabeledList.Item label="Blood Reagent">
+            <Button icon="pen" onClick={() => act('blood_reagent')}>
+              {data.blood_reagent}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Blood Color">
+            <Stack align="center">
+              <Stack.Item>
+                <Button icon="pen" onClick={() => act('blood_color')}>
+                  {data.blood_color}
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <ColorBox color={data.blood_color} mr={1} />
+              </Stack.Item>
+            </Stack>
           </LabeledList.Item>
         </Section>
       </Stack>

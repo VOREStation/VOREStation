@@ -553,7 +553,7 @@
 		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
-			if(choice && can_change(owner, APPEARANCE_RACE))
+			if(choice && can_change(owner, APPEARANCE_MISC))
 				owner.species.species_sounds = choice
 				return TRUE
 		if("flavor_text")
@@ -1049,7 +1049,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
@@ -1062,7 +1062,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/superpower
 	name ="Appearance Editor (Superpower)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
@@ -1070,6 +1070,23 @@
 	if(!owner.dna.GetSEState(G.block))
 		return STATUS_CLOSE
 	return ..()
+
+// *******************************************************
+// Xenochimera Revive
+// *******************************************************
+/datum/tgui_module/appearance_changer/xenochimera
+	name ="Appearance Editor (Xenochimera)"
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC | APPEARANCE_GENDER
+	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/xenochimera/tgui_status(mob/user, datum/tgui_state/state)
+	if(!owner.lying) //As soon as you stand up, we're done here.
+		return STATUS_CLOSE
+	return ..()
+
+/datum/tgui_module/appearance_changer/xenochimera/tgui_close(mob/user)
+	. = ..()
+	QDEL_IN(src, 1)
 
 // *******************************************************
 // Body design console
