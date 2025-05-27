@@ -129,7 +129,7 @@
 				S.use(1)
 				digest_stage = w_class
 		else
-			if(istype(src, /obj/item/reagent_containers/food))
+			if(istype(B) && istype(src, /obj/item/reagent_containers/food))
 				if(ishuman(B.owner) && reagents)
 					var/mob/living/carbon/human/H = B.owner
 					reagents.trans_to_holder(H.ingested, (reagents.total_volume), B.nutrition_percent / 100, 0)
