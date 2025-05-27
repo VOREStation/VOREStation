@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new event collector objector that is designed for events where players have to gather items to complete a recipe."
+  - rscadd: "Added a blocker object to accompany the event collector."
