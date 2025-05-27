@@ -55,7 +55,6 @@
 				to_chat(src, span_notice("We stab [T] with the proboscis."))
 				src.visible_message(span_danger("[src] stabs [T] with the proboscis!"))
 				to_chat(T, span_danger("You feel a sharp stabbing pain!"))
-				add_attack_logs(src,T,"Absorbed (changeling)")
 				var/obj/item/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
 					T:UpdateDamageIcon()
@@ -67,6 +66,7 @@
 			return
 
 	to_chat(src, span_notice("We have absorbed [T]!"))
+	add_attack_logs(src,T,"Absorbed (changeling)")
 	src.visible_message(span_danger("[src] sucks the fluids from [T]!"))
 	to_chat(T, span_danger("You have been absorbed by the changeling!"))
 	adjust_nutrition(T.nutrition)
@@ -74,6 +74,9 @@
 	if(changeling.readapts <= 0)
 		changeling.readapts = 0 //SANITYYYYYY
 	changeling.readapts++
+	//Let's give them a genetic point for absorbing someone...Because honestly if you absorb people you SHOULD get stronger.
+	changeling.max_geneticpoints++
+	changeling.geneticpoints++
 	if(changeling.readapts > changeling.max_readapts)
 		changeling.readapts = changeling.max_readapts
 
