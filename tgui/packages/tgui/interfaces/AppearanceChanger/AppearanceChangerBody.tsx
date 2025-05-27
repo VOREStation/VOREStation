@@ -40,15 +40,6 @@ export const AppearanceChangerSpecies = (props) => {
               {data.species_name ? data.species_name : specimen}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Species Appearance">
-            <Button
-              icon="pen"
-              disabled={!data.use_custom_icon}
-              onClick={() => act('base_icon')}
-            >
-              {data.base_icon ? data.base_icon : specimen}
-            </Button>
-          </LabeledList.Item>
           <LabeledList.Item label="Blood Reagent">
             <Button icon="pen" onClick={() => act('blood_reagent')}>
               {data.blood_reagent}

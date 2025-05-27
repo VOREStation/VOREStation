@@ -471,7 +471,7 @@
 				owner.custom_species = new_name
 				return TRUE
 		if("base_icon")
-			if(can_change(owner, APPEARANCE_RACE))
+			if(can_change(owner, APPEARANCE_MISC))
 				if(owner.species.selects_bodytype == SELECTS_BODYTYPE_FALSE)
 					var/datum/species/S = GLOB.all_species[owner.species.name]
 					owner.species.base_species = S.base_species // Return to original form

@@ -5,15 +5,26 @@ import type { Data } from './types';
 
 export const AppearanceChangerMisc = (props) => {
   const { act, data } = useBackend<Data>();
-
+  const { specimen } = data;
   return (
     <Section title="Misc" fill scrollable>
       <Stack vertical fill>
-        <LabeledList.Item label="Digitigrade">
-          <Button icon="pen" onClick={() => act('digitigrade')}>
-            {data.digitigrade ? 'Yes' : 'No'}
-          </Button>
-        </LabeledList.Item>
+        <Section title="Scaling">
+          <LabeledList.Item label="Species Appearance">
+            <Button
+              icon="pen"
+              disabled={!data.use_custom_icon}
+              onClick={() => act('base_icon')}
+            >
+              {data.base_icon ? data.base_icon : specimen}
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Digitigrade">
+            <Button icon="pen" onClick={() => act('digitigrade')}>
+              {data.digitigrade ? 'Yes' : 'No'}
+            </Button>
+          </LabeledList.Item>
+        </Section>
         <Section title="Scaling">
           <LabeledList.Item label="Scale">
             <Button icon="pen" onClick={() => act('size_scale')}>
