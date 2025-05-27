@@ -70,6 +70,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                   <LabeledList.Item key={entry} label={capitalize(entry)}>
                     <Stack align="center">
                       <VorePanelEditColor
+                        name_of="sprite color"
                         removePlaceholder
                         editMode={editMode}
                         action="set_vs_color"
