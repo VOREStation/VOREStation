@@ -7,9 +7,7 @@
  * * verb - typepath to a verb, or a list of verbs, supports lists of lists
  */
 /proc/add_verb(client/target, verb_or_list_to_add)
-	to_world("We are attempting to add [verb_or_list_to_add] to [target]")
 	if(!target)
-		to_world("No target")
 		CRASH("add_verb called without a target")
 	if(IsAdminAdvancedProcCall())
 		return
@@ -19,7 +17,6 @@
 		mob_target = target
 		target = mob_target.client
 	else if(!istype(target, /client))
-		to_world("add_verb called on a non-mob and non-client")
 		CRASH("add_verb called on a non-mob and non-client")
 	var/list/verbs_list = list()
 	if(!islist(verb_or_list_to_add))
