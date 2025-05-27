@@ -383,6 +383,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/cartridge/engineering,
 		/obj/item/analyzer,
 		/obj/item/healthanalyzer,
+		/obj/item/extrapolator,
+		/obj/item/gene_scanner,
 		/obj/item/robotanalyzer,
 		/obj/item/lightreplacer,
 		/obj/item/radio,

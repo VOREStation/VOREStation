@@ -18,7 +18,6 @@
 	var/languages=null
 	var/list/flavor=null
 	var/gender = null
-	var/list/body_descriptors = null // Guess we'll keep null.
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
 /datum/dna2/record/proc/GetData()
@@ -632,7 +631,6 @@
 							var/mob/living/carbon/human/H = WC
 							databuf.mydna.dna.real_name = H.dna.real_name
 							databuf.mydna.gender = H.gender
-							databuf.mydna.body_descriptors = H.descriptors ? H.descriptors.Copy() : null
 						buffers[bufferId] = databuf
 					return TRUE
 				if("clear")

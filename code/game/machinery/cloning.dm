@@ -119,6 +119,7 @@
 	var/mob/living/carbon/human/H = BR.produce_human_mob(src,FALSE, FALSE, "clone ([rand(0,999)])")
 	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
 
+	//Get the clone body ready
 	H.adjustCloneLoss(150) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
 	H.Paralyse(4)
 	H.updatehealth()

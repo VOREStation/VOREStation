@@ -1,5 +1,6 @@
 use meowtonin::{value::ByondValue, ByondError, ByondResult};
 use rand::{distributions::Bernoulli, prelude::Distribution};
+use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 
 const CELL_THRESHOLD: usize = 5;
 
@@ -18,7 +19,7 @@ pub fn generate_automata(
     let mut map = seed_map(limit_x, limit_y, initial_wall_cell)?;
     for _ in 1..iterations {
         map = map
-            .iter()
+            .par_iter()
             .enumerate()
             .map(|(i, _)| {
                 let mut count = 0;

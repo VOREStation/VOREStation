@@ -197,3 +197,22 @@
   - image: new rest mode for smolraptors
   tacoguy7765093:
   - image: Fox taurs now have belly sprites.
+2025-05-22:
+  ShadowLarkens:
+  - server: Server starts faster now
+2025-05-24:
+  ShadowLarkens:
+  - bugfix: Gas overlays work again
+  - code_imp: xgm gas_data is now a GLOB
+  Willburd:
+  - bugfix: Capsaicin no longer causes toxin damage when eaten
+2025-05-25:
+  ShadowLarkens:
+  - bugfix: qdeleted new_players causing havoc
+  - qol: Entire character setup menu rewritten in TGUI
+  Willburd:
+  - rscadd: Gene scanner tool for genetics to detect traits in monkeys and humans.
+  - qol: Virus extrapolator not being store-able in the medical belt and pouch
+2025-05-27:
+  ShadowLarkens:
+  - bugfix: Weird pref data causing a UI crash
