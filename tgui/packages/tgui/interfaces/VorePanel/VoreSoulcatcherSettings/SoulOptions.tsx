@@ -10,7 +10,7 @@ export const SoulOptions = (props: { taken_over: BooleanLike }) => {
   return (
     <LabeledList.Item label="Soul Options">
       <Stack>
-        {!taken_over ? (
+        {!taken_over && (
           <>
             <Stack.Item>
               <Button
@@ -46,8 +46,6 @@ export const SoulOptions = (props: { taken_over: BooleanLike }) => {
               </Button.Confirm>
             </Stack.Item>
           </>
-        ) : (
-          ''
         )}
         <Stack.Item>
           <Button
