@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
+import { type BooleanLike } from 'tgui-core/react';
 
 import type { bellyData, generalPrefData } from '../types';
 import { VoreUserPreferencesAesthetic } from '../VoreUserPreferencesTabs/VoreUserPreferencesAesthetic';
@@ -9,11 +10,18 @@ import { VoreUserPreferencesAesthetic } from '../VoreUserPreferencesTabs/VoreUse
 export const VoreUserGeneral = (props: {
   general_pref_data?: generalPrefData;
   editMode: boolean;
+  persist_edit_mode: BooleanLike;
   our_bellies: bellyData[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act } = useBackend();
-  const { general_pref_data, editMode, our_bellies, toggleEditMode } = props;
+  const {
+    general_pref_data,
+    editMode,
+    persist_edit_mode,
+    our_bellies,
+    toggleEditMode,
+  } = props;
 
   return (
     <Section fill>
@@ -22,6 +30,7 @@ export const VoreUserGeneral = (props: {
           <Stack.Item grow>
             <VoreUserPreferencesAesthetic
               editMode={editMode}
+              persist_edit_mode={persist_edit_mode}
               toggleEditMode={toggleEditMode}
               active_belly={general_pref_data.active_belly}
               belly_rub_target={general_pref_data.belly_rub_target}

@@ -6,6 +6,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { type BooleanLike } from 'tgui-core/react';
 
 import { noSelectionName } from '../constants';
 import type { abilities, DropdownEntry, soulcatcherData } from '../types';
@@ -30,9 +31,16 @@ export const VoreSoulcatcher = (props: {
   abilities: abilities;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
+  persist_edit_mode: BooleanLike;
 }) => {
-  const { soulcatcher, our_bellies, abilities, toggleEditMode, editMode } =
-    props;
+  const {
+    soulcatcher,
+    our_bellies,
+    abilities,
+    toggleEditMode,
+    editMode,
+    persist_edit_mode,
+  } = props;
 
   const getBellies = our_bellies.map((belly) => {
     return { displayText: belly.name, value: belly.ref };
@@ -50,6 +58,7 @@ export const VoreSoulcatcher = (props: {
               overlayBellies={locationNames}
               toggleEditMode={toggleEditMode}
               editMode={editMode}
+              persist_edit_mode={persist_edit_mode}
             />
           </Stack.Item>
         )}
@@ -66,10 +75,17 @@ const VoreSoulcatcherSection = (props: {
   overlayBellies: DropdownEntry[];
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
+  persist_edit_mode: BooleanLike;
 }) => {
   const { act } = useBackend();
 
-  const { soulcatcher, overlayBellies, toggleEditMode, editMode } = props;
+  const {
+    soulcatcher,
+    overlayBellies,
+    toggleEditMode,
+    editMode,
+    persist_edit_mode,
+  } = props;
 
   const {
     active,
@@ -112,6 +128,7 @@ const VoreSoulcatcherSection = (props: {
           <Stack.Item>
             <VorePanelEditToggle
               editMode={editMode}
+              persistEditMode={persist_edit_mode}
               toggleEditMode={toggleEditMode}
             />
           </Stack.Item>

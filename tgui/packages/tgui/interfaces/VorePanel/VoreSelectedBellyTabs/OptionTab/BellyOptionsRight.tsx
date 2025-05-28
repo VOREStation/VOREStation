@@ -24,6 +24,7 @@ export const BellyOptionsRight = (props: {
     egg_type,
     egg_types,
     egg_name,
+    egg_name_length,
     egg_size,
     recycling,
     storing_nutrition,
@@ -31,6 +32,12 @@ export const BellyOptionsRight = (props: {
     drainmode_options,
     drainmode,
   } = bellyOptionData;
+
+  const displayedEggName = editMode
+    ? egg_name || ''
+    : egg_name
+      ? egg_name
+      : 'Default';
 
   return (
     <LabeledList>
@@ -176,8 +183,8 @@ export const BellyOptionsRight = (props: {
           action="set_attribute"
           subAction="b_egg_name"
           editMode={editMode}
-          limit={0}
-          entry={editMode ? egg_name : egg_name ? egg_name : 'Default'}
+          limit={egg_name_length}
+          entry={displayedEggName}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Custom Egg Size">
