@@ -80,7 +80,7 @@
 	//if(resting) // VOREStation edit. Our borgos would rather not.
 	//	Weaken(5)
 
-	if(health < CONFIG_GET(number/health_threshold_dead) && stat != 2) //die only once
+	if(health < (-getMaxHealth()) && stat != 2) //die only once
 		death()
 
 	if (stat != 2) //Alive.
@@ -242,7 +242,7 @@
 					healths.icon_state = "health3"
 				else if(health >= 0)
 					healths.icon_state = "health4"
-				else if(health >= CONFIG_GET(number/health_threshold_dead))
+				else if(health >= (-getMaxHealth()))
 					healths.icon_state = "health5"
 				else
 					healths.icon_state = "health6"

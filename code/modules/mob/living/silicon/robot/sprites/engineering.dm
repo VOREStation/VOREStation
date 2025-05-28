@@ -273,6 +273,7 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
 
@@ -284,11 +285,11 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 
-/datum/robot_sprite/dogborg/engineering/smolraptorengineeringsprite
+/datum/robot_sprite/dogborg/engineering/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_eng.dmi'
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
-	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "Sit")
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")

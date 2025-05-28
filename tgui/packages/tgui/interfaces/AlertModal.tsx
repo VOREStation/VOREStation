@@ -102,7 +102,7 @@ export function AlertModal(props) {
       <Window.Content onKeyDown={keyDownHandler}>
         <Section fill>
           <Stack fill vertical>
-            <Stack.Item m={1}>
+            <Stack.Item m={1} grow>
               <Box color="label" overflow="hidden">
                 {message}
               </Box>

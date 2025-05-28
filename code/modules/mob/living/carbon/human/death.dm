@@ -1,5 +1,5 @@
 /mob/living/carbon/human/gib()
-
+	transforming = 1 //Tells the gib system to NOT SEND MESSAGES FOR EVERYTHING when we gib.
 	if(vr_holder)
 		exit_vr()
 		// Delete the link, because this mob won't be around much longer

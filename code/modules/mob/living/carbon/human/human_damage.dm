@@ -18,7 +18,7 @@
 	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
 	//TODO: fix husking
-	if( ((getMaxHealth() - total_burn) < CONFIG_GET(number/health_threshold_dead) * huskmodifier) && stat == DEAD)
+	if( ((getMaxHealth() - total_burn) < (-getMaxHealth()) * huskmodifier) && stat == DEAD)
 		ChangeToHusk()
 	return
 
@@ -232,8 +232,11 @@
 
 	return in_stasis
 
-//This determines if, RIGHT NOW, the life() tick is being skipped due to stasis
-/mob/living/carbon/human/proc/inStasisNow()
+/// This determines if, RIGHT NOW, the life() tick is being skipped due to stasis
+/mob/proc/inStasisNow() // For components to be more easily compatible with both simple and human mobs, only humans can stasis.
+	return FALSE
+
+/mob/living/carbon/human/inStasisNow()
 	var/stasisValue = getStasis()
 	if(stasisValue && (life_tick % stasisValue))
 		return 1

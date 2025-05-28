@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 		return critter.health < (critter.getMaxHealth() * critter.sap_heal_threshold)
 
 	// Other animals just need to be injured.
-	return (friend.health < friend.maxHealth)
+	return (friend.health < friend.getMaxHealth())
 
 /mob/living/simple_mob/animal/sif/grafadreka/Initialize(mapload)
 
@@ -435,12 +435,12 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 
 		if(!can_tend_wounds(friend))
 			if(friend == src)
-				if(health == maxHealth)
+				if(health == getMaxHealth())
 					to_chat(src, span_warning("You are unwounded."))
 				else
 					to_chat(src, span_warning("You cannot tend any of your wounds."))
 			else
-				if(friend.health == friend.maxHealth)
+				if(friend.health == friend.getMaxHealth())
 					return ..()
 				to_chat(src, span_warning("You cannot tend any of \the [friend]'s wounds."))
 			return TRUE

@@ -77,24 +77,16 @@ export const BotanyIsolator = (props) => {
                     Clear Genetic Buffer
                   </Button>
                 </Box>
-              )) || (
-                <NoticeBox mt={1} warning>
-                  No disk inserted.
-                </NoticeBox>
-              )}
+              )) || <NoticeBox mt={1}>No disk inserted.</NoticeBox>}
             </Box>
           )) || (
             <Box>
-              <NoticeBox warning>No Data Buffered.</NoticeBox>
+              <NoticeBox>No Data Buffered.</NoticeBox>
               {(disk && (
                 <Button icon="eject" onClick={() => act('eject_disk')}>
                   Eject Loaded Disk
                 </Button>
-              )) || (
-                <NoticeBox mt={1} warning>
-                  No disk inserted.
-                </NoticeBox>
-              )}
+              )) || <NoticeBox mt={1}>No disk inserted.</NoticeBox>}
             </Box>
           )}
         </Section>
@@ -113,7 +105,7 @@ export const BotanyIsolator = (props) => {
                 Eject Packet
               </Button>
             </Box>
-          )) || <NoticeBox warning>No packet loaded.</NoticeBox>}
+          )) || <NoticeBox>No packet loaded.</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

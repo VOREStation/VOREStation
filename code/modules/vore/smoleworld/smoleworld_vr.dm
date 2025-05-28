@@ -66,7 +66,7 @@
 	recipes += new/datum/stack_recipe("smole museum", /obj/structure/smolebuilding/museum, 2, time = 10)
 
 /datum/material/smolebricks
-	name = "smolebricks"
+	name = MAT_SMOLEBRICKS
 	stack_type = /obj/item/stack/material/smolebricks
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
@@ -77,13 +77,13 @@
 //the actual materials
 
 /obj/item/stack/material/smolebricks
-	name = "smolebricks"
+	name = MAT_SMOLEBRICKS
 	desc = "A collection of tiny colored bricks ready to be built into whatever you want."
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolematerial"
 	drop_sound = 'sound/items/drop/smolematerial.ogg'
 	pickup_sound = 'sound/items/pickup/pillbottle.ogg'
-	default_type = "smolebricks"
+	default_type = MAT_SMOLEBRICKS
 	w_class = ITEMSIZE_SMALL
 
 //smolebrick case to make for easy bricks.
