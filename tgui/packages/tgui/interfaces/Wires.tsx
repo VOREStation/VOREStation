@@ -38,12 +38,12 @@ export const Wires = (props) => {
   );
 };
 
-export const standardizeColor = (color: any): string => {
+export const standardizeColor = (color: string): string => {
   const canvas = new OffscreenCanvas(1, 1);
   const ctx = canvas.getContext('2d');
   if (ctx) {
     ctx.fillStyle = color;
-    return ctx.fillStyle as string;
+    return ctx.fillStyle;
   } else {
     return '#000000';
   }

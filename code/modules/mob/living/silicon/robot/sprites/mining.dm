@@ -325,20 +325,15 @@
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/mining/smolraptorminer
+/datum/robot_sprite/dogborg/mining/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'
 	name = "Small Raptor Miner"
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
-	rest_sprite_options = list("Default", "Sit")
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
-/datum/robot_sprite/dogborg/mining/smolraptorcargo
+/datum/robot_sprite/dogborg/mining/smolraptor/alt
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_car.dmi'
 	name = "Small Raptor Cargo"
-	sprite_icon_state = "smolraptor"
-	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = TRUE
-	has_dead_sprite_overlay = FALSE
-	rest_sprite_options = list("Default", "Sit")

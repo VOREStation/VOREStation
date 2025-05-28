@@ -285,6 +285,29 @@
 		dat += "<br>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		// Addictions
+		if(H.get_addiction_to_reagent(REAGENT_ID_ASUSTENANCE) > 0)
+			dat += span_warning("Biologically unstable, requires [REAGENT_ASUSTENANCE] to function properly.")
+			dat += "<br>"
+		for(var/addic in H.get_all_addictions())
+			if(H.get_addiction_to_reagent(addic) > 0 && (advscan >= 2 || H.get_addiction_to_reagent(addic) <= 120)) // high enough scanner upgrade detects addiction even if not almost withdrawling
+				var/datum/reagent/R = SSchemistry.chemical_reagents[addic]
+				if(R.id == REAGENT_ID_ASUSTENANCE)
+					continue
+				if(advscan >= 1)
+					// Shows multiple
+					if(advscan >= 2 && H.get_addiction_to_reagent(addic) <= 80)
+						dat += span_warning("Experiencing withdrawls from [R.name], [REAGENT_INAPROVALINE] treatment recomended.")
+						dat += "<br>"
+					else
+						dat += span_warning("Chemical dependance detected: [R.name].")
+						dat += "<br>"
+				else
+					// Shows single
+					dat += span_warning("Chemical dependance detected.")
+					dat += "<br>"
+					break
+		// Appendix
 		for(var/obj/item/organ/internal/appendix/a in H.internal_organs)
 			var/severity = ""
 			if(a.inflamed > 3)
@@ -383,18 +406,18 @@
 				dat += "<br>"
 		dat += span_notice("Subject's pulse: [H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? span_red(H.get_pulse(GETPULSE_TOOL) + " bpm") : span_blue(H.get_pulse(GETPULSE_TOOL) + " bpm")].") // VORE Edit: Missed a linebreak here.
 		dat += "<br>"
-		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
-			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())
+		var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+		if(xc)
+			if(H.stat == DEAD && xc.revive_ready == REVIVING_READY && !H.hasnutriment())
 				dat += span_danger("WARNING: Protein levels low. Subject incapable of reconstitution.")
-			else if(H.revive_ready == REVIVING_NOW)
-				dat += span_warning("Subject is undergoing form reconstruction. Estimated time to finish is in: [round((H.revive_finished - world.time) / 10)] seconds.")
-			else if(H.revive_ready == REVIVING_DONE)
+			else if(xc.revive_ready == REVIVING_NOW)
+				dat += span_warning("Subject is undergoing form reconstruction. Estimated time to finish is in: [round((xc.revive_finished - world.time) / 10)] seconds.")
+			else if(xc.revive_ready == REVIVING_DONE)
 				dat += span_notice("Subject is ready to hatch. Transfer to dark room for holding with food available.")
 			else if(H.stat == DEAD)
 				dat+= span_danger("WARNING: Defib will cause extreme pain and set subject feral. Sedation recommended prior to defibrillation.")
 			else // If they bop them and they're not dead or reviving, give 'em a little notice.
 				dat += span_notice("Subject is a Xenochimera. Treat accordingly.")
-		// VOREStation Edit End
 	user.show_message(dat, 1)
 	if(guide)
 		guide(M, user)

@@ -999,6 +999,8 @@
 	extra_overlay2 = "fox_markings2"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
+	vore_tail_sprite_variant = "F"
+	fullness_icons = 3
 	loaf_offset = 4
 
 /datum/sprite_accessory/tail/taur/kitsune
