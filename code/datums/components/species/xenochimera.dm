@@ -269,15 +269,15 @@
 		return
 	// Sanity is mostly handled in chimera_regenerate()
 	if(stat == DEAD)
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes. Additionally, you will have an appearance changer to make edits to your form.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			chimera_regenerate()
 	else if (quickcheckuninjured())
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and match your appearance to your character slot.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and give you an appearance changer to make any edits you wish to have when revived.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			chimera_regenerate()
 	else
-		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move. Additionally, you will have an appearance changer to make edits to your form.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			chimera_regenerate()
 
@@ -325,6 +325,9 @@
 		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
+	lying = TRUE
+	var/datum/tgui_module/appearance_changer/xenochimera/X = new(src, src)
+	X.tgui_interact(src)
 
 /mob/living/carbon/human/proc/chimera_regenerate_nutrition()
 	var/datum/component/xenochimera/xc = get_xenochimera_component()
