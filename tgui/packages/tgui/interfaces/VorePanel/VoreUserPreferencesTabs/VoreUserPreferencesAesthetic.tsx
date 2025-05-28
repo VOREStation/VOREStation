@@ -13,6 +13,7 @@ import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 
 export const VoreUserPreferencesAesthetic = (props: {
   editMode: boolean;
+  persist_edit_mode: BooleanLike;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   active_belly: string | null;
   our_bellies: bellyData[];
@@ -24,6 +25,7 @@ export const VoreUserPreferencesAesthetic = (props: {
 }) => {
   const {
     editMode,
+    persist_edit_mode,
     toggleEditMode,
     active_belly,
     belly_rub_target,
@@ -52,6 +54,7 @@ export const VoreUserPreferencesAesthetic = (props: {
       buttons={
         <VorePanelEditToggle
           editMode={editMode}
+          persistEditMode={persist_edit_mode}
           toggleEditMode={toggleEditMode}
         />
       }

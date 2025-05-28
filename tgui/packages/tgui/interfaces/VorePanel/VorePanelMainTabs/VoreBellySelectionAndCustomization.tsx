@@ -28,6 +28,7 @@ export const VoreBellySelectionAndCustomization = (props: {
   vore_words: Record<string, string[]>;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
+  persist_edit_mode: BooleanLike;
 }) => {
   const { act } = useBackend();
 
@@ -41,6 +42,7 @@ export const VoreBellySelectionAndCustomization = (props: {
     vore_words,
     toggleEditMode,
     editMode,
+    persist_edit_mode,
   } = props;
 
   const [showSearch, setShowSearch] = useState(false);
@@ -138,6 +140,7 @@ export const VoreBellySelectionAndCustomization = (props: {
             buttons={
               <VorePanelEditToggle
                 editMode={editMode}
+                persistEditMode={persist_edit_mode}
                 toggleEditMode={toggleEditMode}
               />
             }
