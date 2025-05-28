@@ -152,7 +152,7 @@ export const TimeClock = (props) => {
               (!!job_choices &&
                 Object.keys(job_choices).length &&
                 Object.keys(job_choices).map((job) => {
-                  let alt_titles = job_choices[job];
+                  const alt_titles = job_choices[job];
 
                   return alt_titles.map((title) => (
                     <Button

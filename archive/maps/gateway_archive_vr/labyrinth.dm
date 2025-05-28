@@ -89,10 +89,11 @@
 	name = "Catacombs"
 	desc = "In a temple like this, these doors could be booby trapped..."
 
-/obj/machinery/door/airlock/vault/temple/New()
+/obj/machinery/door/airlock/vault/temple/Initialize(mapload)
+	. = ..()
 	if(prob(33))
 		new /obj/structure/falsewall/cultspecial(src.loc)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	if(prob(33))
 		safe = 0
 	if(prob(33))
@@ -117,7 +118,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/honker/cluwne
 	max_equip = 4
 
-/obj/mecha/combat/honker/cluwne/Initialize()
+/obj/mecha/combat/honker/cluwne/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	ME.attach(src)

@@ -19,7 +19,7 @@
 	var/mob/living/carbon/human/target
 	var/list/remotes = list()
 
-/obj/machinery/petrification/New()
+/obj/machinery/petrification/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		pixel_x = (dir & 3) ? 0 : (dir == 4 ? 26 : -26)

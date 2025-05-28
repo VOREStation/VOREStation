@@ -11,7 +11,7 @@
 	src.modules += new /obj/item/rcd/electric/mounted/borg/swarm(src)
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/handcuffs/cable/tape/cyborg(src)
-	src.modules += new /obj/item/melee/baton/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton(src)
 	src.modules += new /obj/item/gun/energy/robotic/taser/swarm(src)
 	src.modules += new /obj/item/matter_decompiler/swarm(src)
 
@@ -26,7 +26,7 @@
 /obj/item/robot_module/drone/swarm/melee/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 
-	src.modules += new /obj/item/melee/energy/sword/ionic_rapier/lance(src)
+	src.modules += new /obj/item/melee/robotic/blade/ionic/lance(src)
 
 //Swarm Disabler Module
 /obj/item/gun/energy/taser/mounted/cyborg/swarm

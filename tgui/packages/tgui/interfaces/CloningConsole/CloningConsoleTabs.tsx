@@ -33,26 +33,32 @@ export const CloningConsoleMain = (props) => {
       <Section
         title="Scanner"
         buttons={
-          <>
-            <Box inline color="label">
-              Scanner Lock:&nbsp;
-            </Box>
-            <Button
-              disabled={!occupant}
-              selected={isLocked}
-              icon={isLocked ? 'toggle-on' : 'toggle-off'}
-              onClick={() => act('lock')}
-            >
-              {isLocked ? 'Engaged' : 'Disengaged'}
-            </Button>
-            <Button
-              disabled={isLocked || !occupant}
-              icon="user-slash"
-              onClick={() => act('eject')}
-            >
-              Eject Occupant
-            </Button>
-          </>
+          <Stack>
+            <Stack.Item>
+              <Box inline color="label">
+                Scanner Lock:&nbsp;
+              </Box>
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                disabled={!occupant}
+                selected={isLocked}
+                icon={isLocked ? 'toggle-on' : 'toggle-off'}
+                onClick={() => act('lock')}
+              >
+                {isLocked ? 'Engaged' : 'Disengaged'}
+              </Button>
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                disabled={isLocked || !occupant}
+                icon="user-slash"
+                onClick={() => act('eject')}
+              >
+                Eject Occupant
+              </Button>
+            </Stack.Item>
+          </Stack>
         }
       >
         <LabeledList>

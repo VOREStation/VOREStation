@@ -19,7 +19,7 @@
 
 	circuit = /obj/item/circuitboard/xenobioinjectormachine
 
-/obj/machinery/xenobio2/manualinjector/Initialize()
+/obj/machinery/xenobio2/manualinjector/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R

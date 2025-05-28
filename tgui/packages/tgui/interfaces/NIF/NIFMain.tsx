@@ -6,6 +6,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { getNifCondition, getNutritionText } from './functions';
@@ -59,23 +60,27 @@ export const NIFMain = (props) => {
               label={module.name}
               key={module.ref}
               buttons={
-                <>
-                  <Button.Confirm
-                    icon="trash"
-                    color="bad"
-                    confirmContent="UNINSTALL?"
-                    confirmIcon="trash"
-                    tooltip="Uninstall Module"
-                    tooltipPosition="left"
-                    onClick={() => act('uninstall', { module: module.ref })}
-                  />
-                  <Button
-                    icon="search"
-                    onClick={() => setViewing(module)}
-                    tooltip="View Information"
-                    tooltipPosition="left"
-                  />
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button.Confirm
+                      icon="trash"
+                      color="bad"
+                      confirmContent="UNINSTALL?"
+                      confirmIcon="trash"
+                      tooltip="Uninstall Module"
+                      tooltipPosition="left"
+                      onClick={() => act('uninstall', { module: module.ref })}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="search"
+                      onClick={() => setViewing(module)}
+                      tooltip="View Information"
+                      tooltipPosition="left"
+                    />
+                  </Stack.Item>
+                </Stack>
               }
             >
               {(module.activates && (

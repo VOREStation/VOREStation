@@ -56,6 +56,7 @@
 	var/level_max = 2
 
 /decl/chemical_reaction/instant/mix_virus/picky
+	id = "mixviruspicky"
 	var/list/datum/symptom/symptoms
 
 /decl/chemical_reaction/instant/mix_virus/on_reaction(datum/reagents/holder)
@@ -133,7 +134,6 @@
 	id = "mixvirussize"
 	required_reagents = list(REAGENT_ID_SIZEVIRUSFOOD = 1)
 	symptoms = list(
-		/datum/symptom/macrophage,
 		/datum/symptom/size,
 		/datum/symptom/size/grow,
 		/datum/symptom/size/shrink
@@ -156,6 +156,19 @@
 	name = REAGENT_ANTIBODIES
 	id = "antibodiesmix"
 	result = REAGENT_ID_ANTIBODIES
-	required_reagents = list(REAGENT_ID_VACCINE)
+	required_reagents = list(REAGENT_ID_VACCINE = 1)
 	catalysts = list(REAGENT_ID_INAPROVALINE = 0.1)
 	result_amount = 0.5
+
+/decl/chemical_reaction/instant/neuter_virus
+	name = "Neuter Virus"
+	id = "neutervirus"
+	required_reagents = list(REAGENT_ID_IMMUNOSUPRIZINE = 1)
+	catalysts = list(REAGENT_ID_BLOOD = 1)
+
+/decl/chemical_reaction/instant/neuter_virus/on_reaction(var/datum/reagents/holder)
+	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
+	if(B && B.data)
+		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]
+		if(D)
+			D.Neuter()

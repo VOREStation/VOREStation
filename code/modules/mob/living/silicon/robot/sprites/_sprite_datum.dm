@@ -17,11 +17,14 @@
 	var/has_vore_struggle_sprite = FALSE
 	var/max_belly_size = 1 //If larger bellies are made, set this to the value of the largest size
 	var/has_rest_sprites = FALSE
+	var/has_rest_eyes_sprites = FALSE
+	var/has_rest_lights_sprites = FALSE
 	var/list/rest_sprite_options
 	var/has_dead_sprite = FALSE
 	var/has_dead_sprite_overlay = FALSE
 	var/has_extra_customization = FALSE
 	var/has_custom_equipment_sprites = FALSE
+	var/has_glow_sprites = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
 	var/icon_x = 32
@@ -33,6 +36,7 @@
 	var/list/belly_light_list = list() // Support multiple sleepers with r/g light "sleeper"
 	var/list/belly_capacity_list = list() //Support multiple bellies with multiple sizes, default: "sleeper" = 1
 	var/list/sprite_decals = list() // Allow extra decals
+	var/list/sprite_animations = list() // Allows to flick animations
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
@@ -87,6 +91,14 @@
 				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
 					ourborg.add_overlay("[sprite_icon_state]-disabler")
 					continue
+	//These are outliers that don't fit the normal sprite flags. These should not be expanded unless absolutely neccessary.
+	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
+		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+			if(istype(thing_to_check, /obj/item/pickaxe))
+				var/obj/item/pickaxe/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	//Size
@@ -121,18 +133,28 @@
 		else
 			return "[get_belly_overlay(ourborg, size, b_class)]-rest"
 
+/datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
+	if(!ourborg.resting)
+		return "[sprite_icon_state]-glow"
+	return "[get_rest_sprite(ourborg)]-glow"
+
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-eyes"
+	else if(ourborg.resting && has_rest_eyes_sprites)
+		return "[get_rest_sprite(ourborg)]-eyes"
 	else
 		return
 
 /datum/robot_sprite/proc/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-lights"
+	else if(ourborg.resting && has_rest_lights_sprites)
+		return "[get_rest_sprite(ourborg)]-lights"
 	else
 		return
 
+// This can not use the get_rest_sprite function as it could use belly overlays as decals
 /datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
 	if(LAZYLEN(sprite_decals))
 		if(!ourborg.resting)

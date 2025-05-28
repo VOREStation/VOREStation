@@ -4,14 +4,14 @@
 	w_class = ITEMSIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/sample/New(var/newloc, var/atom/supplied)
-	..(newloc)
+/obj/item/sample/Initialize(mapload, var/atom/supplied)
+	. = ..()
 	if(supplied)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/sample/print/New(var/newloc, var/atom/supplied)
-	..(newloc, supplied)
+/obj/item/sample/print/Initialize(mapload, supplied)
+	. = ..()
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 
@@ -94,13 +94,13 @@
 		user.visible_message(span_danger("\The [user] tries to take prints from \the [H], but they move away."))
 		return 1
 
-	if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+	if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 		var/has_hand
-		var/obj/item/organ/external/O = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
 		if(istype(O) && !O.is_stump())
 			has_hand = 1
 		else
-			O = H.organs_by_name["l_hand"]
+			O = H.organs_by_name[BP_L_HAND]
 			if(istype(O) && !O.is_stump())
 				has_hand = 1
 		if(!has_hand)

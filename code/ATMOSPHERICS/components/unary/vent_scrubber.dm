@@ -18,7 +18,6 @@
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
-	var/hibernate = 0 //Do we even process?
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
 	var/list/scrubbing_gas = list(GAS_CO2, GAS_PHORON)
 
@@ -32,7 +31,7 @@
 	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
-/obj/machinery/atmospherics/unary/vent_scrubber/Initialize()
+/obj/machinery/atmospherics/unary/vent_scrubber/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
@@ -50,6 +49,7 @@
 	id_tag = num2text(uid)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
+	SSmachines.wake_vent(WEAKREF(src)) // So we are removed from hibernating list
 	unregister_radio(src, frequency)
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag
@@ -137,9 +137,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/process()
 	..()
 
-	if (hibernate)
-		return 1
-
 	if (!node)
 		update_use_power(USE_POWER_OFF)
 	//broadcast_status()
@@ -162,8 +159,7 @@
 
 	if(scrubbing && power_draw < 0 && Master.iteration > 10)	//99% of all scrubbers
 		//Fucking hibernate because you ain't doing shit.
-		hibernate = 1
-		addtimer(VARSET_CALLBACK(src, hibernate, 0), rand(10 SECONDS,20 SECONDS), TIMER_DELETE_ME) //hibernate randomly
+		SSmachines.hibernate_vent(src)
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw

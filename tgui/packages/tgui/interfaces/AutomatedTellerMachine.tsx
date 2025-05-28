@@ -278,18 +278,10 @@ const CustomWithdrawal = (props: {
             <Stack.Item>
               <Input
                 fluid
-                value={money}
+                value={money.toString()}
                 maxLength={10}
-                onInput={(e, val) => {
-                  let value = parseInt(val, 10);
-                  if (isNaN(value)) {
-                    setMoney(0);
-                  } else {
-                    setMoney(value);
-                  }
-                }}
-                onChange={(e, val) => {
-                  let value = parseInt(val, 10);
+                onChange={(val) => {
+                  const value = parseInt(val, 10);
                   if (isNaN(value)) {
                     setMoney(0);
                   } else {
@@ -437,7 +429,7 @@ const TransferMenu = (props: {
   const { act, data } = useBackend<AutomatedTellerMachineData>();
   const [accountNum, setAccountNum] = useState(100000);
   const updateAccountNum = (val) => {
-    let newVal = parseInt(val, 10);
+    const newVal = parseInt(val, 10);
     if (isNaN(newVal)) {
       setAccountNum(100000);
     } else {
@@ -447,7 +439,7 @@ const TransferMenu = (props: {
 
   const [money, setMoney] = useState(0);
   const updateMoney = (val) => {
-    let newVal = parseInt(val, 10);
+    const newVal = parseInt(val, 10);
     if (isNaN(newVal)) {
       setMoney(0);
     } else {
@@ -479,18 +471,16 @@ const TransferMenu = (props: {
             <Input
               fluid
               maxLength={6}
-              value={accountNum}
-              onChange={(e, val) => updateAccountNum(val)}
-              onInput={(e, val) => updateAccountNum(val)}
+              value={accountNum.toString()}
+              onChange={(val) => updateAccountNum(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Funds To Transfer">
             <Input
               fluid
               maxLength={10}
-              value={money}
-              onChange={(e, val) => updateMoney(val)}
-              onInput={(e, val) => updateMoney(val)}
+              value={money.toString()}
+              onChange={(val) => updateMoney(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Transaction Purpose">
@@ -498,8 +488,7 @@ const TransferMenu = (props: {
               fluid
               maxLength={20}
               value={purpose}
-              onChange={(e, val) => setPurpose(val)}
-              onInput={(e, val) => setPurpose(val)}
+              onChange={(val) => setPurpose(val)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -560,17 +549,11 @@ const LoginScreen = (props: { machine_id: string; card: string | null }) => {
                 <Input
                   fluid
                   value={account}
-                  onChange={(e, val) => setAccount(val)}
-                  onInput={(e, val) => setAccount(val)}
+                  onChange={(val) => setAccount(val)}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="PIN">
-                <Input
-                  fluid
-                  value={pin}
-                  onChange={(e, val) => setPin(val)}
-                  onInput={(e, val) => setPin(val)}
-                />
+                <Input fluid value={pin} onChange={(val) => setPin(val)} />
               </LabeledList.Item>
             </LabeledList>
             <Button

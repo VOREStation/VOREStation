@@ -82,6 +82,8 @@
 /mob/living/simple_mob/vore/horse/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -141,6 +143,8 @@
 /mob/living/simple_mob/vore/horse/kelpie/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -196,7 +200,7 @@
 				return
 
 			var/moving_to = 0 // Apparently this is required or it always picks 4, according to the previous developer for simplemob AI.
-			moving_to = pick(cardinal)
+			moving_to = pick(GLOB.cardinal)
 			holder.set_dir(moving_to)
 			holder.IMove(get_step(holder,moving_to))
 			wander_delay = base_wander_delay

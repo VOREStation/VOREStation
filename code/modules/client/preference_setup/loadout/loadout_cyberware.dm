@@ -5,12 +5,12 @@
 	slot = "implant"
 	exploitable = 1
 	sort_category = "Cyberware"
-	cost = 6
+	cost = 1
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
 	path = /obj/item/implant/tracking/weak
-	cost = 0 //VOREStation Edit. Changed cost to 0
+	cost = 0
 
 /datum/gear/utility/implant/generic
 	display_name = "implant, generic, primary"
@@ -28,16 +28,16 @@
 	..()
 	gear_tweaks += global.gear_tweak_implant_location
 
-/datum/gear/utility/implant/language
-	cost = 2
-	exploitable = 0
-
-/datum/gear/utility/implant/language/eal
+/datum/gear/utility/implant/eal
 	display_name = "vocal synthesizer, EAL"
 	description = "A surgically implanted vocal synthesizer which allows the owner to speak EAL, if they know it."
 	path = /obj/item/implant/language/eal
+	cost = 2
+	exploitable = 0
 
-/datum/gear/utility/implant/language/skrellian
+/datum/gear/utility/implant/skrellian
 	display_name = "vocal synthesizer, Skrellian"
 	description = "A surgically implanted vocal synthesizer which allows the owner to speak Common Skrellian, if they know it."
 	path = /obj/item/implant/language/skrellian
+	cost = 2
+	exploitable = 0

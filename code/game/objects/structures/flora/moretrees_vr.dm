@@ -14,7 +14,7 @@
 /obj/structure/flora/tree/bigtree/choose_icon_state()
 	return "[base_state][rand(1, 4)]"
 
-/obj/structure/flora/tree/bigtree/Initialize()
+/obj/structure/flora/tree/bigtree/Initialize(mapload)
 	. = ..()
 
 	var/image/i = image('icons/obj/flora/moretrees_vr.dmi', "[icon_state]-b")

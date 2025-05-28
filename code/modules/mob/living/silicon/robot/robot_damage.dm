@@ -73,7 +73,7 @@
 	if(!components.len)
 		return
 
-	 //Combat shielding absorbs a percentage of damage directly into the cell.
+	//Combat shielding absorbs a percentage of damage directly into the cell.
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield && shield.active)
@@ -118,7 +118,7 @@
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
-	 //Combat shielding absorbs a percentage of damage directly into the cell.
+	//Combat shielding absorbs a percentage of damage directly into the cell.
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield)

@@ -30,17 +30,17 @@ CATEGORY: Fiction
 					<div class="border1">
 					<div class="border2">
 					<p class="font2">
-					<i>The</i><br>
+					"} + span_italics("The") + {"<br>
 					</p><p class="font1">
-					<b>CHRONICLES</b><br>
+					"} + span_bold("CHRONICLES") + {"<br>
 					</p><p class="font2">
-					<i>of</i><br>
+					"} + span_italics("of") + {"<br>
 					</p><p class="font1">
-					<b>MARGATA</b><br>
+					"} + span_bold("MARGATA") + {"<br>
 					</p>
-					<font size="3">VOLUME I</font>
+					"} + span_large("VOLUME I") + {"
 					<br><br><br><br>
-					<font size="4">MOLLY<br>HIGHLANDER</font>
+					"} + span_huge("MOLLY<br>HIGHLANDER") + {"
 					<br><br><br>
 					</div>
 					</body>
@@ -201,7 +201,7 @@ CATEGORY: Fiction
 					<div>Gadroc had gold poop for a week.</div>
 					<br>
 					<br>
-					<h1><b>Fin.</b></h1>
+					<h1>"} + span_bold("Fin.") + {"</h1>
 					</body>
 					</html>
 					"})

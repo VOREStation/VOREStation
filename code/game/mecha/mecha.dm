@@ -1587,8 +1587,8 @@
 					V.show_message("The [W] bounces off [src.name] armor.", 1)
 */
 		else
-			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-			user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
+			src.occupant_message(span_boldwarning("[user] hits [src] with [W].")))
+			user.visible_message(span_boldwarning("[user] hits [src] with [W]."))", span_boldwarning("You hit [src] with [W].")))
 			src.take_damage(W.force,W.damtype)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 */
@@ -1872,7 +1872,7 @@
 	src.log_message("Toggled strafing mode [strafing?"on":"off"].")
 	return
 
-/obj/mecha/MouseDrop_T(mob/O, mob/user as mob)
+/obj/mecha/MouseDrop_T(mob/O, mob/user)
 	//Humans can pilot mechs.
 	if(!ishuman(O))
 		return
@@ -1881,13 +1881,13 @@
 	if(O != user)
 		return
 
-	move_inside()
+	move_inside(user)
 
 /obj/mecha/verb/enter()
 	set category = "Object"
 	set name = "Enter Exosuit"
 	set src in oview(1)
-	move_inside()
+	move_inside(usr)
 
 //returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
 //since is_type_in_list uses caching, this is a slower operation, so only use it if needed
@@ -1897,65 +1897,65 @@
 			return ME
 	return null
 
-/obj/mecha/proc/move_inside()
-	if (usr.stat || !ishuman(usr))
+/obj/mecha/proc/move_inside(mob/user)
+	if (user.stat || !ishuman(user) || user.is_incorporeal())
 		return
 
-	if (usr.buckled)
-		to_chat(usr, span_warning("You can't climb into the exosuit while buckled!"))
+	if (user.buckled)
+		to_chat(user, span_warning("You can't climb into the exosuit while buckled!"))
 		return
 
-	src.log_message("[usr] tries to move in.")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	src.log_message("[user] tries to move in.")
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
 		if(C.handcuffed)
-			to_chat(usr, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
+			to_chat(user, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 	if (src.occupant)
-		to_chat(usr, span_danger("The [src.name] is already occupied!"))
+		to_chat(user, span_danger("The [src.name] is already occupied!"))
 		src.log_append_to_last("Permission denied.")
 		return
 /*
-	if (usr.abiotic())
-		to_chat(usr, span_notice("Subject cannot have abiotic items on."))
+	if (user.abiotic())
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 */
 	var/passed
 	if(src.dna)
-		if(usr.dna.unique_enzymes==src.dna)
+		if(user.dna.unique_enzymes==src.dna)
 			passed = 1
-	else if(src.operation_allowed(usr))
+	else if(src.operation_allowed(user))
 		passed = 1
 	if(!passed)
 		to_chat(usr, span_warning("Access denied"))
 		src.log_append_to_last("Permission denied.")
 		return
-	if(isliving(usr))
-		var/mob/living/L = usr
+	if(isliving(user))
+		var/mob/living/L = user
 		if(L.has_buckled_mobs())
 			to_chat(L, span_warning("You have other entities attached to yourself. Remove them first."))
 			return
 
-//	to_chat(usr, "You start climbing into [src.name]")
+//	to_chat(user, "You start climbing into [src.name]")
 	if(get_equipment(/obj/item/mecha_parts/mecha_equipment/runningboard))
-		visible_message(span_notice("\The [usr] is instantly lifted into [src.name] by the running board!"))
-		moved_inside(usr)
+		visible_message(span_notice("\The [user] is instantly lifted into [src.name] by the running board!"))
+		moved_inside(user)
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message(span_infoplain(span_bold("\The [usr]") + " starts to climb into [src.name]"))
-		if(enter_after(40,usr))
+		visible_message(span_infoplain(span_bold("\The [user]") + " starts to climb into [src.name]"))
+		if(enter_after(40, user))
 			if(!src.occupant)
-				moved_inside(usr)
+				moved_inside(user)
 				if(ishuman(occupant)) //Aeiou
 					GrantActions(occupant, 1)
-			else if(src.occupant!=usr)
+			else if(src.occupant != user)
 				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
 		else
-			to_chat(usr, "You stop entering the exosuit.")
+			to_chat(user, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
@@ -2169,9 +2169,9 @@
 						[js_byjax]
 						[js_dropdowns]
 						function ticker() {
-						    setInterval(function(){
-						        window.location='byond://?src=\ref[src]&update_content=1';
-						    }, 1000);
+							setInterval(function(){
+								window.location='byond://?src=\ref[src]&update_content=1';
+							}, 1000);
 						}
 
 						window.onload = function() {
@@ -2193,18 +2193,18 @@
 						</div>
 						</body>
 						</html>
-					 "}
+					"}
 	return output
 
 
 /obj/mecha/proc/report_internal_damage()
 	var/output = null
 	var/list/dam_reports = list(
-										"[MECHA_INT_FIRE]" = "<font color='red'><b>INTERNAL FIRE</b></font>",
-										"[MECHA_INT_TEMP_CONTROL]" = "<font color='red'><b>LIFE SUPPORT SYSTEM MALFUNCTION</b></font>",
-										"[MECHA_INT_TANK_BREACH]" = "<font color='red'><b>GAS TANK BREACH</b></font>",
-										"[MECHA_INT_CONTROL_LOST]" = "<font color='red'><b>COORDINATION SYSTEM CALIBRATION FAILURE</b></font> - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
-										"[MECHA_INT_SHORT_CIRCUIT]" = "<font color='red'><b>SHORT CIRCUIT</b></font>"
+										"[MECHA_INT_FIRE]" = span_red(span_bold("INTERNAL FIRE")),
+										"[MECHA_INT_TEMP_CONTROL]" = span_red(span_bold("LIFE SUPPORT SYSTEM MALFUNCTION")),
+										"[MECHA_INT_TANK_BREACH]" = span_red(span_bold("GAS TANK BREACH")),
+										"[MECHA_INT_CONTROL_LOST]" = span_red(span_bold("COORDINATION SYSTEM CALIBRATION FAILURE")) + " - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
+										"[MECHA_INT_SHORT_CIRCUIT]" = span_red(span_bold("SHORT CIRCUIT"))
 										)
 	for(var/tflag in dam_reports)
 		var/intdamflag = text2num(tflag)
@@ -2212,7 +2212,7 @@
 			output += dam_reports[tflag]
 			output += "<br />"
 	if(return_pressure() > WARNING_HIGH_PRESSURE)
-		output += "<font color='red'><b>DANGEROUSLY HIGH CABIN PRESSURE</b></font><br />"
+		output += span_red(span_bold("DANGEROUSLY HIGH CABIN PRESSURE")) + "<br />"
 	return output
 
 
@@ -2229,13 +2229,13 @@
 	var/output = {"[report_internal_damage()]
 						<b>Armor Integrity: </b>[AC?"[round(AC.integrity / AC.max_integrity * 100, 0.1)]%":span_warning("ARMOR MISSING")]<br>
 						<b>Hull Integrity: </b>[HC?"[round(HC.integrity / HC.max_integrity * 100, 0.1)]%":span_warning("HULL MISSING")]<br>
-						[integrity<30?"<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>":null]
+						[integrity<30? span_red(span_bold("DAMAGE LEVEL CRITICAL")) + "<br>":null]
 						<b>Chassis Integrity: </b> [integrity]%<br>
 						<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[cell.percent()]%"]<br>
 						<b>Air source: </b>[use_internal_tank?"Internal Airtank":"Environment"]<br>
 						<b>Airtank pressure: </b>[tank_pressure]kPa<br>
 						<b>Airtank temperature: </b>[tank_temperature]K|[tank_temperature - T0C]&deg;C<br>
-						<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
+						<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? span_red("[cabin_pressure]"): cabin_pressure]kPa<br>
 						<b>Cabin temperature: </b> [return_temperature()]K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights?"on":"off"]<br>
 						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
@@ -2322,14 +2322,14 @@
 		for(var/obj/item/mecha_parts/mecha_equipment/W in micro_weapon_equipment)
 			output += "Micro Weapon Module: [W.name] <a href='byond://?src=\ref[W];detach=1'>Detach</a><br>"
 	output += {"<b>Available hull slots:</b> [max_hull_equip-hull_equipment.len]<br>
-	 <b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
-	 <b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
-	 <b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
-	 <b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
-	 <b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
-	 <b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
-	 </div></div>
-	 "}
+		<b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
+		<b>Available micro weapon slots:</b> [max_micro_weapon_equip-micro_weapon_equipment.len]<br>
+		<b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
+		<b>Available micro utility slots:</b> [max_micro_utility_equip-micro_utility_equipment.len]<br>
+		<b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
+		<b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
+		</div></div>
+	"}
 	return output
 
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
@@ -2345,7 +2345,7 @@
 /obj/mecha/proc/get_log_html()
 	var/output = "<html><head><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"
 	for(var/list/entry in log)
-		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [game_year]</div>
+		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [GLOB.game_year]</div>
 						<div style='margin-left:15px; margin-bottom:10px;'>[entry["message"]]</div>
 						"}
 	output += "</body></html>"
@@ -2356,7 +2356,7 @@
 	for(var/list/entry in log)
 		data.Add(list(list(
 			"time" = time2text(entry["time"], "DDD MMM DD hh:mm:ss"),
-			"year" = game_year,
+			"year" = GLOB.game_year,
 			"message" = entry["message"],
 		)))
 	return data
@@ -2381,7 +2381,7 @@
 		var/a_name = get_access_desc(a)
 		if(!a_name) continue //there's some strange access without a name
 		output += "[a_name] - <a href='byond://?src=\ref[src];add_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Add</a><br>"
-	output += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
+	output += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> " + span_red("(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)")
 	output += "</body></html>"
 	user << browse(output, "window=exosuit_add_access")
 	onclose(user, "exosuit_add_access")
@@ -2424,12 +2424,16 @@
 
 /obj/mecha/proc/log_message(message as text,red=null)
 	log.len++
-	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
+	if(red)
+		message = span_red(message)
+	log[log.len] = list("time"=world.timeofday,"message"=message)
 	return log.len
 
 /obj/mecha/proc/log_append_to_last(message as text,red=null)
 	var/list/last_entry = src.log[src.log.len]
-	last_entry["message"] += "<br>[red?"<font color='red'>":null][message][red?"</font>":null]"
+	if(red)
+		message = span_red(message)
+	last_entry["message"] += "<br>" + message
 	return
 
 
@@ -2663,7 +2667,7 @@
 		var/duration = text2num(href_list["duration"])
 		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src)
 		var/cur_occupant = src.occupant
-		O.invisibility = 0
+		O.invisibility = INVISIBILITY_NONE
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name
@@ -2843,8 +2847,8 @@
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
 						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
- 					   </body>
-						</html>"}
+						</body>
+					</html>"}
 
 	occupant << browse(output, "window=ex_debug")
 	//src.health = initial(src.health)/2.2

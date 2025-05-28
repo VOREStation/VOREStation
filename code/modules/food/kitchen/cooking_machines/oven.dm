@@ -39,7 +39,7 @@
 		"Donut" = /obj/item/reagent_containers/food/snacks/variable/donut,
 		)
 
-/obj/machinery/appliance/cooker/oven/Initialize()
+/obj/machinery/appliance/cooker/oven/Initialize(mapload)
 	. = ..()
 
 	oven_loop = new(list(src), FALSE)

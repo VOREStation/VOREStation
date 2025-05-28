@@ -4990,7 +4990,6 @@
 "Ar" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/table/rack/steel,
-/obj/structure/table/rack/steel,
 /obj/item/storage/belt/utility/chief/full{
 	pixel_y = -2
 	},

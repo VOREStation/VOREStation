@@ -1,12 +1,7 @@
-/mob/proc/update_fullness(var/returning = FALSE)
-	if(!returning)
-		if(updating_fullness)
-			return
-		updating_fullness = TRUE
-		spawn(2)
-		updating_fullness = FALSE
-		src.update_fullness(TRUE)
+/mob/proc/update_fullness()
+	if(updating_fullness)
 		return
+	updating_fullness = TRUE
 	var/list/new_fullness = list()
 	vore_fullness = 0
 	for(var/belly_class in vore_icon_bellies)

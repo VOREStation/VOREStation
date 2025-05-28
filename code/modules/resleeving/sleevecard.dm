@@ -37,7 +37,7 @@
 				to_chat(our_infomorph, span_warning("You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master."))
 
 /obj/item/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
-	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)
+	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key)
 
 	for(var/datum/language/L in MR.languages)
 		infomorph.add_language(L.name)
@@ -46,6 +46,9 @@
 	infomorph.ooc_notes = MR.mind_oocnotes
 	infomorph.ooc_notes_likes = MR.mind_ooclikes
 	infomorph.ooc_notes_dislikes = MR.mind_oocdislikes
+	infomorph.ooc_notes_favs = MR.mind_oocfavs
+	infomorph.ooc_notes_maybes = MR.mind_oocmaybes
+	infomorph.ooc_notes_style = MR.mind_oocstyle
 	infomorph.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
 	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.
@@ -78,8 +81,8 @@
 	ram = 35
 	var/emagged = FALSE
 
-/mob/living/silicon/pai/infomorph/New(var/obj/item/paicard/sleevecard/SC, var/our_name = "Unknown", var/db_key)
-	..()
+/mob/living/silicon/pai/infomorph/Initialize(mapload, var/our_name = "Unknown", var/db_key)
+	. = ..()
 
 	name = our_name
 

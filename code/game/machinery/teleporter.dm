@@ -9,27 +9,24 @@
 	circuit = /obj/item/circuitboard/teleporter
 	dir = 4
 	var/id = null
-	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
-						 //Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
+	var/one_time_use = 0	//Used for one-time-use teleport cards (such as clown planet coordinates.)
+							//Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
 	var/datum/tgui_module/teleport_control/teleport_control
 
-/obj/machinery/computer/teleporter/New()
+/obj/machinery/computer/teleporter/Initialize(mapload)
 	id = "[rand(1000, 9999)]"
-	..()
+	. = ..()
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
-
-/obj/machinery/computer/teleporter/Initialize()
-	. = ..()
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
 
 	// Search surrounding turfs for the station, and then search the station's surrounding turfs for the hub.
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		station = locate(/obj/machinery/teleport/station, get_step(src, direction))
 		if(station)
-			for(direction in cardinal)
+			for(direction in GLOB.cardinal)
 				hub = locate(/obj/machinery/teleport/hub, get_step(station, direction))
 				if(hub)
 					break
@@ -142,7 +139,7 @@
 	circuit = /obj/item/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
-/obj/machinery/teleport/hub/Initialize()
+/obj/machinery/teleport/hub/Initialize(mapload)
 	. = ..()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 	default_apply_parts()
@@ -210,7 +207,7 @@
 	circuit = /obj/item/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
-/obj/machinery/teleport/station/Initialize()
+/obj/machinery/teleport/station/Initialize(mapload)
 	. = ..()
 	add_overlay("controller-wires")
 	default_apply_parts()

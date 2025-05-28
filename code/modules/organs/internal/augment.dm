@@ -32,7 +32,7 @@
 
 	description_fluff = "If attempting to implant a compatible augment into a synthetic limb, the limb must be screwdrivered open and then modified with a multitool before insertion can begin."
 
-/obj/item/organ/internal/augment/Initialize()
+/obj/item/organ/internal/augment/Initialize(mapload)
 	. = ..()
 	setup_radial_icon()
 	if(integrated_object_type)

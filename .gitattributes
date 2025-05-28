@@ -3,6 +3,7 @@
 ## Enforce text mode and LF line breaks
 *.bat text eol=lf
 *.cjs text eol=lf
+*.mjs text eol=lf
 *.css text eol=lf
 *.dm text eol=lf
 *.dme text eol=lf
@@ -37,12 +38,8 @@
 *.zip binary
 
 ## Merger hooks, run tools/hooks/install.bat or install.sh to set up
-#*.dmm text eol=lf merge=dmm
-#*.dmi binary merge=dmi
-
-# old dmi icon merger hook
-# needs additional setup, see tools/dmitool/merging.txt
-*.dmi merge=merge-dmi
+*.dmm text eol=lf merge=dmm
+*.dmi binary merge=dmi
 
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab

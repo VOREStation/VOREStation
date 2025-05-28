@@ -46,7 +46,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 	. = list()
 	. += "<table align = 'center' width = 100%>"
 	. += "<tr><td colspan=3><hr></td></tr>"
-	. += "<tr><td colspan=3><b><center>Traits</center></b></td></tr>"
+	. += "<tr><td colspan=3>" + span_bold("<center>Traits</center>") + "</td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
 
 	. += "<tr><td colspan=3><center>"
@@ -86,8 +86,8 @@ var/list/trait_categories = list() // The categories available for the trait men
 		if(conflicts)
 			invalid += "This trait is mutually exclusive with [conflicts]."
 
-		. += "<td width = 75%><font size=2><i>[T.desc]</i>\
-		[invalid ? "<font color='#FF0000'><br>Cannot take trait.  Reason: [invalid]</font>":""]</font></td></tr>"
+		. += "<td width = 75%><font size=2>" + span_italics("[T.desc]") + "\
+		[invalid ? span_red("<br>Cannot take trait.  Reason: [invalid]"):""]</font></td></tr>"
 //		if(ticked)
 //			. += "<tr><td colspan=3>"
 //			for(var/datum/gear_tweak/tweak in G.gear_tweaks)

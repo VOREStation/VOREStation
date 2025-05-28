@@ -50,7 +50,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 		for (var/i in special_roles)
 			if(special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i) || (i == "positronic brain" && jobban_isbanned(user, JOB_AI) && jobban_isbanned(user, JOB_CYBORG)) || (i == "pAI candidate" && jobban_isbanned(user, JOB_PAI)))
-					. += span_bold("Be [i]:") + " <font color=red><b> \[BANNED]</b></font><br>"
+					. += span_bold("Be [i]:") + " " + span_red(span_bold(" \[BANNED]")) + "<br>"
 				else
 					. += span_bold("Be [i]:") + " <a href='byond://?src=\ref[src];be_special=[n]'>" + span_bold("[pref.be_special&(1<<n) ? "Yes" : "No"]") + "</a><br>"
 			n++

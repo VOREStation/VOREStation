@@ -15,7 +15,7 @@
 		spellremove(src)
 	if(!istype(src,/mob/observer))
 		ghostize()
-	// QDEL_NULL(soulgem) //Soulcatcher. Needs to be ported sometime.
+	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
@@ -77,11 +77,11 @@
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
-	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/show_message(msg, type, alt, alt_type)
+
 	if(!client && !teleop)	return
 
 	if (type)
@@ -132,7 +132,7 @@
 /atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
 	return -1
 
- // used for petrification machines
+// used for petrification machines
 /atom/proc/get_ultimate_mob()
 	var/mob/ultimate_mob
 	var/atom/to_check = loc
@@ -389,7 +389,7 @@
 			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
 				//Update any existing objectives involving this mob.
-				for(var/datum/objective/O in all_objectives)
+				for(var/datum/objective/O in GLOB.all_objectives)
 					if(O.target == mind)
 						if(O.owner && O.owner.current)
 							to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
@@ -409,15 +409,15 @@
 					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.medical)
+				if(GLOB.PDA_Manifest.len)
+					GLOB.PDA_Manifest.Cut()
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if((R.fields["name"] == real_name))
 						qdel(R)
-				for(var/datum/data/record/T in data_core.security)
+				for(var/datum/data/record/T in GLOB.data_core.security)
 					if((T.fields["name"] == real_name))
 						qdel(T)
-				for(var/datum/data/record/G in data_core.general)
+				for(var/datum/data/record/G in GLOB.data_core.general)
 					if((G.fields["name"] == real_name))
 						qdel(G)
 
@@ -467,7 +467,7 @@
 	set category = "OOC.Game"
 	var/is_admin = 0
 
-	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
+	if(check_rights_for(client, R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
 		to_chat(src, span_filter_notice("[span_blue("You must be observing to use this!")]"))
@@ -479,8 +479,8 @@
 	var/list/targets = list()
 
 
-	targets += observe_list_format(nuke_disks)
-	targets += observe_list_format(all_singularities)
+	targets += observe_list_format(GLOB.nuke_disks)
+	targets += observe_list_format(GLOB.all_singularities)
 	targets += getmobs()
 	targets += observe_list_format(sortAtom(mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
@@ -517,8 +517,19 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
+		var/examine_text = splittext(flavor_text, "||")
+		var/index = 0
+		var/rendered_text = ""
+		for(var/part in examine_text)
+			if(index % 2)
+				rendered_text += span_spoiler("[part]")
+			else
+				rendered_text += "[part]"
+			index++
+		examine_text = replacetext(rendered_text, "\n", "<BR>")
+		var/datum/browser/popup = new(usr, "[name]", "[name]", 500, 300, src)
+		popup.set_content(examine_text)
+		popup.open()
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()
@@ -550,6 +561,9 @@
 
 	if (AM.anchored)
 		to_chat(src, span_warning("It won't budge!"))
+		return
+
+	if(lying)
 		return
 
 	var/mob/M = AM
@@ -1163,15 +1177,6 @@
 	. = ..()
 
 
-
-/obj/Destroy()
-	if(istype(loc, /mob))
-		var/mob/holder = loc
-		if(src in holder.exploit_addons)
-			holder.exploit_addons -= src
-	. = ..()
-
-
 /client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)
 
@@ -1308,3 +1313,8 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+
+/mob/is_incorporeal()
+	if(incorporeal_move)
+		return 1
+	return ..()

@@ -11,6 +11,12 @@
 	if(locate(/obj/item/grab) in src)
 		. += 5
 
+	if(lying)
+		if(weakened >= 1)
+			. += 14			// Very slow when weakened.
+		else
+			. += 8
+
 	// Movespeed delay based on movement mode
 	switch(m_intent)
 		if(I_RUN)
@@ -145,12 +151,22 @@
 		Move_object(direct)
 
 	// Ghosty mob movement
-	if(my_mob.incorporeal_move && isobserver(my_mob))
-		Process_Incorpmove(direct)
-		DEBUG_INPUT("--------")
-		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
-		next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
-		return
+	if(my_mob.is_incorporeal())
+		if(isobserver(my_mob)) //We're an observer! Don't worry about any more checks. Be free!
+			Process_Incorpmove(direct)
+			DEBUG_INPUT("--------")
+			next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+			next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
+			return
+		else //We are anything BUT an observer.
+			if(!my_mob.canmove)//If you want to be very restrictive, add my_mob.restrained() and it'll stop people cuffed/straight jacketed. For now, that's too restrictive for a bugfix PR.
+				return
+			else //Proceed like normal.
+				Process_Incorpmove(direct)
+				DEBUG_INPUT("--------")
+				next_move_dir_add = 0
+				next_move_dir_sub = 0
+				return
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
@@ -183,7 +199,7 @@
 
 	if(isliving(my_mob))
 		var/mob/living/L = my_mob
-		if(L.incorporeal_move)//Move though walls
+		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
 		/* TODO observer unzoom
@@ -234,6 +250,8 @@
 		to_chat(src, span_blue("You're pinned to a wall by [my_mob.pinned[1]]!"))
 		return 0
 
+	var/old_delay = mob.next_move
+
 	if(istype(my_mob.buckled, /obj/vehicle) || ismob(my_mob.buckled))
 		//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 		//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
@@ -257,8 +275,8 @@
 		else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 			if(ishuman(my_mob))
 				var/mob/living/carbon/human/driver = my_mob
-				var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
-				var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
+				var/obj/item/organ/external/l_hand = driver.get_organ(BP_L_HAND)
+				var/obj/item/organ/external/r_hand = driver.get_organ(BP_R_HAND)
 				if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 					return // No hands to drive your chair? Tough luck!
 			//drunk wheelchair driving
@@ -288,8 +306,6 @@
 					direct = turn(direct, pick(90, -90))
 					n = get_step(my_mob, direct)
 
-	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
-	my_mob.setMoveCooldown(total_delay)
 
 	if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
 		. = my_mob.pulledby.relaymove(my_mob, direct)
@@ -300,7 +316,17 @@
 
 	// If we ended up moving diagonally, increase delay.
 	if((direct & (direct - 1)) && mob.loc == n)
-		my_mob.setMoveCooldown(total_delay * 2)
+		total_delay *= SQRT_2
+
+	//total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
+	if(mob.last_move_time > (world.time - total_delay * 1.25))
+		mob.next_move = DS2NEARESTTICK(old_delay + total_delay)
+	else
+		mob.next_move = DS2NEARESTTICK(world.time + total_delay)
+
+	if(!isliving(my_mob))
+		moving = 0
+		return
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
@@ -330,19 +356,31 @@
 	// Update all the grabs!
 	for (var/obj/item/grab/G in my_mob)
 		if (G.state == GRAB_NECK)
-			mob.set_dir(reverse_dir[direct])
+			mob.set_dir(GLOB.reverse_dir[direct])
 		G.adjust_position()
 	for (var/obj/item/grab/G in my_mob.grabbed_by)
 		G.adjust_position()
 
 	// We're not in the middle of a move anymore
 	moving = 0
+	mob.last_move_time = world.time
 
 /mob/proc/SelfMove(turf/n, direct, movetime)
 	return Move(n, direct, movetime)
 
+
+//Set your incorporeal movespeed
+//Important to note: world.time is always in deciseconds. Higher tickrates mean more subdivisions of world.time (20fps = 0.5, 40fps = 0.25)
 /client
 	var/is_leaving_belly = FALSE
+	var/incorporeal_speed = 0.5
+
+/client/verb/set_incorporeal_speed()
+	set category = "OOC.Game Settings"
+	set name = "Set Incorporeal Speed"
+
+	var/input = tgui_input_number(usr, "Set an incorporeal movement delay between 0 (fastest) and 5 (slowest)", "Incorporeal movement speed", (0.5/world.tick_lag), 5, 0)
+	incorporeal_speed = input * world.tick_lag
 
 ///Process_Incorpmove
 ///Called by client/Move()
@@ -357,6 +395,12 @@
 			return
 		is_leaving_belly = FALSE
 	var/turf/mobloc = get_turf(mob)
+
+	if(incorporeal_speed)
+		var/mob/my_mob = mob
+		if(!my_mob.checkMoveCooldown()) //Only bother with speed if it isn't 0
+			return
+		my_mob.setMoveCooldown(incorporeal_speed)
 
 	switch(mob.incorporeal_move)
 		if(1)
@@ -451,14 +495,6 @@
 
 	if(restrained()) //Check to see if we can do things
 		return 0
-
-	//Check to see if we slipped
-	if(prob(Process_Spaceslipping(5)) && !buckled)
-		to_chat(src, span_boldnotice("You slipped!"))
-		inertia_dir = last_move
-		step(src, src.inertia_dir) // Not using Move for smooth glide here because this is a 'slip' so should be sudden.
-		return 0
-	//If not then we can reset inertia and move
 	inertia_dir = 0
 	return 1
 
@@ -502,15 +538,6 @@
 
 /mob/proc/Check_Shoegrip()
 	return 0
-
-/mob/proc/Process_Spaceslipping(var/prob_slip = 5)
-	//Setup slipage
-	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
-	if(stat)
-		prob_slip = 0  // Changing this to zero to make it line up with the comment.
-
-	prob_slip = round(prob_slip)
-	return(prob_slip)
 
 /mob/proc/mob_get_gravity(turf/T)
 	return get_gravity(src, T)

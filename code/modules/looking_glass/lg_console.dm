@@ -19,7 +19,7 @@
 
 	var/lg_id = "change_me"
 
-/obj/machinery/computer/looking_glass/Initialize()
+/obj/machinery/computer/looking_glass/Initialize(mapload)
 	. = ..()
 	for(var/area/looking_glass/lga in world)
 		if(lga.lg_id == lg_id)
@@ -155,7 +155,7 @@
 //This could all be done better, but it works for now.
 /obj/machinery/computer/looking_glass/Destroy()
 	unload_program()
-	..()
+	. = ..()
 
 /obj/machinery/computer/looking_glass/ex_act(severity)
 	unload_program()

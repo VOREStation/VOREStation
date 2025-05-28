@@ -176,10 +176,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		wing_style = wing_styles_list.Find(character.wing_style.type)
 
 	// Playerscale (This assumes list is sorted big->small)
-	var/size_multiplier = player_sizes_list.len // If fail to find, take smallest
-	for(var/N in player_sizes_list)
-		if(character.size_multiplier >= player_sizes_list[N])
-			size_multiplier = player_sizes_list.Find(N)
+	var/size_multiplier = GLOB.player_sizes_list.len // If fail to find, take smallest
+	for(var/N in GLOB.player_sizes_list)
+		if(character.size_multiplier >= GLOB.player_sizes_list[N])
+			size_multiplier = GLOB.player_sizes_list.Find(N)
 			break
 
 	// Technically custom_species is not part of the UI, but this place avoids merge problems.
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               ear_styles_list.len  + 1,  1)
 	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     ear_styles_list.len  + 1,  1)
 	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              tail_styles_list.len + 1,  1)
-	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             player_sizes_list.len,     1)
+	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             GLOB.player_sizes_list.len,     1)
 	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              wing_styles_list.len + 1,  1)
 
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
@@ -228,6 +228,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_TAIL3_R,   character.r_tail3,   255,    1)
 	SetUIValueRange(DNA_UI_TAIL3_G,   character.g_tail3,   255,    1)
 	SetUIValueRange(DNA_UI_TAIL3_B,   character.b_tail3,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL_ALPHA,character.a_tail,    255,    1)
 
 	SetUIValueRange(DNA_UI_WING_R,    character.r_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_G,    character.g_wing,    255,    1)
@@ -240,6 +241,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_WING3_R,    character.r_wing3,  255,    1)
 	SetUIValueRange(DNA_UI_WING3_G,    character.g_wing3,  255,    1)
 	SetUIValueRange(DNA_UI_WING3_B,    character.b_wing3,  255,    1)
+	SetUIValueRange(DNA_UI_WING_ALPHA, character.a_wing,   255,    1)
 
 	SetUIValueRange(DNA_UI_EARS_R,    character.r_ears,    255,    1)
 	SetUIValueRange(DNA_UI_EARS_G,    character.g_ears,    255,    1)
@@ -252,6 +254,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_EARS3_R,   character.r_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_G,   character.g_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_B,   character.b_ears3,   255,    1)
+	SetUIValueRange(DNA_UI_EARS_ALPHA,character.a_ears,    255,    1)
 
 	for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
 		var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
@@ -262,6 +265,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		SetUIValueRange(offset, red, 255, 1)
 		SetUIValueRange(offset + 1, green, 255, 1)
 		SetUIValueRange(offset + 2, blue, 255, 1)
+	SetUIValueRange(DNA_UI_EARS_SECONDARY_ALPHA, character.a_ears2, 255, 1)
 
 	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
 	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)
@@ -517,7 +521,6 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	ResetSE()
 
 	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name
 
 #undef DNA_OFF_LOWERBOUND
 #undef DNA_OFF_UPPERBOUND

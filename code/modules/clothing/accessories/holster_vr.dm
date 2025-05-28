@@ -11,7 +11,7 @@
 	can_hold = list(
 		/obj/item/melee/baton,
 		/obj/item/melee/classic_baton,
-		/obj/item/melee/telebaton		
+		/obj/item/melee/telebaton
 		)
 
 /obj/item/clothing/accessory/holster/machete/rapier

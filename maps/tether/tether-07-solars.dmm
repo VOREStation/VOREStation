@@ -34,7 +34,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "af" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -43,7 +43,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ag" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -55,7 +55,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ah" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
@@ -64,7 +64,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ai" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -76,14 +76,14 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aj" = (
 /obj/machinery/power/solar,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ak" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -92,10 +92,10 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "al" = (
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "am" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -104,7 +104,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "an" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -113,13 +113,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ao" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ap" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -128,13 +128,13 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ar" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -143,7 +143,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "as" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -155,7 +155,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "at" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -192,7 +192,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "ay" = (
 /obj/structure/grille,
 /obj/structure/cable/yellow{
@@ -206,7 +206,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aA" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -218,7 +218,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aB" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -292,16 +292,16 @@
 	name_tag = "Solar Farm Output"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aK" = (
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aL" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aM" = (
 /obj/item/stool,
 /obj/structure/cable/yellow{
@@ -314,7 +314,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aO" = (
 /obj/machinery/power/smes/buildable{
 	RCon_tag = "Power - Solar Array";
@@ -388,7 +388,7 @@
 "aW" = (
 /obj/structure/railing,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -405,7 +405,7 @@
 	name_tag = "Solar Farm Input"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "aY" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/rust,
@@ -423,7 +423,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bb" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -442,7 +442,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bd" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/map_effect/portal/line/side_b{
@@ -455,7 +455,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bf" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
@@ -467,7 +467,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bg" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -476,20 +476,20 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bh" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bi" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bj" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -502,25 +502,25 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bl" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bm" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bn" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
 	},
 /obj/structure/railing,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bo" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/heavyduty{
@@ -551,14 +551,14 @@
 "br" = (
 /obj/tether_away_spawner/tether_outside,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bs" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bt" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "2-8"
@@ -574,12 +574,12 @@
 "bu" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bv" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bw" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -588,13 +588,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bx" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "by" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -606,7 +606,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -615,7 +615,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bA" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -624,7 +624,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bB" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -633,7 +633,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bC" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -645,7 +645,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bD" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
@@ -654,14 +654,14 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bE" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bF" = (
 /turf/simulated/mineral/virgo3b,
 /area/mine/unexplored)
@@ -677,7 +677,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "bI" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -7559,7 +7559,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/tether/outpost/solars_outside/lower)
 "pb" = (
 /obj/machinery/alarm{
 	dir = 8;

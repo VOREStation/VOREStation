@@ -60,55 +60,12 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
-/atom/New(loc, ...)
-	// Don't call ..() unless /datum/New() ever exists
-
-	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
-	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
-	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
-		world.preloader_load(src)
-
-	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
-	var/do_initialize = SSatoms.initialized
-	if(do_initialize > INITIALIZATION_INSSATOMS)
-		args[1] = (do_initialize == INITIALIZATION_INNEW_MAPLOAD)
-		if(SSatoms.InitAtom(src, args))
-			// We were deleted. No sense continuing
-			return
-
-	// Uncomment if anything ever uses the return value of SSatoms.InitializeAtoms ~Leshana
-	// If a map is being loaded, it might want to know about newly created objects so they can be handled.
-	// var/list/created = SSatoms.created_atoms
-	// if(created)
-	// 	created += src
-
-// Note: I removed "auto_init" feature (letting types disable auto-init) since it shouldn't be needed anymore.
-// 	You can replicate the same by checking the value of the first parameter to initialize() ~Leshana
-
-// Called after New if the map is being loaded, with mapload = TRUE
-// Called from base of New if the map is not being loaded, with mapload = FALSE
-// This base must be called or derivatives must set initialized to TRUE
-// Must not sleep!
-// Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
-// Must return an Initialize hint. Defined in code/__defines/subsystems.dm
-/atom/proc/Initialize(mapload, ...)
-	if(QDELETED(src))
-		stack_trace("GC: -- [type] had initialize() called after qdel() --")
-	if(flags & ATOM_INITIALIZED)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags |= ATOM_INITIALIZED
-	return INITIALIZE_HINT_NORMAL
-
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
 	if(light)
 		QDEL_NULL(light)
 	return ..()
-
-// Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize()
-	return
 
 /atom/proc/reveal_blood()
 	return
@@ -154,7 +111,8 @@
 
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.
-/atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
+/atom/proc/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
 	return
 
 //Register listeners on turfs in a certain range
@@ -239,13 +197,12 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", get_examine_desc())
+	var/examine_text = replacetext(get_examine_desc(), "||", "")
+	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", examine_text)
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
-	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
-		user.client.statpanel = "Examine" // Switch to stat panel
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
@@ -482,17 +439,6 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
-		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-
-		for(var/datum/disease/D in M.GetViruses())
-			this.viruses |= D.Copy()
-
-		// Make toxins vomit look different
-		if(toxvomit)
-			this.icon_state = "vomittox_[pick(1,4)]"
-
 /atom/proc/clean_blood()
 	if(!simulated)
 		return
@@ -507,12 +453,12 @@
 	R.reagents.splash(src, 1)
 
 /atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map)) return
+	if(!islist(GLOB.global_map) || isemptylist(GLOB.global_map)) return
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x=1,cur_x<=global_map.len,cur_x++)
-		y_arr = global_map[cur_x]
+	for(cur_x = 1, cur_x <= GLOB.global_map.len, cur_x++)
+		y_arr = GLOB.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
@@ -656,15 +602,16 @@
 	if(!isliving(src))
 		custom_edit_name = "<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
 	. += {"
-		[custom_edit_name]
-		<br><font size='1'>
+		[custom_edit_name]<br>
+		"}
+	var/content = {"
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
 		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
-		</font>
 		"}
+	. += span_small(content)
 	var/turf/T = get_turf(src)
-	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"
+	. += "<br>" + span_small("[ADMIN_COORDJMP(T)]")
 
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -829,14 +776,14 @@
 GLOBAL_LIST_EMPTY(icon_dimensions)
 
 /atom/proc/get_oversized_icon_offsets()
-    if (pixel_x == 0 && pixel_y == 0)
-        return list("x" = 0, "y" = 0)
-    var/list/icon_dimensions = get_icon_dimensions(icon)
-    var/icon_width = icon_dimensions["width"]
-    var/icon_height = icon_dimensions["height"]
-    return list(
-        "x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
-        "y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
+	if (pixel_x == 0 && pixel_y == 0)
+		return list("x" = 0, "y" = 0)
+	var/list/icon_dimensions = get_icon_dimensions(icon)
+	var/icon_width = icon_dimensions["width"]
+	var/icon_height = icon_dimensions["height"]
+	return list(
+		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
+		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
 
 /// Returns a list containing the width and height of an icon file
@@ -851,3 +798,36 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+///Returns the src and all recursive contents as a list.
+/atom/proc/get_all_contents(ignore_flag_1)
+	. = list(src)
+	var/i = 0
+	while(i < length(.))
+		var/atom/checked_atom = .[++i]
+		if(checked_atom.flags & ignore_flag_1)
+			continue
+		. += checked_atom.contents
+
+///identical to get_all_contents but returns a list of atoms of the type passed in the argument.
+/atom/proc/get_all_contents_type(type)
+	var/list/processing_list = list(src)
+	. = list()
+	while(length(processing_list))
+		var/atom/checked_atom = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += checked_atom.contents
+		if(istype(checked_atom, type))
+			. += checked_atom
+
+/**
+*	Respond to our atom being checked by a virus extrapolator.
+*
+*	Default behaviour is to send COMSIG_ATOM_EXTRAPOLATOR_ACT and return an empty list (which may be populated by the signal)
+*
+*	Returns a list of viruses in the atom.
+*	Include EXTRAPOLATOR_SPECIAL_HANDLED in the list if the extrapolation act has been handled by this proc or a signal, and should not be handled by the extrapolator itself.
+*/
+/atom/proc/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = list(EXTRAPOLATOR_RESULT_DISEASES = list())
+	SEND_SIGNAL(src, COMSIG_ATOM_EXTRAPOLATOR_ACT, user, extrapolator, dry_run, .)

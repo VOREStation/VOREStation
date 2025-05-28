@@ -8,7 +8,7 @@
  * * timeout - The timeout of the picker, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * autofocus - The bool that controls if this picker should grab window focus.
  */
-/proc/tgui_color_picker(mob/user, message, title, default = "#000000", timeout = 0, autofocus = TRUE)
+/proc/tgui_color_picker(mob/user, message, title, default = "#000000", timeout = 0, autofocus = TRUE, ui_state = GLOB.tgui_always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -16,11 +16,15 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
+			return null
+
+	if(isnull(user.client))
+		return null
+
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_mode))
 		return input(user, message, title, default) as color|null
-	var/datum/tgui_color_picker/picker = new(user, message, title, default, timeout, autofocus)
+	var/datum/tgui_color_picker/picker = new(user, message, title, default, timeout, autofocus, ui_state)
 	picker.tgui_interact(user)
 	picker.wait()
 	if (picker)
@@ -51,12 +55,15 @@
 	var/closed
 	/// The user's presets
 	var/preset_colors
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/tgui_state/state
 
-/datum/tgui_color_picker/New(mob/user, message, title, default, timeout, autofocus)
+/datum/tgui_color_picker/New(mob/user, message, title, default, timeout, autofocus, ui_state)
 	src.autofocus = autofocus
 	src.title = title
 	src.default = default
 	src.message = message
+	src.state = ui_state
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -66,6 +73,7 @@
 
 /datum/tgui_color_picker/Destroy(force)
 	SStgui.close_uis(src)
+	state = null
 	. = ..()
 
 /**
@@ -90,7 +98,7 @@
 	closed = TRUE
 
 /datum/tgui_color_picker/tgui_state(mob/user)
-	return GLOB.tgui_always_state
+	return state
 
 /datum/tgui_color_picker/tgui_static_data(mob/user)
 	. = list()

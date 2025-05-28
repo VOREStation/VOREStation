@@ -14,7 +14,7 @@
 		radio_controller.remove_object(src,air_frequency)
 	. = ..()
 
-/obj/machinery/door/airlock/alarmlock/Initialize()
+/obj/machinery/door/airlock/alarmlock/Initialize(mapload)
 	. = ..()
 	radio_controller.remove_object(src, air_frequency)
 	air_connection = radio_controller.add_object(src, air_frequency, RADIO_TO_AIRALARM)

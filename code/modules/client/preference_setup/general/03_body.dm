@@ -60,7 +60,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		if(instance.ckeys_allowed && (!client || !(client.ckey in instance.ckeys_allowed)))
 			continue
-		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed)))
+		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights_for(client, R_ADMIN | R_EVENT | R_FUN)) && (!custom_base || !(custom_base in instance.species_allowed)))
 			continue
 		.[instance.name] = instance
 
@@ -197,7 +197,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	character.set_gender(pref.biological_gender)
 
-	character.synthetic = pref.species == "Protean" ? all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	character.synthetic = pref.species == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
 	var/list/organs_to_edit = list()
 	for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -270,7 +270,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. = list()
 
 	var/datum/species/mob_species = GLOB.all_species[pref.species]
-	. += "<table><tr style='vertical-align:top'><td><b>Body</b> "
+	. += "<table><tr style='vertical-align:top'><td>" + span_bold("Body") + " "
 	. += "(<a title='Randomize' href='byond://?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
 	. += "Species: <a href='byond://?src=\ref[src];show_species=1'>[pref.species]</a><br>"
@@ -334,16 +334,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if(ind > 1)
 				. += ", "
 
-			var/datum/robolimb/R = basic_robolimb
+			var/datum/robolimb/R = GLOB.basic_robolimb
 			var/key = pref.rlimb_data[name]
 			if(!istext(key))
 				log_debug("Bad rlimb_data for [key_name(pref.client)], [name] was set to [key]")
 				to_chat(usr, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
 				pref.rlimb_data -= name
 			else
-				R = LAZYACCESS(all_robolimbs, key)
+				R = LAZYACCESS(GLOB.all_robolimbs, key)
 				if(!istype(R))
-					R = basic_robolimb
+					R = GLOB.basic_robolimb
 			. += "\t[R.company] [organ_name] prosthesis"
 		else if(status == "amputated")
 			++ind
@@ -390,10 +390,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<table>"
 		for(var/entry in pref.body_descriptors)
 			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
-			. += "<tr><td><b>[capitalize(descriptor.chargen_label)]:</b></td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='byond://?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
+			. += "<tr><td>" + span_bold("[capitalize(descriptor.chargen_label)]:") + "</td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='byond://?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
 		. += "</table><br>"
 
-	. += "</td><td><b>Preview</b><br>"
+	. += "</td><td>" + span_bold("Preview") + "<br>"
 	. += "<br><a href='byond://?src=\ref[src];cycle_bg=1'>Cycle background</a>"
 	. += "<br><a href='byond://?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
 	. += "<br><a href='byond://?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Hide job gear" : "Show job gear"]</a>"
@@ -409,21 +409,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<a href='byond://?src=\ref[src];grad_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/grad_color))] "
 	. += " Style: <a href='byond://?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='byond://?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='byond://?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 
-	. += "<br><b>Facial</b><br>"
+	. += "<br>" + span_bold("Facial") + "<br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='byond://?src=\ref[src];facial_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/facial_color))] "
 	. += " Style: <a href='byond://?src=\ref[src];facial_style_left=[pref.f_style]'><</a> <a href='byond://?src=\ref[src];facial_style_right=[pref.f_style]''>></a> <a href='byond://?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>" //Same as above with the extra > & < characters
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
-		. += "<br><b>Eyes</b><br>"
+		. += "<br>" + span_bold("Eyes") + "<br>"
 		. += "<a href='byond://?src=\ref[src];eye_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/eyes_color))]<br>"
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
-		. += "<br><b>Body Color</b><br>"
+		. += "<br>" + span_bold("Body Color") + "<br>"
 		. += "<a href='byond://?src=\ref[src];skin_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/skin_color))]<br>"
 
 	if(mob_species.digi_allowed)
-		. += "<br><b>Digitigrade?:</b> <a href='byond://?src=\ref[src];digitigrade=1'><b>[pref.digitigrade ? "Yes" : "No"]</b></a><br>"
+		. += "<br>" + span_bold("Digitigrade?:") + " <a href='byond://?src=\ref[src];digitigrade=1'>" + span_bold("[pref.digitigrade ? "Yes" : "No"]") + "</a><br>"
 
 	. += "<h2>Genetics Settings</h2>"
 
@@ -438,6 +438,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color2))]<br>"
 		if(ear.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];ears_alpha=1'>Change Ears Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>Select</a><br>"
 
@@ -447,6 +448,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
 		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))
 			. += "<a href='byond://?src=\ref[src];ear_secondary_color=[channel]'>Change [GLOB.fancy_sprite_accessory_color_channel_names[channel]] Color</a> [color_square(hex = LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff")]<br>"
+		.+= "<a href='byond://?src=\ref[src];secondary_ears_alpha=1'>Change Horns Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_secondary_style=1'>Select</a><br>"
 
@@ -461,6 +463,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color2))]<br>"
 		if(tail.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];tail_alpha=1'>Change Tail Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/tail_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>Select</a><br>"
 
@@ -475,6 +478,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color2))]<br>"
 		if(wings.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];wing_alpha=1'>Change Wing Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/wing_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>Select</a><br>"
 
@@ -485,8 +489,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "</table>"
 	. += "<br>"
-	. += span_bold("Allow Synth markings:") + " <a href='byond://?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
-	. += span_bold("Allow Synth color:") + " <a href='byond://?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Allow Synth markings:") + " <a href='byond://?src=\ref[src];synth_markings=1'>" + span_bold("[pref.synth_markings ? "Yes" : "No"]") + "</a><br>"
+	. += span_bold("Allow Synth color:") + " <a href='byond://?src=\ref[src];synth_color=1'>" + span_bold("[pref.synth_color ? "Yes" : "No"]") + "</a><br>"
 	if(pref.synth_color)
 		. += "<a href='byond://?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/synth_color))]"
 
@@ -539,7 +543,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		else
 			return TOPIC_NOACTION
 
-		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN|R_EVENT, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(user.client,setting_species))) && !check_rights(R_ADMIN|R_EVENT, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species
@@ -615,6 +619,28 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(new_grad_style && CanUseTopic(user))
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["grad_style_left"])
+		var/H = href_list["grad_style_left"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.grad_style = valid_gradients[start-1]
+		else //But if we ARE, become the final element.
+			pref.grad_style = valid_gradients[valid_gradients.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["grad_style_right"])
+		var/H = href_list["grad_style_right"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != valid_gradients.len) //If we're not the end of the list, become the next element.
+			pref.grad_style = valid_gradients[start+1]
+		else //But if we ARE, become the first element.
+			pref.grad_style = valid_gradients[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style_left"])
 		var/H = href_list["hair_style_left"]
@@ -819,7 +845,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		// Full prosthetic bodies without a brain are borderline unkillable so make sure they have a brain to remove/destroy.
 		var/datum/species/current_species = GLOB.all_species[pref.species]
-		if(!current_species.has_organ["brain"])
+		if(!current_species.has_organ[O_BRAIN])
 			limb_selection_list -= "Full Body"
 		else if(pref.organ_data[BP_TORSO] == "cyborg")
 			limb_selection_list |= "Head"
@@ -898,8 +924,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("Prosthesis")
 				var/tmp_species = pref.species ? pref.species : SPECIES_HUMAN
 				var/list/usable_manufacturers = list()
-				for(var/company in chargen_robolimbs)
-					var/datum/robolimb/M = chargen_robolimbs[company]
+				for(var/company in GLOB.chargen_robolimbs)
+					var/datum/robolimb/M = GLOB.chargen_robolimbs[company]
 					if(!(limb in M.parts))
 						continue
 					if(tmp_species in M.species_cannot_use)
@@ -964,7 +990,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if(pref.organ_data[BP_HEAD] != "cyborg")
 					to_chat(user, span_warning("You may only select a cybernetic or synthetic brain if you have a full prosthetic body."))
 					return
-				organ = "brain"
+				organ = O_BRAIN
 
 		var/datum/species/current_species = GLOB.all_species[pref.species]
 		var/list/organ_choices = list("Normal")
@@ -1056,6 +1082,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/ears_color3, new_earc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if (href_list["ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's primary ears are.", "Character Preference",
+			pref.read_preference(/datum/preference/numeric/human/ears_alpha), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["secondary_ears_alpha"])
+		var/new_ear_alpha = tgui_input_number(user, "Choose how transparent your character's horns are.", "Character Preference",
+			pref.read_preference(/datum/preference/numeric/human/ears_alpha/secondary), 255, 0)
+		if(new_ear_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["ear_secondary_style"])
 		var/new_style = tgui_input_list(user, "Select an ear style for this character:", "Character Preference", pref.get_available_styles(global.ear_styles_list), pref.ear_secondary_style)
 		if(!new_style)
@@ -1109,6 +1149,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.update_preference_by_type(/datum/preference/color/human/tail_color3, new_tailc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["tail_alpha"])
+		var/new_tail_alpha = tgui_input_number(user, "Choose how transparent your character's tail is.", "Character Preference",
+			pref.read_preference(/datum/preference/numeric/human/tail_alpha), 255, 0)
+		if(new_tail_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["wing_style"])
 		var/new_wing_style = tgui_input_list(user, "Select a wing style for this character:", "Character Preference", pref.get_available_styles(global.wing_styles_list), pref.wing_style)
 		if(new_wing_style)
@@ -1135,6 +1182,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.read_preference(/datum/preference/color/human/wing_color3))
 		if(new_wingc)
 			pref.update_preference_by_type(/datum/preference/color/human/wing_color3, new_wingc)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["wing_alpha"])
+		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
+			pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+		if(new_wing_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 
@@ -1176,37 +1229,39 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		switch(current_species.rarity_value)
 			if(1 to 2)
-				dat += "</br><b>Often present on human stations.</b>"
+				dat += "</br>" + span_bold("Often present on human stations.")
 			if(3 to 4)
-				dat += "</br><b>Rarely present on human stations.</b>"
+				dat += "</br>" + span_bold("Rarely present on human stations.")
 			if(5)
-				dat += "</br><b>Unheard of on human stations.</b>"
+				dat += "</br>" + span_bold("Unheard of on human stations.")
 			else
-				dat += "</br><b>May be present on human stations.</b>"
+				dat += "</br>" + span_bold("May be present on human stations.")
 	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
-		dat += "</br><b>Whitelist restricted.</b>"
+		dat += "</br>" + span_bold("Whitelist restricted.")
 	if(!current_species.has_organ[O_HEART])
-		dat += "</br><b>Does not have a circulatory system.</b>"
+		dat += "</br>" + span_bold("Does not have a circulatory system.")
 	if(!current_species.has_organ[O_LUNGS])
-		dat += "</br><b>Does not have a respiratory system.</b>"
-	if(current_species.flags & NO_SCAN)
-		dat += "</br><b>Does not have DNA.</b>"
+		dat += "</br>" + span_bold("Does not have a respiratory system.")
+	if(current_species.flags & NO_DNA)
+		dat += "</br>" + span_bold("Does not have DNA.")
+	if(current_species.flags & NO_SLEEVE)
+		dat += "</br>" + span_bold("Cannot be cloned.")
 	if(current_species.flags & NO_DEFIB)
-		dat += "</br><b>Cannot be defibrillated.</b>"
+		dat += "</br>" + span_bold("Cannot be defibrillated.")
 	if(current_species.flags & NO_PAIN)
-		dat += "</br><b>Does not feel pain.</b>"
+		dat += "</br>" + span_bold("Does not feel pain.")
 	if(current_species.flags & NO_SLIP)
-		dat += "</br><b>Has excellent traction.</b>"
+		dat += "</br>" + span_bold("Has excellent traction.")
 	if(current_species.flags & NO_POISON)
-		dat += "</br><b>Immune to most poisons.</b>"
+		dat += "</br>" + span_bold("Immune to most poisons.")
 	if(current_species.appearance_flags & HAS_SKIN_TONE)
-		dat += "</br><b>Has a variety of skin tones.</b>"
+		dat += "</br>" + span_bold("Has a variety of skin tones.")
 	if(current_species.appearance_flags & HAS_SKIN_COLOR)
-		dat += "</br><b>Has a variety of skin colours.</b>"
+		dat += "</br>" + span_bold("Has a variety of skin colours.")
 	if(current_species.appearance_flags & HAS_EYE_COLOR)
-		dat += "</br><b>Has a variety of eye colours.</b>"
+		dat += "</br>" + span_bold("Has a variety of eye colours.")
 	if(current_species.flags & IS_PLANT)
-		dat += "</br><b>Has a plantlike physiology.</b>"
+		dat += "</br>" + span_bold("Has a plantlike physiology.")
 	dat += "</small></td>"
 	dat += "</tr>"
 	dat += "</table><center><hr/>"
@@ -1215,14 +1270,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 		restricted = 2
-	else if(!is_alien_whitelisted(preference_mob(),current_species))
+	else if(!is_alien_whitelisted(user.client,current_species))
 		restricted = 1
 
 	if(restricted)
 		if(restricted == 1)
-			dat += "<font color='red'><b>You cannot play as this species.</br><small>If you wish to be whitelisted, you can make an application post on <a href='byond://?src=\ref[user];preference=open_whitelist_forum'>the forums</a>.</small></b></font></br>"
+			dat += span_red(span_bold("You cannot play as this species.</br>" + span_small("If you wish to be whitelisted, you can make an application post on <a href='byond://?src=\ref[user];preference=open_whitelist_forum'>the forums</a>."))) + "</br>"
 		else if(restricted == 2)
-			dat += "<font color='red'><b>You cannot play as this species.</br><small>This species is not available for play as a station race..</small></b></font></br>"
+			dat += span_red(span_bold("You cannot play as this species.</br>" + span_small("This species is not available for play as a station race.."))) + "</br>"
 	if(!restricted || check_rights(R_ADMIN|R_EVENT, 0) || current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE)
 		dat += "\[<a href='byond://?src=\ref[src];set_species=[pref.species_preview]'>select</a>\]"
 	dat += "</center></body></html>"

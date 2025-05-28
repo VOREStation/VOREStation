@@ -42,11 +42,11 @@
 
 	var/list/camera_computers_using_this = list()
 
-/obj/machinery/camera/New()
+/obj/machinery/camera/Initialize(mapload)
 	wires = new(src)
 	assembly = new(src)
 	assembly.state = 4
-	client_huds |= global_hud.whitense
+	client_huds |= GLOB.global_hud.whitense
 
 	/* // Use this to look for cameras that have the same c_tag.
 	for(var/obj/machinery/camera/C in cameranet.cameras)
@@ -65,7 +65,9 @@
 	if(!c_tag)
 		var/area/A = get_area(src)
 		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
-	..()
+
+	. = ..()
+
 	if (dir == NORTH)
 		layer = ABOVE_MOB_LAYER
 	// VOREStation Edit End

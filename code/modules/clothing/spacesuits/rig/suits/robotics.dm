@@ -20,10 +20,7 @@
 	glove_type = null
 	cell_type =  null
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/storage/box
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_STORAGE)
 
 	req_access = list()
 	req_one_access = list()
@@ -33,6 +30,6 @@
 
 /obj/item/clothing/suit/space/rig/advsuit
 	name = "voidsuit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS|FEET
-	heat_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS|FEET
-	cold_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS|FEET
+	body_parts_covered = CHEST|LEGS|ARMS|HANDS|FEET
+	heat_protection =	 CHEST|LEGS|ARMS|HANDS|FEET
+	cold_protection =	 CHEST|LEGS|ARMS|HANDS|FEET

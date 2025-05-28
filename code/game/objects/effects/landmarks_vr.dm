@@ -15,12 +15,12 @@
 	name = "Antag Latespawn"
 	var/antag_id
 
-/obj/effect/landmark/late_antag/Initialize()
+/obj/effect/landmark/late_antag/Initialize(mapload)
 	. = ..()
-	var/datum/antagonist/A = all_antag_types[antag_id]
+	var/datum/antagonist/A = GLOB.all_antag_types[antag_id]
 	if(istype(A))
 		A.starting_locations |= get_turf(src)
-		var/list/allpoints = all_antag_spawnpoints[A.landmark_id]
+		var/list/allpoints = GLOB.all_antag_spawnpoints[A.landmark_id]
 		allpoints |= get_turf(src)
 
 /obj/effect/landmark/late_antag/ert

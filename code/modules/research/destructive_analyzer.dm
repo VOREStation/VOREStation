@@ -17,7 +17,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	active_power_usage = 2500
 	var/rped_recycler_ready = TRUE
 
-/obj/machinery/r_n_d/destructive_analyzer/Initialize()
+/obj/machinery/r_n_d/destructive_analyzer/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

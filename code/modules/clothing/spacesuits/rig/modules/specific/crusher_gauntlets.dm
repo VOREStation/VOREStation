@@ -17,7 +17,7 @@
 	passive_power_cost = 0
 	var/obj/item/kinetic_crusher/machete/gauntlets/rig/stored_gauntlets
 
-/obj/item/rig_module/gauntlets/Initialize()
+/obj/item/rig_module/gauntlets/Initialize(mapload)
 	. = ..()
 	stored_gauntlets = new /obj/item/kinetic_crusher/machete/gauntlets/rig(src)
 	stored_gauntlets.storing_module = src
@@ -25,7 +25,7 @@
 /obj/item/rig_module/gauntlets/activate()
 	..()
 	var/mob/living/M = holder.wearer
-	var/datum/gender/TU = gender_datums[M.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[M.get_visible_gender()]
 
 	if(M.l_hand && M.r_hand)
 		to_chat(M, span_danger("Your hands are full."))

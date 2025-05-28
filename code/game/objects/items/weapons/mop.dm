@@ -18,9 +18,9 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	var/mopping = 0
 	var/mopcount = 0
 
-/obj/item/mop/New()
+/obj/item/mop/Initialize(mapload)
+	. = ..()
 	create_reagents(30)
-	..()
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
@@ -59,9 +59,9 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 
-/obj/item/mop/advanced/New()
+/obj/item/mop/advanced/Initialize(mapload)
+	. = ..()
 	create_reagents(30)
-	..()
 
 /obj/item/mop/advanced/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return

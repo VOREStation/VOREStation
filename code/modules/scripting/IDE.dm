@@ -16,13 +16,13 @@
 				src << output(null, "tcserror") // clear the errors
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to save: Unable to locate server machine. (Back up your code before exiting the window!)</font>", "tcserror")
+				src << output(span_red("Failed to save: Unable to locate server machine. (Back up your code before exiting the window!)"), "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to save: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+			src << output(span_red("Failed to save: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to save: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+		src << output(span_red("Failed to save: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 
 
 /client/verb/tcscompile()
@@ -44,7 +44,7 @@
 				if(compileerrors.len)
 					src << output(span_bold("Compile Errors"), "tcserror")
 					for(var/scriptError/e in compileerrors)
-						src << output("<font color = red>\t>[e.message]</font>", "tcserror")
+						src << output(span_red("\t>[e.message]"), "tcserror")
 					src << output("([compileerrors.len] errors)", "tcserror")
 
 					// Output compile errors to all other people viewing the code too
@@ -53,28 +53,28 @@
 							M << output(null, "tcserror")
 							M << output(span_bold("Compile Errors"), "tcserror")
 							for(var/scriptError/e in compileerrors)
-								M << output("<font color = red>\t>[e.message]</font>", "tcserror")
+								M << output(span_red("\t>[e.message]"), "tcserror")
 							M << output("([compileerrors.len] errors)", "tcserror")
 
 
 				else
-					src << output("<font color = blue>TCS compilation successful!</font>", "tcserror")
+					src << output(span_blue("TCS compilation successful!"), "tcserror")
 					src << output("(0 errors)", "tcserror")
 
 					for(var/mob/M in Machine.viewingcode)
 						if(M.client)
-							M << output("<font color = blue>TCS compilation successful!</font>", "tcserror")
+							M << output(span_blue("TCS compilation successful!"), "tcserror")
 							M << output("(0 errors)", "tcserror")
 
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to compile: Unable to locate server machine. (Back up your code before exiting the window!)</font>", "tcserror")
+				src << output(span_red("Failed to compile: Unable to locate server machine. (Back up your code before exiting the window!)"), "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to compile: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+			src << output(span_red("Failed to compile: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to compile: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+		src << output(span_red("Failed to compile: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 
 /client/verb/tcsrun()
 	set hidden = 1
@@ -95,7 +95,7 @@
 				if(compileerrors.len)
 					src << output(span_bold("Compile Errors"), "tcserror")
 					for(var/scriptError/e in compileerrors)
-						src << output("<font color = red>\t>[e.message]</font>", "tcserror")
+						src << output(span_red("\t>[e.message]"), "tcserror")
 					src << output("([compileerrors.len] errors)", "tcserror")
 
 					// Output compile errors to all other people viewing the code too
@@ -104,17 +104,17 @@
 							M << output(null, "tcserror")
 							M << output(span_bold("Compile Errors"), "tcserror")
 							for(var/scriptError/e in compileerrors)
-								M << output("<font color = red>\t>[e.message]</font>", "tcserror")
+								M << output(span_red("\t>[e.message]"), "tcserror")
 							M << output("([compileerrors.len] errors)", "tcserror")
 
 				else
 					// Finally, we run the code!
-					src << output("<font color = blue>TCS compilation successful! Code executed.</font>", "tcserror")
+					src << output(span_blue("TCS compilation successful! Code executed."), "tcserror")
 					src << output("(0 errors)", "tcserror")
 
 					for(var/mob/M in Machine.viewingcode)
 						if(M.client)
-							M << output("<font color = blue>TCS compilation successful!</font>", "tcserror")
+							M << output(span_blue("TCS compilation successful!"), "tcserror")
 							M << output("(0 errors)", "tcserror")
 
 					var/datum/signal/signal = new()
@@ -133,13 +133,13 @@
 
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to run: Unable to locate server machine. (Back up your code before exiting the window!)</font>", "tcserror")
+				src << output(span_red("Failed to run: Unable to locate server machine. (Back up your code before exiting the window!)"), "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to run: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+			src << output(span_red("Failed to run: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to run: Unable to locate machine. (Back up your code before exiting the window!)</font>", "tcserror")
+		src << output(span_red("Failed to run: Unable to locate machine. (Back up your code before exiting the window!)"), "tcserror")
 
 
 /client/verb/exittcs()
@@ -174,13 +174,13 @@
 				src << output(null, "tcserror") // clear the errors
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to revert: Unable to locate server machine.</font>", "tcserror")
+				src << output(span_red("Failed to revert: Unable to locate server machine."), "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to revert: Unable to locate machine.</font>", "tcserror")
+			src << output(span_red("Failed to revert: Unable to locate machine."), "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to revert: Unable to locate machine.</font>", "tcserror")
+		src << output(span_red("Failed to revert: Unable to locate machine."), "tcserror")
 
 
 /client/verb/tcsclearmem()
@@ -196,16 +196,16 @@
 				Server.memory = list() // clear the memory
 				// Show results
 				src << output(null, "tcserror")
-				src << output("<font color = blue>Server memory cleared!</font>", "tcserror")
+				src << output(span_blue("Server memory cleared!"), "tcserror")
 				for(var/mob/M in Machine.viewingcode)
 					if(M.client)
-						M << output("<font color = blue>Server memory cleared!</font>", "tcserror")
+						M << output(span_blue("Server memory cleared!"), "tcserror")
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to clear memory: Unable to locate server machine.</font>", "tcserror")
+				src << output(span_red("Failed to clear memory: Unable to locate server machine."), "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font>", "tcserror")
+			src << output(span_red("Failed to clear memory: Unable to locate machine."), "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font>", "tcserror")
+		src << output(span_red("Failed to clear memory: Unable to locate machine."), "tcserror")

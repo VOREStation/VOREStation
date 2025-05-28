@@ -2,7 +2,7 @@
 	name = "heavy furs"
 	desc = "A traditional Zhan-Khazan garment."
 	icon_state = "zhan_furs"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'

@@ -59,7 +59,7 @@
 			expired = 1
 	return ..()
 
-/obj/item/card/id/guest/Initialize()
+/obj/item/card/id/guest/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_icon()

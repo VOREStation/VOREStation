@@ -4,4 +4,3 @@
 	name = "fence"
 	desc = "It's a fence! Not much else to say about it."
 	icon = 'icons/obj/props/decor_fences.dmi'
-

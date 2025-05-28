@@ -312,6 +312,11 @@
 /area/groundbase/level2/nw)
 "aH" = (
 /obj/structure/table/glass,
+/obj/item/extrapolator,
+/obj/item/extrapolator{
+	pixel_x = -5;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "aI" = (
@@ -909,6 +914,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"bJ" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
 "bL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1332,6 +1342,11 @@
 "cZ" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/lights/mixed,
+/obj/item/mail_scanner{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/mail_scanner,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "da" = (
@@ -7018,12 +7033,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/closet/crate/medical,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "tm" = (
@@ -12063,6 +12073,11 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/item/storage/bag/mail,
+/obj/item/storage/bag/mail{
+	pixel_x = -5;
+	pixel_y = -5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "HK" = (
@@ -16212,12 +16227,10 @@
 /area/groundbase/civilian/chapel)
 "SX" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant/small{
-	pixel_y = 12
-	},
 /obj/structure/sign/painting/library_secure{
 	pixel_x = -30
 	},
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "SY" = (
@@ -23104,7 +23117,7 @@ rP
 rP
 rP
 rP
-cX
+bJ
 cX
 cX
 MY

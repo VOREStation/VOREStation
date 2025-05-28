@@ -33,7 +33,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/radio
 	)
-/obj/item/storage/toolbox/emergency/Initialize()
+/obj/item/storage/toolbox/emergency/Initialize(mapload)
 	if(prob(50))
 		new /obj/item/flashlight(src)
 	else
@@ -69,7 +69,7 @@
 		/obj/item/stack/cable_coil/random_belt,
 		/obj/item/stack/cable_coil/random_belt
 	)
-/obj/item/storage/toolbox/electrical/Initialize()
+/obj/item/storage/toolbox/electrical/Initialize(mapload)
 	. = ..()
 	if(prob(5))
 		new /obj/item/clothing/gloves/yellow(src)
@@ -151,7 +151,7 @@
 	var/filled = FALSE
 	attack_verb = list("lunched")
 
-/obj/item/storage/toolbox/lunchbox/Initialize()
+/obj/item/storage/toolbox/lunchbox/Initialize(mapload)
 	if(filled)
 		var/list/lunches = lunchables_lunches()
 		var/lunch = lunches[pick(lunches)]

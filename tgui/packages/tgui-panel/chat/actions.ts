@@ -8,8 +8,10 @@ import { createAction } from 'common/redux';
 
 import { createPage } from './model';
 
+export const getChatData = createAction('chat/getChatData');
 export const loadChat = createAction('chat/load');
 export const rebuildChat = createAction('chat/rebuild');
+export const clearChat = createAction('chat/clear');
 export const updateMessageCount = createAction('chat/updateMessageCount');
 export const addChatPage = createAction('chat/addPage', () => ({
   payload: createPage(),

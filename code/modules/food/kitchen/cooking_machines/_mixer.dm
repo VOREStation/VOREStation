@@ -20,7 +20,7 @@ fundamental differences
 	if(Adjacent(user))
 		. += span_notice("It is currently set to make a [selected_option]")
 
-/obj/machinery/appliance/mixer/Initialize()
+/obj/machinery/appliance/mixer/Initialize(mapload)
 	. = ..()
 	cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = FALSE

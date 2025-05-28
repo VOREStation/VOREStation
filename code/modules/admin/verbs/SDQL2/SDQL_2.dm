@@ -675,19 +675,19 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			var/turf/T = A.loc
 			var/area/a
 			if(istype(T))
-				text_list += " <font color='gray'>at</font> [T] [ADMIN_COORDJMP(T)]"
+				text_list += span_gray(" at") + " [T] [ADMIN_COORDJMP(T)]"
 				a = T.loc
 			else
 				var/turf/final = get_turf(T)		//Recursive, hopefully?
 				if(istype(final))
-					text_list += " <font color='gray'>at</font> [final] [ADMIN_COORDJMP(final)]"
+					text_list += span_gray(" at") + " [final] [ADMIN_COORDJMP(final)]"
 					a = final.loc
 				else
-					text_list += " <font color='gray'>at</font> nonexistant location"
+					text_list += span_gray(" at") + " nonexistant location"
 			if(a)
-				text_list += " <font color='gray'>in</font> area [a]"
+				text_list += span_gray(" in") + " area [a]"
 				if(T.loc != a)
-					text_list += " <font color='gray'>inside</font> [T]"
+					text_list += span_gray(" inside") + " [T]"
 		text_list += "<br>"
 	else if(islist(object))
 		var/list/L = object

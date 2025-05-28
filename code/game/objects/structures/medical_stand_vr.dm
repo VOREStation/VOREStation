@@ -21,8 +21,8 @@
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
-/obj/structure/medical_stand/New()
-	..()
+/obj/structure/medical_stand/Initialize(mapload)
+	. = ..()
 	if (spawn_type)
 		tank = new spawn_type (src)
 	contained = new mask_type (src)

@@ -11,7 +11,7 @@
 	var/last_launch
 	var/launch_cooldown = 5 MINUTES
 
-/obj/machinery/firework_launcher/Initialize()
+/obj/machinery/firework_launcher/Initialize(mapload)
 	. = ..()
 
 	default_apply_parts()

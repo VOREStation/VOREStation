@@ -89,6 +89,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/crunch
 	coating = /datum/reagent/nutriment/coating/batter
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/friedmushroom
 	appliance = FRYER
@@ -141,6 +142,7 @@
 		/obj/item/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list(REAGENT_ID_SLIMEJELLY = 5, REAGENT_ID_SUGAR = 5)
@@ -168,6 +170,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/chaos
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/funnelcake
 	appliance = FRYER

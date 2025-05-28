@@ -117,9 +117,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ticket_list
 	var/current_state
 
-/obj/effect/statclick/ticket_list/New(loc, name, state)
-	current_state = state
-	..()
+/obj/effect/statclick/ticket_list/Initialize(mapload, text, target)
+	. = ..()
+	current_state = target
 
 /obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
@@ -179,13 +179,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>")
+		AddInteraction(span_blue("[key_name_admin(usr)] PM'd [LinkedReplyName()]"))
 		message_admins(span_blue("Ticket [TicketHref("#[id]")] created"))
 	else
 		MessageNoRecipient(parsed_message)
 		send2adminchat() //VOREStation Add
 		//show it to the person adminhelping too
-		to_chat(C, span_admin_pm_notice("PM to-<b>Admins</b>: [name]"))
+		to_chat(C, span_admin_pm_notice("PM to-" + span_bold("Admins") + ": [name]"))
 
 		//send it to irc if nobody is on and tell us how many were on
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, name)
@@ -253,11 +253,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/ref_src = "\ref[src]"
 	var/chat_msg = span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(": [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:") + msg)
 
-	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
+	AddInteraction(span_red("[LinkedReplyName(ref_src)]: [msg]"))
 	//send this msg to all admins
 
 	for(var/client/X in GLOB.admins)
-		if(!check_rights(R_ADMIN, 0, X))
+		if(!check_rights_for(X, R_ADMIN))
 			continue
 		if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 			X << 'sound/effects/adminhelp.ogg'
@@ -288,7 +288,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
-	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
+	AddInteraction(span_purple("Reopened by [key_name_admin(usr)]"))
 	if(initiator)
 		to_chat(initiator, span_filter_adminlog("[span_purple("Ticket [TicketHref("#[id]")] was reopened by [key_name(usr,FALSE,FALSE)].")]"))
 	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
@@ -322,7 +322,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
-	AddInteraction(span_filter_adminlog("<font color='red'>Closed by [key_name_admin(usr)].</font>"))
+	AddInteraction(span_filter_adminlog(span_red("Closed by [key_name_admin(usr)].")))
 	if(initiator)
 		to_chat(initiator, span_filter_adminlog("[span_red("Ticket [TicketHref("#[id]")] was closed by [key_name(usr,FALSE,FALSE)].")]"))
 	if(!silent)
@@ -347,7 +347,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
 
-	AddInteraction(span_filter_adminlog("<font color='green'>Resolved by [key_name_admin(usr)].</font>"))
+	AddInteraction(span_filter_adminlog(span_green("Resolved by [key_name_admin(usr)].")))
 	if(initiator)
 		to_chat(initiator, span_filter_adminlog("[span_green("Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr,FALSE,FALSE)].")]"))
 	if(!silent)
@@ -451,17 +451,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
-	dat += "<b>State: "
+	dat += span_bold("State: ")
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font>"
+			dat += span_red(span_bold("OPEN"))
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font>"
+			dat += span_green(span_bold("RESOLVED"))
 		if(AHELP_CLOSED)
-			dat += "CLOSED"
+			dat += span_bold("CLOSED")
 		else
-			dat += "UNKNOWN"
-	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Re-Title", ref_src, "retitle")]"
+			dat += span_bold("UNKNOWN")
+	dat += "[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Re-Title", ref_src, "retitle")]"
 	if(state != AHELP_ACTIVE)
 		dat += "[GLOB.TAB][TicketHref("Reopen", ref_src, "reopen")]"
 	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [(world.time - opened_at) / 600] minutes ago)"
@@ -472,7 +472,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		dat += span_bold("Actions:") + " [FullMonty(ref_src)]<br>"
 	else
 		dat += span_bold("DISCONNECTED") + "[GLOB.TAB][ClosureLinks(ref_src)]<br>"
-	dat += "<br><b>Log:</b><br><br>"
+	dat += "<br>" + span_bold("Log:") + "<br><br>"
 	for(var/I in _interactions)
 		dat += "[I]<br>"
 	dat += "</html>"
@@ -577,9 +577,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ahelp
 	var/datum/admin_help/ahelp_datum
 
-/obj/effect/statclick/ahelp/New(loc, datum/admin_help/AH)
-	ahelp_datum = AH
-	..(loc)
+/obj/effect/statclick/ahelp/Initialize(mapload, text, target)
+	. = ..()
+	ahelp_datum = target
 
 /obj/effect/statclick/ahelp/update()
 	return ..(ahelp_datum.name)
@@ -622,7 +622,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(input == "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
-				to_chat(usr, span_admin_pm_notice("PM to-<b>Admins</b>: [msg]"))
+				to_chat(usr, span_admin_pm_notice("PM to-" + span_bold("Admins") + ": [msg]"))
 				return
 			else
 				to_chat(usr, span_warning("Ticket not found, creating new one..."))
@@ -684,7 +684,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in GLOB.admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X))
+		if(requiredflags != 0 && !check_rights_for(X, requiredflags))
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X

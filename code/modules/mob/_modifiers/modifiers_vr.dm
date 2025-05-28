@@ -333,3 +333,45 @@
 	max_hal_resistance = 0
 	min_hal_resistance = 0
 	effective_hal_resistance = 1
+
+/datum/modifier/shield_projection/melee_focus
+
+	//You are expected to be taking a LOT more hits while this is up.
+	damage_cost = 5
+
+	//.50% resistance at a full charge, 35% resistance at when we're about to empty.
+	max_brute_resistance = 0.5
+	min_brute_resistance = 0.65
+	effective_brute_resistance = 1
+
+	//.50% resistance at a full charge, 35% resistance at when we're about to empty.
+	max_fire_resistance = 0.5
+	min_fire_resistance = 0.65
+	effective_fire_resistance = 1
+
+	//500% damage taken from halloss. Anti PVP. This is meant to be a PvE weapon.
+	//This also means that mobs that deal halloss will wreck users of this...Those are (extremely) rare as far as I know.
+	min_hal_resistance = 5
+	max_hal_resistance = 5
+	effective_hal_resistance = 1
+
+	//Stuns are HALF as long. Get stunned for 4 seconds? Only stunned for 2, now.
+	disable_duration_percent = 0.5
+
+	//You are QUITE harder to shoot.
+	evasion = 35
+
+	//You move SOMEWHAT faster.
+	slowdown = -0.5
+
+	//You can't shoot, though. This isn't actually used as this modifier is checked in gun.dm, but it's here anyways.
+	accuracy = -1000
+
+	//You attack SOMEWHAT faster
+	attack_speed_percent = 0.8
+
+	//You hit SOMEWHAT harder
+	outgoing_melee_damage_percent = 1.25
+
+	//You bleed SLIGHTLY slower, since you are taking more hits.
+	bleeding_rate_percent = 0.75

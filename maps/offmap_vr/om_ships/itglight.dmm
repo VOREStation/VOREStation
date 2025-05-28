@@ -4654,8 +4654,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/clothing/suit/space/void/medical/alt,
-/obj/item/clothing/head/helmet/space/void/medical/alt,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "FA" = (

@@ -36,7 +36,7 @@
 
 		//Cosmetics mostly
 		flick("tp_in",src)
-		custom_emote(1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 		sleep(5) //The duration of the TP animation
 		canmove = original_canmove
 
@@ -46,7 +46,7 @@
 		//Affect nearby lights
 
 
-		for(var/obj/machinery/light/L in machines)
+		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != z || get_dist(src,L) > 10)
 				continue
 
@@ -56,7 +56,7 @@
 	else
 		ability_flags |= AB_PHASE_SHIFTED
 		mouse_opacity = 0
-		custom_emote(1,"phases out!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		real_name = name
 		name = "Something"
 

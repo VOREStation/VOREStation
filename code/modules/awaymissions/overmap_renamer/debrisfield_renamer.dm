@@ -6,7 +6,7 @@
 	var/static/reference //Saves us from having to iterate over all visitable overmap obj instances more than once for the debris field.
 
 //Uncomment the testing lines when adding a new landmark and wanting to see if it loaded properly during server init. re-comment after done
-/obj/effect/landmark/overmap_renamer/debris_field/Initialize()
+/obj/effect/landmark/overmap_renamer/debris_field/Initialize(mapload)
 	. = ..()
 	if(!reference)
 //		testing("First overmap descriptor, name: [name]")

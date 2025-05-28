@@ -26,7 +26,7 @@
 	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/reagent_containers/cooking_container/grill
 
-/obj/machinery/appliance/cooker/grill/Initialize()
+/obj/machinery/appliance/cooker/grill/Initialize(mapload)
 	. = ..()
 	grill_loop = new(list(src), FALSE)
 

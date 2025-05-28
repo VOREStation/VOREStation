@@ -47,6 +47,8 @@
 /mob/living/simple_mob/vore/demon/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"

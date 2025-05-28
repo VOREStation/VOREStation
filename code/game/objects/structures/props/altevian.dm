@@ -17,7 +17,7 @@
 	bound_height = 128
 	var/has_misc_overlay = TRUE
 
-/obj/structure/prop/altevian_jump_drive/Initialize()
+/obj/structure/prop/altevian_jump_drive/Initialize(mapload)
 	.=..()
 	update_icon()
 

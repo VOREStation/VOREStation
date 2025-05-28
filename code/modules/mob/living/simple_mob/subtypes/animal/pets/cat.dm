@@ -52,7 +52,7 @@ var/list/_cat_default_emotes = list(
 	var/named = FALSE //have I been named yet?
 	var/friend_name = null //VOREStation Edit - Lock befriending to this character
 
-/mob/living/simple_mob/animal/passive/cat/Initialize()
+/mob/living/simple_mob/animal/passive/cat/Initialize(mapload)
 	icon_living = "[initial(icon_state)]"
 	icon_dead = "[initial(icon_state)]_dead"
 	icon_rest = "[initial(icon_state)]_rest"
@@ -147,7 +147,7 @@ var/list/_cat_default_emotes = list(
 	gender = NEUTER
 	holder_type = /obj/item/holder/cat/kitten //VOREStation Edit
 
-/mob/living/simple_mob/animal/passive/cat/kitten/Initialize()
+/mob/living/simple_mob/animal/passive/cat/kitten/Initialize(mapload)
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	return ..()

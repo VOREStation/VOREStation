@@ -86,7 +86,7 @@
 	/// Optional: If door_color_icon is not null, this color will be applied to the door color overlay
 	var/door_color
 
-/obj/machinery/door/airlock/angled_bay/Initialize()
+/obj/machinery/door/airlock/angled_bay/Initialize(mapload)
 	obtain_icon()
 	. = ..()
 

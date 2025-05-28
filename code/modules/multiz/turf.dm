@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	nitrogen = 0
 	temperature = TCMB
 
-/turf/simulated/open/Initialize()
+/turf/simulated/open/Initialize(mapload)
 	. = ..()
 	ASSERT(HasBelow(z))
 	add_overlay(GLOB.openspace_backdrop_one_for_all, TRUE) //Special grey square for projecting backdrop darkness filter on it.
@@ -174,7 +174,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 // /turf/simulated/floor/glass/setup_broken_states()
 //	return list("glass-damaged1", "glass-damaged2", "glass-damaged3")
 
-/turf/simulated/floor/glass/Initialize()
+/turf/simulated/floor/glass/Initialize(mapload)
 	icon_state = "" //Prevent the normal icon from appearing behind the smooth overlays
 	..()
 	return INITIALIZE_HINT_LATELOAD
@@ -190,7 +190,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/simulated/floor/glass/proc/blend_icons()
 	var/new_junction = NONE
 
-	for(var/direction in cardinal) //Cardinal case first.
+	for(var/direction in GLOB.cardinal) //GLOB.cardinal case first.
 		var/turf/T = get_step(src, direction)
 		if(istype(T, type))
 			new_junction |= direction

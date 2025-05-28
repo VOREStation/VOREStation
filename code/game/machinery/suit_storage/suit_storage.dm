@@ -26,7 +26,7 @@
 	var/safetieson = 1
 	var/cycletime_left = 0
 
-/obj/machinery/suit_storage_unit/Initialize()
+/obj/machinery/suit_storage_unit/Initialize(mapload)
 	. = ..()
 	if(suit_type)
 		SUIT = new suit_type(src)

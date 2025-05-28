@@ -34,7 +34,7 @@
 
 	for(var/turf/simulated/T in range(range, Turf))
 
-		if(!T.has_resources)
+		if(!(T.turf_resource_types & TURF_HAS_MINERALS))
 			continue
 
 		for(var/metal in T.resources)

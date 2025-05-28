@@ -17,24 +17,29 @@
 	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/regen/equipped(var/mob/living/carbon/human/H)
-	if(H && H.gloves == src)
-		wearer = H
-		if(wearer.can_feel_pain())
-			to_chat(H, span_danger("You feel a stabbing sensation in your hands as you slide \the [src] on!"))
-			wearer.custom_pain("You feel a sharp pain in your hands!",1)
+/obj/item/clothing/gloves/regen/equipped(var/mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.gloves == src)
+			wearer = WEAKREF(H)
+			if(H.can_feel_pain())
+				to_chat(H, span_danger("You feel a stabbing sensation in your hands as you slide \the [src] on!"))
+				H.custom_pain("You feel a sharp pain in your hands!",1)
 	..()
 
-/obj/item/clothing/gloves/regen/dropped(var/mob/living/carbon/human/H)
+
+/obj/item/clothing/gloves/regen/dropped(var/mob/user)
 	..()
-	if(wearer)
-		if(wearer.can_feel_pain())
-			to_chat(wearer, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))
-			wearer.custom_pain("Your hands hurt like hell!",1)
-		wearer = null
+
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	if(H.can_feel_pain())
+		to_chat(H, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))
+		H.custom_pain("Your hands hurt like hell!",1)
 
 /obj/item/clothing/gloves/regen/Initialize(mapload)
 	. = ..()
@@ -46,21 +51,22 @@
 	return ..()
 
 /obj/item/clothing/gloves/regen/process()
-	if(!wearer || wearer.isSynthetic() || wearer.stat == DEAD || wearer.nutrition <= 10)
+	var/mob/living/carbon/human/H = wearer?.resolve()
+	if(!ishuman(H) || H.isSynthetic() || H.stat == DEAD || H.nutrition <= 10)
 		return // Robots and dead people don't have a metabolism.
 
-	if(wearer.getBruteLoss())
-		wearer.adjustBruteLoss(-0.1)
-		wearer.nutrition = max(wearer.nutrition - 10, 0)
-	if(wearer.getFireLoss())
-		wearer.adjustFireLoss(-0.1)
-		wearer.nutrition = max(wearer.nutrition - 10, 0)
-	if(wearer.getToxLoss())
-		wearer.adjustToxLoss(-0.1)
-		wearer.nutrition = max(wearer.nutrition - 10, 0)
-	if(wearer.getOxyLoss())
-		wearer.adjustOxyLoss(-0.1)
-		wearer.nutrition = max(wearer.nutrition - 10, 0)
-	if(wearer.getCloneLoss())
-		wearer.adjustCloneLoss(-0.1)
-		wearer.nutrition = max(wearer.nutrition - 20, 0)
+	if(H.getBruteLoss())
+		H.adjustBruteLoss(-0.1)
+		H.nutrition = max(H.nutrition - 10, 0)
+	if(H.getFireLoss())
+		H.adjustFireLoss(-0.1)
+		H.nutrition = max(H.nutrition - 10, 0)
+	if(H.getToxLoss())
+		H.adjustToxLoss(-0.1)
+		H.nutrition = max(H.nutrition - 10, 0)
+	if(H.getOxyLoss())
+		H.adjustOxyLoss(-0.1)
+		H.nutrition = max(H.nutrition - 10, 0)
+	if(H.getCloneLoss())
+		H.adjustCloneLoss(-0.1)
+		H.nutrition = max(H.nutrition - 20, 0)

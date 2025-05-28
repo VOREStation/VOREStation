@@ -137,7 +137,7 @@
 /obj/effect/temporary_effect/pulse/disintegrate/Destroy()
 	if(istype(get_turf(src), /turf/simulated/wall))
 		explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)
-	..()
+	. = ..()
 
 /obj/item/gun/energy/xray/swarm
 	name = "spectral projector"
@@ -157,6 +157,6 @@
 		list(mode_name="deter", projectile_type=/obj/item/projectile/beam/shock, charge_cost = 175),
 		)
 
-/obj/item/gun/energy/xray/swarm/Initialize()
+/obj/item/gun/energy/xray/swarm/Initialize(mapload)
 	. = ..()
 	adjust_scale(-1, 1)

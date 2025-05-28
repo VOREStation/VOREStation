@@ -61,7 +61,7 @@
 
 /**
  *
- Notes on change_state
+ * Notes on change_state
  *
  * tl;dr "You can varedit 'state' on these to the things in the comments below to get cool animations"
  *
@@ -75,4 +75,3 @@
  * Like, I don't want to add a state machine to decorative objects. You can if you want.
  *
  */
-

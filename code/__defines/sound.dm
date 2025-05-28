@@ -197,19 +197,19 @@
 #define AMBIENCE_AESTHETIC list(\
 	'sound/ambience/vaporwave.ogg'\
 	)
-	
+
 #define AMBIENCE_OUTPOST list(\
 	'sound/ambience/expoutpost/expoutpost1.ogg',\
 	'sound/ambience/expoutpost/expoutpost2.ogg',\
 	'sound/ambience/expoutpost/expoutpost3.ogg',\
 	'sound/ambience/expoutpost/expoutpost4.ogg'\
 	)
-	
+
 #define AMBIENCE_SUBSTATION list(\
 	'sound/ambience/substation/substation1.ogg',\
 	'sound/ambience/substation/substation2.ogg'\
 	)
-	
+
 #define AMBIENCE_HANGAR list(\
 	'sound/ambience/hangar/hangar1.ogg',\
 	'sound/ambience/hangar/hangar2.ogg',\
@@ -218,7 +218,7 @@
 	'sound/ambience/hangar/hangar5.ogg',\
 	'sound/ambience/hangar/hangar6.ogg'\
 	)
-	
+
 #define AMBIENCE_ATMOS list(\
 	'sound/ambience/engineering/engineering1.ogg',\
 	'sound/ambience/engineering/engineering2.ogg',\

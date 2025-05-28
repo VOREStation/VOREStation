@@ -67,7 +67,7 @@ var/list/mining_overlay_cache = list()
 		ORE_RUTILE = /obj/item/ore/rutile
 	)
 
-	has_resources = 1
+	turf_resource_types = TURF_HAS_MINERALS
 
 /turf/simulated/mineral/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
 	clear_ore_effects()
@@ -195,15 +195,19 @@ var/list/mining_overlay_cache = list()
 	//Cache hit
 	return mining_overlay_cache["[cache_id]_[direction]"]
 
-/turf/simulated/mineral/Initialize()
+/turf/simulated/mineral/Initialize(mapload)
 	. = ..()
+	if(turf_resource_types & TURF_HAS_RARE_ORE)
+		make_ore(1)
+	else if (turf_resource_types & TURF_HAS_ORE)
+		make_ore()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	update_icon(1)
 	if(density && mineral)
 		. = INITIALIZE_HINT_LATELOAD
 	if(random_icon)
-		dir = pick(alldirs)
+		dir = pick(GLOB.alldirs)
 		. = INITIALIZE_HINT_LATELOAD
 
 /turf/simulated/mineral/LateInitialize()
@@ -225,7 +229,7 @@ var/list/mining_overlay_cache = list()
 		icon_state = rock_icon_state
 
 		//Apply overlays if we should have borders
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
 				add_overlay(get_cached_border(rock_side_icon_state,direction,icon,rock_side_icon_state))
@@ -246,7 +250,7 @@ var/list/mining_overlay_cache = list()
 			add_overlay("dug_overlay")
 
 		//Apply overlays if there's space
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
 				add_overlay(get_cached_border("asteroid_edge",direction,icon,"asteroid_edges", 0))
 
@@ -260,7 +264,7 @@ var/list/mining_overlay_cache = list()
 			add_overlay(overlay_detail_icon_path,overlay_detail)
 
 		if(update_neighbors)
-			for(var/direction in alldirs)
+			for(var/direction in GLOB.alldirs)
 				if(istype(get_step(src, direction), /turf/simulated/mineral))
 					var/turf/simulated/mineral/M = get_step(src, direction)
 					M.update_icon()
@@ -332,7 +336,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)
-		for(var/trydir in cardinal)
+		for(var/trydir in GLOB.cardinal)
 			if(prob(mineral.spread_chance))
 				var/turf/simulated/mineral/target_turf = get_step(src, trydir)
 				if(istype(target_turf) && target_turf.density && !target_turf.mineral)
@@ -344,7 +348,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/UpdateMineral()
 	clear_ore_effects()
 	if(mineral)
-		new /obj/effect/mineral(src, mineral)
+		new /obj/effect/mineral(src)
 	update_icon()
 
 //Not even going to touch this pile of spaghetti
@@ -588,6 +592,7 @@ var/list/mining_overlay_cache = list()
 		update_icon()
 
 /turf/simulated/mineral/proc/clear_ore_effects()
+	turf_resource_types &= ~(TURF_HAS_ORE | TURF_HAS_RARE_ORE)
 	for(var/obj/effect/mineral/M in contents)
 		qdel(M)
 
@@ -639,14 +644,14 @@ var/list/mining_overlay_cache = list()
 		var/pain = 0
 		if(prob(50))
 			pain = 1
-		for(var/mob/living/M in range(src, 200))
+		for(var/mob/living/M in range(src, 5)) //Let's only hit people nearby us.
 			to_chat(M, span_danger("[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!"))
 			if(pain)
 				flick("pain",M.pain)
 			M.flash_eyes()
 			if(prob(50))
 				M.Stun(5)
-			M.make_jittery(1000) //SHAKY
+			M.make_jittery(50) //SHAKY this used to be 1000(seizure) but I toned it to 50 to be less aggressive.
 		if(prob(25))
 			excavate_find(prob(25), finds[1])
 	else if(rand(1,500) == 1)
@@ -664,7 +669,7 @@ var/list/mining_overlay_cache = list()
 	if(is_clean)
 		X = new /obj/item/archaeological_find(src, F.find_type)
 	else
-		X = new /obj/item/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/strangerock(src, F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		var/obj/item/strangerock/SR = X
 		SR.geologic_data = geologic_data

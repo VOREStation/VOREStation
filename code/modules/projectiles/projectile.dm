@@ -23,7 +23,6 @@
 
 	//Fired processing vars
 	var/fired = FALSE	//Have we been fired yet
-	var/paused = FALSE	//for suspending the projectile midair
 	var/last_projectile_move = 0
 	var/last_process = 0
 	var/time_offset = 0
@@ -149,10 +148,10 @@
 	var/obj/item/ammo_casing/my_case = null
 
 
-/obj/item/projectile/New()
+/obj/item/projectile/Initialize(mapload)
+	. = ..()
 	if(istype(loc, /obj/item/ammo_casing))
 		my_case = loc
-	. = ..()
 
 /obj/item/projectile/proc/Range()
 	range--
@@ -195,9 +194,6 @@
 	var/safety = range * 3
 	record_hitscan_start(RETURN_POINT_VECTOR_INCREMENT(src, Angle, MUZZLE_EFFECT_PIXEL_INCREMENT, 1))
 	while(loc && !QDELETED(src))
-		if(paused)
-			stoplag(1)
-			continue
 		if(safety-- <= 0)
 			if(loc)
 				Bump(loc)
@@ -281,8 +277,8 @@
 	if(!loc || !fired || !trajectory)
 		fired = FALSE
 		return PROCESS_KILL
-	if(paused || !isturf(loc))
-		last_projectile_move += world.time - last_process		//Compensates for pausing, so it doesn't become a hitscan projectile when unpaused from charged up ticks.
+	if(!isturf(loc))
+		last_projectile_move += world.time - last_process
 		return
 	var/elapsed_time_deciseconds = (world.time - last_projectile_move) + time_offset
 	time_offset = 0
@@ -554,6 +550,10 @@
 	else
 		var/mob/living/L = target
 		if(!direct_target)
+			// Swarms are special scuffed critters. They must have density FALSE to swarm, but then they don't get hit.
+			// So we'll check before, just in case. Lying might gives a chance to dodge, however.
+			if(L.GetComponent(/datum/component/swarming) && L.stat != DEAD && !L.lying)
+				return TRUE
 			if(!L.density)
 				return FALSE
 	return TRUE
@@ -679,12 +679,20 @@
 	if(!istype(target_mob))
 		return
 
+	if(target_mob.is_incorporeal())
+		return
+
 	if(target_mob in impacted_mobs)
 		return
 
-	//roll to-hit
-	miss_modifier = max(15*(distance-2) - accuracy + miss_modifier + target_mob.get_evasion(), -100)
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	// Accuracy here is inverted as accuracy is being applied as a negative miss_chance_mod.
+	// This means that, accuracy negates evasion 1:1 when it comes to PvP combat (or for PvE combat if you give a mob natural evasion)
+	// Things that affect accuracy: gun_accuracy_mod species var (Bad Shot/Eagle Eye), Fear, Gun Accuracy.
+	// +accuracy = higher chance to hit through evasion. -accuracy = lower chance to hit through evasion.
+	// These ONLY matter if the mob you are attacking has evasion OR if it's coming from a non-living attacker (Mines/Turrets)
+	// The get_zone_with_miss_chance() proc is HIGHLY variable and can be changed server to server with multiple simple var switches built in without having to do specialty code or multiple edits.
+	var/miss_chance = (-accuracy + miss_modifier) //Chance to miss the target. Higher
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)

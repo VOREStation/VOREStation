@@ -133,7 +133,7 @@
 		lastJob = job
 		. += "<a href='byond://?src=\ref[src];job_info=[rank]'>"
 		if(jobban_isbanned(user, rank))
-			. += "<del>[rank]</del></td></a><td><b> \[BANNED]</b></td></tr>"
+			. += "<del>[rank]</del></td></a><td>" + span_bold(" \[BANNED]") + "</td></tr>"
 			continue
 		if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
@@ -145,17 +145,17 @@
 			. += "<del>[rank]</del></td></a><td> \[IN [round(available_in_hours, 0.1)] DEPTHOURS]</td></tr>"
 			continue
 		if(!is_job_whitelisted(user,rank))
-			. += "<del>[rank]</del></td></a><td><b> \[WHITELIST ONLY]</b></td></tr>"
+			. += "<del>[rank]</del></td></a><td>" + span_bold(" \[WHITELIST ONLY]") + "</td></tr>"
 			continue
 		//VOREStation Add End
-		if(job.is_species_banned(user.client.prefs.species, user.client.prefs.organ_data["brain"]) == TRUE)
+		if(job.is_species_banned(user.client.prefs.species, user.client.prefs.organ_data[O_BRAIN]) == TRUE)
 			. += "<del>[rank]</del></td></a><td> \[THIS RACE/BRAIN TYPE CANNOT TAKE THIS ROLE.\]</td></tr>"
 			continue
-		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])))
-			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE FOR SELECTED RACE/BRAIN TYPE: [job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])]\]</td></tr>"
+		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data[O_BRAIN])))
+			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE FOR SELECTED RACE/BRAIN TYPE: [job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data[O_BRAIN])]\]</td></tr>"
 			continue
 		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)
-			. += "<font color=grey>[rank]</font></a></td><td></td></tr>"
+			. += span_gray("[rank]") + "</a></td><td></td></tr>"
 			continue
 		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == JOB_AI))//Bold head jobs
 			. += span_bold("[rank]") + "</a>"
@@ -195,7 +195,7 @@
 			if(pref.job_civilian_low & ASSISTANT)
 				. += " <font color=55cc55>\[Yes]</font>"
 			else
-				. += " <font color=black>\[No]</font>"
+				. += " " + span_black("\[No]")
 			if(LAZYLEN(job.alt_titles)) //Blatantly cloned from a few lines down.
 				. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='byond://?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 			. += "</a></td></tr>"
@@ -260,7 +260,7 @@
 			if(LAZYLEN(job.departments_managed))
 				dat += "You manage these departments: [english_list(job.departments_managed)]"
 
-		dat += "You answer to <b>[job.supervisors]</b> normally."
+		dat += "You answer to " + span_bold("[job.supervisors]") + " normally."
 
 		dat += "<hr style='clear:left;'>"
 		if(CONFIG_GET(string/wikiurl))

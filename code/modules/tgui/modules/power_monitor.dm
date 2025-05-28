@@ -17,7 +17,7 @@
 
 	var/z = get_z(user)
 	var/list/map_levels = using_map.get_map_levels(z)
-	
+
 	// Build list of data from sensor readings.
 	for(var/obj/machinery/power/sensor/S in grid_sensors)
 		if(!(S.z in map_levels))
@@ -69,7 +69,7 @@
 		return
 	if(T)
 		levels += using_map.get_map_levels(T.z, FALSE)
-	for(var/obj/machinery/power/sensor/S in machines)
+	for(var/obj/machinery/power/sensor/S in GLOB.machines)
 		if(T && (S.loc.z == T.z) || (S.loc.z in levels) || (S.long_range)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
 			if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
 				warning("Powernet sensor with unset ID Tag! [S.x]X [S.y]Y [S.z]Z")

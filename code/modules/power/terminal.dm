@@ -14,11 +14,10 @@
 	layer = WIRES_LAYER+0.01
 
 
-/obj/machinery/power/terminal/New()
-	..()
+/obj/machinery/power/terminal/Initialize(mapload)
+	. = ..()
 	var/turf/T = src.loc
 	if(level==1) hide(!T.is_plating())
-	return
 
 /obj/machinery/power/terminal/Destroy()
 	if(master)
@@ -27,7 +26,7 @@
 	return ..()
 
 /obj/machinery/power/terminal/hide(var/i)
-	invisibility = i ? 101 : 0
+	invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	icon_state = i ? "term-f" : "term"
 
 /obj/machinery/power/terminal/hides_under_flooring()

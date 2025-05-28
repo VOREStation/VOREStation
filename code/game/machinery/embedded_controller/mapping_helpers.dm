@@ -21,7 +21,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	//Most things have a radio tag of some sort that needs adjusting
 	var/tag_addon
 
-/obj/effect/map_helper/airlock/Initialize()
+/obj/effect/map_helper/airlock/Initialize(mapload)
 	..()
 	my_controller = get_controller(get_area(src))
 	my_device = locate(my_device_type) in get_turf(src)

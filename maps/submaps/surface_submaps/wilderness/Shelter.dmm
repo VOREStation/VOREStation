@@ -1,33 +1,241 @@
-"a" = (/turf/simulated/floor/outdoors/grass/sif,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/template_noop)
-"c" = (/turf/simulated/floor/outdoors/snow,/area/template_noop)
-"d" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/Shelter1)
-"e" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/Shelter1)
-"f" = (/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"g" = (/turf/simulated/wall/log_sif,/area/submap/Shelter1)
-"h" = (/obj/random/obstruction,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"i" = (/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"j" = (/obj/structure/bonfire/sifwood,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"k" = (/obj/random/mob/robotic,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"l" = (/obj/structure/bed/roller/adv,/obj/random/humanoidremains,/obj/random/cash,/obj/random/cigarettes,/obj/item/clothing/under/explorer,/obj/item/clothing/shoes/boots/winter/explorer,/obj/item/clothing/mask/gas/explorer,/obj/item/clothing/accessory/permit/gun/planetside,/obj/item/clothing/suit/armor/pcarrier/light/nt,/obj/random/projectile/scrapped_smg,/obj/random/projectile/scrapped_pistol,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"m" = (/obj/random/medical/lite,/obj/random/technology_scanner,/obj/random/toolbox,/obj/random/trash,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"n" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"o" = (/obj/structure/fence/door/locked{icon_state = "door_closed"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"p" = (/obj/structure/fence/post{icon_state = "post"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"q" = (/obj/structure/fence{icon_state = "straight"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"r" = (/obj/structure/fence/cut/large{icon_state = "straight_cut3"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"s" = (/obj/structure/fence/corner,/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/outdoors/grass/sif,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/outdoors/grass/sif/forest,
+/area/template_noop)
+"c" = (
+/turf/simulated/floor/outdoors/snow,
+/area/template_noop)
+"d" = (
+/turf/simulated/floor/outdoors/grass/sif/forest,
+/area/submap/Shelter1)
+"e" = (
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/Shelter1)
+"f" = (
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"g" = (
+/turf/simulated/wall/log_sif,
+/area/submap/Shelter1)
+"h" = (
+/obj/random/obstruction,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"i" = (
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"j" = (
+/obj/structure/bonfire/sifwood,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"k" = (
+/obj/random/mob/robotic,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"l" = (
+/obj/structure/bed/roller/adv,
+/obj/random/humanoidremains,
+/obj/random/cash,
+/obj/random/cigarettes,
+/obj/item/clothing/under/explorer,
+/obj/item/clothing/shoes/boots/winter/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/accessory/permit/gun/planetside,
+/obj/item/clothing/suit/armor/pcarrier/light/nt,
+/obj/random/projectile/scrapped_smg,
+/obj/random/projectile/scrapped_pistol,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"m" = (
+/obj/random/medical/lite,
+/obj/random/technology_scanner,
+/obj/random/toolbox,
+/obj/random/trash,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/Shelter1)
+"n" = (
+/obj/structure/fence/corner{
+	icon_state = "corner";
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"o" = (
+/obj/structure/fence/door/locked{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"p" = (
+/obj/structure/fence/post{
+	icon_state = "post";
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"q" = (
+/obj/structure/fence{
+	icon_state = "straight";
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"r" = (
+/obj/structure/fence/cut/large{
+	icon_state = "straight_cut3";
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
+"s" = (
+/obj/structure/fence/corner,
+/turf/simulated/floor/outdoors/snow,
+/area/submap/Shelter1)
 
 (1,1,1) = {"
-addeddddfec
-efeefffdeee
-eeeffffffee
-fdgggggggef
-ddghijikgfe
-ffgkiiiigfe
-ffgihlmhgfe
-ffnopqprsee
-edfffffffdf
-fedfffffddd
-bffeeddddfb
+a
+e
+e
+f
+d
+f
+f
+f
+e
+f
+b
+"}
+(2,1,1) = {"
+d
+f
+e
+d
+d
+f
+f
+f
+d
+e
+f
+"}
+(3,1,1) = {"
+d
+e
+e
+g
+g
+g
+g
+n
+f
+d
+f
+"}
+(4,1,1) = {"
+e
+e
+f
+g
+h
+k
+i
+o
+f
+f
+e
+"}
+(5,1,1) = {"
+d
+f
+f
+g
+i
+i
+h
+p
+f
+f
+e
+"}
+(6,1,1) = {"
+d
+f
+f
+g
+j
+i
+l
+q
+f
+f
+d
+"}
+(7,1,1) = {"
+d
+f
+f
+g
+i
+i
+m
+p
+f
+f
+d
+"}
+(8,1,1) = {"
+d
+d
+f
+g
+k
+i
+h
+r
+f
+f
+d
+"}
+(9,1,1) = {"
+f
+e
+f
+g
+g
+g
+g
+s
+f
+d
+d
+"}
+(10,1,1) = {"
+e
+e
+e
+e
+f
+f
+f
+e
+d
+d
+f
+"}
+(11,1,1) = {"
+c
+e
+e
+f
+e
+e
+e
+e
+f
+d
+b
 "}

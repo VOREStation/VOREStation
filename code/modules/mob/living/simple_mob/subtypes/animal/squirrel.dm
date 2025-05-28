@@ -72,6 +72,8 @@
 /mob/living/simple_mob/vore/squirrel/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -152,10 +154,10 @@
 	say_maybe_target = list("Sqk?")
 	say_got_target = list("SQUEAK!!!")
 
-/mob/living/simple_mob/vore/squirrel/Initialize()
+/mob/living/simple_mob/vore/squirrel/Initialize(mapload)
 	. = ..()
 	if(do_seasons)
-		switch(world_time_season)
+		switch(GLOB.world_time_season)
 			if("spring")
 				if(prob(1))
 					winterize()
@@ -228,6 +230,6 @@
 /mob/living/simple_mob/vore/squirrel/big
 	do_seasons = FALSE
 
-/mob/living/simple_mob/vore/squirrel/big/Initialize()
+/mob/living/simple_mob/vore/squirrel/big/Initialize(mapload)
 	. = ..()
 	winterize()

@@ -17,12 +17,10 @@ import {
   AppearanceChangerSpecies,
 } from './AppearanceChangerBody';
 import { AppearanceChangerBodyRecords } from './AppearanceChangerBodyRecords';
-import {
-  AppearanceChangerColors,
-  AppearanceChangerMarkings,
-} from './AppearanceChangerDetails';
+import { AppearanceChangerColors } from './AppearanceChangerColors';
 import { AppearanceChangerFlavor } from './AppearanceChangerFlavor';
 import { AppearanceChangerHeader } from './AppearanceChangerHeader';
+import { AppearanceChangerMarkings } from './AppearanceChangerMarkings';
 import {
   AppearanceChangerHair,
   AppearanceChangerParts,

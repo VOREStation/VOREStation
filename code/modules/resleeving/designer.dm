@@ -23,7 +23,7 @@
 	var/db_key
 	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
 
-/obj/machinery/computer/transhuman/designer/Initialize()
+/obj/machinery/computer/transhuman/designer/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 
@@ -85,8 +85,8 @@
 	desc = "A box of body record disks, apparently."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/body_record_disk/New()
-	..()
+/obj/item/storage/box/body_record_disk/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/body_record(src)
 

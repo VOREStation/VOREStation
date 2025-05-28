@@ -25,7 +25,7 @@
 	var/next_shot = 0 //round time where the next shot can start from
 	var/const/coolinterval = 2 MINUTES //time to wait between safe shots in deciseconds
 
-/obj/machinery/computer/ship/disperser/Initialize()
+/obj/machinery/computer/ship/disperser/Initialize(mapload)
 	. = ..()
 	link_parts()
 	reset_calibration()
@@ -38,7 +38,7 @@
 	if(is_valid_setup())
 		return TRUE
 
-	for(var/obj/machinery/disperser/front/F in global.machines)
+	for(var/obj/machinery/disperser/front/F in GLOB.machines)
 		if(get_dist(src, F) >= link_range)
 			continue
 		var/backwards = turn(F.dir, 180)
@@ -66,6 +66,7 @@
 	return FALSE
 
 /obj/machinery/computer/ship/disperser/proc/release_links()
+	SIGNAL_HANDLER
 	UnregisterSignal(front, COMSIG_OBSERVER_DESTROYED)
 	UnregisterSignal(middle, COMSIG_OBSERVER_DESTROYED)
 	UnregisterSignal(back, COMSIG_OBSERVER_DESTROYED)

@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
   FeatureNumberInput,
-  FeatureNumeric,
-  FeatureToggle,
+  type FeatureNumeric,
+  type FeatureToggle,
 } from '../base';
 
 export const SOUND_MIDI: FeatureToggle = {
@@ -135,28 +135,6 @@ export const SOUND_MENTORHELP: FeatureToggle = {
   name: 'Mentorhelp Pings',
   category: 'SOUNDS',
   description: 'Enable hearing mentorhelp pings.',
-  component: CheckboxInput,
-};
-
-// Vorey sounds
-export const BELCH_NOISES: FeatureToggle = {
-  name: 'Belch Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing burping noises.',
-  component: CheckboxInput,
-};
-
-export const EATING_NOISES: FeatureToggle = {
-  name: 'Eating Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing vore eating noises.',
-  component: CheckboxInput,
-};
-
-export const DIGEST_NOISES: FeatureToggle = {
-  name: 'Digestion Noises',
-  category: 'SOUNDS',
-  description: 'Enable hearing vore digestion noises.',
   component: CheckboxInput,
 };
 

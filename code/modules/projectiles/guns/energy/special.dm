@@ -59,7 +59,7 @@
 		list(mode_name="prune reagents", projectile_type=/obj/item/projectile/energy/floraprune, modifystate="floramut"),
 		)
 
-/obj/item/gun/energy/floragun/Initialize()
+/obj/item/gun/energy/floragun/Initialize(mapload)
 	. = ..()
 	emitter = new(src)
 

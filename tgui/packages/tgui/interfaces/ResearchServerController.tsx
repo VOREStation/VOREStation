@@ -39,7 +39,7 @@ const ResearchControllerContent = (props) => {
     null,
   );
 
-  let realServer = servers.find((s) => s.id === selectedServer);
+  const realServer = servers.find((s) => s.id === selectedServer);
 
   if (realServer) {
     return (

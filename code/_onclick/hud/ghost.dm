@@ -91,12 +91,23 @@
 	var/mob/observer/dead/G = usr
 	G.zMove(DOWN)
 
+/obj/screen/ghost/vr
+	name = "Enter VR"
+	desc = "Enter virtual reality."
+	icon = 'icons/mob/screen_ghost.dmi'
+	icon_state = "entervr"
+
+/obj/screen/ghost/vr/Click()
+	..()
+	var/mob/observer/dead/G = usr
+	G.fake_enter_vr()
+
 /mob/observer/dead/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
 
 	var/list/adding = list()
 	HUD.adding = adding
-	
+
 	var/obj/screen/using
 	using = new /obj/screen/ghost/returntomenu()
 	using.screen_loc = ui_ghost_returntomenu
@@ -135,6 +146,11 @@
 
 	using = new /obj/screen/ghost/down()
 	using.screen_loc = ui_ghost_updown
+	using.hud = src
+	adding += using
+
+	using = new /obj/screen/ghost/vr()
+	using.screen_loc = ui_ghost_vr
 	using.hud = src
 	adding += using
 

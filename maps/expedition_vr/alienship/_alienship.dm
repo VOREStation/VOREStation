@@ -17,7 +17,7 @@
 	icon = 'alienship.dmi'
 	icon_state = null
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	//Shared!
 	var/static/mission_mode
@@ -28,7 +28,7 @@
 	var/door_on_mode
 	var/teleport_on_mode
 
-/obj/away_mission_init/alienship/Initialize()
+/obj/away_mission_init/alienship/Initialize(mapload)
 	. = ..()
 
 	if(!mission_mode) //WE ARE NUMBER ONE
@@ -114,7 +114,7 @@
 	var/area/dump_area
 	var/obj/shuttle_connector/shuttle_friend
 
-/area/shuttle/excursion/away_alienship/Initialize()
+/area/shuttle/excursion/away_alienship/Initialize(mapload)
 	. = ..()
 	dump_area = locate(/area/tether_away/alienship/equip_dump)
 

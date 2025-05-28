@@ -43,6 +43,7 @@
 // Parameters: None
 // Description: This refreshes the camera location
 /obj/item/communicator/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	if(!video_source?.can_use())
 		show_static()
 		return
@@ -305,9 +306,9 @@
 /obj/item/communicator/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	// Update manifest'
-	if(data_core)
-		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	if(GLOB.data_core)
+		GLOB.data_core.get_manifest_list()
+	data["manifest"] = GLOB.PDA_Manifest
 	data["mapRef"] = map_name
 	return data
 

@@ -19,14 +19,14 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
 	var/faction = FACTION_BLOB
 
-/obj/structure/blob/Initialize(newloc, new_overmind)
+/obj/structure/blob/Initialize(mapload, new_overmind)
 	if(new_overmind)
 		overmind = new_overmind
 		faction = overmind.blob_type.faction
 	update_icon()
 	if(!integrity)
 		integrity = max_integrity
-	set_dir(pick(cardinal))
+	set_dir(pick(GLOB.cardinal))
 	GLOB.all_blobs += src
 	consume_tile()
 	return ..()
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob/proc/expand(turf/T = null, controller = null, expand_reaction = 1)
 	if(!T)
-		var/list/dirs = cardinal.Copy()
+		var/list/dirs = GLOB.cardinal.Copy()
 		for(var/i = 1 to 4)
 			var/dirn = pick(dirs)
 			dirs.Remove(dirn)

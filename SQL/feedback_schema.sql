@@ -1,22 +1,29 @@
--- Table structure for table `erro_admin`
-CREATE TABLE `erro_admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
   `ckey` varchar(32) NOT NULL,
-  `rank` varchar(32) NOT NULL DEFAULT 'Administrator',
-  `level` int(2) NOT NULL DEFAULT '0',
-  `flags` int(16) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+  `rank` varchar(32) NOT NULL,
+  `feedback` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Table structure for table `erro_admin_log`
-CREATE TABLE `erro_admin_log` (
+CREATE TABLE `admin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
+  `round_id` int(11) unsigned NULL,
   `adminckey` varchar(32) NOT NULL,
-  `adminip` varchar(18) NOT NULL,
-  `log` text NOT NULL,
+  `adminip` int(10) unsigned NOT NULL,
+  `operation` enum('add admin','remove admin','change admin rank','add rank','remove rank','change rank flags') NOT NULL,
+  `target` varchar(32) NOT NULL,
+  `log` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `admin_ranks` (
+  `rank` varchar(32) NOT NULL,
+  `flags` mediumint(5) unsigned NOT NULL,
+  `exclude_flags` mediumint(5) unsigned NOT NULL,
+  `can_edit_flags` mediumint(5) unsigned NOT NULL,
+  PRIMARY KEY (`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Table structure for table `erro_ban`
 CREATE TABLE `erro_ban` (
@@ -230,4 +237,23 @@ CREATE TABLE IF NOT EXISTS `round` (
   `map_name` VARCHAR(32) NULL,
   `station_name` VARCHAR(80) NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `chatlogs_ckeys` (
+  `ckey` varchar(45) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `chatlogs_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `round_id` int(11) NOT NULL DEFAULT -1,
+  `target` varchar(45) NOT NULL,
+  `text` mediumtext NOT NULL,
+  `text_raw` mediumtext NOT NULL,
+  `type` varchar(128) DEFAULT NULL,
+  `created_at` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `chatlogs_ckeys_FK` (`target`),
+  CONSTRAINT `chatlogs_ckeys_FK` FOREIGN KEY (`target`) REFERENCES `chatlogs_ckeys` (`ckey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

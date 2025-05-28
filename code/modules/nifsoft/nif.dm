@@ -119,7 +119,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		should_be_in = brain.parent_organ
 
 	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(should_be_in)))
-		if(!bioadap && (H.species.flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
+		if(!bioadap && (H.species.flags & NO_DNA)) //NO_DNA is the default 'too complicated' flag
 			return FALSE
 
 		human = H
@@ -156,7 +156,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return FALSE
 
 /obj/item/nif/proc/quick_install(var/mob/living/carbon/human/H)
-	if(!H) //Or letting them get deleted
+	if(QDELETED(H)) //Or letting them get deleted
 		return
 	if(H.mind)
 		owner = H.mind.name
@@ -301,7 +301,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/percent_done = (world.time - (install_done - (35 MINUTES))) / (35 MINUTES)
 
 	if(human.client)
-		human.client.screen.Add(global_hud.whitense) //This is the camera static
+		human.client.screen.Add(GLOB.global_hud.whitense) //This is the camera static
 
 	switch(percent_done) //This is 0.0 to 1.0 kinda percent.
 		//Connecting to optical nerves

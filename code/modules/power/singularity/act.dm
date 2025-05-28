@@ -99,7 +99,7 @@
 		for(var/obj/O in contents)
 			if(O.level != 1)
 				continue
-			if(O.invisibility == 101)
+			if(O.invisibility == INVISIBILITY_ABSTRACT)
 				O.singularity_act(src, current_size)
 	ChangeTurf(get_base_turf_by_area(src))
 	return 2

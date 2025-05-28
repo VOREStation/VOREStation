@@ -15,7 +15,7 @@
 	else
 		rating_modifier = FALSE
 
-/obj/item/gun/magnetic/matfed/Initialize()
+/obj/item/gun/magnetic/matfed/Initialize(mapload)
 	. = ..()
 	if(ispath(manipulator))
 		manipulator = new manipulator(src)
@@ -165,7 +165,6 @@
 	item_state = "bore"
 	wielded_item_state = "bore-wielded"
 	one_handed_penalty = 5
-	fire_delay = 20
 
 	projectile_type = /obj/item/projectile/bullet/magnetic/bore
 
@@ -196,7 +195,7 @@
 	else // rating_mod 0 = something's not right
 		. += span_warning("A display on the side slowly scrolls the text \"ERR: MISSING COMPONENT - EFFICIENCY MODIFICATION INCOMPLETE\".")
 
-/obj/item/gun/magnetic/matfed/phoronbore/Initialize()
+/obj/item/gun/magnetic/matfed/phoronbore/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src), 0)
 

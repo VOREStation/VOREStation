@@ -159,7 +159,7 @@
 		step_towards(leash_pet, leash_master)
 
 /obj/item/leash/dropped(mob/user)
-	 //Drop the leash, and the leash effects stop
+	//Drop the leash, and the leash effects stop
 	. = ..()
 	if(!leash_pet || !leash_master) //There is no pet. Stop this silliness
 		return

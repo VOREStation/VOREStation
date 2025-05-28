@@ -13,8 +13,8 @@
 	var/datum/material/material = null
 	var/riding_datum_type = /datum/riding/boat/small
 
-/obj/vehicle/boat/sifwood/Initialize(newloc, material_name)
-	. = ..(newloc, MAT_SIFWOOD)
+/obj/vehicle/boat/sifwood/Initialize(mapload, material_name)
+	. = ..(mapload, MAT_SIFWOOD)
 
 /obj/vehicle/boat/dragon
 	name = "dragon boat"
@@ -27,13 +27,13 @@
 	max_buckled_mobs = 5
 	riding_datum_type = /datum/riding/boat/big
 
-/obj/vehicle/boat/dragon/Initialize(newloc, material_name)
-	. = ..(newloc, material_name)
+/obj/vehicle/boat/dragon/Initialize(mapload, material_name)
+	. = ..(mapload, material_name)
 	var/image/I = image(icon, src, "dragon_boat_underlay", BELOW_MOB_LAYER)
 	underlays += I
 
-/obj/vehicle/boat/dragon/sifwood/Initialize(newloc, material_name)
-	. = ..(newloc, MAT_SIFWOOD)
+/obj/vehicle/boat/dragon/sifwood/Initialize(mapload, material_name)
+	. = ..(mapload, MAT_SIFWOOD)
 
 // Oars, which must be held inhand while in a boat to move it.
 /obj/item/oar
@@ -45,11 +45,11 @@
 	force = 12
 	var/datum/material/material = null
 
-/obj/item/oar/sifwood/Initialize(newloc, material_name)
-	. = ..(newloc, MAT_SIFWOOD)
+/obj/item/oar/sifwood/Initialize(mapload, material_name)
+	. = ..(mapload, MAT_SIFWOOD)
 
-/obj/item/oar/Initialize(newloc, material_name)
-	..(newloc)
+/obj/item/oar/Initialize(mapload, material_name)
+	..(mapload)
 	if(!material_name)
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
@@ -58,8 +58,8 @@
 	color = material.icon_colour
 	return INITIALIZE_HINT_NORMAL
 
-/obj/vehicle/boat/Initialize(newloc, material_name)
-	..(newloc)
+/obj/vehicle/boat/Initialize(mapload, material_name)
+	..(mapload)
 	if(!material_name)
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")

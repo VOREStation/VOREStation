@@ -20,7 +20,7 @@
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
 
-/obj/item/clothing/head/helmet/space/void/heck/Initialize()
+/obj/item/clothing/head/helmet/space/void/heck/Initialize(mapload)
 	. = ..()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")
 	glass_overlay.appearance_flags = RESET_COLOR
@@ -97,9 +97,9 @@
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = null
 
-/obj/item/clothing/suit/space/void/autolok/Initialize()
+/obj/item/clothing/suit/space/void/autolok/Initialize(mapload)
 	. = ..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
+	hood = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
 //override the attackby screwdriver proc so that people can't remove the helmet
 /obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W, mob/user)

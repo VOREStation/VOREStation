@@ -1,6 +1,6 @@
 // PRESETS
 /*
-var/global/list/station_networks = list(
+GLOBAL_LIST_INIT(station_networks, list(
 //										NETWORK_CAFE_DOCK,
 										NETWORK_CARGO,
 										NETWORK_CIVILIAN,
@@ -20,15 +20,15 @@ var/global/list/station_networks = list(
 										NETWORK_PRISON,
 										NETWORK_SECURITY,
 										NETWORK_INTERROGATION
-										)
+										))
 */
-var/global/list/engineering_networks = list(
+GLOBAL_LIST_INIT(engineering_networks, list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
 										//NETWORK_ENGINEERING_OUTPOST,	//VOREStation Edit: Tether has no Engineering Outpost,
 										NETWORK_ALARM_ATMOS,
 										NETWORK_ALARM_FIRE,
-										NETWORK_ALARM_POWER)
+										NETWORK_ALARM_POWER))
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 
@@ -165,7 +165,7 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/autoname
 	var/static/list/by_area
 
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(!A)
@@ -228,7 +228,7 @@ var/global/list/engineering_networks = list(
 	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	START_MACHINE_PROCESSING(src)
-	sense_proximity(callback = /atom/proc/HasProximity)
+	sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	update_coverage()
 
 /obj/machinery/camera/proc/setPowerUsage()

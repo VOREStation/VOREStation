@@ -12,7 +12,7 @@
 	A number between 0 and 100, with higher numbers resulting in less damage taken.
 */
 /mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
-	if(Debug2)
+	if(GLOB.Debug2)
 		to_world_log("## DEBUG: getarmor() was called.")
 
 	if(armour_pen >= 100)
@@ -22,7 +22,7 @@
 	if(armor)
 		var/armor_variance_range = round(armor * 0.25) //Armor's effectiveness has a +25%/-25% variance.
 		var/armor_variance = rand(-armor_variance_range, armor_variance_range) //Get a random number between -25% and +25% of the armor's base value
-		if(Debug2)
+		if(GLOB.Debug2)
 			to_world_log("## DEBUG: The range of armor variance is [armor_variance_range].  The variance picked by RNG is [armor_variance].")
 
 		armor = min(armor + armor_variance, 100)	//Now we calcuate damage using the new armor percentage.
@@ -38,7 +38,7 @@
 				to_chat(src, span_danger("[soften_text]"))
 			else
 				to_chat(src, span_danger("Your armor softens the blow!"))
-		if(Debug2)
+		if(GLOB.Debug2)
 			to_world_log("## DEBUG: Armor when [src] was attacked was [armor].")
 	return armor
 
@@ -255,6 +255,8 @@
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+	if(is_incorporeal())
+		return
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //ported from chompstation
@@ -328,9 +330,9 @@
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 
-		if(!allowmobvore && isanimal(thrown_mob)) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
+		if(!allowmobvore && isanimal(thrown_mob) && !thrown_mob.ckey) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
 			return
-		if(!thrown_mob.allowmobvore && isanimal(src)) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
+		if(!thrown_mob.allowmobvore && isanimal(src) && !ckey) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
 			return
 
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
@@ -426,7 +428,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-    fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
+	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
@@ -614,3 +616,10 @@
 
 /mob/living/proc/restore_all_organs()
 	return
+
+/mob/living/proc/is_mouth_covered(head_only = FALSE, mask_only = FALSE)
+	return FALSE
+
+/mob/living/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)

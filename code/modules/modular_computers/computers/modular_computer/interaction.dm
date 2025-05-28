@@ -100,7 +100,7 @@
 /obj/item/modular_computer/attack_ghost(var/mob/observer/dead/user)
 	if(enabled)
 		tgui_interact(user)
-	else if(check_rights(R_ADMIN|R_EVENT, 0, user))
+	else if(check_rights_for(user.client, R_ADMIN|R_EVENT|R_DEBUG))
 		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
 		if(response == "Yes")
 			turn_on(user)

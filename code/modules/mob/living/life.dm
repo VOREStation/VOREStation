@@ -1,5 +1,5 @@
 /mob/living/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
 
 	..()
@@ -85,6 +85,8 @@
 	handle_tf_holder()
 
 	handle_dripping()
+
+	handle_vr_derez()
 
 /mob/living/proc/handle_breathing()
 	return

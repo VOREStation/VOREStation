@@ -1288,7 +1288,7 @@
 	color = COLOR_YELLOW_GRAY
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"text" = COLOR_BLUE_LIGHT
 	)
@@ -1297,7 +1297,7 @@
 	color = COLOR_DARK_BLUE_GRAY
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"text" = COLOR_BEIGE
 	)
@@ -1306,7 +1306,7 @@
 	color = COLOR_NT_RED
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"text" = COLOR_OFF_WHITE
 	)
@@ -1315,7 +1315,7 @@
 	color = COLOR_ORANGE
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"text" = COLOR_OFF_WHITE
 	)
@@ -1327,7 +1327,7 @@
 	color = COLOR_NT_RED
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"marking" = COLOR_OFF_WHITE,
 		"text_upper" = COLOR_OFF_WHITE
@@ -1337,7 +1337,7 @@
 	color = COLOR_YELLOW_GRAY
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"marking" = COLOR_OFF_WHITE,
 		"text_upper" = COLOR_BLUE_LIGHT
@@ -1347,7 +1347,7 @@
 	color = COLOR_DARK_BLUE_GRAY
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"marking" = COLOR_OFF_WHITE,
 		"text_upper" = COLOR_BEIGE
@@ -1357,7 +1357,7 @@
 	color = COLOR_GRAY20
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"marking" = COLOR_NT_RED,
 		"text_upper" = COLOR_NT_RED
@@ -1367,7 +1367,7 @@
 	color = COLOR_ORANGE
 	decals = list(
 		"crate_bracing"
-	 )
+	)
 	extra_decals = list(
 		"marking" = COLOR_OFF_WHITE,
 		"text_upper" = COLOR_OFF_WHITE

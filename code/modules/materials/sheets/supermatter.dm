@@ -34,8 +34,8 @@
 
 		if(burn_user)
 			H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
-			H.apply_damage(amount / 2 + 5, BURN, "r_hand", used_weapon=src)
-			H.apply_damage(amount / 2 + 5, BURN, "l_hand", used_weapon=src)
+			H.apply_damage(amount / 2 + 5, BURN, BP_R_HAND, used_weapon=src)
+			H.apply_damage(amount / 2 + 5, BURN, BP_L_HAND, used_weapon=src)
 			H.drop_from_inventory(src, get_turf(H))
 			return
 

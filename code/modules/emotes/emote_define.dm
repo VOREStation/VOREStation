@@ -30,8 +30,8 @@ var/global/list/emotes_by_key
 	var/emote_message_muffled                           // A message to show if the emote is audible and the user is muzzled.
 
 	var/list/emote_sound                                // A sound for the emote to play.
-	                                                    // Can either be a single sound, a list of sounds to pick from, or an
-	                                                    // associative array of gender to single sounds/a list of sounds.
+														// Can either be a single sound, a list of sounds to pick from, or an
+														// associative array of gender to single sounds/a list of sounds.
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
@@ -46,7 +46,7 @@ var/global/list/emotes_by_key
 	var/sound_preferences = list(/datum/preference/toggle/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
 
-/decl/emote/Initialize()
+/decl/emote/Initialize(mapload)
 	. = ..()
 	if(key)
 		LAZYSET(global.emotes_by_key, key, src)
@@ -134,7 +134,7 @@ var/global/list/emotes_by_key
 	if (!use_range)
 		use_range = world.view
 
-	if(ismob(user))
+	if(ismob(user) && (use_3p || use_1p)) //Adds functionality for emotes that don't give use feedback, such as bellyrubs.
 		var/mob/M = user
 		if(message_type == AUDIBLE_MESSAGE)
 			if(isliving(user))
@@ -153,7 +153,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
 	. = msg
 	if(istype(target))
-		var/datum/gender/target_gender = gender_datums[target.get_visible_gender()]
+		var/datum/gender/target_gender = GLOB.gender_datums[target.get_visible_gender()]
 		. = replacetext(., "TARGET_THEM",  target_gender.him)
 		. = replacetext(., "TARGET_THEIR", target_gender.his)
 		. = replacetext(., "TARGET_SELF",  target_gender.himself)
@@ -162,7 +162,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
 	. = msg
 	if(istype(user))
-		var/datum/gender/user_gender = gender_datums[user.get_visible_gender()]
+		var/datum/gender/user_gender = GLOB.gender_datums[user.get_visible_gender()]
 		. = replacetext(., "USER_THEM",  user_gender.him)
 		. = replacetext(., "USER_THEIR", user_gender.his)
 		. = replacetext(., "USER_SELF",  user_gender.himself)
@@ -189,7 +189,11 @@ var/global/list/emotes_by_key
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+		if(istype(user, /mob))
+			var/mob/u = user
+			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = u.voice_freq, preference = sound_preferences, volume_channel = use_sound["volchannel"])
+		else
+			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

@@ -41,12 +41,12 @@
 		testname = replacetext(testname, "()", "")
 
 	if(targetselected && !hascall(target,testname))
-		to_chat(usr, span_filter_adminlog("" + span_red("Error: callproc(): type [target.type] has no proc named [procname].") + ""))
+		to_chat(usr, span_filter_adminlog(span_red("Error: callproc(): type [target.type] has no proc named [procname].")))
 		return
 	else
 		var/procpath = text2path(procname)
 		if (!procpath)
-			to_chat(usr, span_filter_adminlog("" + span_red("Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)") + ""))
+			to_chat(usr, span_filter_adminlog(span_red("Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)")))
 			return
 	var/list/lst = get_callproc_args()
 	if(!lst)
@@ -54,7 +54,7 @@
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, span_filter_adminlog("" + span_red("Error: callproc(): owner of proc no longer exists.") + ""))
+			to_chat(usr, span_filter_adminlog(span_red("Error: callproc(): owner of proc no longer exists.")))
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
@@ -138,11 +138,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/procname = tgui_input_text(usr, "Proc name, eg: fake_blood","Proc:", null)
+	var/procname = tgui_input_text(usr, "Proc name, eg: fake_blood","Proc:")
 	if(!procname)
 		return
 	if(!hascall(A,procname))
-		to_chat(usr, span_filter_adminlog("" + span_red("Error: callproc_datum(): type [A.type] has no proc named [procname].") + ""))
+		to_chat(usr, span_filter_adminlog(span_red("Error: callproc_datum(): type [A.type] has no proc named [procname].")))
 		return
 	var/list/lst = get_callproc_args()
 	if(!lst)

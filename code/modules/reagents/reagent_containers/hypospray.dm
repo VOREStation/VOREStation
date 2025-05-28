@@ -21,7 +21,7 @@
 	var/list/filled_reagents = list()
 	var/hyposound	// What sound do we play on use?
 
-/obj/item/reagent_containers/hypospray/Initialize()
+/obj/item/reagent_containers/hypospray/Initialize(mapload)
 	. = ..()
 	if(filled)
 		if(filled_reagents)
@@ -35,6 +35,10 @@
 		return
 	if (!istype(M))
 		return
+	if(!M.consume_liquid_belly)
+		if(liquid_belly_check())
+			to_chat(user, span_infoplain("[user == M ? "You can't" : "\The [M] can't"] take that, it contains something produced from a belly!"))
+			return FALSE
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
@@ -94,7 +98,7 @@
 	var/obj/item/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
-/obj/item/reagent_containers/hypospray/vial/Initialize()
+/obj/item/reagent_containers/hypospray/vial/Initialize(mapload)
 	. = ..()
 	icon_state = "[initial(icon_state)]"
 	loaded_vial = new /obj/item/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
@@ -166,7 +170,7 @@
 	filled = 0
 	filled_reagents = list()
 
-/obj/item/reagent_containers/hypospray/autoinjector/used/Initialize()
+/obj/item/reagent_containers/hypospray/autoinjector/used/Initialize(mapload)
 	. = ..()
 	flags &= ~OPENCONTAINER
 	icon_state = "[initial(icon_state)]0"
@@ -206,6 +210,12 @@
 	name = "clone injector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
 	filled_reagents = list(REAGENT_ID_REZADONE = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/allergen
+	name = "AllergyPen"
+	desc = "An autoinjector designed for use during an allergic reaction or anaphylaxis. The user should immediately seek medical support after use, for additional monitoring and aid."
+	icon_state = "allergy"
+	item_state = "allergy"
 
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector

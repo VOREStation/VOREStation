@@ -64,7 +64,7 @@ export const ModifyRobotModules = (props: {
           <Stack vertical>
             <Stack.Item>
               <Button.Confirm
-                width="50px"
+                width="90px"
                 height="50px"
                 disabled={!source}
                 tooltip="Swaps the source and destination module types."
@@ -75,7 +75,7 @@ export const ModifyRobotModules = (props: {
             </Stack.Item>
             <Stack.Item>
               <Button.Confirm
-                width="50px"
+                width="90px"
                 height="50px"
                 mt={40}
                 textAlign="center"
@@ -160,7 +160,7 @@ const SelectionField = (props: {
         fluid
         value={searchText}
         placeholder="Search for modules..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

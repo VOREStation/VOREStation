@@ -7,8 +7,8 @@
 	conditions  can cause different byproducts to be produced.<br>\
 	Magma or Lava can be pumped to produce mineralized fluid."
 
-	anchored = 0
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "pump"
@@ -23,7 +23,7 @@
 	var/unlocked = 0
 	var/open = 0
 
-/obj/machinery/pump/Initialize()
+/obj/machinery/pump/Initialize(mapload)
 	create_reagents(200)
 	. = ..()
 	default_apply_parts()

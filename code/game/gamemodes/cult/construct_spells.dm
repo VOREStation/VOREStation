@@ -167,7 +167,7 @@
 	icon_state = "m_shield_cult"
 	light_color = "#B40000"
 	light_range = 2
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 
 /obj/effect/forcefield/cult/cultify()
 	return
@@ -438,13 +438,10 @@
 	cast_sound = null			// Sound file played when this is used.
 	var/last_castcheck = null	// The last time this spell was cast.
 
-/obj/item/spell/construct/New()
-	//..() //This kills the spell, because super on this calls the default spell's New, which checks for a core. Can't have that.
-	if(isliving(loc))
-		owner = loc
+/obj/item/spell/construct/Initialize(mapload)
+	. = ..(mapload, TRUE)
 	if(!owner)
-		qdel(src)
-	update_icon()
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/spell/construct/adjust_instability(var/amount) //The only drawback to the boons of the geometer is the use of a mortal's blood as fuel. Constructs have already paid that price long ago.
 	return

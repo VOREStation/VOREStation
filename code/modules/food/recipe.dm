@@ -9,7 +9,7 @@
  * * items are objects. Fruits, tools, circuit boards.
  * * result is type to create as new object
  * * time is optional parameter, you shall use in in your machine,
-     default /datum/recipe/ procs does not rely on this parameter.
+ *	default /datum/recipe/ procs does not rely on this parameter.
  *
  *  Functions you need:
  *  /datum/recipe/proc/make(var/obj/container as obj)
@@ -62,6 +62,8 @@
 	// This is a bitfield, more than one type can be used
 	// Grill is presently unused and not listed
 
+	var/wiki_flag = 0
+
 /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = FALSE)
 	if(!reagents || !reagents.len)
 		return TRUE
@@ -89,7 +91,7 @@
 	. = TRUE
 	if(fruit && fruit.len)
 		var/list/checklist = list()
-		 // You should trust Copy().
+		// You should trust Copy().
 		checklist = fruit.Copy()
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))

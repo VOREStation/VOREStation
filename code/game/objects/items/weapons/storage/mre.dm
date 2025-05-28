@@ -223,7 +223,7 @@ MRE Stuff
 	var/opened = FALSE
 	starts_with = list(/obj/item/reagent_containers/food/snacks/slice/meatpizza/filled)
 
-/obj/item/storage/mrebag/Initialize()
+/obj/item/storage/mrebag/Initialize(mapload)
 	. = ..()
 
 /obj/item/storage/mrebag/update_icon()
@@ -302,7 +302,7 @@ MRE Stuff
 	foldable = null
 	var/isopened = 0
 
-/obj/item/storage/box/tgmc_mre/Initialize()
+/obj/item/storage/box/tgmc_mre/Initialize(mapload)
 	. = ..()
 	pickflavor()
 

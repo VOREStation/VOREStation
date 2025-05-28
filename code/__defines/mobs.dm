@@ -328,6 +328,7 @@
 #define SPECIES_CUSTOM			"Custom Species"
 #define SPECIES_LLEILL			"Lleill"
 #define SPECIES_HANNER			"Hanner"
+#define SPECIES_SPARKLE			"Sparkle Dog"
 
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"
@@ -480,7 +481,9 @@
 
 #define VIS_CH_STOMACH		34
 
-#define VIS_COUNT			34 //Must be highest number from above.
+#define VIS_SOULCATCHER		35
+
+#define VIS_COUNT			35 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
@@ -524,3 +527,10 @@
 
 // Default name for accesories
 #define DEVELOPER_WARNING_NAME "you should not see this..."
+
+// Green vomit
+#define VOMIT_TOXIC 1
+// Purple vomit
+#define VOMIT_PURPLE 2
+// Nanite vomit
+#define VOMIT_NANITE 3

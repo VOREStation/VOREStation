@@ -97,22 +97,22 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	return
 
 /obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the CentCom server so wild griffins can't fuck up R&D's work
-	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
+	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
 		for(var/datum/design/D in files.known_designs)
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/computer/rdconsole/New()
-	..()
+/obj/machinery/computer/rdconsole/Initialize(mapload)
+	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
+		for(var/obj/machinery/r_n_d/server/centcom/S in GLOB.machines)
 			S.update_connections()
 			break
 
-/obj/machinery/computer/rdconsole/Initialize()
+/obj/machinery/computer/rdconsole/Initialize(mapload)
 	SyncRDevices()
 	. = ..()
 

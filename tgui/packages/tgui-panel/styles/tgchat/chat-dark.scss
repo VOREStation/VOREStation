@@ -21,24 +21,31 @@ img {
 img.icon {
   height: 1em;
   min-height: 16px;
+  min-width: 16px;
   width: auto;
   vertical-align: bottom;
 }
 
 a {
-  color: hsl(202, 49%, 44%);
-}
-
-a.visited {
-  color: hsl(272, 100%, 45%);
-}
-
-a:visited {
-  color: hsl(272, 100%, 45%);
-}
-
-a.popt {
+  cursor: var(--cursor-pointer);
+  color: var(--color-hyperlink);
+  transition: color var(--transition-time-medium);
   text-decoration: none;
+
+  &:hover {
+    color: hsl(from var(--color-hyperlink) h s calc(l + var(--adjust-hover)));
+  }
+}
+
+a.visited,
+a:visited {
+  color: var(--color-hyperlink-visited);
+
+  &:hover {
+    color: hsl(
+      from var(--color-hyperlink-visited) h s calc(l + var(--adjust-hover))
+    );
+  }
 }
 
 /* POPUPS */
@@ -1064,7 +1071,6 @@ img.icon.bigicon {
   -moz-transform: scale(-1, -1);
   -webkit-transform: scale(-1, -1);
   -o-transform: scale(-1, -1);
-  -ms-transform: scale(-1, -1);
   transform: scale(-1, -1);
 }
 
@@ -1426,7 +1432,53 @@ $border-width-px: $border-width * 1px;
   line-height: 0.3;
 }
 
+.psionic {
+  color: hsl(300, 50%, 40%);
+}
+
 .wingdings {
-  color: #0077ff;
+  color: hsl(212, 100%, 50%);
   font-family: Wingdings, Webdings;
+}
+
+.rainbow {
+  font-family: monospace;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    hsl(300, 76%, 72%),
+    hsl(275, 100%, 25%),
+    hsl(240, 100%, 50%),
+    hsl(120, 100%, 25%),
+    hsl(60, 100%, 50%),
+    hsl(39, 100%, 50%),
+    hsl(0, 100%, 50%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+.spoiler {
+  background-color: hsl(0, 0%, 50%);
+  color: transparent;
+  user-select: none;
+}
+
+.spoiler:hover {
+  background-color: inherit;
+  color: inherit;
 }

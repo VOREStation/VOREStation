@@ -125,7 +125,7 @@
 	var/parent_shuttle
 	var/base_tank = /obj/item/tank/phoron
 
-/obj/structure/fuel_port/Initialize()
+/obj/structure/fuel_port/Initialize(mapload)
 	. = ..()
 	if(base_tank)
 		new base_tank(src)

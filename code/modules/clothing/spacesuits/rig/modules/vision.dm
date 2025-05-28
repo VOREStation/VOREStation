@@ -227,8 +227,8 @@
 	if((. = ..()) && holder.wearer)
 		holder.wearer.recalculate_vis()
 
-/obj/item/rig_module/vision/New()
-	..()
+/obj/item/rig_module/vision/Initialize(mapload)
+	. = ..()
 
 	if(!vision_modes)
 		return

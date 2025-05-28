@@ -76,7 +76,7 @@
 	var/ourtime = (((start_time + time_til_open) - world.time) / 600)
 	. += span_notice("It will open in [ourtime] minutes!")
 
-/obj/structure/timer_door/Initialize()
+/obj/structure/timer_door/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

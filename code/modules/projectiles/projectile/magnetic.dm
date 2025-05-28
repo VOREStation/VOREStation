@@ -173,7 +173,7 @@
 	range = 6
 	hud_state = "plasma_rifle_blast"
 
-/obj/item/projectile/bullet/magnetic/bore/Initialize(loc, range_mod) // i'm gonna be real honest i dunno how this works but it does
+/obj/item/projectile/bullet/magnetic/bore/Initialize(mapload, range_mod) // i'm gonna be real honest i dunno how this works but it does
 	. = ..()
 	range += range_mod
 

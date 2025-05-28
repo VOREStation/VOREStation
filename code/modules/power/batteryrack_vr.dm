@@ -2,7 +2,7 @@
 	var/cell_type = /obj/item/cell/apc
 	var/cell_number = 3
 
-/obj/machinery/power/smes/batteryrack/mapped/Initialize()
+/obj/machinery/power/smes/batteryrack/mapped/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to cell_number)
 		if(i > max_cells)

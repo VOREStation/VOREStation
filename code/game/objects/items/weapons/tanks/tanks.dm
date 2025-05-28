@@ -57,7 +57,7 @@ var/list/global/tank_gauge_cache = list()
 	src.proxyassembly = proxy
 
 
-/obj/item/tank/Initialize()
+/obj/item/tank/Initialize(mapload)
 	. = ..()
 
 	src.init_proxy()
@@ -176,7 +176,7 @@ var/list/global/tank_gauge_cache = list()
 			to_chat(user, span_notice("You begin attaching the assembly to \the [src]."))
 			if(do_after(user, 50, src))
 				to_chat(user, span_notice("You finish attaching the assembly to \the [src]."))
-				bombers += "[key_name(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.temperature-T0C]"
+				GLOB.bombers += "[key_name(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.temperature-T0C]"
 				message_admins("[key_name_admin(user)] attached an assembly to a wired [src]. Temp: [src.air_contents.temperature-T0C]")
 				assemble_bomb(W,user)
 			else
@@ -195,7 +195,7 @@ var/list/global/tank_gauge_cache = list()
 					src.valve_welded = 1
 					src.leaking = 0
 				else
-					bombers += "[key_name(user)] attempted to weld a [src]. [src.air_contents.temperature-T0C]"
+					GLOB.bombers += "[key_name(user)] attempted to weld a [src]. [src.air_contents.temperature-T0C]"
 					message_admins("[key_name_admin(user)] attempted to weld a [src]. [src.air_contents.temperature-T0C]")
 					if(WT.welding)
 						to_chat(user, span_danger("You accidentally rake \the [W] across \the [src]!"))
@@ -563,30 +563,26 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay("bomb_assembly")
 
 
-/obj/item/tank/phoron/onetankbomb/New()
-	..()
-	src.onetankbomb()
+/obj/item/tank/phoron/onetankbomb/Initialize(mapload, var/amount = 1)
+	. = ..()
+	onetankbomb(amount)
 
-/obj/item/tank/oxygen/onetankbomb/New()
-	..()
-	src.onetankbomb()
+/obj/item/tank/oxygen/onetankbomb/Initialize(mapload, var/amount = 1)
+	. = ..()
+	onetankbomb(amount)
 
 
-/obj/item/tank/phoron/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
+/obj/item/tank/phoron/onetankbomb/full/Initialize(mapload)
+	. = ..(mapload, 2)
 
-/obj/item/tank/oxygen/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
+/obj/item/tank/oxygen/onetankbomb/full/Initialize(mapload)
+	. = ..(mapload, 2)
 
-/obj/item/tank/phoron/onetankbomb/small/New()
-	..()
-	src.onetankbomb(0)
+/obj/item/tank/phoron/onetankbomb/small/Initialize(mapload)
+	. = ..(mapload, 0)
 
-/obj/item/tank/oxygen/onetankbomb/small/New()
-	..()
-	src.onetankbomb(0)
+/obj/item/tank/oxygen/onetankbomb/small/Initialize(mapload)
+	. = ..(mapload, 0)
 
 /////////////////////////////////
 ///Pulled from rewritten bomb.dm
@@ -661,13 +657,20 @@ var/list/global/tank_gauge_cache = list()
 		tank.update_icon()
 		tank.cut_overlay("bomb_assembly")
 
-/obj/item/tankassemblyproxy/HasProximity(turf/T, atom/movable/AM, old_loc)
-	assembly?.HasProximity(T, AM, old_loc)
+/obj/item/tankassemblyproxy/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
+	assembly?.HasProximity(T, WF, old_loc)
 
 /obj/item/tankassemblyproxy/Moved(old_loc, direction, forced)
 	if(isturf(old_loc))
-		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
+		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = /atom/proc/HasProximity)
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 #undef TANK_IDEAL_PRESSURE

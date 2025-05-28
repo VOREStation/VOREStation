@@ -37,8 +37,10 @@
 	var/list/wing_type = null
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
+	delete_me = TRUE
 
-/obj/effect/landmark/mobcorpse/New()
+/obj/effect/landmark/mobcorpse/Initialize(mapload)
+	. = ..()
 	createCorpse()
 
 /obj/effect/landmark/mobcorpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
@@ -168,8 +170,6 @@
 		M.equip_voidhelm_to_slot_or_del_with_refit(new src.corpsehelmet(M), slot_head, src.species)
 	if(src.corpsesuit)
 		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
-	delete_me = 1
-	qdel(src)
 
 /obj/effect/landmark/mobcorpse/proc/generateCorpseName()
 	return name

@@ -12,7 +12,7 @@
 	var/edge = FALSE //If we're an edge
 	var/forced_dirs = 0 //Force this one to pretend it's an overedge turf
 
-/turf/space/Initialize()
+/turf/space/Initialize(mapload)
 	if(CONFIG_GET(flag/starlight))
 		update_starlight()
 
@@ -113,8 +113,8 @@
 
 		// Patch holes in the ceiling
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
-			 	// Must be build adjacent to an existing floor/wall, no floating floors
+			if(isopenturf(T))
+				// Must be build adjacent to an existing floor/wall, no floating floors
 				var/turf/simulated/A = locate(/turf/simulated/floor) in T.CardinalTurfs()
 				if(!A)
 					A = locate(/turf/simulated/wall) in T.CardinalTurfs()
@@ -168,8 +168,8 @@
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		next_x = (--cur_x||global_map.len)
-		y_arr = global_map[next_x]
+		next_x = (--cur_x||GLOB.global_map.len)
+		y_arr = GLOB.global_map[next_x]
 		target_z = y_arr[cur_y]
 /*
 		//debug
@@ -193,8 +193,8 @@
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		next_x = (++cur_x > global_map.len ? 1 : cur_x)
-		y_arr = global_map[next_x]
+		next_x = (++cur_x > GLOB.global_map.len ? 1 : cur_x)
+		y_arr = GLOB.global_map[next_x]
 		target_z = y_arr[cur_y]
 /*
 		//debug
@@ -217,7 +217,7 @@
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		y_arr = global_map[cur_x]
+		y_arr = GLOB.global_map[cur_x]
 		next_y = (--cur_y||y_arr.len)
 		target_z = y_arr[next_y]
 /*
@@ -242,7 +242,7 @@
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		y_arr = global_map[cur_x]
+		y_arr = GLOB.global_map[cur_x]
 		next_y = (++cur_y > y_arr.len ? 1 : cur_y)
 		target_z = y_arr[next_y]
 /*

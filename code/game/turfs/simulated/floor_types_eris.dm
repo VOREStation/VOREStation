@@ -35,7 +35,7 @@
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/steel
-	
+
 /decl/flooring/tiling/eris/steel/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/eris/steel/panels
@@ -764,7 +764,7 @@
 	icon_state = "bar_light"
 	initial_flooring = /decl/flooring/tiling/eris/steel/bar_light
 
-/turf/simulated/floor/tiled/eris/steel/bar_light/Initialize()
+/turf/simulated/floor/tiled/eris/steel/bar_light/Initialize(mapload)
 	. = ..()
 	set_light(3,4,"#00AAFF")
 
@@ -1005,17 +1005,17 @@
 	can_paint = 1
 	has_base_range = 18
 	is_plating = TRUE
-	
+
 	build_type = null
-	
+
 	plating_type = /decl/flooring/eris_plating/under
-	
+
 	/*
 	footstep_sound = "plating"
 	space_smooth = FALSE
 	removal_time = 150
 	health = 100
-	
+
 	floor_smooth = SMOOTH_BLACKLIST
 	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
 	smooth_movable_atom = SMOOTH_GREYLIST
@@ -1049,11 +1049,11 @@
 	flooring_whitelist = list(
 		/decl/flooring/tiling/eris
 	)
-	
+
 	plating_type = null
 
 	//build_type = /obj/item/stack/material/underplating
-	
+
 	/* Eris features we lack on flooring decls
 	removal_time = 250
 	health = 200
@@ -1085,7 +1085,7 @@
 	has_base_range = 35
 	is_plating = FALSE
 	build_type = /obj/item/stack/material/plasteel
-	
+
 	/* Eris features we lack on flooring decls
 	try_update_icon = 0
 	plating_type = null

@@ -149,7 +149,7 @@
 
 	var/mob/living/voice/my_voice
 
-/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize()
+/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize(mapload)
 	. = ..()
 	my_voice = new (src)
 	mob_list -= my_voice // no life() ticks
@@ -180,8 +180,8 @@
 	power_draw_per_use = 20
 	var/list/sounds = list()
 
-/obj/item/integrated_circuit/output/sound/New()
-	..()
+/obj/item/integrated_circuit/output/sound/Initialize(mapload)
+	. = ..()
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used. The choices are; "
 	extended_desc += jointext(sounds, ", ")
@@ -287,8 +287,8 @@
 	power_draw_idle = 5 // Raises to 80 when on.
 	var/obj/machinery/camera/network/circuits/camera
 
-/obj/item/integrated_circuit/output/video_camera/New()
-	..()
+/obj/item/integrated_circuit/output/video_camera/Initialize(mapload)
+	. = ..()
 	extended_desc = list()
 	extended_desc += "Network choices are; "
 	extended_desc += jointext(networks, ", ")
@@ -442,7 +442,7 @@
 //	var/datum/beam/holo_beam = null // A visual effect, to make it easy to know where a hologram is coming from.
 	// It is commented out due to picking up the assembly killing the beam.
 
-/obj/item/integrated_circuit/output/holographic_projector/Initialize()
+/obj/item/integrated_circuit/output/holographic_projector/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(on_moved))
@@ -541,6 +541,7 @@
 		update_hologram()
 
 /obj/item/integrated_circuit/output/holographic_projector/proc/on_moved()
+	SIGNAL_HANDLER
 	if(hologram)
 		update_hologram_position()
 

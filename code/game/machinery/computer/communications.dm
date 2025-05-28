@@ -12,7 +12,7 @@
 
 	var/datum/tgui_module/communications/communications
 
-/obj/machinery/computer/communications/Initialize()
+/obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	communications = new(src)
 

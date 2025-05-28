@@ -1073,7 +1073,6 @@
 /area/ship/aro/centralarea)
 "cE" = (
 /obj/machinery/chemical_dispenser/ert,
-/obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
@@ -2845,7 +2844,7 @@
 	dir = 8
 	},
 /obj/structure/cable/pink{
-	dir = 1
+	icon_state = "0-2"
 	},
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/ship/aro/engineering)

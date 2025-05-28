@@ -14,10 +14,10 @@
 	interface_name = "dead man's switch"
 	interface_desc = "An integrated self-destruct module. When the wearer dies, they vanish in smoke. Do not press this button."
 
-/obj/item/rig_module/self_destruct/New()
-	..()
-	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
-	src.smoke.attach(src)
+/obj/item/rig_module/self_destruct/Initialize(mapload)
+	. = ..()
+	smoke = new /datum/effect/effect/system/smoke_spread/bad()
+	smoke.attach(src)
 
 /obj/item/rig_module/self_destruct/Destroy()
 	qdel(smoke)

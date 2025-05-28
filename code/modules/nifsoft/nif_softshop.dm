@@ -17,7 +17,7 @@
 	opacity = 0
 	var/datum/entopic/entopic
 
-/obj/machinery/vending/nifsoft_shop/Initialize()
+/obj/machinery/vending/nifsoft_shop/Initialize(mapload)
 	. = ..()
 
 	if(wires)

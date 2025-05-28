@@ -35,7 +35,7 @@
 
 	var/gene_sequencing = FALSE // Traitgenes edit - create a dna injector for fixing dna, but don't let it be abusable
 
-/obj/machinery/computer/transhuman/resleeving/Initialize()
+/obj/machinery/computer/transhuman/resleeving/Initialize(mapload)
 	. = ..()
 	pods = list()
 	spods = list()
@@ -507,12 +507,12 @@
 	var/list/datum/transhuman/mind_record/stored = list()
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger
+ */
 /obj/machinery/computer/transhuman/resleeving/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)

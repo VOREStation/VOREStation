@@ -27,6 +27,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 5
 	color = "#fff200"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -109,8 +110,6 @@
 
 /datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
@@ -476,8 +475,6 @@
 
 /datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)
@@ -547,6 +544,7 @@
 	id = REAGENT_ID_BRAINPROTEIN
 	taste_description = "fatty, mushy meat and allspice"
 	color = "#caa3c9"
+	wiki_flag = WIKI_FOOD|WIKI_SPOILER
 
 /datum/reagent/nutriment/protein/brainzsnax/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -584,6 +582,7 @@
 	description = "A mixture of water and protein commonly used as a meal supplement."
 	taste_description = "pure protein"
 	color = "#ebd8cb"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/protein_powder/vanilla
 	name = REAGENT_VANILLAPROTEINPOWDER
@@ -729,7 +728,7 @@
 
 	glass_name = REAGENT_ID_NUKIE
 	glass_desc = "A drink to perk you up and refresh you!"
-	overdose = 30
+	overdose = REAGENTS_OVERDOSE
 
 	taste_description = "flavourless energy"
 
@@ -900,12 +899,12 @@
 
 /datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold *= 0.15 //~1/6
 
 	M.druggy = max(M.druggy, 30)
 	M.adjust_nutrition(-10 * removed)

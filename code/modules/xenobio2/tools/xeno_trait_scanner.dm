@@ -75,7 +75,7 @@
 	dat += "<h2>General Data</h2>"
 
 
-	dat += "<tr><td><b>Health:  </b></td><td>[trait_info.get_trait(TRAIT_XENO_HEALTH)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Health:  ") + "</td><td>[trait_info.get_trait(TRAIT_XENO_HEALTH)]</td></tr>"
 
 	if(prod_reagents && prod_reagents.reagent_list && prod_reagents.reagent_list.len)
 		dat += "<h2>Reagent Data</h2>"

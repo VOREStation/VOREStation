@@ -11,6 +11,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/holder,
 	/obj/machinery/camera,
 	/obj/belly,
+	/obj/soulgem,
 	/obj/screen,
 	/atom/movable/emissive_blocker,
 	/obj/item/rig/protean
@@ -56,7 +57,7 @@ var/list/ventcrawl_machinery = list(
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
 		remove_ventcrawl()
 		add_ventcrawl(loc)
-		client.screen += global_hud.centermarker
+		client.screen += GLOB.global_hud.centermarker
 
 /mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
@@ -238,7 +239,7 @@ var/list/ventcrawl_machinery = list(
 			pipes_shown += A.pipe_image
 			client.images += A.pipe_image
 	if(client)
-		client.screen += global_hud.centermarker
+		client.screen += GLOB.global_hud.centermarker
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
@@ -246,7 +247,7 @@ var/list/ventcrawl_machinery = list(
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
-		client.screen -= global_hud.centermarker
+		client.screen -= GLOB.global_hud.centermarker
 		client.eye = src
 
 	pipes_shown.len = 0

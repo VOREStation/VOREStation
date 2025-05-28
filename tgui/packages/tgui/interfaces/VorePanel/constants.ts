@@ -1,7 +1,14 @@
 export const stats: (string | undefined)[] = [undefined, 'average', 'bad'];
+export const vorespawnAbsorbedText: string[] = ['No', 'Yes', 'Prey Choice'];
+export const vorespawnAbsorbedColor: (string | undefined)[] = [
+  undefined,
+  'green',
+  'orange',
+];
 
 export const digestModeToColor = {
-  Hold: null,
+  Default: undefined,
+  Hold: undefined,
   Digest: 'red',
   Absorb: 'purple',
   Unabsorb: 'purple',
@@ -12,6 +19,21 @@ export const digestModeToColor = {
   'Size Steal': 'teal',
   Heal: 'green',
   'Encase In Egg': 'blue',
+};
+
+export const reagentToColor = {
+  Water: undefined,
+  Milk: undefined,
+  Cream: undefined,
+  Honey: 'teal',
+  'Cherry Jelly': 'teal',
+  'Digestive acid': 'red',
+  'Diluted digestive acid': 'red',
+  'Space cleaner': undefined,
+  'Space Lube': undefined,
+  Biomass: 'teal',
+  'Concentrated Radium': 'orange',
+  Tricordrazine: 'green',
 };
 
 export const digestModeToPreyMode = {

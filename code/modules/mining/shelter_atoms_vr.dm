@@ -193,11 +193,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 /obj/structure/table/survival_pod/update_icon()
 	icon_state = "table"
 
-/obj/structure/table/survival_pod/New()
+/obj/structure/table/survival_pod/Initialize(mapload)
 	material = get_material_by_name(MAT_STEEL)
+	. = ..()
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
-	..()
 
 /obj/structure/table/survival_pod/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, span_warning("You cannot dismantle \the [src]."))
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/Initialize()
+/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))

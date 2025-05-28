@@ -2,7 +2,7 @@
 //
 // Allows ghosts to roleplay with crewmembers without having to commit to joining the round, and also allows communications between two communicators.
 
-var/global/list/obj/item/communicator/all_communicators = list()
+var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
 
 // List of core tabs the communicator can switch to
 #define HOMETAB 1
@@ -95,7 +95,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
-/obj/item/communicator/Initialize()
+/obj/item/communicator/Initialize(mapload)
 	. = ..()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)
@@ -267,7 +267,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 // Proc: New()
 // Parameters: None
 // Description: Gives ghosts an exonet address based on their key and ghost name.
-/mob/observer/dead/Initialize()
+/mob/observer/dead/Initialize(mapload)
 	. = ..()
 	exonet = new(src)
 	if(client)
@@ -349,10 +349,10 @@ var/global/list/obj/item/communicator/all_communicators = list()
 /obj/machinery/camera/communicator
 	network = list(NETWORK_COMMUNICATORS)
 
-/obj/machinery/camera/communicator/New()
-	..()
-	client_huds |= global_hud.whitense
-	client_huds |= global_hud.darkMask
+/obj/machinery/camera/communicator/Initialize(mapload)
+	. = ..()
+	client_huds |= GLOB.global_hud.whitense
+	client_huds |= GLOB.global_hud.darkMask
 
 //It's the 26th century. We should have smart watches by now.
 /obj/item/communicator/watch

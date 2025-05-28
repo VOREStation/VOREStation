@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import { Component, type ReactNode } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { fetchRetry } from 'tgui-core/http';
 

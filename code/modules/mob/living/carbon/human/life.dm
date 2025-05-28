@@ -20,7 +20,7 @@
 	var/chemical_darksight = 0
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 	set background = BACKGROUND_ENABLED
 
 	if (transforming)
@@ -196,7 +196,7 @@
 	if(dna)
 		if(disabilities & DETERIORATE && prob(2) && prob(3)) // stacked percents for rarity
 			// random strange symptoms from organ/limb
-			custom_emote(VISIBLE_MESSAGE, "flinches slightly.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "flinches slightly.", check_stat = TRUE)
 			switch(rand(1,4))
 				if(1)
 					adjustToxLoss(rand(2,8))
@@ -542,7 +542,7 @@
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
-
+/*
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
 	//spread some viruses while we are at it
@@ -556,19 +556,22 @@
 				continue
 			for(var/mob/living/carbon/M in view(1,src))
 				ContractDisease(D)
-
+*/
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
 		//Because rigs store their tanks out of reach of contents.Find(), a check has to be made to make
 		//sure the rig is still worn, still online, and that its air supply still exists.
-		var/obj/item/tank/rig_supply
+		var/obj/item/tank/suit_supply
 		var/obj/item/rig/Rig = get_rig()
+		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
 
 		if(Rig)
-			rig_supply = Rig.air_supply
+			suit_supply = Rig.air_supply
+		else if(Void)
+			suit_supply = Void.tank
 
-		if ((!rig_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
@@ -610,8 +613,8 @@
 
 		if(breath && should_have_organ(O_LUNGS))
 			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised() && prob(8))
-				rupture_lung()
+			if(!L.is_bruised())
+				rupture_lung(TRUE)
 
 		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
 		return 0
@@ -677,8 +680,8 @@
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			spawn(0) emote("gasp")
-		if(is_below_sound_pressure(get_turf(src)) && prob(8))	//No more popped lungs from choking/drowning
-			rupture_lung()
+		if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning. You also have ~20 seconds to get internals on before your lungs pop.
+			rupture_lung(TRUE)
 
 		var/ratio = inhale_pp/safe_pressure_min
 		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
@@ -1241,14 +1244,12 @@
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
-	/* //Unused here, used downstream.
 	if(nutrition > 500 && noisy_full == TRUE)
 		var/belch_prob = 5 //Maximum belch prob.
 		if(nutrition < 4075)
 			belch_prob = ((nutrition-500)/3575)*5 //Scale belch prob with fullness if not already at max. If editing make sure the multiplier matches the max prob above.
 		if(prob(belch_prob))
 			src.emote("belch")
-	*/
 	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
 		recalculate_vis()
 		chemical_darksight = 1
@@ -1281,7 +1282,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= CONFIG_GET(number/health_threshold_dead) || (should_have_organ("brain") && !has_brain()))
+		if(health <= CONFIG_GET(number/health_threshold_dead) || (should_have_organ(O_BRAIN) && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
@@ -1309,7 +1310,7 @@
 				qdel(a)
 
 		//Brain damage from Oxyloss
-		if(should_have_organ("brain"))
+		if(should_have_organ(O_BRAIN))
 			var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 			if(CE_STABLE in chem_effects)
 				brainOxPercent = 0.008		//Halved in effect
@@ -1489,7 +1490,7 @@
 
 	..()
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science, global_hud.material, global_hud.whitense)
+	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
@@ -1670,11 +1671,8 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc))
+		if(!surrounding_belly() && !previewing_belly) //VOREStation Add - Belly fullscreens safety
 			clear_fullscreen("belly")
-			clear_fullscreen("belly2")
-			clear_fullscreen("belly3")
-			clear_fullscreen("belly4")
 
 		if(CONFIG_GET(flag/welder_vision))
 			var/found_welder
@@ -1699,7 +1697,7 @@
 							found_welder = 1
 				if(absorbed) found_welder = 1
 			if(found_welder)
-				client.screen |= global_hud.darkMask
+				client.screen |= GLOB.global_hud.darkMask
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()
@@ -1737,7 +1735,7 @@
 
 		if(seer==1)
 			var/obj/effect/rune/R = locate() in loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
+			if(R && R.word1 == GLOB.cultwords["see"] && R.word2 == GLOB.cultwords["hell"] && R.word3 == GLOB.cultwords["join"])
 				see_invisible = SEE_INVISIBLE_CULT
 			else
 				see_invisible = see_invisible_default
@@ -1862,32 +1860,15 @@
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
-					playsound_local(src,pick(scawwySownds),50, 0)
+					playsound_local(src,pick(GLOB.scawwySownds),50, 0)
 					return
-			playsound_local(src,pick(scarySounds),50, 1, -1)
-
-/mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
-				stomach_contents.Remove(M)
-				continue
-			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(SSair.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjust_nutrition(10)
+			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
 		if(hud_used)
-			ling_chem_display.invisibility = 0
+			ling_chem_display.invisibility = INVISIBILITY_NONE
 //			ling_chem_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(mind.changeling.chem_charges)]</font></div>"
 			switch(mind.changeling.chem_storage)
 				if(1 to 50)
@@ -1926,7 +1907,7 @@
 							ling_chem_display.icon_state = "ling_chems80e"
 	else
 		if(mind && hud_used)
-			ling_chem_display.invisibility = 101
+			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/human/handle_shock()
 	..()
@@ -1949,7 +1930,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
 		eye_blurry = max(2, eye_blurry)
 		if(traumatic_shock >= 80)
 			stuttering = max(stuttering, 5)
@@ -1961,7 +1942,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
+			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
 		if (prob(2))
 			if(traumatic_shock >= 80)
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
@@ -1985,7 +1966,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
-			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
+			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
 			if(prob(60))
 				emote("pain")
 		Weaken(20)
@@ -2187,9 +2168,9 @@
 			if(I)
 				perpname = I.registered_name
 
-		for(var/datum/data/record/E in data_core.general)
+		for(var/datum/data/record/E in GLOB.data_core.general)
 			if(E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.security)
+				for (var/datum/data/record/R in GLOB.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						holder.icon_state = "hudwanted"
 						break
@@ -2236,8 +2217,8 @@
 		var/image/holder = grab_hud(SPECIALROLE_HUD)
 		holder.icon_state = "hudblank"
 		if(mind && mind.special_role)
-			if(hud_icon_reference[mind.special_role])
-				holder.icon_state = hud_icon_reference[mind.special_role]
+			if(GLOB.hud_icon_reference[mind.special_role])
+				holder.icon_state = GLOB.hud_icon_reference[mind.special_role]
 			else
 				holder.icon_state = "hudsyndicate"
 		apply_hud(SPECIALROLE_HUD, holder)
@@ -2315,9 +2296,9 @@
 /mob/living/carbon/human/proc/has_virus()
 	for(var/thing in viruses)
 		var/datum/disease/D = thing
-		if(!D.discovered)
+		if(!global_flag_check(D.virus_modifiers, DISCOVERED))
 			continue
-		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.severity != NONTHREAT))
+		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.danger != DISEASE_NONTHREAT))
 			return TRUE
 	return FALSE
 

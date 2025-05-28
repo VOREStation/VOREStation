@@ -4,7 +4,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	vital = 1
 	icon_state = "brain2"
@@ -19,6 +19,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
 	var/defib_timer = -1
+	var/laststress = 0
 
 /obj/item/organ/internal/brain/process()
 	..()
@@ -85,7 +86,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/brain/LateInitialize()
-	. = ..()
 	if(brainmob)
 		butcherable = FALSE
 
@@ -111,6 +111,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			brainmob.ooc_notes = H.ooc_notes
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
 			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
+			brainmob.ooc_notes_favs = H.ooc_notes_favs
+			brainmob.ooc_notes_maybes = H.ooc_notes_maybes
+			brainmob.ooc_notes_style = H.ooc_notes_style
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -169,7 +172,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/pariah_brain
 	name = "brain remnants"
 	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
@@ -203,7 +206,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/slime/LateInitialize()
 	. = ..()
-	 //Match the core to the Promethean's starting color.
+	//Match the core to the Promethean's starting color.
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))

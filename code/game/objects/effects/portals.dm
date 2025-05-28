@@ -11,6 +11,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	var/obj/item/target = null
 	var/creator = null
 	anchored = TRUE
+	var/event = FALSE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	if(ismob(M) && !(isliving(M)))
@@ -22,7 +23,11 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 
 /obj/effect/portal/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
-		return
+		if(!event)
+			return
+		if(iscarbon(AM))
+			var/mob/living/carbon/human/H = AM
+			H.attack_dephase(null, src)
 	if(ismob(AM) && !(isliving(AM)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
@@ -38,7 +43,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/Initialize()
+/obj/effect/portal/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 

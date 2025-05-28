@@ -12,7 +12,7 @@
 	var/area/our_area
 
 /*
-/obj/item/juke_remote/Initialize()
+/obj/item/juke_remote/Initialize(mapload)
 	. = ..()
 	flags |= NOBLUDGEON
 */

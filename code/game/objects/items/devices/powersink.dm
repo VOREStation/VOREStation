@@ -30,7 +30,7 @@
 /obj/item/powersink/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	STOP_PROCESSING_POWER_OBJECT(src)
-	..()
+	. = ..()
 
 /obj/item/powersink/attackby(var/obj/item/I, var/mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))

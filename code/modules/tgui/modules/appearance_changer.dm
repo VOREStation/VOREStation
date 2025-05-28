@@ -263,6 +263,23 @@
 					owner.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("ears_alpha")
+			var/new_alpha = clamp(params["ears_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+		if("secondary_ears_alpha")
+			var/new_alpha = clamp(params["secondary_ears_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears2 = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("ears_secondary_color")
 			if(can_change(owner, APPEARANCE_HAIR_COLOR))
 				var/channel = params["channel"]
@@ -321,6 +338,15 @@
 					owner.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("tail_alpha")
+			var/new_alpha = clamp(params["tail_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_tail = new_alpha
+				update_dna(owner)
+				owner.update_tail_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("wing")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/wing/instance = locate(params["ref"])
@@ -366,6 +392,16 @@
 					owner.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+
+		if("wing_alpha")
+			var/new_alpha = clamp(params["wing_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_wing = new_alpha
+				update_dna(owner)
+				owner.update_wing_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("marking")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/todo = params["todo"]
@@ -506,26 +542,29 @@
 				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
-		/*if("species_sound") //TODO: UP PORT SPECIES_SOUNDS
+		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
 			if(choice && can_change(owner, APPEARANCE_RACE))
 				owner.species.species_sounds = choice
 				return TRUE
-		*/
 		if("flavor_text")
 			var/select_key = params["target"]
 			if(select_key && can_change(owner, APPEARANCE_RACE))
 				if(select_key in owner.flavor_texts)
 					switch(select_key)
 						if("general")
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 						else
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
 							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 		// ***********************************
@@ -608,6 +647,8 @@
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
+	if(!owner || !owner.species) //We tried to update our UI and no longer have an owner!
+		return
 	if(!ui)
 		owner.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
@@ -648,6 +689,8 @@
 		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
+			if(marking_style == DEVELOPER_WARNING_NAME)
+				continue
 			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
 			var/our_iconstate = S.icon_state
 			if(LAZYLEN(S.body_parts))
@@ -724,11 +767,11 @@
 	data["digitigrade"] = owner.digitigrade
 	data["blood_reagent"] = owner.dna.blood_reagents
 	data["blood_color"] = owner.dna.blood_color
-	//data["species_sound"] = owner.species.species_sounds //TODO: RAISE UP FROM CHOMP
+	data["species_sound"] = owner.species.species_sounds //TODO: RAISE UP FROM CHOMP
 	// Are these needed? It seems to be only used if above is unset??
-	//data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
-	//data["species_sounds_female"] = owner.species.species_sounds_female
-	//data["species_sounds_male"] = owner.species.species_sounds_male
+	data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
+	data["species_sounds_female"] = owner.species.species_sounds_female
+	data["species_sounds_male"] = owner.species.species_sounds_male
 	// flavor
 	if(!owner.flavor_texts.len)
 		owner.flavor_texts["general"] = ""
@@ -807,6 +850,10 @@
 		data["wing_color"] = rgb(owner.r_wing, owner.g_wing, owner.b_wing)
 		data["wing2_color"] = rgb(owner.r_wing2, owner.g_wing2, owner.b_wing2)
 		data["wing3_color"] = rgb(owner.r_wing3, owner.g_wing3, owner.b_wing3)
+		data["wing_alpha"] = owner.a_wing
+		data["tail_alpha"] = owner.a_tail
+		data["ears_alpha"] = owner.a_ears
+		data["secondary_ears_alpha"] = owner.a_ears2
 
 	data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
@@ -819,6 +866,7 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner) // Copied from the vore version.
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -952,6 +1000,7 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner)
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
@@ -994,8 +1043,7 @@
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
-	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
-	if(!owner.transforming)
+	if(!istype(owner.loc, /obj/item/holder/micro))
 		return STATUS_CLOSE
 	return ..()
 
@@ -1041,7 +1089,7 @@
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
+	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)

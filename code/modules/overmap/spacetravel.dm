@@ -1,11 +1,11 @@
 //Space stragglers go here
 /obj/effect/overmap/visitable/sector/temporary
 	name = "Deep Space"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	known = FALSE
 	in_space = TRUE
 
-/obj/effect/overmap/visitable/sector/temporary/Initialize()
+/obj/effect/overmap/visitable/sector/temporary/Initialize(mapload)
 	if(!istype(loc, /turf/unsimulated/map))
 		CRASH("Attempt to create deepspace which is not on overmap: [log_info_line(loc)]")
 	// Tell sector initializer where are is where we want to be.

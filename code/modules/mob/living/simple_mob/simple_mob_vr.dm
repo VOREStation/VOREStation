@@ -54,6 +54,8 @@
 
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
+	if(mob_radio)
+		QDEL_NULL(mob_radio)
 	release_vore_contents()
 	LAZYCLEARLIST(prey_excludes)
 	return ..()
@@ -102,6 +104,10 @@
 	if(src == M) //Don't eat YOURSELF dork
 		//ai_log("vr/won't eat [M] because it's me!", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
+	if(!M.devourable)	// Why was there never a check for edibility to begin with
+		return 0
+	if(M.is_incorporeal()) // No eating the phased ones
+		return 0
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
 		//ai_log("vr/wont eat [M] because I am picky", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
@@ -145,6 +151,8 @@
 /mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
+	if(M.is_incorporeal())
+		return FALSE
 	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
 		return FALSE
 	if(vore_standing_too) //100% chance of hitting people we can eat on the spot
@@ -165,7 +173,7 @@
 		M.visible_message(span_danger("\The [src] attempts to pounce \the [M] but misses!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
-	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too
+	if(will_eat(M) && (M.lying || vore_standing_too)) //if they're edible then eat them too
 		return EatTarget(M)
 	else
 		return //just leave them
@@ -201,17 +209,18 @@
 	if(!vore_active || no_vore || !voremob_loaded)
 		return
 
-	if(!IsAdvancedToolUser())
-		add_verb(src, /mob/living/simple_mob/proc/animal_nom)
-		add_verb(src, /mob/living/proc/shred_limb)
+	AddElement(/datum/element/slosh) // Sloshy element
 
-	if(LAZYLEN(vore_organs))
-		return
+	if(!soulgem)
+		soulgem = new(src)
 
 	// Since they have bellies, add verbs to toggle settings on them.
 	add_verb(src, /mob/living/simple_mob/proc/toggle_digestion)
 	add_verb(src, /mob/living/simple_mob/proc/toggle_fancygurgle)
 	add_verb(src, /mob/living/proc/vertical_nom)
+
+	if(LAZYLEN(vore_organs))
+		return
 
 	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)

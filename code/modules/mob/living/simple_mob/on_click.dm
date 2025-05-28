@@ -16,7 +16,7 @@
 			if(isliving(A))
 				var/mob/living/L = A
 				if(istype(L) && (!has_hands || !L.attempt_to_scoop(src)))
-					custom_emote(1,"[pick(friendly)] \the [A]!")
+					automatic_custom_emote(VISIBLE_MESSAGE,"[pick(friendly)] \the [A]!", check_stat = TRUE)
 			if(istype(A,/obj/structure/micro_tunnel))	//Allows simplemobs to click on mouse holes, mice should be allowed to go in mouse holes, and other mobs
 				var/obj/structure/micro_tunnel/t = A	//should be allowed to drag the mice out of the mouse holes!
 				t.tunnel_interact(src)
@@ -26,7 +26,7 @@
 				return
 
 			else if(melee_damage_upper == 0 && isliving(A))
-				custom_emote(1,"[pick(friendly)] \the [A]!")
+				automatic_custom_emote(VISIBLE_MESSAGE,"[pick(friendly)] \the [A]!", check_stat = TRUE)
 
 			else
 				attack_target(A)

@@ -104,6 +104,7 @@
 	allergen_factor = 1	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
 	affects_robots = 1 //kiss my shiny metal ass
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -254,7 +255,7 @@
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
 
@@ -269,7 +270,7 @@
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
 		M.adjustBrainLoss(0.5 * removed)
@@ -330,6 +331,22 @@
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
 			return
+
+/datum/reagent/radium/concentrated
+	name = REAGENT_CONCENTRATEDRADIUM
+	id = REAGENT_ID_CONCENTRATEDRADIUM
+	description = "Concentrated Radium is a more potent variant of regular radium, able to pierce and irradiate a subject through their skin."
+	taste_mult = 0	//Apparently radium is tasteless
+	reagent_state = SOLID
+	color = "#C7C7C7"
+
+/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(issmall(M)) removed *= 2
+	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
+
+/datum/reagent/radium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(issmall(M)) removed *= 2
+	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
 
 /datum/reagent/acid
 	name = REAGENT_SACID

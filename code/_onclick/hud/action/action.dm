@@ -58,7 +58,7 @@
 		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
 
 	// if(istype(target, /datum/mind))
-	// 	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, .proc/on_target_mind_swapped)
+	// 	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_target_mind_swapped))
 
 /datum/action/Destroy()
 	if(owner)

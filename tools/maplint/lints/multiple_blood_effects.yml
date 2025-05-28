@@ -1,0 +1,3 @@
+=/obj/effect/decal/cleanable/blood:
+  banned_neighbors:
+  - =/obj/effect/decal/cleanable/blood

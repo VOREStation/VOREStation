@@ -23,7 +23,7 @@ GLOBAL_DATUM_INIT(tgui_nif_main_state, /datum/tgui_state/nif_main_state, new)
 		var/mob/living/carbon/human/H = user
 		if(!H.nif || src_object != H.nif)
 			return STATUS_CLOSE
-		
+
 		if(H.nif.stat == NIF_WORKING)
 			return user.shared_tgui_interaction()
 		else

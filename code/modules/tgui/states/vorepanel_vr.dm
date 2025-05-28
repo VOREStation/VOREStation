@@ -1,7 +1,7 @@
- /**
-  * tgui state: vorepanel_state
-  *
-  * Only checks that the user and src_object are the same.
+/**
+ * tgui state: vorepanel_state
+ *
+ * Only checks that the user and src_object are the same.
  **/
 
 GLOBAL_DATUM_INIT(tgui_vorepanel_state, /datum/tgui_state/vorepanel_state, new)

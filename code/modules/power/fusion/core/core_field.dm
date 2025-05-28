@@ -47,8 +47,8 @@
 	var/last_range
 	var/last_power
 
-/obj/effect/fusion_em_field/New(loc, var/obj/machinery/power/fusion_core/new_owned_core)
-	..()
+/obj/effect/fusion_em_field/Initialize(mapload, var/obj/machinery/power/fusion_core/new_owned_core)
+	. = ..()
 
 	set_light(light_min_range,light_min_power)
 	last_range = light_min_range
@@ -56,7 +56,7 @@
 
 	owned_core = new_owned_core
 	if(!owned_core)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	id_tag = owned_core.id_tag
 	//create the gimmicky things to handle field collisions
 	var/obj/effect/fusion_particle_catcher/catcher
@@ -530,10 +530,10 @@
 	var/stablemessage = "Containment field returning to stable conditions."
 
 	if(percent_unstable >= warnpoint) //we're unstable, start warning engineering
-		global_announcer.autosay(warnmessage, "Field Stability Monitor", "Engineering")
+		GLOB.global_announcer.autosay(warnmessage, "Field Stability Monitor", "Engineering")
 		stable = FALSE //we know we're not stable, so let's not state the safe message.
 	else if(percent_unstable < warnpoint && stable == 0) //The field is stable again. Let's set our safe variable and state the safe message.
-		global_announcer.autosay(stablemessage, "Field Stability Monitor", "Engineering")
+		GLOB.global_announcer.autosay(stablemessage, "Field Stability Monitor", "Engineering")
 		stable = TRUE
 	return
 
@@ -592,7 +592,7 @@
 	visible_message(span_danger("\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!"))
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))
-	global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
+	GLOB.global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
 	RadiateAll()
 	var/list/things_in_range = range(10, owned_core)
 	var/list/turfs_in_range = list()
@@ -617,7 +617,7 @@
 
 /obj/effect/fusion_em_field/proc/MRC() //spews electromagnetic pulses in an area around the core.
 	visible_message(span_danger("\The [src] glows an extremely bright pink and flares out of existance!"))
-	global_announcer.autosay("Warning! Magnetic Resonance Cascade detected! Brace for electronic system distruption.", "Field Stability Monitor")
+	GLOB.global_announcer.autosay("Warning! Magnetic Resonance Cascade detected! Brace for electronic system distruption.", "Field Stability Monitor")
 	set_light(15, 15, "#ff00d8")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
@@ -630,7 +630,7 @@
 	return
 
 /obj/effect/fusion_em_field/proc/QuantumFluxCascade() //spews hot phoron and oxygen in a radius around the RUST. Will probably set fire to things
-	global_announcer.autosay("Warning! Quantum fluxuation detected! Flammable gas release expected.", "Field Stability Monitor")
+	GLOB.global_announcer.autosay("Warning! Quantum fluxuation detected! Flammable gas release expected.", "Field Stability Monitor")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
 	for (var/turf/T in things_in_range)
@@ -650,7 +650,7 @@
 	return
 
 /obj/effect/fusion_em_field/proc/MagneticQuench() //standard hard shutdown. dumps hot oxygen/phoron into the core's area and releases an EMP in the area around the core.
-	global_announcer.autosay("Warning! Magnetic Quench event detected, engaging hard shutdown.", "Field Stability Monitor")
+	GLOB.global_announcer.autosay("Warning! Magnetic Quench event detected, engaging hard shutdown.", "Field Stability Monitor")
 	empulse(owned_core, 10, 15)
 	var/turf/TT = get_turf(owned_core)
 	if(istype(TT))
@@ -670,7 +670,7 @@
 	visible_message(span_danger("\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!"))
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))
-	global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
+	GLOB.global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
 	RadiateAll()
 	var/list/things_in_range = range(10, owned_core)
 	var/list/turfs_in_range = list()

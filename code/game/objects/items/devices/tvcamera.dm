@@ -14,8 +14,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/tvcamera/New()
-	..()
+/obj/item/tvcamera/Initialize(mapload)
+	. = ..()
 	listening_objects += src
 
 /obj/item/tvcamera/Destroy()
@@ -24,14 +24,14 @@
 	qdel(radio)
 	camera = null
 	radio = null
-	..()
+	. = ..()
 
 /obj/item/tvcamera/examine()
 	. = ..()
 	. += "Video feed is [camera.status ? "on" : "off"]"
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
-/obj/item/tvcamera/Initialize()
+/obj/item/tvcamera/Initialize(mapload)
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel

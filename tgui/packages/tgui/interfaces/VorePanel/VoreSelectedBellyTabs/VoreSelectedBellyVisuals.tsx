@@ -2,6 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
+import { FeatureColorInput } from '../FeatureColorInput';
 import type { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
@@ -10,16 +11,19 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
   const { belly } = props;
   const {
     belly_fullscreen,
+    belly_fullscreen_color,
+    belly_fullscreen_color2,
+    belly_fullscreen_color3,
+    belly_fullscreen_color4,
+    colorization_enabled,
     possible_fullscreens,
     disable_hud,
-    belly_fullscreen_color,
-    belly_fullscreen_color_secondary,
-    belly_fullscreen_color_trinary,
-    colorization_enabled,
     vore_sprite_flags,
     affects_voresprite,
     absorbed_voresprite,
     absorbed_multiplier,
+    liquid_voresprite,
+    liquid_multiplier,
     item_voresprite,
     item_multiplier,
     health_voresprite,
@@ -29,6 +33,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
     belly_sprite_to_affect,
     undergarment_chosen,
     undergarment_if_none,
+    undergarment_color,
     tail_option_shown,
     tail_to_change_to,
   } = belly;
@@ -84,6 +89,28 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                     }
                   >
                     {absorbed_multiplier}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Count liquid reagents for vore sprites">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_count_liquid_for_sprites',
+                      })
+                    }
+                    icon={liquid_voresprite ? 'toggle-on' : 'toggle-off'}
+                    selected={liquid_voresprite}
+                  >
+                    {liquid_voresprite ? 'Yes' : 'No'}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Liquid Multiplier">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', { attribute: 'b_liquid_multiplier' })
+                    }
+                  >
+                    {liquid_multiplier}
                   </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Count items for vore sprites">
@@ -185,6 +212,12 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                         {undergarment_if_none}
                       </Button>
                     </LabeledList.Item>
+                    <FeatureColorInput
+                      action_name="b_undergarment_color"
+                      value_of={null}
+                      back_color={undergarment_color}
+                      name_of="Undergarment Color if none"
+                    />
                   </>
                 ) : (
                   ''
@@ -214,69 +247,36 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
       </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Stack align="center">
-          <Stack.Item shrink>
-            <Box
-              backgroundColor={belly_fullscreen_color}
-              width="20px"
-              height="20px"
-            />
-          </Stack.Item>
-          <Stack.Item grow>
-            <Button
-              fluid
-              icon="eye-dropper"
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_fullscreen_color',
-                  val: null,
-                })
-              }
-            >
-              Select Primary Color
-            </Button>
-          </Stack.Item>
-          <Stack.Item shrink>
-            <Box
-              backgroundColor={belly_fullscreen_color_secondary}
-              width="20px"
-              height="20px"
-            />
-          </Stack.Item>
-          <Stack.Item grow>
-            <Button
-              fluid
-              icon="eye-dropper"
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_fullscreen_color_secondary',
-                  val: null,
-                })
-              }
-            >
-              Select Secondary Color
-            </Button>
-          </Stack.Item>
-          <Stack.Item shrink>
-            <Box
-              backgroundColor={belly_fullscreen_color_trinary}
-              width="20px"
-              height="20px"
-            />
-          </Stack.Item>
-          <Stack.Item grow>
-            <Button
-              fluid
-              icon="eye-dropper"
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_fullscreen_color_trinary',
-                  val: null,
-                })
-              }
-            >
-              Select Trinary Color
-            </Button>
-          </Stack.Item>
+          <FeatureColorInput
+            action_name="b_fullscreen_color"
+            value_of={null}
+            back_color={belly_fullscreen_color}
+            name_of="1"
+          />
+          <FeatureColorInput
+            action_name="b_fullscreen_color2"
+            value_of={null}
+            back_color={belly_fullscreen_color2}
+            name_of="2"
+          />
+          <FeatureColorInput
+            action_name="b_fullscreen_color3"
+            value_of={null}
+            back_color={belly_fullscreen_color3}
+            name_of="3"
+          />
+          <FeatureColorInput
+            action_name="b_fullscreen_color4"
+            value_of={null}
+            back_color={belly_fullscreen_color4}
+            name_of="4"
+          />
+          <FeatureColorInput
+            action_name="b_fullscreen_alpha"
+            value_of={null}
+            back_color="#FFFFFF"
+            name_of="Alpha"
+          />
         </Stack>
         <Box mt={1}>
           <LabeledList>
@@ -328,7 +328,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Belly Fullscreens Styles">
+        <Section title="Belly Fullscreens Styles" width="800px">
           Belly styles:
           <Button
             fluid
@@ -342,7 +342,6 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
           {Object.keys(possible_fullscreens).map((key, index) => (
             <span key={index} style={{ width: '256px' }}>
               <Button
-                key={key}
                 width="256px"
                 height="256px"
                 selected={key === belly_fullscreen}
@@ -351,7 +350,10 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                 }
               >
                 <Box
-                  className={classes(['vore240x240', key])}
+                  className={classes([
+                    colorization_enabled ? 'vore240x240' : 'fixedvore240x240',
+                    key,
+                  ])}
                   style={{
                     transform: 'translate(0%, 4%)',
                   }}

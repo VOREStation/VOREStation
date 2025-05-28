@@ -17,7 +17,7 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
 
-/obj/machinery/mineral/processing_unit_console/Initialize()
+/obj/machinery/mineral/processing_unit_console/Initialize(mapload)
 	. = ..()
 	src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5, src)
 	if (machine)
@@ -187,7 +187,7 @@
 		ORE_VERDANTIUM = 60,
 		ORE_RUTILE = 40) //VOREStation Add
 
-/obj/machinery/mineral/processing_unit/Initialize()
+/obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
 	for(var/ore in GLOB.ore_data)
 		var/ore/OD = GLOB.ore_data[ore]
@@ -196,10 +196,10 @@
 
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
-	for (var/dir in cardinal)
+	for (var/dir in GLOB.cardinal)
 		src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(src.input) break
-	for (var/dir in cardinal)
+	for (var/dir in GLOB.cardinal)
 		src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(src.output) break
 	return

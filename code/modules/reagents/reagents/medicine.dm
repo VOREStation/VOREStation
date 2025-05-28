@@ -57,7 +57,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(4 * removed * chem_effective, 0) //VOREStation Edit
+		M.heal_organ_damage(4 * removed * chem_effective, 0)
 
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -139,7 +139,7 @@
 		chem_effective = 0.5
 		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 4 * removed * chem_effective) //VOREStation edit
+		M.heal_organ_damage(0, 4 * removed * chem_effective)
 
 /datum/reagent/dermaline
 	name = REAGENT_DERMALINE
@@ -158,7 +158,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
+		M.heal_organ_damage(0, 8 * removed * chem_effective)
 
 /datum/reagent/dermaline/topical
 	name = REAGENT_DERMALAZE
@@ -254,21 +254,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
-	metabolism = REM * 0.25 //VOREStation Edit
+	metabolism = REM * 0.25
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 24) //VOREStation Edit
+		M.adjustToxLoss(removed * 24)
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15 * M.species.chem_strength_pain)
 		if(prob(15))
 			to_chat(M, span_notice("You have a moment of clarity as you collapse."))
-			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
+			M.adjustBrainLoss(-20 * removed)
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-15 * removed * M.species.chem_strength_heal)
 
-	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed) //VOREStation Edit
+	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed)
 
 /datum/reagent/dexalinp
 	name = REAGENT_DEXALINP
@@ -413,18 +413,14 @@
 	color = "#6b4de3"
 	metabolism = REM * 0.5
 	mrate_static = TRUE
+	affects_dead = FALSE //Clarifying this here since the original intent was this ONLY works on people that have the bloodpump_corpse modifier.
 	scannable = 1
 
 /datum/reagent/mortiferin/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
-	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
-		affects_dead = TRUE
-	else
-		affects_dead = FALSE
-
 	. = ..(M, alien, location)
 
 /datum/reagent/mortiferin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
+	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD))
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
@@ -641,7 +637,7 @@
 			M.Weaken(5)
 		if(dose >= 10 && M.paralysis < 40)
 			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
-	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
+	M.adjustBrainLoss(-8 * removed * chem_effective)
 	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective * M.species.chem_strength_pain)
 
 /datum/reagent/imidazoline
@@ -728,7 +724,7 @@
 			for(var/obj/item/organ/external/O in H.bad_external_organs)
 				if(O.status & ORGAN_BROKEN)
 					O.mend_fracture()		//Only works if the bone won't rebreak, as usual
-					H.custom_pain(span_danger("<b><font size=2>You feel a terrible agony tear through your [O.name]!</font></b>"),60,TRUE)
+					H.custom_pain(span_danger(span_normal(span_bold("You feel a terrible agony tear through your [O.name]!"))),60,TRUE)
 					H.AdjustWeakened(10)		//Bones being regrown will knock you over
 					H.adjustHalLoss(60)
 					H.AdjustStunned(1)		//Bones being regrown will knock you over
@@ -736,7 +732,7 @@
 /datum/reagent/myelamine
 	name = REAGENT_MYELAMINE
 	id = REAGENT_ID_MYELAMINE
-	description = "Used to rapidly clot internal hemorrhages by increasing the effectiveness of platelets."
+	description = "Used to rapidly clot hemorrhages by increasing the effectiveness of platelets. An ideal dosage of 10 units will fully heal any internal hemorrhages."
 	reagent_state = LIQUID
 	color = "#4246C7"
 	metabolism = REM * 0.75
@@ -755,30 +751,30 @@
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
 			for(var/datum/wound/W in O.wounds)
 				if(W.bleeding())
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
+					W.bandage() //This is the ACTUAL clotting being performed.
+					W.damage = max(W.damage - (wound_heal*3.5), 0) 	//Removed should be 0.15 (can be higher if you have high/apex metabolism). repair_strength is 6. Making wound_heal  .9. Multiply by 3.5 and that gives us a heal of 3.15 on our wounds.
+					if(W.damage <= 0)								//We do this since this will only happen once per bleeding wound, as it's then bandaged (clotted). We do the heal as we want it to be somewhat like slapping them with an advanceed/bruise_pack. (Bruise packs heal 3.5 on application, as of the time of writing.)
 						O.wounds -= W
-				if(W.internal)
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
+					break //We only heal ONE external wound per go around.
+			for(var/datum/wound/internal_bleeding/W in O.wounds)
+				W.damage = max(W.damage - wound_heal, 0)
+				if(W.damage <= 0)
+					O.wounds -= W
+				else if(dose >= 9.5 && dose < 11) //If you are in the 'sweet zone' of 9.5u to 11u, your internal wounds instantly heal. This is to prevent people from using a clotting pen or taking a 10u clotting pill from medical and it not actually fixing their wounds.
+					W.damage = 0
+					O.wounds -= W
 
 /datum/reagent/myelamine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
-	// Copypaste of affect_blood with slight adjustment. Heals slightly faster at the cost of high toxins
+	//Heals slightly faster at the cost of high toxins. Honestly you should never do this, but whatever.
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength / 2
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
-			for(var/datum/wound/W in O.wounds)
-				if(W.bleeding())
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
-				if(W.internal)
-					W.damage = max(W.damage - wound_heal, 0)
-					if(W.damage <= 0)
-						O.wounds -= W
+			for(var/datum/wound/internal_bleeding/W in O.wounds)
+				W.damage = max(W.damage - wound_heal, 0)
+				if(W.damage <= 0)
+					O.wounds -= W
 
 /datum/reagent/respirodaxon
 	name = REAGENT_RESPIRODAXON
@@ -920,27 +916,24 @@
 	metabolism = REM * 0.06
 
 /datum/reagent/immunosuprizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/strength_mod = 1 * M.species.chem_strength_heal
+	var/strength_mod = 1 // * M.species.chem_strength_heal //Just removing the chem strength adjustment. It'd require division, which is best avoided.
 
 	if(alien == IS_DIONA)	// It's a tree.
-		strength_mod = 0.25
+		strength_mod = 4
 
 	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
-		strength_mod = 0.75
-
-	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
-		strength_mod = 1.5
+		strength_mod = 1.3
 
 	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
-		strength_mod = 1.75
+		strength_mod = 0.6
 
 	if(alien == IS_TAJARA)	// Highest metabolism.
-		strength_mod = 2
+		strength_mod = 0.5
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(alien != IS_DIONA)
-			H.adjustToxLoss((30 / strength_mod) * removed)
+			H.adjustToxLoss((30 * strength_mod) * removed)
 
 		var/list/organtotal = list()
 		organtotal |= H.organs
@@ -962,7 +955,7 @@
 					var/rejectmem = I.can_reject
 					I.can_reject = initial(I.can_reject)
 					if(rejectmem != I.can_reject)
-						H.adjustToxLoss((15 / strength_mod))
+						H.adjustToxLoss((15 / strength_mod) * removed) //Someone forgot a * removed here in the past. It made it so 1u of this chem would do (baseline) 1245 toxins per unit, or 15 toxins per tick.
 						I.take_damage(1)
 
 /datum/reagent/skrellimmuno //skrell exist?
@@ -979,9 +972,6 @@
 
 /datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 0.5 * M.species.chem_strength_heal
-
-	if(alien == IS_SKRELL)
-		strength_mod = 1
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -1233,8 +1223,8 @@
 
 /datum/reagent/spacomycaze/touch_obj(var/obj/O)
 	..()
-	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
-		var/obj/item/stack/medical/crude_pack/C = O
+	if(istype(O, /obj/item/stack/medical) && round(volume) >= 1)
+		var/obj/item/stack/medical/C = O
 		var/packname = C.name
 		var/to_produce = min(C.get_amount(), round(volume))
 
@@ -1281,11 +1271,9 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
-	//VOREstation edit. Floor polishing.
 	if(istype(T, /turf/simulated))
 		var/turf/simulated/S = T
 		S.dirt = -50
-	//VOREstation edit end
 
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -1376,6 +1364,7 @@
 	metabolism = REM * 4 // Nanomachines gotta go fast.
 	scannable = 1
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/healing_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)

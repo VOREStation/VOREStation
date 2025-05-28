@@ -17,58 +17,49 @@
 
 //Area allowing backpacks to be placed on rigsuits.
 /obj/item/rig/vox
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/backpack, /obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_EXPLO, POCKET_BAYSUIT)
 
 /obj/item/rig/combat
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/melee/baton,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_EXPLO, POCKET_BAYSUIT)
 
 /obj/item/rig/ert
-	allowed = list(/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/tool/crowbar, \
-	/obj/item/tool/screwdriver, /obj/item/weldingtool, /obj/item/tool/wirecutters, /obj/item/tool/wrench, /obj/item/multitool, \
-	/obj/item/radio, /obj/item/analyzer,/obj/item/storage/briefcase/inflatable, /obj/item/melee/baton, /obj/item/gun, \
-	/obj/item/storage/firstaid, /obj/item/reagent_containers/hypospray, /obj/item/roller, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_CE, POCKET_SECURITY, POCKET_MEDICAL, POCKET_HEAVYTOOLS, POCKET_BAYSUIT)
 
 /obj/item/rig/light/ninja
-	allowed = list(/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/cell, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY, POCKET_BAYSUIT)
 
 /obj/item/rig/merc
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/melee/energy/sword,/obj/item/handcuffs, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY, POCKET_BAYSUIT)
 
 /obj/item/rig/ce
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/bag/ore,/obj/item/t_scanner,/obj/item/pickaxe, /obj/item/rcd,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_ENGINEERING, POCKET_CE, POCKET_BAYSUIT)
 
 /obj/item/rig/medical
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/firstaid,/obj/item/healthanalyzer,/obj/item/stack/medical,/obj/item/roller,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MEDICAL, POCKET_BAYSUIT, /obj/item/roller, /obj/item/storage/firstaid)
 
 /obj/item/rig/hazmat
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/stack/flag,/obj/item/storage/excavation,/obj/item/pickaxe,/obj/item/healthanalyzer,/obj/item/measuring_tape,/obj/item/ano_scanner,/obj/item/depth_scanner,/obj/item/core_sampler,/obj/item/gps,/obj/item/beacon_locator,/obj/item/radio/beacon,/obj/item/pickaxe/hand,/obj/item/storage/bag/fossils,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_XENOARC, POCKET_BAYSUIT)
 
 /obj/item/rig/hazard
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/melee/baton,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_EXPLO, POCKET_BAYSUIT)
 
 /obj/item/rig/industrial
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/bag/ore,/obj/item/t_scanner,/obj/item/pickaxe, /obj/item/rcd,/obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_MINING, POCKET_BAYSUIT)
 
 /obj/item/rig/military
-	allowed = list(/obj/item/flashlight, /obj/item/tank,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/handcuffs, \
-	/obj/item/t_scanner, /obj/item/rcd, /obj/item/weldingtool, /obj/item/tool, /obj/item/multitool, \
-	/obj/item/radio, /obj/item/analyzer,/obj/item/storage/briefcase/inflatable, /obj/item/melee/baton, /obj/item/gun, \
-	/obj/item/storage/firstaid, /obj/item/reagent_containers/hypospray, /obj/item/roller, /obj/item/suit_cooling_unit, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_CE, POCKET_SECURITY, POCKET_MEDICAL, POCKET_HEAVYTOOLS, POCKET_BAYSUIT)
 
 /obj/item/rig/pmc
-	allowed = list(/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/tool/crowbar, \
-	/obj/item/tool/screwdriver, /obj/item/weldingtool, /obj/item/tool/wirecutters, /obj/item/tool/wrench, /obj/item/multitool, \
-	/obj/item/radio, /obj/item/analyzer,/obj/item/storage/briefcase/inflatable, /obj/item/melee/baton, /obj/item/gun, \
-	/obj/item/storage/firstaid, /obj/item/reagent_containers/hypospray, /obj/item/roller, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_SECURITY, POCKET_MEDICAL, POCKET_HEAVYTOOLS, POCKET_BAYSUIT, /obj/item/storage/firstaid)
 
 /obj/item/rig/robotics
-	allowed = list(/obj/item/flashlight, /obj/item/storage/box, /obj/item/storage/belt, /obj/item/defib_kit/compact)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, /obj/item/storage/box, /obj/item/storage/belt, /obj/item/defib_kit/compact)
 
 // 'Technomancer' hardsuit
 /obj/item/rig/focalpoint
 	name = "\improper F.P.E. hardsuit control module"
 	desc = "A high-end hardsuit produced by Focal Point Energistics, focused around repair and construction."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "techno_rig"
@@ -84,8 +75,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE // so it's like a rig firesuit
 	armor = list("melee" = 40, "bullet" = 10, "laser" = 30, "energy" = 55, "bomb" = 70, "bio" = 100, "rad" = 100)
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/backpack)
-	
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, /obj/item/storage/backpack)
 	chest_type = /obj/item/clothing/suit/space/rig/focalpoint
 	helm_type = /obj/item/clothing/head/helmet/space/rig/focalpoint
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/focalpoint
@@ -136,19 +126,16 @@
 /obj/item/rig/hephaestus
 	name = "\improper Hephaestus hardsuit control module"
 	desc = "A high-end hardsuit produced by Hephaestus Industries, focused on destroying the competition. Literally."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "ihs_rig"
 	suit_type = "\improper Hephaestus hardsuit"
 	cell_type = /obj/item/cell/super
-	allowed = list(/obj/item/flashlight, /obj/item/tank,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/handcuffs, \
-	/obj/item/t_scanner, /obj/item/rcd, /obj/item/weldingtool, /obj/item/tool, /obj/item/multitool, \
-	/obj/item/radio, /obj/item/analyzer,/obj/item/storage/briefcase/inflatable, /obj/item/melee/baton, /obj/item/gun, \
-	/obj/item/storage/firstaid, /obj/item/reagent_containers/hypospray, /obj/item/roller, /obj/item/suit_cooling_unit, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_SECURITY, POCKET_ENGINEERING, POCKET_BAYSUIT, /obj/item/storage/firstaid, /obj/item/roller)
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 60, "bio" = 100, "rad" = 20)
-	
+
 	chest_type = /obj/item/clothing/suit/space/rig/hephaestus
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hephaestus
 	boot_type = /obj/item/clothing/shoes/magboots/rig/hephaestus
@@ -198,7 +185,7 @@
 /obj/item/rig/zero
 	name = "null hardsuit control module"
 	desc = "A very lightweight suit designed to allow use inside mechs and starfighters. It feels like you're wearing nothing at all."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "null_rig"
@@ -209,9 +196,8 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/zero
 	boot_type = null
 	glove_type = null
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_BAYSUIT)
 
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/backpack, /obj/item/bluespaceradio, /obj/item/defib_kit)
-	
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 2
@@ -237,14 +223,15 @@
 	icon_state = "null_rig"
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS // like a voidsuit
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS // like a voidsuit
 	slowdown = 0
 
 // Medical rig from bay
 /obj/item/rig/baymed
 	name = "\improper Commonwealth medical hardsuit control module"
 	desc = "A lightweight first responder hardsuit from the Commonwealth. Not suitable for combat use, but advanced myomer fibers can push the user to incredible speeds."
-	
+	interface_intro = "Commonwealth"
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "medical_rig_bay"
@@ -257,23 +244,14 @@
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/baymed
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/baymed
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/healthanalyzer,
-		/obj/item/stack/medical,
-		/obj/item/roller,
-		/obj/item/storage/backpack,
-		/obj/item/bluespaceradio,
-		/obj/item/defib_kit)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_MEDICAL, POCKET_BAYSUIT, /obj/item/roller)
 
 	// speedy paper
 	slowdown = -0.5
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 25, "bio" = 100, "rad" = 20)
 
 /obj/item/rig/baymed/equipped
-	
+
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/sprinter,
@@ -318,7 +296,8 @@
 /obj/item/rig/bayeng
 	name = "\improper Commonwealth engineering hardsuit control module"
 	desc = "An advanced construction hardsuit from the Commonwealth. Built like a tank. Don't expect to be taking any tight corners while running."
-	
+	interface_intro = "Commonwealth"
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "engineering_rig_bay"
@@ -331,17 +310,7 @@
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/bayeng
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/bayeng
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/t_scanner,
-		/obj/item/pickaxe,
-		/obj/item/rcd,
-		/obj/item/storage/backpack,
-		/obj/item/bluespaceradio,
-		/obj/item/defib_kit
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_MINING, POCKET_CE, POCKET_BAYSUIT)
 
 	slowdown = 0
 	offline_slowdown = 5 // very bulky
@@ -394,7 +363,8 @@
 /obj/item/rig/pathfinder
 	name = "\improper Commonwealth pathfinder hardsuit control module"
 	desc = "A Commonwealth pathfinder hardsuit is hard to come by... how'd this end up on the frontier?"
-	
+	interface_intro = "Commonwealth"
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "pathfinder_rig_bay"

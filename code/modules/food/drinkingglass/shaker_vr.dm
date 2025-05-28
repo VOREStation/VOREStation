@@ -5,7 +5,7 @@
 	base_icon = "protean_shake"
 	desc = "A strangely unlabeled, unbranded pre-workout drink carton."
 
-/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake/Initialize(mapload)
 	. = ..()
 	cut_overlays()
 	reagents.add_reagent(REAGENT_ID_LIQUIDPROTEAN, 50)

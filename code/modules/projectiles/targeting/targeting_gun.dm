@@ -17,7 +17,7 @@
 	user.face_atom(A)
 	if(ismob(A) && user.aiming)
 		user.aiming.aim_at(A, src)
-		if(!isliving(A))
+		if(!isliving(A) || A.is_incorporeal()) // Phase out can't be targetted when phased
 			return 0
 		return 1
 	return 0

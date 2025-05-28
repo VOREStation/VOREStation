@@ -39,7 +39,7 @@
 /obj/item/gun/projectile/smartgun/loaded
 	magazine_type = /obj/item/ammo_magazine/smartgun
 
-/obj/item/gun/projectile/smartgun/Initialize()
+/obj/item/gun/projectile/smartgun/Initialize(mapload)
 	. = ..()
 	if(!mag_underlay)
 		mag_underlay = mutable_appearance(icon, icon_state = "smartgun_mag")

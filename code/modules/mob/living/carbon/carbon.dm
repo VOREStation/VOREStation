@@ -1,4 +1,4 @@
-/mob/living/carbon/Initialize()
+/mob/living/carbon/Initialize(mapload)
 	. = ..()
 	//setup reagent holders
 	bloodstr = new/datum/reagents/metabolism/bloodstream(500, src)
@@ -22,7 +22,6 @@
 	QDEL_NULL(touching)
 	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
 	bloodstr = null
-	QDEL_NULL_LIST(stomach_contents)
 	return ..()
 
 /mob/living/carbon/rejuvenate()
@@ -44,37 +43,9 @@
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
-
-/mob/living/carbon/relaymove(var/mob/living/user, direction)
-	if((user in src.stomach_contents) && istype(user))
-		if(user.last_special <= world.time)
-			user.last_special = world.time + 50
-			src.visible_message(span_danger("You hear something rumbling inside [src]'s stomach..."))
-			var/obj/item/I = user.get_active_hand()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
-				if(ishuman(src))
-					var/mob/living/carbon/human/H = src
-					var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
-					if (istype(organ))
-						if(organ.take_damage(d, 0))
-							H.UpdateDamageIcon()
-					H.updatehealth()
-				else
-					src.take_organ_damage(d)
-				user.visible_message(span_danger("[user] attacks [src]'s stomach wall with the [I.name]!"))
-				playsound(user, 'sound/effects/attackblob.ogg', 50, 1)
-
-				if(prob(src.getBruteLoss() - 50))
-					for(var/atom/movable/A in stomach_contents)
-						A.loc = loc
-						stomach_contents.Remove(A)
-					src.gib()
 */
 /mob/living/carbon/gib()
 	for(var/mob/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
@@ -85,9 +56,9 @@
 	if(!istype(M, /mob/living/carbon)) return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(H, span_warning("You can't use your [temp.name]"))
 			return
@@ -150,7 +121,7 @@
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	if(status_flags & GODMODE)	return 0	//godmode
-	if(def_zone == "l_hand" || def_zone == "r_hand") //Diona (And any other potential plant people) hands don't get shocked.
+	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
 		if(species.flags & IS_PLANT)
 			return 0
 	shock_damage *= siemens_coeff
@@ -197,7 +168,7 @@
 	if (src.health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()]
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 			src.visible_message( \
 				span_notice("[src] examines [T.himself]."), \
 				span_notice("You check yourself for injuries.") \
@@ -279,7 +250,7 @@
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
 				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
@@ -293,7 +264,7 @@
 									span_notice("You shake [src] trying to wake [T.him] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
-				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
 					M.visible_message(span_notice("[M] grabs onto [src] and pulls [TM.himself] up"), \
 							span_notice("You grip onto [src] and pull yourself up off the ground!"))
@@ -302,8 +273,8 @@
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.IgniteMob()
-					if(do_after(M, 0.5 SECONDS)) //.5 second delay. Makes it a bit stronger than just typing rest.
-						M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
@@ -400,7 +371,7 @@
 	if(istype(A, /mob/living/carbon) && prob(10))
 		var/mob/living/carbon/human/H = A
 		for(var/datum/disease/D in GetViruses())
-			if(D.spread_flags & CONTACT_GENERAL)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				H.ContractDisease(D)
 
 /mob/living/carbon/cannot_use_vents()
@@ -552,5 +523,5 @@
 		if(prob(D.infectivity))
 			D.spread()
 
-		if(stat != DEAD || D.allow_dead)
+		if(stat != DEAD || global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 			D.stage_act()

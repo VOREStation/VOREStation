@@ -5,15 +5,15 @@ import { useBackend, useSharedState } from 'tgui/backend';
 import { InfinitePlane } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Connection, Connections } from '../common/Connections';
+import { type Connection, Connections } from '../common/Connections';
 import { CircuitComponent } from './CircuitComponent';
-import { PortProps } from './Port';
+import type { PortProps } from './Port';
 import {
   ABSOLUTE_Y_OFFSET,
-  CircuitData,
-  Data,
+  type CircuitData,
+  type Data,
   MOUSE_BUTTON_LEFT,
-  PortData,
+  type PortData,
   PortTypesToColor,
 } from './types';
 

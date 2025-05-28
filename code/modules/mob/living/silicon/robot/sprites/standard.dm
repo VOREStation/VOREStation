@@ -136,6 +136,21 @@
 	module_type = "Standard"
 	//sprite_icon = 'icons/mob/robot/standard_large.dmi' NOT USED YET
 
+/datum/robot_sprite/dogborg/tall/standard/dullataurstandard
+	name = "Dullataur"
+	sprite_icon_state = "dullataurstandard"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 32
+	pixel_x = 0
+
 /datum/robot_sprite/dogborg/tall/standard/dullahanv3/standarddully
 	name = "Dullahan standard v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/standard.dmi'
@@ -169,7 +184,7 @@
 
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/standard/hound/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/standard/hound/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/melee/baton/loaded(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
@@ -203,5 +218,4 @@
 	add_verb(R,/mob/living/proc/toggle_rider_reins)
 	add_verb(R,/mob/living/proc/shred_limb)
 	add_verb(R,/mob/living/silicon/robot/proc/rest_style)
-	..()
 */

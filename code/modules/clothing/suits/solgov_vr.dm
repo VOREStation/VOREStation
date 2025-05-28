@@ -74,30 +74,6 @@
 	name = "marine command jacket"
 	desc = "An TCG Marine Corps service coat. This one has gold markings."
 
-//Dress - murder me with a gun why are these 3 different types
-/obj/item/clothing/suit/storage/solgov/dress/sifguard
-	name = "\improper NDF dress jacket"
-	desc = "A silver and grey dress jacket belonging to the Nanotrasen Defense Force. Fashionable, for the 25th century at least."
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/senior
-	name = "\improper NDF senior's dress coat"
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
-	name = "\improper NDF chief's dress coat"
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/command
-	name = "\improper NDF officer's dress coat"
-	desc = "A gold and black dress peacoat belonging to the Nanotrasen Defense Force. The height of fashion."
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
-	name = "\improper NDF commander's dress coat"
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/capt
-	name = "\improper NDF captain's dress coat"
-
-/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/adm
-	name = "\improper NDF admiral's dress coat"
-
 /obj/item/clothing/suit/storage/solgov/dress/fleet
 	name = "fleet dress jacket"
 	desc = "A navy blue TCG Fleet dress jacket. Don't get near pasta sauce or vox."
@@ -156,19 +132,25 @@
 /obj/item/clothing/suit/storage/marshal_jacket
 	name = "colonial marshal jacket"
 	desc = "A black synthleather jacket. The word 'MARSHAL' is stenciled onto the back in gold lettering."
+	icon_state = "marshal_jacket"
 
 //Terrans
 
 //Service
 
+/obj/item/clothing/suit/storage/terran
+	name = DEVELOPER_WARNING_NAME
+
+/* //Could not find the icon_state anywhere.
 /obj/item/clothing/suit/storage/terran/service/navy
 	name = "Ares coat"
 	desc = "A Ares Navy service coat. Black and undecorated."
-
+*/
+/* //Could not find the icon_state anywhere.
 /obj/item/clothing/suit/storage/terran/service/navy/command
 	name = "Ares command coat"
 	desc = "An Ares Navy service command coat. White and undecorated."
-
+*/
 //Dress
 /obj/item/clothing/suit/dress/terran/navy
 	name = "Ares dress cloak"

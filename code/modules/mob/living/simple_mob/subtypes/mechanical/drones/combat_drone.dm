@@ -67,7 +67,7 @@
 	icon_dead = "droneM_dead"
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
 
-/mob/living/simple_mob/mechanical/combat_drone/Initialize()
+/mob/living/simple_mob/mechanical/combat_drone/Initialize(mapload)
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()

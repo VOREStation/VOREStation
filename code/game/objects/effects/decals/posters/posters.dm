@@ -45,7 +45,7 @@
 		return FALSE
 
 	var/placement_dir = get_dir(user, W)
-	if(!(placement_dir in cardinal))
+	if(!(placement_dir in GLOB.cardinal))
 		to_chat(user, span_warning("You must stand directly in front of the wall you wish to place that on."))
 		return FALSE
 
@@ -55,7 +55,7 @@
 		stuff_on_wall = 1
 
 	//crude, but will cover most cases. We could do stuff like check pixel_x/y but it's not really worth it.
-	for (var/dir in cardinal)
+	for (var/dir in GLOB.cardinal)
 		var/turf/T = get_step(W, dir)
 		if (locate(/obj/structure/sign/poster) in T)
 			stuff_on_wall = 1
@@ -83,7 +83,7 @@
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/poster/nanotrasen/Initialize(turf/loc, var/decl/poster/P = null)
+/obj/item/poster/nanotrasen/Initialize(mapload, var/decl/poster/P = null)
 	if(!ispath(src.poster_decl) && !ispath(P) && !istype(P))
 		src.poster_decl = get_poster_decl(/decl/poster/nanotrasen, FALSE)
 	return ..()

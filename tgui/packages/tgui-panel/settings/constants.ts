@@ -52,3 +52,5 @@ export const FONTS = [
 ];
 
 export const MAX_HIGHLIGHT_SETTINGS = 10;
+
+export const blacklisted_tags = ['a', 'iframe', 'link', 'video'];

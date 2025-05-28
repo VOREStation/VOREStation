@@ -17,6 +17,7 @@
 	see_in_dark = 7
 	status_flags = GODMODE
 	plane = PLANE_AI_EYE
+	invisibility = INVISIBILITY_EYE
 
 	var/mob/owner = null
 	var/list/visibleChunks = list()
@@ -85,11 +86,11 @@
 		return
 
 	return eyeobj.EyeMove(n, direct)
-	
+
 /mob/observer/eye/proc/GetViewerClient()
-    if(owner)
-        return owner.client
-    return null
+	if(owner)
+		return owner.client
+	return null
 
 /mob/observer/eye/EyeMove(n, direct)
 	var/initial = initial(sprint)

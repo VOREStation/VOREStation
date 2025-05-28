@@ -10,7 +10,7 @@
 	equip_type = EQUIP_SPECIAL
 	var/obj/item/rcd/electric/mounted/mecha/my_rcd = null
 
-/obj/item/mecha_parts/mecha_equipment/tool/rcd/Initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/Initialize(mapload)
 	my_rcd = new(src)
 	return ..()
 

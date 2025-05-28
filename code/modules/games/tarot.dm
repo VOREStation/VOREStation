@@ -6,8 +6,8 @@
 	desc = "For all your occult needs!"
 	icon_state = "deck_tarot"
 
-/obj/item/deck/tarot/New()
-	..()
+/obj/item/deck/tarot/Initialize(mapload)
+	. = ..()
 
 	var/datum/playingcard/P
 	for(var/name in list("Fool","Magician","High Priestess","Empress","Emperor","Hierophant","Lovers","Chariot","Strength","Hermit","Wheel of Fortune","Justice","Hanged Man","Death","Temperance","Devil","Tower","Star","Moon","Sun","Judgement","World"))
@@ -49,8 +49,8 @@
 	desc = "A limited edition tarot deck for the scene-girl inclined!"
 	icon_state = "dark_tarot"
 
-/obj/item/deck/dark_tarot/New()
-	..()
+/obj/item/deck/dark_tarot/Initialize(mapload)
+	. = ..()
 
 	var/datum/playingcard/P
 	for(var/name in list("fool","magician","high priestess","empress","emperor","hierophant","lovers","chariot","strength","hermit","wheel of fortune","justice","hanged man","death","temperance","devil","tower","star","moon","sun","judgement","world","white dragon with blue eyes","charred lizard","dark lotus","bash","reverse","rules","acid","abyss","maw"))

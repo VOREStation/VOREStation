@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const AMBIENT_OCCLUSION_PREF: FeatureToggle = {
   name: 'Enable ambient occlusion',

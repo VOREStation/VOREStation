@@ -175,7 +175,7 @@
 			nymph.visible_message(span_notice(span_bold("[nymph]") + " rolls around in [src] for a bit."),span_notice("You roll around in [src] for a bit."))
 		return
 
-/obj/machinery/portable_atmospherics/hydroponics/Initialize()
+/obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload)
 	..()
 	if(!ov_lowhealth)	 //VOREStation Add
 		setup_overlays() //VOREStation Add

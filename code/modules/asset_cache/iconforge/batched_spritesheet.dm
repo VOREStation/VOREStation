@@ -3,8 +3,8 @@
 #define CACHE_WAIT "wait"
 #define CACHE_INVALID TRUE
 #define CACHE_VALID FALSE
-
-#define WHATTHEFUCKAMIDOING_FILE "data/WHATTHEFUCKFILE.json"
+/// This is used to invalidate the cache if something changes on the DM side. For example, if the CSS generator was changed.
+#define SPRITESHEET_SYSTEM_VERSION 1
 
 /datum/asset/spritesheet_batched
 	_abstract = /datum/asset/spritesheet_batched
@@ -78,6 +78,14 @@
 		if(cached_rustg_version != rustg_version)
 			log_asset("Invalidated cache for spritesheet_[name] due to rustg updating from [cached_rustg_version] to [rustg_version].")
 			return CACHE_INVALID
+		// Invalidate cache if the DM version changes
+		var/cached_dm_version = cache_json["dm_version"]
+		if(isnull(cached_dm_version))
+			log_asset("Cache for spritesheet_[name] did not contain a dm_version!")
+			return CACHE_INVALID
+		if(cached_dm_version != SPRITESHEET_SYSTEM_VERSION)
+			log_asset("Invalidated cache for spritesheet_[name] due to DM spritesheet system updating from [cached_dm_version] to [SPRITESHEET_SYSTEM_VERSION].")
+			return CACHE_INVALID
 		cache_sizes_data = cache_json["sizes"]
 		cache_sprites_data = cache_json["sprites"]
 		cache_input_hash = cache_json["input_hash"]
@@ -100,8 +108,8 @@
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] cache JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(cache_data, "[log_path]-spritesheet_cache_debug.[name].json")
-		rustg_file_write(entries_json, "[log_path]-spritesheet_debug_[name].json")
+		rustg_file_write(cache_data, "[GLOB.log_directory]-spritesheet_cache_debug.[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] cache check UNKNOWN ERROR: [data_out]")
 	var/result = json_decode(data_out)
 	var/fail = result["fail_reason"]
@@ -180,10 +188,6 @@
 	// Remove the cache, since it's invalid if we get to this point.
 	fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[name].json")
 
-	if(!fexists(ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY))
-		rustg_file_write("stub", "[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/stub.txt")
-		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/stub.txt")
-
 	var/do_cache = CONFIG_GET(flag/smart_cache_assets) || force_cache
 	var/data_out
 	if(yield || !isnull(job_id))
@@ -196,7 +200,7 @@
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(entries_json, "[log_path]-spritesheet_debug_[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] UNKNOWN ERROR: [data_out]")
 	var/data = json_decode(data_out)
 	sizes = data["sizes"]
@@ -262,7 +266,7 @@
 		var/size_split = splittext(size_id, "x")
 		var/width = text2num(size_split[1])
 		var/height = text2num(size_split[2])
-		out += ".[name][size_id]{display:inline-block;width:[width]px;height:[height]px;background:url('[get_background_url("[name]_[size_id].png")]') no-repeat;}"
+		out += ".[name][size_id]{display:inline-block;width:[width]px;height:[height]px;background-image:url('[get_background_url("[name]_[size_id].png")]');background-repeat: no-repeat;}"
 
 	for (var/sprite_id in sprites)
 		var/sprite = sprites[sprite_id]
@@ -309,7 +313,8 @@
 		"dmi_hashes" = dmi_hashes,
 		"sizes" = sizes,
 		"sprites" = sprites,
-		"rustg_version" = rustg_get_version()
+		"rustg_version" = rustg_get_version(),
+		"dm_version" = SPRITESHEET_SYSTEM_VERSION,
 	)
 	rustg_file_write(json_encode(cache_data), "[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[name].json")
 
@@ -356,5 +361,4 @@
 #undef CACHE_WAIT
 #undef CACHE_INVALID
 #undef CACHE_VALID
-
-#undef WHATTHEFUCKAMIDOING_FILE
+#undef SPRITESHEET_SYSTEM_VERSION

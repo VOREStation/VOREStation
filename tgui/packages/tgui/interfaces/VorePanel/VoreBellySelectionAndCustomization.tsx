@@ -1,6 +1,12 @@
 import { useBackend } from 'tgui/backend';
-import { Stack } from 'tgui-core/components';
-import { Box, Divider, Icon, Section, Tabs } from 'tgui-core/components';
+import {
+  Divider,
+  Icon,
+  Section,
+  Stack,
+  Tabs,
+  Tooltip,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from './constants';
@@ -9,17 +15,26 @@ import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {
   our_bellies: bellyData[];
-  selected: selectedData;
-  host_mobtype: hostMob;
+  selected: selectedData | null;
   show_pictures: BooleanLike;
+  host_mobtype: hostMob;
+  icon_overflow: BooleanLike;
+  vore_words: Record<string, string[]>;
 }) => {
   const { act } = useBackend();
 
-  const { our_bellies, selected, show_pictures, host_mobtype } = props;
+  const {
+    our_bellies,
+    selected,
+    show_pictures,
+    host_mobtype,
+    icon_overflow,
+    vore_words,
+  } = props;
 
   return (
     <Stack fill>
-      <Stack.Item shrink basis="30%">
+      <Stack.Item shrink basis="20%">
         <Section title="My Bellies" scrollable fill>
           <Tabs vertical>
             <Tabs.Tab onClick={() => act('newbelly')}>
@@ -41,16 +56,30 @@ export const VoreBellySelectionAndCustomization = (props: {
                 selected={!!belly.selected}
                 textColor={digestModeToColor[belly.digest_mode]}
                 onClick={() => act('bellypick', { bellypick: belly.ref })}
+                backgroundColor={belly.prevent_saving ? '#180000' : undefined}
               >
-                <Box
-                  inline
+                <Stack
+                  fill
                   textColor={
                     (belly.selected && digestModeToColor[belly.digest_mode]) ||
                     null
                   }
                 >
-                  {belly.name} ({belly.contents})
-                </Box>
+                  <Stack.Item grow>
+                    {belly.name} ({belly.contents})
+                  </Stack.Item>
+                  <Stack.Item>
+                    {!!belly.prevent_saving && (
+                      <Tooltip position="right" content="Temporary belly">
+                        <Icon
+                          name="triangle-exclamation"
+                          mr={0.5}
+                          color="red"
+                        />
+                      </Tooltip>
+                    )}
+                  </Stack.Item>
+                </Stack>
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -60,9 +89,11 @@ export const VoreBellySelectionAndCustomization = (props: {
         {selected && (
           <Section title={selected.belly_name} fill scrollable>
             <VoreSelectedBelly
+              vore_words={vore_words}
               belly={selected}
               show_pictures={show_pictures}
               host_mobtype={host_mobtype}
+              icon_overflow={icon_overflow}
             />
           </Section>
         )}

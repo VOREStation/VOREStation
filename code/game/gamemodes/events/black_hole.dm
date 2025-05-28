@@ -8,12 +8,17 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/effect/bhole/Initialize()
+/obj/effect/bhole/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(controller)), 0.4 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/controller()
 	if(!isturf(loc))
+		qdel(src)
+		return
+
+	if(prob(5))
+		visible_message(span_warning("\The [src] fizzles out and collapses."))
 		qdel(src)
 		return
 
@@ -69,7 +74,7 @@
 	//MOVEMENT
 	if(prob(50))
 		anchored = FALSE
-		step(src, pick(alldirs))
+		step(src, pick(GLOB.alldirs))
 		anchored = TRUE
 	controller()
 
@@ -105,3 +110,6 @@
 		var/base_turf = get_base_turf_by_area(src)
 		if(ST.type != base_turf)
 			ST.ChangeTurf(base_turf)
+
+/obj/effect/bhole/ex_act(strength) // Don't get destroyed by explosions. Why would we?
+	return

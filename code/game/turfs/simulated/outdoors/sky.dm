@@ -12,10 +12,10 @@
 	nitrogen = 0
 	phoron = 0
 
-/turf/simulated/sky/Initialize()
+/turf/simulated/sky/Initialize(mapload, var/color = "#FFFFFF")
 	. = ..()
-	//SSplanets.addTurf(src)	VOREStation edit - Handled by parent
-	set_light(2, 2, "#FFFFFF")
+	//SSplanets.addTurf(src)    VOREStation edit - Handled by parent
+	set_light(2, 2, color)
 
 /turf/simulated/sky/north
 	dir = NORTH

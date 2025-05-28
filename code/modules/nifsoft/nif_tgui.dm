@@ -50,6 +50,7 @@
 
 
 /datum/component/nif_menu/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -63,6 +64,7 @@
 	add_verb(user, /mob/living/carbon/human/proc/nif_menu)
 
 /datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, PROC_REF(tgui_interact), user)
@@ -81,7 +83,7 @@
  */
 /mob/living/carbon/human/proc/nif_menu()
 	set name = "NIF Menu"
-	set category = "IC.Nif"
+	set category = "IC.NIF"
 	set desc = "Open the NIF user interface."
 
 	var/obj/item/nif/N = nif

@@ -37,8 +37,8 @@
 	var/max_summons = 10			// Maximum allowed summoned entities.  Some cores will have different caps.
 	var/universal = FALSE			// Allows non-technomancers to use the core - VOREStation Add
 
-/obj/item/technomancer_core/New()
-	..()
+/obj/item/technomancer_core/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/technomancer_core/Destroy()
@@ -142,14 +142,14 @@
 	var/obj/item/technomancer_core/core = null
 	var/ability_icon_state = null
 
-/obj/spellbutton/New(loc, var/path, var/new_name, var/new_icon_state)
-	if(!path || !ispath(path))
-		message_admins("ERROR: /obj/spellbutton/New() was not given a proper path!")
-		qdel(src)
+/obj/spellbutton/Initialize(mapload, var/path, var/new_name, var/new_icon_state)
+	. = ..()
+	src.core = loc
+	if(!path || !ispath(path) || !istype(core))
+		message_admins("ERROR: /obj/spellbutton/Initialize() was not given a proper path or not placed into the right location!")
+		return INITIALIZE_HINT_QDEL
 	src.name = new_name
 	src.spellpath = path
-	src.loc = loc
-	src.core = loc
 	src.ability_icon_state = new_icon_state
 
 /obj/spellbutton/Click()
@@ -213,12 +213,12 @@
 	if(client && hud_used)
 		if(istype(back, /obj/item/technomancer_core)) //I reckon there's a better way of doing this.
 			var/obj/item/technomancer_core/core = back
-			wiz_energy_display.invisibility = 0
+			wiz_energy_display.invisibility = INVISIBILITY_NONE
 			var/ratio = core.energy / core.max_energy
 			ratio = max(round(ratio, 0.05) * 100, 5)
 			wiz_energy_display.icon_state = "wiz_energy[ratio]"
 		else
-			wiz_energy_display.invisibility = 101
+			wiz_energy_display.invisibility = INVISIBILITY_ABSTRACT
 
 //Resonance Aperture
 

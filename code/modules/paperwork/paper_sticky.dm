@@ -71,10 +71,10 @@
 		if(!isanimal(user))
 			if( !user.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
-				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 
 				if (H.hand)
-					temp = H.organs_by_name["l_hand"]
+					temp = H.organs_by_name[BP_L_HAND]
 				if(temp && !temp.is_usable())
 					to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 					return
@@ -84,7 +84,7 @@
 
 	return
 
-/obj/item/sticky_pad/random/Initialize()
+/obj/item/sticky_pad/random/Initialize(mapload)
 	. = ..()
 	color = pick(COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_ORANGE, COLOR_PINK)
 
@@ -95,12 +95,13 @@
 	color = COLOR_YELLOW
 	slot_flags = 0
 
-/obj/item/paper/sticky/Initialize()
+/obj/item/paper/sticky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
 
 /obj/item/paper/sticky/proc/reset_persistence_tracking()
+	SIGNAL_HANDLER
 	SSpersistence.forget_value(src, /datum/persistent/paper/sticky)
 	pixel_x = 0
 	pixel_y = 0

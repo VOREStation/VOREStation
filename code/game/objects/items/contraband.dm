@@ -26,7 +26,7 @@
 		list(REAGENT_ID_IMPEDREZENE = 15)						= 2,
 		list(REAGENT_ID_ZOMBIEPOWDER = 10)						= 1)
 
-/obj/item/reagent_containers/glass/beaker/vial/random/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/random/Initialize(mapload)
 	. = ..()
 	if(is_open_container())
 		flags ^= OPENCONTAINER
@@ -62,7 +62,7 @@
 		desc = "A powdered form of what appears to be [R.name]. There's about [reagents.total_volume] units here."
 	return ..()
 
-/obj/item/reagent_containers/powder/Initialize()
+/obj/item/reagent_containers/powder/Initialize(mapload)
 	. = ..()
 	get_appearance()
 

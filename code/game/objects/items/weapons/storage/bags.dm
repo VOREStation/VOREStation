@@ -276,7 +276,7 @@
 	icon_state = "sheetsnatcher"
 	desc = "A patented storage system designed for any kind of mineral sheet."
 
-	var/capacity = 300; //the number of sheets it can carry.
+	var/capacity = 500 //the number of sheets it can carry.
 	w_class = ITEMSIZE_NORMAL
 	storage_slots = 7
 
@@ -395,13 +395,24 @@
 	return ..(S,new_location)
 
 // -----------------------------
+//    Sheet Snatcher (Bluespace)
+// -----------------------------
+
+/obj/item/storage/bag/sheetsnatcher/holding
+	name = "sheet snatcher of holding"
+	icon_state = "sheetsnatcher_bspace"
+	desc = "A patented storage system designed for any kind of mineral sheet, this one has been upgraded with bluespace technology to allow it to carry ten times as much."
+
+	capacity = 5000 //Should be far more than enough.
+
+// -----------------------------
 //    Sheet Snatcher (Cyborg)
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = null
-	capacity = 500//Borgs get more because >specialization
+	capacity = 700//Borgs get more because >specialization
 
 // -----------------------------
 //           Cash Bag

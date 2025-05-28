@@ -142,7 +142,7 @@ const AccessSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for access..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

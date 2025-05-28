@@ -26,7 +26,7 @@
 	stacktype = /obj/item/stack/rods
 	no_variants = TRUE
 
-/obj/item/stack/rods/Initialize()
+/obj/item/stack/rods/Initialize(mapload)
 	. = ..()
 	recipes = rods_recipes
 	update_icon()

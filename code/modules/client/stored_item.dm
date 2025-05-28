@@ -52,7 +52,7 @@
 		return persist_name
 
 
-/obj/machinery/item_bank/Initialize()
+/obj/machinery/item_bank/Initialize(mapload)
 	. = ..()
 
 /obj/machinery/item_bank/attack_hand(mob/living/user)

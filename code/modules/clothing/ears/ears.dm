@@ -42,7 +42,7 @@
 	Skrell tentacle wear
 */
 /obj/item/clothing/ears/skrell
-	name = "skrell tentacle wear"
+	name = DEVELOPER_WARNING_NAME // "skrell tentacle wear"
 	desc = "Some stuff worn by skrell to adorn their head tentacles."
 	icon = 'icons/inventory/ears/item.dmi'
 	w_class = ITEMSIZE_TINY

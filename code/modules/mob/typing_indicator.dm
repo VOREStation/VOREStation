@@ -17,6 +17,7 @@
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say))
 		winset(src, null, "command=[client.tgui_say_create_open_command(SAY_CHANNEL)]")
+		winset(src, "tgui_say.browser", "focus=true")
 		return
 
 	client?.start_thinking()
@@ -33,6 +34,7 @@
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say) && client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_emotes))
 		winset(src, null, "command=[client.tgui_say_create_open_command(ME_CHANNEL)]")
+		winset(src, "tgui_say.browser", "focus=true")
 		return
 
 	client?.start_thinking()
@@ -49,6 +51,7 @@
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say))
 		winset(src, null, "command=[client.tgui_say_create_open_command(WHIS_CHANNEL)]")
+		winset(src, "tgui_say.browser", "focus=true")
 		return
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
@@ -67,6 +70,7 @@
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say) && client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_emotes))
 		winset(src, null, "command=[client.tgui_say_create_open_command(SUBTLE_CHANNEL)]")
+		winset(src, "tgui_say.browser", "focus=true")
 		return
 
 	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))

@@ -24,7 +24,7 @@
 /obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
-	src.modules += new /obj/item/melee/energy/sword(src)
+	src.modules += new /obj/item/melee/robotic/blade(src)
 
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth
@@ -55,7 +55,7 @@
 	src.modules += new /obj/item/shield_projector/rectangle/weak(src)
 	src.modules += new /obj/item/gun/energy/robotic/laser/dakkalaser(src)
 	src.modules += new /obj/item/handcuffs/cyborg(src)
-	src.modules += new /obj/item/melee/baton/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton(src)
 
 	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
@@ -75,7 +75,7 @@
 	src.modules += new /obj/item/multitool/ai_detector(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/rcd/electric/mounted/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
-	src.modules += new /obj/item/melee/energy/sword/ionic_rapier(src)
+	src.modules += new /obj/item/melee/robotic/blade/ionic(src)
 
 	// FBP repair.
 	src.modules += new /obj/item/robotanalyzer(src)

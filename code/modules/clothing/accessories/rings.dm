@@ -19,6 +19,7 @@
 	force = 7	//base punch strength is 5
 	punch_force = 2	//added to base punch strength when added as a glove accessory
 	siemens_coefficient = 1
+	slowdown = 0
 
 /////////////////////////////////////////
 //Standard Rings
@@ -48,7 +49,7 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 
-/obj/item/clothing/accessory/ring/reagent/Initialize()
+/obj/item/clothing/accessory/ring/reagent/Initialize(mapload)
 	. = ..()
 	create_reagents(15)
 
@@ -71,7 +72,7 @@
 	icon_state = "material"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/clothing/accessory/ring/reagent/sleepy/Initialize()
+/obj/item/clothing/accessory/ring/reagent/sleepy/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CHLORALHYDRATE, 15) // Less than a sleepy-pen, but still enough to knock someone out
 
@@ -136,6 +137,7 @@
 /obj/item/clothing/accessory/ring/material
 	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "material"
+	material_slowdown_multiplier = 0 //it's a ring, it's never gonna be heavy enough to matter
 
 /obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
 	. = ..()

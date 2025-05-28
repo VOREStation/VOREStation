@@ -126,7 +126,7 @@
 
 			to_chat(H, span_danger("You step on \the [src]!"))
 
-			var/list/check = list("l_foot", "r_foot")
+			var/list/check = list(BP_L_FOOT, BP_R_FOOT)
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
@@ -143,8 +143,8 @@
 			return
 
 // Preset types - left here for the code that uses them
-/obj/item/material/shard/shrapnel/New(loc)
-	..(loc, MAT_STEEL)
+/obj/item/material/shard/shrapnel/Initialize(mapload)
+	. = ..(mapload, MAT_STEEL)
 
-/obj/item/material/shard/phoron/New(loc)
-	..(loc, MAT_PGLASS)
+/obj/item/material/shard/phoron/Initialize(mapload)
+	. = ..(mapload, MAT_PGLASS)

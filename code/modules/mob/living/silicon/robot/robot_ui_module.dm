@@ -39,13 +39,13 @@
 		if(LAZYLEN(R.restrict_modules_to) > 0)
 			modules.Add(R.restrict_modules_to)
 		else if(R.shell)
-			modules.Add(shell_module_types)
+			modules.Add(GLOB.shell_module_types)
 		else
-			modules.Add(robot_module_types)
-			if(R.crisis || security_level >= SEC_LEVEL_RED || R.crisis_override)
+			modules.Add(GLOB.robot_module_types)
+			if(R.crisis || GLOB.security_level >= SEC_LEVEL_RED || R.crisis_override)
 				to_chat(R, span_red("Crisis mode active. Combat module available."))
-				modules |= emergency_module_types
-			for(var/module_name in whitelisted_module_types)
+				modules |= GLOB.emergency_module_types
+			for(var/module_name in GLOB.whitelisted_module_types)
 				if(is_borg_whitelisted(R, module_name))
 					modules |= module_name
 	data["possible_modules"] = modules
@@ -171,6 +171,7 @@
 		sprite_type = sprite_datum.name
 
 /mob/living/silicon/robot/proc/transform_module()
+	resize(size_multiplier, animate = FALSE) //Gets the size down to a normal size.
 	transform_with_anim()
 	var/tempheight = vis_height
 	update_icon()

@@ -171,7 +171,7 @@
 
 // Note - Searching own area for doors/sensors is fine for legacy web shuttles as they are single-area.
 //        However if this code is copied to future multi-area shuttles, should search in all shuttle areas
-/obj/machinery/computer/shuttle_control/web/Initialize()
+/obj/machinery/computer/shuttle_control/web/Initialize(mapload)
 	. = ..()
 	var/area/my_area = get_area(src)
 	if(my_doors)
@@ -407,7 +407,7 @@
 	var/shuttle_name					//Text name of the shuttle to connect to
 	var/list/destinations				//Make sure this STARTS with a destination that builds a route to one that always exists as an anchor.
 
-/obj/shuttle_connector/Initialize()
+/obj/shuttle_connector/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSshuttles,COMSIG_OBSERVER_SHUTTLE_ADDED,PROC_REF(setup_routes))
 
@@ -417,6 +417,7 @@
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
 /obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
+	SIGNAL_HANDLER
 	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttles.shuttles[shuttle_name]
 	if(ES != new_shuttle)
 		return // Its not our shuttle! Ignore!

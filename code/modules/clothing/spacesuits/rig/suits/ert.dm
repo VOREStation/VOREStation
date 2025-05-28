@@ -14,25 +14,7 @@
 	siemens_coefficient= 0.5
 
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/t_scanner,
-		/obj/item/rcd,
-		/obj/item/tool/crowbar,
-		/obj/item/tool/screwdriver,
-		/obj/item/weldingtool,
-		/obj/item/tool/wirecutters,
-		/obj/item/tool/wrench,
-		/obj/item/multitool,
-		/obj/item/radio,
-		/obj/item/analyzer,
-		/obj/item/storage,
-		/obj/item/melee/baton,
-		/obj/item/gun,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/roller
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_ENGINEERING, POCKET_HEAVYTOOLS, POCKET_STORAGE, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS)
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,

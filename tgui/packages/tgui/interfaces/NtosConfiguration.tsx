@@ -6,6 +6,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -93,24 +94,28 @@ export const NtosConfiguration = (props) => {
               key={component.name}
               title={component.name}
               buttons={
-                <>
+                <Stack>
                   {!component.critical && (
-                    <Button.Checkbox
-                      checked={component.enabled}
-                      mr={1}
-                      onClick={() =>
-                        act('PC_toggle_component', {
-                          name: component.name,
-                        })
-                      }
-                    >
-                      Enabled
-                    </Button.Checkbox>
+                    <Stack.Item>
+                      <Button.Checkbox
+                        checked={component.enabled}
+                        mr={1}
+                        onClick={() =>
+                          act('PC_toggle_component', {
+                            name: component.name,
+                          })
+                        }
+                      >
+                        Enabled
+                      </Button.Checkbox>
+                    </Stack.Item>
                   )}
-                  <Box inline bold mr={1}>
-                    Power Usage: {component.powerusage}W
-                  </Box>
-                </>
+                  <Stack.Item>
+                    <Box inline bold mr={1}>
+                      Power Usage: {component.powerusage}W
+                    </Box>
+                  </Stack.Item>
+                </Stack>
               }
             >
               {component.desc}

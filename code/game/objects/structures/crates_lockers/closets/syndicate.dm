@@ -46,7 +46,7 @@
 /obj/structure/closet/syndicate/resources
 	desc = "An old, dusty locker."
 
-/obj/structure/closet/syndicate/resources/Initialize()
+/obj/structure/closet/syndicate/resources/Initialize(mapload)
 	. = ..()
 	if(!contents.len)
 		var/common_min = 30 //Minimum amount of minerals in the stack for common minerals
@@ -101,7 +101,7 @@
 /obj/structure/closet/syndicate/resources/everything
 	desc = "It's an emergency storage closet for repairs."
 
-/obj/structure/closet/syndicate/resources/everything/Initialize()
+/obj/structure/closet/syndicate/resources/everything/Initialize(mapload)
 	var/list/resources = list(
 		/obj/item/stack/material/steel,
 		/obj/item/stack/material/glass,

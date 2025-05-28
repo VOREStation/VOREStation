@@ -9,7 +9,7 @@
 	var/spell_light_intensity = 2
 	var/spell_light_range = 3
 
-/obj/item/spell/modifier/Initialize()
+/obj/item/spell/modifier/Initialize(mapload)
 	. = ..()
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 

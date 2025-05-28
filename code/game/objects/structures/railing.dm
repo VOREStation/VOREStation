@@ -22,15 +22,15 @@
 	icon_modifier = "grey_"
 	icon_state = "grey_railing0"
 
-/obj/structure/railing/New(loc, constructed = 0)
-	..()
+/obj/structure/railing/Initialize(mapload, constructed = 0)
+	. = ..()
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
 		anchored = FALSE
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/Initialize()
+/obj/structure/railing/Initialize(mapload)
 	. = ..()
 	if(src.anchored)
 		update_icon(0)
@@ -44,7 +44,7 @@
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 

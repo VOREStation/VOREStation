@@ -7,7 +7,7 @@
 	can_reinforce = FALSE
 	can_plate = FALSE
 
-/obj/structure/table/darkglass/Initialize()
+/obj/structure/table/darkglass/Initialize(mapload)
 	material = get_material_by_name(MAT_DARKGLASS)
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
@@ -45,6 +45,6 @@
 	icon_state = "plain_preview"
 	color = "#FFFF00"
 
-/obj/structure/table/gold/Initialize()
+/obj/structure/table/gold/Initialize(mapload)
 	material = get_material_by_name(MAT_GOLD)
 	. = ..()

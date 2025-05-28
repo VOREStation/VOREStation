@@ -2,13 +2,13 @@ import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import {
-  Feature,
-  FeatureChoiced,
-  FeatureChoicedServerData,
+  type Feature,
+  type FeatureChoiced,
+  type FeatureChoicedServerData,
   FeatureColorInput,
   FeatureNumberInput,
-  FeatureNumeric,
-  FeatureValueProps,
+  type FeatureNumeric,
+  type FeatureValueProps,
   sortChoices,
 } from '../base';
 
@@ -49,10 +49,9 @@ const UIStyleInput = (
   return (
     <Dropdown
       selected={value}
-      clipSelectedText={false}
       onSelected={props.handleSetValue}
       width="100%"
-      menuWidth="20rem"
+      menuWidth={20}
       options={sortChoices(Object.entries(choices)).map(
         ([dataValue, label]) => {
           return {

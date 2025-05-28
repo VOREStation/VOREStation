@@ -28,7 +28,7 @@
 	//VOREStation Add End
 	var/datum/track/current_track
 
-/obj/machinery/media/jukebox/Initialize()
+/obj/machinery/media/jukebox/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)

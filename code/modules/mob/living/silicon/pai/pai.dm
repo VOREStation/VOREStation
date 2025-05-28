@@ -112,9 +112,13 @@
 
 	var/our_icon_rotation = 0
 
-/mob/living/silicon/pai/New(var/obj/item/paicard)
-	src.loc = paicard
-	card = paicard
+/mob/living/silicon/pai/Initialize(mapload)
+	. = ..()
+
+	card = loc
+	if(!istype(card))
+		return INITIALIZE_HINT_QDEL
+
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
@@ -135,15 +139,13 @@
 
 	//PDA
 	pda = new(src)
-	spawn(5)
-		pda.ownjob = "Personal Assistant"
-		pda.owner = text("[]", src)
-		pda.name = pda.owner + " (" + pda.ownjob + ")"
+	pda.ownjob = "Personal Assistant"
+	pda.owner = text("[]", src)
+	pda.name = pda.owner + " (" + pda.ownjob + ")"
 
-		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
-		if(M)
-			M.toff = FALSE
-	..()
+	var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
+	if(M)
+		M.toff = FALSE
 
 /mob/living/silicon/pai/Login()
 	..()
@@ -152,6 +154,9 @@
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		ooc_notes_favs = read_preference(/datum/preference/text/living/ooc_notes_favs)
+		ooc_notes_maybes = read_preference(/datum/preference/text/living/ooc_notes_maybes)
+		ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
 		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add

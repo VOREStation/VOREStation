@@ -1,7 +1,7 @@
 /obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"
-	organ_tag = "liver"
+	organ_tag = O_LIVER
 	parent_organ = BP_GROIN
 
 /obj/item/organ/internal/liver/process()
@@ -64,7 +64,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/liver/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color

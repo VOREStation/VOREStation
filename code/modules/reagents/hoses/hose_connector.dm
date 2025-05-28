@@ -21,7 +21,7 @@
 
 /obj/item/stack/hose/Destroy()
 	remembered = null
-	..()
+	. = ..()
 
 /obj/item/stack/hose/CtrlClick(mob/user)
 	if(remembered)

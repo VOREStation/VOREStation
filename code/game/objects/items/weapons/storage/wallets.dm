@@ -87,8 +87,8 @@
 	else
 		return ..()
 
-/obj/item/storage/wallet/random/New()
-	..()
+/obj/item/storage/wallet/random/Initialize(mapload)
+	. = ..()
 	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
 	var/obj/item/spacecash/SC = null
 	SC = new(src)
@@ -105,9 +105,9 @@
 	desc = "You can recolor it! Fancy! The future is NOW!"
 	icon_state = "wallet-white"
 
-/obj/item/storage/wallet/poly/New()
-	..()
-	verbs |= /obj/item/storage/wallet/poly/proc/change_color
+/obj/item/storage/wallet/poly/Initialize(mapload)
+	. = ..()
+	verbs += /obj/item/storage/wallet/poly/proc/change_color
 	color = get_random_colour()
 	update_icon()
 

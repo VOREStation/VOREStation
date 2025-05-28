@@ -81,7 +81,7 @@
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
-/obj/machinery/vending/Initialize()
+/obj/machinery/vending/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 	if(product_slogans)
@@ -231,6 +231,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(panel_open)
 			attack_hand(user)
 		return
+	else if(istype(W, /obj/item/fake_coin) && has_premium)
+		to_chat(user, span_notice("\The [W] doesn't fit into the coin slot on \the [src]."))
+		return
 	else if(istype(W, /obj/item/coin) && has_premium)
 		user.drop_item()
 		W.forceMove(src)
@@ -313,51 +316,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/proc/pay_with_card(obj/item/card/id/I, mob/M)
 	visible_message(span_info("[M] swipes a card through [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
-
-	var/datum/money_account/customer_account = get_account(I.associated_account_number)
-	if(!customer_account)
-		to_chat(M, span_warning("Error: Unable to access account. Please contact technical support if problem persists."))
+	if(!purchase_with_id_card(I, M, GLOB.vendor_account.owner_name, name, "Purchase of [currently_vending.item_name]", currently_vending.price))
 		return FALSE
-
-	if(customer_account.suspended)
-		to_chat(M, span_warning("Unable to access account: account suspended."))
-		return FALSE
-
-	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
-	// empty at high security levels
-	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = tgui_input_number(M, "Enter pin code", "Vendor transaction")
-		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
-
-		if(!customer_account)
-			to_chat(M, span_warning("Unable to access account: incorrect credentials."))
-			return FALSE
-
-	if(currently_vending.price > customer_account.money)
-		to_chat(M, span_warning("Insufficient funds in account."))
-		return FALSE
-
-	// Okay to move the money at this point
-
-	// debit money from the purchaser's account
-	customer_account.money -= currently_vending.price
-
-	// create entry in the purchaser's account log
-	var/datum/transaction/T = new()
-	T.target_name = "[vendor_account.owner_name] (via [name])"
-	T.purpose = "Purchase of [currently_vending.item_name]"
-	if(currently_vending.price > 0)
-		T.amount = "([currently_vending.price])"
-	else
-		T.amount = "[currently_vending.price]"
-	T.source_terminal = name
-	T.date = current_date_string
-	T.time = stationtime2text()
-	customer_account.transaction_log.Add(T)
-
 	// Give the vendor the money. We use the account owner name, which means
 	// that purchases made with stolen/borrowed card will look like the card
 	// owner made them
+	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	credit_purchase(customer_account.owner_name)
 	return 1
 
@@ -367,16 +331,16 @@ GLOBAL_LIST_EMPTY(vending_products)
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	vendor_account.money += currently_vending.price
+	GLOB.vendor_account.money += currently_vending.price
 
 	var/datum/transaction/T = new()
 	T.target_name = target
 	T.purpose = "Purchase of [currently_vending.item_name]"
 	T.amount = "[currently_vending.price]"
 	T.source_terminal = name
-	T.date = current_date_string
+	T.date = GLOB.current_date_string
 	T.time = stationtime2text()
-	vendor_account.transaction_log.Add(T)
+	GLOB.vendor_account.transaction_log.Add(T)
 
 /obj/machinery/vending/attack_ghost(mob/user)
 	return attack_hand(user)
@@ -397,7 +361,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/vending),
+		get_asset_datum(/datum/asset/spritesheet_batched/vending),
 	)
 
 /obj/machinery/vending/tgui_interact(mob/user, datum/tgui/ui)
@@ -536,7 +500,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/mob/living/carbon/human/H = ui.user
 			var/obj/item/card/id/C = H.GetIdCard()
 
-			if(!vendor_account || vendor_account.suspended)
+			if(!GLOB.vendor_account || GLOB.vendor_account.suspended)
 				to_chat(ui.user, span_filter_notice("Vendor account offline. Unable to process transaction."))
 				flick("[icon_state]-deny",src)
 				vend_ready = TRUE
@@ -783,6 +747,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
+		return 0
+
+	if(target.is_incorporeal()) // Don't shoot at things that aren't there.
 		return 0
 
 	for(var/datum/stored_item/vending_product/R in shuffle(product_records))

@@ -13,7 +13,7 @@
 	tooltype = /obj/item/inflatable_dispenser/robot
 	var/obj/item/inflatable_dispenser/my_deployer = null
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/Initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/Initialize(mapload)
 	. = ..()
 	my_deployer = my_tool
 

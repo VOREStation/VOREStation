@@ -5,11 +5,11 @@
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
-	invisibility = 100
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/wire_deleter/Initialize(mapload)
 	. = ..()
-	
+
 	for(var/c in loc.contents)
 		if(istype(c, /obj/structure/cable))
 			if(prob(33))

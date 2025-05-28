@@ -6,14 +6,6 @@
 /mob/living/silicon/robot/Check_Shoegrip()
 	return module && module.no_slip
 
-/mob/living/silicon/robot/Process_Spaceslipping(var/prob_slip)
-	var/obj/item/tank/jetpack/thrust = get_jetpack()
-	if(thrust?.can_thrust(0.01))
-		return 0
-	if(module && module.no_slip)
-		return 0
-	..(prob_slip)
-
 /mob/living/silicon/robot/Process_Spacemove(var/check_drift = 0)
 	if(..())//Can move due to other reasons, don't use jetpack fuel
 		return 1
@@ -25,7 +17,7 @@
 
 	return 0
 
- //No longer needed, but I'll leave it here incase we plan to re-use it.
+//No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
 	. = speed
 
@@ -34,6 +26,8 @@
 
 	if(get_restraining_bolt())	// Borgs with Restraining Bolts move slower.
 		. += 1
+	if(nutrition > 1000)
+		. += nutrition / 2000
 
 	. += CONFIG_GET(number/robot_delay)
 

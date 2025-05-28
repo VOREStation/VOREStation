@@ -53,13 +53,13 @@ Category: Reference
 					<h2>Resource Re-purposing</h2>
 					</center>
 					<p class="borders">
-					<b>Cardboard Products</b><br>
+					"} + span_bold("Cardboard Products") + {"<br>
 					Most cardboard-based products, especially any boxes you may find, can be broken down to a sheet and stacked up. From there, you can reuse it to make folders, more boxes, or anything else you may need (such as a clever disguise).
 					<br><br>
-					<b>Glass Bulbs</b><br>
+					"} + span_bold("Glass Bulbs") + {"<br>
 					Do not throw away your burnt out, broken light bulbs: collect them! These bulbs can be inserted into the nearest autolathe where their glass can be re-purposed. Broken bulbs and tubes both fit inside: just mind the sharp edges if they've been shattered.
 					<br><br>
-					<b>Glass Shards</b><br>
+					"} + span_bold("Glass Shards") + {"<br>
 					Did somebody break a window again? No matter, put on your welding goggles and you can re-purpose those glass shards right there on the spot by melting it down back to a more useful state.
 					</p>
 					<hr>
@@ -80,7 +80,7 @@ Category: Reference
 					<center>
 					<h1>Disposals Reclamation</h1>
 					<p class="borders">
-					<b>Sifting through ...stuff.</b><br>
+					"} + span_bold("Sifting through ...stuff.") + {"<br>
 					You would be amazed at the amount of materials that get flushed down disposals: and nearly half of it isn't garbage. People flush things down disposals all the time just to get rid of it: bags, tools, boxes. For one reason or another, some idiot in medbay has thrown away a perfectly good lab coat again. The engineer? They've thrown down an entire toolbox: empty, because they've probably stuffed its contents into their own tool belt.
 					<br><br>
 					What. A. Tool.
@@ -93,7 +93,7 @@ Category: Reference
 					</center>
 					<br>
 					<p class="borders">
-					<b>Searching for Treasure</b><br>
+					"} + span_bold("Searching for Treasure") + {"<br>
 					Like disposals, maintenance can be a 117th wonder of the universe. Lord knows how this stuff ends up in these tunnels: Drills. Shades. Cuffs. All these things can get organized and replaced in appropriate storage areas, but keep in mind: Some of that stuff's there for a reason, such as the emergency internals, gas masks, fire extinguishers, and flashlights. These types of objects should stay there: But if you find a bottle of liquor in a crate somewhere? Hell, why not bring that on home for a good time?
 					</p>
 					</center>
@@ -126,7 +126,7 @@ Category: Reference
 					<br><br>
 					<div class="border">
 					<h1><br>A Guide to <br>FBP and Prosthetic Maintenance<br><br></h1>
-					<b>by Yuki Matsuda</b><br><br>
+					"} + span_bold("by Yuki Matsuda") + {"<br><br>
 					<br><br>
 					</div>
 					</body>
@@ -257,7 +257,7 @@ Category: Reference
 				<small>Player's Guide</small></h1>
 				<center><sub>by Ray Rogers</sub></center><br>
 				<div class="border">
-				Each player starts with three attributes: <i>Vigor</i>, <i>Grit</i>, and <i>Giddyup</i>. Vigor counts how strong, how healthy, and how in-shape a cowpoke is. Grit defines how well a cowpoke can deal with wounds, how gritty his stare is, and how much ice cold water runs through their veins. Giddyup controls how agile a cowpoke is, how well they can dodge a bullet, and how well they can sling.<br><br>
+				Each player starts with three attributes: "} + span_italics("Vigor") + {", "} + span_italics("Grit") + {", and "} + span_italics("Giddyup") + {". Vigor counts how strong, how healthy, and how in-shape a cowpoke is. Grit defines how well a cowpoke can deal with wounds, how gritty his stare is, and how much ice cold water runs through their veins. Giddyup controls how agile a cowpoke is, how well they can dodge a bullet, and how well they can sling.<br><br>
 				When rolling an attribute, a cowpoke uses one d6. If they roll a 4 or above, they succeed. A cowpoke can roll more or less d6s depending on situational advantages/disadvantages, items they may be carrying, or abilities they may have accrued in their time moseying. As long as a cowpoke has one more success than failure, they succeed. For each additional success, up to 6, that success is enhanced or modified in some way.<br><br>
 				In combat, initiative is gained by pulling poker cards. Initiative is then resolved from highest to lowest suit and number. In the event of tying cards, suits are resolved in this order: Hearts, Spades, Diamonds, and then Clubs. Then the cowpoke who gets highest goes on his turn. During their turn, they can do anything they please. Whatever action they want to achieve, they describe it narratively, and then the storyteller tells them how many d6s they may roll to achieve this task.
 				</div>
@@ -296,23 +296,23 @@ Category: Reference
 				<h2>How to Survive a Mass Depressurization Event</h2>
 				<div class="borders">
 				<ul>
-				<li><b>Don your internals.</b></li>
+				<li>"} + span_bold("Don your internals.") + {"</li>
 				</ul>
 				<p class="indent">This is the first thing you should do in a mass depressurization event. Take out the breath mask and emergency air tank from the emergency box in your backpack. Put on the mask and clip the air tank securely to your belt; this way, you will not lose it if you fall over or pass out. Set the distribution pressure on your air tank to at least 18 kPA to conserve air. This represents the minimum threshold for a human to maintain consciousness.</p>
 				<ul>
-				<li><b>Find more oxygen.</b></li>
+				<li>"} + span_bold("Find more oxygen.") + {"</li>
 				</ul>
 				<p class="indent">You may find that your air tank will soon run out. Do not worry. There are numerous emergency oxygen closets placed throughout the station, blue in color with 'O2' written on the front in white. You can also retrieve an oxygen tank from a fire closet. When possible, fill up your air tank in one of the large, blue O2 canisters by inserting your air tank, setting the distribution pressure to max, and turning on the release valve. Just make sure to turn the release valve off before removing your oxygen tank.</p>
 				<ul>
-				<li><b>Stay aware of your surroundings.</b></li>
+				<li>"} + span_bold("Stay aware of your surroundings.") + {"</li>
 				</ul>
 				<p class="indent">Keep track of the local atmosphere. What is the pressure? Is it rising or falling? A pressure of 101 kPA is optimal for human survival, but you can survive conditions as low as 80 kPA for extended periods. You can check the pressure on the air alarms placed throughout the station or with your PDA's atmospheric scanner function. Make sure to check the pressure several times in quick succession, so you can know whether it is rising or falling.</p>
 				<ul>
-				<li><b>Avoid opening fire locks.</b></li>
+				<li>"} + span_bold("Avoid opening fire locks.") + {"</li>
 				</ul>
 				<p class="indent">In the event of depressurization, the station's fire locks automatically drop in an attempt to contain the breach. However, this can also impede movement. If possible, find an alternate route to your destination or find a safe place to wait until the station's engineering team repairs the station. Do not open a fire lock without an engineer's express permission unless you are in immediate mortal danger. After you have opened a fire lock, make sure to close it immediately so as to prevent the breach from spreading.</p>
-				    <ul>
-				<li><b>Listen to emergency personnel.</b></li>
+					<ul>
+				<li>"} + span_bold("Listen to emergency personnel.") + {"</li>
 				</ul>
 				<p class="indent">Follow the instructions of engineering, medical, and security personnel, as well as the orders of the heads of staff. Engineering personnel are trained to fix these situations, and medical personnel will likely be conducting search and rescue operations. Do not impede them and follow their instructions; you are more likely to survive, and less likely to endanger your fellow crew members.</p>
 				</div>
@@ -362,7 +362,7 @@ Category: Reference
 				<li>Avoid using force where possible.</li>
 				<li>Inform the warden when a criminal is wanted and set their wanted status via your security HUD if possible. Beepsky is a force to be reckoned with.</li>
 				<li>Respect the chain of command! The warden outranks you within the brig itself. Obey the Head of Security, but remember that the Overseer outranks him.</li>
-				<li><b>Remember your priorities:</b> one punch is hardly something to arrest anyone over if there is a hostage situation.</li>
+				<li>"} + span_bold("Remember your priorities:") + {" one punch is hardly something to arrest anyone over if there is a hostage situation.</li>
 				</ul>
 				</div>
 				<center><sub>Security Guidelines as issued by NT</sub></center>

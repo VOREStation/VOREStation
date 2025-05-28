@@ -49,7 +49,7 @@ var/list/_nymph_default_emotes = list(
 /mob/living/carbon/alien/diona/get_available_emotes()
 	return global._nymph_default_emotes.Copy()
 
-/mob/living/carbon/alien/diona/Initialize()
+/mob/living/carbon/alien/diona/Initialize(mapload)
 	. = ..()
 	species = GLOB.all_species[SPECIES_DIONA]
 	add_language(LANGUAGE_ROOTGLOBAL)
@@ -71,6 +71,6 @@ var/list/_nymph_default_emotes = list(
 	if(D.stat != CONSCIOUS)
 		return
 	if(prob(33) && D.canmove && isturf(D.loc) && !D.pulledby) //won't move if being pulled
-		step(D, pick(cardinal))
+		step(D, pick(GLOB.cardinal))
 	if(prob(1))
 		D.emote(pick("scratch","jump","chirp","roll"))

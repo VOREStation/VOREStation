@@ -8,6 +8,7 @@ import { MESSAGE_TYPES } from '../chat/constants';
 import {
   addHighlightSetting,
   changeSettingsTab,
+  importSettings,
   loadSettings,
   openChatSettings,
   removeHighlightSetting,
@@ -57,7 +58,6 @@ const initialState = {
   exportEnd: 0,
   lastId: null,
   initialized: false,
-  firstLoad: false,
   storedTypes: {},
   hideImportantInAdminTab: false,
   interleave: false,
@@ -97,7 +97,7 @@ export function settingsReducer(
             ...state,
             ...payload,
           };
-          nextState.firstLoad = true;
+          nextState.initialized = true;
           return nextState;
         }
 
@@ -107,8 +107,8 @@ export function settingsReducer(
           ...payload,
         };
         nextState.initialized = true;
-        let newFilters = {};
-        for (let typeDef of MESSAGE_TYPES) {
+        const newFilters = {};
+        for (const typeDef of MESSAGE_TYPES) {
           if (
             nextState.storedTypes[typeDef.type] === null ||
             nextState.storedTypes[typeDef.type] === undefined
@@ -144,6 +144,18 @@ export function settingsReducer(
 
         return nextState;
       }
+    }
+
+    case importSettings.type: {
+      const newSettings = payload.newSettings;
+      if (!newSettings) {
+        return state;
+      }
+      const nextState = {
+        ...state,
+        ...newSettings,
+      };
+      return nextState;
     }
 
     case toggleSettings.type: {

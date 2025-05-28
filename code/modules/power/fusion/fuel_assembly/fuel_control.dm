@@ -10,14 +10,14 @@
 	var/scan_range = 25
 	var/datum/tgui_module/rustfuel_control/monitor
 
-/obj/machinery/computer/fusion_fuel_control/New()
-	..()
+/obj/machinery/computer/fusion_fuel_control/Initialize(mapload)
+	. = ..()
 	monitor = new(src)
 	monitor.fuel_tag = id_tag
 
 /obj/machinery/computer/fusion_fuel_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/fusion_fuel_control/attack_ai(var/mob/user)
 	attack_hand(user)

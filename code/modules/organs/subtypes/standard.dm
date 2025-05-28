@@ -34,7 +34,7 @@
 			owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
 			owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
 
-		var/datum/robolimb/R = all_robolimbs[model] // company should be set in parent by now
+		var/datum/robolimb/R = GLOB.all_robolimbs[model] // company should be set in parent by now
 		if(!R)
 			log_error("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
 		owner.synthetic = R
@@ -48,11 +48,11 @@
 	//Staph infection symptoms for CHEST
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -78,11 +78,10 @@
 	//Staph infection symptoms for GROIN
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 
 /obj/item/organ/external/arm
 	organ_tag = BP_L_ARM
@@ -106,11 +105,10 @@
 	//Staph infection symptoms for ARM
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			if(organ_tag == BP_L_ARM) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_ARM)
@@ -147,12 +145,21 @@
 	//Staph infection symptoms for LEG
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
+
+/obj/item/organ/external/leg/is_usable() // We only do legs, otherwise the stance_damage will be 8 instead of 4, meaning crutches do nothing as they only negate 4
+	if(robotic == ORGAN_FLESH && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
+
+/obj/item/organ/external/leg/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
 
 /obj/item/organ/external/leg/right
 	organ_tag = BP_R_LEG
@@ -191,12 +198,16 @@
 	//Staph infection symptoms for FOOT
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
+
+/obj/item/organ/external/foot/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
 
 /obj/item/organ/external/foot/right
 	organ_tag = BP_R_FOOT
@@ -237,11 +248,10 @@
 	//Staph infection symptoms for HAND
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			if(organ_tag == BP_L_HAND) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_HAND)
@@ -282,7 +292,7 @@
 	throwforce = 7
 	var/eyes_over_markings = FALSE //VOREStation edit
 
-/obj/item/organ/external/head/Initialize()
+/obj/item/organ/external/head/Initialize(mapload)
 	if(CONFIG_GET(flag/allow_headgibs))
 		cannot_gib = FALSE
 	return ..()
@@ -290,7 +300,7 @@
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	. = ..(company, skip_prosthetics, 1)
 	if(model)
-		var/datum/robolimb/robohead = all_robolimbs[model]
+		var/datum/robolimb/robohead = GLOB.all_robolimbs[model]
 		if(robohead?.monitor_styles && robohead?.monitor_icon)
 			LAZYDISTINCTADD(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
 		else
@@ -327,11 +337,10 @@
 	//Staph infection symptoms for HEAD
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
-
+			owner.custom_pain("An alarming [pick("ache","pulse","throb")] radiates through your [name]!",0)
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.eye_blurry += 20 //Specific level 2 'feature
 
 /obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
@@ -380,7 +389,7 @@
 			icon_cache_key += "[eye_icon]"
 
 	//Lip color/icon
-	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
+	if(owner.lip_style && (data.get_species_appearance_flags() & HAS_LIPS))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
 		add_overlay(lip_icon)
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)

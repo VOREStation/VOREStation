@@ -302,7 +302,7 @@
 
 
 
-/obj/machinery/atmospherics/tvalve/digital/Initialize()
+/obj/machinery/atmospherics/tvalve/digital/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)

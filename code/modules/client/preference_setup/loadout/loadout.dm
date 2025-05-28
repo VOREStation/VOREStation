@@ -76,24 +76,22 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
-	var/mob/preference_mob = preference_mob() //VOREStation Add
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
 		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
-			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 				continue
+
 		if(max_cost && G.cost > max_cost)
 			continue
-		//VOREStation Edit Start
-		if(preference_mob && preference_mob.client)
-			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
+		if(pref.client)
+			if(G.ckeywhitelist && !(pref.client_ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
+			if(G.character_name && pref.client.prefs && !(pref.client.prefs.real_name in G.character_name))
 				continue
-		//VOREStation Edit End
 		. += gear_name
 
 /datum/category_item/player_setup_item/loadout/sanitize_character()
@@ -137,7 +135,7 @@ var/list/gear_datums = list()
 		fcolor = "#E67300"
 
 	. += "<table align = 'center' width = 100%>"
-	. += "<tr><td colspan=3><center><a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='byond://?src=\ref[src];next_slot=1'>\>\></a><b><font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.</b> \[<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
+	. += "<tr><td colspan=3><center><a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a>" + span_bold("<font color = '[fcolor]'>\[[pref.gear_slot]\]</font> ") + "<a href='byond://?src=\ref[src];next_slot=1'>\>\></a>" + span_bold("<font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.") + " \[<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
 
 	. += "<tr><td colspan=3><center><b>"
 	var/firstcat = 1
@@ -166,19 +164,19 @@ var/list/gear_datums = list()
 
 	var/datum/loadout_category/LC = loadout_categories[current_tab]
 	. += "<tr><td colspan=3><hr></td></tr>"
-	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
+	. += "<tr><td colspan=3>" + span_bold("<center>[LC.category]</center>") + "</td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
 		if(preference_mob && preference_mob.client)
 			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
 				continue
-			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
+			if(G.character_name && preference_mob.client.prefs && !(preference_mob.client.prefs.real_name in G.character_name))
 				continue
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
-		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		. += "<td>" + span_normal(span_italics("[G.description]")) + "</td></tr>"
 		if(G.show_roles && G.allowed_roles)
 			. += "<td colspan=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted to: [list2text(G.allowed_roles,", ")]</td>"
 		if(ticked)
@@ -281,7 +279,7 @@ var/list/gear_datums = list()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
-	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc)
+	gear_tweaks = list(gear_tweak_free_name, gear_tweak_free_desc, GLOB.gear_tweak_item_tf_spawn, GLOB.gear_tweak_free_matrix_recolor)
 
 /datum/gear_data
 	var/path

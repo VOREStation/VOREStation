@@ -15,7 +15,7 @@
 	if(default_part_replacement(user, I))
 		return
 
-/obj/machinery/artifact_scanpad/Initialize()
+/obj/machinery/artifact_scanpad/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_icon()

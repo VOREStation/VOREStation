@@ -25,11 +25,15 @@
 
 
 // Claim machine ID
-/obj/machinery/cash_register/New()
-	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
+/obj/machinery/cash_register/Initialize(mapload)
+	machine_id = "[station_name()] RETAIL #[GLOB.num_financial_terminals++]"
+	. = ..()
 	cash_stored = rand(10, 70)*10
-	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
+	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
+/obj/machinery/cash_register/Destroy()
+	GLOB.transaction_devices -= src
+	. = ..()
 
 /obj/machinery/cash_register/examine(mob/user as mob)
 	. = ..(user)
@@ -44,7 +48,7 @@
 
 /obj/machinery/cash_register/attack_hand(mob/user as mob)
 	// Don't be accessible from the wrong side of the machine
-	if(get_dir(src, user) & reverse_dir[src.dir]) return
+	if(get_dir(src, user) & GLOB.reverse_dir[src.dir]) return
 
 	if(cash_open)
 		if(cash_stored)
@@ -257,7 +261,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "([transaction_amount])"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					D.transaction_log.Add(T)
 
@@ -267,7 +271,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "[transaction_amount]"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					linked_account.transaction_log.Add(T)
 
@@ -305,7 +309,7 @@
 			T.purpose = transaction_purpose
 			T.amount = "[transaction_amount]"
 			T.source_terminal = machine_id
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = stationtime2text()
 			linked_account.transaction_log.Add(T)
 
@@ -486,20 +490,20 @@
 	manipulating = 1
 	if(!anchored)
 		user.visible_message("\The [user] begins securing \the [src] to the floor.",
-	                         "You begin securing \the [src] to the floor.")
+							"You begin securing \the [src] to the floor.")
 	else
 		user.visible_message(span_warning("\The [user] begins unsecuring \the [src] from the floor."),
-	                         "You begin unsecuring \the [src] from the floor.")
+							"You begin unsecuring \the [src] from the floor.")
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
 	if(!anchored)
 		user.visible_message(span_notice("\The [user] has secured \the [src] to the floor."),
-	                         span_notice("You have secured \the [src] to the floor."))
+							span_notice("You have secured \the [src] to the floor."))
 	else
 		user.visible_message(span_warning("\The [user] has unsecured \the [src] from the floor."),
-	                         span_notice("You have unsecured \the [src] from the floor."))
+							span_notice("You have unsecured \the [src] from the floor."))
 	anchored = !anchored
 	manipulating = 0
 	return

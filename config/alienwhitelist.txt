@@ -24,6 +24,7 @@ bonktrauma - Diona
 bothnevarbackwards - Diona
 bricker98 - Protean
 bricker98 - Black-Eyed Shadekin
+bricker98 - Hanner
 bubonicsweetie - Protean
 burritojustice - Protean
 camanis - Protean
@@ -52,6 +53,7 @@ draykenthedragon - Xenochimera
 draykenthedragon - Protean
 durandaal - Teppi
 essbie - Black-Eyed Shadekin
+eucliwood0 - Hanner
 exgame - Vox
 falloutdog3 - Black-Eyed Shadekin
 flaktual - Vox
@@ -113,6 +115,7 @@ magpiemayhem - Xenochimera
 makkinindorn - Protean
 marcobarko - Black-Eyed Shadekin
 marcobarko - Protean
+maxcaliber50 - Protean
 maxine64 - Xenochimera
 mewchild - Diona
 mewchild - Vox
@@ -139,6 +142,7 @@ ozyton - Black-Eyed Shadekin
 pandora029 - Protean
 paradoxspace - Xenochimera
 pastelprincedan - Black-Eyed Shadekin
+pastelprincedan - Hanner
 pastelprincedan - Protean
 pearlprophet - Protean
 pemdesos - Protean
@@ -154,6 +158,7 @@ rainbyplays - Protean
 ramomisama - Protean
 residentcody - Black-Eyed Shadekin
 residentcody - Protean
+residentcody - Gamma Replicant
 revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
@@ -170,6 +175,7 @@ seiga - Vox
 selter - Protean
 sepulchre - Vox
 sharplight - Protean
+shilkon - Hanner
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
@@ -194,7 +200,9 @@ terrestris - Common Skrellian
 terrestris - Vox
 thedavestdave - Protean
 theoun - Hanner
+thexdkidoflol - Xenochimera
 timidvi - Diona
+titaania - Protean
 tombomb90 - Protean
 torquegstc - Protean
 trifireblade - Protean

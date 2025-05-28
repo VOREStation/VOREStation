@@ -13413,7 +13413,6 @@
 "gvD" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /obj/machinery/door/airlock/maintenance{
 	name = "Hydroponics Maintenance";

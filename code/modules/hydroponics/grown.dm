@@ -355,7 +355,7 @@
 		if(!reagents || reagents.total_volume <= 0)
 			return
 		reagents.remove_any(rand(1,3)) //Todo, make it actually remove the reagents the seed uses.
-		var/affected = pick("r_hand","l_hand")
+		var/affected = pick(BP_R_HAND,BP_L_HAND)
 		seed.do_thorns(H,src,affected)
 		seed.do_sting(H,src,affected)
 
@@ -375,12 +375,11 @@
 
 var/list/fruit_icon_cache = list()
 
-/obj/item/reagent_containers/food/snacks/fruit_slice/New(var/newloc, var/datum/seed/S)
-	..(newloc)
+/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, var/datum/seed/S)
+	. = ..()
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	name = "[S.seed_name] slice"
 	desc = "A slice of \a [S.seed_name]. Tasty, probably."

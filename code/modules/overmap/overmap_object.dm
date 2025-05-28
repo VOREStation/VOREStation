@@ -35,7 +35,7 @@
 	var/list/cam_plane_masters
 	var/obj/screen/background/cam_background
 
-/obj/effect/overmap/Initialize()
+/obj/effect/overmap/Initialize(mapload)
 	. = ..()
 	if(!global.using_map.use_overmap)
 		return INITIALIZE_HINT_QDEL

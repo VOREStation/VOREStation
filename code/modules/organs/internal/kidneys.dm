@@ -49,7 +49,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/kidneys/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color

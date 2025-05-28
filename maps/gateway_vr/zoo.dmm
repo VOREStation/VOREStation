@@ -1224,13 +1224,6 @@
 /mob/living/simple_mob/humanoid/pirate,
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
-"dK" = (
-/obj/machinery/power/fractal_reactor/fluff/converter{
-	mapped_in = 1;
-	power_generation_rate = 10000
-	},
-/turf/simulated/floor/plating,
-/area/awaymission/zoo/pirateship)
 "dL" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -2611,15 +2604,6 @@
 "hF" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = -25
-	},
-/turf/simulated/shuttle/floor/darkred,
-/area/awaymission/zoo/syndieship)
-"hG" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/bed/chair{
-	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
@@ -25428,10 +25412,10 @@ ad
 bO
 bO
 al
-dK
 al
 al
-dK
+al
+al
 al
 fj
 bO
@@ -33735,7 +33719,7 @@ gN
 gN
 gr
 hu
-hG
+hu
 hu
 hu
 gN

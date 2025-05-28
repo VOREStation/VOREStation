@@ -50,7 +50,7 @@
 	src.set_dir(turn(src.dir, 90))
 	return 1
 
-/obj/machinery/power/emitter/Initialize()
+/obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
@@ -58,8 +58,8 @@
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("EMITTER([x],[y],[z]) Destroyed/deleted.")
-	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
-	..()
+	investigate_log(span_red("deleted") + " at ([x],[y],[z])","singulo")
+	. = ..()
 
 /obj/machinery/power/emitter/update_icon()
 	if (active && powernet && avail(active_power_usage))
@@ -82,7 +82,7 @@
 				to_chat(user, "You turn off [src].")
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("EMITTER([x],[y],[z]) OFF by [key_name(user)]")
-				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
+				investigate_log("turned " + span_red("off") + " by [user.key]","singulo")
 			else
 				src.active = 1
 				to_chat(user, "You turn on [src].")
@@ -90,7 +90,7 @@
 				src.fire_delay = get_initial_fire_delay()
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("EMITTER([x],[y],[z]) ON by [key_name(user)]")
-				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
+				investigate_log("turned " + span_green("on") + " by [user.key]","singulo")
 			update_icon()
 		else
 			to_chat(user, span_warning("The controls are locked!"))
@@ -122,13 +122,13 @@
 				powered = 1
 				update_icon()
 				log_game("EMITTER([x],[y],[z]) Regained power and is ON.")
-				investigate_log("regained power and turned <font color='green'>on</font>","singulo")
+				investigate_log("regained power and turned " + span_green("on"),"singulo")
 		else
 			if(powered)
 				powered = 0
 				update_icon()
 				log_game("EMITTER([x],[y],[z]) Lost power and was ON.")
-				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
+				investigate_log("lost power and turned" + span_red("off"),"singulo")
 			return
 
 		src.last_shot = world.time

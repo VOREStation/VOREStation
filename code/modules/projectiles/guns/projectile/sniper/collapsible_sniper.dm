@@ -49,24 +49,24 @@
 	name = "AM rifle barrel"
 	icon_state = "heavysniper-barrel"
 
-/obj/item/sniper_rifle_part/barrel/New()
-	..()
+/obj/item/sniper_rifle_part/barrel/Initialize(mapload)
+	. = ..()
 	barrel = src
 
 /obj/item/sniper_rifle_part/stock
 	name = "AM rifle stock"
 	icon_state = "heavysniper-stock"
 
-/obj/item/sniper_rifle_part/stock/New()
-	..()
+/obj/item/sniper_rifle_part/stock/Initialize(mapload)
+	. = ..()
 	stock = src
 
 /obj/item/sniper_rifle_part/trigger_group
 	name = "AM rifle trigger assembly"
 	icon_state = "heavysniper-trig"
 
-/obj/item/sniper_rifle_part/trigger_group/New()
-	..()
+/obj/item/sniper_rifle_part/trigger_group/Initialize(mapload)
+	. = ..()
 	trigger_group = src
 
 /obj/item/sniper_rifle_part/attack_self(mob/user)

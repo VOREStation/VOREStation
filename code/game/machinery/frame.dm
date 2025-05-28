@@ -1,16 +1,16 @@
-/var/global/list/construction_frame_wall
-/var/global/list/construction_frame_floor
+GLOBAL_LIST(construction_frame_wall)
+GLOBAL_LIST(construction_frame_floor)
 
 /proc/populate_frame_types()
 	//Create global frame type list if it hasn't been made already.
-	construction_frame_wall = list()
-	construction_frame_floor = list()
+	GLOB.construction_frame_wall = list()
+	GLOB.construction_frame_floor = list()
 	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
-			construction_frame_wall += type
+			GLOB.construction_frame_wall += type
 		else
-			construction_frame_floor += type
+			GLOB.construction_frame_floor += type
 
 //////////////////////////////
 // Frame Type Datum - Describes the frame structures that can be created from a frame item.
@@ -269,17 +269,14 @@
 	for(var/obj/ct as anything in req_components)
 		req_component_names[ct] = initial(ct.name)
 
-/obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
-	..()
+/obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
+	. = ..()
 	if(building)
 		frame_type = type
 		state = FRAME_PLACED
 
 		if(dir)
 			set_dir(dir)
-
-		if(loc)
-			src.loc = loc
 
 		if(frame_type.x_offset)
 			pixel_x = (dir & 3)? 0 : (dir == EAST ? -frame_type.x_offset : frame_type.x_offset)

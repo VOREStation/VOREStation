@@ -70,17 +70,15 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			//Messages having theese tokens will be rejected by server. Case sensitive
 	var/spamfilter_limit = MESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
 
-/obj/machinery/message_server/New()
+/obj/machinery/message_server/Initialize(mapload)
+	. = ..()
 	message_servers += src
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
-	..()
-	return
 
 /obj/machinery/message_server/Destroy()
 	message_servers -= src
-	..()
-	return
+	return ..()
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -107,7 +105,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/result
 	for (var/token in spamfilter)
 		if (findtextEx(message,token))
-			message = "<font color=\"red\">[message]</font>"	//Rejected messages will be indicated by red color.
+			message = span_red("[message]")	//Rejected messages will be indicated by red color.
 			result = token										//Token caused rejection (if there are multiple, last will be chosen>.
 	pda_msgs += new/datum/data_pda_msg(recipient,sender,message)
 	return result
@@ -119,7 +117,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		authmsg += "([id_auth])\n"
 	if (stamp)
 		authmsg += "([stamp])\n"
-	for (var/obj/machinery/requests_console/Console in allConsoles)
+	for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
 		if (ckey(Console.department) == ckey(recipient))
 			if(Console.inoperable())
 				Console.message_log += list(list("Message lost due to console failure.","Please contact [station_name()] system adminsitrator or AI for technical assistance."))
@@ -142,7 +140,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 
 /obj/machinery/message_server/attack_hand(user as mob)
-//	to_chat(user, "<font color='blue'>There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.</font>")
+//	to_chat(user, span_blue("There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."))
 	to_chat(user, span_filter_notice("You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]."))
 	active = !active
 	update_icon()
@@ -263,10 +261,11 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/datum/feedback_variable/feedback = new()
 
 	//Only one can exist in the world!
-/obj/machinery/blackbox_recorder/New()
+/obj/machinery/blackbox_recorder/Initialize(mapload)
+	. = ..()
 	if(blackbox)
 		if(istype(blackbox,/obj/machinery/blackbox_recorder))
-			qdel(src)
+			return INITIALIZE_HINT_QDEL
 	blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()
@@ -289,7 +288,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.messages_admin = messages_admin
 		if(blackbox != BR)
 			blackbox = BR
-	..()
+	. = ..()
 
 /obj/machinery/blackbox_recorder/proc/find_feedback_datum(var/variable)
 	for(var/datum/feedback_variable/FV in feedback)
@@ -307,7 +306,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/pda_msg_amt = 0
 	var/rc_msg_amt = 0
 
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(MS.pda_msgs.len > pda_msg_amt)
 			pda_msg_amt = MS.pda_msgs.len
 		if(MS.rc_msgs.len > rc_msg_amt)

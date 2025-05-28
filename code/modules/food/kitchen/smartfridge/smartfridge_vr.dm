@@ -57,7 +57,7 @@
 /obj/machinery/smartfridge/chemistry/chemvator/down
 	name = "\improper Smart Chemavator - Lower"
 
-/obj/machinery/smartfridge/chemistry/chemvator/down/Initialize()
+/obj/machinery/smartfridge/chemistry/chemvator/down/Initialize(mapload)
 	. = ..()
 	var/obj/machinery/smartfridge/chemistry/chemvator/above = locate(/obj/machinery/smartfridge/chemistry/chemvator,get_zstep(src,UP))
 	if(istype(above))

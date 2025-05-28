@@ -31,26 +31,32 @@ export const SpriteSection = (props: {
       scrollable
       width="30%"
       buttons={
-        <>
-          <Button.Checkbox
-            checked={includeDefault}
-            onClick={() => setIncludeDefault(!includeDefault)}
-          >
-            Def
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={includeWide}
-            onClick={() => setInclideDog(!includeWide)}
-          >
-            Wide
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={includeTall}
-            onClick={() => setIncludeTall(!includeTall)}
-          >
-            Tall
-          </Button.Checkbox>
-        </>
+        <Stack g={0.2}>
+          <Stack.Item>
+            <Button.Checkbox
+              checked={includeDefault}
+              onClick={() => setIncludeDefault(!includeDefault)}
+            >
+              Def
+            </Button.Checkbox>
+          </Stack.Item>
+          <Stack.Item>
+            <Button.Checkbox
+              checked={includeWide}
+              onClick={() => setInclideDog(!includeWide)}
+            >
+              Wide
+            </Button.Checkbox>
+          </Stack.Item>
+          <Stack.Item>
+            <Button.Checkbox
+              checked={includeTall}
+              onClick={() => setIncludeTall(!includeTall)}
+            >
+              Tall
+            </Button.Checkbox>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack.Item mb={'10px'}>
@@ -58,7 +64,7 @@ export const SpriteSection = (props: {
           fluid
           value={searchText}
           placeholder="Search for sprites..."
-          onInput={(e, value: string) => setSearchText(value)}
+          onChange={(value: string) => setSearchText(value)}
         />
       </Stack.Item>
       <Stack.Item>

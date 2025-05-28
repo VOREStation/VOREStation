@@ -15,7 +15,7 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
-/obj/machinery/sleep_console/Initialize()
+/obj/machinery/sleep_console/Initialize(mapload)
 	findsleeper()
 	return ..()
 
@@ -113,7 +113,7 @@
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 	default_apply_parts()
@@ -308,7 +308,7 @@
 			if(!occupant)
 				return
 			if(occupant.stat == DEAD)
-				var/datum/gender/G = gender_datums[occupant.get_visible_gender()]
+				var/datum/gender/G = GLOB.gender_datums[occupant.get_visible_gender()]
 				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
 				return
 			var/chemical = params["chemid"]
@@ -536,6 +536,6 @@
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
 
-/obj/machinery/sleeper/survival_pod/Initialize()
+/obj/machinery/sleeper/survival_pod/Initialize(mapload)
 	. = ..()
 	RefreshParts(1)

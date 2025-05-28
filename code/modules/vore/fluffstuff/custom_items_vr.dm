@@ -452,7 +452,7 @@
 	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "serdy_armor"
 	item_state = "serdy_armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
+	body_parts_covered = CHEST|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
 
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
@@ -472,9 +472,7 @@
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
-	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = ITEMSIZE_NORMAL
@@ -504,7 +502,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/head/fluff/pink_tiara
-	name = "Pink Tourmaline Tiara"
+	name = "pink tourmaline tiara"
 	desc = "A small, steel tiara with a large, pink tourmaline gem in the center."
 	icon_state = "amp"
 	body_parts_covered = 0
@@ -529,7 +527,7 @@
 	var/client/owner_c = null //They'll be dead when we message them probably.
 	var/state = 0 //0 - New, 1 - Paired, 2 - Breaking, 3 - Broken (same as iconstates)
 
-/obj/item/clothing/accessory/collar/khcrystal/Initialize()
+/obj/item/clothing/accessory/collar/khcrystal/Initialize(mapload)
 	. = ..()
 	update_state(0)
 
@@ -622,7 +620,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 2
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/storage/box/khcrystal/Initialize()
+/obj/item/storage/box/khcrystal/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper/khcrystal_manual(src)
 	new /obj/item/clothing/accessory/collar/khcrystal(src)
@@ -695,7 +693,7 @@
 	var/ambulance_state = FALSE
 	var/ambulance_last_switch = 0
 
-/obj/item/storage/backpack/saddlebag/tempest/Initialize()
+/obj/item/storage/backpack/saddlebag/tempest/Initialize(mapload)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -778,6 +776,9 @@
 	icon_state = "amayarahlwahID"
 	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
 	title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
+
+/obj/item/clothing/glasses/fluff
+	name = DEVELOPER_WARNING_NAME
 
 //General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
@@ -928,7 +929,7 @@
 	var/wielded = 0
 	var/base_name = "stunstaff"
 
-/obj/item/melee/baton/fluff/stunstaff/Initialize()
+/obj/item/melee/baton/fluff/stunstaff/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
@@ -997,7 +998,7 @@
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/item/storage/backpack/fluff/stunstaff/Initialize()
+/obj/item/storage/backpack/fluff/stunstaff/Initialize(mapload)
 	. = ..()
 	new /obj/item/melee/baton/fluff/stunstaff(src)
 
@@ -1157,28 +1158,27 @@
 	name = "flask of expensive alcohol"
 	desc = "A standard vacuum-flask filled with good and expensive drink."
 
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PWINE, 60)
 
 //RadiantAurora: Tiemli Kroto
 /obj/item/clothing/glasses/welding/tiemgogs
-   name = "custom-fitted welding goggles"
-   desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
+	name = "custom-fitted welding goggles"
+	desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
 
-   icon = 'icons/vore/custom_items_vr.dmi'
-   icon_state = "tiemgogs"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "tiemgogs"
 
-   icon_override = 'icons/vore/custom_clothes_vr.dmi'
-   icon_state = "tiemgogs"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tiemgogs"
 
 /obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-   if(..())
-      if(H.ckey != "radiantaurora")
-         to_chat(H, span_warning("These don't look like they were made to fit you..."))
-         return 0
-      else
-         return 1
+	if(..())
+		if(H.ckey != "radiantaurora")
+			to_chat(H, span_warning("These don't look like they were made to fit you..."))
+			return 0
+		return 1
 
 //Ryumi - Nikki Yumeno
 /obj/item/rig/nikki
@@ -1204,12 +1204,7 @@
 	glove_type = null
 	boot_type = null
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage,
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_STORAGE)
 
 /obj/item/rig/nikki/attackby(obj/item/W, mob/living/user)
 	//This thing accepts ONLY mounted sizeguns. That's IT. Nothing else!
@@ -1228,11 +1223,11 @@
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
-    name = "Security Bomber Jacket"
-    desc = "A black bomber jacket with the security emblem sewn onto it."
-    icon = 'icons/vore/custom_items_vr.dmi'
-    icon_override = 'icons/vore/custom_items_vr.dmi'
-    icon_state = "bombersec"
+	name = "Security Bomber Jacket"
+	desc = "A black bomber jacket with the security emblem sewn onto it."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "bombersec"
 
 
 //pimientopyro - Scylla Casmus
@@ -1273,7 +1268,7 @@
 	filling_states = list(15, 30, 50, 60, 80, 100)
 	volume = 60
 
-/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TEA, 40)
 	reagents.add_reagent(REAGENT_ID_MILK, 20)
@@ -1347,7 +1342,7 @@
 	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 7)
 
-/obj/item/storage/fancy/fluff/charlotte/Initialize()
+/obj/item/storage/fancy/fluff/charlotte/Initialize(mapload)
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
@@ -1398,7 +1393,7 @@
 	icon_state = "bottle3"
 	prefill = list(REAGENT_ID_BICARIDINE = 30, REAGENT_ID_NUTRIMENT = 30)
 
-/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize()
+/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize(mapload)
 	. = ..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
 	hold.can_hold = list(/obj/item/material/knife, /obj/item/reagent_containers/glass/bottle)
@@ -1473,16 +1468,6 @@
 	sharp = TRUE
 	edge = TRUE
 
-//PastelPrinceDan - Kiyoshi/Masumi Maki
-/obj/item/toy/plushie/fluff/slimeowshi
-	name = "Slime-Cat " + JOB_RESEARCH_DIRECTOR + " plushie"
-	desc = "An adorable stuffed toy that resembles a slime. It's pink, and has little cat ears, as well as a tail! Atop its head is a small beret with a " + JOB_RESEARCH_DIRECTOR + "'s insignia."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "kimeowshi"
-	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
-	gender = PLURAL // this seems like a good idea but probably prone to changing. todo: ask dan
-	// the only reason this thought is relevant because the base slimeplush has its gender set to female
-
 //YeCrowbarMan - Lemon Yellow
 /obj/item/toy/plushie/fluff/lemonplush
 	name = "yellow slime plushie"
@@ -1493,21 +1478,21 @@
 
 //Bricker98:Nettie Stough
 /obj/item/modular_computer/tablet/preset/custom_loadout/nettie
-  name = "Remodeled Tablet"
-  desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
-  icon = 'icons/obj/modular_tablet.dmi'
-  icon_state = "elite"
-  icon_state_unpowered = "elite"
+	name = "Remodeled Tablet"
+	desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+	icon = 'icons/obj/modular_tablet.dmi'
+	icon_state = "elite"
+	icon_state_unpowered = "elite"
 
 /obj/item/modular_computer/tablet/preset/custom_loadout/nettie/install_default_hardware()
-  ..()
-  processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
-  tesla_link = new/obj/item/computer_hardware/tesla_link(src)
-  hard_drive = new/obj/item/computer_hardware/hard_drive/(src)
-  network_card = new/obj/item/computer_hardware/network_card/advanced(src)
-  nano_printer = new/obj/item/computer_hardware/nano_printer(src)
-  battery_module = new/obj/item/computer_hardware/battery_module(src)
-  battery_module.charge_to_full()
+	..()
+	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
+	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
+	hard_drive = new/obj/item/computer_hardware/hard_drive/(src)
+	network_card = new/obj/item/computer_hardware/network_card/advanced(src)
+	nano_printer = new/obj/item/computer_hardware/nano_printer(src)
+	battery_module = new/obj/item/computer_hardware/battery_module(src)
+	battery_module.charge_to_full()
 
 
 //Stobarico - Kyu Comet
@@ -1568,7 +1553,7 @@
 	..()
 	icon_state = "ceph_d6[result]"
 
-/obj/item/dice/loaded/ceph/Initialize()
+/obj/item/dice/loaded/ceph/Initialize(mapload)
 	. = ..()
 	icon_state = "ceph_d6[rand(1,sides)]"
 
@@ -1588,3 +1573,12 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "evelynn"
 	pointer_icon_state = "purple_laser"
+
+//sixberry: Thistle
+/obj/item/clothing/glasses/fluff/kintacts_aquamarine
+	name = "Aquamarine KINtacts"
+	desc = "A blueish-green pair of borosilicate glass contact lenses, designed solely for Shadekin. They seem to have some degree of iridescence to them."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kintacts"
+	item_state = "kintacts_mob"

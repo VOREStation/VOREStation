@@ -324,7 +324,7 @@
 			usr.m_int = "13,14"
 		if("Reset Machine")
 			usr.unset_machine()
-		if("internal")
+		if("internal") //dear god this entire thing needs to be rewritten this is literally assaulting my eyes with how awful it is. FUCK.
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
@@ -367,6 +367,12 @@
 									from = "in"
 									nicename |= "hardsuit"
 									tankcheck |= Rig.air_supply
+
+							var/obj/item/clothing/suit/space/void/Void = C.get_voidsuit()
+							if(Void && Void.tank)
+								from = "in"
+								nicename |= "hardsuit"
+								tankcheck |= Void.tank
 
 							for(var/i=1, i<tankcheck.len+1, ++i)
 								if(istype(tankcheck[i], /obj/item/tank))
@@ -700,48 +706,6 @@
 /obj/screen/setup_preview/bg/Click(params)
 	pref?.bgstate = next_in_list(pref.bgstate, pref.bgstate_options)
 	pref?.update_preview_icon()
-
-/obj/screen/splash
-	screen_loc = "1,1"
-	layer = LAYER_HUD_ABOVE
-	plane = PLANE_PLAYER_HUD_ABOVE
-	var/client/holder
-
-/obj/screen/splash/New(client/C, visible)
-	. = ..()
-
-	holder = C
-
-	if(!visible)
-		alpha = 0
-
-	if(!lobby_image)
-		qdel(src)
-		return
-
-	icon = lobby_image.icon
-	icon_state = lobby_image.icon_state
-
-	holder.screen += src
-
-/obj/screen/splash/proc/Fade(out, qdel_after = TRUE)
-	if(QDELETED(src))
-		return
-	if(out)
-		animate(src, alpha = 0, time = 30)
-	else
-		alpha = 0
-		animate(src, alpha = 255, time = 30)
-	if(qdel_after)
-		QDEL_IN(src, 30)
-
-/obj/screen/splash/Destroy()
-	if(holder)
-		holder.screen -= src
-		holder = null
-	return ..()
-
-
 /**
  * This object holds all the on-screen elements of the mapping unit.
  * It has a decorative frame and onscreen buttons. The map itself is drawn

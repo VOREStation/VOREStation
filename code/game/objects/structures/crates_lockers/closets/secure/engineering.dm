@@ -39,7 +39,7 @@
 		/obj/item/tank/emergency/oxygen/double,	//VOREStation Edit: chief gets the good shit
 		/obj/item/reagent_containers/spray/windowsealant) //VOREStation Add
 
-/obj/structure/closet/secure_closet/engineering_chief/Initialize()
+/obj/structure/closet/secure_closet/engineering_chief/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
@@ -108,7 +108,7 @@
 		/obj/item/reagent_containers/spray/windowsealant,	//VOREStation Add
 		/obj/item/areaeditor/blueprints/engineers) //VOREStation Add
 
-/obj/structure/closet/secure_closet/engineering_personal/Initialize()
+/obj/structure/closet/secure_closet/engineering_personal/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
@@ -142,7 +142,7 @@
 		/obj/item/tank/emergency/oxygen/engi,
 		/obj/item/storage/belt/utility/atmostech) //VOREStation edit. They don't get a toolbox to fill it from, so why not give a spare one that's full already?
 
-/obj/structure/closet/secure_closet/atmos_personal/Initialize()
+/obj/structure/closet/secure_closet/atmos_personal/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else

@@ -109,7 +109,7 @@
 	user.visible_message(span_danger("\The [user] plunges \the [W] into \the [src]!"))
 
 	var/damage = shank_armor_helper(W, G, user)
-	apply_damage(damage, W.damtype, "torso", 0, sharp=W.sharp, edge=W.edge)
+	apply_damage(damage, W.damtype, BP_TORSO, 0, sharp=W.sharp, edge=W.edge)
 
 	if(W.hitsound)
 		playsound(src, W.hitsound, 50, 1, -1)

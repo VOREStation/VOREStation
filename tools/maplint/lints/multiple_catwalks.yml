@@ -1,0 +1,3 @@
+/obj/structure/catwalk:
+  banned_neighbors:
+  - /obj/structure/catwalk

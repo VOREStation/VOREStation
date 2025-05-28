@@ -8,7 +8,7 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/Initialize(ml, planttype)
+/obj/item/grown/Initialize(mapload, planttype)
 
 	. = ..()
 

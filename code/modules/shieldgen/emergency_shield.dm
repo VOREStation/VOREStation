@@ -28,16 +28,16 @@
 		qdel(src)
 		return
 
-/obj/machinery/shield/New()
+/obj/machinery/shield/Initialize(mapload)
 	src.set_dir(pick(1,2,3,4))
-	..()
+	. = ..()
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/machinery/shield/Destroy()
 	opacity = 0
 	density = FALSE
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
@@ -143,7 +143,7 @@
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()
-	..()
+	. = ..()
 
 /obj/machinery/shieldgen/proc/shields_up()
 	if(active) return 0 //If it's already turned on, how did this get called?

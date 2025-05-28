@@ -1,79 +1,1303 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"c" = (/obj/structure/railing,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"d" = (/obj/structure/railing{ icon_state = "railing0"; dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"e" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
-"f" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"g" = (/turf/simulated/wall/wood,/area/submap/farm1)
-"h" = (/obj/structure/grille/rustic,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/submap/farm1)
-"i" = (/obj/structure/window/reinforced/full,/obj/structure/grille/rustic,/turf/simulated/floor/plating,/area/submap/farm1)
-"j" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/wood,/area/submap/farm1)
-"k" = (/turf/simulated/floor/wood,/area/submap/farm1)
-"l" = (/obj/structure/table/marble,/turf/simulated/floor/wood,/area/submap/farm1)
-"m" = (/obj/structure/table/marble,/obj/item/material/kitchen/rollingpin,/turf/simulated/floor/wood,/area/submap/farm1)
-"n" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"o" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"p" = (/obj/structure/table/marble,/obj/item/material/knife,/turf/simulated/floor/wood,/area/submap/farm1)
-"q" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/bluetomatoseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"r" = (/turf/simulated/floor/outdoors/mud{outdoors = 0},/area/submap/farm1)
-"s" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/icepepperseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"t" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/farm1)
-"u" = (/obj/machinery/door/window/eastleft,/obj/machinery/door/window/westleft,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"v" = (/mob/living/bot/farmbot,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"w" = (/obj/structure/sink/puddle,/turf/simulated/floor/outdoors/mud{outdoors = 0},/area/submap/farm1)
-"x" = (/obj/item/material/knife/machete/hatchet,/turf/simulated/floor/outdoors/mud{outdoors = 0},/area/submap/farm1)
-"y" = (/obj/structure/table/woodentable,/obj/item/storage/box/matches,/obj/item/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
-"z" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
-"A" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
-"B" = (/obj/structure/bed/chair/wood{ icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/farm1)
-"C" = (/obj/structure/table/woodentable,/obj/item/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
-"D" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
-"E" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/submap/farm1)
-"F" = (/obj/machinery/space_heater,/turf/simulated/floor/wood,/area/submap/farm1)
-"G" = (/obj/structure/bookcase,/obj/item/book/manual/hydroponics_pod_people,/turf/simulated/floor/wood,/area/submap/farm1)
-"H" = (/obj/structure/bed/padded,/obj/item/bedsheet/blue,/turf/simulated/floor/wood,/area/submap/farm1)
-"I" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/wood,/area/submap/farm1)
-"J" = (/turf/simulated/floor/outdoors/rocks,/area/submap/farm1)
-"K" = (/turf/simulated/floor/plating,/area/submap/farm1)
-"L" = (/turf/simulated/floor/water,/area/submap/farm1)
-"M" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating,/area/submap/farm1)
-"N" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/farm1)
-"O" = (/obj/structure/closet/crate/hydroponics/prespawned,/turf/simulated/floor/plating,/area/submap/farm1)
-"P" = (/obj/structure/table/steel,/obj/machinery/cell_charger,/turf/simulated/floor/plating,/area/submap/farm1)
-"Q" = (/obj/structure/table/steel,/turf/simulated/floor/plating,/area/submap/farm1)
-"R" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
+"c" = (
+/obj/structure/railing,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
+"d" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
+"e" = (
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/farm1)
+"f" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
+"g" = (
+/turf/simulated/wall/wood,
+/area/submap/farm1)
+"h" = (
+/obj/structure/grille/rustic,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"i" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille/rustic,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"j" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"k" = (
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"l" = (
+/obj/structure/table/marble,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"m" = (
+/obj/structure/table/marble,
+/obj/item/material/kitchen/rollingpin,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"n" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/item/seeds/cornseed,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"o" = (
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"p" = (
+/obj/structure/table/marble,
+/obj/item/material/knife,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"q" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/item/seeds/bluetomatoseed,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"r" = (
+/turf/simulated/floor/outdoors/mud{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"s" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/item/seeds/icepepperseed,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"t" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"u" = (
+/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/westleft,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
+"v" = (
+/mob/living/bot/farmbot,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"w" = (
+/obj/structure/sink/puddle,
+/turf/simulated/floor/outdoors/mud{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"x" = (
+/obj/item/material/knife/machete/hatchet,
+/turf/simulated/floor/outdoors/mud{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"y" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/box/matches,
+/obj/item/flame/match,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"z" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"A" = (
+/obj/item/clothing/shoes/boots/winter/hydro,
+/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"B" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"C" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/fancy/candle_box,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"D" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/item/seeds/wheatseed,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/farm1)
+"E" = (
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"F" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"G" = (
+/obj/structure/bookcase,
+/obj/item/book/manual/hydroponics_pod_people,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"H" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet/blue,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"I" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/candle,
+/turf/simulated/floor/wood,
+/area/submap/farm1)
+"J" = (
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/farm1)
+"K" = (
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"L" = (
+/turf/simulated/floor/water,
+/area/submap/farm1)
+"M" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"N" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"O" = (
+/obj/structure/closet/crate/hydroponics/prespawned,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"P" = (
+/obj/structure/table/steel,
+/obj/machinery/cell_charger,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"Q" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/plating,
+/area/submap/farm1)
+"R" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/farm1)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abccccccccccccccccccccccccbaaaaa
-adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
-adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
-adeegghhggeeeeiiiiiiiiiiiefaaaaa
-adeegjklmgeeeeinnnnnnnnniefaaaaa
-adeegkkklheeeeioooooooooiefaaaaa
-adeegkkkpgebbeiqqqrrrsssiefaaaaa
-adegggtgggebbbuvoorwxoooiefaaaaa
-adegyzkAgeeebbiqqqrrrsssiefaaaaa
-adehzBkkgggebeioooooooooiefaaaaa
-adehCkkktktbbeiDDDDDDDDDiefaaaaa
-adegEkkFgggebeiiiiiiiiiiiefaaaaa
-adeggtgggeeebeeeeeeeeeeeeefaaaaa
-adegGkkHgeebbbeeeeebbbbbbbbbbbba
-adegFkkIgeebbbbbbbbbbbbbbbbbbbba
-adeggggggeebeeeeeeebbbbbbbbbbbba
-adeebbbbbbbbeeeeeeebbbeeeefaaaaa
-adebbJJJJJJbbeeegggKKKgggefaaaaa
-adebJJLLLLJJbbeegMKKKKKMgefaaaaa
-adebJLLLLLLJJbbehNKKKKKKhefaaaaa
-adebJJLLLLLLJJbehMKKKKKMhefaaaaa
-adebbJJLLLLLLJbehOKKKKKKhefaaaaa
-adeebbJJLLLLJJbegMKPQQKMgefaaaaa
-adeeebbJJJJJJbbegggggggggefaaaaa
-adeeeebbbbbbbbeeeeeeeeeeeefaaaaa
-adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
-abRRRRRRRRRRRRRRRRRRRRRRRRbaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+R
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+e
+g
+g
+h
+h
+g
+g
+g
+g
+g
+e
+b
+b
+b
+b
+b
+e
+e
+e
+e
+R
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+c
+e
+e
+g
+g
+g
+g
+g
+y
+z
+C
+E
+g
+G
+F
+g
+b
+b
+J
+J
+J
+b
+b
+e
+e
+e
+R
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+c
+e
+e
+g
+j
+k
+k
+g
+z
+B
+k
+k
+t
+k
+k
+g
+b
+J
+J
+L
+J
+J
+b
+b
+e
+e
+R
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+c
+e
+e
+h
+k
+k
+k
+t
+k
+k
+k
+k
+g
+k
+k
+g
+b
+J
+L
+L
+L
+J
+J
+b
+b
+e
+R
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+c
+e
+e
+h
+l
+k
+k
+g
+A
+k
+k
+F
+g
+H
+I
+g
+b
+J
+L
+L
+L
+L
+J
+J
+b
+e
+R
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+c
+e
+e
+g
+m
+l
+p
+g
+g
+g
+t
+g
+g
+g
+g
+g
+b
+J
+L
+L
+L
+L
+L
+J
+b
+e
+R
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+c
+e
+e
+g
+g
+h
+g
+g
+e
+g
+k
+g
+e
+e
+e
+e
+b
+J
+L
+L
+L
+L
+L
+J
+b
+e
+R
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+e
+e
+e
+g
+t
+g
+e
+e
+e
+e
+b
+J
+J
+L
+L
+L
+L
+J
+b
+e
+R
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+b
+b
+e
+e
+b
+e
+e
+b
+b
+b
+b
+b
+J
+J
+L
+L
+L
+J
+b
+e
+R
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+b
+b
+b
+b
+b
+b
+b
+b
+b
+e
+e
+b
+b
+J
+J
+L
+J
+J
+b
+e
+R
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+e
+b
+b
+e
+e
+e
+e
+b
+b
+e
+e
+e
+b
+b
+J
+J
+J
+b
+b
+e
+R
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+c
+e
+e
+i
+i
+i
+i
+u
+i
+i
+i
+i
+e
+e
+b
+e
+e
+e
+e
+b
+b
+b
+b
+b
+e
+e
+R
+a
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+q
+v
+q
+o
+D
+i
+e
+e
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+R
+a
+a
+a
+"}
+(17,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+q
+o
+q
+o
+D
+i
+e
+e
+b
+e
+e
+g
+g
+h
+h
+h
+g
+g
+e
+e
+R
+a
+a
+a
+"}
+(18,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+q
+o
+q
+o
+D
+i
+e
+e
+b
+e
+e
+g
+M
+N
+M
+O
+M
+g
+e
+e
+R
+a
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+r
+r
+r
+o
+D
+i
+e
+e
+b
+e
+e
+g
+K
+K
+K
+K
+K
+g
+e
+e
+R
+a
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+r
+w
+r
+o
+D
+i
+e
+b
+b
+b
+b
+K
+K
+K
+K
+K
+P
+g
+e
+e
+R
+a
+a
+a
+"}
+(21,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+r
+x
+r
+o
+D
+i
+e
+b
+b
+b
+b
+K
+K
+K
+K
+K
+Q
+g
+e
+e
+R
+a
+a
+a
+"}
+(22,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+s
+o
+s
+o
+D
+i
+e
+b
+b
+b
+b
+K
+K
+K
+K
+K
+Q
+g
+e
+e
+R
+a
+a
+a
+"}
+(23,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+s
+o
+s
+o
+D
+i
+e
+b
+b
+b
+e
+g
+K
+K
+K
+K
+K
+g
+e
+e
+R
+a
+a
+a
+"}
+(24,1,1) = {"
+a
+a
+c
+e
+e
+i
+n
+o
+s
+o
+s
+o
+D
+i
+e
+b
+b
+b
+e
+g
+M
+K
+M
+K
+M
+g
+e
+e
+R
+a
+a
+a
+"}
+(25,1,1) = {"
+a
+a
+c
+e
+e
+i
+i
+i
+i
+i
+i
+i
+i
+i
+e
+b
+b
+b
+e
+g
+g
+h
+h
+h
+g
+g
+e
+e
+R
+a
+a
+a
+"}
+(26,1,1) = {"
+a
+a
+c
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+b
+b
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+R
+a
+a
+a
+"}
+(27,1,1) = {"
+a
+a
+b
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+b
+b
+b
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+b
+a
+a
+a
+"}
+(28,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(29,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(30,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(31,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(32,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

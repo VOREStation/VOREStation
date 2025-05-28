@@ -814,8 +814,7 @@
 	},
 /area/wizard_station)
 "aRp" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/sif,
-/turf/simulated/sky/moving/north,
+/turf/simulated/sky/moving/north/sif/planet_fall,
 /area/space)
 "aRw" = (
 /obj/structure/window/reinforced/holowindow{

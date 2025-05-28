@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(global_vantag_hud, 0)
+
 /client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
 	set category = null
 	set name = "Drop Everything"
@@ -33,7 +35,7 @@
 		//teleport person to cell
 		M.Paralyse(5)
 		sleep(5)	//so they black out before warping
-		M.loc = pick(prisonwarp)
+		M.loc = pick(GLOB.prisonwarp)
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
@@ -485,7 +487,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					return
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
-			spawnloc = pick(latejoin)
+			if(LAZYLEN(GLOB.latejoin))
+				spawnloc = get_turf(pick(GLOB.latejoin))
+			else if(LAZYLEN(GLOB.latejoin_tram))
+				spawnloc = pick(GLOB.latejoin_tram)
+			else
+				to_chat(src, "This map has no latejoin spawnpoint.")
+				return
 
 		else //I have no idea how you're here
 			to_chat(src, "Invalid spawn location choice.")
@@ -547,7 +555,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//If desired, add records.
 	if(records)
-		data_core.manifest_inject(new_character)
+		GLOB.data_core.manifest_inject(new_character)
 
 	//A redraw for good measure
 	new_character.regenerate_icons()
@@ -819,11 +827,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-			to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-			to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes</font>.")
-			to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+			to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+			to_chat(M, span_red("This is a temporary ban, it will be removed in [mins] minutes."))
+			to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")
+			message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
 			del(M.client)
 			qdel(M)
@@ -834,11 +842,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-		to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-		to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-		to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+		to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+		to_chat(M, span_red("This is a permanent ban."))
+		to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
+		message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
 		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
 		del(M.client)
 		qdel(M)
@@ -909,7 +917,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	mob.set_viewsize(view)
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	message_admins("<font color='blue'>[key_name_admin(usr)] changed their view range to [view].</font>", 1)
+	message_admins(span_blue("[key_name_admin(usr)] changed their view range to [view]."), 1)
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -1057,7 +1065,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/list/human_cryopods = list()
 	var/list/robot_cryopods = list()
 
-	for(var/obj/machinery/cryopod/CP in machines)
+	for(var/obj/machinery/cryopod/CP in GLOB.machines)
 		if(!CP.control_computer)
 			continue //Broken pod w/o computer, move on.
 
@@ -1083,8 +1091,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else if(issilicon(M))
 		if(isAI(M))
 			var/mob/living/silicon/ai/ai = M
-			empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
-			global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+			GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
+			GLOB.global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 			ai.clear_client()
 			return
 		else
@@ -1169,3 +1177,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new /obj/structure/drop_pod/polite(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
 
 	feedback_add_details("admin_verb","DPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_vantag_hud_global(mob/target as mob)
+	set category = "Fun.Event Kit"
+	set name = "Toggle Global Event HUD"
+	set desc = "Give everyone the Event HUD."
+
+	GLOB.global_vantag_hud = !GLOB.global_vantag_hud
+	if(GLOB.global_vantag_hud)
+		for(var/mob/living/L in living_mob_list)
+			if(L.ckey)
+				L.vantag_hud = TRUE
+				L.recalculate_vis()
+
+	to_chat(src, span_warning("Global Event HUD has been turned [GLOB.global_vantag_hud ? "on" : "off"]."))

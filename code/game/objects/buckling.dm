@@ -132,7 +132,7 @@
 					M.visible_message(span_warning("[M.name] sits down on [L.name]!"))
 				else
 					M.visible_message(span_warning("[M.name] is forced to sit down on [L.name] by [user.name]!"))
-				M.perform_the_nom(user, L, M, M.vore_selected, 1)
+				M.perform_the_nom(user, L, M, M.vore_selected, -1)
 
 	add_fingerprint(user)
 //	unbuckle_mob()
@@ -207,6 +207,9 @@
 		return FALSE
 
 	if((!can_buckle && !forced) || M.buckled || M.pinned.len || (max_buckled_mobs == 0) || (buckle_require_restraints && !M.restrained()))
+		return FALSE
+	if(LAZYLEN(M.grabbed_by) && !forced)
+		to_chat(M, span_boldwarning("You can not buckle while grabbed!"))
 		return FALSE
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it

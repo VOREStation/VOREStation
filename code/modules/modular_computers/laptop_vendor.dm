@@ -302,7 +302,7 @@
 		T.purpose = "Purchase of [(devtype == 1) ? "laptop computer" : "tablet microcomputer"]."
 		T.amount = total_price
 		T.source_terminal = src.name
-		T.date = current_date_string
+		T.date = GLOB.current_date_string
 		T.time = stationtime2text()
 		customer_account.transaction_log.Add(T)
 		return 1

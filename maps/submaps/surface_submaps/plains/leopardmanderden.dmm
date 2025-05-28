@@ -183,7 +183,6 @@
 /area/template_noop)
 "nG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},

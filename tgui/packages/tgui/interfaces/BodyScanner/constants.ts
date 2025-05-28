@@ -1,4 +1,4 @@
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const stats: string[][] = [
   ['good', 'Alive'],
@@ -22,6 +22,7 @@ export const abnormalities: (string | ((occupant: occupant) => string))[][] = [
     (occupant) => 'Photoreceptor abnormalities detected.',
   ],
   ['nearsighted', 'average', (occupant) => 'Retinal misalignment detected.'],
+  ['brokenspine', 'average', (occupant) => 'Lumbar spine impairement.'],
   [
     'humanPrey',
     'average',

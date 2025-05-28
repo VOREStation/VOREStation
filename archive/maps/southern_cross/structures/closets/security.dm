@@ -22,7 +22,7 @@
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/mask/gas/half)
 
-/obj/structure/closet/secure_closet/hos_wardrobe/Initialize()
+/obj/structure/closet/secure_closet/hos_wardrobe/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/security
 	else

@@ -15,13 +15,13 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/Initialize()
+/obj/machinery/r_n_d/server/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
-	..()
+	. = ..()
 
 /obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
@@ -29,7 +29,7 @@
 		tot_rating += SP.rating
 	update_idle_power_usage(initial(idle_power_usage) / max(1, tot_rating))
 
-/obj/machinery/r_n_d/server/Initialize()
+/obj/machinery/r_n_d/server/Initialize(mapload)
 	. = ..()
 	if(!files)
 		files = new /datum/research(src)
@@ -77,7 +77,7 @@
 
 //Backup files to CentCom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
-	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
+	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
 		for(var/datum/design/D in files.known_designs)
@@ -122,7 +122,7 @@
 /obj/machinery/r_n_d/server/centcom/proc/update_connections()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
-	for(var/obj/machinery/r_n_d/server/S in machines)
+	for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 		switch(S.server_id)
 			if(-1)
 				continue
@@ -175,7 +175,7 @@
 
 	var/list/server_list = list()
 	data["servers"] = server_list
-	for(var/obj/machinery/r_n_d/server/S in machines)
+	for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 		if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
 			continue
 		var/list/tech = list()
@@ -203,7 +203,7 @@
 
 	var/list/console_list = list()
 	data["consoles"] = console_list
-	for(var/obj/machinery/computer/rdconsole/C in machines)
+	for(var/obj/machinery/computer/rdconsole/C in GLOB.machines)
 		if(!C.sync)
 			continue
 		console_list.Add(list(list(

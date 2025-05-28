@@ -1,34 +1,506 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/Shakden)
-"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Shakden)
-"d" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"e" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"f" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"g" = (/mob/living/simple_mob/animal/sif/shantak/retaliate,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"h" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"i" = (/mob/living/simple_mob/animal/sif/shantak/retaliate,/turf/simulated/floor/outdoors/dirt,/area/submap/Shakden)
-"j" = (/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"k" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/material/knife/hook,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Shakden)
+"c" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/Shakden)
+"d" = (
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"e" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"f" = (
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"g" = (
+/mob/living/simple_mob/animal/sif/shantak/retaliate,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"h" = (
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"i" = (
+/mob/living/simple_mob/animal/sif/shantak/retaliate,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Shakden)
+"j" = (
+/obj/item/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
+"k" = (
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/material/knife/hook,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Shakden)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaa
-abbbccccccccccccbbba
-abccccccccccccccccba
-abccccdddedfccccccba
-abccceddgddddddcccca
-abcchdddddddgddcccca
-acccdddddccdddddccca
-accddddcccccdddddcca
-abcdgddcccccddgddcca
-abccdddhcceddddddcca
-abccdddddddddccddcca
-abcedddddddddccdddba
-accddgddgdddcccdddba
-acccdddddddcccdddbba
-acccddgdddfcccdddbba
-accccdddijkcccddcbba
-abccccddddecccddccba
-abccccccccccccccccba
-abbccccccbbbbccccbba
-aaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+c
+c
+b
+b
+b
+b
+c
+c
+c
+c
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+d
+d
+c
+c
+e
+d
+c
+c
+c
+c
+c
+c
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+h
+d
+d
+g
+d
+d
+d
+d
+d
+d
+c
+c
+c
+c
+a
+"}
+(6,1,1) = {"
+a
+c
+c
+c
+e
+d
+d
+d
+d
+d
+d
+d
+g
+d
+d
+d
+c
+c
+c
+a
+"}
+(7,1,1) = {"
+a
+c
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+g
+d
+d
+c
+c
+a
+"}
+(8,1,1) = {"
+a
+c
+c
+d
+d
+d
+d
+c
+c
+h
+d
+d
+d
+d
+d
+d
+d
+c
+c
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+d
+g
+d
+d
+c
+c
+c
+d
+d
+g
+d
+d
+i
+d
+c
+c
+a
+"}
+(10,1,1) = {"
+a
+c
+c
+e
+d
+d
+c
+c
+c
+c
+d
+d
+d
+d
+d
+j
+d
+c
+b
+a
+"}
+(11,1,1) = {"
+a
+c
+c
+d
+d
+d
+c
+c
+c
+e
+d
+d
+d
+d
+f
+k
+e
+c
+b
+a
+"}
+(12,1,1) = {"
+a
+c
+c
+f
+d
+d
+d
+c
+c
+d
+d
+d
+d
+c
+c
+c
+c
+c
+b
+a
+"}
+(13,1,1) = {"
+a
+c
+c
+c
+d
+g
+d
+d
+d
+d
+d
+d
+c
+c
+c
+c
+c
+c
+b
+a
+"}
+(14,1,1) = {"
+a
+c
+c
+c
+d
+d
+d
+d
+d
+d
+c
+c
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(15,1,1) = {"
+a
+c
+c
+c
+d
+d
+d
+d
+g
+d
+c
+c
+c
+d
+d
+d
+d
+c
+c
+a
+"}
+(16,1,1) = {"
+a
+c
+c
+c
+c
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+c
+c
+a
+"}
+(17,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+d
+d
+d
+d
+d
+d
+d
+d
+c
+c
+c
+c
+a
+"}
+(18,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+d
+d
+b
+b
+b
+c
+c
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

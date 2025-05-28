@@ -16,8 +16,8 @@ import { capitalizeAll } from 'tgui-core/string';
 
 import { PaginationChevrons } from '..';
 import {
-  ConstructorDesign,
-  ConstructorEnum,
+  type ConstructorDesign,
+  type ConstructorEnum,
   constructorEnumToBuild,
   constructorEnumToBuildFive,
   constructorEnumToData,
@@ -26,8 +26,8 @@ import {
   constructorEnumToEjectReagentAllAction,
   constructorEnumToName,
   constructorEnumToRemoveQueue,
-  Data,
-  LinkedConstructor,
+  type Data,
+  type LinkedConstructor,
 } from '../data';
 
 enum ConstructorTabEnum {
@@ -105,40 +105,46 @@ const ConstructorPage = (props: {
 
   return (
     <Section title={our_name} fill>
-      <MaterialBars linked_data={linked_data} />
-      <Tabs>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.Build}
-          onClick={() => setTab(ConstructorTabEnum.Build)}
-          icon="wrench"
-        >
-          Build
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.Queue}
-          onClick={() => setTab(ConstructorTabEnum.Queue)}
-          color={queueColor}
-          icon={queueIcon}
-          iconSpin={queueSpin}
-        >
-          Queue
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.MatStorage}
-          onClick={() => setTab(ConstructorTabEnum.MatStorage)}
-          icon="cookie"
-        >
-          Mat Storage
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={tab === ConstructorTabEnum.ChemStorage}
-          onClick={() => setTab(ConstructorTabEnum.ChemStorage)}
-          icon="flask"
-        >
-          Chem Storage
-        </Tabs.Tab>
-      </Tabs>
-      {tabElement}
+      <Stack vertical fill>
+        <Stack.Item>
+          <MaterialBars linked_data={linked_data} />
+        </Stack.Item>
+        <Stack.Item>
+          <Tabs>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.Build}
+              onClick={() => setTab(ConstructorTabEnum.Build)}
+              icon="wrench"
+            >
+              Build
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.Queue}
+              onClick={() => setTab(ConstructorTabEnum.Queue)}
+              color={queueColor}
+              icon={queueIcon}
+              iconSpin={queueSpin}
+            >
+              Queue
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.MatStorage}
+              onClick={() => setTab(ConstructorTabEnum.MatStorage)}
+              icon="cookie"
+            >
+              Mat Storage
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === ConstructorTabEnum.ChemStorage}
+              onClick={() => setTab(ConstructorTabEnum.ChemStorage)}
+              icon="flask"
+            >
+              Chem Storage
+            </Tabs.Tab>
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item grow>{tabElement}</Stack.Item>
+      </Stack>
     </Section>
   );
 };
@@ -184,63 +190,68 @@ const BuildTab = (props: {
     <Section
       title={`Designs (Page ${data.builder_page + 1})`}
       fill
-      height="85%"
-      buttons={<PaginationChevrons target="builder_page" />}
-      scrollable
+      buttons={
+        <Stack>
+          <PaginationChevrons target="builder_page" />
+        </Stack>
+      }
     >
       <Input
         fluid
-        updateOnPropsChange
+        expensive
         placeholder="Search for..."
         value={data.search}
-        onInput={(e, v: string) => act('search', { search: v })}
+        onChange={(v: string) => act('search', { search: v })}
         mb={1}
       />
-      {designs?.length ? (
-        designs.map((design) => (
-          <Fragment key={design.id}>
-            <Stack justify="space-between" align="center">
-              <Stack.Item grow>{design.name}</Stack.Item>
-              <Stack.Item>
-                <Box inline color="label">
-                  {design.mat_list.join(' ')}
-                </Box>
-                <Box inline color="average" ml={1}>
-                  {design.chem_list.join(' ')}
-                </Box>
-              </Stack.Item>
-              <Stack.Item>
-                <Button
-                  icon="wrench"
-                  onClick={() =>
-                    act(buildAct, { build: design.id, imprint: design.id })
-                  }
-                >
-                  Build
-                </Button>
-                {!!buildActFive && (
+      <Divider />
+      <Section fill scrollable>
+        {designs?.length ? (
+          designs.map((design) => (
+            <Fragment key={design.id}>
+              <Stack justify="space-between" align="center">
+                <Stack.Item grow>{design.name}</Stack.Item>
+                <Stack.Item>
+                  <Box inline color="label">
+                    {design.mat_list.join(' ')}
+                  </Box>
+                  <Box inline color="average" ml={1}>
+                    {design.chem_list.join(' ')}
+                  </Box>
+                </Stack.Item>
+                <Stack.Item>
                   <Button
                     icon="wrench"
                     onClick={() =>
-                      act(buildActFive, {
-                        build: design.id,
-                        imprint: design.id,
-                      })
+                      act(buildAct, { build: design.id, imprint: design.id })
                     }
                   >
-                    5
+                    Build
                   </Button>
-                )}
-              </Stack.Item>
-            </Stack>
-            <Divider />
-          </Fragment>
-        ))
-      ) : (
-        <Box>
-          No items could be found matching the parameters (page or search).
-        </Box>
-      )}
+                  {!!buildActFive && (
+                    <Button
+                      icon="wrench"
+                      onClick={() =>
+                        act(buildActFive, {
+                          build: design.id,
+                          imprint: design.id,
+                        })
+                      }
+                    >
+                      5
+                    </Button>
+                  )}
+                </Stack.Item>
+              </Stack>
+              <Divider />
+            </Fragment>
+          ))
+        ) : (
+          <Box>
+            No items could be found matching the parameters (page or search).
+          </Box>
+        )}
+      </Section>
     </Section>
   );
 };
@@ -324,50 +335,56 @@ const MatStorageTab = (props: {
             key={mat}
             label={capitalizeAll(mat)}
             buttons={
-              <>
-                <NumberInput
-                  value={matEjectStates[mat] || 0}
-                  minValue={0}
-                  maxValue={Math.floor(amount / data.sheet_material_amount)}
-                  step={1}
-                  width="100px"
-                  onDrag={(val) => {
-                    setMatEjectStates({
-                      ...matEjectStates,
-                      [mat]: val,
-                    });
-                  }}
-                />
-                <Button
-                  icon="eject"
-                  disabled={amount < data.sheet_material_amount}
-                  onClick={() => {
-                    setMatEjectStates({
-                      ...matEjectStates,
-                      [mat]: 0,
-                    });
-                    act(ejectAction, {
-                      [ejectAction]: mat,
-                      amount: matEjectStates[mat] || 0,
-                    });
-                  }}
-                >
-                  Num
-                </Button>
-                <Button
-                  icon="eject"
-                  disabled={amount < data.sheet_material_amount}
-                  onClick={() => {
-                    setMatEjectStates({
-                      ...matEjectStates,
-                      [mat]: 0,
-                    });
-                    act(ejectAction, { [ejectAction]: mat, amount: 50 });
-                  }}
-                >
-                  All
-                </Button>
-              </>
+              <Stack>
+                <Stack.Item>
+                  <NumberInput
+                    value={matEjectStates[mat] || 0}
+                    minValue={0}
+                    maxValue={Math.floor(amount / data.sheet_material_amount)}
+                    step={1}
+                    width="100px"
+                    onDrag={(val) => {
+                      setMatEjectStates({
+                        ...matEjectStates,
+                        [mat]: val,
+                      });
+                    }}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="eject"
+                    disabled={amount < data.sheet_material_amount}
+                    onClick={() => {
+                      setMatEjectStates({
+                        ...matEjectStates,
+                        [mat]: 0,
+                      });
+                      act(ejectAction, {
+                        [ejectAction]: mat,
+                        amount: matEjectStates[mat] || 0,
+                      });
+                    }}
+                  >
+                    Num
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="eject"
+                    disabled={amount < data.sheet_material_amount}
+                    onClick={() => {
+                      setMatEjectStates({
+                        ...matEjectStates,
+                        [mat]: 0,
+                      });
+                      act(ejectAction, { [ejectAction]: mat, amount: 50 });
+                    }}
+                  >
+                    All
+                  </Button>
+                </Stack.Item>
+              </Stack>
             }
           >
             {amount} cm&sup3;

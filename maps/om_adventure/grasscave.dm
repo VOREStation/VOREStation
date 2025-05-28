@@ -39,7 +39,7 @@
 
 
 /area/om_adventure/grasscave
-	name = "Grass Cave"
+	name = Z_NAME_OM_GRASS_CAVE
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "bluwhicir"
 	requires_power = TRUE

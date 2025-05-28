@@ -15,7 +15,7 @@
 	var/wire_allow_manual_3 = FALSE
 	var/opened = FALSE
 
-/obj/machinery/power/grid_checker/Initialize()
+/obj/machinery/power/grid_checker/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 	update_icon()

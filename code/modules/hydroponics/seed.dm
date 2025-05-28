@@ -26,6 +26,7 @@
 	var/has_item_product           // Item products. (Eggy)
 	var/force_layer
 	var/harvest_sound = null		//Vorestation edit - sound the plant makes when harvested
+	var/wiki_flag = 0
 
 // Making the assumption anything in HYDRO-ponics is capable of processing water, and nutrients commonly associated with it, leaving us with the below to be tweaked.
 	var/list/beneficial_reagents   // Reagents considered uniquely 'beneficial' by a plant.
@@ -160,7 +161,7 @@
 		return
 	if(chems && chems.len)
 
-		var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+		var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 
 		for(var/obj/item/clothing/clothes in target)
 			if(target.item_is_in_hands(clothes))
@@ -204,7 +205,7 @@
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
-			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+			var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 			for(var/obj/item/clothing/clothes in M)
 				if(M.item_is_in_hands(clothes))
 					continue
@@ -243,7 +244,7 @@
 			closed_turfs |= T
 			valid_turfs |= T
 
-			for(var/dir in alldirs)
+			for(var/dir in GLOB.alldirs)
 				var/turf/neighbor = get_step(T,dir)
 				if(!neighbor || (neighbor in closed_turfs) || (neighbor in open_turfs))
 					continue
@@ -295,7 +296,7 @@
 		var/missing_gas = 0
 		for(var/gas in consume_gasses)
 			if(environment && environment.gas && environment.gas[gas] && \
-			 environment.gas[gas] >= consume_gasses[gas])
+				environment.gas[gas] >= consume_gasses[gas])
 				if(!check_only)
 					environment.adjust_gas(gas,-consume_gasses[gas],1)
 			else

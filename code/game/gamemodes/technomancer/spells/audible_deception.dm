@@ -92,4 +92,4 @@
 					M.Paralyse(4)
 				else
 					M.make_jittery(50)
-				to_chat(M, span_red("<font size='7'><b>HONK</b></font>"))
+				to_chat(M, span_red(span_massive(span_bold("HONK"))))

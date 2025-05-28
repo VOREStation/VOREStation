@@ -43,13 +43,13 @@
 			src.icon_state = "morgue2"
 			get_occupants()
 			for (var/mob/living/carbon/human/H in occupants)
-				if(H.isSynthetic() || H.suiciding || !H.ckey || !H.client || (NOCLONE in H.mutations) || (H.species && H.species.flags & NO_SCAN))
+				if(H.isSynthetic() || H.suiciding || !H.ckey || !H.client || (NOCLONE in H.mutations) || (H.species && H.species.flags & NO_SLEEVE))
 					src.icon_state = "morgue2"
 					break
 				else
 					src.icon_state = "morgue3"
 					if(broadcast)
-						global_announcer.autosay("[src] was able to establish a mental interface with occupant.", "[src]", "Medical")
+						GLOB.global_announcer.autosay("[src] was able to establish a mental interface with occupant.", "[src]", "Medical")
 		else
 			src.icon_state = "morgue1"
 	return
@@ -343,7 +343,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	if(..())
 		return
 	if(src.allowed(user))
-		for (var/obj/structure/morgue/crematorium/C in all_crematoriums)
+		for (var/obj/structure/morgue/crematorium/C in GLOB.all_crematoriums)
 			if (C.id == id)
 				if (!C.cremating)
 					C.cremate(user)

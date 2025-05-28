@@ -109,5 +109,3 @@
 		ticker.station_explosion_cinematic(0,null)
 		if(ticker.mode)
 			ticker.mode:station_was_nuked = 1
-
-

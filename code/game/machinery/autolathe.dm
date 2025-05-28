@@ -29,7 +29,7 @@
 
 	var/filtertext
 
-/obj/machinery/autolathe/Initialize()
+/obj/machinery/autolathe/Initialize(mapload)
 	AddComponent(/datum/component/material_container, subtypesof(/datum/material), 0, MATCONTAINER_EXAMINE, _after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
 	. = ..()
 	if(!autolathe_recipes)

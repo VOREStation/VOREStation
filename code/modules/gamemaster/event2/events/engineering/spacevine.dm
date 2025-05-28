@@ -6,7 +6,7 @@
 	event_type = /datum/event2/event/spacevine
 
 /datum/event2/meta/spacevine/get_weight()
-	return 20 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)
+	return 20 + (GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10) + (GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)
 
 
 

@@ -8,7 +8,8 @@
 	anchored = TRUE
 	var/lastuser = null
 
-/obj/machinery/scanner/New()
+/obj/machinery/scanner/Initialize(mapload)
+	. = ..()
 	if(!outputdir)
 		switch(dir)
 			if(1)
@@ -59,16 +60,15 @@
 			marks += row["rank"]
 	qdel(cquery)
 	*/
-	var/text = {"
-	<font size=4><center>Report</center></font><br>
-	<b><u>Name</u></b>: [mname]
-	<b><u>Age</u></b>: [age]
-	<b><u>Sex</u></b>: [gender]
-	<b><u>DNA</u></b>: [dna]
-	<b><u>Blood Type</u></b>: [bloodtype]
-	<b><u>Fingerprint</u></b>: [fingerprint]
-
-	<b><u>Black Marks</u></b>:<br> "}
+	var/text = "\
+	" span_huge("<center>Report</center>") + "<br>\
+	" + span_bold(span_underline("Name")) + " : [mname]\
+	" + span_bold(span_underline("Age")) + " : [age]\
+	" + span_bold(span_underline("Sex")) + " : [gender]\
+	" + span_bold(span_underline("DNA")) + " : [dna]\
+	" + span_bold(span_underline("Blood Type")) + " : [bloodtype]\
+	" + span_bold(span_underline("Fingerprint")) + " : [fingerprint]\
+	" + span_bold(span_underline("Black Marks")) + " :<br> "
 	for(var/A in marks)
 		text += span_danger("[A]") + "<br>"
 	to_chat(user, span_notice("You feel a sting as the scanner extracts some of your blood."))
@@ -78,7 +78,7 @@
 	print.info = text
 	print.stamped = 1
 
-	for(var/datum/data/record/test in data_core.general)
+	for(var/datum/data/record/test in GLOB.data_core.general)
 		if(test.fields["name"] == mname)
 			return
 
@@ -134,7 +134,7 @@
 	L.fields["image"] = getFlatIcon(user,0)//What the person looks like. Naked, in this case.
 	//End locked reporting
 
-	data_core.general += G
+	GLOB.data_core.general += G
 	data_core.medical += M
 	data_core.security += S
 	data_core.locked += L

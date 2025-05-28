@@ -30,13 +30,13 @@
 	return FALSE
 
 /**
-  * Does this borg show up in the console
-  *
-  * Returns TRUE if a robot will show up in the console
-  * Returns FALSE if a robot will not show up in the console
-  * Arguments:
-  * * R - The [mob/living/silicon/robot] to be checked
-  */
+ * Does this borg show up in the console
+ *
+ * Returns TRUE if a robot will show up in the console
+ * Returns FALSE if a robot will not show up in the console
+ * Arguments:
+ * * R - The [mob/living/silicon/robot] to be checked
+ */
 /obj/machinery/computer/robotics/proc/console_shows(mob/living/silicon/robot/R)
 	if(!istype(R))
 		return FALSE
@@ -49,15 +49,15 @@
 	return TRUE
 
 /**
-  * Check if a user can send a lockdown/detonate command to a specific borg
-  *
-  * Returns TRUE if a user can send the command (does not guarantee it will work)
-  * Returns FALSE if a user cannot
-  * Arguments:
-  * * user - The [mob/user] to be checked
-  * * R - The [mob/living/silicon/robot] to be checked
-  * * telluserwhy - Bool of whether the user should be sent a to_chat message if they don't have access
-  */
+ * Check if a user can send a lockdown/detonate command to a specific borg
+ *
+ * Returns TRUE if a user can send the command (does not guarantee it will work)
+ * Returns FALSE if a user cannot
+ * Arguments:
+ * * user - The [mob/user] to be checked
+ * * R - The [mob/living/silicon/robot] to be checked
+ * * telluserwhy - Bool of whether the user should be sent a to_chat message if they don't have access
+ */
 /obj/machinery/computer/robotics/proc/can_control(mob/user, mob/living/silicon/robot/R, telluserwhy = FALSE)
 	if(!istype(user))
 		return FALSE
@@ -76,13 +76,13 @@
 	return TRUE
 
 /**
-  * Check if the user is the right kind of entity to be able to hack borgs
-  *
-  * Returns TRUE if a user is a traitor AI, or aghost
-  * Returns FALSE otherwise
-  * Arguments:
-  * * user - The [mob/user] to be checked
-  */
+ * Check if the user is the right kind of entity to be able to hack borgs
+ *
+ * Returns TRUE if a user is a traitor AI, or aghost
+ * Returns FALSE otherwise
+ * Arguments:
+ * * user - The [mob/user] to be checked
+ */
 /obj/machinery/computer/robotics/proc/can_hack_any(mob/user)
 	if(!istype(user))
 		return FALSE
@@ -95,14 +95,14 @@
 	return (user.mind.special_role && user.mind.original == user)
 
 /**
-  * Check if the user is allowed to hack a specific borg
-  *
-  * Returns TRUE if a user can hack the specific cyborg
-  * Returns FALSE if a user cannot
-  * Arguments:
-  * * user - The [mob/user] to be checked
-  * * R - The [mob/living/silicon/robot] to be checked
-  */
+ * Check if the user is allowed to hack a specific borg
+ *
+ * Returns TRUE if a user can hack the specific cyborg
+ * Returns FALSE if a user cannot
+ * Arguments:
+ * * user - The [mob/user] to be checked
+ * * R - The [mob/living/silicon/robot] to be checked
+ */
 /obj/machinery/computer/robotics/proc/can_hack(mob/user, mob/living/silicon/robot/R)
 	if(!can_hack_any(user))
 		return FALSE

@@ -34,9 +34,6 @@
 	fabricator_tag = "Upper Level Mining"
 	drone_type = /mob/living/silicon/robot/drone/mining
 
-/obj/machinery/drone_fabricator/New()
-	..()
-
 /obj/machinery/drone_fabricator/power_change()
 	..()
 	if (stat & NOPOWER)
@@ -144,7 +141,7 @@
 		return
 
 	var/list/all_fabricators = list()
-	for(var/obj/machinery/drone_fabricator/DF in machines)
+	for(var/obj/machinery/drone_fabricator/DF in GLOB.machines)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
 		if(DF.drone_progress >= 100)

@@ -45,4 +45,4 @@ Frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 	. = TRUE
 
 /datum/tgui_module/trait_tutorial_tgui/tgui_state(mob/user)
-    return GLOB.tgui_always_state
+	return GLOB.tgui_always_state

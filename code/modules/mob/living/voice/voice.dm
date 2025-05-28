@@ -4,10 +4,11 @@
 	desc = "How are you examining me?"
 	see_invisible = SEE_INVISIBLE_LIVING
 	var/obj/item/communicator/comm = null
+	var/item_tf = FALSE
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 
-/mob/living/voice/Initialize(loc)
+/mob/living/voice/Initialize(mapload)
 	add_language(LANGUAGE_GALCOM)
 	apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
@@ -40,8 +41,8 @@
 // Description: Adds a static overlay to the client's screen.
 /mob/living/voice/Login()
 	..()
-	client.screen |= global_hud.whitense
-	client.screen |= global_hud.darkMask
+	client.screen |= GLOB.global_hud.whitense
+	client.screen |= GLOB.global_hud.darkMask
 
 // Proc: Destroy()
 // Parameters: None
@@ -140,5 +141,7 @@
 	return ..()
 
 /mob/living/voice/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message = null, var/range = world.view)
-	if(!comm) return
-	..(m_type,message,comm.video_range)
+	if(comm)
+		..(m_type,message,comm.video_range)
+	else if(item_tf)
+		..(m_type,message,range)

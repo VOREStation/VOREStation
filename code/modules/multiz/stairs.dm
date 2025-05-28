@@ -9,7 +9,7 @@
 	unacidable = TRUE
 	layer = STAIRS_LAYER
 
-/obj/structure/stairs/Initialize()
+/obj/structure/stairs/Initialize(mapload)
 	. = ..()
 	if(check_integrity())
 		update_icon()
@@ -71,7 +71,7 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/middle/middle = null
 
-/obj/structure/stairs/bottom/Initialize()
+/obj/structure/stairs/bottom/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
@@ -82,13 +82,13 @@
 		top.bottom = null
 	if(middle)
 		middle.bottom = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
-											 var/obj/structure/stairs/middle/M = null,
-											 var/obj/structure/stairs/top/T = null,
-											 var/turf/simulated/open/O = null)
+												var/obj/structure/stairs/middle/M = null,
+												var/obj/structure/stairs/top/T = null,
+												var/turf/simulated/open/O = null)
 
 	// In the case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
@@ -120,7 +120,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B2 = get_step(src, dir)
 		T2 = GetAbove(B2)
 		if(!istype(B2) || !istype(T2))
@@ -245,7 +245,7 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/middle/Initialize()
+/obj/structure/stairs/middle/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
@@ -256,13 +256,13 @@
 		top.middle = null
 	if(bottom)
 		bottom.middle = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
-											 var/obj/structure/stairs/middle/M = null,
-											 var/obj/structure/stairs/top/T = null,
-											 var/turf/simulated/open/O = null)
+												var/obj/structure/stairs/middle/M = null,
+												var/obj/structure/stairs/top/T = null,
+												var/turf/simulated/open/O = null)
 
 	// In the  case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
@@ -293,7 +293,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B1 = get_step(src, turn(dir, 180))
 		O = GetAbove(B1)
 		if(!istype(B1) || !istype(O))
@@ -328,7 +328,7 @@
 	var/obj/structure/stairs/middle/middle = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/top/Initialize()
+/obj/structure/stairs/top/Initialize(mapload)
 	. = ..()
 	if(!GetBelow(src))
 		warning("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
@@ -339,7 +339,7 @@
 		middle.top = null
 	if(bottom)
 		bottom.top = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/top/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -377,7 +377,7 @@
 		return
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		O = get_step(src, turn(dir, 180))
 		B1 = GetBelow(O)
 		if(!istype(B1) || !istype(O))
@@ -497,7 +497,7 @@
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 
-/obj/structure/stairs/spawner/Initialize()
+/obj/structure/stairs/spawner/Initialize(mapload)
 	..()
 	var/turf/B1 = get_step(get_turf(src), turn(dir, 180))
 	var/turf/B2 = get_turf(src)

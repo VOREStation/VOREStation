@@ -21,6 +21,19 @@ AI MODULES
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/ai_laws/laws = null
 
+/obj/item/aiModule/examine(mob/user)
+	. = ..()
+	if(!laws)
+		return
+	laws.sort_laws()
+	for(var/datum/ai_law/law in laws.sorted_laws)
+		if(law == laws.zeroth_law_borg)
+			continue
+		if(law == laws.zeroth_law)
+			. += span_info(span_red("[law.get_index()]. [law.law]"))
+		else
+			. += span_infoplain("[law.get_index()]. [law.law]")
+
 /obj/item/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
 	if(!user.IsAdvancedToolUser() && isanimal(user))
 		var/mob/living/simple_mob/S = user
@@ -115,7 +128,7 @@ AI MODULES
 
 /obj/item/aiModule/proc/log_law_changes(var/mob/living/silicon/ai/target, var/mob/sender)
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
+	GLOB.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
 	log_and_message_admins("used [src.name] on [target.name]([target.key])")
 
 /obj/item/aiModule/proc/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
@@ -146,7 +159,7 @@ AI MODULES
 /obj/item/aiModule/safeguard/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
 	var/law = text("Safeguard []. Anyone threatening or attempting to harm [] is no longer to be considered a crew member, and is a threat which must be neutralized.", targetName, targetName)
 	target.add_supplied_law(9, law)
-	lawchanges.Add("The law specified [targetName]")
+	GLOB.lawchanges.Add("The law specified [targetName]")
 
 
 /******************** OneMember ********************/
@@ -253,7 +266,7 @@ AI MODULES
 	if(!lawpos || lawpos < MIN_SUPPLIED_LAW_NUMBER)
 		lawpos = MIN_SUPPLIED_LAW_NUMBER
 	target.add_supplied_law(lawpos, law)
-	lawchanges.Add("The law was '[newFreeFormLaw]'")
+	GLOB.lawchanges.Add("The law was '[newFreeFormLaw]'")
 
 /obj/item/aiModule/freeform/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!newFreeFormLaw)
@@ -270,7 +283,7 @@ AI MODULES
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
 
 // VOREstation edit: use map default laws
-/obj/item/aiModule/reset/Initialize()
+/obj/item/aiModule/reset/Initialize(mapload)
 	. = ..()
 	laws = new global.using_map.default_law_type // Pull from loaded map
 
@@ -369,7 +382,7 @@ AI MODULES
 /obj/item/aiModule/freeformcore/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
 	var/law = "[newFreeFormLaw]"
 	target.add_inherent_law(law)
-	lawchanges.Add("The law is '[newFreeFormLaw]'")
+	GLOB.lawchanges.Add("The law is '[newFreeFormLaw]'")
 
 /obj/item/aiModule/freeformcore/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!newFreeFormLaw)
@@ -394,7 +407,7 @@ AI MODULES
 	//	..()    //We don't want this module reporting to the AI who dun it. --NEO
 	log_law_changes(target, sender)
 
-	lawchanges.Add("The law is '[newFreeFormLaw]'")
+	GLOB.lawchanges.Add("The law is '[newFreeFormLaw]'")
 	to_chat(target, span_danger("BZZZZT"))
 	var/law = "[newFreeFormLaw]"
 	target.add_ion_law(law)

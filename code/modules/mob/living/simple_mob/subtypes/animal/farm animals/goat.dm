@@ -27,10 +27,10 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/goat/New()
+/mob/living/simple_mob/animal/goat/Initialize(mapload)
+	. = ..()
 	udder = new(50)
 	udder.my_atom = src
-	..()
 
 /mob/living/simple_mob/animal/goat/Life()
 	. = ..()

@@ -157,6 +157,7 @@ export const IconCutterTarget = new Juke.Target({
       `icons/**/*.png.toml`,
       `icons/**/*.dmi.toml`,
       `cutter_templates/**/*.toml`,
+      "tgui/public/tgui.html",
       cutter_path,
     ]
     // Alright we're gonna search out any existing toml files and convert
@@ -357,7 +358,7 @@ export const TguiTarget = new Juke.Target({
   dependsOn: [YarnTarget],
   inputs: [
     'tgui/.yarn/install-target',
-    'tgui/webpack.config.js',
+    'tgui/rspack.config.cjs',
     'tgui/**/package.json',
     'tgui/packages/**/*.+(js|cjs|ts|tsx|jsx|scss)',
   ],

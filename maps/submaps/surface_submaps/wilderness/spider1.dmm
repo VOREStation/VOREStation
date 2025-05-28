@@ -1,22 +1,157 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/effect/spider/stickyweb,/turf/template_noop,/area/submap/spider1)
-"c" = (/turf/template_noop,/area/submap/spider1)
-"d" = (/obj/structure/flora/tree/pine,/turf/template_noop,/area/submap/spider1)
-"e" = (/obj/effect/spider/eggcluster/small/frost,/turf/template_noop,/area/submap/spider1)
-"f" = (/mob/living/simple_mob/animal/giant_spider/frost,/turf/template_noop,/area/submap/spider1)
-"g" = (/mob/living/simple_mob/animal/giant_spider/nurse,/turf/template_noop,/area/submap/spider1)
-"h" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/spider1)
-"i" = (/obj/effect/spider/cocoon,/mob/living/simple_mob/animal/giant_spider/frost,/turf/template_noop,/area/submap/spider1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/effect/spider/stickyweb,
+/turf/template_noop,
+/area/submap/spider1)
+"c" = (
+/turf/template_noop,
+/area/submap/spider1)
+"d" = (
+/obj/structure/flora/tree/pine,
+/turf/template_noop,
+/area/submap/spider1)
+"e" = (
+/obj/effect/spider/eggcluster/small/frost,
+/turf/template_noop,
+/area/submap/spider1)
+"f" = (
+/mob/living/simple_mob/animal/giant_spider/frost,
+/turf/template_noop,
+/area/submap/spider1)
+"g" = (
+/mob/living/simple_mob/animal/giant_spider/nurse,
+/turf/template_noop,
+/area/submap/spider1)
+"h" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/spider1)
+"i" = (
+/obj/effect/spider/cocoon,
+/mob/living/simple_mob/animal/giant_spider/frost,
+/turf/template_noop,
+/area/submap/spider1)
 
 (1,1,1) = {"
-aaaaaaaaaa
-abbccbbbca
-accbcbccba
-adecccccda
-abcfcgccca
-acccccchca
-acccccicca
-acccbbbdca
-acdbcbccca
-aaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+c
+d
+b
+c
+c
+c
+c
+a
+"}
+(3,1,1) = {"
+a
+b
+c
+e
+c
+c
+c
+c
+d
+a
+"}
+(4,1,1) = {"
+a
+c
+b
+c
+f
+c
+c
+c
+b
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+b
+c
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+c
+g
+c
+c
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+c
+c
+c
+c
+i
+b
+c
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+c
+c
+h
+c
+d
+c
+a
+"}
+(9,1,1) = {"
+a
+c
+b
+d
+c
+c
+c
+c
+c
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

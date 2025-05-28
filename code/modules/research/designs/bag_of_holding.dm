@@ -13,6 +13,15 @@
 	build_path = /obj/item/storage/bag/ore/holding
 	sort_string = "QAAAA"
 
+/datum/design/item/boh/sheet_holding
+	name = "Sheet Snatcher of Holding"
+	desc = "For those who really hate walking up and down the stairs more than once!"
+	id = "sheet_holding"
+	req_tech = list(TECH_BLUESPACE = 1, TECH_MATERIAL = 2)
+	materials = list(MAT_GOLD = 300, MAT_DIAMOND = 200, MAT_URANIUM = 150) // Even less expensive because it has a more limited use
+	build_path = /obj/item/storage/bag/sheetsnatcher/holding
+	sort_string = "QAAAA"
+
 /datum/design/item/boh/bag_holding
 	name = "Bag of Holding"
 	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."

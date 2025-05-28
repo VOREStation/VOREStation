@@ -45,7 +45,7 @@ possible_descriptors are populated by subtypes of /obj/effect/landmark/overmap_r
 	var/list/descriptors = list() //Elements: A = name, B = desc C = scanner desc. Each element must be a string
 //	var/static/reference //exists to avoid having to iterate over the overmap objs list more than once. Commented out here. Add this to subtype
 
-/obj/effect/landmark/overmap_renamer/Initialize()
+/obj/effect/landmark/overmap_renamer/Initialize(mapload)
 //	testing("Loading renamer landmark: [name]") //Uncomment when adding a new POI/Landmark for testing aid.
 	if(LAZYLEN(descriptors) != 3)
 		error("POI [name] renamer landmark is invalid! Make sure its descriptors var is a list of 3 elements!")

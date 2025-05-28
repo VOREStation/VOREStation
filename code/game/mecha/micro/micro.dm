@@ -118,10 +118,9 @@
 
 // override move_inside() so only micro crew can use them
 
-/obj/mecha/micro/move_inside()
-	var/mob/living/carbon/C = usr
-	if (C.get_effective_size(TRUE) >= 0.5)
-		to_chat(C, span_warning("You can't fit in this suit!"))
+/obj/mecha/micro/move_inside(mob/user)
+	if (user.get_effective_size(TRUE) >= 0.5)
+		to_chat(user, span_warning("You can't fit in this suit!"))
 		return
 	else
 		..()

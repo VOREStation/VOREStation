@@ -62,6 +62,10 @@
 /datum/config_entry/number/footstep_volume
 	default = 0
 
+/// In future see about making a function to adjust volume serverside in config.txt, easy to do with reenable values. - Jack
+/datum/config_entry/number/vorefootstep_volume
+	default = 75
+
 /datum/config_entry/flag/use_loyalty_implants
 
 /datum/config_entry/flag/show_human_death_message
@@ -102,3 +106,7 @@
 
 /datum/config_entry/string/alert_desc_delta
 	default = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+
+// Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
+/datum/config_entry/number/mouse_respawn_time
+	default = 2.5

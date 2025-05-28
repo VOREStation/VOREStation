@@ -6,7 +6,7 @@ SEE_MOBS  // can see all mobs, no matter what
 SEE_OBJS  // can see all objs, no matter what
 SEE_TURFS // can see all turfs (and areas), no matter what
 SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
-          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
+			// in a lit area (via pixel_x,y or smooth movement), can see those pixels
 BLIND     // can't see anything
 */
 ///////////////////////////////////////////////////////////////////////
@@ -97,9 +97,9 @@ BLIND     // can't see anything
 	vision_flags = SEE_TURFS
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
-/obj/item/clothing/glasses/meson/New()
-	..()
-	overlay = global_hud.meson
+/obj/item/clothing/glasses/meson/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
@@ -142,9 +142,9 @@ BLIND     // can't see anything
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	item_flags = AIRTIGHT
 
-/obj/item/clothing/glasses/science/New()
-	..()
-	overlay = global_hud.science
+/obj/item/clothing/glasses/science/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.science
 
 /obj/item/clothing/glasses/goggles
 	name = "goggles"
@@ -172,9 +172,9 @@ BLIND     // can't see anything
 	species_restricted = list("Vox")
 	flags = PHORONGUARD
 
-/obj/item/clothing/glasses/night/New()
-	..()
-	overlay = global_hud.nvg
+/obj/item/clothing/glasses/night/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.nvg
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -242,9 +242,9 @@ BLIND     // can't see anything
 	vision_flags = SEE_OBJS
 	enables_planes = list(VIS_FULLBRIGHT)
 
-/obj/item/clothing/glasses/material/New()
-	..()
-	overlay = global_hud.material
+/obj/item/clothing/glasses/material/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.material
 
 /obj/item/clothing/glasses/material/prescription
 	name = "prescription optical material scanner"
@@ -264,9 +264,9 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_REDUCED
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
-/obj/item/clothing/glasses/graviton/New()
-	..()
-	overlay = global_hud.material
+/obj/item/clothing/glasses/graviton/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.material
 
 /obj/item/clothing/glasses/regular
 	name = "prescription glasses"
@@ -551,9 +551,9 @@ BLIND     // can't see anything
 					M.disabilities &= ~NEARSIGHTED
 	..()
 
-/obj/item/clothing/glasses/thermal/New()
-	..()
-	overlay = global_hud.thermal
+/obj/item/clothing/glasses/thermal/Initialize(mapload)
+	. = ..()
+	overlay = GLOB.global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "optical meson scanner"

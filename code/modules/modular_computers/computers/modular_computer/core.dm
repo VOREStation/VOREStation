@@ -41,7 +41,7 @@
 /obj/item/modular_computer/proc/install_default_programs()
 	return 1
 
-/obj/item/modular_computer/Initialize()
+/obj/item/modular_computer/Initialize(mapload)
 	if(!overlay_icon)
 		overlay_icon = icon
 	START_PROCESSING(SSobj, src)
@@ -119,6 +119,7 @@
 		else
 			to_chat(user, "You press the power button and start up \the [src]")
 		enable_computer(user)
+		playsound(src, 'sound/machines/console_power_on.ogg', 60, 1, volume_channel = VOLUME_CHANNEL_MACHINERY)
 
 	else // Unpowered
 		if(issynth)

@@ -31,7 +31,7 @@
 	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated.  This version comes with a more efficent shield matrix."
 	energy_conversion_rate = 0.0012
 
-/obj/machinery/shield_gen/Initialize()
+/obj/machinery/shield_gen/Initialize(mapload)
 	if(anchored)
 		for(var/obj/machinery/shield_capacitor/cap in range(1, src))
 			if(!cap.anchored)

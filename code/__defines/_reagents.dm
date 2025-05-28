@@ -69,6 +69,8 @@
 #define REAGENT_ID_POTASSIUM "potassium"
 #define REAGENT_RADIUM "Radium"
 #define REAGENT_ID_RADIUM "radium"
+#define REAGENT_CONCENTRATEDRADIUM "Concentrated Radium"
+#define REAGENT_ID_CONCENTRATEDRADIUM "concentrated_radium"
 #define REAGENT_SILICON "Silicon"
 #define REAGENT_ID_SILICON "silicon"
 #define REAGENT_SODIUM "Sodium"
@@ -81,10 +83,6 @@
 #define REAGENT_ID_TUNGSTEN "tungsten"
 #define REAGENT_NUTRIMENT "Nutriment"
 #define REAGENT_ID_NUTRIMENT "nutriment"
-#define REAGENT_STEEL "Liquid Steel"
-#define REAGENT_ID_STEEL "steel"
-#define REAGENT_PLASTEEL "Liquid Plasteel"
-#define REAGENT_ID_PLASTEEL "plasteel"
 
 
 // Xeno chem react
@@ -681,6 +679,8 @@
 #define REAGENT_ID_CAPSAICIN "capsaicin"
 #define REAGENT_CONDENSEDCAPSAICIN "Condensed Capsaicin"
 #define REAGENT_ID_CONDENSEDCAPSAICIN "condensedcapsaicin"
+#define REAGENT_GELATIN "Gelatin"
+#define REAGENT_ID_GELATIN "gelatin"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"
@@ -1244,7 +1244,8 @@
 #define REAGENT_ID_KOMPOT "kompot"
 #define REAGENT_KVASS "Kvass"
 #define REAGENT_ID_KVASS "kvass"
-
+#define REAGENT_CINNAMONPOWDER "Cinnamon powder"
+#define REAGENT_ID_CINNAMONPOWDER "cinnamonpowder"
 
 // Toxins
 #define REAGENT_TOXIN "Toxin"
@@ -1299,6 +1300,8 @@
 #define REAGENT_ID_SIFSAP "sifsap"
 #define REAGENT_STOMACID "Digestive acid"
 #define REAGENT_ID_STOMACID "stomacid"
+#define REAGENT_DIETSTOMACID "Diluted digestive acid"
+#define REAGENT_ID_DIETSTOMACID "diet_stomacid"
 #define REAGENT_THERMITEV "Pyrotoxin"
 #define REAGENT_ID_THERMITEV "thermite_v"
 #define REAGENT_CONDENSEDCAPSAICINV "Irritant toxin"

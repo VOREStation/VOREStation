@@ -38,7 +38,7 @@
 
 	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
 
-/obj/machinery/r_n_d/protolathe/Initialize()
+/obj/machinery/r_n_d/protolathe/Initialize(mapload)
 	. = ..()
 
 // Go through all materials, and add them to the possible storage, but hide them unless we contain them.

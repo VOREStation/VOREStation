@@ -112,6 +112,9 @@
 
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
+	var/digestable = TRUE
+	var/item_tf_spawn_allowed = FALSE
+	var/list/ckeys_allowed_itemspawn = list()
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -136,6 +139,8 @@
 	M.update_held_icons()
 
 /obj/item/Destroy()
+	if(item_tf_spawn_allowed)
+		item_tf_spawnpoints -= src
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
@@ -284,9 +289,9 @@
 		return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
@@ -366,7 +371,7 @@
 
 /obj/item/throw_impact(atom/hit_atom)
 	..()
-	if(isliving(hit_atom)) //Living mobs handle hit sounds differently.
+	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()
 		if (throwforce > 0)
 			if (mob_throw_hit_sound)
@@ -422,13 +427,13 @@
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
 	if(("[slot]" in slot_flags_enumeration) && (slot_flags & slot_flags_enumeration["[slot]"]))
-		if(equip_sound)
+		if(equip_sound && !muffled_by_belly(user))
 			playsound(src, equip_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
-		else
+		else if(!muffled_by_belly(user))
 			playsound(src, drop_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
-		playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
-	return
+		if(!muffled_by_belly(user))
+			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)
@@ -583,14 +588,14 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr) || usr.is_incorporeal())
 		return
 	if(isanimal(usr))	//VOREStation Edit Start - Allows simple mobs with hands to use the pickup verb
 		var/mob/living/simple_mob/s = usr
 		if(!s.has_hands)
 			to_chat(usr, span_warning("You can't pick things up!"))
 			return
-	else if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	else if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, span_warning("You can't pick things up!"))
 		return
 	var/mob/living/L = usr
@@ -603,7 +608,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(L.get_active_hand()) //Hand is not full	//VOREStation Edit End
 		to_chat(usr, span_warning("Your hand is full."))
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!isturf(src.loc)) //Object is on a turf
 		to_chat(usr, span_warning("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
@@ -627,7 +632,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
-	while(L && !istype(L, /turf/))
+	while(L && !isturf(L))
 		L = L.loc
 	return loc
 
@@ -783,7 +788,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/var/ignore_visor_zoom_restriction = FALSE
 
 /obj/item/proc/zoom(var/mob/living/M, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-
+	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
 
@@ -803,7 +808,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
 		cannotzoom = 1
-	else if(!zoom && (global_hud.darkMask[1] in M.client.screen))
+	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
 		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
 		cannotzoom = 1
 	else if(!zoom && M.get_active_hand() != src)
@@ -905,6 +910,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				state2use += "_l"
 
 	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	// Send icon data to unit test when it is running, hello old testing(). I'm like, your great great grandkid! THE FUTURE IS NOW OLD MAN!
+	#ifdef UNIT_TEST
+	var/mob/living/carbon/human/H = loc
+	if(ishuman(H))
+		SEND_SIGNAL(H, COMSIG_UNITTEST_DATA, list("set_slot",slot_name,icon2use,state2use,inhands,type,H.species?.name))
+	#endif
 
 	//Generate the base onmob icon
 	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
@@ -1104,3 +1115,58 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/proc/get_welder()
 	return
+
+/obj/item/verb/toggle_digestable()
+	set category = "Object"
+	set name = "Toggle Digestable"
+	set desc = "Toggle item's digestability."
+	digestable = !digestable
+	if(!digestable)
+		to_chat(usr, span_notice("[src] is now protected from digestion."))
+
+/obj/item/proc/item_tf_spawnpoint_set()
+	if(!item_tf_spawn_allowed)
+		item_tf_spawn_allowed = TRUE
+		item_tf_spawnpoints += src
+
+/obj/item/proc/item_tf_spawnpoint_used()
+	if(item_tf_spawn_allowed)
+		item_tf_spawn_allowed = FALSE
+		item_tf_spawnpoints -= src
+
+// Ported from TG, used when dropping items on tables/closets.
+/obj/item/proc/do_drop_animation(atom/moving_from)
+	if(!istype(loc, /turf))
+		return
+
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(moving_from, current_turf)
+	var/from_x = moving_from.pixel_x
+	var/from_y = moving_from.pixel_y
+
+	if(direction & NORTH)
+		from_y -= 32
+	else if(direction & SOUTH)
+		from_y += 32
+	if(direction & EAST)
+		from_x -= 32
+	else if(direction & WEST)
+		from_x += 32
+	if(!direction)
+		from_y += 10
+		from_x += 6 * (prob(50) ? 1 : -1)
+
+	var/old_x = pixel_x
+	var/old_y = pixel_y
+	var/old_alpha = alpha
+	var/matrix/old_transform = transform
+	var/matrix/animation_matrix = new(old_transform)
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.7)
+
+	pixel_x = from_x
+	pixel_y = from_y
+	alpha = 0
+	transform = animation_matrix
+
+	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = old_transform, time = 3, easing = CUBIC_EASING)

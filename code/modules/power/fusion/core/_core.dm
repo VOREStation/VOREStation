@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 /obj/machinery/power/fusion_core/mapped
 	anchored = TRUE
 
-/obj/machinery/power/fusion_core/Initialize()
+/obj/machinery/power/fusion_core/Initialize(mapload)
 	. = ..()
 	GLOB.fusion_cores += src
 
@@ -41,12 +41,12 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	default_apply_parts()
 
-/obj/machinery/power/fusion_core/mapped/Initialize()
+/obj/machinery/power/fusion_core/mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 
 /obj/machinery/power/fusion_core/Destroy()
-	for(var/obj/machinery/computer/fusion_core_control/FCC in machines)
+	for(var/obj/machinery/computer/fusion_core_control/FCC in GLOB.machines)
 		FCC.connected_devices -= src
 		if(FCC.cur_viewed_device == src)
 			FCC.cur_viewed_device = null

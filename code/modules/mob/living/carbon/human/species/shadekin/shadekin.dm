@@ -46,7 +46,7 @@
 	heat_level_2 = 1000
 	heat_level_3 = 1150
 
-	flags =  NO_SCAN | NO_MINOR_CUT | NO_INFECT
+	flags =  NO_DNA | NO_SLEEVE | NO_MINOR_CUT | NO_INFECT
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 
 	reagent_tag = IS_SHADEKIN		// for shadekin-unqiue chem interactions
@@ -59,11 +59,6 @@
 	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
 	death_message = "phases to somewhere far away!"
-	male_cough_sounds = null
-	female_cough_sounds = null
-	male_sneeze_sound = null
-	female_sneeze_sound = null
-
 	speech_bubble_appearance = "ghost"
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
@@ -73,6 +68,7 @@
 	breath_type = null
 	poison_type = null
 	water_breather = TRUE	//They don't quite breathe
+	var/doing_phase = FALSE // Prevent bugs when spamming phase button
 
 	vision_flags = SEE_SELF|SEE_MOBS
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
@@ -226,7 +222,7 @@
 		var/l_icon = 0
 		var/e_icon = 0
 
-		H.shadekin_display.invisibility = 0
+		H.shadekin_display.invisibility = INVISIBILITY_NONE
 		if(T)
 			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 			var/darkness = 1-brightness //Invert

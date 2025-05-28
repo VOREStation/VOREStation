@@ -52,6 +52,10 @@ var/const/PILOT 			=(1<<13)
 var/const/ENTERTAINER		=(1<<14)
 var/const/ENTREPRENEUR		=(1<<15)
 
+var/const/OTHER				=(1<<10) //VOREStation Note: Unused on VS. Used downstream.
+var/const/NONCREW			=(1<<0)
+var/const/ANOMALY			=(1<<0) //VOREStation Note: Unused on VS. Used downstream.
+
 var/const/TALON				=(1<<3)
 
 var/const/TALCAP			=(1<<0)

@@ -17,13 +17,12 @@
 	can_atmos_pass = ATMOS_PASS_PROC
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
+/obj/machinery/door/window/Initialize(mapload)
+	. = ..()
 	update_nearby_tiles()
 	if(LAZYLEN(req_access))
-		src.icon_state = "[src.icon_state]"
-		src.base_state = src.icon_state
-	return
+		icon_state = "[icon_state]"
+		base_state = icon_state
 
 /obj/machinery/door/window/update_icon()
 	if(density)
@@ -86,7 +85,7 @@
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 

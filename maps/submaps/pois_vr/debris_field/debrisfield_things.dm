@@ -132,7 +132,8 @@
 	desc = "A sort of liability device worn by security on luxury yachts. Records everything they say. Strange that the captain was wearing it."
 	mytape = /obj/item/rectape/touristguard
 
-/obj/item/rectape/touristguard/New()
+/obj/item/rectape/touristguard/Initialize(mapload)
+	. = ..()
 	storedinfo += "01:37  *sounds of metal creaking"
 	storedinfo += "01:55  *sounds of distant screaming!"
 	storedinfo += "01:37  *Sounds of hissing, both airlocks and spiders alike. Screaming continues."
@@ -304,7 +305,8 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	goal: RETURN HOME status: Successful \n \
 	goal: PRO-PRO"
 
-/obj/item/poi/broken_drone_circuit/phoron_tanker/New()
+/obj/item/poi/broken_drone_circuit/phoron_tanker/Initialize(mapload)
+	. = ..()
 	drone_name = "NED-[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]]"
 	tanker = locate("POI_NT_TANKER_BOAT")	//actual .dmm area has this
 	var/tankername = "Unknown Ship"

@@ -59,12 +59,12 @@ var/list/grass_types = list(
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
 	catalogue_delay = 2 SECONDS
 
-/turf/simulated/floor/outdoors/grass/sif/Initialize()
+/turf/simulated/floor/outdoors/grass/sif/Initialize(mapload)
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/sif(src)
 	. = ..()
 
-/turf/simulated/floor/outdoors/grass/Initialize()
+/turf/simulated/floor/outdoors/grass/Initialize(mapload)
 	if(grass_chance && prob(grass_chance) && !check_density())
 		var/grass_type = pickweight(grass_types)
 		new grass_type(src)

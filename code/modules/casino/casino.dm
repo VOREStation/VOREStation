@@ -32,7 +32,7 @@
 
 	var/obj/item/roulette_ball/ball
 
-/obj/structure/casino_table/roulette_table/Initialize()
+/obj/structure/casino_table/roulette_table/Initialize(mapload)
 	.=..()
 	ball = new(src)
 	return

@@ -64,6 +64,8 @@
 /mob/living/simple_mob/vore/alienanimals/dustjumper/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -82,7 +84,7 @@
 	if(vore_fullness == 0 && movement_cooldown == 10)
 		movement_cooldown = initial(movement_cooldown)
 
-/mob/living/simple_mob/vore/alienanimals/dustjumper/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/simple_mob/vore/alienanimals/dustjumper/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	. = ..()
 	movement_cooldown = 10
 

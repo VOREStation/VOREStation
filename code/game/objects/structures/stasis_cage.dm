@@ -8,7 +8,7 @@
 
 	var/mob/living/simple_mob/contained
 
-/obj/structure/stasis_cage/Initialize()
+/obj/structure/stasis_cage/Initialize(mapload)
 	. = ..()
 
 	var/mob/living/simple_mob/A = locate() in loc

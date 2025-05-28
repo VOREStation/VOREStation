@@ -220,22 +220,45 @@
 	name = "Dullahan"
 	sprite_icon_state = "dullahansec"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
-	pixel_x = 0
+	sprite_decals = list("breastplate","loincloth","eyecover")
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/security/dullahan/secalt
-	name = "Dullahan v2"
-	sprite_icon_state = "dullahansec_alt"
+/datum/robot_sprite/dogborg/tall/security/dullataur
+	name = "Dullataur"
+	sprite_icon_state = "dullataursec"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 32
+	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/security/dullahan/securitydully
+/datum/robot_sprite/dogborg/tall/security/dullahanv3
 	name = "Dullahan security v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/security.dmi'
 	sprite_icon_state = "dullahansecurity"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 64
+	pixel_x = -16
+
 
 /datum/robot_sprite/dogborg/security/vale2
 	name = "Secborg model V-3"
@@ -243,6 +266,7 @@
 	sprite_icon_state = "secvale"
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/security/cat
 	name = "Cat"

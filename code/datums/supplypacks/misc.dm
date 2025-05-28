@@ -71,7 +71,7 @@
 			/obj/item/toy/plushie/siamese_cat,
 			/obj/item/toy/plushie/tabby_cat,
 			/obj/item/toy/plushie/tuxedo_cat,
-			/obj/item/toy/plushie/squid/green,
+			/obj/item/toy/plushie/squid,
 			/obj/item/toy/plushie/squid/mint,
 			/obj/item/toy/plushie/squid/blue,
 			/obj/item/toy/plushie/squid/orange,
@@ -250,11 +250,13 @@
 
 /datum/supply_pack/randomised/misc/explorer_shield
 	name = JOB_EXPLORER + " shield"
-	desc = "A pair of shields for use by away teams. Requires EVA or Pilot's access."
+	desc = "Two Physical and Two PSG shields for use by away teams. Requires EVA or Pilot's access."
 	num_contained = 2
 	contains = list(
 			/obj/item/shield/riot/explorer,
-			/obj/item/shield/riot/explorer/purple
+			/obj/item/shield/riot/explorer/purple,
+			/obj/item/personal_shield_generator/belt/melee,
+			/obj/item/personal_shield_generator/belt/mining/upgraded
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear

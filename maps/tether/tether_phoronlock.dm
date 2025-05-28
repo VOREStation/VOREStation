@@ -50,7 +50,7 @@
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -119,7 +119,7 @@
 /obj/machinery/embedded_controller/radio/airlock/phoron
 	var/tag_scrubber
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/Initialize()
+/obj/machinery/embedded_controller/radio/airlock/phoron/Initialize(mapload)
 	. = ..()
 	program = new/datum/embedded_program/airlock/phoron(src)
 

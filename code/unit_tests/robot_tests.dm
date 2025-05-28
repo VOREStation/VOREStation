@@ -10,6 +10,11 @@
 		if(!RS.name) // Parent type, ignore me
 			continue
 
+		if(!RS.sprite_icon)
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing sprite_icon.")
+			failed = TRUE
+			continue
+
 		var/list/checks = list(
 			"[ROBOT_HAS_SPEED_SPRITE]" = "-roll",
 			"[ROBOT_HAS_SHIELD_SPRITE]" = "-shield",
@@ -37,6 +42,10 @@
 			for(var/decal in RS.sprite_decals)
 				if(check_state(RS,"-[decal]"))
 					failed = TRUE
+		if(LAZYLEN(RS.sprite_animations))
+			for(var/animation in RS.sprite_animations)
+				if(check_state(RS,"-[animation]"))
+					failed = TRUE
 		// Control panel
 		if(RS.has_custom_open_sprites)
 			if(check_state(RS,"-openpanel_nc"))
@@ -44,6 +53,10 @@
 			if(check_state(RS,"-openpanel_c"))
 				failed = TRUE
 			if(check_state(RS,"-openpanel_w"))
+				failed = TRUE
+		// Glow State
+		if(RS.has_glow_sprites)
+			if(check_state(RS,"-glow"))
 				failed = TRUE
 		// Bellies
 		if(RS.has_vore_belly_sprites && !RS.belly_capacity_list)
@@ -56,7 +69,7 @@
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
 						rest_style = lowertext(rest_style)
-						if(rest_style == "Default")
+						if(rest_style == "default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-r-[rest_style]"))
 							failed = TRUE
@@ -71,7 +84,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-r-[rest_style]-struggle"))
 								failed = TRUE
@@ -84,7 +97,7 @@
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
 						rest_style = lowertext(rest_style)
-						if(rest_style == "Default")
+						if(rest_style == "default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-[rest_style]"))
 							failed = TRUE
@@ -95,7 +108,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-[rest_style]-struggle"))
 								failed = TRUE
@@ -108,7 +121,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-[belly]-[num]-[rest_style]"))
 								failed = TRUE
@@ -119,7 +132,7 @@
 						if(RS.has_vore_belly_resting_sprites)
 							for(var/rest_style in RS.rest_sprite_options)
 								rest_style = lowertext(rest_style)
-								if(rest_style == "Default")
+								if(rest_style == "default")
 									rest_style = "rest"
 								if(check_state(RS,"-[belly]-[num]-[rest_style]-struggle"))
 									failed = TRUE
@@ -134,7 +147,7 @@
 						if(RS.has_vore_belly_resting_sprites)
 							for(var/rest_style in RS.rest_sprite_options)
 								rest_style = lowertext(rest_style)
-								if(rest_style == "Default")
+								if(rest_style == "default")
 									rest_style = "rest"
 								if(check_state(RS,"-[belly]-[num]-r-[rest_style]"))
 									failed = TRUE
@@ -149,30 +162,52 @@
 							if(RS.has_vore_belly_resting_sprites)
 								for(var/rest_style in RS.rest_sprite_options)
 									rest_style = lowertext(rest_style)
-									if(rest_style == "Default")
+									if(rest_style == "default")
 										rest_style = "rest"
 									if(check_state(RS,"-[belly]-[num]-r-[rest_style]-struggle"))
 										failed = TRUE
 									if(check_state(RS,"-[belly]-[num]-g-[rest_style]-struggle"))
 										failed = TRUE
 		// reseting
-		if(RS.rest_sprite_options in list("Sit"))
-			if(check_state(RS,"-sit"))
+		for(var/rest_style in RS.rest_sprite_options)
+			rest_style = lowertext(rest_style)
+			if(rest_style == "default")
+				rest_style = "rest"
+			if(check_state(RS,"-[rest_style]"))
 				failed = TRUE
-		if(RS.rest_sprite_options in list("Default"))
-			if(check_state(RS,"-rest"))
-				failed = TRUE
-		if(RS.rest_sprite_options in list("Bellyup"))
-			if(check_state(RS,"-bellyup"))
-				failed = TRUE
+			if(RS.has_glow_sprites)
+				if(check_state(RS,"-[rest_style]-glow"))
+					failed = TRUE
+			if(RS.has_rest_lights_sprites)
+				if(check_state(RS,"-[rest_style]-lights"))
+					failed = TRUE
+			if(RS.has_rest_eyes_sprites)
+				if(check_state(RS,"-[rest_style]-eyes"))
+					failed = TRUE
 		// death
 		if(RS.has_dead_sprite)
 			if(check_state(RS,"-wreck"))
 				failed = TRUE
 		if(RS.has_dead_sprite_overlay) // Only one per dmi
 			if(!("wreck-overlay" in cached_icon_states(RS.sprite_icon)))
-				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", had wreck-overlay state enabled, but was missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
+				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
 				failed = TRUE
+		// offset
+		var/icon/I = new(RS.sprite_icon)
+		if(RS.icon_x != I.Width())
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_x \"[RS.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
+			failed = TRUE
+		if(RS.icon_y != I.Height())
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_y \"[RS.icon_y]\" did not match dmi configured height \"[I.Height()]\"")
+			failed = TRUE
+		if(RS.icon_y != RS.vis_height)
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", vis_height \"[RS.vis_height]\" did not match icon_y \"[RS.icon_y]\"")
+			failed = TRUE
+		var/legal_offset = (I.Width() - world.icon_size) / 2
+		if(RS.pixel_x != -legal_offset)
+			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[-legal_offset]\"")
+			failed = TRUE
+		qdel(I)
 		qdel(RS)
 
 	if(failed)
@@ -184,6 +219,6 @@
 /datum/unit_test/all_robot_sprites_must_be_valid/proc/check_state(var/datum/robot_sprite/RS,var/append)
 	var/check_state = "[RS.sprite_icon_state][append]"
 	if(!(check_state in cached_icon_states(RS.sprite_icon)))
-		log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", had [append] state enabled, but was missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
+		log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
 		return TRUE
 	return FALSE

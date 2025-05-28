@@ -42,6 +42,7 @@
 
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
+	var/datum/ghost_query/Q						// Used to unregister our signal
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
@@ -54,18 +55,20 @@
 	if(antag && mind)
 		borers.add_antagonist(mind)
 
-/mob/living/simple_mob/animal/borer/Initialize()
+/mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
 
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+	..()
 
 	if(!roundstart && antag)
-		request_player()
+		return INITIALIZE_HINT_LATELOAD
 
-	return ..()
+/mob/living/simple_mob/animal/borer/LateInitialize()
+	request_player()
 
 /mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)
@@ -180,21 +183,26 @@
 	host = null
 
 /mob/living/simple_mob/animal/borer/proc/request_player()
-	var/datum/ghost_query/Q = new /datum/ghost_query/borer()
-	var/list/winner = Q.query() // This will sleep the proc for awhile.
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new /datum/ghost_query/borer()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query() // This will sleep the proc for awhile.
+
+/mob/living/simple_mob/animal/borer/proc/get_winner()
+	SIGNAL_HANDLER
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
-	if(!candidate || !candidate.mind)
+	if(!candidate)
 		return
-
-	src.mind = candidate.mind
-	candidate.mind.current = src
 	ckey = candidate.ckey
 
-	if(mind)
+	if(candidate.mind)
+		src.mind = candidate.mind
+		candidate.mind.current = src
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 

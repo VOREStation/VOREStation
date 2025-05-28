@@ -251,3 +251,7 @@
 	spawn_reagent = REAGENT_ID_CRYOXADONE
 /obj/item/reagent_containers/chem_disp_cartridge/clonexadone
 	spawn_reagent = REAGENT_ID_CLONEXADONE
+/obj/item/reagent_containers/chem_disp_cartridge/gelatin
+	spawn_reagent = REAGENT_ID_GELATIN
+/obj/item/reagent_containers/chem_disp_cartridge/nothing
+	spawn_reagent = REAGENT_ID_NOTHING

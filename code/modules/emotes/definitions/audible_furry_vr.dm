@@ -145,9 +145,9 @@
 	emote_message_3p = "squeaks."
 	emote_sound = 'sound/items/drop/plushie.ogg'
 /decl/emote/audible/mothscream
-  key = "mothscream"
-  emote_message_3p ="screams"
-  emote_sound = 'sound/voice/moth/scream_moth.ogg'
+	key = "mothscream"
+	emote_message_3p ="screams"
+	emote_sound = 'sound/voice/moth/scream_moth.ogg'
 
 /decl/emote/audible/mothchitter
 	key = "mothchitter"

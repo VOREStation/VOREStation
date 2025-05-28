@@ -29,6 +29,9 @@
 	if(target == world)
 		target = GLOB.clients
 
+	if(islist(target) && !LAZYLEN(target))
+		return
+
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -38,6 +41,18 @@
 
 	// send it immediately
 	SSchat.send_immediate(target, message)
+
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		if (islist(target))
+			for(var/tgt in target)
+				var/our_ckey = CKEY_FROM_VAR(tgt)
+				if(isnull(our_ckey))
+					continue
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
+		else
+			var/our_ckey = CKEY_FROM_VAR(target)
+			if(!isnull(our_ckey))
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
 
 /**
  * Sends the message to the recipient (target).
@@ -76,6 +91,9 @@
 	if(target == world)
 		target = GLOB.clients
 
+	if(islist(target) && !LAZYLEN(target))
+		return
+
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -83,3 +101,15 @@
 	if(html) message["html"] = html
 	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
 	SSchat.queue(target, message)
+
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		if (islist(target))
+			for(var/tgt in target)
+				var/our_ckey = CKEY_FROM_VAR(tgt)
+				if(isnull(our_ckey))
+					continue
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
+		else
+			var/our_ckey = CKEY_FROM_VAR(target)
+			if(!isnull(our_ckey))
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)

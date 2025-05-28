@@ -216,7 +216,7 @@
 		return 1
 	return 0
 
-/obj/vehicle/train/trolley/trailer/Initialize()
+/obj/vehicle/train/trolley/trailer/Initialize(mapload)
 	. = ..()
 	update_icon()
 

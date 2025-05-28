@@ -78,6 +78,8 @@
 	has_dead_sprite_overlay = FALSE
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
+	icon_y = 64
+	vis_height = 64
 
 /datum/robot_sprite/dogborg/tall/command/meka
 	name = "MEKA"
@@ -86,6 +88,8 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+
 
 /datum/robot_sprite/dogborg/tall/command/mmeka
 	name = "NIKO"
@@ -94,6 +98,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
 
 /datum/robot_sprite/dogborg/tall/command/fmeka
 	name = "NIKA"
@@ -102,6 +107,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
 
 /datum/robot_sprite/dogborg/command/smolraptorcommand
 	name = "Small Raptor"
@@ -111,3 +117,18 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/command/dullataurcommand
+	name = "Dullataur"
+	sprite_icon_state = "dullataurcommand"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate", "maidoutfit")
+	icon_x = 32
+	pixel_x = 0

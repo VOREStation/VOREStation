@@ -27,8 +27,8 @@
 	var/datum/exonet_protocol/exonet = null
 	var/address_spoofed = FALSE
 
-/obj/item/integrated_circuit/illegal/EPv2_Spoofer/New()
-	..()
+/obj/item/integrated_circuit/illegal/EPv2_Spoofer/Initialize(mapload)
+	. = ..()
 	exonet = new(src)
 	exonet.make_address("EPv2_Spoofer_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
@@ -84,8 +84,8 @@
 		return can_telecomm(src,node)
 	return 0
 
-/obj/item/integrated_circuit/illegal/EPv2_Discoverer/New()
-	..()
+/obj/item/integrated_circuit/illegal/EPv2_Discoverer/Initialize(mapload)
+	. = ..()
 	exonet = new(src)
 	exonet.make_address("EPv2_Discovery_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
@@ -108,7 +108,7 @@
 	else
 		var/list/addresses = list()
 
-		for(var/datum/exonet_protocol/target_exonet in all_exonet_connections)
+		for(var/datum/exonet_protocol/target_exonet in GLOB.all_exonet_connections)
 			if(target_exonet.address && istext(target_exonet.address))
 				var/random = rand(200,350)
 				random = random / 10

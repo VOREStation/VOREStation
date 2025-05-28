@@ -80,7 +80,7 @@
 
 	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
 	var/gender_key = get_visible_gender(user, gender_hidden)
-	var/datum/gender/T = gender_datums[gender_key]
+	var/datum/gender/T = GLOB.gender_datums[gender_key]
 	if (!T)
 		CRASH({"Null gender datum on examine: mob="[src]",hidden="[gender_hidden]",key="[gender_key]",bio="[gender]",id="[identifying_gender]""})
 
@@ -279,6 +279,7 @@
 	var/list/vorestrings = list()
 	vorestrings += examine_weight()
 	vorestrings += examine_nutrition()
+	vorestrings += examine_reagent_bellies() // reagent bellies
 	vorestrings += examine_bellies()
 	vorestrings += examine_pickup_size()
 	vorestrings += examine_step_size()
@@ -312,7 +313,7 @@
 		msg += span_warning("[T.He] [T.is] on fire!.")
 
 	var/ssd_msg = species.get_ssd(src)
-	if(ssd_msg && (!should_have_organ("brain") || has_brain()) && stat != DEAD)
+	if(ssd_msg && (!should_have_organ(O_BRAIN) || has_brain()) && stat != DEAD)
 		if(!key)
 			msg += span_deadsay("[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.")
 		else if(!client)
@@ -406,7 +407,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.security)
+		for (var/datum/data/record/R in GLOB.data_core.security)
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
@@ -425,7 +426,7 @@
 				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
-		for (var/datum/data/record/R in data_core.medical)
+		for (var/datum/data/record/R in GLOB.data_core.medical)
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 
@@ -438,6 +439,7 @@
 
 	var/flavor_text = print_flavor_text()
 	if(flavor_text)
+		flavor_text = replacetext(flavor_text, "||", "")
 		msg += "[flavor_text]"
 
 	// VOREStation Start
@@ -445,7 +447,7 @@
 		msg += "Custom link: " + span_linkify("[custom_link]")
 
 	if(ooc_notes)
-		msg += "OOC Notes: <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+		msg += "OOC Notes: <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 	msg += "<a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
 	msg = list(span_info(jointext(msg, "<br>")))

@@ -12,6 +12,8 @@
 /datum/nifsoft/commlink/install()
 	if((. = ..()))
 		nif.comm = new(nif,src)
+		if(nif.human?.client?.prefs?.communicator_visibility)
+			nif.comm.initialize_exonet(nif.human) //no harm in running this twice.
 
 /datum/nifsoft/commlink/uninstall()
 	var/obj/item/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
@@ -39,9 +41,9 @@
 	var/obj/item/nif/nif
 	var/datum/nifsoft/commlink/nifsoft
 
-/obj/item/communicator/commlink/New(var/newloc,var/soft)
-	..()
-	nif = newloc
+/obj/item/communicator/commlink/Initialize(mapload, var/soft)
+	. = ..()
+	nif = loc
 	nifsoft = soft
 
 /obj/item/communicator/commlink/Destroy()

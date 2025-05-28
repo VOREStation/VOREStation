@@ -22,7 +22,7 @@
 	outdoors = OUTDOORS_YES
 
 // For maximum pedantry.
-/turf/simulated/floor/lava/Initialize()
+/turf/simulated/floor/lava/Initialize(mapload)
 	if(!is_outdoors())
 		name = "magma"
 	update_icon()

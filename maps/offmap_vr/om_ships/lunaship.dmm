@@ -238,11 +238,6 @@
 	},
 /turf/simulated/wall/tgmc/durawall,
 /area/lunaship/hallway_starboard)
-"eh" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "er" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -2721,9 +2716,6 @@
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -6388,7 +6380,7 @@ si
 gI
 GI
 xV
-eh
+LS
 si
 si
 si

@@ -11,15 +11,15 @@
 	var/scan_range = 25
 	var/datum/tgui_module/gyrotron_control/monitor
 
-/obj/machinery/computer/gyrotron_control/New()
-	..()
+/obj/machinery/computer/gyrotron_control/Initialize(mapload)
+	. = ..()
 	monitor = new(src)
 	monitor.gyro_tag = id_tag
 	monitor.scan_range = scan_range
 
 /obj/machinery/computer/gyrotron_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/gyrotron_control/attack_ai(var/mob/user)
 	attack_hand(user)

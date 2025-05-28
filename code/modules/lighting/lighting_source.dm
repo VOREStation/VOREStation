@@ -76,11 +76,11 @@
 // Yes this doesn't align correctly on anything other than 4 width tabs.
 // If you want it to go switch everybody to elastic tab stops.
 // Actually that'd be great if you could!
-#define EFFECT_UPDATE(level)                \
+#define EFFECT_UPDATE(level)				\
 	if (needs_update == LIGHTING_NO_UPDATE) \
-		SSlighting.sources_queue += src; \
-	if (needs_update < level)               \
-		needs_update            = level;    \
+		SSlighting.sources_queue += src; 	\
+	if (needs_update < level)				\
+		needs_update = level;				\
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
@@ -133,40 +133,40 @@
 
 #define LUM_FALLOFF(C) (1 - CLAMP01(sqrt((C.x - _turf_x) ** 2 + (C.y - _turf_y) ** 2 + LIGHTING_HEIGHT) / _range_divisor))
 
-#define APPLY_CORNER(C)                          \
-	. = LUM_FALLOFF(C);                          \
-	. *= _light_power;                           \
-	var/OLD = effect_str[C];                     \
-	                                             \
-	C.update_lumcount                            \
-	(                                            \
-		(. * _lum_r) - (OLD * _applied_lum_r),     \
-		(. * _lum_g) - (OLD * _applied_lum_g),     \
-		(. * _lum_b) - (OLD * _applied_lum_b)      \
-	);                                           \
+#define APPLY_CORNER(C)							\
+	. = LUM_FALLOFF(C);							\
+	. *= _light_power;							\
+	var/OLD = effect_str[C];					\
+												\
+	C.update_lumcount							\
+	(											\
+		(. * _lum_r) - (OLD * _applied_lum_r),	\
+		(. * _lum_g) - (OLD * _applied_lum_g),	\
+		(. * _lum_b) - (OLD * _applied_lum_b)	\
+	);											\
 
-#define APPLY_CORNER_NEW(C)                      \
-	. = LUM_FALLOFF(C);         			     \
-	. *= _light_power;                            \
-	var/OLD = effect_str[C];                     \
-	if (. != 0){								 \
-		LAZYADD(C.affecting, src);	 	 		 \
-		effect_str[C] = .;						 \
-	}			 	 		 					 \
-	C.update_lumcount                            \
-	(                                            \
-		(. * _lum_r) - (OLD * _applied_lum_r),     \
-		(. * _lum_g) - (OLD * _applied_lum_g),     \
-		(. * _lum_b) - (OLD * _applied_lum_b)      \
-	);                                           \
+#define APPLY_CORNER_NEW(C)						\
+	. = LUM_FALLOFF(C);							\
+	. *= _light_power;							\
+	var/OLD = effect_str[C];					\
+	if (. != 0){								\
+		LAZYADD(C.affecting, src);				\
+		effect_str[C] = .;						\
+	}											\
+	C.update_lumcount							\
+	(											\
+		(. * _lum_r) - (OLD * _applied_lum_r),	\
+		(. * _lum_g) - (OLD * _applied_lum_g),	\
+		(. * _lum_b) - (OLD * _applied_lum_b)	\
+	);											\
 
-#define REMOVE_CORNER(C)                         \
-	. = -effect_str[C];                          \
-	C.update_lumcount                            \
-	(                                            \
-		. * _applied_lum_r,                      \
-		. * _applied_lum_g,                      \
-		. * _applied_lum_b                       \
+#define REMOVE_CORNER(C)						\
+	. = -effect_str[C];							\
+	C.update_lumcount							\
+	(											\
+		. * _applied_lum_r,						\
+		. * _applied_lum_g,						\
+		. * _applied_lum_b						\
 	);
 
 /datum/light_source/proc/remove_lum()

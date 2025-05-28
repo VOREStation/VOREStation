@@ -75,16 +75,16 @@
 
 	var/client/ghost_client = ghost.client
 
-	if(!is_alien_whitelisted(ghost, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
+	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
 		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
-	/* // Comments out NO_SCAN restriction, as per headmin/maintainer request.
+	/* // Comments out NO_SLEEVE restriction, as per headmin/maintainer request.
 	var/datum/species/chosen_species
 	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
 		chosen_species = GLOB.all_species[ghost_client.prefs.species]
 
-	if(chosen_species.flags && NO_SCAN) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
+	if(chosen_species.flags && NO_SLEEVE) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
 		to_chat(ghost, span_warning("This species cannot be resleeved!"))
 		return
 	*/
@@ -210,7 +210,7 @@
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[new_character.mind.name]
 		if((world.time - record.last_notification) < 30 MINUTES)
-			global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
+			GLOB.global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
 		spawn(0)	//Wait a second for nif to do its thing if there is one
 		if(record.nif_path)
 			var/obj/item/nif/nif

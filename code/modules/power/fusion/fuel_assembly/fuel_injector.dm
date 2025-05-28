@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	var/injecting = 0
 	var/obj/item/fuel_assembly/cur_assembly
 
-/obj/machinery/fusion_fuel_injector/Initialize()
+/obj/machinery/fusion_fuel_injector/Initialize(mapload)
 	. = ..()
 	GLOB.fuel_injectors += src
 	default_apply_parts()

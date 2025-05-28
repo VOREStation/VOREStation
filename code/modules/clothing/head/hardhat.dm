@@ -44,7 +44,6 @@
 /obj/item/clothing/head/hardhat/red
 	icon_state = "hardhat0_red"
 	name = "emergency fire helmet"
-	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0.2* ONE_ATMOSPHERE
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
@@ -60,8 +59,6 @@
 	min_pressure_protection = 0.5 * ONE_ATMOSPHERE
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
 	body_parts_covered = HEAD|FACE|EYES
-	heat_protection = HEAD
-	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MODERATE
 	sprite_sheets = list(
@@ -144,7 +141,7 @@
 	light_overlay = "helmet_light"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 
-/obj/item/clothing/head/hardhat/ranger/Initialize()
+/obj/item/clothing/head/hardhat/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_helmet")
 		name = "[hatcolor] ranger helmet"

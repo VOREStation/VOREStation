@@ -27,14 +27,13 @@
 	var/datum/material/material
 	var/drops_debris = 1
 
-/obj/item/material/New(var/newloc, var/material_key)
-	..(newloc)
+/obj/item/material/Initialize(mapload, var/material_key)
+	. = ..()
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)
 	if(!material)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	matter = material.get_matter()
 	if(matter.len)

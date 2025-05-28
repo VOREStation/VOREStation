@@ -116,19 +116,6 @@
 		to_chat(H, span_filter_notice("[span_red("Your nose begins to bleed...")]"))
 		H.drip(1)
 
-/mob/living/carbon/human/proc/regurgitate()
-	set name = "Regurgitate"
-	set desc = "Empties the contents of your stomach"
-	set category = "Abilities.General"
-
-	if(stomach_contents.len)
-		for(var/mob/M in src)
-			if(M in stomach_contents)
-				stomach_contents.Remove(M)
-				M.loc = loc
-		src.visible_message(span_filter_warning(span_red(span_bold("[src] hurls out the contents of their stomach!"))))
-	return
-
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
@@ -263,7 +250,7 @@
 	to_chat(src, span_notice("You take a moment to listen in to your environment..."))
 	for(var/mob/living/L in range(client.view, src))
 		var/turf/T = get_turf(L)
-		if(!T || L == src || L.stat == DEAD || is_below_sound_pressure(T))
+		if(!T || L == src || L.stat == DEAD || is_below_sound_pressure(T) || L.is_incorporeal())
 			continue
 		heard_something = TRUE
 		var/feedback = list()
@@ -363,7 +350,7 @@
 	if(!E)
 		to_chat(src,span_warning("You don't seem to have a head!"))
 		return
-	var/datum/robolimb/robohead = all_robolimbs[E.model]
+	var/datum/robolimb/robohead = GLOB.all_robolimbs[E.model]
 	if(!robohead.monitor_styles || !robohead.monitor_icon)
 		to_chat(src,span_warning("Your head doesn't have a monitor, or it doesn't support being changed!"))
 		return

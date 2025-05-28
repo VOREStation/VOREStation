@@ -26,9 +26,9 @@
 	if(istype(ticker.mode, /datum/game_mode/extended) && !safe_for_extended)
 		return 0
 
-	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
-	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE) - security
-	var/ghost_activity = metric.assess_all_dead_mobs() / 100
+	var/security = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/everyone = GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) - security
+	var/ghost_activity = GLOB.metric.assess_all_dead_mobs() / 100
 
 	return ( (security * 20) + (everyone * 2) ) * ghost_activity
 
@@ -57,8 +57,8 @@
 
 /datum/event2/event/ghost_pod_spawner/stowaway/announce()
 	if(prob(announce_odds))
-		if(atc?.squelched)
+		if(SSatc.is_squelched())
 			return
-		atc.msg("Attention civilian vessels in [using_map.starsys_name] shipping lanes, caution is advised as \
+		SSatc.msg("Attention civilian vessels in [using_map.starsys_name] shipping lanes, caution is advised as \
 		[pick("an unidentified vessel", "a known criminal's vessel", "a derelict vessel")] \
 		has been detected passing multiple local stations.")

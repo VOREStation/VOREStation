@@ -118,9 +118,7 @@
 	force = 2
 	siemens_coefficient = 0.7
 
-	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
@@ -194,6 +192,7 @@
 	desc = "A roll of treated canvas used for wrapping claws or paws"
 	icon_state = "clothwrap"
 	item_state = "clothwrap"
+	blocks_footsteps = FALSE
 	force = 0
 	w_class = ITEMSIZE_SMALL
 	species_restricted = null
@@ -204,11 +203,11 @@
 	var/bootcolor = "white"
 	name = "ranger boots"
 	desc = "The Rangers special lightweight hybrid magboots-jetboots perfect for EVA. If only these functions were so easy to copy in reality.\
-	 These ones are just a well-made pair of boots in appropriate colours."
+		These ones are just a well-made pair of boots in appropriate colours."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_boots"
 
-/obj/item/clothing/shoes/boots/ranger/Initialize()
+/obj/item/clothing/shoes/boots/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_boots")
 		name = "[bootcolor] ranger boots"

@@ -49,7 +49,7 @@
 		if(istype(W, /obj/item/tape_roll))
 			return 0
 		if(istype(W, /obj/item/pen))
-			user << browse("", "window=[name]") //Closes the dialog
+			user << browse(null, "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
 		P.attackby(W, user)
 
@@ -78,7 +78,7 @@
 	if(P.lit && !user.restrained())
 		if(istype(P, /obj/item/flame/lighter/zippo))
 			class = "rose>"
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message("<span class='[class]'>[user] holds \the [P] up to \the [src], it looks like [TU.he] [TU.is] trying to burn it!</span>", \
 		"<span class='[class]'>You hold \the [P] up to \the [src], burning it slowly.</span>")
 

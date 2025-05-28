@@ -79,7 +79,7 @@
 	w_class = ITEMSIZE_SMALL
 	instrument_range = 1
 
-/obj/item/instrument/piano_synth/headphones/Initialize()
+/obj/item/instrument/piano_synth/headphones/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
 	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
@@ -172,7 +172,7 @@
 	attack_verb = list("played", "jazzed", "trumpeted", "mourned", "dooted", "spooked")
 
 /*
-/obj/item/instrument/trumpet/spectral/Initialize()
+/obj/item/instrument/trumpet/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 */
@@ -194,7 +194,7 @@
 	attack_verb = list("played", "jazzed", "saxed", "mourned", "dooted", "spooked")
 
 /*
-/obj/item/instrument/saxophone/spectral/Initialize()
+/obj/item/instrument/saxophone/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 */
@@ -217,7 +217,7 @@
 	attack_verb = list("played", "jazzed", "tromboneed", "mourned", "dooted", "spooked")
 
 /*
-/obj/item/instrument/trombone/spectral/Initialize()
+/obj/item/instrument/trombone/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 */

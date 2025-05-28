@@ -1,11 +1,9 @@
 /datum/disease/advance/random
-	name = "Experimental Disease"
 	var/randomname = TRUE
 	var/datum/symptom/setsymptom = null
 	var/max_symptoms_override
 
 /datum/disease/advance/random/minor
-	name = "Minor Experimental Disease"
 	max_symptoms_override = 4
 
 /datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom)
@@ -35,9 +33,10 @@
 			symptoms += new chosen_symptom
 	for(var/guaranteed_symptom in guaranteed_symptoms)
 		symptoms += new guaranteed_symptom
+	Finalize()
+	Refresh()
 
 /datum/disease/advance/random/macrophage
-	name = "Unknown Disease"
 	setsymptom = /datum/symptom/macrophage
 
 /datum/disease/advance/random/blob
