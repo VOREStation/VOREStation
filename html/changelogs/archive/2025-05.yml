@@ -216,3 +216,13 @@
 2025-05-27:
   ShadowLarkens:
   - bugfix: Weird pref data causing a UI crash
+2025-05-28:
+  Diana:
+  - bugfix: Some waddle fixes. Waddle height and animation time are now properly selectable
+  - bugfix: Fixes an oversight that resulted in synthetics not being able to unabsorb
+      prey.
+  - bugfix: Toggling silk production now works
+  SatinIsle:
+  - rscadd: Added a new event collector objector that is designed for events where
+      players have to gather items to complete a recipe.
+  - rscadd: Added a blocker object to accompany the event collector.
