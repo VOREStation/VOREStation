@@ -171,9 +171,10 @@
 		M.visible_message(span_danger("\The [src] pounces on \the [M]!"))
 	else // pounce misses!
 		M.visible_message(span_danger("\The [src] attempts to pounce \the [M] but misses!"))
+		AdjustStunned(2)
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
-	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too
+	if(will_eat(M) && (M.lying || vore_standing_too)) //if they're edible then eat them too
 		return EatTarget(M)
 	else
 		return //just leave them
