@@ -70,6 +70,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	var/list/custom_heat = list()
 	var/list/custom_cold = list()
 	var/digitigrade = 0 //0, Not FALSE, for future use as indicator for digitigrade types
+	var/custom_footstep = FOOTSTEP_MOB_SHOE
 
 	// New stuff
 	var/species = SPECIES_HUMAN
@@ -195,6 +196,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.custom_heat = character.custom_heat
 	src.custom_cold = character.custom_cold
 	src.digitigrade = character.digitigrade
+	src.custom_footstep = character.custom_footstep
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               ear_styles_list.len  + 1,  1)
@@ -436,6 +438,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	H.custom_speech_bubble = custom_speech_bubble
 	H.custom_heat = custom_heat
 	H.custom_cold = custom_cold
+	H.custom_footstep = custom_footstep
 
 	// If synths have character markings
 	H.synth_markings = synth_markings

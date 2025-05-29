@@ -690,7 +690,7 @@
 					playsound(src, "keyboard", 40)
 					var/datum/transhuman/body_record/buf = buffers[bufferId]
 					// Send printable record to first sleevepod in area
-					print_sleeve(usr, buf)
+					print_sleeve(ui.user, buf)
 					return TRUE
 
 		if("wipeDisk")
