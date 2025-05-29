@@ -803,8 +803,6 @@
 	//var/list/blacklist = list(BLACKLISTED_COPY_VARS)
 	//Makes thorough copy of species datum.
 	for(var/i in whitelist)
-		if(!(i in S.vars)) //Don't copy incompatible vars.
-			continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
 			S.vars[i] = vars[i]
 
