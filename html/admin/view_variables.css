@@ -39,3 +39,23 @@ table.matrixbrak td.rbrak {
 		border-right: solid 0.5ex black;
 		border-left: none;
 }
+
+/* Dark Mode */
+.dark body {
+	background-color: #0d1117;
+	color: #f0f6fc;
+}
+
+.dark a {
+	color: rgb(68, 147, 248);
+}
+
+.dark select {
+	background-color: black;
+	color: white;
+}
+
+.dark input {
+	background-color: black;
+	color: white;
+}

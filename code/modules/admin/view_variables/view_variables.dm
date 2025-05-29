@@ -14,6 +14,9 @@
 	if(!D)
 		return
 
+	var/dark = usr.client.prefs ? usr.client.prefs.read_preference(/datum/preference/toggle/holder/vv_dark) : TRUE
+	var/use_gfi = usr.client.prefs ? usr.client.prefs.read_preference(/datum/preference/toggle/holder/vv_gfi) : TRUE
+
 	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/vv)
 	asset_cache_datum.send(usr)
 
@@ -32,8 +35,14 @@
 		var/no_icon = FALSE
 
 		if(isatom(D))
-			sprite = getFlatIcon(D)
-			if(!sprite)
+			var/atom/AT = D
+			if(use_gfi)
+				sprite = getFlatIcon(D)
+				if(!sprite)
+					no_icon = TRUE
+			else if(AT.icon && AT.icon_state)
+				sprite = new /icon(AT.icon, AT.icon_state)
+			else
 				no_icon = TRUE
 
 		else if(isimage(D))
@@ -68,9 +77,11 @@
 
 		var/list/header = islist(D)? list(span_bold("/list")) : D.vv_get_header()
 
-		var/marked
+		var/ref_line = "@[copytext(refid, 2, -1)]" // get rid of the brackets, add a @ prefix for copy pasting in asay
+
+		var/marked_line
 		if(holder && holder.marked_datum && holder.marked_datum == D)
-			marked = VV_MSG_MARKED
+			marked_line = VV_MSG_MARKED
 		var/varedited_line = ""
 		if(!islist && (D.datum_flags & DF_VAR_EDITED))
 			varedited_line = VV_MSG_EDITED
@@ -112,24 +123,26 @@
 		var/ui_scale = prefs?.read_preference(/datum/preference/toggle/ui_scale)
 
 		var/list/variable_html = list()
-		if (islist)
+		if(islist)
 			var/list/L = D
 			for (var/i in 1 to L.len)
 				var/key = L[i]
 				var/value
-				if (IS_NORMAL_LIST(L) && IS_VALID_ASSOC_KEY(key))
+				if(IS_NORMAL_LIST(L) && IS_VALID_ASSOC_KEY(key))
 					value = L[key]
 				variable_html += debug_variable(i, value, 0, D)
 		else
-
 			names = sortList(names)
 			for (var/V in names)
 				if(D.can_vv_get(V))
 					variable_html += D.vv_get_var(V)
 
 		var/html = {"
-	<html>
+	<!DOCTYPE html>
+	<html class="[dark ? "dark" : ""]">
 		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta charset="utf-8" />
 			<title>[title]</title>
 			<link rel="stylesheet" type="text/css" href="[SSassets.transport.get_asset_url("view_variables.css")]">
 			[!ui_scale && window_scaling ? "<style>body {zoom: [100 / window_scaling]%;}</style>" : ""]
@@ -245,8 +258,9 @@
 								</tr>
 							</table>
 							<div align='center'>
-								"} + span_bold(span_small("[formatted_type]")) + {"
-								<span id='marked'>[marked]</span>
+								<b><font size='1'>[formatted_type]</font></b>
+								<br><b><font size='1'>[ref_line]</font></b>
+								<span id='marked'>[marked_line]</span>
 								<span id='varedited'>[varedited_line]</span>
 								<span id='deleted'>[deleted_line]</span>
 							</div>
@@ -269,9 +283,9 @@
 				</table>
 			</div>
 			<hr>
-				"} + span_small(span_bold("E") + " - Edit, tries to determine the variable type by itself.<br>") + {"
-				"} + span_small(span_bold("C") + " - Change, asks you for the var type first.<br>") + {"
-				"} + span_small(span_bold("M") + " - Mass modify: changes this variable for all objects of this type.<br>") + {"
+				<b>E</b> - Edit, tries to determine the variable type by itself.<br>
+				<b>C</b> - Change, asks you for the var type first.<br>
+				<b>M</b> - Mass modify: changes this variable for all objects of this type.<br>
 			<hr>
 			<table width='100%'>
 				<tr>
