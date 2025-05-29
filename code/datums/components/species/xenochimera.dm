@@ -338,7 +338,7 @@
 		//Scary spawnerization.
 		set_revival_delay(time)
 		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
-		addtimer(CALLBACK(owner, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
 
 	//Clicked regen while NOT dead
 	else
@@ -347,7 +347,7 @@
 		//Waiting for regen after being alive
 		set_revival_delay(time)
 		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
-		addtimer(CALLBACK(owner, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	owner.lying = TRUE
 	open_appearance_editor()
 
