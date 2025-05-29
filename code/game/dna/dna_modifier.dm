@@ -791,7 +791,7 @@
 		to_chat(user, span_danger( "Error: Cannot grow synthetic."))
 		return
 	//No pods
-	var/obj/machinery/clonepod/transhuman/pod = locate() in get_area(src)
+	var/obj/machinery/clonepod/pod = locate() in get_area(src)
 	if(!pod)
 		to_chat(user, span_danger( "Error: No growpods detected."))
 		return
