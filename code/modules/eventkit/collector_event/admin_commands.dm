@@ -1,9 +1,7 @@
 /*
 Event Collector Admin Commands
-
-These need to be added to admin_verb_lists_vr.dm
-
 */
+
 /client/proc/modify_event_collector(var/obj/structure/event_collector/target in GLOB.event_collectors)
 	set category = "Fun.Event Kit"
 	set desc="Configure Event Collector"

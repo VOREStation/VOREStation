@@ -519,8 +519,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Something went wrong and spawning failed.")
 		return
 
+	// Respect admin spawn record choice. There's really not a nice way to do this without butchering copy_to() code for an admin proc
+	var/old_mind_scan = picked_client.prefs.resleeve_scan
+	var/old_body_scan = picked_client.prefs.mind_scan
+	if(!records) // Make em false for the copy_to()
+		picked_client.prefs.resleeve_scan = FALSE
+		picked_client.prefs.mind_scan = FALSE
+
 	//Write the appearance and whatnot out to the character
 	picked_client.prefs.copy_to(new_character)
+
+	// Restore pref state
+	picked_client.prefs.resleeve_scan = old_mind_scan
+	picked_client.prefs.mind_scan = old_body_scan
+
+	//Write the appearance and whatnot out to the character
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
