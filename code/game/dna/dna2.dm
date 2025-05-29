@@ -439,6 +439,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	H.custom_heat = custom_heat
 	H.custom_cold = custom_cold
 	H.custom_footstep = custom_footstep
+	H.digitigrade = digitigrade
 
 	// If synths have character markings
 	H.synth_markings = synth_markings
