@@ -1712,7 +1712,7 @@
 /datum/trait/neutral/disease_carrier
 	name = "Disease Carrier"
 	desc = "Your species is a carrier of diseases! Watch out for virologists."
-	// excludes = list(/datum/trait/positive/virus_immune)
+	excludes = list(/datum/trait/positive/virus_immune)
 	cost = 0
 	can_take = ORGANICS
 	custom_only = FALSE
