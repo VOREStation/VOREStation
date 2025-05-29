@@ -803,6 +803,8 @@
 	//var/list/blacklist = list(BLACKLISTED_COPY_VARS)
 	//Makes thorough copy of species datum.
 	for(var/i in whitelist)
+		//if(!(i in S.vars)) // This check SOUNDS like a good idea, until you realize it loops over every var in base datum + species datum + byond builtin vars for EACH var in the whitelist. All the vars in whitelist are in the base species datum anyway, so this is unneeded.
+		//	continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
 			S.vars[i] = vars[i]
 
