@@ -492,7 +492,7 @@
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 					return TRUE
 		if("blood_reagent")
-			if(can_change(owner, APPEARANCE_RACE))
+			if(can_change(owner, APPEARANCE_MISC))
 				var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
 				if(new_blood_reagents)
 					owner.dna.blood_reagents = new_blood_reagents
@@ -501,7 +501,7 @@
 		if("blood_color")
 			var/current = owner.species.blood_color ? owner.species.blood_color : "#A10808"
 			var/blood_col = tgui_color_picker(ui.user, "Please select blood color", "Blood color", current)
-			if(blood_col && can_change(owner, APPEARANCE_RACE))
+			if(blood_col && can_change(owner, APPEARANCE_MISC))
 				owner.dna.blood_color = blood_col
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
