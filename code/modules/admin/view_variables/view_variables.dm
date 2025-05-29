@@ -1,3 +1,6 @@
+#define ICON_STATE_CHECKED 1 /// this dmi is checked. We don't check this one anymore.
+#define ICON_STATE_NULL 2 /// this dmi has null-named icon_state, allowing it to show a sprite on vv editor.
+
 /client/proc/debug_variables(datum/D in world)
 	set category = "Debug.Investigate"
 	set name = "View Variables"
@@ -26,20 +29,43 @@
 		var/hash
 
 		var/type = islist ? /list : D.type
+		var/no_icon = FALSE
 
 		if(isatom(D))
-			var/atom/AT = D
-			if(AT.icon && AT.icon_state)
-				sprite = new /icon(AT.icon, AT.icon_state)
+			sprite = getFlatIcon(D)
+			if(!sprite)
+				no_icon = TRUE
 
-		title = "[D] (\ref[D]) = [type]"
-		var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+		else if(isimage(D))
+			// icon_state=null shows first image even if dmi has no icon_state for null name.
+			// This list remembers which dmi has null icon_state, to determine if icon_state=null should display a sprite
+			// (NOTE: icon_state="" is correct, but saying null is obvious)
+			var/static/list/dmi_nullstate_checklist = list()
+			var/image/image_object = D
+			var/icon_filename_text = "[image_object.icon]" // "icon(null)" type can exist. textifying filters it.
+			if(icon_filename_text)
+				if(image_object.icon_state)
+					sprite = icon(image_object.icon, image_object.icon_state)
+
+				else // it means: icon_state=""
+					if(!dmi_nullstate_checklist[icon_filename_text])
+						dmi_nullstate_checklist[icon_filename_text] = ICON_STATE_CHECKED
+						if(icon_exists(image_object.icon, ""))
+							// this dmi has nullstate. We'll allow "icon_state=null" to show image.
+							dmi_nullstate_checklist[icon_filename_text] = ICON_STATE_NULL
+
+					if(dmi_nullstate_checklist[icon_filename_text] == ICON_STATE_NULL)
+						sprite = icon(image_object.icon, image_object.icon_state)
 
 		var/sprite_text
 		if(sprite)
 			hash = md5(sprite)
 			src << browse_rsc(sprite, "vv[hash].png")
-			sprite_text = "<img src='vv[hash].png'></td><td>"
+			sprite_text = no_icon ? "\[NO ICON\]" : "<img src='vv[hash].png'></td><td>"
+
+		title = "[D] (\ref[D]) = [type]"
+		var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+
 		var/list/header = islist(D)? list(span_bold("/list")) : D.vv_get_header()
 
 		var/marked
@@ -279,3 +305,6 @@
 
 /client/proc/vv_update_display(datum/D, span, content)
 	src << output("[span]:[content]", "variables\ref[D].browser:replace_span")
+
+#undef ICON_STATE_CHECKED
+#undef ICON_STATE_NULL
