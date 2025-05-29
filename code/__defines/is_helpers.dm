@@ -3,6 +3,10 @@
 #define isweakref(A)	istype(A, /datum/weakref)
 
 //#define islist(D)		istype(D, /list)	//Built in
+#define isimage(thing) (istype(thing, /image))
+
+GLOBAL_VAR_INIT(magic_appearance_detecting_image, new /image) // appearances are awful to detect safely, but this seems to be the best way ~ninjanomnom
+#define isappearance(thing) (!isimage(thing) && !ispath(thing) && istype(GLOB.magic_appearance_detecting_image, thing))
 
 //---------------
 #define isatom(D)		istype(D, /atom)

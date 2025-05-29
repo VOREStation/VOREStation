@@ -11,8 +11,11 @@
 	if(!D)
 		return
 
-	var/islist = islist(D)
-	if (!islist && !istype(D))
+	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/vv)
+	asset_cache_datum.send(usr)
+
+	var/islist = islist(D) || (!isdatum(D) && hascall(D, "Cut")) // Some special lists don't count as lists, but can be detected by if they have list procs
+	if(!islist && !isdatum(D))
 		return
 
 	//VOREStation Edit Start - the rest of this proc in a spawn
@@ -22,23 +25,20 @@
 		var/icon/sprite
 		var/hash
 
-		var/type = /list
-		if (!islist)
-			type = D.type
+		var/type = islist ? /list : D.type
 
-		if(istype(D, /atom))
+		if(isatom(D))
 			var/atom/AT = D
 			if(AT.icon && AT.icon_state)
 				sprite = new /icon(AT.icon, AT.icon_state)
-				hash = md5(AT.icon)
-				hash = md5(hash + AT.icon_state)
-				src << browse_rsc(sprite, "vv[hash].png")
 
 		title = "[D] (\ref[D]) = [type]"
 		var/formatted_type = replacetext("[type]", "/", "<wbr>/")
 
 		var/sprite_text
 		if(sprite)
+			hash = md5(sprite)
+			src << browse_rsc(sprite, "vv[hash].png")
 			sprite_text = "<img src='vv[hash].png'></td><td>"
 		var/list/header = islist(D)? list(span_bold("/list")) : D.vv_get_header()
 
@@ -105,16 +105,7 @@
 	<html>
 		<head>
 			<title>[title]</title>
-			<style>
-				body {
-					font-family: Verdana, sans-serif;
-					font-size: 9pt;
-				}
-				.value {
-					font-family: "Courier New", monospace;
-					font-size: 8pt;
-				}
-			</style>
+			<link rel="stylesheet" type="text/css" href="[SSassets.transport.get_asset_url("view_variables.css")]">
 			[!ui_scale && window_scaling ? "<style>body {zoom: [100 / window_scaling]%;}</style>" : ""]
 		</head>
 		<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
