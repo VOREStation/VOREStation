@@ -113,7 +113,7 @@
 		to_chat(ui.user, span_warning("You are changing appearance too fast!"))
 		return FALSE
 	else
-		cooldown = world.time + 2 SECOND // 2 second cooldown
+		cooldown = world.time + 0.5 SECONDS
 
 	var/obj/machinery/computer/transhuman/designer/DC = null
 	var/datum/tgui_module/appearance_changer/body_designer/BD = null
