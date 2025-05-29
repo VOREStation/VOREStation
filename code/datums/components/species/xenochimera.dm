@@ -271,7 +271,6 @@
 	// Updates the record as well
 	if(!appearance_window)
 		return
-	handle_record()
 	appearance_window.tgui_close(owner)
 
 /obj/screen/xenochimera
@@ -429,7 +428,8 @@
 	var/old_nutrition = nutrition
 	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=quickcheckuninjured()
-	xc.close_appearance_editor() // Update record if needed
+	xc.close_appearance_editor()
+	xc.handle_record() // Update record if needed
 	xc.trigger_revival()
 
 	mutations.Remove(HUSK)
