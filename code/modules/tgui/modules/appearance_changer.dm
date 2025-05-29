@@ -1079,13 +1079,6 @@
 	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
 	customize_usr = TRUE
 
-/datum/tgui_module/appearance_changer/xenochimera/tgui_status(mob/user, datum/tgui_state/state)
-	return ..()
-
-/datum/tgui_module/appearance_changer/xenochimera/tgui_close(mob/user)
-	. = ..()
-	QDEL_IN(src, 1)
-
 // *******************************************************
 // Body design console
 // *******************************************************
