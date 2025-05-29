@@ -1,18 +1,18 @@
 /datum/component/xenochimera
-	var/laststress = 0
-	var/mob/living/carbon/human/owner
+	VAR_PRIVATE/laststress = 0
+	VAR_PRIVATE/mob/living/carbon/human/owner
 	var/feral = 0
 	var/revive_ready = REVIVING_READY
 	var/revive_finished = FALSE
-	var/regen_sounds = list(
+	VAR_PRIVATE/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
-	var/datum/transhuman/body_record/revival_record
-	var/datum/tgui_module/appearance_changer/xenochimera/appearance_window //The appearance changer we are currently using.
+	VAR_PRIVATE/datum/transhuman/body_record/revival_record
+	VAR_PRIVATE/datum/tgui_module/appearance_changer/xenochimera/appearance_window //The appearance changer we are currently using.
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))
@@ -31,11 +31,14 @@
 	. = ..()
 
 /datum/component/xenochimera/proc/handle_record()
+	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
+	qdel_null(revival_record)
 	revival_record = new(owner)
 
 /datum/component/xenochimera/proc/handle_comp()
+	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
 	handle_feralness()
@@ -51,6 +54,14 @@
 			owner.visible_message(span_danger("<p>" + span_huge("[owner.name]'s motionless form shudders grotesquely, rippling unnaturally.") + "</p>"))
 		if(!owner.lying)
 			owner.lay_down()
+
+/datum/component/xenochimera/proc/set_revival_delay(var/time)
+	revive_ready = REVIVING_NOW
+	revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+
+/datum/component/xenochimera/proc/trigger_revival()
+	ASSERT(revival_record)
+	revival_record.revive_xenochimera(owner,FALSE)
 
 /datum/component/xenochimera/proc/handle_feralness()
 	//first, calculate how stressed the chimera is
@@ -252,6 +263,17 @@
 		return
 	owner.LoadComponent(/datum/component/hallucinations/xenochimera)
 
+/datum/component/xenochimera/proc/open_appearance_editor()
+	appearance_window = new(owner, owner)
+	appearance_window.tgui_interact(owner)
+
+/datum/component/xenochimera/proc/close_appearance_editor()
+	// Updates the record as well
+	if(!appearance_window)
+		return
+	handle_record()
+	appearance_window.tgui_close()
+
 /obj/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
@@ -312,8 +334,7 @@
 		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 		//Scary spawnerization.
-		xc.revive_ready = REVIVING_NOW
-		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		xc.set_revival_delay(time)
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
 
@@ -322,13 +343,11 @@
 		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 		//Waiting for regen after being alive
-		xc.revive_ready = REVIVING_NOW
-		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		xc.set_revival_delay(time)
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	lying = TRUE
-	xc.appearance_window = new(src, src)
-	xc.appearance_window.tgui_interact(src)
+	xc.open_appearance_editor()
 
 /mob/living/carbon/human/proc/chimera_regenerate_nutrition()
 	var/datum/component/xenochimera/xc = get_xenochimera_component()
@@ -410,7 +429,8 @@
 	var/old_nutrition = nutrition
 	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=quickcheckuninjured()
-	xc.revival_record.revive_xenochimera(src,FALSE)
+	xc.close_appearance_editor() // Update record if needed
+	xc.trigger_revival()
 
 	mutations.Remove(HUSK)
 	setBrainLoss(braindamage)
@@ -435,7 +455,6 @@
 	does_not_breathe = FALSE
 	update_canmove()
 	stunned = 2
-	xc.appearance_window.tgui_close()
 
 	xc.revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
