@@ -52,7 +52,7 @@ export const AlgaeFarm = (props) => {
         <Stack fill vertical>
           {errorText && (
             <Stack.Item>
-              <NoticeBox warning>
+              <NoticeBox>
                 <Box inline verticalAlign="middle">
                   {errorText}
                 </Box>

@@ -1,13 +1,11 @@
 /mob/new_player/Login()
-	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
-	if(GLOB.join_motd)
-		GLOB.join_motd = GLOB.is_valid_url.Replace(GLOB.join_motd, span_linkify("$1"))
-		to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
+	// Happens sometimes
+	if(QDELETED(src))
+		var/mob/new_player/replacement = new /mob/new_player()
+		replacement.key = key
+		return
 
-	if(has_respawned)
-		to_chat(src, CONFIG_GET(string/respawn_message))
-		has_respawned = FALSE
-
+	update_Login_details()    //handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = 1
@@ -19,18 +17,23 @@
 	loc = null
 	sight |= SEE_TURFS
 
-	initialize_lobby_screen()
-
 	player_list |= src
 	GLOB.new_player_list += src
 
 	created_for = ckey
 
 	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+	initialize_lobby_screen()
 
 /mob/new_player/proc/do_after_login()
 	PRIVATE_PROC(TRUE)
 	if(client)
+		if(GLOB.join_motd)
+			to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
+
+		if(has_respawned)
+			to_chat(src, CONFIG_GET(string/respawn_message))
+		has_respawned = FALSE
 		handle_privacy_poll()
 		client.playtitlemusic()
 		version_warnings()

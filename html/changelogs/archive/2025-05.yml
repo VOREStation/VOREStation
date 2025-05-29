@@ -166,3 +166,74 @@
   - qol: TTS device now costs 0 points
   Willburd:
   - code_imp: Prepared signal handling code for future work
+2025-05-19:
+  Guti:
+  - bugfix: Fixed mailman suit's sprites
+  - qol: Adjusted the vomit proc.
+2025-05-20:
+  Diana:
+  - bugfix: Gorka sprites now properly show
+  - bugfix: Vox will no longer have a green suit when equipping an unsprited suit
+  - bugfix: Missing teshari uniform sprites will fallback to a rainbow suit instead
+      of naked
+  - bugfix: Missing rolled down/sleeves up uniform sprites will now fallback to an
+      owlsuit instead of a giant floating SUIT
+  - rscadd: Missing uniform sprites show up as an owlsuit instead of a giant floating
+      SUIT
+  - rscdel: Supermatter is no longer obtainable via xenoarcheology & xenobotany
+  Kashargul:
+  - code_imp: tgui-core 3.2.0
+  SatinIsle:
+  - qol: Changes a few descriptions of eating to be more neutral, and a bit less gross
+      and discouraging to people who like stuffing.
+  - balance: Spider spawned by the spider event have had their behaviour changed.
+      They are no longer violently aggressive UNLESS they are attacked. However, they
+      remain territorial and will infrequently "warning bite" anyone who is hanging
+      out too close to them. This bite does very little toxic damage (you'll outheal
+      it), but does make you jittery, gives you the drug overlay and slows you down.
+  aKromatopzia:
+  - image: added new smolraptors (sec blue, sec red, syndicate); "pk" sec white smolraptor
+      moved to crisis
+  - image: new rest mode for smolraptors
+  tacoguy7765093:
+  - image: Fox taurs now have belly sprites.
+2025-05-22:
+  ShadowLarkens:
+  - server: Server starts faster now
+2025-05-24:
+  ShadowLarkens:
+  - bugfix: Gas overlays work again
+  - code_imp: xgm gas_data is now a GLOB
+  Willburd:
+  - bugfix: Capsaicin no longer causes toxin damage when eaten
+2025-05-25:
+  ShadowLarkens:
+  - bugfix: qdeleted new_players causing havoc
+  - qol: Entire character setup menu rewritten in TGUI
+  Willburd:
+  - rscadd: Gene scanner tool for genetics to detect traits in monkeys and humans.
+  - qol: Virus extrapolator not being store-able in the medical belt and pouch
+2025-05-27:
+  ShadowLarkens:
+  - bugfix: Weird pref data causing a UI crash
+2025-05-28:
+  Diana:
+  - bugfix: Some waddle fixes. Waddle height and animation time are now properly selectable
+  - bugfix: Fixes an oversight that resulted in synthetics not being able to unabsorb
+      prey.
+  - bugfix: Toggling silk production now works
+  SatinIsle:
+  - rscadd: Added a new event collector objector that is designed for events where
+      players have to gather items to complete a recipe.
+  - rscadd: Added a blocker object to accompany the event collector.
+2025-05-29:
+  Cameron-The-Raven:
+  - bugfix: Server is now more stable.
+  Diana:
+  - bugfix: Mobs can now properly eat you when you're down!
+  - qol: Mobs will be temporarily stunned when missing a leap.
+  Kashargul:
+  - bugfix: custom egg name and size input
+  - qol: adds an option to have edit mode enabled on window open
+  ShadowLarkens:
+  - bugfix: Mobs are briefly stunned when pounced

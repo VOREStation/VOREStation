@@ -20,6 +20,7 @@ const_format = "0.2.33"
 eyre = "0.6.12"
 meowtonin = { git = "https://github.com/Absolucy/meowtonin.git" }
 rand = "0.8.5"
+rayon = "1.10.0"
 
 [build-dependencies]
 bosion = "1.1.1"

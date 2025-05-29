@@ -25,7 +25,6 @@
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
-	var/text_warnings = TRUE 			// Allows us to dismiss the text limit warning messages after viewing it once per round
 	var/eating_privacy_global = FALSE 	// Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
 	var/allow_mimicry = TRUE 	// Allows mimicking their character
 	var/allow_mind_transfer = FALSE			//Allows ones mind to be taken over or swapped
@@ -87,8 +86,10 @@
 	var/no_latejoin_prey_warning_persists = FALSE	//Do we save it?
 	var/belly_rub_target = null
 	var/soulcatcher_pref_flags = 0			//Default disabled
+	var/persistend_edit_mode = FALSE
 
 	var/voice_freq = 42500	// Preference for character voice frequency
+	var/emote_sound_mode = EMOTE_SOUND_VOICE_FREQ
 	var/list/voice_sounds_list = list()	// The sound list containing our voice sounds!
 	var/enabled = TRUE //Pauses a mob if disabled (Prevents life ticks from happening)
 	var/died_in_vr = FALSE //For virtual reality sleepers
