@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "custom egg name and size input"
-  - qol: "adds an option to have edit mode enabled on window open"
