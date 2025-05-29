@@ -272,7 +272,7 @@
 	// Updates the record as well
 	if(!appearance_window)
 		return
-	appearance_window.tgui_close(owner)
+	appearance_window.close_ui()
 	qdel_null(appearance_window)
 
 /obj/screen/xenochimera
