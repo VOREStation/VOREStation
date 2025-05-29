@@ -12,7 +12,7 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 	VAR_PRIVATE/datum/transhuman/body_record/revival_record
-	VAR_PRIVATE/datum/tgui_module/appearance_changer/xenochimera/appearance_window //The appearance changer we are currently using.
+//	VAR_PRIVATE/datum/tgui_module/appearance_changer/xenochimera/appearance_window //The appearance changer we are currently using.
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))
@@ -27,7 +27,7 @@
 	UnregisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 	qdel_null(revival_record)
-	qdel_null(appearance_window)
+	//qdel_null(appearance_window)
 	owner = null
 	. = ..()
 
@@ -264,6 +264,7 @@
 		return
 	owner.LoadComponent(/datum/component/hallucinations/xenochimera)
 
+/* Disabled due to limbloss and various functionality issues... Take weaver?
 /datum/component/xenochimera/proc/open_appearance_editor()
 	appearance_window = new(owner, owner)
 	appearance_window.tgui_interact(owner)
@@ -274,6 +275,7 @@
 		return
 	appearance_window.close_ui()
 	qdel_null(appearance_window)
+*/
 
 /obj/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
@@ -349,7 +351,7 @@
 		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	owner.lying = TRUE
-	open_appearance_editor()
+	// open_appearance_editor()
 
 /datum/component/xenochimera/proc/chimera_regenerate_nutrition()
 	if(!owner)
@@ -428,8 +430,8 @@
 	var/old_nutrition = owner.nutrition
 	var/braindamage = min(5, max(0, (owner.brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=owner.quickcheckuninjured()
-	close_appearance_editor()
-	handle_record() // Update record if needed
+	//close_appearance_editor()
+	//handle_record() // Only needed for appearance editor output, but results in loss of limbs
 	trigger_revival()
 
 	owner.mutations.Remove(HUSK)
