@@ -12,6 +12,7 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 	var/datum/transhuman/body_record/revival_record
+	var/datum/tgui_module/appearance_changer/xenochimera/appearance_window //The appearance changer we are currently using.
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))
@@ -326,8 +327,8 @@
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	lying = TRUE
-	var/datum/tgui_module/appearance_changer/xenochimera/X = new(src, src)
-	X.tgui_interact(src)
+	xc.appearance_window = new(src, src)
+	xc.appearance_window.tgui_interact(src)
 
 /mob/living/carbon/human/proc/chimera_regenerate_nutrition()
 	var/datum/component/xenochimera/xc = get_xenochimera_component()
@@ -434,6 +435,7 @@
 	does_not_breathe = FALSE
 	update_canmove()
 	stunned = 2
+	xc.appearance_window.tgui_close()
 
 	xc.revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 

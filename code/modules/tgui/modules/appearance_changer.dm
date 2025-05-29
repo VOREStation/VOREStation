@@ -1080,8 +1080,6 @@
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/xenochimera/tgui_status(mob/user, datum/tgui_state/state)
-	if(!owner.lying) //As soon as you stand up, we're done here.
-		return STATUS_CLOSE
 	return ..()
 
 /datum/tgui_module/appearance_changer/xenochimera/tgui_close(mob/user)
