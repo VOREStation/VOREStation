@@ -884,7 +884,7 @@
 	local_skybox.cut_overlays()
 
 /datum/tgui_module/appearance_changer/proc/update_dna(mob/living/carbon/human/target)
-	if(target && (flags & APPEARANCE_UPDATE_DNA))
+	if(target)
 		target.update_dna()
 
 /datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, var/flag)
