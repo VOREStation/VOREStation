@@ -86,9 +86,9 @@
 
 /datum/tgui_module/appearance_changer/proc/jiggle_map()
 	// Fix for weird byond bug, jiggles the map around a little
-	sleep(0.1 SECONDS)
+	sleep(0.5 SECONDS)
 	cam_screen.screen_loc = "[map_name]:1,1"
-	sleep(0.1 SECONDS)
+	sleep(0.5 SECONDS)
 	cam_screen.screen_loc = "[map_name]:3:-32,3:-48" // Align for larger icons and scales
 
 /datum/tgui_module/appearance_changer/tgui_close(mob/user)
