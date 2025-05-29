@@ -216,3 +216,24 @@
 2025-05-27:
   ShadowLarkens:
   - bugfix: Weird pref data causing a UI crash
+2025-05-28:
+  Diana:
+  - bugfix: Some waddle fixes. Waddle height and animation time are now properly selectable
+  - bugfix: Fixes an oversight that resulted in synthetics not being able to unabsorb
+      prey.
+  - bugfix: Toggling silk production now works
+  SatinIsle:
+  - rscadd: Added a new event collector objector that is designed for events where
+      players have to gather items to complete a recipe.
+  - rscadd: Added a blocker object to accompany the event collector.
+2025-05-29:
+  Cameron-The-Raven:
+  - bugfix: Server is now more stable.
+  Diana:
+  - bugfix: Mobs can now properly eat you when you're down!
+  - qol: Mobs will be temporarily stunned when missing a leap.
+  Kashargul:
+  - bugfix: custom egg name and size input
+  - qol: adds an option to have edit mode enabled on window open
+  ShadowLarkens:
+  - bugfix: Mobs are briefly stunned when pounced

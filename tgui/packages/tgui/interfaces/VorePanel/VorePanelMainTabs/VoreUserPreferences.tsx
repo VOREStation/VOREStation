@@ -1,25 +1,20 @@
-import { useBackend } from 'tgui/backend';
-import { Button, Divider, Section, Stack } from 'tgui-core/components';
+import { Section } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { digestModeToColor } from './constants';
-import type { localPrefs, prefData, selectedData } from './types';
-import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic';
-import { VoreUserPreferencesDevouring } from './VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
-import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
-import { VoreUserPreferencesSoulcatcher } from './VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher';
-import { VoreUserPreferencesSpawn } from './VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
-import { VoreUserPreferencesSpontaneous } from './VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
+import { digestModeToColor } from '../constants';
+import type { localPrefs, prefData } from '../types';
+import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
+import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
+import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher';
+import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
+import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
 export const VoreUserPreferences = (props: {
   prefs: prefData;
-  selected: selectedData | null;
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
 }) => {
-  const { act } = useBackend();
-
-  const { prefs, selected, show_pictures, icon_overflow } = props;
+  const { prefs, show_pictures, icon_overflow } = props;
   const {
     digestable,
     absorbable,
@@ -61,10 +56,7 @@ export const VoreUserPreferences = (props: {
     no_spawnprey_warning_time,
     no_spawnpred_warning_save,
     no_spawnprey_warning_save,
-    nutrition_message_visible,
-    weight_message_visible,
     selective_active,
-    belly_rub_target,
     soulcatcher_allow_capture,
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
@@ -466,32 +458,6 @@ export const VoreUserPreferences = (props: {
         disabled: 'Mind Transfer Disabled',
       },
     },
-    examine_nutrition: {
-      action: 'toggle_nutrition_ex',
-      test: nutrition_message_visible,
-      tooltip: {
-        main: '',
-        enable: 'Click here to enable nutrition messages.',
-        disable: 'Click here to disable nutrition messages.',
-      },
-      content: {
-        enabled: 'Examine Nutrition Messages Active',
-        disabled: 'Examine Nutrition Messages Inactive',
-      },
-    },
-    examine_weight: {
-      action: 'toggle_weight_ex',
-      test: weight_message_visible,
-      tooltip: {
-        main: '',
-        enable: 'Click here to enable weight messages.',
-        disable: 'Click here to disable weight messages.',
-      },
-      content: {
-        enabled: 'Examine Weight Messages Active',
-        disabled: 'Examine Weight Messages Inactive',
-      },
-    },
     strippref: {
       action: 'toggle_strippref',
       test: strip_mechanics_active,
@@ -748,26 +714,6 @@ export const VoreUserPreferences = (props: {
         no_spawnprey_warning_time={no_spawnprey_warning_time}
         no_spawnprey_warning_save={no_spawnprey_warning_save}
       />
-      <VoreUserPreferencesAesthetic
-        preferences={preferences}
-        belly_rub_target={belly_rub_target}
-        selected={selected}
-      />
-      <Divider />
-      <Section>
-        <Stack>
-          <Stack.Item basis="49%">
-            <Button fluid icon="save" onClick={() => act('saveprefs')}>
-              Save Prefs
-            </Button>
-          </Stack.Item>
-          <Stack.Item basis="49%" grow>
-            <Button fluid icon="undo" onClick={() => act('reloadprefs')}>
-              Reload Prefs
-            </Button>
-          </Stack.Item>
-        </Stack>
-      </Section>
     </Section>
   );
 };

@@ -958,3 +958,29 @@
 	..()
 	var/new_size = clamp((M.size_multiplier + 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+
+/////////////////////////////Event only nukie//////////////////////////////////////
+
+/datum/reagent/drink/coffee/nukie/mega/one //Basically macrocillin but for ingesting
+	name = REAGENT_NUKIEONE
+	id = REAGENT_ID_NUKIEONE
+	color = "#90ed87"
+	taste_description = "everything"
+	overdose = 10
+	adj_drowsy = -50
+	adj_sleepy = -100
+
+/datum/reagent/drink/coffee/nukie/mega/one/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_DARKSIGHT, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.heal_organ_damage(1.5 * removed, 1.5 * removed)
+
+/datum/reagent/drink/coffee/nukie/mega/one/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.eye_blurry += 20
+		H.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustFireLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustBruteLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.add_modifier(/datum/modifier/berserk, 2 SECONDS, suppress_failure = TRUE)

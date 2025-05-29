@@ -1691,7 +1691,7 @@
 /datum/trait/neutral/waddle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
 	var/datum/component/waddle_trait/G = H.GetComponent(added_component_path)
-	if (trait_prefs)
+	if(trait_prefs)
 		G.waddling = trait_prefs["waddler"]
 
 /datum/trait/neutral/nutritiongrow

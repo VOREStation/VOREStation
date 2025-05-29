@@ -3,7 +3,7 @@ import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { localPrefs } from '../types';
-import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
+import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesSpawn = (props: {
   latejoin_vore: BooleanLike;
