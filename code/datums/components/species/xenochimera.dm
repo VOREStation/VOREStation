@@ -405,7 +405,7 @@
 			if(!hasnutriment())
 				nutrition=nutrition * 0.75
 				sickness_duration = 20 MINUTES
-			chimera_hatch()
+			xc.chimera_hatch()
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
 			visible_message(span_warning("<p>" + span_huge("The former corpse staggers to its feet, all its former wounds having vanished...") + "</p>")) //Bloody hell...
@@ -414,50 +414,49 @@
 
 		//Alive when hatching
 		else
-			chimera_hatch()
+			xc.chimera_hatch()
 
 			visible_message(span_warning("<p>" + span_huge("[src] rises to \his feet.") + "</p>")) //Bloody hell...
 			clear_alert("hatch")
 
-/mob/living/carbon/human/proc/chimera_hatch()
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(!xc)
+/datum/component/xenochimera/proc/chimera_hatch()
+	if(!owner)
 		return
-	remove_verb(src, /mob/living/carbon/human/proc/hatch)
-	to_chat(src, span_notice("Your new body awakens, bursting free from your old skin."))
+	remove_verb(owner, /mob/living/carbon/human/proc/hatch)
+	to_chat(owner, span_notice("Your new body awakens, bursting free from your old skin."))
 	//Modify and record values (half nutrition and braindamage)
-	var/old_nutrition = nutrition
-	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
-	var/uninjured=quickcheckuninjured()
-	xc.close_appearance_editor()
-	xc.handle_record() // Update record if needed
-	xc.trigger_revival()
+	var/old_nutrition = owner.nutrition
+	var/braindamage = min(5, max(0, (owner.brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
+	var/uninjured=owner.quickcheckuninjured()
+	close_appearance_editor()
+	handle_record() // Update record if needed
+	trigger_revival()
 
-	mutations.Remove(HUSK)
-	setBrainLoss(braindamage)
-	species.update_vore_belly_def_variant()
+	owner.mutations.Remove(HUSK)
+	owner.setBrainLoss(braindamage)
+	owner.species.update_vore_belly_def_variant()
 
 	if(!uninjured)
-		nutrition = old_nutrition * 0.5
+		owner.nutrition = old_nutrition * 0.5
 		//Drop everything
-		for(var/obj/item/W in src)
-			drop_from_inventory(W)
+		for(var/obj/item/W in owner)
+			owner.drop_from_inventory(W)
 		//Visual effects
-		var/T = get_turf(src)
-		var/blood_color = species.blood_color
-		var/flesh_color = species.flesh_color
+		var/T = get_turf(owner)
+		var/blood_color = owner.species.blood_color
+		var/flesh_color = owner.species.flesh_color
 		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-		visible_message(span_danger("<p>" + span_huge("The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.") + "</p>")) //Bloody hell...
+		owner.visible_message(span_danger("<p>" + span_huge("The lifeless husk of [owner] bursts open, revealing a new, intact copy in the pool of viscera.") + "</p>")) //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive
-		nutrition = old_nutrition * 0.9
+		owner.nutrition = old_nutrition * 0.9
 
 	//Unfreeze some things
-	does_not_breathe = FALSE
-	update_canmove()
-	stunned = 2
+	owner.does_not_breathe = FALSE
+	owner.update_canmove()
+	owner.AdjustStunned(2)
 
-	xc.revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
+	revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
 /datum/modifier/resleeving_sickness/chimera //near identical to the regular version, just with different flavortexts
 	name = "imperfect regeneration"
