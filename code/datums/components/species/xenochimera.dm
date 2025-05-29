@@ -272,7 +272,7 @@
 	if(!appearance_window)
 		return
 	handle_record()
-	appearance_window.tgui_close()
+	appearance_window.tgui_close(owner)
 
 /obj/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
