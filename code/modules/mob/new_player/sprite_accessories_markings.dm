@@ -1870,7 +1870,7 @@ includes scars and tattoos
 	name = "Abs definition"
 	icon_state = "abs"
 	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_TORSO,BP_GROIN)
+	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/bust_nips
 
