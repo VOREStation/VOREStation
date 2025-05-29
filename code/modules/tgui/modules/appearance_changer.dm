@@ -44,6 +44,7 @@
 	var/list/valid_wingstyles = list()
 	var/list/valid_gradstyles = list()
 	var/list/markings = null
+	var/cooldown //Anti-spam. If spammed, this can be REALLY laggy.
 
 /datum/tgui_module/appearance_changer/New(
 		host,
@@ -108,6 +109,11 @@
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
+	if(cooldown > world.time)
+		to_chat(ui.user, span_warning("You are changing appearance too fast!"))
+		return FALSE
+	else
+		cooldown = world.time + 2 SECOND // 2 second cooldown
 
 	var/obj/machinery/computer/transhuman/designer/DC = null
 	var/datum/tgui_module/appearance_changer/body_designer/BD = null
@@ -626,6 +632,7 @@
 				if(DC.disk.stored)
 					qdel_null(DC.disk.stored)
 				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was saved to the disk."))
+				owner.update_dna()
 				DC.disk.stored = new /datum/transhuman/body_record(owner, FALSE, FALSE) // Saves a COPY!
 				DC.disk.stored.locked = FALSE // remove lock
 				DC.disk.name = "[initial(DC.disk.name)] ([owner.real_name])"
