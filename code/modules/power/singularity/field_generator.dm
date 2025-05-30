@@ -72,6 +72,7 @@
 	. = ..()
 	fields = list()
 	connected_gens = list()
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/field_generator/process()
 	if(Varedit_start == 1)

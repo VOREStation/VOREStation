@@ -31,7 +31,7 @@
 
 /// Starts climbing the object
 /datum/component/climbable/proc/start_climb(var/obj/caller, mob/user)
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H))
 		do_climb(user)
