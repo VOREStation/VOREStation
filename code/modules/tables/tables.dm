@@ -77,7 +77,7 @@ var/list/table_icon_cache = list()
 	update_desc()
 	update_material()
 
-	AddComponent()
+	AddComponent(/datum/component/climbable/table)
 
 /obj/structure/table/Destroy()
 	material = null
