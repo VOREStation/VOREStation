@@ -129,6 +129,10 @@ export const ShockConfigurator = (props) => {
             </LabeledList.Item>
           </LabeledList>
           <Button onClick={() => act('test')}>Test Shocker</Button>
+          <Box color="bad">
+            ETIQUITTE NOTE: You must let your partners know you&apos;re using
+            this!
+          </Box>
         </Section>
         <Section title="Shock Sources">
           <Box>
