@@ -1,0 +1,8 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added the ability for virologists to falter their diseases"
+  - rscadd: "Added dormant diseases, that some crewmembers might carry."
+  - rscadd: "Added three new chemicals for higher level symptoms."
+  - rscadd: "Old syringes and old syringe boxes, which may include include diseases."
+  - balance: "Buffed the chance of mice having diseases on them."
