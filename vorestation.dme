@@ -515,6 +515,7 @@
 #include "code\datums\components\disabilities\nervousness.dm"
 #include "code\datums\components\disabilities\rotting.dm"
 #include "code\datums\components\disabilities\tourettes.dm"
+#include "code\datums\components\objects\climbable.dm"
 #include "code\datums\components\species\shadekin.dm"
 #include "code\datums\components\species\xenochimera.dm"
 #include "code\datums\components\traits\burninlight.dm"

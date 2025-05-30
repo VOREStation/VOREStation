@@ -31,8 +31,6 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	anchored = TRUE
 	density = TRUE
 	opacity = FALSE
-	climbable = TRUE
-	climb_delay = 10 SECONDS
 	unacidable = TRUE
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
 	plane = TURF_PLANE
@@ -48,6 +46,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/Initialize(mapload)
 	. = ..()
 	register_dangerous_to_step()
+	var/datum/component/climbable/C = AddComponent(/datum/component/climbable)
+	C.set_climb_delay(10 SECONDS)
 
 /obj/structure/cliff/Destroy()
 	unregister_dangerous_to_step()
@@ -85,6 +85,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 /obj/structure/cliff/automatic/Initialize(mapload)
 	..()
+	AddComponent(/datum/component/climbable/cliff)
 	return INITIALIZE_HINT_LATELOAD
 
 // Paranoid about the maploader, direction is very important to cliffs, since they may get bigger if initialized while facing NORTH.
@@ -106,11 +107,12 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	// Now make the bottom cliff have mostly the same variables.
 	var/obj/structure/cliff/bottom/bottom = new(T)
 	is_double_cliff = TRUE
-	climb_delay /= 2 // Since there are two cliffs to climb when going north, both take half the time.
-
+	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
+	C.set_climb_delay(C.get_climb_delay() / 2 ) // Since there are two cliffs to climb when going north, both take half the time.
 	bottom.dir = dir
 	bottom.is_double_cliff = TRUE
-	bottom.climb_delay = climb_delay
+	var/datum/component/climbable/CB = bottom.GetComponent(/datum/component/climbable)
+	CB.set_climb_delay(C.get_climb_delay())
 	bottom.icon_variant = icon_variant
 	bottom.corner = corner
 	bottom.ramp = ramp
@@ -253,17 +255,6 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			visible_message(span_danger("\The [L] rolls down towards \the [bottom_cliff]!"))
 			sleep(5)
 			bottom_cliff.fall_off_cliff(L)
-
-/obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
-	// Cliff climbing requires climbing gear.
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/shoes/shoes = H.shoes
-		if(shoes && shoes.rock_climbing)
-			return ..() // Do the other checks too.
-
-	to_chat(user, span_warning("\The [src] is too steep to climb unassisted."))
-	return FALSE
 
 // This tells AI mobs to not be dumb and step off cliffs willingly.
 /obj/structure/cliff/is_safe_to_step(mob/living/L)

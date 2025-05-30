@@ -9,7 +9,6 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	anchored = FALSE
 	density = TRUE
 	flags = OPENCONTAINER
-	climbable = TRUE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag	= null
@@ -388,6 +387,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 /obj/structure/bed/chair/janicart/Initialize(mapload, new_material, new_padding_material)
 	. = ..()
 	create_reagents(300)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
 	. = ..()

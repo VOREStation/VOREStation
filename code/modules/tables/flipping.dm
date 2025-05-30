@@ -27,8 +27,7 @@
 
 	usr.visible_message(span_warning("[usr] flips \the [src]!"))
 
-	if(climbable)
-		structure_shaken()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_SHAKE_CLIMBERS, usr)
 
 	return
 
@@ -37,7 +36,8 @@
 	for(var/mob/M in oview(src,0))
 		return 0
 
-	var/obj/occupied = turf_is_crowded()
+	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
+	var/obj/occupied = C.turf_is_crowded()
 	if(occupied)
 		to_chat(usr, span_filter_notice("There's \a [occupied] in the way."))
 		return 0
