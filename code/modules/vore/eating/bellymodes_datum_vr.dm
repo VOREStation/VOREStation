@@ -71,6 +71,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	L.adjustOxyLoss(B.digest_oxy)
 	L.adjustToxLoss(B.digest_tox)
 	L.adjustCloneLoss(B.digest_clone)
+	L.attempt_multishock(SHOCKFLAG_DIGESTION)
 	// Send a message when a prey-thing enters hard crit.
 	if(iscarbon(L) && old_health > 0 && L.health <= 0)
 		to_chat(B.owner, span_notice("You feel [L] go still within your [lowertext(B.name)]."))
