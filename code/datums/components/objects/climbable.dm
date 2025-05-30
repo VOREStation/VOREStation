@@ -30,7 +30,7 @@
 	return climb_delay
 
 /// Starts climbing the object
-/datum/component/climbable/proc/start_climb(mob/user)
+/datum/component/climbable/proc/start_climb(var/obj/caller, mob/user)
 	//SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H))
@@ -132,7 +132,7 @@
 	return 1
 
 /// Shakes an object, if anyone is climbing it, causes them to fall off it.
-/datum/component/climbable/proc/shaken(var/mob/user)
+/datum/component/climbable/proc/shaken(var/obj/caller, var/mob/user)
 	//SIGNAL_HANDLER
 	// You cannot shake yourself
 	if(user) // Crates pass null on open because no user
