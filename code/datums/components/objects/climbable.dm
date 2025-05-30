@@ -30,11 +30,11 @@
 	return climb_delay
 
 /// Starts climbing the object
-/datum/component/climbable/proc/start_climb(atom/target, mob/user)
+/datum/component/climbable/proc/start_climb(mob/user)
 	//SIGNAL_HANDLER
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		do_climb(target)
+	if(istype(H) && can_climb(H))
+		do_climb(user)
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
 /datum/component/climbable/proc/can_climb(var/mob/living/user, post_climb_check=0)
@@ -221,4 +221,4 @@
 	set category = "Object"
 	set src in oview(1)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, usr, usr)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, usr)

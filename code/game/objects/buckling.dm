@@ -35,8 +35,8 @@
 
 /atom/movable/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
-	if(GetComponent(/datum/component/climbable)) // Climbable objects cannot be buckled to
-		SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, M, user)
+	if(M == user && GetComponent(/datum/component/climbable)) // Climbable objects cannot be buckled to
+		SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, user)
 		return TRUE
 	if(can_buckle && istype(M))
 		if(user_buckle_mob(M, user))
