@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(mobs)
 	var/area/placeofdeath = get_area(L)
 	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
 
-	data = list(
+	var/list/data = list(
     "name" = sql_sanitize_text(L.real_name),
 	"byondkey" = sql_sanitize_text(L.key),
 	"job" = sql_sanitize_text(L.mind.assigned_role),
