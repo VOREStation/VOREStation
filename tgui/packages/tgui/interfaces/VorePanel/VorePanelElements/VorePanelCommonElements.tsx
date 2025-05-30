@@ -1,4 +1,6 @@
-import { Box, Button } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Stack } from 'tgui-core/components';
+import { type BooleanLike } from 'tgui-core/react';
 
 export const VorePanelColorBox = (props: {
   back_color: string;
@@ -34,16 +36,33 @@ export const VorePanelColorBox = (props: {
 
 export const VorePanelEditToggle = (props: {
   editMode: boolean;
+  persistEditMode: BooleanLike;
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { editMode, toggleEditMode } = props;
+  const { act } = useBackend();
+  const { editMode, persistEditMode, toggleEditMode } = props;
 
   return (
-    <Button
-      icon="pencil"
-      color={editMode ? 'green' : undefined}
-      tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode'}
-      onClick={() => toggleEditMode(!editMode)}
-    />
+    <Stack>
+      <Stack.Item>
+        <Button
+          icon="pencil"
+          selected={editMode}
+          tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode.'}
+          onClick={() => toggleEditMode(!editMode)}
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Button
+          icon={persistEditMode ? 'lock' : 'lock-open'}
+          selected={persistEditMode}
+          tooltip={
+            (persistEditMode ? 'Dis' : 'En') +
+            'able edit mode active on window opening.'
+          }
+          onClick={() => act('toggle_editmode_persistence')}
+        />
+      </Stack.Item>
+    </Stack>
   );
 };

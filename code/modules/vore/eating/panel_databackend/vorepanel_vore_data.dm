@@ -178,6 +178,7 @@
 				"egg_type" = selected.egg_type,
 				"egg_types" = GLOB.global_vore_egg_types,
 				"egg_name" = selected.egg_name,
+				"egg_name_length" = BELLIES_NAME_MAX,
 				"egg_size" = selected.egg_size,
 				"recycling" = selected.recycling,
 				"storing_nutrition" = selected.storing_nutrition,

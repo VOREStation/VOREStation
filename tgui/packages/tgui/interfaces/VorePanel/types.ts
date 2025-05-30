@@ -7,6 +7,7 @@ export type Data = {
   show_pictures: BooleanLike;
   icon_overflow: BooleanLike;
   active_tab: number;
+  persist_edit_mode: BooleanLike;
   host_mobtype: hostMob | null;
   our_bellies?: bellyData[] | null;
   selected?: selectedData | null;
@@ -115,7 +116,8 @@ export type bellyOptionData = {
   contaminate_colors: string[] | null;
   egg_type: string;
   egg_types: string[];
-  egg_name: string;
+  egg_name: string | null;
+  egg_name_length: number;
   egg_size: number;
   recycling: BooleanLike;
   storing_nutrition: BooleanLike;
