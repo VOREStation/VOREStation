@@ -35,11 +35,11 @@
 		symptoms += new guaranteed_symptom
 	Finalize()
 
-/mob/living/carbon/human/proc/give_random_dormant_disease(biohazard = 20, min_symptoms = 2, max_symptoms = 4, min_level = 4, max_level = 9, list/guaranteed_symptoms = list())
+/mob/living/carbon/human/proc/give_random_dormant_disease(biohazard = 25, min_symptoms = 2, max_symptoms = 4, min_level = 4, max_level = 9, list/guaranteed_symptoms = list())
 	. = FALSE
 	var/sickrisk = 1
 
-	if(isSynthetic() || species.virus_immune) // Don't bother
+	if(isSynthetic() || species.virus_immune || HAS_TRAIT(src, STRONG_IMMUNITY_TRAIT)) // Don't bother
 		return
 
 	switch(get_species())

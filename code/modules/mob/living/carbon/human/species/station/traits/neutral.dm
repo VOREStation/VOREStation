@@ -1713,7 +1713,7 @@
 /datum/trait/neutral/disease_carrier
 	name = "Disease Carrier"
 	desc = "Your species is a carrier of diseases! Watch out for virologists."
-	excludes = list(/datum/trait/positive/virus_immune)
+	excludes = list(/datum/trait/neutral/strongimmunesystem)
 	cost = 0
 	can_take = ORGANICS
 	custom_only = FALSE
@@ -1721,3 +1721,14 @@
 /datum/trait/neutral/disease_carrier/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
 	H.give_random_dormant_disease(200, 2, 3, 1, 9)
+
+/datum/trait/neutral/strongimmunesystem
+	name = "Strong Immune System"
+	desc = "Your immune system is so strong, that not even dormant diseases can survive in you."
+	cost = 0
+
+	can_take = ORGANICS
+
+/datum/trait/neutral/strongimmunesystem/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, STRONG_IMMUNITY_TRAIT, ROUNDSTART_TRAIT)
