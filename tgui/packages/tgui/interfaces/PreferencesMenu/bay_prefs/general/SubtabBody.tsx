@@ -52,7 +52,6 @@ export const SubtabBody = (props: {
     blood_reagents,
     emote_sound_mode,
   } = data;
-  const { digi_allowed } = staticData;
   const { species: species_list } = serverData;
   // if it's not there our entire UI is fucked anyways
   const our_species = species_list.find((x) => x.name === species) as Species;
@@ -122,7 +121,7 @@ export const SubtabBody = (props: {
                       </Button>
                     </LabeledList.Item>
                   ) : null}
-                  {digi_allowed ? (
+                  {
                     <LabeledList.Item label="Digitigrade">
                       <Button
                         inline
@@ -132,7 +131,7 @@ export const SubtabBody = (props: {
                         {digitigrade ? 'Yes' : 'No'}
                       </Button>
                     </LabeledList.Item>
-                  ) : null}
+                  }
                   <LabeledList.Item label="Blood Type">
                     <Button inline onClick={() => act('blood_type')}>
                       {b_type}
