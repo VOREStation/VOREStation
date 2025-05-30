@@ -111,6 +111,11 @@
 	if(istype(C,/obj/vehicle/train))
 		latch(C, user)
 	else
+		if(istype(src,/obj/vehicle/train/trolly_tank))
+			if(istype(C,/obj/item/reagent_containers/glass))
+				var/obj/vehicle/train/trolly_tank/N = src
+				N.load_container(user,C)
+				return
 		if(!load(C, user))
 			to_chat(user, span_red("You were unable to load [C] on [src]."))
 

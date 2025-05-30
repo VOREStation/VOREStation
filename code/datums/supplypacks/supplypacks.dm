@@ -61,3 +61,8 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Atmospherics",
 // Keeping this subtype here for posterity, so it's more apparent that this is the subtype to use if making new randomised packs
 /datum/supply_pack/randomised
 	num_contained = 1
+
+/datum/supply_pack/supply/cargotank
+	name = "Cargo Train Tanker"
+	contains = list(/obj/vehicle/train/trolly_tank)
+	cost = 15

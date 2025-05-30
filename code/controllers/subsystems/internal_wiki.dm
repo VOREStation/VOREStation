@@ -1113,7 +1113,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Description: </b>[data["description"]]<br>"
 	if(data["addictive"])
 		body += "<b>DANGER, addictive.</b><br>"
-	/* Downstream features
 	if(data["industrial_use"])
 		body  += "<b>Industrial Use: </b>[data["industrial_use"]]<br>"
 	var/tank_size = CARGOTANKER_VOLUME
@@ -1124,16 +1123,15 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(data["sintering"])
 		var/mat_id = data["sintering"]
 		switch(mat_id)
-			if("FLAG_SMOKE")
+			if(REFINERY_SINTERING_SMOKE)
 				body += "<b>Sintering Results: COMBUSTION</b><br>"
-			if("FLAG_EXPLODE")
+			if(REFINERY_SINTERING_EXPLODE)
 				body += "<b>Sintering Results: DETONATION</b><br>"
-			if("FLAG_SPIDERS")
+			if(REFINERY_SINTERING_SPIDERS)
 				body += "<b>Sintering Results: DO NOT EVER</b><br>"
 			else
 				var/datum/material/C = get_material_by_name(data["sintering"])
 				body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
-	*/
 	if(data["overdose"] > 0)
 		body += "<b>Overdose: </b>[data["overdose"]]u<br>"
 	body += "<b>Flavor: </b>[data["flavor"]]<br>"
