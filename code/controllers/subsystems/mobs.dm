@@ -117,8 +117,8 @@ SUBSYSTEM_DEF(mobs)
 	ticker.mode.check_win()
 
 	var/list/data = list()
-	data["placeofdeath"] = get_area(H)
-	data["podname"] = placeofdeath ? placeofdeath.name : "Unknown area"
+	var/placeofdeath = get_area(H)
+	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
 	data["sqlname"] = sanitizeSQL(H.real_name)
 	data["gender"] = H.gender
 	data["brute_loss"] = H.getBruteLoss()
