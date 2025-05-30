@@ -470,3 +470,11 @@
 	desc = "Allows you to build a cocoon around yourself, using it to transform your body if you desire."
 	cost = 0
 	category = 0
+
+/datum/trait/positive/virus_immune
+	name = "Virus Immune"
+	desc = "You are immune to viruses."
+	cost = 1
+
+	can_take = ORGANICS
+	var_changes = list("virus_immune" = TRUE)
