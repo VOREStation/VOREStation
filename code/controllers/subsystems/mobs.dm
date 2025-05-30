@@ -33,13 +33,12 @@ SUBSYSTEM_DEF(mobs)
 		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
 		// Lets handle all of these while we have time, should always remain extremely small...
-		if(death_list.len) // Don't contact DB if this list is empty
+		if(death_list.len && CONFIG_GET(flag/sql_enabled)) // Don't contact DB if this list is empty
 			establish_db_connection()
 			if(!SSdbcore.IsConnected())
 				log_game("SQL ERROR during death reporting. Failed to connect.")
 			else
-				for(var/list/entry in death_list)
-					process_death(entry)
+				SSdbcore.MassInsert(format_table_name("death"), death_list)
 			death_list.Cut()
 
 	//cache for sanic speed (lists are references anyways)
@@ -116,35 +115,23 @@ SUBSYSTEM_DEF(mobs)
 
 	ticker.mode.check_win()
 
-	var/list/data = list()
 	var/area/placeofdeath = get_area(L)
 	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
-	data["sqlname"] = sanitizeSQL(L.real_name)
-	data["gender"] = L.gender
-	data["brute_loss"] = L.getBruteLoss()
-	data["fire_loss"] = L.getFireLoss()
-	data["brain_loss"] = L.brainloss
-	data["oxy_loss"] = L.getOxyLoss()
-	data["sqlkey"] = sanitizeSQL(L.key)
-	data["sqlpod"] = sanitizeSQL(podname)
-	data["sqlspecial"] = sanitizeSQL(L.mind.special_role)
-	data["sqljob"] = sanitizeSQL(L.mind.assigned_role)
-	data["laname"] = null
-	data["lakey"] = null
-	if(L.lastattacker)
-		data["laname"] = sanitizeSQL(L.lastattacker:real_name)
-		data["lakey"] = sanitizeSQL(L.lastattacker:key)
-	data["sqltime"] = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-	data["coord"] = "[L.x], [L.y], [L.z]"
 
+	data = list(
+    "name" = sql_sanitize_text(L.real_name),
+	"byondkey" = sql_sanitize_text(L.key),
+	"job" = sql_sanitize_text(L.mind.assigned_role),
+	"special" = sql_sanitize_text(L.mind.special_role),
+	"pod" = sql_sanitize_text(podname),
+	"tod" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
+	"laname" = L.lastattacker ? sql_sanitize_text(L.lastattacker:real_name) : null,
+	"lakey" = L.lastattacker ? sql_sanitize_text(L.lastattacker:key) : null,
+    "gender" = sql_sanitize_text(L.gender),
+	"bruteloss" = L.getBruteLoss(),
+	"fireloss" = L.getFireLoss(),
+	"brainloss" = L.brainloss,
+	"oxyloss" = L.getOxyLoss(),
+	"coord" = "[L.x], [L.y], [L.z]"
+	)
 	death_list += list(data)
-
-/datum/controller/subsystem/mobs/proc/process_death(var/list/data)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	//to_world("INSERT INTO death (name, byondkey, job, special, pod, tod, laname, lakey, gender, bruteloss, fireloss, brainloss, oxyloss) VALUES ('[sqlname]', '[sqlkey]', '[sqljob]', '[sqlspecial]', '[sqlpod]', '[sqltime]', '[laname]', '[lakey]', '[H.gender]', [H.bruteloss], [H.getFireLoss()], [H.brainloss], [H.getOxyLoss()])")
-	var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO death (name, byondkey, job, special, pod, tod, laname, lakey, gender, bruteloss, fireloss, brainloss, oxyloss, coord) VALUES ('[data["sqlname"]]', '[data["sqlkey"]]', '[data["sqljob"]]', '[data["sqlspecial"]]', '[data["sqlpod"]]', '[data["sqltime"]]', '[data["laname"]]', '[data["lakey"]]', '[data["gender"]]', [data["brute_loss"]], [data["fire_loss"]], [data["brain_loss"]], [data["oxy_loss"]], '[data["coord"]]')")
-	if(!query.Execute())
-		var/err = query.ErrorMsg()
-		log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
-	qdel(query)
