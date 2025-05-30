@@ -104,12 +104,12 @@ SUBSYSTEM_DEF(mobs)
 	..()
 	log_recent()
 
-/datum/controller/subsystem/mobs/proc/report_death(var/mob/living/carbon/human/H)
+/datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
 	if(!CONFIG_GET(flag/enable_stat_tracking))
 		return
-	if(!H)
+	if(!L)
 		return
-	if(!H.key || !H.mind)
+	if(!L.key || !L.mind)
 		return
 	if(!ticker || !ticker.mode)
 		return
@@ -117,25 +117,25 @@ SUBSYSTEM_DEF(mobs)
 	ticker.mode.check_win()
 
 	var/list/data = list()
-	var/placeofdeath = get_area(H)
+	var/area/placeofdeath = get_area(L)
 	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
-	data["sqlname"] = sanitizeSQL(H.real_name)
-	data["gender"] = H.gender
-	data["brute_loss"] = H.getBruteLoss()
-	data["fire_loss"] = H.getFireLoss()
-	data["brain_loss"] = H.brainloss
-	data["oxy_loss"] = H.getOxyLoss()
-	data["sqlkey"] = sanitizeSQL(H.key)
+	data["sqlname"] = sanitizeSQL(L.real_name)
+	data["gender"] = L.gender
+	data["brute_loss"] = L.getBruteLoss()
+	data["fire_loss"] = L.getFireLoss()
+	data["brain_loss"] = L.brainloss
+	data["oxy_loss"] = L.getOxyLoss()
+	data["sqlkey"] = sanitizeSQL(L.key)
 	data["sqlpod"] = sanitizeSQL(podname)
-	data["sqlspecial"] = sanitizeSQL(H.mind.special_role)
-	data["sqljob"] = sanitizeSQL(H.mind.assigned_role)
+	data["sqlspecial"] = sanitizeSQL(L.mind.special_role)
+	data["sqljob"] = sanitizeSQL(L.mind.assigned_role)
 	data["laname"] = null
 	data["lakey"] = null
-	if(H.lastattacker)
-		data["laname"] = sanitizeSQL(H.lastattacker:real_name)
-		data["lakey"] = sanitizeSQL(H.lastattacker:key)
+	if(L.lastattacker)
+		data["laname"] = sanitizeSQL(L.lastattacker:real_name)
+		data["lakey"] = sanitizeSQL(L.lastattacker:key)
 	data["sqltime"] = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-	data["coord"] = "[H.x], [H.y], [H.z]"
+	data["coord"] = "[L.x], [L.y], [L.z]"
 
 	death_list += list(data)
 
