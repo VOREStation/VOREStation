@@ -1,3 +1,7 @@
+/obj/structure/closet/secure_closet/freezer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
 	req_access = list(access_kitchen)
@@ -12,10 +16,6 @@
 
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-
-/obj/structure/closet/secure_closet/freezer/kitchen/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/climbable)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
