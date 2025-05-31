@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(mobs)
 	"tod" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
 	"laname" = L.lastattacker ? sql_sanitize_text(L.lastattacker:real_name) : null,
 	"lakey" = L.lastattacker ? sql_sanitize_text(L.lastattacker:key) : null,
-    "gender" = sql_sanitize_text(L.gender),
+	"gender" = sql_sanitize_text(L.gender),
 	"bruteloss" = L.getBruteLoss(),
 	"fireloss" = L.getFireLoss(),
 	"brainloss" = L.brainloss,
