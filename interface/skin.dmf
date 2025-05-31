@@ -1193,6 +1193,14 @@ window "mainwindow"
 		anchor2 = -1,-1
 		is-visible = false
 		saved-params = ""
+	elem "tgui_shock"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
 		pos = 560,400

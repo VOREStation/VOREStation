@@ -253,6 +253,7 @@
 
 	// Instantiate tgui panel
 	tgui_say = new(src, "tgui_say")
+	tgui_shocker = new(src, "tgui_shock")
 	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
@@ -302,6 +303,7 @@
 
 	// Initialize tgui panel
 	tgui_say.initialize()
+	tgui_shocker.initialize()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
