@@ -2,7 +2,13 @@
 //as they handle all relevant stuff like adding it to the player's screen and such
 
 //Returns the thing in our active hand (whatever is in our active module-slot, in this case)
-/mob/living/silicon/robot/get_active_hand()
+/mob/living/silicon/robot/get_active_hand(atom/A)
+	if(module_active == A) //If we are interacting with the item itself (I.E swapping multibelt items)
+		return module_active
+	else if(istype(module_active, /obj/item/robotic_multibelt)) //If we are hitting something with a multibelt
+		var/obj/item/robotic_multibelt/belt = module_active
+		if(belt.selected_item)
+			return belt.selected_item
 	return module_active
 
 /*-------TODOOOOOOOOOO--------*/

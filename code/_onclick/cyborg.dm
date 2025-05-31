@@ -56,18 +56,7 @@
 		return
 	*/
 
-	var/obj/item/W = get_active_hand()
-	if(istype(W, /obj/item/robotic_multibelt)) //Are we using a multibelt (Cyborg OMNITOOL)?
-		var/obj/item/robotic_multibelt/belt = W
-		if(belt.selected_item)
-			W = belt.selected_item //Select it! This is as if we're the thing with the selected tool.
-			/* //This is how you would tell the game 'Alright, if we're using a gripper, select the thing inside of it'
-			//However, grippers are hardcoded EVERYWHERE and changing that logic would be extremely annoying...The biggest part is grippers need to know WHEN to drop their item...which we can't easily do here.
-			if(istype(selected_item, /obj/item/gripper))  //Is that selected item a gripper?
-				var/obj/item/gripper/Gripper = W
-				if(Gripper.wrapped)
-					W = Gripper.wrapped
-			*/
+	var/obj/item/W = get_active_hand(A)
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)
