@@ -43,7 +43,7 @@
 		O.forceMove(get_turf(src))
 	src.opened = 1
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_SHAKE_CLIMBERS, null)
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)
 	update_icon()
 	return 1
 

@@ -124,7 +124,7 @@
 
 /obj/structure/low_wall/MouseDrop_T(atom/movable/AM, mob/user, src_location, over_location, src_control, over_control, params)
 	if(AM == user)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, user)
+		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
 		return
 	var/obj/O = AM
 	if(!istype(O))

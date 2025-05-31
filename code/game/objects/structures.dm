@@ -26,7 +26,7 @@
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(user))
 				attack_generic(user,1,"slices")
-	SEND_SIGNAL(src, COMSIG_MOVABLE_SHAKE_CLIMBERS, user)
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, user)
 	return ..()
 
 /obj/structure/attack_tk()

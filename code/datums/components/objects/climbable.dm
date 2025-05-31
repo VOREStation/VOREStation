@@ -6,13 +6,15 @@
 
 /datum/component/climbable/Initialize()
 	owner = parent
-	RegisterSignal(owner, COMSIG_MOVABLE_START_CLIMB, PROC_REF(start_climb))
-	RegisterSignal(owner, COMSIG_MOVABLE_SHAKE_CLIMBERS, PROC_REF(shaken))
+	RegisterSignal(owner, COMSIG_CLIMBABLE_START_CLIMB, PROC_REF(start_climb))
+	RegisterSignal(owner, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, PROC_REF(shaken))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_shaken))
 	owner.verbs += /obj/proc/climb_on
 
 /datum/component/climbable/Destroy(force = FALSE)
-	UnregisterSignal(owner, COMSIG_MOVABLE_START_CLIMB)
-	UnregisterSignal(owner, COMSIG_MOVABLE_SHAKE_CLIMBERS)
+	UnregisterSignal(owner, COMSIG_CLIMBABLE_START_CLIMB)
+	UnregisterSignal(owner, COMSIG_CLIMBABLE_SHAKE_CLIMBERS)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	owner.verbs -= /obj/proc/climb_on
 	owner = null
 	. = ..()
@@ -31,10 +33,10 @@
 
 /// Starts climbing the object
 /datum/component/climbable/proc/start_climb(var/obj/caller, mob/user)
-	//SIGNAL_HANDLER
+	SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H))
-		do_climb(user)
+		addtimer(CALLBACK(src, PROC_REF(do_climb), user), 0, TIMER_DELETE_ME) // Isolate from signal handler
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
 /datum/component/climbable/proc/can_climb(var/mob/living/user, post_climb_check=0)
@@ -89,6 +91,9 @@
 
 /// Performs the wait and any remaining checks before the climb resolves.
 /datum/component/climbable/proc/do_climb(var/mob/living/user)
+	if(QDELETED(user) || QDELETED(owner))
+		return
+
 	user.visible_message(span_warning("[user] starts climbing onto \the [owner]!"))
 	LAZYDISTINCTADD(climbers, user)
 
@@ -130,6 +135,11 @@
 		to_chat(user, span_notice("You need hands for this."))
 		return 0
 	return 1
+
+/// Shakes an object, called from movement so it needs to be cleaned up a bit!
+/datum/component/climbable/proc/move_shaken(var/obj/caller, var/mob/user)
+	SIGNAL_HANDLER
+	shaken(caller, null)
 
 /// Shakes an object, if anyone is climbing it, causes them to fall off it.
 /datum/component/climbable/proc/shaken(var/obj/caller, var/mob/user)
@@ -221,4 +231,4 @@
 	set category = "Object"
 	set src in oview(1)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_START_CLIMB, usr)
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, usr)

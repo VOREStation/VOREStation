@@ -27,7 +27,7 @@
 
 	usr.visible_message(span_warning("[usr] flips \the [src]!"))
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_SHAKE_CLIMBERS, usr)
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, usr)
 
 	return
 

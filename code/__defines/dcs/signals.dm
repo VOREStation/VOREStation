@@ -278,11 +278,6 @@
 	/* #define HEARING_RADIO_FREQ 5
 	#define HEARING_SPANS 6
 	#define HEARING_MESSAGE_MODE 7 */
-///called when a mob is mousedropped onto, or uses a verb to climb an object
-#define COMSIG_MOVABLE_START_CLIMB "starting_climb_action"
-///called when an object is considered unsafe to climb on
-#define COMSIG_MOVABLE_SHAKE_CLIMBERS "shaking_climbing_mobs"
-
 ///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
 #define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
@@ -434,6 +429,13 @@
 #define COMSIG_OBJ_HIDE	"obj_hide"
 ///called in /obj/update_icon()
 #define COMSIG_OBJ_UPDATE_ICON "obj_update_icon"
+
+// climbable signals
+
+///called when a mob is mousedropped onto, or uses a verb to climb an object
+#define COMSIG_CLIMBABLE_START_CLIMB "starting_climb_action"
+///called when an object is considered unsafe to climb on
+#define COMSIG_CLIMBABLE_SHAKE_CLIMBERS "shaking_climbing_mobs"
 
 // /obj/machinery signals
 
