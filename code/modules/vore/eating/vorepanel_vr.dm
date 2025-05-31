@@ -127,6 +127,7 @@
 	// General Data
 	data["unsaved_changes"] = unsaved_changes
 	data["active_tab"] = active_tab
+	data["persist_edit_mode"] = host.persistend_edit_mode
 
 	// Inisde Data
 	data["inside"] = get_inside_data(host)
@@ -226,6 +227,10 @@
 
 		if("show_pictures")
 			show_pictures = !show_pictures
+			return TRUE
+
+		if("toggle_editmode_persistence")
+			host.persistend_edit_mode = !host.persistend_edit_mode
 			return TRUE
 
 		// Host is inside someone else, and is trying to interact with something else inside that person.

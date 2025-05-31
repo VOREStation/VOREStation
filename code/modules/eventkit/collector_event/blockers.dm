@@ -5,6 +5,11 @@
 	icon = 'icons/obj/general_collector.dmi'
 	icon_state = "blocker_on"
 	desc = "blocker? I barely know er"
+
+	anchored = TRUE
+	density = TRUE
+	unacidable = TRUE
+
 	var/tools_to_fix = FALSE
 
 	//how much we're currently blocking
@@ -96,11 +101,11 @@
 
 
 /obj/structure/event_collector_blocker/proc/get_repair_message(var/mob/user)
-	return "[user] repairs [src]"
+	return "[user] repairs \the [src]!"
 
 /obj/structure/event_collector_blocker/attack_hand(mob/user)
 	if(!tools_to_fix && block_amount > 0)
-		user.visible_message("[user] fixes [src] up!") //swap this with a message var, or just change it to be suitable
+		user.visible_message(get_repair_message(user)) //swap this with a message var, or just change it to be suitable
 		fix()
 	. = ..()
 
@@ -110,20 +115,60 @@
 	if(tools_to_fix)
 		if(active_repair_steps.len >= 1)
 			if(O.has_tool_quality(active_repair_steps[active_repair_steps.len]))
+				if(!pre_repair_handling(O,active_repair_steps[active_repair_steps.len],user)) return
 				if(do_after(user, 2 SECONDS))
+					post_repair_handling(O,active_repair_steps[active_repair_steps.len],user)
 					to_chat(usr,span_notice(fix_descs[active_repair_steps[active_repair_steps.len]]))
 					active_repair_steps.len = active_repair_steps.len - 1
 					if(active_repair_steps.len == 0)
 						fix()
 			else
-				to_chat(user,"WRONG TOOL!")
+				to_chat(user,span_notice("this doesn't look like the right tool for the job..."))
+
+/obj/structure/event_collector_blocker/proc/pre_repair_handling(var/obj/item/O,var/toolType,var/mob/user) //can we use this tool?
+	switch(toolType)
+		if(TOOL_WELDER)
+			var/obj/item/weldingtool/welder = O.get_welder()
+			if(welder)
+				if(welder.isOn())
+					if(welder.get_fuel() > 5)
+						return TRUE
+					else
+						to_chat(user,span_warning("There's not enough fuel to finish the repair!"))
+				else
+					to_chat(user,span_warning("It's hard to weld cold things! Turning the welder on might help!"))
+			else
+				return FALSE
+
+		if(TOOL_CABLE_COIL)
+			var/obj/item/stack/cable_coil/coil = O
+			if(istype(coil))
+				if(coil.can_use(5))
+					return TRUE
+				else
+					to_chat(user,span_warning("There's not enough cable in the coil to fix this mess!"))
+					return FALSE
+	return TRUE
+
+/obj/structure/event_collector_blocker/proc/post_repair_handling(var/obj/item/O,var/toolType,var/mob/user)
+	switch(toolType) //snowflake code time
+		if(TOOL_WELDER)
+			var/obj/item/weldingtool/welder = O.get_welder()
+			if(welder)
+				welder.remove_fuel(5,user)
+				playsound(src, welder.usesound, 50, 1)
+
+		if(TOOL_CABLE_COIL)
+			var/obj/item/stack/cable_coil/coil = O
+			if(istype(coil))
+				coil.use(5)
 
 /obj/structure/event_collector_blocker/breaker //for these, if you change the base_icon you'll be good to go. ae, base_icon = breaker or circuit or whatever
 	name = "Breaker"
 	desc = "I barely know er!"
 
 /obj/structure/event_collector_blocker/breaker/get_repair_message(var/mob/user)
-	return "[user] flips [src]!"
+	return "[user] flips \the [src] back on!"
 
 /obj/structure/event_collector_blocker/circuit_panel
 	name = "Circuit Panel"

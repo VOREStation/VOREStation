@@ -153,13 +153,11 @@ jobs:
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
-      - name: Restore BYOND Cache
-        uses: actions/cache@v4
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
         with:
-          path: $HOME/byond
-          key: ${{ runner.os }}-byond
-      - name: Install BYOND
-        run: tools/ci/install_byond.sh
+          major: ${{ inputs.major }}
+          minor: ${{ inputs.minor }}
       - name: Compile POIs
         run: tools/ci/compile_and_run.sh
         env:

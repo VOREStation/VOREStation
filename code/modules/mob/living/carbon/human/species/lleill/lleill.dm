@@ -29,8 +29,6 @@
 
 	economic_modifier = 15
 
-	digi_allowed = TRUE
-
 	//Specific abilities
 
 	var/ring_cooldown = 0

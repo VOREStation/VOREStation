@@ -156,6 +156,7 @@ export const VorePanel = () => {
   const {
     active_tab,
     active_vore_tab,
+    persist_edit_mode,
     inside,
     our_bellies,
     selected,
@@ -170,7 +171,7 @@ export const VorePanel = () => {
     general_pref_data,
   } = data;
 
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(!!persist_edit_mode);
 
   const tabs: (React.JSX.Element | null | undefined)[] = [];
 
@@ -185,6 +186,7 @@ export const VorePanel = () => {
       vore_words={vore_words}
       toggleEditMode={setEditMode}
       editMode={editMode}
+      persist_edit_mode={persist_edit_mode}
     />
   );
   tabs[1] = our_bellies && soulcatcher && abilities && (
@@ -194,6 +196,7 @@ export const VorePanel = () => {
       abilities={abilities}
       toggleEditMode={setEditMode}
       editMode={editMode}
+      persist_edit_mode={persist_edit_mode}
     />
   );
   tabs[2] = general_pref_data && our_bellies && (
@@ -202,6 +205,7 @@ export const VorePanel = () => {
       our_bellies={our_bellies}
       editMode={editMode}
       toggleEditMode={setEditMode}
+      persist_edit_mode={persist_edit_mode}
     />
   );
   tabs[3] = prefs && (

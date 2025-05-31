@@ -280,7 +280,6 @@
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
-		"map" = (using_map && using_map.path) ? using_map.path : "Unknown",
 		"mapZLevel" = map_z_level,
 		"window" = list(
 			"key" = window_key,
@@ -320,7 +319,7 @@
 		return
 	var/datum/host = src_object.tgui_host(user)
 	// If the object or user died (or something else), abort.
-	if(!src_object || !host || !user || !window)
+	if(QDELETED(src_object) || QDELETED(host) || QDELETED(user) || QDELETED(window))
 		close(can_be_suspended = FALSE)
 		return
 	// Validate ping
