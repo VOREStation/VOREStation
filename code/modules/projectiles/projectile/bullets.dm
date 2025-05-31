@@ -122,13 +122,13 @@
 	sharp = FALSE
 	check_armour = "melee"
 	hud_state = "pistol_special"
-	fire_sound ='sound/weapons/Gunshot_pathetic.ogg' // Rubber shots have less powder in the casing.
+	fire_sound ='sound/weapons/gunshot_pathetic.ogg' // Rubber shots have less powder in the casing.
 
 /* shotgun projectiles */
 
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
-	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
+	fire_sound = 'sound/weapons/gunshot_shotgun.ogg'
 	damage = 50
 	armor_penetration = 20
 	hud_state = "shotgun_slug"
@@ -147,7 +147,7 @@
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
-	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
+	fire_sound = 'sound/weapons/gunshot_shotgun.ogg'
 	damage = 13
 	pellets = 6
 	range_step = 1
@@ -182,19 +182,19 @@
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	armor_penetration = 15
 	penetrating = 1
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 
 /obj/item/projectile/bullet/rifle/a762
-	fire_sound = 'sound/weapons/Gunshot_heavy.ogg'
+	fire_sound = 'sound/weapons/gunshot_heavy.ogg'
 	damage = 35
 	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a762/sniper // Hitscan specifically for sniper ammo; to be implimented at a later date, probably for the SVD. -Ace
-	fire_sound = 'sound/weapons/Gunshot_sniper.ogg'
+	fire_sound = 'sound/weapons/gunshot_sniper.ogg'
 	hitscan = 1 //so the ammo isn't useless as a sniper weapon
 	hud_state = "hivelo"
 
@@ -211,12 +211,11 @@
 
 /obj/item/projectile/bullet/rifle/a762/hunter // Optimized for killing simple animals and not people, because Balance(tm)
 	damage = 20
-	SA_bonus_damage = 50 // 70 total on animals.
-	SA_vulnerability = SA_ANIMAL
+	mob_bonus_damage = 50
 	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a545
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/gunshot_light.ogg'
 	damage = 25
 	hud_state = "rifle"
 
@@ -233,12 +232,11 @@
 
 /obj/item/projectile/bullet/rifle/a545/hunter
 	damage = 15
-	SA_bonus_damage = 35 // 50 total on animals.
-	SA_vulnerability = SA_ANIMAL
+	mob_bonus_damage = 35
 	hud_state = "rifle_heavy"
 
 /obj/item/projectile/bullet/rifle/a145 // 14.5×114mm is bigger than a .50 BMG round.
-	fire_sound = 'sound/weapons/Gunshot_cannon.ogg' // This is literally an anti-tank rifle caliber. It better sound like a fucking cannon.
+	fire_sound = 'sound/weapons/gunshot_cannon.ogg' // This is literally an anti-tank rifle caliber. It better sound like a fucking cannon.
 	damage = 80
 	stun = 3
 	weaken = 3
@@ -366,7 +364,7 @@
 /obj/item/projectile/bullet/blank
 	name = "blank"
 	damage_type = HALLOSS
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg' // Blanks still make loud noises.
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg' // Blanks still make loud noises.
 	damage = 0
 	nodamage = 1
 	embed_chance = 0

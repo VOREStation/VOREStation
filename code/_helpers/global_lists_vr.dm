@@ -524,6 +524,7 @@ GLOBAL_LIST_INIT(alt_titles_with_icons, list(
 				JOB_ALT_JR_CARGO_TECH,
 				JOB_ALT_SERVER,
 				JOB_ALT_ELECTRICIAN,
+				JOB_ALT_FIREFIGHTER,
 				JOB_ALT_BARISTA))
 
 GLOBAL_LIST_EMPTY(existing_solargrubs)

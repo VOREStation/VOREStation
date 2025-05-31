@@ -183,6 +183,19 @@
 			return 0
 
 	var/mob/living/M = user
+	if(istype(M))
+		if(M.has_modifier_of_type(/datum/modifier/underwater_stealth))
+			to_chat(user,span_warning("You cannot use guns whilst hiding underwater!"))
+			return 0
+		else if(M.has_modifier_of_type(/datum/modifier/rednet))
+			to_chat(user,span_warning("Your gun refuses to fire!"))
+			return 0
+		else if(M.has_modifier_of_type(/datum/modifier/trait/thickdigits))
+			to_chat(user,span_warning("Your hands can't pull the trigger!!"))
+			return 0
+		else if(M.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
+			to_chat(user,span_warning("The shield projection around you prevents you from using anything but melee!!"))
+			return 0
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
@@ -251,7 +264,7 @@
 		else//Otherwise just make a new one
 			auto_target = new/obj/screen/auto_target(get_turf(A), src)
 			visible_message(span_danger("\The [user] readies the [src]!"))
-			playsound(src, 'sound/weapons/TargetOn.ogg', 50, 1)
+			playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
 			return
 	Fire(A,user,params) //Otherwise, fire normally.

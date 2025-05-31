@@ -142,16 +142,16 @@
 
 	user.drop_item()
 	if(I)
-		if(istype(I, /obj/item/holder/micro))
-			log_and_message_admins("placed [I.name]  inside \the [src]", user)
+		if(istype(I, /obj/item/holder))
+			var/obj/item/holder/holder = I
+			var/mob/victim = holder.held_mob
+			if(ishuman(victim) || victim.client)
+				log_and_message_admins("placed [victim]  inside \the [src]", user)
+			victim.forceMove(src)
+
 		I.forceMove(src)
 
-	to_chat(user, "You place \the [I] into the [src].")
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-
+	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
 	update()
 
 // mouse drop another mob or self
@@ -539,32 +539,18 @@
 	. = ..()
 	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
 		if(prob(75))
-			if(istype(AM, /obj/item/holder/micro))
-				log_and_message_admins("[AM] was thrown into \the [src]", null)
 			AM.forceMove(src)
 			visible_message("\The [AM] lands in \the [src].")
 		else
 			visible_message("\The [AM] bounces off of \the [src]'s rim!")
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item/projectile))
-		return 1
-	if (istype(mover,/obj/item) && mover.throwing)
-		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
-			return
+	if(istype(AM,/mob/living))
 		if(prob(75))
-			I.forceMove(src)
-			if(istype(I, /obj/item/holder/micro))
-				log_and_message_admins("[I.name] was thrown into \the [src]", null)
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] lands in \the [src].", 3)
-		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
-		return 0
-	else
-		return ..(mover, target)
+			var/mob/living/to_be_dunked = AM
+			if(ishuman(AM) ||to_be_dunked.client)
+				log_and_message_admins("[AM] was thrown into \the [src]", null)
+			AM.forceMove(src)
+			visible_message("\The [AM] lands in \the [src].")
 
 /obj/machinery/disposal/wall
 	name = "inset disposal unit"
@@ -601,7 +587,7 @@
 // this allows the gas flushed to be tracked
 
 /obj/structure/disposalholder
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
 	var/active = 0	// true if the holder is moving, otherwise inactive
 	dir = 0
@@ -857,7 +843,7 @@
 // hide called by levelupdate if turf intact status changes
 // change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
-	invisibility = intact ? 101: 0	// hide if floor is intact
+	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE	// hide if floor is intact
 	update_icon()
 
 // update actual icon_state depending on visibility
@@ -941,7 +927,7 @@
 				var/obj/structure/disposalpipe/broken/P = new(src.loc)
 				P.set_dir(D)
 
-	src.invisibility = 101	// make invisible (since we won't delete the pipe immediately)
+	src.invisibility = INVISIBILITY_ABSTRACT	// make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		// holder was present

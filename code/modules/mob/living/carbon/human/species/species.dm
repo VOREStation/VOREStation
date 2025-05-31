@@ -62,7 +62,6 @@
 	var/max_age = 70
 
 	var/icodigi = 'icons/mob/human_races/r_digi.dmi'
-	var/digi_allowed = FALSE
 
 	// Language/culture vars.
 	var/default_language = LANGUAGE_GALCOM					// Default language is used when 'say' is used without modifiers.
@@ -76,17 +75,28 @@
 
 	// The languages the species can't speak without an assisted organ.
 	// This list is a guess at things that no one other than the parent species should be able to speak
-	var/list/assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN) //VOREStation Edit
+	var/list/assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX, LANGUAGE_PROMETHEAN)
 
 	//Soundy emotey things.
 	var/scream_verb_1p = "scream"
 	var/scream_verb_3p = "screams"
-	var/male_scream_sound		//= 'sound/goonstation/voice/male_scream.ogg' Removed due to licensing, replace!
-	var/female_scream_sound		//= 'sound/goonstation/voice/female_scream.ogg' Removed due to licensing, replace!
-	var/male_cough_sounds = list('sound/effects/mob_effects/m_cougha.ogg','sound/effects/mob_effects/m_coughb.ogg', 'sound/effects/mob_effects/m_coughc.ogg')
-	var/female_cough_sounds = list('sound/effects/mob_effects/f_cougha.ogg','sound/effects/mob_effects/f_coughb.ogg')
-	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
-	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
+	var/pain_verb_1p = list("shout", "growl", "grunt", "gasp")
+	var/pain_verb_3p = list("shouts", "growls", "grunts", "gasps")
+	/* Our base species sounds.
+	 * Note that species_sounds is meant to be used in the place of gendered sound.
+	 * If your species has gendered sounds, set 'gender_specific_species_sounds' to TRUE, and define your gendered sounds below.
+	*/
+	var/species_sounds = "None"
+	var/gender_specific_species_sounds = FALSE // This variable controls if our audible emotes pick based off of gender. Only humans have these so far.
+	var/species_sounds_male = "None" // Safely ignored if the above is set FALSE
+	var/species_sounds_female = "None" // Safely ignored if the above is set FALSE
+	var/cough_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
+	var/sneeze_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
+	var/scream_volume = 60 // Self-explanatory, define this separately on your species if the sound files are louder.
+	var/pain_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
+	var/gasp_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
+	var/death_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
+	// var/species_sounds_herm // If you want a custom sound played for other genders, just add them like so
 
 	var/footstep = FOOTSTEP_MOB_HUMAN
 	var/list/special_step_sounds = null
@@ -116,6 +126,9 @@
 	var/chemOD_threshold =		1						// Multiplier to overdose threshold; lower = easier overdosing
 	var/chemOD_mod =		1						// Damage modifier for overdose; higher = more damage from ODs
 	var/pain_mod =			1						// Multiplier to pain effects; 0.5 = half, 0 = no effect (equal to NO_PAIN, really), 2 = double, etc.
+	var/stun_mod =			1						// Multiplier to stun effects; 0.5 = half, - = no effect (immune), 2 = double, etc.
+	var/weaken_mod =		1						// Multiplier to weakness effects; 0.5 = half, - = no effect (immune), 2 = double, etc.
+													// Stuns + Weakens will be rounded to the nearest whole #. If you set 0.5 mod, on a base stun of 3, the return will be 1.5, which rounds to 1. Be careful.
 	var/spice_mod =			1						// Multiplier to spice/capsaicin/frostoil effects; 0.5 = half, 0 = no effect (immunity), 2 = double, etc.
 	var/trauma_mod = 		1						// Affects traumatic shock (how fast pain crit happens). 0 = no effect (immunity to pain crit), 2 = double etc.Overriden by "can_feel_pain" var
 	// set below is EMP interactivity for nonsynth carbons
@@ -188,7 +201,6 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
 	var/safe_pressure = ONE_ATMOSPHERE
-	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
 
@@ -230,10 +242,6 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
-	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
-	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
-	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
-	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
@@ -293,8 +301,6 @@
 
 	var/pass_flags = 0
 
-	var/list/descriptors = list()
-
 	//This is used in character setup preview generation (prefences_setup.dm) and human mob
 	//rendering (update_icons.dm)
 	var/color_mult = 0
@@ -334,12 +340,6 @@
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
 	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
-	var/is_weaver = FALSE
-	var/silk_production = FALSE
-	var/silk_reserve = 100
-	var/silk_max_reserve = 500
-	var/silk_color = "#FFFFFF"
-
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
@@ -357,6 +357,7 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -380,15 +381,6 @@
 		hud = new hud_type()
 	else
 		hud = new()
-
-	// Prep the descriptors for the species
-	if(LAZYLEN(descriptors))
-		var/list/descriptor_datums = list()
-		for(var/desctype in descriptors)
-			var/datum/mob_descriptor/descriptor = new desctype
-			descriptor.comparison_offset = descriptors[desctype]
-			descriptor_datums[descriptor.name] = descriptor
-		descriptors = descriptor_datums
 
 	//If the species has eyes, they are the default vision organ
 	if(!vision_organ && has_organ[O_EYES])
@@ -527,7 +519,6 @@
 			span_notice("[target] moves to avoid being touched by you!"), )
 		return
 
-	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == BP_HEAD)
 		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
 			H.visible_message( \
@@ -558,7 +549,8 @@
 			H.visible_message( \
 				span_notice("[H] boops [target]'s nose."), \
 				span_notice("You boop [target] on the nose."), )
-	//VOREStation Edit End
+	/*else if(H.zone_sel.selecting == BP_GROIN) //Disabled on Virgo. Used downstream.
+		H.vore_bellyrub(target)*/ //Disabled on Virgo. Used downstream.
 	else
 		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
 						span_notice("You hug [target] to make [t_him] feel better!"))
@@ -590,6 +582,23 @@
 	for(var/datum/trait/env_trait in env_traits)
 		env_trait.handle_environment_special(H)
 	return
+
+/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//Xenochimera Species Component
+	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+	if(xc)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
+
+	//Shadekin Species Component.
+	/* //For when shadekin actually have their component control everything.
+	var/datum/component/shadekin/sk = H.get_xenochimera_component()
+	if(sk)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
+	*/
 
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
@@ -741,6 +750,10 @@
 		nif.nifsofts = nifsofts*/
 	else
 		..()
+
+/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+	if(species_component)
+		H.LoadComponent(species_component)
 
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)

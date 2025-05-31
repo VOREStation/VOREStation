@@ -22,7 +22,6 @@
 	var/max_nutrition = MAX_NUTRITION
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/base_attack_cooldown = DEFAULT_ATTACK_COOLDOWN
@@ -112,3 +111,7 @@
 
 	var/mob/living/tf_form // Shapeshifter shenanigans
 	var/tf_form_ckey
+
+	var/ooc_notes_favs = null
+	var/ooc_notes_maybes = null
+	var/ooc_notes_style = FALSE

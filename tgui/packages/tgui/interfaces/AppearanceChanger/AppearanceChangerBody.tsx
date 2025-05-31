@@ -65,13 +65,11 @@ export const AppearanceChangerSpecies = (props) => {
               {data.digitigrade ? 'Yes' : 'No'}
             </Button>
           </LabeledList.Item>
-          {/* Disabled until species sounds ported up
           <LabeledList.Item label="Species Sound">
             <Button icon="pen" onClick={() => act('species_sound')}>
               {data.species_sound}
             </Button>
           </LabeledList.Item>
-          */}
         </LabeledList>
       </Section>
       <Section title="Sizing">

@@ -148,7 +148,6 @@
 	. = TRUE
 	var/list/result = target?.extrapolator_act(user, target)
 	var/list/diseases = result[EXTRAPOLATOR_RESULT_DISEASES]
-	var/show_message = FALSE
 	if(!length(diseases))
 		return FALSE
 	if(EXTRAPOLATOR_ACT_CHECK(result, EXTRAPOLATOR_ACT_PRIORITY_SPECIAL))
@@ -160,13 +159,12 @@
 		for(var/datum/disease/disease in diseases)
 			if(istype(disease, /datum/disease/advance))
 				var/datum/disease/advance/advance_disease = disease
-				if(advance_disease.stealth >= maximum_stealth)
-					continue
-				show_message = TRUE
 				var/list/properties
 				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
-				message += "<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], stage [advance_disease.stage]/5"
+				if(global_flag_check(advance_disease.virus_modifiers, FALTERED))
+					LAZYADD(properties, "faltered")
+				message += span_info("<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], [global_flag_check(advance_disease.virus_modifiers, DORMANT) ? "<i>dormant virus</i>" : "stage [advance_disease.stage]/5"]")
 				if(extracted_ids[advance_disease.GetDiseaseID()])
 					message += "This virus has been extracted by \the [src] previously."
 				message += "[advance_disease.name] has the following symptoms:"
@@ -174,10 +172,7 @@
 					message += "[symptom.name]"
 			else
 				message += span_info("<b>[disease.name]</b>, stage [disease.stage]/[disease.max_stages].")
-	if(show_message)
-		to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
-	else
-		to_chat(user, span_notice("[icon2html(src, user)] \The [src] fails to return any data."))
+	to_chat(user, examine_block(jointext(message, "\n")), avoid_highlighting = TRUE, trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 
 /obj/item/extrapolator/proc/extrapolate(mob/living/user, atom/target, isolate = FALSE)
 	. = FALSE
@@ -201,12 +196,11 @@
 	if(!target_disease)
 		return
 	using = TRUE
-	// I'll see about this...
-	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
-	// if(choice == "Symptom")
-	//. = isolate_symptom(user, target, target_disease)
-	// else
-	. = isolate_disease(user, target, target_disease)
+	var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
+	if(choice == "Symptom")
+		. = isolate_symptom(user, target, target_disease)
+	else
+		. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)
@@ -242,23 +236,21 @@
 
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
-	var/datum/disease/advance/D = disease.Copy()
+	disease = disease.Copy()
+	disease.virus_modifiers &= ~DORMANT
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
 		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
-	culture_bottle.name = "[D.name] culture bottle"
-	culture_bottle.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
+	culture_bottle.name = "[disease.name] culture bottle"
+	culture_bottle.desc = "A small bottle. Contains [disease.agent] culture in synthblood medium."
 	culture_bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 5, data)
 	user.put_in_hands(culture_bottle)
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE)
 	COOLDOWN_START(src, usage_cooldown, 1 SECONDS)
-	extracted_ids[D.GetDiseaseID()] = TRUE
+	extracted_ids[disease.GetDiseaseID()] = TRUE
 	return TRUE
-
-/obj/item/extrapolator/tier4
-	default_scanning_module = /obj/item/stock_parts/scanning_module/hyper
 
 /obj/item/extrapolator/tier5
 	default_scanning_module = /obj/item/stock_parts/scanning_module/omni

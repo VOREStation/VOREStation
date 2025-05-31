@@ -265,7 +265,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	set category = "Admin.Silicon"
 
 	var/list/cores = list()
-	for(var/obj/structure/AIcore/deactivated/D in all_deactivated_AI_cores)
+	for(var/obj/structure/AIcore/deactivated/D in GLOB.all_deactivated_AI_cores)
 		cores["[D] ([D.loc.loc])"] = D
 
 	var/id = tgui_input_list(usr, "Which core?", "Toggle AI Core Latejoin", cores)

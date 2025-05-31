@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - refactor: "Moved all global vars from the code/global.dm to code/_global_vars/"

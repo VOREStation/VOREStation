@@ -50,12 +50,37 @@
 	character.flavor_texts["feet"]		= pref.flavor_texts["feet"]
 	character.custom_link				= pref.custom_link
 
-/datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
-	. += span_bold("Flavor:") + "<br>"
-	. += "<a href='byond://?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
-	. += "<a href='byond://?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
-	. += "<a href='byond://?src=\ref[src];custom_link=1'>Set Custom Link</a><br/>"
+/datum/category_item/player_setup_item/general/flavor/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
+	data["flavor_text_length"] = LAZYLEN(pref.flavor_texts["general"])
+
+	return data
+
+/datum/category_item/player_setup_item/general/flavor/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = ui.user
+
+	switch(action)
+		if("flavor_text")
+			SetFlavorText(user)
+			return TOPIC_HANDLED
+		if("flavour_text_robot")
+			SetFlavourTextRobot(user)
+			return TOPIC_HANDLED
+		if("custom_link")
+			var/new_link = strip_html_simple(tgui_input_text(user, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+			if(new_link)
+				if(length(new_link) > 100)
+					to_chat(user, span_warning("Your entry is too long, it must be 100 characters or less."))
+					return
+				pref.custom_link = new_link
+				log_admin("[user]/[user.ckey] set their custom link to [pref.custom_link]")
+
+// README: This must stay for SetFlavorText to work!
 /datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"])
 		switch(href_list["flavor_text"])
@@ -75,7 +100,6 @@
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 		SetFlavorText(user)
 		return TOPIC_HANDLED
-
 	else if(href_list["flavour_text_robot"])
 		switch(href_list["flavour_text_robot"])
 			if("open")

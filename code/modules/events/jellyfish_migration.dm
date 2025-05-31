@@ -84,6 +84,7 @@
 
 // If jellyfish is bomphed, remove it from the list.
 /datum/event/jellyfish_migration/proc/on_jellyfish_destruction(var/mob/M)
+	SIGNAL_HANDLER
 	spawned_jellyfish -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

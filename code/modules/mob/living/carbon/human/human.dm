@@ -31,7 +31,6 @@
 	var/list/teleporters = list() //Used for lleill abilities
 
 	var/rest_dir = 0					//To lay down in a specific direction
-	var/gutdeathpressure = 0			//For GIBBING trait
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
@@ -130,6 +129,7 @@
 			. += "Re-Adaptations: [mind.changeling.readapts]/[mind.changeling.max_readapts]"
 	if(species)
 		species.get_status_tab_items(src)
+
 
 /mob/proc/RigPanel(var/obj/item/rig/R)
 	if(R && !R.canremove && R.installed_modules.len)
@@ -831,7 +831,7 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
-	if(feral)
+	if(get_feralness())
 		to_chat(src, span_warning("Your primitive mind can't grasp the concept of that thing."))
 		return 0
 	if(species.has_fine_manipulation)
@@ -1061,7 +1061,7 @@
 	restore_all_organs()       // Reapply robotics/amputated status from preferences.
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/internal/brain/H in all_brain_organs)
+		for (var/obj/item/organ/internal/brain/H in GLOB.all_brain_organs)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1149,26 +1149,25 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/washshoes)
+/mob/living/carbon/human/wash(clean_types)
 	. = ..()
 
 	gunshot_residue = null
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		gloves.clean_blood()
+		gloves.wash(clean_types)
 		update_inv_gloves()
 		gloves.germ_level = 0
 	else
 		bloody_hands = 0
 		germ_level = 0
 
-	//Sometimes do shoes if asked (or feet if no shoes)
-	if(washshoes && shoes)
-		shoes.clean_blood()
+	if(shoes)
+		shoes.wash(clean_types)
 		update_inv_shoes()
 		shoes.germ_level = 0
-	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+	else if(feet_blood_color || LAZYLEN(feet_blood_DNA))
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null
@@ -1310,6 +1309,7 @@
 
 	species.create_organs(src)
 
+	species.apply_components(src)
 
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor
@@ -1319,15 +1319,6 @@
 	pixel_x = default_pixel_x
 	pixel_y = default_pixel_y
 	center_offset = species.center_offset
-
-	if(LAZYLEN(descriptors))
-		descriptors = null
-
-	if(LAZYLEN(species.descriptors))
-		descriptors = list()
-		for(var/desctype in species.descriptors)
-			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
-			descriptors[desctype] = descriptor.default_value
 
 	if(vessel)
 		initialize_vessel()
@@ -1871,3 +1862,17 @@
 
 /mob/living/carbon/human/get_digestion_efficiency_modifier()
 	return species.digestion_efficiency
+
+/mob/living/carbon/human/verb/hide_headset()
+	set name = "Show/Hide Headset"
+	set category = "IC.Settings"
+	set desc = "Toggle headset worn icon visibility."
+	hide_headset = !hide_headset
+	update_inv_ears()
+
+/mob/living/carbon/human/verb/hide_glasses()
+	set name = "Show/Hide Glasses"
+	set category = "IC.Settings"
+	set desc = "Toggle glasses worn icon visibility."
+	hide_glasses = !hide_glasses
+	update_inv_glasses()

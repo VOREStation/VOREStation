@@ -111,3 +111,4 @@ var/total_unit_tests = 0
 // This signal should never be possible to call if the game is not compiled for unit tests
 /datum/unit_test/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
+	return

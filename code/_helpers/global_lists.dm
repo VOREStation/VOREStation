@@ -413,6 +413,17 @@ var/global/list/item_digestion_blacklist = list(
 		/obj/item/mmi/digital/robot,
 		/obj/item/rig/protean)
 
+///A list of chemicals that are banned from being obtainable through means that generate chemicals. These chemicals are either lame, annoying, pref-breaking, or OP (This list does NOT include reactions)
+GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
+	REAGENT_ID_ADMINORDRAZINE,
+	REAGENT_ID_NUTRIMENT,
+	REAGENT_ID_MACROCILLIN,
+	REAGENT_ID_MICROCILLIN,
+	REAGENT_ID_NORMALCILLIN,
+	REAGENT_ID_MAGICDUST,
+	REAGENT_ID_SUPERMATTER
+	))
+
 var/global/list/item_tf_spawnpoints = list() // Global variable tracking which items are item tf spawnpoints
 
 // Options for transforming into a different mob in virtual reality.

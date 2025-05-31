@@ -56,7 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
-		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+		update_icon()
 		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 		add_fingerprint(user)
 		qdel(G)
@@ -101,7 +101,7 @@
 
 	O.forceMove(src)
 	occupant = O
-	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+	update_icon()
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
 	SStgui.update_uis(src)
@@ -184,6 +184,14 @@
 		update_icon() //VOREStation Edit - Health display for consoles with light and such.
 		var/mob/living/carbon/human/H = occupant
 		occupantData["name"] = H.name
+		occupantData["species"] = H.species.name
+		if(H.custom_species)
+			if( H.species.name == SPECIES_CUSTOM )
+				// Fully custom species
+				occupantData["species"] = "[H.custom_species]"
+			else
+				// Using another species as base, doctors should know this to avoid some meds
+				occupantData["species"] = "[H.custom_species] \[Similar biology to [H.species.name]\]"
 		occupantData["stat"] = H.stat
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
@@ -262,7 +270,6 @@
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
 				var/obj/item/implant/I = thing
-			//VOREStation Block Edit Start
 				var/obj/item/nif/N = thing
 				if(istype(I))
 					implantSubData["name"] =  I.name
@@ -272,7 +279,6 @@
 					implantSubData["name"] =  N.name
 					implantSubData["known"] = istype(N) && N.known_implant
 					implantData.Add(list(implantSubData))
-			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -306,6 +312,16 @@
 		occupantData["extOrgan"] = extOrganData
 
 		var/intOrganData[0]
+		for(var/organ_tag in H.species.has_organ) //Check to see if we are missing any organs
+			var/organData[0]
+			var/obj/item/organ/O = H.species.has_organ[organ_tag]
+			var/name = initial(O.name)
+			organData["name"] = name
+			O = H.internal_organs_by_name[organ_tag]
+			if(!O)
+				organData["missing"] = TRUE
+				intOrganData.Add(list(organData))
+
 		for(var/obj/item/organ/I in H.internal_organs)
 			var/organData[0]
 			organData["name"] = I.name
@@ -367,6 +383,17 @@
 
 	dat = span_blue(span_bold("Occupant Statistics:")) + "<br>" //Blah obvious
 	if(istype(occupant)) //is there REALLY someone in there?
+		if(ishuman(occupant))
+			var/mob/living/carbon/human/H = occupant
+			var/speciestext = H.species.name
+			if(H.custom_species)
+				if(H.species.name == SPECIES_CUSTOM )
+					// Fully custom species
+					speciestext = "[H.custom_species]"
+					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
+				else
+					speciestext = "[H.custom_species] \[Similar biology to [H.species.name]\]"
+					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
 		var/t1
 		switch(occupant.stat) // obvious, see what their status is
 			if(0)
@@ -538,6 +565,16 @@
 			dat += "<tr>"
 			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"
 			dat += "</tr>"
+		for(var/organ_tag in occupant.species.has_organ) //Check to see if we are missing any organs
+			var/organData[0]
+			var/obj/item/organ/O = occupant.species.has_organ[organ_tag]
+			var/name = initial(O.name)
+			organData["name"] = name
+			O = occupant.internal_organs_by_name[organ_tag]
+			if(!O) // Missing organ
+				dat += "<tr>"
+				dat += "<td>[name]</td><td>N/A</td><td>NA</td><td>MISSING</td><td></td>"
+				dat += "</tr>"
 		dat += "</table>"
 		if(occupant.sdisabilities & BLIND)
 			dat += span_red("Cataracts detected.") + "<BR>"

@@ -329,20 +329,6 @@
 			return 1
 	return 0
 
-//expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent(REAGENT_ID_WATER, 1) || source.reagents.has_reagent(REAGENT_ID_CLEANER, 1))
-		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			T.dirt = 0
-		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-	else
-		to_chat(user, span_warning("\The [source] is too dry to wash that."))
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
-
 /turf/proc/update_blood_overlays()
 	return
 
@@ -362,7 +348,7 @@
 /turf/proc/can_engrave()
 	return FALSE
 
-/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool)
+/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool, click_parameters)
 
 	if(!tool || !tool.sharp || !can_engrave())
 		return FALSE
@@ -394,6 +380,18 @@
 	var/obj/effect/decal/writing/graffiti = new(src)
 	graffiti.message = message
 	graffiti.author = vandal.ckey
+
+	if(click_parameters)
+		var/list/mouse_control = params2list(click_parameters)
+		var/p_x = 0
+		var/p_y = 0
+		if(mouse_control["icon-x"])
+			p_x = text2num(mouse_control["icon-x"]) - 16
+		if(mouse_control["icon-y"])
+			p_y = text2num(mouse_control["icon-y"]) - 16
+
+		graffiti.pixel_x = p_x
+		graffiti.pixel_y = p_y
 
 	if(lowertext(message) == "elbereth")
 		to_chat(vandal, span_notice("You feel much safer."))
@@ -495,3 +493,21 @@
 	H.ingested.trans_to(V, H.ingested.total_volume / 10)
 	for(var/datum/reagent/R in H.ingested.reagent_list)
 		H.ingested.remove_reagent(R, min(R.volume, 10))
+
+/**
+* 	Called when this turf is being washed. Washing a turf will also wash any mopable floor decals
+*/
+/turf/wash(clean_types)
+	. = ..()
+
+	if(istype(src, /turf/simulated))
+		var/turf/simulated/T = src
+		T.dirt = 0
+
+	for(var/am in src)
+		if(am == src)
+			continue
+		var/atom/movable/movable_content = am
+		if(!ismopable(movable_content))
+			continue
+		movable_content.wash(clean_types)

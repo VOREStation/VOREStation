@@ -116,13 +116,23 @@
 	sprite_icon_state = "uptall2"
 
 // Wide/dogborg sprites
-/*
+
 /datum/robot_sprite/dogborg/standard
 	module_type = "Standard"
-	sprite_icon = 'icons/mob/robot/standard_wide.dmi'
+/*	sprite_icon = 'icons/mob/robot/standard_wide.dmi'
 
 		// None yet
 */
+
+/datum/robot_sprite/dogborg/standard/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_gen.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
+
 // Tall sprites
 /*
 /datum/robot_sprite/dogborg/tall/standard
@@ -135,6 +145,21 @@
 /datum/robot_sprite/dogborg/tall/standard
 	module_type = "Standard"
 	//sprite_icon = 'icons/mob/robot/standard_large.dmi' NOT USED YET
+
+/datum/robot_sprite/dogborg/tall/standard/dullataurstandard
+	name = "Dullataur"
+	sprite_icon_state = "dullataurstandard"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 32
+	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/standard/dullahanv3/standarddully
 	name = "Dullahan standard v3"

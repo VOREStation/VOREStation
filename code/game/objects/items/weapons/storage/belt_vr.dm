@@ -50,7 +50,8 @@
 		/obj/item/radio,
 		/obj/item/mapping_unit,
 		/obj/item/kinetic_crusher,
-		/obj/item/analyzer
+		/obj/item/analyzer,
+		/obj/item/storage/sample_container
 		)
 
 /obj/item/storage/belt/explorer/pathfinder
@@ -118,7 +119,9 @@
 		/obj/item/storage/bag/sheetsnatcher,
 		/obj/item/melee,
 		/obj/item/kinetic_crusher,
-		/obj/item/mining_scanner
+		/obj/item/mining_scanner,
+		/obj/item/storage/bag/ore,
+		/obj/item/storage/sample_container
 		)
 		//Pretty much, if it's in the mining vendor, they should be able to put it on the belt.
 
