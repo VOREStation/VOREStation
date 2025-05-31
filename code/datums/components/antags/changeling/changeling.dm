@@ -111,7 +111,8 @@ var/list/datum/power/changeling/powerinstances = list()
 //Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human
 /mob/proc/make_changeling()
 
-	if(!mind)				return
+	if(!mind)
+		return
 	var/datum/component/antag/changeling/comp = LoadComponent(/datum/component/antag/changeling)
 
 	var/lesser_form = !ishuman(src)
@@ -128,7 +129,8 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	for(var/datum/power/changeling/P in comp.purchased_powers)
 		if(P.isVerb)
-			if(lesser_form && !P.allowduringlesserform)	continue
+			if(lesser_form && !P.allowduringlesserform)
+				continue
 			if(!(P in src.verbs))
 				add_verb(src, P.verbpath)
 			if(P.make_hud_button)

@@ -1,4 +1,4 @@
-/datum/power/changeling/fakedeath
+/datum/power/changeling/fake_death
 	name = "Regenerative Stasis"
 	desc = "We become weakened to a death-like state, where we will rise again from death."
 	helptext = "Can be used before or after death. Duration varies greatly."

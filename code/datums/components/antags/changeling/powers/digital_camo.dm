@@ -1,4 +1,4 @@
-/datum/power/changeling/DigitalCamoflague
+/datum/power/changeling/digital_camoflague
 	name = "Digital Camoflauge"
 	desc = "We evolve the ability to distort our form and proprtions, defeating common altgorthms used to detect lifeforms on cameras."
 	helptext = "We cannot be tracked by camera while using this skill.  However, humans looking at us will find us.. uncanny.  We must constantly expend chemicals to maintain our form like this."

@@ -1,5 +1,5 @@
 //This only exists to be abused, so it's highly recommended to ensure this file is unchecked.
-/datum/power/changeling/LSDSting
+/datum/power/changeling/lsd_sting
 	name = "Hallucination Sting"
 	desc = "We evolve the ability to sting a target with a powerful hallunicationary chemical."
 	helptext = "The target does not notice they have been stung.  The effect occurs after 30 to 60 seconds."

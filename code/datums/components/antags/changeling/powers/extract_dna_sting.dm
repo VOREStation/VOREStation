@@ -1,4 +1,4 @@
-/datum/power/changeling/extractdna
+/datum/power/changeling/extract_dna
 	name = "Extract DNA"
 	desc = "We stealthily sting a target and extract the DNA from them."
 	helptext = "Will give you the DNA of your target, allowing you to transform into them. Does not count towards absorb objectives."

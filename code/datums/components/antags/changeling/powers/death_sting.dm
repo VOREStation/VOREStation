@@ -1,4 +1,4 @@
-/datum/power/changeling/DeathSting
+/datum/power/changeling/death_sting
 	name = "Death Sting"
 	desc = "We silently sting a human, filling him with potent chemicals. His rapid death is all but assured."
 	ability_icon_state = "ling_sting_death"
