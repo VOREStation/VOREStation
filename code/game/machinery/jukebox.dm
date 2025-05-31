@@ -35,6 +35,7 @@
 	update_icon()
 	if(!LAZYLEN(getTracksList()))
 		stat |= BROKEN
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
