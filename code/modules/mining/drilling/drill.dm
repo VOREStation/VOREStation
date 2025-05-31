@@ -110,6 +110,7 @@
 		cell = new cell(src)
 	default_apply_parts()
 	faultreporter = new /obj/item/radio/intercom{channels=list("Supply")}(null)
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/mining/drill/Destroy()
 	qdel_null(faultreporter)
@@ -426,6 +427,7 @@
 /obj/machinery/mining/brace/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/mining/brace/RefreshParts()
 	..()

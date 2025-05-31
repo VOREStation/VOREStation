@@ -13,6 +13,10 @@
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
 
+/obj/structure/closet/secure_closet/freezer/kitchen/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
 

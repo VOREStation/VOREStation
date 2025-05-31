@@ -23,6 +23,10 @@
 	var/release_log = ""
 	var/update_flag = 0
 
+/obj/machinery/portable_atmospherics/canister/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
 
