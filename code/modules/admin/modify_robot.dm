@@ -83,8 +83,6 @@
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
 			for(var/obj/item/robotic_multibelt/multibelt in target.module.modules)
-				if(istype(multibelt, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
-					continue
 				.["target"]["multibelt"] += list(get_mult_belt(multibelt))
 
 
@@ -344,9 +342,7 @@
 			qdel(rem_kit)
 			return TRUE
 		if("select_multibelt")
-			to_world("Pre multibelt_holder = [multibelt_holder] params = [params["multibelt"]]")
 			multibelt_holder = locate(params["multibelt"])
-			to_world("Post multibelt_holder = [multibelt_holder]")
 			return TRUE
 		if("install_tool")
 			if(!istype(multibelt_holder))
