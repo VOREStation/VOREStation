@@ -23,6 +23,10 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 	var/static/list/equippable_item_whitelist
 
+/obj/structure/janitorialcart/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 /obj/structure/janitorialcart/proc/equip_janicart_item(mob/user, obj/item/I)
 	if(!equippable_item_whitelist)
 		equippable_item_whitelist = typecacheof(list(
@@ -387,7 +391,6 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 /obj/structure/bed/chair/janicart/Initialize(mapload, new_material, new_padding_material)
 	. = ..()
 	create_reagents(300)
-	AddComponent(/datum/component/climbable)
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
 	. = ..()
