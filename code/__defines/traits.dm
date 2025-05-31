@@ -210,5 +210,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define FERVEATIUM_TRAIT "ferveatium"
 */
 
+#define STRONG_IMMUNITY_TRAIT "strongimmunity"
+
 #define ORGANICS	1
 #define SYNTHETICS	2
