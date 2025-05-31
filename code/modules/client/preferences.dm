@@ -628,7 +628,7 @@ var/list/preferences_datums = list()
 	character.custom_whisper	= lowertext(trim(custom_whisper))
 	character.custom_exclaim	= lowertext(trim(custom_exclaim))
 
-	character.digitigrade = selected_species.digi_allowed ? digitigrade : 0
+	character.digitigrade = digitigrade
 
 	for(var/obj/item/clothing/O in character.contents)
 		O.handle_digitigrade(character)
