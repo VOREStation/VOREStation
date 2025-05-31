@@ -84,8 +84,9 @@
 			for(var/obj/item/robotic_multibelt/multibelt in target.module.modules)
 				if(istype(multibelt, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
 					continue
-				.["target"]["multibelt"] += get_mult_belt(multibelt)
-				break //We only add one...for now.
+				.["target"]["multibelt"] += list(get_mult_belt(multibelt))
+
+
 			// Radio section
 			var/list/radio_channels = list()
 			for(var/channel in target.radio.channels)

@@ -34,7 +34,7 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
               fluid
               value={SearchMultibelt}
               placeholder="Search for tools..."
-              onInput={(e, value: string) => setSearchMultibelt(value)}
+              onChange={(value: string) => setSearchMultibelt(value)}
             />
             <Divider />
             {prepareSearch(target.multibelt.tools, SearchMultibelt).map(
@@ -69,7 +69,7 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
               fluid
               value={searchInstalledtext}
               placeholder="Search for tools..."
-              onInput={(e, value: string) => setSearchInstalledtext(value)}
+              onChange={(value: string) => setSearchInstalledtext(value)}
             />
             <Divider />
             {prepareSearch(

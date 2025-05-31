@@ -66,7 +66,7 @@ export type Target = {
   radio_channels: string[];
   availalbe_channels: string[];
   pka: PKA | undefined;
-  multibelt: Multibelt | undefined;
+  multibelt: Multibelt[] | undefined;
   components: Component[];
   active_access: Access[];
 };

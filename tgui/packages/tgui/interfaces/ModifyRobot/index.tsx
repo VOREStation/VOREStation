@@ -18,6 +18,7 @@ import { ModifyRobotNoModule } from './ModifyRobotNoModule';
 import { ModifyRobotAccess } from './ModifyRobotTabs/ModifyRobotAccess';
 import { ModifyRobotComponent } from './ModifyRobotTabs/ModifyRobotComponent';
 import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
+import { ModifyRobotMultiBelt } from './ModifyRobotTabs/ModifyRobotMultiBelt';
 import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
 import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
 import { ModifyRobotUpgrades } from './ModifyRobotTabs/ModifyRobotUpgrades';
@@ -146,6 +147,7 @@ export const ModifyRobot = (props) => {
       />
     </Section>
   );
+  tabs[8] = <ModifyRobotMultiBelt target={target!} />;
 
   return (
     <Window width={target?.module ? 900 : 400} height={700}>
@@ -280,6 +282,9 @@ export const ModifyRobot = (props) => {
                 </Tabs.Tab>
                 <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
                   Law Sets
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 8} onClick={() => setTab(8)}>
+                  ModifyRobotMultiBelt
                 </Tabs.Tab>
               </Tabs>
               {tabs[tab]}
