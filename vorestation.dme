@@ -506,7 +506,6 @@
 #include "code\datums\components\antags\changeling\changeling.dm"
 #include "code\datums\components\antags\changeling\helpers\absorbed_dna.dm"
 #include "code\datums\components\antags\changeling\helpers\generic_equip_procs.dm"
-#include "code\datums\components\antags\changeling\helpers\modularchangling.dm"
 #include "code\datums\components\antags\changeling\powers\absorb.dm"
 #include "code\datums\components\antags\changeling\powers\armblade.dm"
 #include "code\datums\components\antags\changeling\powers\armor.dm"

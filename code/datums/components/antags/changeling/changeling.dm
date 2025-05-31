@@ -2,6 +2,23 @@
 ///Stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsilon","Eta","Gamma","Iota","Kappa","Lambda","Mu","Nu","Omega","Omicron","Phi","Pi","Psi","Rho","Sigma","Tau","Theta","Upsilon","Xi","Zeta")) //ALPHABETICAL ORDER.
 
+//Needs cleanup
+var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
+var/list/datum/power/changeling/powerinstances = list()
+/datum/power			//Could be used by other antags too
+	var/name = "Power"
+	var/desc = "Placeholder"
+	var/helptext = ""
+	var/enhancedtext = ""
+	var/isVerb = 1 	// Is it an active power, or passive?
+	var/verbpath // Path to a verb that contains the effects.
+	var/make_hud_button = 1 // Is this ability significant enough to dedicate screen space for a HUD button?
+	var/ability_icon_state = null // icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
+
+/datum/power/changeling
+	var/allowduringlesserform = 0
+	var/genomecost = 500000 // Cost for the changeling to evolve this power.
+
 /datum/component/antag/changeling
 	var/list/datum/absorbed_dna/absorbed_dna = list()
 	var/list/absorbed_languages = list() // Necessary because of set_species stuff
@@ -27,6 +44,7 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 	var/last_shriek = null // world.time when the ling last used a shriek.
 	var/next_escape = 0	// world.time when the ling can next use Escape Restraints
 	var/thermal_sight = FALSE	// Is our Vision Augmented? With thermals?
+	var/datum/changeling_panel/power_panel //Our changeling eveolution panel. Generated the first time we try to open the panel.
 	dupe_mode = COMPONENT_DUPE_UNIQUE //Only the first changeling application survives!
 
 /datum/component/antag/changeling/Initialize()
@@ -44,7 +62,16 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 		owner.add_language("Changeling")
 
 /datum/component/antag/changeling/Destroy(force = FALSE)
+	if(owner)
+		remove_verb(owner,/mob/proc/EvolutionMenu)
+		remove_verb(owner,/mob/proc/changeling_respec)
+	qdel_null(power_panel)
+	absorbed_dna.Cut()
+	absorbed_languages.Cut()
+	purchased_powers.Cut()
+	purchased_powers_history.Cut()
 	. = ..()
+
 	//TODO: Clear all the lists and stuff here
 
 //Former /datum/changeling procs
@@ -258,6 +285,73 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 			L.Add(t)
 	return L
 
+/mob/proc/EvolutionMenu()
+	set name = "-Evolution Menu-"
+	set category = "Changeling"
+	set desc = "Adapt yourself carefully."
+
+	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		to_chat(src, "You are not a changeling!")
+		return
+	if(!powerinstances.len)
+		for(var/changeling_power in powers)
+			powerinstances += new changeling_power()
+	if(!comp.power_panel)
+		comp.power_panel = new()
+		comp.power_panel.comp = comp
+
+	comp.power_panel.tgui_interact(src)
+
+///Purchasing a power. Called by the Evolution Panel.
+/datum/component/antag/changeling/proc/purchasePower(var/mob/owner, var/Pname, var/remake_verbs = 1)
+
+	var/datum/power/changeling/Thepower = Pname
+
+	for (var/datum/power/changeling/P in powerinstances)
+		//to_world("[P] - [Pname] = [P.name == Pname ? "True" : "False"]")
+		if(P.name == Pname)
+			Thepower = P
+			break
+
+
+	if(Thepower == null)
+		to_chat(owner, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
+		return
+
+	if(Thepower in purchased_powers)
+		to_chat(owner, "We have already evolved this ability!")
+		return
+
+
+	if(geneticpoints < Thepower.genomecost)
+		to_chat(owner, "We cannot evolve this... yet.  We must acquire more DNA.")
+		return
+
+	geneticpoints -= Thepower.genomecost
+
+	purchased_powers += Thepower
+
+	if(Thepower.genomecost > 0)
+		purchased_powers_history.Add("[Pname] ([Thepower.genomecost] points)")
+
+	if(Thepower.make_hud_button && Thepower.isVerb)
+		if(owner.ability_master)
+			owner.ability_master = new /obj/screen/movable/ability_master(owner)
+		owner.ability_master.add_ling_ability(
+			object_given = owner,
+			verb_given = Thepower.verbpath,
+			name_given = Thepower.name,
+			ability_icon_given = Thepower.ability_icon_state,
+			arguments = list()
+			)
+
+	if(!Thepower.isVerb && Thepower.verbpath)
+		call(owner, Thepower.verbpath)()
+	else if(remake_verbs)
+		owner.make_changeling()
+
+
 //Debug item. Here because during debugging I DO NOT want to have to open the player panel 5000 times.
 /obj/item/toy/katana/changeling_debug
 	name = "Katana of the Changeling"
@@ -268,224 +362,51 @@ GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsi
 
 
 
+///Changeling Panel
+/datum/changeling_panel
+	var/datum/component/antag/changeling/comp
 
+/datum/changeling_panel/Destroy(force)
+	comp = null
+	. = ..()
 
+/datum/changeling_panel/tgui_state(mob/user)
+	return GLOB.tgui_always_state
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//Legacy changeling stuff. Kept here for reference.
-///Changeling Browser stuff
-/client
-	var/datum/managed_browser/changelingevolution/changelingevolution = null
-
-/datum/managed_browser/changelingevolution
-	base_browser_id = "evolution_tree"
-	title = "Evolution Tree"
-	size_x = 480
-	size_y = 600
-	var/textbody = null
-
-/datum/managed_browser/changelingevolution/New(client/new_client)
-	if(!new_client.mob || !new_client.mob.mind || !new_client.mob.mind.changeling)
-		message_admins("[new_client] tried to access changeling evolutions while not changeling.")
-		qdel(src)
-
-	..()
-
-/datum/managed_browser/changelingevolution/Destroy()
-	if(my_client)
-		my_client.changelingevolution = null
+/datum/changeling_panel/tgui_status(mob/user)
+	if(!isliving(user)) //We ghosted or something.
+		return STATUS_CLOSE
 	return ..()
 
-/datum/managed_browser/changelingevolution/get_html()
-	var/list/dat = list("<html><body>")
-	var/geneticpoints_current = my_client.mob.mind.changeling.geneticpoints
-	var/geneticpoints_max = my_client.mob.mind.changeling.max_geneticpoints
+/datum/changeling_panel/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src,"ChangelingPanel", "Changeling Evolution Panel", parent_ui)
+		ui.open()
 
-	dat += "<center>Genetic Points Available: [geneticpoints_current] / [geneticpoints_max] <br>"
-	dat += "Obtain more by feeding on your own kind. <br> <hr>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];tutorial=1'>What am I?</a><br><hr>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];inherent=1'>Inherent</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];armor=1'>Armor</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];weapons=1'>Weapons</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];stings=1'>Stings</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];shrieks=1'>Shrieks</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];health=1'>Health</a>"
-	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];enhancements=1'>Enhancements</a></center>"
-	if(textbody)
-		dat += "<table border='1' style='width:100%; background-color:#000000;'>"
-		dat += "[textbody]"
-		dat += "</table>"
-	dat += "</body></html>"
+/datum/changeling_panel/tgui_data(mob/living/carbon/human/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list()
+	var/list/power_list = list()
 
-	return dat.Join()
-
-/datum/managed_browser/changelingevolution/Topic(href, href_list[])
-	if(!my_client)
-		return FALSE
-
-	if(href_list["close"])
-		return
-
-	if(href_list["inherent"])
-		generate_abilitylist(CHANGELING_POWER_INHERENT)
-
-	if(href_list["armor"])
-		generate_abilitylist(CHANGELING_POWER_ARMOR)
-
-	if(href_list["weapons"])
-		generate_abilitylist(CHANGELING_POWER_WEAPONS)
-
-	if(href_list["stings"])
-		generate_abilitylist(CHANGELING_POWER_STINGS)
-
-	if(href_list["shrieks"])
-		generate_abilitylist(CHANGELING_POWER_SHRIEKS)
-
-	if(href_list["health"])
-		generate_abilitylist(CHANGELING_POWER_HEALTH)
-
-	if(href_list["enhancements"])
-		generate_abilitylist(CHANGELING_POWER_ENHANCEMENTS)
-
-	if(href_list["evolve"])
-		var/datum/mind/M = my_client.mob.mind
-		var/datum/component/antag/changeling/C = my_client.mob.mind.changeling
-		var/datum/power/changeling/Thepower = href_list["evolve"]
-
-		for (var/datum/power/changeling/P in powerinstances)
-			if(P.name == Thepower)
-				Thepower = P
-				break
-
-		if(!istype(M))
-			return
-
-		if(Thepower == null)
-			to_chat(M.current, "Purchase failed. Inform a dev of this error.")
-			return
-
-		if(Thepower in C.purchased_powers)
-			to_chat(M.current, "You already have this ability! Inform a dev of this error.") /// Should not be possible
-			return
-
-		if(C.geneticpoints < Thepower.genomecost)
-			to_chat(M.current, "We cannot evolve this... yet.  We must acquire more DNA.")
-			return
-
-		C.purchased_powers += Thepower /// Set it to purchased
-		C.geneticpoints -= Thepower.genomecost
-		generate_abilitylist(Thepower.power_category) /// Refresh the UI
-
-		my_client.mob.mind.changeling.purchasePower(M, Thepower)
-
-	if(href_list["tutorial"])
-		textbody = "<tr><th><center>" + span_red("What am I?") + "</center><br></th></tr>"
-		textbody += "<tr><td>"
-		textbody += span_white("You are a changeling, a creature empowered with genetic-based abilities that change your body in bizarre ways.")
-		textbody += span_white(" It's probably best the crew doesn't know about your power -- at least not right away.") + "<br><br>"
-		textbody += span_white("What a changeling " + span_italics("is"), + " however, is up to you. Are you a strange alien impersonating crew? Are you a")
-		textbody += span_white(" normal crewmember infected with a parasite? An experiment gone wrong? It's up to you to make the story.") + "<br><br>"
-		textbody += span_white("Of course, you need to know how it works to begin with.") + "<br><br>"
-		textbody += span_white("Your abilities cost chemicals that your body will slowly regenerate with varying speeds based on enhancements obtained.")
-		textbody += span_white(" There are a set of inherent abilities you will always have while the rest may be purchased through genomes.") + "<br><br>"
-		textbody += span_white("You may obtain more genomes if you find another changeling and absorb them, but this is not required. If you've found ")
-		textbody += span_white("your abilities aren't to your liking, you have up to two re-adapts available, and these may be refilled by absorbing anyone -- including monkeys.") + "<br><br>"
-		textbody += span_white("Good luck and remember, killing isn't always the end goal.")
-		display()
-
-/datum/managed_browser/changelingevolution/proc/generate_abilitylist(cat)
-	var/list/ability_list = list()
-	var/info = ""
-	var/catname = ""
 	for(var/datum/power/changeling/P in powerinstances)
-		if(P.power_category == cat)
-			ability_list[++ability_list.len] = P
-	switch(cat)
-		if(CHANGELING_POWER_INHERENT)
-			catname = "Inherent"
-			info = "These powers are inherent to your kind and will always be accessible, provided you have the chemicals to use them."
-		if(CHANGELING_POWER_ARMOR)
-			catname = "Armor"
-			info = "These abilities will provide you with space protection -- and potentially armor."
-		if(CHANGELING_POWER_WEAPONS)
-			catname = "Weapons"
-			info = "These abilities will provide you the means to fight back."
-		if(CHANGELING_POWER_STINGS)
-			catname = "Stings"
-			info = "These abilities provide the means to sting organic beings for various effects -- though you must be close enough, and they must have exposed flesh."
-		if(CHANGELING_POWER_SHRIEKS)
-			catname = "Shrieks"
-			info = "These abilities enhance your vocal chords, empowering your screams."
-		if(CHANGELING_POWER_HEALTH)
-			catname = "Health"
-			info = "These abilities will enhance your health or aid you in mending your wounds."
-		if(CHANGELING_POWER_ENHANCEMENTS)
-			catname = "Enhancements"
-			info = "These abilities enhance you in various ways."
-	create_textbody(ability_list, catname, info)
+		var/list/all_powers = list(
+			"power_name" = P.name,
+			"power_cost" = P.genomecost, //genomecost
+			"power_purchased" = (P in comp.purchased_powers),
+			"power_desc" = P.desc,
+		)
+		UNTYPED_LIST_ADD(power_list, all_powers)
 
-/datum/managed_browser/changelingevolution/proc/create_textbody(ability_list, cat, catinfo)
-	textbody = "<tr><th><center>" + span_red("[cat] Skills") + "<br></th></tr>"
-	textbody += "<tr><td>" + span_white("[catinfo]") + "</center><br><hr></td></tr>"
-	for(var/A in ability_list)
-		var/datum/power/changeling/powerdata = A
-		textbody += "<tr><td><center>" + span_red(span_bold("[initial(powerdata.name)]")) + "<br></center>"
-		textbody += span_white("[initial(powerdata.desc)]") + "<br><br>"
-		textbody += span_white(span_italics("[powerdata.helptext]")) + "<br>"
-		if(powerdata.enhancedtext != "")
-			textbody += span_white(span_bold("WHEN ENHANCED: ") + span_italics("[powerdata.enhancedtext]")) + "<br>"
-		if(powerdata in my_client.mob.mind.changeling.purchased_powers)
-			textbody += "<center>" + span_white(span_italics(span_bold("This ability is already evolved!"))) + "</center>"
-		else if(cat != "Inherent")
-			textbody += "<center>Cost: [powerdata.genomecost]</center>"
-			textbody += "<center><a style='background-color:#c72121;' href='byond://?src=\ref[src];evolve=[A]'>Evolve</a></center>"
-		textbody += "</td></tr>"
-	display()
-*/
+	data["available_points"] = comp.geneticpoints
+	data["power_list"] = power_list
+
+	return data
+
+/datum/changeling_panel/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("evolve_power")
+			comp.purchasePower(comp.owner, params["val"]) //The power must be the power's NAME.
+			return TRUE

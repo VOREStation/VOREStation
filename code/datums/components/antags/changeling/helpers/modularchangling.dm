@@ -2,24 +2,6 @@
 
 //Ling power's evolution menu entry datum should be contained alongside the mob proc for the actual power, in their own file.
 
-var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
-var/list/datum/power/changeling/powerinstances = list()
-
-/datum/power			//Could be used by other antags too
-	var/name = "Power"
-	var/desc = "Placeholder"
-	var/helptext = ""
-	var/enhancedtext = ""
-	var/isVerb = 1 	// Is it an active power, or passive?
-	var/verbpath // Path to a verb that contains the effects.
-	var/make_hud_button = 1 // Is this ability significant enough to dedicate screen space for a HUD button?
-	var/ability_icon_state = null // icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
-
-/datum/power/changeling
-	var/allowduringlesserform = 0
-	var/genomecost = 500000 // Cost for the changeling to evolve this power.
-
-
 /mob/proc/EvolutionMenu() //Needs to be replaced w/ TGUI because LMAO
 	set name = "-Evolution Menu-"
 	set category = "Changeling"
@@ -32,7 +14,12 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(!powerinstances.len)
 		for(var/changeling_power in powers)
 			powerinstances += new changeling_power()
+	if(!comp.power_panel)
+		comp.power_panel = new()
+		comp.power_panel.comp = comp
 
+	comp.power_panel.tgui_interact(src)
+/*
 	var/dat = "<html><head><title>Changeling Evolution Menu</title></head>"
 
 	//javascript, the part that does most of the work~
@@ -292,62 +279,4 @@ var/list/datum/power/changeling/powerinstances = list()
 	"}
 
 	usr << browse(dat, "window=powers;size=900x480")
-
-
-/mob/Topic(href, href_list) //Needs to be replaced w/ TGUI because LMAO
-	..()
-	var/datum/component/antag/changeling/comp = usr.GetComponent(/datum/component/antag/changeling)
-	if(!comp)
-		return
-	if(href_list["changeling_power"])
-		comp.purchasePower(comp.owner, href_list["changeling_power"])
-		comp.owner.EvolutionMenu()
-
-
-
-/datum/component/antag/changeling/proc/purchasePower(var/mob/owner, var/Pname, var/remake_verbs = 1)
-
-	var/datum/power/changeling/Thepower = Pname
-
-	for (var/datum/power/changeling/P in powerinstances)
-		//to_world("[P] - [Pname] = [P.name == Pname ? "True" : "False"]")
-		if(P.name == Pname)
-			Thepower = P
-			break
-
-
-	if(Thepower == null)
-		to_chat(owner, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
-		return
-
-	if(Thepower in purchased_powers)
-		to_chat(owner, "We have already evolved this ability!")
-		return
-
-
-	if(geneticpoints < Thepower.genomecost)
-		to_chat(owner, "We cannot evolve this... yet.  We must acquire more DNA.")
-		return
-
-	geneticpoints -= Thepower.genomecost
-
-	purchased_powers += Thepower
-
-	if(Thepower.genomecost > 0)
-		purchased_powers_history.Add("[Pname] ([Thepower.genomecost] points)")
-
-	if(Thepower.make_hud_button && Thepower.isVerb)
-		if(owner.ability_master)
-			owner.ability_master = new /obj/screen/movable/ability_master(owner)
-		owner.ability_master.add_ling_ability(
-			object_given = owner,
-			verb_given = Thepower.verbpath,
-			name_given = Thepower.name,
-			ability_icon_given = Thepower.ability_icon_state,
-			arguments = list()
-			)
-
-	if(!Thepower.isVerb && Thepower.verbpath)
-		call(owner, Thepower.verbpath)()
-	else if(remake_verbs)
-		owner.make_changeling()
+*/
