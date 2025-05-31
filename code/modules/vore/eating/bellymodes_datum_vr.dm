@@ -124,10 +124,16 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	id = DM_UNABSORB
 
 /datum/digest_mode/unabsorb/process_mob(obj/belly/B, mob/living/L)
-	if(L.absorbed && B.owner.nutrition >= 100)
-		B.owner.adjust_nutrition(-100)
-		B.unabsorb_living(L)
-		return list("to_update" = TRUE)
+	if(L.absorbed)
+		if(B.owner.nutrition >= 100)
+			B.owner.adjust_nutrition(-100)
+			B.unabsorb_living(L)
+			return list("to_update" = TRUE)
+		else if(isrobot(B.owner))
+			var/mob/living/silicon/robot/robot_owner = B.owner
+			if(robot_owner.cell_use_power(100))
+				B.unabsorb_living(L)
+				return list("to_update" = TRUE)
 
 /datum/digest_mode/drain
 	id = DM_DRAIN

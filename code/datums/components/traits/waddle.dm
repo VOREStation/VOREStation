@@ -8,7 +8,6 @@
 	var/waddle_max = 12
 	var/waddle_time = 2
 
-
 /datum/component/waddle_trait/Initialize()
 	if (!isobj(parent) && !ismob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -20,6 +19,7 @@
 	RegisterSignal(our_atom, COMSIG_MOVABLE_MOVED, PROC_REF(handle_comp))
 
 /datum/component/waddle_trait/proc/handle_comp()
+	SIGNAL_HANDLER
 	if (QDELETED(our_atom))
 		return
 	//Living owner only. No waddling while downed.
@@ -39,7 +39,7 @@
 	. = ..()
 
 /mob/living/verb/toggle_waddle()
-	set name = "Toggle Waddling"
+	set name = "Toggle or Enable Waddling"
 	set desc = "Allows you to toggle if you want to walk with a waddle or not!"
 	set category = "Preferences.Character"
 	var/datum/component/waddle_trait/comp = LoadComponent(/datum/component/waddle_trait)
@@ -69,7 +69,8 @@
 	set category = "Preferences.Character"
 	var/datum/component/waddle_trait/comp = GetComponent(/datum/component/waddle_trait)
 	if(comp)
-		var/Z_height = tgui_input_number(src, "Put the desired waddle height. (0.5 is default. 0 min 4 max)", "Set Height", 0.5, 4, 0)
+		var/Z_height = tgui_input_number(src, "Put the desired waddle height. (5 is default. 0 min 40 max)", "Set Height", 5, 40, 0)
+		Z_height = Z_height/10 //Clear numbers
 		if(Z_height > 4 || Z_height < 0 )
 			to_chat(src, span_notice("Invalid height!"))
 			return
@@ -87,12 +88,13 @@
 			return
 		comp.waddle_max = max
 
-		var/time = tgui_input_number(src, "Put the desired waddle animation time. (2 is default. 1 min, 2 max)", "Set Time", 2, 2, 1)
+		var/time = tgui_input_number(src, "Put the desired waddle animation time. (20 is default. 10 min, 20 max)", "Set Time", 20, 20, 10)
+		time = time/10 //Clear numbers
 		if(time > 2 || time < 1 )
 			to_chat(src, span_notice("Invalid number!"))
 			return
 		comp.waddle_time = time
-		to_chat(src, span_notice("You have set your waddle height to [comp.waddle_z], your back lean to [comp.waddle_min], your forward lean to [comp.waddle_max] and your waddle time to [comp.waddle_time]! You will now waddle!"))
+		to_chat(src, span_notice("You have set your waddle height to [comp.waddle_z*10], your back lean to [comp.waddle_min], your forward lean to [comp.waddle_max] and your waddle time to [comp.waddle_time*10]! You will now waddle!"))
 		comp.waddling = 1 //Activate it!
 
 /datum/component/waddle_trait/proc/waddle_waddle(atom/movable/target)

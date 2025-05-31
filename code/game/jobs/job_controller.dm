@@ -449,9 +449,10 @@ var/global/datum/controller/occupations/job_master
 		// Stick their fingerprints on literally everything
 		job.apply_fingerprints(H)
 
-		// Only non-silicons get post-job-equip equipment
+		// Only non-silicons get post-job-equip equipment and dormant diseases
 		if(!(job.mob_type & JOB_SILICON))
 			H.equip_post_job()
+			H.give_random_dormant_disease(guaranteed_symptoms = job.symptoms)
 
 		// If some custom items could not be equipped before, try again now.
 		for(var/thing in custom_equip_leftovers)

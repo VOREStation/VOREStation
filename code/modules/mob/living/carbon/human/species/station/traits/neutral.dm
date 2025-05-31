@@ -1691,7 +1691,8 @@
 /datum/trait/neutral/waddle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
 	var/datum/component/waddle_trait/G = H.GetComponent(added_component_path)
-	G.waddling = trait_prefs["waddler"]
+	if(trait_prefs)
+		G.waddling = trait_prefs["waddler"]
 
 /datum/trait/neutral/nutritiongrow
 	name = "Growing"
@@ -1708,3 +1709,26 @@
 	cost = 0
 	hidden = TRUE //Disabled on Virgo
 	added_component_path = /datum/component/nutrition_size_change/shrinking
+
+/datum/trait/neutral/disease_carrier
+	name = "Disease Carrier"
+	desc = "Your species is a carrier of diseases! Watch out for virologists."
+	excludes = list(/datum/trait/neutral/strongimmunesystem)
+	cost = 0
+	can_take = ORGANICS
+	custom_only = FALSE
+
+/datum/trait/neutral/disease_carrier/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	H.give_random_dormant_disease(200, 2, 3, 1, 9)
+
+/datum/trait/neutral/strongimmunesystem
+	name = "Strong Immune System"
+	desc = "Your immune system is so strong, that not even dormant diseases can survive in you."
+	cost = 0
+
+	can_take = ORGANICS
+
+/datum/trait/neutral/strongimmunesystem/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, STRONG_IMMUNITY_TRAIT, ROUNDSTART_TRAIT)
