@@ -46,6 +46,15 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/thermal_sight = FALSE	// Is our Vision Augmented? With thermals?
 	var/datum/changeling_panel/power_panel //Our changeling eveolution panel. Generated the first time we try to open the panel.
 	dupe_mode = COMPONENT_DUPE_UNIQUE //Only the first changeling application survives!
+	var/cooldown_time = 1 SECOND // How long before we can use our sting again
+	var/last_used_sting_time = 0 // world.time when we used last used a power.
+
+///Handles the cooldown for the power. Returns TRUE if the cooldown has passed. FALSE if it's still on cooldown.
+/datum/component/antag/changeling/proc/handle_cooldown()
+	if(world.time > last_used_sting_time+cooldown_time)
+		last_used_sting_time = world.time
+		return TRUE
+	return FALSE
 
 /datum/component/antag/changeling/Initialize()
 	..()
@@ -218,6 +227,9 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/datum/component/antag/changeling/comp = changeling_power(required_chems)
 	if(!comp)
 		return
+	if(!comp.handle_cooldown())
+		to_chat(src, span_warning("We are still recovering from our last sting."))
+		return
 
 	var/list/victims = list()
 	for(var/mob/living/carbon/C in oview(comp.sting_range))
@@ -225,6 +237,9 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/mob/living/carbon/T = tgui_input_list(src, "Who will we sting?", "Sting!", victims)
 
 	if(!T)
+		return
+	if(!comp.handle_cooldown())//Check again in case we have multiple windows open at once.
+		to_chat(src, span_warning("We are still recovering from our last sting."))
 		return
 	if(T.isSynthetic())
 		to_chat(src, span_notice("We are unable to pierce the outer shell of [T]."))
@@ -235,13 +250,12 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	comp.chem_charges -= required_chems
 	comp.sting_range = 1
-	remove_verb(src, verb_path)
-	spawn(10)	add_verb(src, verb_path) //WTF? THIS IS NOT HOW YOU DO A COOLDOWN, WHAT THE FUCK
 
 	to_chat(src, span_notice("We stealthily sting [T]."))
 	var/datum/component/antag/changeling/target_comp = T.GetComponent(/datum/component/antag/changeling)
-	if(!T.mind || !target_comp)	return T	//T will be affected by the sting
 	to_chat(T, span_warning("You feel a tiny prick."))
+	if(!T.mind || !target_comp)
+		return T	//T will be affected by the sting
 	return
 
 //Former /turf procs
@@ -391,7 +405,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	for(var/datum/power/changeling/P in powerinstances)
 		var/list/all_powers = list(
 			"power_name" = P.name,
-			"power_cost" = P.genomecost, //genomecost
+			"power_cost" = P.genomecost,
 			"power_purchased" = (P in comp.purchased_powers),
 			"power_desc" = P.desc,
 		)
@@ -410,3 +424,4 @@ var/list/datum/power/changeling/powerinstances = list()
 		if("evolve_power")
 			comp.purchasePower(comp.owner, params["val"]) //The power must be the power's NAME.
 			return TRUE
+	return TRUE
