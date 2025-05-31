@@ -41,7 +41,6 @@
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
 	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
@@ -75,10 +74,12 @@
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
 	if(!istype(new_character))
 		to_world_log("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
-	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
+	var/datum/component/antag/changeling/comp
+	if(current)
+		comp = current.GetComponent(/datum/component/antag/changeling)			//remove ourself from our old body's mind variable
+		if(comp)
 			current.remove_changeling_powers()
-			remove_verb(current, /datum/changeling/proc/EvolutionMenu)
+			remove_verb(current, /mob/proc/EvolutionMenu)
 		current.mind = null
 
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
@@ -87,7 +88,7 @@
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
-	if(changeling)
+	if(comp)
 		new_character.make_changeling()
 
 	if(active || force)
@@ -465,7 +466,7 @@
 	role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
+	//changeling =    null //TODO: Figure out where this is all used and move it from mind to mob.
 	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
