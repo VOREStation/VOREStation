@@ -21,6 +21,7 @@
 /obj/machinery/atmospherics/pipe/tank/Initialize(mapload)
 	icon_state = "air"
 	. = ..()
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/atmospherics/pipe/tank/init_dir()
 	initialize_directions = dir

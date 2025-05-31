@@ -32,6 +32,7 @@
 /obj/machinery/washing_machine/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	AddComponent(/datum/component/climbable)
 
 /obj/machinery/washing_machine/AltClick()
 	start()

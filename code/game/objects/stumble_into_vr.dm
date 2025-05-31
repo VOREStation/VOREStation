@@ -7,7 +7,8 @@
 	M.stop_flying()
 
 /obj/structure/table/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
+	var/obj/occupied = C.turf_is_crowded()
 	if(occupied)
 		return ..()
 	if(material)
@@ -70,7 +71,8 @@
 	M.stop_flying()
 
 /obj/structure/railing/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
+	var/obj/occupied = C.turf_is_crowded()
 	if(occupied)
 		return ..()
 	playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)

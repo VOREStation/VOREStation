@@ -105,7 +105,7 @@
 
 	take_victim(target, user)
 
-/obj/machinery/optable/verb/climb_on()
+/obj/machinery/optable/verb/climb_onto()
 	set name = "Climb On Table"
 	set category = "Object"
 	set src in oview(1)

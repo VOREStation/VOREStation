@@ -19,8 +19,10 @@ SUBSYSTEM_DEF(mobs)
 	var/slept_mobs = 0
 	var/list/process_z = list()
 
+	var/list/death_list = list()
+
 /datum/controller/subsystem/mobs/stat_entry(msg)
-	msg = "P: [global.mob_list.len] | S: [slept_mobs]"
+	msg = "P: [global.mob_list.len] | S: [slept_mobs] | D: [death_list.len]"
 	return ..()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
@@ -30,6 +32,14 @@ SUBSYSTEM_DEF(mobs)
 		slept_mobs = 0
 		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
+		// Lets handle all of these while we have time, should always remain extremely small...
+		if(death_list.len && CONFIG_GET(flag/sql_enabled)) // Don't contact DB if this list is empty
+			establish_db_connection()
+			if(!SSdbcore.IsConnected())
+				log_game("SQL ERROR during death reporting. Failed to connect.")
+			else
+				SSdbcore.MassInsert(format_table_name("death"), death_list)
+			death_list.Cut()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -92,3 +102,36 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/critfail()
 	..()
 	log_recent()
+
+/datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
+	if(!CONFIG_GET(flag/enable_stat_tracking))
+		return
+	if(!L)
+		return
+	if(!L.key || !L.mind)
+		return
+	if(!ticker || !ticker.mode)
+		return
+
+	ticker.mode.check_win()
+
+	var/area/placeofdeath = get_area(L)
+	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
+
+	var/list/data = list(
+	"name" = sql_sanitize_text(L.real_name),
+	"byondkey" = sql_sanitize_text(L.key),
+	"job" = sql_sanitize_text(L.mind.assigned_role),
+	"special" = sql_sanitize_text(L.mind.special_role),
+	"pod" = sql_sanitize_text(podname),
+	"tod" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
+	"laname" = L.lastattacker ? sql_sanitize_text(L.lastattacker:real_name) : null,
+	"lakey" = L.lastattacker ? sql_sanitize_text(L.lastattacker:key) : null,
+	"gender" = sql_sanitize_text(L.gender),
+	"bruteloss" = L.getBruteLoss(),
+	"fireloss" = L.getFireLoss(),
+	"brainloss" = L.brainloss,
+	"oxyloss" = L.getOxyLoss(),
+	"coord" = "[L.x], [L.y], [L.z]"
+	)
+	death_list += list(data)

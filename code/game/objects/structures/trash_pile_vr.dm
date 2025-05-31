@@ -44,6 +44,7 @@
 		"trashbag",
 		"brokecomp")
 	mouse_nest = new(src)
+	AddComponent(/datum/component/climbable)
 
 /obj/structure/trash_pile/Destroy()
 	qdel(mouse_nest)

@@ -13,6 +13,10 @@
 	//max_integrity = 60
 	var/obj/item/canvas/painting = null
 
+/obj/structure/easel/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/climbable)
+
 //Adding canvases
 /obj/structure/easel/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/canvas))
