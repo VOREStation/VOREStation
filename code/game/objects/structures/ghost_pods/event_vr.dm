@@ -242,6 +242,8 @@
 			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
+
 	new_character.regenerate_icons()
 
 	new_character.update_transform()

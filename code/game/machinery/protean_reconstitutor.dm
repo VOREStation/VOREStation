@@ -271,6 +271,8 @@
 					if(def_lang)
 						P.default_language = def_lang
 
+				SEND_SIGNAL(P, COMSIG_HUMAN_DNA_FINALIZED)
+
 				protean_brain.brainmob.mind.transfer_to(P)
 				protean_brain.loc = BR
 		protean_refactory = null
