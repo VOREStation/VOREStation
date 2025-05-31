@@ -1,0 +1,6 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - admin: "VV now has a dark mode (toggleable in game prefs)"
+  - admin: "VV now uses getFlatIcon to get a better preview (also toggleable in game prefs)"
+  - admin: "VV now supports previews for /images"
