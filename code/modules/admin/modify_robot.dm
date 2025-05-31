@@ -350,7 +350,17 @@
 			var/new_tool = text2path(params["tool"])
 			multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
 			multibelt_holder.generate_tools()
+			/*//wip
+			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
+				if(multibelt_holder in target.module.contents) //If it's stowed in our inventory
+					mat_belt.has_performed_first_use_init = FALSE
+					mat_belt.first_use_generation(TRUE)
+				if(multibelt_holder in target.contents) //If it's in our hands
+					mat_belt.has_performed_first_use_init = FALSE
+					mat_belt.first_use_generation()
+			*/
 			return TRUE
+
 		if("remove_tool")
 			if(!istype(multibelt_holder))
 				return FALSE

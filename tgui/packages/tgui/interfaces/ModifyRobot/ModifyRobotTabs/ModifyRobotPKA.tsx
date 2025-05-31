@@ -27,7 +27,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
       {!target.pka ? (
         <NoticeBox danger>{target.name} has no PKA installed.</NoticeBox>
       ) : (
-        <Stack height={!target.active ? '75%' : '80%'}>
+        <Stack fill>
           <Stack.Item width="35%">
             <Divider />
             <Box>Remaining Capacity: {target.pka.capacity}</Box>
