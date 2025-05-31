@@ -92,7 +92,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		if(!quick_implant(H))
+		if(!quick_implant(H)) //This calls register_human() later down the line.
 			WARNING("NIF spawned in [H] failed to implant")
 			return INITIALIZE_HINT_QDEL
 
@@ -104,8 +104,15 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Draw me yo.
 	update_icon()
 
+/obj/item/nif/proc/register_human()
+	RegisterSignal(human, COMSIG_MOB_DEATH, GLOBAL_PROC_REF(persist_nif_data))
+
+/obj/item/nif/proc/unregister_human()
+	UnregisterSignal(human, COMSIG_MOB_DEATH)
+
 //Destructor cleans up references
 /obj/item/nif/Destroy()
+	unregister_human()
 	human = null
 	QDEL_LIST_NULL(nifsofts)
 	QDEL_NULL(comm)
@@ -131,6 +138,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			for(var/path in starting_software)
 				new path(src)
 			starting_software = null
+		register_human()
 		return TRUE
 
 	return FALSE
@@ -175,6 +183,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		remove_verb(H, /mob/living/carbon/human/proc/set_nif_examine)
 		H.nif = null
 	qdel_null(menu)
+	unregister_human()
 	human = null
 	install_done = null
 	update_icon()
@@ -707,3 +716,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	else
 		nif.examine_msg = new_flavor
 		nif.save_data["examine_msg"] = new_flavor
+	//We add a timer that saves our changes 20 seconds from now. If we make another change, that timer is extended.
+	//However, we currently don't need mid-round updating. Updates are done on death, round end, and exiting the round.
+	//addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(persist_nif_data), src), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_DELETE_ME)
