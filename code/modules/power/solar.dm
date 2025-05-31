@@ -132,6 +132,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	stat |= BROKEN
 	unset_control()
 	update_icon()
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)
 	return
 
 
