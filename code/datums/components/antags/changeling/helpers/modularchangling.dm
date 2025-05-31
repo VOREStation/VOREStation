@@ -26,7 +26,9 @@ var/list/datum/power/changeling/powerinstances = list()
 	set desc = "Adapt yourself carefully."
 
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
-
+	if(!comp)
+		to_chat(src, "You are not a changeling!")
+		return
 	if(!powerinstances.len)
 		for(var/changeling_power in powers)
 			powerinstances += new changeling_power()
