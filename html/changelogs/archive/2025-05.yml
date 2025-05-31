@@ -251,3 +251,12 @@
       of a weird custom mix of handmade icons.
   Willburd:
   - bugfix: Admin respawn respects record button selection
+2025-05-31:
+  Diana:
+  - bugfix: Markings will no longer make your limbs invisible if toggled off
+  Guti:
+  - rscadd: Added the ability for virologists to falter their diseases
+  - rscadd: Added dormant diseases, that some crewmembers might carry.
+  - rscadd: Added three new chemicals for higher level symptoms.
+  - rscadd: Old syringes and old syringe boxes, which may include include diseases.
+  - balance: Buffed the chance of mice having diseases on them.
