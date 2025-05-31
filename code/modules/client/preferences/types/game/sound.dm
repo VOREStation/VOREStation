@@ -175,6 +175,8 @@
 /datum/preference/volume_channels/is_valid(value)
 	return islist(value)
 
+/datum/preference/volume_channels/create_default_value()
+	return list()
 
 /mob/proc/get_preference_volume_channel(volume_channel)
 	if(!client)

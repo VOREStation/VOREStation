@@ -35,7 +35,7 @@ export type Job = {
 
 export type OccupationData = {
   alternate_option: AlternateOption;
-  jobs: Job[];
+  jobs: Record<string, Job[]>;
 };
 
 export type OccupationDataStatic = {};
