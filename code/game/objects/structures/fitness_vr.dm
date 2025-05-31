@@ -9,7 +9,7 @@
 	anchored = TRUE
 	flags = ON_BORDER
 
-/obj/structure/fitness/Initialize(mapload)
+/obj/structure/fitness/boxing_ropes/Initialize(mapload)
 	. = ..()
 	var/datum/component/climbable/C = AddComponent(/datum/component/climbable)
 	C.enable_vaulting()
