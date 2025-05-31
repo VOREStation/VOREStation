@@ -430,15 +430,15 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 			if(helmet)
 				if(radiation_level > 2)
-					helmet.decontaminate()
+					helmet.wash(CLEAN_TYPE_RADIATION)
 				if(radiation_level > 1)
-					helmet.clean_blood()
+					helmet.wash(CLEAN_SCRUB)
 
 			if(suit)
 				if(radiation_level > 2)
-					suit.decontaminate()
+					suit.wash(CLEAN_TYPE_RADIATION)
 				if(radiation_level > 1)
-					suit.clean_blood()
+					suit.wash(CLEAN_SCRUB)
 
 			. = TRUE
 

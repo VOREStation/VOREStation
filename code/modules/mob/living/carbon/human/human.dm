@@ -1149,26 +1149,25 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/washshoes)
+/mob/living/carbon/human/wash(clean_types)
 	. = ..()
 
 	gunshot_residue = null
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		gloves.clean_blood()
+		gloves.wash(clean_types)
 		update_inv_gloves()
 		gloves.germ_level = 0
 	else
 		bloody_hands = 0
 		germ_level = 0
 
-	//Sometimes do shoes if asked (or feet if no shoes)
-	if(washshoes && shoes)
-		shoes.clean_blood()
+	if(shoes)
+		shoes.wash(clean_types)
 		update_inv_shoes()
 		shoes.germ_level = 0
-	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+	else if(feet_blood_color || LAZYLEN(feet_blood_DNA))
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null

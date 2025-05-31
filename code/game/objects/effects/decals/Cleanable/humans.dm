@@ -31,12 +31,12 @@ var/global/list/image/splatter_cache=list()
 		basecolor = COLOR_LUMINOL
 		update_icon()
 
-/obj/effect/decal/cleanable/blood/clean_blood()
+/obj/effect/decal/cleanable/blood/wash(clean_types)
+	. = ..()
 	fluorescent = 0
 	if(invisibility != INVISIBILITY_MAXIMUM)
 		invisibility = INVISIBILITY_MAXIMUM
 		amount = 0
-	..(ignore=1)
 
 /obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()

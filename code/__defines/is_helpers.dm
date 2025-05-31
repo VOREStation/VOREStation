@@ -82,3 +82,5 @@ GLOBAL_VAR_INIT(magic_appearance_detecting_image, new /image) // appearances are
 
 /// NaN isn't a number, damn it. Infinity is a problem too.
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )
+
+#define ismopable(A) (A && (A.layer <= ABOVE_JUNK_LAYER)) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
