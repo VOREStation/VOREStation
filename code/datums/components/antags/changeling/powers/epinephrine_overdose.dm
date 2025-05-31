@@ -35,7 +35,6 @@
 	C.SetWeakened(0)
 	C.lying = 0
 	C.update_canmove()
-//	C.reagents.add_reagent(REAGENT_ID_TOXIN, 10)
 	C.reagents.add_reagent("epinephrine", 20)
 
 	if(changeling.recursive_enhancement)
@@ -47,11 +46,10 @@
 /datum/reagent/epinephrine
 	name = "Epinephrine"
 	id = "epinephrine"
-	description = "Reduces stun times, but causing toxicity due to high concentration."
+	description = "A chemically naturally produced by the body while in fight-or-flight mode. Greatly increases one's strength."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolism = REM * 2
-	overdose = 5 //This is intentionally low, as we want the ling to take some tox damage, to discourage spamming the ability.
 	wiki_flag = WIKI_SPOILER
 
 /datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -63,5 +61,6 @@
 	M.AdjustParalysis(-2)
 	M.AdjustStunned(-2)
 	M.AdjustWeakened(-2)
+	M.adjustToxLoss(removed * 2.5) //It gives you 20units of epinephrine. 50 toxins damage.
 	..()
 	return
