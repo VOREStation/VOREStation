@@ -16,8 +16,6 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 	required_players_secret = 12
 	required_enemies = 3
 	end_on_antag_death = 0
-	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
-	var/syndies_didnt_escape = 0 //Used for tracking if the syndies got the shuttle off of the z-level
 	antag_tags = list(MODE_MERCENARY)
 
 //delete all nuke disks not on a station zlevel
