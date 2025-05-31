@@ -2062,6 +2062,7 @@
 #include "code\modules\asset_cache\assets\preferences.dm"
 #include "code\modules\asset_cache\assets\tgfont.dm"
 #include "code\modules\asset_cache\assets\tgui.dm"
+#include "code\modules\asset_cache\assets\vv.dm"
 #include "code\modules\asset_cache\assets\spritesheets\chat.dm"
 #include "code\modules\asset_cache\assets\spritesheets\chem_master.dm"
 #include "code\modules\asset_cache\assets\spritesheets\kitchen_recipes.dm"
