@@ -97,7 +97,7 @@
 	user.visible_message(span_warning("[user] starts climbing onto \the [owner]!"))
 	LAZYDISTINCTADD(climbers, user)
 
-	if(!do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay)))
+	if(!do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay), incapacitation_flags = INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		LAZYREMOVE(climbers, user)
 		return
 
