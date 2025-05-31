@@ -67,13 +67,6 @@
 
 	return
 
-/obj/item/multitool/cyborg
-	name = "multitool"
-	desc = "Optimised and stripped-down version of a regular multitool."
-	toolspeed = 0.5
-
-
-
 /datum/category_item/catalogue/anomalous/precursor_a/alien_multitool
 	name = "Precursor Alpha Object - Pulse Tool"
 	desc = "This ancient object appears to be an electrical tool. \
