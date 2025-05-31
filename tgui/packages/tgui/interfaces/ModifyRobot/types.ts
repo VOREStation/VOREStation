@@ -118,6 +118,7 @@ export type Multibelt = {
     name: string;
     path: string;
   }[];
+  ref: string;
   integrated_tools: { name: string; ref: string }[];
 };
 

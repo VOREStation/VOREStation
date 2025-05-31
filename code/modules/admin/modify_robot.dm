@@ -20,6 +20,7 @@
 	var/supplied_law = "SuppliedLaw"
 	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
 	var/list/datum/ai_laws/law_list
+	var/obj/item/robotic_multibelt/multibelt_holder //Currently selected multibelt.
 
 /datum/eventkit/modify_robot/New()
 	. = ..()
@@ -342,31 +343,28 @@
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
 			return TRUE
+		if("select_multibelt")
+			to_world("Pre multibelt_holder = [multibelt_holder] params = [params["multibelt"]]")
+			multibelt_holder = locate(params["multibelt"])
+			to_world("Post multibelt_holder = [multibelt_holder]")
+			return TRUE
 		if("install_tool")
+			if(!istype(multibelt_holder))
+				return FALSE
 			var/new_tool = text2path(params["tool"])
-			var/obj/item/robotic_multibelt/multibelt
-			for(var/obj/item/robotic_multibelt/multibelt_search in target.module.modules)
-				if(istype(multibelt_search, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
-					continue
-				multibelt = multibelt_search
-				break
-			multibelt.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
-			multibelt.generate_tools()
+			multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
+			multibelt_holder.generate_tools()
 			return TRUE
 		if("remove_tool")
-			var/obj/item/robotic_multibelt/multibelt
-			for(var/obj/item/robotic_multibelt/multibelt_search in target.module.modules)
-				if(istype(multibelt_search, /obj/item/robotic_multibelt/materials)) //We aren't adding material for now.
-					continue
-				multibelt = multibelt_search //We only pick one as well, for now.
-				break
+			if(!istype(multibelt_holder))
+				return FALSE
 			var/obj/item/rem_tool = locate(params["tool"])
-			if(multibelt.selected_item == rem_tool)
-				multibelt.dropped() //Reset to original icon.
-			multibelt.contents -= rem_tool
-			multibelt.cyborg_integrated_tools -= rem_tool.type
-			multibelt.integrated_tools_by_name -= rem_tool.name
-			multibelt.integrated_tool_images -= rem_tool.name
+			if(multibelt_holder.selected_item == rem_tool)
+				multibelt_holder.dropped() //Reset to original icon.
+			multibelt_holder.contents -= rem_tool
+			multibelt_holder.cyborg_integrated_tools -= rem_tool.type
+			multibelt_holder.integrated_tools_by_name -= rem_tool.name
+			multibelt_holder.integrated_tool_images -= rem_tool.name
 			qdel(rem_tool)
 			return TRUE
 		if("add_channel")
@@ -728,20 +726,21 @@
 	return pka
 
 /datum/eventkit/modify_robot/proc/get_mult_belt(var/obj/item/robotic_multibelt/mult_belt)
-	var/list/multi_belt = list()
-	multi_belt["name"] = mult_belt.name
+	var/list/multi_belt_list = list()
+	multi_belt_list["name"] = mult_belt.name
+	multi_belt_list["ref"] = REF(mult_belt)
 	var/list/integrated_tools = list()
 	for(var/obj/tool in mult_belt.contents)
 		integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
-	multi_belt["integrated_tools"] = integrated_tools
+	multi_belt_list["integrated_tools"] = integrated_tools
 	var/list/tools = list()
 	for(var/tool in all_borg_multitool_options)
 		if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
 			continue
 		var/obj/item/tool_to_add = tool
 		tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
-	multi_belt["tools"] = tools
-	return multi_belt
+	multi_belt_list["tools"] = tools
+	return multi_belt_list
 
 
 /datum/eventkit/modify_robot/proc/get_cells()

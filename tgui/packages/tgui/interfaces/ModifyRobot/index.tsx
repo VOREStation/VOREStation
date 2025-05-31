@@ -284,7 +284,7 @@ export const ModifyRobot = (props) => {
                   Law Sets
                 </Tabs.Tab>
                 <Tabs.Tab selected={tab === 8} onClick={() => setTab(8)}>
-                  ModifyRobotMultiBelt
+                  Modify Multibelt
                 </Tabs.Tab>
               </Tabs>
               {tabs[tab]}

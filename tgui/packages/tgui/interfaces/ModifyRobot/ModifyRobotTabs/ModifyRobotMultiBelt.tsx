@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
@@ -18,9 +18,18 @@ import type { Target } from '../types';
 export const ModifyRobotMultiBelt = (props: { target: Target }) => {
   const { act } = useBackend();
   const { target } = props;
+  const { multibelt = [] } = target;
   const [SearchMultibelt, setSearchMultibelt] = useState<string>('');
   const [searchInstalledtext, setSearchInstalledtext] = useState<string>('');
   const [selectedMultibelt, setSelectedMultibelt] = useState<number>(0);
+
+  const currentMultibelt = multibelt[selectedMultibelt];
+
+  useEffect(() => {
+    act('select_multibelt', {
+      multibelt: currentMultibelt.ref,
+    });
+  }, []);
 
   return (
     <>
@@ -34,7 +43,12 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
               <Tabs.Tab
                 key={i}
                 selected={selectedMultibelt === i}
-                onClick={() => setSelectedMultibelt(i)}
+                onClick={() => {
+                  setSelectedMultibelt(i);
+                  act('select_multibelt', {
+                    multibelt: multibelt[i].ref,
+                  });
+                }}
               >
                 {i}
               </Tabs.Tab>
