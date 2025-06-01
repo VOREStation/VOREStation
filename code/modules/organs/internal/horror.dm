@@ -250,15 +250,15 @@
 // /obj/item/organ/internal/brain/horror //Just placing here to note that it wasn't forgotten about, but replacing a brain on someone comes with a LOT more danger than normal organs.
 //Here for quick reference
 /*
-#define O_EYES     "eyes"
-#define O_HEART    "heart"
-#define O_LUNGS    "lungs"
-#define O_BRAIN    "brain"
-#define O_LIVER    "liver"
-#define O_KIDNEYS  "kidneys"
-#define O_APPENDIX "appendix"
-#define O_VOICE    "voicebox"
-#define O_SPLEEN   "spleen"
-#define O_STOMACH  "stomach"
-#define O_INTESTINE "intestine"
+ * #define O_EYES     "eyes"
+ * #define O_HEART    "heart"
+ * #define O_LUNGS    "lungs"
+ * #define O_BRAIN    "brain"
+ * #define O_LIVER    "liver"
+ * #define O_KIDNEYS  "kidneys"
+ * #define O_APPENDIX "appendix"
+ * #define O_VOICE    "voicebox"
+ * #define O_SPLEEN   "spleen"
+ * #define O_STOMACH  "stomach"
+ * #define O_INTESTINE "intestine"
 */
