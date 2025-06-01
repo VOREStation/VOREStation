@@ -24,7 +24,7 @@ var/static/list/redspace_areas = list (
 
 	stacks = MODIFIER_STACK_EXTEND
 
-	mob_overlay_state = "redspace_aura"
+	//mob_overlay_state = "redspace_aura" //Let's be secretive~
 	var/mob/living/carbon/human/unfortunate_soul //The human target of our modifier.
 
 /datum/modifier/redspace_drain/can_apply(mob/living/L, suppress_output = TRUE)
