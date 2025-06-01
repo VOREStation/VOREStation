@@ -246,19 +246,3 @@
 		owner.default_language = daemon //Swap back to Daemon.
 		if(prob(5)) //1/20 on a 1/4 chance. 1/80 chance every 10 ticks.
 			owner.say(pick("Join us", "Become one with us", "Join the Flesh", "Come to us", "[owner.real_name] is just a vessel.", "You can be just like us."))
-
-// /obj/item/organ/internal/brain/horror //Just placing here to note that it wasn't forgotten about, but replacing a brain on someone comes with a LOT more danger than normal organs.
-//Here for quick reference
-/*
- * #define O_EYES     "eyes"
- * #define O_HEART    "heart"
- * #define O_LUNGS    "lungs"
- * #define O_BRAIN    "brain"
- * #define O_LIVER    "liver"
- * #define O_KIDNEYS  "kidneys"
- * #define O_APPENDIX "appendix"
- * #define O_VOICE    "voicebox"
- * #define O_SPLEEN   "spleen"
- * #define O_STOMACH  "stomach"
- * #define O_INTESTINE "intestine"
-*/
