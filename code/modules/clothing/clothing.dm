@@ -33,7 +33,7 @@
 	return
 
 // Aurora forensics port.
-/obj/item/clothing/clean_blood()
+/obj/item/clothing/wash()
 	. = ..()
 	gunshot_residue = null
 
@@ -387,7 +387,7 @@
 		return
 */
 
-/obj/item/clothing/gloves/clean_blood()
+/obj/item/clothing/gloves/wash()
 	. = ..()
 	transfer_blood = 0
 	update_icon()
@@ -734,15 +734,15 @@
 	if(contaminated)
 		add_overlay(contamination_overlay)
 	if(gurgled) //VOREStation Edit Start
-		decontaminate()
+		wash(CLEAN_ALL)
 		gurgle_contaminate() //VOREStation Edit End
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/clean_blood()
+/obj/item/clothing/shoes/wash()
+	. = ..()
 	update_icon()
-	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	if(prob(1) && !recent_squish) //VOREStation edit begin
