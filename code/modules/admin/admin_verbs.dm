@@ -83,15 +83,21 @@
 	set name = "Invisimin"
 	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
+
 	if(holder && mob)
+		if(mob.invisibility > INVISIBILITY_OBSERVER)
+			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
+			return
+
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
 			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
 			mob.alpha = max(mob.alpha + 100, 255)
-		else
-			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
-			mob.alpha = max(mob.alpha - 100, 0)
+			return
+
+		mob.invisibility = INVISIBILITY_OBSERVER
+		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
+		mob.alpha = max(mob.alpha - 100, 0)
 
 
 /client/proc/player_panel()
@@ -490,7 +496,7 @@
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center>" + span_filter_system(span_notice(span_bold(span_huge("Man up.<br> Deal with it.")) + "<br>Move along.")) + "</center><br>")
-		T << 'sound/voice/ManUp1.ogg'
+		T << 'sound/voice/manup1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)

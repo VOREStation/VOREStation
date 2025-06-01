@@ -66,7 +66,3 @@
 	desc = "Deep Ocean Water"
 	icon = 'icons/misc/beach.dmi'
 	icon_base = "seadeep"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/bubbles3.ogg', // No I don't get why it's named 3/4/5 either. Whatever.
-		'sound/effects/footstep/bubbles4.ogg',
-		'sound/effects/footstep/bubbles5.ogg'))

@@ -36,13 +36,13 @@
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
 	sleep(15) //So if they are typing they get interrupted by sound and message, and don't type over the box
-	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"))
+	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"), timeout = 1 MINUTE)
 
 	if(!response || response == "Deny")
 		to_chat(src,span_warning("[H] denied your request."))
 		return
 
-	if((world.time - req_time) > 1 MINUTES)
+	if((world.time - req_time) > 1 MINUTE)
 		to_chat(H,span_warning("The request had already expired. (1 minute waiting max)"))
 		return
 

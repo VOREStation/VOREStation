@@ -87,6 +87,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /obj/machinery/computer/ship/proc/unlook(var/mob/user, forced)
+	SIGNAL_HANDLER
 	if(!linked && !forced) //If we have no linked computer, return early. Forcing is for when we do a one-time action that we want to clear the UI.
 		return
 	user.reset_view()

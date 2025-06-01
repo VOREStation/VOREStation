@@ -26,7 +26,6 @@ includes scars and tattoos
 	var/digitigrade_icon = 'icons/mob/human_races/markings_digi.dmi'
 
 	var/genetic = TRUE
-	var/organ_override = FALSE
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
 	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
 
@@ -1824,6 +1823,76 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 
+/datum/sprite_accessory/marking/bust_definition
+
+	name = "Bust definition"
+	icon_state = "bust_def"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bust_definition_light
+
+	name = "Bust definition translucent"
+	icon_state = "bust_def_light"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bust_definition_outline
+
+	name = "Bust definition outline only"
+	icon_state = "bust_def_outline"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bustier_definition
+
+	name = "Bustier definition"
+	icon_state = "bust_def2"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bustier_definition_light
+
+	name = "Bustier definition translucent"
+	icon_state = "bust_def2_light"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bustier_definition_outline
+
+	name = "Bustier definition outline only"
+	icon_state = "bust_def2_outline"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/abs_definition
+
+	name = "Abs definition"
+	icon_state = "abs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bust_nips
+
+	name = "Nipples"
+	icon_state = "nips"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bust_nips_lower
+
+	name = "Nipples (lower)"
+	icon_state = "nips2"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/bust_nips_closer
+
+	name = "Nipples (closer)"
+	icon_state = "nips3"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
 /datum/sprite_accessory/marking/vr_eboop_panels
 	name = "Eggnerd FBP panels"
 	icon_state = "eboop"
@@ -2284,7 +2353,6 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
-	organ_override = TRUE
 
 /datum/sprite_accessory/marking/vr_unathi_blocky_head
 	name = "Unathi alt head (Blocky)"
@@ -2292,7 +2360,6 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 	hide_body_parts = list(BP_HEAD)
-	organ_override = TRUE
 
 /datum/sprite_accessory/marking/vr_unathi_blocky_head_eyes
 	name = "Unathi alt head eyes (Blocky)"
@@ -2336,7 +2403,6 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-	organ_override = TRUE
 
 /datum/sprite_accessory/marking/vr_sect_drone_eyes
 	name = "Sect Drone Eyes"
@@ -2654,3 +2720,43 @@ includes scars and tattoos
 	icon_state = "digigradient"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+//Big Leggies!
+/datum/sprite_accessory/marking/bigleggy
+	name = "Big Leggies - Legs"
+	icon_state = "bigleggy"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG, BP_L_LEG)
+	digitigrade_acceptance = MARKING_DIGITIGRADE_ONLY
+	hide_body_parts = list(BP_R_LEG, BP_L_LEG)
+	digitigrade_icon = 'icons/mob/human_races/markings.dmi'
+
+/datum/sprite_accessory/marking/bigleggy/stanced
+	name = "Big Leggies - Legs (Stanced)"
+	icon_state = "bigleggy_stanced"
+
+/datum/sprite_accessory/marking/bigleggy/feet
+	name = "Big Leggies - Feet"
+	icon_state = "bigleggy_markings"
+	body_parts = list(BP_R_FOOT, BP_L_FOOT)
+	hide_body_parts = list(BP_R_FOOT, BP_L_FOOT)
+
+/datum/sprite_accessory/marking/bigleggy/feet/stanced
+	name = "Big Leggies - Feet (Stanced)"
+	icon_state = "bigleggy_markings_stanced"
+
+/datum/sprite_accessory/marking/bigleggy/feet/bird
+	name = "Big Leggies - Feet (Bird)"
+	icon_state = "bigleggy_m_bird"
+
+/datum/sprite_accessory/marking/bigleggy/feet/bird/stanced
+	name = "Big Leggies - Feet (Bird, Stanced)"
+	icon_state = "bigleggy_m_bird_stanced"
+
+//Big leggy end!
+
+/datum/sprite_accessory/marking/moth_eyes
+	name = "Moth Eyes"
+	icon_state = "motheyes"
+	color_blend_mode = ICON_ADD
+	body_parts = list(BP_HEAD)

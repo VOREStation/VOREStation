@@ -448,7 +448,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 	name = "mouse hole spawner"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	var/chance_to_spawn = 25
 

@@ -363,9 +363,9 @@ const GeneralMobSettings = (props: {
             Description:
             <br />
             <TextArea
+              fluid
               height={'18rem'}
-              expensive
-              onChange={(val: string) => props.onDesc(val)}
+              onBlur={(val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Stack.Item>
@@ -373,10 +373,10 @@ const GeneralMobSettings = (props: {
             Flavor Text:
             <br />
             <TextArea
+              fluid
               height={'18rem'}
-              expensive
               value={data.flavor_text}
-              onChange={(val: string) => props.onFlavor(val)}
+              onBlur={(val: string) => props.onFlavor(val)}
             />
           </Stack.Item>
         </Stack>

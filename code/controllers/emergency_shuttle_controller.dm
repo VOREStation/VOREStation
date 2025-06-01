@@ -271,10 +271,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 			return
 
 /obj/effect/starender
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/starspawner
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	var/spawndir = SOUTH
 	var/spawning = 0
 

@@ -999,6 +999,8 @@
 	extra_overlay2 = "fox_markings2"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
+	vore_tail_sprite_variant = "F"
+	fullness_icons = 3
 	loaf_offset = 4
 
 /datum/sprite_accessory/tail/taur/kitsune
@@ -1244,6 +1246,7 @@
 	fullness_icons = 3
 	ani_state = "bigleggy_stanced"
 	extra_overlay_w = "bigleggy_markings_stanced"
+	clip_mask_state = "taur_clip_mask_def" //Leaving this here to make it clear it it's INTENTIONAL it shows above clothes. Use the marking if you want it to show UNDER clothes!
 
 /datum/sprite_accessory/tail/taur/bigleggy/canine
 	name = "Big Leggies (Canine Tail)"
@@ -1272,7 +1275,6 @@
 
 /datum/sprite_accessory/tail/taur/bigleggy/bird
 	name = "Big Leggies (Bird)"
-	icon_state = "bigleggy"
 	extra_overlay = "bigleggy_m_bird"
 	extra_overlay2 = "bigleggy_bird"
 	extra_overlay_w = "bigleggy_m_bird_stanced"

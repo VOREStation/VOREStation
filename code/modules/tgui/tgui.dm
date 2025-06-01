@@ -47,6 +47,8 @@
 	var/list/children = list()
 	/// Any partial packets that we have received from TGUI, waiting to be sent
 	var/partial_packets
+	/// If the window should be closed with other windows when requested
+	var/closeable = TRUE
 
 /**
  * public
@@ -60,13 +62,13 @@
  * optional parent_ui datum/tgui The parent of this UI.
  * optional ui_x int Deprecated: Window width.
  * optional ui_y int Deprecated: Window height.
+ * optional window datum/tgui_window: The window to display this TGUI within
  *
  * return datum/tgui The requested UI.
  */
-/datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui, ui_x, ui_y)
+/datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui, ui_x, ui_y, datum/tgui_window/window)
 	src.user = user
 	src.src_object = src_object
-	src.window_key = "[REF(src_object)]-main"
 	src.interface = interface
 	if(title)
 		src.title = title
@@ -78,6 +80,12 @@
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
 
+	if(window)
+		src.window = window
+		src.window_key = window.id
+	else
+		src.window_key = "[REF(src_object)]-main"
+
 /datum/tgui/Destroy()
 	user = null
 	src_object = null
@@ -88,22 +96,26 @@
  *
  * Open this UI (and initialize it with data).
  *
+ * Args:
+ * preinitialized: bool - if TRUE, we will not attempt to force strict mode on the tgui's window datum
+ *
  * return bool - TRUE if a new pooled window is opened, FALSE in all other situations including if a new pooled window didn't open because one already exists.
  */
-/datum/tgui/proc/open()
+/datum/tgui/proc/open(preinitialized = FALSE)
 	if(!user?.client)
 		return FALSE
-	if(window)
+	if(window && window.status > TGUI_WINDOW_LOADING)
 		return FALSE
 	process_status()
 	if(status < STATUS_UPDATE)
 		return FALSE
-	window = SStgui.request_pooled_window(user)
+	if(!window)
+		window = SStgui.request_pooled_window(user)
 	if(!window)
 		return FALSE
 	opened_at = world.time
 	window.acquire_lock(src)
-	if(!window.is_ready())
+	if(!window.is_ready() && !preinitialized)
 		window.initialize(
 			strict_mode = TRUE,
 			fancy = user.read_preference(/datum/preference/toggle/tgui_fancy),
@@ -129,7 +141,7 @@
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/simple/namespaced/tgfont))
 	flush_queue |= window.send_asset(get_asset_datum(
-		/datum/asset/simple/tgui_extra_fonts))
+		/datum/asset/simple/namespaced/tgui_extra_fonts))
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/json/icon_ref_map))
 	for(var/datum/asset/asset in src_object.ui_assets(user))
@@ -264,18 +276,17 @@
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
-			"layout" = null, // user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout), // unused
+			"layout" = null, // user.read_preference(/datum/preference/choiced/tgui_layout), // unused
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
-		"map" = (using_map && using_map.path) ? using_map.path : "Unknown",
 		"mapZLevel" = map_z_level,
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
 			"fancy" = user.read_preference(/datum/preference/toggle/tgui_fancy),
 			"locked" = user.read_preference(/datum/preference/toggle/tgui_lock),
-			"scale" = user.client.prefs.read_preference(/datum/preference/toggle/ui_scale),
+			"scale" = user.read_preference(/datum/preference/toggle/ui_scale),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,
@@ -308,7 +319,7 @@
 		return
 	var/datum/host = src_object.tgui_host(user)
 	// If the object or user died (or something else), abort.
-	if(!src_object || !host || !user || !window)
+	if(QDELETED(src_object) || QDELETED(host) || QDELETED(user) || QDELETED(window))
 		close(can_be_suspended = FALSE)
 		return
 	// Validate ping

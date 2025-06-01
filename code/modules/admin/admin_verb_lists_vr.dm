@@ -569,7 +569,9 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/ReleaseVirus,
 	/client/proc/add_hidden_area,
 	/client/proc/remove_hidden_area,
-	/client/proc/hide_motion_tracker_feedback
+	/client/proc/hide_motion_tracker_feedback,
+	/client/proc/modify_event_collector,
+	/client/proc/induce_malfunction
 )
 
 /client/proc/add_admin_verbs()

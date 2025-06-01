@@ -57,9 +57,8 @@
 		tag_shuttle_mech_sensor = controller.tag_shuttle_mech_sensor? controller.tag_shuttle_mech_sensor : "[id_tag]_shuttle_mech"
 		memory["secure"] = controller.tag_secure
 
-		spawn(10)
-			signalDoor(tag_exterior_door, "update")		//signals connected doors to update their status
-			signalDoor(tag_interior_door, "update")
+		signalDoor(tag_exterior_door, "update")		//signals connected doors to update their status
+		signalDoor(tag_interior_door, "update")
 
 /datum/embedded_program/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]

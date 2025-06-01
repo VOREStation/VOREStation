@@ -115,6 +115,7 @@
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()
+	SIGNAL_HANDLER
 	update_shield_positions()
 
 /obj/item/shield_projector/proc/create_shield(var/newloc, var/new_dir)
@@ -138,6 +139,7 @@
 	active = FALSE
 
 /obj/item/shield_projector/proc/update_shield_positions()
+	SIGNAL_HANDLER
 	for(var/obj/effect/directional_shield/S in active_shields)
 		S.relocate()
 

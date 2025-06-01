@@ -48,7 +48,7 @@
 			if("robot")
 				new_mob = new /mob/living/silicon/robot(M.loc)
 				new_mob.gender = M.gender
-				new_mob.invisibility = 0
+				new_mob.invisibility = INVISIBILITY_NONE
 				new_mob.job = JOB_CYBORG
 				var/mob/living/silicon/robot/Robot = new_mob
 				Robot.mmi = new /obj/item/mmi(new_mob)
@@ -79,8 +79,6 @@
 
 				H.set_species(randomize)
 				H.universal_speak = 1
-				var/datum/preferences/A = new() //Randomize appearance for the human
-				A.randomize_appearance_and_body_for(H)
 
 		if(new_mob)
 			for (var/spell/S in M.spell_list)

@@ -663,6 +663,7 @@
 	return
 
 /atom/movable/proc/emblocker_gc(var/datum/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 	cut_overlay(source)
 	if(em_block == source)

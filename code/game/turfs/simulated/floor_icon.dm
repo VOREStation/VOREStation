@@ -1,5 +1,3 @@
-var/list/flooring_cache = list()
-
 var/image/no_ceiling_image = null
 
 /hook/startup/proc/setup_no_ceiling_image()
@@ -182,7 +180,7 @@ var/image/no_ceiling_image = null
 							break
 				else if(floor_smooth == SMOOTH_BLACKLIST)
 					is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
-					for (var/v in flooring_whitelist)
+					for (var/v in flooring_blacklist)
 						if (istype(t.flooring, v))
 							//Found a match on the list
 							is_linked = FALSE
@@ -278,10 +276,3 @@ var/image/no_ceiling_image = null
 							is_linked = FALSE
 
 	return is_linked
-
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
-	if(!flooring_cache[cache_key])
-		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
-		I.layer = layer
-		flooring_cache[cache_key] = I
-	return flooring_cache[cache_key]

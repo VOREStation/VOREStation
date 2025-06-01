@@ -217,7 +217,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/pda,
 		/obj/item/radio/headset,
 		/obj/item/paicard,
-		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose
+		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose,
+		/obj/item/reagent_containers/syringe/old
 	)
 
 	uncommon_loot = list(
@@ -275,7 +276,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/poster/custom,
 		/obj/item/newspaper,
 		/obj/item/paper/crumpled,
-		/obj/item/paper/crumpled/bloody
+		/obj/item/paper/crumpled/bloody,
+		/obj/item/reagent_containers/syringe/old
 	)
 
 	uncommon_loot = list(
@@ -322,7 +324,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/storage/box/smokes,
 		/obj/item/storage/box/metalfoam,
 		/obj/item/storage/box/handcuffs,
-		/obj/item/storage/box/seccarts
+		/obj/item/storage/box/seccarts,
+		/obj/item/storage/box/old_syringes,
 	)
 
 	rare_loot = list(
@@ -383,6 +386,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/cartridge/engineering,
 		/obj/item/analyzer,
 		/obj/item/healthanalyzer,
+		/obj/item/extrapolator,
+		/obj/item/gene_scanner,
 		/obj/item/robotanalyzer,
 		/obj/item/lightreplacer,
 		/obj/item/radio,
