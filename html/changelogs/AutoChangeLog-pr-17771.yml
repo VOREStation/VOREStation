@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "New players runtiming in preferences loading due to pAI nonsense"
