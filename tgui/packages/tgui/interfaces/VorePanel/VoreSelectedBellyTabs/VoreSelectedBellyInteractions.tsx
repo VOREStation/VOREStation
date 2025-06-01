@@ -1,381 +1,277 @@
-import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { LabeledList, Section, Stack } from 'tgui-core/components';
 
-import type { selectedData } from '../types';
+import { noSelectionName } from '../constants';
+import type { bellyInteractionData, DropdownEntry } from '../types';
+import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
+import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
+import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
+import { AutoTransferOptions } from './InteractionTab/AutoTransferOptions';
 
 export const VoreSelectedBellyInteractions = (props: {
-  belly: selectedData;
+  editMode: boolean;
+  bellyDropdownNames: DropdownEntry[];
+  bellyInteractData: bellyInteractionData;
 }) => {
-  const { act } = useBackend();
+  const { editMode, bellyDropdownNames, bellyInteractData } = props;
+  const { escapable, interacts, autotransfer_enabled, autotransfer } =
+    bellyInteractData;
 
-  const { belly } = props;
-  const { escapable, interacts, autotransfer_enabled, autotransfer } = belly;
+  const escapeTimeSeconds = interacts.escapetime / 10;
+  const autoTransferTimeSeconds = autotransfer.autotransferwait / 10;
+
+  const locationNames = [...bellyDropdownNames, noSelectionName];
 
   return (
-    <Section
-      title="Belly Interactions"
-      buttons={
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_escapable' })}
-          icon={escapable ? 'toggle-on' : 'toggle-off'}
-          selected={escapable}
+    <Stack fill vertical>
+      <Stack.Item>
+        <Section
+          title="Belly Interactions"
+          buttons={
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_escapable"
+              editMode={editMode}
+              active={!!escapable}
+              tooltip={
+                "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, and you can change them to whatever you see fit. " +
+                "Setting them to 0% will disable the possibility of that interaction. These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) " +
+                "will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, only the first in the order of 'Escape > Transfer > Absorb > Digest' will occur."
+              }
+            />
+          }
         >
-          {escapable ? 'Interactions On' : 'Interactions Off'}
-        </Button>
-      }
-    >
-      {escapable ? (
-        <LabeledList>
-          <LabeledList.Item label="Escape Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_escapechance' })
+          <Stack fill>
+            {!!escapable && (
+              <>
+                <Stack.Item basis="49%" grow>
+                  <LabeledList.Item label="Escape Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_escapechance"
+                      editMode={editMode}
+                      value={interacts.escapechance}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set prey escape chance on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Escape Time">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_escapetime"
+                      editMode={editMode}
+                      value={escapeTimeSeconds}
+                      minValue={1}
+                      maxValue={60}
+                      unit={escapeTimeSeconds === 1 ? 'second' : 'seconds'}
+                      tooltip="Set number of seconds for prey to escape on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Digest Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_digestchance"
+                      editMode={editMode}
+                      value={interacts.escapechance}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set belly digest mode chance on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Divider />
+                  <LabeledList.Item label="Primary Transfer Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_transferchance"
+                      editMode={editMode}
+                      value={interacts.transferchance}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set the primary belly transfer chance on resist. You must also set the location for this to have any effect."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Secondary Transfer Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_transferchance_secondary"
+                      editMode={editMode}
+                      value={interacts.transferchance_secondary}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set the secondary belly transfer chance on resist. You must also set the secondary location for this to have any effect."
+                    />
+                  </LabeledList.Item>
+                </Stack.Item>
+                <Stack.Item basis="49%" grow>
+                  <LabeledList.Item label="Absorbed Escape Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_escapechance_absorbed"
+                      editMode={editMode}
+                      value={interacts.escapechance_absorbed}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set absorbed prey escape chance on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Belch Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_belchchance"
+                      editMode={editMode}
+                      value={interacts.belchchance}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set chance for belch emote on prey resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Absorb Chance">
+                    <VorePanelEditNumber
+                      action="set_attribute"
+                      subAction="b_absorbchance"
+                      editMode={editMode}
+                      value={interacts.absorbchance}
+                      minValue={0}
+                      maxValue={100}
+                      unit="%"
+                      tooltip="Set belly absorb mode chance on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Divider />
+                  <LabeledList.Item label="Primary Transfer Location">
+                    <VorePanelEditDropdown
+                      action="set_attribute"
+                      subAction="b_transferlocation"
+                      editMode={editMode}
+                      options={locationNames}
+                      color={
+                        !editMode && !interacts.transferlocation
+                          ? 'red'
+                          : undefined
+                      }
+                      entry={
+                        interacts.transferlocation
+                          ? interacts.transferlocation
+                          : 'Disabled'
+                      }
+                      tooltip="Target location of the primary transfer trigger on resist."
+                    />
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Secondary Transfer Location">
+                    <VorePanelEditDropdown
+                      action="set_attribute"
+                      subAction="b_transferlocation_secondary"
+                      editMode={editMode}
+                      options={locationNames}
+                      color={
+                        !editMode && !interacts.transferlocation
+                          ? 'red'
+                          : undefined
+                      }
+                      entry={
+                        interacts.transferlocation_secondary
+                          ? interacts.transferlocation_secondary
+                          : 'Disabled'
+                      }
+                      tooltip="Target location of the secondary transfer trigger on resist."
+                    />
+                  </LabeledList.Item>
+                </Stack.Item>
+              </>
+            )}
+            <Stack.Divider />
+          </Stack>
+        </Section>
+      </Stack.Item>
+      <Stack.Item mt="5px">
+        <Section
+          title="Auto-Transfer Options"
+          buttons={
+            <VorePanelEditSwitch
+              action="set_attribute"
+              subAction="b_autotransfer_enabled"
+              editMode={editMode}
+              active={!!autotransfer_enabled}
+              tooltip={
+                'Allows you to setup auto transfer options for this belly. So that prey is automatically moved depending on a timer or content count.'
               }
-            >
-              {interacts.escapechance + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Absorbed Escape Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_escapechance_absorbed' })
-              }
-            >
-              {interacts.escapechance_absorbed + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Escape Time">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_escapetime' })
-              }
-            >
-              {interacts.escapetime / 10 + 's'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Divider />
-          <LabeledList.Item label="Transfer Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_transferchance' })
-              }
-            >
-              {interacts.transferchance + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Transfer Location">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_transferlocation' })
-              }
-            >
-              {interacts.transferlocation
-                ? interacts.transferlocation
-                : 'Disabled'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Divider />
-          <LabeledList.Item label="Secondary Transfer Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_transferchance_secondary',
-                })
-              }
-            >
-              {interacts.transferchance_secondary + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Secondary Transfer Location">
-            <Button
-              onClick={() =>
-                act('set_attribute', {
-                  attribute: 'b_transferlocation_secondary',
-                })
-              }
-            >
-              {interacts.transferlocation_secondary
-                ? interacts.transferlocation_secondary
-                : 'Disabled'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Divider />
-          <LabeledList.Item label="Absorb Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_absorbchance' })
-              }
-            >
-              {interacts.absorbchance + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Digest Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_digestchance' })
-              }
-            >
-              {interacts.digestchance + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Belch Chance">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_belchchance' })
-              }
-            >
-              {interacts.belchchance + '%'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Divider />
-        </LabeledList>
-      ) : (
-        'These options only display while interactions are turned on.'
-      )}
-      <Section
-        title="Auto-Transfer Options"
-        buttons={
-          <Button
-            onClick={() =>
-              act('set_attribute', { attribute: 'b_autotransfer_enabled' })
-            }
-            icon={autotransfer_enabled ? 'toggle-on' : 'toggle-off'}
-            selected={autotransfer_enabled}
-          >
-            {autotransfer_enabled
-              ? 'Auto-Transfer Enabled'
-              : 'Auto-Transfer Disabled'}
-          </Button>
-        }
-      >
-        {autotransfer_enabled ? (
-          <LabeledList>
-            <LabeledList.Item label="Auto-Transfer Time">
-              <Button
-                onClick={() =>
-                  act('set_attribute', { attribute: 'b_autotransferwait' })
-                }
-              >
-                {autotransfer.autotransferwait / 10 + 's'}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Min Amount">
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_min_amount',
-                  })
-                }
-              >
-                {autotransfer.autotransfer_min_amount}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Max Amount">
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_max_amount',
-                  })
-                }
-              >
-                {autotransfer.autotransfer_max_amount}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Divider />
-            <LabeledList.Item label="Auto-Transfer Primary Chance">
-              <Button
-                onClick={() =>
-                  act('set_attribute', { attribute: 'b_autotransferchance' })
-                }
-              >
-                {autotransfer.autotransferchance + '%'}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Location">
-              <Button
-                onClick={() =>
-                  act('set_attribute', { attribute: 'b_autotransferlocation' })
-                }
-              >
-                {autotransfer.autotransferlocation
-                  ? autotransfer.autotransferlocation
-                  : 'Disabled'}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Location Extras">
-              {(autotransfer.autotransferextralocation &&
-                autotransfer.autotransferextralocation.join(', ')) ||
-                ''}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransferextralocation',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Whitelist (Mobs)">
-              {(autotransfer.autotransfer_whitelist.length &&
-                autotransfer.autotransfer_whitelist.join(', ')) ||
-                'Everything'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_whitelist',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Whitelist (Items)">
-              {(autotransfer.autotransfer_whitelist_items.length &&
-                autotransfer.autotransfer_whitelist_items.join(', ')) ||
-                'Everything'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_whitelist_items',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Blacklist (Mobs)">
-              {(autotransfer.autotransfer_blacklist.length &&
-                autotransfer.autotransfer_blacklist.join(', ')) ||
-                'Nothing'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_blacklist',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Primary Blacklist (Items)">
-              {(autotransfer.autotransfer_blacklist_items.length &&
-                autotransfer.autotransfer_blacklist_items.join(', ')) ||
-                'Nothing'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_blacklist_items',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Divider />
-            <LabeledList.Item label="Auto-Transfer Secondary Chance">
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransferchance_secondary',
-                  })
-                }
-              >
-                {autotransfer.autotransferchance_secondary + '%'}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Location">
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransferlocation_secondary',
-                  })
-                }
-              >
-                {autotransfer.autotransferlocation_secondary
-                  ? autotransfer.autotransferlocation_secondary
-                  : 'Disabled'}
-              </Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Location Extras">
-              {(autotransfer.autotransferextralocation_secondary &&
-                autotransfer.autotransferextralocation_secondary.join(', ')) ||
-                ''}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransferextralocation_secondary',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Whitelist (Mobs)">
-              {(autotransfer.autotransfer_secondary_whitelist.length &&
-                autotransfer.autotransfer_secondary_whitelist.join(', ')) ||
-                'Everything'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_secondary_whitelist',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Whitelist (Items)">
-              {(autotransfer.autotransfer_secondary_whitelist_items.length &&
-                autotransfer.autotransfer_secondary_whitelist_items.join(
-                  ', ',
-                )) ||
-                'Everything'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_secondary_whitelist_items',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Blacklist (Mobs)">
-              {(autotransfer.autotransfer_secondary_blacklist.length &&
-                autotransfer.autotransfer_secondary_blacklist.join(', ')) ||
-                'Nothing'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_secondary_blacklist',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Auto-Transfer Secondary Blacklist (Items)">
-              {(autotransfer.autotransfer_secondary_blacklist_items.length &&
-                autotransfer.autotransfer_secondary_blacklist_items.join(
-                  ', ',
-                )) ||
-                'Nothing'}
-              <Button
-                onClick={() =>
-                  act('set_attribute', {
-                    attribute: 'b_autotransfer_secondary_blacklist_items',
-                  })
-                }
-                ml={1}
-                icon="plus"
-              />
-            </LabeledList.Item>
-          </LabeledList>
-        ) : (
-          'These options only display while Auto-Transfer is enabled.'
-        )}
-      </Section>
-    </Section>
+            />
+          }
+        >
+          {!!autotransfer_enabled && (
+            <Stack vertical fill>
+              <Stack.Item>
+                <Stack>
+                  <Stack.Item basis="49%" grow>
+                    <LabeledList.Item label="Auto-Transfer Min Amount">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransfer_min_amount"
+                        editMode={editMode}
+                        value={autotransfer.autotransfer_min_amount}
+                        minValue={0}
+                        maxValue={100}
+                        tooltip="Set the minimum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit."
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Auto-Transfer Max Amount">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransfer_max_amount"
+                        editMode={editMode}
+                        value={autotransfer.autotransfer_max_amount}
+                        minValue={0}
+                        maxValue={100}
+                        tooltip="Set the minimum amount of items your belly can belly auto-transfer at once. Set to 0 for no limit."
+                      />
+                    </LabeledList.Item>
+                  </Stack.Item>
+                  <Stack.Item basis="49%" grow>
+                    <LabeledList.Item label="Auto-Transfer Time">
+                      <VorePanelEditNumber
+                        action="set_attribute"
+                        subAction="b_autotransferwait"
+                        editMode={editMode}
+                        value={autoTransferTimeSeconds}
+                        unit={
+                          autoTransferTimeSeconds === 1 ? 'second' : 'seconds'
+                        }
+                        minValue={1}
+                        maxValue={1800}
+                        tooltip="Set minimum number of seconds for auto-transfer wait delay."
+                      />
+                    </LabeledList.Item>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <AutoTransferOptions
+                  editMode={editMode}
+                  title={'primary'}
+                  bellyDropdownNames={bellyDropdownNames}
+                  locationNames={locationNames}
+                  autotransferData={autotransfer.primary_transfer}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <AutoTransferOptions
+                  editMode={editMode}
+                  title={'secondary'}
+                  bellyDropdownNames={bellyDropdownNames}
+                  locationNames={locationNames}
+                  autotransferData={autotransfer.secondary_transfer}
+                />
+              </Stack.Item>
+            </Stack>
+          )}
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
 };

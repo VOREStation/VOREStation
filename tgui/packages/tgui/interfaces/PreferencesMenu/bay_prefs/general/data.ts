@@ -301,7 +301,6 @@ export type GeneralData = BasicData &
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;
   can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
-  digi_allowed: BooleanLike;
   available_hair_styles: string[];
   available_facial_styles: string[];
   available_ear_styles: string[];

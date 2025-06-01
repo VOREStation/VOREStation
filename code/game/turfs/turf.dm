@@ -329,20 +329,6 @@
 			return 1
 	return 0
 
-//expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent(REAGENT_ID_WATER, 1) || source.reagents.has_reagent(REAGENT_ID_CLEANER, 1))
-		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
-			T.dirt = 0
-		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-	else
-		to_chat(user, span_warning("\The [source] is too dry to wash that."))
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
-
 /turf/proc/update_blood_overlays()
 	return
 
@@ -507,3 +493,21 @@
 	H.ingested.trans_to(V, H.ingested.total_volume / 10)
 	for(var/datum/reagent/R in H.ingested.reagent_list)
 		H.ingested.remove_reagent(R, min(R.volume, 10))
+
+/**
+* 	Called when this turf is being washed. Washing a turf will also wash any mopable floor decals
+*/
+/turf/wash(clean_types)
+	. = ..()
+
+	if(istype(src, /turf/simulated))
+		var/turf/simulated/T = src
+		T.dirt = 0
+
+	for(var/am in src)
+		if(am == src)
+			continue
+		var/atom/movable/movable_content = am
+		if(!ismopable(movable_content))
+			continue
+		movable_content.wash(clean_types)

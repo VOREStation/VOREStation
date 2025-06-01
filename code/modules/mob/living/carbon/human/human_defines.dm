@@ -176,3 +176,5 @@
 	var/next_loneliness_time = 0
 
 	var/redgate_restricted = FALSE
+	var/hide_headset = FALSE
+	var/hide_glasses = FALSE

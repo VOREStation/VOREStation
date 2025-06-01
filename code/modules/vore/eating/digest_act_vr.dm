@@ -70,7 +70,7 @@
 				if(!oldname)
 					oldname = cleanname ? cleanname : name
 				cleanname = "[d_stage_name] [oldname]"
-				decontaminate()
+				wash(CLEAN_ALL)
 				if(istype(B))
 					gurgled_color = B.contamination_color //Apply the correct color setting so uncontaminable things can still have the right overlay.
 					gurgle_contaminate(B, B.contamination_flavor, B.contamination_color)
@@ -129,7 +129,7 @@
 				S.use(1)
 				digest_stage = w_class
 		else
-			if(istype(src, /obj/item/reagent_containers/food))
+			if(istype(B) && istype(src, /obj/item/reagent_containers/food))
 				if(ishuman(B.owner) && reagents)
 					var/mob/living/carbon/human/H = B.owner
 					reagents.trans_to_holder(H.ingested, (reagents.total_volume), B.nutrition_percent / 100, 0)

@@ -180,9 +180,7 @@ export class NanoMap extends Component<Props, State> {
     const { dragging, offsetX, offsetY, zoom = 1 } = this.state;
     const { children } = this.props;
 
-    const mapUrl = resolveAsset(
-      config.map + '_nanomap_z' + config.mapZLevel + '.png',
-    );
+    const mapUrl = resolveAsset('minimap_' + config.mapZLevel + '.png');
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
     const mapSize = this.props.zoomScale * zoom + 'px';
     const newStyle: {} = {
@@ -192,6 +190,7 @@ export class NanoMap extends Component<Props, State> {
       'margin-left': offsetX + 'px',
       overflow: 'hidden',
       position: 'relative',
+      'image-rendering': 'pixelated',
       'background-image': 'url(' + mapUrl + ')',
       'background-size': 'cover',
       'background-repeat': 'no-repeat',
