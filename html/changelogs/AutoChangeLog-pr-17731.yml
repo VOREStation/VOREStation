@@ -1,4 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - qol: "Crew Monitor & Alarm Map UIs now use a derivative of the Holomap instead of a weird custom mix of handmade icons."
