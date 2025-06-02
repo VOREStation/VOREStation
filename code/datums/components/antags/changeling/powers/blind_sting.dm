@@ -4,7 +4,7 @@
 	enhancedtext = "Duration is extended."
 	ability_icon_state = "ling_sting_blind"
 	genomecost = 2
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_blind_sting
 
 /mob/proc/changeling_blind_sting()
