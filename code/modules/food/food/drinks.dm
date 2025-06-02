@@ -125,7 +125,7 @@
 	return
 
 /obj/item/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
-	clean_blood()
+	wash(CLEAN_SCRUB)
 
 /obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())

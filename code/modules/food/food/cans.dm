@@ -696,3 +696,17 @@
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUKIEMEGAGROWTH, 60)
+
+////////////////////////Event Only Nukie//////////////////////////////////
+
+/obj/item/reagent_containers/food/drinks/cans/nukie_one
+	name = "\improper Nukies One"
+	desc = "The final. The ultimate nukeform. Power not meant to be supplied to mortal creatures. Legit."
+	icon_state = "nukie_one"
+	center_of_mass_x = 16
+	center_of_mass_y = 8
+	volume = 60
+
+/obj/item/reagent_containers/food/drinks/cans/nukie_one/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_NUKIEONE, 60)

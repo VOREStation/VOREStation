@@ -1,5 +1,5 @@
 /obj/machinery/camera
-	var/list/motionTargets = list()
+	var/list/motionTargets = null
 	var/detectTime = 0
 	var/area/ai_monitored/area_motion = null
 	var/alarm_delay = 100 // Don't forget, there's another 10 seconds in queueAlarm()
@@ -29,13 +29,13 @@
 	if (detectTime == 0)
 		detectTime = world.time // start the clock
 	if (!(target in motionTargets))
-		motionTargets += target
+		LAZYADD(motionTargets, target)
 	return 1
 
 /obj/machinery/camera/proc/lostTarget(var/mob/target)
 	if (target in motionTargets)
-		motionTargets -= target
-	if (motionTargets.len == 0)
+		LAZYREMOVE(motionTargets, target)
+	if (LAZYLEN(motionTargets) == 0)
 		cancelAlarm()
 
 /obj/machinery/camera/proc/cancelAlarm()
@@ -55,7 +55,6 @@
 	return 1
 
 /obj/machinery/camera/HasProximity(turf/T, datum/weakref/WF, old_loc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()

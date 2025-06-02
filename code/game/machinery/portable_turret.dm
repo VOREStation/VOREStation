@@ -373,7 +373,7 @@
 			lethal_projectile = /obj/item/projectile/beam/xray
 			projectile = /obj/item/projectile/beam/stun // Otherwise we fire xrays on both modes.
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
-			shot_sound = 'sound/weapons/Taser.ogg'
+			shot_sound = 'sound/weapons/taser.ogg'
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(locked && !issilicon(user))

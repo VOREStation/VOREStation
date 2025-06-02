@@ -5,7 +5,7 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1657
+export BYOND_MINOR=1662
 
 # Macro Count
 export MACRO_COUNT=8
@@ -19,7 +19,7 @@ export NODE_VERSION_LTS=22.14.0
 export NODE_VERSION_COMPAT=20.2.0
 
 # SpacemanDMM git tag
-export SPACEMAN_DMM_VERSION=suite-1.9
+export SPACEMAN_DMM_VERSION=suite-1.10
 
 # Python version for mapmerge and other tools
 export PYTHON_VERSION=3.11.9

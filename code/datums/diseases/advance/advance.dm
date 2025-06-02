@@ -58,6 +58,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/stage_act()
 	if(!..())
 		return FALSE
+	if(global_flag_check(virus_modifiers, DORMANT))
+		return FALSE
 	if(symptoms && length(symptoms))
 
 		if(!s_processing)
@@ -72,15 +74,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return TRUE
 
 /datum/disease/advance/IsSame(datum/disease/advance/D)
-	if(ispath(D))
-		return FALSE
-
 	if(!istype(D, /datum/disease/advance))
 		return FALSE
 
 	if(GetDiseaseID() != D.GetDiseaseID())
 		return FALSE
-
 	return TRUE
 
 /datum/disease/advance/cure(resistance = TRUE)
@@ -91,14 +89,29 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		remove_virus()
 	qdel(src)
 
-/datum/disease/advance/Copy(process = 0)
-	return new /datum/disease/advance(process, src, 1)
+/datum/disease/advance/Copy()
+	var/datum/disease/advance/A = ..()
+	QDEL_LIST(A.symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
+		A.symptoms += S.Copy()
+	A.virus_modifiers = virus_modifiers
+	A.spread_flags = spread_flags
+	A.disease_flags = disease_flags
+	A.resistance = resistance
+	A.stealth = stealth
+	A.stage_rate = stage_rate
+	A.transmission = transmission
+	A.severity = severity
+	A.speed = speed
+	A.id = id
+	A.Refresh()
+	return A
 
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
 	if(!(IsSame(D)))
 		var/list/possible_symptoms = shuffle(D.symptoms)
 		for(var/datum/symptom/S in possible_symptoms)
-			AddSymptom(new S.type)
+			AddSymptom(S.Copy())
 
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)
 	for(var/datum/symptom/symp in symptoms)
@@ -180,12 +193,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/c2sev
 	var/c3sev
 
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		resistance += S.resistance
 		stealth += S.stealth
 		stage_rate += S.stage_speed
 		transmission += S.transmission
-	for(var/datum/symptom/S as() in symptoms)
+	for(var/datum/symptom/S as anything in symptoms)
 		S.severityset(src)
 		switch(S.severity)
 			if(-INFINITY to 0)
@@ -204,7 +217,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 /datum/disease/advance/proc/AssignProperties()
 
-	if(stealth >= 2)
+	if(global_flag_check(virus_modifiers, DORMANT) || stealth >= 2)
 		visibility_flags |= HIDDEN_SCANNER
 	else
 		visibility_flags &= ~HIDDEN_SCANNER
@@ -217,16 +230,23 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	GenerateCure()
 
 /datum/disease/advance/proc/SetSpread()
-	switch(transmission)
-		if(-INFINITY to 5)
-			spread_flags = DISEASE_SPREAD_BLOOD
-			spread_text = "Blood"
-		if(6 to 10)
-			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
-			spread_text = "Fluids"
-		if(11 to INFINITY)
-			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
-			spread_text = "On Contact"
+	if(global_flag_check(virus_modifiers, FALTERED))
+		spread_flags = DISEASE_SPREAD_FALTERED
+		spread_text = "Intentional Injection"
+	if(global_flag_check(virus_modifiers, DORMANT))
+		spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
+		spread_text = "None"
+	else
+		switch(transmission)
+			if(-INFINITY to 5)
+				spread_flags = DISEASE_SPREAD_BLOOD
+				spread_text = "Blood"
+			if(6 to 10)
+				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
+				spread_text = "Fluids"
+			if(11 to INFINITY)
+				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
+				spread_text = "On Contact"
 
 /datum/disease/advance/proc/SetSeverity(level_sev)
 
@@ -290,6 +310,15 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			NeuterSymptom(s)
 			Refresh(TRUE)
 
+// Falter the disease, making it non-spreadable.
+/datum/disease/advance/proc/Falter()
+	if(global_flag_check(virus_modifiers, FALTERED))
+		return
+	else
+		virus_modifiers |= FALTERED
+		spread_flags = DISEASE_SPREAD_BLOOD
+		spread_text = "Intentional Injection"
+
 // Name the disease.
 /datum/disease/advance/proc/AssignName(new_name = "Unknown")
 	Refresh()
@@ -303,7 +332,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	if(!id)
 		var/list/L = list()
 		for(var/datum/symptom/S in symptoms)
-			L += S.id
+			if(S.neutered)
+				L += "[S.id]N"
+			else
+				L += S.id
 		L = sortList(L) // Sort the list so it doesn't matter which order the symptoms are in.
 		var/result = jointext(L, ":")
 		id = result
@@ -325,7 +357,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	else
 		RemoveSymptom(pick(symptoms))
 		symptoms += S
-	return
+	Refresh()
 
 // Simply removes the symptom.
 /datum/disease/advance/proc/RemoveSymptom(datum/symptom/S)
@@ -366,6 +398,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	// Should be only 1 entry left, but if not let's only return a single entry
 	var/datum/disease/advance/to_return = pick(diseases)
+	to_return.disease_flags &= ~DORMANT
 	to_return.Refresh(new_name = TRUE)
 	return to_return
 
@@ -436,3 +469,11 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		log_admin("[key_name_admin(src)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 		return TRUE
+
+/datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
+	var/datum/disease/advance/A = make_copy ? Copy() : src
+	infectee.addDisease(A)
+	A.affected_mob = infectee
+	GLOB.active_diseases += A
+
+	log_admin("[key_name(src)] has contracted the virus \"[A]\"")

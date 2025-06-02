@@ -1,0 +1,6 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a small amount of weaken to spider warning bites to knock people over."
+  - rscadd: "Added a new variable to mobs that can prevent them from being pulled when alive, currently only applies to the spiders."
+  - bugfix: "Fixed an issue where spiders would sometimes try to inject poison where they couldn't and runtime."

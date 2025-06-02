@@ -28,7 +28,7 @@ var/list/gurgled_overlays = list(
 		return FALSE
 
 	if(gurgled && !(gurgled_color == contamination_color))
-		decontaminate()
+		wash(CLEAN_WASH)
 
 	if(!gurgled)
 		gurgled = TRUE
@@ -53,27 +53,13 @@ var/list/gurgled_overlays = list(
 	else
 		return TRUE
 
-/obj/item/decontaminate() //Decontaminate the sogginess as well.
-	..()
-	gurgled = FALSE
-	cut_overlay(gurgled_overlays[gurgled_color])
-	if(cleanname)
-		name = cleanname
-	if(cleandesc)
-		desc = cleandesc
-
-/obj/item/clean_blood() //Make this type of contamination sink washable as well.
-	..()
-	if(gurgled)
-		decontaminate()
-
 /obj/structure/sink/attackby(obj/item/I, mob/user) //Wash the soggy item before it can interact with the sink.
 	if(istype(I) && I.gurgled)
 		to_chat(user, span_notice("You start washing [I]."))
 
 		busy = TRUE
 		if(do_after(user, 40, src))
-			I.clean_blood()
+			I.wash(CLEAN_SCRUB)
 			user.visible_message(span_notice("[user] washes [I] using [src]."),
 				span_notice("You wash [I] using [src]."))
 		busy = FALSE

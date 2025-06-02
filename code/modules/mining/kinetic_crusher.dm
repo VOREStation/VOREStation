@@ -182,7 +182,7 @@
 		var/thrown_bonus = thrown? (src.thrown_bonus * (!ishuman(L)? 1 : human_damage_nerf)) : 0
 		if(thrown? (get_dir(src, L) & L.dir) : ((user.dir & backstab_dir) && (L.dir & backstab_dir)))
 			L.apply_damage(detonation_damage + backstab_bonus + thrown_bonus, BRUTE, blocked = def_check)
-			playsound(src, 'sound/weapons/Kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+			playsound(src, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
 		else
 			L.apply_damage(detonation_damage + thrown_bonus, BRUTE, blocked = def_check)
 
@@ -270,7 +270,7 @@
 	item_state = "c-gauntlets"
 	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhouse kicked")
 	integ_light_icon = FALSE
-	w_class = ITEMSIZE_HUGE
+	w_class = ITEMSIZE_NORMAL
 	can_cleave = FALSE
 	requires_wield = TRUE
 	force = 28

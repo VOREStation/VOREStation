@@ -29,3 +29,234 @@
       smoke.
   Will:
   - bugfix: Bioprinter works again
+2025-05-07:
+  SatinIsle:
+  - bugfix: Fixed cave-ins in fantasy dungeon around the dragon
+  ShadowLarkens:
+  - bugfix: Fixes throw passing (I didn't even know this was a thing)
+  - bugfix: Fix spacebar throwing
+  - bugfix: Fix appearance changer menu lacking data for species sounds
+  TankTheBirb:
+  - qol: added the ability to pick up floor tiles to the sheet loader gripper that
+      borgs have
+  Willburd:
+  - bugfix: Virology access buttons no longer depend on init lag to setup their state
+      correctly.
+  - code_imp: Removed spawn() behavior from airlock program. Added airlock update
+      radio command to setup doors on airlock init.
+2025-05-08:
+  Diana:
+  - rscadd: Optional Big Leggies as a marking. These are hidden underneath clothing.
+  - bugfix: Makes Big Leggies (tail) show back above clothing.
+2025-05-09:
+  Diana:
+  - rscadd: Rx variants of omnihuds now selectable in the loadout.
+  Kashargul:
+  - bugfix: some coulcatcher vis and pref issues
+  - code_imp: update tgui core to 3.1.4
+  MeepleMuncher:
+  - bugfix: Fixes runtime errors caused by barefoot sounds.
+  TheCaramelion:
+  - rscadd: Balloon Alerts
+  - refactor: Changed various to_chat to balloon alerts
+2025-05-10:
+  Kashargul:
+  - qol: makes lobby screen more reliable
+  - code_imp: tgui-core 3.1.5
+2025-05-12:
+  TankTheBirb:
+  - rscadd: Two new centered horns that look more axe-like. Perfect for making worldy
+      critters that live out on the rim.
+  - rscadd: Usage of "Teshari Union" instead of "Teshari Expeditionary Fleet" wherever
+      I could find it and updated cataloguer lore
+  - rscadd: updated maximum working age of tesh in the code to 80, which is 20 years
+      younger than their actual maximum age
+  - rscadd: Teshari union is now a valid citizenship instead of Teshari Expeditionary
+      fleet, as well as a valid faction choice
+  - rscadd: Added new species desc and changed minimum age for Rapala to 19 for lore
+      reasons
+2025-05-13:
+  Asher-42:
+  - rscadd: Engi and med v3 dullahans wings now work again
+  Diana:
+  - refactor: Shadekin and Xenochimera no longer have their special powers on their
+      brain. Instead it's a component.
+  SatinIsle:
+  - bugfix: Fixes micros being able to pick themselves up.
+  ShadowLarkens:
+  - bugfix: Diona not being whitelisted
+  - bugfix: Body snatcher not respecting resleeve lock
+  - bugfix: Borgs being slowed by >1000 nutrition
+  - bugfix: Mobs not updating their transform to match their size
+  - bugfix: Resleeving not allowed to print whitelisted species
+  - bugfix: Game preferences missing tgui options
+  TheCaramelion:
+  - bugfix: Fixed Neutered symptoms not staying neutered when moved around
+  - bugfix: Fixed diseases duplicating when created
+  - bugfix: Fixed species with immunity catching viruses
+  - bugfix: Fixed Pandemic runtimes when trying to duplicate a non-advanced diseases
+2025-05-16:
+  Cameron-The-Raven:
+  - bugfix: 'Loaf sprites on Fat Wolf 3 and Fat Wolf 3 Alt are fixed (Note: ALT variant
+      currently still needs spritework.)'
+  Diana:
+  - refactor: Weaver, Drippy, and Gargoyle has been refactored. Now uses DCS.
+  - refactor: Disabilities have been refactored. Now uses DCS.
+  - qol: Vasillian bodytype gets increased webbing storage if selected.
+  - bugfix: Endurance traits now are properly calculated when it comes to death &
+      crit.
+  - bugfix: Xenochimera can no longer move while dead
+  - rscadd: New Waddle mechanic that can be turned on via 'Character' under Preferences.
+      Allows you to have animated movement.
+  - server: Ref Track now goes => .log. Proper ref tracking dm ticked in the .dme
+  - bugfix: Teshari HoS cloak is now selectable
+  - bugfix: Teshari captain cloak now selects properly
+  Kashargul & Diana:
+  - bugfix: Fixes an error where nulls would enter the player list.
+  SatinIsle:
+  - rscadd: Added the ability to recolour material stacks (such as plastic). Some
+      items crafted from stacks (such as curtains or beds) inherit the color variable
+      of the stack, now you can actually recolour your stack to take advantage of
+      this!
+  - bugfix: Fixes the glamour drain ability showing the "contact has been broken"
+      message when it is successful.
+  Willburd:
+  - rscadd: Addictions and consequences for not feeding or treating them.
+  - rscadd: Various reagents are now addictive, servers can decide if reagents can
+      be addicted to during a round, or if only with a trait.
+  - rscadd: Artificial sustenance, a vat-clone body stabilizer using the addiction
+      system, enabled with a trait
+  - rscadd: Traits to be addicted to a reagent from round start
+  - rscadd: inaprovaline treats addiction withdrawls in most cases
+  - refactor: complete rebuild of hallucination code to use components and more safely
+      handled client images
+  - refactor: Talk sounds are more convenient to add to or change downstream
+  - refactor: Posters can now use downstream overrides to use their own dmis
+  - code_imp: adds a unit-test to prevent illegal icons and icon_states in poster
+      definitions
+  crabcube:
+  - rscadd: New moth eyes marking!
+2025-05-17:
+  Diana:
+  - qol: Guns that do bonus damage to simple_mob/animal (phaseguns) now do bonus damage
+      to any simple_mob
+  - qol: Survey Vendor and Mining Vendor have had some adjustments. PSGs are now available
+      in them. Some price adjustments. Mining gets a expensive version of their rig.
+  - qol: Kinetic Gauntlets can fit in your backpack now.
+  TeleTubby2:
+  - bugfix: mob holders play nice with disposals again
+  TheCaramelion:
+  - code_imp: RemoveDisease proc now uses LAZYREMOVE
+  - code_imp: HasResistance proc now uses LAZYFIND
+  Willburd:
+  - rscadd: Nutrition resizing traits, disabled on virgo
+  - refactor: Moved nutrition resizing code to components
+  - rscadd: Photodegeneration genetrait, cannot be selected from round start
+  - bugfix: Drippy trait will no longer drop drips into the cryopod when a human with
+      it is in the pod
+  - refactor: inStasisNow() has a base proc on mob, for ease of component compatibility
+      between simple and human mobs
+  - refactor: Moved species/shadow and zaddat light-based damage code to a component
+  - refactor: Overmap shuttle star movement overlay is not controlled by a subsystem
+  - bugfix: mobs can be extinguished by hand when beneath paincrit threshold
+  - refactor: Photosynthesis code moved to component
+2025-05-18:
+  Diana:
+  - code_imp: Gibbing is now 75% FASTER!!!
+  - qol: TTS device now costs 0 points
+  Willburd:
+  - code_imp: Prepared signal handling code for future work
+2025-05-19:
+  Guti:
+  - bugfix: Fixed mailman suit's sprites
+  - qol: Adjusted the vomit proc.
+2025-05-20:
+  Diana:
+  - bugfix: Gorka sprites now properly show
+  - bugfix: Vox will no longer have a green suit when equipping an unsprited suit
+  - bugfix: Missing teshari uniform sprites will fallback to a rainbow suit instead
+      of naked
+  - bugfix: Missing rolled down/sleeves up uniform sprites will now fallback to an
+      owlsuit instead of a giant floating SUIT
+  - rscadd: Missing uniform sprites show up as an owlsuit instead of a giant floating
+      SUIT
+  - rscdel: Supermatter is no longer obtainable via xenoarcheology & xenobotany
+  Kashargul:
+  - code_imp: tgui-core 3.2.0
+  SatinIsle:
+  - qol: Changes a few descriptions of eating to be more neutral, and a bit less gross
+      and discouraging to people who like stuffing.
+  - balance: Spider spawned by the spider event have had their behaviour changed.
+      They are no longer violently aggressive UNLESS they are attacked. However, they
+      remain territorial and will infrequently "warning bite" anyone who is hanging
+      out too close to them. This bite does very little toxic damage (you'll outheal
+      it), but does make you jittery, gives you the drug overlay and slows you down.
+  aKromatopzia:
+  - image: added new smolraptors (sec blue, sec red, syndicate); "pk" sec white smolraptor
+      moved to crisis
+  - image: new rest mode for smolraptors
+  tacoguy7765093:
+  - image: Fox taurs now have belly sprites.
+2025-05-22:
+  ShadowLarkens:
+  - server: Server starts faster now
+2025-05-24:
+  ShadowLarkens:
+  - bugfix: Gas overlays work again
+  - code_imp: xgm gas_data is now a GLOB
+  Willburd:
+  - bugfix: Capsaicin no longer causes toxin damage when eaten
+2025-05-25:
+  ShadowLarkens:
+  - bugfix: qdeleted new_players causing havoc
+  - qol: Entire character setup menu rewritten in TGUI
+  Willburd:
+  - rscadd: Gene scanner tool for genetics to detect traits in monkeys and humans.
+  - qol: Virus extrapolator not being store-able in the medical belt and pouch
+2025-05-27:
+  ShadowLarkens:
+  - bugfix: Weird pref data causing a UI crash
+2025-05-28:
+  Diana:
+  - bugfix: Some waddle fixes. Waddle height and animation time are now properly selectable
+  - bugfix: Fixes an oversight that resulted in synthetics not being able to unabsorb
+      prey.
+  - bugfix: Toggling silk production now works
+  SatinIsle:
+  - rscadd: Added a new event collector objector that is designed for events where
+      players have to gather items to complete a recipe.
+  - rscadd: Added a blocker object to accompany the event collector.
+2025-05-29:
+  Cameron-The-Raven:
+  - bugfix: Server is now more stable.
+  Diana:
+  - bugfix: Mobs can now properly eat you when you're down!
+  - qol: Mobs will be temporarily stunned when missing a leap.
+  Kashargul:
+  - bugfix: custom egg name and size input
+  - qol: adds an option to have edit mode enabled on window open
+  ShadowLarkens:
+  - bugfix: Mobs are briefly stunned when pounced
+2025-05-30:
+  Asher-42:
+  - bugfix: dullahan taur jani and command sprites
+  - bugfix: dullahan syndie sprite
+  SatinIsle:
+  - image: Fixes missing nukie can sprite
+  - rscadd: 'Added a bunch of new torso definition markings: Bust/Bustier (solid,
+      translucent and outline), nipples (normal position, closer together and one
+      pixel lower) and abs.'
+  ShadowLarkens:
+  - qol: Crew Monitor & Alarm Map UIs now use a derivative of the Holomap instead
+      of a weird custom mix of handmade icons.
+  Willburd:
+  - bugfix: Admin respawn respects record button selection
+2025-05-31:
+  Diana:
+  - bugfix: Markings will no longer make your limbs invisible if toggled off
+  Guti:
+  - rscadd: Added the ability for virologists to falter their diseases
+  - rscadd: Added dormant diseases, that some crewmembers might carry.
+  - rscadd: Added three new chemicals for higher level symptoms.
+  - rscadd: Old syringes and old syringe boxes, which may include include diseases.
+  - balance: Buffed the chance of mice having diseases on them.

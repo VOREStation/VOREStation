@@ -114,7 +114,7 @@
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 	var/digestable = TRUE
 	var/item_tf_spawn_allowed = FALSE
-	var/list/ckeys_allowed_itemspawn = list()
+	var/list/ckeys_allowed_itemspawn = null
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -712,11 +712,6 @@ var/list/global/slot_flags_enumeration = list(
 	M.eye_blurry += rand(3,4)
 	return
 
-/obj/item/clean_blood()
-	. = ..()
-	if(blood_overlay)
-		overlays.Remove(blood_overlay)
-
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
 		fluorescent = 1
@@ -1170,3 +1165,10 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 	transform = animation_matrix
 
 	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = old_transform, time = 3, easing = CUBIC_EASING)
+
+/obj/item/wash(clean_types)
+	. = ..()
+	if(cleanname)
+		name = cleanname
+	if(cleandesc)
+		name = cleandesc

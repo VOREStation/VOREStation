@@ -72,6 +72,18 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/holder/vv_dark
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "vvdark"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/holder/vv_gfi
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "vvgfi"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /// The color admins will speak in for OOC.
 /datum/preference/color/ooc_color
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

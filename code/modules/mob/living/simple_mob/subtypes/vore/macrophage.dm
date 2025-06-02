@@ -154,7 +154,7 @@
 	contamination_color = "green"
 	vore_verb = "absorb"
 	escapable = TRUE
-	escapable = 20
+	escapechance = 20
 	desc = "In an attempt to get away from the giant virus, it's oversized envelope proteins dragged you right past it's matrix, encapsulating you deep inside it's capsid... The strange walls kneading and keeping you tight along within it's nucleoprotein."
 	belly_fullscreen = "VBO_gematically_angular"
 	belly_fullscreen_color = "#87d8d8"
