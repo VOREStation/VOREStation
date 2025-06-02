@@ -255,8 +255,8 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	to_chat(src, span_notice("We stealthily sting [T]."))
 	var/datum/component/antag/changeling/target_comp = T.GetComponent(/datum/component/antag/changeling)
-	to_chat(T, span_warning("You feel a tiny prick."))
 	if(!T.mind || !target_comp)
+		to_chat(T, span_warning("You feel a tiny prick.")) //I've been informed changelings aren't meant to notice they've been stung, only non-lings! Who would've known.
 		return T	//T will be affected by the sting
 	return
 
