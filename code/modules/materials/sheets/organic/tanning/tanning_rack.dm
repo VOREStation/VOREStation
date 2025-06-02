@@ -9,7 +9,6 @@
 /obj/structure/tanning_rack/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src) // SSObj fires ~every 2s , starting from wetness 30 takes ~1m
-	AddElement(/datum/element/climbable)
 
 /obj/structure/tanning_rack/Destroy()
 	STOP_PROCESSING(SSobj, src)
