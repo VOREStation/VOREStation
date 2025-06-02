@@ -37,7 +37,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(climbed_thing,H))
-		addtimer(CALLBACK(src, PROC_REF(do_climb), climbed_thing, user), 0, TIMER_DELETE_ME) // Isolate from signal handler
+		addtimer(CALLBACK(src, PROC_REF(do_climb), climbed_thing, user, climb_delay), 0, TIMER_DELETE_ME) // Isolate from signal handler
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
 /datum/element/climbable/proc/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
@@ -64,14 +64,14 @@
 	return 1
 
 /// Performs the wait and any remaining checks before the climb resolves.
-/datum/element/climbable/proc/do_climb(var/obj/climbed_thing, var/mob/living/user)
+/datum/element/climbable/proc/do_climb(var/obj/climbed_thing, var/mob/living/user, var/delay_time)
 	if(QDELETED(user) || QDELETED(climbed_thing))
 		return
 
 	user.visible_message(span_warning("[user] starts climbing onto \the [climbed_thing]!"))
 	LAZYADDASSOCLIST(current_climbers, climbed_thing, user)
 
-	if(do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay)))
+	if(do_after(user,(issmall(user) ? delay_time * 0.6 : delay_time)))
 		if(can_climb(climbed_thing, user, post_climb_check=1))
 			climb_to(climbed_thing, user)
 			if(get_turf(user) == get_turf(climbed_thing))
@@ -170,6 +170,14 @@
 
 
 // Cliff climbing requires climbing gear.
+/datum/element/climbable/cliff/do_climb(obj/climbed_thing, mob/living/user, delay_time)
+	// Special snowflake handling, because north facing cliffs require half the time
+	var/obj/structure/cliff/C = climbed_thing
+	if(C.is_double_cliff)
+		delay_time /= 2
+	. = ..(climbed_thing, living/user, delay_time)
+
+
 /datum/element/climbable/cliff/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

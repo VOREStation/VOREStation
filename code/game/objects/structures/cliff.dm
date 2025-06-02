@@ -47,7 +47,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/Initialize(mapload)
 	. = ..()
 	register_dangerous_to_step()
-	AddElement(/datum/element/climbable,CLIFF_CLIMB_DELAY SECONDS)
+	AddElement(/datum/element/climbable/cliff,CLIFF_CLIMB_DELAY SECONDS)
 
 /obj/structure/cliff/Destroy()
 	unregister_dangerous_to_step()
@@ -106,14 +106,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	// Now make the bottom cliff have mostly the same variables.
 	var/obj/structure/cliff/bottom/bottom = new(T)
 	is_double_cliff = TRUE
-
-	RemoveElement(/datum/element/climbable)
-	AddElement(/datum/element/climbable, (CLIFF_CLIMB_DELAY SECONDS) / 2 )
 	bottom.dir = dir
 	bottom.is_double_cliff = TRUE
-
-	bottom.RemoveElement(/datum/element/climbable)
-	bottom.AddElement(/datum/element/climbable, (CLIFF_CLIMB_DELAY SECONDS) / 2 )
 	bottom.icon_variant = icon_variant
 	bottom.corner = corner
 	bottom.ramp = ramp

@@ -12,7 +12,7 @@
 
 /obj/structure/ledge/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/climbable, 3.5 SECONDS, TRUE)
+	AddElement(/datum/element/climbable, vaulting = TRUE)
 
 /obj/structure/ledge_corner
 	icon_state = "ledge-corner"
@@ -27,7 +27,7 @@
 
 /obj/structure/ledge_corner/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/climbable, 3.5 SECONDS, TRUE)
+	AddElement(/datum/element/climbable, vaulting = TRUE)
 
 /obj/structure/ledge/ledge_nub
 	desc = "Part of a rocky ledge."
