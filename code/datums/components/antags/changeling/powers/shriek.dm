@@ -26,8 +26,8 @@
 	var/datum/component/antag/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
 	if(!changeling)
 		return FALSE
-	if(comp.is_on_cooldown(CHANGELING_SCREECH))
-		to_chat(src, span_notice("We are still recovering. We will be able to screech again in [(get_cooldown(CHANGELING_SCREECH) - world.time)/10] seconds."))
+	if(changeling.is_on_cooldown(CHANGELING_SCREECH))
+		to_chat(src, span_notice("We are still recovering. We will be able to screech again in [(changeling.get_cooldown(CHANGELING_SCREECH) - world.time)/10] seconds."))
 		return
 
 	if(is_muzzled())
@@ -82,7 +82,7 @@
 		L.on = TRUE
 		L.broken()
 
-	comp.set_cooldown(CHANGELING_SCREECH, 10 SECONDS)
+	changeling.set_cooldown(CHANGELING_SCREECH, 10 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(changeling_screech_ready)), 10 SECONDS, TIMER_DELETE_ME)
 
 	add_attack_logs(src,affected,"Used resonant shriek")
@@ -109,8 +109,8 @@
 			to_chat(src, span_danger("You can't speak!"))
 			return FALSE
 
-	if(comp.is_on_cooldown(CHANGELING_SCREECH))
-		to_chat(src, span_notice("We are still recovering. We will be able to screech again in [(get_cooldown(CHANGELING_SCREECH) - world.time)/10] seconds."))
+	if(changeling.is_on_cooldown(CHANGELING_SCREECH))
+		to_chat(src, span_notice("We are still recovering. We will be able to screech again in [(changeling.get_cooldown(CHANGELING_SCREECH) - world.time)/10] seconds."))
 		return
 
 	if(!isturf(loc))
@@ -138,7 +138,7 @@
 		L.broken()
 	empulse(get_turf(src), range_heavy, range_med, range_light, range_long)
 
-	comp.set_cooldown(CHANGELING_SCREECH, 10 SECONDS)
+	changeling.set_cooldown(CHANGELING_SCREECH, 10 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(changeling_screech_ready)), 10 SECONDS, TIMER_DELETE_ME)
 	visible_message(span_notice("[src] appears to shout."))
 	add_attack_logs(src,null,"Use dissonant shriek")

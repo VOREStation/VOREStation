@@ -18,7 +18,7 @@
 	if(!T)
 		return FALSE
 	if(comp.is_on_cooldown(CRYO_STING))
-		to_chat(src, span_notice("We are still recovering. We will be able to sting again in [(get_cooldown(CRYO_STING) - world.time)/10] seconds."))
+		to_chat(src, span_notice("We are still recovering. We will be able to sting again in [(comp.get_cooldown(CRYO_STING) - world.time)/10] seconds."))
 		return
 
 	add_attack_logs(src,T,"Cryo sting (changeling)")
