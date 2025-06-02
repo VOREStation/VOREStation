@@ -4,7 +4,7 @@
 	enhancedtext = "Duration is extended."
 	ability_icon_state = "ling_sting_blind"
 	genomecost = 2
-	allowduringlesserform = TRUE
+	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_blind_sting
 
 /mob/proc/changeling_blind_sting()
@@ -14,17 +14,21 @@
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
-		return 0
+		return FALSE
 	add_attack_logs(src,T,"Blind sting (changeling)")
 	to_chat(T, span_danger("Your eyes burn horrificly!"))
 	T.disabilities |= NEARSIGHTED
-	var/duration = 300
+	var/duration = 30 SECONDS
 	if(comp.recursive_enhancement)
-		duration = duration + 150
+		duration = duration + 15 SECONDS
 		to_chat(src, span_notice("They will be deprived of sight for longer."))
-	spawn(duration)
-		T.disabilities &= ~NEARSIGHTED
+	addtimer(CALLBACK(T, PROC_REF(nearsighted_sting_complete),T), duration, TIMER_DELETE_ME)
 	T.Blind(10)
 	T.eye_blurry = 20
 	feedback_add_details("changeling_powers","BS")
-	return 1
+	return TRUE
+
+/mob/proc/nearsighted_sting_complete(mob/target, mode)
+	if(!target)
+		return
+	target.disabilities &= ~NEARSIGHTED
