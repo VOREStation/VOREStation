@@ -21,8 +21,8 @@
 		var/mob/living/carbon/human/H = src
 
 		if(changeling.cloaked)
-			changeling.cloaked = 0
-			return 1
+			changeling.cloaked = FALSE
+			return TRUE
 
 		//We delay the check, so that people can uncloak without needing 10 chemicals to do so.
 		changeling = changeling_power(10,0,100,CONSCIOUS)
