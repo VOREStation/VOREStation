@@ -16,7 +16,13 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100)
 	if(!changeling)
-		return 0
+		return FALSE
+	if(!changeling.recursive_enhancement && changeling.sting_range > 1)
+		to_chat(src, span_notice("We have already empowered our sting!"))
+		return
+	else if(changeling.recursive_enhancement && changeling.sting_range > 2)
+		to_chat(src, span_notice("We have already empowered our sting!"))
+		return
 	changeling.chem_charges -= 10
 	to_chat(src, span_notice("Your throat adjusts to launch the sting."))
 	var/range = 2
@@ -24,8 +30,5 @@
 		range = range + 3
 		to_chat(src, span_notice("We can fire our next sting from five squares away."))
 	changeling.sting_range = range
-	remove_verb(src, /mob/proc/changeling_boost_range)
-	spawn(5)
-		add_verb(src, /mob/proc/changeling_boost_range)
 	feedback_add_details("changeling_powers","RS")
-	return 1
+	return TRUE
