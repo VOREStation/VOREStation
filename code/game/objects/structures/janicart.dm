@@ -370,7 +370,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 
 
-
+/* farewell sweet prince, replaced by code\modules\vehicles\janicart.dm
 //old style mischievio-cart
 /obj/structure/bed/chair/janicart
 	name = "janicart"
@@ -493,10 +493,10 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 			return L.bullet_act(Proj)
 	visible_message(span_warning("[Proj] ricochets off the [callme]!"))
 
-
 /obj/item/key
 	name = "key"
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
 	w_class = ITEMSIZE_TINY
+*/
