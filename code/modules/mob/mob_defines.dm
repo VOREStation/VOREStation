@@ -120,6 +120,7 @@
 	var/m_intent = I_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living
+	var/pulled_living = TRUE //Test for if it can be pulled when alive
 
 	var/seer = 0 //for cult//Carbon, probably Human
 
