@@ -45,12 +45,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	var/uphill_penalty = 30 // Odds of a projectile not making it up the cliff.
 
 /obj/structure/cliff/Initialize(mapload)
-	..()
+	. = ..()
 	register_dangerous_to_step()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/structure/cliff/LateInitialize()
-	// Automatic cliffs perform a check for making their bottom. Placing this in the base Initialize would result double signaling elements
 	AddElement(/datum/element/climbable/cliff,CLIFF_CLIMB_DELAY SECONDS)
 
 /obj/structure/cliff/Destroy()
@@ -87,6 +83,10 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/bottom
 	bottom = TRUE
 
+/obj/structure/cliff/automatic/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
 // Paranoid about the maploader, direction is very important to cliffs, since they may get bigger if initialized while facing NORTH.
 /obj/structure/cliff/automatic/LateInitialize()
 	if(dir in GLOB.cardinal)
@@ -96,9 +96,6 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		make_bottom()
 
 	update_icon()
-
-	// Must come after make_bottom
-	AddElement(/datum/element/climbable/cliff,CLIFF_CLIMB_DELAY SECONDS)
 
 /obj/structure/cliff/proc/make_bottom()
 	// First, make sure there's room to put the bottom side.
