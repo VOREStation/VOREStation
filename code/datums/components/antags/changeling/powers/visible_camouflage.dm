@@ -28,12 +28,12 @@
 		changeling = changeling_power(10,0,100,CONSCIOUS)
 
 		if(!changeling)
-			return 0
+			return FALSE
 		changeling.chem_charges -= 10
 		var/old_regen_rate = changeling.chem_recharge_rate
 
 		to_chat(H, span_notice("We vanish from sight, and will remain hidden, so long as we move carefully."))
-		changeling.cloaked = 1
+		changeling.cloaked = TRUE
 		changeling.chem_recharge_rate = 0
 		animate(src,alpha = 255, alpha = 10, time = 10)
 
@@ -50,13 +50,13 @@
 			sleep(1 SECOND) // Sleep at the start so that if something invalidates a cloak, it will drop immediately after the check and not in one second.
 
 			if(H.m_intent != I_WALK && must_walk) // Moving too fast uncloaks you.
-				remain_cloaked = 0
+				remain_cloaked = FALSE
 			if(!changeling.cloaked)
-				remain_cloaked = 0
+				remain_cloaked = FALSE
 			if(H.stat) // Dead or unconscious lings can't stay cloaked.
-				remain_cloaked = 0
+				remain_cloaked = FALSE
 			if(H.incapacitated(INCAPACITATION_DISABLED)) // Stunned lings also can't stay cloaked.
-				remain_cloaked = 0
+				remain_cloaked = FALSE
 
 			if(changeling.chem_recharge_rate != 0) //Without this, there is an exploit that can be done, if one buys engorged chem sacks while cloaked.
 				old_regen_rate += changeling.chem_recharge_rate //Unfortunately, it has to occupy this part of the proc.  This fixes it while at the same time
@@ -68,7 +68,7 @@
 		visible_message(span_warning("[src] suddenly fades in, seemingly from nowhere!"),
 		span_notice("We revert our camouflage, revealing ourselves."))
 		H.set_m_intent(I_RUN)
-		changeling.cloaked = 0
+		changeling.cloaked = FALSE
 		changeling.chem_recharge_rate = old_regen_rate
 
 		animate(src,alpha = 10, alpha = 255, time = 10)
