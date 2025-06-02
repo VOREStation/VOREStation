@@ -132,13 +132,6 @@
 	var/turf/tile = get_turf(src)
 	if(scrubbing)
 		if(tile && reagents.total_volume > 0)
-			if(reagents.has_reagent(REAGENT_ID_FUEL))
-				if(buckled_mobs.len)
-					log_game("[key_name(buckled_mobs[1])](driver) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
-				else if(pulledby)
-					log_game("[key_name(pulledby)](puller) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
-				else
-					log_game("[callme] washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
 			if(reagents.has_reagent(REAGENT_ID_WATER) || reagents.has_reagent(REAGENT_ID_CLEANER))
 				tile.wash(CLEAN_SCRUB)
 			for(var/atom/movable/AM in tile.contents)
