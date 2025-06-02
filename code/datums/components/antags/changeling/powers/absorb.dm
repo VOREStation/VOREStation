@@ -43,7 +43,7 @@
 		to_chat(src, span_warning("We are already absorbing!"))
 		return
 
-	changeling.isabsorbing = 1
+	changeling.isabsorbing = TRUE
 	for(var/stage = 1, stage<=3, stage++)
 		switch(stage)
 			if(1)
@@ -62,14 +62,38 @@
 		feedback_add_details("changeling_powers","A[stage]")
 		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
 			to_chat(src, span_warning("Our absorption of [T] has been interrupted!"))
-			changeling.isabsorbing = 0
+			changeling.isabsorbing = FALSE
 			return
 
 	to_chat(src, span_notice("We have absorbed [T]!"))
 	add_attack_logs(src,T,"Absorbed (changeling)")
 	src.visible_message(span_danger("[src] sucks the fluids from [T]!"))
 	to_chat(T, span_danger("You have been absorbed by the changeling!"))
-	adjust_nutrition(T.nutrition)
+	changeling_obtain_dna(T, changeling, target_changeling)
+
+	changeling.isabsorbing = FALSE
+	T.death(FALSE)
+	T.Drain()
+	return 1
+
+///Proc that does the actual 'obtaining DNA' part for changelings. Has two arguments: The victim and our changeling datum.
+/mob/living/proc/changeling_obtain_dna(mob/living/carbon/human/victim, datum/component/antag/changeling/changeling, datum/component/antag/changeling/target_changeling)
+	if(!victim || !ishuman(victim))
+		return
+	if(!changeling) //Did we not get the changeling component fed to us? Let's check to see if we're an actual changeling.
+		changeling = GetComponent(/datum/component/antag/changeling)
+		if(!changeling) //STILL no changeling component? Then stop here.
+			return
+	if(!target_changeling)
+		target_changeling = victim.GetComponent(/datum/component/antag/changeling) //Let's see if the victim is a changeling or not.
+	var/saved_dna = victim.dna.Clone()
+	var/datum/absorbed_dna/newDNA = new(victim.real_name, saved_dna, victim.species.name, victim.languages, victim.identifying_gender, victim.flavor_texts, victim.modifiers)
+	if(changeling.GetDNA(newDNA.name))
+		qdel(newDNA)
+		return //No double dipping! You already ate or absorbed them once this shift, glutton!
+	absorbDNA(newDNA)
+
+	adjust_nutrition(victim.nutrition)
 	changeling.chem_charges += 10
 	if(changeling.readapts <= 0)
 		changeling.readapts = 0 //SANITYYYYYY
@@ -82,11 +106,7 @@
 
 	to_chat(src, span_notice("We can now re-adapt, reverting our evolution so that we may start anew, if needed."))
 
-	var/saved_dna = T.dna.Clone()
-	var/datum/absorbed_dna/newDNA = new(T.real_name, saved_dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts, T.modifiers)
-	absorbDNA(newDNA)
-
-	if(T.mind && target_changeling)
+	if(victim.mind && target_changeling)
 		if(target_changeling.absorbed_dna)
 			for(var/datum/absorbed_dna/dna_data in target_changeling.absorbed_dna)	//steal all their loot
 				if(dna_data in changeling.absorbed_dna)
@@ -110,10 +130,4 @@
 		target_changeling.max_geneticpoints = -1 //To prevent revival.
 		target_changeling.absorbedcount = 0
 		target_changeling.lingabsorbedcount = 0
-
 	changeling.absorbedcount++
-	changeling.isabsorbing = 0
-
-	T.death(0)
-	T.Drain()
-	return 1
