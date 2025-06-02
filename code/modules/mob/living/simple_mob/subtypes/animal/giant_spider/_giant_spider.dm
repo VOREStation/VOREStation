@@ -127,7 +127,7 @@
 	var/warning_warmup = 2 SECONDS // How long the leap telegraphing is.
 	var/warning_sound = 'sound/weapons/spiderlunge.ogg'
 
-	pulled_living = FALSE
+	no_pull_when_living = TRUE
 
 
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)

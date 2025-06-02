@@ -607,7 +607,7 @@
 		else
 			M.LAssailant = usr
 
-		if(!M.pulled_living && !(M.stat == DEAD)) //If it's now allowed to be pulled when living, and it's not dead yet, deny.
+		if(M.no_pull_when_living && !(M.stat == DEAD)) //If it's now allowed to be pulled when living, and it's not dead yet, deny.
 			to_chat(src, span_warning("\The [M] won't let you just pull them!"))
 			return
 
