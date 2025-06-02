@@ -191,7 +191,7 @@
 	if(on)
 		soundloop.start()
 		if (M.loc == loc)
-			wash(M)
+			do_wash(M)
 			process_heat(M)
 		for (var/atom/movable/G in src.loc)
 			G.wash(CLEAN_SCRUB)
