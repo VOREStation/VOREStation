@@ -137,7 +137,7 @@
 			for(var/atom/movable/AM in tile.contents)
 				if(istype(AM, /mob/living))
 					var/mob/living/L = AM
-					if(L.buckled == src)
+					if(L.is_incorporeal() || L.buckled == src) // Don't scrub shadekin our our rider
 						continue
 					reagents.splash(L,5) // only 5u so it's not gamebreaking
 			reagents.trans_to_turf(tile, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
