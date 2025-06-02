@@ -165,9 +165,11 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(istype(H))
 		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking.
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
+		newDNA.dna.b_type = "AB+" // This acts as a changeling test.
+		H.b_type = "AB+"
 		absorbDNA(newDNA)
 
-	return 1
+	return TRUE
 
 //removes our changeling verbs
 /mob/proc/remove_changeling_powers()
