@@ -133,8 +133,8 @@
 	if(scrubbing)
 		if(tile && reagents.total_volume > 0)
 			if(reagents.has_reagent(REAGENT_FUEL))
-				if(buckled)
-					log_game("[key_name(buckled)](driver) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
+				if(buckled_mobs.len)
+					log_game("[key_name(buckled_mobs[1])](driver) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
 				else if(pulledby)
 					log_game("[key_name(pulledby)](puller) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
 				else
@@ -142,8 +142,10 @@
 			if(reagents.has_reagent(REAGENT_ID_WATER) || reagents.has_reagent(REAGENT_ID_CLEANER))
 				tile.wash(CLEAN_SCRUB)
 			for(var/atom/movable/AM in tile.contents)
-				if(AM != buckled && istype(AM, /mob/living))
+				if(istype(AM, /mob/living))
 					var/mob/living/L = AM
+					if(L.buckled == src)
+						continue
 					reagents.splash(L,5) // only 5u so it's not gamebreaking
 			reagents.trans_to_turf(tile, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 		else
