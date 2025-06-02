@@ -14,3 +14,12 @@
   - admin: VV now uses getFlatIcon to get a better preview (also toggleable in game
       prefs)
   - admin: VV now supports previews for /images
+2025-06-02:
+  ShadowLarkens:
+  - bugfix: New players runtiming in preferences loading due to pAI nonsense
+  - bugfix: Black squares on alt-f4ing tgui.
+  - bugfix: You can turn off autohiss again!
+  - balance: Unathi no longer pass out from sugar, they just get knocked over.
+  Willburd:
+  - bugfix: lights do not ignore light switch state when a bulb is inserted
+  - bugfix: genescanner tool now has a proper description
