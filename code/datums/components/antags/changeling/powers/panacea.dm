@@ -34,6 +34,7 @@
 		heal_amount = heal_amount * 2
 		to_chat(src, span_notice("We will heal much faster."))
 
+	//TODO: Replace with a modifier.
 	for(var/i = 0, i<10,i++)
 		if(C)
 			C.adjustToxLoss(-heal_amount)

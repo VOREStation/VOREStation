@@ -12,7 +12,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/enhancedtext = ""
 	var/isVerb = 1 	// Is it an active power, or passive?
 	var/verbpath // Path to a verb that contains the effects.
-	var/make_hud_button = 1 // Is this ability significant enough to dedicate screen space for a HUD button?
+	var/make_hud_button = TRUE // Is this ability significant enough to dedicate screen space for a HUD button?
 	var/ability_icon_state = null // icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
 
 /datum/power/changeling
@@ -256,8 +256,9 @@ var/list/datum/power/changeling/powerinstances = list()
 	to_chat(src, span_notice("We stealthily sting [T]."))
 	var/datum/component/antag/changeling/target_comp = T.GetComponent(/datum/component/antag/changeling)
 	if(!T.mind || !target_comp)
-		to_chat(T, span_warning("You feel a tiny prick.")) //I've been informed changelings aren't meant to notice they've been stung, only non-lings! Who would've known.
 		return T	//T will be affected by the sting
+	to_chat(T, span_warning("You feel a tiny prick.")) //Stings on other lings have no effect, but they know you're a ling, too.
+
 	return
 
 //Former /turf procs
