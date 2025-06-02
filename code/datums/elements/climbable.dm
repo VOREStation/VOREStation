@@ -175,8 +175,7 @@
 	var/obj/structure/cliff/C = climbed_thing
 	if(C.is_double_cliff)
 		delay_time /= 2
-	. = ..(climbed_thing, living/user, delay_time)
-
+	. = ..(climbed_thing, user, delay_time)
 
 /datum/element/climbable/cliff/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
 	if(ishuman(user))
@@ -188,11 +187,13 @@
 	to_chat(user, span_warning("\The [climbed_thing] is too steep to climb unassisted."))
 	return FALSE
 
+
 // Breaks if climbed while unanchored, railings.
 /datum/element/climbable/unanchored_can_break/climb_to(var/obj/climbed_thing, var/mob/living/user)
 	. = ..()
 	if(!climbed_thing.anchored)
 		climbed_thing.take_damage(9999) // Fatboy, was originally maxhealth, but that var doesn't exist on everything
+
 
 // Table flipping is important!
 /datum/element/climbable/table/climb_to(var/obj/climbed_thing, mob/living/mover)
