@@ -4,7 +4,7 @@
 	enhancedtext = "Deafness duration is extended."
 	ability_icon_state = "ling_sting_deafen"
 	genomecost = 1
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_deaf_sting
 
 

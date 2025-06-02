@@ -4,7 +4,7 @@
 	helptext = "Can be used before or after death. Duration varies greatly."
 	ability_icon_state = "ling_regenerative_stasis"
 	genomecost = 0
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_fakedeath
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.

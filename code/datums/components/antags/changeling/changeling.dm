@@ -16,7 +16,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/ability_icon_state = null // icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
 
 /datum/power/changeling
-	var/allowduringlesserform = 0
+	var/allowduringlesserform = FALSE
 	var/genomecost = 500000 // Cost for the changeling to evolve this power.
 
 /datum/component/antag/changeling

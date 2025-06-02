@@ -5,7 +5,7 @@
 	enhancedtext = "Silence duration is extended."
 	ability_icon_state = "ling_sting_mute"
 	genomecost = 2
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_silence_sting
 
 /mob/proc/changeling_silence_sting()
@@ -15,7 +15,8 @@
 
 	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
-	if(!T)	return 0
+	if(!T)
+		return FALSE
 	add_attack_logs(src,T,"Silence sting (changeling)")
 	var/duration = 30
 	if(comp.recursive_enhancement)
@@ -23,4 +24,4 @@
 		to_chat(src, span_notice("They will be unable to cry out in fear for a little longer."))
 	T.silent += duration
 	feedback_add_details("changeling_powers","SS")
-	return 1
+	return TRUE

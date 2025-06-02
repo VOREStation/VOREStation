@@ -5,7 +5,7 @@
 	enhancedtext = "The range is extended to five tiles."
 	ability_icon_state = "ling_sting_boost_range"
 	genomecost = 1
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_boost_range
 
 //Boosts the range of your next sting attack by 1

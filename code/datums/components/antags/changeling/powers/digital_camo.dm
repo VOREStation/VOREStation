@@ -4,7 +4,7 @@
 	helptext = "We cannot be tracked by camera while using this skill.  However, humans looking at us will find us.. uncanny.  We must constantly expend chemicals to maintain our form like this."
 	ability_icon_state = "ling_digital_camo"
 	genomecost = 1
-	allowduringlesserform = 1
+	allowduringlesserform = TRUE
 	verbpath = /mob/proc/changeling_digitalcamo
 
 //Prevents AIs tracking you but makes you easily detectable to the human-eye.

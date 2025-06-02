@@ -15,7 +15,7 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
 	if(!changeling)
-		return 0
+		return FALSE
 	changeling.chem_charges -= 10
 
 	var/mob/living/carbon/human/C = src
@@ -24,7 +24,7 @@
 		heal_amount = heal_amount * 2
 		to_chat(src, span_notice("We will heal much faster."))
 
-	spawn(0)
+	spawn(0) //todo: make this a modifier
 		to_chat(src, span_notice("We begin to heal ourselves."))
 		for(var/i = 0, i<50,i++)
 			if(C)
