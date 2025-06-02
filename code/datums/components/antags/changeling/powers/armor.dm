@@ -3,7 +3,7 @@
 	desc = "We grow an organic suit to protect ourselves from space exposure."
 	helptext = "To remove the suit, use the ability again."
 	ability_icon_state = "ling_space_suit"
-	genomecost = 1
+	genomecost = 0 //Have a free spacesuit. It's not worth buying. If you want a special version, get the armor.
 	verbpath = /mob/proc/changeling_spacesuit
 
 /mob/proc/changeling_spacesuit()
