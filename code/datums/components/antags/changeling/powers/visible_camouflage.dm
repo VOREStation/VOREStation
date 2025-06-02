@@ -23,6 +23,9 @@
 		if(changeling.cloaked)
 			changeling.cloaked = FALSE
 			return TRUE
+		if(H.has_modifier_of_type(/datum/modifier/changeling_camouflage)) //If they double-clicked the button while invis.
+			to_chat(H, span_warning("We are already camouflaged!"))
+			return TRUE
 
 		//We delay the check, so that people can uncloak without needing 10 chemicals to do so.
 		changeling = changeling_power(10,0,100,CONSCIOUS)
@@ -30,45 +33,60 @@
 		if(!changeling)
 			return FALSE
 		changeling.chem_charges -= 10
-		var/old_regen_rate = changeling.chem_recharge_rate
 
 		to_chat(H, span_notice("We vanish from sight, and will remain hidden, so long as we move carefully."))
 		changeling.cloaked = TRUE
-		changeling.chem_recharge_rate = 0
-		animate(src,alpha = 255, alpha = 10, time = 10)
-
-		var/must_walk = TRUE
 		if(changeling.recursive_enhancement)
-			must_walk = FALSE
 			to_chat(src, span_notice("We may move at our normal speed while hidden."))
+			H.add_modifier(/datum/modifier/changeling_camouflage/recursive, 0)
+		else
+			H.add_modifier(/datum/modifier/changeling_camouflage, 0)
 
-		if(must_walk)
-			H.set_m_intent(I_WALK)
-
-		var/remain_cloaked = TRUE
-		while(remain_cloaked) //This loop will keep going until the player uncloaks.
-			sleep(1 SECOND) // Sleep at the start so that if something invalidates a cloak, it will drop immediately after the check and not in one second.
-
-			if(H.m_intent != I_WALK && must_walk) // Moving too fast uncloaks you.
-				remain_cloaked = FALSE
-			if(!changeling.cloaked)
-				remain_cloaked = FALSE
-			if(H.stat) // Dead or unconscious lings can't stay cloaked.
-				remain_cloaked = FALSE
-			if(H.incapacitated(INCAPACITATION_DISABLED)) // Stunned lings also can't stay cloaked.
-				remain_cloaked = FALSE
-
-			if(changeling.chem_recharge_rate != 0) //Without this, there is an exploit that can be done, if one buys engorged chem sacks while cloaked.
-				old_regen_rate += changeling.chem_recharge_rate //Unfortunately, it has to occupy this part of the proc.  This fixes it while at the same time
-				changeling.chem_recharge_rate = 0 //making sure nobody loses out on their bonus regeneration after they're done hiding.
+/datum/modifier/changeling_camouflage
+	name = "Camoflauge"
+	desc = "We are near-impossible to see."
+	var/must_walk = TRUE
+	var/datum/component/antag/changeling/comp
+	var/old_regen_rate
+	var/mob/living/carbon/human/owner
 
 
+/datum/modifier/changeling_camouflage/recursive
+	must_walk = FALSE
 
-		H.invisibility = initial(invisibility)
-		visible_message(span_warning("[src] suddenly fades in, seemingly from nowhere!"),
-		span_notice("We revert our camouflage, revealing ourselves."))
-		H.set_m_intent(I_RUN)
-		changeling.cloaked = FALSE
-		changeling.chem_recharge_rate = old_regen_rate
+/datum/modifier/changeling_camouflage/can_apply(var/mob/living/L, var/suppress_failure = FALSE)
+	comp = L.GetComponent(/datum/component/antag/changeling)
+	if(!comp)
+		return FALSE
 
-		animate(src,alpha = 10, alpha = 255, time = 10)
+/datum/modifier/changeling_camouflage/on_applied()
+	comp = holder.GetComponent(/datum/component/antag/changeling)
+	if(must_walk)
+		holder.set_m_intent(I_WALK)
+	old_regen_rate = comp.chem_recharge_rate
+	comp.chem_recharge_rate = 0
+	animate(holder,alpha = 255, alpha = 10, time = 10)
+
+/datum/modifier/changeling_camouflage/on_expire()
+	animate(holder,alpha = 10, alpha = 255, time = 10)
+	owner.invisibility = initial(invisibility)
+	holder.visible_message(span_warning("[holder] suddenly fades in, seemingly from nowhere!"),
+	span_notice("We revert our camouflage, revealing ourselves."))
+	holder.set_m_intent(I_RUN)
+	comp.cloaked = FALSE
+	comp.chem_recharge_rate = old_regen_rate
+	comp = null
+	owner = null
+
+/datum/modifier/changeling_camouflage/tick()
+	if(holder.m_intent != I_WALK && must_walk) // Moving too fast uncloaks you.
+		expire(silent = TRUE)
+	if(!comp.cloaked)
+		expire(silent = TRUE)
+	if(holder.stat) // Dead or unconscious lings can't stay cloaked.
+		expire(silent = TRUE)
+	if(holder.incapacitated(INCAPACITATION_DISABLED)) // Stunned lings also can't stay cloaked.
+		expire(silent = TRUE)
+	if(comp.chem_recharge_rate != 0) //Without this, there is an exploit that can be done, if one buys engorged chem sacks while cloaked.
+		old_regen_rate += comp.chem_recharge_rate
+		comp.chem_recharge_rate = 0
