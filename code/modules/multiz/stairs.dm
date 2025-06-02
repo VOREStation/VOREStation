@@ -249,7 +249,7 @@
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/stairs/middle/Destroy()
 	if(top)

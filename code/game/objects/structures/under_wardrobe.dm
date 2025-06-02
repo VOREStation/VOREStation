@@ -7,7 +7,7 @@
 
 /obj/structure/undies_wardrobe/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/undies_wardrobe/attack_hand(var/mob/user)
 	if(!human_who_can_use_underwear(user))

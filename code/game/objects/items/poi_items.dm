@@ -71,7 +71,7 @@
 /obj/structure/closet/crate/oldreactor/Initialize(mapload)
 	. = ..()
 	// Not climbable!
-	qdel(GetComponent(/datum/component/climbable))
+	RemoveElement(/datum/element/climbable)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"

@@ -14,7 +14,7 @@
 
 /obj/machinery/beehive/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/beehive/update_icon()
 	cut_overlays()

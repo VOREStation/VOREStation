@@ -14,7 +14,7 @@ GLOBAL_LIST_BOILERPLATE(all_mopbuckets, /obj/structure/mopbucket)
 /obj/structure/mopbucket/Initialize(mapload, ...)
 	create_reagents(300)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/mopbucket/examine(mob/user)
 	. = ..()

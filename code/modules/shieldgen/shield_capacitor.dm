@@ -22,7 +22,7 @@
 
 /obj/machinery/shield_capacitor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"

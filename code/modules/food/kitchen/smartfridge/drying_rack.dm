@@ -7,7 +7,7 @@
 
 /obj/machinery/smartfridge/drying_rack/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))

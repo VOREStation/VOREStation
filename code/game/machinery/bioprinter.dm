@@ -81,7 +81,7 @@
 /obj/machinery/organ_printer/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/organ_printer/examine(var/mob/user)
 	. = ..()

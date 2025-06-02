@@ -15,7 +15,7 @@
 
 /obj/structure/easel/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 //Adding canvases
 /obj/structure/easel/attackby(obj/item/I, mob/user, params)

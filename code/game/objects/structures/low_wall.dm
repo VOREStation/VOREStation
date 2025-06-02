@@ -42,7 +42,7 @@
 
 	health = material.integrity
 
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 	return INITIALIZE_HINT_LATELOAD
 

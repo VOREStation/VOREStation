@@ -88,8 +88,7 @@
 		var/obj/item/grab/G = W
 		if (isliving(G.affecting))
 			var/mob/living/M = G.affecting
-			var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
-			var/obj/occupied = C.turf_is_crowded()
+			var/obj/occupied = can_climb_turf(src)
 			if(occupied)
 				to_chat(user, span_danger("There's \a [occupied] in the way."))
 				return

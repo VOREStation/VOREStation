@@ -11,8 +11,7 @@
 
 /obj/structure/fitness/boxing_ropes/Initialize(mapload)
 	. = ..()
-	var/datum/component/climbable/C = AddComponent(/datum/component/climbable)
-	C.enable_vaulting()
+	AddElement(/datum/element/climbable, 3.5 SECONDS, TRUE)
 
 /obj/structure/fitness/boxing_ropes/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))

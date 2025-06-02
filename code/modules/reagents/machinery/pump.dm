@@ -34,7 +34,7 @@
 	RefreshParts()
 	update_icon()
 
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/pump/Destroy()
 	QDEL_NULL(cell)

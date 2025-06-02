@@ -90,7 +90,7 @@
 				new /obj/item/ore/diamond(src)
 		if(91 to 100)
 			new /obj/machinery/artifact(src)
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/meteorite/ex_act()
 	return

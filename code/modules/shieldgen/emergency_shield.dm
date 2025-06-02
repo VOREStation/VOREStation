@@ -143,7 +143,7 @@
 
 /obj/machinery/shieldgen/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()

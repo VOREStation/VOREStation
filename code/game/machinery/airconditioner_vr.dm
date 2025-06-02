@@ -23,7 +23,7 @@
 /obj/machinery/power/thermoregulator/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/thermoregulator/examine(mob/user)
 	. = ..()

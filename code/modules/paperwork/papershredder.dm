@@ -29,7 +29,7 @@
 	. = ..()
 	default_apply_parts()
 	update_icon()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
 

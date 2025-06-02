@@ -36,8 +36,7 @@
 	for(var/mob/M in oview(src,0))
 		return 0
 
-	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
-	var/obj/occupied = C.turf_is_crowded()
+	var/obj/occupied = can_climb_turf(src)
 	if(occupied)
 		to_chat(usr, span_filter_notice("There's \a [occupied] in the way."))
 		return 0

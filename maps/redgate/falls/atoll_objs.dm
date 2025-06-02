@@ -35,7 +35,7 @@
 /obj/structure/railing/overhang/waterless/Initialize(mapload)
 	. = ..()
 	// Not climbable!
-	qdel(GetComponent(/datum/component/climbable))
+	RemoveElement(/datum/element/climbable)
 
 /obj/structure/railing/overhang/waterless/under
 	plane = OBJ_PLANE

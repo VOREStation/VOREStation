@@ -20,7 +20,7 @@
 
 /obj/structure/casino_table/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/casino_table/attackby(obj/item/W, mob/user)
 	if(item_place)

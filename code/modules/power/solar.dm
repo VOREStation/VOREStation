@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		health *= 2
 	update_icon()
 	connect_to_network()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer

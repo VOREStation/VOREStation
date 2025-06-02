@@ -26,9 +26,7 @@
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
 		anchored = FALSE
-	var/datum/component/climbable/C = AddComponent(/datum/component/climbable/unanchored_can_break)
-	C.set_climb_delay(3.4 SECONDS)
-	C.enable_vaulting() // It's a RAILING!
+	AddElement(/datum/element/climbable/unanchored_can_break, 3.4 SECONDS, TRUE) // It's a RAILING!
 
 /obj/structure/railing/Initialize(mapload)
 	. = ..()
@@ -190,8 +188,7 @@
 		to_chat(usr, "It is fastened to the floor therefore you can't flip it!")
 		return 0
 
-	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
-	var/obj/occupied = C.neighbor_turf_impassable()
+	var/obj/occupied = can_climb_neighbor_turf(src)
 	if(occupied)
 		to_chat(usr, "You can't flip \the [src] because there's \a [occupied] in the way.")
 		return 0
@@ -235,9 +232,8 @@
 	if(istype(W, /obj/item/grab) && get_dist(src,user)<2)
 		var/obj/item/grab/G = W
 		if (isliving(G.affecting))
-			var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
 			var/mob/living/M = G.affecting
-			var/obj/occupied = C.turf_is_crowded()
+			var/obj/occupied = can_climb_turf(src)
 			if(occupied)
 				to_chat(user, span_danger("There's \a [occupied] in the way."))
 				return

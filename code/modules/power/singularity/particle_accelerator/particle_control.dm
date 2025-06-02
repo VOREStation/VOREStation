@@ -26,7 +26,7 @@
 	wires = new(src)
 	connected_parts = list()
 	update_active_power_usage(initial(active_power_usage) * (strength + 1))
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/particle_accelerator/control_box/Destroy()
 	if(active)

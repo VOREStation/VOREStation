@@ -296,7 +296,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 	update_icon()
 
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(P.has_tool_quality(TOOL_WRENCH))

@@ -14,7 +14,7 @@
 
 /obj/structure/closet/crate/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/closet/crate/can_open()
 	return 1

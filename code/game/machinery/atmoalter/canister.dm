@@ -25,7 +25,7 @@
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1

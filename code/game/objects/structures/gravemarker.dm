@@ -26,7 +26,7 @@
 	if(!material)
 		return INITIALIZE_HINT_QDEL
 	color = material.icon_colour
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/gravemarker/examine(mob/user)
 	. = ..()

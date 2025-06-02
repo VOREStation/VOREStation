@@ -42,7 +42,7 @@
 				capacitors |= cap
 				cap.owned_gen = src
 	. = ..()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shield_gen/Destroy()
 	QDEL_LIST_NULL(field)

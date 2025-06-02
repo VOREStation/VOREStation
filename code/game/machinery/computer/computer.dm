@@ -22,7 +22,7 @@
 	. = ..()
 	power_change()
 	update_icon()
-	AddComponent(/datum/component/climbable)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/computer/process()
 	if(stat & (NOPOWER|BROKEN))

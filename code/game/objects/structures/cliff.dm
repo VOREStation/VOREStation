@@ -19,6 +19,7 @@ When mapping these in, be sure to give at least a one tile clearance, as NORTH f
 two tiles on initialization, and which way a cliff is facing may change during maploading.
 */
 
+#define CLIFF_CLIMB_DELAY 10
 /obj/structure/cliff
 	name = "cliff"
 	desc = "A steep rock ledge. You might be able to climb it if you feel bold enough."
@@ -46,8 +47,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/Initialize(mapload)
 	. = ..()
 	register_dangerous_to_step()
-	var/datum/component/climbable/C = AddComponent(/datum/component/climbable)
-	C.set_climb_delay(10 SECONDS)
+	AddElement(/datum/element/climbable,CLIFF_CLIMB_DELAY SECONDS)
 
 /obj/structure/cliff/Destroy()
 	unregister_dangerous_to_step()
@@ -106,12 +106,14 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	// Now make the bottom cliff have mostly the same variables.
 	var/obj/structure/cliff/bottom/bottom = new(T)
 	is_double_cliff = TRUE
-	var/datum/component/climbable/C = GetComponent(/datum/component/climbable)
-	C.set_climb_delay(C.get_climb_delay() / 2 ) // Since there are two cliffs to climb when going north, both take half the time.
+
+	RemoveElement(/datum/element/climbable)
+	AddElement(/datum/element/climbable, (CLIFF_CLIMB_DELAY SECONDS) / 2 )
 	bottom.dir = dir
 	bottom.is_double_cliff = TRUE
-	var/datum/component/climbable/CB = bottom.GetComponent(/datum/component/climbable)
-	CB.set_climb_delay(C.get_climb_delay())
+
+	bottom.RemoveElement(/datum/element/climbable)
+	bottom.AddElement(/datum/element/climbable, (CLIFF_CLIMB_DELAY SECONDS) / 2 )
 	bottom.icon_variant = icon_variant
 	bottom.corner = corner
 	bottom.ramp = ramp
@@ -260,3 +262,5 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	if(should_fall(L))
 		return FALSE
 	return ..()
+
+#undef CLIFF_CLIMB_DELAY
