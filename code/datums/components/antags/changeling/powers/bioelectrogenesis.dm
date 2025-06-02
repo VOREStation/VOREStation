@@ -56,12 +56,12 @@
 				else
 					to_chat(src, span_warning("Our gloves block us from shocking \the [G.affecting]."))
 				changeling.chem_charges -= 10
-				return 1
+				return TRUE
 
 		//Otherwise, charge up whatever's in their hand.
 		else
 			//This checks both the active hand, and the contents of the active hand's held item.
-			var/success = 0
+			var/success = FALSE
 			var/list/L = new() //We make a new list to avoid copypasta.
 
 			//Check our hand.
