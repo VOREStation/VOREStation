@@ -1,3 +1,4 @@
+//Updated to 2025 code standards.
 /datum/power/changeling/absorb_dna
 	name = "Absorb DNA"
 	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."
@@ -57,7 +58,7 @@
 				to_chat(T, span_danger("You feel a sharp stabbing pain!"))
 				var/obj/item/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
-					T:UpdateDamageIcon()
+					T.UpdateDamageIcon()
 
 		feedback_add_details("changeling_powers","A[stage]")
 		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
@@ -67,7 +68,7 @@
 
 	to_chat(src, span_notice("We have absorbed [T]!"))
 	add_attack_logs(src,T,"Absorbed (changeling)")
-	src.visible_message(span_danger("[src] sucks the fluids from [T]!"))
+	visible_message(span_danger("[src] sucks the fluids from [T]!"))
 	to_chat(T, span_danger("You have been absorbed by the changeling!"))
 	changeling_obtain_dna(T, changeling, target_changeling)
 
