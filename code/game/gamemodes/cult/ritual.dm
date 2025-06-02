@@ -608,3 +608,10 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 				R.word3=GLOB.cultwords["technology"]
 				R.loc = user.loc
 				R.check_icon()
+
+/obj/effect/rune/wash(clean_types)
+	. = ..()
+	if (. || (clean_types & CLEAN_TYPE_HARD_DECAL))
+		qdel(src)
+		return TRUE
+	return .

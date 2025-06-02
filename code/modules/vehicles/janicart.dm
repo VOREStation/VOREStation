@@ -43,6 +43,7 @@
 	turn_off()	//so engine verbs are correctly set
 	create_reagents(600)
 	update_icon()
+	verbs -= /obj/vehicle/train/verb/unlatch_v // Nothing to unlatch
 
 /obj/vehicle/train/engine/janicart/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/mop))
@@ -128,21 +129,22 @@
 
 /obj/vehicle/train/engine/janicart/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
+	var/turf/tile = get_turf(src)
 	if(scrubbing)
-		if(reagents.has_reagent(REAGENT_ID_WATER, 1) || reagents.has_reagent(REAGENT_ID_CLEANER, 1))
-			var/turf/tile = loc
-			tile.wash(CLEAN_SCRUB)
-			if(istype(tile, /turf/simulated))
-				var/turf/simulated/T = tile
-				T.dirt = 0
-			for(var/A in tile)
-				if(istype(A,/obj/effect/rune) || istype(A,/obj/effect/decal/cleanable) || istype(A,/obj/effect/overlay))
-					qdel(A)
-				else if(ishuman(A))
-					var/mob/living/carbon/human/cleaned_human = A
-					if(cleaned_human.lying)
-						cleaned_human.wash(CLEAN_SCRUB)
-						to_chat(cleaned_human, span_warning("\The [callme] cleans your face!"))
+		if(tile && reagents.total_volume > 0)
+			if(reagents.has_reagent(REAGENT_FUEL))
+				if(buckled)
+					log_game("[key_name(buckled)](driver) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
+				else if(pulledby)
+					log_game("[key_name(pulledby)](puller) washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
+				else
+					log_game("[callme] washed floor with fuel reagent at [loc.name] ([loc.x],[loc.y],[loc.z]), spilling fuel.")
+			if(reagents.has_reagent(REAGENT_ID_WATER) || reagents.has_reagent(REAGENT_ID_CLEANER))
+				tile.wash(CLEAN_SCRUB)
+			for(var/atom/movable/AM in tile.contents)
+				if(AM != buckled && istype(AM, /mob/living))
+					var/mob/living/L = AM
+					reagents.splash(L,5) // only 5u so it's not gamebreaking
 			reagents.trans_to_turf(tile, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 		else
 			scrubbing = FALSE
