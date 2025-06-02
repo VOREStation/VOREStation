@@ -130,7 +130,7 @@
 
 		if(comp.chem_charges < shock_cost)
 			to_chat(src, span_warning("We require more chemicals to electrocute [C]!"))
-			return 0
+			return FALSE
 
 		C.electrocute_act(electrocute_amount * siemens,src,1.0,BP_TORSO)
 		C.stun_effect_act(0, agony_amount * siemens, BP_TORSO, src)
@@ -144,14 +144,14 @@
 		else
 			to_chat(src, span_warning("Our gloves block us from shocking \the [C]."))
 		comp.chem_charges -= shock_cost
-		return 1
+		return TRUE
 
 	else if(istype(target,/mob/living/silicon))
 		var/mob/living/silicon/S = target
 
 		if(comp.chem_charges < 10)
 			to_chat(src, span_warning("We require more chemicals to electrocute [S]!"))
-			return 0
+			return FALSE
 
 		S.electrocute_act(60,src,0.75) //If only they had surge protectors.
 		if(siemens)
@@ -160,36 +160,21 @@
 			span_warningplain("You hear sparks!"))
 			to_chat(S, span_danger("Warning: Electrical surge detected!"))
 		comp.chem_charges -= 10
-		return 1
+		return TRUE
 
 	else
 		if(istype(target,/obj/))
-			var/success = 0
+			var/success = FALSE
 			var/obj/T = target
 			//We can also recharge things we touch, such as APCs or hardsuits.
 			for(var/obj/item/cell/cell in T.contents)
 				visible_message(span_warning("Some sparks fall out from \the [target]!"),
 				span_warning("Our hand channels raw electricity into \the [target]."),
 				span_warningplain("You hear sparks!"))
-				var/i = 10
-				if(siemens)
-					while(i)
-						cell.charge += 100 * siemens //This should be a nice compromise between recharging guns and other batteries.
-						if(cell.charge > cell.maxcharge)
-							cell.charge = cell.maxcharge
-							break //No point making sparks if the cell's full.
-	//					if(!Adjacent(T))
-	//						break
-						if(siemens)
-							var/Turf = get_turf(src)
-							new /obj/effect/effect/sparks(Turf)
-							T.update_icon()
-						i--
-						sleep(1 SECOND)
-					success = 1
-					break
-			if(success == 0)
+				cell.gradual_charge(10, siemens, TRUE, src)
+				success = TRUE
+			if(success == FALSE)
 				to_chat(src, span_warning("We are unable to affect \the [target]."))
 			else
 				qdel(src)
-			return 1
+			return TRUE
