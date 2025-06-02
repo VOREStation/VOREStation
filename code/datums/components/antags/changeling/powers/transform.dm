@@ -11,7 +11,8 @@
 	set name = "Transform (5)"
 
 	var/datum/component/antag/changeling/changeling = changeling_power(5,1,0)
-	if(!changeling)	return
+	if(!changeling)
+		return
 
 	if(!isturf(loc))
 		to_chat(src, span_warning("Transforming here would be a bad idea."))
@@ -22,7 +23,8 @@
 		names += "[DNA.name]"
 
 	var/S = tgui_input_list(src, "Select the target DNA:", "Target DNA", names)
-	if(!S)	return
+	if(!S)
+		return
 
 	var/datum/absorbed_dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
@@ -38,14 +40,14 @@
 		H.set_species(newSpecies)
 
 	qdel_swap(src.dna, chosen_dna.dna.Clone())
-	src.dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
+	dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.b_type = "AB+" //For some reason we have two blood types on the mob.
 		H.identifying_gender = chosen_dna.identifying_gender
 		H.flavor_texts = chosen_dna.flavour_texts ? chosen_dna.flavour_texts.Copy() : null
-	src.real_name = chosen_dna.name
-	src.UpdateAppearance()
+	real_name = chosen_dna.name
+	UpdateAppearance()
 	domutcheck(src, null)
 	UpdateAppearance()
 	changeling_update_languages(changeling.absorbed_languages)
@@ -56,11 +58,7 @@
 
 		for(var/datum/modifier/mod in chosen_dna.genMods)
 			self.modifiers.Add(mod.type)
-
-	remove_verb(src, /mob/proc/changeling_transform)
-	spawn(10)
-		add_verb(src, /mob/proc/changeling_transform)
-		src.regenerate_icons()
+	regenerate_icons()
 
 	feedback_add_details("changeling_powers","TR")
-	return 1
+	return TRUE

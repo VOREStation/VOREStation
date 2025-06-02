@@ -20,17 +20,17 @@
 	var/obj/held_item = get_active_hand()
 
 	if(!changeling)
-		return 0
+		return FALSE
 
 	if(held_item == null)
 		if(changeling.recursive_enhancement)
 			if(changeling_generic_weapon(/obj/item/electric_hand/efficent,0))
 				to_chat(src, span_notice("We will shock others more efficently."))
-				return 1
+				return TRUE
 		else
 			if(changeling_generic_weapon(/obj/item/electric_hand,0))  //Chemical cost is handled in the equip proc.
-				return 1
-		return 0
+				return TRUE
+		return FALSE
 
 	else
 		// Handle glove conductivity.

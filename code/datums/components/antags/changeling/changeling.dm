@@ -1,6 +1,11 @@
 ///Changeling component.
 ///Stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsilon","Eta","Gamma","Iota","Kappa","Lambda","Mu","Nu","Omega","Omicron","Phi","Pi","Psi","Rho","Sigma","Tau","Theta","Upsilon","Xi","Zeta")) //ALPHABETICAL ORDER.
+#define CRYO_STING "cryo_sting"
+#define ESCAPE_RESTRAINTS "escape_restraints"
+#define FAKE_DEATH "fake_death"
+#define FLESHMEND "fleshmend"
+#define CHANGELING_SCREECH "changeling_screech" //Used for all shriek powers.
 
 //Needs cleanup
 var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
