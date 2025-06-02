@@ -1,6 +1,6 @@
 /obj/item/gene_scanner
 	name = "DNA identifier"
-	desc = "Assess the cargo sale value of items."
+	desc = "The GenePeeper 3000, scans and identifies traits enabled by a subject's genetics. Can also scan limbs and organs to identify their dna. Decades of genetic research in your pocket, today! "
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "health"
 	flags = NOBLUDGEON

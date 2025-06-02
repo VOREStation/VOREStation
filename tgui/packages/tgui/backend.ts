@@ -13,7 +13,6 @@
 
 import { perf } from 'common/perf';
 import { createAction } from 'common/redux';
-import { globalEvents } from 'tgui-core/events';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { setupDrag } from './drag';
@@ -97,14 +96,6 @@ export const backendReducer = (state = initialState, action) => {
     };
   }
 
-  if (type === 'byond/ctrldown') {
-    globalEvents.emit('byond/ctrldown');
-  }
-
-  if (type === 'byond/ctrlup') {
-    globalEvents.emit('byond/ctrlup');
-  }
-
   if (type === 'backend/suspendStart') {
     return {
       ...state,
@@ -152,22 +143,6 @@ export const backendMiddleware = (store) => {
     if (type === 'ping') {
       Byond.sendMessage('ping/reply');
       return;
-    }
-
-    if (type === 'byond/mousedown') {
-      globalEvents.emit('byond/mousedown');
-    }
-
-    if (type === 'byond/mouseup') {
-      globalEvents.emit('byond/mouseup');
-    }
-
-    if (type === 'byond/ctrldown') {
-      globalEvents.emit('byond/ctrldown');
-    }
-
-    if (type === 'byond/ctrlup') {
-      globalEvents.emit('byond/ctrlup');
     }
 
     if (type === 'backend/suspendStart' && !suspendInterval) {

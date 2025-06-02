@@ -1,0 +1,25 @@
+2025-06-01:
+  Diana:
+  - code_imp: Less random lagspikes during the middle of the round.
+  Guti:
+  - refactor: Refactored soap
+  - refactor: Refactored washing machine code to get rid of sleeps
+  - rscadd: You can eat soap now
+  - rscadd: Clean component
+  - code_imp: Replaced clean(), clean_blood(), and clean_contamination() with wash()
+  Kashargul:
+  - bugfix: macrophages escape chance is now properly set to 20%
+  ShadowLarkens:
+  - admin: VV now has a dark mode (toggleable in game prefs)
+  - admin: VV now uses getFlatIcon to get a better preview (also toggleable in game
+      prefs)
+  - admin: VV now supports previews for /images
+2025-06-02:
+  ShadowLarkens:
+  - bugfix: New players runtiming in preferences loading due to pAI nonsense
+  - bugfix: Black squares on alt-f4ing tgui.
+  - bugfix: You can turn off autohiss again!
+  - balance: Unathi no longer pass out from sugar, they just get knocked over.
+  Willburd:
+  - bugfix: lights do not ignore light switch state when a bulb is inserted
+  - bugfix: genescanner tool now has a proper description
