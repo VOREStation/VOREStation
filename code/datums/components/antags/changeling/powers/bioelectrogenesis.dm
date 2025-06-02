@@ -37,7 +37,7 @@
 		var/obj/item/clothing/gloves/gloves = src.gloves
 		var/siemens = 1
 		if(gloves)
-			siemens = gloves.siemens_coefficient
+			siemens = gloves.siemens_coefficient //Funnily enough, this means things like Knights Gloves will make you stun 2x harder and charge 2x more!
 
 		//If we're grabbing someone, electrocute them.
 		if(istype(held_item,/obj/item/grab))
@@ -75,23 +75,11 @@
 			//Now for the actual recharging.
 			for(var/obj/item/cell/cell in L)
 				visible_message(span_warning("Some sparks fall out from \the [src.name]\'s [held_item]!"),
-				span_warning("Our hand channels raw electricity into \the [held_item]."),
+				span_warning("Our hand channels raw electricity into \the [held_item]. We must remain by the [held_item] to recharge it."),
 				span_warningplain("You hear sparks!"))
-				var/i = 10
-				if(siemens)
-					while(i)
-						cell.charge += 100 * siemens //This should be a nice compromise between recharging guns and other batteries.
-						if(cell.charge > cell.maxcharge)
-							cell.charge = cell.maxcharge
-							break
-						if(siemens)
-							var/T = get_turf(src)
-							new /obj/effect/effect/sparks(T)
-							held_item.update_icon()
-						i--
-						sleep(1 SECOND)
-					success = 1
-			if(success == 0) //If we couldn't do anything with the ability, don't deduct the chemicals.
+				cell.gradual_charge(10, siemens, TRUE, src)
+				success = TRUE
+			if(success == FALSE) //If we couldn't do anything with the ability, don't deduct the chemicals.
 				to_chat(src, span_warning("We are unable to affect \the [held_item]."))
 			else
 				changeling.chem_charges -= 10
