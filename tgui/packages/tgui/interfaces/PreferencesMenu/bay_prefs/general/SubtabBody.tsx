@@ -121,17 +121,15 @@ export const SubtabBody = (props: {
                       </Button>
                     </LabeledList.Item>
                   ) : null}
-                  {
-                    <LabeledList.Item label="Digitigrade">
-                      <Button
-                        inline
-                        onClick={() => act('digitigrade')}
-                        selected={digitigrade}
-                      >
-                        {digitigrade ? 'Yes' : 'No'}
-                      </Button>
-                    </LabeledList.Item>
-                  }
+                  <LabeledList.Item label="Digitigrade">
+                    <Button
+                      inline
+                      onClick={() => act('digitigrade')}
+                      selected={digitigrade}
+                    >
+                      {digitigrade ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
                   <LabeledList.Item label="Blood Type">
                     <Button inline onClick={() => act('blood_type')}>
                       {b_type}
