@@ -69,7 +69,7 @@
 
 /datum/modifier/changeling_camouflage/on_expire()
 	animate(holder,alpha = 10, alpha = 255, time = 10)
-	owner.invisibility = initial(invisibility)
+	owner.invisibility = owner.initial(invisibility)
 	holder.visible_message(span_warning("[holder] suddenly fades in, seemingly from nowhere!"),
 	span_notice("We revert our camouflage, revealing ourselves."))
 	holder.set_m_intent(I_RUN)
