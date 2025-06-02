@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/space_suit
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
@@ -37,6 +38,7 @@
 	desc = "A huge, bulky mass of pressure and temperature-resistant organic tissue, evolved to facilitate space travel."
 	flags = 0	//Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it,
 				//it still ends up in your blood. (also balance but muh fluff)
+	destroy_on_drop = TRUE
 	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //No armor at all.
 	canremove = FALSE
@@ -48,10 +50,6 @@
 		span_warning("We inflate our flesh, creating a spaceproof suit!"),
 		span_warningplain("You hear organic matter ripping and tearing!"))
 
-/obj/item/clothing/suit/space/changeling/dropped(mob/user)
-	..()
-	qdel(src)
-
 /obj/item/clothing/head/helmet/space/changeling
 	name = "flesh mass"
 	icon_state = "lingspacehelmet"
@@ -60,10 +58,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 	canremove = FALSE
-
-/obj/item/clothing/head/helmet/space/changeling/dropped(mob/user)
-	..()
-	qdel(src)
+	destroy_on_drop = TRUE
 
 /obj/item/clothing/shoes/magboots/changeling
 	desc = "A suction cupped mass of flesh, shaped like a foot."
@@ -71,6 +66,7 @@
 	icon_state = "lingspacesuit"
 	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
+	destroy_on_drop = TRUE
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
@@ -90,10 +86,6 @@
 		set_slowdown()
 		force = 5
 		to_chat(user, "We cling to the terrain below us.")
-
-/obj/item/clothing/shoes/magboots/changeling/dropped(mob/user)
-	..()
-	qdel(src)
 
 //Armor
 

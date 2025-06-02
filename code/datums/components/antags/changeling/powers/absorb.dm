@@ -1,4 +1,4 @@
-//Updated to 2025 code standards.
+//Updated
 /datum/power/changeling/absorb_dna
 	name = "Absorb DNA"
 	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."

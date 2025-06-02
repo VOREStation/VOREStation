@@ -1,4 +1,4 @@
-//Updated to 2025 coding standards
+//Updated
 /datum/power/changeling/arm_blade
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade."
