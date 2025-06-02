@@ -136,7 +136,7 @@
 	for(var/obj/machinery/light/L in range(5, src))
 		L.on = 1
 		L.broken()
-	empulse(get_turf(src), range_heavy, range_light, 1)
+	empulse(get_turf(src), range_heavy, range_med, range_light, range_long)
 
 	changeling.last_shriek = world.time
 
