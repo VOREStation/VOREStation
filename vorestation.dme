@@ -518,7 +518,6 @@
 #include "code\datums\components\antags\changeling\powers\cryo_sting.dm"
 #include "code\datums\components\antags\changeling\powers\darkvision.dm"
 #include "code\datums\components\antags\changeling\powers\deaf_sting.dm"
-#include "code\datums\components\antags\changeling\powers\death_sting.dm"
 #include "code\datums\components\antags\changeling\powers\delayed_toxin_sting.dm"
 #include "code\datums\components\antags\changeling\powers\digital_camo.dm"
 #include "code\datums\components\antags\changeling\powers\electric_lockpick.dm"
