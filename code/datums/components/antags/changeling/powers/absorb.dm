@@ -76,24 +76,32 @@
 	T.Drain()
 	return 1
 
-///Proc that does the actual 'obtaining DNA' part for changelings. Has two arguments: The victim and our changeling datum.
-/mob/living/proc/changeling_obtain_dna(mob/living/carbon/human/victim, datum/component/antag/changeling/changeling, datum/component/antag/changeling/target_changeling)
-	if(!victim || !ishuman(victim))
+///Proc that does the actual 'obtaining DNA' part for changelings. Has four arguments: Our victim, our changeling component, the target's changeling component, and if we drain the victim's nutrition or not.
+/mob/living/proc/changeling_obtain_dna(mob/living/carbon/human/victim, datum/component/antag/changeling/changeling, datum/component/antag/changeling/target_changeling, drain = TRUE)
+	if(!victim || !ishuman(victim)) //There MUST be a victim and it MUST be a human and NOT a monkey!
 		return
-	if(!changeling) //Did we not get the changeling component fed to us? Let's check to see if we're an actual changeling.
-		changeling = GetComponent(/datum/component/antag/changeling)
-		if(!changeling) //STILL no changeling component? Then stop here.
-			return
 	if(!target_changeling)
 		target_changeling = victim.GetComponent(/datum/component/antag/changeling) //Let's see if the victim is a changeling or not.
+	if(!target_changeling && isMonkey(victim)) //No absorbing non-changeling monkeys.
+		return
+
+	//If we weren't fed a changeling component, we get it ourselves. If that fails, we see if the target is a changeling. If so, they get the DNA of the person predding them. Preyling!
+	if(!changeling)
+		changeling = GetComponent(/datum/component/antag/changeling)
+		if(!changeling && target_changeling) //Prey is a ling but owner is not.
+			changeling_obtain_dna(src, target_changeling, drain = FALSE) //Flip the tables!~ Don't steal the pred's nutrition, though!
+			return
+		else if(!changeling) //Neither pred or prey are owner.
+			return
+
 	var/saved_dna = victim.dna.Clone()
 	var/datum/absorbed_dna/newDNA = new(victim.real_name, saved_dna, victim.species.name, victim.languages, victim.identifying_gender, victim.flavor_texts, victim.modifiers)
 	if(changeling.GetDNA(newDNA.name))
 		qdel(newDNA)
 		return //No double dipping! You already ate or absorbed them once this shift, glutton!
 	absorbDNA(newDNA)
-
-	adjust_nutrition(victim.nutrition)
+	if(drain)
+		adjust_nutrition(victim.nutrition)
 	changeling.chem_charges += 10
 	if(changeling.readapts <= 0)
 		changeling.readapts = 0 //SANITYYYYYY
