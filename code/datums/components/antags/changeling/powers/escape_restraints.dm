@@ -17,13 +17,13 @@
 	var/mob/living/carbon/human/C = src
 	var/datum/component/antag/changeling/changeling = changeling_power(40,0,100,CONSCIOUS)
 	if(!changeling)
-		return 0
-	if(world.time < changeling.next_escape)
-		to_chat(src, span_warning("We are still recovering from our last escape..."))
-		return 0
+		return FALSE
+	if(comp.is_on_cooldown(ESCAPE_RESTRAINTS))
+		to_chat(src, span_notice("We are still recovering from our last escape. We will be able to escape again in [(get_cooldown(ESCAPE_RESTRAINTS) - world.time)/10] seconds."))
+		return FALSE
 	if(!(C.handcuffed || C.legcuffed || istype(C.wear_suit,/obj/item/clothing/suit/straight_jacket)))	// No need to waste chems if there's nothing to break out of
 		to_chat(C, span_warning("We are are not restrained in a way we can escape..."))
-		return 0
+		return FALSE
 
 	changeling.chem_charges -= 40
 
@@ -61,7 +61,11 @@
 	if(changeling.recursive_enhancement)
 		escape_cooldown *= 0.5
 
-	changeling.next_escape = world.time + escape_cooldown	//And now we set the timer
+	comp.set_cooldown(ESCAPE_RESTRAINTS, escape_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(changeling_escape_restraints_ready)), escape_cooldown, TIMER_DELETE_ME)
 
 	feedback_add_details("changeling_powers","ESR")
-	return 1
+	return TRUE
+
+/mob/proc/changeling_escape_restraints_ready()
+	to_chat(src, span_notice("We are able to escape our restraints once more."))

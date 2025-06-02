@@ -49,6 +49,7 @@
 #include "code\__defines\blueprints.dm"
 #include "code\__defines\borg_overlays.dm"
 #include "code\__defines\callbacks.dm"
+#include "code\__defines\changeling.dm"
 #include "code\__defines\chat.dm"
 #include "code\__defines\chemistry.dm"
 #include "code\__defines\chemistry_vr.dm"

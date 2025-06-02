@@ -13,10 +13,14 @@
 	set name = "Cryogenic Sting (20)"
 	set desc = "Chills and freezes a biological creature."
 
-	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
+	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting, CRYO_STING)
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)
 		return FALSE
+	if(comp.is_on_cooldown(CRYO_STING))
+		to_chat(src, span_notice("We are still recovering. We will be able to sting again in [(get_cooldown(CRYO_STING) - world.time)/10] seconds."))
+		return
+
 	add_attack_logs(src,T,"Cryo sting (changeling)")
 	var/inject_amount = 10
 	if(comp.recursive_enhancement)
@@ -25,8 +29,9 @@
 	if(T.reagents)
 		T.reagents.add_reagent(REAGENT_ID_CRYOTOXIN, inject_amount)
 	feedback_add_details("changeling_powers","CS")
-	remove_verb(src, /mob/proc/changeling_cryo_sting)
-	spawn(3 MINUTES)
-		to_chat(src, span_notice("Our cryogenic string is ready to be used once more."))
-		add_verb(src, /mob/proc/changeling_cryo_sting)
-	return 1
+	comp.set_cooldown(CRYO_STING, 3 MINUTES) //Set the cooldown to 3 minutes.
+	addtimer(CALLBACK(src, PROC_REF(changeling_cryo_sting_ready)), 3 MINUTES, TIMER_DELETE_ME) //Calling a proc with arguments
+	return TRUE
+
+/mob/proc/changeling_cryo_sting_ready()
+	to_chat(src, span_notice("Our cryogenic string is ready to be used once more."))

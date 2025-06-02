@@ -1,12 +1,6 @@
 ///Changeling component.
 ///Stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 GLOBAL_LIST_INIT(possible_changeling_IDs,list("Alpha","Beta","Chi","Delta","Epsilon","Eta","Gamma","Iota","Kappa","Lambda","Mu","Nu","Omega","Omicron","Phi","Pi","Psi","Rho","Sigma","Tau","Theta","Upsilon","Xi","Zeta")) //ALPHABETICAL ORDER.
-#define CRYO_STING "cryo_sting"
-#define ESCAPE_RESTRAINTS "escape_restraints"
-#define FAKE_DEATH "fake_death"
-#define FLESHMEND "fleshmend"
-#define CHANGELING_SCREECH "changeling_screech" //Used for all shriek powers.
-
 //Needs cleanup
 var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
 var/list/datum/power/changeling/powerinstances = list()
@@ -46,20 +40,35 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/armor_deployed = 0 //This is only used for changeling_generic_equip_all_slots() at the moment.
 	var/recursive_enhancement = 0 //Used to power up other abilities from the ling power with the same name.
 	var/list/purchased_powers_history = list() //Used for round-end report, includes respec uses too.
-	var/last_shriek = null // world.time when the ling last used a shriek.
-	var/next_escape = 0	// world.time when the ling can next use Escape Restraints
 	var/thermal_sight = FALSE	// Is our Vision Augmented? With thermals?
 	var/datum/changeling_panel/power_panel //Our changeling eveolution panel. Generated the first time we try to open the panel.
 	dupe_mode = COMPONENT_DUPE_UNIQUE //Only the first changeling application survives!
-	var/cooldown_time = 1 SECOND // How long before we can use our sting again
+	var/cooldown_time = 1 SECOND // Sting anti-spam.
 	var/last_used_sting_time = 0 // world.time when we used last used a power.
+	var/list/changeling_cooldowns = list(
+		CRYO_STING = 0,
+		ESCAPE_RESTRAINTS = 0,
+		FAKE_DEATH = 0,
+		FLESHMEND = 0,
+		CHANGELING_SCREECH = 0
+	)
 
 ///Handles the cooldown for the power. Returns TRUE if the cooldown has passed. FALSE if it's still on cooldown.
+///This is just a general anti-spam thing and not really a true cooldown
 /datum/component/antag/changeling/proc/handle_cooldown()
 	if(world.time > last_used_sting_time+cooldown_time)
 		last_used_sting_time = world.time
 		return TRUE
 	return FALSE
+
+/datum/component/antag/changeling/proc/get_cooldown(id)
+	return changeling_cooldowns[id]
+
+/datum/component/antag/changeling/proc/set_cooldown(id, cooldown_time)
+	changeling_cooldowns[id] = world.time + cooldown_time
+
+/datum/component/antag/changeling/proc/is_on_cooldown(id)
+	return (world.time < changeling_cooldowns[id])
 
 /datum/component/antag/changeling/Initialize()
 	..()

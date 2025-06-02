@@ -13,29 +13,41 @@
 	set name = "Fleshmend (10)"
 	set desc = "Begins a slow rengeration of our form.  Does not effect stuns or chemicals."
 
+	var/mob/living/C = src
 	var/datum/component/antag/changeling/changeling = changeling_power(10,0,100,UNCONSCIOUS)
 	if(!changeling)
 		return FALSE
+	if(C.has_modifier_of_type(/datum/modifier/fleshmend))
+		to_chat(src, span_notice("We are already under the effect of fleshmend."))
+		return FALSE
+
 	changeling.chem_charges -= 10
 
-	var/mob/living/carbon/human/C = src
-	var/heal_amount = 2
 	if(changeling.recursive_enhancement)
-		heal_amount = heal_amount * 2
 		to_chat(src, span_notice("We will heal much faster."))
+		C.add_modifier(/datum/modifier/fleshmend/recursive, 50 SECONDS)
+	else
+		C.add_modifier(/datum/modifier/fleshmend, 50 SECONDS)
 
-	spawn(0) //todo: make this a modifier
-		to_chat(src, span_notice("We begin to heal ourselves."))
-		for(var/i = 0, i<50,i++)
-			if(C)
-				C.adjustBruteLoss(-heal_amount)
-				C.adjustOxyLoss(-heal_amount)
-				C.adjustFireLoss(-heal_amount)
-				sleep(1 SECOND)
-
-	remove_verb(src, /mob/proc/changeling_fleshmend)
-	spawn(50 SECONDS)
-		to_chat(src, span_notice("Our regeneration has slowed to normal levels."))
-		add_verb(src, /mob/proc/changeling_fleshmend)
 	feedback_add_details("changeling_powers","FM")
-	return 1
+	return TRUE
+
+/datum/modifier/fleshmend
+	name = "Fleshmend"
+	desc = "We are regenerating"
+
+// For changelings who bought the Recursive Enhancement evolution.
+/datum/modifier/fleshmend/recursive
+	name = "Advanced Fleshmend"
+	desc = "We are regenerating more rapidly."
+
+//These were previously 2 or 4 per second, now it's 4 or 8 per 2 seconds
+/datum/modifier/fleshmend/tick()
+	holder.adjustBruteLoss(-4)
+	holder.adjustOxyLoss(-4)
+	holder.adjustFireLoss(-4)
+
+/datum/modifier/fleshmend/recursive/tick()
+	holder.adjustBruteLoss(-8)
+	holder.adjustOxyLoss(-8)
+	holder.adjustFireLoss(-8)
