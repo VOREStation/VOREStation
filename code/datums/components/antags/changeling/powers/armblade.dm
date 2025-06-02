@@ -1,3 +1,4 @@
+//Updated to 2025 coding standards
 /datum/power/changeling/arm_blade
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade."
@@ -65,6 +66,7 @@
 	throw_range = 0
 	throw_speed = 0
 	embed_chance = 0 //No embedding.
+	destroy_on_drop = TRUE
 	var/mob/living/creator //This is just like ninja swords, needed to make sure dumb shit that removes the sword doesn't make it stay around.
 	var/weapType = "weapon"
 	var/weapLocation = "arm"
@@ -74,7 +76,6 @@
 
 /obj/item/melee/changeling/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
 		visible_message(span_warning("A grotesque weapon forms around [loc.name]\'s arm!"),
 		span_warning("Our arm twists and mutates, transforming it into a deadly weapon."),
@@ -87,31 +88,10 @@
 	span_notice("We assimilate the weapon back into our body."),
 	span_warningplain("You hear organic matter ripping and tearing!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
-	spawn(1)
-		if(src)
-			qdel(src)
 
 /obj/item/melee/changeling/Destroy()
-	STOP_PROCESSING(SSobj, src)
 	creator = null
 	. = ..()
-
-/obj/item/melee/changeling/process()  //Stolen from ninja swords.
-	if(!creator || loc != creator || !creator.item_is_in_hands(src))
-		// Tidy up a bit.
-		if(isliving(loc))
-			var/mob/living/carbon/human/host = loc
-			if(istype(host))
-				for(var/obj/item/organ/external/organ in host.organs)
-					for(var/obj/item/O in organ.implants)
-						if(O == src)
-							organ.implants -= src
-			host.pinned -= src
-			host.embedded -= src
-			host.drop_from_inventory(src)
-		spawn(1)
-			if(src)
-				qdel(src)
 
 /obj/item/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
