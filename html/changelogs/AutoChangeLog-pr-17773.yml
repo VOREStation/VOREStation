@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "lights do not ignore light switch state when a bulb is inserted"
