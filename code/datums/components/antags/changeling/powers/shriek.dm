@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/resonant_shriek
 	name = "Resonant Shriek"
 	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded."
@@ -23,25 +24,26 @@
 	set desc = "Emits a high-frequency sound that confuses and deafens organics, blows out nearby lights, and overloads synthetics' sensors."
 
 	var/datum/component/antag/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
-	if(!changeling)	return 0
+	if(!changeling)
+		return FALSE
 
 	if(is_muzzled())
 		to_chat(src, span_danger("Mmmf mrrfff!"))
-		return 0
+		return FALSE
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
 			to_chat(src, span_danger("You can't speak!"))
-			return 0
+			return FALSE
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
 		to_chat(src, span_warning("We are still recovering from our last shriek..."))
-		return 0
+		return FALSE
 
 	if(!isturf(loc))
 		to_chat(src, span_warning("Shrieking here would be a bad idea."))
-		return 0
+		return FALSE
 
 	src.break_cloak()	//No more invisible shrieking
 
@@ -77,14 +79,14 @@
 			affected += M
 
 	for(var/obj/machinery/light/L in range(range, src))
-		L.on = 1
+		L.on = TRUE
 		L.broken()
 
 	changeling.last_shriek = world.time
 
 	add_attack_logs(src,affected,"Used resonant shriek")
 	feedback_add_details("changeling_powers","RS")
-	return 1
+	return TRUE
 
 //EMP version
 /mob/proc/changeling_dissonant_shriek()
@@ -93,27 +95,28 @@
 	set desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics."
 
 	var/datum/component/antag/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
-	if(!changeling)	return 0
+	if(!changeling)
+		return FALSE
 
 	if(is_muzzled())
 		to_chat(src, span_danger("Mmmf mrrfff!"))
-		return 0
+		return FALSE
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
 			to_chat(src, span_danger("You can't speak!"))
-			return 0
+			return FALSE
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
 		to_chat(src, span_warning("We are still recovering from our last shriek..."))
-		return 0
+		return FALSE
 
 	if(!isturf(loc))
 		to_chat(src, span_warning("Shrieking here would be a bad idea."))
-		return 0
+		return FALSE
 
-	src.break_cloak()	//No more invisible shrieking
+	break_cloak()	//No more invisible shrieking
 
 	changeling.chem_charges -= 20
 
@@ -127,17 +130,17 @@
 		range_light = range_light * 2
 		range_long = range_long * 2
 		to_chat(src, span_notice("We are extra loud."))
-		changeling.recursive_enhancement = 0
+		changeling.recursive_enhancement = FALSE
 
 	visible_message(span_notice("[src] appears to shout."))
 
 	add_attack_logs(src,null,"Use dissonant shriek")
 
-	for(var/obj/machinery/light/L in range(5, src))
-		L.on = 1
+	for(var/obj/machinery/light/L in range(range_light, src))
+		L.on = TRUE
 		L.broken()
 	empulse(get_turf(src), range_heavy, range_med, range_light, range_long)
 
 	changeling.last_shriek = world.time
 
-	return 1
+	return TRUE

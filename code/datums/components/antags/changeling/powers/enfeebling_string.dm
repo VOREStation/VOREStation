@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/enfeebling_string
 	name = "Enfeebling String"
 	desc = "We sting a biological with a potent toxin that will greatly weaken them for a short period of time."

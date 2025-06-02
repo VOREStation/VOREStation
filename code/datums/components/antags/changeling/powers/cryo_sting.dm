@@ -16,7 +16,7 @@
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!T)
-		return 0
+		return FALSE
 	add_attack_logs(src,T,"Cryo sting (changeling)")
 	var/inject_amount = 10
 	if(comp.recursive_enhancement)

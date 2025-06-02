@@ -14,7 +14,7 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(40)
 	if(!changeling)
-		return 0
+		return FALSE
 
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
@@ -30,10 +30,10 @@
 
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
 	if(!T)
-		return 0
+		return FALSE
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
 		to_chat(src, span_warning("Our sting appears ineffective against its DNA."))
-		return 0
+		return FALSE
 	add_attack_logs(src,T,"Transformation sting (changeling)")
 	T.visible_message(span_warning("[T] transforms!"))
 	qdel_swap(T.dna, chosen_dna.Clone())
@@ -41,4 +41,4 @@
 	T.UpdateAppearance()
 	domutcheck(T, null)
 	feedback_add_details("changeling_powers","TS")
-	return 1
+	return TRUE

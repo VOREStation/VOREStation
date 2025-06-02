@@ -1,3 +1,4 @@
+//Needs a BIG rework.
 var/global/list/changeling_fabricated_clothing = list(
 	"w_uniform" = /obj/item/clothing/under/chameleon/changeling,
 	"head" = /obj/item/clothing/head/chameleon/changeling,

@@ -1,5 +1,5 @@
+//Updated
 //Augmented Eyesight: Gives you thermal vision. Also, higher DNA cost because of how powerful it is.
-
 /datum/power/changeling/augmented_eyesight
 	name = "Augmented Eyesight"
 	desc = "Creates heat receptors in our eyes and dramatically increases light sensing ability."
@@ -26,11 +26,7 @@
 		comp.chem_charges -= 5
 		to_chat(C, span_notice("We feel a minute twitch in our eyes, and a hidden layer to the world is revealed."))
 		C.add_modifier(/datum/modifier/changeling/thermal_sight, 0, src)
-//		C.permanent_sight_flags |= SEE_MOBS
-//		C.dna.species.invis_sight = SEE_INVISIBLE_MINIMUM
 	else
 		to_chat(C, span_notice("Our vision dulls."))
 		C.remove_modifiers_of_type(/datum/modifier/changeling/thermal_sight)
-//		C.permanent_sight_flags &= ~SEE_MOBS
-//		C.dna.species.invis_sight = initial(user.dna.species.invis_sight)
 	return 1

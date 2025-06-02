@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/self_respiration
 	name = "Self Respiration"
 	desc = "We evolve our body to no longer require drawing oxygen from the atmosphere."
@@ -14,18 +15,18 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
-		return 0
+		return FALSE
 
 	if(istype(src,/mob/living/carbon))
 		var/mob/living/carbon/C = src
 		if(C.suiciding)
 			to_chat(src, "You're committing suicide, this isn't going to work.")
-			return 0
-		if(C.does_not_breathe == 0)
-			C.does_not_breathe = 1
+			return FALSE
+		if(C.does_not_breathe == FALSE)
+			C.does_not_breathe = TRUE
 			to_chat(src, span_notice("We stop breathing, as we no longer need to."))
-			return 1
+			return TRUE
 		else
-			C.does_not_breathe = 0
+			C.does_not_breathe = FALSE
 			to_chat(src, span_notice("We resume breathing, as we now need to again."))
-	return 0
+	return FALSE

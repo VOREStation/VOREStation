@@ -10,9 +10,10 @@
 	set name = "Lesser Form (1)"
 
 	var/datum/component/antag/changeling/changeling = changeling_power(1,0,0)
-	if(!changeling)	return
+	if(!changeling)
+		return
 
-	if(src.has_brain_worms())
+	if(has_brain_worms())
 		to_chat(src, span_warning("We cannot perform this ability at the present time!"))
 		return
 
@@ -47,7 +48,8 @@
 		names += "[DNA.real_name]"
 
 	var/S = tgui_input_list(src, "Select the target DNA:", "Target DNA", names)
-	if(!S)	return
+	if(!S)
+		return
 
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)

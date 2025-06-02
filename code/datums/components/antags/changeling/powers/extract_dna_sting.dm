@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/extract_dna
 	name = "Extract DNA"
 	desc = "We stealthily sting a target and extract the DNA from them."
@@ -16,7 +17,7 @@
 	if(src.mind && changeling)
 		changeling = changeling
 	if(!changeling)
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
 
@@ -25,15 +26,15 @@
 
 	if(!istype(T) || T.isSynthetic())
 		to_chat(src, span_warning("\The [T] is not compatible with our biology."))
-		return 0
+		return FALSE
 
 	if(T.species.flags & (NO_DNA|NO_SLEEVE))
 		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
-		return 0
+		return FALSE
 
 	if(HUSK in T.mutations)
 		to_chat(src, span_warning("This creature's DNA is ruined beyond useability!"))
-		return 0
+		return FALSE
 
 	add_attack_logs(src,T,"DNA extraction sting (changeling)")
 
@@ -42,4 +43,4 @@
 	absorbDNA(newDNA)
 
 	feedback_add_details("changeling_powers","ED")
-	return 1
+	return TRUE

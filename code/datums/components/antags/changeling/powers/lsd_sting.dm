@@ -14,7 +14,6 @@
 	var/mob/living/carbon/T = changeling_sting(15,/mob/proc/changeling_lsdsting)
 	if(!T)	return 0
 	add_attack_logs(src,T,"Hallucination sting (changeling)")
-	spawn(rand(300,600))
-		if(T)	T.hallucination += 400
+	addtimer(VARSET_CALLBACK(T, hallucination, min(T.hallucination+400, 400)), rand(30 SECONDS, 60 SECONDS), TIMER_DELETE_ME)
 	feedback_add_details("changeling_powers","HS")
 	return 1

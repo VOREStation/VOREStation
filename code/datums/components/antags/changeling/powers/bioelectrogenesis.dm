@@ -103,6 +103,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
+	destroy_on_drop = TRUE
 
 	var/shock_cost = 10
 	var/agony_amount = 60
@@ -121,12 +122,6 @@
 		span_warningplain("You hear crackling electricity!"))
 		var/T = get_turf(src)
 		new /obj/effect/effect/sparks(T)
-
-/obj/item/electric_hand/dropped(mob/user)
-	..()
-	spawn(1)
-		if(src)
-			qdel(src)
 
 /obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
 	if(!target)
@@ -160,7 +155,6 @@
 			span_warningplain("You hear sparks!"))
 		else
 			to_chat(src, span_warning("Our gloves block us from shocking \the [C]."))
-		//qdel(src)  //Since we're no longer a one hit stun, we need to stick around.
 		comp.chem_charges -= shock_cost
 		return 1
 
@@ -177,7 +171,6 @@
 			span_warning("Our hand channels raw electricity into [S]"),
 			span_warningplain("You hear sparks!"))
 			to_chat(S, span_danger("Warning: Electrical surge detected!"))
-		//qdel(src)
 		comp.chem_charges -= 10
 		return 1
 

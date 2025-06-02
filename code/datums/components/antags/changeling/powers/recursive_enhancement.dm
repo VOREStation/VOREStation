@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/recursive_enhancement
 	name = "Recursive Enhancement"
 	desc = "We cause our abilities to have increased or additional effects."
@@ -13,12 +14,12 @@
 	set desc = "Empowers our abilities."
 	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,UNCONSCIOUS)
 	if(!changeling)
-		return 0
+		return FALSE
 	if(changeling.recursive_enhancement)
 		to_chat(src, span_warning("We will no longer empower our abilities."))
-		changeling.recursive_enhancement = 0
-		return 0
+		changeling.recursive_enhancement = FALSE
+		return FALSE
 	to_chat(src, span_notice("We empower ourselves. Our abilities will now be extra potent."))
-	changeling.recursive_enhancement = 1
+	changeling.recursive_enhancement = TRUE
 	feedback_add_details("changeling_powers","RE")
-	return 1
+	return TRUE

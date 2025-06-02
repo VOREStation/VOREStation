@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/paralysis_sting
 	name = "Paralysis Sting"
 	desc = "We silently sting a human, paralyzing them for a short time."
@@ -11,9 +12,9 @@
 
 	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_paralysis_sting)
 	if(!T)
-		return 0
+		return FALSE
 	add_attack_logs(src,T,"Paralysis sting (changeling)")
 	to_chat(T, span_danger("Your muscles begin to painfully tighten."))
 	T.Weaken(20)
 	feedback_add_details("changeling_powers","PS")
-	return 1
+	return TRUE

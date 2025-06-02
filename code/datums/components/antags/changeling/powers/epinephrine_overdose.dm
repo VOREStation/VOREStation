@@ -1,3 +1,4 @@
+//Updated
 /datum/power/changeling/epinephrine_overdose
 	name = "Epinephrine Overdose"
 	desc = "We evolve additional sacs of adrenaline throughout our body."
@@ -44,8 +45,8 @@
 	return 1
 
 /datum/reagent/epinephrine
-	name = "Epinephrine"
-	id = "epinephrine"
+	name = REAGENT_EPINEPHRINE
+	id = REAGENT_ID_EPINEPHRINE
 	description = "A chemically naturally produced by the body while in fight-or-flight mode. Greatly increases one's strength."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -61,6 +62,6 @@
 	M.AdjustParalysis(-2)
 	M.AdjustStunned(-2)
 	M.AdjustWeakened(-2)
-	M.adjustToxLoss(removed * 2.5) //It gives you 20units of epinephrine. 50 toxins damage.
+	M.adjustToxLoss(removed * 2.5) //It gives you 20units of epinephrine. 50 toxins damage. 1 Toxin per tick.
 	..()
 	return

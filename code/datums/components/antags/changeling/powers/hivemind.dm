@@ -1,3 +1,4 @@
+//Updated
 // Hivemind
 
 /datum/power/changeling/hive_upload
@@ -58,7 +59,8 @@ var/list/datum/dna/hivemind_bank = list()
 	set desc = "Allows you to absorb DNA that is being channeled in the airwaves."
 
 	var/datum/component/antag/changeling/changeling = changeling_power(20,1)
-	if(!changeling)	return
+	if(!changeling)
+		return
 
 	var/list/names = list()
 	for(var/datum/absorbed_dna/DNA in hivemind_bank)
@@ -70,7 +72,8 @@ var/list/datum/dna/hivemind_bank = list()
 		return
 
 	var/S = tgui_input_list(src, "Select a DNA to absorb:", "Absorb DNA", names)
-	if(!S)	return
+	if(!S)
+		return
 	var/datum/absorbed_dna/chosen_dna = names[S]
 	if(!chosen_dna)
 		return

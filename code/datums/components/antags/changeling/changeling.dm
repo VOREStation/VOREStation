@@ -178,7 +178,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
 	if(!comp)
-		to_world_log("[src] has the changeling_transform() verb but is not a changeling.")
+		to_world_log("[src] used a changeling verb but is not a changeling.")
 		return
 
 	if(src.stat > max_stat)
