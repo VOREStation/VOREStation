@@ -35,12 +35,12 @@
 
 /atom/movable/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
-	if(M == user && HAS_TRAIT(src,TRAIT_CLIMBABLE)) // Climbable objects cannot be buckled to
-		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
-		return TRUE
 	if(can_buckle && istype(M))
 		if(user_buckle_mob(M, user))
 			return TRUE
+	if(M == user && HAS_TRAIT(src,TRAIT_CLIMBABLE)) // Buckling takes priority
+		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
+		return TRUE
 
 /atom/movable/proc/has_buckled_mobs()
 	return LAZYLEN(buckled_mobs)
