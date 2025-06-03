@@ -421,11 +421,9 @@ var/list/organ_cache = list()
 
 	if(!istype(target)) return
 
-	// VOREstation edit begin - Posibrains don't have blood reagents, so they crash this
 	var/datum/reagent/blood/transplant_blood = null
 	if(reagents)
 		transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
-	// VOREstation edit end
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    target?.species.name
