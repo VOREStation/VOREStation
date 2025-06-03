@@ -49,7 +49,8 @@
 
 /datum/tgui_module/crew_monitor/tgui_static_data(mob/user)
 	. = ..()
-	.["zoomScale"] = world.maxx + world.maxy
+	.["zoomScaleX"] = world.maxx
+	.["zoomScaleY"] = world.maxy
 
 /datum/tgui_module/crew_monitor/tgui_data(mob/user)
 	var/data[0]

@@ -1,7 +1,8 @@
 import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
-  zoomScale: number;
+  zoomScaleX: number;
+  zoomScaleY: number;
   isAI: BooleanLike;
   map_levels: number[];
   crewmembers: crewmember[];

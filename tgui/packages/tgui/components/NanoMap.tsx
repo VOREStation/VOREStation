@@ -28,7 +28,8 @@ const pauseEvent = (e) => {
 };
 
 type Props = PropsWithChildren<{
-  zoomScale: number;
+  zoomScaleX: number;
+  zoomScaleY: number;
   onZoom?: (zoom: number) => void;
 }>;
 
@@ -66,11 +67,9 @@ export class NanoMap extends Component<Props, State> {
     this.setState((state) => {
       const zoomDifference = -(state.zoom - newZoom);
 
-      const newOffsetX =
-        state.offsetX - (this.props.zoomScale / 2) * zoomDifference;
+      const newOffsetX = state.offsetX - this.props.zoomScaleX * zoomDifference;
 
-      const newOffsetY =
-        state.offsetY - (this.props.zoomScale / 2) * zoomDifference;
+      const newOffsetY = state.offsetY - this.props.zoomScaleY * zoomDifference;
 
       return {
         ...state,
@@ -182,10 +181,11 @@ export class NanoMap extends Component<Props, State> {
 
     const mapUrl = resolveAsset('minimap_' + config.mapZLevel + '.png');
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
-    const mapSize = this.props.zoomScale * zoom + 'px';
+    const mapSizeX = this.props.zoomScaleX * 2 * zoom + 'px';
+    const mapSizeY = this.props.zoomScaleY * 2 * zoom + 'px';
     const newStyle: {} = {
-      width: mapSize,
-      height: mapSize,
+      width: mapSizeX,
+      height: mapSizeY,
       'margin-top': offsetY + 'px',
       'margin-left': offsetX + 'px',
       overflow: 'hidden',

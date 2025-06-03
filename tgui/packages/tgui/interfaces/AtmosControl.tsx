@@ -15,7 +15,8 @@ type alarm = {
 
 type Data = {
   alarms: alarm[];
-  zoomScale: number;
+  zoomScaleX: number;
+  zoomScaleY: number;
 };
 
 export const AtmosControl = (props) => {
@@ -59,7 +60,11 @@ export const AtmosControlContent = (props) => {
   // and change the @for scss to match.
   tab[1] = (
     <Box height="526px" mb="0.5rem" overflow="hidden">
-      <NanoMap zoomScale={data.zoomScale} onZoom={(v) => setZoom(v)}>
+      <NanoMap
+        zoomScaleX={data.zoomScaleX}
+        zoomScaleY={data.zoomScaleY}
+        onZoom={(v) => setZoom(v)}
+      >
         {alarms
           .filter((x) => ~~x.z === ~~config.mapZLevel)
           .map((cm) => (
