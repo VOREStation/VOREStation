@@ -269,10 +269,10 @@
 /datum/reagent/toxin/stimm/overdose(var/mob/living/carbon/M, var/alient, var/removed)
 	..()
 	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
-		ht?.take_damage(1)
-		to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
+		var/obj/item/organ/internal/heart/ht = M.internal_organs_by_name[O_HEART]
+		if(ht)
+			ht.take_damage(1)
+			to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
 
 /datum/reagent/toxin/potassium_chloride
 	name = REAGENT_POTASSIUMCHLORIDE
