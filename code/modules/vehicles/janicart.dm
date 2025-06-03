@@ -1,10 +1,11 @@
 /datum/category_item/catalogue/technology/janicart
 	name = "Zoomboni Janipro"
-	desc = "A ridable station cleaning cart. A janitorial luxury afforded only to the most affluent supply departments. Comes with fuzzy dice on the key fob."
+	desc = "A ridable station cleaning cart. A janitorial luxury afforded only to the most affluent supply departments back in the early 2100s. Comes with fuzzy dice on the key fob. Welcome back old friend."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /obj/vehicle/train/engine/janicart
 	name = "janicart"
+	desc = "A ridable station cleaning cart. Has a large water tank to feed its floor scrubbers, the opening is big enough to fit a mop through to wet it. It also has a hook to hang a trashbag from. You're riding in style now!"
 	icon_state = "pussywagon"
 	on = 0
 	powered = 1
@@ -18,7 +19,7 @@
 	var/scrubbing = FALSE //Floor cleaning enabled
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag	= null
-	var/callme = "pimpin' ride"	//how do people refer to it?
+	var/callme = name //how do people refer to it?
 
 	key_type = /obj/item/key/janicart
 
@@ -45,44 +46,33 @@
 	update_icon()
 	verbs -= /obj/vehicle/train/verb/unlatch_v // Nothing to unlatch
 
+	if(prob(20))
+		callme = pick(list("pimpin' ride","thang","pussy wagon","janihound deflector","raunchy love mobile","sanitation stallion","magic carpet","crime mobile","get away car"))
+
 /obj/vehicle/train/engine/janicart/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/mop))
 		if(reagents.total_volume > 1)
 			reagents.trans_to_obj(W, 2)
-			to_chat(user, "<span class='notice'>You wet [W] in the [callme].</span>")
+			to_chat(user, span_notice("You wet \the [W] in the [callme]."))
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		else
-			to_chat(user, "<span class='notice'>This [callme] is out of water!</span>")
-	else if(istype(W, /obj/item/storage/bag/trash))
-		to_chat(user, "<span class='notice'>You hook the trashbag onto the [callme].</span>")
+			to_chat(user, span_notice("This [callme] is out of water!"))
+		return
+	if(istype(W, /obj/item/storage/bag/trash))
+		to_chat(user, span_notice("You hook the trashbag onto the [callme]."))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		mybag = W
-	..()
+		return
+	. = ..()
 
 /obj/vehicle/train/engine/janicart/attack_hand(mob/user)
 	if(mybag)
-		mybag.loc = get_turf(user)
+		mybag.forceMove(get_turf(user))
 		user.put_in_hands(mybag)
 		mybag = null
-	else
-		..()
-
-/obj/vehicle/train/engine/janicart/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
-	..()
-	update_stats()
-
-/obj/vehicle/train/engine/janicart/remove_cell(var/mob/living/carbon/human/H)
-	..()
-	update_stats()
-
-/obj/vehicle/train/engine/janicart/Bump(atom/Obstacle)
-	var/obj/machinery/door/D = Obstacle
-	var/mob/living/carbon/human/H = load
-	if(istype(D) && istype(H))
-		D.Bumped(H)		//a little hacky, but hey, it works, and respects access rights
-
-	..()
+		return
+	. = ..()
 
 //-------------------------------------------
 // Interaction procs
@@ -106,13 +96,12 @@
 
 	scrubbing = !scrubbing
 	if (scrubbing)
-		to_chat(usr, "You turn \the [callme]'s brushes on.")
+		to_chat(usr, span_notice("You turn the [callme]'s brushes on."))
 	else
-		to_chat(usr, "You turn \the [callme]'s brushes off.")
+		to_chat(usr, span_notice("You turn the [callme]'s brushes off."))
 
 /obj/vehicle/train/engine/janicart/latch(obj/vehicle/train/T, mob/user)
-	// nothing latchs to this!
-	return 0
+	return // nothing latchs to this!
 
 /obj/vehicle/train/engine/janicart/update_icon()
 	..()
@@ -122,10 +111,6 @@
 		O.layer = FLY_LAYER
 		O.plane = MOB_PLANE
 		add_overlay(O)
-
-/obj/vehicle/train/engine/janicart/set_dir()
-	..()
-	update_icon()
 
 /obj/vehicle/train/engine/janicart/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
@@ -145,4 +130,4 @@
 			scrubbing = FALSE
 			if(ishuman(load))
 				var/mob/living/carbon/human/D = load
-				to_chat(D, "\The [callme]'s brushes turn off, as it runs out of cleaner.")
+				to_chat(D, span_notice("The [callme]'s brushes turn off, as it runs out of cleaner."))
