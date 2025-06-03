@@ -108,6 +108,11 @@ export const ViewCharacter = (props: {
           {overlay.flavor_text || 'Unset.'}
         </Box>
       </Section>
+      <Section title="Custom Link">
+        <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
+          {overlay.custom_link || 'Unset.'}
+        </Box>
+      </Section>
     </Section>
   );
 };
