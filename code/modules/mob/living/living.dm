@@ -1013,7 +1013,7 @@
 		for(var/i=0 to distance)
 			if(blood)
 				if(T)
-					blood_splatter(T, large = TRUE)
+					blood_splatter(T, src, large = TRUE)
 				if(stun)
 					adjustBruteLoss(2)
 			else if(T)
