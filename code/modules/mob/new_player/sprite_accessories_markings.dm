@@ -782,12 +782,12 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/taj_belly
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/taj_bellyfull
 	name = "Belly Fur Wide (Taj)"
 	icon_state = "taj_bellyfull"
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/taj_earsout
 	name = "Outer Ear (Taj)"

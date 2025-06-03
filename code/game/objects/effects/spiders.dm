@@ -207,7 +207,6 @@
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
-	//VOREStation Edit Start
 			var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = get_safe_ventcrawl_target(entry_vent)
 			if(!exit_vent)
 				return
@@ -235,8 +234,6 @@
 					var/area/new_area = get_area(loc)
 					if(new_area)
 						new_area.Entered(src)
-	//VOREStation Edit End
-	//=================
 
 	if(isturf(loc))
 		skitter()
@@ -325,3 +322,18 @@
 	for(var/atom/movable/A in contents)
 		A.loc = src.loc
 	return ..()
+
+/obj/effect/spider/spiderling/non_growing/horror
+	icon_state = "tendrils"
+
+/obj/effect/spider/spiderling/non_growing/horror/die()
+	visible_message(span_cult("[src] stops squirming."))
+	var/obj/effect/decal/cleanable/tendril_remains/remains = new /obj/effect/decal/cleanable/tendril_remains(src.loc)
+	remains.color = color
+	qdel(src)
+
+/obj/effect/decal/cleanable/tendril_remains
+	name = "tendril remains"
+	desc = "A disgusting pile of unmoving fleshy tendrils."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tendril_dead"

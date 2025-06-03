@@ -191,7 +191,7 @@
 	if(on)
 		soundloop.start()
 		if (M.loc == loc)
-			wash(M)
+			do_wash(M)
 			process_heat(M)
 		for (var/atom/movable/G in src.loc)
 			G.wash(CLEAN_SCRUB)
@@ -262,7 +262,7 @@
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
 
-		M.wash(CLEAN_SCRUB)
+	O.wash(CLEAN_SCRUB)
 
 	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
 
