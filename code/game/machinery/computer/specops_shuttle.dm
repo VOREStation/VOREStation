@@ -270,9 +270,9 @@ var/specops_shuttle_timeleft = 0
 		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
 		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse("<html>[dat]</html>", "window=computer;size=575x450")
-	onclose(user, "computer")
-	return
+	var/datum/browser/popup = new(usr, "computer", "Computer", 575, 450)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/computer/specops_shuttle/Topic(href, href_list)
 	if(..())
