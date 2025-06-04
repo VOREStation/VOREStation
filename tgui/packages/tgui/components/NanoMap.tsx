@@ -13,8 +13,6 @@ import {
 import type { KeyEvent } from 'tgui-core/events';
 import { KEY } from 'tgui-core/keys';
 
-import { logger } from '../logging';
-
 const pauseEvent = (e) => {
   if (e.stopPropagation) {
     e.stopPropagation();
@@ -28,8 +26,6 @@ const pauseEvent = (e) => {
 };
 
 type Props = PropsWithChildren<{
-  zoomScaleX: number;
-  zoomScaleY: number;
   onZoom?: (zoom: number) => void;
 }>;
 
@@ -62,14 +58,25 @@ export class NanoMap extends Component<Props, State> {
     document.removeEventListener('wheel', this.handleWheel);
   }
 
-  setZoom(zoom: number) {
+  getWxH = (zoom: number) => {
+    const { config } = useBackend();
+    return [config.mapInfo.maxx * 2 * zoom, config.mapInfo.maxy * 2 * zoom];
+  };
+
+  setZoom(zoom: number, mouseX: number, mouseY: number) {
     const newZoom = Math.min(Math.max(zoom, 1), 8);
     this.setState((state) => {
-      const zoomDifference = -(state.zoom - newZoom);
+      const oldWxH = this.getWxH(state.zoom);
+      const newWxH = this.getWxH(newZoom);
 
-      const newOffsetX = state.offsetX - this.props.zoomScaleX * zoomDifference;
+      const scaleX = newWxH[0] / oldWxH[0];
+      const scaleY = newWxH[1] / oldWxH[1];
 
-      const newOffsetY = state.offsetY - this.props.zoomScaleY * zoomDifference;
+      const viewMouseX = mouseX - state.offsetX;
+      const viewMouseY = mouseY - state.offsetY;
+
+      const newOffsetX = mouseX - viewMouseX * scaleX;
+      const newOffsetY = mouseY - viewMouseY * scaleY;
 
       return {
         ...state,
@@ -144,30 +151,34 @@ export class NanoMap extends Component<Props, State> {
 
     this.handleWheel = (e: WheelEvent) => {
       if (e.deltaY > 0) {
-        this.setZoom(this.state.zoom + 1);
+        this.setZoom(this.state.zoom - 1, e.clientX, e.clientY);
       } else if (e.deltaY < 0) {
-        this.setZoom(this.state.zoom - 1);
+        this.setZoom(this.state.zoom + 1, e.clientX, e.clientY);
       }
     };
 
     this.handleZoom = (_e: Event, value: number) => {
-      this.setZoom(value);
+      this.setZoom(value, window.innerWidth / 2, window.innerHeight / 2);
     };
 
     this.handleKey = (e: KeyEvent) => {
       switch (e.event.key) {
         case KEY.Up:
         case KEY.W: {
-          this.setZoom(this.state.zoom + 1);
+          this.setZoom(
+            this.state.zoom + 1,
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+          );
           break;
         }
         case KEY.Down:
         case KEY.S: {
-          this.setZoom(this.state.zoom - 1);
-          break;
-        }
-        case KEY.E: {
-          logger.log(this.state.offsetX, this.state.offsetY);
+          this.setZoom(
+            this.state.zoom - 1,
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+          );
           break;
         }
       }
@@ -177,15 +188,14 @@ export class NanoMap extends Component<Props, State> {
   render() {
     const { config } = useBackend();
     const { dragging, offsetX, offsetY, zoom = 1 } = this.state;
-    const { children } = this.props;
+    const { children } = this.props; // Outpost 21 edit - Wide map support
+
+    const WxH = this.getWxH(zoom);
 
     const mapUrl = resolveAsset('minimap_' + config.mapZLevel + '.png');
-    // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
-    const mapSizeX = this.props.zoomScaleX * 2 * zoom + 'px';
-    const mapSizeY = this.props.zoomScaleY * 2 * zoom + 'px';
     const newStyle: {} = {
-      width: mapSizeX,
-      height: mapSizeY,
+      width: WxH[0] + 'px',
+      height: WxH[1] + 'px',
       'margin-top': offsetY + 'px',
       'margin-left': offsetX + 'px',
       overflow: 'hidden',
@@ -234,8 +244,8 @@ const NanoMapMarker = (props: NanoMapMarkerProps) => {
     }
   };
 
-  const rx = x * 2 * zoom - zoom - 3;
-  const ry = y * 2 * zoom - zoom - 3;
+  const rx = x * 2 * zoom - zoom;
+  const ry = y * 2 * zoom - zoom;
   return (
     <Tooltip content={tooltip}>
       <Box

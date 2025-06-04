@@ -67,8 +67,6 @@
 			"y" = alarm.y,
 			"z" = alarm.z)
 	.["alarms"] = alarms
-	.["zoomScaleX"] = world.maxx
-	.["zoomScaleY"] = world.maxy
 
 /datum/tgui_module/atmos_control/tgui_data(mob/user)
 	var/list/data = list()

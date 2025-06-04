@@ -47,11 +47,6 @@
 		ui.autoupdate = TRUE
 		ui.open()
 
-/datum/tgui_module/crew_monitor/tgui_static_data(mob/user)
-	. = ..()
-	.["zoomScaleX"] = world.maxx
-	.["zoomScaleY"] = world.maxy
-
 /datum/tgui_module/crew_monitor/tgui_data(mob/user)
 	var/data[0]
 
