@@ -58,6 +58,9 @@ function setupApp() {
     return;
   }
 
+  // Force speechSynthesis to check the server for voices as soon as the chat loads, so it's ready for us
+  window.speechSynthesis.getVoices();
+
   setGlobalStore(store);
 
   setupGlobalEvents({

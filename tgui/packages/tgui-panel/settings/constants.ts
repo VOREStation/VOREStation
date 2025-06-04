@@ -33,6 +33,10 @@ export const SETTINGS_TABS = [
     id: 'statPanel',
     name: 'Stat Panel',
   },
+  {
+    id: 'ttsSettings',
+    name: 'TTS/Accessibility',
+  },
 ];
 
 export const FONTS_DISABLED = 'Default';

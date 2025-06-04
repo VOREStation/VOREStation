@@ -5,11 +5,13 @@
  */
 
 import { createRoot } from 'react-dom/client';
+import { useSelector } from 'tgui/backend';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
 import { classes } from 'tgui-core/react';
 
+import { selectSettings } from '../settings/selectors';
 import { exportToDisk } from './chatExport';
 import {
   IMAGE_RETRY_DELAY,
@@ -545,6 +547,7 @@ class ChatRenderer {
     return null;
   }
 
+  // eslint-disable-next-line complexity
   processBatch(
     batch: message[],
     options: {
@@ -553,6 +556,7 @@ class ChatRenderer {
       doArchive?: boolean;
     } = {},
   ) {
+    const settings = useSelector(selectSettings);
     const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
@@ -714,6 +718,22 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
+
+      // TTS
+      // Only TTS on new messages
+      if (doArchive) {
+        if (settings.ttsCategories[message.type]) {
+          const utterance = new SpeechSynthesisUtterance(node.innerText);
+
+          const voice = window.speechSynthesis
+            .getVoices()
+            .find((val) => val.name === settings.ttsVoice);
+          utterance.voice = voice || null;
+
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
       if (
         doArchive &&
         this.logEnable &&
