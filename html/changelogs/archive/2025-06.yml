@@ -49,3 +49,10 @@
   - bugfix: Holomaps/Nanomaps no longer show POI walls
   TheCaramelion:
   - bugfix: Fixed showers not washing atoms in it's space
+2025-06-04:
+  Diana:
+  - bugfix: Puking with a broken liver now properly makes you vomit the correct blood
+      color
+  Guti:
+  - bugfix: Fixed wash() proc to delete cleanable decals
+  - bugfix: Fixed mops and soaps not making the floor wet
