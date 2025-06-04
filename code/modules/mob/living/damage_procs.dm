@@ -76,6 +76,7 @@
 			if(COLD_RESISTANCE in mutations)
 				damage = 0
 			adjustFireLoss(damage * blocked)
+			attempt_multishock(SHOCKFLAG_BURNDAMAGE)
 		if(SEARING)
 			apply_damage(round(damage / 3), BURN, def_zone, initial_blocked, soaked, sharp, edge, used_weapon)
 			apply_damage(round(damage / 3 * 2), BRUTE, def_zone, initial_blocked, soaked, sharp, edge, used_weapon)

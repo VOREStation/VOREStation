@@ -127,6 +127,8 @@
 	var/warning_warmup = 2 SECONDS // How long the leap telegraphing is.
 	var/warning_sound = 'sound/weapons/spiderlunge.ogg'
 
+	no_pull_when_living = TRUE
+
 
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()
@@ -204,7 +206,8 @@
 		break
 
 	if(victim)
-		A.reagents.add_reagent(REAGENT_ID_WARNINGTOXIN, poison_per_bite)
+		victim.reagents.add_reagent(REAGENT_ID_WARNINGTOXIN, poison_per_bite)
+		victim.AdjustWeakened(2)
 		victim.visible_message(span_danger("\The [src] has bitten \the [victim]!"))
 		to_chat(victim, span_critical("\The [src] bites you and retreats!"))
 		. = TRUE
