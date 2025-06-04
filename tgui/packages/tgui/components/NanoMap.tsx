@@ -188,7 +188,7 @@ export class NanoMap extends Component<Props, State> {
   render() {
     const { config } = useBackend();
     const { dragging, offsetX, offsetY, zoom = 1 } = this.state;
-    const { children } = this.props; // Outpost 21 edit - Wide map support
+    const { children } = this.props;
 
     const WxH = this.getWxH(zoom);
 
