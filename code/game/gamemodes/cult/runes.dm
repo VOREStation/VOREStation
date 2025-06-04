@@ -881,7 +881,7 @@ var/list/sacrificed = list()
 			var/datum/gender/TU = GLOB.gender_datums[cultist.get_visible_gender()]
 			to_chat(user, span_warning("You cannot summon \the [cultist], for [TU.his] shackles of blood are strong."))
 			return fizzle()
-		cultist.loc = src.loc
+		cultist.forceMove(src.loc)
 		cultist.lying = 1
 		cultist.regenerate_icons()
 
