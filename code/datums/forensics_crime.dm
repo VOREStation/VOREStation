@@ -8,6 +8,7 @@
 
 // Fingerprints
 //////////////////////////////////////////////////////////////////////////////////////
+/// Adds fingerprints to the object, prints can be smudged, glove handling is done on the atom side of this proc.
 /datum/forensics_crime/proc/add_prints(var/mob/living/carbon/human/H)
 	//Now, lets get to the dirty work.
 	if(!fingerprints)
@@ -93,6 +94,7 @@
 
 // Hidden prints
 //////////////////////////////////////////////////////////////////////////////////////
+/// Adds hidden admin trackable fingerprints, visible even if normal fingerprints are smudged.
 /datum/forensics_crime/proc/add_hiddenprints(mob/living/M as mob)
 	if(!ishuman(M))
 		if(fingerprintslast != M.key)
