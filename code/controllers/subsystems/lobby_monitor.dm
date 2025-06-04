@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(lobby_monitor)
 			continue
 
 		log_tgui(player, "Reinitialized [player.client.ckey]'s lobby window: [ui ? "ui" : "no ui"], status: [player.lobby_window?.status].", "lobby_monitor/Fire")
-		INVOKE_ASYNC(player, TYPE_PROC_REF(/mob/new_player, initialize_lobby_screen))
+		addtimer(CALLBACK(src, PROC_REF(do_reinit), player), 0.5 SECONDS)
 
 	var/initialize_queue = list()
 	for(var/mob/new_player/player as anything in new_players)
@@ -38,6 +38,12 @@ SUBSYSTEM_DEF(lobby_monitor)
 		initialize_queue += player
 
 	to_reinitialize = initialize_queue
+
+/datum/controller/subsystem/lobby_monitor/proc/do_reinit(var/mob/new_player/player)
+	var/datum/tgui/ui = SStgui.get_open_ui(player, player)
+	if(ui && player.lobby_window && player.lobby_window.status > TGUI_WINDOW_CLOSED)
+		return
+	player.initialize_lobby_screen()
 
 /datum/controller/subsystem/lobby_monitor/Shutdown()
 	var/datum/asset/our_asset = get_asset_datum(/datum/asset/simple/restart_animation)
