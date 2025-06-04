@@ -62,6 +62,8 @@
 		QDEL_NULL(reagents)
 	if(light)
 		QDEL_NULL(light)
+	if(forensic_data)
+		QDEL_NULL(forensic_data)
 	return ..()
 
 /atom/proc/reveal_blood()
