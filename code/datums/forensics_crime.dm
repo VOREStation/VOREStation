@@ -74,7 +74,7 @@
 	return TRUE
 
 /datum/forensics_crime/proc/merge_prints(var/datum/forensics_crime/origin)
-	if(!origin || !origin.fingerprints)
+	if(!islist(origin?.fingerprints))
 		return
 	if(fingerprints)
 		fingerprints |= origin.fingerprints
@@ -84,6 +84,12 @@
 /datum/forensics_crime/proc/clear_prints()
 	LAZYCLEARLIST(fingerprints)
 	fingerprintslast = null
+
+/datum/forensics_crime/proc/set_lastprint(var/val)
+	fingerprintslast = val
+
+/datum/forensics_crime/proc/get_lastprint()
+	return fingerprintslast
 
 // Hidden prints
 //////////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +129,7 @@
 	return TRUE
 
 /datum/forensics_crime/proc/merge_hiddenprints(var/datum/forensics_crime/origin)
-	if(!origin || !origin.fingerprintshidden)
+	if(!islist(origin?.fingerprintshidden))
 		return
 	if(fingerprintshidden)
 		fingerprintshidden |= origin.fingerprintshidden
@@ -173,7 +179,7 @@
 	return TRUE
 
 /datum/forensics_crime/proc/merge_fibres(var/datum/forensics_crime/origin)
-	if(!origin || !origin.suit_fibres)
+	if(!islist(origin?.suit_fibres))
 		return
 	if(suit_fibres)
 		suit_fibres |= origin.suit_fibres
@@ -215,7 +221,6 @@
 	blood_DNA[dna_data.unique_enzymes] = dna_data.b_type
 	return fresh
 
-
 /datum/forensics_crime/proc/get_blooddna()
 	RETURN_TYPE(/list)
 	if(!blood_DNA)
@@ -236,7 +241,7 @@
 			blood_DNA = raw_list.Copy()
 		return
 	// Copying from another datums
-	if(!origin || !origin.blood_DNA)
+	if(!islist(origin?.blood_DNA))
 		return
 	if(blood_DNA)
 		blood_DNA |= origin.blood_DNA
@@ -270,12 +275,6 @@
 		clear_fibres()
 	if(clean_types > 0)
 		clear_gunshotresidue()
-
-/datum/forensics_crime/proc/set_lastprint(var/val)
-	fingerprintslast = val
-
-/datum/forensics_crime/proc/get_lastprint()
-	return fingerprintslast
 
 /datum/forensics_crime/proc/merge_allprints(var/datum/forensics_crime/origin)
 	if(!origin)
