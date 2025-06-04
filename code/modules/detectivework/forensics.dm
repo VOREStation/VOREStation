@@ -8,7 +8,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 /proc/is_complete_print(var/print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
-/// Returns the object's forensic information datum. If none exists, it makes it.
+/// Forensics: Returns the object's forensic information datum. If none exists, it makes it.
 /atom/proc/init_forensic_data()
 	RETURN_TYPE(/datum/forensics_crime)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -16,7 +16,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 		forensic_data = new()
 	return forensic_data
 
-/// Handles most forensic investigation actions while touching an object. Including fingerprints, stray fibers from clothing, and bloody hands smearing objects.
+/// Forensics: Handles most forensic investigation actions while touching an object. Including fingerprints, stray fibers from clothing, and bloody hands smearing objects. Returns true if a fingerprint was made.
 /atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(isnull(M) || isAI(M) || isnull(M.key))
@@ -39,7 +39,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 			M.bloody_hands--
 
 	//He has no prints!
-	if (mFingerprints in M.mutations)
+	if(mFingerprints in M.mutations)
 		if(C.get_lastprint() != M.key)
 			C.add_hiddenprints(M)
 			C.set_lastprint(M.key)
@@ -69,7 +69,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 
 	return C.add_prints(H)
 
-/// Adds an admin investigation fingerprint, even if no actual fingerprints are made. Used even if the action is done with a weapon as a way of logging actions for admins.
+/// Forensics: Adds an admin investigation fingerprint, even if no actual fingerprints are made. Used even if the action is done with a weapon as a way of logging actions for admins.
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(isnull(M))
@@ -78,21 +78,22 @@ var/const/FINGERPRINT_COMPLETE = 6
 		return
 	init_forensic_data().add_hiddenprints(M)
 
-/// Adds blood dna to an object, this also usually gives the object a bloody overlay, but that is handled by the object itself.
+/// Forensics: Adds blood dna to an object, this also usually gives the object a bloody overlay, but that is handled by the object itself. Returns true if this is the first time this dna is being added to this object.
 /atom/proc/add_blooddna(var/datum/dna/dna_data,var/mob/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return init_forensic_data().add_blooddna(dna_data,M)
 
+/// Forensics: Adds blood dna to an object, this version uses an organ's more restricted dna datum, but it still has all the information needed. Returns true if this is the first time this dna is being added to this object.
 /atom/proc/add_blooddna_organ(var/datum/organ_data/dna_data)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return init_forensic_data().add_blooddna_organ(dna_data)
 
-/// Adds fibres from suits or gloves
+/// Forensics: Adds fibres from suits or gloves
 /atom/proc/add_fibres(mob/living/carbon/human/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	init_forensic_data().add_fibres(M)
 
-/// Transfers both our normal and hidden fingerprints to the specified object, handles the forensics datum creation itself.
+/// Forensics: Transfers both our normal and hidden fingerprints to the specified object, handles the forensics datum creation itself.
 /atom/proc/transfer_fingerprints_to(var/atom/transfer_to)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!forensic_data)
@@ -101,20 +102,20 @@ var/const/FINGERPRINT_COMPLETE = 6
 	C.merge_prints(forensic_data)
 	C.merge_hiddenprints(forensic_data)
 
-/// Transfers our blood dna to the specified object, handles the forensics datum creation itself.
+/// Forensics: Transfers our blood dna to the specified object, handles the forensics datum creation itself.
 /atom/proc/transfer_blooddna_to(var/atom/transfer_to)
 	if(!forensic_data)
 		return
 	transfer_to.init_forensic_data().merge_blooddna(forensic_data)
 
-/// Transfers our stray fibers to the specified object, handles the forensics datum creation itself.
+/// Forensics: Transfers our stray fibers to the specified object, handles the forensics datum creation itself.
 /atom/proc/transfer_fibres_to(var/atom/transfer_to)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!forensic_data)
 		return
 	transfer_to.init_forensic_data().merge_fibres(forensic_data)
 
-/// Adds gunshot residue from firing boolets
+/// Forensics: Adds gunshot residue from firing boolets
 /atom/proc/add_gunshotresidue(var/obj/item/ammo_casing/shell)
 	init_forensic_data().add_gunshotresidue(shell.caliber)
 
