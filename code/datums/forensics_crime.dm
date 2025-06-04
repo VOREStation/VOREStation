@@ -8,46 +8,12 @@
 
 // Fingerprints
 //////////////////////////////////////////////////////////////////////////////////////
-/datum/forensics_crime/proc/add_prints(mob/living/M as mob, ignoregloves)
-	//He has no prints!
-	if (mFingerprints in M.mutations)
-		if(fingerprintslast != M.key)
-			if(!fingerprintshidden)
-				fingerprintshidden = list()
-			fingerprintshidden += "[time_stamp()]: [key_name(M)] (No fingerprints mutation)"
-			fingerprintslast = M.key
-		return FALSE
-
-	//Smudge up dem prints some if it's just a mob
-	if(!ishuman(M))
-		if(fingerprintslast != M.key)
-			if(!fingerprintshidden)
-				fingerprintshidden = list()
-			fingerprintshidden += "[time_stamp()]: [key_name(M)]"
-			fingerprintslast = M.key
-		return TRUE
-	var/mob/living/carbon/human/H = M
-
+/datum/forensics_crime/proc/add_prints(var/mob/living/carbon/human/H)
 	//Now, lets get to the dirty work.
 	if(!fingerprints)
 		fingerprints = list()
 	if(!fingerprintshidden)
 		fingerprintshidden = list()
-
-	//Now, deal with gloves.
-	if (H.gloves && H.gloves != src)
-		if(fingerprintslast != H.key)
-			fingerprintshidden += "[time_stamp()]: [key_name(H)] (Wearing [H.gloves])"
-			fingerprintslast = H.key
-		H.gloves.add_fingerprint(M)
-
-	//Deal with gloves the pass finger/palm prints.
-	if(!ignoregloves)
-		if(H.gloves && H.gloves != src)
-			if(istype(H.gloves, /obj/item/clothing/gloves))
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(!prob(G.fingerprint_chance))
-					return 0
 
 	//More adminstuffz
 	if(fingerprintslast != H.key)
@@ -304,6 +270,9 @@
 		clear_fibres()
 	if(clean_types > 0)
 		clear_gunshotresidue()
+
+/datum/forensics_crime/proc/set_lastprint(var/val)
+	fingerprintslast = val
 
 /datum/forensics_crime/proc/get_lastprint()
 	return fingerprintslast

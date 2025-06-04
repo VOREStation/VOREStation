@@ -24,7 +24,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 
 	//Fibers from worn clothing get transfered along with fingerprints~
 	var/datum/forensics_crime/C = init_forensic_data()
-	add_fibres(M)
+	C.add_fibres(M)
 
 	// bloodied gloves and hands transfer blood to touched objects. Blood does not transfer if we are already bloody.
 	if(!forensic_data?.has_blooddna())
@@ -38,7 +38,36 @@ var/const/FINGERPRINT_COMPLETE = 6
 			forensic_data.merge_blooddna(M.forensic_data)
 			M.bloody_hands--
 
-	return C.add_prints(M,ignoregloves)
+	//He has no prints!
+	if (mFingerprints in M.mutations)
+		if(C.get_lastprint() != M.key)
+			C.add_hiddenprints(M)
+			C.set_lastprint(M.key)
+		return FALSE
+
+	//Smudge up dem prints some if it's just a mob
+	if(!ishuman(M))
+		if(C.get_lastprint() != M.key)
+			C.add_hiddenprints(M)
+			C.set_lastprint(M.key)
+		return TRUE
+
+	var/mob/living/carbon/human/H = M
+
+	//Now, deal with gloves.
+	if (H.gloves && H.gloves != src)
+		C.add_hiddenprints(M)
+		H.gloves.add_fingerprint(M,ignoregloves)
+
+	//Deal with gloves the pass finger/palm prints.
+	if(!ignoregloves)
+		if(H.gloves && H.gloves != src)
+			if(istype(H.gloves, /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = H.gloves
+				if(!prob(G.fingerprint_chance))
+					return 0
+
+	return C.add_prints(H)
 
 /// Adds an admin investigation fingerprint, even if no actual fingerprints are made. Used even if the action is done with a weapon as a way of logging actions for admins.
 /atom/proc/add_hiddenprint(mob/living/M as mob)

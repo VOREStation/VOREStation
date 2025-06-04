@@ -466,7 +466,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			new_data[source.data["blood_DNA"]] = source.data["blood_type"]
 		else
 			new_data[source.data["blood_DNA"]] = "O+"
-		B.init_forensic_data().merge_blooddna(new_data)
+		B.init_forensic_data().merge_blooddna(null,new_data)
 
 	// Update virus information.
 	if(source.data["viruses"])
