@@ -154,7 +154,7 @@ export const ModifyRobotComponent = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="35%">
           <ComponentSection
             title="Repair Component"

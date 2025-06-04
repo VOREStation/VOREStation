@@ -56,7 +56,7 @@
 		return
 	*/
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_hand(A)
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)
