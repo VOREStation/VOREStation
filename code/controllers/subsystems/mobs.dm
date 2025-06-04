@@ -119,15 +119,15 @@ SUBSYSTEM_DEF(mobs)
 	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
 
 	var/list/data = list(
-	"name" = sql_sanitize_text(L.real_name),
-	"byondkey" = sql_sanitize_text(L.key),
-	"job" = sql_sanitize_text(L.mind.assigned_role),
-	"special" = sql_sanitize_text(L.mind.special_role),
-	"pod" = sql_sanitize_text(podname),
+	"name" = L.real_name,
+	"byondkey" = L.key,
+	"job" = L.mind.assigned_role,
+	"special" = L.mind.special_role,
+	"pod" = podname,
 	"tod" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
-	"laname" = L.lastattacker ? sql_sanitize_text(L.lastattacker:real_name) : null,
-	"lakey" = L.lastattacker ? sql_sanitize_text(L.lastattacker:key) : null,
-	"gender" = sql_sanitize_text(L.gender),
+	"laname" = L.lastattacker ? L.lastattacker:real_name : null,
+	"lakey" = L.lastattacker ? L.lastattacker:key : null,
+	"gender" = L.gender,
 	"bruteloss" = L.getBruteLoss(),
 	"fireloss" = L.getFireLoss(),
 	"brainloss" = L.brainloss,
