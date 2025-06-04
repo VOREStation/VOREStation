@@ -1,7 +1,7 @@
 /datum/forensics_crime
 	VAR_PRIVATE/list/fingerprints = null
 	VAR_PRIVATE/list/fingerprintshidden = null
-	VAR_PRIVATE/list/suit_fibers = null
+	VAR_PRIVATE/list/suit_fibres = null
 	VAR_PRIVATE/list/blood_DNA = null
 	VAR_PRIVATE/fingerprintslast = null
 	VAR_PRIVATE/gunshot_residue = null
@@ -167,7 +167,7 @@
 // Fibres
 //////////////////////////////////////////////////////////////////////////////////////
 /// Adds stray fibres from clothing worn by a mob while handling something
-/datum/forensics_crime/proc/add_fibers(var/mob/living/carbon/human/M)
+/datum/forensics_crime/proc/add_fibres(var/mob/living/carbon/human/M)
 	var/fibertext = null
 	var/item_multiplier = istype(src,/obj/item)?1.2:1
 	var/suit_coverage = 0
@@ -188,34 +188,34 @@
 		return
 
 	// Add to dataset
-	if(suit_fibers)
-		if(!(fibertext in suit_fibers))
-			suit_fibers.Add(fibertext)
+	if(suit_fibres)
+		if(!(fibertext in suit_fibres))
+			suit_fibres.Add(fibertext)
 		return
-	suit_fibers = list()
-	suit_fibers.Add(fibertext)
+	suit_fibres = list()
+	suit_fibres.Add(fibertext)
 
-/datum/forensics_crime/proc/get_fibers()
+/datum/forensics_crime/proc/get_fibres()
 	RETURN_TYPE(/list)
-	if(!suit_fibers)
+	if(!suit_fibres)
 		return list()
-	return suit_fibers
+	return suit_fibres
 
-/datum/forensics_crime/proc/has_fibers()
-	if(!suit_fibers || !suit_fibers.len)
+/datum/forensics_crime/proc/has_fibres()
+	if(!suit_fibres || !suit_fibres.len)
 		return FALSE
 	return TRUE
 
-/datum/forensics_crime/proc/merge_fibers(var/datum/forensics_crime/origin)
-	if(!origin || !origin.suit_fibers)
+/datum/forensics_crime/proc/merge_fibres(var/datum/forensics_crime/origin)
+	if(!origin || !origin.suit_fibres)
 		return
-	if(suit_fibers)
-		suit_fibers |= origin.suit_fibers
+	if(suit_fibres)
+		suit_fibres |= origin.suit_fibres
 	else
-		suit_fibers = origin.suit_fibers.Copy()
+		suit_fibres = origin.suit_fibres.Copy()
 
-/datum/forensics_crime/proc/clear_fibers()
-	LAZYCLEARLIST(suit_fibers)
+/datum/forensics_crime/proc/clear_fibres()
+	LAZYCLEARLIST(suit_fibres)
 
 // Blood dna
 //////////////////////////////////////////////////////////////////////////////////////
@@ -301,7 +301,7 @@
 	if(clean_types & CLEAN_TYPE_FINGERPRINTS)
 		clear_prints()
 	if(clean_types & CLEAN_TYPE_FIBERS)
-		clear_fibers()
+		clear_fibres()
 	if(clean_types > 0)
 		clear_gunshotresidue()
 

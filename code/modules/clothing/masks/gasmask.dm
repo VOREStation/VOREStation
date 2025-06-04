@@ -51,7 +51,7 @@
 		var/obj/item/clothing/mask/gas/sechailer/N = new /obj/item/clothing/mask/gas/sechailer(src.loc)
 		transfer_blooddna_to(N)
 		transfer_fingerprints_to(N)
-		transfer_fibers_to(N)
+		transfer_fibres_to(N)
 		N.hailer = I
 		I.loc = N
 		if(!isturf(N.loc))

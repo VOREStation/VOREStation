@@ -107,7 +107,7 @@
 
 	// Transfer forensics to, lets avoid CRIME exploits
 	O.transfer_fingerprints_to(N)
-	O.transfer_fibers_to(N)
+	O.transfer_fibres_to(N)
 
 	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
 	if(skip_content_check && transfer_contents)

@@ -134,7 +134,7 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			transfer_blooddna_to(N)
 			transfer_fingerprints_to(N)
-			transfer_fibers_to(N)
+			transfer_fibres_to(N)
 			if(!isturf(N.loc))
 				user.put_in_hands(hailer)
 				user.put_in_hands(N)

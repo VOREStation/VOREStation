@@ -24,7 +24,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 
 	//Fibers from worn clothing get transfered along with fingerprints~
 	var/datum/forensics_crime/C = init_forensic_data()
-	add_fibers(M)
+	add_fibres(M)
 
 	// bloodied gloves and hands transfer blood to touched objects. Blood does not transfer if we are already bloody.
 	if(!forensic_data?.has_blooddna())
@@ -59,9 +59,9 @@ var/const/FINGERPRINT_COMPLETE = 6
 	return init_forensic_data().add_blooddna_organ(dna_data)
 
 /// Adds fibres from suits or gloves
-/atom/proc/add_fibers(mob/living/carbon/human/M)
+/atom/proc/add_fibres(mob/living/carbon/human/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	init_forensic_data().add_fibers(M)
+	init_forensic_data().add_fibres(M)
 
 /// Transfers both our normal and hidden fingerprints to the specified object, handles the forensics datum creation itself.
 /atom/proc/transfer_fingerprints_to(var/atom/transfer_to)
@@ -79,11 +79,11 @@ var/const/FINGERPRINT_COMPLETE = 6
 	transfer_to.init_forensic_data().merge_blooddna(forensic_data)
 
 /// Transfers our stray fibers to the specified object, handles the forensics datum creation itself.
-/atom/proc/transfer_fibers_to(var/atom/transfer_to)
+/atom/proc/transfer_fibres_to(var/atom/transfer_to)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!forensic_data)
 		return
-	transfer_to.init_forensic_data().merge_fibers(forensic_data)
+	transfer_to.init_forensic_data().merge_fibres(forensic_data)
 
 /// Adds gunshot residue from firing boolets
 /atom/proc/add_gunshotresidue(var/obj/item/ammo_casing/shell)
@@ -99,7 +99,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
 	fields["fprints"] = A.forensic_data?.get_prints().Copy()
-	fields["fibers"] = A.forensic_data?.get_fibers().Copy()
+	fields["fibers"] = A.forensic_data?.get_fibres().Copy()
 	fields["blood"] = A.forensic_data?.get_blooddna().Copy()
 	fields["time"] = world.time
 

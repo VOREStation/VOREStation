@@ -16,10 +16,10 @@
 		icon_state = "fingerprint1"
 
 /obj/item/sample/proc/copy_evidence(var/atom/supplied)
-	var/list/fibre_data = supplied.forensic_data.get_fibers()
+	var/list/fibre_data = supplied.forensic_data.get_fibres()
 	if(fibre_data && fibre_data.len)
 		evidence = fibre_data.Copy()
-		supplied.forensic_data.clear_fibers()
+		supplied.forensic_data.clear_fibres()
 
 /obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
@@ -132,7 +132,7 @@
 	var/evidence_path = /obj/item/sample/fibers
 
 /obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
-	return supplied.forensic_data?.has_fibers()
+	return supplied.forensic_data?.has_fibres()
 
 /obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
 	var/obj/item/sample/S = new evidence_path(get_turf(user), supplied)

@@ -68,7 +68,7 @@
 		return 0
 
 	//General
-	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibers() && !A.forensic_data.has_blooddna())
+	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibres() && !A.forensic_data.has_blooddna())
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		span_warning("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),\
 		"You hear a faint hum of electrical equipment.")
@@ -109,12 +109,12 @@
 
 
 	//FIBERS
-	if(A.forensic_data?.has_fibers())
+	if(A.forensic_data?.has_fibres())
 		to_chat(user,span_notice("Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]"))
 		flick("[icon_state]1",src)
 		if(reveal_fibers && do_after(user, 5 SECONDS))
 			to_chat(user, span_notice("Apparel samples scanned:"))
-			for(var/sample in A.forensic_data.get_fibers())
+			for(var/sample in A.forensic_data.get_fibres())
 				to_chat(user, " - " + span_notice("[sample]"))
 
 	//Blood
