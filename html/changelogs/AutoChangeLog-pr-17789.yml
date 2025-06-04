@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed wash() proc to delete cleanable decals"
-  - bugfix: "Fixed mops and soaps not making the floor wet"
