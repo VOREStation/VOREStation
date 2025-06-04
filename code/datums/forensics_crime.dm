@@ -199,7 +199,7 @@
 	// Simple mob gibbing
 	if(!dna_data)
 		var/fresh = isnull(blood_DNA[NOT_HUMAN_DNA])
-		blood_DNA[NOT_HUMAN_DNA] = "A+"
+		blood_DNA[NOT_HUMAN_DNA] = DEFAULT_BLOOD_TYPE
 		return fresh
 	// Standard blood
 	var/fresh = isnull(blood_DNA[dna_data.unique_enzymes])
