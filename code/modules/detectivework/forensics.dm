@@ -8,37 +8,87 @@ var/const/FINGERPRINT_COMPLETE = 6
 /proc/is_complete_print(var/print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
-/atom/var/list/suit_fibers
+/// Returns the object's forensic information datum. If none exists, it makes it.
+/atom/proc/init_forensic_data()
+	RETURN_TYPE(/datum/forensics_crime)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!forensic_data)
+		forensic_data = new()
+	return forensic_data
 
-/atom/proc/add_fibers(mob/living/carbon/human/M)
-	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = M.gloves
-		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
-			if(add_blood(G.bloody_hands_mob)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
+/// Handles most forensic investigation actions while touching an object. Including fingerprints, stray fibers from clothing, and bloody hands smearing objects.
+/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(isnull(M) || isAI(M) || isnull(M.key))
+		return FALSE
+
+	//Fibers from worn clothing get transfered along with fingerprints~
+	var/datum/forensics_crime/C = init_forensic_data()
+	add_fibers(M)
+
+	// bloodied gloves and hands transfer blood to touched objects. Blood does not transfer if we are already bloody.
+	if(!forensic_data?.has_blooddna())
+		var/mob/living/carbon/human/H = M
+		if(ishuman(M) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(G.transfer_blood)
+				forensic_data.merge_blooddna(G.forensic_data)
 				G.transfer_blood--
-	else if(M.bloody_hands)
-		if(add_blood(M.bloody_hands_mob))
+		else if(M.bloody_hands)
+			forensic_data.merge_blooddna(M.forensic_data)
 			M.bloody_hands--
 
-	if(!suit_fibers) suit_fibers = list()
-	var/fibertext
-	var/item_multiplier = istype(src,/obj/item)?1.2:1
-	var/suit_coverage = 0
-	if(M.wear_suit)
-		fibertext = "Material from \a [M.wear_suit]."
-		if(prob(10*item_multiplier) && !(fibertext in suit_fibers))
-			suit_fibers += fibertext
-		suit_coverage = M.wear_suit.body_parts_covered
+	return C.add_prints(M,ignoregloves)
 
-	if(M.w_uniform && (M.w_uniform.body_parts_covered & ~suit_coverage))
-		fibertext = "Fibers from \a [M.w_uniform]."
-		if(prob(15*item_multiplier) && !(fibertext in suit_fibers))
-			suit_fibers += fibertext
+/// Adds an admin investigation fingerprint, even if no actual fingerprints are made. Used even if the action is done with a weapon as a way of logging actions for admins.
+/atom/proc/add_hiddenprint(mob/living/M as mob)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(isnull(M))
+		return
+	if(isnull(M.key))
+		return
+	init_forensic_data().add_hiddenprints(M)
 
-	if(M.gloves && (M.gloves.body_parts_covered & ~suit_coverage))
-		fibertext = "Material from a pair of [M.gloves.name]."
-		if(prob(20*item_multiplier) && !(fibertext in suit_fibers))
-			suit_fibers += "Material from a pair of [M.gloves.name]."
+/// Adds blood dna to an object, this also usually gives the object a bloody overlay, but that is handled by the object itself.
+/atom/proc/add_blooddna(var/datum/dna/dna_data,var/mob/M)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return init_forensic_data().add_blooddna(dna_data,M)
+
+/atom/proc/add_blooddna_organ(var/datum/organ_data/dna_data)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return init_forensic_data().add_blooddna_organ(dna_data)
+
+/// Adds fibres from suits or gloves
+/atom/proc/add_fibers(mob/living/carbon/human/M)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	init_forensic_data().add_fibers(M)
+
+/// Transfers both our normal and hidden fingerprints to the specified object, handles the forensics datum creation itself.
+/atom/proc/transfer_fingerprints_to(var/atom/transfer_to)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!forensic_data)
+		return
+	var/datum/forensics_crime/C = transfer_to.init_forensic_data()
+	C.merge_prints(forensic_data)
+	C.merge_hiddenprints(forensic_data)
+
+/// Transfers our blood dna to the specified object, handles the forensics datum creation itself.
+/atom/proc/transfer_blooddna_to(var/atom/transfer_to)
+	if(!forensic_data)
+		return
+	transfer_to.init_forensic_data().merge_blooddna(forensic_data)
+
+/// Transfers our stray fibers to the specified object, handles the forensics datum creation itself.
+/atom/proc/transfer_fibers_to(var/atom/transfer_to)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!forensic_data)
+		return
+	transfer_to.init_forensic_data().merge_fibers(forensic_data)
+
+/// Adds gunshot residue from firing boolets
+/atom/proc/add_gunshotresidue(var/obj/item/ammo_casing/shell)
+	init_forensic_data().add_gunshotresidue(shell.caliber)
+
 
 /datum/data/record/forensic
 	name = "forensic data"
@@ -48,9 +98,9 @@ var/const/FINGERPRINT_COMPLETE = 6
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
-	fields["fprints"] = A.fingerprints ? A.fingerprints.Copy() : list()
-	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
-	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
+	fields["fprints"] = A.forensic_data?.get_prints().Copy()
+	fields["fibers"] = A.forensic_data?.get_fibers().Copy()
+	fields["blood"] = A.forensic_data?.get_blooddna().Copy()
 	fields["time"] = world.time
 
 /datum/data/record/forensic/proc/merge(var/datum/data/record/other)

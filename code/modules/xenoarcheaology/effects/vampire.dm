@@ -32,8 +32,7 @@
 		B.basecolor = M.species.get_blood_colour(M)
 		B.color = M.species.get_blood_colour(M)
 		B.target_turf = pick(RANGE_TURFS(1, holder))
-		B.blood_DNA = list()
-		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		B.add_blooddna(M.dna,M)
 		var/blood_to_remove = (rand(10,30))
 		M.remove_blood(blood_to_remove)
 		if(harvested)

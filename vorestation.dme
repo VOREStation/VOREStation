@@ -462,6 +462,7 @@
 #include "code\datums\datum.dm"
 #include "code\datums\datumvars.dm"
 #include "code\datums\EPv2.dm"
+#include "code\datums\forensics_crime.dm"
 #include "code\datums\ghost_query.dm"
 #include "code\datums\ghost_query_vr.dm"
 #include "code\datums\hierarchy.dm"

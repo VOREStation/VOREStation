@@ -63,7 +63,7 @@
 		if(LAZYLEN(SS.breaches))
 			to_chat(user, span_warning("You should probably repair that before you start tinkering with it."))
 			return
-	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
+	if(O.forensic_data?.has_blooddna() || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
 		to_chat(user, span_warning("You should probably clean that up before you start tinkering with it."))
 		return
 	//we have to check that it's not the original type first, because otherwise it might convert wrong based on pathing; the subtype can still count as the basetype
@@ -105,11 +105,9 @@
 	var/obj/N = new to_type(O.loc)
 	user.visible_message(span_notice("[user] opens \the [src] and modifies \the [O] into \the [N]."),span_notice("You open \the [src] and modify \the [O] into \the [N]."))
 
-	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
-	N.fingerprints = O.fingerprints
-	N.fingerprintshidden = O.fingerprintshidden
-	N.fingerprintslast = O.fingerprintslast
-	N.suit_fibers = O.suit_fibers
+	// Transfer forensics to, lets avoid CRIME exploits
+	O.transfer_fingerprints_to(N)
+	O.transfer_fibers_to(N)
 
 	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
 	if(skip_content_check && transfer_contents)
