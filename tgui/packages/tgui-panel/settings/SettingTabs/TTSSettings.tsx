@@ -1,5 +1,11 @@
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Button, Dropdown, LabeledList, Section } from 'tgui-core/components';
+import {
+  Button,
+  Collapsible,
+  Dropdown,
+  LabeledList,
+  Section,
+} from 'tgui-core/components';
 
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { toggleTTSSetting, updateSettings } from '../actions';
@@ -31,7 +37,7 @@ export const TTSSettings = (props) => {
         </LabeledList>
       </Section>
       <Section title="Enabled Message Types">
-        {MESSAGE_TYPES.map((typeDef) => (
+        {MESSAGE_TYPES.filter((typeDef) => !typeDef.admin).map((typeDef) => (
           <Button.Checkbox
             key={typeDef.type}
             checked={ttsCategories[typeDef.type]}
@@ -40,6 +46,19 @@ export const TTSSettings = (props) => {
             {typeDef.name}
           </Button.Checkbox>
         ))}
+        <Collapsible mt={1} color="transparent" title="Admin stuff">
+          {MESSAGE_TYPES.filter(
+            (typeDef) => !typeDef.important && typeDef.admin,
+          ).map((typeDef) => (
+            <Button.Checkbox
+              key={typeDef.type}
+              checked={ttsCategories[typeDef.type]}
+              onClick={() => dispatch(toggleTTSSetting({ type: typeDef.type }))}
+            >
+              {typeDef.name}
+            </Button.Checkbox>
+          ))}
+        </Collapsible>
       </Section>
     </>
   );

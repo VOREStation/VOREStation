@@ -254,6 +254,8 @@ export const chatMiddleware = (store) => {
       settings.interleave,
       settings.interleaveColor,
       game.databaseBackendEnabled,
+      settings.ttsVoice,
+      settings.ttsCategories,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {

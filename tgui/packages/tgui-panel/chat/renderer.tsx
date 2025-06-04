@@ -201,6 +201,9 @@ class ChatRenderer {
     | null;
   databaseBackendEnabled: boolean;
   lastScrollHeight: number;
+  ttsVoice: string;
+  ttsCategories: Record<string, boolean>;
+
   constructor() {
     /** @type {HTMLElement} */
     this.loaded = false;
@@ -469,6 +472,8 @@ class ChatRenderer {
     interleaveEnabled: boolean,
     interleaveColor: string,
     databaseBackendEnabled: boolean,
+    ttsVoice: string,
+    ttsCategories: Record<string, boolean>,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -482,6 +487,8 @@ class ChatRenderer {
     this.interleaveEnabled = interleaveEnabled;
     this.interleaveColor = interleaveColor;
     this.databaseBackendEnabled = databaseBackendEnabled;
+    this.ttsVoice = ttsVoice;
+    this.ttsCategories = ttsCategories;
   }
 
   changePage(page: Page) {
@@ -545,6 +552,19 @@ class ChatRenderer {
       }
     }
     return null;
+  }
+
+  tryTTS(message: message, node: HTMLElement) {
+    if (this.ttsCategories[message.type]) {
+      const utterance = new SpeechSynthesisUtterance(node.innerText);
+
+      const voice = window.speechSynthesis
+        .getVoices()
+        .find((val) => val.name === this.ttsVoice);
+      utterance.voice = voice || null;
+
+      window.speechSynthesis.speak(utterance);
+    }
   }
 
   // eslint-disable-next-line complexity
@@ -722,16 +742,7 @@ class ChatRenderer {
       // TTS
       // Only TTS on new messages
       if (doArchive) {
-        if (settings.ttsCategories[message.type]) {
-          const utterance = new SpeechSynthesisUtterance(node.innerText);
-
-          const voice = window.speechSynthesis
-            .getVoices()
-            .find((val) => val.name === settings.ttsVoice);
-          utterance.voice = voice || null;
-
-          window.speechSynthesis.speak(utterance);
-        }
+        this.tryTTS(message, node);
       }
 
       if (
