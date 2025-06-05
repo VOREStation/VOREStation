@@ -203,10 +203,8 @@
 		return 0
 
 	languages.Add(new_language)
-	//VOREStation Addition Start
 	if(new_language.flags & HIVEMIND)
 		add_verb(src, /mob/proc/adjust_hive_range)
-	//VOREStation Addition End
 
 	return 1
 

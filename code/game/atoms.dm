@@ -439,17 +439,8 @@
 	. = 1
 	return 1
 
-/atom/proc/clean_blood()
-	if(!simulated)
-		return
-	fluorescent = 0
-	src.germ_level = 0
-	if(istype(blood_DNA, /list))
-		blood_DNA = null
-		return TRUE
-
 /atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
-	clean_blood()
+	wash(CLEAN_WASH)
 	R.reagents.splash(src, 1)
 
 /atom/proc/get_global_map_pos()
@@ -799,7 +790,7 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
 
-///Returns the src and all recursive contents as a list.
+/// Returns the src and all recursive contents as a list.
 /atom/proc/get_all_contents(ignore_flag_1)
 	. = list(src)
 	var/i = 0
@@ -809,7 +800,7 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 			continue
 		. += checked_atom.contents
 
-///identical to get_all_contents but returns a list of atoms of the type passed in the argument.
+/// Identical to get_all_contents but returns a list of atoms of the type passed in the argument.
 /atom/proc/get_all_contents_type(type)
 	var/list/processing_list = list(src)
 	. = list()
@@ -831,3 +822,31 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 /atom/proc/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
 	. = list(EXTRAPOLATOR_RESULT_DISEASES = list())
 	SEND_SIGNAL(src, COMSIG_ATOM_EXTRAPOLATOR_ACT, user, extrapolator, dry_run, .)
+
+/**
+*	Wash this atom
+*
+*	This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
+*	Returns true if any washing was necessary and thus performed
+*	Arguments:
+*	clean_types: any of the CLEAN_ constants
+*/
+/atom/proc/wash(clean_types)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = FALSE
+	if(SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, clean_types))
+		. = TRUE
+
+	// Basically "if has washable coloration"
+	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		return TRUE
+
+	if(istype(blood_DNA, /list))
+		blood_DNA = null
+		return TRUE
+
+	blood_color = null
+	germ_level = 0
+	fluorescent = 0

@@ -185,7 +185,7 @@
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
 		if(istype(I) && I.parent_organ == target_zone)
-			removable_organs |= organ
+			removable_organs[I.name] = organ
 
 	if(!removable_organs.len)
 		return 0
@@ -198,16 +198,16 @@
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
 		if(istype(I) && I.parent_organ == target_zone)
-			removable_organs |= organ
+			removable_organs[I.name] = organ
 
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to tear out?", "Organ Choice", removable_organs)
 	if(!organ_to_remove) //They decided to cancel. Let's slowly pull the tool back...
 		to_chat(user, span_warning("You decide against ripping out any organs."))
-		user.visible_message("[user] starts pulling their [tool] out from [target]'s [affected.name] with \the [tool].", \
-		"You start pulling your \the [tool] out of [target]'s [affected.name].")
-		target.custom_pain("Someone's moving something around in your [affected.name]!", 100)
+		user.visible_message("[user] starts pulling their [tool] out from [target]'s [affected] with \the [tool].", \
+		"You start pulling your \the [tool] out of [target]'s [affected].")
+		target.custom_pain("Someone's moving something around in your [affected]!", 100)
 	else if(organ_to_remove)
-		target.op_stage.current_organ = organ_to_remove
+		target.op_stage.current_organ = removable_organs[organ_to_remove]
 		user.visible_message("[user] starts ripping [target]'s [target.op_stage.current_organ] out with \the [tool].", \
 		"You start ripping [target]'s [target.op_stage.current_organ] out with \the [tool].")
 		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)

@@ -1,0 +1,58 @@
+2025-06-01:
+  Diana:
+  - code_imp: Less random lagspikes during the middle of the round.
+  Guti:
+  - refactor: Refactored soap
+  - refactor: Refactored washing machine code to get rid of sleeps
+  - rscadd: You can eat soap now
+  - rscadd: Clean component
+  - code_imp: Replaced clean(), clean_blood(), and clean_contamination() with wash()
+  Kashargul:
+  - bugfix: macrophages escape chance is now properly set to 20%
+  ShadowLarkens:
+  - admin: VV now has a dark mode (toggleable in game prefs)
+  - admin: VV now uses getFlatIcon to get a better preview (also toggleable in game
+      prefs)
+  - admin: VV now supports previews for /images
+2025-06-02:
+  ShadowLarkens:
+  - bugfix: New players runtiming in preferences loading due to pAI nonsense
+  - bugfix: Black squares on alt-f4ing tgui.
+  - bugfix: You can turn off autohiss again!
+  - balance: Unathi no longer pass out from sugar, they just get knocked over.
+  Willburd:
+  - bugfix: lights do not ignore light switch state when a bulb is inserted
+  - bugfix: genescanner tool now has a proper description
+2025-06-03:
+  Diana:
+  - rscadd: Your spleen has been rescued from the Skrell. (Everyone now has a spleen,
+      not JUST skrell)
+  - bugfix: Worm meat can now properly be cut into
+  - bugfix: Organs now properly show their names when you're interacting with them
+      surgically.
+  - qol: Surgery steps don't have randomness anymore. Surgery steps also lowered
+  - qol: You can shove dead organs in bodies. Still a bad idea, but can be combined
+      with the patient stabilizer to some success.
+  - code_imp: Adds a spooky modifier with some special stuff to go along with it.
+      Not obtainable outside of admins.
+  - bugfix: You now lose nutrition passively again
+  SatinIsle:
+  - rscadd: Added a small amount of weaken to spider warning bites to knock people
+      over.
+  - rscadd: Added a new variable to mobs that can prevent them from being pulled when
+      alive, currently only applies to the spiders.
+  - bugfix: Fixed an issue where spiders would sometimes try to inject poison where
+      they couldn't and runtime.
+  - image: Fixed taj belly markings missing their groins.
+  ShadowLarkens:
+  - rscadd: Multishock integration
+  - bugfix: Holomaps/Nanomaps no longer show POI walls
+  TheCaramelion:
+  - bugfix: Fixed showers not washing atoms in it's space
+2025-06-04:
+  Diana:
+  - bugfix: Puking with a broken liver now properly makes you vomit the correct blood
+      color
+  Guti:
+  - bugfix: Fixed wash() proc to delete cleanable decals
+  - bugfix: Fixed mops and soaps not making the floor wet

@@ -41,7 +41,7 @@
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.nickname		= sanitize_name(pref.nickname)
 	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, GLOB.global_vore_egg_types, initial(pref.vore_egg_type))
-	pref.autohiss = sanitize_inlist(pref.autohiss, list("None", "Basic", "Full"), initial(pref.autohiss))
+	pref.autohiss = sanitize_inlist(pref.autohiss, list("Off", "Basic", "Full"), initial(pref.autohiss))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)

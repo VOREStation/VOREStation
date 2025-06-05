@@ -236,10 +236,10 @@ export type AntagonismData = {
   uplink_type: string;
   record_banned: BooleanLike;
   exploitable_record?: string;
-  pai_name: string;
-  pai_desc: string;
-  pai_role: string;
-  pai_comments: string;
+  pai_name?: string;
+  pai_desc?: string;
+  pai_role?: string;
+  pai_comments?: string;
   syndicate_ban: BooleanLike;
   special_roles: SpecialRole[];
 };
@@ -301,7 +301,6 @@ export type GeneralData = BasicData &
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;
   can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
-  digi_allowed: BooleanLike;
   available_hair_styles: string[];
   available_facial_styles: string[];
   available_ear_styles: string[];

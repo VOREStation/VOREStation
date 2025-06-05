@@ -1149,26 +1149,25 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/washshoes)
+/mob/living/carbon/human/wash(clean_types)
 	. = ..()
 
 	gunshot_residue = null
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		gloves.clean_blood()
+		gloves.wash(clean_types)
 		update_inv_gloves()
 		gloves.germ_level = 0
 	else
 		bloody_hands = 0
 		germ_level = 0
 
-	//Sometimes do shoes if asked (or feet if no shoes)
-	if(washshoes && shoes)
-		shoes.clean_blood()
+	if(shoes)
+		shoes.wash(clean_types)
 		update_inv_shoes()
 		shoes.germ_level = 0
-	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+	else if(feet_blood_color || LAZYLEN(feet_blood_DNA))
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null
@@ -1863,3 +1862,17 @@
 
 /mob/living/carbon/human/get_digestion_efficiency_modifier()
 	return species.digestion_efficiency
+
+/mob/living/carbon/human/verb/hide_headset()
+	set name = "Show/Hide Headset"
+	set category = "IC.Settings"
+	set desc = "Toggle headset worn icon visibility."
+	hide_headset = !hide_headset
+	update_inv_ears()
+
+/mob/living/carbon/human/verb/hide_glasses()
+	set name = "Show/Hide Glasses"
+	set category = "IC.Settings"
+	set desc = "Toggle glasses worn icon visibility."
+	hide_glasses = !hide_glasses
+	update_inv_glasses()

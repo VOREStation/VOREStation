@@ -54,7 +54,7 @@ export const VorePanelEditToggle = (props: {
       </Stack.Item>
       <Stack.Item>
         <Button
-          icon={persistEditMode ? 'lock' : 'lock-open'}
+          icon={persistEditMode ? 'lock-open' : 'lock'}
           selected={persistEditMode}
           tooltip={
             (persistEditMode ? 'Dis' : 'En') +
