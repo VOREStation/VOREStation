@@ -614,4 +614,3 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 	if (. || (clean_types & CLEAN_TYPE_RUNES))
 		qdel(src)
 		return TRUE
-	return .
