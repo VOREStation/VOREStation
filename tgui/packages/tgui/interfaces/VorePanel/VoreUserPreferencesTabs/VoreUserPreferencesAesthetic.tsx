@@ -46,6 +46,10 @@ export const VoreUserPreferencesAesthetic = (props: {
 
   const capitalizedName = active_belly && capitalize(active_belly);
 
+  const possibleIconOptions = vore_icon_options.filter(
+    (entry) => !!vore_sprite_color[entry],
+  );
+
   return (
     <Section
       fill
@@ -64,7 +68,7 @@ export const VoreUserPreferencesAesthetic = (props: {
           <Stack>
             <Stack.Item basis="49%" grow>
               <LabeledList>
-                {vore_icon_options.map((entry) => (
+                {possibleIconOptions.map((entry) => (
                   <LabeledList.Item key={entry} label={capitalize(entry)}>
                     <Stack align="center">
                       <VorePanelEditColor
