@@ -40,10 +40,7 @@ export const DNAModifierBlocks = (props: {
       );
     }
     dnaBlocks.push(
-      <Stack.Item
-        mb="1rem"
-        style={realBlock === 1 ? { marginLeft: '0.5em' } : {}} // Remove once tgui core uses gap
-      >
+      <Stack.Item mb="1rem">
         <Box
           inline
           width="20px"
