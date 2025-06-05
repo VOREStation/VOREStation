@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Artifact range logic fixed"
+  - bugfix: "Lightning artifact now respects protection"
+  - balance: "DNA mutation artifact no longer mutates genes as often"
+  - qol: "DNA mutation artifact no longer spams your chat."
