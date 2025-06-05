@@ -77,7 +77,9 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
 
 	if(msg != "")
-		src << browse("<html>[msg]</html>", "window=Player_age_check")
+		var/datum/browser/popup = new(src, "Player_age_check", "Player Age Check")
+		popup.set_content(msg)
+		popup.open()
 	else
 		to_chat(src, "No matches for that age range found.")
 

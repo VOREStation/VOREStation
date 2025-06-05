@@ -18,7 +18,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   active_belly: string | null;
   our_bellies: bellyData[];
   belly_rub_target: string | null;
-  vore_sprite_color: Record<string, string>;
+  vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
   aestethicMessages: aestMessageData;
@@ -73,7 +73,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                         editMode={editMode}
                         action="set_vs_color"
                         subAction={entry}
-                        back_color={vore_sprite_color[entry]}
+                        back_color={vore_sprite_color[entry] || ''}
                         tooltip={
                           "Modify the sprite color of your '" +
                           entry +
