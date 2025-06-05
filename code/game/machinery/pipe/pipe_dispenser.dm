@@ -128,8 +128,8 @@
 				src.anchored = FALSE
 				src.stat |= MAINT
 				src.unwrenched = 1
-				if (user.machine==src)
-					user << browse(null, "window=pipedispenser")
+				if (user.machine==src && ui)
+					ui.close()
 		else /*if (unwrenched==1)*/
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
