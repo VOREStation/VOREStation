@@ -10,6 +10,8 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/industrial_reagent_reactor
 	default_max_vol = REAGENT_VAT_VOLUME
+	reagent_type = /datum/reagents/distilling
+
 	VAR_PRIVATE/obj/machinery/portable_atmospherics/canister/internal_tank
 	VAR_PRIVATE/toggle_mode = 0 // 0 = intake and boil, 1 = output
 	VAR_PRIVATE/next_mode_toggle = 0
@@ -54,7 +56,7 @@
 
 	if(toggle_mode == 0)
 		// perform reactions
-		reagents.handle_distilling()
+		reagents.handle_reactions()
 	else
 		// dump reagents to next refinery machine
 		var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(loc,dir)

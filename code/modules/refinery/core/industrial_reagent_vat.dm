@@ -144,7 +144,3 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 		update_icon()
 		return
 	. = ..()
-
-// Dragging onto this results in buckling!
-/obj/machinery/reagent_refinery/vat/can_climb(var/mob/living/user, post_climb_check=0)
-	return FALSE

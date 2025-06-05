@@ -2,12 +2,13 @@
 	VAR_PROTECTED/default_max_vol = 120
 	VAR_PROTECTED/amount_per_transfer_from_this = 120
 	VAR_PROTECTED/possible_transfer_amounts = REFINERY_DEFAULT_TRANSFER_AMOUNTS
+	VAR_PROTECTED/reagent_type = /datum/reagents
 
 /obj/machinery/reagent_refinery/Initialize(mapload)
 	. = ..()
 	// reagent control
 	if(default_max_vol > 0)
-		create_reagents(default_max_vol)
+		create_reagents(default_max_vol, reagent_type)
 	// Update neighbours and self for state
 	update_neighbours()
 	update_icon()
@@ -25,17 +26,13 @@
 		visible_message(span_danger("\The [src] splashes everywhere as it is disassembled!"))
 		reagents.splash_area(get_turf(src),2)
 
-/obj/machinery/reagent_refinery/Moved(atom/old_loc, direction, forced)
+/obj/machinery/reagent_refinery/set_dir(newdir)
 	. = ..()
 	update_icon()
 
-/obj/machinery/reagent_refinery/Bump(atom/A)
-	var/old_dir = dir
-	. = ..()
-	if(dir != old_dir)
-		update_icon()
-
 /obj/machinery/reagent_refinery/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if (istype(O, /obj/item/multitool)) // Solar grubs
+		return ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
 		for(var/obj/machinery/reagent_refinery/R in loc.contents)
 			if(R != src)
@@ -113,22 +110,6 @@
 	if(transfered > 0 && active_power_usage > 0)
 		use_power_oneoff(active_power_usage)
 	return transfered
-
-// Climbing is kinda critical for these
-/obj/machinery/reagent_refinery/verb/climb_on()
-	set name = "Climb structure"
-	set desc = "Climbs onto a structure."
-	set category = "Object"
-	set src in oview(1)
-
-	do_climb(usr)
-
-/obj/machinery/reagent_refinery/MouseDrop_T(mob/target, mob/user)
-	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		do_climb(target)
-	else
-		return ..()
 
 /obj/machinery/reagent_refinery/on_reagent_change(changetype)
 	update_icon()
