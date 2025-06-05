@@ -59,6 +59,7 @@
 	if(!designer_gui)
 		designer_gui = new(src, null)
 		designer_gui.linked_body_design_console = WEAKREF(src)
+		CallAsync(designer_gui, TYPE_PROC_REF(/datum/tgui_module/appearance_changer,jiggle_map))
 	if(!designer_gui.owner)
 		designer_gui.make_fake_owner()
 		selected_record = FALSE

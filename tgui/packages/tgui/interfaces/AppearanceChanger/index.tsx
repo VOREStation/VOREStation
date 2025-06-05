@@ -21,6 +21,7 @@ import { AppearanceChangerColors } from './AppearanceChangerColors';
 import { AppearanceChangerFlavor } from './AppearanceChangerFlavor';
 import { AppearanceChangerHeader } from './AppearanceChangerHeader';
 import { AppearanceChangerMarkings } from './AppearanceChangerMarkings';
+import { AppearanceChangerMisc } from './AppearanceChangerMisc';
 import {
   AppearanceChangerHair,
   AppearanceChangerParts,
@@ -34,6 +35,7 @@ import {
   TAB_GENDER,
   TAB_HAIR,
   TAB_MARKINGS,
+  TAB_MISC,
   TAB_RACE,
   TAB_TAIL,
   TAB_WINGS,
@@ -60,6 +62,7 @@ export const AppearanceChanger = (props) => {
     wing_style,
     wing_styles,
     change_race,
+    change_misc,
     change_gender,
     change_eye_color,
     change_skin_tone,
@@ -90,7 +93,7 @@ export const AppearanceChanger = (props) => {
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[TAB_FLAVOR] = change_race ? (
+  tab[TAB_FLAVOR] = change_misc ? (
     <AppearanceChangerFlavor />
   ) : (
     <AppearanceChangerDefaultError />
@@ -177,6 +180,11 @@ export const AppearanceChanger = (props) => {
   );
   tab[TAB_MARKINGS] = change_hair ? (
     <AppearanceChangerMarkings />
+  ) : (
+    <AppearanceChangerDefaultError />
+  );
+  tab[TAB_MISC] = change_misc ? (
+    <AppearanceChangerMisc />
   ) : (
     <AppearanceChangerDefaultError />
   );
@@ -377,6 +385,14 @@ export const AppearanceChanger = (props) => {
                       Markings
                     </Tabs.Tab>
                   </>
+                ) : null}
+                {change_misc ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_MISC}
+                    onClick={() => setTabIndex(TAB_MISC)}
+                  >
+                    Misc
+                  </Tabs.Tab>
                 ) : null}
               </Tabs>
             </Stack.Item>
