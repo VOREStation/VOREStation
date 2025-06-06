@@ -395,8 +395,8 @@ var/list/global/tank_gauge_cache = list()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
 		if(integrity <= 7)
 			if(!istype(src.loc,/obj/item/transfer_valve))
-				message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-				log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+				message_admins("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
+				log_game("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
 
 			//Give the gas a chance to build up more pressure through reacting
 			air_contents.react()

@@ -1,0 +1,7 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - code_imp: "removed duplicate b_type var from human mobs, they use their dna one only now"
+  - bugfix: "bloodtype not being assigned to organs and limbs"
+  - rscadd: "Fingerprints can now be washed off in washing machines and showers."
+  - refactor: "Reworked all bloodsplatter, fingerprint, gunshot residue, and clothing fiber code into a single datum"

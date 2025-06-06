@@ -466,8 +466,8 @@ var/global/list/light_type_cache = list()
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+					log_admin("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
+					message_admins("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
 
 					explode()
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
@@ -581,8 +581,8 @@ var/global/list/light_type_cache = list()
 
 	if(on && rigged)
 
-		log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-		message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+		log_admin("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
+		message_admins("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
 
 		explode()
 

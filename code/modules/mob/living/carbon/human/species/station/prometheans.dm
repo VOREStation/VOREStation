@@ -239,8 +239,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.feet_blood_color = null
 			H.adjust_nutrition(rand(3, 10))
 		if(H.bloody_hands)
-			LAZYCLEARLIST(H.blood_DNA)
-			H.blood_DNA = null
+			H.forensic_data?.clear_blooddna()
 			H.hand_blood_color = null
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))

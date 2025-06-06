@@ -388,13 +388,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	remove_layer(BLOOD_LAYER)
-	if(!blood_DNA && !feet_blood_DNA)
+	var/bloody_mess = forensic_data?.get_blooddna()
+	if(!bloody_mess && !feet_blood_DNA)
 		return
 
 	var/image/both = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
 
 	//Bloody hands
-	if(blood_DNA)
+	if(bloody_mess)
 		var/image/bloodsies	= image(icon = species.get_blood_mask(src), icon_state = "bloodyhands", layer = BODY_LAYER+BLOOD_LAYER)
 		bloodsies.color = hand_blood_color
 		both.add_overlay(bloodsies)
