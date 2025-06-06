@@ -280,6 +280,7 @@
 #include "code\_onclick\hud\hud.dm"
 #include "code\_onclick\hud\human.dm"
 #include "code\_onclick\hud\map_popups.dm"
+#include "code\_onclick\hud\map_view.dm"
 #include "code\_onclick\hud\minihud.dm"
 #include "code\_onclick\hud\minihud_mapper.dm"
 #include "code\_onclick\hud\minihud_rigmech.dm"
