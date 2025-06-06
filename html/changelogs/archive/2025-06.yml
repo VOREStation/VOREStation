@@ -56,3 +56,9 @@
   Guti:
   - bugfix: Fixed wash() proc to delete cleanable decals
   - bugfix: Fixed mops and soaps not making the floor wet
+2025-06-06:
+  Diana:
+  - bugfix: Artifact range logic fixed
+  - bugfix: Lightning artifact now respects protection
+  - balance: DNA mutation artifact no longer mutates genes as often
+  - qol: DNA mutation artifact no longer spams your chat.
