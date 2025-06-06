@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/filter
 	name = "Industrial Chemical Filter"
 	desc = "Identifies and extracts specific chemicals. The purple marked pipe is the one filtered chemicals flow out of."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "filter_l"
 	density = TRUE
 	anchored = TRUE

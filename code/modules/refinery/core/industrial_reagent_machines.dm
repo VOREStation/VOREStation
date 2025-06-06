@@ -1,4 +1,5 @@
 /obj/machinery/reagent_refinery
+	icon = 'icons/obj/machines/refinery_machines.dmi'
 	VAR_PROTECTED/default_max_vol = 120
 	VAR_PROTECTED/amount_per_transfer_from_this = 120
 	VAR_PROTECTED/possible_transfer_amounts = REFINERY_DEFAULT_TRANSFER_AMOUNTS

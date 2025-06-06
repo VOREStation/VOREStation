@@ -26,14 +26,39 @@
 	var/list/temp_range = list(T0C, T20C)
 	var/temp_shift = 0 // How much the temperature changes when the reaction occurs.
 
+	var/require_xgm_gas = null
+	var/rejects_xgm_gas = null
+	var/maximum_xgm_pressure = null
+	var/minimum_xgm_pressure = null
+
 /decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
 	if(!istype(holder, /datum/reagents/distilling) || !istype(holder.my_atom, /obj/machinery/portable_atmospherics/powered/reagent_distillery))
 		return FALSE
 
-	// Super special temperature check.
-	var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-	if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
-		return FALSE
+	// return_air() will get the current turf for most things unless overriden to use a tank or such!
+	var/datum/gas_mixture/GM = holder.my_atom.return_air()
+	if(require_xgm_gas || rejects_xgm_gas || minimum_xgm_pressure || maximum_xgm_pressure)
+		if(!GM)
+			return
+		if(require_xgm_gas && GM.gas[require_xgm_gas] <= 10) // If have required gas to react
+			return
+		if(rejects_xgm_gas && GM.gas[rejects_xgm_gas] >= 1) // If blocked by a gas it doesn't like
+			return
+		if(minimum_xgm_pressure && GM.return_pressure() < minimum_xgm_pressure)
+			return
+		if(maximum_xgm_pressure && GM.return_pressure() > maximum_xgm_pressure)
+			return
+
+	// Special distilling conditions must be met, each object has different vars to meet it though.
+	if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
+		// Super special temperature check.
+		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
+		if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
+			return FALSE
+	else if(istype(holder.my_atom, /obj/machinery/reagent_refinery/reactor))
+		// Check gas temp for refinery
+		if(!GM || GM.temperature < temp_range[1] || GM.temperature > temp_range[2])
+			return FALSE
 
 	return ..()
 

@@ -3,7 +3,6 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 /obj/machinery/reagent_refinery/vat
 	name = "Industrial Chemical Vat"
 	desc = "A large mixing vat for huge quantities of chemicals. Don't fall in!"
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "vat"
 	density = TRUE
 	anchored = TRUE
@@ -65,8 +64,6 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
 			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(!other) // snowflake grinders...
-				other = locate(/obj/machinery/reagentgrinder/industrial) in T
 			if(other && other.anchored)
 				// Waste processors do not connect to anything as outgoing
 				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))

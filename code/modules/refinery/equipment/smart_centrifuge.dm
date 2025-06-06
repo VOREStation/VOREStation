@@ -5,7 +5,6 @@
 	icon_state = "sextractor"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/circuitboard/smart_centrifuge
 
 	var/working = FALSE
 
@@ -112,7 +111,6 @@
 		visible_message("\The [user] drains \the [C] into \the [src].")
 		return
 	. = ..()
-
 
 /obj/machinery/smart_centrifuge/examine(mob/user, infix, suffix)
 	. = ..()

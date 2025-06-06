@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/pipe
 	name = "Industrial Chemical Pipe"
 	desc = "A large pipe made for transporting industrial chemicals. It has a low-power passive pump. The red marks show where the flow is coming from. Does not require power."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "pipe"
 	density = TRUE
 	anchored = TRUE
@@ -35,8 +34,6 @@
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
 			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(!other) // snowflake grinders...
-				other = locate(/obj/machinery/reagentgrinder/industrial) in T
 			if(other && other.anchored)
 				// Waste processors do not connect to anything as outgoing
 				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))

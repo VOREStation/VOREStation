@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/grinder
 	name = "Industrial Chemical Grinder"
 	desc = "Grinds anything and everything into chemical slurry."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "grinder_off"
 	density = TRUE
 	anchored = TRUE

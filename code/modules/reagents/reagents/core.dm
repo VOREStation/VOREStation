@@ -15,6 +15,10 @@
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
+
+
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
 	if(data && data["blood_colour"])
@@ -207,6 +211,9 @@
 	color = "#0050F0"
 	mrate_static = TRUE
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
+
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(src.data)
 		M.antibodies |= src.data[REAGENT_ID_ANTIBODIES]
@@ -225,6 +232,9 @@
 
 	glass_name = REAGENT_ID_WATER
 	glass_desc = "The father of all refreshments."
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
@@ -320,6 +330,9 @@
 
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
 	..()

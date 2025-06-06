@@ -2,7 +2,7 @@
 	name = "chemical canister"
 	desc = "Used to refill chemical dispensers. Uses special chemical safety technology to prevent tampering. It will attempt to fully dispense its contents into any container it is connected to."
 
-	icon = 'modular_outpost/icons/obj/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "container"
 
 	drop_sound = 'sound/items/drop/gascan.ogg'

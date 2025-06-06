@@ -4,6 +4,8 @@
 	description = "A corruptive toxin produced by slimes. Turns the subject of the chemical into a Promethean."
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/advmutationtoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.allow_spontaneous_tf))
@@ -57,6 +59,8 @@
 	reagent_state = LIQUID
 	color = "#A6FAFF"
 	taste_description = "the inside of a fire extinguisher"
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
 
 /datum/reagent/firefighting_foam/touch_turf(var/turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -105,6 +109,8 @@
 	scannable = 0
 	metabolism = REM * 0.5
 	affects_robots = TRUE
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/liquid_protean/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -132,6 +138,8 @@
 	color = "#E4EC2F"
 	metabolism = 2.50
 	var/power = 9
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/grubshock/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(0, removed * power * 0.2)

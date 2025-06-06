@@ -292,23 +292,10 @@
 							/obj/item/stock_parts/console_screen = 1
 	)
 
-// Smart centrifuge
-/obj/item/circuitboard/smart_centrifuge
-	name = T_BOARD("smart centrifuge")
-	build_path = /obj/machinery/smart_centrifuge
-	board_type = new /datum/frame/frame_types/smart_centrifuge
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	origin_tech = list(TECH_MAGNET = 1, TECH_DATA = 2)
-	req_components = list(
-							/obj/item/stock_parts/scanning_module = 1,
-							/obj/item/stock_parts/motor = 1,
-							/obj/item/stock_parts/gear = 3,
-							/obj/item/stack/material/glass/reinforced = 1)
-
 // Refinery machines
 /obj/item/circuitboard/industrial_reagent_grinder
 	name = T_BOARD("industrial chemical grinder")
-	build_path = /obj/machinery/reagentgrinder/industrial
+	build_path = /obj/machinery/reagent_refinery/grinder
 	board_type = new /datum/frame/frame_types/industrial_reagent_grinder
 	req_components = list(
 							/obj/item/stock_parts/capacitor = 1,

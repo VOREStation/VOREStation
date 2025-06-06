@@ -25,12 +25,12 @@
 					continue
 
 		if(global.ore_reagents[O.type])
-			var/obj/item/ore/R = O
-			if(istype(R))
-				var/list/ore_components = global.ore_reagents[R.type]
+			var/obj/item/ore/D = O
+			if(istype(D))
+				var/list/ore_components = global.ore_reagents[D.type]
 				if(remaining_volume >= REAGENTS_PER_ORE)
-					holdingitems -= R
-					qdel(R)
+					holdingitems -= D
+					qdel(D)
 					if(islist(ore_components))
 						var/amount_to_take = (REAGENTS_PER_ORE/(ore_components.len))
 						for(var/i in ore_components)
@@ -40,7 +40,7 @@
 					continue
 
 		if(O.reagents)
-			O.reagents.trans_to_obj(beaker, min(O.reagents.total_volume, remaining_volume))
+			O.reagents.trans_to(R, min(O.reagents.total_volume, remaining_volume), force_open_container = TRUE)
 			if(O.reagents.total_volume == 0)
 				holdingitems -= O
 				qdel(O)

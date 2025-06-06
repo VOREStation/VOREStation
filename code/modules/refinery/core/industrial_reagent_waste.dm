@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/waste_processor
 	name = "Industrial Chemical Waste Processor"
 	desc = "A large chemical processing chamber. Chemicals inside are energized into plasma and collected as raw energy! Unfortunately the process is only 17% efficient, a net loss of power."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "waste"
 	density = TRUE
 	anchored = TRUE
@@ -39,8 +38,6 @@
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
 			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(!other) // snowflake grinders...
-				other = locate(/obj/machinery/reagentgrinder/industrial) in T
 			if(other && other.anchored)
 				// Waste processors do not connect to anything as outgoing
 				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))

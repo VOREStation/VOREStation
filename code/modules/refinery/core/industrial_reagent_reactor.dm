@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/reactor
 	name = "Industrial Chemical Reactor"
 	desc = "A reinforced chamber for high temperature distillation. Can be connected to a pipe network to change the interior atmosphere. It outputs chemicals on a timer, to allow for distillation."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "reactor"
 	density = TRUE
 	anchored = TRUE
@@ -72,8 +71,6 @@
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
 			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-			if(!other) // snowflake grinders...
-				other = locate(/obj/machinery/reagentgrinder/industrial) in T
 			if(other && other.anchored)
 				// Waste processors do not connect to anything as outgoing
 				if(istype(other,/obj/machinery/reagent_refinery/waste_processor))

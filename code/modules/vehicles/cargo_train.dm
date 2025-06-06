@@ -417,7 +417,7 @@
 /obj/vehicle/train/trolly_tank
 	name = "cargo train tanker"
 	desc = "A large, tank made for transporting liquids."
-	icon = 'modular_outpost/icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "cargo_tank"
 	anchored = FALSE
 	flags = OPENCONTAINER

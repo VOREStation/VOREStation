@@ -133,6 +133,44 @@ SUBSYSTEM_DEF(supply)
 							EC.contents[EC.contents.len]["value"] = 5
 							EC.value += EC.contents[EC.contents.len]["value"]
 
+			else if(istype(MA, /obj/vehicle/train/trolly_tank))
+				var/obj/vehicle/train/trolly_tank/tank = MA
+				if(tank && tank.reagents && tank.reagents.reagent_list.len > 0)
+					var/min_tank = (CARGOTANKER_VOLUME - 100)
+					if(tank.reagents.total_volume < min_tank)
+						EC.contents = list(
+								"error" = "Error: Product was improperly packaged. Send full tanks only (minimum [min_tank] units). Payment rendered null under terms of agreement."
+							)
+					else if(tank.reagents.reagent_list.len >= 3)
+						EC.contents = list(
+								"error" = "Error: Product was improperly refined. Send purified mixtures only (too many chemicals in tank). Payment rendered null under terms of agreement."
+							)
+					else
+						for(var/datum/reagent/R in tank.reagents.reagent_list)
+							// Update export values
+							var/reagent_value = FLOOR(R.volume * R.supply_conversion_value, 1)
+							EC.contents[++EC.contents.len] = list(
+								"object" = "\proper[R.name]",
+								"value" = reagent_value,
+								"quantity" = FLOOR(R.volume, 1)
+							)
+							EC.value += EC.contents[EC.contents.len]["value"]
+
+							if(R.industrial_use)
+								// Update end round data
+								if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
+									var/list/data = list()
+									data["units"] = FLOOR(R.volume, 1)
+									data["value"] = reagent_value
+									GLOB.refined_chems_sold[R.industrial_use] = data
+								else
+									GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
+									GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
+				else
+					EC.contents = list(
+							"error" = "Error: Product was improperly packaged. Nothing found in chemical tanker. Payment rendered null under terms of agreement."
+						)
+
 			// Make a log of it, but it wasn't shipped properly, and so isn't worth anything
 			else
 				EC.contents = list(

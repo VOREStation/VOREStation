@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/furnace
 	name = "Industrial Chemical Furnace"
 	desc = "Extracts specific chemicals, compressing and heating them until they solidify."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "furnace_l"
 	density = TRUE
 	anchored = TRUE

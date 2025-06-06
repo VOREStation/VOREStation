@@ -37,6 +37,14 @@
 			failed = TRUE
 		collection_id[R.id] = R.type
 
+		if(R.supply_conversion_value == 0)
+			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" does not have supply_conversion_value set.")
+			failed = TRUE
+
+		if(R.industrial_use == "")
+			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" does not have industrial_use set.")
+			failed = TRUE
+
 		if(R.description == REAGENT_DESC_DEVELOPER_WARNING)
 			log_unit_test("[Rpath]: Reagents - reagent description unset.")
 			failed = TRUE

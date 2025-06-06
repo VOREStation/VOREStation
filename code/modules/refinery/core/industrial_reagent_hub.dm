@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/hub
 	name = "Industrial Chemical Hub"
 	desc = "A platform for loading and unloading cargo tug tankers. Does not require power to fill trolly tanks."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "hub"
 	density = FALSE
 	anchored = TRUE
@@ -40,8 +39,6 @@
 	cut_overlays()
 	var/turf/T = get_step(get_turf(src),dir)
 	var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
-	if(!other) // snowflake grinders...
-		other = locate(/obj/machinery/reagentgrinder/industrial) in T
 	var/intake = FALSE
 	if(other && other.anchored)// Waste processors do not connect to anything as outgoing
 		if(!istype(other,/obj/machinery/reagent_refinery/waste_processor))
@@ -85,7 +82,3 @@
 /obj/machinery/reagent_refinery/hub/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
-
-// pointless because no density
-/obj/machinery/reagent_refinery/hub/can_climb(var/mob/living/user, post_climb_check=0)
-	return FALSE

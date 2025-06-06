@@ -1,7 +1,6 @@
 /obj/machinery/reagent_refinery/pump
 	name = "Industrial Chemical Pump"
 	desc = "Transports large amounts of chemicals between machines."
-	icon = 'modular_outpost/icons/obj/machines/refinery_machines.dmi'
 	icon_state = "pump"
 	density = TRUE
 	anchored = TRUE

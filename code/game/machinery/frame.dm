@@ -216,6 +216,52 @@ GLOBAL_LIST(construction_frame_floor)
 	circuit = /obj/machinery/atmospheric_field_generator
 	frame_size = 3
 
+// Refinery machines
+/datum/frame/frame_types/industrial_reagent_grinder
+	name = "Industrial Chemical Grinder"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pump
+	name = "Industrial Chemical Pump"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_filter
+	name = "Industrial Chemical Filter"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_vat
+	name = "Industrial Chemical Vat"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pipe
+	name = "Industrial Chemical Pipe"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_waste_processor
+	name = "Industrial Chemical Waste Processor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_hub
+	name = "Industrial Chemical Hub"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_reactor
+	name = "Industrial Chemical Reactor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_furnace
+	name = "Industrial Chemical Sintering Furnace"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
 //////////////////////////////
 // Frame Object (Structure)
 //////////////////////////////
