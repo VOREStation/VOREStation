@@ -4,7 +4,6 @@
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
-	var/gunshot_residue //Used by forensics.
 
 	var/list/accessories
 	var/list/valid_accessory_slots
@@ -32,12 +31,6 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-// Aurora forensics port.
-/obj/item/clothing/wash()
-	. = ..()
-	gunshot_residue = null
-
-
 /obj/item/clothing/Initialize(mapload)
 	. = ..()
 	if(starting_accessories)
@@ -53,7 +46,7 @@
 
 /obj/item/clothing/update_icon()
 	cut_overlays() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
-	if(blood_DNA)
+	if(forensic_data?.has_blooddna())
 		add_blood()
 	. = ..()
 

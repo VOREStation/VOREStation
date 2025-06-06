@@ -6,7 +6,7 @@
 
 /obj/item/sample/Initialize(mapload, var/atom/supplied)
 	. = ..()
-	if(supplied)
+	if(supplied && supplied.forensic_data)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
@@ -16,9 +16,10 @@
 		icon_state = "fingerprint1"
 
 /obj/item/sample/proc/copy_evidence(var/atom/supplied)
-	if(supplied.suit_fibers && supplied.suit_fibers.len)
-		evidence = supplied.suit_fibers.Copy()
-		supplied.suit_fibers.Cut()
+	var/list/fibre_data = supplied.forensic_data.get_fibres()
+	if(fibre_data && fibre_data.len)
+		evidence = fibre_data.Copy()
+		supplied.forensic_data.clear_fibres()
 
 /obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
@@ -116,10 +117,11 @@
 	return 0
 
 /obj/item/sample/print/copy_evidence(var/atom/supplied)
-	if(supplied.fingerprints && supplied.fingerprints.len)
-		for(var/print in supplied.fingerprints)
-			evidence[print] = supplied.fingerprints[print]
-		supplied.fingerprints.Cut()
+	var/list/print_data = supplied.forensic_data.get_prints()
+	if(print_data && print_data.len)
+		for(var/print in print_data)
+			evidence[print] = print_data[print]
+		supplied.forensic_data.clear_prints()
 
 /obj/item/forensics/sample_kit
 	name = "fiber collection kit"
@@ -130,7 +132,7 @@
 	var/evidence_path = /obj/item/sample/fibers
 
 /obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
-	return (supplied.suit_fibers && supplied.suit_fibers.len)
+	return supplied.forensic_data?.has_fibres()
 
 /obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
 	var/obj/item/sample/S = new evidence_path(get_turf(user), supplied)
@@ -155,4 +157,4 @@
 	evidence_path = /obj/item/sample/print
 
 /obj/item/forensics/sample_kit/powder/can_take_sample(var/mob/user, var/atom/supplied)
-	return (supplied.fingerprints && supplied.fingerprints.len)
+	return supplied.forensic_data?.has_prints()

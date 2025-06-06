@@ -735,12 +735,9 @@ var/list/global/slot_flags_enumeration = list(
 	//Make the blood_overlay have the proper color then apply it.
 	blood_overlay.color = blood_color
 	add_overlay(blood_overlay)
-
-	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
-			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		add_blooddna(M.dna,M)
+
 	return 1 //we applied blood to the item
 
 GLOBAL_LIST_EMPTY(blood_overlays_by_type)
