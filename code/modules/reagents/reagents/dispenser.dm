@@ -619,7 +619,6 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/* Reagent grinding for downstream ores
 /datum/reagent/titanium_dioxide
 	name = REAGENT_TITANIUMDIOX
 	id = REAGENT_ID_TITANIUMDIOX
@@ -652,4 +651,3 @@
 	color = "#efe9ca"
 	supply_conversion_value = 0.5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
-*/
