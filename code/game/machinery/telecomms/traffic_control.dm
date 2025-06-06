@@ -111,13 +111,11 @@
 			else
 				dat += "<a href='byond://?src=\ref[src];operation=togglerun'>NEVER</a>"
 
-
-	user << browse("<html>[dat]</html>", "window=traffic_control;size=575x400")
-	onclose(user, "server_control")
+	var/datum/browser/popup = new(user, "traffic_control", "Traffic Control", 575, 400)
+	popup.set_content(dat)
+	popup.open()
 
 	temp = ""
-	return
-
 
 /obj/machinery/computer/telecomms/traffic/Topic(href, href_list)
 	if(..())

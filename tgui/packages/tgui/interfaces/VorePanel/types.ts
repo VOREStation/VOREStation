@@ -373,7 +373,7 @@ export type generalPrefData = {
   active_belly: string | null;
   belly_rub_target: string | null;
   aestethic_messages: aestMessageData;
-  vore_sprite_color: Record<string, string>;
+  vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
 };

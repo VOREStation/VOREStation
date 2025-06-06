@@ -54,6 +54,7 @@
 #include "code\__defines\chemistry_vr.dm"
 #include "code\__defines\circuitboard.dm"
 #include "code\__defines\cleaning.dm"
+#include "code\__defines\client.dm"
 #include "code\__defines\cloning.dm"
 #include "code\__defines\clothing.dm"
 #include "code\__defines\color.dm"
