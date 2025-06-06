@@ -126,7 +126,7 @@
 	prefs.s_tone	= character.s_tone
 	prefs.h_style	= character.h_style
 	prefs.f_style	= character.f_style
-	prefs.b_type	= character.b_type
+	prefs.b_type	= character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE
 
 // Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana

@@ -87,10 +87,10 @@
 		var/mob/living/carbon/human/H = loc
 		if(istype(H))
 			if(!istype(H.gloves, /obj/item/clothing))
-				H.gunshot_residue = chambered.caliber
+				H.add_gunshotresidue(chambered)
 			else
 				var/obj/item/clothing/G = H.gloves
-				G.gunshot_residue = chambered.caliber
+				G.add_gunshotresidue(chambered)
 
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.

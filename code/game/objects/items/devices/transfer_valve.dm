@@ -201,12 +201,12 @@
 		if(attacher)
 			log_str += ADMIN_QUE(attacher)
 
-		var/mob/mob = get_mob_by_key(src.fingerprintslast)
+		var/mob/mob = get_mob_by_key(forensic_data?.get_lastprint())
 		var/last_touch_info = ""
 		if(mob)
 			last_touch_info = ADMIN_QUE(mob)
 
-		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
+		log_str += " Last touched by: [forensic_data?.get_lastprint()][last_touch_info]"
 		GLOB.bombers += log_str
 		message_admins(log_str, 0, 1)
 		log_game(log_str)
