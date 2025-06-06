@@ -3311,7 +3311,6 @@
 #include "code\modules\mob\living\silicon\robot\drone\drone_items.dm"
 #include "code\modules\mob\living\silicon\robot\drone\drone_manufacturer.dm"
 #include "code\modules\mob\living\silicon\robot\drone\drone_say.dm"
-#include "code\modules\mob\living\silicon\robot\drone\drone_vr.dm"
 #include "code\modules\mob\living\silicon\robot\drone\swarm.dm"
 #include "code\modules\mob\living\silicon\robot\drone\swarm_abilities.dm"
 #include "code\modules\mob\living\silicon\robot\drone\swarm_items.dm"
