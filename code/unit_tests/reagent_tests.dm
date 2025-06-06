@@ -257,6 +257,9 @@
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
+		if(!istype(CR, /decl/chemical_reaction/distilling))
+			break // Skip the next section if we're not distilling
+
 		// Check distillation at 10 points along its temperature range!
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
@@ -266,8 +269,9 @@
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return FALSE // Distilling success
 
-	while(!istype(CR, /decl/chemical_reaction/distilling) || temp_test > 1)
+	while(temp_test > 1)
 
+	// Check beaker to see if we reached our goal!
 	if(fake_beaker.reagents.has_reagent(CR.result))
 		return FALSE // INSTANT SUCCESS!
 
