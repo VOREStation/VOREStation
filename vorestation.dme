@@ -4391,6 +4391,7 @@
 #include "code\modules\vehicles\boat.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\construction.dm"
+#include "code\modules\vehicles\janicart.dm"
 #include "code\modules\vehicles\quad.dm"
 #include "code\modules\vehicles\rover_vr.dm"
 #include "code\modules\vehicles\snowmobile.dm"
