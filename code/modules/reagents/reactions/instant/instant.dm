@@ -11,6 +11,7 @@
 	id = REAGENT_ID_INAPROVALINE
 	result = REAGENT_ID_INAPROVALINE
 	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_SUGAR = 1)
+	inhibitors = list(REAGENT_ID_WATER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/dylovene
@@ -139,6 +140,7 @@
 	id = REAGENT_ID_KELOTANE
 	result = REAGENT_ID_KELOTANE
 	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_CARBON = 1)
+	inhibitors = list(REAGENT_ID_WATER = 1)
 	result_amount = 2
 	log_is_important = 1
 
@@ -486,6 +488,7 @@
 	id = REAGENT_ID_SODIUMCHLORIDE
 	result = REAGENT_ID_SODIUMCHLORIDE
 	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_CHLORINE = 1)
+	inhibitors = list(REAGENT_ID_COPPER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/condensedcapsaicin
@@ -516,6 +519,7 @@
 	id = REAGENT_ID_LEXORIN
 	result = REAGENT_ID_LEXORIN
 	required_reagents = list(REAGENT_ID_PHORON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_NITROGEN = 1)
+	inhibitors = list(REAGENT_ID_COPPER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/methylphenidate
@@ -1184,7 +1188,7 @@
 	id = REAGENT_ID_HYDROPHORON
 	result = REAGENT_ID_HYDROPHORON
 	required_reagents = list(REAGENT_ID_HYDROGEN = 1, REAGENT_ID_PHORON = 1)
-	inhibitors = list(REAGENT_ID_NITROGEN = 1) //So it doesn't mess with lexorin
+	inhibitors = list(REAGENT_ID_NITROGEN = 1, REAGENT_ID_COPPER = 1) //So it doesn't mess with lexorin
 	result_amount = 2
 
 /decl/chemical_reaction/instant/deuterium
