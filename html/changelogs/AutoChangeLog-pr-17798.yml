@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - qol: "The chat now supports TTS for chosen message types, filtered the same way that chat tabs are filtered. This is an accessibility feature."
