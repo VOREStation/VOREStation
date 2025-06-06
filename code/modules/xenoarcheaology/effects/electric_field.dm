@@ -9,7 +9,6 @@
 
 /datum/artifact_effect/electric_field/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
-	var/weakness = GetAnomalySusceptibility(user)
 	if(last_used >= world.time + use_delay)
 		return
 	else

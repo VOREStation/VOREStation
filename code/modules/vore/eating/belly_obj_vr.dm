@@ -1213,6 +1213,11 @@
 //Typically just to the owner's location.
 /obj/belly/drop_location()
 	//Should be the case 99.99% of the time
+	if(isAI(owner))
+		var/mob/living/silicon/ai/AI = owner
+		if(AI.holo && AI.holo.masters[AI])
+			return AI.holo.masters[AI].drop_location()
+
 	if(owner)
 		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.
