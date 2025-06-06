@@ -14,7 +14,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/detach()
 	..()
-	chassis.proc_res["dyndomove"] = null
+	if(chassis)
+		chassis.proc_res["dyndomove"] = null
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/attach(obj/mecha/M as obj)

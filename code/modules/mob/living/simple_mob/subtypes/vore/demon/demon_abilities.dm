@@ -8,6 +8,10 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
+	if((get_area(src).flags & PHASE_SHIELDED))
+		to_chat(src,span_warning("This area is preventing you from phasing!"))
+		return FALSE
+
 	if(shift_state && shift_state == AB_SHIFT_ACTIVE)
 		to_chat(src,span_warning("You can't do a shift while actively shifting!"))
 		return FALSE
@@ -112,6 +116,9 @@
 
 
 	var/turf/T = get_turf(src)
+	if(!T)
+		to_chat(src,span_warning("You can't shift without being in a physical location!"))
+		return
 
 	if(shift_state && shift_state == AB_SHIFT_PASSIVE)
 		to_chat(src,span_warning("You can't do a shift while passively shifting!"))
@@ -148,7 +155,9 @@
 
 	cut_overlays()
 	flick("phaseout",src)
-	sleep(30)
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_initiate), original_canmove), 3 SECONDS, TIMER_DELETE_ME)
+
+/mob/living/simple_mob/vore/demon/proc/phase_shift_initiate(var/original_canmove)
 	invisibility = INVISIBILITY_LEVEL_TWO
 	see_invisible = INVISIBILITY_LEVEL_TWO
 	update_icon()
@@ -160,51 +169,61 @@
 	density = FALSE
 	force_max_speed = TRUE
 
-	spawn(300)
-		shifted_out = FALSE
-		name = real_name
-		for(var/obj/belly/B as anything in vore_organs)
-			B.escapable = initial(B.escapable)
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in), original_canmove), 30 SECONDS, TIMER_DELETE_ME)
 
-		cut_overlays()
-		alpha = initial(alpha)
-		invisibility = initial(invisibility)
-		see_invisible = initial(see_invisible)
-		incorporeal_move = initial(incorporeal_move)
-		density = initial(density)
-		force_max_speed = initial(force_max_speed)
-		original_canmove = canmove
-		canmove = FALSE
-		is_shifting = TRUE
+/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in(var/original_canmove)
+	shifted_out = FALSE
+	name = real_name
+	for(var/obj/belly/B as anything in vore_organs)
+		B.escapable = initial(B.escapable)
 
-		//Cosmetics mostly
-		flick("phasein",src)
-		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
-		sleep(30) //The duration of the TP animation
-		is_shifting = FALSE
-		canmove = original_canmove
+	cut_overlays()
+	alpha = initial(alpha)
+	invisibility = initial(invisibility)
+	see_invisible = initial(see_invisible)
+	incorporeal_move = initial(incorporeal_move)
+	density = initial(density)
+	force_max_speed = initial(force_max_speed)
+	original_canmove = canmove
+	canmove = FALSE
+	is_shifting = TRUE
 
-		var/turf/NT = get_turf(src)
+	//Cosmetics mostly
+	flick("phasein",src)
+	automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
+	addtimer(CALLBACK(src, PROC_REF(phase_shift_phase_in_completion), original_canmove), 3 SECONDS, TIMER_DELETE_ME)
 
-		if(!NT.CanPass(src,NT))
-			for(var/direction in list(1,2,4,8,5,6,9,10))
-				var/turf/L = get_step(NT, direction)
-				if(L)
-					if(L.CanPass(src,L))
-						forceMove(L)
-						break
+/mob/living/simple_mob/vore/demon/proc/phase_shift_phase_in_completion(var/original_canmove)
+	is_shifting = FALSE
+	canmove = original_canmove
 
-		//Potential phase-in vore
-		if(can_be_drop_pred) //Toggleable in vore panel
-			var/list/potentials = living_mobs(0)
-			if(potentials.len)
-				var/mob/living/target = pick(potentials)
-				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
-					target.forceMove(vore_selected)
-					to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
-
-		// Do this after the potential vore, so we get the belly
-		update_icon()
-
-		shift_state = AB_SHIFT_NONE
+	var/turf/NT = get_turf(src)
+	if(!NT)
+		to_chat(src,span_warning("You've somehow phased in a non-existant space! Please contact an admin (F1) for assistance!"))
+		stack_trace("[src] managed to phase in nullspace!")
+		shift_state = AB_SHIFT_NONE //We'll do these to be nice.
 		last_shift = world.time
+		return
+
+	if(!NT.CanPass(src,NT))
+		for(var/direction in list(1,2,4,8,5,6,9,10))
+			var/turf/L = get_step(NT, direction)
+			if(L)
+				if(L.CanPass(src,L))
+					forceMove(L)
+					break
+
+	//Potential phase-in vore
+	if(can_be_drop_pred) //Toggleable in vore panel
+		var/list/potentials = living_mobs(0)
+		if(potentials.len)
+			var/mob/living/target = pick(potentials)
+			if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
+				target.forceMove(vore_selected)
+				to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
+
+	// Do this after the potential vore, so we get the belly
+	update_icon()
+
+	shift_state = AB_SHIFT_NONE
+	last_shift = world.time

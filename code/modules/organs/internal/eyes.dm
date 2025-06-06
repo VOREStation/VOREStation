@@ -109,4 +109,5 @@
 /obj/item/organ/internal/eyes/emp_act(severity)
 	if(robotic >= ORGAN_ASSISTED)
 		return
-	owner.eye_blurry += (4/severity)
+	if(owner)
+		owner.eye_blurry += (4/severity)
