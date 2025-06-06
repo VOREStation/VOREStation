@@ -101,28 +101,6 @@
 	if(select && select != "")
 		filter_reagent_id = tgui_list[select]
 
-/obj/machinery/reagent_refinery/filter/verb/rotate_clockwise()
-	set name = "Rotate Filter Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/filter/verb/rotate_counterclockwise()
-	set name = "Rotate Filter Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/filter/verb/flip_filter()
 	PRIVATE_PROC(TRUE)
 	set name = "Flip Filter Direction"

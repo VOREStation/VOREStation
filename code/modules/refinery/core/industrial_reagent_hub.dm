@@ -65,28 +65,6 @@
 		var/image/pipe = image(icon, icon_state = "hub_cons", dir = dir)
 		add_overlay(pipe)
 
-/obj/machinery/reagent_refinery/hub/verb/rotate_clockwise()
-	set name = "Rotate Hub Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/hub/verb/rotate_counterclockwise()
-	set name = "Rotate Hub Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/hub/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	if(istype(origin_machine,/obj/machinery/reagent_refinery/hub)) // Hubs cannot send into other hubs
 		return 0

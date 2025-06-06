@@ -61,28 +61,6 @@
 					var/image/intake = image(icon, icon_state = "waste_intakes", dir = direction)
 					add_overlay(intake)
 
-/obj/machinery/reagent_refinery/waste_processor/verb/rotate_clockwise()
-	set name = "Rotate Waste Processor Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/waste_processor/verb/rotate_counterclockwise()
-	set name = "Rotate Waste Processor Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/waste_processor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// Waste tanks accept from all sides
 	. = ..(origin_machine, RT, source_forward_dir, filter_id)

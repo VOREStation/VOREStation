@@ -27,13 +27,7 @@
 	if(stat & (BROKEN))
 		return
 
-	if (amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
-		return
-
-	// dump reagents to next refinery machine
-	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(loc,dir)
-	if(target)
-		transfer_tank( reagents, target, dir)
+	refinery_transfer()
 
 /obj/machinery/reagent_refinery/pipe/update_icon()
 	cut_overlays()
@@ -62,28 +56,6 @@
 				if(other.dir == GLOB.reverse_dir[direction] && dir != direction)
 					var/image/intake = image(icon, icon_state = "pipe_intakes", dir = direction)
 					add_overlay(intake)
-
-/obj/machinery/reagent_refinery/pipe/verb/rotate_clockwise()
-	set name = "Rotate Pipe Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/pipe/verb/rotate_counterclockwise()
-	set name = "Rotate Pipe Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
 
 /obj/machinery/reagent_refinery/pipe/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!

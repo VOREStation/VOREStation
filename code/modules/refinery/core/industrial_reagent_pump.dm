@@ -25,13 +25,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if (amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
-		return
-
-	// dump reagents to next refinery machine
-	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir)
-	if(target)
-		transfer_tank( reagents, target, dir)
+	refinery_transfer()
 
 /obj/machinery/reagent_refinery/pump/update_icon()
 	cut_overlays()
@@ -42,28 +36,6 @@
 
 /obj/machinery/reagent_refinery/pump/attack_hand(mob/user)
 	set_APTFT()
-
-/obj/machinery/reagent_refinery/pump/verb/rotate_clockwise()
-	set name = "Rotate Pump Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/pump/verb/rotate_counterclockwise()
-	set name = "Rotate Pump Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
 
 /obj/machinery/reagent_refinery/pump/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// pumps, furnaces and filters can only be FED in a straight line

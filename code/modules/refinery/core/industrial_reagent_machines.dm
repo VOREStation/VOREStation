@@ -13,22 +13,26 @@
 	update_neighbours()
 	update_icon()
 
-/obj/machinery/reagent_refinery/dismantle()
-	reagent_flush()
-	. = ..()
-
 /obj/machinery/reagent_refinery/Destroy()
 	reagent_flush()
 	. = ..()
 
-/obj/machinery/reagent_refinery/proc/reagent_flush()
-	if(reagents && reagents.total_volume > 30)
-		visible_message(span_danger("\The [src] splashes everywhere as it is disassembled!"))
-		reagents.splash_area(get_turf(src),2)
+/obj/machinery/reagent_refinery/dismantle()
+	reagent_flush()
+	. = ..()
 
 /obj/machinery/reagent_refinery/set_dir(newdir)
 	. = ..()
 	update_icon()
+
+/obj/machinery/reagent_refinery/on_reagent_change(changetype)
+	update_icon()
+
+/// Splashes reagents all over the floor, called from destroy and dismantle.
+/obj/machinery/reagent_refinery/proc/reagent_flush()
+	if(reagents && reagents.total_volume > 30)
+		visible_message(span_danger("\The [src] splashes everywhere as it is disassembled!"))
+		reagents.splash_area(get_turf(src),2)
 
 /obj/machinery/reagent_refinery/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/multitool)) // Solar grubs
@@ -65,6 +69,7 @@
 		return
 	. = ..()
 
+/// Updates the icons of all neighbour machines, used when connecting.
 /obj/machinery/reagent_refinery/proc/update_neighbours()
 	// Update icons and neighbour icons to avoid loss of sanity
 	for(var/direction in GLOB.cardinal)
@@ -73,31 +78,18 @@
 		if(other && other.anchored)
 			other.update_icon()
 
-
+/// Changes the transfer rate of reagents from this machine to the next
 /obj/machinery/reagent_refinery/verb/set_APTFT() //set amount_per_transfer_from_this
 	PROTECTED_PROC(TRUE)
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in view(1)
 	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", possible_transfer_amounts)
-	if (N)
+	if(N && Adjacent(usr))
 		amount_per_transfer_from_this = N
-	update_icon()
+		update_icon()
 
-/obj/machinery/reagent_refinery/proc/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
-	// Transfer to target in amounts every process tick!
-	if(filter_id == "")
-		var/amount = RT.trans_to_obj(src, amount_per_transfer_from_this)
-		return amount
-	// Split out reagent...
-	// Yet another hack, because I refuse to rewrite base code for a module. It's a shame it can't just be forced.
-	var/old_flags = flags
-	flags |= OPENCONTAINER // trans_id_to expects an opencontainer flag, but this is closed plumbing...
-	var/amount = RT.trans_id_to(src, filter_id, amount_per_transfer_from_this)
-	flags = old_flags
-	// End hacky flag stuff
-	return amount
-
+/// Transfers reagents from us to the next machine. Calls handle_transfer() on any target machines to check if they can accept reagents.
 /obj/machinery/reagent_refinery/proc/transfer_tank( var/datum/reagents/RT, var/obj/machinery/reagent_refinery/target, var/source_forward_dir, var/filter_id = "")
 	PROTECTED_PROC(TRUE)
 	if(RT.total_volume <= 0 || !anchored || !target.anchored)
@@ -111,5 +103,44 @@
 		use_power_oneoff(active_power_usage)
 	return transfered
 
-/obj/machinery/reagent_refinery/on_reagent_change(changetype)
+/// Handles reagent recieving from transfer_tank(), returns how much reagent was transfered if successful. Overriden to prevent access from certain sides or for filtering.
+/obj/machinery/reagent_refinery/proc/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
+	// Transfer to target in amounts every process tick!
+	if(filter_id == "")
+		var/amount = RT.trans_to_obj(src, amount_per_transfer_from_this)
+		return amount
+	// Split out reagent...
+	return RT.trans_id_to(src, filter_id, amount_per_transfer_from_this, TRUE)
+
+/obj/machinery/reagent_refinery/proc/refinery_transfer()
+	if(amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
+		return 0
+
+	// dump reagents to next refinery machine
+	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir)
+	if(!target)
+		return 0
+
+	return transfer_tank( reagents, target, dir)
+
+/obj/machinery/reagent_refinery/verb/rotate_clockwise()
+	set name = "Rotate Machine Clockwise"
+	set category = "Object"
+	set src in view(1)
+
+	if (usr.stat || usr.restrained() || anchored)
+		return
+
+	src.set_dir(turn(src.dir, 270))
+	update_icon()
+
+/obj/machinery/reagent_refinery/verb/rotate_counterclockwise()
+	set name = "Rotate Machine Counterclockwise"
+	set category = "Object"
+	set src in view(1)
+
+	if (usr.stat || usr.restrained() || anchored)
+		return
+
+	src.set_dir(turn(src.dir, 90))
 	update_icon()

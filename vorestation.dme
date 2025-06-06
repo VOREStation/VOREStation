@@ -235,6 +235,7 @@
 #include "code\_helpers\mobs.dm"
 #include "code\_helpers\nameof.dm"
 #include "code\_helpers\names.dm"
+#include "code\_helpers\refinery.dm"
 #include "code\_helpers\sanitize_values.dm"
 #include "code\_helpers\screen_objs.dm"
 #include "code\_helpers\shell.dm"

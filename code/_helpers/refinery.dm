@@ -1,0 +1,50 @@
+/// Grinds down various objects into their reagent components. Returns true if any reagents were gained from the attempt.
+/proc/grind_items_to_reagents(var/list/holdingitems,var/datum/reagents/R)
+	var/start_volume = R.total_volume
+
+	for(var/obj/item/O in holdingitems)
+		var/remaining_volume = R.maximum_volume - R.total_volume
+		if(remaining_volume <= 0)
+			break
+
+		if(global.sheet_reagents[O.type])
+			var/obj/item/stack/stack = O
+			if(istype(stack))
+				var/list/sheet_components = global.sheet_reagents[stack.type]
+				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/REAGENTS_PER_SHEET)))
+				if(amount_to_take)
+					stack.use(amount_to_take)
+					if(QDELETED(stack))
+						holdingitems -= stack
+					if(islist(sheet_components))
+						amount_to_take = (amount_to_take/(sheet_components.len))
+						for(var/i in sheet_components)
+							R.add_reagent(i, (amount_to_take*REAGENTS_PER_SHEET))
+					else
+						R.add_reagent(sheet_components, (amount_to_take*REAGENTS_PER_SHEET))
+					continue
+
+		if(global.ore_reagents[O.type])
+			var/obj/item/ore/R = O
+			if(istype(R))
+				var/list/ore_components = global.ore_reagents[R.type]
+				if(remaining_volume >= REAGENTS_PER_ORE)
+					holdingitems -= R
+					qdel(R)
+					if(islist(ore_components))
+						var/amount_to_take = (REAGENTS_PER_ORE/(ore_components.len))
+						for(var/i in ore_components)
+							R.add_reagent(i, amount_to_take)
+					else
+						R.add_reagent(ore_components, REAGENTS_PER_ORE)
+					continue
+
+		if(O.reagents)
+			O.reagents.trans_to_obj(beaker, min(O.reagents.total_volume, remaining_volume))
+			if(O.reagents.total_volume == 0)
+				holdingitems -= O
+				qdel(O)
+			if (R.total_volume >= R.maximum_volume)
+				break
+
+	return (R.total_volume > start_volume)

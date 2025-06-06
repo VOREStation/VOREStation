@@ -39,13 +39,7 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if (amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
-		return
-
-	// dump reagents to next refinery machine
-	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(loc,dir)
-	if(target)
-		transfer_tank( reagents, target, dir)
+	refinery_transfer()
 
 /obj/machinery/reagent_refinery/vat/update_icon()
 	cut_overlays()
@@ -92,28 +86,6 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 				if(other.dir == GLOB.reverse_dir[direction] && dir != direction)
 					var/image/intake = image(icon, icon_state = "vat_intakes", dir = direction)
 					add_overlay(intake)
-
-/obj/machinery/reagent_refinery/vat/verb/rotate_clockwise()
-	set name = "Rotate Vat Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/vat/verb/rotate_counterclockwise()
-	set name = "Rotate Vat Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
 
 /obj/machinery/reagent_refinery/vat/examine(mob/user, infix, suffix)
 	. = ..()

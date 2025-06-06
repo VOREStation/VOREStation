@@ -9,10 +9,6 @@
 	idle_power_usage = 5
 	active_power_usage = 300
 	circuit = /obj/item/circuitboard/industrial_reagent_grinder
-	// Chemical bath funtimes!
-	can_buckle = TRUE
-	buckle_lying = TRUE
-	default_max_vol = REAGENT_VAT_VOLUME
 	VAR_PRIVATE/limit = 50
 	VAR_PRIVATE/list/holdingitems = list()
 
@@ -28,13 +24,14 @@
 /obj/machinery/reagent_refinery/grinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	. = ..()
 	if(.)
-		return TRUE
+		return
 
 	// Insert grindables if not handled by parent proc
 	if(holdingitems && holdingitems.len >= limit)
 		to_chat(user, "The machine cannot hold anymore items.")
 		return TRUE
 
+	// Botany gameplay
 	if(istype(O,/obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/bag = O
 		var/failed = 1
@@ -57,6 +54,7 @@
 			to_chat(user, "You fill \the [src] from \the [O].")
 		return FALSE
 
+	// Borgos!
 	if(istype(O,/obj/item/gripper))
 		var/obj/item/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
@@ -67,12 +65,14 @@
 			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
 		return FALSE
 
+	// Needs to be sheet, ore, or grindable reagent containing things
 	if(!global.sheet_reagents[O.type] && !global.ore_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		to_chat(user, "\The [O] is not suitable for blending.")
 		return FALSE
 
 	user.drop_from_inventory(O,src)
 	holdingitems += O
+	update_icon()
 	return TRUE
 
 /obj/machinery/reagent_refinery/grinder/process()
@@ -83,19 +83,15 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(holdingitems.len > 0 && process_contents())
+	if(holdingitems.len > 0 && grind_items_to_reagents(holdingitems,reagents))
 		//Lazy coder sound design moment. THE SEQUEL
 		playsound(src, 'sound/items/poster_being_created.ogg', 50, 1)
 		playsound(src, 'sound/items/electronic_assembly_emptying.ogg', 50, 1)
 		playsound(src, 'sound/effects/metalscrape2.ogg', 50, 1)
+		if(holdingitems.len == 0)
+			update_icon()
 
-	if (amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
-		return
-
-	// dump reagents to next refinery machine
-	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(loc,dir)
-	if(target)
-		transfer_tank( reagents, target, dir)
+	refinery_transfer()
 
 /obj/machinery/reagent_refinery/grinder/update_icon()
 	cut_overlays()
@@ -105,7 +101,7 @@
 		icon_state = "grinder_off"
 	else
 		icon_state = "grinder_on"
-		var/image/dot = image(icon, icon_state = "grinder_dot_[ beaker.amount_per_transfer_from_this > 0 ? "on" : "off" ]")
+		var/image/dot = image(icon, icon_state = "grinder_dot_[holdingitems.len ? "on" : "off" ]")
 		add_overlay(dot)
 
 /obj/machinery/reagent_refinery/grinder/Bumped(atom/movable/AM as mob|obj)
@@ -124,28 +120,6 @@
 	AM.forceMove(src)
 	holdingitems += AM
 
-/obj/machinery/reagent_refinery/grinder/verb/rotate_clockwise()
-	set name = "Rotate Grinder Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/grinder/verb/rotate_counterclockwise()
-	set name = "Rotate Grinder Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/grinder/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The intake cache shows [holdingitems.len] / [limit] grindable items."
@@ -154,5 +128,3 @@
 /obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// Grinder forbids input
 	return 0
-
-/obj/machinery/reagent_refinery/grinder/proc/process_contents()

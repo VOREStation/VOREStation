@@ -181,28 +181,6 @@
 		beaker.reagents.clear_reagents()
 		update_icon()
 
-/obj/machinery/reagent_refinery/furnace/verb/rotate_clockwise()
-	set name = "Rotate Furnace Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/furnace/verb/rotate_counterclockwise()
-	set name = "Rotate Furnace Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/furnace/verb/flip_furnace()
 	set name = "Flip Furnace Direction"
 	set category = "Object"

@@ -278,14 +278,14 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/force_open_container = FALSE)
 	touch(target) //First, handle mere touch effects
 
 	if(ismob(target))
 		return splash_mob(target, amount, copy)
 	if(isturf(target))
 		return trans_to_turf(target, amount, multiplier, copy)
-	if(isobj(target) && target.is_open_container() && !isbelly(target.loc))
+	if(isobj(target) && (target.is_open_container() || force_open_container) && !isbelly(target.loc))
 		return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
@@ -329,7 +329,7 @@
 	else if (istype(target, /datum/reagents))
 		return F.trans_to_holder(target, amount)
 
-/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
+/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1, var/force_open_container = FALSE)
 	if (!target || !target.reagents)
 		return
 
@@ -343,7 +343,7 @@
 	F.add_reagent(id, amount, tmpdata)
 	remove_reagent(id, amount)
 
-	return F.trans_to(target, amount) // Let this proc check the atom's type
+	return F.trans_to(target, amount, force_open_container = force_open_container) // Let this proc check the atom's type
 
 // When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
 // This does not handle transferring reagents to things.

@@ -94,28 +94,6 @@
 					var/image/intake = image(icon, icon_state = "reactor_intakes", dir = direction)
 					add_overlay(intake)
 
-/obj/machinery/reagent_refinery/reactor/verb/rotate_clockwise()
-	set name = "Rotate Reactor Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/reactor/verb/rotate_counterclockwise()
-	set name = "Rotate Reactor Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-
 /obj/machinery/reagent_refinery/reactor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(dir == GLOB.reverse_dir[source_forward_dir])
