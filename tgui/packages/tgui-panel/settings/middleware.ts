@@ -13,6 +13,7 @@ import {
   importSettings,
   loadSettings,
   removeHighlightSetting,
+  toggleTTSSetting,
   updateHighlightSetting,
   updateSettings,
   updateToggle,
@@ -106,6 +107,7 @@ export function settingsMiddleware(store) {
       type !== addHighlightSetting.type &&
       type !== removeHighlightSetting.type &&
       type !== updateHighlightSetting.type &&
+      type !== toggleTTSSetting.type &&
       type !== importSettings.type
     ) {
       return next(action);
