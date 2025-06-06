@@ -344,7 +344,7 @@
 	var/current_temp = 0
 
 /obj/distilling_tester/Initialize(mapload)
-	create_reagents(500,/datum/reagents/distilling)
+	create_reagents(5000,/datum/reagents/distilling)
 	. = ..()
 
 /obj/distilling_tester/return_air()

@@ -32,7 +32,7 @@
 	var/minimum_xgm_pressure = null
 
 /decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
-	if(!istype(holder, /datum/reagents/distilling) || !istype(holder.my_atom, /obj/machinery/portable_atmospherics/powered/reagent_distillery))
+	if(!istype(holder, /datum/reagents/distilling))
 		return FALSE
 
 	// return_air() will get the current turf for most things unless overriden to use a tank or such!
