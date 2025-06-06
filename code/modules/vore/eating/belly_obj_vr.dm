@@ -496,6 +496,15 @@
 		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
 
+/obj/belly/Moved(atom/old_loc)
+	. = ..()
+
+	for(var/mob/living/L in src)
+		if(L.ckey)
+			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
+			break
+
+
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
