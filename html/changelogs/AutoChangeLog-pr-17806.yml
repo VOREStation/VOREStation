@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "Glitch-out effect to AI holograms when stuff passes through them"
