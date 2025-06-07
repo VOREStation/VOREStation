@@ -34,11 +34,12 @@
 			to_chat(user, span_notice("Done printing."))
 	//		to_chat(user, span_notice("[M]'s Fingerprints: [md5(M.dna.uni_identity)]"))
 
-	if(reveal_blood && M.blood_DNA && M.blood_DNA.len)
+	if(reveal_blood && M.forensic_data?.has_blooddna())
 		to_chat(user, span_notice("Blood found on [M]. Analysing..."))
 		spawn(15)
-			for(var/blood in M.blood_DNA)
-				to_chat(user, span_notice("Blood type: [M.blood_DNA[blood]]\nDNA: [blood]"))
+			var/list/blooddna = M.forensic_data.get_blooddna()
+			for(var/blood in blooddna)
+				to_chat(user, span_notice("Blood type: [blooddna[blood]]\nDNA: [blood]"))
 	return
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
@@ -67,7 +68,7 @@
 		return 0
 
 	//General
-	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
+	if (!A.forensic_data?.has_prints() && !A.forensic_data?.has_fibres() && !A.forensic_data.has_blooddna())
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		span_warning("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),\
 		"You hear a faint hum of electrical equipment.")
@@ -80,14 +81,15 @@
 		return
 
 	//PRINTS
-	if(A.fingerprints && A.fingerprints.len)
-		to_chat(user, span_notice("Isolated [A.fingerprints.len] fingerprints:"))
+	if(A.forensic_data?.has_prints())
+		to_chat(user, span_notice("Isolated [A.forensic_data?.get_prints().len] fingerprints:"))
 		if(!reveal_incompletes)
 			to_chat(user, span_warning("Rapid Analysis Imperfect: Scan samples with H.R.F.S. equipment to determine nature of incomplete prints."))
 		var/list/complete_prints = list()
 		var/list/incomplete_prints = list()
-		for(var/i in A.fingerprints)
-			var/print = A.fingerprints[i]
+		var/list/print_data = A.forensic_data?.get_prints()
+		for(var/i in print_data)
+			var/print = print_data[i]
 			if(stringpercent(print) <= FINGERPRINT_COMPLETE)
 				complete_prints += print
 			else
@@ -107,21 +109,22 @@
 
 
 	//FIBERS
-	if(A.suit_fibers && A.suit_fibers.len)
+	if(A.forensic_data?.has_fibres())
 		to_chat(user,span_notice("Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]"))
 		flick("[icon_state]1",src)
 		if(reveal_fibers && do_after(user, 5 SECONDS))
 			to_chat(user, span_notice("Apparel samples scanned:"))
-			for(var/sample in A.suit_fibers)
+			for(var/sample in A.forensic_data.get_fibres())
 				to_chat(user, " - " + span_notice("[sample]"))
 
 	//Blood
-	if (A.blood_DNA && A.blood_DNA.len)
+	if (A.forensic_data?.has_blooddna())
 		to_chat(user, span_notice("Blood detected.[reveal_blood ? " Analysing..." : " Acquisition of swab for H.R.F.S. analysis advised."]"))
 		if(reveal_blood && do_after(user, 5 SECONDS))
 			flick("[icon_state]1",src)
-			for(var/blood in A.blood_DNA)
-				to_chat(user, "Blood type: " + span_warning("[A.blood_DNA[blood]]") + " DNA: " + span_warning("[blood]"))
+			var/list/blood_data = A.forensic_data.get_blooddna()
+			for(var/blood in blood_data)
+				to_chat(user, "Blood type: " + span_warning("[blood_data[blood]]") + " DNA: " + span_warning("[blood]"))
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	span_notice("You finish scanning \the [A]."),\

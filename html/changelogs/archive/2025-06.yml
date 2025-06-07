@@ -56,3 +56,40 @@
   Guti:
   - bugfix: Fixed wash() proc to delete cleanable decals
   - bugfix: Fixed mops and soaps not making the floor wet
+2025-06-06:
+  Diana:
+  - bugfix: Artifact range logic fixed
+  - bugfix: Lightning artifact now respects protection
+  - balance: DNA mutation artifact no longer mutates genes as often
+  - qol: DNA mutation artifact no longer spams your chat.
+2025-06-07:
+  ItsSelis:
+  - admin: Admin verb subsystem is now integrated and a small amount of verbs have
+      been converted into the new format (categories or verb names are still the same
+      of course).
+  Kashargul:
+  - bugfix: a crash with the General Tab in the vorepanel if used by robots
+  - bugfix: maintenance drone HP calculations
+  SatinIsle:
+  - maptweak: Tether tweaks. Added a swimwear locker to the locker room, a wall locker
+      with towels near the spa, and polarisable windows to the massage room.
+  - maptweak: Added janicart and keys for it to each station map. This is just in
+      the existing room on SD and RP. On the tether, there is a small garage on the
+      side of the janitors office now, because I thought that would be cute!
+  ShadowLarkens:
+  - qol: The chat now supports TTS for chosen message types, filtered the same way
+      that chat tabs are filtered. This is an accessibility feature.
+  - rscadd: Glitch-out effect to AI holograms when stuff passes through them
+  TankTheBirb:
+  - rscadd: Implements digi sprite markings for hooves, fox legs, tiger stripes, and
+      a gloss for toning.
+  Willburd:
+  - bugfix: cult ritual runes missing wash proc
+  - bugfix: vehicles no longer run you over going down stairs if you are driving them
+  - refactor: janicart updated to use vehicle code
+  - code_imp: removed duplicate b_type var from human mobs, they use their dna one
+      only now
+  - bugfix: bloodtype not being assigned to organs and limbs
+  - rscadd: Fingerprints can now be washed off in washing machines and showers.
+  - refactor: Reworked all bloodsplatter, fingerprint, gunshot residue, and clothing
+      fiber code into a single datum

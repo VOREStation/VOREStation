@@ -1,6 +1,7 @@
 import { Box, Button, Section, Table } from 'tgui-core/components';
 
 import { getTagColor } from './constants';
+import { validateLink } from './functions';
 import type { mobEntry } from './types';
 
 export const ViewCharacter = (props: {
@@ -106,6 +107,15 @@ export const ViewCharacter = (props: {
       <Section title="Flavor Text">
         <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
           {overlay.flavor_text || 'Unset.'}
+        </Box>
+      </Section>
+      <Section title="Custom Link">
+        <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
+          {validateLink(overlay.custom_link) ? (
+            <a href={overlay.custom_link}>{overlay.custom_link}</a>
+          ) : (
+            'Unset.'
+          )}
         </Box>
       </Section>
     </Section>

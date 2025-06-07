@@ -72,8 +72,10 @@
 	dat += "<A href='byond://?src=\ref[src];rune=armor'>Sa tatha najin</A> - Allows you to summon armoured robes and an unholy blade<BR>"
 	dat += "<A href='byond://?src=\ref[src];rune=soulstone'>Kal om neth</A> - Summons a soul stone<BR>"
 	dat += "<A href='byond://?src=\ref[src];rune=construct'>Da A'ig Osk</A> - Summons a construct shell for use with captured souls. It is too large to carry on your person.<BR>"
-	usr << browse("<html>[dat]</html>", "window=id_com;size=350x200")
-	return
+
+	var/datum/browser/popup = new(usr, "id_com", "Talisman", 350, 200)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/paper/talisman/Topic(href, href_list)

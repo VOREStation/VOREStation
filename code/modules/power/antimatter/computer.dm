@@ -61,7 +61,7 @@
 	if(..())
 		return
 	user.machine = src
-	var/dat = "<head><title>Engine Computer</title></head><body>"
+	var/dat = ""
 	switch(src.state)
 		if(STATE_DEFAULT)
 			if (src.authenticated)
@@ -85,8 +85,11 @@
 			dat += "<BR>Contents:<br>[src.connected_E.H_fuel]kg of Hydrogen<br>[src.connected_E.antiH_fuel]kg of Anti-Hydrogen<br>"
 
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse("<html>[dat]</html>", "window=communications;size=400x500")
-	onclose(user, "communications")
+
+	var/datum/browser/popup = new(user, "communications", "Communications", 400, 500)
+	popup.add_head_content("<title>Engine Computer</title>")
+	popup.set_content(dat)
+	popup.open()
 
 #undef STATE_DEFAULT
 #undef STATE_INJECTOR

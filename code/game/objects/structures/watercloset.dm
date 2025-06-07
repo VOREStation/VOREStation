@@ -546,7 +546,6 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.gunshot_residue = null
 		if(H.gloves)
 			H.gloves.wash(CLEAN_SCRUB)
 			H.update_inv_gloves()
@@ -559,7 +558,7 @@
 			H.bloody_hands = 0
 			H.germ_level = 0
 			H.hand_blood_color = null
-			LAZYCLEARLIST(H.blood_DNA)
+			H.forensic_data?.wash(CLEAN_SCRUB)
 		H.update_bloodied()
 	else
 		user.wash(CLEAN_SCRUB)

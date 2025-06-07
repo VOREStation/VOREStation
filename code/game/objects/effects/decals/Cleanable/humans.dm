@@ -16,7 +16,6 @@ var/global/list/image/splatter_cache=list()
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
 	var/base_icon = 'icons/effects/blood.dmi'
-	blood_DNA = list()
 	var/basecolor="#A10808" // Color when wet.
 	var/synthblood = 0
 	var/list/datum/disease/viruses = list()
@@ -49,8 +48,7 @@ var/global/list/image/splatter_cache=list()
 		if(src.loc && isturf(src.loc))
 			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
 				if(B != src)
-					if (B.blood_DNA)
-						blood_DNA |= B.blood_DNA.Copy()
+					init_forensic_data().merge_blooddna(B.forensic_data)
 					if(!(B.flags & ATOM_INITIALIZED))
 						B.delete_me = TRUE
 					else
@@ -102,21 +100,20 @@ var/global/list/image/splatter_cache=list()
 			S.update_icon() // Cut previous overlays
 			if(!S.blood_overlay)
 				S.generate_blood_overlay()
-			if(!S.blood_DNA)
-				S.blood_DNA = list()
+			if(!forensic_data?.has_blooddna())
 				S.blood_overlay.color = basecolor
 				S.add_overlay(S.blood_overlay)
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
 				S.add_overlay(S.blood_overlay)
-			S.blood_DNA |= blood_DNA.Copy()
+			transfer_blooddna_to(S)
 			perp.update_inv_shoes()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
 		LAZYINITLIST(perp.feet_blood_DNA)
-		perp.feet_blood_DNA |= blood_DNA.Copy()
+		perp.feet_blood_DNA |= init_forensic_data().get_blooddna().Copy()
 		perp.update_bloodied()
 	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
@@ -145,9 +142,7 @@ var/global/list/image/splatter_cache=list()
 		var/taken = rand(1,amount)
 		amount -= taken
 		to_chat(user, span_notice("You get some of \the [src] on your hands."))
-		if (!user.blood_DNA)
-			user.blood_DNA = list()
-		user.blood_DNA |= blood_DNA.Copy()
+		transfer_blooddna_to(user)
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
