@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "borgs don't try to leave suit fibres on fingerprint checks"
