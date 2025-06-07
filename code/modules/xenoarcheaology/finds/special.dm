@@ -160,13 +160,13 @@
 		//leave some drips behind
 		if(prob(50))
 			var/obj/effect/decal/cleanable/blood/drip/D = new(src.loc)
-			D.add_blooddna(forensic_data)
+			D.init_forensic_data().merge_blooddna(forensic_data)
 			if(prob(50))
 				D = new(src.loc)
-				D.add_blooddna(forensic_data)
+				D.init_forensic_data().merge_blooddna(forensic_data)
 				if(prob(50))
 					D = new(src.loc)
-					D.add_blooddna(forensic_data)
+					D.init_forensic_data().merge_blooddna(forensic_data)
 	else
 		..()
 
