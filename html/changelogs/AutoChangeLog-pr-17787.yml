@@ -1,6 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "cult ritual runes missing wash proc"
-  - bugfix: "vehicles no longer run you over going down stairs if you are driving them"
-  - refactor: "janicart updated to use vehicle code"

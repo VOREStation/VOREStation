@@ -5,6 +5,10 @@
 	color = HOLO_ORIGINAL_COLOR //This is the blue from icons.dm that it was before.
 	desc = "A hologram representing an AI persona."
 
+/obj/effect/overlay/aiholo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/holographic_nature)
+
 /obj/effect/overlay/aiholo/Destroy()
 	for(var/obj/belly/B in src)
 		B.forceMove(master)

@@ -51,7 +51,9 @@
 		MAT_VERDANTIUM = 0,
 		MAT_MORPHIUM = 0,
 		MAT_METALHYDROGEN = 0,
-		MAT_SUPERMATTER = 0)
+		MAT_SUPERMATTER = 0,
+		MAT_TITANIUM = 0)
+
 	var/res_max_amount = 200000
 
 	var/datum/research/files
@@ -85,13 +87,6 @@
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	. = ..()
-
-// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
-	for(var/Name in name_to_material)
-		if(Name in materials)
-			continue
-
-		materials[Name] = 0
 
 	default_apply_parts()
 	files = new /datum/research(src) //Setup the research data holder.
@@ -642,7 +637,7 @@
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
-			to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+			to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 			return
 
 		var/sname = "[S.name]"

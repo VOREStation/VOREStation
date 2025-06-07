@@ -49,6 +49,8 @@
 		/datum/material/durasteel/hull,
 		/datum/material/titanium/hull,
 		/datum/material/morphium/hull,
+		/datum/material/plastitanium/hull,
+		/datum/material/gold/hull,
 		/datum/material/steel/holographic,
 		/datum/material/plastic/holographic,
 		/datum/material/wood/holographic,
