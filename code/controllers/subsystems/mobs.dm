@@ -33,12 +33,13 @@ SUBSYSTEM_DEF(mobs)
 		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
 		// Lets handle all of these while we have time, should always remain extremely small...
-		if(death_list.len && CONFIG_GET(flag/sql_enabled)) // Don't contact DB if this list is empty
-			establish_db_connection()
-			if(!SSdbcore.IsConnected())
-				log_game("SQL ERROR during death reporting. Failed to connect.")
-			else
-				SSdbcore.MassInsert(format_table_name("death"), death_list)
+		if(death_list.len) // Don't contact DB if this list is empty
+			if(CONFIG_GET(flag/sql_enabled))
+				establish_db_connection()
+				if(!SSdbcore.IsConnected())
+					log_game("SQL ERROR during death reporting. Failed to connect.")
+				else
+					SSdbcore.MassInsert(format_table_name("death"), death_list)
 			death_list.Cut()
 
 	//cache for sanic speed (lists are references anyways)
@@ -104,16 +105,17 @@ SUBSYSTEM_DEF(mobs)
 	log_recent()
 
 /datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
-	if(!CONFIG_GET(flag/enable_stat_tracking))
-		return
 	if(!L)
 		return
 	if(!L.key || !L.mind)
 		return
 	if(!ticker || !ticker.mode)
 		return
-
 	ticker.mode.check_win()
+
+	// Don't bother with the rest if we've not got a DB to do anything with
+	if(!CONFIG_GET(flag/enable_stat_tracking) || !CONFIG_GET(flag/sql_enabled))
+		return
 
 	var/area/placeofdeath = get_area(L)
 	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
