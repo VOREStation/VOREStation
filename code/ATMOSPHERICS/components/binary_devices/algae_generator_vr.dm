@@ -249,7 +249,7 @@
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in stored_material))
-		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
+		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material.name)]!"))
 		return 1
 	var/max_res_amount = storage_capacity[S.material.name]
 	if(stored_material[S.material.name] + S.perunit <= max_res_amount)

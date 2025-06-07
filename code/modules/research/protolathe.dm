@@ -139,7 +139,7 @@
 
 	var/obj/item/stack/material/S = O
 	if(!(S.material.name in materials))
-		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
+		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material.name)]!"))
 		return
 
 	busy = 1
