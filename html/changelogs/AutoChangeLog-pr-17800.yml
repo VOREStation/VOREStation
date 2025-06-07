@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "a crash with the General Tab in the vorepanel if used by robots"
