@@ -18,7 +18,7 @@
 		return
 
 	var/obj/screen/alert/alert
-	if(alerts[category])
+	if(LAZYACCESS(alerts, category))
 		alert = alerts[category]
 		if(new_master && new_master != alert.master)
 			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [alert.master]")
@@ -47,7 +47,7 @@
 		alert.icon_state = "[initial(alert.icon_state)][severity]"
 		alert.severity = severity
 
-	alerts[category] = alert
+	LAZYSET(alerts, category, alert)
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
 	alert.transform = matrix(32, 6, MATRIX_TRANSLATE)
@@ -59,16 +59,16 @@
 	return alert
 
 /mob/proc/alert_timeout(obj/screen/alert/alert, category)
-	if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
+	if(alert.timeout && LAZYACCESS(alerts, category) == alert && world.time >= alert.timeout)
 		clear_alert(category)
 
 // Proc to clear an existing alert.
 /mob/proc/clear_alert(category)
-	var/obj/screen/alert/alert = alerts[category]
+	var/obj/screen/alert/alert = LAZYACCESS(alerts, category)
 	if(!alert)
 		return 0
 
-	alerts -= category
+	LAZYREMOVE(alerts, category)
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
 		client.screen -= alert
@@ -434,10 +434,10 @@ so as to remain in compliance with the most up-to-date laws."
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
 	if(!hud_shown)
-		for(var/i = 1, i <= alerts.len, i++)
-			mymob.client.screen -= alerts[alerts[i]]
-		return 1
-	for(var/i = 1, i <= alerts.len, i++)
+		for(var/i in 1 to length(alerts))
+			mymob?.client?.screen -= alerts[alerts[i]]
+		return TRUE
+	for(var/i in 1 to length(alerts))
 		var/obj/screen/alert/alert = alerts[alerts[i]]
 
 		if(alert.icon_state in cached_icon_states(ui_style))
@@ -467,7 +467,7 @@ so as to remain in compliance with the most up-to-date laws."
 	return 1
 
 /mob
-	var/list/alerts = list() // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
+	var/list/alerts = null // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
 /obj/screen/alert/Click(location, control, params)
 	if(!usr || !usr.client)

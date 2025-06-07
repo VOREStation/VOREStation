@@ -3,6 +3,7 @@ import { Button, LabeledList, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 export const CatchSettings = (props: {
+  editMode: boolean;
   catch_self: BooleanLike;
   catch_prey: BooleanLike;
   catch_drain: BooleanLike;
@@ -10,13 +11,14 @@ export const CatchSettings = (props: {
 }) => {
   const { act } = useBackend();
 
-  const { catch_self, catch_prey, catch_drain, catch_ghost } = props;
+  const { editMode, catch_self, catch_prey, catch_drain, catch_ghost } = props;
 
   return (
     <LabeledList.Item label="Catch Settings">
       <Stack>
         <Stack.Item>
           <Button
+            disabled={!editMode}
             icon="circle-user"
             tooltip={
               (catch_self ? 'Allow' : 'Disallow') +
@@ -31,6 +33,7 @@ export const CatchSettings = (props: {
         </Stack.Item>
         <Stack.Item>
           <Button
+            disabled={!editMode}
             icon="person"
             tooltip={
               (catch_prey ? 'Allow' : 'Disallow') +
@@ -45,6 +48,7 @@ export const CatchSettings = (props: {
         </Stack.Item>
         <Stack.Item>
           <Button
+            disabled={!editMode}
             icon="person-falling-burst"
             tooltip={
               (catch_drain ? 'Allow' : 'Disallow') +
@@ -59,6 +63,7 @@ export const CatchSettings = (props: {
         </Stack.Item>
         <Stack.Item>
           <Button
+            disabled={!editMode}
             icon="ghost"
             tooltip={
               (catch_ghost ? 'Allow' : 'Disallow') +

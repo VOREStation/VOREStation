@@ -135,7 +135,7 @@
 		if(QDELETED(thing) || thing.loc == newturf)
 			continue
 		thing.forceMove(newturf, movetime = MOVE_GLIDE_CALC(glide_size,0))
-		if(CHECK_TICK && master.loc != curloc)
+		if(TICK_CHECK && master.loc != curloc)
 			// We moved again during the checktick, cancel current operation
 			break
 

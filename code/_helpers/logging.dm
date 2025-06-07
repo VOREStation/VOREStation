@@ -180,7 +180,7 @@
 	to_world_log("## UNIT_TEST: [text]")
 
 #ifdef REFERENCE_TRACKING_LOG
-#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#define log_reftracker(msg) WRITE_LOG(GLOB.diary, "## REF SEARCH [msg]")
 #else
 #define log_reftracker(msg)
 #endif

@@ -70,6 +70,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/sexualitytag = null
 		var/eventtag = GLOB.vantag_choices_list[VANTAG_NONE]
 		var/flavor_text = null
+		var/custom_link = null
 		var/tag
 		var/erptag
 		var/character_ad
@@ -116,6 +117,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 					ooc_notes += "\n\nDISLIKES\n\n[H.ooc_notes_dislikes]"
 			if(LAZYLEN(H.flavor_texts))
 				flavor_text = H.flavor_texts["general"]
+			if(H.custom_link)
+				custom_link = H.custom_link
 
 		if(isAI(C.mob))
 			var/mob/living/silicon/ai/A = C.mob
@@ -234,6 +237,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"erptag" = erptag,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
+			"custom_link" = custom_link,
 		)))
 
 	data["directory"] = directory_mobs

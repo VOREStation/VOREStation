@@ -94,7 +94,7 @@
 		H.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
 
 	//Apply damage
-	H.adjustCloneLoss((H.getMaxHealth() - CONFIG_GET(number/health_threshold_dead))*-0.75)
+	H.adjustCloneLoss((H.getMaxHealth() - (H.getMaxHealth()))*-0.75)
 	H.Paralyse(4)
 	H.updatehealth()
 
@@ -178,7 +178,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
+		else if(((occupant.health == occupant.getMaxHealth())) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
@@ -197,7 +197,7 @@
 
 /obj/machinery/clonepod/transhuman/get_completion()
 	if(occupant)
-		return 100 * ((occupant.health + abs(CONFIG_GET(number/health_threshold_dead))) / (occupant.maxHealth + abs(CONFIG_GET(number/health_threshold_dead))))
+		return 100 * ((occupant.health + (occupant.getMaxHealth()))) / (occupant.getMaxHealth() + abs(occupant.getMaxHealth()))
 	return 0
 
 /obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)
@@ -419,7 +419,7 @@
 
 	var/obj/item/stack/material/S = W
 	if(!(S.material.name in stored_material))
-		to_chat(user, span_warning("\The [src] doesn't accept [S.material]!"))
+		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
 		return
 
 	var/amnt = S.perunit
@@ -506,7 +506,7 @@
 	if(occupant)
 		data["name"] = occupant.name
 		data["health"] = occupant.health
-		data["maxHealth"] = occupant.maxHealth
+		data["maxHealth"] = occupant.getMaxHealth()
 		data["stat"] = occupant.stat
 		data["mindStatus"] = !!occupant.mind
 		data["mindName"] = occupant.mind?.name

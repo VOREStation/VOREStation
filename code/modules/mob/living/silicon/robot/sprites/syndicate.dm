@@ -25,6 +25,15 @@
 	name = "Drake"
 	sprite_icon_state = "drake"
 
+/datum/robot_sprite/dogborg/syndie/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_syndie.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
+
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/syndie

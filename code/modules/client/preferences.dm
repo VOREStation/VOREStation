@@ -13,6 +13,7 @@ var/list/preferences_datums = list()
 	var/muted = 0
 	var/last_ip
 	var/last_id
+	var/saved_notification = FALSE
 
 	//game-preferences
 	var/be_special = 0					//Special role selection
@@ -20,7 +21,7 @@ var/list/preferences_datums = list()
 	//character preferences
 	var/real_name						//our character's name
 	var/nickname						//our character's nickname
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = DEFAULT_BLOOD_TYPE		//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/headset = 1						//headset type
 	var/backbag = 2						//backpack type
@@ -36,7 +37,6 @@ var/list/preferences_datums = list()
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Language prefix keys
 	var/list/language_custom_keys = list() //Language custom call keys
-	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
 	var/list/traits						//Traits which modifier characters for better or worse (mostly worse).
@@ -61,7 +61,8 @@ var/list/preferences_datums = list()
 		"4"  = "character_preview_map:2,3",
 		"8"  = "character_preview_map:2,1",
 		"BG" = "character_preview_map:1,1 to 3,8",
-		"PMH" = "character_preview_map:2,7"
+		"PMH" = "character_preview_map:2,7",
+		"PMHjiggle" = "character_preview_map:102,7:107",
 	)
 
 		//Jobs, uses bitflags
@@ -97,8 +98,6 @@ var/list/preferences_datums = list()
 	var/list/flavour_texts_robot = list()
 	var/custom_link = null
 
-	var/list/body_descriptors = list()
-
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
@@ -128,8 +127,6 @@ var/list/preferences_datums = list()
 	// WE JUST HAVE NOWHERE ELSE TO STORE IT
 	var/list/action_button_screen_locs
 
-	var/list/volume_channels = list()
-
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
 	var/selecting_slots = FALSE
 
@@ -153,7 +150,6 @@ var/list/preferences_datums = list()
 	load_savefile()
 
 	// Legacy code
-	gear = list()
 	gear_list = list()
 	gear_slot = 1
 	// End legacy code
@@ -194,31 +190,9 @@ var/list/preferences_datums = list()
 		update_preview_icon()
 	show_character_previews()
 
-	var/dat = "<html><body><center>"
-
-	if(path)
-		dat += "Slot - "
-		dat += "<a href='byond://?src=\ref[src];load=1'>Load slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];reload=1'>Reload slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];resetslot=1'>Reset slot</a> - "
-		dat += "<a href='byond://?src=\ref[src];copy=1'>Copy slot</a>"
-
-	else
-		dat += "Please create an account to save your preferences."
-
-	dat += "<br>"
-	dat += player_setup.header()
-	dat += "<br><HR></center>"
-	dat += player_setup.content(user)
-
-	dat += "</body></html>"
-	//user << browse(dat, "window=preferences;size=635x736")
-	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
-	popup.set_content(dat)
-	popup.open(FALSE) // Skip registring onclose on the browser pane
-	onclose(user, "preferences_window", src) // We want to register on the window itself
+	current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+	update_tgui_static_data(user)
+	tgui_interact(user)
 
 /datum/preferences/proc/update_character_previews(var/mob/living/carbon/human/mannequin)
 	if(!client)
@@ -351,10 +325,6 @@ var/list/preferences_datums = list()
 		character.update_underwear()
 		character.update_hair()
 
-	if(LAZYLEN(character.descriptors))
-		for(var/entry in body_descriptors)
-			character.descriptors[entry] = body_descriptors[entry]
-
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
 		to_chat(user, span_warning("You already have a slot selection dialog open!"))
@@ -485,7 +455,7 @@ var/list/preferences_datums = list()
 	character.grad_style= grad_style
 	character.f_style	= f_style
 	character.grad_style= grad_style
-	character.b_type	= b_type
+	character.dna.b_type= b_type
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]
@@ -535,6 +505,9 @@ var/list/preferences_datums = list()
 	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
 	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
 
+	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
+	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
+
 	character.set_gender(biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
@@ -559,7 +532,7 @@ var/list/preferences_datums = list()
 				else
 					var/bodytype
 					var/datum/species/selected_species = GLOB.all_species[species]
-					if(selected_species.selects_bodytype)
+					if(custom_base)
 						bodytype = custom_base
 					else
 						bodytype = selected_species.get_bodytype()
@@ -582,22 +555,6 @@ var/list/preferences_datums = list()
 			if(O)
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
-
-	var/list/last_descriptors = list()
-	if(islist(body_descriptors))
-		last_descriptors = body_descriptors.Copy()
-	body_descriptors = list()
-
-	var/datum/species/mob_species = GLOB.all_species[species]
-	if(LAZYLEN(mob_species.descriptors))
-		for(var/entry in mob_species.descriptors)
-			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
-			if(istype(descriptor))
-				if(isnull(last_descriptors[entry]))
-					body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
-				else
-					body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
-	character.descriptors = body_descriptors
 
 	if (copy_flavour)
 		character.flavor_texts["general"]	= flavor_texts["general"]
@@ -623,6 +580,7 @@ var/list/preferences_datums = list()
 	character.fuzzy				= fuzzy
 	character.offset_override	= offset_override
 	character.voice_freq		= voice_freq
+	character.size_multiplier = size_multiplier
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	var/list/traits_to_copy = list(/datum/trait/neutral/tall,
@@ -649,7 +607,7 @@ var/list/preferences_datums = list()
 					character.species.vars[to_edit] = instance.var_changes[to_edit]
 	character.update_transform()
 	if(!voice_sound)
-		character.voice_sounds_list = GLOB.talk_sound
+		character.voice_sounds_list = DEFAULT_TALK_SOUNDS
 	else
 		character.voice_sounds_list = get_talk_sound(voice_sound)
 
@@ -657,13 +615,15 @@ var/list/preferences_datums = list()
 
 	var/datum/species/selected_species = GLOB.all_species[species]
 	var/bodytype_selected
-	if(selected_species.selects_bodytype)
+	if(custom_base)
 		bodytype_selected = custom_base
 	else
 		bodytype_selected = selected_species.get_bodytype(character)
 
 	character.dna.base_species = bodytype_selected
 	character.species.base_species = bodytype_selected
+	character.species.icobase = character.species.get_icobase()
+	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if (istype(character.species, /datum/species/shapeshifter))
 		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
@@ -674,7 +634,7 @@ var/list/preferences_datums = list()
 	character.custom_whisper	= lowertext(trim(custom_whisper))
 	character.custom_exclaim	= lowertext(trim(custom_exclaim))
 
-	character.digitigrade = selected_species.digi_allowed ? digitigrade : 0
+	character.digitigrade = digitigrade
 
 	for(var/obj/item/clothing/O in character.contents)
 		O.handle_digitigrade(character)

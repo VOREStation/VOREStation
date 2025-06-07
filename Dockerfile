@@ -19,7 +19,7 @@ RUN apt-get install -y --no-install-recommends \
 COPY dependencies.sh .
 
 RUN . ./dependencies.sh \
-	&& curl "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
+	&& curl -H "User-Agent: vstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
 	&& unzip byond.zip \
 	&& cd byond \
 	&& sed -i 's|install:|&\n\tmkdir -p $(MAN_DIR)/man6|' Makefile \

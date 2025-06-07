@@ -1193,6 +1193,14 @@ window "mainwindow"
 		anchor2 = -1,-1
 		is-visible = false
 		saved-params = ""
+	elem "tgui_shock"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
 		pos = 560,400
@@ -1512,32 +1520,6 @@ window "rpane"
 		background-color = none
 		is-visible = false
 		saved-params = ""
-
-window "preferences_window"
-	elem "preferences_window"
-		type = MAIN
-		pos = 281,0
-		size = 1000x800
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
-		statusbar = false
-	elem "preferences_browser"
-		type = BROWSER
-		pos = 0,0
-		size = 800x800
-		anchor1 = 0,0
-		anchor2 = 80,100
-		saved-params = ""
-	elem "character_preview_map"
-		type = MAP
-		pos = 800,0
-		size = 200x800
-		anchor1 = 80,0
-		anchor2 = 100,100
-		right-click = true
-		saved-params = "zoom;letterbox;zoom-mode"
 
 window "ooc_notes"
 	elem "ooc_notes"

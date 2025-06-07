@@ -14,7 +14,7 @@
 
 /area/awaymission/labyrinth/temple/entry
 	icon_state = "chapel"
-	ambience = list('sound/music/TheClownChild.ogg')
+	ambience = list('sound/music/theclownchild.ogg')
 
 // These extra areas must break up the large area, or the game crashes when machinery (like an airlock) makes sparks.
 // I have no idea why. It's a nasty bug.

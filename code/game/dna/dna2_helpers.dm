@@ -66,7 +66,7 @@
 		if(prob(prob))
 			M.dna.SetSEValue(i,rand(1,4095),1)
 	M.dna.UpdateSE()
-	domutcheck(M, null)
+	domutcheck(M, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
 	M.UpdateAppearance()
 	return
 
@@ -284,12 +284,10 @@
 		H.dna.blood_color = dna.blood_color
 		H.species.blood_reagents = H.dna.blood_reagents
 		H.species.blood_color = H.dna.blood_color
-		/*//TODO: Get these to work as well.
 		H.species.species_sounds = dna.species_sounds
 		H.species.gender_specific_species_sounds = dna.gender_specific_species_sounds
 		H.species.species_sounds_male = dna.species_sounds_male
 		H.species.species_sounds_female = dna.species_sounds_female
-		*///TODO End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too
 		H.force_update_limbs()

@@ -44,7 +44,7 @@
 		if("message")
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
-			var/mob/user = pda.fingerprintslast
+			var/mob/user = pda.forensic_data?.get_lastprint()
 			if(isliving(pda.loc))
 				user = pda.loc
 			log_admin("STATUS: [user] set status screen with [pda]. Message: [data1] [data2]")

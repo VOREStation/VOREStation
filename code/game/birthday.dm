@@ -22,7 +22,7 @@
 	if(birthday)	//woo
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
 		if(read_preference(/datum/preference/toggle/human/bday_announce))
-			var/list/sounds = list('sound/voice/BIRTH.ogg')
+			var/list/sounds = list('sound/voice/birth.ogg')
 			var/oursound = pickweight(sounds)
 			command_announcement.Announce("Confirmed presence of BIRTHDAY aboard the station! It is [src.real_name]'s birthday or similar sort of celebration, name day, hatchday, WHATEVER! We encourage you to go find [src.real_name] and show them how we celebrate around here! Have a secure day!", "BIRTHDAY!", oursound)
 	else
@@ -36,4 +36,4 @@
 		to_chat(src, span_notice("You are now [age]! Happy birthday!"))
 		write_preference_directly(/datum/preference/numeric/human/age, age)	//Set the age on the character sheet
 
-	client.prefs.save_character()	//Save the info
+	client?.prefs.save_character()	//Save the info

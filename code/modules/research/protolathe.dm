@@ -41,15 +41,6 @@
 /obj/machinery/r_n_d/protolathe/Initialize(mapload)
 	. = ..()
 
-// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
-	for(var/Name in name_to_material)
-		if(Name in materials)
-			continue
-
-		hidden_materials |= Name
-
-		materials[Name] = 0
-
 	default_apply_parts()
 
 /obj/machinery/r_n_d/protolathe/process()
@@ -148,7 +139,7 @@
 
 	var/obj/item/stack/material/S = O
 	if(!(S.material.name in materials))
-		to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 		return
 
 	busy = 1

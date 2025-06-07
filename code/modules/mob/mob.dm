@@ -14,7 +14,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	if(!istype(src,/mob/observer))
-		ghostize()
+		ghostize(FALSE)
 	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
@@ -77,6 +77,7 @@
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
+	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
@@ -373,6 +374,9 @@
 /mob/verb/abandon_mob()
 	set name = "Return to Menu"
 	set category = "OOC.Game"
+	if(istype(src, /mob/new_player))
+		to_chat(src, span_boldnotice("You are already in the lobby!"))
+		return
 
 	if(stat != DEAD || !ticker)
 		to_chat(src, span_boldnotice("You must be dead to use this!"))
@@ -442,6 +446,7 @@
 	if(!client)
 		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
+		M.key = null
 		return
 
 	M.has_respawned = TRUE //When we returned to main menu, send respawn message
@@ -601,6 +606,10 @@
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
+
+		if(M.no_pull_when_living && !(M.stat == DEAD)) //If it's now allowed to be pulled when living, and it's not dead yet, deny.
+			to_chat(src, span_warning("\The [M] won't let you just pull them!"))
+			return
 
 	else if(isobj(AM))
 		var/obj/I = AM
@@ -1138,6 +1147,18 @@
 	in_throw_mode = 1
 	if(throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
 		throw_icon.icon_state = "act_throw_on"
+
+/mob/verb/spacebar_throw_on()
+	set name = ".throwon"
+	set hidden = TRUE
+	set instant = TRUE
+	throw_mode_on()
+
+/mob/verb/spacebar_throw_off()
+	set name = ".throwoff"
+	set hidden = TRUE
+	set instant = TRUE
+	throw_mode_off()
 
 /mob/proc/isSynthetic()
 	return 0

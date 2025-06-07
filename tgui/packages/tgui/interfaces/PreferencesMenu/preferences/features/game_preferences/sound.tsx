@@ -153,3 +153,10 @@ export const ambience_chance: FeatureNumeric = {
     "The chance you'd like to hear ambience played to you (On area change, or by random ambience). 35 means a 35% chance to play ambience. This is a range from 0-100. 0 disables ambience playing entirely. This is also affected by Ambience Frequency.",
   component: FeatureNumberInput,
 };
+
+export const media_volume: FeatureNumeric = {
+  name: 'Jukebox Volume',
+  category: 'SOUNDS',
+  description: 'The percentage volume of the Jukebox from 0% to 100%.',
+  component: FeatureNumberInput,
+};

@@ -133,7 +133,7 @@
 	else if(still)
 		STOP_PROCESSING(SSprocessing, src)
 		for(var/zz in map_z)
-			toggle_move_stars(zz)
+			SSstarmover.toggle_move_stars(zz)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
@@ -148,7 +148,7 @@
 		START_PROCESSING(SSprocessing, src)
 		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
 		for(var/zz in map_z)
-			toggle_move_stars(zz, fore_dir)
+			SSstarmover.toggle_move_stars(zz, fore_dir)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start

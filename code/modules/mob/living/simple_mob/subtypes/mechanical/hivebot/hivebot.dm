@@ -13,7 +13,7 @@
 	movement_sound = 'sound/effects/servostep.ogg'
 
 	attacktext = list("clawed")
-	projectilesound = 'sound/weapons/Gunshot_old.ogg'
+	projectilesound = 'sound/weapons/gunshot_old.ogg'
 
 	organ_names = /decl/mob_organ_names/hivebot
 
