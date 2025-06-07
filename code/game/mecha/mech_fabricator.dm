@@ -51,7 +51,9 @@
 		MAT_VERDANTIUM = 0,
 		MAT_MORPHIUM = 0,
 		MAT_METALHYDROGEN = 0,
-		MAT_SUPERMATTER = 0)
+		MAT_SUPERMATTER = 0,
+		MAT_TITANIUM = 0)
+
 	var/res_max_amount = 200000
 
 	var/datum/research/files
