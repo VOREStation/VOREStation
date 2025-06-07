@@ -127,11 +127,13 @@
 		T = get_turf(clone)
 		var/turf/CT = T
 		for(var/i = 0 to 8)
+			if(!CT) // Emergency exit
+				return null
 			var/Cdir = pick(GLOB.cardinal)
 			if(prob(30))
 				Cdir = clone.dir // Results in hallucinations somewhat being in front of you
 			var/turf/NT = get_step(CT,Cdir)
-			if(!NT.density)
+			if(NT && !NT.density)
 				CT = NT
 		T = CT
 
