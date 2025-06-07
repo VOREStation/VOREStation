@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "Fake attackers crashing MC with invalid turfs"
