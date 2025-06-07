@@ -197,7 +197,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 		var/obj/item/stack/picked_metal = pick(possible_object_paths) //We select
 		if(picked_metal in banned_sheet_materials)
 			continue
-		var/datum/material/M = get_material_by_name(initial(picked_metal.name))
+		var/datum/material/M = get_material_by_name(initial(picked_metal.default_type))
 		if(M.flags & MATERIAL_NO_SYNTH)
 			continue
 		else
