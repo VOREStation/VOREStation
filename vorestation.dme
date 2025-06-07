@@ -2932,7 +2932,6 @@
 #include "code\modules\materials\materials\stone.dm"
 #include "code\modules\materials\materials\supermatter.dm"
 #include "code\modules\materials\materials\metals\hull.dm"
-#include "code\modules\materials\materials\metals\hull_vr.dm"
 #include "code\modules\materials\materials\metals\metals.dm"
 #include "code\modules\materials\materials\metals\metals_vr.dm"
 #include "code\modules\materials\materials\metals\plasteel.dm"

@@ -123,7 +123,7 @@
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in materials))
-		to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 		return 1
 	if(S.get_amount() < 1)
 		return 1 // Does this even happen? Sanity check I guess.

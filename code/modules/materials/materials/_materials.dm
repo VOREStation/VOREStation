@@ -96,7 +96,10 @@ var/list/name_to_material
 	return name_to_material[name]
 
 /proc/material_display_name(name)
-	var/datum/material/material = get_material_by_name(name)
+	if(istype(name, /datum/material)) //We were fed a datum.
+		var/datum/material/M = name
+		return M.display_name
+	var/datum/material/material = get_material_by_name(name) //If not a datum, we were fed a name.
 	if(material)
 		return material.display_name
 	return null
