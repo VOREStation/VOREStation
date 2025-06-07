@@ -191,7 +191,15 @@ var/global/list/emotes_by_key
 	if(sound_to_play)
 		if(istype(user, /mob))
 			var/mob/u = user
-			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = u.voice_freq, preference = sound_preferences, volume_channel = use_sound["volchannel"])
+			var/freq_to_use = 0
+			switch(u.emote_sound_mode)
+				if(EMOTE_SOUND_NO_FREQ)
+					freq_to_use = 0
+				if(EMOTE_SOUND_VOICE_FREQ)
+					freq_to_use = u.voice_freq
+				if(EMOTE_SOUND_VOICE_LIST)
+					freq_to_use = u.voice_freq
+			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = freq_to_use, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 		else
 			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 
