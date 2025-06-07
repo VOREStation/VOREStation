@@ -637,7 +637,7 @@
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
-			to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+			to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 			return
 
 		var/sname = "[S.name]"

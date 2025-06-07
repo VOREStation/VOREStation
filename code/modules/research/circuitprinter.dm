@@ -144,7 +144,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 	var/obj/item/stack/material/S = O
 	if(!(S.material.name in materials))
-		to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
+		to_chat(user, span_warning("The [src] doesn't accept [material_display_name(S.material)]!"))
 		return
 
 	busy = 1
