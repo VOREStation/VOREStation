@@ -237,6 +237,10 @@
 	buckle_lying = FALSE
 	circuit = /obj/item/circuitboard/grounding_rod
 
+/obj/machinery/power/grounding_rod/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/power/grounding_rod/examine()
 	. = ..()
 	if(anchored)

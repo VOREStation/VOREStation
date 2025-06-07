@@ -7,7 +7,7 @@
 	M.stop_flying()
 
 /obj/structure/table/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/obj/occupied = can_climb_turf(src)
 	if(occupied)
 		return ..()
 	if(material)
@@ -70,7 +70,7 @@
 	M.stop_flying()
 
 /obj/structure/railing/stumble_into(mob/living/M)
-	var/obj/occupied = turf_is_crowded()
+	var/obj/occupied = can_climb_turf(src)
 	if(occupied)
 		return ..()
 	playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)

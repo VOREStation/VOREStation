@@ -240,7 +240,6 @@
 	icon_state = "stair_u"
 	opacity   = TRUE
 	density   = TRUE // Too high to simply step up on
-	climbable = TRUE // But they can be climbed if the bottom is out
 
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/bottom/bottom = null
@@ -250,6 +249,7 @@
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
+	AddElement(/datum/element/climbable)
 
 /obj/structure/stairs/middle/Destroy()
 	if(top)
@@ -313,7 +313,6 @@
 /obj/structure/stairs/middle/MouseDrop_T(mob/target, mob/user)
 	. = ..()
 	if(check_integrity())
-		do_climb(user)
 		user.forceMove(get_turf(top)) // You can't really drag things when you have to climb up the gap in the stairs yourself
 
 /obj/structure/stairs/middle/Bumped(mob/user)

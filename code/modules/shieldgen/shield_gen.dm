@@ -41,7 +41,8 @@
 			if(get_dir(cap, src) == cap.dir)
 				capacitors |= cap
 				cap.owned_gen = src
-	return ..()
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/shield_gen/Destroy()
 	QDEL_LIST_NULL(field)

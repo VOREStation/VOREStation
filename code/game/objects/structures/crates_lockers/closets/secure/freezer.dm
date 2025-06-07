@@ -1,3 +1,7 @@
+/obj/structure/closet/secure_closet/freezer/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
 	req_access = list(access_kitchen)

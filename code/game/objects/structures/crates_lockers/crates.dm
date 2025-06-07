@@ -5,13 +5,16 @@
 	desc = "A rectangular steel crate."
 	icon = 'icons/obj/closets/bases/crate.dmi'
 	closet_appearance = /decl/closet_appearance/crate
-	climbable = TRUE
 	dir = 4 //Spawn facing 'forward' by default.
 	var/points_per_crate = 5
 	var/rigged = 0
 
 	open_sound = 'sound/effects/crate_open.ogg'
 	close_sound = 'sound/effects/crate_close.ogg'
+
+/obj/structure/closet/crate/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/closet/crate/can_open()
 	return 1
@@ -40,8 +43,7 @@
 		O.forceMove(get_turf(src))
 	src.opened = 1
 
-	if(climbable)
-		structure_shaken()
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)
 	update_icon()
 	return 1
 
@@ -68,14 +70,6 @@
 	src.opened = 0
 	update_icon()
 	return 1
-
-/obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
-	// Adds climbing from drag, You can't put yourself in crates with a drag anyway... Nore anyone else actually.
-	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		do_climb(target)
-	else
-		return ..()
 
 /obj/structure/closet/crate/verb/rotate_clockwise()
 	set name = "Rotate Crate Clockwise"
