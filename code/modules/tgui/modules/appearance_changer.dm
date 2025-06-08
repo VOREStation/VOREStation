@@ -497,7 +497,7 @@
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 					return TRUE
-		if("blood_reagent")
+		if("blood_reagent") //you know, this feels REALLY odd to be able to change at will but WHATEVER, WE BALL.
 			if(can_change(owner, APPEARANCE_MISC))
 				var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
 				if(new_blood_reagents)
@@ -1056,7 +1056,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
+	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
@@ -1069,7 +1069,7 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/superpower
 	name ="Appearance Editor (Superpower)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
+	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
@@ -1079,12 +1079,17 @@
 	return ..()
 
 // *******************************************************
-// Xenochimera Revive
+// Innate Species Transformation.
 // *******************************************************
-/datum/tgui_module/appearance_changer/xenochimera
-	name ="Appearance Editor (Xenochimera)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN | APPEARANCE_MISC
+/datum/tgui_module/appearance_changer/innate
+	name ="Appearance Editor (Innate)"
+	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
+	if(owner.stat != CONSCIOUS)
+		return STATUS_CLOSE
+	return ..()
 
 // *******************************************************
 // Body design console

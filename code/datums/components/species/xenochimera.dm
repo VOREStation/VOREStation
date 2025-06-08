@@ -285,7 +285,7 @@
 		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes. Additionally, you will have an appearance changer to make edits to your form.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			xc.chimera_regenerate()
-	else if (quickcheckuninjured())
+	else if(quickcheckuninjured())
 		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and give you an appearance changer to make any edits you wish to have when revived.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			xc.chimera_regenerate()
