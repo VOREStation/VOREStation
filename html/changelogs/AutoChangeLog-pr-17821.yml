@@ -1,0 +1,7 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - rscadd: "Dormant diseases may now be acquired via blood samples"
+  - qol: "Allowed virus immune species to get dormant diseases, as well as access to Disease Carrier trait"
+  - balance: "The extrapolator may find any disease with no regards of it's stealth"
+  - code_imp: "added GetDormantDiseases proc"
