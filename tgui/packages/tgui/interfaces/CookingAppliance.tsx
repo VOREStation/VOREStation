@@ -24,6 +24,7 @@ type Data = {
     empty: BooleanLike;
     progress: number;
     progressText: string;
+    prediction: string;
     container: string | null;
   }[];
 };
@@ -115,8 +116,13 @@ export const CookingAppliance = (props) => {
                   label={'Slot #' + (i + 1)}
                   verticalAlign="middle"
                   key={i}
+                  tooltip={
+                    content.prediction
+                      ? `Predicted Output: ${content.prediction}`
+                      : undefined
+                  }
                 >
-                  <Stack>
+                  <Stack align="center">
                     <Stack.Item>
                       <Button
                         disabled={!containersRemovable}

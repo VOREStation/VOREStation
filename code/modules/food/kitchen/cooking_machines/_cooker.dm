@@ -45,6 +45,7 @@
 				our_contents[i] = list()
 				our_contents[i]["progress"] = 0
 				our_contents[i]["progressText"] = report_progress_tgui(CI)
+				our_contents[i]["prediction"] = predict_cooking(CI)
 				if(CI.max_cookwork)
 					our_contents[i]["progress"] = CI.cookwork / CI.max_cookwork
 				if(CI.container)
