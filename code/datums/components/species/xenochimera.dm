@@ -413,6 +413,19 @@
 	if(!owner)
 		return
 	var/reload_slot = tgui_alert(owner, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
+
+	///This makes xenochimera shoot out their robotic limbs if they're not a FBP.
+	if(!owner.isSynthetic()) //If we aren't repairing robotic limbs (FBP) we reject any robot limbs we have and kick them out!
+		for(var/O in owner.organs_by_name)
+			var/obj/item/organ/external/organ = owner.organs_by_name[O]
+			if(!istype(organ, /obj/item/organ/external))
+				continue
+			if(!organ.robotic)
+				continue
+			else
+				organ.removed()
+	///End of xenochimera limb rejection code.
+
 	if(reload_slot == "From Slot" && owner.client) // Default is use record even if closes menu
 		// Update record from vanity copy of slot preview
 		owner.client.prefs.vanity_copy_to(owner,FALSE,TRUE,TRUE,FALSE)
