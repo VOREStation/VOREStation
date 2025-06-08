@@ -395,8 +395,8 @@ var/list/global/tank_gauge_cache = list()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
 		if(integrity <= 7)
 			if(!istype(src.loc,/obj/item/transfer_valve))
-				message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-				log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+				message_admins("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
+				log_game("Explosive tank rupture! last key to touch the tank was [forensic_data?.get_lastprint()].")
 
 			//Give the gas a chance to build up more pressure through reacting
 			air_contents.react()
@@ -454,7 +454,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(src, 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
+			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
 			visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [src] flies apart!"), span_warning("You hear a bang!"))
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
@@ -658,7 +658,6 @@ var/list/global/tank_gauge_cache = list()
 		tank.cut_overlay("bomb_assembly")
 
 /obj/item/tankassemblyproxy/HasProximity(turf/T, datum/weakref/WF, old_loc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()

@@ -255,6 +255,7 @@
 	Q.query()
 
 /obj/item/mmi/digital/proc/get_winner()
+	SIGNAL_HANDLER
 	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
 		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)

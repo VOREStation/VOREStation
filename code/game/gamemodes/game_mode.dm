@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 						escaped_humans++
 			if(M.stat != DEAD)
 				surviving_total++
-				if(M_area_type in escape_locations)
+				if(is_path_in_list(M_area_type, escape_locations))
 					escaped_total++
 
 				if(M_area_type == /area/shuttle/escape/centcom)

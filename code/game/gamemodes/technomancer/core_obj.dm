@@ -213,12 +213,12 @@
 	if(client && hud_used)
 		if(istype(back, /obj/item/technomancer_core)) //I reckon there's a better way of doing this.
 			var/obj/item/technomancer_core/core = back
-			wiz_energy_display.invisibility = 0
+			wiz_energy_display.invisibility = INVISIBILITY_NONE
 			var/ratio = core.energy / core.max_energy
 			ratio = max(round(ratio, 0.05) * 100, 5)
 			wiz_energy_display.icon_state = "wiz_energy[ratio]"
 		else
-			wiz_energy_display.invisibility = 101
+			wiz_energy_display.invisibility = INVISIBILITY_ABSTRACT
 
 //Resonance Aperture
 

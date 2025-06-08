@@ -14,7 +14,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	if(!istype(src,/mob/observer))
-		ghostize()
+		ghostize(FALSE)
 	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
@@ -81,7 +81,8 @@
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/show_message(msg, type, alt, alt_type)
+
 	if(!client && !teleop)	return
 
 	if (type)
@@ -373,6 +374,9 @@
 /mob/verb/abandon_mob()
 	set name = "Return to Menu"
 	set category = "OOC.Game"
+	if(istype(src, /mob/new_player))
+		to_chat(src, span_boldnotice("You are already in the lobby!"))
+		return
 
 	if(stat != DEAD || !ticker)
 		to_chat(src, span_boldnotice("You must be dead to use this!"))
@@ -442,6 +446,7 @@
 	if(!client)
 		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
+		M.key = null
 		return
 
 	M.has_respawned = TRUE //When we returned to main menu, send respawn message
@@ -480,7 +485,7 @@
 
 
 	targets += observe_list_format(GLOB.nuke_disks)
-	targets += observe_list_format(all_singularities)
+	targets += observe_list_format(GLOB.all_singularities)
 	targets += getmobs()
 	targets += observe_list_format(sortAtom(mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
@@ -563,6 +568,9 @@
 		to_chat(src, span_warning("It won't budge!"))
 		return
 
+	if(lying)
+		return
+
 	var/mob/M = AM
 	if(ismob(AM))
 
@@ -598,6 +606,10 @@
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
+
+		if(M.no_pull_when_living && !(M.stat == DEAD)) //If it's now allowed to be pulled when living, and it's not dead yet, deny.
+			to_chat(src, span_warning("\The [M] won't let you just pull them!"))
+			return
 
 	else if(isobj(AM))
 		var/obj/I = AM
@@ -1171,15 +1183,6 @@
 		var/mob/exploited = exploit_for.resolve()
 		exploited?.exploit_addons -= src
 		exploit_for = null
-	. = ..()
-
-
-
-/obj/Destroy()
-	if(istype(loc, /mob))
-		var/mob/holder = loc
-		if(src in holder.exploit_addons)
-			holder.exploit_addons -= src
 	. = ..()
 
 

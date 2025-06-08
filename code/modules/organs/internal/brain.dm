@@ -19,7 +19,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
 	var/defib_timer = -1
-	var/laststress = 0
 
 /obj/item/organ/internal/brain/process()
 	..()
@@ -111,6 +110,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			brainmob.ooc_notes = H.ooc_notes
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
 			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
+			brainmob.ooc_notes_favs = H.ooc_notes_favs
+			brainmob.ooc_notes_maybes = H.ooc_notes_maybes
+			brainmob.ooc_notes_style = H.ooc_notes_style
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)

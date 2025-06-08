@@ -96,7 +96,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	options["LEGACY: paiController"] = paiController
 	options["LEGACY: cameranet"] = cameranet
 	options["LEGACY: transfer_controller"] = transfer_controller
-	options["LEGACY: gas_data"] = gas_data
 
 	var/pick = tgui_input_list(mob, "Choose a controller to debug/view variables of.", "VV controller:", options)
 	if(!pick)

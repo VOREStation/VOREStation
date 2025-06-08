@@ -287,6 +287,12 @@
 /mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
 	. = ..()
 
+	if(istype(A,/obj/structure/ladder))
+		// Zmovement already allows these to be used with the verbs anyway
+		var/obj/structure/ladder/L = A
+		L.attack_hand(src)
+		return
+
 	if(!ismob(A) || A == src)
 		return
 

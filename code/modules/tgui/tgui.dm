@@ -37,8 +37,8 @@
 	var/datum/tgui_state/state = null
 	/// Rate limit client refreshes to prevent DoS.
 	COOLDOWN_DECLARE(refresh_cooldown)
-	/// Are byond mouse events beyond the window passed in to the ui
-	var/mouse_hooked = FALSE
+	/// The id of any ByondUi elements that we have opened
+	var/list/open_byondui_elements
 	/// The map z-level to display.
 	var/map_z_level = 1
 	/// The Parent UI
@@ -47,6 +47,9 @@
 	var/list/children = list()
 	/// Any partial packets that we have received from TGUI, waiting to be sent
 	var/partial_packets
+	/// If the window should be closed with other windows when requested
+	var/closeable = TRUE
+
 
 /**
  * public
@@ -60,13 +63,13 @@
  * optional parent_ui datum/tgui The parent of this UI.
  * optional ui_x int Deprecated: Window width.
  * optional ui_y int Deprecated: Window height.
+ * optional window datum/tgui_window: The window to display this TGUI within
  *
  * return datum/tgui The requested UI.
  */
-/datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui, ui_x, ui_y)
+/datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui, ui_x, ui_y, datum/tgui_window/window)
 	src.user = user
 	src.src_object = src_object
-	src.window_key = "[REF(src_object)]-main"
 	src.interface = interface
 	if(title)
 		src.title = title
@@ -78,6 +81,12 @@
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
 
+	if(window)
+		src.window = window
+		src.window_key = window.id
+	else
+		src.window_key = "[REF(src_object)]-main"
+
 /datum/tgui/Destroy()
 	user = null
 	src_object = null
@@ -88,22 +97,26 @@
  *
  * Open this UI (and initialize it with data).
  *
+ * Args:
+ * preinitialized: bool - if TRUE, we will not attempt to force strict mode on the tgui's window datum
+ *
  * return bool - TRUE if a new pooled window is opened, FALSE in all other situations including if a new pooled window didn't open because one already exists.
  */
-/datum/tgui/proc/open()
+/datum/tgui/proc/open(preinitialized = FALSE)
 	if(!user?.client)
 		return FALSE
-	if(window)
+	if(window && window.status > TGUI_WINDOW_LOADING)
 		return FALSE
 	process_status()
 	if(status < STATUS_UPDATE)
 		return FALSE
-	window = SStgui.request_pooled_window(user)
+	if(!window)
+		window = SStgui.request_pooled_window(user)
 	if(!window)
 		return FALSE
 	opened_at = world.time
 	window.acquire_lock(src)
-	if(!window.is_ready())
+	if(!window.is_ready() && !preinitialized)
 		window.initialize(
 			strict_mode = TRUE,
 			fancy = user.read_preference(/datum/preference/toggle/tgui_fancy),
@@ -116,8 +129,6 @@
 	window.send_message("update", get_payload(
 		with_data = TRUE,
 		with_static_data = TRUE))
-	if(mouse_hooked)
-		window.set_mouse_macro()
 	SStgui.on_open(src)
 
 	return TRUE
@@ -128,6 +139,8 @@
 		/datum/asset/simple/namespaced/fontawesome))
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/simple/namespaced/tgfont))
+	flush_queue |= window.send_asset(get_asset_datum(
+		/datum/asset/simple/namespaced/tgui_extra_fonts))
 	flush_queue |= window.send_asset(get_asset_datum(
 		/datum/asset/json/icon_ref_map))
 	for(var/datum/asset/asset in src_object.ui_assets(user))
@@ -158,11 +171,28 @@
 		window.close(can_be_suspended, logout)
 		src_object.tgui_close(user)
 		SStgui.on_close(src)
+
+		if(user.client)
+			terminate_byondui_elements()
+
 	state = null
 	if(parent_ui)
 		parent_ui.children -= src
 	parent_ui = null
 	qdel(src)
+
+/**
+ * public
+ *
+ * Closes all ByondUI elements, left dangling by a forceful TGUI exit,
+ * such as via Alt+F4, closing in non-fancy mode, or terminating the process
+ *
+ */
+/datum/tgui/proc/terminate_byondui_elements()
+	set waitfor = FALSE
+
+	for(var/byondui_element in open_byondui_elements)
+		winset(user.client, byondui_element, list("parent" = ""))
 
 /**
  * public
@@ -173,17 +203,6 @@
  */
 /datum/tgui/proc/set_autoupdate(autoupdate)
 	src.autoupdate = autoupdate
-
-/**
- * public
- *
- * Enable/disable passing through byond mouse events to the window
- *
- * required value bool Enable/disable hooking.
- */
-/datum/tgui/proc/set_mouse_hook(value)
-	src.mouse_hooked = value
-	//Handle unhooking/hooking on already open windows ?
 
 /**
  * public
@@ -262,18 +281,21 @@
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
-			"layout" = null, // user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout), // unused
+			"layout" = null, // user.read_preference(/datum/preference/choiced/tgui_layout), // unused
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
-		"map" = (using_map && using_map.path) ? using_map.path : "Unknown",
 		"mapZLevel" = map_z_level,
+		"mapInfo" = list(
+			"maxx" = world.maxx,
+			"maxy" = world.maxy,
+		),
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
 			"fancy" = user.read_preference(/datum/preference/toggle/tgui_fancy),
 			"locked" = user.read_preference(/datum/preference/toggle/tgui_lock),
-			"scale" = user.client.prefs.read_preference(/datum/preference/toggle/ui_scale),
+			"scale" = user.read_preference(/datum/preference/toggle/ui_scale),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,
@@ -306,7 +328,7 @@
 		return
 	var/datum/host = src_object.tgui_host(user)
 	// If the object or user died (or something else), abort.
-	if(!src_object || !host || !user || !window)
+	if(QDELETED(src_object) || QDELETED(host) || QDELETED(user) || QDELETED(window))
 		close(can_be_suspended = FALSE)
 		return
 	// Validate ping
@@ -409,6 +431,18 @@
 			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
 			#endif
 			src_object.tgui_fallback(payload)
+		if(TGUI_MANAGED_BYONDUI_TYPE_RENDER)
+			var/byond_ui_id = payload[TGUI_MANAGED_BYONDUI_PAYLOAD_ID]
+			if(!byond_ui_id || LAZYLEN(open_byondui_elements) > TGUI_MANAGED_BYONDUI_LIMIT)
+				return
+
+			LAZYOR(open_byondui_elements, byond_ui_id)
+		if(TGUI_MANAGED_BYONDUI_TYPE_UNMOUNT)
+			var/byond_ui_id = payload[TGUI_MANAGED_BYONDUI_PAYLOAD_ID]
+			if(!byond_ui_id)
+				return
+
+			LAZYREMOVE(open_byondui_elements, byond_ui_id)
 
 /// Wrapper for behavior to potentially wait until the next tick if the server is overloaded
 /datum/tgui/proc/on_act_message(act_type, payload, state)

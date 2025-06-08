@@ -49,7 +49,7 @@
 		if(F.id == id)
 			LAZYADD(targets,F)
 
-	for(var/obj/structure/closet/secure_closet/brig/C in all_brig_closets)
+	for(var/obj/structure/closet/secure_closet/brig/C in GLOB.all_brig_closets)
 		if(C.id == id)
 			LAZYADD(targets,C)
 

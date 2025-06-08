@@ -43,6 +43,7 @@
 // Parameters: None
 // Description: This refreshes the camera location
 /obj/item/communicator/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	if(!video_source?.can_use())
 		show_static()
 		return

@@ -129,10 +129,12 @@
 			t_He 	= "Shi"
 			t_His 	= "Hir"
 			t_his 	= "hir"
-	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
-		if(stat == DEAD)
-			return span_warning("[t_His] body is twitching subtly.")
-		else
-			return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
-	if(feral)
-		return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+	var/datum/component/xenochimera/xc = get_xenochimera_component()
+	if(xc)
+		if((xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			if(stat == DEAD)
+				return span_warning("[t_His] body is twitching subtly.")
+			else
+				return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
+		else if(xc.feral)
+			return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")

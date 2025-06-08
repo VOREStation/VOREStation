@@ -1,5 +1,8 @@
-// Vore belly options
+// Descriptions
+#define BELLY_DESCRIPTION_MESSAGE "b_desc"
+#define BELLY_DESCRIPTION_MESSAGE_ABSROED "b_absorbed_desc"
 
+// Vore belly options
 #define STRUGGLE_OUTSIDE "smo"
 #define STRUGGLE_INSIDE "smi"
 
@@ -27,8 +30,8 @@
 #define ABSORBED_ESCAPE_PREY "aescp"
 #define ABSORBED_ESCAPE_OUTSIDE "aescout"
 
-#define FULL_ABSORBED_ESCAPE_OWNER "aescfo"
-#define FULL_ABSORBED_ESCAPE_PREY "aescfp"
+#define ABSORBED_ESCAPE_FAIL_OWNER "aescfo"
+#define ABSORBED_ESCAPE_FAIL_PREY "aescfp"
 
 #define PRIMARY_TRANSFER_OWNER "trnspo"
 #define PRIMARY_TRANSFER_PREY "trnspp"
@@ -75,12 +78,37 @@
 #define BELLY_TRASH_EATER_IN "te_in"
 #define BELLY_TRASH_EATER_OUT "te_out"
 
+#define BELLY_LIQUID_MESSAGE1 "full1"
+#define BELLY_LIQUID_MESSAGE2 "full2"
+#define BELLY_LIQUID_MESSAGE3 "full3"
+#define BELLY_LIQUID_MESSAGE4 "full4"
+#define BELLY_LIQUID_MESSAGE5 "full5"
+
 #define VB_MESSAGE_SANITY(type) ASSERT(type == STRUGGLE_OUTSIDE || type == STRUGGLE_INSIDE || type == ABSORBED_STRUGGLE_OUSIDE || type == ABSORBED_STRUGGLE_INSIDE || type == ESCAPE_ATTEMPT_OWNER || type == ESCAPE_ATTEMPT_PREY ||\
 										type == ESCAPE_PREY || type == ESCAPE_OWNER || type == ESCAPE_OUTSIDE || type == ESCAPE_ITEM_PREY || type == ESCAPE_ITEM_OWNER || type == ESCAPE_ITEM_OUTSIDE || type == ESCAPE_FAIL_PREY ||\
 										type == ESCAPE_FAIL_OWNER || type == ABSORBED_ESCAPE_ATTEMPT_OWNER || type == ABSORBED_ESCAPE_ATTEMPT_PREY || type == ABSORBED_ESCAPE_PREY || type == ABSORBED_ESCAPE_OWNER ||\
-										type == ABSORBED_ESCAPE_OUTSIDE || type == FULL_ABSORBED_ESCAPE_PREY || type == FULL_ABSORBED_ESCAPE_OWNER || type == PRIMARY_TRANSFER_PREY || type == PRIMARY_TRANSFER_OWNER ||\
+										type == ABSORBED_ESCAPE_OUTSIDE || type == ABSORBED_ESCAPE_FAIL_PREY || type == ABSORBED_ESCAPE_FAIL_OWNER || type == PRIMARY_TRANSFER_PREY || type == PRIMARY_TRANSFER_OWNER ||\
 										type == SECONDARY_TRANSFER_PREY || type == SECONDARY_TRANSFER_OWNER || type == PRIMARY_AUTO_TRANSFER_PREY || type == PRIMARY_AUTO_TRANSFER_OWNER || type == SECONDARY_AUTO_TRANSFER_PREY ||\
 										type == SECONDARY_AUTO_TRANSFER_OWNER || type == DIGEST_CHANCE_PREY || type == DIGEST_CHANCE_OWNER || type == ABSORB_CHANCE_PREY || type == ABSORB_CHANCE_OWNER || type == DIGEST_OWNER ||\
 										type == DIGEST_PREY || type == ABSORB_OWNER || type == ABSORB_PREY || type == UNABSORBS_OWNER || type == UNABSORBS_PREY || type == EXAMINES || type == EXAMINES_ABSORBED ||\
 										type == BELLY_MODE_DIGEST || type == BELLY_MODE_HOLD || type == BELLY_MODE_HOLD_ABSORB || type == BELLY_MODE_ABSORB || type == BELLY_MODE_HEAL || type == BELLY_MODE_DRAIN ||\
-										type == BELLY_MODE_STEAL || type == BELLY_MODE_EGG || type == BELLY_MODE_SHRINK || type == BELLY_MODE_GROW || type == BELLY_MODE_UNABSORB || type == BELLY_TRASH_EATER_IN || type==BELLY_TRASH_EATER_OUT)
+										type == BELLY_MODE_STEAL || type == BELLY_MODE_EGG || type == BELLY_MODE_SHRINK || type == BELLY_MODE_GROW || type == BELLY_MODE_UNABSORB || type == BELLY_TRASH_EATER_IN || type==BELLY_TRASH_EATER_OUT ||\
+										type == BELLY_LIQUID_MESSAGE1 || type == BELLY_LIQUID_MESSAGE2 || type == BELLY_LIQUID_MESSAGE3 || type == BELLY_LIQUID_MESSAGE4 || type == BELLY_LIQUID_MESSAGE5)
+
+// Soulcatcher Message Options
+#define SC_INTERIOR_MESSAGE "sc_int"
+#define SC_CAPTURE_MEESAGE "sc_cap"
+#define SC_TRANSIT_MESSAGE "sc_transit"
+#define SC_RELEASE_MESSAGE "sc_rel"
+#define SC_TRANSFERE_MESSAGE "sc_transfer"
+#define SC_DELETE_MESSAGE "sc_del"
+
+// General Message Options
+#define TASTE_FLAVOR "setflavor"
+#define SMELL_FLAVOR "setsmell"
+
+// General Examine Messages
+#define GENERAL_EXAMINE_NUTRI "en"
+#define GENERAL_EXAMINE_WEIGHT "ew"
+
+#define VPPREF_MESSAGE_SANITY(type) ASSERT(type == GENERAL_EXAMINE_NUTRI || type == GENERAL_EXAMINE_WEIGHT)

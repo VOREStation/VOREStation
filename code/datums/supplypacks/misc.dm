@@ -250,7 +250,7 @@
 
 /datum/supply_pack/randomised/misc/explorer_shield
 	name = JOB_EXPLORER + " shield"
-	desc = "Two Physical and Two PSG shields for use by away teams. Requires EVA or Pilot's access."
+	desc = "Contains two random shields. These can be Physical or PSG shields for use by away teams. Requires EVA or Pilot's access."
 	num_contained = 2
 	contains = list(
 			/obj/item/shield/riot/explorer,

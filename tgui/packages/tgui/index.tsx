@@ -10,6 +10,7 @@ import './styles/themes/abductor.scss';
 import './styles/themes/cardtable.scss';
 import './styles/themes/spookyconsole.scss';
 import './styles/themes/hackerman.scss';
+import './styles/themes/crtsoul.scss';
 import './styles/themes/malfunction.scss';
 import './styles/themes/neutral.scss';
 import './styles/themes/ntos.scss';
@@ -28,6 +29,7 @@ import './styles/themes/wizard.scss';
 import './styles/themes/admin.scss';
 import './styles/themes/abstract.scss';
 import './styles/themes/bingle.scss';
+import './styles/themes/algae.scss';
 
 import { perf } from 'common/perf';
 import { setupGlobalEvents } from 'tgui-core/events';

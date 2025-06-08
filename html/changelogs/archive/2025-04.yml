@@ -252,3 +252,114 @@
 2025-04-23:
   Cerami:
   - bugfix: Your loadout items won't poof
+2025-04-24:
+  Asher-42:
+  - bugfix: resting causing an error
+2025-04-25:
+  Kashargul:
+  - bugfix: a crash when an empty regular expression was used in highlight blacklists
+  - code_imp: some less usr
+  MeepleMuncher:
+  - bugfix: Fixed an old programming error that caused hell ramen and soemmerfire
+      to continuously increase the body temperature of the mob that ingested it.
+  ShadowLarkens:
+  - rscadd: Pretty UI for the algae farm
+  - rscadd: Slightly prettier Canister UI.
+  - rscadd: Microwave UI is prettier now~
+  TheCaramelion:
+  - qol: Virus extrapolator can now identify stealthy viruses
+  - rscdel: Removed "old vomit" spreading viruses
+  - bugfix: Makes vaccines work again
+2025-04-26:
+  Cameron-The-Raven:
+  - rscadd: You can now crawl while down!
+  - rscadd: Species now have specific sounds and gendered sounds.
+  - qol: Weather can now be turned up/down in the character preferences
+  - balance: Xenochimera have licking wounds
+  - qol: Bellyrubbing is now an emote
+  - rscadd: Wolves now have vore stomachs
+  - qol: Staff can see when each other log out
+  Kashargul:
+  - bugfix: name loading for robot module selection
+  - bugfix: tgui say unsupported channels are no longer black on black in dark mode
+  ShadowLarkens:
+  - qol: RIGSuit UI made prettier and more usable!
+  - rscadd: /tg/'s fonts added, maptext now uses Grand9K Pixel.
+  Willburd:
+  - rscadd: vassilian autohiss
+  - rscadd: yingish autohiss
+  - code_imp: autohiss unit testing
+2025-04-27:
+  Asher-42:
+  - rscadd: adds dullahan taurs
+  - rscadd: naga wings
+  - rscadd: naga ears
+  Cameron-The-Raven:
+  - rscadd: You can now set your Favorite and Maybe OOC prefs.
+  - rscadd: You can now set your Sexuality and Gender in the Character Directory
+  Kash:
+  - bugfix: Fixes a bug where reagents would show up twice in the chem dispenser
+  Kashargul:
+  - bugfix: runtime on bad runes in persistent files
+  SatinIsle:
+  - code_imp: Added missing SIGNAL_HANDLER lines to many RegisterSignal() proc refs.
+  ShadowLarkens:
+  - rscadd: More immersive photocopier
+  - rscadd: Even more RIG startup screens
+  - rscadd: Added new lobby screen and new player experience.
+  - rscadd: TEG has pretty spinning fans
+  - rscadd: Disposal bin UI overhauled to be more skeuomorphic
+  TankTheBirb:
+  - rscadd: Adds Xenoarch access to the SD's EVA shuttle
+  TeleTubby2:
+  - rscadd: Added some new machines in maint, go find them!
+  - rscadd: Added some remote scene tools - bluespace stickers, and the voodoo kit.
+      They let you ahr pea - but remotely.
+  - rscdel: Removed some maint-trader spawn locations
+  - maptweak: Maint Recyclers and Maint Vendors both have several spawn locations
+      in maint
+  - refactor: fixed the logout commsig never getting sent
+  TheCaramelion:
+  - bugfix: Fixed Resistance not being calculated properly
+  - rscadd: Added old blood
+  - qol: Extrapolator can isolate symptoms now
+  - bugfix: Fixed Pandemic not saving the name of named diseases
+  - bugfix: Fixed Pandemic not printing the "virus release" notice
+  Tost:
+  - rscadd: Adds colour selection to earrings
+2025-04-28:
+  Kashargul:
+  - bugfix: muffle items not always working
+  - bugfix: matrix recolor not usable in char setup
+  - bugfix: item tf spawn points not assignable
+  - code_imp: move invisibility to defines
+  - admin: invisimin can no longer be used if your invis level is above the observer
+      level
+  SatinIsle:
+  - bugfix: Hides the item tf spawn option, as this is currently not functional.
+  ShadowLarkens:
+  - bugfix: Title screens work better
+  - bugfix: RIGs no longer get stuck loading
+  Willburd:
+  - qol: PAI may now climb up and down ladders, lattices, and move freely up and down
+      in zeroG
+  - qol: Air alarms show if they are controlled by an area's main alarm, or are the
+      main alarm themselves. So you can tell when all air alarms in an area are deconstructed
+  - bugfix: Air alarm settings now propagate to all other air alarms in an area
+  - rscadd: Air alarms do nothing if the main air alarm in an area is shorted
+2025-04-29:
+  Cameron-The-Raven:
+  - bugfix: Loadout items no longer disappear during migrations
+  Kashargul:
+  - code_imp: tgui-core 3.1.3
+  ShadowLarkens:
+  - bugfix: Lobby screen is less colorbandy
+  TeleTubby2:
+  - bugfix: fixed recyclers fucking up every button ever in tgui
+2025-04-30:
+  MeepleMuncher:
+  - rscadd: Wearing specific types of footwear preserves barefoot stepping sounds
+  ShadowLarkens:
+  - rscadd: Wires UI is now extra pretty
+  tacoguy7765093:
+  - code_imp: Adjustment on self surgery proc to allow synthetics to commit self surgery.

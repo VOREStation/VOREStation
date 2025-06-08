@@ -7,7 +7,6 @@
 
 	language = "Sol Common" //todo?
 	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/sharp)
-	light_dam = 2
 	darksight = 8
 	has_organ = list()
 	siemens_coefficient = 0
@@ -26,6 +25,8 @@
 	genders = list(NEUTER)
 
 	assisted_langs = list()
+
+	species_component = /datum/component/burninlight/shadow // Until a parent component like xenochimera have is needed, only handles burning in light.
 
 /datum/species/shadow/handle_death(var/mob/living/carbon/human/H)
 	spawn(1)

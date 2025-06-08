@@ -71,7 +71,6 @@
 		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 /obj/item/assembly_holder/HasProximity(turf/T, datum/weakref/WF, old_loc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()

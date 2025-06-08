@@ -67,8 +67,8 @@
 		occupantData["name"] = occupant.name
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
-		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
+		occupantData["maxHealth"] = occupant.getMaxHealth()
+		occupantData["minHealth"] = -(occupant.getMaxHealth())
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()
 		occupantData["toxLoss"] = occupant.getToxLoss()
@@ -177,8 +177,8 @@
 					playsound(src.loc, 'sound/machines/defib_success.ogg', 50, 0)
 				if(oxy && victim.getOxyLoss()>oxyAlarm)
 					playsound(src.loc, 'sound/machines/defib_safetyOff.ogg', 50, 0)
-				if(healthAnnounce && ((victim.health / victim.maxHealth) * 100) <= healthAlarm)
-					atom_say("[round(((victim.health / victim.maxHealth) * 100))]% health.")
+				if(healthAnnounce && ((victim.health / victim.getMaxHealth()) * 100) <= healthAlarm)
+					atom_say("[round(((victim.health / victim.getMaxHealth()) * 100))]% health.")
 
 // Surgery Helpers
 /obj/machinery/computer/operating/proc/build_surgery_list(mob/user)

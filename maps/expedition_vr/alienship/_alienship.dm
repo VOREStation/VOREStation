@@ -17,7 +17,7 @@
 	icon = 'alienship.dmi'
 	icon_state = null
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	//Shared!
 	var/static/mission_mode

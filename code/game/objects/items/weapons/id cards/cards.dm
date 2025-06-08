@@ -283,6 +283,7 @@
 		RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
 
 /obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
+	SIGNAL_HANDLER
 	if(old_loc == R || old_loc == R.module)
 		last_robot_loc = old_loc
 	if(!istype(loc, /obj/machinery) && loc != R && loc != R.module)

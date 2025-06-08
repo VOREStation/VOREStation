@@ -183,12 +183,11 @@ export const SettingsGeneral = (props) => {
           <Box inline>
             <ColorBox mr={1} color={interleaveColor} />
             <Input
-              expensive
               width="5em"
               monospace
               placeholder="#ffffff"
               value={interleaveColor}
-              onChange={(value) =>
+              onBlur={(value) =>
                 dispatch(
                   updateSettings({
                     interleaveColor: value,

@@ -2,7 +2,7 @@
 @use './colors.scss';
 
 .window {
-  background-color: black;
+  background-color: white;
   position: relative;
   overflow: hidden;
 }
@@ -27,6 +27,7 @@
 }
 
 .window-lightMode {
+  background-color: black;
   background-color: colors.$lightMode;
   border: 2px solid colors.$lightBorder;
 }
@@ -128,6 +129,7 @@
 }
 
 .button {
+  color: white;
   background-color: colors.$button;
   border-radius: 0.3rem;
   border: none;
@@ -159,6 +161,7 @@
 }
 
 .textarea {
+  color: white;
   background: transparent;
   border: none;
   font-family: inherit;
@@ -177,4 +180,8 @@
 
 .textarea-large {
   overflow-y: scroll;
+}
+
+.textarea-lightMode {
+  color: black;
 }
