@@ -305,4 +305,6 @@
 	return 0
 
 /datum/stock/proc/displayValues(var/mob/user)
-	user << browse(plotBarGraph(values, "[name] share value per share"), "window=stock_[name];size=450x450")
+	var/datum/browser/popup = new(user, "stock_[name]", "Share Value", 450, 450)
+	popup.set_content(plotBarGraph(values, "[name] share value per share"))
+	popup.open()

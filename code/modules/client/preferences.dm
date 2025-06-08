@@ -21,7 +21,7 @@ var/list/preferences_datums = list()
 	//character preferences
 	var/real_name						//our character's name
 	var/nickname						//our character's nickname
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = DEFAULT_BLOOD_TYPE		//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/headset = 1						//headset type
 	var/backbag = 2						//backpack type
@@ -455,7 +455,7 @@ var/list/preferences_datums = list()
 	character.grad_style= grad_style
 	character.f_style	= f_style
 	character.grad_style= grad_style
-	character.b_type	= b_type
+	character.dna.b_type= b_type
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]

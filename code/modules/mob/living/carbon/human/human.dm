@@ -1137,8 +1137,7 @@
 		return 0
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(!blood_DNA[M.dna.unique_enzymes])
-			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		add_blooddna(M.dna,M)
 	hand_blood_color = blood_color
 	update_bloodied()
 	add_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
@@ -1151,8 +1150,6 @@
 
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
-
-	gunshot_residue = null
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)

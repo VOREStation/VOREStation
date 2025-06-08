@@ -66,7 +66,7 @@
 		if(prob(prob))
 			M.dna.SetSEValue(i,rand(1,4095),1)
 	M.dna.UpdateSE()
-	domutcheck(M, null)
+	domutcheck(M, null, MUTCHK_FORCED|MUTCHK_HIDEMSG)
 	M.UpdateAppearance()
 	return
 
