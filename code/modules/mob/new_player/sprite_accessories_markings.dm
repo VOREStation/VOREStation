@@ -782,12 +782,12 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/taj_belly
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/taj_bellyfull
 	name = "Belly Fur Wide (Taj)"
 	icon_state = "taj_bellyfull"
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/taj_earsout
 	name = "Outer Ear (Taj)"
@@ -2718,6 +2718,30 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/digi/gradient
 	name = "Digitigrade Gradient, Legs (Only works with digitigrade legs)"
 	icon_state = "digigradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/hooves
+	name = "Digitigrade Hooves (Only works with digitigrade legs)"
+	icon_state = "deerhoof"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/fox
+	name = "Digitigrade fox legs (Only works with digitigrade legs)"
+	icon_state = "fox"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/tiger
+	name = "Digitigrade tiger legs (Only works with digitigrade legs)"
+	icon_state = "tiger"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
+/datum/sprite_accessory/marking/digi/gloss
+	name = "Digitigrade leg and foot gloss (Only works with digitigrade legs)"
+	icon_state = "gloss"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
 

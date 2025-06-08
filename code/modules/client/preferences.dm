@@ -21,7 +21,7 @@ var/list/preferences_datums = list()
 	//character preferences
 	var/real_name						//our character's name
 	var/nickname						//our character's nickname
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = DEFAULT_BLOOD_TYPE		//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/headset = 1						//headset type
 	var/backbag = 2						//backpack type
@@ -455,7 +455,7 @@ var/list/preferences_datums = list()
 	character.grad_style= grad_style
 	character.f_style	= f_style
 	character.grad_style= grad_style
-	character.b_type	= b_type
+	character.dna.b_type= b_type
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]
@@ -505,6 +505,9 @@ var/list/preferences_datums = list()
 	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
 	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
 
+	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
+	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
+
 	character.set_gender(biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
@@ -529,7 +532,7 @@ var/list/preferences_datums = list()
 				else
 					var/bodytype
 					var/datum/species/selected_species = GLOB.all_species[species]
-					if(selected_species.selects_bodytype)
+					if(custom_base)
 						bodytype = custom_base
 					else
 						bodytype = selected_species.get_bodytype()
@@ -577,6 +580,7 @@ var/list/preferences_datums = list()
 	character.fuzzy				= fuzzy
 	character.offset_override	= offset_override
 	character.voice_freq		= voice_freq
+	character.size_multiplier = size_multiplier
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	var/list/traits_to_copy = list(/datum/trait/neutral/tall,
@@ -611,13 +615,15 @@ var/list/preferences_datums = list()
 
 	var/datum/species/selected_species = GLOB.all_species[species]
 	var/bodytype_selected
-	if(selected_species.selects_bodytype)
+	if(custom_base)
 		bodytype_selected = custom_base
 	else
 		bodytype_selected = selected_species.get_bodytype(character)
 
 	character.dna.base_species = bodytype_selected
 	character.species.base_species = bodytype_selected
+	character.species.icobase = character.species.get_icobase()
+	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if (istype(character.species, /datum/species/shapeshifter))
 		wrapped_species_by_ref["\ref[character]"] = bodytype_selected

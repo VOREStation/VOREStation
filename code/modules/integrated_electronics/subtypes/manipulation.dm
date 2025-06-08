@@ -183,7 +183,7 @@
 			attached_grenade.det_time = between(1, detonation_time.data, 12) SECONDS
 		attached_grenade.activate()
 		var/atom/holder = loc
-		log_and_message_admins("activated a grenade assembly. Last touches: Assembly: [holder.fingerprintslast] Circuit: [fingerprintslast] Grenade: [attached_grenade.fingerprintslast]")
+		log_and_message_admins("activated a grenade assembly. Last touches: Assembly: [holder.forensic_data?.get_lastprint()] Circuit: [forensic_data?.get_lastprint()] Grenade: [attached_grenade.forensic_data?.get_lastprint()]")
 
 // These procs do not relocate the grenade, that's the callers responsibility
 /obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/grenade/G)

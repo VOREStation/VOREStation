@@ -101,9 +101,10 @@
 	var/colors = list("black","blue","red")
 
 /obj/item/pen/AltClick(mob/user)
+	if(!Adjacent(user))
+		return
 	to_chat(user, span_notice("Click."))
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
-	return
 
 /obj/item/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)

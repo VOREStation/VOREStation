@@ -229,8 +229,10 @@ default behaviour is:
 		MB.runOver(src)
 
 	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
+		if(!istype(buckled, /obj/vehicle) && !is_incorporeal()) // Don't run ourselves over, needed for going down stairs in vehicles!
+			// Checks if we are riding a vehicle instead of our buckled vehicle, so that our trailers don't flatten us either!
+			var/obj/vehicle/V = AM
+			V.RunOver(src)
 
 // Almost all of this handles pulling movables behind us
 /mob/living/Move(atom/newloc, direct, movetime)

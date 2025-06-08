@@ -191,7 +191,7 @@
 	if(on)
 		soundloop.start()
 		if (M.loc == loc)
-			wash(M)
+			do_wash(M)
 			process_heat(M)
 		for (var/atom/movable/G in src.loc)
 			G.wash(CLEAN_SCRUB)
@@ -262,7 +262,7 @@
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
 
-		M.wash(CLEAN_SCRUB)
+	O.wash(CLEAN_SCRUB)
 
 	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
 
@@ -546,7 +546,6 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.gunshot_residue = null
 		if(H.gloves)
 			H.gloves.wash(CLEAN_SCRUB)
 			H.update_inv_gloves()
@@ -559,7 +558,7 @@
 			H.bloody_hands = 0
 			H.germ_level = 0
 			H.hand_blood_color = null
-			LAZYCLEARLIST(H.blood_DNA)
+			H.forensic_data?.wash(CLEAN_SCRUB)
 		H.update_bloodied()
 	else
 		user.wash(CLEAN_SCRUB)

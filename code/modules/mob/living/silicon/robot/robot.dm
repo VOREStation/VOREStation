@@ -140,7 +140,7 @@
 	vore_fullness_ex = list()
 	vore_icon_bellies = list()
 
-/mob/living/silicon/robot/Initialize(mapload, is_decoy, unfinished = FALSE)
+/mob/living/silicon/robot/Initialize(mapload, is_decoy)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -171,7 +171,6 @@
 
 	init()
 	initialize_components()
-	//if(!unfinished)
 	// Create all the robot parts.
 	for(var/V in components) if(V != "power cell")
 		var/datum/robot_component/C = components[V]

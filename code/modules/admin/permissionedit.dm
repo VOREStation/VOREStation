@@ -467,7 +467,7 @@
 		admin_holder.rank_flags(),
 		350,
 		590,
-		allowed_edit_list = usr.client.holder.can_edit_rights_flags(),
+		allowed_edit_field = usr.client.holder.can_edit_rights_flags(),
 	)
 
 	admin_holder.disassociate()

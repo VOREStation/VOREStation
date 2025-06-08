@@ -2,7 +2,7 @@
 
 /obj/screen/movable/pic_in_pic/ai
 	var/mob/living/silicon/ai/ai
-	var/list/highlighted_mas = list()
+	var/mutable_appearance/highlighted_background
 	var/highlighted = FALSE
 	var/mob/observer/eye/aiEye/pic_in_pic/aiEye
 
@@ -26,51 +26,21 @@
 
 /obj/screen/movable/pic_in_pic/ai/make_backgrounds()
 	..()
-	var/mutable_appearance/base = new /mutable_appearance()
-	base.icon = 'icons/misc/pic_in_pic.dmi'
-	base.layer = DISPOSAL_LAYER
-	base.plane = PLATING_PLANE
-	base.appearance_flags = PIXEL_SCALE
-
-	for(var/direction in GLOB.cardinal)
-		var/mutable_appearance/dir = new /mutable_appearance(base)
-		dir.dir = direction
-		dir.icon_state = "background_highlight_[direction]"
-		highlighted_mas += dir
+	highlighted_background = new /mutable_appearance()
+	highlighted_background.icon = 'icons/hud/pic_in_pic.dmi'
+	highlighted_background.icon_state = "background_highlight"
+	highlighted_background.layer = DISPOSAL_LAYER
+	highlighted_background.plane = PLATING_PLANE
+	highlighted_background.appearance_flags = PIXEL_SCALE
 
 /obj/screen/movable/pic_in_pic/ai/add_background()
 	if((width > 0) && (height > 0))
-		if(!highlighted)
-			return ..()
-
-		for(var/mutable_appearance/dir in highlighted_mas)
-			var/matrix/M = matrix()
-			var/x_scale = 1
-			var/y_scale = 1
-
-			var/x_off = 0
-			var/y_off = 0
-
-			if(dir.dir & (NORTH|SOUTH))
-				x_scale = width
-				x_off = (width-1)/2 * world.icon_size
-				if(dir.dir & NORTH)
-					y_off = ((height-1) * world.icon_size) + 3
-				else
-					y_off = -3
-
-			if(dir.dir & (EAST|WEST))
-				y_scale = height
-				y_off = (height-1)/2 * world.icon_size
-				if(dir.dir & EAST)
-					x_off = ((width-1) * world.icon_size) + 3
-				else
-					x_off = -3
-
-			M.Scale(x_scale, y_scale)
-			M.Translate(x_off, y_off)
-			dir.transform = M
-			add_overlay(dir)
+		var/matrix/M = matrix()
+		M.Scale(width + 0.5, height + 0.5)
+		M.Translate((width-1)/2 * ICON_SIZE_X, (height-1)/2 * ICON_SIZE_Y)
+		highlighted_background.transform = M
+		standard_background.transform = M
+		add_overlay(highlighted ? highlighted_background : standard_background)
 
 /obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
 	if(!aiEye) // Exploit fix
@@ -98,24 +68,16 @@
 /obj/screen/movable/pic_in_pic/ai/proc/highlight()
 	if(highlighted)
 		return
-	if(!aiEye)
-		qdel(src)
-		return
 	highlighted = TRUE
-	cut_overlays()
-	add_background()
-	add_buttons()
+	cut_overlay(standard_background)
+	add_overlay(highlighted_background)
 
 /obj/screen/movable/pic_in_pic/ai/proc/unhighlight()
 	if(!highlighted)
 		return
-	if(!aiEye)
-		qdel(src)
-		return
 	highlighted = FALSE
-	cut_overlays()
-	add_background()
-	add_buttons()
+	cut_overlay(highlighted_background)
+	add_overlay(standard_background)
 
 /obj/screen/movable/pic_in_pic/ai/proc/set_ai(mob/living/silicon/ai/new_ai)
 	if(!aiEye && !QDELETED(src))
@@ -143,7 +105,7 @@ Whatever you did that made the last camera window disappear-- don't do that agai
 
 /turf/unsimulated/ai_visible
 	name = ""
-	icon = 'icons/misc/pic_in_pic.dmi'
+	icon = 'icons/hud/pic_in_pic.dmi'
 	icon_state = "room_background"
 	flags = NOJAUNT
 	plane = SPACE_PLANE

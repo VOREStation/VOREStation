@@ -84,7 +84,7 @@
 	playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	add_fingerprint(user)
 
-	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
+	if(blood_overlay && forensic_data?.has_blooddna()) //updates blood overlay, if any
 		cut_overlays()
 
 		var/icon/I = new /icon(src.icon, src.icon_state)

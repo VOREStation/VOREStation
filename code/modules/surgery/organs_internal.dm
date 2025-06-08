@@ -27,8 +27,8 @@
 	/obj/item/stack/medical/bruise_pack = 20
 	)
 
-	min_duration = 70
-	max_duration = 90
+	min_duration = 60
+	max_duration = 60
 
 /datum/surgery_step/internal/fix_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -129,8 +129,8 @@
 	/obj/item/storage/toolbox = 10 	//Percussive Maintenance
 	)
 
-	min_duration = 70
-	max_duration = 90
+	min_duration = 60
+	max_duration = 60
 
 /datum/surgery_step/fix_organic_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -206,8 +206,8 @@
 	/obj/item/material/shard = 50, 		\
 	)
 
-	min_duration = 90
-	max_duration = 110
+	min_duration = 60
+	max_duration = 60
 
 /datum/surgery_step/internal/detatch_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!..())
@@ -227,15 +227,17 @@
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/I = target.internal_organs_by_name[organ]
 		if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
-			attached_organs |= organ
+			attached_organs[I.name] = organ
 
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to prepare for removal?", "Organ Choice", attached_organs)
 	if(!organ_to_remove)
 		return 0
+	if(!attached_organs[organ_to_remove])
+		return 0
 
-	target.op_stage.current_organ = organ_to_remove
+	target.op_stage.current_organ = attached_organs[organ_to_remove]
 
-	return ..() && organ_to_remove
+	return ..() && attached_organs[organ_to_remove]
 
 /datum/surgery_step/internal/detatch_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -277,7 +279,7 @@
 	allowed_procs = list(IS_WIRECUTTER = 100) //FBP code also uses this, so let's be nice. Roboticists won't know to use hemostats.
 
 	min_duration = 60
-	max_duration = 80
+	max_duration = 60
 
 /datum/surgery_step/internal/remove_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!..())
@@ -303,7 +305,7 @@
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
 		if(istype(I) && (I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
-			removable_organs |= organ
+			removable_organs[I.name] = organ
 
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to remove?", "Organ Choice", removable_organs)
 	if(!organ_to_remove) //They chose cancel!
@@ -311,9 +313,10 @@
 		user.visible_message(span_filter_notice("[user] starts pulling \the [tool] from [target]'s [affected]."), \
 		span_filter_notice("You start pulling \the [tool] from [target]'s [affected]."))
 		user.balloon_alert_visible("starts pulling \the [tool] from [target]'s [affected]", "pulling \the [tool] from \the [affected]")
+	if(!removable_organs[organ_to_remove])
 		return
 
-	target.op_stage.current_organ = organ_to_remove
+	target.op_stage.current_organ = removable_organs[organ_to_remove]
 
 	user.visible_message(span_filter_notice("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool]."), \
 	span_filter_notice("You start removing [target]'s [target.op_stage.current_organ] with \the [tool]."))
@@ -355,8 +358,8 @@
 	/obj/item/organ = 100
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = 40
+	max_duration = 40
 
 /datum/surgery_step/internal/replace_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/internal/O = tool
@@ -380,13 +383,8 @@
 		to_chat(user, span_danger("You have no idea what species this person is. Report this on the bug tracker."))
 		return SURGERY_FAILURE
 
-	var/o_is = (O.gender == PLURAL) ? "are" : "is"
 	var/o_a =  (O.gender == PLURAL) ? "" : "a "
 	var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
-
-	if(O.damage > (O.max_damage * 0.75))
-		to_chat(user, span_warning("\The [O.organ_tag] [o_is] in no state to be transplanted."))
-		return SURGERY_FAILURE
 
 	if(!target.internal_organs_by_name[O.organ_tag])
 		organ_missing = 1
@@ -458,13 +456,13 @@
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/I = target.internal_organs_by_name[organ]
 		if(istype(I) && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
-			removable_organs |= organ
+			removable_organs[I.name] = organ
 
 	var/organ_to_replace = tgui_input_list(user, "Which organ do you want to reattach?", "Organ Choice", removable_organs)
 	if(!organ_to_replace)
 		return 0
 
-	target.op_stage.current_organ = organ_to_replace
+	target.op_stage.current_organ = removable_organs[organ_to_replace]
 	return ..()
 
 /datum/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

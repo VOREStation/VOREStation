@@ -26,6 +26,13 @@
 	return name
 
 /datum/species/proc/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
+	if(base_species == name) //We don't have a custom base_species? Return the normal icobase.
+		return (get_deform ? deform : icobase)
+	else
+		var/datum/species/S = GLOB.all_species[base_species]
+		if(S) //So species can have multiple iconbases.
+			return S.get_icobase(H, get_deform)
+	//fallback
 	return (get_deform ? deform : icobase)
 
 /datum/species/proc/get_station_variant()
