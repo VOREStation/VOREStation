@@ -381,60 +381,71 @@
 	if(!xc)
 		return
 	if(xc.revive_ready != REVIVING_DONE)
-		//Hwhat?
-		remove_verb(src, /mob/living/carbon/human/proc/hatch)
-		return
+		return //Hwhat?
 
-	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
+	// Default is use internal record, even if closes menu
+	var/reload_slot = tgui_alert(src, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
+
+	// Check if valid to load from this slot
+	var/from_slot = ""
+	from_slot = "You'll hatch using your current appearance"
+	if(reload_slot == "From Slot" && client)
+		if(client.prefs.species == SPECIES_PROTEAN) // Exploit protection
+			to_chat(src,span_warning("You cannot copy nanoform prosthetic limbs from this species. Please try another character."))
+			return
+		var/slot_is_synth = ((O_BRAIN in client.prefs.organ_data) && client.prefs.organ_data[O_BRAIN])
+		if(slot_is_synth && !isSynthetic()) // Prevents some pretty weird situations
+			to_chat(src,span_warning("Cannot apply character appearance. [slot_is_synth ? "The slot's character is synthetic." : "The slot's character is organic."] Slot must match the current body's synthetic state. Please try another character."))
+			return
+		from_slot = "You'll hatch using [client.prefs.real_name]'s appearance"
+
+	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view. [from_slot]! Are you sure?", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
+		///This makes xenochimera shoot out their robotic limbs if they're not a FBP.
+		if(!isSynthetic()) //If we aren't repairing robotic limbs (FBP) we reject any robot limbs we have and kick them out!
+			for(var/O in organs_by_name)
+				var/obj/item/organ/external/organ = organs_by_name[O]
+				if(!istype(organ, /obj/item/organ/external))
+					continue
+				if(!organ.robotic)
+					continue
+				else
+					organ.removed()
+		///End of xenochimera limb rejection code.
+
 		//Dead when hatching
+		var/sickness_duration = 10 MINUTES
+		var/has_braindamage = FALSE
 		if(stat == DEAD)
-			var/sickness_duration = 10 MINUTES
 			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
 			if(!hasnutriment())
 				nutrition=nutrition * 0.75
 				sickness_duration = 20 MINUTES
-			xc.chimera_hatch()
+			has_braindamage = TRUE
+
+		if(reload_slot == "From Slot" && client)
+			// Update record from vanity copy of slot preview
+			client.prefs.vanity_copy_to(src,FALSE,TRUE,TRUE,FALSE)
+			// No undies
+			for(var/category in all_underwear)
+				hide_underwear[category] = TRUE
+			update_underwear()
+			// updoot
+			xc.handle_record()
+
+		// Finalize!
+		remove_verb(src, /mob/living/carbon/human/proc/hatch)
+		visible_message(span_warning(span_huge("[src] rises to \his feet."))) //Bloody hell...
+		clear_alert("hatch")
+		xc.chimera_hatch()
+		if(has_braindamage)
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
-			visible_message(span_warning("<p>" + span_huge("The former corpse staggers to its feet, all its former wounds having vanished...") + "</p>")) //Bloody hell...
-			clear_alert("hatch")
-			return
-
-		//Alive when hatching
-		else
-			xc.chimera_hatch()
-
-			visible_message(span_warning("<p>" + span_huge("[src] rises to \his feet.") + "</p>")) //Bloody hell...
-			clear_alert("hatch")
 
 /datum/component/xenochimera/proc/chimera_hatch()
 	if(!owner)
 		return
-	var/reload_slot = tgui_alert(owner, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
-
-	///This makes xenochimera shoot out their robotic limbs if they're not a FBP.
-	if(!owner.isSynthetic()) //If we aren't repairing robotic limbs (FBP) we reject any robot limbs we have and kick them out!
-		for(var/O in owner.organs_by_name)
-			var/obj/item/organ/external/organ = owner.organs_by_name[O]
-			if(!istype(organ, /obj/item/organ/external))
-				continue
-			if(!organ.robotic)
-				continue
-			else
-				organ.removed()
-	///End of xenochimera limb rejection code.
-
-	if(reload_slot == "From Slot" && owner.client) // Default is use record even if closes menu
-		// Update record from vanity copy of slot preview
-		owner.client.prefs.vanity_copy_to(owner,FALSE,TRUE,TRUE,FALSE)
-		// No undies
-		for(var/category in owner.all_underwear)
-			owner.hide_underwear[category] = TRUE
-		owner.update_underwear()
-		// updoot
-		handle_record()
 
 	remove_verb(owner, /mob/living/carbon/human/proc/hatch)
 	to_chat(owner, span_notice("Your new body awakens, bursting free from your old skin."))
