@@ -484,7 +484,7 @@
 					owner.species.icobase = owner.species.get_icobase()
 					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
 					owner.species.vanity_base_fit = new_species
-					if(istype(owner.species, /datum/species/shapeshifter))
+					if(istype(owner.species, /datum/species/shapeshifter)) //TODO: See if this is still needed.
 						wrapped_species_by_ref["\ref[owner]"] = new_species
 					owner.regenerate_icons()
 					generate_data(ui.user, owner)
@@ -574,6 +574,15 @@
 									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
+		if("load_saveslot") //saveslot_load
+			if(can_change(owner, APPEARANCE_ALL_COSMETIC))
+				if(tgui_alert(owner, "Are you certain you wish to load the currently selected savefile?", "Load Savefile", list("No","Yes")) == "Yes")
+					if(owner && owner.client) //sanity
+						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE)
+						return TRUE
+					return TRUE
+				else
+					return TRUE
 		// ***********************************
 		// Body designer UI
 		// ***********************************
@@ -643,15 +652,6 @@
 				BD.make_fake_owner()
 				DC.selected_record = FALSE
 				return TRUE
-		if("load_saveslot") //saveslot_load
-			if(can_change(owner, APPEARANCE_ALL_COSMETIC))
-				if(tgui_alert(owner, "Are you certain you wish to load the currently selected savefile?", "Load Savefile", list("No","Yes")) == "Yes")
-					if(owner && owner.client) //sanity
-						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE)
-						return TRUE
-					return TRUE
-				else
-					return TRUE
 	return FALSE
 
 /datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)

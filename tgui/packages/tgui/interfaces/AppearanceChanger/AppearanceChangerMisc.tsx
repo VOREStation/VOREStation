@@ -15,6 +15,13 @@ export const AppearanceChangerMisc = (props) => {
   return (
     <Section title="Misc" fill scrollable>
       <Stack vertical fill>
+        <Section title="Load Currently Selected Savefile">
+          <LabeledList.Item label="Load Savefile">
+            <Button icon="pen" onClick={() => act('load_saveslot')}>
+              {'Load'}
+            </Button>
+          </LabeledList.Item>
+        </Section>
         <Section title="Appearance">
           <LabeledList.Item label="Species Appearance">
             <Button
