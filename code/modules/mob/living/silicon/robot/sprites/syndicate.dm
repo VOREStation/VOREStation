@@ -266,12 +266,12 @@
 
 /datum/robot_sprite/dogborg/syndicate/ninja
 	module_type = "Ninja"
-	sprite_icon = 'icons/mob/robot/ninja64x32.dmi'
+	sprite_icon = 'icons/mob/robot/ninja.dmi'
 	sprite_hud_icon_state = "malf"
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja
 	module_type = "Ninja"
-	sprite_icon = 'icons/mob/robot/ninja64x32_tall.dmi'
+	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_hud_icon_state = "malf"
 	icon_x = 32
 	pixel_x = 0
@@ -285,15 +285,15 @@
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
+	pixel_x = -16
 
-	/datum/robot_sprite/dogborg/tall/syndicate/ninja/mekaninja
+/datum/robot_sprite/dogborg/tall/syndicate/ninja/mekaninja
 	name = "Meka"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_icon_state = "mekaninja"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja/fmekaninja
@@ -303,7 +303,6 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja/mmekaninja
@@ -313,7 +312,6 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja/mmekaninja
@@ -323,7 +321,6 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja/dullataurninja
@@ -332,6 +329,6 @@
 	sprite_icon_state = "dullataurninja"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = TRUE
+	has_vore_belly_sprites = FALSE
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
