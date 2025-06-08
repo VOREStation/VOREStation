@@ -60,7 +60,10 @@
 
 /datum/component/xenochimera/proc/trigger_revival()
 	ASSERT(revival_record)
-	revival_record.revive_xenochimera(owner,FALSE)
+	if(owner.isSynthetic())
+		revival_record.revive_xenochimera(owner,TRUE)
+	else
+		revival_record.revive_xenochimera(owner,FALSE)
 
 /datum/component/xenochimera/proc/handle_feralness()
 	//first, calculate how stressed the chimera is
