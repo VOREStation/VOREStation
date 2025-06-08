@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "fixed mobs that qdel on death, causing crashes when crushed by doors and dying."
