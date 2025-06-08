@@ -414,7 +414,7 @@
 		// Update record from vanity copy of slot preview
 		owner.client.prefs.vanity_copy_to(owner,FALSE,TRUE,TRUE,FALSE)
 		// No undies
-		for(var/category in all_underwear)
+		for(var/category in owner.all_underwear)
 			owner.hide_underwear[category] = TRUE
 		owner.update_underwear()
 		// updoot
