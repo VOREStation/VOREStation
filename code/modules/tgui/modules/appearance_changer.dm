@@ -478,21 +478,14 @@
 				return TRUE
 		if("base_icon")
 			if(can_change(owner, APPEARANCE_MISC))
-				if(owner.species.selects_bodytype == SELECTS_BODYTYPE_FALSE)
-					var/datum/species/S = GLOB.all_species[owner.species.name]
-					owner.species.base_species = S.base_species // Return to original form
-					generate_data(ui.user, owner)
-					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-					return TRUE
-				var/list/choices
-				var/datum/species/S = GLOB.all_species[owner.species.name]
-				if(S.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
-					choices = S.get_valid_shapeshifter_forms()
-				else if(S.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
-					choices = GLOB.custom_species_bases
-				var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", choices)
+				var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", GLOB.custom_species_bases)
 				if(new_species)
 					owner.species.base_species = new_species
+					owner.species.icobase = owner.species.get_icobase()
+					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
+					owner.species.vanity_base_fit = new_species
+					if(istype(owner.species, /datum/species/shapeshifter))
+						wrapped_species_by_ref["\ref[owner]"] = new_species
 					owner.regenerate_icons()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -650,6 +643,15 @@
 				BD.make_fake_owner()
 				DC.selected_record = FALSE
 				return TRUE
+		if("load_saveslot") //saveslot_load
+			if(can_change(owner, APPEARANCE_ALL_COSMETIC))
+				if(tgui_alert(owner, "Are you certain you wish to load the currently selected savefile?", "Load Savefile", list("No","Yes")) == "Yes")
+					if(owner && owner.client) //sanity
+						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE)
+						return TRUE
+					return TRUE
+				else
+					return TRUE
 	return FALSE
 
 /datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
@@ -807,6 +809,7 @@
 	data["gender"] = owner.gender
 	data["gender_id"] = owner.identifying_gender //This is saved to your MIND.
 	data["change_race"] = can_change(owner, APPEARANCE_RACE)
+	data["saveslot_load"] = can_change(owner, APPEARANCE_ALL_COSMETIC)
 	data["change_misc"] = can_change(owner, APPEARANCE_MISC)
 
 	data["change_gender"] = can_change(owner, APPEARANCE_GENDER)
