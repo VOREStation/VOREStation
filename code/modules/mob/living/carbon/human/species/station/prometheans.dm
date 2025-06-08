@@ -406,7 +406,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		prommie_intoblob()
 
 /mob/living/carbon/human/proc/innate_shapeshifting()
-	set name = "Transform Shape"
+	set name = "Transform Appearance"
 	set category = "Abilities.Superpower"
 	var/datum/tgui_module/appearance_changer/innate/I = new(src, src)
 	I.tgui_interact(src)
