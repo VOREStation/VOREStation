@@ -282,15 +282,15 @@
 		return
 	// Sanity is mostly handled in chimera_regenerate()
 	if(stat == DEAD)
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes. Additionally, you will have an appearance changer to make edits to your form.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			xc.chimera_regenerate()
 	else if(quickcheckuninjured())
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and give you an appearance changer to make any edits you wish to have when revived.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			xc.chimera_regenerate()
 	else
-		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move. Additionally, you will have an appearance changer to make edits to your form.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
 			xc.chimera_regenerate()
 
@@ -409,10 +409,15 @@
 /datum/component/xenochimera/proc/chimera_hatch()
 	if(!owner)
 		return
-	var/reload_slot = tgui_alert(src, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
+	var/reload_slot = tgui_alert(owner, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
 	if(reload_slot == "From Slot" && owner.client) // Default is use record even if closes menu
 		// Update record from vanity copy of slot preview
 		owner.client.prefs.vanity_copy_to(owner,FALSE,TRUE,TRUE,FALSE)
+		// No undies
+		for(var/category in all_underwear)
+			owner.hide_underwear[category] = TRUE
+		owner.update_underwear()
+		// updoot
 		handle_record()
 
 	remove_verb(owner, /mob/living/carbon/human/proc/hatch)
