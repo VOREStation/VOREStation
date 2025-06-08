@@ -188,6 +188,14 @@
 		viruses_to_return += D
 	return viruses_to_return
 
+/mob/proc/GetDormantDiseases()
+	LAZYINITLIST(viruses)
+	var/list/viruses_to_return = list()
+	for(var/datum/disease/D in viruses)
+		if(D.virus_modifiers & DORMANT)
+			viruses_to_return += D
+	return viruses_to_return
+
 /mob/proc/GetResistances()
 	LAZYINITLIST(resistances)
 	return resistances
