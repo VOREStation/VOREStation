@@ -281,11 +281,11 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v3/ninja.dmi'
 	sprite_icon_state = "dullahanninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = -16
+	icon_x = 64
 
 /datum/robot_sprite/dogborg/tall/syndicate/ninja/mekaninja
 	name = "Meka"
@@ -324,7 +324,6 @@
 	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
 	sprite_icon_state = "dullataurninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
