@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - admin: "Admin verb subsystem is now integrated and a small amount of verbs have been converted into the new format (categories or verb names are still the same of course)."

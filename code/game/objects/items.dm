@@ -1168,4 +1168,4 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 	if(cleanname)
 		name = cleanname
 	if(cleandesc)
-		name = cleandesc
+		desc = cleandesc
