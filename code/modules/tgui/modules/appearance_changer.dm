@@ -96,6 +96,7 @@
 	if(owner == user || !customize_usr)
 		close_ui()
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		SEND_SIGNAL(owner, COMSIG_HUMAN_DNA_FINALIZED) // Update any components using our saved appearance
 		owner = null
 		last_camera_turf = null
 		cut_data()
