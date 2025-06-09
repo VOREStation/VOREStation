@@ -326,4 +326,4 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	sprite_decals = list("decals")
-	rest_sprite_options = list("Default", "Sit")
+	rest_sprite_options = list("Default")
