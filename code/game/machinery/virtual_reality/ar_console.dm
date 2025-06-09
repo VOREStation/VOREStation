@@ -135,6 +135,8 @@
 			avatar.sync_organ_dna()
 			avatar.initialize_vessel()
 
+		SEND_SIGNAL(avatar, COMSIG_HUMAN_DNA_FINALIZED)
+
 		var/newname = sanitize(tgui_input_text(avatar, "Your mind feels foggy. You're certain your name is [occupant.real_name], but it could also be [avatar.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if (newname)
 			avatar.real_name = newname

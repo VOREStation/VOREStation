@@ -39,7 +39,7 @@
 	. = FALSE
 	var/sickrisk = 1
 
-	if(isSynthetic() || species.virus_immune || HAS_TRAIT(src, STRONG_IMMUNITY_TRAIT)) // Don't bother
+	if(isSynthetic() || HAS_TRAIT(src, STRONG_IMMUNITY_TRAIT)) // Don't bother
 		return
 
 	switch(get_species())
