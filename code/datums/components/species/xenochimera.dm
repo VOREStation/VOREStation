@@ -58,12 +58,14 @@
 	revive_ready = REVIVING_NOW
 	revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
 
-/datum/component/xenochimera/proc/trigger_revival()
+/datum/component/xenochimera/proc/trigger_revival(var/from_save_slot)
 	ASSERT(revival_record)
 	if(owner.isSynthetic())
-		revival_record.revive_xenochimera(owner,TRUE)
+		revival_record.revive_xenochimera(owner,TRUE,from_save_slot)
 	else
-		revival_record.revive_xenochimera(owner,FALSE)
+		revival_record.revive_xenochimera(owner,FALSE,from_save_slot)
+	if(from_save_slot)
+		handle_record() // Update record
 
 /datum/component/xenochimera/proc/handle_feralness()
 	//first, calculate how stressed the chimera is
@@ -424,26 +426,16 @@
 				sickness_duration = 20 MINUTES
 			has_braindamage = TRUE
 
-		if(reload_slot == "From Slot" && client)
-			// Update record from vanity copy of slot preview
-			client.prefs.vanity_copy_to(src,FALSE,TRUE,TRUE,FALSE)
-			// No undies
-			for(var/category in all_underwear)
-				hide_underwear[category] = TRUE
-			update_underwear()
-			// updoot
-			xc.handle_record()
-
 		// Finalize!
 		remove_verb(src, /mob/living/carbon/human/proc/hatch)
-		visible_message(span_warning(span_huge("[src] rises to \his feet."))) //Bloody hell...
 		clear_alert("hatch")
-		xc.chimera_hatch()
+		xc.chimera_hatch((reload_slot == "From Slot" && client))
+		visible_message(span_warning(span_huge("[src] rises to \his feet."))) //Bloody hell...
 		if(has_braindamage)
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
 
-/datum/component/xenochimera/proc/chimera_hatch()
+/datum/component/xenochimera/proc/chimera_hatch(var/from_save_slot)
 	if(!owner)
 		return
 
@@ -453,7 +445,7 @@
 	var/old_nutrition = owner.nutrition
 	var/braindamage = min(5, max(0, (owner.brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
 	var/uninjured=owner.quickcheckuninjured()
-	trigger_revival()
+	trigger_revival(from_save_slot)
 
 	owner.mutations.Remove(HUSK)
 	owner.setBrainLoss(braindamage)
@@ -469,7 +461,7 @@
 		var/blood_color = owner.species.blood_color
 		var/flesh_color = owner.species.flesh_color
 		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-		owner.visible_message(span_danger("<p>" + span_huge("The lifeless husk of [owner] bursts open, revealing a new, intact copy in the pool of viscera.") + "</p>")) //Bloody hell...
+		owner.visible_message(span_danger(span_huge("The lifeless husk of [owner] bursts open, revealing a new, intact copy in the pool of viscera."))) //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive
 		owner.nutrition = old_nutrition * 0.9

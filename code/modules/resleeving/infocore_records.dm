@@ -364,7 +364,7 @@
 /**
  * Specialty revival procs. Uses the BR for data, but needs to handle some weird logic for xenochi/slimes
  */
-/datum/transhuman/body_record/proc/revive_xenochimera(var/mob/living/carbon/human/H,var/heal_robot_limbs)
+/datum/transhuman/body_record/proc/revive_xenochimera(var/mob/living/carbon/human/H,var/heal_robot_limbs,var/from_save_slot)
 	// Boy this one is complex, but what do we expect when trying to heal damage and organ loss in this game!
 	if(!H || QDELETED(H)) // Someone, somewhere, will call this without any safety. I feel it in my bones cappin'
 		return
@@ -397,6 +397,13 @@
 
 	// Begin actual REVIVIAL. Do NOT use revive(). That uses client prefs and allows save hacking.
 	H.revival_healing_action()
+
+	// Update record from vanity copy of slot if needed
+	if(from_save_slot)
+		H.client.prefs.vanity_copy_to(H,FALSE,TRUE,TRUE,FALSE)
+		for(var/category in H.all_underwear) // No undies
+			H.hide_underwear[category] = TRUE
+		H.update_underwear()
 
 	return H
 
