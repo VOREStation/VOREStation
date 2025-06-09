@@ -543,7 +543,8 @@ var/list/preferences_datums = list()
 
 	for(var/N in character.organs_by_name)
 		var/obj/item/organ/external/O = character.organs_by_name[N]
-		O.markings.Cut()
+		if(O)
+			O.markings.Cut()
 
 	var/priority = 0
 	for(var/M in body_markings)
