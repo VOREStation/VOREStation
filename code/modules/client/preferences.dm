@@ -581,7 +581,6 @@ var/list/preferences_datums = list()
 	character.fuzzy				= fuzzy
 	character.offset_override	= offset_override
 	character.voice_freq		= voice_freq
-	character.size_multiplier = size_multiplier
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	var/list/traits_to_copy = list(/datum/trait/neutral/tall,

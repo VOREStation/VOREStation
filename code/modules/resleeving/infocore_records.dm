@@ -244,7 +244,8 @@
 	internal_producebody_handlesleevelock(H,force_unlock)
 	internal_producebody_updatelimbandorgans(H)
 	internal_producebody_updatednastate(H,is_synthfab)
-	internal_producebody_virgocharacterdata(H)
+	internal_producebody_virgoOOC(H)
+	internal_producebody_misc(H)
 	return H
 
 /// Creates a human mob with the correct species, name, and a stable state.
@@ -340,7 +341,7 @@
 	H.initialize_vessel()
 
 /// Transfers VORE related information cached in the mob
-/datum/transhuman/body_record/proc/internal_producebody_virgocharacterdata(var/mob/living/carbon/human/H)
+/datum/transhuman/body_record/proc/internal_producebody_virgoOOC(var/mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	H.ooc_notes = body_oocnotes
@@ -349,6 +350,10 @@
 	H.ooc_notes_favs = body_oocfavs
 	H.ooc_notes_maybes = body_oocmaybes
 	H.ooc_notes_style = body_oocstyle
+
+/datum/transhuman/body_record/proc/internal_producebody_misc(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	H.flavor_texts = mydna.flavor.Copy()
 	H.resize(sizemult, FALSE)
 	H.appearance_flags = aflags
@@ -364,6 +369,9 @@
 	if(!H || QDELETED(H)) // Someone, somewhere, will call this without any safety. I feel it in my bones cappin'
 		return
 
+	// Don't unlock unwilling xenochi!
+	internal_producebody_handlesleevelock(H,FALSE)
+
 	// Reset our organs/limbs.
 	H.species.create_organs(H)
 	internal_producebody_updatelimbandorgans(H, heal_robot_limbs)
@@ -377,12 +385,15 @@
 						CH.brainmob.mind.transfer_to(H)
 						qdel(CH)
 
-	// Traitgenes Disable all traits currently active, before prefs.copy_to() is applied, as it refreshes the traits list!
+	// Traitgenes Disable all traits currently active, before species.produceCopy() applies them during updatednastate(). Relevant here as genetraits may not match prior dna!
 	for(var/datum/gene/trait/gene in GLOB.dna_genes)
 		if(gene.name in H.active_genes)
 			gene.deactivate(H)
 			H.active_genes -= gene.name
+
 	internal_producebody_updatednastate(H,FALSE)
+	internal_producebody_virgoOOC(H) // Is this needed?
+	internal_producebody_misc(H)
 
 	// Begin actual REVIVIAL. Do NOT use revive(). That uses client prefs and allows save hacking.
 	H.revival_healing_action()
