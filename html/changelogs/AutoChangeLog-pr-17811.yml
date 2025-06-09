@@ -1,5 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Phased shadekin can no longer be lit on fire by atmofires"
-  - bugfix: "Phased shadekin can no longer be run over by vehicles"

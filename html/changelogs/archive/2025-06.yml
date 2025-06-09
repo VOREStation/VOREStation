@@ -93,3 +93,34 @@
   - rscadd: Fingerprints can now be washed off in washing machines and showers.
   - refactor: Reworked all bloodsplatter, fingerprint, gunshot residue, and clothing
       fiber code into a single datum
+2025-06-08:
+  Kashargul:
+  - bugfix: cleaning applies description to desc, not to name!
+  SatinIsle:
+  - rscadd: Added custom links to the character directory.
+  ShadowLarkens:
+  - rscadd: AIs can now open their multicam views in completely separate windows and
+      maintain them while switching back to main view.
+  - bugfix: Camera consoles work more consistently.
+  TheCaramelion:
+  - rscadd: Dormant diseases may now be acquired via blood samples
+  - qol: Allowed virus immune species to get dormant diseases, as well as access to
+      Disease Carrier trait
+  - balance: The extrapolator may find any disease with no regards of it's stealth
+  - code_imp: added GetDormantDiseases proc
+  Willburd:
+  - bugfix: fixed mobs that qdel on death, causing crashes when crushed by doors and
+      dying.
+  - bugfix: Phased shadekin can no longer be lit on fire by atmofires
+  - bugfix: Phased shadekin can no longer be run over by vehicles
+  - bugfix: Circuit boards no longer bad-del
+  - bugfix: Fixed runtime on vampire xenoartifact's blood sucking effect
+  - bugfix: Fake attackers crashing MC with invalid turfs
+  - bugfix: borgs don't try to leave suit fibres on fingerprint checks
+2025-06-09:
+  Diana:
+  - balance: Spooky modifier was tested and had some balance adjustments
+  - bugfix: Plat and gold can be put in prosfabs again
+  Willburd:
+  - bugfix: phased shadekin no longer prevent airlocks from closing
+  - bugfix: phased shadekin are no longer crushed by dangerous airlocks closing

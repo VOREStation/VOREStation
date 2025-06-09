@@ -1379,7 +1379,7 @@ About the new airlock wires panel:
 	return 0
 
 /mob/living/blocks_airlock()
-	return 1
+	return !is_incorporeal()
 
 /atom/movable/proc/airlock_crush(var/crush_damage)
 	return 0
@@ -1400,17 +1400,20 @@ About the new airlock wires panel:
 	return 1
 
 /mob/living/airlock_crush(var/crush_damage)
+	if(is_incorporeal())
+		return 0
 	. = ..()
+	var/turf/T = get_turf(src)
 	adjustBruteLoss(crush_damage)
 	SetStunned(5)
 	SetWeakened(5)
-	var/turf/T = get_turf(src)
-	T.add_blood(src)
+	if(T)
+		T.add_blood(src)
 	return 1
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
-	if(can_feel_pain())
+	if(. && can_feel_pain()) // Only scream if actually crushed!
 		emote("scream")
 
 /mob/living/silicon/robot/airlock_crush(var/crush_damage)

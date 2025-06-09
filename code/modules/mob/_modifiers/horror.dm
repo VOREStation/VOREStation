@@ -77,7 +77,7 @@ var/static/list/redspace_areas = list (
 		unfortunate_soul.take_overall_damage(1) //Small bit of damage
 		if(unfortunate_soul.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2) //We lose all feeling in our body. We can't tell how injured we are.
 			unfortunate_soul.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,1)
-	if(unfortunate_soul.life_tick % 10 == 0) //Once every 10 ticks, we permanetly cripple them.
+	if(unfortunate_soul.life_tick % 20 == 0) //Once every 20 ticks, we permanetly cripple them.
 		unfortunate_soul.maxHealth = max(10, unfortunate_soul.maxHealth - 1) //Max health is reduced by 1, but never below 10. This is PERMANENT for the rest of the round or until resleeving.
 
 
@@ -91,7 +91,7 @@ var/static/list/redspace_areas = list (
 			"You can feel your [O] squirming inside of you, trying to get out...", "Your [O] is trying to escape...", \
 			"Your [O] itches.", "Your [O] is crawling around inside of you.")
 			to_chat(unfortunate_soul, span_cult(spooky_message))
-		unfortunate_soul.make_dizzy(20)
+		unfortunate_soul.make_dizzy(5)
 		unfortunate_soul.stuttering = min(100, unfortunate_soul.stuttering + 10) //Stuttering is increased by 1, but never above 100. You're in a scary place.
 	return
 
