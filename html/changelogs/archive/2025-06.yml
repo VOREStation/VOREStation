@@ -117,3 +117,10 @@
   - bugfix: Fixed runtime on vampire xenoartifact's blood sucking effect
   - bugfix: Fake attackers crashing MC with invalid turfs
   - bugfix: borgs don't try to leave suit fibres on fingerprint checks
+2025-06-09:
+  Diana:
+  - balance: Spooky modifier was tested and had some balance adjustments
+  - bugfix: Plat and gold can be put in prosfabs again
+  Willburd:
+  - bugfix: phased shadekin no longer prevent airlocks from closing
+  - bugfix: phased shadekin are no longer crushed by dangerous airlocks closing
