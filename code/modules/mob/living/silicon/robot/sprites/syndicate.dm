@@ -292,7 +292,6 @@
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_icon_state = "mekaninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -301,7 +300,6 @@
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_icon_state = "fmekaninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -310,7 +308,6 @@
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_icon_state = "mmekaninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -319,7 +316,6 @@
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_icon_state = "mmekaninja"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
