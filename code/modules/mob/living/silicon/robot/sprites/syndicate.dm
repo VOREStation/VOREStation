@@ -325,5 +325,7 @@
 	sprite_icon_state = "dullataurninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = FALSE
-	sprite_decals = list("decals")
+	has_rest_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate", "breastplatehalo","swordhalo")
 	rest_sprite_options = list("Default")
