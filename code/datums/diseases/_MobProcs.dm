@@ -19,6 +19,11 @@
 	return FALSE
 
 /mob/proc/IsInfected()
+	if(isemptylist(GetViruses()))
+		return FALSE
+	return TRUE
+
+/mob/proc/isInfective()
 	if(isemptylist(GetSpreadableViruses()))
 		return FALSE
 	return TRUE
