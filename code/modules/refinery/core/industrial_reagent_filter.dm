@@ -1,6 +1,6 @@
 /obj/machinery/reagent_refinery/filter
 	name = "Industrial Chemical Filter"
-	desc = "Identifies and extracts specific chemicals. The purple marked pipe is the one filtered chemicals flow out of."
+	desc = "Identifies and extracts specific chemicals."
 	icon_state = "filter_l"
 	density = TRUE
 	anchored = TRUE
@@ -129,3 +129,4 @@
 		var/datum/reagent/R = SSchemistry.chemical_reagents[filter_reagent_id]
 		filter = "filtering [R.name]"
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is currently [filter]. At a rate of [amount_per_transfer_from_this]u."
+	tutorial(REFINERY_TUTORIAL_INPUT|REFINERY_TUTORIAL_FILTER, .)

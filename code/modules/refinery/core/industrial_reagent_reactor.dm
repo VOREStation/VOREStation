@@ -49,6 +49,7 @@
 		else
 			toggle_mode = 0
 			next_mode_toggle = world.time + dis_time SECONDS
+		update_icon()
 
 	if(amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
 		return
@@ -105,6 +106,7 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	var/datum/gas_mixture/GM = internal_tank.return_air()
 	. += "The internal temperature is [GM.temperature]k at [GM.return_pressure()]kpa. It is currently in a [toggle_mode ? "pumping cycle, outputting stored chemicals" : "distilling cycle, accepting input chemicals"]."
+	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
 /obj/machinery/reagent_refinery/reactor/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	. = ..()

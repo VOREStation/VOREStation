@@ -145,3 +145,25 @@
 
 	src.set_dir(turn(src.dir, 90))
 	update_icon()
+
+/obj/machinery/reagent_refinery/proc/tutorial(var/flags,var/list/examine_list)
+	// Specialty
+	if(flags & REFINERY_TUTORIAL_HUB)
+		examine_list += "A trolly tanker can be drained or filled depending on if this machine is attached to the input or output of another machine. "
+	// Input handling
+	if(flags & REFINERY_TUTORIAL_NOINPUT)
+		examine_list += "This machine does not accept any inputs, and only outputs. "
+	if(flags & REFINERY_TUTORIAL_ALLIN)
+		examine_list += "This machine accepts input from all sides. "
+	if(flags & REFINERY_TUTORIAL_SINGLEOUTPUT)
+		examine_list += "This machine accepts inputs on all sides, except for its output. "
+	if(flags & REFINERY_TUTORIAL_NOOUTPUT)
+		examine_list += "This machine does not have any outputs. "
+	// Pipe markings
+	if(flags & REFINERY_TUTORIAL_INPUT)
+		examine_list += "The red pipe marks the input. "
+	if(flags & REFINERY_TUTORIAL_FILTER)
+		examine_list += "The purple pipe marks the filtered output. "
+	// No power needed
+	if(flags & REFINERY_TUTORIAL_NOPOWER)
+		examine_list += "Does not require power. "

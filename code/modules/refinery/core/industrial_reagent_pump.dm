@@ -45,3 +45,4 @@
 /obj/machinery/reagent_refinery/pump/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
+	tutorial(REFINERY_TUTORIAL_INPUT, .)

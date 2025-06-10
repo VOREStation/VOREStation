@@ -1,6 +1,6 @@
 /obj/machinery/reagent_refinery/hub
 	name = "Industrial Chemical Hub"
-	desc = "A platform for loading and unloading cargo tug tankers. Does not require power to fill trolly tanks."
+	desc = "A platform for loading and unloading cargo tug tankers."
 	icon_state = "hub"
 	density = FALSE
 	anchored = TRUE
@@ -82,3 +82,4 @@
 /obj/machinery/reagent_refinery/hub/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
+	tutorial(REFINERY_TUTORIAL_HUB|REFINERY_TUTORIAL_NOPOWER, .)

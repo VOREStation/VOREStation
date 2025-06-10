@@ -7,6 +7,15 @@
 // The tl;dr here is that the supply_conversion_value of the reagent should just match the per sheet value with the macro above.
 // That should keep everything inline and not cause any cargo exploits.
 
+#define REFINERY_TUTORIAL_INPUT (1 << 0)
+#define REFINERY_TUTORIAL_FILTER (1 << 1)
+#define REFINERY_TUTORIAL_HUB (1 << 2)
+#define REFINERY_TUTORIAL_NOPOWER (1 << 3)
+#define REFINERY_TUTORIAL_NOINPUT (1 << 4)
+#define REFINERY_TUTORIAL_NOOUTPUT (1 << 5)
+#define REFINERY_TUTORIAL_ALLIN (1 << 6)
+#define REFINERY_TUTORIAL_SINGLEOUTPUT (1 << 7)
+
 #define REAGENT_VAT_VOLUME 500
 #define CARGOTANKER_VOLUME 3000
 

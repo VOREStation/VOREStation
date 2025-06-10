@@ -207,3 +207,4 @@
 		filter = "sintering [R.name]"
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is currently [filter]."
 	. += "The sintering mold is [ (beaker.reagents.total_volume / REAGENTS_PER_SHEET) * 100 ]% full."
+	tutorial(REFINERY_TUTORIAL_INPUT, .)

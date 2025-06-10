@@ -63,3 +63,4 @@
 /obj/machinery/reagent_refinery/pipe/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u."
+	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT|REFINERY_TUTORIAL_NOPOWER, .)

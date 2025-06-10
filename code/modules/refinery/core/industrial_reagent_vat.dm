@@ -87,6 +87,7 @@ var/global/list/vats_to_rain_into = list() // Faster than checks, and handles al
 /obj/machinery/reagent_refinery/vat/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
+	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
 /obj/machinery/reagent_refinery/vat/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
