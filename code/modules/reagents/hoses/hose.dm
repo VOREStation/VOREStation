@@ -48,12 +48,14 @@
 		if(available_sockets.len == 1)
 			var/datum/component/hose_connector/AC = available_sockets[1]
 			if(remembered && remembered.get_carrier() == AC.get_carrier())
-				to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea."))
+				to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea. You wind \the [src] back up."))
+				remembered = null // Unintuitive if it does not reset state
 
 			else if(remembered && remembered.valid_connection(AC))
 				var/distancetonode = get_dist(remembered.get_carrier(),AC.get_carrier())
 				if(distancetonode > world.view)
-					to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
+					to_chat(user, span_notice("\The [src] would probably burst if it were this long. You wind \the [src] back up."))
+					remembered = null // Unintuitive if it does not reset state
 
 				else if(distancetonode <= amount)
 					to_chat(user, span_notice("You join \the [remembered] to \the [AC]."))
@@ -61,7 +63,8 @@
 					use(distancetonode)
 					remembered = null
 				else
-					to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
+					to_chat(user, span_notice("You do not have enough tubing to connect the sockets. You wind \the [src] back up."))
+					remembered = null // Unintuitive if it does not reset state
 
 			else
 				remembered = AC
@@ -74,12 +77,14 @@
 				var/datum/component/hose_connector/CC = choice
 				if(remembered)
 					if(remembered.get_carrier() == CC.get_carrier())
-						to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea."))
+						to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea. You wind \the [src] back up."))
+						remembered = null // Unintuitive if it does not reset state
 
-					if(remembered.valid_connection(CC))
+					else if(remembered.valid_connection(CC))
 						var/distancetonode = get_dist(remembered.get_carrier(), CC.get_carrier())
 						if(distancetonode > world.view)
-							to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
+							to_chat(user, span_notice("\The [src] would probably burst if it were this long. You wind \the [src] back up."))
+							remembered = null // Unintuitive if it does not reset state
 
 						else if(distancetonode <= amount)
 							to_chat(user, span_notice("You join \the [remembered] to \the [CC]"))
@@ -89,7 +94,8 @@
 							remembered = null
 
 						else
-							to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
+							to_chat(user, span_notice("You do not have enough tubing to connect the sockets. You wind \the [src] back up."))
+							remembered = null // Unintuitive if it does not reset state
 
 				else
 					remembered = CC
@@ -98,4 +104,7 @@
 		return
 
 	else
+		if(remembered)
+			to_chat(user, span_notice("There are no available connectors on \the [remembered.get_carrier()]. You wind \the [src] back up."))
+			remembered = null // Unintuitive if it does not reset state
 		..()

@@ -29,6 +29,7 @@
 	carrier = null
 	if(my_hose)
 		my_hose.disconnect()
+	qdel_null(reagents)
 	. = ..()
 
 /datum/component/hose_connector/proc/get_carrier()
@@ -59,8 +60,7 @@
 	return FALSE
 
 /datum/component/hose_connector/proc/disconnect_action(var/user)
-	var/choice = tgui_alert(user, "Are you sure you want to disconnect \the [carrier]?", "Confirm", list("Yes", "No"))
-	if(choice == "Yes" && carrier.Adjacent(user))
+	if(carrier.Adjacent(user))
 		carrier.visible_message("[user] disconnects \the hose from \the [carrier].")
 		my_hose.disconnect(user)
 
@@ -86,10 +86,7 @@
 	SIGNAL_HANDLER
 	var/datum/component/hose_connector/hose_pair = my_hose?.get_pairing(src)
 	if(hose_pair)
-		if(hose_pair.get_carrier() == get_carrier()) // Can only happen if you connect our own input to our own output
-			hose_pair = "itself"
-		else
-			hose_pair = "\the [hose_pair.get_carrier()]"
+		hose_pair = "\the [hose_pair.get_carrier()]"
 	else
 		hose_pair = "nothing"
 	examine_texts += span_notice("[name] #[connector_number] is [my_hose ? "connected to [hose_pair]" : "disconnected"].")
@@ -130,6 +127,7 @@
  */
 
 /atom/proc/disconnect_hose()
+	set src in oview(1)
 	set name = "Disconnect Hose"
 	set desc = "Quickly disconnect a hose from all machines it is attached to."
 	set category = "Object"
@@ -185,20 +183,22 @@
 	STOP_PROCESSING(SSobj, src)
 	var/list/drop_locs = list()
 	if(node1)
-		drop_locs.Add(get_turf(node1.get_carrier()))
-		node1.remove_hose()
 		var/atom/A = node1.get_carrier()
-		A.visible_message("The hose detatches from \the [A]")
-		playsound(A,'sound/effects/crate_close.ogg',50)
-		playsound(A,'sound/effects/plop.ogg',45)
+		if(A)
+			drop_locs.Add(get_turf(node1.get_carrier()))
+			A.visible_message("The hose detatches from \the [A]")
+			playsound(A,'sound/effects/crate_close.ogg',50)
+			playsound(A,'sound/effects/plop.ogg',45)
+		node1.remove_hose()
 		node1 = null
 	if(node2)
-		drop_locs.Add(get_turf(node2.get_carrier()))
-		node2.remove_hose()
 		var/atom/A = node2.get_carrier()
-		A.visible_message("The hose detatches from \the [A]")
-		playsound(A,'sound/effects/crate_close.ogg',50)
-		playsound(A,'sound/effects/plop.ogg',45)
+		if(A)
+			drop_locs.Add(get_turf(node2.get_carrier()))
+			A.visible_message("The hose detatches from \the [A]")
+			playsound(A,'sound/effects/crate_close.ogg',50)
+			playsound(A,'sound/effects/plop.ogg',45)
+		node2.remove_hose()
 		node2 = null
 	// Drop hose at one of the locations if no user is specified
 	if((user || drop_locs.len) && initial_distance)
