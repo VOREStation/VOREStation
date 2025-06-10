@@ -22,10 +22,14 @@
 			return node1
 	return null
 
+/datum/hose/Destroy(force)
+	disconnect()
+	. = ..()
+
 /datum/hose/proc/has_pairing()
 	return (node1 && node2)
 
-/datum/hose/proc/disconnect(var/mob/user)
+/datum/hose/proc/disconnect(var/mob/user = null)
 	// Stop processing, we're disconnecting anyway
 	STOP_PROCESSING(SSobj, src)
 	var/list/drop_locs = list()
@@ -52,7 +56,6 @@
 		new /obj/item/stack/hose(user ? get_turf(user) : pick(drop_locs), initial_distance)
 		initial_distance = 0
 	update_beam()
-	qdel(src)
 
 /datum/hose/proc/set_hose(var/datum/component/hose_connector/target1, var/datum/component/hose_connector/target2, var/distancetonode)
 	if(target1 && target2)
@@ -85,7 +88,7 @@
 			qdel_null(current_beam)
 		return FALSE
 	if(get_dist(get_turf(node1.get_carrier()), get_turf(node2.get_carrier())) > initial_distance)	// The hose didn't form. Something's fucky.
-		disconnect()
+		qdel(src)
 		return FALSE
 	if(get_dist(get_turf(node1.get_carrier()), get_turf(node2.get_carrier())) > 0)
 		// Colors!
@@ -151,4 +154,4 @@
 						reagent_node2.trans_to_holder(reagent_node1, reagent_node2.maximum_volume)
 
 	else
-		disconnect()
+		qdel(src)

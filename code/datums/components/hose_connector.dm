@@ -28,7 +28,7 @@
 	carrier.verbs -= /atom/proc/disconnect_hose
 	carrier = null
 	if(my_hose)
-		my_hose.disconnect()
+		qdel_null(my_hose)
 	qdel_null(reagents)
 	. = ..()
 
@@ -63,10 +63,10 @@
 	if(carrier.Adjacent(user))
 		carrier.visible_message("[user] disconnects \the hose from \the [carrier].")
 		my_hose.disconnect(user)
+		qdel_null(my_hose)
 
 /datum/component/hose_connector/proc/connect(var/datum/hose/H = null)
-	if(istype(H))
-		my_hose = H
+	my_hose = H
 
 /datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode)
 	if(target)

@@ -41,7 +41,6 @@
 			if(REMB)
 				if(HC.get_flow_direction() == HOSE_NEUTRAL || HC.get_flow_direction() != REMB.get_flow_direction())
 					available_sockets |= HC
-
 			else
 				available_sockets |= HC
 
