@@ -4122,6 +4122,7 @@
 #include "code\modules\research\destructive_analyzer.dm"
 #include "code\modules\research\mechfab_designs.dm"
 #include "code\modules\research\message_server.dm"
+#include "code\modules\research\part_replacer.dm"
 #include "code\modules\research\prosfab_designs.dm"
 #include "code\modules\research\protolathe.dm"
 #include "code\modules\research\rd-readme.dm"
