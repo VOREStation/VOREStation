@@ -241,8 +241,19 @@
 		disconnect()
 		return FALSE
 	if(get_dist(get_turf(node1.get_carrier()), get_turf(node2.get_carrier())) > 0)
+		// Colors!
+		var/new_col = hose_color
+		var/datum/reagents/reagent_node1 = node1.reagents
+		var/datum/reagents/reagent_node2 = node2.reagents
+		if(reagent_node1.total_volume > reagent_node2.total_volume)
+			new_col = reagent_node1.get_color()
+		else if(reagent_node2.total_volume > 0)
+			new_col = reagent_node2.get_color()
+
+		// We are in the beam!
 		var/atom/holder = node1.get_carrier()
-		qdel_swap(current_beam, holder.Beam(node2.get_carrier(), icon_state = "hose", beam_color = hose_color, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose))
+		qdel_swap(current_beam, holder.Beam(node2.get_carrier(), icon_state = "hose", beam_color = new_col, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose))
+
 	return TRUE
 
 /datum/hose/process()
