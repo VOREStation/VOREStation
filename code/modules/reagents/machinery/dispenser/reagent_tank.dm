@@ -147,12 +147,12 @@
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
-	name = "/improper He3 tank"
+	name = "He3 tank"
 	desc = "A Helium3 tank."
 	icon_state = "he3"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispenser/he3/Initialize(mapload)
+/obj/structure/reagent_dispensers/he3/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
 
