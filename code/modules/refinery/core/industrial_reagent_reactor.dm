@@ -1,3 +1,6 @@
+#define REACTOR_MODE_INTAKE 0
+#define REACTOR_MODE_OUTPUT 1
+
 /obj/machinery/reagent_refinery/reactor
 	name = "Industrial Chemical Reactor"
 	desc = "A reinforced chamber for high temperature distillation. Can be connected to a pipe network to change the interior atmosphere. It outputs chemicals on a timer, to allow for distillation."
@@ -12,7 +15,7 @@
 	reagent_type = /datum/reagents/distilling
 
 	VAR_PRIVATE/obj/machinery/portable_atmospherics/canister/internal_tank
-	VAR_PRIVATE/toggle_mode = 0 // 0 = intake and boil, 1 = output
+	VAR_PRIVATE/toggle_mode = REACTOR_MODE_INTAKE
 	VAR_PRIVATE/next_mode_toggle = 0
 
 	VAR_PRIVATE/dis_time = 30
@@ -23,7 +26,6 @@
 	default_apply_parts()
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/empty()
 	update_gas_network()
-	toggle_mode = 0 // 0 = intake and boil, 1 = output
 	next_mode_toggle = world.time + dis_time SECONDS
 	// Update neighbours and self for state
 	update_neighbours()
@@ -42,19 +44,19 @@
 		return
 
 	if(next_mode_toggle < world.time)
-		if(toggle_mode == 0) // 0 = intake and boil, 1 = output
+		if(toggle_mode == REACTOR_MODE_INTAKE)
 			if(reagents && reagents.total_volume > 0 && amount_per_transfer_from_this > 0)
-				toggle_mode = 1 // Only drain if anything in it!
+				toggle_mode = REACTOR_MODE_OUTPUT // Only drain if anything in it!
 			next_mode_toggle = world.time + drain_time SECONDS
 		else
-			toggle_mode = 0
+			toggle_mode = REACTOR_MODE_INTAKE
 			next_mode_toggle = world.time + dis_time SECONDS
 		update_icon()
 
 	if(amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
 		return
 
-	if(toggle_mode == 0)
+	if(toggle_mode == REACTOR_MODE_INTAKE)
 		// perform reactions
 		reagents.handle_reactions()
 	else
@@ -69,6 +71,9 @@
 	var/image/pipe = image(icon, icon_state = "reactor_cons", dir = dir)
 	add_overlay(pipe)
 	if(anchored)
+		if(!(stat & (NOPOWER|BROKEN)))
+			var/image/dot = image(icon, icon_state = "vat_dot_[ toggle_mode > REACTOR_MODE_INTAKE ? "on" : "off" ]") // Show refinery output mode
+			add_overlay(dot)
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
 			var/obj/machinery/other = locate(/obj/machinery/reagent_refinery) in T
@@ -97,7 +102,7 @@
 	if(dir == GLOB.reverse_dir[source_forward_dir])
 		return 0
 	// locked until distilling mode
-	if(toggle_mode == 1)
+	if(toggle_mode == REACTOR_MODE_OUTPUT)
 		return 0
 	. = ..(origin_machine, RT, source_forward_dir, filter_id)
 
@@ -112,7 +117,7 @@
 	. = ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
 		update_gas_network() // Handles anchoring
-		toggle_mode = 0
+		toggle_mode = REACTOR_MODE_INTAKE
 		next_mode_toggle = world.time + dis_time SECONDS
 
 /obj/machinery/reagent_refinery/reactor/proc/update_gas_network()
@@ -144,3 +149,6 @@
 	if(internal_tank)
 		return internal_tank.return_air()
 	. = ..()
+
+#undef REACTOR_MODE_INTAKE
+#undef REACTOR_MODE_OUTPUT
