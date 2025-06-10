@@ -1,4 +1,3 @@
-
 /obj/item/stack/hose
 	name = "plastic tubing"
 	singular_name = "plastic tube"
@@ -14,8 +13,10 @@
 	icon_state = "hose"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
 	amount = 1
+	max_amount = 10
 	w_class = ITEMSIZE_SMALL
 	no_variants = TRUE
+	stacktype = /obj/item/stack/hose
 
 	var/datum/component/hose_connector/remembered = null
 

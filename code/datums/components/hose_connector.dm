@@ -13,7 +13,7 @@
 	reagents = new /datum/reagents( 100, src)
 	name = "[flow_direction] hose connector"
 
-	var/list/CL = carrier.GetComponents(/datum/component/hose_connector)
+	var/list/CL = carrier.GetComponents(type)
 	connector_number = CL.len + 1
 	RegisterSignal(carrier, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(carrier, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
@@ -72,7 +72,6 @@
 	if(target)
 		var/datum/hose/H = new()
 		H.set_hose(src, target, distancetonode)
-		H.update_beam()
 
 /datum/component/hose_connector/proc/get_pairing()
 	RETURN_TYPE(/datum/component/hose_connector)
@@ -215,12 +214,22 @@
 
 	node1.connect(src)
 	node2.connect(src)
-
 	name = "[name] ([node1],[node2])"
 
 	initial_distance = distancetonode
+	if(update_beam()) // Somehow you screwed this up from the start?
+		START_PROCESSING(SSobj, src)
 
-	START_PROCESSING(SSobj, src)
+		// Poip!~
+		var/atom/A = node1.get_carrier()
+		A.visible_message("The hose attaches to \the [A]")
+		playsound(A,'sound/effects/crate_open.ogg',50)
+		playsound(A,'sound/effects/pop.ogg',65)
+
+		A = node2.get_carrier()
+		A.visible_message("The hose attaches to \the [A]")
+		playsound(A,'sound/effects/crate_open.ogg',50)
+		playsound(A,'sound/effects/pop.ogg',65)
 
 /// Updates the beam visual effect for the hose. Returns if the hose is still has a valid connection or not.
 /datum/hose/proc/update_beam()
