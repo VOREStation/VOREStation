@@ -1,9 +1,4 @@
-//todo, figure out a better place for this!
-
-/datum/humanoid_displacement_map_data
-	 = list()
-
-
+//todo, figure out a better place for this
 /proc/get_humanoid_displacement_map_image(var/mob/living/carbon/human/target,var/list/discarded_layer_indicies, var/icon/displacement_map, var/outlineWidth = 0, var/render_target = null)
 
 	var/list/to_overlays = target.overlays_standing.Copy()
@@ -15,7 +10,7 @@
 	displacement_render_image.appearance_flags = KEEP_TOGETHER
 	displacement_render_image.overlays = to_overlays
 
-	displacement_render_image.filters += filter(type = "displace", size = 128, icon=displacement_map)
+	displacement_render_image.filters += filter(type = "displace", size = 128, icon=displacement_map) //size is 128 because that's the god given standard. if you're doing something unhinged enough to need a bigger or smaller size, by all means.
 	if(outlineWidth)
 		displacement_render_image.filters += filter(type="outline", size = outlineWidth)
 	if(render_target)
