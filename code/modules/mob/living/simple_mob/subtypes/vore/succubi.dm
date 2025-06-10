@@ -156,6 +156,7 @@ GLOBAL_LIST_INIT(succubus_safewords, list(
 	var/string = multilingual_to_message(message_pieces)
 
 	if(findtext(lowertext(string), safeword))
+		vore_selected?.digest_mode = DM_DRAIN
 		release_vore_contents()
 		SetStunned(10)
 		say("I'm sorry sweetie, are you okay?")
