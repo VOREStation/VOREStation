@@ -228,12 +228,9 @@
 
 	var/icon/hose_overlay
 
-	var/obj/item/hose_connector/input/active/InputSocket
-
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Initialize(mapload)
 	. = ..()
-
-	InputSocket = new(src)
+	AddComponent(/datum/component/hose_connector/input)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/update_icon()
 	..()
@@ -243,7 +240,8 @@
 	if(!hose_overlay)
 		hose_overlay = new/icon(icon, "[icon_state]+hose")
 
-	if(InputSocket.get_pairing())
+	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
+	if(HC.get_pairing())
 		add_overlay(hose_overlay)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)

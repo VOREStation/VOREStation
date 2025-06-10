@@ -1,113 +1,100 @@
 
-GLOBAL_LIST_EMPTY(hoses)
+/obj/item/stack/hose
+	name = "plastic tubing"
+	singular_name = "plastic tube"
+	desc = "A plastic tube for moving reagents to and fro. Stretching it too far will cause it to disconnect."
 
-/obj/effect/ebeam/hose
-	plane = OBJ_PLANE
-	layer = STAIRS_LAYER
+	description_info = "This tubing may be used to join two hose sockets, if able.<br>\
+	Clicking on an object with a connector, such as a water tank, will display a list of possible sockets.<br>\
+	Neutral can link to all socket types, and Input/Output sockets can link to all but their own type.<br><br>\
+	" + span_warning("This hose does not stretch. The maximum distance you can move two objects from eachother\
+	without disconnecting the tube is determined by distance upon connection.")
 
-/datum/hose
-	var/name = "hose"
+	icon = 'icons/obj/machines/reagent.dmi'
+	icon_state = "hose"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
+	amount = 1
+	w_class = ITEMSIZE_SMALL
+	no_variants = TRUE
 
-	var/obj/item/hose_connector/node1 = null
-	var/obj/item/hose_connector/node2 = null
+	var/datum/component/hose_connector/remembered = null
 
-	var/hose_color = "#ffffff"
+/obj/item/stack/hose/Destroy()
+	remembered = null
+	. = ..()
 
-	var/initial_distance = 7
-
-	var/datum/beam/hose = null
-
-/datum/hose/proc/get_pairing(var/obj/item/hose_connector/target)
-	if(target)
-		if(target == node1)
-			return node2
-		else if(target == node2)
-			return node1
-
+/obj/item/stack/hose/CtrlClick(mob/user)
+	if(remembered)
+		to_chat(user, span_notice("You wind \the [src] back up."))
+		remembered = null
 	return
 
-/datum/hose/proc/disconnect()
-	if(node1)
-		node1.disconnect()
-		node1 = null
-	if(node2)
-		node2.disconnect()
-		node2 = null
+/obj/item/stack/hose/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+	if(!proximity)
+		return
 
-/datum/hose/proc/set_hose(var/obj/item/hose_connector/target1, var/obj/item/hose_connector/target2)
-	if(target1 && target2)
-		node1 = target1
-		node2 = target2
+	var/list/available_sockets = list()
+	for(var/datum/component/hose_connector/HC in target.GetComponents(/datum/component/hose_connector))
+		if(!HC.get_hose())
+			if(remembered)
+				if(HC.get_flow_direction() == HOSE_NEUTRAL || HC.get_flow_direction() != remembered.get_flow_direction())
+					available_sockets |= HC
 
-	node1.connect(src)
-	node2.connect(src)
+			else
+				available_sockets |= HC
 
-	name = "[name] ([node1],[node2])"
+	if(LAZYLEN(available_sockets))
+		if(available_sockets.len == 1)
+			var/datum/component/hose_connector/AC = available_sockets[1]
+			if(remembered && remembered.get_carrier() == AC.get_carrier())
+				to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea."))
 
-	initial_distance = get_dist(get_turf(node1), get_turf(node2))
+			else if(remembered && remembered.valid_connection(AC))
+				var/distancetonode = get_dist(remembered.get_carrier(),AC.get_carrier())
+				if(distancetonode > world.view)
+					to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
 
-	GLOB.hoses |= src
-	START_PROCESSING(SSobj, src)
+				else if(distancetonode <= amount)
+					to_chat(user, span_notice("You join \the [remembered] to \the [AC]."))
+					remembered.setup_hoses(AC,distancetonode)
+					use(distancetonode)
+					remembered = null
+				else
+					to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
 
-/datum/hose/process()
-	if(node1 && node2)
-		if(get_dist(get_turf(node1), get_turf(node2)) > 0)
-			hose = node1.loc.Beam(node2.loc, icon_state = "hose", beam_color = hose_color, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose)
+			else
+				remembered = AC
+				to_chat(user, span_notice("You connect one end of tubing to \the [AC]."))
 
-			if(!hose || get_dist(get_turf(node1), get_turf(node2)) > initial_distance)	// The hose didn't form. Something's fucky.
-				disconnect()
-				return
+		else
+			var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Selection", available_sockets)
 
-		var/datum/reagents/reagent_node1 = node1.reagents
-		var/datum/reagents/reagent_node2 = node2.reagents
+			if(choice)
+				var/datum/component/hose_connector/CC = choice
+				if(remembered)
+					if(remembered.get_carrier() == CC.get_carrier())
+						to_chat(user, span_notice("Connecting \the [remembered.get_carrier()] to itself seems like a bad idea."))
 
-		switch(node1.flow_direction)	// Node 1 is the default 'master', interactions are considered in all current possible states in regards to it, however.
-			if(HOSE_INPUT)
-				if(node2.flow_direction == HOSE_NEUTRAL)	// We're input, they're neutral. Take half of our volume.
-					reagent_node2.trans_to_holder(reagent_node1, reagent_node1.maximum_volume / 2)
-				else if(node2.flow_direction == HOSE_OUTPUT)	// We're input, they're output. Take all of our volume.
-					reagent_node2.trans_to_holder(reagent_node1, reagent_node1.maximum_volume)
+					if(remembered.valid_connection(CC))
+						var/distancetonode = get_dist(remembered.get_carrier(), CC.get_carrier())
+						if(distancetonode > world.view)
+							to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
 
-			if(HOSE_OUTPUT)	// We're output, give all of their maximum volume.
-				reagent_node1.trans_to_holder(reagent_node2, reagent_node2.maximum_volume)
+						else if(distancetonode <= amount)
+							to_chat(user, span_notice("You join \the [remembered] to \the [CC]"))
 
-			if(HOSE_NEUTRAL)
-				switch(node2.flow_direction)
-					if(HOSE_INPUT)	// We're neutral, they're input. Give them half of their volume.
-						reagent_node1.trans_to_holder(reagent_node2, reagent_node2.maximum_volume / 2)
+							remembered.setup_hoses(CC,distancetonode)
+							use(distancetonode)
+							remembered = null
 
-					if(HOSE_NEUTRAL)	// We're neutral, they're neutral. Balance our values.
-						var/volume_difference_perc = (reagent_node1.total_volume / reagent_node1.maximum_volume) - (reagent_node2.total_volume / reagent_node2.maximum_volume)
-						var/volume_difference = 0
+						else
+							to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
 
-						var/pulling = FALSE
-						if(volume_difference_perc > 0)	// They are smaller, so they determine the transfer amount. Half of the difference will equalize.
-							volume_difference = reagent_node2.maximum_volume * volume_difference_perc / 2
+				else
+					remembered = CC
+					to_chat(user, span_notice("You connect one end of tubing to \the [CC]."))
 
-						else if(volume_difference_perc < 0)	// We're smaller, so we determine the transfer amount. Half of the difference will equalize.
-							volume_difference_perc *= -1
-
-							pulling = TRUE
-
-							volume_difference = reagent_node1.maximum_volume * volume_difference_perc / 2
-
-						if(volume_difference)
-							if(pulling)
-								reagent_node2.trans_to_holder(reagent_node1, volume_difference)
-							else
-								reagent_node1.trans_to_holder(reagent_node2, volume_difference)
-
-					if(HOSE_OUTPUT)
-						reagent_node2.trans_to_holder(reagent_node1, reagent_node2.maximum_volume)
+		return
 
 	else
-		if(node1)
-			node1.disconnect()
-			node1 = null
-		if(node2)
-			node2.disconnect()
-			node2 = null
-
-		STOP_PROCESSING(SSobj, src)
-		GLOB.hoses -= src
-		qdel(src)
+		..()
