@@ -14,13 +14,15 @@
 	mobdamagetype = BURN
 	can_burn_food = TRUE
 
+	var/tgui_id = "CookingAppliance"
+
 /obj/machinery/appliance/cooker/attack_hand(mob/user)
 	tgui_interact(user)
 
 /obj/machinery/appliance/cooker/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CookingAppliance", name)
+		ui = new(user, src, tgui_id, name)
 		ui.open()
 
 /obj/machinery/appliance/cooker/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
