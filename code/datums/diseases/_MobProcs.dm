@@ -19,7 +19,7 @@
 	return FALSE
 
 /mob/proc/IsInfected()
-	if(isemptylist(GetViruses()))
+	if(isemptylist(GetSpreadableViruses()))
 		return FALSE
 	return TRUE
 
