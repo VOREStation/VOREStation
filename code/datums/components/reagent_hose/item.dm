@@ -13,7 +13,7 @@
 	icon_state = "hose"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
 	amount = 1
-	max_amount = 10
+	max_amount = HOSE_MAX_DISTANCE
 	w_class = ITEMSIZE_SMALL
 	no_variants = TRUE
 	stacktype = /obj/item/stack/hose
@@ -54,7 +54,7 @@
 
 			else if(REMB && REMB.valid_connection(AC))
 				var/distancetonode = get_dist(REMB.get_carrier(),AC.get_carrier())
-				if(distancetonode > world.view)
+				if(distancetonode > HOSE_MAX_DISTANCE)
 					to_chat(user, span_notice("\The [src] would probably burst if it were this long. You wind \the [src] back up."))
 					remembered = null // Unintuitive if it does not reset state
 
@@ -83,7 +83,7 @@
 
 					else if(REMB.valid_connection(CC))
 						var/distancetonode = get_dist(REMB.get_carrier(), CC.get_carrier())
-						if(distancetonode > world.view)
+						if(distancetonode > HOSE_MAX_DISTANCE)
 							to_chat(user, span_notice("\The [src] would probably burst if it were this long. You wind \the [src] back up."))
 							remembered = null // Unintuitive if it does not reset state
 

@@ -10,7 +10,7 @@
 
 	VAR_PRIVATE/hose_color = "#ffffff"
 
-	VAR_PRIVATE/initial_distance = 7
+	VAR_PRIVATE/initial_distance = HOSE_MAX_DISTANCE
 	VAR_PRIVATE/datum/beam/current_beam = null
 
 /datum/hose/proc/get_pairing(var/datum/component/hose_connector/target)
@@ -104,7 +104,7 @@
 			new_col = reagent_node2.get_color()
 
 		// We are in the beam!
-		qdel_swap(current_beam, A.Beam(B, icon_state = "hose", beam_color = new_col, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose))
+		qdel_swap(current_beam, A.Beam(B, icon_state = "hose", beam_color = new_col, maxdistance = (HOSE_MAX_DISTANCE + 1), beam_type = /obj/effect/ebeam/hose))
 
 	return TRUE
 
