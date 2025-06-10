@@ -91,8 +91,11 @@
 		hose_pair = "nothing"
 	examine_texts += span_notice("[name] #[connector_number] is [my_hose ? "connected to [hose_pair]" : "disconnected"].")
 
-/datum/component/hose_connector/proc/move_react(atom/orbited, atom/oldloc, direction)
+/datum/component/hose_connector/proc/move_react(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
+	update_hose_beam()
+
+/datum/component/hose_connector/proc/update_hose_beam()
 	if(!my_hose || !my_hose.has_pairing(src))
 		return
 	// Handle distance check if too far

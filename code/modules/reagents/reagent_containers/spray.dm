@@ -230,7 +230,18 @@
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/recursive_move)
 	AddComponent(/datum/component/hose_connector/input)
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose)
+
+/obj/item/reagent_containers/spray/chemsprayer/hosed/Destroy()
+	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	. = ..()
+
+/obj/item/reagent_containers/spray/chemsprayer/hosed/proc/update_hose(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
+	SIGNAL_HANDLER
+	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
+	HC.update_hose_beam()
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/update_icon()
 	..()

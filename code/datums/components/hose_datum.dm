@@ -90,7 +90,10 @@
 	if(get_dist(get_turf(node1.get_carrier()), get_turf(node2.get_carrier())) > initial_distance)	// The hose didn't form. Something's fucky.
 		qdel(src)
 		return FALSE
-	if(get_dist(get_turf(node1.get_carrier()), get_turf(node2.get_carrier())) > 0)
+
+	var/turf/A = get_turf(node1.get_carrier())
+	var/turf/B = get_turf(node2.get_carrier())
+	if(get_dist(A,B) > 0)
 		// Colors!
 		var/new_col = hose_color
 		var/datum/reagents/reagent_node1 = node1.reagents
@@ -101,8 +104,7 @@
 			new_col = reagent_node2.get_color()
 
 		// We are in the beam!
-		var/atom/holder = node1.get_carrier()
-		qdel_swap(current_beam, holder.Beam(node2.get_carrier(), icon_state = "hose", beam_color = new_col, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose))
+		qdel_swap(current_beam, A.Beam(B, icon_state = "hose", beam_color = new_col, maxdistance = world.view, beam_type = /obj/effect/ebeam/hose))
 
 	return TRUE
 
