@@ -4131,6 +4131,7 @@
 #include "code\modules\refinery\core\industrial_reagent_vat.dm"
 #include "code\modules\refinery\core\industrial_reagent_waste.dm"
 #include "code\modules\refinery\equipment\chemcontainer.dm"
+#include "code\modules\refinery\equipment\pumprelay.dm"
 #include "code\modules\refinery\equipment\smart_centrifuge.dm"
 #include "code\modules\research\circuitprinter.dm"
 #include "code\modules\research\designs.dm"

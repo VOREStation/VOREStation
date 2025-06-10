@@ -375,3 +375,11 @@
 							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/gear = 2)
+
+/obj/item/circuitboard/pump_relay
+	name = T_BOARD("pump relay")
+	build_path = /obj/machinery/pump_relay
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+							/obj/item/stock_parts/capacitor = 1,
+							/obj/item/stock_parts/motor = 1)

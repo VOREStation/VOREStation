@@ -1,7 +1,7 @@
 /obj/machinery/smart_centrifuge
 	name = "smart centrifuge"
 	desc = "Isolates various compounds and stores them in chemical cartridges."
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/hydroponics_machines_vr.dmi'
 	icon_state = "sextractor"
 	density = TRUE
 	anchored = TRUE
@@ -10,7 +10,7 @@
 
 /obj/machinery/smart_centrifuge/Initialize(mapload)
 	. = ..()
-	create_reagents(5000)
+	create_reagents(CARGOTANKER_VOLUME)
 	flags |= OPENCONTAINER
 	default_apply_parts()
 
