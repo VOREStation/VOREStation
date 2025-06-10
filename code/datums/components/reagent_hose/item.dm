@@ -40,13 +40,14 @@
 		if(!HC.get_hose())
 			if(REMB)
 				if(HC.get_flow_direction() == HOSE_NEUTRAL || HC.get_flow_direction() != REMB.get_flow_direction())
-					available_sockets |= HC
+					available_sockets[HC.get_id()] = HC
 			else
-				available_sockets |= HC
+				available_sockets[HC.get_id()] = HC
 
 	if(LAZYLEN(available_sockets))
 		if(available_sockets.len == 1)
-			var/datum/component/hose_connector/AC = available_sockets[1]
+			var/key = available_sockets[1]
+			var/datum/component/hose_connector/AC = available_sockets[key]
 			if(REMB && REMB.get_carrier() == AC.get_carrier())
 				to_chat(user, span_notice("Connecting \the [REMB.get_carrier()] to itself seems like a bad idea. You wind \the [src] back up."))
 				remembered = null // Unintuitive if it does not reset state
@@ -74,7 +75,7 @@
 			var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Selection", available_sockets)
 
 			if(choice)
-				var/datum/component/hose_connector/CC = choice
+				var/datum/component/hose_connector/CC = available_sockets[choice]
 				if(REMB)
 					if(REMB.get_carrier() == CC.get_carrier())
 						to_chat(user, span_notice("Connecting \the [REMB.get_carrier()] to itself seems like a bad idea. You wind \the [src] back up."))
