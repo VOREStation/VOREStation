@@ -5,7 +5,7 @@
 	VAR_PROTECTED/datum/hose/my_hose = null
 	VAR_PROTECTED/connector_number = 0
 	// Atom reagent code piggyback
-	var/flags = 0
+	var/flags = NOREACT // Prevent reagent explosions runtiming because no turf or by deleting the hose datum
 	var/datum/reagents/reagents = null
 
 /datum/component/hose_connector/Initialize()
