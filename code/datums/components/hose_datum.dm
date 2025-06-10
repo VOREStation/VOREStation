@@ -31,7 +31,7 @@
 
 /datum/hose/proc/disconnect(var/mob/user = null)
 	// Stop processing, we're disconnecting anyway
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSfastprocess, src)
 	var/list/drop_locs = list()
 	if(node1)
 		var/atom/A = node1.get_carrier()
@@ -68,7 +68,7 @@
 
 	initial_distance = distancetonode
 	if(update_beam()) // Somehow you screwed this up from the start?
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSfastprocess, src)
 
 		// Poip!~
 		var/atom/A = node1.get_carrier()

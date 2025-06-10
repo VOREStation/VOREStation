@@ -10,7 +10,7 @@
 
 /datum/component/hose_connector/Initialize()
 	carrier = parent
-	reagents = new /datum/reagents( 50, src)
+	reagents = new /datum/reagents( 60, src)
 	name = "[flow_direction] hose connector"
 
 	var/list/CL = carrier.GetComponents(type)
