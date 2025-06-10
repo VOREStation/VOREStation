@@ -1,6 +1,6 @@
 /obj/machinery/reagent_refinery/pump
 	name = "Industrial Chemical Pump"
-	desc = "Transports large amounts of chemicals between machines."
+	desc = "Transports large amounts of chemicals between machines, it also has connections for various types of hoses."
 	icon_state = "pump"
 	density = TRUE
 	anchored = TRUE
@@ -15,6 +15,11 @@
 	// Update neighbours and self for state
 	update_neighbours()
 	update_icon()
+
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/output)
 
 /obj/machinery/reagent_refinery/pump/process()
 	if(!anchored)
