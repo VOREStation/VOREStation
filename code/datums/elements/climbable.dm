@@ -18,6 +18,7 @@
 	RegisterSignal(target, COMSIG_CLIMBABLE_START_CLIMB, PROC_REF(start_climb))
 	RegisterSignal(target, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, PROC_REF(shaken))
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_shaken))
+	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	target.verbs += /obj/proc/climb_on
 
 	ADD_TRAIT(target, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
@@ -26,6 +27,7 @@
 	UnregisterSignal(source, COMSIG_CLIMBABLE_START_CLIMB)
 	UnregisterSignal(source, COMSIG_CLIMBABLE_SHAKE_CLIMBERS)
 	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_PARENT_EXAMINE)
 	source.verbs -= /obj/proc/climb_on
 
 	REMOVE_TRAIT(source, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
@@ -168,6 +170,9 @@
 			H.UpdateDamageIcon()
 			H.updatehealth()
 
+/datum/element/climbable/proc/on_examine(datum/source, mob/user, list/examine_texts)
+	SIGNAL_HANDLER
+	examine_texts += span_notice("It looks climbable.")
 
 // Cliff climbing requires climbing gear.
 /datum/element/climbable/cliff/do_climb(obj/climbed_thing, mob/living/user, delay_time)
