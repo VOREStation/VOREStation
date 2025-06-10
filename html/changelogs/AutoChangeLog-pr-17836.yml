@@ -1,0 +1,14 @@
+author: "Will"
+delete-after: True
+changes:
+  - refactor: "Hose connectors are a component now"
+  - bugfix: "Reagent hoses are now stack-able"
+  - bugfix: "It is no longer possible to plug a reagent hose into the same object, making it impossible to retrieve"
+  - bugfix: "Reagent hoses no longer become unusable after clicking on an object that already has all its connections used"
+  - bugfix: "Reagent hoses update on object move instead of lagging behind"
+  - bugfix: "He3 tank always spawning empty, and with a broken name"
+  - bugfix: "Reagent hoses are no longer a memory leak"
+  - qol: "Objects with reagent hose connections now show those connections when examined"
+  - qol: "Reagent hoses have feedback on connection and disconnection"
+  - qol: "Reagent hoses drop on disconnection instead of being destroyed"
+  - qol: "Reagent hoses change colors as reagents are pumped through them"
