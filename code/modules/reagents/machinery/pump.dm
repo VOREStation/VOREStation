@@ -33,6 +33,10 @@
 	RefreshParts()
 	update_icon()
 
+/obj/machinery/pump/Destroy()
+	QDEL_NULL(cell)
+	. = ..()
+
 /obj/machinery/pump/RefreshParts()
 	var/obj/item/stock_parts/manipulator/SM = locate() in component_parts
 	active_power_usage = initial(active_power_usage) / SM.rating
