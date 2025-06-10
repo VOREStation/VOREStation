@@ -425,26 +425,16 @@
 	var/obj/item/reagent_containers/glass/stored_container = null
 	paint_color = "#efdd16"
 
-	// Support hoses
-	var/obj/item/hose_connector/input/active/InputSocketA
-	var/obj/item/hose_connector/input/active/InputSocketB
-	var/obj/item/hose_connector/input/active/InputSocketC
-	var/obj/item/hose_connector/output/active/OutputSocket
-
 /obj/vehicle/train/trolly_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(CARGOTANKER_VOLUME)
 	update_icon()
-	InputSocketA = new(src)
-	InputSocketB = new(src)
-	InputSocketC = new(src)
-	OutputSocket = new(src)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/output)
 
 /obj/vehicle/train/trolly_tank/Destroy()
-	QDEL_NULL(InputSocketA)
-	QDEL_NULL(InputSocketB)
-	QDEL_NULL(InputSocketC)
-	QDEL_NULL(OutputSocket)
 	. = ..()
 
 /obj/vehicle/train/trolly_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
