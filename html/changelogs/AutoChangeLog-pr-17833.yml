@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "some vorepanel message toggles in the general tab"
-  - bugfix: "game panel inaccessible to devs / event managers"
