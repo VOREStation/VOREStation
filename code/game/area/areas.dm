@@ -400,7 +400,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 	// Update the area's color grading
 	var/area/A = get_area(L)
-	if(L.client && L.client.color != A?.get_color_grading()) // Try to check if we should bother changing before doing blending
+	if(L.client && L.client.color != A?.get_color_tint()) // Try to check if we should bother changing before doing blending
 		L.update_client_color()
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)

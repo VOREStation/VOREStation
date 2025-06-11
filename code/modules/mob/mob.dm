@@ -1236,7 +1236,7 @@
 /mob/proc/update_client_color()
 	if(client && client.color)
 		var/area/A = get_area(src)
-		animate(client, color = A?.get_color_grading(), time = 10)
+		animate(client, color = A?.get_color_tint(), time = 10)
 	return
 
 /mob/proc/swap_hand()
