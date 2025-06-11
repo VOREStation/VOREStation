@@ -14,7 +14,7 @@
 	var/list/scantemp = null
 	var/menu = MENU_MAIN //Which menu screen to display
 	var/list/records = null
-	var/datum/dna2/record/active_record = null
+	var/datum/transhuman/body_record/active_BR = null
 	var/obj/item/disk/body_record/diskette = null // Traitgenes - Storing the entire body record
 	var/loading = 0 // Nice loading text
 	var/autoprocess = 0
@@ -34,27 +34,26 @@
 
 /obj/machinery/computer/cloning/Destroy()
 	releasecloner()
-	for(var/datum/dna2/record/R in records)
-		qdel(R.dna)
-		qdel(R)
+	for(var/datum/transhuman/body_record/BR in records)
+		qdel(BR)
 	return ..()
 
 /obj/machinery/computer/cloning/process()
 	if(!scanner || !pods.len || !autoprocess || stat & NOPOWER)
 		return
 
-	if(scanner.occupant && can_autoprocess())
-		scan_mob(scanner.occupant)
+	if(scanner.get_occupant() && can_autoprocess())
+		scan_mob(scanner.get_occupant())
 
 	if(!LAZYLEN(records))
 		return
 
 	for(var/obj/machinery/clonepod/pod in pods)
-		if(!(pod.occupant || pod.mess) && (pod.efficiency > 5))
-			for(var/datum/dna2/record/R in records)
-				if(!(pod.occupant || pod.mess))
-					if(pod.growclone(R))
-						records.Remove(R)
+		if(!(pod.get_occupant() || pod.mess) && (pod.efficiency > 5))
+			for(var/datum/transhuman/body_record/BR in records)
+				if(!(pod.get_occupant() || pod.mess))
+					if(pod.growclone(BR))
+						records.Remove(BR)
 
 /obj/machinery/computer/cloning/proc/updatemodules()
 	scanner = findscanner()
@@ -67,8 +66,8 @@
 	var/obj/machinery/dna_scannernew/scannerf = null
 
 	//Try to find scanner on adjacent tiles first
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
-		scannerf = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
+	for(var/scan_dir in list(NORTH,EAST,SOUTH,WEST))
+		scannerf = locate(/obj/machinery/dna_scannernew, get_step(src, scan_dir))
 		if(scannerf)
 			return scannerf
 
@@ -97,7 +96,7 @@
 	if(istype(W, /obj/item/disk/body_record/)) //Traitgenes Storing the entire body record
 		if(!diskette)
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			diskette = W
 			to_chat(user, "You insert [W].")
 			SStgui.update_uis(src)
@@ -154,17 +153,18 @@
 			if(pod.efficiency > 5)
 				canpodautoprocess = 1
 
+			var/mob/living/occupant = pod.get_occupant()
 			var/status = "idle"
 			if(pod.mess)
 				status = "mess"
-			else if(pod.occupant && !(pod.stat & NOPOWER))
+			else if(occupant && !(pod.stat & NOPOWER))
 				status = "cloning"
 			tempods.Add(list(list(
 				"pod" = "\ref[pod]",
 				"name" = sanitize(capitalize(pod.name)),
 				"biomass" = pod.get_biomass(),
 				"status" = status,
-				"progress" = (pod.occupant && pod.occupant.stat != DEAD) ? pod.get_completion() : 0
+				"progress" = (occupant && occupant.stat != DEAD) ? pod.get_completion() : 0
 			)))
 			data["pods"] = tempods
 
@@ -178,16 +178,16 @@
 	else
 		data["autoallowed"] = 0
 	if(scanner)
-		data["occupant"] = scanner.occupant
+		data["occupant"] = scanner.get_occupant()
 		data["locked"] = scanner.locked
 	data["temp"] = temp
 	data["scantemp"] = scantemp
 	data["disk"] = diskette
 	data["selected_pod"] = "\ref[selected_pod]"
 	var/list/temprecords[0]
-	for(var/datum/dna2/record/R in records)
-		var tempRealName = R.dna.real_name
-		temprecords.Add(list(list("record" = "\ref[R]", "realname" = sanitize(tempRealName))))
+	for(var/datum/transhuman/body_record/BR in records)
+		var tempRealName = BR.mydna.dna.real_name
+		temprecords.Add(list(list("record" = "\ref[BR]", "realname" = sanitize(tempRealName))))
 	data["records"] = temprecords
 
 	if(selected_pod && (selected_pod in pods) && selected_pod.get_biomass() >= CLONE_BIOMASS)
@@ -206,67 +206,68 @@
 	. = TRUE
 	switch(tgui_modal_act(src, action, params))
 		if(TGUI_MODAL_ANSWER)
-			if(params["id"] == "del_rec" && active_record)
+			if(params["id"] == "del_rec" && active_BR)
 				var/obj/item/card/id/C = ui.user.get_active_hand()
 				if(!istype(C) && !istype(C, /obj/item/pda))
 					set_temp("ID not in hand.", "danger")
 					return
 				if(check_access(C))
-					records.Remove(active_record)
-					qdel(active_record.dna)
-					qdel(active_record)
+					records.Remove(active_BR)
+					qdel(active_BR) // Already deletes dna in destroy()
 					set_temp("Record deleted.", "success")
 					menu = MENU_RECORDS
 				else
 					set_temp("Access denied.", "danger")
 			return
 
+	var/mob/living/carbon/human/scanner_occupant = scanner.get_occupant()
+
 	switch(action)
 		if("scan")
-			if(!scanner || !scanner.occupant || loading)
+			if(!scanner || !scanner_occupant || loading)
 				return
 			set_scan_temp("Scanner ready.", "good")
 			loading = TRUE
 
 			spawn(20)
 				if(can_brainscan() && scan_mode)
-					scan_mob(scanner.occupant, scan_brain = TRUE)
+					scan_mob(scanner_occupant, scan_brain = TRUE)
 				else
-					scan_mob(scanner.occupant)
+					scan_mob(scanner_occupant)
 				loading = FALSE
 				SStgui.update_uis(src)
 		if("autoprocess")
 			autoprocess = text2num(params["on"]) > 0
 		if("lock")
-			if(isnull(scanner) || !scanner.occupant) //No locking an open scanner.
+			if(isnull(scanner) || !scanner_occupant) //No locking an open scanner.
 				return
 			scanner.locked = !scanner.locked
 		if("view_rec")
 			var/ref = params["ref"]
 			if(!length(ref))
 				return
-			active_record = locate(ref)
-			if(istype(active_record))
-				if(isnull(active_record.ckey))
-					qdel(active_record)
+			active_BR = locate(ref)
+			if(istype(active_BR))
+				if(isnull(active_BR.ckey))
+					qdel(active_BR)
 					set_temp("Error: Record corrupt.", "danger")
 				else
 					var/obj/item/implant/health/H = null
-					if(active_record.implant)
-						H = locate(active_record.implant)
+					if(active_BR.mydna.implant)
+						H = locate(active_BR.mydna.implant)
 					var/list/payload = list(
-						activerecord = "\ref[active_record]",
+						activerecord = "\ref[active_BR]",
 						health = (H && istype(H)) ? H.sensehealth() : "",
-						realname = sanitize(active_record.dna.real_name),
-						unidentity = active_record.dna.uni_identity,
-						strucenzymes = active_record.dna.struc_enzymes,
+						realname = sanitize(active_BR.mydna.dna.real_name),
+						unidentity = active_BR.mydna.dna.uni_identity,
+						strucenzymes = active_BR.mydna.dna.struc_enzymes,
 					)
 					tgui_modal_message(src, action, "", null, payload)
 			else
-				active_record = null
+				active_BR = null
 				set_temp("Error: Record missing.", "danger")
 		if("del_rec")
-			if(!active_record)
+			if(!active_BR)
 				return
 			tgui_modal_boolean(src, action, "Please confirm that you want to delete the record by holding your ID and pressing Delete:", yes_text = "Delete", no_text = "Cancel")
 		if("disk") // Disk management.
@@ -277,24 +278,24 @@
 					if(isnull(diskette) || isnull(diskette.stored)) // Traitgenes Storing the entire body record
 						set_temp("Error: The disk's data could not be read.", "danger")
 						return
-					else if(isnull(active_record))
+					else if(isnull(active_BR))
 						set_temp("Error: No active record was found.", "danger")
 						menu = MENU_MAIN
 						return
 
-					active_record = diskette.stored.mydna // Traitgenes Storing the entire body record
+					active_BR = new(diskette.stored) // Traitgenes Storing the entire body record
 					set_temp("Successfully loaded from disk.", "success")
 				if("save")
-					if(isnull(diskette) || isnull(active_record)) // Traitgenes Removed readonly
+					if(isnull(diskette) || isnull(active_BR)) // Traitgenes Removed readonly
 						set_temp("Error: The data could not be saved.", "danger")
 						return
 
-					diskette.stored.mydna = active_record // Traitgenes Storing the entire body record
-					diskette.name = "data disk - '[active_record.dna.real_name]'"
+					diskette.stored = new(active_BR) // Traitgenes Storing the entire body record
+					diskette.name = "data disk - '[active_BR.mydna.dna.real_name]'"
 					set_temp("Successfully saved to disk.", "success")
 				if("eject")
 					if(!isnull(diskette))
-						diskette.loc = loc
+						diskette.forceMove(get_turf(src))
 						diskette = null
 		if("refresh")
 			SStgui.update_uis(src)
@@ -309,7 +310,7 @@
 			var/ref = params["ref"]
 			if(!length(ref))
 				return
-			var/datum/dna2/record/C = locate(ref)
+			var/datum/transhuman/body_record/C = locate(ref)
 			//Look for that player! They better be dead!
 			if(istype(C))
 				tgui_modal_clear(src)
@@ -321,7 +322,7 @@
 					var/cloneresult
 					if(!selected_pod)
 						set_temp("Error: No cloning pod selected.", "danger")
-					else if(pod.occupant)
+					else if(pod.get_occupant())
 						set_temp("Error: The cloning pod is currently occupied.", "danger")
 					else if(pod.get_biomass() < CLONE_BIOMASS)
 						set_temp("Error: Not enough biomass.", "danger")
@@ -335,7 +336,6 @@
 							set_temp("Initiating cloning cycle...", "success")
 							playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1)
 							records.Remove(C)
-							qdel(C.dna)
 							qdel(C)
 							menu = MENU_MAIN
 						else
@@ -407,49 +407,38 @@
 		return
 
 	for(var/obj/machinery/clonepod/pod in pods)
-		if(pod.occupant && pod.occupant.mind == subject.mind)
+		var/mob/living/occupant = pod.get_occupant()
+		if(occupant && occupant.mind == subject.mind)
 			set_scan_temp("Subject already getting cloned.")
 			SStgui.update_uis(src)
 			return
 
 	subject.dna.check_integrity()
-
-	var/datum/dna2/record/R = new /datum/dna2/record()
-	qdel_swap(R.dna, subject.dna)
-	R.ckey = subject.ckey
-	R.id = copytext(md5(subject.real_name), 2, 6)
-	R.name = R.dna.real_name
-	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
-	R.languages = subject.languages
-	R.gender = subject.gender
-	R.flavor = subject.flavor_texts.Copy()
-	for(var/datum/modifier/mod in subject.modifiers)
-		if(mod.flags & MODIFIER_GENETIC)
-			R.genetic_modifiers.Add(mod.type)
+	var/datum/transhuman/body_record/BR = new(subject)
 
 	//Add an implant if needed
 	var/obj/item/implant/health/imp = locate(/obj/item/implant/health, subject)
 	if (isnull(imp))
 		imp = new /obj/item/implant/health(subject)
 		imp.implanted = subject
-		R.implant = "\ref[imp]"
+		BR.mydna.implant = "\ref[imp]"
 	//Update it if needed
 	else
-		R.implant = "\ref[imp]"
+		BR.mydna.implant = "\ref[imp]"
 
 	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
-		R.mind = "\ref[subject.mind]"
+		BR.mydna.mind = "\ref[subject.mind]"
 
-	records += R
+	records += BR
 	set_scan_temp("Subject successfully scanned.", "good")
 	SStgui.update_uis(src)
 
 //Find a specific record by key.
 /obj/machinery/computer/cloning/proc/find_record(var/find_key)
 	var/selected_record = null
-	for(var/datum/dna2/record/R in records)
-		if(R.ckey == find_key)
-			selected_record = R
+	for(var/datum/transhuman/body_record/BR in records)
+		if(BR.mydna.ckey == find_key)
+			selected_record = BR
 			break
 	return selected_record
 

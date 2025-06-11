@@ -1,0 +1,174 @@
+2025-06-01:
+  Diana:
+  - code_imp: Less random lagspikes during the middle of the round.
+  Guti:
+  - refactor: Refactored soap
+  - refactor: Refactored washing machine code to get rid of sleeps
+  - rscadd: You can eat soap now
+  - rscadd: Clean component
+  - code_imp: Replaced clean(), clean_blood(), and clean_contamination() with wash()
+  Kashargul:
+  - bugfix: macrophages escape chance is now properly set to 20%
+  ShadowLarkens:
+  - admin: VV now has a dark mode (toggleable in game prefs)
+  - admin: VV now uses getFlatIcon to get a better preview (also toggleable in game
+      prefs)
+  - admin: VV now supports previews for /images
+2025-06-02:
+  ShadowLarkens:
+  - bugfix: New players runtiming in preferences loading due to pAI nonsense
+  - bugfix: Black squares on alt-f4ing tgui.
+  - bugfix: You can turn off autohiss again!
+  - balance: Unathi no longer pass out from sugar, they just get knocked over.
+  Willburd:
+  - bugfix: lights do not ignore light switch state when a bulb is inserted
+  - bugfix: genescanner tool now has a proper description
+2025-06-03:
+  Diana:
+  - rscadd: Your spleen has been rescued from the Skrell. (Everyone now has a spleen,
+      not JUST skrell)
+  - bugfix: Worm meat can now properly be cut into
+  - bugfix: Organs now properly show their names when you're interacting with them
+      surgically.
+  - qol: Surgery steps don't have randomness anymore. Surgery steps also lowered
+  - qol: You can shove dead organs in bodies. Still a bad idea, but can be combined
+      with the patient stabilizer to some success.
+  - code_imp: Adds a spooky modifier with some special stuff to go along with it.
+      Not obtainable outside of admins.
+  - bugfix: You now lose nutrition passively again
+  SatinIsle:
+  - rscadd: Added a small amount of weaken to spider warning bites to knock people
+      over.
+  - rscadd: Added a new variable to mobs that can prevent them from being pulled when
+      alive, currently only applies to the spiders.
+  - bugfix: Fixed an issue where spiders would sometimes try to inject poison where
+      they couldn't and runtime.
+  - image: Fixed taj belly markings missing their groins.
+  ShadowLarkens:
+  - rscadd: Multishock integration
+  - bugfix: Holomaps/Nanomaps no longer show POI walls
+  TheCaramelion:
+  - bugfix: Fixed showers not washing atoms in it's space
+2025-06-04:
+  Diana:
+  - bugfix: Puking with a broken liver now properly makes you vomit the correct blood
+      color
+  Guti:
+  - bugfix: Fixed wash() proc to delete cleanable decals
+  - bugfix: Fixed mops and soaps not making the floor wet
+2025-06-06:
+  Diana:
+  - bugfix: Artifact range logic fixed
+  - bugfix: Lightning artifact now respects protection
+  - balance: DNA mutation artifact no longer mutates genes as often
+  - qol: DNA mutation artifact no longer spams your chat.
+2025-06-07:
+  ItsSelis:
+  - admin: Admin verb subsystem is now integrated and a small amount of verbs have
+      been converted into the new format (categories or verb names are still the same
+      of course).
+  Kashargul:
+  - bugfix: a crash with the General Tab in the vorepanel if used by robots
+  - bugfix: maintenance drone HP calculations
+  SatinIsle:
+  - maptweak: Tether tweaks. Added a swimwear locker to the locker room, a wall locker
+      with towels near the spa, and polarisable windows to the massage room.
+  - maptweak: Added janicart and keys for it to each station map. This is just in
+      the existing room on SD and RP. On the tether, there is a small garage on the
+      side of the janitors office now, because I thought that would be cute!
+  ShadowLarkens:
+  - qol: The chat now supports TTS for chosen message types, filtered the same way
+      that chat tabs are filtered. This is an accessibility feature.
+  - rscadd: Glitch-out effect to AI holograms when stuff passes through them
+  TankTheBirb:
+  - rscadd: Implements digi sprite markings for hooves, fox legs, tiger stripes, and
+      a gloss for toning.
+  Willburd:
+  - bugfix: cult ritual runes missing wash proc
+  - bugfix: vehicles no longer run you over going down stairs if you are driving them
+  - refactor: janicart updated to use vehicle code
+  - code_imp: removed duplicate b_type var from human mobs, they use their dna one
+      only now
+  - bugfix: bloodtype not being assigned to organs and limbs
+  - rscadd: Fingerprints can now be washed off in washing machines and showers.
+  - refactor: Reworked all bloodsplatter, fingerprint, gunshot residue, and clothing
+      fiber code into a single datum
+2025-06-08:
+  Kashargul:
+  - bugfix: cleaning applies description to desc, not to name!
+  SatinIsle:
+  - rscadd: Added custom links to the character directory.
+  ShadowLarkens:
+  - rscadd: AIs can now open their multicam views in completely separate windows and
+      maintain them while switching back to main view.
+  - bugfix: Camera consoles work more consistently.
+  TheCaramelion:
+  - rscadd: Dormant diseases may now be acquired via blood samples
+  - qol: Allowed virus immune species to get dormant diseases, as well as access to
+      Disease Carrier trait
+  - balance: The extrapolator may find any disease with no regards of it's stealth
+  - code_imp: added GetDormantDiseases proc
+  Willburd:
+  - bugfix: fixed mobs that qdel on death, causing crashes when crushed by doors and
+      dying.
+  - bugfix: Phased shadekin can no longer be lit on fire by atmofires
+  - bugfix: Phased shadekin can no longer be run over by vehicles
+  - bugfix: Circuit boards no longer bad-del
+  - bugfix: Fixed runtime on vampire xenoartifact's blood sucking effect
+  - bugfix: Fake attackers crashing MC with invalid turfs
+  - bugfix: borgs don't try to leave suit fibres on fingerprint checks
+2025-06-09:
+  Diana:
+  - balance: Spooky modifier was tested and had some balance adjustments
+  - bugfix: Plat and gold can be put in prosfabs again
+  Willburd:
+  - bugfix: phased shadekin no longer prevent airlocks from closing
+  - bugfix: phased shadekin are no longer crushed by dangerous airlocks closing
+2025-06-10:
+  Diana, Will, Kash:
+  - qol: Prometheans now use an appearance changer instead of 100 specialty verbs!
+  - qol: Cocoon trait can now change more things about you!
+  - qol: TF methods using the apperance changer allow you to load slots.
+  - bugfix: missing ooc notes added to body record for transfer
+  - bugfix: clonepods do not break listener code when releasing occupants
+  - bugfix: clonepod computer does not spin right around baby when interacted with
+  - bugfix: body redesign UI preview aligned correctly and no longer tiny
+  - bugfix: species/copy_vars no longer takes centuries validating known good data
+  - qol: anyone adding new dna vars no longer needs to worry about the dna cloning
+      proc.
+  - balance: FBP Xenochimera regenerate their robolimbs back
+  - balance: Organic Xenochimera drop their robolimbs, allowing them to slap them
+      back on post-revival
+  - code_imp: added BLACKLISTED_COPY_VARS macro, for safely iterating or filtering
+      atom.vars
+  - code_imp: added COMSIG_HUMAN_DNA_FINALIZED signal. Sent when a human mob is fully
+      init with all dna and species vars applied.
+  - code_imp: hair gradients use dnaUIs instead of separate vars
+  - refactor: massive rework to dna, bodyrecords and dna2record datums to handle copying
+      vars, and applying them to their owner mob more gracefully
+  - refactor: all dna related machines that resleeve humans, except the autosleever,
+      use a unified proc to ensure no loss of data.
+  - refactor: Xenochimera no longer use admin procs to heal, and use an internal body
+      record datum.
+  Willburd:
+  - bugfix: Motiontracker subsystem ignores phased shadekin
+2025-06-11:
+  Kashargul:
+  - bugfix: some vorepanel message toggles in the general tab
+  - bugfix: game panel inaccessible to devs / event managers
+  TheCaramelion:
+  - bugfix: fixed dormant diseases showing up in Medical scanners
+  Will:
+  - refactor: Hose connectors are a component now
+  - bugfix: Reagent hoses are now stack-able
+  - bugfix: It is no longer possible to plug a reagent hose into the same object,
+      making it impossible to retrieve
+  - bugfix: Reagent hoses no longer become unusable after clicking on an object that
+      already has all its connections used
+  - bugfix: Reagent hoses update on object move instead of lagging behind
+  - bugfix: He3 tank always spawning empty, and with a broken name
+  - bugfix: Reagent hoses are no longer a memory leak
+  - qol: Objects with reagent hose connections now show those connections when examined
+  - qol: Reagent hoses have feedback on connection and disconnection
+  - qol: Reagent hoses drop on disconnection instead of being destroyed
+  - qol: Reagent hoses change colors as reagents are pumped through them

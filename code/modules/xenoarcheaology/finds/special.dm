@@ -137,8 +137,7 @@
 		to_chat(M, span_red("The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out."))
 		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
 		B.target_turf = pick(range(1, src))
-		B.blood_DNA = list()
-		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		B.add_blooddna(M.dna,M)
 		M.remove_blood(rand(25,50))
 
 //animated blood 2 SPOOKY
@@ -161,13 +160,13 @@
 		//leave some drips behind
 		if(prob(50))
 			var/obj/effect/decal/cleanable/blood/drip/D = new(src.loc)
-			D.blood_DNA = src.blood_DNA.Copy()
+			D.init_forensic_data().merge_blooddna(forensic_data)
 			if(prob(50))
 				D = new(src.loc)
-				D.blood_DNA = src.blood_DNA.Copy()
+				D.init_forensic_data().merge_blooddna(forensic_data)
 				if(prob(50))
 					D = new(src.loc)
-					D.blood_DNA = src.blood_DNA.Copy()
+					D.init_forensic_data().merge_blooddna(forensic_data)
 	else
 		..()
 

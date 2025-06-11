@@ -367,7 +367,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.Sleeping(20)
+			M.Weaken(10)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/mayo
@@ -1106,7 +1106,7 @@
 					M.Weaken(2)
 				M.drowsyness = max(M.drowsyness, 20)
 			else
-				M.Sleeping(20)
+				M.Weaken(10)
 				M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
@@ -2098,7 +2098,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.Sleeping(20)
+			M.Weaken(10)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/milkshake/chocoshake

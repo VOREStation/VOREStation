@@ -46,7 +46,6 @@
 
 	var/age = 30		//Player's age (pure fluff)
 
-	var/b_type = "A+"	//Player's bloodtype
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
 	var/list/all_underwear = list()
@@ -92,7 +91,6 @@
 	var/hand_blood_color
 
 	var/list/flavor_texts = list()
-	var/gunshot_residue
 	var/pulling_punches    // Are you trying not to hurt your opponent?
 	var/robolimb_count = 0 // Total number of external robot parts.
 	var/robobody_count = 0 // Counts torso, groin, and head, if they're robotic

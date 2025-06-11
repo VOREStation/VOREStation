@@ -37,8 +37,8 @@
 	var/datum/tgui_state/state = null
 	/// Rate limit client refreshes to prevent DoS.
 	COOLDOWN_DECLARE(refresh_cooldown)
-	/// Are byond mouse events beyond the window passed in to the ui
-	var/mouse_hooked = FALSE
+	/// The id of any ByondUi elements that we have opened
+	var/list/open_byondui_elements
 	/// The map z-level to display.
 	var/map_z_level = 1
 	/// The Parent UI
@@ -49,6 +49,7 @@
 	var/partial_packets
 	/// If the window should be closed with other windows when requested
 	var/closeable = TRUE
+
 
 /**
  * public
@@ -128,8 +129,6 @@
 	window.send_message("update", get_payload(
 		with_data = TRUE,
 		with_static_data = TRUE))
-	if(mouse_hooked)
-		window.set_mouse_macro()
 	SStgui.on_open(src)
 
 	return TRUE
@@ -172,11 +171,28 @@
 		window.close(can_be_suspended, logout)
 		src_object.tgui_close(user)
 		SStgui.on_close(src)
+
+		if(user.client)
+			terminate_byondui_elements()
+
 	state = null
 	if(parent_ui)
 		parent_ui.children -= src
 	parent_ui = null
 	qdel(src)
+
+/**
+ * public
+ *
+ * Closes all ByondUI elements, left dangling by a forceful TGUI exit,
+ * such as via Alt+F4, closing in non-fancy mode, or terminating the process
+ *
+ */
+/datum/tgui/proc/terminate_byondui_elements()
+	set waitfor = FALSE
+
+	for(var/byondui_element in open_byondui_elements)
+		winset(user.client, byondui_element, list("parent" = ""))
 
 /**
  * public
@@ -187,17 +203,6 @@
  */
 /datum/tgui/proc/set_autoupdate(autoupdate)
 	src.autoupdate = autoupdate
-
-/**
- * public
- *
- * Enable/disable passing through byond mouse events to the window
- *
- * required value bool Enable/disable hooking.
- */
-/datum/tgui/proc/set_mouse_hook(value)
-	src.mouse_hooked = value
-	//Handle unhooking/hooking on already open windows ?
 
 /**
  * public
@@ -281,6 +286,10 @@
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
 		"mapZLevel" = map_z_level,
+		"mapInfo" = list(
+			"maxx" = world.maxx,
+			"maxy" = world.maxy,
+		),
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
@@ -422,6 +431,18 @@
 			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
 			#endif
 			src_object.tgui_fallback(payload)
+		if(TGUI_MANAGED_BYONDUI_TYPE_RENDER)
+			var/byond_ui_id = payload[TGUI_MANAGED_BYONDUI_PAYLOAD_ID]
+			if(!byond_ui_id || LAZYLEN(open_byondui_elements) > TGUI_MANAGED_BYONDUI_LIMIT)
+				return
+
+			LAZYOR(open_byondui_elements, byond_ui_id)
+		if(TGUI_MANAGED_BYONDUI_TYPE_UNMOUNT)
+			var/byond_ui_id = payload[TGUI_MANAGED_BYONDUI_PAYLOAD_ID]
+			if(!byond_ui_id)
+				return
+
+			LAZYREMOVE(open_byondui_elements, byond_ui_id)
 
 /// Wrapper for behavior to potentially wait until the next tick if the server is overloaded
 /datum/tgui/proc/on_act_message(act_type, payload, state)

@@ -31,6 +31,9 @@
 		light.flicker()
 
 	for(var/mob/living/L in nearby_mobs)
+		var/weakness = GetAnomalySusceptibility(L)
+		if(!weakness) //We have protection on!
+			continue
 		if(L.isSynthetic())
 			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
@@ -38,12 +41,12 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-			H.electrocute_act(rand(25, 40), holder, H.get_siemens_coefficient_organ(affected), affected)
+			H.electrocute_act(rand(25, 40) * weakness, holder, H.get_siemens_coefficient_organ(affected), affected)
 			var/turf/T = get_turf(H)
 			if(istype(T))
 				lightning_strike(T, TRUE)
 		else
-			L.electrocute_act(rand(25, 40), holder, 0.75, BP_TORSO)
+			L.electrocute_act(rand(25, 40) * weakness, holder, 0.75, BP_TORSO)
 			var/turf/T = get_turf(L)
 			if(istype(T))
 				lightning_strike(T, TRUE)
@@ -73,6 +76,9 @@
 		light.flicker()
 
 	for(var/mob/living/L in nearby_mobs)
+		var/weakness = GetAnomalySusceptibility(L)
+		if(!weakness) //We have protection on!
+			continue
 		if(L.isSynthetic())
 			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
@@ -80,12 +86,12 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-			H.electrocute_act(rand(1, 10), holder, H.get_siemens_coefficient_organ(affected), affected)
+			H.electrocute_act(rand(1, 10) * weakness, holder, H.get_siemens_coefficient_organ(affected), affected)
 			var/turf/T = get_turf(L)
 			if(istype(T))
 				lightning_strike(T, TRUE)
 		else
-			L.electrocute_act(rand(1, 10), holder, 0.75, BP_TORSO)
+			L.electrocute_act(rand(1, 10) * weakness, holder, 0.75, BP_TORSO)
 			var/turf/T = get_turf(L)
 			if(istype(T))
 				lightning_strike(T, TRUE)
@@ -115,6 +121,9 @@
 		light.flicker()
 
 	for(var/mob/living/L in nearby_mobs)
+		var/weakness = GetAnomalySusceptibility(L)
+		if(!weakness) //We have protection on!
+			continue
 		if(L.isSynthetic())
 			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
@@ -122,12 +131,12 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
-			H.electrocute_act(rand(10, 30), holder, H.get_siemens_coefficient_organ(affected), affected)
+			H.electrocute_act(rand(10, 30) * weakness, holder, H.get_siemens_coefficient_organ(affected), affected)
 			var/turf/T = get_turf(L)
 			if(istype(T))
 				lightning_strike(T, TRUE)
 		else
-			L.electrocute_act(rand(10, 30), holder, 0.75, BP_TORSO)
+			L.electrocute_act(rand(10, 30) * weakness, holder, 0.75, BP_TORSO)
 			var/turf/T = get_turf(L)
 			if(istype(T))
 				lightning_strike(T, TRUE)
