@@ -26,6 +26,10 @@
 		to_chat(src, span_vwarning("You can only use this when holo-projecting!"))
 		return
 
+	if(isbelly(loc))
+		to_chat(src, span_vwarning("For safety reasons, you cannot consume people with holograms while you are inside someone else."))
+		return
+
 	//Holopads have this 'masters' list where the keys are AI names and the values are the hologram effects
 	var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 
@@ -48,6 +52,7 @@
 	if(!istype(prey))
 		to_chat(src, span_vwarning("Invalid mob choice!"))
 		return
+
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
 	to_chat(src, span_vnotice("You begin engulfing [prey] in hardlight holograms.")) //Can't be part of the above, because the above is from the hologram.
