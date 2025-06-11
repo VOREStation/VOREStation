@@ -1706,6 +1706,7 @@
 #include "code\game\objects\structures\electricchair.dm"
 #include "code\game\objects\structures\extinguisher.dm"
 #include "code\game\objects\structures\fence.dm"
+#include "code\game\objects\structures\fence_electric.dm"
 #include "code\game\objects\structures\fireaxe.dm"
 #include "code\game\objects\structures\fitness.dm"
 #include "code\game\objects\structures\fitness_vr.dm"
