@@ -1235,7 +1235,8 @@
 // This is for inheritence since /mob/living will serve most cases. If you need ghosts to use this you'll have to implement that yourself.
 /mob/proc/update_client_color()
 	if(client && client.color)
-		animate(client, color = null, time = 10)
+		var/area/A = get_area(src)
+		animate(client, color = A?.get_color_grading(), time = 10)
 	return
 
 /mob/proc/swap_hand()
