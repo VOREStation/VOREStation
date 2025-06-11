@@ -1196,10 +1196,9 @@
 			colors_to_blend += M.client_color
 
 	if(!colors_to_blend.len) // Modifiers take priority over passive area blending, to prevent changes on every area entered
-		var/area/A = get_area(src)
-		var/area_grade = A?.get_color_tint()
-		if(area_grade)
-			colors_to_blend += area_grade
+		var/location_grade = get_location_color_tint() // Area or weather!
+		if(location_grade)
+			colors_to_blend += location_grade
 
 	if(colors_to_blend.len)
 		var/final_color

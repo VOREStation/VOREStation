@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	VAR_PRIVATE/color_grading = COLORTINT_NONE // Color blending for clients that enter this area
+	VAR_PRIVATE/color_grading = null // Color blending for clients that enter this area
 
 /area/New()
 	// Used by the maploader, this must be done in New, not init
@@ -594,6 +594,4 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 /// Gets a hex color value for blending with a player's client.color. Allows for primitive color grading per area.
 /area/proc/get_color_tint()
 	SHOULD_CALL_PARENT(TRUE)
-	if(color_grading == COLORTINT_NONE)
-		return null // No additional blending
 	return color_grading
