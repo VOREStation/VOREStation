@@ -11,3 +11,4 @@
 #define COLORTINT_MEAT "#fee8e8"
 #define COLORTINT_OMEN "#f0eaf0"
 #define COLORTINT_DUST "#f7f7f1"
+#define COLORTINT_BADBROKE "#f8f3d4"
