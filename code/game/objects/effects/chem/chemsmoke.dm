@@ -93,13 +93,14 @@
 	var/whereLink = "<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
 
 	if(show_log)
-		if(carry.my_atom.fingerprintslast)
-			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
+		var/print_name = carry.my_atom.forensic_data?.get_lastprint()
+		if(print_name)
+			var/mob/M = get_mob_by_key(print_name)
 			var/more = ""
 			if(M)
 				more = "(<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</a>)"
-			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.fingerprintslast][more].", 0, 1)
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
+			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [print_name][more].", 0, 1)
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [print_name].")
 		else
 			message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")

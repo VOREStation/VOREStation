@@ -31,7 +31,6 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	if (. || (clean_types & clean_type))
 		qdel(src)
 		return TRUE
-	return .
 
 /obj/effect/decal/cleanable/Destroy()
 	SSpersistence.forget_value(src, /datum/persistent/filth)

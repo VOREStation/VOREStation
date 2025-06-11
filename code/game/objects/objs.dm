@@ -229,8 +229,6 @@
 	if(gurgled && clean_types & CLEAN_WASH)
 		gurgled = FALSE
 		cut_overlay(gurgled_overlays[gurgled_color])
-		name = initial(name)
-		desc = initial(desc)
 	if(contaminated && clean_types & CLEAN_RAD) // Phoron and stuff, washing machine needed
 		contaminated = FALSE
 		cut_overlay(contamination_overlay)

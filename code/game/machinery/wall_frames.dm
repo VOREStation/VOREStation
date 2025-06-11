@@ -45,9 +45,7 @@
 		return
 
 	var/obj/machinery/M = new build_machine_type(get_turf(src.loc), ndir, 1, frame_type)
-	M.fingerprints = fingerprints
-	M.fingerprintshidden = fingerprintshidden
-	M.fingerprintslast = fingerprintslast
+	M.init_forensic_data().merge_allprints(forensic_data)
 	if(istype(src.loc, /obj/item/gripper)) //Typical gripper shenanigans
 		user.drop_item()
 	qdel(src)
@@ -94,9 +92,7 @@
 			new /obj/item/stack/material/steel(user.loc, (5 - frame_type.frame_size))
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1, frame_type)
-	M.fingerprints = fingerprints
-	M.fingerprintshidden = fingerprintshidden
-	M.fingerprintslast = fingerprintslast
+	M.init_forensic_data().merge_allprints(forensic_data)
 	if(istype(src.loc, /obj/item/gripper)) //Typical gripper shenanigans
 		user.drop_item()
 	qdel(src)

@@ -109,16 +109,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	cold_discomfort_strings = list("You feel too cool.")
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/innate_shapeshifting,
 		/mob/living/carbon/human/proc/regenerate,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/carbon/human/proc/prommie_blobform,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
@@ -239,8 +231,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.feet_blood_color = null
 			H.adjust_nutrition(rand(3, 10))
 		if(H.bloody_hands)
-			LAZYCLEARLIST(H.blood_DNA)
-			H.blood_DNA = null
+			H.forensic_data?.clear_blooddna()
 			H.hand_blood_color = null
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))
@@ -412,3 +403,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 		return
 	else
 		prommie_intoblob()
+
+/mob/living/carbon/human/proc/innate_shapeshifting()
+	set name = "Transform Appearance"
+	set category = "Abilities.Superpower"
+	var/datum/tgui_module/appearance_changer/innate/I = new(src, src)
+	I.tgui_interact(src)

@@ -4,7 +4,7 @@
 			standing.add_overlay(A.get_mob_overlay())
 
 /obj/item/clothing/apply_blood(var/image/standing)
-	if(blood_DNA && blood_sprite_state && ishuman(loc))
+	if(forensic_data?.has_blooddna() && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
 		bloodsies.color		= blood_color
@@ -21,7 +21,7 @@
 
 //SUIT: Blood state is slightly different
 /obj/item/clothing/suit/apply_blood(var/image/standing)
-	if(blood_DNA && blood_sprite_state && ishuman(loc))
+	if(forensic_data?.has_blooddna() && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		blood_sprite_state = "[blood_overlay_type]blood"
 		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)

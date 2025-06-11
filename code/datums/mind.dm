@@ -114,7 +114,10 @@
 
 	if(ambitions)
 		output += "<HR><B>Ambitions:</B> [ambitions]<br>"
-	recipient << browse("<html>[output]</html>","window=memory")
+
+	var/datum/browser/popup = new(recipient, "memory", "Memory")
+	popup.set_content(output)
+	popup.open()
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
@@ -149,7 +152,10 @@
 		out += "None."
 	out += "<br><a href='byond://?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
 	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='byond://?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
-	usr << browse("<html>[out]</html>", "window=edit_memory[src]")
+
+	var/datum/browser/popup = new(usr, "edit_memory[src]", "Edit Memory")
+	popup.set_content(out)
+	popup.open()
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return

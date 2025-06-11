@@ -137,9 +137,9 @@ Transponder Codes:<UL>"}
 		t += "<small><A href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
 		t+= "<UL></TT>"
 
-	user << browse("<html>[t]</html>", "window=navbeacon")
-	onclose(user, "navbeacon")
-	return
+	var/datum/browser/popup = new(user, "navbeacon", "Navbeacon")
+	popup.set_content(t)
+	popup.open()
 
 /obj/machinery/navbeacon/Topic(href, href_list)
 	..()

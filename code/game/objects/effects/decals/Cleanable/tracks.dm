@@ -113,8 +113,7 @@ var/global/list/image/fluidtrack_cache=list()
 			updated=1
 
 	dirs |= comingdir|realgoing
-	if(islist(blood_DNA))
-		blood_DNA |= DNA.Copy()
+	init_forensic_data().merge_blooddna(null,DNA)
 	if(updated)
 		update_icon()
 
