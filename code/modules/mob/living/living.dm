@@ -1197,7 +1197,7 @@
 
 	if(!colors_to_blend.len) // Modifiers take priority over passive area blending, to prevent changes on every area entered
 		var/area/A = get_area(src)
-		var/area_grade = A?.get_color_grading()
+		var/area_grade = A?.get_color_tint()
 		if(area_grade)
 			colors_to_blend += area_grade
 
