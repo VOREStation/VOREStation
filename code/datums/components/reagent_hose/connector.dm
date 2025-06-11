@@ -1,5 +1,6 @@
 /datum/component/hose_connector
 	var/name = ""
+	dupe_mode = COMPONENT_DUPE_ALLOWED
 	VAR_PROTECTED/obj/carrier = null
 	VAR_PROTECTED/flow_direction = HOSE_NEUTRAL
 	VAR_PROTECTED/datum/hose/my_hose = null
@@ -42,6 +43,9 @@
 
 /datum/component/hose_connector/proc/get_flow_direction()
 	return flow_direction
+
+/datum/component/hose_connector/proc/get_id()
+	return "[name] #[connector_number]"
 
 /datum/component/hose_connector/output/process()
 	return
@@ -138,15 +142,16 @@
 	var/list/available_sockets = list()
 	for(var/datum/component/hose_connector/HC in GetComponents(/datum/component/hose_connector))
 		if(HC.get_hose())
-			available_sockets |= HC
+			available_sockets[HC.get_id()] = HC
 	if(!LAZYLEN(available_sockets))
 		return
 
 	if(available_sockets.len == 1)
-		var/datum/component/hose_connector/AC = available_sockets[1]
+		var/key = available_sockets[1]
+		var/datum/component/hose_connector/AC = available_sockets[key]
 		AC.disconnect_action(usr)
 	else
 		var/choice = tgui_input_list(usr, "Select a target hose connector.", "Socket Disconnect", available_sockets)
 		if(choice)
-			var/datum/component/hose_connector/AC = choice
+			var/datum/component/hose_connector/AC = available_sockets[choice]
 			AC.disconnect_action(usr)
