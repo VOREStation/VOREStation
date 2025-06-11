@@ -22,6 +22,7 @@
 	var/cuttable = TRUE
 	var/hole_size= NO_HOLE
 	var/invulnerable = FALSE
+	var/electric = FALSE
 
 /obj/structure/fence/Initialize(mapload)
 	update_cut_status()
@@ -68,8 +69,17 @@
 		return TRUE
 	return ..()
 
+/obj/structure/fence/attack_hand(mob/user)
+	if(electric && isliving(user) && !user.is_incorporeal())
+		if(electrocute(user))
+			return
+	. = ..()
+
 /obj/structure/fence/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(electric && isliving(user) && !user.is_incorporeal() && !(W.flags & NOCONDUCT))
+		if(electrocute(user))
+			return
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!cuttable)
 			to_chat(user, span_warning("This section of the fence can't be cut."))
@@ -99,6 +109,13 @@
 						RemoveElement(/datum/element/climbable)
 				update_cut_status()
 	return TRUE
+
+/obj/structure/fence/Bumped(AM)
+	. = ..()
+	if(electric && isliving(AM))
+		var/mob/living/L = AM
+		if(!L.is_incorporeal())
+			electrocute(L)
 
 /obj/structure/fence/proc/update_cut_status()
 	if(!cuttable)
