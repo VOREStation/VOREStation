@@ -1233,6 +1233,10 @@
 	else
 		name = initial(name)
 
+/obj/structure/disposalpipe/sortjunction/Destroy()
+	qdel_null(wires)
+	. = ..()
+
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
 	var/negdir = turn(dir, 180)
 
