@@ -495,14 +495,13 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("set_max_voreoverlay_alpha")
-			var/new_alpha = tgui_input_number(ui.user, "What would you like your new maximum alpha to be?", "Max Belly Alpha", host.max_voreoverlay_alpha, 255, 0)
-			if(new_alpha != null)
-				host.max_voreoverlay_alpha = new_alpha
-				if(host.client.prefs_vr)
-					host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
-				if (isbelly(host.loc))
-					var/obj/belly/B = host.loc
-					B.vore_fx(host, TRUE)
+			var/new_alpha = CLAMP(params["val"], 0, 255)
+			host.max_voreoverlay_alpha = new_alpha
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
+			if (isbelly(host.loc))
+				var/obj/belly/B = host.loc
+				B.vore_fx(host, TRUE)
 			unsaved_changes = TRUE
 			return TRUE
 		// liquid belly code

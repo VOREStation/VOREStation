@@ -438,7 +438,6 @@ export type localPrefs = {
   soulcatcher_transfer: preferenceData;
   soulcatcher_takeover: preferenceData;
   soulcatcher_delete: preferenceData;
-  max_voreoverlay_alpha: preferenceData;
 };
 
 export type preferenceData = {

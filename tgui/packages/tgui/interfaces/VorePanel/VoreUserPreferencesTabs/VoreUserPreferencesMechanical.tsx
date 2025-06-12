@@ -93,43 +93,31 @@ export const VoreUserPreferencesMechanical = (props: {
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.vore_fx}
+            spec={preferences.spontaneous_tf}
             tooltipPosition="right"
           />
         </Stack.Item>
         <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
-            spec={preferences.spontaneous_tf}
-            tooltipPosition="top"
-          />
-        </Stack.Item>
-        <Stack.Item basis="32%">
-          <VoreUserPreferenceItem
             spec={preferences.mind_transfer}
-            tooltipPosition="left"
+            tooltipPosition="top"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.allow_mimicry}
-            tooltipPosition="right"
-          />
-        </Stack.Item>
-        <Stack.Item basis="32%" grow>
-          <VoreUserPreferenceItem
-            spec={preferences.toggle_consume_liquid_belly}
-            tooltipPosition="top"
+            tooltipPosition="left"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.toggle_consume_liquid_belly}
-            tooltipPosition="top"
+            tooltipPosition="right"
           />
         </Stack.Item>
-        <Stack.Item basis="32%" grow>
+        <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.max_voreoverlay_alpha}
+            spec={preferences.toggle_consume_liquid_belly}
             tooltipPosition="top"
           />
         </Stack.Item>
