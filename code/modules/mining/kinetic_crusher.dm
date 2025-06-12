@@ -13,20 +13,18 @@
 	name = "proto-kinetic crusher"
 	desc = "An early design of the proto-kinetic accelerator, it is little more than an combination of various mining tools cobbled together, forming a high-tech club. \
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
-	force = 0 //You can't hit stuff unless wielded
+	force = 20
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	throwforce = 5
 	throw_speed = 4
-/*
-	armour_penetration = 10
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
-*/
+	armor_penetration = 10
+	//custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharp = TRUE
 	edge = TRUE
-	// sharpness = SHARP_EDGED
+	embed_chance = 0
 	actions_types = list(/datum/action/item_action/toggle_light)
 	// var/list/trophies = list()
 	var/charged = TRUE
@@ -48,7 +46,7 @@
 	/// damage buff for throw impacts
 	var/thrown_bonus = 35
 	/// do we need to be wielded?
-	var/requires_wield = TRUE
+	var/requires_wield = FALSE
 	/// do we have a charge overlay?
 	var/charge_overlay = TRUE
 	/// do we update item state?
@@ -223,16 +221,16 @@
 		if(integ_light_on)
 			add_overlay("[icon_state]_lit")
 
-/*
 /obj/item/kinetic_crusher/glaive
-	name = "proto-kinetic glaive"
-	desc = "A modified design of a proto-kinetic crusher, it is still little more of a combination of various mining tools cobbled together \
-	and kit-bashed into a high-tech cleaver on a stick - with a handguard and a goliath hide grip. While it is still of little use to any \
-	but the most skilled and/or suicidal miners against local fauna, it's an elegant weapon for a more civilized hunter."
-
-	look gary there i am
-	- hatterhat
-*/
+	name = "kinetic glaive"
+	icon_state = "crusher-glaive"
+	force = 20
+	detonation_damage = 20 // 40
+	backstab_bonus = 30 // 60
+	reach = 2
+	slot_flags = SLOT_BELT
+	w_class = ITEMSIZE_NORMAL
+	requires_wield = FALSE
 
 
 /obj/item/kinetic_crusher/machete
