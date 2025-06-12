@@ -1412,7 +1412,12 @@
 	if(!RTB)
 		return FALSE
 
-	to_chat(src, span_vnotice("[RTB] has [RTB.reagents.total_volume] units of liquid."))
+	var/total_report = span_vnotice("[RTB] has [RTB.reagents.total_volume] units of liquid.")
+	if(RTB.reagents.total_volume > 0)
+		for(var/datum/reagent/R in RTB.reagents.reagent_list)
+			total_report += "<br>"
+			total_report += span_info("  -[R.name]: [R.volume]u")
+	to_chat(src, total_report)
 
 /mob/living/proc/vore_transfer_reagents()
 	set name = "Transfer Liquid (Vore)"

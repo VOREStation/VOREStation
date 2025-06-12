@@ -59,10 +59,11 @@
 					remembered = null // Unintuitive if it does not reset state
 
 				else if(distancetonode <= amount)
-					to_chat(user, span_notice("You join \the [REMB] to \the [AC]."))
-					REMB.setup_hoses(AC,distancetonode)
-					use(distancetonode)
+					if(REMB.setup_hoses(AC,distancetonode,user))
+						to_chat(user, span_notice("You join the [REMB] to \the [AC]."))
+						use(distancetonode)
 					remembered = null
+
 				else
 					to_chat(user, span_notice("You do not have enough tubing to connect the sockets. You wind \the [src] back up."))
 					remembered = null // Unintuitive if it does not reset state
@@ -88,10 +89,9 @@
 							remembered = null // Unintuitive if it does not reset state
 
 						else if(distancetonode <= amount)
-							to_chat(user, span_notice("You join \the [REMB] to \the [CC]"))
-
-							REMB.setup_hoses(CC,distancetonode)
-							use(distancetonode)
+							if(REMB.setup_hoses(CC,distancetonode,user))
+								to_chat(user, span_notice("You join the [REMB] to \the [CC]"))
+								use(distancetonode)
 							remembered = null
 
 						else
