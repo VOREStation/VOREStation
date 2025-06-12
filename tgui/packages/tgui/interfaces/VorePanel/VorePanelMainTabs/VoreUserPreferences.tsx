@@ -61,6 +61,7 @@ export const VoreUserPreferences = (props: {
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
     soulcatcher_allow_takeover,
+    max_voreoverlay_alpha,
   } = prefs;
 
   const preferences: localPrefs = {
@@ -679,6 +680,19 @@ export const VoreUserPreferences = (props: {
             'DANGER! Instant Soul Deletion Allowed') ||
           '',
         disabled: 'Do Not Allow Soul Deletion',
+      },
+    },
+    max_voreoverlay_alpha: {
+      action: 'set_max_voreoverlay_alpha',
+      test: false,
+      tooltip: {
+        main: 'This button is for setting the maximum alpha a belly fullscreen can be, in case you want to look through them.',
+        enable: '',
+        disable: '',
+      },
+      content: {
+        enabled: '',
+        disabled: 'Max Vore Overlay Alpha: ' + max_voreoverlay_alpha,
       },
     },
   };

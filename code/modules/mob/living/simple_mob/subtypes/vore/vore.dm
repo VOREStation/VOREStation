@@ -72,6 +72,7 @@
 	no_latejoin_prey_warning_time = client.prefs_vr.no_latejoin_prey_warning_time
 	no_latejoin_vore_warning_persists = client.prefs_vr.no_latejoin_vore_warning_persists
 	no_latejoin_prey_warning_persists = client.prefs_vr.no_latejoin_prey_warning_persists
+	max_voreoverlay_alpha = client.prefs_vr.max_voreoverlay_alpha
 	belly_rub_target = client.prefs_vr.belly_rub_target
 	soulcatcher_pref_flags = client.prefs_vr.soulcatcher_pref_flags
 	persistend_edit_mode = client.prefs_vr.persistend_edit_mode
