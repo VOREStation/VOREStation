@@ -320,12 +320,17 @@
 
 /datum/component/hose_connector/inflation/handle_pump(var/datum/reagents/connected_to)
 	ASSERT(connected_to)
+	var/datum/component/hose_connector/other = get_pairing()
 	var/rate = reagents.maximum_volume * 0.5
 	if(connection_mode == CONNECTION_MODE_BLOOD)
 		rate = 10 // SLOW here
+	else if(other.flow_direction != HOSE_INPUT) // If filling mouth or vorebelly check prefs for belly fluids.
+		if(!human_owner.consume_liquid_belly && reagents.liquid_belly_check())
+			to_chat(user, span_infoplain("You can't consume that, it contains something produced from a belly!"))
+			my_hose.disconnect() // Pop!
+			return
 
 	// Inflation station
-	var/datum/component/hose_connector/other = get_pairing()
 	switch(other.flow_direction)
 		if(HOSE_OUTPUT)
 			// inflating us
