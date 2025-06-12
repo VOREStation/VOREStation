@@ -497,3 +497,5 @@
 	var/new_speech_bubble = tgui_input_list(src, "Pick new voice (default for automatic selection)", "Character Preference", GLOB.selectable_speech_bubbles)
 	if(new_speech_bubble)
 		custom_speech_bubble = new_speech_bubble
+		if(dna)
+			dna.custom_speech_bubble = new_speech_bubble

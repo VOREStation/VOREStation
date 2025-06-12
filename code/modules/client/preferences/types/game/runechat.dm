@@ -21,3 +21,9 @@
 	savefile_key = "RUNECHAT_LONG"
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/runechat_balloon_messages
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "RUNECHAT_BALLOON_MESSAGES"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER

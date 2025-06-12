@@ -229,7 +229,7 @@ default behaviour is:
 		MB.runOver(src)
 
 	if(istype(AM, /obj/vehicle))
-		if(!istype(buckled, /obj/vehicle)) // Don't run ourselves over, needed for going down stairs in vehicles!
+		if(!istype(buckled, /obj/vehicle) && !is_incorporeal()) // Don't run ourselves over, needed for going down stairs in vehicles!
 			// Checks if we are riding a vehicle instead of our buckled vehicle, so that our trailers don't flatten us either!
 			var/obj/vehicle/V = AM
 			V.RunOver(src)
@@ -271,7 +271,7 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
-	if(!forced && movetime)
+	if(!forced && movetime && !is_incorporeal())
 		SSmotiontracker?.ping(src) // Incase of before init "turf enter gravity" this is ?, unfortunately.
 	// Begin VOREstation edit
 	if(is_shifted)

@@ -148,16 +148,17 @@
 	var/list/clonepods = list()
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		var/status = "idle"
+		var/mob/living/occupant = pod.get_occupant()
 		if(pod.mess)
 			status = "mess"
-		else if(pod.occupant && !(pod.stat & NOPOWER))
+		else if(occupant && !(pod.stat & NOPOWER))
 			status = "cloning"
 		clonepods += list(list(
 			"pod" = REF(pod),
 			"name" = sanitize(capitalize(pod.name)),
 			"biomass" = pod.get_biomass(),
 			"status" = status,
-			"progress" = (pod.occupant && pod.occupant.stat != DEAD) ? pod.get_completion() : 0
+			"progress" = (occupant && occupant.stat != DEAD) ? pod.get_completion() : 0
 		))
 	data["pods"] = clonepods
 
@@ -177,8 +178,8 @@
 		resleevers += list(list(
 			"sleever" = REF(resleever),
 			"name" = sanitize(capitalize(resleever.name)),
-			"occupied" = !!resleever.occupant,
-			"occupant" = resleever.occupant ? resleever.occupant.real_name : "None"
+			"occupied" = !!resleever.get_occupant(),
+			"occupant" = resleever.get_occupant() ? resleever.get_occupant().real_name : "None"
 		))
 	data["sleevers"] = resleevers
 
@@ -322,7 +323,7 @@
 							return
 
 						//Already doing someone.
-						if(pod.occupant)
+						if(pod.get_occupant())
 							set_temp("Error: Growpod is currently occupied.", "danger")
 							active_br = null
 							return
@@ -375,26 +376,26 @@
 					switch(mode)
 						if(1) //Body resleeving
 							//No body to sleeve into.
-							if(!sleever.occupant)
+							if(!sleever.get_occupant())
 								set_temp("Error: Resleeving pod is not occupied.", "danger")
 								active_mr = null
 								return
 
 							//OOC body lock thing.
-							if(sleever.occupant.resleeve_lock && active_mr.ckey != sleever.occupant.resleeve_lock)
+							if(sleever.get_occupant().resleeve_lock && active_mr.ckey != sleever.get_occupant().resleeve_lock)
 								set_temp("Error: Mind incompatible with body.", "danger")
 								active_mr = null
 								return
 
 							var/list/subtargets = list()
-							for(var/mob/living/carbon/human/H in sleever.occupant)
+							for(var/mob/living/carbon/human/H in sleever.get_occupant())
 								if(H.resleeve_lock && active_mr.ckey != H.resleeve_lock)
 									continue
 								subtargets += H
 							if(subtargets.len)
-								var/oc_sanity = sleever.occupant
+								var/oc_sanity = sleever.get_occupant()
 								override = tgui_input_list(ui.user,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target", subtargets)
-								if(!override || oc_sanity != sleever.occupant || !(override in sleever.occupant))
+								if(!override || oc_sanity != sleever.get_occupant() || !(override in sleever.get_occupant()))
 									set_temp("Error: Target selection aborted.", "danger")
 									active_mr = null
 									return
@@ -558,7 +559,7 @@
 			if(!selected_sleever)
 				can_sleeve_active = FALSE
 				set_temp("Error: Cannot sleeve due to no selected sleever.", "danger")
-			if(selected_sleever && !selected_sleever.occupant)
+			if(selected_sleever && !selected_sleever.get_occupant())
 				can_sleeve_active = FALSE
 				set_temp("Error: Cannot sleeve due to lack of sleever occupant.", "danger")
 	else

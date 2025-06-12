@@ -532,7 +532,7 @@ var/list/preferences_datums = list()
 				else
 					var/bodytype
 					var/datum/species/selected_species = GLOB.all_species[species]
-					if(custom_base)
+					if(selected_species.selects_bodytype && custom_base) //Everyone technically has custom_base set to HUMAN, but only some species actually select it.
 						bodytype = custom_base
 					else
 						bodytype = selected_species.get_bodytype()
@@ -543,7 +543,8 @@ var/list/preferences_datums = list()
 
 	for(var/N in character.organs_by_name)
 		var/obj/item/organ/external/O = character.organs_by_name[N]
-		O.markings.Cut()
+		if(O)
+			O.markings.Cut()
 
 	var/priority = 0
 	for(var/M in body_markings)
@@ -553,6 +554,7 @@ var/list/preferences_datums = list()
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
+				if(!islist(body_markings[M][BP])) continue
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
 
@@ -580,7 +582,6 @@ var/list/preferences_datums = list()
 	character.fuzzy				= fuzzy
 	character.offset_override	= offset_override
 	character.voice_freq		= voice_freq
-	character.size_multiplier = size_multiplier
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 	var/list/traits_to_copy = list(/datum/trait/neutral/tall,
@@ -615,17 +616,16 @@ var/list/preferences_datums = list()
 
 	var/datum/species/selected_species = GLOB.all_species[species]
 	var/bodytype_selected
-	if(custom_base)
+	if(selected_species.selects_bodytype && custom_base)
 		bodytype_selected = custom_base
 	else
 		bodytype_selected = selected_species.get_bodytype(character)
-
 	character.dna.base_species = bodytype_selected
 	character.species.base_species = bodytype_selected
 	character.species.icobase = character.species.get_icobase()
 	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
-	if (istype(character.species, /datum/species/shapeshifter))
+	if(istype(character.species, /datum/species/shapeshifter))
 		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
 
 	character.custom_species	= custom_species

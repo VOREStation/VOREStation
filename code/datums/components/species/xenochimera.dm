@@ -1,31 +1,43 @@
 /datum/component/xenochimera
-	var/laststress = 0
-	var/mob/living/carbon/human/owner
+	VAR_PRIVATE/laststress = 0
+	VAR_PRIVATE/mob/living/carbon/human/owner
 	var/feral = 0
 	var/revive_ready = REVIVING_READY
 	var/revive_finished = FALSE
-	var/regen_sounds = list(
+	VAR_PRIVATE/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
+	VAR_PRIVATE/datum/transhuman/body_record/revival_record
 
 /datum/component/xenochimera/Initialize()
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	RegisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT, PROC_REF(handle_comp))
+	RegisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(handle_record))
 	add_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 
 /datum/component/xenochimera/Destroy(force)
 	UnregisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT)
+	UnregisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
+	qdel_null(revival_record)
 	owner = null
 	. = ..()
 
+/datum/component/xenochimera/proc/handle_record()
+	SIGNAL_HANDLER
+	if(QDELETED(owner))
+		return
+	qdel_null(revival_record)
+	revival_record = new(owner)
+
 /datum/component/xenochimera/proc/handle_comp()
+	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
 	handle_feralness()
@@ -41,6 +53,19 @@
 			owner.visible_message(span_danger("<p>" + span_huge("[owner.name]'s motionless form shudders grotesquely, rippling unnaturally.") + "</p>"))
 		if(!owner.lying)
 			owner.lay_down()
+
+/datum/component/xenochimera/proc/set_revival_delay(var/time)
+	revive_ready = REVIVING_NOW
+	revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+
+/datum/component/xenochimera/proc/trigger_revival(var/from_save_slot)
+	ASSERT(revival_record)
+	if(owner.isSynthetic())
+		revival_record.revive_xenochimera(owner,TRUE,from_save_slot)
+	else
+		revival_record.revive_xenochimera(owner,FALSE,from_save_slot)
+	if(from_save_slot)
+		handle_record() // Update record
 
 /datum/component/xenochimera/proc/handle_feralness()
 	//first, calculate how stressed the chimera is
@@ -254,103 +279,102 @@
 /mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
 	set name = "Reconstitute Form"
 	set category = "Abilities.Xenochimera"
-
+	var/datum/component/xenochimera/xc = get_xenochimera_component()
+	if(!xc)
+		return
 	if(is_incorporeal())
 		to_chat(src, "You cannot regenerate while incorporeal.")
 		return
 	// Sanity is mostly handled in chimera_regenerate()
 	if(stat == DEAD)
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
-			chimera_regenerate()
-	else if (quickcheckuninjured())
-		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and match your appearance to your character slot.", "Confirm Regeneration", list("Yes", "No"))
+			xc.chimera_regenerate()
+	else if(quickcheckuninjured())
+		var/confirm = tgui_alert(src, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot.", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
-			chimera_regenerate()
+			xc.chimera_regenerate()
 	else
-		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
+		var/confirm = tgui_alert(src, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move. Additionally, you may regenerate your appearance based on your current form or the appearance of the currently loaded slot", "Confirm Regeneration", list("Yes", "No"))
 		if(confirm == "Yes")
-			chimera_regenerate()
+			xc.chimera_regenerate()
 
-/mob/living/carbon/human/proc/chimera_regenerate()
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(!xc)
+/datum/component/xenochimera/proc/chimera_regenerate()
+	if(!owner)
 		return
 	//If they're already regenerating
-	switch(xc.revive_ready)
+	switch(revive_ready)
 		if(REVIVING_NOW)
-			to_chat(src, "You are already reconstructing, just wait for the reconstruction to finish!")
+			to_chat(owner, "You are already reconstructing, just wait for the reconstruction to finish!")
 			return
 		if(REVIVING_DONE)
-			to_chat(src, "Your reconstruction is done, but you need to hatch now.")
+			to_chat(owner, "Your reconstruction is done, but you need to hatch now.")
 			return
-	if(xc.revive_ready > world.time)
-		to_chat(src, "You can't use that ability again so soon!")
+	if(revive_ready > world.time)
+		to_chat(owner, "You can't use that ability again so soon!")
 		return
 
-	var/time = min(900, (120+780/(1 + nutrition/100))) //capped at 15 mins, roughly 6 minutes at 250 (yellow) nutrition, 4.1 minutes at 500 (grey), cannot be below 2 mins
-	if (quickcheckuninjured()) //if you're completely uninjured, then you get a speedymode - check health first for quickness
+	var/time = min(900, (120+780/(1 + owner.nutrition/100))) //capped at 15 mins, roughly 6 minutes at 250 (yellow) nutrition, 4.1 minutes at 500 (grey), cannot be below 2 mins
+	if (owner.quickcheckuninjured()) //if you're completely uninjured, then you get a speedymode - check health first for quickness
 		time = 30
 
 	//Clicked regen while dead.
-	if(stat == DEAD)
+	if(owner.stat == DEAD)
 
 		//reviving from dead takes extra nutriment to be provided from outside OR takes twice as long and consumes extra at the end
-		if(!hasnutriment())
+		if(!owner.hasnutriment())
 			time = time*2
 
-		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+		to_chat(owner, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 		//Scary spawnerization.
-		xc.revive_ready = REVIVING_NOW
-		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
-		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		set_revival_delay(time)
+		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
 
 	//Clicked regen while NOT dead
 	else
-		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+		to_chat(owner, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 		//Waiting for regen after being alive
-		xc.revive_ready = REVIVING_NOW
-		xc.revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
-		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		set_revival_delay(time)
+		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
+	owner.lying = TRUE
+	// open_appearance_editor()
 
-/mob/living/carbon/human/proc/chimera_regenerate_nutrition()
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(!xc)
+/datum/component/xenochimera/proc/chimera_regenerate_nutrition()
+	if(!owner)
 		return
 	//Slightly different flavour messages
-	if(stat != DEAD || hasnutriment())
-		to_chat(src, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch.."))
+	if(owner.stat != DEAD || owner.hasnutriment())
+		to_chat(owner, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch.."))
 	else
-		to_chat(src, span_warning("Consciousness begins to stir as your battered body struggles to recover from its ordeal.."))
-	add_verb(src, /mob/living/carbon/human/proc/hatch)
-	xc.revive_ready = REVIVING_DONE
-	src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-	clear_alert("regen")
-	throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		to_chat(owner, span_warning("Consciousness begins to stir as your battered body struggles to recover from its ordeal.."))
+	add_verb(owner, /mob/living/carbon/human/proc/hatch)
+	revive_ready = REVIVING_DONE
+	owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+	owner.clear_alert("regen")
+	owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
-/mob/living/carbon/human/proc/chimera_regenerate_ready()
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(!xc)
+/datum/component/xenochimera/proc/chimera_regenerate_ready()
+	if(!owner)
 		return
 	// check to see if they've been fixed by outside forces in the meantime such as defibbing
-	if(stat != DEAD)
-		to_chat(src, span_notice("Your body has recovered from its ordeal, ready to regenerate itself again."))
-		xc.revive_ready = REVIVING_READY //reset their cooldown
-		clear_alert("regen")
-		throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+	if(owner.stat != DEAD)
+		to_chat(owner, span_notice("Your body has recovered from its ordeal, ready to regenerate itself again."))
+		revive_ready = REVIVING_READY //reset their cooldown
+		owner.clear_alert("regen")
+		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 	// Was dead, still dead.
 	else
-		to_chat(src, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch."))
-		add_verb(src, /mob/living/carbon/human/proc/hatch)
-		xc.revive_ready = REVIVING_DONE
-		src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-		clear_alert("regen")
-		throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		to_chat(owner, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch."))
+		add_verb(owner, /mob/living/carbon/human/proc/hatch)
+		revive_ready = REVIVING_DONE
+		owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+		owner.clear_alert("regen")
+		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
@@ -359,71 +383,95 @@
 	if(!xc)
 		return
 	if(xc.revive_ready != REVIVING_DONE)
-		//Hwhat?
-		remove_verb(src, /mob/living/carbon/human/proc/hatch)
-		return
+		return //Hwhat?
 
-	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
+	// Default is use internal record, even if closes menu
+	var/reload_slot = tgui_alert(src, "Regenerate from your current form, or from the appearance of your current character slot(This will not change your current species or traits.)", "Regenerate Form", list("Current Form", "From Slot"))
+
+	// Check if valid to load from this slot
+	var/from_slot = ""
+	from_slot = "You'll hatch using your current appearance"
+	if(reload_slot == "From Slot" && client)
+		if(client.prefs.species == SPECIES_PROTEAN) // Exploit protection
+			to_chat(src,span_warning("You cannot copy nanoform prosthetic limbs from this species. Please try another character."))
+			return
+		var/slot_is_synth = ((O_BRAIN in client.prefs.organ_data) && client.prefs.organ_data[O_BRAIN])
+		if(slot_is_synth && !isSynthetic()) // Prevents some pretty weird situations
+			to_chat(src,span_warning("Cannot apply character appearance. [slot_is_synth ? "The slot's character is synthetic." : "The slot's character is organic."] Slot must match the current body's synthetic state. Please try another character."))
+			return
+		from_slot = "You'll hatch using [client.prefs.real_name]'s appearance"
+
+	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view. [from_slot]! Are you sure?", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
+		///This makes xenochimera shoot out their robotic limbs if they're not a FBP.
+		if(!isSynthetic()) //If we aren't repairing robotic limbs (FBP) we reject any robot limbs we have and kick them out!
+			for(var/O in organs_by_name)
+				var/obj/item/organ/external/organ = organs_by_name[O]
+				if(!istype(organ, /obj/item/organ/external))
+					continue
+				if(!organ.robotic)
+					continue
+				else
+					organ.removed()
+		///End of xenochimera limb rejection code.
+
 		//Dead when hatching
+		var/sickness_duration = 10 MINUTES
+		var/has_braindamage = FALSE
 		if(stat == DEAD)
-			var/sickness_duration = 10 MINUTES
 			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
 			if(!hasnutriment())
 				nutrition=nutrition * 0.75
 				sickness_duration = 20 MINUTES
-			chimera_hatch()
+			has_braindamage = TRUE
+
+		// Finalize!
+		remove_verb(src, /mob/living/carbon/human/proc/hatch)
+		clear_alert("hatch")
+		xc.chimera_hatch((reload_slot == "From Slot" && client))
+		visible_message(span_warning(span_huge("[src] rises to \his feet."))) //Bloody hell...
+		if(has_braindamage)
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
-			visible_message(span_warning("<p>" + span_huge("The former corpse staggers to its feet, all its former wounds having vanished...") + "</p>")) //Bloody hell...
-			clear_alert("hatch")
-			return
 
-		//Alive when hatching
-		else
-			chimera_hatch()
-
-			visible_message(span_warning("<p>" + span_huge("[src] rises to \his feet.") + "</p>")) //Bloody hell...
-			clear_alert("hatch")
-
-/mob/living/carbon/human/proc/chimera_hatch()
-	var/datum/component/xenochimera/xc = get_xenochimera_component()
-	if(!xc)
+/datum/component/xenochimera/proc/chimera_hatch(var/from_save_slot)
+	if(!owner)
 		return
-	remove_verb(src, /mob/living/carbon/human/proc/hatch)
-	to_chat(src, span_notice("Your new body awakens, bursting free from your old skin."))
+
+	remove_verb(owner, /mob/living/carbon/human/proc/hatch)
+	to_chat(owner, span_notice("Your new body awakens, bursting free from your old skin."))
 	//Modify and record values (half nutrition and braindamage)
-	var/old_nutrition = nutrition
-	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
-	var/uninjured=quickcheckuninjured()
-	//I did have special snowflake code, but this is easier. //It's also EXTREMELY BAD AND LETS THEM SAVEFILE HACK.
-	revive()
-	mutations.Remove(HUSK)
-	setBrainLoss(braindamage)
-	species.update_vore_belly_def_variant()
+	var/old_nutrition = owner.nutrition
+	var/braindamage = min(5, max(0, (owner.brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
+	var/uninjured=owner.quickcheckuninjured()
+	trigger_revival(from_save_slot)
+
+	owner.mutations.Remove(HUSK)
+	owner.setBrainLoss(braindamage)
+	owner.species.update_vore_belly_def_variant()
 
 	if(!uninjured)
-		nutrition = old_nutrition * 0.5
+		owner.nutrition = old_nutrition * 0.5
 		//Drop everything
-		for(var/obj/item/W in src)
-			drop_from_inventory(W)
+		for(var/obj/item/W in owner)
+			owner.drop_from_inventory(W)
 		//Visual effects
-		var/T = get_turf(src)
-		var/blood_color = species.blood_color
-		var/flesh_color = species.flesh_color
+		var/T = get_turf(owner)
+		var/blood_color = owner.species.blood_color
+		var/flesh_color = owner.species.flesh_color
 		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-		visible_message(span_danger("<p>" + span_huge("The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.") + "</p>")) //Bloody hell...
+		owner.visible_message(span_danger(span_huge("The lifeless husk of [owner] bursts open, revealing a new, intact copy in the pool of viscera."))) //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive
-		nutrition = old_nutrition * 0.9
+		owner.nutrition = old_nutrition * 0.9
 
 	//Unfreeze some things
-	does_not_breathe = FALSE
-	update_canmove()
-	stunned = 2
+	owner.does_not_breathe = FALSE
+	owner.update_canmove()
+	owner.AdjustStunned(2)
 
-	xc.revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
+	revive_ready = world.time + 10 MINUTES //set the cooldown, Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
 /datum/modifier/resleeving_sickness/chimera //near identical to the regular version, just with different flavortexts
 	name = "imperfect regeneration"
