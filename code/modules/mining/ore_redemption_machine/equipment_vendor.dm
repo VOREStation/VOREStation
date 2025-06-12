@@ -53,7 +53,7 @@
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-handed so whatever, same price for slight dmg increase!
-		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Glaive",	/obj/item/kinetic_crusher/machete/glaive,					10000), //strong spear. Pay up.
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Glaive",	/obj/item/kinetic_crusher/glaive,							10000), //strong spear. Pay up.
 		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				350),
 		EQUIPMENT("Defense Equipment - PSG-B (Melee)",			/obj/item/personal_shield_generator/belt/melee/loaded, 		5000),
 		EQUIPMENT("Defense Equipment - PSG-M (General)",		/obj/item/personal_shield_generator/belt/mining/loaded,		1000),
