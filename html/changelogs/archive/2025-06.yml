@@ -172,3 +172,11 @@
   - qol: Reagent hoses have feedback on connection and disconnection
   - qol: Reagent hoses drop on disconnection instead of being destroyed
   - qol: Reagent hoses change colors as reagents are pumped through them
+2025-06-12:
+  TeleTubby2:
+  - qol: You can configure whether or not you want the runechat "Balloon Messages"
+      to appear to you or not
+  Will:
+  - rscadd: Electric fences for POIs
+  - bugfix: Multiple reagent hoses on one object are now properly usable
+  - qol: The maximum distance of a reagent hose matches its stack size of 10
