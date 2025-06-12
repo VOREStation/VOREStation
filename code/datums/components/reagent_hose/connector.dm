@@ -347,7 +347,7 @@
 	VAR_PRIVATE/mob/living/silicon/robot/borg_owner
 
 /datum/component/hose_connector/input/borg/Initialize()
-	if(!ishuman(parent))
+	if(!isrobot(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	borg_owner = parent
@@ -367,7 +367,7 @@
 	VAR_PRIVATE/mob/living/silicon/robot/borg_owner
 
 /datum/component/hose_connector/output/borg/Initialize()
-	if(!ishuman(parent))
+	if(!isrobot(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	borg_owner = parent
