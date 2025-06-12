@@ -117,3 +117,66 @@
   - bugfix: Fixed runtime on vampire xenoartifact's blood sucking effect
   - bugfix: Fake attackers crashing MC with invalid turfs
   - bugfix: borgs don't try to leave suit fibres on fingerprint checks
+2025-06-09:
+  Diana:
+  - balance: Spooky modifier was tested and had some balance adjustments
+  - bugfix: Plat and gold can be put in prosfabs again
+  Willburd:
+  - bugfix: phased shadekin no longer prevent airlocks from closing
+  - bugfix: phased shadekin are no longer crushed by dangerous airlocks closing
+2025-06-10:
+  Diana, Will, Kash:
+  - qol: Prometheans now use an appearance changer instead of 100 specialty verbs!
+  - qol: Cocoon trait can now change more things about you!
+  - qol: TF methods using the apperance changer allow you to load slots.
+  - bugfix: missing ooc notes added to body record for transfer
+  - bugfix: clonepods do not break listener code when releasing occupants
+  - bugfix: clonepod computer does not spin right around baby when interacted with
+  - bugfix: body redesign UI preview aligned correctly and no longer tiny
+  - bugfix: species/copy_vars no longer takes centuries validating known good data
+  - qol: anyone adding new dna vars no longer needs to worry about the dna cloning
+      proc.
+  - balance: FBP Xenochimera regenerate their robolimbs back
+  - balance: Organic Xenochimera drop their robolimbs, allowing them to slap them
+      back on post-revival
+  - code_imp: added BLACKLISTED_COPY_VARS macro, for safely iterating or filtering
+      atom.vars
+  - code_imp: added COMSIG_HUMAN_DNA_FINALIZED signal. Sent when a human mob is fully
+      init with all dna and species vars applied.
+  - code_imp: hair gradients use dnaUIs instead of separate vars
+  - refactor: massive rework to dna, bodyrecords and dna2record datums to handle copying
+      vars, and applying them to their owner mob more gracefully
+  - refactor: all dna related machines that resleeve humans, except the autosleever,
+      use a unified proc to ensure no loss of data.
+  - refactor: Xenochimera no longer use admin procs to heal, and use an internal body
+      record datum.
+  Willburd:
+  - bugfix: Motiontracker subsystem ignores phased shadekin
+2025-06-11:
+  Kashargul:
+  - bugfix: some vorepanel message toggles in the general tab
+  - bugfix: game panel inaccessible to devs / event managers
+  TheCaramelion:
+  - bugfix: fixed dormant diseases showing up in Medical scanners
+  Will:
+  - refactor: Hose connectors are a component now
+  - bugfix: Reagent hoses are now stack-able
+  - bugfix: It is no longer possible to plug a reagent hose into the same object,
+      making it impossible to retrieve
+  - bugfix: Reagent hoses no longer become unusable after clicking on an object that
+      already has all its connections used
+  - bugfix: Reagent hoses update on object move instead of lagging behind
+  - bugfix: He3 tank always spawning empty, and with a broken name
+  - bugfix: Reagent hoses are no longer a memory leak
+  - qol: Objects with reagent hose connections now show those connections when examined
+  - qol: Reagent hoses have feedback on connection and disconnection
+  - qol: Reagent hoses drop on disconnection instead of being destroyed
+  - qol: Reagent hoses change colors as reagents are pumped through them
+2025-06-12:
+  TeleTubby2:
+  - qol: You can configure whether or not you want the runechat "Balloon Messages"
+      to appear to you or not
+  Will:
+  - rscadd: Electric fences for POIs
+  - bugfix: Multiple reagent hoses on one object are now properly usable
+  - qol: The maximum distance of a reagent hose matches its stack size of 10

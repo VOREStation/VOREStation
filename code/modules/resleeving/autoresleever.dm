@@ -187,6 +187,8 @@
 		if(def_lang)
 			new_character.default_language = def_lang
 
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
+
 	//If desired, apply equipment.
 	if(equip_body)
 		if(charjob)
