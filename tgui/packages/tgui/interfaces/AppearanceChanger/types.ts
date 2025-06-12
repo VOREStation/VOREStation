@@ -17,6 +17,7 @@ export type Data = {
   tail_styles: styles[];
   markings: { marking_name: string; marking_color: string }[];
   change_race: BooleanLike;
+  change_misc: BooleanLike;
   change_gender: BooleanLike;
   genders: genders;
   id_genders: genders;

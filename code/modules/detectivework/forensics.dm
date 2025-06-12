@@ -24,7 +24,6 @@ var/const/FINGERPRINT_COMPLETE = 6
 
 	//Fibers from worn clothing get transfered along with fingerprints~
 	var/datum/forensics_crime/C = init_forensic_data()
-	C.add_fibres(M)
 
 	// bloodied gloves and hands transfer blood to touched objects. Blood does not transfer if we are already bloody.
 	if(!forensic_data?.has_blooddna())
@@ -53,6 +52,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 		return TRUE
 
 	var/mob/living/carbon/human/H = M
+	C.add_fibres(H)
 
 	//Now, deal with gloves.
 	if (H.gloves && H.gloves != src)

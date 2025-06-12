@@ -1,5 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - rscadd: "AIs can now open their multicam views in completely separate windows and maintain them while switching back to main view."
-  - bugfix: "Camera consoles work more consistently."
