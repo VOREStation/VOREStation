@@ -138,6 +138,11 @@
 /obj/screen/fullscreen/fear
 	icon_state = "fear"
 
+/obj/screen/fullscreen/scrolls
+	icon_state = "scrolls"
+	show_when_dead = TRUE
+	plane = PLANE_PLAYER_HUD_ABOVE
+
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"
