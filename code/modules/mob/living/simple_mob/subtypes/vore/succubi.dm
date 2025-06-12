@@ -1,3 +1,18 @@
+GLOBAL_LIST_INIT(succubus_safewords, list(
+	"pineapple",
+	"red",
+	"snuggletime",
+	"bad touch",
+	"hyperdodecahedron",
+	"sriracha",
+	"alright bingle",
+	"abracadabra",
+	"bicycle",
+	"submarine",
+	"avacado",
+	"safe word",
+))
+
 /mob/living/simple_mob/vore/succubus
 	name = "succubus"
 	desc = "She's giving you the 'come hither' look."
@@ -28,11 +43,13 @@
 		"succubusbobclothed",
 		"succubusgingerclothed"
 	)
+	var/safeword
 
 	faction = FACTION_SUCCUBUS
 
 /mob/living/simple_mob/vore/succubus/Initialize(mapload)
 	. = ..()
+	safeword = pick(GLOB.succubus_safewords)
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"
@@ -120,3 +137,31 @@
 		"Try as you might, you barely make an impression before %pred simply clenches with the most minimal effort, binding you back into her %belly.",
 		"Unfortunately, %pred seems to have absolutely no intention of letting you go, and your futile effort goes nowhere.",
 		"Strain as you might, you can't keep up the effort long enough before you sink back into %pred's %belly.")
+
+/mob/living/simple_mob/vore/succubus/hear_say(list/message_pieces, verb, italics, mob/speaker, sound/speech_sound, sound_vol)
+	. = ..()
+
+	// Don't do this if we have a player
+	if(!has_AI())
+		return
+
+	// Ignore ourselves
+	if(speaker == src)
+		return
+
+	// Only allow people inside us~ish to safeword
+	if(get_turf(speaker) != get_turf(src))
+		return
+
+	var/string = multilingual_to_message(message_pieces)
+
+	if(findtext(lowertext(string), safeword))
+		vore_selected?.digest_mode = DM_DRAIN
+		release_vore_contents()
+		SetStunned(10)
+		say("I'm sorry sweetie, are you okay?")
+
+/mob/living/simple_mob/vore/succubus/animal_nom()
+	. = ..()
+	if(has_AI())
+		whisper("Remember cutie, the safeword is \"[safeword]\"~")
