@@ -496,6 +496,15 @@
 		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
 
+/obj/belly/Moved(atom/old_loc)
+	. = ..()
+
+	for(var/mob/living/L in src)
+		if(L.ckey)
+			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
+			break
+
+
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
@@ -1213,6 +1222,11 @@
 //Typically just to the owner's location.
 /obj/belly/drop_location()
 	//Should be the case 99.99% of the time
+	if(isAI(owner))
+		var/mob/living/silicon/ai/AI = owner
+		if(AI.holo && AI.holo.masters[AI])
+			return AI.holo.masters[AI].drop_location()
+
 	if(owner)
 		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.

@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "Improved AI holonoms, they use real bellies now"
