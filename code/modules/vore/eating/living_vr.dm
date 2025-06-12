@@ -536,12 +536,6 @@
 		log_and_message_admins("used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])", src)
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
-	//You're in an AI hologram!
-	else if(istype(loc, /obj/effect/overlay/aiholo))
-		var/obj/effect/overlay/aiholo/holo = loc
-		holo.drop_prey() //Easiest way
-		log_and_message_admins("used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])", src)
-
 	//You're in a capture crystal! ((It's not vore but close enough!))
 	else if(iscapturecrystal(loc))
 		var/obj/item/capture_crystal/crystal = loc
@@ -667,6 +661,11 @@
 	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
 	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
 	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
+
+	if(user == pred && isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		if(AI.holo && AI.holo.masters[AI])
+			user_to_prey = get_dist(get_turf(AI.holo.masters[AI]), get_turf(prey))
 
 	if(user_to_pred > 1 || user_to_prey > 1)
 		return FALSE

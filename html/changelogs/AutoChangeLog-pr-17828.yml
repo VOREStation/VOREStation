@@ -1,0 +1,5 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "The cooking machines now have unique UIs."
+  - qol: "The cooking machines like the grill and deep fryer now attempt to predict what they will produce."
