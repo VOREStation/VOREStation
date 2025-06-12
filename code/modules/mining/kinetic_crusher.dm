@@ -225,6 +225,7 @@
 	w_class = ITEMSIZE_NORMAL
 	can_cleave = FALSE
 	requires_wield = TRUE
+	armor_penetration = 0
 	force = 35
 	detonation_damage = 65 // 100
 	backstab_bonus = 25 // 125
