@@ -1,0 +1,5 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - qol: "Paint bucket no longer tries to preview, it's too confusing to look at"
+  - qol: "Added a new vore pref to force belly visuals to be capped at a certain alpha."
