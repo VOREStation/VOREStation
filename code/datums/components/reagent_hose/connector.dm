@@ -94,10 +94,12 @@
 /datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode, var/mob/user)
 	if(!target)
 		return FALSE
+
 	// Logic for handling two mobs at once would be a mess of option selections and prefs...
 	if(istype(src,/datum/component/hose_connector/inflation) && istype(target,/datum/component/hose_connector/inflation))
 		to_chat(user,span_notice("Nothing would flow between \the [get_carrier()] and \the [target.get_carrier()] without anything to pump it!"))
 		return FALSE
+
 	// Check for vore inflation connectors. Need to set their target!
 	if(istype(src,/datum/component/hose_connector/inflation) || istype(target,/datum/component/hose_connector/inflation))
 		var/datum/component/hose_connector/inflation/I = src
@@ -106,24 +108,24 @@
 		if(!istype(I)) // Good going, you broke it
 			to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
 			return FALSE
+
 		// Check for destination
-		var/list/options = list("1:Mouth")
+		var/list/options = list("Mouth")
 		if(I.human_owner?.vore_selected)
-			options.Add("2:[I.human_owner.vore_selected.name]")
-			options.Add("3:Bloodstream")
-		else
-			options.Add("2:Bloodstream")
-		var/choice = tgui_input_list(user, "Select where this hose connects.", "Hose Connection", options)
+			options.Add("Belly ([sanitize(I.human_owner.vore_selected.name)])")
+		options.Add("Bloodstream")
+		var/choice = tgui_alert(user, "Select where this hose connects.", "Hose Connection", options)
 		if(!user.Adjacent(I.human_owner) || !choice)
 			to_chat(user,span_notice("You decide not to connect \the [I.human_owner] to the hose."))
 			return FALSE
+
 		// These have numbered entries to avoid players using bellies named "Mouth" and making the switch here break
 		var/feedback = ""
 		switch(choice)
-			if("1:Mouth")
+			if("Mouth")
 				I.connection_mode = CONNECTION_MODE_STOMACH
 				feedback = "mouth"
-			if("3:Bloodstream","2:Bloodstream")
+			if("Bloodstream")
 				I.connection_mode = CONNECTION_MODE_BLOOD
 				if(I.human_owner.isSynthetic())
 					feedback = span_warning("internal systems")
@@ -138,6 +140,7 @@
 			return FALSE
 		else if(I.connection_mode == CONNECTION_MODE_BLOOD && !I.human_owner.isSynthetic()) //OWCH!
 			I.human_owner.adjustBruteLossByPart(10,BP_TORSO)
+
 	// Hose prepared!
 	var/datum/hose/H = new()
 	H.set_hose(src, target, distancetonode, user)
@@ -243,7 +246,7 @@
 		if(CONNECTION_MODE_STOMACH)
 			return "mouth"
 		if(CONNECTION_MODE_BELLY)
-			return human_owner?.vore_selected?.name ? human_owner.vore_selected.name : "belly"
+			return human_owner?.vore_selected?.name ? sanitize(human_owner.vore_selected.name) : "belly"
 		if(CONNECTION_MODE_BLOOD)
 			return "bloodstream"
 	return "something"
@@ -264,18 +267,21 @@
 /datum/component/hose_connector/inflation/process()
 	if(!human_owner)
 		return
-	name = human_owner.name // Incase of mob rename, and because component is added before name is ever set!
 	var/rate = 0
 	var/datum/reagents/connected_to = null
 	var/datum/component/hose_connector/other = get_pairing()
+	var/feedback = " something"
 	if(other)
 		switch(connection_mode)
 			if(CONNECTION_MODE_STOMACH)
 				connected_to = human_owner.ingested
 				rate = reagents.maximum_volume * 0.5
+				feedback = " mouth"
 			if(CONNECTION_MODE_BELLY)
 				connected_to = human_owner?.vore_selected?.reagents
 				rate = reagents.maximum_volume * 0.5
+				if(connected_to)
+					feedback = " [sanitize(human_owner.vore_selected.name)]"
 			if(CONNECTION_MODE_BLOOD)
 				if(other.flow_direction == HOSE_OUTPUT) // inflating
 					connected_to = human_owner.bloodstr // Pump into blood reagents
@@ -284,10 +290,18 @@
 						connected_to = human_owner.vessel // Suck blood
 					else
 						connected_to = human_owner.bloodstr // Suck reagents from blood
+				if(human_owner.isSynthetic())
+					feedback = " internal systems"
+				else
+					feedback = " " + span_danger("bloodstream")
 				rate = 10 // SLOW here
-		if(!connected_to)
-			reagents.clear_reagents()
-			return
+
+	name = "[human_owner.name][feedback]" // Incase of mob rename, and because component is added before name is ever set!
+	if(!connected_to)
+		reagents.clear_reagents()
+		if(my_hose) // Emergency. the vorebelly was deleted or something. Lets just hard lock that out from maintaining state...
+			my_hose.disconnect()
+		return
 
 	if(!my_hose || !other)
 		if(reagents.total_volume)
