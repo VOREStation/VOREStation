@@ -427,6 +427,10 @@ GLOBAL_LIST_EMPTY(smeses)
 			. = TRUE
 		if("tryoutput")
 			outputting(!output_attempt)
+			if(output_attempt)
+				playsound(loc, 'sound/effects/contactor_on.ogg', 50, FALSE)
+			else
+				playsound(loc, 'sound/effects/contactor_off.ogg', 50, FALSE)
 			update_icon()
 			. = TRUE
 		if("input")
