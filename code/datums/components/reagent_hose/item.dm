@@ -60,7 +60,6 @@
 
 				else if(distancetonode <= amount)
 					if(REMB.setup_hoses(AC,distancetonode,user))
-						to_chat(user, span_notice("You join the [REMB] to \the [AC]."))
 						use(distancetonode)
 					remembered = null
 
@@ -90,7 +89,6 @@
 
 						else if(distancetonode <= amount)
 							if(REMB.setup_hoses(CC,distancetonode,user))
-								to_chat(user, span_notice("You join the [REMB] to \the [CC]"))
 								use(distancetonode)
 							remembered = null
 
