@@ -329,7 +329,7 @@
 	switch(other.flow_direction)
 		if(HOSE_OUTPUT)
 			// inflating us
-			reagents.trans_to_holder(connected_to,rate)
+			human_owner.ingest(reagents,connected_to,rate)
 		if(HOSE_INPUT)
 			// draining us
 			connected_to.trans_to_holder(reagents,rate)
@@ -337,6 +337,10 @@
 			// Sharing with us
 			reagents.trans_to_holder(connected_to, reagents.maximum_volume) // Load our current reagents back into tank, it's mixed!
 			carrier.reagents.trans_to_holder(reagents, rand(1,reagents.maximum_volume) ) // Fill back up to a random amount
+
+	if(prob(5))
+		var/atom/pumper = other.get_carrier()
+		pumper.visible_message(span_infoplain(span_bold("\The [pumper]") + " gurgles."))
 
 /*
  * Inflation subtype, Borg edition. Geewiz janihound how come the AI lets you have two?
