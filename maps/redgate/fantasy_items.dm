@@ -107,6 +107,7 @@
 	name = "oven"
 	desc = "Old fashioned cookies are ready, dear."
 	icon_state = "yeoldovenopen"
+	tgui_id = "CookingOvenOld"
 
 /obj/machinery/appliance/cooker/oven/yeoldoven/update_icon()
 	if(!open)
