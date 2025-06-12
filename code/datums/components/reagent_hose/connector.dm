@@ -103,11 +103,17 @@
 		var/datum/component/hose_connector/inflation/I = src
 		if(!istype(I))
 			I = target
-		if(istype(I)) // Good going, you broke it
+		if(!istype(I)) // Good going, you broke it
 			to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
 			return FALSE
 		// Check for destination
-		var/choice = tgui_input_list(user, "Select where this hose connects.", "Hose Connection", list("1:Mouth",I.human_owner?.vore_selected?.name ? "2:[I.human_owner.vore_selected.name]" : "Belly", "3:Bloodstream"))
+		var/list/options = list("1:Mouth")
+		if(I.human_owner?.vore_selected)
+			options.Add("2:[I.human_owner.vore_selected.name]")
+			options.Add("3:Bloodstream")
+		else
+			options.Add("2:Bloodstream")
+		var/choice = tgui_input_list(user, "Select where this hose connects.", "Hose Connection", options)
 		if(!user.Adjacent(I.human_owner) || !choice)
 			to_chat(user,span_notice("You decide not to connect \the [I.human_owner] to the hose."))
 			return FALSE
@@ -117,7 +123,7 @@
 			if("1:Mouth")
 				I.connection_mode = CONNECTION_MODE_STOMACH
 				feedback = "mouth"
-			if("3:Bloodstream")
+			if("3:Bloodstream","2:Bloodstream")
 				I.connection_mode = CONNECTION_MODE_BLOOD
 				if(I.human_owner.isSynthetic())
 					feedback = span_warning("internal systems")
@@ -127,7 +133,7 @@
 				I.connection_mode = CONNECTION_MODE_BELLY // Anything else is a vore belly name
 				feedback = I.human_owner.vore_selected.name
 		user.visible_message("\The [user] starts to connect the hose to \the [I.human_owner]'s [feedback]...")
-		if(!do_after(user,4 SECONDS,I.human_owner))
+		if(!do_after(user,7 SECONDS,I.human_owner))
 			to_chat(user,span_warning("You couldn't connect the hose!"))
 			return FALSE
 		else if(I.connection_mode == CONNECTION_MODE_BLOOD && !I.human_owner.isSynthetic()) //OWCH!
@@ -246,7 +252,7 @@
 	return "\The [human_owner]'s [get_destination_name()]"
 
 // Adding and removing the verb is more complex on humans... This code also expects only ONE hose connector
-/datum/component/hose_connector/inflation/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode)
+/datum/component/hose_connector/inflation/connect(datum/hose/H)
 	. = ..()
 	add_verb(human_owner,/atom/proc/disconnect_hose)
 
