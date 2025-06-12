@@ -324,11 +324,26 @@
 	var/rate = reagents.maximum_volume * 0.5
 	if(connection_mode == CONNECTION_MODE_BLOOD)
 		rate = 10 // SLOW here
-	else if(other.flow_direction != HOSE_INPUT) // If filling mouth or vorebelly check prefs for belly fluids.
-		if(!human_owner.consume_liquid_belly && reagents.liquid_belly_check())
-			to_chat(user, span_infoplain("You can't consume that, it contains something produced from a belly!"))
-			my_hose.disconnect() // Pop!
-			return
+	else
+		if(other.flow_direction == HOSE_OUTPUT || other.flow_direction == HOSE_NEUTRAL) // If filling mouth check prefs for belly fluid consumption.
+			if(connection_mode == CONNECTION_MODE_STOMACH)
+				if(!human_owner.consume_liquid_belly)
+					for(var/datum/reagent/R in reagents.reagent_list)
+						if(R.from_belly)
+							to_chat(human_owner, span_infoplain("You can't consume that, it contains something produced from a belly!"))
+							my_hose.disconnect() // Pop!
+							return
+			if(connection_mode == CONNECTION_MODE_BELLY)
+				if(!human_owner.receive_reagents)
+					to_chat(human_owner, span_infoplain("You can't transfer reagents into your [sanitize(human_owner.vore_selected.name)], your prefs dont allow it!"))
+					my_hose.disconnect() // Pop!
+					return
+		if(other.flow_direction == HOSE_INPUT || other.flow_direction == HOSE_NEUTRAL) // If filling mouth check prefs for belly fluid consumption.
+			if(connection_mode == CONNECTION_MODE_BELLY)
+				if(!human_owner.give_reagents)
+					to_chat(human_owner, span_infoplain("You can't transfer reagents from your [sanitize(human_owner.vore_selected.name)], your prefs dont allow it!"))
+					my_hose.disconnect() // Pop!
+					return
 
 	// Inflation station
 	switch(other.flow_direction)
