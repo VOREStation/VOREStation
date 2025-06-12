@@ -94,12 +94,16 @@
 /datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode, var/mob/user)
 	if(!target)
 		return FALSE
+	// Logic for handling two mobs at once would be a mess of option selections and prefs...
+	if(istype(src,/datum/component/hose_connector/inflation) && istype(target,/datum/component/hose_connector/inflation))
+		to_chat(user,span_notice("Nothing would flow between \the [get_carrier()] and \the [target.get_carrier()] without anything to pump it!"))
+		return FALSE
 	// Check for vore inflation connectors. Need to set their target!
 	if(istype(src,/datum/component/hose_connector/inflation) || istype(target,/datum/component/hose_connector/inflation))
 		var/datum/component/hose_connector/inflation/I = src
 		if(!istype(I))
 			I = target
-		if(!istype(I)) // Good going, you broke it
+		if(istype(I)) // Good going, you broke it
 			to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
 			return FALSE
 		// Check for destination
@@ -108,26 +112,26 @@
 			to_chat(user,span_notice("You decide not to connect \the [I.human_owner] to the hose."))
 			return FALSE
 		// These have numbered entries to avoid players using bellies named "Mouth" and making the switch here break
-		var/mode = ""
+		var/feedback = ""
 		switch(choice)
 			if("1:Mouth")
 				I.connection_mode = CONNECTION_MODE_STOMACH
-				mode = "mouth"
+				feedback = "mouth"
 			if("3:Bloodstream")
 				I.connection_mode = CONNECTION_MODE_BLOOD
 				if(I.human_owner.isSynthetic())
-					mode = "internal systems"
+					feedback = span_warning("internal systems")
 				else
-					mode = "bloodstream"
+					feedback = span_danger("bloodstream")
 			else
 				I.connection_mode = CONNECTION_MODE_BELLY // Anything else is a vore belly name
-				mode = I.human_owner.vore_selected.name
-		user.visible_message("\The [user] starts to connect the hose to \the [I.human_owner]'s [mode]...")
+				feedback = I.human_owner.vore_selected.name
+		user.visible_message("\The [user] starts to connect the hose to \the [I.human_owner]'s [feedback]...")
 		if(!do_after(user,4 SECONDS,I.human_owner))
 			to_chat(user,span_warning("You couldn't connect the hose!"))
 			return FALSE
 		else if(I.connection_mode == CONNECTION_MODE_BLOOD && !I.human_owner.isSynthetic()) //OWCH!
-			I.human_owner.adjustBruteLoss(10)
+			I.human_owner.adjustBruteLossByPart(10,BP_TORSO)
 	// Hose prepared!
 	var/datum/hose/H = new()
 	H.set_hose(src, target, distancetonode, user)
