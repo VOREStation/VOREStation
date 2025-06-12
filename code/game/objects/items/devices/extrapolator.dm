@@ -79,7 +79,7 @@
 			. += span_notice("The scanner is missing.")
 		else
 			. += span_notice("A class " + span_bold("[scanner.rating]") + " scanning module is installed. It is <i>screwed</i> in place.")
-			. += span_notice("Can detect diseases below stealth " + span_bold("[maximum_stealth]") + ".")
+			// . += span_notice("Can detect diseases below stealth " + span_bold("[maximum_stealth]") + ".")
 			. += span_notice("Can extract diseases in " + span_bold("[DisplayTimeText(extract_time)]") + ".")
 			. += span_notice("Can isolate symptoms <b>[maximum_level >= 9 ? "of any level" : "below level [maximum_level]"]</b>, in <b>[DisplayTimeText(isolate_time)]</b>.")
 
@@ -89,7 +89,7 @@
 	var/effective_scanner_rating = scanner.rating +1
 	extract_time = (10 SECONDS) / effective_scanner_rating
 	isolate_time = (15 SECONDS) / effective_scanner_rating
-	maximum_stealth = scanner.rating + 2
+	// maximum_stealth = scanner.rating + 2
 	maximum_level = scanner.rating + 5
 
 /obj/item/extrapolator/attack(atom/AM, mob/living/user)
@@ -184,15 +184,17 @@
 		return TRUE
 	if(EXTRAPOLATOR_ACT_CHECK(result, EXTRAPOLATOR_ACT_PRIORITY_ISOLATE))
 		isolate = TRUE
-	var/list/advance_diseases = list()
+	//var/list/advance_diseases = list()
+	/*
 	for(var/datum/disease/advance/candidate in diseases)
 		if(candidate.stealth >= maximum_stealth)
 			continue
 		advance_diseases += candidate
-	if(!length(advance_diseases))
+	*/
+	if(!length(diseases))
 		to_chat(user, span_warning("[icon2html(src, user)] There are no valid diseases to make a culture from."))
 		return
-	var/datum/disease/advance/target_disease = length(advance_diseases) > 1 ? tgui_input_list(user, "Select disease to extract", "Viral Extraction", advance_diseases, default = advance_diseases[1]) : advance_diseases[1]
+	var/datum/disease/advance/target_disease = length(diseases) > 1 ? tgui_input_list(user, "Select disease to extract", "Viral Extraction", diseases, default = diseases[1]) : diseases[1]
 	if(!target_disease)
 		return
 	using = TRUE

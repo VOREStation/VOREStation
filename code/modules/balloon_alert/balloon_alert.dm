@@ -35,6 +35,11 @@
 /atom/proc/balloon_alert_perform(mob/viewer, text)
 
 	var/client/viewer_client = viewer?.client
+
+	if(!viewer_client?.prefs?.read_preference(/datum/preference/toggle/runechat_balloon_messages))
+		return //no! I don't want that.
+
+
 	if (isnull(viewer_client))
 		return
 
