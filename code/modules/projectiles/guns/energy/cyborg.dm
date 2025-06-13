@@ -276,12 +276,12 @@
 	var/lcolor = "#38e541"
 
 /obj/item/melee/robotic/blade/attack_self(mob/user)
-	if(active)
-		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		force = active_force
-	else
+	if(active) //turning off
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		force = 0
+	else //turning on
+		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
+		force = active_force
 	active = !active
 	to_chat(user, span_notice("[src] is now [active ? "on" : "off"]."))
 	update_icon()
