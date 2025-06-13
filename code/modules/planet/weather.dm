@@ -205,7 +205,7 @@
 	var/indoor_sounds_type = null
 	var/effect_flags = NONE
 
-	VAR_PRIVATE/color_grading = null // Color blending for weather to feel hotter, colder, or stranger
+	VAR_PROTECTED/color_grading = null // Color blending for weather to feel hotter, colder, or stranger
 
 /datum/weather/New()
 	if(outdoor_sounds_type)
