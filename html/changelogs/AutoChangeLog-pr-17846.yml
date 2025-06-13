@@ -1,6 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - qol: "dna modification console takes 5 seconds instead of 30 to make a new injector"
-  - qol: "gene scanner provides the current value of an active gene, but not it's block ID"
-  - qol: "gene scanner can now scan dna injectors to find out what unmarked injectors do"
