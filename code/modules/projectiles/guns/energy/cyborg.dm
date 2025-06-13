@@ -314,20 +314,10 @@
 	. += span_notice("Alt-click to recolor it.")
 
 
-/obj/item/melee/robotic/dagger //For downstreams that use dagger
+/obj/item/melee/robotic/blade/dagger //For downstreams that use dagger
 	name = "Robotic Dagger"
 	desc = "A glowing dagger. It appears to be extremely sharp."
 	borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
-	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "swordtail"
-	force = 35 //Takes 3 hits to 100-0
-	armor_penetration = 70
-	sharp = TRUE
-	edge = TRUE
-	throwforce = 0 //This shouldn't be thrown in the first place.
-	hitsound = 'sound/weapons/blade1.ogg'
-	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
-	w_class = ITEMSIZE_NORMAL
 
 /obj/item/melee/robotic/blade/ionic
 	name = "ionic rapier"
