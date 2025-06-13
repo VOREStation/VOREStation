@@ -31,7 +31,6 @@
 	var/list/teleporters = list() //Used for lleill abilities
 
 	var/rest_dir = 0					//To lay down in a specific direction
-	var/gutdeathpressure = 0			//For GIBBING trait
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
@@ -130,6 +129,7 @@
 			. += "Re-Adaptations: [mind.changeling.readapts]/[mind.changeling.max_readapts]"
 	if(species)
 		species.get_status_tab_items(src)
+
 
 /mob/proc/RigPanel(var/obj/item/rig/R)
 	if(R && !R.canremove && R.installed_modules.len)
@@ -415,9 +415,9 @@
 				perpname = name
 
 			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
+				for (var/datum/data/record/E in GLOB.data_core.general)
 					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
+						for (var/datum/data/record/R in GLOB.data_core.security)
 							if (R.fields["id"] == E.fields["id"])
 
 								var/setcriminal = tgui_input_list(usr, "Specify a new criminal status for this person.", "Security HUD", list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel"))
@@ -449,9 +449,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/list/security_hud_text = list()
@@ -479,9 +479,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								read = 1
@@ -504,9 +504,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Sec. records", null, null, multiline = TRUE, prevent_enter = TRUE))
@@ -517,10 +517,10 @@
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 
 	if (href_list["medical"])
 		if(hasHUD(usr,"medical"))
@@ -533,9 +533,9 @@
 			else
 				perpname = name
 
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
+					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 
 							var/setmedical = tgui_input_list(usr, "Specify a new medical status for this person.", "Medical HUD", list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel"))
@@ -544,8 +544,8 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(PDA_Manifest.len)
-										PDA_Manifest.Cut()
+									if(GLOB.PDA_Manifest.len)
+										GLOB.PDA_Manifest.Cut()
 
 									spawn()
 										if(ishuman(usr))
@@ -568,9 +568,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/list/medical_hud_text = list()
@@ -599,9 +599,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								read = 1
@@ -624,9 +624,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Med. records", null, null, multiline = TRUE, prevent_enter = TRUE))
@@ -637,10 +637,10 @@
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 
 	if (href_list["emprecord"])
 		if(hasHUD(usr,"best"))
@@ -652,9 +652,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
+					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
 								var/list/emp_hud_text = list()
@@ -685,9 +685,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
+					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
 								read = 1
@@ -710,9 +710,9 @@
 				perpname = I.registered_name
 			else
 				perpname = name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.data_core.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
+					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
 								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Emp. records", null, null, multiline = TRUE, prevent_enter = TRUE))
@@ -723,10 +723,10 @@
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOB.game_year]<BR>[t1]")
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
@@ -831,7 +831,7 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
-	if(feral)
+	if(get_feralness())
 		to_chat(src, span_warning("Your primitive mind can't grasp the concept of that thing."))
 		return 0
 	if(species.has_fine_manipulation)
@@ -861,7 +861,7 @@
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
-		var/datum/gender/T = gender_datums[get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 		visible_message(span_filter_notice("[span_red("\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.")]"),span_notice("You begin to play a spooky refrain on your ribcage."),span_filter_notice("[span_red("You hear a spooky xylophone melody.")]"))
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(src, song, 50, 1, -1)
@@ -952,7 +952,7 @@
 			gender = NEUTER
 	regenerate_icons()
 	check_dna()
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 	visible_message(span_notice("\The [src] morphs and changes [T.his] appearance!"), span_notice("You change your appearance!"), span_filter_notice("[span_red("Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")]"))
 
 /mob/living/carbon/human/proc/remotesay()
@@ -1061,7 +1061,7 @@
 	restore_all_organs()       // Reapply robotics/amputated status from preferences.
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/internal/brain/H in all_brain_organs)
+		for (var/obj/item/organ/internal/brain/H in GLOB.all_brain_organs)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1137,8 +1137,7 @@
 		return 0
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(!blood_DNA[M.dna.unique_enzymes])
-			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		add_blooddna(M.dna,M)
 	hand_blood_color = blood_color
 	update_bloodied()
 	add_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
@@ -1149,26 +1148,23 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/washshoes)
+/mob/living/carbon/human/wash(clean_types)
 	. = ..()
-
-	gunshot_residue = null
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		gloves.clean_blood()
+		gloves.wash(clean_types)
 		update_inv_gloves()
 		gloves.germ_level = 0
 	else
 		bloody_hands = 0
 		germ_level = 0
 
-	//Sometimes do shoes if asked (or feet if no shoes)
-	if(washshoes && shoes)
-		shoes.clean_blood()
+	if(shoes)
+		shoes.wash(clean_types)
 		update_inv_shoes()
 		shoes.germ_level = 0
-	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+	else if(feet_blood_color || LAZYLEN(feet_blood_DNA))
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null
@@ -1222,8 +1218,8 @@
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
 
-	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
 	if(usr == src)
 		self = 1
@@ -1310,6 +1306,7 @@
 
 	species.create_organs(src)
 
+	species.apply_components(src)
 
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor
@@ -1319,15 +1316,6 @@
 	pixel_x = default_pixel_x
 	pixel_y = default_pixel_y
 	center_offset = species.center_offset
-
-	if(LAZYLEN(descriptors))
-		descriptors = null
-
-	if(LAZYLEN(species.descriptors))
-		descriptors = list()
-		for(var/desctype in species.descriptors)
-			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
-			descriptors[desctype] = descriptor.default_value
 
 	if(vessel)
 		initialize_vessel()
@@ -1871,3 +1859,17 @@
 
 /mob/living/carbon/human/get_digestion_efficiency_modifier()
 	return species.digestion_efficiency
+
+/mob/living/carbon/human/verb/hide_headset()
+	set name = "Show/Hide Headset"
+	set category = "IC.Settings"
+	set desc = "Toggle headset worn icon visibility."
+	hide_headset = !hide_headset
+	update_inv_ears()
+
+/mob/living/carbon/human/verb/hide_glasses()
+	set name = "Show/Hide Glasses"
+	set category = "IC.Settings"
+	set desc = "Toggle glasses worn icon visibility."
+	hide_glasses = !hide_glasses
+	update_inv_glasses()

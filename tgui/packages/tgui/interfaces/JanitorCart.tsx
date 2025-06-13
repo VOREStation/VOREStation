@@ -21,11 +21,7 @@ export const JanitorCart = (props) => {
     <Window width={225} height={180}>
       <Window.Content>
         <Stack wrap="wrap">
-          <Stack.Item
-            style={{
-              marginLeft: '0.5em', // Remove if tgui core implements gap
-            }}
-          >
+          <Stack.Item>
             <Button
               width="64px"
               height="64px"

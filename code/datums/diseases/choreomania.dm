@@ -2,6 +2,7 @@
 	name = "Choreomania"
 	max_stages = 3
 	spread_text = "Airborne"
+	spread_flags = DISEASE_SPREAD_AIRBORNE | DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
 	cure_text = REAGENT_ADRANOL
 	cures = list(REAGENT_ID_ADRANOL)
 	cure_chance = 10
@@ -9,13 +10,12 @@
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "If left untreated the subject... Won't stop dancing!"
-	severity = MINOR
+	danger = DISEASE_MINOR
 
 	var/list/dance = list(2,4,8,2,4,8,2,4,8,2,4,8,1,4,1,4,1,4,2,4,8,2)
 
 /datum/disease/choreomania/stage_act()
-	if(!..())
-		return FALSE
+	..()
 	switch(stage)
 		if(2)
 			if(prob(1))
@@ -31,8 +31,6 @@
 				for(var/D in dance)
 					affected_mob.dir = D
 					animate(affected_mob, pixel_x = 5, time = 5)
-					sleep(3)
 					animate(affected_mob, pixel_x = -5, time = 5)
-					animate(pixel_x = affected_mob.default_pixel_x, pixel_y = affected_mob.default_pixel_x, time = 2)
-					sleep(3)
+					animate(affected_mob, pixel_x = affected_mob.default_pixel_x, pixel_y = affected_mob.default_pixel_x, time = 2)
 	return

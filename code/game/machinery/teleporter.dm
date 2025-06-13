@@ -23,10 +23,10 @@
 	var/obj/machinery/teleport/hub/hub = null
 
 	// Search surrounding turfs for the station, and then search the station's surrounding turfs for the hub.
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		station = locate(/obj/machinery/teleport/station, get_step(src, direction))
 		if(station)
-			for(direction in cardinal)
+			for(direction in GLOB.cardinal)
 				hub = locate(/obj/machinery/teleport/hub, get_step(station, direction))
 				if(hub)
 					break

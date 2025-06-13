@@ -55,11 +55,11 @@
 	activation_message="Your body feels chilly."
 	primitive_expression_messages=list("shivers.")
 
-
 /datum/trait/neutral/autohiss_unathi
 	name = "Autohiss (Unathi)"
 	desc = "You roll your S's and x's"
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"s" = list("ss", "sss", "ssss")
@@ -68,25 +68,43 @@
 			"x" = list("ks", "kss", "ksss")
 		),
 	autohiss_exempt = list(LANGUAGE_UNATHI))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_zaddat)
-	custom_only = FALSE
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
 	desc = "You roll your R's."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
 		),
 	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI))
-	excludes = list(/datum/trait/neutral/autohiss_unathi, /datum/trait/neutral/autohiss_zaddat)
-	custom_only = FALSE
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_zaddat
 	name = "Autohiss (Zaddat)"
 	desc = "You buzz your S's and F's."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list(
 	autohiss_basic_map = list(
 			"f" = list("v","vh"),
@@ -99,8 +117,70 @@
 			"v" = list("vv", "vvv")
 		),
 	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_vassilian
+	name = "Autohiss (Vassilian)"
+	desc = "You buzz your S's, F's, Th's, and R's."
+	cost = 0
 	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+		"s" = list("sz", "z", "zz"),
+		"f" = list("zk")
+		),
+	autohiss_extra_map = list(
+		"th" = list("zk", "szk"),
+		"r" = list("rk")
+	),
+	autohiss_exempt = list(LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_yingish
+	name = "Autohiss (Yingish)"
+	desc = "You pronounce th's with a lisp, a bit like zhis!"
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"thi" = list("z"),
+			"shi" = list("z"),
+			"tha" = list("z"),
+			"tho" = list("z")
+		),
+	autohiss_extra_map = list(
+			"the" = list("z"),
+			"so" = list("z")
+		),
+	autohiss_exempt = list())
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
@@ -1361,10 +1441,11 @@
 							"tint" = list(TRAIT_PREF_TYPE_COLOR, "Statue color", TRAIT_NO_VAREDIT_TARGET, "#FFFFFF"),
 							"adjective" = list(TRAIT_PREF_TYPE_STRING, "Adjective", TRAIT_NO_VAREDIT_TARGET, "hardens")/*,
 							"pickupable" = list(TRAIT_PREF_TYPE_BOOLEAN, "Can be picked up", TRAIT_NO_VAREDIT_TARGET, FALSE)*/)
+	added_component_path = /datum/component/gargoyle
 
 /datum/trait/neutral/gargoyle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	var/datum/component/gargoyle/G = H.LoadComponent(/datum/component/gargoyle)
+	var/datum/component/gargoyle/G = H.GetComponent(added_component_path)
 	if (trait_prefs)
 		G.tint = trait_prefs["tint"]
 		G.material = lowertext(trait_prefs["material"])
@@ -1399,7 +1480,6 @@
 	name = "Drippy"
 	desc = "You cannot hold your form together, or produce a constant film of sludge that drips off of your body. Hope the station has a janitor."
 	cost = 0
-	var_changes = list("drippy" = 1)
 
 	// Traitgenes Made into a genetrait
 	is_genetrait = TRUE
@@ -1407,6 +1487,7 @@
 
 	activation_message="You feel softer..."
 	primitive_expression_messages=list("drips.")
+	added_component_path = /datum/component/drippy
 
 /datum/trait/neutral/mudking
 	name = "Mudking"
@@ -1475,7 +1556,16 @@
 			"x" = list("ks", "kss", "ksss")
 		),
 	autohiss_exempt = list("Sinta'unathi"))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran)
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
 
 /datum/trait/neutral/autohiss_tajaran/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -1489,4 +1579,156 @@
 			"r" = list("rr", "rrr", "rrrr")
 		),
 	autohiss_exempt = list("Siik"))
-	excludes = list(/datum/trait/neutral/autohiss_unathi)
+	excludes = list(
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_zaddat/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Zaddat)"
+	desc = "You buzz your S's and F's."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"f" = list("v","vh"),
+			"ph" = list("v", "vh")
+		),
+	autohiss_extra_map = list(
+			"s" = list("z", "zz", "zzz"),
+			"ce" = list("z", "zz"),
+			"ci" = list("z", "zz"),
+			"v" = list("vv", "vvv")
+		),
+	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_vassilian/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Vassilian)"
+	desc = "You buzz your S's, F's, Th's, and R's."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+		"s" = list("sz", "z", "zz"),
+		"f" = list("zk")
+		),
+	autohiss_extra_map = list(
+		"th" = list("zk", "szk"),
+		"r" = list("rk")
+	),
+	autohiss_exempt = list(LANGUAGE_VESPINAE))
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_yingish/xenochimera)
+
+/datum/trait/neutral/autohiss_yingish/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Autohiss (Yingish)"
+	desc = "You pronounce th's with a lisp, a bit like zhis!"
+	cost = 0
+	custom_only = FALSE
+	var_changes = list(
+	autohiss_basic_map = list(
+			"thi" = list("z"),
+			"shi" = list("z"),
+			"tha" = list("z"),
+			"tho" = list("z")
+		),
+	autohiss_extra_map = list(
+			"the" = list("z"),
+			"so" = list("z")
+		),
+	autohiss_exempt = list())
+	excludes = list(
+		/datum/trait/neutral/autohiss_tajaran,
+		/datum/trait/neutral/autohiss_unathi,
+		/datum/trait/neutral/autohiss_zaddat,
+		/datum/trait/neutral/autohiss_vassilian,
+		/datum/trait/neutral/autohiss_yingish,
+		/datum/trait/neutral/autohiss_unathi/xenochimera,
+		/datum/trait/neutral/autohiss_tajaran/xenochimera,
+		/datum/trait/neutral/autohiss_zaddat/xenochimera,
+		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+
+/datum/trait/neutral/waddle
+	name = "Waddle / Animated Movement (Adjustable)"
+	desc = "You move with a waddle or otherwise animated movement! Has adjustable settings with more adjustments able to be made in game!"
+	cost = 0
+	custom_only = FALSE
+	is_genetrait = TRUE
+	hidden = FALSE
+	has_preferences = list("waddler" = list(TRAIT_PREF_TYPE_BOOLEAN, "Waddle on Spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
+	added_component_path = /datum/component/waddle_trait
+
+/datum/trait/neutral/waddle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/waddle_trait/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.waddling = trait_prefs["waddler"]
+
+/datum/trait/neutral/nutritiongrow
+	name = "Growing"
+	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
+	excludes = list(/datum/trait/neutral/nutritionshrink)
+	cost = 0
+	hidden = TRUE //Disabled on Virgo
+	added_component_path = /datum/component/nutrition_size_change/growing
+
+/datum/trait/neutral/nutritionshrink
+	name = "Shrinking"
+	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
+	excludes = list(/datum/trait/neutral/nutritiongrow)
+	cost = 0
+	hidden = TRUE //Disabled on Virgo
+	added_component_path = /datum/component/nutrition_size_change/shrinking
+
+/datum/trait/neutral/disease_carrier
+	name = "Disease Carrier"
+	desc = "Your species is a carrier of diseases! Watch out for virologists."
+	excludes = list(/datum/trait/neutral/strongimmunesystem)
+	cost = 0
+	can_take = ORGANICS
+	custom_only = FALSE
+
+/datum/trait/neutral/disease_carrier/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	H.give_random_dormant_disease(200, 2, 3, 1, 9)
+
+/datum/trait/neutral/strongimmunesystem
+	name = "Strong Immune System"
+	desc = "Your immune system is so strong, that not even dormant diseases can survive in you."
+	cost = 0
+
+	can_take = ORGANICS
+
+/datum/trait/neutral/strongimmunesystem/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, STRONG_IMMUNITY_TRAIT, ROUNDSTART_TRAIT)

@@ -1,57 +1,59 @@
+import { describe, it } from 'vitest';
+
 // import { getGasColor, getGasFromId, getGasFromPath, getGasLabel } from './constants';
 import { getGasColor, getGasFromId, getGasLabel } from './constants';
 
 describe('gas helper functions', () => {
-  it('should get the proper gas label', () => {
+  it('should get the proper gas label', ({ expect }) => {
     // Testing for alphabetic gas id
     const gasId = 'oxygen';
     const gasLabel = getGasLabel(gasId);
     expect(gasLabel).toBe('O₂');
   });
 
-  it('should get the proper gas label', () => {
+  it('should get the proper gas label', ({ expect }) => {
     // Testing for underscore gas id
     const gasId = 'nitrous_oxide';
     const gasLabel = getGasLabel(gasId);
     expect(gasLabel).toBe('N₂O');
   });
 
-  it('should get the proper gas label', () => {
+  it('should get the proper gas label', ({ expect }) => {
     // Testing for wrong capitalization of two word gas
     const gasId = 'nitrous oxide';
     const gasLabel = getGasLabel(gasId); // This should set to Nitrous Oxide before checking
     expect(gasLabel).toBe('N₂O');
   });
 
-  it('should get the proper gas label with a fallback', () => {
+  it('should get the proper gas label with a fallback', ({ expect }) => {
     const gasId = 'nonexistent';
     const gasLabel = getGasLabel(gasId, 'fallback');
 
     expect(gasLabel).toBe('fallback');
   });
 
-  it('should return none if no gas and no fallback is found', () => {
+  it('should return none if no gas and no fallback is found', ({ expect }) => {
     const gasId = 'nonexistent';
     const gasLabel = getGasLabel(gasId);
 
     expect(gasLabel).toBe('None');
   });
 
-  it('should get the proper gas color', () => {
+  it('should get the proper gas color', ({ expect }) => {
     const gasId = 'nitrous_oxide';
     const gasColor = getGasColor(gasId);
 
     expect(gasColor).toBe('red');
   });
 
-  it('should return a string if no gas is found', () => {
+  it('should return a string if no gas is found', ({ expect }) => {
     const gasId = 'nonexistent';
     const gasColor = getGasColor(gasId);
 
     expect(gasColor).toBe('black');
   });
 
-  it('should return the gas object if found', () => {
+  it('should return the gas object if found', ({ expect }) => {
     const gasId = 'nitrous_oxide';
     const gas = getGasFromId(gasId);
 
@@ -64,7 +66,7 @@ describe('gas helper functions', () => {
     });
   });
 
-  it('should return undefined if no gas is found', () => {
+  it('should return undefined if no gas is found', ({ expect }) => {
     const gasId = 'nonexistent';
     const gas = getGasFromId(gasId);
 
@@ -72,7 +74,7 @@ describe('gas helper functions', () => {
   });
 
   /*
-  it('should return the gas using a path', () => {
+  it('should return the gas using a path', ({ expect }) => {
     const gasPath = '/datum/gas/antinoblium';
     const gas = getGasFromPath(gasPath);
 

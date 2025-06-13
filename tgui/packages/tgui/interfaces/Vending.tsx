@@ -144,7 +144,7 @@ export const VendingProducts = (props: {
             <Input
               fluid
               placeholder="Search for products..."
-              onInput={(e, value: string) => props.onSearch(value)}
+              onChange={(value: string) => props.onSearch(value)}
             />
           </Table.Cell>
         </Table>

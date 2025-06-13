@@ -14,6 +14,8 @@ export const downloadPrefs = (extension: string) => {
     return;
   }
 
+  const validBellies = bellies.filter((belly) => !belly.prevent_saving);
+
   const datesegment = getCurrentTimestamp();
 
   const filename = mob_name + datesegment + extension;
@@ -28,7 +30,7 @@ export const downloadPrefs = (extension: string) => {
           '<meta charset="utf-8">' +
           '<meta name="viewport" content="width=device-width, initial-scale=1">' +
           '<title>' +
-          bellies.length +
+          validBellies.length +
           ' Exported Bellies (DB_VER: ' +
           db_repo +
           '-' +
@@ -47,7 +49,7 @@ export const downloadPrefs = (extension: string) => {
         type: 'text/html',
       },
     );
-    bellies.forEach((belly, i) => {
+    validBellies.forEach((belly, i) => {
       blob = new Blob([blob, generateBellyString(belly, i)], {
         type: 'text/html',
       });
@@ -70,7 +72,7 @@ export const downloadPrefs = (extension: string) => {
 
   if (extension === '.vrdb') {
     blob = new Blob(
-      [JSON.stringify({ bellies: bellies, soulcatcher: soulcatcher })],
+      [JSON.stringify({ bellies: validBellies, soulcatcher: soulcatcher })],
       {
         type: 'application/json',
       },

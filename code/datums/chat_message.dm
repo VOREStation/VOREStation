@@ -13,7 +13,6 @@
 
 #define CHAT_MESSAGE_MOB			1
 #define CHAT_MESSAGE_OBJ			2
-#define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
 
 #define CHAT_RUNE_EMOTE				0x1
 #define CHAT_RUNE_RADIO				0x2
@@ -182,7 +181,8 @@ var/list/runechat_image_cache = list()
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color];'>[text]</span>"
 
 	var/msgwidth = extra_length ? CHAT_MESSAGE_EXT_WIDTH : CHAT_MESSAGE_WIDTH
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, msgwidth))
+	var/mheight
+	WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, msgwidth), mheight)
 
 	if(!VERB_SHOULD_YIELD)
 		return finish_image_generation(msgwidth, mheight, target, owner, complete_text, lifespan)
@@ -452,23 +452,15 @@ var/list/runechat_image_cache = list()
 	return (width - bound_width) * -0.5 + get_oversized_icon_offsets()["x"]
 
 /atom/movable/runechat_y_offset()
-	return ..() + get_oversized_icon_offsets()["y"]
+	return ..() + get_oversized_icon_offsets()["y"] * 1.5 // Fix to use 2 if we ever can measure sprites
 
 /* Nothing special
 /mob/runechat_x_offset(width, height)
 	return (width - bound_width) * -0.5
 */
 
-/mob/runechat_y_offset(var/consider_height)
-	if(consider_height)
-		return ..()
+/mob/runechat_y_offset()
 	return ..()*size_multiplier
-
-/mob/living/runechat_y_offset(var/consider_height)
-	var/size_diff = vis_height - world.icon_size
-	if(size_diff > 0)
-		return (..(TRUE) + size_diff) * size_multiplier
-	return ..(FALSE)
 
 // Allows you to specify a different attachment point for messages from yourself
 /atom/proc/runechat_holder(datum/chatmessage/CM)
@@ -494,7 +486,6 @@ var/list/runechat_image_cache = list()
 
 #undef CHAT_MESSAGE_MOB
 #undef CHAT_MESSAGE_OBJ
-#undef WXH_TO_HEIGHT
 
 #undef CHAT_RUNE_EMOTE
 #undef CHAT_RUNE_RADIO

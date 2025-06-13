@@ -11,6 +11,8 @@
 	..()
 	name = "optical sensor"
 	verbs |= /obj/item/organ/internal/eyes/proc/change_eye_color
+	organ_verbs = list(/obj/item/organ/internal/eyes/proc/change_eye_color)
+	handle_organ_mod_special()
 
 /obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
@@ -27,7 +29,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/eyes/grey/colormatch/LateInitialize()
-	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = H.species.blood_color
@@ -106,7 +107,6 @@
 	return -1
 
 /obj/item/organ/internal/eyes/emp_act(severity)
-	// ..()	//Returns if the organ isn't robotic // VOREStation Edit - Don't take damage
 	if(robotic >= ORGAN_ASSISTED)
 		return
 	owner.eye_blurry += (4/severity)

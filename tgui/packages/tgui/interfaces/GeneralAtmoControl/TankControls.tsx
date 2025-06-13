@@ -5,6 +5,7 @@ import {
   LabeledList,
   Section,
   Slider,
+  Stack,
 } from 'tgui-core/components';
 
 import type { Data } from './types';
@@ -92,23 +93,27 @@ const AtmoControlTankCoreControl = (props) => {
     <Section
       title={name}
       buttons={
-        <>
-          <Button
-            icon="sync"
-            disabled={!info}
-            onClick={() => actions.refresh()}
-          >
-            Refresh
-          </Button>
-          <Button
-            icon="power-off"
-            selected={info ? info.power : false}
-            disabled={!info}
-            onClick={() => actions.power()}
-          >
-            Power
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="sync"
+              disabled={!info}
+              onClick={() => actions.refresh()}
+            >
+              Refresh
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="power-off"
+              selected={info ? info.power : false}
+              disabled={!info}
+              onClick={() => actions.power()}
+            >
+              Power
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

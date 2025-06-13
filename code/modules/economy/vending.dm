@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/proc/pay_with_card(obj/item/card/id/I, mob/M)
 	visible_message(span_info("[M] swipes a card through [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
-	if(!purchase_with_id_card(I, M, vendor_account.owner_name, name, "Purchase of [currently_vending.item_name]", currently_vending.price))
+	if(!purchase_with_id_card(I, M, GLOB.vendor_account.owner_name, name, "Purchase of [currently_vending.item_name]", currently_vending.price))
 		return FALSE
 	// Give the vendor the money. We use the account owner name, which means
 	// that purchases made with stolen/borrowed card will look like the card
@@ -331,16 +331,16 @@ GLOBAL_LIST_EMPTY(vending_products)
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	vendor_account.money += currently_vending.price
+	GLOB.vendor_account.money += currently_vending.price
 
 	var/datum/transaction/T = new()
 	T.target_name = target
 	T.purpose = "Purchase of [currently_vending.item_name]"
 	T.amount = "[currently_vending.price]"
 	T.source_terminal = name
-	T.date = current_date_string
+	T.date = GLOB.current_date_string
 	T.time = stationtime2text()
-	vendor_account.transaction_log.Add(T)
+	GLOB.vendor_account.transaction_log.Add(T)
 
 /obj/machinery/vending/attack_ghost(mob/user)
 	return attack_hand(user)
@@ -500,7 +500,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/mob/living/carbon/human/H = ui.user
 			var/obj/item/card/id/C = H.GetIdCard()
 
-			if(!vendor_account || vendor_account.suspended)
+			if(!GLOB.vendor_account || GLOB.vendor_account.suspended)
 				to_chat(ui.user, span_filter_notice("Vendor account offline. Unable to process transaction."))
 				flick("[icon_state]-deny",src)
 				vend_ready = TRUE

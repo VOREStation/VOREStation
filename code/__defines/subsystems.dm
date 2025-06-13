@@ -76,8 +76,11 @@
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
 	if(!(flags & ATOM_INITIALIZED)) {\
+		var/previous_initialized_value = SSatoms.initialized;\
+		SSatoms.initialized = INITIALIZATION_INNEW_MAPLOAD;\
 		args[1] = TRUE;\
-		SSatoms.InitAtom(src, args);\
+		SSatoms.InitAtom(src, FALSE, args);\
+		SSatoms.initialized = previous_initialized_value;\
 	}\
 }
 
@@ -118,6 +121,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // The numbers just define the ordering, they are meaningless otherwise.
 #define INIT_ORDER_SERVER_MAINT		93
 #define INIT_ORDER_ADMIN_VERBS 		84 // needs to be pretty high, admins can't do much without it
+#define INIT_ORDER_LOBBY			82
 #define INIT_ORDER_WEBHOOKS			50
 #define INIT_ORDER_SQLITE			41
 #define INIT_ORDER_GARBAGE			40
@@ -137,14 +141,16 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_ALARM			16 // Must initialize before atoms.
 #define INIT_ORDER_TRANSCORE		15
 #define INIT_ORDER_ATOMS			14
+#define INIT_ORDER_HOLOMAPS			13
+#define INIT_ORDER_POIS				12
 #define INIT_ORDER_MACHINES			10
+#define INIT_ORDER_STARMOVER		4
 #define INIT_ORDER_SHUTTLES			3
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_LIGHTING			0
 #define INIT_ORDER_AIR				-1
-#define INIT_ORDER_ASSETS			-3
-#define INIT_ORDER_HOLOMAPS			-5
+#define INIT_ORDER_ASSETS			-5
 #define INIT_ORDER_NIGHTSHIFT		-6
 #define INIT_ORDER_OVERLAY			-7
 #define INIT_ORDER_XENOARCH			-20
@@ -157,6 +163,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_TICKER			-50
 #define INIT_ORDER_MAPRENAME		-60 //Initiating after Ticker to ensure everything is loaded and everything we rely on us working
 #define INIT_ORDER_WIKI				-61
+#define INIT_ORDER_ATC				-70
 #define INIT_ORDER_STATPANELS		-98
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
@@ -177,8 +184,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_PING			10
 #define FIRE_PRIORITY_SERVER_MAINT	10
 #define FIRE_PRIORITY_AI			10
+#define FIRE_PRIORITY_STARMOVER		11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_ASSETS 		20
+#define FIRE_PRIORITY_POIS	 		20
 #define FIRE_PRIORITY_ALARM			20
 #define FIRE_PRIORITY_CHARSETUP     25
 #define FIRE_PRIORITY_AIRFLOW		30

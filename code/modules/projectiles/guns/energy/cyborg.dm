@@ -250,12 +250,12 @@
 			else
 				target.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
 
-	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+	playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 	target.stun_effect_act(0, agony, hit_zone, src)
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
@@ -416,12 +416,12 @@
 		target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 	else
 		target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-	playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+	playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 	target.stun_effect_act(stun, agony, hit_zone, src)
 	msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/melee/robotic/baton/arm
 	name = "electrified arm"

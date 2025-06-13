@@ -1514,7 +1514,7 @@
 //TODO - make this not trigger when the flag is returned to its original location
 /obj/item/laserdome_flag/dropped(mob/user)
 	. = ..()
-	global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
+	GLOB.global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
 */
 
 /obj/item/laserdome_flag/attack_hand(mob/user as mob)
@@ -1540,13 +1540,13 @@
 		if(do_after(user,flag_return_delay))	//channel return, rather than instant
 			user.drop_from_inventory(src)
 			src.loc = src.start_pos
-			global_announcer.autosay("[capitalize(laser_team)] flag returned by [user]!","Laserdome Announcer","Entertainment")
+			GLOB.global_announcer.autosay("[capitalize(laser_team)] flag returned by [user]!","Laserdome Announcer","Entertainment")
 		else	//if they fail the channel (e.g. because they got tagged!) then drop it
 			user.drop_from_inventory(src)
 			return
 	else
 		user.visible_message(span_warning("[user] has taken \the [src]!"))
-		global_announcer.autosay("[src] taken by [capitalize(grabbing_team)] team!","Laserdome Announcer","Entertainment")
+		GLOB.global_announcer.autosay("[src] taken by [capitalize(grabbing_team)] team!","Laserdome Announcer","Entertainment")
 
 /obj/item/laserdome_flag/red
 	name = "Red flag"
@@ -1598,18 +1598,18 @@
 	if(istype(F,/obj/item/laserdome_flag))
 		var/obj/item/laserdome_flag/flag = F
 		if(flag.laser_team != base_team)
-			global_announcer.autosay("[user] captured the [capitalize(flag.laser_team)] flag for [capitalize(base_team)] team!","Laserdome Announcer","Entertainment")
+			GLOB.global_announcer.autosay("[user] captured the [capitalize(flag.laser_team)] flag for [capitalize(base_team)] team!","Laserdome Announcer","Entertainment")
 			user.drop_from_inventory(flag)
 			flag.loc = flag.start_pos	//teleport the captured flag back to its base location
 			score++	//increment our score by 1!
 			if(score < score_limit)	//announce the current score and how many more captures are needed
-				global_announcer.autosay("[num2text(score_limit-score)] captures remain until [capitalize(base_team)] team wins.","Laserdome Announcer","Entertainment")
+				GLOB.global_announcer.autosay("[num2text(score_limit-score)] captures remain until [capitalize(base_team)] team wins.","Laserdome Announcer","Entertainment")
 			else if(score >= score_limit)	//now, if score equals or exceeds (somehow) the score limit, announce that our team won and reset the score for all flag bases nearby
-				global_announcer.autosay("+|[uppertext(base_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
+				GLOB.global_announcer.autosay("+|[uppertext(base_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
 				for(var/obj/structure/flag_base/FB in src.loc.loc.contents)	//this feels dirty, but it works
 					FB.score = 0
 		else if(flag.laser_team == base_team)
-			global_announcer.autosay("[capitalize(base_team)] flag returned!","Laserdome Announcer","Entertainment")
+			GLOB.global_announcer.autosay("[capitalize(base_team)] flag returned!","Laserdome Announcer","Entertainment")
 			user.drop_from_inventory(flag)
 			flag.loc = src.loc			//place our flag neatly back on its pedestal
 
@@ -1671,7 +1671,7 @@
 	last_holder = M
 	last_team = grabbing_team
 	//finally, announcer calls out which team has the ball
-	global_announcer.autosay("[capitalize(grabbing_team)] team on offense!","Laserdome Announcer","Entertainment")
+	GLOB.global_announcer.autosay("[capitalize(grabbing_team)] team on offense!","Laserdome Announcer","Entertainment")
 	update_icon()
 	update_held_icon()
 
@@ -1679,7 +1679,7 @@
 //TODO- make this not trigger when the ball is thrown or dunked, only when it's actually dropped
 /obj/item/laserdome_hyperball/dropped(mob/user)
 	. = ..()
-	global_announcer.autosay("[capitalize(last_team)] fumble!","Laserdome Announcer","Entertainment")
+	GLOB.global_announcer.autosay("[capitalize(last_team)] fumble!","Laserdome Announcer","Entertainment")
 */
 
 /obj/structure/hyperball_pedestal
@@ -1728,12 +1728,12 @@
 	if(istype(B,/obj/item/laserdome_hyperball))
 		var/obj/item/laserdome_hyperball/ball = B
 		if(dunking_team != goal_team)
-			global_announcer.autosay("[user] dunked the HYPERball for [capitalize(dunking_team)] team! [num2text(dunk_points)] points scored!","Laserdome Announcer","Entertainment")
+			GLOB.global_announcer.autosay("[user] dunked the HYPERball for [capitalize(dunking_team)] team! [num2text(dunk_points)] points scored!","Laserdome Announcer","Entertainment")
 			score += dunk_points	//increment our score!
 			if(score < score_limit)	//announce the current score and how many more captures are needed
-				global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(dunking_team)] team wins.","Laserdome Announcer","Entertainment")
+				GLOB.global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(dunking_team)] team wins.","Laserdome Announcer","Entertainment")
 			else if(score >= score_limit)	//now, if score equals or exceeds (somehow) the score limit, announce that our team won and reset the score for all flag bases nearby
-				global_announcer.autosay("+|[uppertext(dunking_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
+				GLOB.global_announcer.autosay("+|[uppertext(dunking_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
 				for(var/obj/structure/hyperball_goal/HB in src.loc.loc.contents)	//this feels dirty, but it works
 					HB.score = 0
 		else if(dunking_team == goal_team)	//discourage people from dunking the ball into their own goal as a quick way to teleport it back to the midfield
@@ -1741,11 +1741,11 @@
 				if("blue")
 					for(var/obj/structure/hyperball_goal/red/HGR in src.loc.loc.contents)
 						HGR.score = max(0,HGR.score-dunk_points)
-						global_announcer.autosay("[user] dunked the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
+						GLOB.global_announcer.autosay("[user] dunked the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
 				if("red")
 					for(var/obj/structure/hyperball_goal/blue/HGB in src.loc.loc.contents)
 						HGB.score = max(0,HGB.score-dunk_points)
-						global_announcer.autosay("[user] dunked the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
+						GLOB.global_announcer.autosay("[user] dunked the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
 
 		user.drop_from_inventory(ball)
 		ball.loc = ball.start_pos	//teleport the ball back to the midfield
@@ -1759,12 +1759,12 @@
 		var/obj/item/laserdome_hyperball/ball = B
 		if(prob(range_dunk_chance))
 			if(ball.last_team != goal_team)
-				global_announcer.autosay("[ball.last_holder] threw the HYPERball for [capitalize(ball.last_team)] team! [num2text(range_dunk_points)] points scored!","Laserdome Announcer","Entertainment")
+				GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball for [capitalize(ball.last_team)] team! [num2text(range_dunk_points)] points scored!","Laserdome Announcer","Entertainment")
 				score += range_dunk_points	//increment our score!
 				if(score < score_limit)	//announce the current score and how many more captures are needed
-					global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(ball.last_team)] team wins.","Laserdome Announcer","Entertainment")
+					GLOB.global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(ball.last_team)] team wins.","Laserdome Announcer","Entertainment")
 				else if(score >= score_limit)	//now, if score equals or exceeds the score limit, announce that our team won and reset the score for all flag bases nearby
-					global_announcer.autosay("+|[uppertext(ball.last_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
+					GLOB.global_announcer.autosay("+|[uppertext(ball.last_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
 					for(var/obj/structure/hyperball_goal/HB in src.loc.loc.contents)	//this feels dirty, but it works
 						HB.score = 0
 			else if(ball.last_team == goal_team)	//discourage people from dunking the ball into their own goal as a quick way to teleport it back to the midfield
@@ -1772,11 +1772,11 @@
 					if("blue")
 						for(var/obj/structure/hyperball_goal/red/HGR in src.loc.loc.contents)
 							HGR.score = max(0,HGR.score-range_dunk_points)
-							global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
+							GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
 					if("red")
 						for(var/obj/structure/hyperball_goal/blue/HGB in src.loc.loc.contents)
 							HGB.score = max(0,HGB.score-range_dunk_points)
-							global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
+							GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
 
 			ball.loc = ball.start_pos	//teleport the ball back to the midfield
 			ball.icon_state = "[initial(ball.icon_state)]"
@@ -1785,7 +1785,7 @@
 		else
 			//todo; throw the ball in a random direction
 			src.visible_message("\The [ball] bounces off \the [src]'s rim!")
-			global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
+			GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
 
 /obj/structure/prop/machine/biosyphon/laserdome
 	name = "Laserdome Orientation Holo"

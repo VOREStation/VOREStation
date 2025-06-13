@@ -2,7 +2,7 @@
 @use './colors.scss';
 
 .window {
-  background-color: black;
+  background-color: white;
   position: relative;
   overflow: hidden;
 }
@@ -22,15 +22,14 @@
 .shine {
   animation: shine 15s linear infinite;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-size: 150% 150%;
 }
 
 .window-lightMode {
+  background-color: black;
   background-color: colors.$lightMode;
+  border: 2px solid colors.$lightBorder;
 }
 
 /** Window sizes */
@@ -130,6 +129,7 @@
 }
 
 .button {
+  color: white;
   background-color: colors.$button;
   border-radius: 0.3rem;
   border: none;
@@ -138,11 +138,10 @@
   font-weight: bold;
   outline: none;
   overflow: hidden;
-  padding: 0.1rem 0.2rem;
+  padding: 0.1rem;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
   &:hover {
     background-color: color.adjust(
       colors.$button,
@@ -162,6 +161,7 @@
 }
 
 .textarea {
+  color: white;
   background: transparent;
   border: none;
   font-family: inherit;
@@ -169,19 +169,19 @@
   margin: 0.1rem 0 0 0.4rem;
   outline: none;
   resize: none;
-  &::-webkit-scrollbar {
-    width: 0.8rem;
-  }
-  &::-webkit-scrollbar-track {
-    background: color.scale(
+  overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: color.scale(
       colors.$button,
-      $lightness: -25% * colors.$scrollbar-color-multiplier
-    );
-  }
-  &::-webkit-scrollbar-thumb {
-    background: color.scale(
-      colors.$button,
-      $lightness: 10% * colors.$scrollbar-color-multiplier
-    );
-  }
+      $lightness: 20% * colors.$scrollbar-color-multiplier
+    )
+    transparent;
+}
+
+.textarea-large {
+  overflow-y: scroll;
+}
+
+.textarea-lightMode {
+  color: black;
 }

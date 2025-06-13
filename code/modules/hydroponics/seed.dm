@@ -244,7 +244,7 @@
 			closed_turfs |= T
 			valid_turfs |= T
 
-			for(var/dir in alldirs)
+			for(var/dir in GLOB.alldirs)
 				var/turf/neighbor = get_step(T,dir)
 				if(!neighbor || (neighbor in closed_turfs) || (neighbor in open_turfs))
 					continue
@@ -461,23 +461,15 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-		// VOREStation Edit Start: Modified exclusion list
-		var/list/banned_chems = list(
-			REAGENT_ID_ADMINORDRAZINE,
-			REAGENT_ID_NUTRIMENT,
-			REAGENT_ID_MACROCILLIN,
-			REAGENT_ID_MICROCILLIN,
-			REAGENT_ID_NORMALCILLIN,
-			REAGENT_ID_MAGICDUST
-			)
-		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 
 			var/new_chem = pick(SSchemistry.chemical_reagents)
-			if(new_chem in banned_chems)
+			var/list/currently_banned_chems = list()
+			currently_banned_chems += GLOB.obtainable_chemical_blacklist
+			if(new_chem in currently_banned_chems)
 				continue
-			banned_chems += new_chem
+			currently_banned_chems += new_chem
 			chems[new_chem] = list(rand(1,10),rand(10,20))
 
 	if(prob(5))

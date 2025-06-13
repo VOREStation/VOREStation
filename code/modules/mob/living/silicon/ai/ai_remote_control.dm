@@ -1,11 +1,6 @@
 /mob/living/silicon/ai
 	var/mob/living/silicon/robot/deployed_shell = null //For shell control
 
-/mob/living/silicon/ai/Initialize(mapload)
-	if(CONFIG_GET(flag/allow_ai_shells))
-		add_verb(src, /mob/living/silicon/ai/proc/deploy_to_shell_act)
-	return ..()
-
 /mob/living/silicon/ai/proc/deploy_to_shell(var/mob/living/silicon/robot/target)
 	if(!CONFIG_GET(flag/allow_ai_shells))
 		to_chat(src, span_warning("AI Shells are not allowed on this server. You shouldn't have this verb because of it, so consider making a bug report."))

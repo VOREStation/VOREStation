@@ -81,7 +81,7 @@
 	..()
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
 		if(prob(20))
@@ -138,6 +138,21 @@
 	description = "A liquifying toxin produced by giant spiders."
 	color = "#2CE893"
 	strength = 5
+
+/datum/reagent/toxin/warningtoxin
+	name = REAGENT_WARNINGTOXIN
+	id = REAGENT_ID_WARNINGTOXIN
+	description = "A weaker toxin produced by giant spiders applied only in warning bites, known to slow a people down a lot."
+	color = "#2CE893"
+	strength = 1
+
+/datum/reagent/toxin/warningtoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/poison_strength = strength * M.species.chem_strength_tox
+	if(strength && alien != IS_DIONA)
+		M.adjustToxLoss(poison_strength * removed)
+		M.druggy = max(M.druggy, 10)
+		M.make_jittery(5)
+		M.add_chemical_effect(CE_SLOWDOWN, 5)
 
 /datum/reagent/toxin/phoron
 	name = REAGENT_PHORON
@@ -254,10 +269,10 @@
 /datum/reagent/toxin/stimm/overdose(var/mob/living/carbon/M, var/alient, var/removed)
 	..()
 	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
-		ht?.take_damage(1)
-		to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
+		var/obj/item/organ/internal/heart/ht = M.internal_organs_by_name[O_HEART]
+		if(ht)
+			ht.take_damage(1)
+			to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
 
 /datum/reagent/toxin/potassium_chloride
 	name = REAGENT_POTASSIUMCHLORIDE

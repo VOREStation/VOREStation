@@ -71,6 +71,6 @@ var/list/_nymph_default_emotes = list(
 	if(D.stat != CONSCIOUS)
 		return
 	if(prob(33) && D.canmove && isturf(D.loc) && !D.pulledby) //won't move if being pulled
-		step(D, pick(cardinal))
+		step(D, pick(GLOB.cardinal))
 	if(prob(1))
 		D.emote(pick("scratch","jump","chirp","roll"))

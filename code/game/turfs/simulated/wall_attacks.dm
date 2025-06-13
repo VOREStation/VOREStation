@@ -87,7 +87,7 @@
 	if(!can_open)
 		if(!material.wall_touch_special(src, user))
 			to_chat(user, span_notice("You push the wall, but nothing happens."))
-			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+			playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	else
 		toggle_open(user)
 	return 0
@@ -134,14 +134,14 @@
 		return success_smash(user)
 	return fail_smash(user)
 
-/turf/simulated/wall/attackby(var/obj/item/W, var/mob/user)
+/turf/simulated/wall/attackby(var/obj/item/W, var/mob/user, attack_modifier, click_parameters)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 
 /*
 //As with the floors, only this time it works AND tries pushing the wall after it's done.
 	if(!construction_stage && user.a_intent == I_HELP)
-		if(try_graffiti(user,W))
+		if(try_graffiti(user,W, click_parameters))
 			return
 */
 
@@ -174,7 +174,7 @@
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					user.visible_message(span_notice("[user] patches a hole in the ceiling."), span_notice("You patch a hole in the ceiling."))
 					expended_tile = TRUE
 			else
@@ -186,7 +186,7 @@
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
 				make_indoors()
 				if(!expended_tile) // Would've already played a sound
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				user.visible_message(span_notice("[user] roofs \the [src], shielding it from the elements."), span_notice("You roof \the [src] tile, shielding it from the elements."))
 		return
 

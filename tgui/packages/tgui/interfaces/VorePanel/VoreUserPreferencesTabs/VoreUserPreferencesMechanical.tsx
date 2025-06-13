@@ -3,7 +3,7 @@ import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import type { localPrefs } from '../types';
-import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
+import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {
   show_pictures: BooleanLike;
@@ -37,12 +37,7 @@ export const VoreUserPreferencesMechanical = (props: {
       }
     >
       <Stack wrap="wrap" justify="center">
-        <Stack.Item
-          basis="32%"
-          style={{
-            marginLeft: '0.5em', // Remove if tgui core implements gap
-          }}
-        >
+        <Stack.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.steppref}
             tooltipPosition="right"
@@ -98,25 +93,25 @@ export const VoreUserPreferencesMechanical = (props: {
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.vore_fx}
+            spec={preferences.spontaneous_tf}
             tooltipPosition="right"
           />
         </Stack.Item>
         <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
-            spec={preferences.spontaneous_tf}
+            spec={preferences.mind_transfer}
             tooltipPosition="top"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.mind_transfer}
+            spec={preferences.allow_mimicry}
             tooltipPosition="left"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.allow_mimicry}
+            spec={preferences.toggle_consume_liquid_belly}
             tooltipPosition="right"
           />
         </Stack.Item>

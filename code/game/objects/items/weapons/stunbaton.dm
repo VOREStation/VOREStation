@@ -201,7 +201,7 @@
 			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
 			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	//stun effects
 	if(status)
@@ -210,7 +210,7 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
+			H.forcesay(GLOB.hit_appends)
 	powercheck()
 
 /obj/item/melee/baton/emp_act(severity)

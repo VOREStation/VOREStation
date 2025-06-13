@@ -149,7 +149,7 @@
 		wind_dir = 0
 		return
 	wind_speed = new_wind_speed
-	wind_dir = pick(alldirs)
+	wind_dir = pick(GLOB.alldirs)
 	var/message = "You feel the wind blowing [wind_speed > 2 ? "strongly ": ""]towards the <b>[dir2text(wind_dir)]</b>."
 	message_all_outdoor_players(span_warning(message))
 
@@ -160,6 +160,7 @@
 			if(!T.is_outdoors())
 				continue
 			to_chat(M, message)
+			M.update_client_color() // Passively done here instead of its own loop, the only issue is that if you enter an outdoor area to an indoor turf you won't get a blend update till your first message.
 
 /datum/weather_holder/proc/get_weather_datum(desired_type)
 	return allowed_weather_types[desired_type]
@@ -203,6 +204,8 @@
 	var/outdoor_sounds_type = null
 	var/indoor_sounds_type = null
 	var/effect_flags = NONE
+
+	VAR_PROTECTED/color_grading = null // Color blending for weather to feel hotter, colder, or stranger
 
 /datum/weather/New()
 	if(outdoor_sounds_type)
@@ -304,6 +307,10 @@
 		indoor_sounds.output_atoms |= M
 		return
 	indoor_sounds.output_atoms -= M
+
+/// Gets a hex color value for blending with a player's client.color.
+/datum/weather/proc/get_color_tint()
+	return color_grading
 
 // All this does is hold the weather icon.
 /atom/movable/weather_visuals

@@ -38,57 +38,63 @@ export const RIGSuitModules = (props) => {
               toTitleCase(module.name) + (module.damage ? ' (damaged)' : '')
             }
             buttons={
-              <>
+              <Stack>
                 {module.can_select ? (
-                  <Button
-                    selected={module.name === primarysystem}
-                    icon="arrow-circle-right"
-                    onClick={() =>
-                      act('interact_module', {
-                        module: module.index,
-                        module_mode: 'select',
-                      })
-                    }
-                  >
-                    {module.name === primarysystem ? 'Selected' : 'Select'}
-                  </Button>
+                  <Stack.Item>
+                    <Button
+                      selected={module.name === primarysystem}
+                      icon="arrow-circle-right"
+                      onClick={() =>
+                        act('interact_module', {
+                          module: module.index,
+                          module_mode: 'select',
+                        })
+                      }
+                    >
+                      {module.name === primarysystem ? 'Selected' : 'Select'}
+                    </Button>
+                  </Stack.Item>
                 ) : (
                   ''
                 )}
                 {module.can_use ? (
-                  <Button
-                    icon="arrow-circle-down"
-                    onClick={() =>
-                      act('interact_module', {
-                        module: module.index,
-                        module_mode: 'engage',
-                      })
-                    }
-                  >
-                    {module.engagestring}
-                  </Button>
+                  <Stack.Item>
+                    <Button
+                      icon="arrow-circle-down"
+                      onClick={() =>
+                        act('interact_module', {
+                          module: module.index,
+                          module_mode: 'engage',
+                        })
+                      }
+                    >
+                      {module.engagestring}
+                    </Button>
+                  </Stack.Item>
                 ) : (
                   ''
                 )}
                 {module.can_toggle ? (
-                  <Button
-                    selected={module.is_active}
-                    icon="arrow-circle-down"
-                    onClick={() =>
-                      act('interact_module', {
-                        module: module.index,
-                        module_mode: 'toggle',
-                      })
-                    }
-                  >
-                    {module.is_active
-                      ? module.deactivatestring
-                      : module.activatestring}
-                  </Button>
+                  <Stack.Item>
+                    <Button
+                      selected={module.is_active}
+                      icon="arrow-circle-down"
+                      onClick={() =>
+                        act('interact_module', {
+                          module: module.index,
+                          module_mode: 'toggle',
+                        })
+                      }
+                    >
+                      {module.is_active
+                        ? module.deactivatestring
+                        : module.activatestring}
+                    </Button>
+                  </Stack.Item>
                 ) : (
                   ''
                 )}
-              </>
+              </Stack>
             }
           >
             {module.damage >= 2 ? (

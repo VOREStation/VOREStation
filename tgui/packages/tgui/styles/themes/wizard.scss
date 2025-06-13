@@ -3,65 +3,22 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use 'sass:meta';
-
-@use '../colors.scss' with (
-  $primary: hsl(192, 79%, 40%),
-  $fg-map-keys: (),
-  $bg-map-keys: ()
-);
-@use '../base.scss' with (
-  $color-bg: hsl(201, 41%, 22%),
-  $color-bg-grad-spread: 6%,
-  $border-radius: 2px
-);
-
-.theme-wizard {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
+.theme-wizard:root {
+  // Base
+  --color-base: hsl(205, 40%, 20%);
+  --color-primary: hsl(190, 80%, 40%);
+  --color-secondary: hsl(134, 71%, 31%);
+  --color-border-primary: hsl(225, 25%, 40%);
+  --base-gradient-spread: 6;
 
   // Components
-  @include meta.load-css(
-    '~tgui-core/styles/components/Button.scss',
-    $with: (
-      'color-default': colors.$primary,
-      'color-disabled': hsl(204, 96%, 22%),
-      'color-selected': hsl(227, 37%, 44%),
-      'color-caution': hsl(30, 91%, 39%),
-      'color-danger': hsl(0, 92%, 36%)
-    )
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/Input.scss',
-    $with: ('border-color': hsl(226, 26%, 34%))
-  );
-  @include meta.load-css('../components/NanoMap.scss');
-  @include meta.load-css(
-    '~tgui-core/styles/components/NoticeBox.scss',
-    $with: ('background-color': hsl(340, 58%, 42%))
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/NumberInput.scss',
-    $with: ('border-color': hsl(226, 26%, 34%))
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/ProgressBar.scss',
-    $with: ('background-color': hsla(0, 0%, 0%, 0.5))
-  );
-  @include meta.load-css('~tgui-core/styles/components/Section.scss');
-  @include meta.load-css(
-    '~tgui-core/styles/components/Tooltip.scss',
-    $with: ('background-color': hsl(133, 58%, 42%))
-  );
-
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': hsl(125, 71%, 36%))
-  );
+  --button-background-selected: hsl(227, 40%, 44%);
+  --button-background-caution: hsl(28, 89%, 39%);
+  --button-background-danger: hsl(0, 91%, 35%);
+  --notice-box-background: hsl(340, 58%, 41%);
+  --notice-box-color: var(--color-white);
+  --progress-bar-background: hsla(0, 0%, 0%, 0.5);
+  --tooltip-background: hsl(134, 61%, 42%);
 
   .Layout__content {
     background-image: url('../../assets/bg-wizard.svg');

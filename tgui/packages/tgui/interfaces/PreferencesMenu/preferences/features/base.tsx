@@ -265,7 +265,7 @@ export const FeatureShortTextInput = (
       width="100%"
       value={props.value}
       maxLength={props.serverData.maximum_length}
-      onChange={(_, value) => props.handleSetValue(value)}
+      onChange={(value) => props.handleSetValue(value)}
     />
   );
 };

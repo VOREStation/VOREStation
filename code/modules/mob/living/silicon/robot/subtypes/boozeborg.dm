@@ -46,7 +46,8 @@ What Borgs are available is sadly handled in the above file in the proc
 				"Vampire's Aid" = "boozeborg(red)",
 				"Vodka Komrade" = "boozeborg(vodka)"
 				)
-/obj/item/robot_module/robot/booze/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/booze/create_equipment(mob/living/silicon/robot/robot)
+	..()
 	src.modules += new /obj/item/gripper/service(src)
 	//src.modules += new /obj/item/reagent_containers/glass/bucket(src)
 	//src.modules += new /obj/item/material/minihoe(src)
@@ -111,7 +112,6 @@ What Borgs are available is sadly handled in the above file in the proc
 	R.vore_capacity_ex = list("stomach" = 1)
 	R.wideborg = TRUE
 	add_verb(R,/mob/living/silicon/robot/proc/ex_reserve_refill) //TGPanel
-	..()
 
 /obj/item/robot_module/robot/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules

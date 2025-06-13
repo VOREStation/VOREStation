@@ -185,7 +185,7 @@ export const NarrationInput = (props) => {
         <Stack.Item width="85%">
           <TextArea
             height={'18rem'}
-            onChange={(e, val) => setNarration(val)}
+            onBlur={(val) => setNarration(val)}
             value={narration || ''}
           />
         </Stack.Item>

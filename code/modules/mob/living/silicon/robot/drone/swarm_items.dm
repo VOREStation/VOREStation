@@ -137,7 +137,7 @@
 /obj/effect/temporary_effect/pulse/disintegrate/Destroy()
 	if(istype(get_turf(src), /turf/simulated/wall))
 		explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)
-	..()
+	. = ..()
 
 /obj/item/gun/energy/xray/swarm
 	name = "spectral projector"

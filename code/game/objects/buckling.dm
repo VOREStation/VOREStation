@@ -132,7 +132,7 @@
 					M.visible_message(span_warning("[M.name] sits down on [L.name]!"))
 				else
 					M.visible_message(span_warning("[M.name] is forced to sit down on [L.name] by [user.name]!"))
-				M.perform_the_nom(user, L, M, M.vore_selected, 1)
+				M.perform_the_nom(user, L, M, M.vore_selected, -1)
 
 	add_fingerprint(user)
 //	unbuckle_mob()

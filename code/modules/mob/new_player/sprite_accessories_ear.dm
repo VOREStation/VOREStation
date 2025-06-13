@@ -15,7 +15,7 @@
 	var/extra_overlay2
 	var/desc = DEVELOPER_WARNING_NAME
 	em_block = TRUE
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_SPARKLE)
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_SPARKLE, SPECIES_PROMETHEAN)
 
 /**
  * Gets the number of color channels we have.
@@ -1153,6 +1153,27 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "demi-tesh-kit-ears_male"
+
+/datum/sprite_accessory/ears/naga_ears
+	name = "naga ears"
+	desc = ""
+	icon_state = "naga-ears"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/axehorn
+	name = "axe horn"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "axehorn"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/axehorn_alt
+	name = "axe horn, alt"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "axehornalt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills

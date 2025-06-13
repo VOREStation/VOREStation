@@ -5,6 +5,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
@@ -26,23 +27,27 @@ export const SleeperDialysisPump = (props: {
     <Section
       title={title}
       buttons={
-        <>
-          <Button
-            disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
-            selected={canDialysis}
-            icon={canDialysis ? 'toggle-on' : 'toggle-off'}
-            onClick={() => act(actToDo)}
-          >
-            {canDialysis ? 'Active' : 'Inactive'}
-          </Button>
-          <Button
-            disabled={!isBeakerLoaded}
-            icon="eject"
-            onClick={() => act('removebeaker')}
-          >
-            Eject
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
+              selected={canDialysis}
+              icon={canDialysis ? 'toggle-on' : 'toggle-off'}
+              onClick={() => act(actToDo)}
+            >
+              {canDialysis ? 'Active' : 'Inactive'}
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              disabled={!isBeakerLoaded}
+              icon="eject"
+              onClick={() => act('removebeaker')}
+            >
+              Eject
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {isBeakerLoaded ? (

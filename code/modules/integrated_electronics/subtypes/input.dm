@@ -540,9 +540,9 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
-/obj/item/integrated_circuit/input/microphone/New()
-	..()
-	listening_objects |= src
+/obj/item/integrated_circuit/input/microphone/Initialize(mapload)
+	. = ..()
+	listening_objects += src
 
 /obj/item/integrated_circuit/input/microphone/Destroy()
 	listening_objects -= src

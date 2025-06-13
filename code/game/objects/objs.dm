@@ -186,9 +186,6 @@
 /obj/proc/see_emote(mob/M as mob, text, var/emote_type)
 	return
 
-/obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	return
-
 // Used to mark a turf as containing objects that are dangerous to step onto.
 /obj/proc/register_dangerous_to_step()
 	var/turf/T = get_turf(src)
@@ -224,3 +221,14 @@
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
+/obj/item/wash(clean_types)
+	. = ..()
+	if(blood_overlay && clean_types & CLEAN_WASH)
+		overlays.Remove(blood_overlay)
+	if(gurgled && clean_types & CLEAN_WASH)
+		gurgled = FALSE
+		cut_overlay(gurgled_overlays[gurgled_color])
+	if(contaminated && clean_types & CLEAN_RAD) // Phoron and stuff, washing machine needed
+		contaminated = FALSE
+		cut_overlay(contamination_overlay)

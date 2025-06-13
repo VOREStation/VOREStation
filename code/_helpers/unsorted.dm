@@ -303,7 +303,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(GLOB.data_core.general, GLOB.data_core.medical, GLOB.data_core.security, GLOB.data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -368,7 +368,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
 				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newAI.ogg')
+				//world << sound('sound/AI/newai.ogg')
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -757,7 +757,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					if(istype(T,/turf/simulated/shuttle))
 						shuttlework = 1
 						var/turf/simulated/shuttle/SS = T
-						if(!SS.landed_holder) SS.landed_holder = new(turf = SS)
+						if(!SS.landed_holder) SS.landed_holder = new(SS)
 						X = SS.landed_holder.land_on(B)
 
 					//Generic non-shuttle turf move.
@@ -831,18 +831,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	else
 		O=new original.type(locate(0,0,0))
 
-	var/static/list/blacklisted_var_names = list(
-		"ATOM_TOPIC_EXAMINE",
-		"type",
-		"loc",
-		"locs",
-		"vars",
-		"parent",
-		"parent_type",
-		"verbs",
-		"ckey",
-		"key"
-	)
+	var/static/list/blacklisted_var_names = list(BLACKLISTED_COPY_VARS)
 	if(perfectcopy)
 		if((O) && (original))
 			for(var/V in original.vars)
@@ -1124,13 +1113,10 @@ var/global/list/common_tools = list(
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
-	. = M.lying
-
-	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
-
-		if(!M.isSynthetic())
-			. = TRUE
-
+	if(M != user)
+		. = M.lying
+	else if(user && user.allow_self_surgery && user.a_intent == I_HELP)    // You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+		. = TRUE
 	return .
 
 // Returns an instance of a valid surgery surface.
@@ -1145,8 +1131,8 @@ var/global/list/common_tools = list(
 	if(surface)
 		return surface
 
-/proc/reverse_direction(var/dir)
-	return global.reverse_dir[dir]
+/proc/reverse_direction(dir)
+	return GLOB.reverse_dir[dir]
 
 /*
 Checks if that loc and dir has a item on the wall
@@ -1217,7 +1203,7 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob = new
+var/mob/dview/dview_mob
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
@@ -1225,7 +1211,6 @@ var/mob/dview/dview_mob = new
 		return
 	if(!dview_mob) //VOREStation Add: Debugging
 		dview_mob = new
-		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 
@@ -1235,7 +1220,7 @@ var/mob/dview/dview_mob = new
 	dview_mob.loc = null
 
 /mob/dview
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 
 	anchored = TRUE

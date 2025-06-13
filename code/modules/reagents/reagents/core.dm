@@ -38,9 +38,9 @@
 	if(!data["donor"] || ishuman(data["donor"]))
 		blood_splatter(T, src, 1)
 	else if(istype(data["donor"], /mob/living/carbon/alien))
+		var/mob/living/carbon/alien/A = data["donor"]
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
-		if(B)
-			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
+		B.add_blooddna(A.dna,A)
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -78,7 +78,7 @@
 				if(!ID)
 					continue
 				var/datum/disease/D = ID
-				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
 				M.ContractDisease(D)
 
@@ -95,11 +95,11 @@
 		if(vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease/D = ID
-				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
 				M.ContractDisease(D)
 	if(data && data["resistances"])
-		M.resistances |= data["resistances"]
+		M.AddResistances(data["resistances"])
 
 /datum/reagent/blood/mix_data(newdata, newamount)
 	if(!data || !newdata)
@@ -167,6 +167,13 @@
 
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
+
+/datum/reagent/blood/proc/get_diseases()
+	. = list()
+	if(data && data["viruses"])
+		for(var/thing in data["viruses"])
+			var/datum/disease/D = thing
+			. += D
 
 /datum/reagent/blood/synthblood
 	name = REAGENT_SYNTHBLOOD

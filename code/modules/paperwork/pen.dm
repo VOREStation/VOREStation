@@ -101,9 +101,10 @@
 	var/colors = list("black","blue","red")
 
 /obj/item/pen/AltClick(mob/user)
+	if(!Adjacent(user))
+		return
 	to_chat(user, span_notice("Click."))
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
-	return
 
 /obj/item/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)
@@ -131,8 +132,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/pen/reagent/New()
-	..()
+/obj/item/pen/reagent/Initialize(mapload)
+	. = ..()
 	create_reagents(30)
 
 /obj/item/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
@@ -247,8 +248,8 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/pen/reagent/sleepy/New()
-	..()
+/obj/item/pen/reagent/sleepy/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_CHLORALHYDRATE, 1)	//VOREStation Edit
 	reagents.add_reagent(REAGENT_ID_STOXIN, 14)	//VOREStation Add
 
@@ -259,8 +260,8 @@
 /obj/item/pen/reagent/paralysis
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/pen/reagent/paralysis/New()
-	..()
+/obj/item/pen/reagent/paralysis/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_ZOMBIEPOWDER, 5)
 	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 10)
 
@@ -274,7 +275,7 @@
 	/*
 	// Limit signatures to official crew members
 	var/personnel_list[] = list()
-	for(var/datum/data/record/t in data_core.locked) //Look in data core locked.
+	for(var/datum/data/record/t in GLOB.data_core.locked) //Look in data core locked.
 		personnel_list.Add(t.fields["name"])
 	personnel_list.Add("Anonymous")
 
@@ -338,13 +339,11 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-/obj/item/pen/crayon/New()
-	name = "[colourName] crayon"
+/obj/item/pen/crayon/Initialize(mapload)
+	. = ..()
+	name = "[colourName] [name]"
 
 /obj/item/pen/crayon/marker
 	name = "marker"
 	desc = "A chisel-tip permanent marker. Hopefully non-toxic."
 	icon_state = "markerred"
-
-/obj/item/pen/crayon/marker/New()
-	name = "[colourName] marker"

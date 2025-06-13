@@ -98,6 +98,8 @@ ktccd - Diona
 kyrendragon - Black-Eyed Shadekin
 lavenderrs - Teppi
 lazzar - Black-Eyed Shadekin
+lazzar - Hanner
+lewzharri - Hanner
 lianvee - Black-Eyed Shadekin
 lillianfyre - Xenochimera
 liquidfirefly - Protean
@@ -115,6 +117,7 @@ magpiemayhem - Xenochimera
 makkinindorn - Protean
 marcobarko - Black-Eyed Shadekin
 marcobarko - Protean
+maxcaliber50 - Protean
 maxine64 - Xenochimera
 mewchild - Diona
 mewchild - Vox
@@ -157,6 +160,7 @@ rainbyplays - Protean
 ramomisama - Protean
 residentcody - Black-Eyed Shadekin
 residentcody - Protean
+residentcody - Gamma Replicant
 revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
@@ -173,6 +177,7 @@ seiga - Vox
 selter - Protean
 sepulchre - Vox
 sharplight - Protean
+shilkon - Hanner
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
@@ -197,6 +202,7 @@ terrestris - Common Skrellian
 terrestris - Vox
 thedavestdave - Protean
 theoun - Hanner
+thexdkidoflol - Xenochimera
 timidvi - Diona
 titaania - Protean
 tombomb90 - Protean

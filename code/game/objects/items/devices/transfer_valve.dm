@@ -48,7 +48,7 @@
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
-		bombers += "[key_name(user)] attached a [item] to a transfer valve."
+		GLOB.bombers += "[key_name(user)] attached a [item] to a transfer valve."
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. [ADMIN_JMP(location)]")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
@@ -57,7 +57,6 @@
 
 
 /obj/item/transfer_valve/HasProximity(turf/T, datum/weakref/WF, old_loc)
-	SIGNAL_HANDLER
 	if(isnull(WF))
 		return
 	var/atom/movable/AM = WF.resolve()
@@ -202,13 +201,13 @@
 		if(attacher)
 			log_str += ADMIN_QUE(attacher)
 
-		var/mob/mob = get_mob_by_key(src.fingerprintslast)
+		var/mob/mob = get_mob_by_key(forensic_data?.get_lastprint())
 		var/last_touch_info = ""
 		if(mob)
 			last_touch_info = ADMIN_QUE(mob)
 
-		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
-		bombers += log_str
+		log_str += " Last touched by: [forensic_data?.get_lastprint()][last_touch_info]"
+		GLOB.bombers += log_str
 		message_admins(log_str, 0, 1)
 		log_game(log_str)
 		merge_gases()

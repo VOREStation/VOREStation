@@ -99,7 +99,7 @@
 	alert_readers(FC.announcement)
 
 /datum/feed_network/proc/alert_readers(var/annoncement)
-	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+	for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 /obj/machinery/newscaster/Initialize(mapload)
 	..()
-	allCasters += src
+	GLOB.allCasters += src
 	unit_no = ++unit_no_cur
 	paper_remaining = 15
 	update_icon()
@@ -184,7 +184,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	update_icon()
 
 /obj/machinery/newscaster/Destroy()
-	allCasters -= src
+	GLOB.allCasters -= src
 	node = null
 	return ..()
 
@@ -541,7 +541,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			var/choice = tgui_alert(ui.user, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
-				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+				for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 					NEWSCASTER.update_icon()
 				set_temp("Wanted issue taken down.", "success", FALSE)
 			return TRUE

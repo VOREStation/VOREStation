@@ -49,6 +49,8 @@
 		/datum/material/durasteel/hull,
 		/datum/material/titanium/hull,
 		/datum/material/morphium/hull,
+		/datum/material/plastitanium/hull,
+		/datum/material/gold/hull,
 		/datum/material/steel/holographic,
 		/datum/material/plastic/holographic,
 		/datum/material/wood/holographic,
@@ -208,7 +210,7 @@
 			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug
 				)
-			var/new_metal = /obj/item/stack/material/supermatter
+			var/obj/item/stack/new_metal = /obj/item/stack/material/supermatter
 			for(var/x=1;x<=10;x++) //You got 10 chances to hit a metal that is NOT banned.
 				var/picked_metal = pick(possible_object_paths) //We select
 				if(picked_metal in banned_sheet_materials)
@@ -216,8 +218,9 @@
 				else
 					new_metal = picked_metal
 					break
-			new_item = new new_metal(src.loc)
-			new_item:amount = rand(5,45)
+			new_metal = new new_metal(src.loc)
+			new_metal.amount = rand(5,45)
+			new_item = new_metal
 		if(ARCHAEO_PEN)
 			var/new_pen = pick(/obj/item/pen, /obj/item/pen/blade/fountain, /obj/item/pen/reagent/sleepy) //There are WAY too many pen blade variants that it'd drown out the others in this list.
 			new_item = new new_pen(src.loc)
@@ -616,21 +619,14 @@
 			//However, in that case Initialize will set the maximum volume to the volume for us, so we don't need to do anything.
 			S.reagents?.maximum_volume = 15
 			item_type = new_item.name
-			//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
-			var/list/banned_chems = list(
-				REAGENT_ID_ADMINORDRAZINE,
-				REAGENT_ID_NUTRIMENT,
-				REAGENT_ID_MACROCILLIN,
-				REAGENT_ID_MICROCILLIN,
-				REAGENT_ID_NORMALCILLIN,
-				REAGENT_ID_MAGICDUST
-				)
 			var/additional_chems = 5 //5 random chems added to the syringe! 15u of RANDOM stuff! (I tried to keep this 30, but this was...Horribly bugged. There is no icon_state for 16-30, so the icon was invisible when filled.)
 			for(var/x=1;x<=additional_chems;x++)
 				var/new_chem = pick(SSchemistry.chemical_reagents)
-				if(new_chem in banned_chems)
+				var/list/currently_banned_chems = list()
+				currently_banned_chems += GLOB.obtainable_chemical_blacklist
+				if(new_chem in currently_banned_chems)
 					continue
-				banned_chems += new_chem
+				currently_banned_chems += new_chem
 				S.reagents.add_reagent(new_chem, 3)
 
 		if(ARCHAEO_RING)

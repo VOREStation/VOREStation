@@ -36,8 +36,8 @@
 	if (usr.stat || usr.restrained())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		var/A = tgui_input_list(usr, "Area to jump bombard", "Open Fire", teleportlocs)
-		var/area/thearea = teleportlocs[A]
+		var/A = tgui_input_list(usr, "Area to jump bombard", "Open Fire", GLOB.teleportlocs)
+		var/area/thearea = GLOB.teleportlocs[A]
 		if (usr.stat || usr.restrained()) return
 		if(src.reload < 180) return
 		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))

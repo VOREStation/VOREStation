@@ -14,7 +14,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	if(!istype(src,/mob/observer))
-		ghostize()
+		ghostize(FALSE)
 	QDEL_NULL(soulgem) //Soulcatcher
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
@@ -81,7 +81,8 @@
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/show_message(msg, type, alt, alt_type)
+
 	if(!client && !teleop)	return
 
 	if (type)
@@ -373,6 +374,9 @@
 /mob/verb/abandon_mob()
 	set name = "Return to Menu"
 	set category = "OOC.Game"
+	if(istype(src, /mob/new_player))
+		to_chat(src, span_boldnotice("You are already in the lobby!"))
+		return
 
 	if(stat != DEAD || !ticker)
 		to_chat(src, span_boldnotice("You must be dead to use this!"))
@@ -389,7 +393,7 @@
 			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
 				//Update any existing objectives involving this mob.
-				for(var/datum/objective/O in all_objectives)
+				for(var/datum/objective/O in GLOB.all_objectives)
 					if(O.target == mind)
 						if(O.owner && O.owner.current)
 							to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
@@ -409,15 +413,15 @@
 					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.medical)
+				if(GLOB.PDA_Manifest.len)
+					GLOB.PDA_Manifest.Cut()
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if((R.fields["name"] == real_name))
 						qdel(R)
-				for(var/datum/data/record/T in data_core.security)
+				for(var/datum/data/record/T in GLOB.data_core.security)
 					if((T.fields["name"] == real_name))
 						qdel(T)
-				for(var/datum/data/record/G in data_core.general)
+				for(var/datum/data/record/G in GLOB.data_core.general)
 					if((G.fields["name"] == real_name))
 						qdel(G)
 
@@ -442,6 +446,7 @@
 	if(!client)
 		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
+		M.key = null
 		return
 
 	M.has_respawned = TRUE //When we returned to main menu, send respawn message
@@ -479,8 +484,8 @@
 	var/list/targets = list()
 
 
-	targets += observe_list_format(nuke_disks)
-	targets += observe_list_format(all_singularities)
+	targets += observe_list_format(GLOB.nuke_disks)
+	targets += observe_list_format(GLOB.all_singularities)
 	targets += getmobs()
 	targets += observe_list_format(sortAtom(mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
@@ -563,6 +568,9 @@
 		to_chat(src, span_warning("It won't budge!"))
 		return
 
+	if(lying)
+		return
+
 	var/mob/M = AM
 	if(ismob(AM))
 
@@ -598,6 +606,10 @@
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
+
+		if(M.no_pull_when_living && !(M.stat == DEAD)) //If it's now allowed to be pulled when living, and it's not dead yet, deny.
+			to_chat(src, span_warning("\The [M] won't let you just pull them!"))
+			return
 
 	else if(isobj(AM))
 		var/obj/I = AM
@@ -1174,15 +1186,6 @@
 	. = ..()
 
 
-
-/obj/Destroy()
-	if(istype(loc, /mob))
-		var/mob/holder = loc
-		if(src in holder.exploit_addons)
-			holder.exploit_addons -= src
-	. = ..()
-
-
 /client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)
 
@@ -1232,8 +1235,23 @@
 // This is for inheritence since /mob/living will serve most cases. If you need ghosts to use this you'll have to implement that yourself.
 /mob/proc/update_client_color()
 	if(client && client.color)
-		animate(client, color = null, time = 10)
+		animate(client, color = get_location_color_tint(), time = 10)
 	return
+
+/mob/proc/get_location_color_tint()
+	PROTECTED_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/turf/T = get_turf(src)
+	var/area/A = get_area(src)
+	if(!T || !A)
+		return null
+	if(T.is_outdoors()) // check weather
+		var/datum/planet/P = LAZYACCESS(SSplanets.z_to_planet, T.z)
+		var/weather_tint = P?.weather_holder.current_weather.get_color_tint()
+		if(weather_tint) // But not if the weather has no blending!
+			return weather_tint
+	// If not weather based then just area's
+	return A.get_color_tint()
 
 /mob/proc/swap_hand()
 	return

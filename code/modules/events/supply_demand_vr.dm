@@ -22,9 +22,9 @@
 	running_demand_events += src
 	// Decide what items are requried!
 	// We base this on what departmets are most active, excluding departments we don't have
-	var/list/notHaveDeptList = metric.departments.Copy()
+	var/list/notHaveDeptList = GLOB.metric.departments.Copy()
 	notHaveDeptList.Remove(list(DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_CARGO, DEPARTMENT_CIVILIAN))
-	var/deptActivity = metric.assess_all_departments(severity * 2, notHaveDeptList)
+	var/deptActivity = GLOB.metric.assess_all_departments(severity * 2, notHaveDeptList)
 	for(var/dept in deptActivity)
 		switch(dept)
 			if(DEPARTMENT_ENGINEERING)
@@ -59,7 +59,7 @@
 	message += "<hr>"
 	message += "Deliver these items to [command_name()] via the supply shuttle.  Please put the ones you can into crates!<br>"
 
-	for(var/dpt in req_console_supplies)
+	for(var/dpt in GLOB.req_console_supplies)
 		send_console_message(message, dpt);
 
 	// Also announce over main comms so people know to look
@@ -224,7 +224,7 @@
 	var/total_moles = mixture.total_moles
 	var desc = "Canister filled to [round(pressure,0.1)] kPa with gas mixture:\n"
 	for(var/gas in mixture.gas)
-		desc += "<br>- [gas_data.name[gas]]: [round((mixture.gas[gas] / total_moles) * 100)]%\n"
+		desc += "<br>- [GLOB.gas_data.name[gas]]: [round((mixture.gas[gas] / total_moles) * 100)]%\n"
 	return desc
 
 /datum/supply_demand_order/gas/match_item(var/obj/machinery/portable_atmospherics/canister)
@@ -314,7 +314,7 @@
 /datum/event/supply_demand/proc/choose_atmos_items(var/differentTypes)
 	var/datum/gas_mixture/mixture = new
 	mixture.temperature = T20C
-	var/unpickedTypes = gas_data.gases.Copy()
+	var/unpickedTypes = GLOB.gas_data.gases.Copy()
 	unpickedTypes -= GAS_VOLATILE_FUEL // Don't do that one
 	for(var/i in 1 to differentTypes)
 		var/gasId = pick(unpickedTypes)

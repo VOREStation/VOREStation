@@ -16,7 +16,7 @@ type ChatPanelTypes = {
 };
 
 export class ChatPanel extends Component<ChatPanelTypes> {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   handleScrollTrackingChange: (value: any) => void;
   state: { scrollTracking: boolean };
   constructor(props) {

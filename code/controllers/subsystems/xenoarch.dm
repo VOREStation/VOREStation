@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(xenoarch)
 		digsite_spawning_turfs = SSxenoarch.digsite_spawning_turfs
 
 /datum/controller/subsystem/xenoarch/stat_entry(msg)
-	if (!Debug2)
+	if (!GLOB.Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	return ..()
 

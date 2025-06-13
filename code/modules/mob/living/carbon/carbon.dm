@@ -165,11 +165,11 @@
 	return shock_damage
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= CONFIG_GET(number/health_threshold_crit))
+	if (health >= get_crit_point() || on_fire)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()]
-			src.visible_message( \
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
+			visible_message( \
 				span_notice("[src] examines [T.himself]."), \
 				span_notice("You check yourself for injuries.") \
 				)
@@ -250,7 +250,7 @@
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
+			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
 				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
@@ -264,7 +264,7 @@
 									span_notice("You shake [src] trying to wake [T.him] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
-				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
 					M.visible_message(span_notice("[M] grabs onto [src] and pulls [TM.himself] up"), \
 							span_notice("You grip onto [src] and pull yourself up off the ground!"))
@@ -371,7 +371,7 @@
 	if(istype(A, /mob/living/carbon) && prob(10))
 		var/mob/living/carbon/human/H = A
 		for(var/datum/disease/D in GetViruses())
-			if(D.spread_flags & CONTACT_GENERAL)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				H.ContractDisease(D)
 
 /mob/living/carbon/cannot_use_vents()
@@ -433,14 +433,14 @@
 	update_inv_handcuffed()
 
 // Clears blood overlays
-/mob/living/carbon/clean_blood()
+/mob/living/carbon/wash(clean_types)
 	. = ..()
 	if(src.r_hand)
-		src.r_hand.clean_blood()
+		src.r_hand.wash(clean_types)
 	if(src.l_hand)
-		src.l_hand.clean_blood()
+		src.l_hand.wash(clean_types)
 	if(src.back)
-		if(src.back.clean_blood())
+		if(src.back.wash(clean_types))
 			src.update_inv_back(0)
 
 	if(ishuman(src))
@@ -467,48 +467,48 @@
 				washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
 
 		if(H.head)
-			if(H.head.clean_blood())
+			if(H.head.wash(clean_types))
 				H.update_inv_head()
 
 		if(H.wear_suit)
-			if(H.wear_suit.clean_blood())
+			if(H.wear_suit.wash(clean_types))
 				H.update_inv_wear_suit()
 
 		else if(H.w_uniform)
-			if(H.w_uniform.clean_blood())
+			if(H.w_uniform.wash(clean_types))
 				H.update_inv_w_uniform()
 
 		if(H.gloves && washgloves)
-			if(H.gloves.clean_blood())
+			if(H.gloves.wash(clean_types))
 				H.update_inv_gloves(0)
 
 		if(H.shoes && washshoes)
-			if(H.shoes.clean_blood())
+			if(H.shoes.wash(clean_types))
 				H.update_inv_shoes(0)
 
 		if(H.wear_mask && washmask)
-			if(H.wear_mask.clean_blood())
+			if(H.wear_mask.wash(clean_types))
 				H.update_inv_wear_mask(0)
 
 		if(H.glasses && washglasses)
-			if(H.glasses.clean_blood())
+			if(H.glasses.wash(clean_types))
 				H.update_inv_glasses(0)
 
 		if(H.l_ear && washears)
-			if(H.l_ear.clean_blood())
+			if(H.l_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
 		if(H.r_ear && washears)
-			if(H.r_ear.clean_blood())
+			if(H.r_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
 		if(H.belt)
-			if(H.belt.clean_blood())
+			if(H.belt.wash(clean_types))
 				H.update_inv_belt(0)
 
 	else
 		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-			if(src.wear_mask.clean_blood())
+			if(src.wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
@@ -523,5 +523,5 @@
 		if(prob(D.infectivity))
 			D.spread()
 
-		if(stat != DEAD || D.allow_dead)
+		if(stat != DEAD || global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 			D.stage_act()

@@ -68,6 +68,10 @@
 	var/obj/item/clothing/head/hat = null // The hat the Sakimm may be wearing.
 	var/list/friend_loot_list = list(/obj/item/coin)	// What will make this animal non-hostile if held?
 	var/randomize_size = TRUE
+	can_be_drop_prey = TRUE
+	species_sounds = "Raccoon"
+	pain_emote_1p = list("chitter")
+	pain_emote_3p = list("chitters")
 
 /mob/living/simple_mob/animal/sif/sakimm/verb/remove_hat()
 	set name = "Remove Hat"
@@ -138,7 +142,7 @@
 /mob/living/simple_mob/animal/sif/sakimm/Destroy()
 	if(hat)
 		drop_hat(src)
-	..()
+	. = ..()
 
 /mob/living/simple_mob/animal/sif/sakimm/update_icon()
 	cut_overlays()
@@ -215,7 +219,7 @@
 		I.attack_hand(holder)
 		lose_target()
 	if(isliving(A) && holder.Adjacent(A))	// Not the dumbest tool in the shed. If we're fighting, we're gonna dance around them.
-		holder.IMove(get_step(holder, pick(alldirs)))
+		holder.IMove(get_step(holder, pick(GLOB.alldirs)))
 		holder.face_atom(A)
 		request_help()	// And we're going to call friends, too.
 

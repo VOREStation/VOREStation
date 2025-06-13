@@ -7,7 +7,7 @@
 /obj/effect/manifest/Initialize(mapload)
 	. = ..()
 
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/manifest/proc/manifest()
 	var/dat = span_bold("Crew Manifest") + ":<BR>"

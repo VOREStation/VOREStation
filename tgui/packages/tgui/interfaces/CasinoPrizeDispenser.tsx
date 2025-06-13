@@ -81,7 +81,7 @@ const CasinoPrizeDispenserSearch = (props: {
           <Input
             placeholder="Search by item name.."
             width="100%"
-            onInput={(_e, value) => props.onSearchText(value)}
+            onChange={(value) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

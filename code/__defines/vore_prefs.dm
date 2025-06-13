@@ -50,6 +50,7 @@
 	target.no_latejoin_prey_warning_time = source.no_latejoin_prey_warning_time;		\
 	target.no_latejoin_vore_warning_persists = source.no_latejoin_vore_warning_persists;\
 	target.no_latejoin_prey_warning_persists = source.no_latejoin_prey_warning_persists;\
+	target.max_voreoverlay_alpha = source.max_voreoverlay_alpha;						\
 																						\
 	target.autotransferable = source.autotransferable;									\
 	target.strip_pref = source.strip_pref;												\
@@ -57,4 +58,5 @@
 	target.vore_sprite_color = source.vore_sprite_color;								\
 	target.belly_rub_target = source.belly_rub_target;									\
 																						\
-	target.soulcatcher_pref_flags = source.soulcatcher_pref_flags;
+	target.soulcatcher_pref_flags = source.soulcatcher_pref_flags;						\
+	target.persistend_edit_mode = source.persistend_edit_mode;

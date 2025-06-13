@@ -13,4 +13,4 @@ Xenobiological product lives here as a basic type.
 
 /obj/item/xenoproduct/Destroy()
 	QDEL_NULL(traits)
-	..()
+	. = ..()

@@ -27,8 +27,8 @@
 
 /datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 	attack_damage = CLAMP(attack_damage, 1, 5)
 
 	if(target == user)
@@ -165,12 +165,12 @@
 /datum/unarmed_attack/claws/chimera //special feral attack that gets stronger as they get angrier
 
 /datum/unarmed_attack/claws/chimera/get_unarmed_damage(var/mob/living/carbon/human/user)
-	return user.feral/5
+	return user.get_feralness()/5
 
 /datum/unarmed_attack/claws/chimera/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 	..()
-	if(user.feral && !(target == user))
-		var/selfdamage = ((user.feral/10)-7.5)
+	if(user.get_feralness() && !(target == user))
+		var/selfdamage = ((user.get_feralness()/10)-7.5)
 		if(selfdamage > 0)
 			var/selfdamagezone = null
 			if (user.hand)

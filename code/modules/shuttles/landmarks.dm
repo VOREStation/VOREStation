@@ -6,7 +6,7 @@
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	flags = SLANDMARK_FLAG_AUTOSET // We generally want to use current area/turf as base.
 
 	//ID of the landmark

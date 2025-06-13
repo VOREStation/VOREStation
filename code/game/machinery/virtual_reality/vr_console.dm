@@ -298,7 +298,7 @@
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
 			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
-		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
+		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 		add_verb(avatar,/mob/living/proc/set_size)
 		avatar.virtual_reality_mob = TRUE
@@ -314,13 +314,15 @@
 			avatar.sync_organ_dna()
 			avatar.initialize_vessel()
 
+		SEND_SIGNAL(avatar, COMSIG_HUMAN_DNA_FINALIZED)
+
 		if(tf)
 			var/mob/living/new_form = avatar.transform_into_mob(tf, TRUE) // No need to check prefs when the occupant already chose to transform.
 			if(isliving(new_form)) // Make sure the mob spawned properly.
 				add_verb(new_form,/mob/living/proc/vr_revert_mob_tf)
 				new_form.virtual_reality_mob = TRUE
 
-		add_verb(avatar, /mob/living/carbon/human/proc/exit_vr) //ahealing removes the prommie verbs and the VR verbs, giving it back
+		add_verb(avatar, /mob/living/carbon/human/proc/perform_exit_vr) //ahealing removes the prommie verbs and the VR verbs, giving it back
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.

@@ -32,7 +32,7 @@ else
 	map_files="-r --include=maps/**/**.dmm"
 	# shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
 	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
-fi
+fi;
 
 echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
 
@@ -71,7 +71,7 @@ retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo -e "${RED}The variables 'step_x' and 'step_y' are present on a map, and they 'break' movement ingame.${NC}"
 	FAILED=1
-fi
+fi;
 
 part "wrongly offset APCs"
 if grep -Pzo '/obj/structure/machinery/power/apc[/\w]*?\{\n[^}]*?pixel_[xy] = -?[013-9]\d*?[^\d]*?\s*?\},?\n' $map_files ||
@@ -101,7 +101,7 @@ retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo -e "${RED}A map containing the word 'test' is included. This is not allowed to be committed.${NC}"
 	FAILED=1
-fi
+fi;
 
 section "code issues"
 
@@ -143,7 +143,7 @@ retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo -e "${RED}Do not modify the example.yml changelog file.${NC}"
 	FAILED=1
-fi
+fi;
 
 part "color macros"
 #Checking for color macros
@@ -152,7 +152,7 @@ retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo -e "${RED}Do not use any byond color macros (such as \blue), they are deprecated.${NC}"
 	FAILED=1
-fi
+fi;
 
 part "typescript react files"
 if ls -1 tgui/**/*.jsx 2>/dev/null; then
@@ -202,7 +202,7 @@ retVal=$?
 if [ $retVal -ne 0 ]; then
 	echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
 	FAILED=1
-fi
+fi;
 
 part "proc ref syntax"
 if $grep '\.proc/' $code_x_515 ; then
@@ -240,19 +240,27 @@ if [ "$pcre2_support" -eq 1 ]; then
 		echo
 		echo -e "${RED}ERROR: TIMER_OVERRIDE used without TIMER_UNIQUE.${NC}"
 		FAILED=1
-	fi
+	fi;
 
 	part "trailing newlines"
 	if $grep -PU '[^\n]$(?!\n)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
 		FAILED=1
-	fi
+	fi;
 
 	part "improper atom initialize args"
 	if $grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' $code_files; then
 		echo
 		echo -e "${RED}ERROR: Initialize override without 'mapload' argument.${NC}"
+		FAILED=1
+	fi;
+
+	part "improper atom New usage"
+	(num=`$grep -n '^/?(obj|mob|turf|area|atom)/?.*/New\(' $code_files | wc -l`; echo "$num New (expecting 2 or less)"; [ $num -le 2 ])
+	retVal=$?
+	if [ $retVal -ne 0 ]; then
+		echo -e "${RED}Do not use any New() calls, they've been replaced by Initialize(mapload).${NC}"
 		FAILED=1
 	fi;
 
@@ -263,7 +271,7 @@ if [ "$pcre2_support" -eq 1 ]; then
 	if [ $retVal -ne 0 ]; then
 		echo -e "${RED}A map has 'tag' set on an atom. It may cause problems and should be removed.${NC}"
 		FAILED=1
-	fi
+	fi;
 
 	part "broken html"
 	# echo -e "${RED}DISABLED"
@@ -273,7 +281,7 @@ if [ "$pcre2_support" -eq 1 ]; then
 	if [ $retVal -ne 0 ]; then
 		echo -e "${RED}A broken span tag class is present (check quotes).${NC}"
 		FAILED=1
-	fi
+	fi;
 
 	part "old style hrefs"
 	(! $grep -Pn "href[\s='\"\\ ]*\?" $code_files)
@@ -281,11 +289,11 @@ if [ "$pcre2_support" -eq 1 ]; then
 	if [ $retVal -ne 0 ]; then
 		echo -e "${RED}old-style hrefs detected, see ripgrep output.${NC}"
 		FAILED=1
-	fi
+	fi;
 else
 	echo -e "${RED}pcre2 not supported, skipping checks requiring pcre2"
 	echo -e "if you want to run these checks install ripgrep with pcre2 support.${NC}"
-fi
+fi;
 
 if [ $FAILED = 0 ]; then
 	echo
@@ -293,7 +301,7 @@ if [ $FAILED = 0 ]; then
 else
 	echo
 	echo -e "${RED}Errors found, please fix them and try again.${NC}"
-fi
+fi;
 
 # Quit with our status code
 exit $FAILED

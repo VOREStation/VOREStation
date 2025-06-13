@@ -45,7 +45,7 @@
 	var/image/I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = dir)
 	I.color = PIPE_COLOR_BLUE
 	add_overlay(I)
-	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = reverse_dir[dir])
+	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = GLOB.reverse_dir[dir])
 	I.color = PIPE_COLOR_BLACK
 	add_overlay(I)
 
@@ -92,7 +92,7 @@
 	// STEP 3 - Convert CO2 to O2  (Note: We know our internal group multipier is 1, so just be cool)
 	var/co2_moles = internal.gas[input_gas]
 	if(co2_moles < MINIMUM_MOLES_TO_FILTER)
-		ui_error = "Insufficient [gas_data.name[input_gas]] to process."
+		ui_error = "Insufficient [GLOB.gas_data.name[input_gas]] to process."
 		update_icon()
 		return
 
@@ -186,7 +186,7 @@
 	data["materials"] = materials_ui
 	data["last_flow_rate"] = last_flow_rate
 	data["last_power_draw"] = last_power_draw
-	data["inputDir"] = dir2text(reverse_dir[dir])
+	data["inputDir"] = dir2text(GLOB.reverse_dir[dir])
 	data["outputDir"] = dir2text(dir)
 	data["usePower"] = use_power
 	data["errorText"] = ui_error
@@ -194,13 +194,13 @@
 	if(air1 && network1 && node1)
 		data["input"] = list(
 			"pressure" = air1.return_pressure(),
-			"name" = gas_data.name[input_gas],
+			"name" = GLOB.gas_data.name[input_gas],
 			"percent" = air1.total_moles > 0 ? round((air1.gas[input_gas] / air1.total_moles) * 100) : 0,
 			"moles" = round(air1.gas[input_gas], 0.01))
 	if(air2 && network2 && node2)
 		data["output"] = list(
 			"pressure" = air2.return_pressure(),
-			"name" = gas_data.name[output_gas],
+			"name" = GLOB.gas_data.name[output_gas],
 			"percent" = air2.total_moles ? round((air2.gas[output_gas] / air2.total_moles) * 100) : 0,
 			"moles" = round(air2.gas[output_gas], 0.01))
 

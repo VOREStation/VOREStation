@@ -312,7 +312,7 @@ emp_act
 		return 0
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay(GLOB.hit_appends)	//forcesay checks stat already
 
 	if(prob(25 + (effective_force * 2)))
 		if(!((I.damtype == BRUTE) || (I.damtype == HALLOSS)))
@@ -400,7 +400,7 @@ emp_act
 	// I put more comments here for ease of reading.
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
-		if(isanimal(thrown_mob) && !allowmobvore) //Is the thrown_mob an animal and we don't allow mobvore?
+		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
@@ -577,11 +577,9 @@ emp_act
 		var/obj/item/clothing/gloves/gl = gloves
 		gl.add_blood(source)
 		gl.transfer_blood = amount
-		gl.bloody_hands_mob = source
 	else
 		add_blood(source)
 		bloody_hands = amount
-		bloody_hands_mob = source
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
@@ -692,3 +690,12 @@ emp_act
 		flick(G.hud.icon_state, G.hud)
 
 	return 1
+
+/mob/living/carbon/human/is_mouth_covered(head_only, mask_only)
+	if(!check_has_mouth())
+		return TRUE
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+		return TRUE
+
+	return FALSE

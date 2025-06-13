@@ -312,23 +312,22 @@
 	var/prey_ckey
 
 
-/mob/living/simple_mob/vore/morph/dominated_prey/New(loc, pckey, parent, prey)
+/mob/living/simple_mob/vore/morph/dominated_prey/Initialize(mapload, pckey, parent, prey)
 	. = ..()
-	if(pckey)
-		prey_ckey = pckey
-		parent_morph = parent
-		prey_body = prey
-		prey_body.forceMove(get_turf(parent_morph))
-		prey_body.muffled = FALSE
-		prey_body.absorbed = FALSE
-		absorbed = TRUE
-		ckey = prey_ckey
-		prey_body.ckey = parent_morph.original_ckey
-		parent_morph.forceMove(src)
-		name = "[prey_body.name]"
-		to_chat(prey_body, span_notice("You have completely assumed the form of [prey_body]. Your form is now unable to change anymore until you restore control back to them. You can do this by 'ejecting' them from your [prey_body.vore_selected]. This will not actually release them from your body in this state, but instead return control to them, and restore you to your original form."))
-	else
-		qdel(src)
+	if(!pckey)
+		return INITIALIZE_HINT_QDEL
+	prey_ckey = pckey
+	parent_morph = parent
+	prey_body = prey
+	prey_body.forceMove(get_turf(parent_morph))
+	prey_body.muffled = FALSE
+	prey_body.absorbed = FALSE
+	absorbed = TRUE
+	ckey = prey_ckey
+	prey_body.ckey = parent_morph.original_ckey
+	parent_morph.forceMove(src)
+	name = "[prey_body.name]"
+	to_chat(prey_body, span_notice("You have completely assumed the form of [prey_body]. Your form is now unable to change anymore until you restore control back to them. You can do this by 'ejecting' them from your [prey_body.vore_selected]. This will not actually release them from your body in this state, but instead return control to them, and restore you to your original form."))
 
 /mob/living/simple_mob/vore/morph/dominated_prey/death(gibbed)
 	. = ..()

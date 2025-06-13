@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Section, Tabs } from 'tgui-core/components';
+import { Section, Stack, Tabs } from 'tgui-core/components';
 
 import { SupplyConsoleMenuHistoryExport } from './SupplyConsoleMenuHistoryExport';
 import { SupplyConsoleMenuOrder } from './SupplyConsoleMenuOrder';
@@ -17,45 +17,49 @@ export const SupplyConsoleMenu = (props) => {
   tab[4] = <SupplyConsoleMenuHistoryExport />;
 
   return (
-    <Section title="Menu">
-      <Tabs>
-        <Tabs.Tab
-          icon="box"
-          selected={tabIndex === 0}
-          onClick={() => setTabIndex(0)}
-        >
-          Request
-        </Tabs.Tab>
-        <Tabs.Tab
-          icon="check-circle-o"
-          selected={tabIndex === 1}
-          onClick={() => setTabIndex(1)}
-        >
-          Accepted
-        </Tabs.Tab>
-        <Tabs.Tab
-          icon="circle-o"
-          selected={tabIndex === 2}
-          onClick={() => setTabIndex(2)}
-        >
-          Requests
-        </Tabs.Tab>
-        <Tabs.Tab
-          icon="book"
-          selected={tabIndex === 3}
-          onClick={() => setTabIndex(3)}
-        >
-          Order history
-        </Tabs.Tab>
-        <Tabs.Tab
-          icon="book"
-          selected={tabIndex === 4}
-          onClick={() => setTabIndex(4)}
-        >
-          Export history
-        </Tabs.Tab>
-      </Tabs>
-      {tab[tabIndex] || ''}
+    <Section fill title="Menu">
+      <Stack vertical fill>
+        <Stack.Item>
+          <Tabs>
+            <Tabs.Tab
+              icon="box"
+              selected={tabIndex === 0}
+              onClick={() => setTabIndex(0)}
+            >
+              Request
+            </Tabs.Tab>
+            <Tabs.Tab
+              icon="check-circle-o"
+              selected={tabIndex === 1}
+              onClick={() => setTabIndex(1)}
+            >
+              Accepted
+            </Tabs.Tab>
+            <Tabs.Tab
+              icon="circle-o"
+              selected={tabIndex === 2}
+              onClick={() => setTabIndex(2)}
+            >
+              Requests
+            </Tabs.Tab>
+            <Tabs.Tab
+              icon="book"
+              selected={tabIndex === 3}
+              onClick={() => setTabIndex(3)}
+            >
+              Order history
+            </Tabs.Tab>
+            <Tabs.Tab
+              icon="book"
+              selected={tabIndex === 4}
+              onClick={() => setTabIndex(4)}
+            >
+              Export history
+            </Tabs.Tab>
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item grow>{tab[tabIndex] || ''}</Stack.Item>
+      </Stack>
     </Section>
   );
 };

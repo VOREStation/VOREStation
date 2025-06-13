@@ -3,12 +3,12 @@
 #define PRISON_STATION_AREATYPE "/area/shuttle/prison/station" //Type of the prison shuttle area for station
 #define PRISON_DOCK_AREATYPE "/area/shuttle/prison/prison"	//Type of the prison shuttle area for dock
 
-var/prison_shuttle_moving_to_station = 0
-var/prison_shuttle_moving_to_prison = 0
-var/prison_shuttle_at_station = 0
-var/prison_shuttle_can_send = 1
-var/prison_shuttle_time = 0
-var/prison_shuttle_timeleft = 0
+GLOBAL_VAR_INIT(prison_shuttle_moving_to_station, 0)
+GLOBAL_VAR_INIT(prison_shuttle_moving_to_prison, 0)
+GLOBAL_VAR_INIT(prison_shuttle_at_station, 0)
+GLOBAL_VAR_INIT(prison_shuttle_can_send, 1)
+GLOBAL_VAR_INIT(prison_shuttle_time, 0)
+GLOBAL_VAR_INIT(prison_shuttle_timeleft, 0)
 
 /obj/machinery/computer/prison_shuttle
 	name = "prison shuttle control console"
@@ -42,8 +42,8 @@ var/prison_shuttle_timeleft = 0
 		dat = src.temp
 	else
 		dat += {"<BR><B>Prison Shuttle</B><HR>
-		\nLocation: [prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "Moving to station ([prison_shuttle_timeleft] Secs.)":prison_shuttle_at_station ? "Station":"Dock"]<BR>
-		[prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "\n*Shuttle already called*<BR>\n<BR>":prison_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Send to Dock</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Send to station</A><BR>\n<BR>"]
+		\nLocation: [GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison ? "Moving to station ([GLOB.prison_shuttle_timeleft] Secs.)":GLOB.prison_shuttle_at_station ? "Station":"Dock"]<BR>
+		[GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison ? "\n*Shuttle already called*<BR>\n<BR>":GLOB.prison_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Send to Dock</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Send to station</A><BR>\n<BR>"]
 		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse("<html>[dat]</html>", "window=computer;size=575x450")
@@ -62,13 +62,13 @@ var/prison_shuttle_timeleft = 0
 		if (!prison_can_move())
 			to_chat(usr, span_warning("The prison shuttle is unable to leave."))
 			return
-		if(!prison_shuttle_at_station|| prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
+		if(!GLOB.prison_shuttle_at_station|| GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison) return
 		post_signal("prison")
 		to_chat(usr, span_notice("The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds."))
 		src.temp += "Shuttle sent.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		src.updateUsrDialog(usr)
-		prison_shuttle_moving_to_prison = 1
-		prison_shuttle_time = world.timeofday + PRISON_MOVETIME
+		GLOB.prison_shuttle_moving_to_prison = 1
+		GLOB.prison_shuttle_time = world.timeofday + PRISON_MOVETIME
 		spawn(0)
 			prison_process()
 
@@ -76,13 +76,13 @@ var/prison_shuttle_timeleft = 0
 		if (!prison_can_move())
 			to_chat(usr, span_warning("The prison shuttle is unable to leave."))
 			return
-		if(prison_shuttle_at_station || prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
+		if(GLOB.prison_shuttle_at_station || GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison) return
 		post_signal("prison")
 		to_chat(usr, span_notice("The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds."))
 		src.temp += "Shuttle sent.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		src.updateUsrDialog(usr)
-		prison_shuttle_moving_to_station = 1
-		prison_shuttle_time = world.timeofday + PRISON_MOVETIME
+		GLOB.prison_shuttle_moving_to_station = 1
+		GLOB.prison_shuttle_time = world.timeofday + PRISON_MOVETIME
 		spawn(0)
 			prison_process()
 
@@ -95,20 +95,20 @@ var/prison_shuttle_timeleft = 0
 
 
 /obj/machinery/computer/prison_shuttle/proc/prison_can_move()
-	if(prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return 0
+	if(GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison) return 0
 	else return 1
 
 
 /obj/machinery/computer/prison_shuttle/proc/prison_break()
 	switch(prison_break)
 		if (0)
-			if(!prison_shuttle_at_station || prison_shuttle_moving_to_prison) return
+			if(!GLOB.prison_shuttle_at_station || GLOB.prison_shuttle_moving_to_prison) return
 
-			prison_shuttle_moving_to_prison = 1
-			prison_shuttle_at_station = prison_shuttle_at_station
+			GLOB.prison_shuttle_moving_to_prison = 1
+			GLOB.prison_shuttle_at_station = GLOB.prison_shuttle_at_station
 
-			if (!prison_shuttle_moving_to_prison || !prison_shuttle_moving_to_station)
-				prison_shuttle_time = world.timeofday + PRISON_MOVETIME
+			if (!GLOB.prison_shuttle_moving_to_prison || !GLOB.prison_shuttle_moving_to_station)
+				GLOB.prison_shuttle_time = world.timeofday + PRISON_MOVETIME
 			spawn(0)
 				prison_process()
 			prison_break = 1
@@ -128,22 +128,22 @@ var/prison_shuttle_timeleft = 0
 
 
 /obj/machinery/computer/prison_shuttle/proc/prison_process()
-	while(prison_shuttle_time - world.timeofday > 0)
-		var/ticksleft = prison_shuttle_time - world.timeofday
+	while(GLOB.prison_shuttle_time - world.timeofday > 0)
+		var/ticksleft = GLOB.prison_shuttle_time - world.timeofday
 
 		if(ticksleft > 1e5)
-			prison_shuttle_time = world.timeofday + 10	// midnight rollover
+			GLOB.prison_shuttle_time = world.timeofday + 10	// midnight rollover
 
-		prison_shuttle_timeleft = (ticksleft / 10)
+		GLOB.prison_shuttle_timeleft = (ticksleft / 10)
 		sleep(5)
-	prison_shuttle_moving_to_station = 0
-	prison_shuttle_moving_to_prison = 0
+	GLOB.prison_shuttle_moving_to_station = 0
+	GLOB.prison_shuttle_moving_to_prison = 0
 
-	switch(prison_shuttle_at_station)
+	switch(GLOB.prison_shuttle_at_station)
 
 		if(0)
-			prison_shuttle_at_station = 1
-			if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
+			GLOB.prison_shuttle_at_station = 1
+			if (GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison) return
 
 			if (!prison_can_move())
 				to_chat(usr, span_warning("The prison shuttle is unable to leave."))
@@ -171,8 +171,8 @@ var/prison_shuttle_timeleft = 0
 			start_location.move_contents_to(end_location)
 
 		if(1)
-			prison_shuttle_at_station = 0
-			if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
+			GLOB.prison_shuttle_at_station = 0
+			if (GLOB.prison_shuttle_moving_to_station || GLOB.prison_shuttle_moving_to_prison) return
 
 			if (!prison_can_move())
 				to_chat(usr, span_warning("The prison shuttle is unable to leave."))

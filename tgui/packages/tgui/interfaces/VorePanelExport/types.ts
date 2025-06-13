@@ -16,6 +16,7 @@ export type Belly = {
   absorbed_desc: string;
   vore_verb: string;
   release_verb: string;
+  prevent_saving: BooleanLike;
 
   // Controls
   mode: string;
@@ -94,6 +95,8 @@ export type Belly = {
   unabsorb_messages_prey: string[];
   examine_messages: string[];
   examine_messages_absorbed: string[];
+  trash_eater_in: string[];
+  trash_eater_out: string[];
 
   // emote_list: string[];
   emotes_digest: string[];

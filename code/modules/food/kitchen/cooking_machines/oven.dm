@@ -27,6 +27,8 @@
 
 	var/open = FALSE // Start closed just so people don't try to preheat with it open, lol.
 
+	tgui_id = "CookingOven"
+
 	output_options = list(
 		"Pizza" = /obj/item/reagent_containers/food/snacks/variable/pizza,
 		"Bread" = /obj/item/reagent_containers/food/snacks/variable/bread,

@@ -1,6 +1,13 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Image,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { fetchRetry } from 'tgui-core/http';
 import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
@@ -210,28 +217,34 @@ const ActiveConversation = (props) => {
     <Section
       title={`Conversation with ${convo_name} (${convo_job})`}
       buttons={
-        <>
-          <Button
-            icon="eye"
-            selected={asciiMode}
-            tooltip="ASCII Mode"
-            tooltipPosition="bottom-end"
-            onClick={() => setAsciiMode(!asciiMode)}
-          />
-          <Button
-            icon="reply"
-            tooltip="Reply"
-            tooltipPosition="bottom-end"
-            onClick={() => act('Message', { target: active_conversation })}
-          />
-          <Button.Confirm
-            icon="trash"
-            color="bad"
-            tooltip="Delete Conversation"
-            tooltipPosition="bottom-end"
-            onClick={() => act('Clear', { option: 'Convo' })}
-          />
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="eye"
+              selected={asciiMode}
+              tooltip="ASCII Mode"
+              tooltipPosition="bottom-end"
+              onClick={() => setAsciiMode(!asciiMode)}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="reply"
+              tooltip="Reply"
+              tooltipPosition="bottom-end"
+              onClick={() => act('Message', { target: active_conversation })}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button.Confirm
+              icon="trash"
+              color="bad"
+              tooltip="Delete Conversation"
+              tooltipPosition="bottom-end"
+              onClick={() => act('Clear', { option: 'Convo' })}
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <ScrollOnMount>

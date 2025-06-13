@@ -18,7 +18,7 @@
 	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
 	//TODO: fix husking
-	if( ((getMaxHealth() - total_burn) < CONFIG_GET(number/health_threshold_dead) * huskmodifier) && stat == DEAD)
+	if( ((getMaxHealth() - total_burn) < (-getMaxHealth()) * huskmodifier) && stat == DEAD)
 		ChangeToHusk()
 	return
 
@@ -232,8 +232,11 @@
 
 	return in_stasis
 
-//This determines if, RIGHT NOW, the life() tick is being skipped due to stasis
-/mob/living/carbon/human/proc/inStasisNow()
+/// This determines if, RIGHT NOW, the life() tick is being skipped due to stasis
+/mob/proc/inStasisNow() // For components to be more easily compatible with both simple and human mobs, only humans can stasis.
+	return FALSE
+
+/mob/living/carbon/human/inStasisNow()
 	var/stasisValue = getStasis()
 	if(stasisValue && (life_tick % stasisValue))
 		return 1
@@ -465,7 +468,7 @@ This function restores all organs.
 */
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = FALSE)
-	if(Debug2)
+	if(GLOB.Debug2)
 		to_world_log("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked].")
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
@@ -548,7 +551,7 @@ This function restores all organs.
 	if(soaked)
 		damage -= soaked
 
-	if(Debug2)
+	if(GLOB.Debug2)
 		to_world_log("## DEBUG: [src] was hit for [damage].")
 
 	switch(damagetype)

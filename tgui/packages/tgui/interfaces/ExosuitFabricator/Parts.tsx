@@ -110,7 +110,7 @@ export const PartLists = (props: {
               fluid
               placeholder="Search for..."
               value={searchText}
-              onInput={(e, v) => setSearchText(v)}
+              onChange={(v) => setSearchText(v)}
             />
           </Stack.Item>
         </Stack>

@@ -308,8 +308,10 @@ GLOBAL_LIST_EMPTY(mannequins)
 */
 
 	// Custom species icon bases
-	var/list/blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN) //VOREStation Edit
-	var/list/whitelisted_icons = list(SPECIES_FENNEC,SPECIES_XENOHYBRID,SPECIES_VOX) //VOREStation Edit
+	///These are icons that you DO NOT want to be selectable!
+	var/list/blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN)
+	///These are icons that you WANT to be selectable, even if they're a whitelist species!
+	var/list/whitelisted_icons = list(SPECIES_FENNEC,SPECIES_XENOHYBRID,SPECIES_VOX)
 	for(var/species_name in GLOB.playable_species)
 		if(species_name in blacklisted_icons)
 			continue
@@ -371,7 +373,7 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["visual_nets"] = visual_nets
 	GLOB.legacy_globals["cameranet"] = cameranet
 	GLOB.legacy_globals["cultnet"] = cultnet
-	GLOB.legacy_globals["existing_solargrubs"] = existing_solargrubs
+	GLOB.legacy_globals["existing_solargrubs"] = GLOB.existing_solargrubs
 
 var/global/list/selectable_footstep = list(
 	"Default" = FOOTSTEP_MOB_HUMAN,
@@ -412,6 +414,17 @@ var/global/list/item_digestion_blacklist = list(
 		/obj/item/mmi/digital/posibrain,
 		/obj/item/mmi/digital/robot,
 		/obj/item/rig/protean)
+
+///A list of chemicals that are banned from being obtainable through means that generate chemicals. These chemicals are either lame, annoying, pref-breaking, or OP (This list does NOT include reactions)
+GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
+	REAGENT_ID_ADMINORDRAZINE,
+	REAGENT_ID_NUTRIMENT,
+	REAGENT_ID_MACROCILLIN,
+	REAGENT_ID_MICROCILLIN,
+	REAGENT_ID_NORMALCILLIN,
+	REAGENT_ID_MAGICDUST,
+	REAGENT_ID_SUPERMATTER
+	))
 
 var/global/list/item_tf_spawnpoints = list() // Global variable tracking which items are item tf spawnpoints
 

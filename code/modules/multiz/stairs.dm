@@ -82,7 +82,7 @@
 		top.bottom = null
 	if(middle)
 		middle.bottom = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -120,7 +120,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B2 = get_step(src, dir)
 		T2 = GetAbove(B2)
 		if(!istype(B2) || !istype(T2))
@@ -256,7 +256,7 @@
 		top.middle = null
 	if(bottom)
 		bottom.middle = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -293,7 +293,7 @@
 		return TRUE
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		B1 = get_step(src, turn(dir, 180))
 		O = GetAbove(B1)
 		if(!istype(B1) || !istype(O))
@@ -339,7 +339,7 @@
 		middle.top = null
 	if(bottom)
 		bottom.top = null
-	..()
+	. = ..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/top/check_integrity(var/obj/structure/stairs/bottom/B = null,
@@ -377,7 +377,7 @@
 		return
 
 	// Else, we have to look in other directions
-	for(var/dir in cardinal - src.dir)
+	for(var/dir in GLOB.cardinal - src.dir)
 		O = get_step(src, turn(dir, 180))
 		B1 = GetBelow(O)
 		if(!istype(B1) || !istype(O))

@@ -103,8 +103,7 @@
 
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING are the only things that should be in here
-	var/SA_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
-	var/SA_vulnerability = null // What kind of simple animal the above bonus damage should be applied to. Set to null to apply to all SAs.
+	var/mob_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
 	var/taser_effect = 0 //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
@@ -129,7 +128,7 @@
 
 	embed_chance = 0	//Base chance for a projectile to embed
 
-	var/fire_sound = 'sound/weapons/Gunshot_old.ogg' // Can be overriden in gun.dm's fire_sound var. It can also be null but I don't know why you'd ever want to do that. -Ace
+	var/fire_sound = 'sound/weapons/gunshot_old.ogg' // Can be overriden in gun.dm's fire_sound var. It can also be null but I don't know why you'd ever want to do that. -Ace
 
 	var/vacuum_traversal = TRUE //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
 
@@ -689,9 +688,10 @@
 	// This means that, accuracy negates evasion 1:1 when it comes to PvP combat (or for PvE combat if you give a mob natural evasion)
 	// Things that affect accuracy: gun_accuracy_mod species var (Bad Shot/Eagle Eye), Fear, Gun Accuracy.
 	// +accuracy = higher chance to hit through evasion. -accuracy = lower chance to hit through evasion.
-	// These ONLY matter if the mob you are attacking has evasion.
+	// These ONLY matter if the mob you are attacking has evasion OR if it's coming from a non-living attacker (Mines/Turrets)
 	// The get_zone_with_miss_chance() proc is HIGHLY variable and can be changed server to server with multiple simple var switches built in without having to do specialty code or multiple edits.
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, -accuracy, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	var/miss_chance = (-accuracy + miss_modifier) //Chance to miss the target. Higher
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), force_hit = !can_miss, attacker = firer) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)

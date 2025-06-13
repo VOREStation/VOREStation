@@ -11,7 +11,7 @@
 	. = ..()
 	icon_state = "[rand(1,5)]"
 	if(prob(5))
-		new /obj/effect/floor_decal/atoll/damage(src, pick(alldirs))
+		new /obj/effect/floor_decal/atoll/damage(src, pick(GLOB.alldirs))
 
 //holycrapshitcode
 /turf/simulated/floor/atoll/vertical

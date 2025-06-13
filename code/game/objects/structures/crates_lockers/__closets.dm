@@ -47,7 +47,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/closet/LateInitialize()
-	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
 		starts_with = null
@@ -321,6 +320,7 @@
 			return
 		user.drop_item()
 		if(W)
+			W.do_drop_animation(user)
 			W.forceMove(loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return
@@ -583,4 +583,4 @@
 	playsound(src, vore_sound, 25)
 
 	var/mob/living/M = usr
-	M.perform_the_nom(usr,target,usr,usr.vore_selected,1)
+	M.perform_the_nom(usr,target,usr,usr.vore_selected,-1)

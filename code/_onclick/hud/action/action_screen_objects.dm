@@ -349,6 +349,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	set_expanded(!expanded)
 
 /obj/screen/button_palette/proc/clicked_while_open(datum/source, atom/target, atom/location, control, params, mob/user)
+	SIGNAL_HANDLER
 	if(istype(target, /obj/screen/movable/action_button) || istype(target, /obj/screen/palette_scroll) || target == src) // If you're clicking on an action button, or us, you can live
 		return
 	set_expanded(FALSE)

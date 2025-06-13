@@ -26,8 +26,8 @@
 		enhanced = 1
 		qdel(O)
 */
-/obj/item/slime_extract/New()
-	..()
+/obj/item/slime_extract/Initialize(mapload)
+	. = ..()
 	create_reagents(5)
 //	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 30)
 
@@ -326,8 +326,8 @@
 	var/Flush = 30
 	var/Uses = 5 // uses before it goes inert
 
-/obj/item/slime_core/New()
-		..()
+/obj/item/slime_core/Initialize(mapload)
+		. = ..()
 		create_reagents(100)
 		POWERFLAG = rand(1,10)
 		Uses = rand(7, 25)

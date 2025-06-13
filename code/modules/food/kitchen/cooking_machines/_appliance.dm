@@ -434,9 +434,58 @@
 			cooking = FALSE
 			update_icon()
 
+/obj/machinery/appliance/proc/predict_cooking(datum/cooking_item/CI)
+	var/datum/recipe/recipe = null
+	var/atom/C = null
+	if(CI.container)
+		C = CI.container
+	else
+		C = src
+	recipe = select_recipe(available_recipes, C)
+
+	var/list/results = list()
+	if(recipe)
+		var/obj/O = recipe.result
+		results += initial(O.name)
+	else if(CI.combine_target)
+		results += predict_combination(CI)
+	else
+		for(var/obj/item/I in CI.container)
+			results += predict_modification(I, CI)
+
+	return jointext(results, ", ")
+
+/obj/machinery/appliance/proc/predict_combination(datum/cooking_item/CI)
+	var/obj/cook_path = output_options[CI.combine_target]
+
+	var/list/words = list()
+	var/list/cooktypes = list()
+
+	for(var/obj/item/reagent_containers/food/snacks/S in CI.container)
+		words |= splittext(S.name, " ")
+		cooktypes |= S.cooked
+
+	//Set the name.
+	words -= list("and", "the", "in", "is", "bar", "raw", "sticks", "boiled", "fried", "deep", "-o-", "warm", "two", "flavored")
+	//Remove common connecting words and unsuitable ones from the list. Unsuitable words include those describing
+	//the shape, cooked-ness/temperature or other state of an ingredient which doesn't apply to the finished product
+	var/name = initial(cook_path.name)
+	words.Remove(name)
+	shuffle(words)
+	var/num = 6 //Maximum number of words
+	while (num > 0)
+		num--
+		if (!words.len)
+			break
+		//Add prefixes from the ingredients in a random order until we run out or hit limit
+		name = "[pop(words)] [name]"
+
+	return name
+
+/obj/machinery/appliance/proc/predict_modification(obj/item/input, datum/cooking_item/CI)
+	return "[cook_type] [input.name]"
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
-
 	src.visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)

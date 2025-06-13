@@ -5,8 +5,13 @@ import { RADIO_PREFIXES, WindowSize } from './constants';
  * Once byond signals this via keystroke, it
  * ensures window size, visibility, and focus.
  */
-export function windowOpen(channel: Channel): void {
-  setWindowVisibility(true);
+export function windowOpen(
+  channel: Channel,
+  width: number,
+  height: number,
+  scale: boolean,
+): void {
+  setWindowVisibility(true, width, height, scale);
   Byond.sendMessage('open', { channel });
 }
 
@@ -14,8 +19,12 @@ export function windowOpen(channel: Channel): void {
  * Resets the state of the window and hides it from user view.
  * Sending "close" logs it server side.
  */
-export function windowClose(): void {
-  setWindowVisibility(false);
+export function windowClose(
+  width: number,
+  height: number,
+  scale: boolean,
+): void {
+  setWindowVisibility(false, width, height, scale);
   Byond.winset('map', {
     focus: true,
   });
@@ -28,23 +37,33 @@ export function windowClose(): void {
 export function windowSet(
   width = WindowSize.Width,
   size = WindowSize.Small,
+  scale: boolean,
 ): void {
-  const sizeStr = `${width}x${size}`;
+  const pixelRatio = scale ? window.devicePixelRatio : 1;
 
-  Byond.winset('tgui_say.browser', {
-    size: sizeStr,
-  });
+  const sizeStr = `${width * pixelRatio}x${size * pixelRatio}`;
 
-  Byond.winset('tgui_say', {
-    size: sizeStr,
+  Byond.winset(null, {
+    'tgui_say.size': sizeStr,
+    'tgui_say.browser.size': sizeStr,
   });
 }
 
 /** Helper function to set window size and visibility */
-function setWindowVisibility(visible: boolean): void {
-  Byond.winset('tgui_say', {
-    'is-visible': visible,
-    size: `${WindowSize.Width}x${WindowSize.Small}`,
+function setWindowVisibility(
+  visible: boolean,
+  width: number,
+  height: number,
+  scale: boolean,
+): void {
+  const pixelRatio = scale ? window.devicePixelRatio : 1;
+
+  const sizeStr = `${width * pixelRatio}x${height * pixelRatio}`;
+
+  Byond.winset(null, {
+    'tgui_say.is-visible': visible,
+    'tgui_say.size': sizeStr,
+    'tgui_say.browser.size': sizeStr,
   });
 }
 

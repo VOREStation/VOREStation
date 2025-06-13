@@ -277,7 +277,7 @@
 
 /datum/gear/suit/dept/cloak/cap
 	display_name = "site manager cloak (Teshari)"
-	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs
+	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/cap
 	allowed_roles = list(JOB_SITE_MANAGER)
 
 /datum/gear/suit/dept/cloak/hop
@@ -550,23 +550,29 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/dept/beltcloak
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
 /datum/gear/suit/dept/beltcloak/wrdn
 	display_name = "warden belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
 	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
-	sort_category = "Xenowear"
+
+/datum/gear/suit/dept/beltcloak/hos
+	display_name = "Chief of Security belted cloak (Teshari)"
+	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/hos
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/suit/dept/beltcloak/jani
 	display_name = "janitor belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/jani
 	allowed_roles = list(JOB_JANITOR)
-	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/cmd
 	display_name = "command belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
 	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,JOB_CHIEF_MEDICAL_OFFICER,JOB_RESEARCH_DIRECTOR)
-	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak_hood
 	display_name = "hooded cloak selection (Teshari)"

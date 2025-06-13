@@ -121,7 +121,7 @@
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
 			job_master.EquipRank(avatar,"Visitor", 1, FALSE)
-		add_verb(avatar,/mob/living/carbon/human/proc/exit_vr)
+		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		avatar.virtual_reality_mob = FALSE //THIS IS THE BIG DIFFERENCE WITH ALIEN VR PODS. THEY ARE NOT VR, THEY ARE REAL.
 
 		//This handles all the 'We make it look like ourself' code.
@@ -134,6 +134,8 @@
 			avatar.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 			avatar.sync_organ_dna()
 			avatar.initialize_vessel()
+
+		SEND_SIGNAL(avatar, COMSIG_HUMAN_DNA_FINALIZED)
 
 		var/newname = sanitize(tgui_input_text(avatar, "Your mind feels foggy. You're certain your name is [occupant.real_name], but it could also be [avatar.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if (newname)

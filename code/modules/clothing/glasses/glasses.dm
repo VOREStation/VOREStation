@@ -20,7 +20,7 @@ BLIND     // can't see anything
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
-	var/prescription = 0
+	var/prescription = FALSE
 	var/toggleable = 0
 	var/off_state = "degoggles"
 	var/active = 1
@@ -99,12 +99,12 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/meson/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.meson
+	overlay = GLOB.global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
 	desc = "Optical Meson Scanner with prescription lenses."
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/meson/aviator
 	name = "engineering aviators"
@@ -117,7 +117,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/meson/aviator/prescription
 	name = "prescription engineering aviators"
 	desc = "Engineering Aviators with prescription lenses."
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/health/aviator
 	name = "medical HUD aviators"
@@ -131,7 +131,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/hud/health/aviator/prescription
 	name = "prescription medical HUD aviators"
 	desc = "Modified aviator glasses with a toggled health HUD. Comes with bonus prescription lenses."
-	prescription = 6
+	prescription = TRUE
 
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
@@ -144,7 +144,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/science/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.science
+	overlay = GLOB.global_hud.science
 
 /obj/item/clothing/glasses/goggles
 	name = "goggles"
@@ -174,7 +174,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/night/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.nvg
+	overlay = GLOB.global_hud.nvg
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -244,11 +244,11 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/material/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.material
+	overlay = GLOB.global_hud.material
 
 /obj/item/clothing/glasses/material/prescription
 	name = "prescription optical material scanner"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/graviton
 	name = "graviton goggles"
@@ -266,14 +266,14 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/graviton/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.material
+	overlay = GLOB.global_hud.material
 
 /obj/item/clothing/glasses/regular
 	name = "prescription glasses"
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
-	prescription = 1
+	prescription = TRUE
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/regular/scanners
@@ -315,19 +315,17 @@ BLIND     // can't see anything
 	name = "rimless glasses"
 	desc = "Sleek modern glasses with a single sculpted lens."
 	icon_state = "glasses_rimless"
-	prescription = 0
 
 /obj/item/clothing/glasses/regular/thin
 	name = "prescription thin-rimmed glasses"
 	desc = "Glasses with frames are so last century."
 	icon_state = "glasses_thin"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/thin
 	name = "thin-rimmed glasses"
 	desc = "Glasses with frames are so last century."
 	icon_state = "glasses_thin"
-	prescription = 0
 
 
 /obj/item/clothing/glasses/sunglasses
@@ -451,7 +449,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -517,7 +515,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
 	name = "prescription security HUD aviators"
 	desc = "Modified aviator glasses that can be switch between HUD and flash protection modes. Comes with bonus prescription lenses."
-	prescription = 6
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/medhud
 	name = "\improper HUD sunglasses"
@@ -553,7 +551,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses/thermal/Initialize(mapload)
 	. = ..()
-	overlay = global_hud.thermal
+	overlay = GLOB.global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "optical meson scanner"

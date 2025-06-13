@@ -76,7 +76,7 @@ export const Pda = (props) => {
   }
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : undefined}>
+    <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}

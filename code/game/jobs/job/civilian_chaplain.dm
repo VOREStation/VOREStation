@@ -125,7 +125,7 @@
 	B.deity_name = H.mind.my_religion.deity
 	I.assignment = H.mind.my_religion.title
 	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
-	data_core.manifest_modify(I.registered_name, I.assignment, I.rank)
+	GLOB.data_core.manifest_modify(I.registered_name, I.assignment, I.rank)
 
 /datum/religion
 	var/religion = "Unitarianism"

@@ -169,7 +169,7 @@ const TextHighlightSetting = (props) => {
             monospace
             placeholder="#ffffff"
             value={highlightColor}
-            onInput={(e, value) =>
+            onBlur={(value) =>
               dispatch(
                 updateHighlightSetting({
                   id: id,
@@ -181,10 +181,11 @@ const TextHighlightSetting = (props) => {
         </Stack.Item>
       </Stack>
       <TextArea
+        fluid
         height="3em"
         value={highlightText}
         placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
-        onChange={(e, value) =>
+        onBlur={(value) =>
           dispatch(
             updateHighlightSetting({
               id: id,
@@ -195,10 +196,11 @@ const TextHighlightSetting = (props) => {
       />
       {!!highlightBlacklist && (
         <TextArea
+          fluid
           height="3em"
           value={blacklistText}
           placeholder="Put names of senders you don't want highlighted here. Separate names with commas, i.e. (name1, name2, name3)"
-          onChange={(e, value) =>
+          onBlur={(value) =>
             dispatch(
               updateHighlightSetting({
                 id: id,

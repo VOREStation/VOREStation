@@ -6,7 +6,7 @@
 
 	icon_state = "arrow_omni"
 
-	invisibility = 100
+	invisibility = INVISIBILITY_MAXIMUM
 
 // The atom which created this.
 	var/atom/movable/creator

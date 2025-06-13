@@ -76,8 +76,9 @@ var/global/datum/book_manager/book_mgr = new()
 			dat += "</table>"
 			qdel(query)
 
-	usr << browse("<html>[dat]</html>", "window=library")
-	onclose(usr, "library")
+	var/datum/browser/popup = new(usr, "library", "Library")
+	popup.set_content(dat)
+	popup.open()
 //VOREStation Edit End
 
 // delete a book

@@ -52,7 +52,7 @@
 /mob/living/carbon/alien/get_default_language()
 	if(default_language)
 		return default_language
-	return GLOB.all_languages["Xenomorph"]
+	return GLOB.all_languages[LANGUAGE_XENOLINGUA]
 
 /mob/living/carbon/alien/say_quote(var/message, var/datum/language/speaking = null)
 	var/verb = "hisses"

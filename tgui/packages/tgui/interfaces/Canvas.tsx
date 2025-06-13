@@ -16,7 +16,7 @@ type PaintCanvasProps = Partial<{
 }>;
 
 class PaintCanvas extends Component<PaintCanvasProps> {
-  canvasRef: RefObject<HTMLCanvasElement>;
+  canvasRef: RefObject<HTMLCanvasElement | null>;
   mouseIsDown: boolean;
   lastSuccessfulPaint: number;
   onCVClick: (x: number, y: number) => void;
@@ -175,8 +175,6 @@ class PaintCanvas extends Component<PaintCanvasProps> {
 
     if (this.mouseIsDown && propSource.tool === Tool.Line) {
       this.drawLine(grid);
-    } else if (propSource.tool === Tool.Fill) {
-      this.areaFill(grid);
     }
 
     for (let x = 0; x < grid.length; x++) {

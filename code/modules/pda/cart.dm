@@ -271,7 +271,8 @@ var/list/civilian_cartridges = list(
 	programs = list(new/datum/data/pda/utility/toggle_door)
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/detonate)
 
-/obj/item/cartridge/syndicate/New()
+/obj/item/cartridge/syndicate/Initialize(mapload)
+	. = ..()
 	var/datum/data/pda/utility/toggle_door/D = programs[1]
 	if(istype(D))
 		D.remote_door_id = initial_remote_door_id
@@ -292,7 +293,7 @@ var/list/civilian_cartridges = list(
 			status_signal.data["msg2"] = data2
 			if(loc)
 				var/obj/item/PDA = loc
-				var/mob/user = PDA.fingerprintslast
+				var/mob/user = PDA.forensic_data?.get_lastprint()
 				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 

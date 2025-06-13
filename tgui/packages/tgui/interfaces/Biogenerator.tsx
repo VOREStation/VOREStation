@@ -169,7 +169,7 @@ const BiogeneratorSearch = (props: {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onInput={(e, value: string) => props.onSearchText(value)}
+            onChange={(value: string) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">

@@ -26,7 +26,7 @@
 			E.strength = 1
 			E.density = TRUE
 			E.anchored = TRUE
-			E.invisibility = 0
+			E.invisibility = INVISIBILITY_NONE
 		spawn(10)
 			UpdateMove()
 	return 1
@@ -49,7 +49,7 @@
 			created_field.Add(E)
 			E.anchored = TRUE
 			E.density = TRUE
-			E.invisibility = 0
+			E.invisibility = INVISIBILITY_NONE
 
 		var/obj/effect/energy_field/E = created_field[1]
 		E.loc = locate(T.x + 2,T.y + 2,T.z)

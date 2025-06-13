@@ -36,15 +36,21 @@ export const PaginationChevrons = (props: { target: string }) => {
 
   return (
     <>
-      <Button icon="undo" onClick={() => act(target, { reset: true })} />
-      <Button
-        icon="chevron-left"
-        onClick={() => act(target, { reverse: -1 })}
-      />
-      <Button
-        icon="chevron-right"
-        onClick={() => act(target, { reverse: 1 })}
-      />
+      <Stack.Item>
+        <Button icon="undo" onClick={() => act(target, { reset: true })} />
+      </Stack.Item>
+      <Stack.Item>
+        <Button
+          icon="chevron-left"
+          onClick={() => act(target, { reverse: -1 })}
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Button
+          icon="chevron-right"
+          onClick={() => act(target, { reverse: 1 })}
+        />
+      </Stack.Item>
     </>
   );
 };

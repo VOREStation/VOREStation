@@ -8,14 +8,13 @@
 	storage_slots = 7
 	var/list/has_items = list()
 
-/obj/item/storage/box/fluff/New()
+/obj/item/storage/box/fluff/Initialize(mapload)
 	storage_slots = has_items.len
 	allowed = list()
 	for(var/P in has_items)
 		allowed += P
 		new P(src)
-	..()
-	return
+	. = ..()
 // END - DO NOT EDIT PROTOTYPE
 
 

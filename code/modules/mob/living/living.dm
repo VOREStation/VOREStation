@@ -1,5 +1,5 @@
-/mob/living/New()
-	..()
+/mob/living/Initialize(mapload)
+	. = ..()
 
 	//Prime this list if we need it.
 	if(has_huds)
@@ -9,14 +9,14 @@
 		make_hud_overlays()
 
 	//I'll just hang my coat up over here
-	dsoverlay = image('icons/mob/darksight.dmi',global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
+	dsoverlay = image('icons/mob/darksight.dmi',GLOB.global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
 	var/mutable_appearance/dsma = new(dsoverlay) //Changing like ten things, might as well.
 	dsma.alpha = 0
 	dsma.plane = PLANE_LIGHTING
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
-	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
+	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
 	SSradiation.listeners -= src
@@ -55,7 +55,6 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
-	//VOREStation Addition Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
 		tf_mob_holder.ckey = ckey
 		if(isbelly(loc))
@@ -75,17 +74,10 @@
 			vore_organs -= B
 	if(tf_mob_holder)
 		tf_mob_holder = null
-	//VOREStation Addition End
-	if(hud_list) //prune out images in hud_list
-		for(var/item in hud_list)
-			if(item)
-				item = null
-	if(selected_image)
-		selected_image = null
-	//QDEL_NULL(vorePanel) //VOREStation Add commented and moved to /mob
-	//QDEL_LIST_NULL(vore_organs) //VOREStation Add commented and moved to /mob
-	temp_language_sources = null //VOREStation Add
-	temp_languages = null //VOREStation Add
+	QDEL_NULL_LIST(hud_list)
+	QDEL_NULL(selected_image)
+	temp_language_sources = null
+	temp_languages = null
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -173,7 +165,28 @@
 		health = 100
 		set_stat(CONSCIOUS)
 	else
+		// Pain/etc calculations, but more efficient:tm: - this should work for literally anything that applies to health. Far better than slapping emote("pain") everywhere like scream does.
+		if(health > getMaxHealth()) //Overhealth
+			health = getMaxHealth()
+		var/initialhealth = health // Getting our health before this check
 		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+		if(!((ishuman(src)) || (issilicon(src))) && src.can_pain_emote) // Only run this if we're non-human/non-silicon (bots and mechanical simplemobs should be allowed to make pain sounds) & can emote pain, bc humans + carbons already do this. human_damage doesn't call parent, but sanity is better here.
+			if(health < initialhealth) // Did we lose health?
+				// Yes. How much by?
+				var/damage = initialhealth - health // Get our damage (say, 200 - 180 = 20, etc etc)
+				var/pain_noise = (damage * rand(0.5, 1.5)) // Multiply damage by our rand mod. 50 damage becomes 50 x 0.5, means prob 25. 50 x 1.5 means prob 75, etc.
+				switch(damage)
+					if(-INFINITY to 0)
+						return
+					if(1 to 25)
+						if(prob(pain_noise) && !isbelly(loc)) // No pain noises inside bellies.
+							emote("pain")
+					if(26 to 50)
+						if(prob(pain_noise * 1.5) && !isbelly(loc)) // No pain noises inside bellies.
+							emote("pain")
+					if(51 to INFINITY)
+						if(prob(pain_noise * 3)  && !isbelly(loc)) // More likely, most severe damage. No pain noises inside bellies.
+							emote("pain")
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -254,12 +267,10 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 
-	//VOREStation Additon Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
-	//VOREStation Additon End
 
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
@@ -346,12 +357,10 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
-	//VOREStation Additon Start
 	if(tf_mob_holder && tf_mob_holder.loc == src)
-		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		var/dmgmultiplier = tf_mob_holder.getMaxHealth() / getMaxHealth()
 		dmgmultiplier *= amount
 		tf_mob_holder.adjustFireLoss(dmgmultiplier)
-	//VOREStation Additon End
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
@@ -433,8 +442,18 @@
 			result *= M.max_health_percent
 	return result
 
+///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+/mob/living/proc/get_crit_point()
+	return -(getMaxHealth()*0.5)
+
+/mob/living/carbon/human/get_crit_point()
+	var/crit_point = -(getMaxHealth()*0.5)
+	if(species.crit_mod)
+		crit_point *= species.crit_mod
+	return crit_point
+
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
-	var/h_mult = maxHealth / newMaxHealth	//VOREStation Add Start - Calculate change multiplier
+	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
 	if(bruteloss)							//In case a damage value is 0, divide by 0 bad
 		bruteloss = round(bruteloss / h_mult)		//Health is calculated on life based on damage types, so we update the damage and let life handle health
 	if(fireloss)
@@ -444,7 +463,7 @@
 	if(oxyloss)
 		oxyloss = round(oxyloss / h_mult)
 	if(cloneloss)
-		cloneloss = round(cloneloss / h_mult)	//VOREStation Add End
+		cloneloss = round(cloneloss / h_mult)
 	maxHealth = newMaxHealth
 
 /mob/living/Stun(amount)
@@ -660,7 +679,12 @@
 			return 1
 	return 0
 
+/// Revives a body using the client's preferences if human
 /mob/living/proc/revive()
+	revival_healing_action()
+
+/// Performs the actual healing of Aheal, seperate from revive() because it does not use client prefs. Will not heal everything, and expects to be called through revive() or with a bodyrecord doing a respawn/revive.
+/mob/living/proc/revival_healing_action()
 	rejuvenate()
 	if(buckled)
 		buckled.unbuckle_mob()
@@ -681,6 +705,8 @@
 	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
+
+	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -755,7 +781,7 @@
 	do_examine_ooc(usr)
 
 /mob/living/proc/do_examine_ooc(mob/user)
-	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
+	//Makes it so SSD people have prefs with fallback to original style.
 	if(CONFIG_GET(flag/allow_metadata))
 		if(ooc_notes)
 			ooc_notes_window(user)
@@ -766,7 +792,6 @@
 			to_chat(user, span_filter_notice("[src] does not have any stored infomation!"))
 	else
 		to_chat(user, span_filter_notice("OOC Metadata is not supported by this server!"))
-	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 
 	return
 
@@ -806,7 +831,7 @@
 		else
 			resist_restraints()
 
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
+	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
 
 /mob/living/proc/resist_buckle()
 	if(buckled)
@@ -903,6 +928,12 @@
 /mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
+	/* //Segment here used downstream. Enable when deaf_loop is added.
+	if(ear_deaf > 0)
+		deaf_loop.start()
+	else if(ear_deaf <= 0)
+		deaf_loop.stop()
+	*/
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
@@ -910,66 +941,111 @@
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
+		//deaf_loop.start() // Ear Ringing/Deafness - Not sure if we need this, but, safety. NYI. Used downstream.
 
-/mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
-	if(!check_has_mouth())
-		return
-
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
 	if(!lastpuke)
-		lastpuke = 1
-		if(isSynthetic())
-			to_chat(src, span_danger("A sudden, dizzying wave of internal feedback rushes over you!"))
-			src.Weaken(5)
-		else
-			if (nutrition <= 100)
-				to_chat(src, span_danger("You gag as you want to throw up, but there's nothing in your stomach!"))
-				src.Weaken(10)
+		lastpuke = TRUE
+		to_chat(src, span_warning("You feel nauseous..."))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, span_warning("You feel like you're about to throw up!")), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_vomit), lost_nutrition, blood, stun, distance, message, toxic, purge), 25 SECONDS)
+
+/mob/living/proc/do_vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
+
+	if(!check_has_mouth())
+		return TRUE
+
+	if(nutrition < 100 && !blood)
+		if(message)
+			visible_message(span_warning("[src] dry heaves!"), span_userdanger("You try to throw up, but there's nothing in your stomach!"))
+
+		if(stun)
+			Stun(stun)
+		return TRUE
+
+	var/obj/vomit_goal = get_active_hand()
+
+	if(!istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+		vomit_goal = check_vomit_goal()
+
+	if(iscarbon(src) && is_mouth_covered())
+		if(message)
+			visible_message(span_danger("[src] throws up all over themself!"), span_userdanger("You throw up all over yourself!"))
+		distance = 0
+	else if(vomit_goal)
+		if(message)
+			visible_message(span_danger("[src] throws up into the [vomit_goal]!"), span_userdanger("You throw up into the [vomit_goal]!"))
+		if(istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+			var/obj/item/organ/internal/stomach/S = organs_by_name[O_STOMACH]
+			var/obj/item/reagent_containers/glass/bucket/puke_bucket = vomit_goal
+			if(S && S.acidtype)
+				puke_bucket.reagents.add_reagent(S.acidtype, rand(3, 6))
+			else if(blood)
+				puke_bucket.reagents.add_reagent(REAGENT_BLOOD, rand(3, 6))
 			else
-				to_chat(src, span_warning("You feel nauseous..."))
+				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
+		distance = 0
+	else
+		if(message)
+			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
 
-				if(ishuman(src))
-					var/mob/living/carbon/human/Hu = src
-					if(CE_ANTACID in Hu.chem_effects)
-						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
-							spawn(rand(30 SECONDS, 2 MINUTES))
-								lastpuke = FALSE
-							return
+	// Hurt liver means throwing up blood
+	if(!blood && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(!H.isSynthetic())
+			var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+			if(!L || L.is_broken())
+				blood = TRUE
 
-				spawn()
-					if(!skip_wait)
-						sleep(150)	//15 seconds until second warning
-						to_chat(src, span_warning("You feel like you are about to throw up!"))
-						sleep(100)	//and you have 10 more for mad dash to the bucket
+	if(stun)
+		Stun(stun)
 
-					//Damaged livers cause you to vomit blood.
-					if(!blood_vomit)
-						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
-							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
-								if(!L || L.is_broken())
-									blood_vomit = 1
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	var/turf/T = get_turf(src)
+	var/vomit_type = NONE
+	var/mob/living/carbon/human/H = src
 
-					Stun(5)
-					src.visible_message(span_warning("[src] throws up!"),span_warning("You throw up!"))
-					playsound(src, 'sound/effects/splat.ogg', 50, 1)
+	if(isSynthetic())
+		vomit_type = VOMIT_NANITE
+	else if(ishuman(src) && H.ingested.has_reagent(REAGENT_ID_PHORON) && !isSynthetic())
+		vomit_type = VOMIT_PURPLE
+	else if(toxloss && !isSynthetic())
+		vomit_type = VOMIT_TOXIC
 
-					var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
-					if(istype(T))
-						if(blood_vomit)
-							T.add_blood_floor(src)
-						else
-							T.add_vomit_floor(src, 1)
+	if(!blood)
+		adjust_nutrition(-lost_nutrition)
+		adjustToxLoss(-3)
 
-					if(blood_vomit)
-						if(getBruteLoss() < 50)
-							adjustBruteLoss(3)
-					else
-						adjust_nutrition(-40)
-						adjustToxLoss(-3)
+	if(distance)
+		for(var/i=0 to distance)
+			if(blood)
+				if(T)
+					blood_splatter(T, src, large = TRUE)
+				if(stun)
+					adjustBruteLoss(2)
+			else if(T)
+				T.add_vomit_floor(src, vomit_type, purge)
+			T = get_step(T, dir)
 
-		spawn(350)
-			lastpuke = 0
+	VARSET_IN(src, lastpuke, FALSE, 10 SECONDS)
+
+	return TRUE
+
+/mob/living/proc/check_vomit_goal()
+	PRIVATE_PROC(TRUE)
+	var/obj_list = list(/obj/machinery/disposal,/obj/structure/toilet,/obj/structure/sink,/obj/structure/urinal)
+	for(var/type in obj_list)
+		// check standing on
+		var/turf/T = get_turf(src)
+		var/obj/O = locate(type) in T
+		if(O)
+			return O
+		// check ahead of us
+		T = get_turf(get_step(T,dir))
+		O = locate(type) in T
+		if(O && O.Adjacent(src))
+			return O
+	return null
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())
@@ -1003,17 +1079,30 @@
 			lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
+	if(incapacitated(INCAPACITATION_KNOCKOUT) || incapacitated(INCAPACITATION_STUNNED)) // Making sure we're in good condition to crawl
+		canmove = 0
+	else
+		canmove = 1
+
 	if(lying)
 		density = FALSE
-		if(l_hand)
-			unEquip(l_hand)
-		if(r_hand)
-			unEquip(r_hand)
-		for(var/obj/item/holder/holder in get_mob_riding_slots())
-			unEquip(holder)
 		update_water() // Submerges the mob.
+		stop_pulling()
+
+		if(!passtable_crawl_checked)
+			passtable_crawl_checked = TRUE
+			if(pass_flags & PASSTABLE)
+				passtable_reset = FALSE
+			else
+				passtable_reset = TRUE
+				pass_flags |= PASSTABLE
+
 	else
 		density = initial(density)
+		if(passtable_reset)
+			passtable_reset = FALSE
+			pass_flags &= ~PASSTABLE
+		passtable_crawl_checked = FALSE
 
 	for(var/obj/item/grab/G in grabbed_by)
 		if(G.state >= GRAB_AGGRESSIVE)
@@ -1024,7 +1113,6 @@
 		lying_prev = lying
 		update_transform()
 		update_mob_action_buttons()
-		//VOREStation Add
 		if(lying && LAZYLEN(buckled_mobs))
 			for(var/mob/living/L as anything in buckled_mobs)
 				if(buckled_mobs[L] != "riding")
@@ -1034,7 +1122,6 @@
 				else
 					unbuckle_mob(L)
 				L.Stun(5)
-		//VOREStation Add End
 
 	return canmove
 
@@ -1081,8 +1168,8 @@
 
 /mob/living/update_transform(var/instant = FALSE)
 	// First, get the correct size.
-	var/desired_scale_x = size_multiplier * icon_scale_x //VOREStation edit
-	var/desired_scale_y = size_multiplier * icon_scale_y //VOREStation edit
+	var/desired_scale_x = size_multiplier * icon_scale_x
+	var/desired_scale_y = size_multiplier * icon_scale_y
 	var/cent_offset = center_offset
 
 	// Now for the regular stuff.
@@ -1091,7 +1178,7 @@
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
 	M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
-	src.transform = M //VOREStation edit
+	src.transform = M
 	handle_status_indicators()
 
 // This handles setting the client's color variable, which makes everything look a specific color.
@@ -1107,6 +1194,11 @@
 				animate(client, color = M.client_color, time = 10)
 				return
 			colors_to_blend += M.client_color
+
+	if(!colors_to_blend.len) // Modifiers take priority over passive area blending, to prevent changes on every area entered
+		var/location_grade = get_location_color_tint() // Area or weather!
+		if(location_grade)
+			colors_to_blend += location_grade
 
 	if(colors_to_blend.len)
 		var/final_color
@@ -1188,7 +1280,7 @@
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
 				var/mob/living/carbon/human/N = M
-				if((N.health + N.halloss) < CONFIG_GET(number/health_threshold_crit) || N.stat == DEAD)
+				if((N.health + N.halloss) < N.get_crit_point() || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 
@@ -1206,6 +1298,7 @@
 	if(!item)
 		return FALSE //Grab processing has a chance of returning null
 
+	// Help intent + Adjacent = pass item to other
 	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
 		var/obj/item/I = item
 		var/mob/living/carbon/human/H = target
@@ -1345,6 +1438,7 @@
 		qdel_null(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)
+	SIGNAL_HANDLER
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -1360,6 +1454,7 @@
 	user.client?.screen += screen_icon
 
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	SIGNAL_HANDLER
 	var/mob/owner = user
 	if(owner.client?.prefs)
 		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
@@ -1391,46 +1486,38 @@
 	if(toggled_sleeping)
 		Sleeping(1)
 
-/mob/living/proc/handle_dripping()
-	if(prob(95))
+/mob/living/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
-	if(!isturf(src.loc))
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_favs = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_favs, new_metadata)
+		to_chat(user, span_filter_notice("OOC note favs have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note favs mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
+
+/mob/living/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.species && H.species.drippy)
-			// drip body color if human
-			var/obj/effect/decal/cleanable/blood/B
-			var/decal_type = /obj/effect/decal/cleanable/blood/splatter
-			var/turf/T = get_turf(src.loc)
+	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(user))
+		if(new_metadata == "!clear")
+			new_metadata = ""
+		ooc_notes_maybes = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_maybes, new_metadata)
+		to_chat(user, span_filter_notice("OOC note maybes have been updated. Don't forget to save!"))
+		log_admin("[key_name(user)] updated their OOC note maybes mid-round.")
+		if(reopen)
+			ooc_notes_window(user)
 
-			// Are we dripping or splattering?
-			var/list/drips = list()
-			// Only a certain number of drips (or one large splatter) can be on a given turf.
-			for(var/obj/effect/decal/cleanable/blood/drip/drop in T)
-				drips |= drop.drips
-				qdel(drop)
-			if(drips.len < 6)
-				decal_type = /obj/effect/decal/cleanable/blood/drip
-
-			// Find a blood decal or create a new one.
-			B = locate(decal_type) in T
-			if(!B)
-				B = new decal_type(T)
-
-			var/obj/effect/decal/cleanable/blood/drip/drop = B
-			if(istype(drop) && drips && drips.len)
-				drop.add_overlay(drips)
-				drop.drips |= drips
-
-			// Update appearance.
-			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
-			drop.update_icon()
-			drop.name = "drips of something"
-			drop.desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
-			drop.dryname = "dried something"
-			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
-			drop.fluorescent  = 0
-			drop.invisibility = 0
-	//else
-		// come up with drips for other mobs someday
+/mob/living/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+	if(user != src)
+		return
+	ooc_notes_style = !ooc_notes_style
+	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
+	if(reopen)
+		ooc_notes_window(user)

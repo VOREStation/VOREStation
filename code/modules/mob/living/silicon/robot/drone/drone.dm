@@ -48,7 +48,7 @@ var/list/mob_hat_cache = list()
 	mob_push_flags = SIMPLE_ANIMAL
 	mob_always_swap = 1
 
-	mob_size = MOB_LARGE // Small mobs can't open doors, it's a huge pain for drones.
+	mob_size = MOB_SMALL
 
 	//Used for self-mailing.
 	var/mail_destination = ""
@@ -75,7 +75,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
-	..()
+	. = ..()
 
 /mob/living/silicon/robot/drone/is_sentient()
 	return FALSE
@@ -102,21 +102,18 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	shell_accessories = list("eyes-miningdrone")
 
-/mob/living/silicon/robot/drone/New()
-	..()
+/mob/living/silicon/robot/drone/Initialize(mapload, is_decoy)
+	. = ..(mapload, FALSE)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
-	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
-	add_language("Drone Talk", 1)
+	remove_language(LANGUAGE_ROBOT_TALK)
+	add_language(LANGUAGE_ROBOT_TALK, 0)
+	add_language(LANGUAGE_DRONE_TALK, 1)
 	serial_number = rand(0,999)
 
 	//They are unable to be upgraded, so let's give them a bit of a better battery.
 	cell.maxcharge = 10000
 	cell.charge = 10000
-
-	// NO BRAIN.
-	mmi = null
 
 	//We need to screw with their HP a bit. They have around one fifth as much HP as a full borg.
 	for(var/V in components) if(V != "power cell")
@@ -233,7 +230,7 @@ var/list/mob_hat_cache = list()
 		return
 
 	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 		if(stat == 2)
 
 			if(!CONFIG_GET(flag/allow_drone_spawn) || emagged || health < -35) //It's dead, Dave.
@@ -251,17 +248,6 @@ var/list/mob_hat_cache = list()
 			if(drones < CONFIG_GET(number/max_maint_drones))
 				request_player()
 			return
-
-		else
-			user.visible_message(span_danger("\The [user] swipes [TU.his] ID card through \the [src], attempting to shut it down."), span_danger("You swipe your ID card through \the [src], attempting to shut it down."))
-
-			if(emagged)
-				return
-
-			if(allowed(user))
-				shut_down()
-			else
-				to_chat(user, span_danger("Access denied."))
 
 		return
 
@@ -283,7 +269,7 @@ var/list/mob_hat_cache = list()
 
 	log_game("[key_name(user)] emagged drone [key_name(src)]. Laws overridden.")
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
+	GLOB.lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
 	emagged = 1
 	lawupdate = 0
@@ -291,7 +277,7 @@ var/list/mob_hat_cache = list()
 	clear_supplied_laws()
 	clear_inherent_laws()
 	laws = new /datum/ai_laws/syndicate_override
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 
 	to_chat(src, span_infoplain(span_bold("Obey these laws:")))
@@ -301,14 +287,8 @@ var/list/mob_hat_cache = list()
 
 //DRONE LIFE/DEATH
 
-//For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
-/mob/living/silicon/robot/drone/updatehealth()
-	if(status_flags & GODMODE)
-		health = maxHealth
-		set_stat(CONSCIOUS)
-		return
-	health = maxHealth - (getBruteLoss() + getFireLoss())
-	return
+/mob/living/silicon/robot/drone/getMaxHealth()
+	return maxHealth
 
 //Easiest to check this here, then check again in the robot proc.
 //Standard robots use config for crit, which is somewhat excessive for these guys.
@@ -321,10 +301,6 @@ var/list/mob_hat_cache = list()
 		gib()
 		return
 	..()
-
-//DRONE MOVEMENT.
-/mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)
-	return 0
 
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()

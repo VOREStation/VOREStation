@@ -199,7 +199,7 @@
 		return
 	if(refresh_traits && species.traits)
 		for(var/TR in species.traits)
-			var/datum/trait/T = all_traits[TR]
+			var/datum/trait/T = GLOB.all_traits[TR]
 			if(!T)
 				continue
 			if(!T.linked_gene)

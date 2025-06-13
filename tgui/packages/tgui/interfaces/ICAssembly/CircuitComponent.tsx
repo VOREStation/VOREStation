@@ -152,7 +152,8 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     }
 
     return (
-      <Box
+      <Box<HTMLDivElement>
+        className="ObjectComponent"
         position="absolute"
         left={x_pos + 'px'}
         top={y_pos + 'px'}

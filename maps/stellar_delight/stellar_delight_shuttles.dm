@@ -34,9 +34,9 @@
 	defer_initialisation = TRUE
 	range = 1
 
-/obj/effect/shuttle_landmark/shuttle_initializer/exploration/New(loc, ...)
+/obj/effect/shuttle_landmark/shuttle_initializer/exploration/Initialize(mapload)
 	shuttle_type = /datum/shuttle/autodock/overmap/exboat
-	..()
+	. = ..()
 
 /datum/shuttle/autodock/overmap/mineboat
 	name = "Mining Shuttle"
@@ -47,9 +47,9 @@
 	defer_initialisation = TRUE
 	range = 1
 
-/obj/effect/shuttle_landmark/shuttle_initializer/mining/New(loc, ...)
+/obj/effect/shuttle_landmark/shuttle_initializer/mining/Initialize(mapload)
 	shuttle_type = /datum/shuttle/autodock/overmap/mineboat
-	..()
+	. = ..()
 
 /datum/shuttle/autodock/overmap/sdboat
 	name = "Starstuff"
@@ -59,9 +59,9 @@
 	fuel_consumption = 1
 	defer_initialisation = TRUE
 
-/obj/effect/shuttle_landmark/shuttle_initializer/sdboat/New(loc, ...)
+/obj/effect/shuttle_landmark/shuttle_initializer/sdboat/Initialize(mapload)
 	shuttle_type = /datum/shuttle/autodock/overmap/sdboat
-	..()
+	. = ..()
 
 /obj/item/paper/dockingcodes/sd/Initialize(mapload, ...)
 	codes_from_z = Z_LEVEL_SHIP_LOW

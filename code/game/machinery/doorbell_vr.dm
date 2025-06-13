@@ -120,7 +120,7 @@
 	use_power(5)
 	flick("doorbell-active", src)
 
-	for(var/obj/machinery/doorbell_chime/M in machines)
+	for(var/obj/machinery/doorbell_chime/M in GLOB.machines)
 		if(M.id_tag == id)
 			M.chime()
 

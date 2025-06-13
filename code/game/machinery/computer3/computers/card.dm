@@ -180,7 +180,7 @@
 	// assume linked_db since called by interact()
 	var/crew = ""
 	var/list/L = list()
-	for (var/datum/data/record/t in data_core.general)
+	for (var/datum/data/record/t in GLOB.data_core.general)
 		var/R = t.fields["name"] + " - " + t.fields["rank"]
 		L += R
 	for(var/R in sortList(L))
@@ -191,7 +191,7 @@
 /datum/file/program/card_comp/proc/authenticate()
 	if(access_change_ids in reader.GetAccess())
 		return 1
-	if(istype(usr,/mob/living/silicon/ai))
+	if(isAI(usr))
 		return 1
 	return 0
 
@@ -278,7 +278,7 @@
 		var/obj/item/paper/P = new /obj/item/paper( computer.loc )
 		P.info = span_bold("Crew Manifest:") + "<BR>"
 		var/list/L = list()
-		for (var/datum/data/record/t in data_core.general)
+		for (var/datum/data/record/t in GLOB.data_core.general)
 			var/R = t.fields["name"] + " - " + t.fields["rank"]
 			L += R
 		for(var/R in sortList(L))

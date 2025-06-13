@@ -78,7 +78,7 @@
 	print.info = text
 	print.stamped = 1
 
-	for(var/datum/data/record/test in data_core.general)
+	for(var/datum/data/record/test in GLOB.data_core.general)
 		if(test.fields["name"] == mname)
 			return
 
@@ -134,7 +134,7 @@
 	L.fields["image"] = getFlatIcon(user,0)//What the person looks like. Naked, in this case.
 	//End locked reporting
 
-	data_core.general += G
+	GLOB.data_core.general += G
 	data_core.medical += M
 	data_core.security += S
 	data_core.locked += L

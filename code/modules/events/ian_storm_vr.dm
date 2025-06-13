@@ -24,7 +24,7 @@
 /datum/event/ianstorm/proc/place_ian(var/turf/T)
 	// Try three times to place an Ian
 	for(var/i = 0, i < 3, i++)
-		var/turf/target = get_step(T, pick(alldirs))
+		var/turf/target = get_step(T, pick(GLOB.alldirs))
 		if(target && istype(target, /turf/simulated/floor))
 			var/mob/living/simple_mob/animal/passive/dog/corgi/Ian/doge = new(target)
 			doge.name = "Ian " + pick("Alpha", "Beta", "Chi", "Delta", "Epsilon", "Phi",
