@@ -272,7 +272,7 @@
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
 	w_class = ITEMSIZE_NORMAL
 	var/active_force = 35
-	var/active = 0 //On by default.
+	var/active = 0 //Off by default.
 	var/lcolor = "#38e541"
 
 /obj/item/melee/robotic/blade/attack_self(mob/user)
