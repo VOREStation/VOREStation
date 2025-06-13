@@ -115,12 +115,6 @@ export const VoreUserPreferencesMechanical = (props: {
             tooltipPosition="right"
           />
         </Stack.Item>
-        <Stack.Item basis="32%">
-          <VoreUserPreferenceItem
-            spec={preferences.toggle_consume_liquid_belly}
-            tooltipPosition="top"
-          />
-        </Stack.Item>
       </Stack>
     </Section>
   );
