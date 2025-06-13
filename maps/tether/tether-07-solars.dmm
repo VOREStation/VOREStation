@@ -6326,7 +6326,6 @@
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/outpost/anomaly_lab)
 "mp" = (
-/obj/structure/reagent_dispensers/coolanttank,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -6336,6 +6335,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
+	},
+/obj/structure/sink/kitchen{
+	pixel_x = 0;
+	pixel_y = 17
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/outpost/anomaly_lab)
