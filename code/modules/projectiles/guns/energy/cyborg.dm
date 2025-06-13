@@ -313,6 +313,16 @@
 	. = ..()
 	. += span_notice("Alt-click to recolor it.")
 
+///Syndicate version. Just had a red glow.
+/obj/item/melee/robotic/blade/syndicate
+	lcolor = "#ff0000"
+
+///Ninja version. Has more damage and 100% armor pen, along with parry chance.
+/obj/item/melee/robotic/blade/ninja
+	lcolor = "#38e541"
+	active_force = 40
+	armor_penetration = 100
+	projectile_parry_chance = 60
 
 /obj/item/melee/robotic/blade/dagger //For downstreams that use dagger
 	name = "Robotic Dagger"
