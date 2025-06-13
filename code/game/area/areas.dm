@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	VAR_PRIVATE/color_grading = null // Color blending for clients that enter this area
+	VAR_PROTECTED/color_grading = null // Color blending for clients that enter this area
 
 /area/New()
 	// Used by the maploader, this must be done in New, not init
@@ -399,8 +399,7 @@ var/list/mob/living/forced_ambiance_list = new
 	check_phase_shift(M)	//RS Port #658
 
 	// Update the area's color grading
-	var/area/A = get_area(L)
-	if(L.client && L.client.color != A?.get_color_tint()) // Try to check if we should bother changing before doing blending
+	if(L.client && L.client.color != get_color_tint()) // Try to check if we should bother changing before doing blending
 		L.update_client_color()
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)
