@@ -274,6 +274,7 @@
 	var/active_force = 35
 	var/active = 0 //On by default.
 	var/lcolor = "#38e541"
+
 /obj/item/melee/robotic/blade/attack_self(mob/user)
 	if(active)
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
@@ -284,6 +285,7 @@
 	active = !active
 	to_chat(user, span_notice("[src] is now [active ? "on" : "off"]."))
 	update_icon()
+
 /obj/item/melee/robotic/blade/update_icon()
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
@@ -293,6 +295,7 @@
 		set_light(2, 1, lcolor)
 	else
 		set_light(0)
+
 /obj/item/melee/robotic/blade/AltClick(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
