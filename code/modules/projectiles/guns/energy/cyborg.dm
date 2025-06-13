@@ -386,7 +386,7 @@
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/hitcost = 500
-	var/status = 0 //On by default.
+	var/status = 0 //Off by default.
 	var/lightcolor = "#FF6A00"
 	borg_flags = COUNTS_AS_ROBOTIC_MELEE
 
