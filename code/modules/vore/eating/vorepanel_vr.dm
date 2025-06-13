@@ -1227,6 +1227,7 @@
 
 			if(ourtarget.digestable)
 				process_options += "Digest"
+				process_options += "Break Bone"
 
 			if(ourtarget.absorbable)
 				process_options += "Absorb"
@@ -1274,6 +1275,28 @@
 								SEND_SOUND(ourtarget, sound(get_sfx("fancy_death_prey")))
 						ourtarget.mind?.vore_death = TRUE
 						b.handle_digestion_death(ourtarget)
+				if("Break Bone")
+					if(!ishuman(ourtarget))
+						to_chat(user, span_vwarning("\The [ourtarget] has no breakable organs."))
+						return FALSE
+					if(ourtarget.absorbed)
+						to_chat(user, span_vwarning("\The [ourtarget] is absorbed, and cannot presently be broken."))
+						return FALSE
+					if(tgui_alert(ourtarget, "\The [user] is attempting to break one of your bones. Is this something you are okay with happening to you?","Break Bones", list("No", "Yes")) != "Yes")
+						to_chat(user, span_vwarning("\The [ourtarget] declined your breaking bones attempt."))
+						to_chat(ourtarget, span_vwarning("You declined the breaking bones attempt."))
+						return FALSE
+					if(ourtarget.loc != b)
+						to_chat(user, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
+						return FALSE
+					var/mob/living/carbon/human/human_target = ourtarget
+					var/obj/item/organ/external/target_organ = pick(human_target.get_fracturable_organs())
+					if(!target_organ)
+						to_chat(user, span_vwarning("\The [ourtarget] has no breakable organs."))
+						return FALSE
+					to_chat(user, span_vwarning("You break [ourtarget]'s [target_organ]!"))
+					target_organ.fracture()
+					return TRUE
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [user] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
 						to_chat(user, span_vwarning("\The [ourtarget] declined your absorb attempt."))
