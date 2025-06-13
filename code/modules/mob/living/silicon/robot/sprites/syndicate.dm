@@ -327,5 +327,5 @@
 	has_vore_belly_sprites = FALSE
 	has_rest_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
-	sprite_decals = list("breastplate", "breastplatehalo","swordhalo")
+	sprite_decals = list("breastplate", "breastplatehalo","swordhalo","tophalo")
 	rest_sprite_options = list("Default")
