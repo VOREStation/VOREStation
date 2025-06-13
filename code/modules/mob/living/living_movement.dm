@@ -273,14 +273,12 @@ default behaviour is:
 	handle_footstep(loc)
 	if(!forced && movetime && !is_incorporeal())
 		SSmotiontracker?.ping(src) // Incase of before init "turf enter gravity" this is ?, unfortunately.
-	// Begin VOREstation edit
 	if(is_shifted)
 		is_shifted = FALSE
 		pixel_x = default_pixel_x
 		pixel_y = default_pixel_y
 		layer = initial(layer)
 		plane = initial(plane)
-	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		var/pull_dir = get_dir(src, pulling)
@@ -307,17 +305,21 @@ default behaviour is:
 		return
 	else if(lastarea?.get_gravity() == 0)
 		inertial_drift()
-	//VOREStation Edit Start
 	else if(flying)
 		inertial_drift()
 		make_floating(1)
-	//VOREStation Edit End
 	else if(!isspace(loc))
 		inertia_dir = 0
 		make_floating(0)
 	if(status_flags & HIDING)
 		layer = HIDING_LAYER
 		plane = OBJ_PLANE
+
+	// Update client color if we're moving from an indoor turf to an outdoor one or vice versa. Needed to make weather blending update in mixed indoor/outdoor turfed areas
+	var/turf/old_turf = oldloc
+	var/turf/new_turf = loc
+	if(istype(old_turf) && old_turf.is_outdoors() != new_turf.is_outdoors())
+		update_client_color()
 
 /mob/living/proc/inertial_drift()
 	if(x > 1 && x < (world.maxx) && y > 1 && y < (world.maxy))
