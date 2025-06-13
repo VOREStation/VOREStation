@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Table } from 'tgui-core/components';
+import { Button, Image, Section, Stack, Table } from 'tgui-core/components';
 
 import { SortButton } from './CharacterDirectorySortButton';
 import { getTagColor } from './constants';
@@ -36,6 +36,7 @@ export const CharacterDirectoryList = (props: {
     >
       <Table>
         <Table.Row bold>
+          <Table.Cell collapsing>Photo</Table.Cell>
           <SortButton
             id="name"
             sortId={sortId}
@@ -110,14 +111,45 @@ export const CharacterDirectoryList = (props: {
           })
           .map((character, i) => (
             <Table.Row key={i} backgroundColor={getTagColor(character.tag)}>
-              <Table.Cell p={1}>{character.name}</Table.Cell>
-              <Table.Cell>{character.species}</Table.Cell>
-              <Table.Cell>{character.tag}</Table.Cell>
-              <Table.Cell>{character.gendertag}</Table.Cell>
-              <Table.Cell>{character.sexualitytag}</Table.Cell>
-              <Table.Cell>{character.erptag}</Table.Cell>
-              <Table.Cell>{character.eventtag}</Table.Cell>
-              <Table.Cell collapsing textAlign="right">
+              <Table.Cell verticalAlign="middle">
+                {character.photo ? (
+                  <Stack
+                    align="center"
+                    justify="center"
+                    backgroundColor="black"
+                    overflow="hidden"
+                  >
+                    <Stack.Item>
+                      <Image
+                        fixErrors
+                        src={character.photo.substring(
+                          1,
+                          character.photo.length - 1,
+                        )}
+                        height="64px"
+                      />
+                    </Stack.Item>
+                  </Stack>
+                ) : null}
+              </Table.Cell>
+              <Table.Cell p={1} verticalAlign="middle">
+                {character.name}
+              </Table.Cell>
+              <Table.Cell verticalAlign="middle">
+                {character.species}
+              </Table.Cell>
+              <Table.Cell verticalAlign="middle">{character.tag}</Table.Cell>
+              <Table.Cell verticalAlign="middle">
+                {character.gendertag}
+              </Table.Cell>
+              <Table.Cell verticalAlign="middle">
+                {character.sexualitytag}
+              </Table.Cell>
+              <Table.Cell verticalAlign="middle">{character.erptag}</Table.Cell>
+              <Table.Cell verticalAlign="middle">
+                {character.eventtag}
+              </Table.Cell>
+              <Table.Cell verticalAlign="middle" collapsing textAlign="right">
                 <Button
                   onClick={() => onOverlay(character)}
                   color="transparent"
