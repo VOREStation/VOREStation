@@ -263,7 +263,7 @@
 	borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_BLADE
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
-	force = 35 //Takes 3 hits to 100-0
+	force = 0
 	armor_penetration = 70
 	sharp = TRUE
 	edge = TRUE
@@ -271,6 +271,45 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
 	w_class = ITEMSIZE_NORMAL
+	var/active_force = 35
+	var/active = 0 //On by default.
+	var/lcolor = "#38e541"
+/obj/item/melee/robotic/blade/attack_self(mob/user)
+	if(active)
+		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
+		force = active_force
+	else
+		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
+		force = 0
+	active = !active
+	to_chat(user, span_notice("[src] is now [active ? "on" : "off"]."))
+	update_icon()
+/obj/item/melee/robotic/blade/update_icon()
+	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
+	if(active)
+		var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
+		blade_overlay.color = lcolor
+		add_overlay(blade_overlay)
+		set_light(2, 1, lcolor)
+	else
+		set_light(0)
+/obj/item/melee/robotic/blade/AltClick(mob/living/user)
+	if(!in_range(src, user))	//Basic checks to prevent abuse
+		return
+	if(user.incapacitated() || !istype(user))
+		to_chat(user, span_warning("You can't do that right now!"))
+		return
+
+	if(tgui_alert(user, "Are you sure you want to recolor your blade?", "Confirm Recolor", list("Yes", "No")) == "Yes")
+		var/energy_color_input = tgui_color_picker(user,"","Choose Energy Color",lcolor)
+		if(energy_color_input)
+			lcolor = sanitize_hexcolor(energy_color_input)
+		update_icon()
+
+/obj/item/melee/robotic/blade/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to recolor it.")
+
 
 /obj/item/melee/robotic/dagger //For downstreams that use dagger
 	name = "Robotic Dagger"
@@ -329,7 +368,7 @@
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "stunbaton_active"
+	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT
 	force = 15
@@ -344,7 +383,7 @@
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/hitcost = 500
-	var/status = 1 //On by default.
+	var/status = 0 //On by default.
 	var/lightcolor = "#FF6A00"
 	borg_flags = COUNTS_AS_ROBOTIC_MELEE
 
