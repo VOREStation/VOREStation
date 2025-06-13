@@ -109,16 +109,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	cold_discomfort_strings = list("You feel too cool.")
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/innate_shapeshifting,
 		/mob/living/carbon/human/proc/regenerate,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/carbon/human/proc/prommie_blobform,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
@@ -224,11 +216,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(istype(T))
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
-				if(O.clean_blood())
+				if(O.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
-				if(T.clean_blood())
+				if(T.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(10, 20))
 				if(S.dirt > 50)
 					S.dirt = 0
@@ -239,17 +231,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.feet_blood_color = null
 			H.adjust_nutrition(rand(3, 10))
 		if(H.bloody_hands)
-			LAZYCLEARLIST(H.blood_DNA)
-			H.blood_DNA = null
+			H.forensic_data?.clear_blooddna()
 			H.hand_blood_color = null
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))
 		if(!(H.gloves || (H.wear_suit && (H.wear_suit.body_parts_covered & HANDS))))
 			if(H.r_hand)
-				if(H.r_hand.clean_blood())
+				if(H.r_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
 			if(H.l_hand)
-				if(H.l_hand.clean_blood())
+				if(H.l_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
 /*
 		if(H.head)
@@ -412,3 +403,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 		return
 	else
 		prommie_intoblob()
+
+/mob/living/carbon/human/proc/innate_shapeshifting()
+	set name = "Transform Appearance"
+	set category = "Abilities.Superpower"
+	var/datum/tgui_module/appearance_changer/innate/I = new(src, src)
+	I.tgui_interact(src)

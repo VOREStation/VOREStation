@@ -333,11 +333,7 @@
 		S.add(transfer)
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
-			if(blood_DNA)
-				if(S.blood_DNA)
-					S.blood_DNA |= blood_DNA
-				else
-					S.blood_DNA = blood_DNA.Copy()
+			transfer_blooddna_to(S)
 		return transfer
 	return 0
 
@@ -360,8 +356,7 @@
 		newstack.color = color
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(newstack)
-			if(blood_DNA)
-				newstack.blood_DNA |= blood_DNA
+			transfer_blooddna_to(newstack)
 		return newstack
 	return null
 

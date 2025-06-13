@@ -103,14 +103,6 @@ module.exports = (env = {}, argv) => {
               options: {
                 api: 'modern-compiler',
                 implementation: 'sass-embedded',
-                url: {
-                  filter: (url, resourcePath) => {
-                    if (url.includes('.ttf')) {
-                      return false;
-                    }
-                    return true;
-                  },
-                },
               },
             },
           ],
@@ -118,14 +110,13 @@ module.exports = (env = {}, argv) => {
         },
         {
           test: /\.(png|jpg)$/,
-          use: [
+          oneOf: [
             {
-              loader: require.resolve('url-loader'),
-              options: {
-                esModule: false,
-                outputPath: 'assets/',
-                publicPath: '/assets/',
-              },
+              issuer: /\.(s)?css$/,
+              type: 'asset/inline',
+            },
+            {
+              type: 'asset/resource',
             },
           ],
         },
@@ -137,16 +128,7 @@ module.exports = (env = {}, argv) => {
               type: 'asset/inline',
             },
             {
-              use: [
-                {
-                  loader: require.resolve('url-loader'),
-                  options: {
-                    esModule: false,
-                    outputPath: 'assets/',
-                    publicPath: '/assets/',
-                  },
-                },
-              ],
+              type: 'asset/resource',
             },
           ],
         },

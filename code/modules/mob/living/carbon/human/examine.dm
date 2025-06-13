@@ -123,14 +123,14 @@
 							accessory_descs += "<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[A]'>\a [A]</a>"
 
 				tie_msg += " [lowertext(english_list(accessory_descs))]."
-		if(w_uniform.blood_DNA)
+		if(w_uniform.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(w_uniform,user.client)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[w_uniform]'>[w_uniform.name]</a>![tie_msg]")
 		else
 			msg += "[T.He] [T.is] wearing [icon2html(w_uniform,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[w_uniform]'>\a [w_uniform]</a>.[tie_msg]"
 
 	//head
 	if(head && !(skip_gear & EXAMINE_SKIPHELMET) && head.show_examine)
-		if(head.blood_DNA)
+		if(head.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(head,user.client)] [head.gender==PLURAL?"some":"a"] [(head.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[head]'>[head.name]</a> on [T.his] head!")
 		else
 			msg += "[T.He] [T.is] wearing [icon2html(head,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[head]'>\a [head]</a> on [T.his] head."
@@ -147,35 +147,35 @@
 					accessory_descs += "<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[accessory]'>\a [accessory]</a>"
 				tie_msg += " [lowertext(english_list(accessory_descs))]."
 
-		if(wear_suit.blood_DNA)
+		if(wear_suit.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(wear_suit,user.client)] [wear_suit.gender==PLURAL?"some":"a"] [(wear_suit.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_suit]'>[wear_suit.name]</a>![tie_msg]")
 		else
 			msg += "[T.He] [T.is] wearing [icon2html(wear_suit,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_suit]'>\a [wear_suit]</a>.[tie_msg]"
 
 		//suit/armour storage
 		if(s_store && !(skip_gear & EXAMINE_SKIPSUITSTORAGE) && s_store.show_examine)
-			if(s_store.blood_DNA)
+			if(s_store.forensic_data?.has_blooddna())
 				msg += span_warning("[T.He] [T.is] carrying [icon2html(s_store,user.client)] [s_store.gender==PLURAL?"some":"a"] [(s_store.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>[s_store.name]</a> on [T.his] [wear_suit.name]!")
 			else
 				msg += "[T.He] [T.is] carrying [icon2html(s_store,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>\a [s_store]</a> on [T.his] [wear_suit.name]."
 
 	//back
 	if(back && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
-		if(back.blood_DNA)
+		if(back.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(back,user.client)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>[back]</a> on [T.his] back.")
 		else
 			msg += "[T.He] [T.has] [icon2html(back,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>\a [back]</a> on [T.his] back."
 
 	//left hand
 	if(l_hand && l_hand.show_examine)
-		if(l_hand.blood_DNA)
+		if(l_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(l_hand,user.client)] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>[l_hand.name]</a> in [T.his] left hand!")
 		else
 			msg += "[T.He] [T.is] holding [icon2html(l_hand,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>\a [l_hand]</a> in [T.his] left hand."
 
 	//right hand
 	if(r_hand && r_hand.show_examine)
-		if(r_hand.blood_DNA)
+		if(r_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(r_hand,user.client)] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>[r_hand.name]</a> in [T.his] right hand!")
 		else
 			msg += "[T.He] [T.is] holding [icon2html(r_hand,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>\a [r_hand]</a> in [T.his] right hand."
@@ -192,12 +192,12 @@
 					accessory_descs += "<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[A]'>\a [A]</a>"
 
 				gloves_acc_msg += " [lowertext(english_list(accessory_descs))]."
-		if(gloves.blood_DNA)
+		if(gloves.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(gloves,user.client)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[gloves]'>[gloves.name]</a> on [T.his] hands![gloves_acc_msg]")
 		else
 			msg += "[T.He] [T.has] [icon2html(gloves,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[gloves]'>\a [gloves]</a> on [T.his] hands.[gloves_acc_msg]"
 
-	else if(blood_DNA && !(skip_body & EXAMINE_SKIPHANDS))
+	else if(forensic_data?.has_blooddna() && !(skip_body & EXAMINE_SKIPHANDS))
 		msg += span_warning("[T.He] [T.has] [(hand_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained hands!")
 
 	//handcuffed?
@@ -213,14 +213,14 @@
 
 	//belt
 	if(belt && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
-		if(belt.blood_DNA)
+		if(belt.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(belt,user.client)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[belt]'>[belt.name]</a> about [T.his] waist!")
 		else
 			msg += "[T.He] [T.has] [icon2html(belt,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[belt]'>\a [belt]</a> about [T.his] waist."
 
 	//shoes
 	if(shoes && !(skip_gear & EXAMINE_SKIPSHOES) && shoes.show_examine)
-		if(shoes.blood_DNA)
+		if(shoes.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(shoes,user.client)] [shoes.gender==PLURAL?"some":"a"] [(shoes.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[shoes]'>[shoes.name]</a> on [T.his] feet!")
 		else
 			msg += "[T.He] [T.is] wearing [icon2html(shoes,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[shoes]'>\a [shoes]</a> on [T.his] feet."
@@ -233,14 +233,14 @@
 		if(istype(wear_mask, /obj/item/grenade) && check_has_mouth())
 			descriptor = "in [T.his] mouth"
 
-		if(wear_mask.blood_DNA)
+		if(wear_mask.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(wear_mask,user.client)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>[wear_mask.name]</a> [descriptor]!")
 		else
 			msg += "[T.He] [T.has] [icon2html(wear_mask,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>\a [wear_mask]</a> [descriptor]."
 
 	//eyes
 	if(glasses && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
-		if(glasses.blood_DNA)
+		if(glasses.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(glasses,user.client)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>[glasses]</a> covering [T.his] eyes!")
 		else
 			msg += "[T.He] [T.has] [icon2html(glasses,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>\a [glasses]</a> covering [T.his] eyes."
@@ -453,10 +453,6 @@
 	msg = list(span_info(jointext(msg, "<br>")))
 	if(applying_pressure)
 		msg += applying_pressure
-
-	var/show_descs = show_descriptors_to(user)
-	if(show_descs)
-		msg += span_notice("[jointext(show_descs, "<br>")]")
 
 	if(pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]

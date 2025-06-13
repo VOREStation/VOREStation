@@ -126,7 +126,7 @@
 	prefs.s_tone	= character.s_tone
 	prefs.h_style	= character.h_style
 	prefs.f_style	= character.f_style
-	prefs.b_type	= character.b_type
+	prefs.b_type	= character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE
 
 // Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana
@@ -223,6 +223,7 @@
 * without invoking the need for a bunch of different save file variables.
 */
 /proc/persist_nif_data(mob/living/carbon/human/H)
+	SIGNAL_HANDLER
 	if(!istype(H))
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
@@ -265,6 +266,6 @@
 
 	// If they still have the same character loaded, update prefs
 	if(H?.client?.prefs?.default_slot == slot)
-		var/datum/category_group/player_setup_category/vore_cat = H.client.prefs.player_setup.categories_by_name["VORE"]
-		var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
+		var/datum/category_group/player_setup_category/vore_cat = H.client.prefs.player_setup.categories_by_name["General"]
+		var/datum/category_item/player_setup_item/general/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
 		nif_prefs.load_character()

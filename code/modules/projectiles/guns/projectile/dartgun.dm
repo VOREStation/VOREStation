@@ -162,8 +162,9 @@
 			dat += span_red("The dart cartridge is empty!")
 		dat += " \[<A href='byond://?src=\ref[src];eject_cart=1'>Eject</A>\]"
 
-	user << browse("<html>[dat]</html>", "window=dartgun")
-	onclose(user, "dartgun", src)
+	var/datum/browser/popup = new(user, "dartgun", "Dartgun")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/gun/projectile/dartgun/proc/check_beaker_mixing(var/obj/item/B)
 	if(!mixing || !beakers)

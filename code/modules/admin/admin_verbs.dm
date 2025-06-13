@@ -1,3 +1,49 @@
+/client/proc/add_admin_verbs()
+	// OLD ADMIN VERB SYSTEM
+	if(holder)
+		var/rights = holder.rank_flags()
+		add_verb(src, admin_verbs_default)
+		if(rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
+		if(rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
+		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
+		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
+		if(rights & R_DEBUG)
+			add_verb(src, admin_verbs_debug)
+			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
+				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
+		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
+		if(rights & R_PERMISSIONS)	add_verb(src, admin_verbs_permissions)
+		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
+		if(rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
+		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
+		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
+		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
+		if(rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
+
+	// NEW ADMIN VERBS SYSTEM
+	SSadmin_verbs.assosciate_admin(src)
+
+/client/proc/remove_admin_verbs()
+	// OLD ADMIN VERB SYSTEM
+	remove_verb(src, list(
+		admin_verbs_default,
+		/client/proc/togglebuildmodeself,
+		admin_verbs_admin,
+		admin_verbs_fun,
+		admin_verbs_server,
+		admin_verbs_debug,
+		admin_verbs_possess,
+		admin_verbs_permissions,
+		/client/proc/stealth,
+		admin_verbs_rejuv,
+		admin_verbs_sounds,
+		admin_verbs_spawn,
+		debug_verbs
+		))
+
+	// NEW ADMIN VERBS SYSTEM
+	SSadmin_verbs.deassosciate_admin(src)
+
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin.Misc"
@@ -125,35 +171,23 @@
 	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/jobbans()
-	set name = "Display Job bans"
-	set category = "Admin.Investigate"
-	if(holder)
-		if(CONFIG_GET(flag/ban_legacy_system))
-			holder.Jobbans()
-		else
-			holder.DB_ban_panel()
+ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", "Admin.Investigate")
+	if(CONFIG_GET(flag/ban_legacy_system))
+		user.holder.Jobbans()
+	else
+		user.holder.DB_ban_panel()
 	feedback_add_details("admin_verb","VJB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-/client/proc/unban_panel()
-	set name = "Unban Panel"
-	set category = "Admin.Game"
-	if(holder)
-		if(CONFIG_GET(flag/ban_legacy_system))
-			holder.unbanpanel()
-		else
-			holder.DB_ban_panel()
+ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_CATEGORY_GAME)
+	if(CONFIG_GET(flag/ban_legacy_system))
+		user.holder.unbanpanel()
+	else
+		user.holder.DB_ban_panel()
 	feedback_add_details("admin_verb","UBP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-/client/proc/game_panel()
-	set name = "Game Panel"
-	set category = "Admin.Game"
-	if(holder)
-		holder.Game()
+ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
+	user.holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
 /client/proc/secrets()
 	set name = "Secrets"
@@ -339,20 +373,16 @@
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins(span_blue("[key_name_admin(usr)] used 'kill air'."), 1)
 
-/client/proc/deadmin()
-	set name = "DeAdmin"
-	set category = "Admin.Misc"
-	set desc = "Shed your admin powers."
-
-	src.holder.deactivate()
+ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+	user.holder.deactivate()
 	to_chat(src, span_interface("You are now a normal player."))
 	log_admin("[key_name(src)] deadminned themselves.")
 	message_admins("[key_name_admin(src)] deadminned themselves.")
 	//BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	if(isobserver(mob))
-		var/mob/observer/dead/our_mob = mob
+	if(isobserver(user.mob))
+		var/mob/observer/dead/our_mob = user.mob
 		our_mob.visualnet?.removeVisibility(our_mob, src)
 
 /client/proc/toggle_log_hrefs()
@@ -496,7 +526,7 @@
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center>" + span_filter_system(span_notice(span_bold(span_huge("Man up.<br> Deal with it.")) + "<br>Move along.")) + "</center><br>")
-		T << 'sound/voice/ManUp1.ogg'
+		T << 'sound/voice/manup1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
@@ -632,24 +662,17 @@
 	if(tgui_alert(usr, "\The [orbiter] will orbit around [center]. Is this okay?", "Confirm Orbit", list("Yes", "No")) == "Yes")
 		orbiter.orbit(center, distance, clock, speed, segments)
 
-/client/proc/removetickets()
-	set name = "Security Tickets"
-	set category = "Admin.Investigate"
-	set desc = "Allows one to remove tickets from the global list."
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(removetickets, R_ADMIN, "Security Tickets", "Allows one to remove tickets from the global list.", "Admin.Investigate")
 	if(GLOB.security_printer_tickets.len >= 1)
-		var/input = tgui_input_list(usr, "Which message?", "Security Tickets", GLOB.security_printer_tickets)
+		var/input = tgui_input_list(user, "Which message?", "Security Tickets", GLOB.security_printer_tickets)
 		if(!input)
 			return
-		if(tgui_alert(usr, "Do you want to remove the following message from the global list? \"[input]\"", "Remove Ticket", list("Yes", "No")) == "Yes")
+		if(tgui_alert(user, "Do you want to remove the following message from the global list? \"[input]\"", "Remove Ticket", list("Yes", "No")) == "Yes")
 			GLOB.security_printer_tickets -= input
-			log_and_message_admins("removed a security ticket from the global list: \"[input]\"", usr)
+			log_and_message_admins("removed a security ticket from the global list: \"[input]\"", user)
 
 	else
-		tgui_alert_async(usr, "The ticket list is empty.","Empty")
+		tgui_alert_async(user, "The ticket list is empty.","Empty")
 
 /client/proc/delbook()
 	set name = "Delete Book"
@@ -716,12 +739,5 @@
 			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
 			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
 
-/client/proc/modify_shift_end()
-	set name = "Modify Shift End"
-	set desc = "Modifies the hard shift end time."
-	set category = "Server.Game"
-
-	if(!check_rights_for(src, R_ADMIN|R_EVENT|R_SERVER))
-		return
-
-	transfer_controller.modify_hard_end(src)
+ADMIN_VERB(modify_shift_end, (R_ADMIN|R_EVENT|R_SERVER), "Modify Shift End", "Modifies the hard shift end time.", "Server.Game")
+	transfer_controller.modify_hard_end(user)

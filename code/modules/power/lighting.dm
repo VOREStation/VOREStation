@@ -466,8 +466,8 @@ var/global/list/light_type_cache = list()
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+					log_admin("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
+					message_admins("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
 
 					explode()
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
@@ -576,13 +576,13 @@ var/global/list/light_type_cache = list()
 	installed_light = L
 	L.loc = src //Move it into the socket!
 
-	on = powered()
+	on = powered() && !turned_off() // Do not instantly turn on lights if the area lightswitch is off
 	update()
 
 	if(on && rigged)
 
-		log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-		message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+		log_admin("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
+		message_admins("LOG: Rigged light explosion, last touched by [forensic_data?.get_lastprint()]")
 
 		explode()
 

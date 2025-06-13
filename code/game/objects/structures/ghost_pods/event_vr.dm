@@ -229,6 +229,7 @@
 	M.client.prefs.copy_to(new_character)
 	new_character.dna.ResetUIFrom(new_character)
 	new_character.sync_organ_dna()
+	new_character.sync_addictions()
 	new_character.key = M.key
 	new_character.mind.loaded_from_ckey = picked_ckey
 	new_character.mind.loaded_from_slot = picked_slot
@@ -240,6 +241,8 @@
 		if(chosen_language)
 			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
+
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
 
 	new_character.regenerate_icons()
 

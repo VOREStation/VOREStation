@@ -146,6 +146,7 @@ Please do not abuse this ability.
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
+	new_character.sync_addictions()
 	new_character.initialize_vessel()
 	new_character.key = player_key
 	if(new_character.mind)
@@ -168,12 +169,12 @@ Please do not abuse this ability.
 			var/datum/language/keylang = GLOB.all_languages[prey.prefs.language_custom_keys[key]]
 			if(keylang)
 				new_character.language_keys[key] = keylang
-	// VOREStation Add: Preferred Language Setting;
 	if(prey.prefs.preferred_language) // Do we have a preferred language?
 		var/datum/language/def_lang = GLOB.all_languages[prey.prefs.preferred_language]
 		if(def_lang)
 			new_character.default_language = def_lang
-	// VOREStation Add End
+
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
 
 	new_character.regenerate_icons()
 

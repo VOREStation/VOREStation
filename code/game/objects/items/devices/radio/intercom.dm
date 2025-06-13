@@ -20,7 +20,11 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		RegisterSignal(A, COMSIG_OBSERVER_APC, /atom/proc/update_icon)
+		RegisterSignal(A, COMSIG_OBSERVER_APC, PROC_REF(on_observer_apc))
+	update_icon()
+
+/obj/item/radio/intercom/proc/on_observer_apc()
+	SIGNAL_HANDLER
 	update_icon()
 
 /obj/item/radio/intercom/Destroy()

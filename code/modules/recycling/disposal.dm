@@ -142,16 +142,16 @@
 
 	user.drop_item()
 	if(I)
-		if(istype(I, /obj/item/holder/micro))
-			log_and_message_admins("placed [I.name]  inside \the [src]", user)
+		if(istype(I, /obj/item/holder))
+			var/obj/item/holder/holder = I
+			var/mob/victim = holder.held_mob
+			if(ishuman(victim) || victim.client)
+				log_and_message_admins("placed [victim]  inside \the [src]", user)
+			victim.forceMove(src)
+
 		I.forceMove(src)
 
-	to_chat(user, "You place \the [I] into the [src].")
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-
+	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
 	update()
 
 // mouse drop another mob or self
@@ -300,84 +300,6 @@
 			eject()
 
 	return TRUE
-
-
-	// src.add_fingerprint(user)
-	// if(stat & BROKEN)
-	// 	user.unset_machine()
-	// 	return
-
-	// var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT>" + span_bold("Waste Disposal Unit") + "<HR>"
-
-	// if(!ai)  // AI can't pull flush handle
-	// 	if(flush)
-	// 		dat += "Disposal handle: <A href='byond://?src=\ref[src];handle=0'>Disengage</A> " + span_bold("Engaged")
-	// 	else
-	// 		dat += "Disposal handle: " + span_bold("Disengaged") + " <A href='byond://?src=\ref[src];handle=1'>Engage</A>"
-
-	// 	dat += "<BR><HR><A href='byond://?src=\ref[src];eject=1'>Eject contents</A><HR>"
-
-	// if(mode <= 0)
-	// 	dat += "Pump: " + span_bold("Off") + " <A href='byond://?src=\ref[src];pump=1'>On</A><BR>"
-	// else if(mode == 1)
-	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> " + span_bold("On") + " (pressurizing)<BR>"
-	// else
-	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> " + span_bold("On") + " (idle)<BR>"
-
-	// var/per = 100* air_contents.return_pressure() / (SEND_PRESSURE)
-
-	// dat += "Pressure: [round(per, 1)]%<BR></body>"
-
-
-	// user.set_machine(src)
-	// user << browse("<html>[dat]</html>", "window=disposal;size=360x170")
-	// onclose(user, "disposal")
-
-// handle machine interaction
-
-// /obj/machinery/disposal/Topic(href, href_list)
-// 	if(usr.loc == src)
-// 		to_chat(usr, span_red("You cannot reach the controls from inside."))
-// 		return
-
-// 	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-// 		to_chat(usr, span_red("The disposal units power is disabled."))
-// 		return
-// 	if(..())
-// 		return
-
-// 	if(stat & BROKEN)
-// 		return
-// 	if(usr.stat || usr.restrained() || src.flushing)
-// 		return
-
-// 	if(istype(src.loc, /turf))
-// 		usr.set_machine(src)
-
-// 		if(href_list["close"])
-// 			usr.unset_machine()
-// 			usr << browse(null, "window=disposal")
-// 			return
-
-// 		if(href_list["pump"])
-// 			if(text2num(href_list["pump"]))
-// 				mode = 1
-// 			else
-// 				mode = 0
-// 			update()
-
-// 		if(!isAI(usr))
-// 			if(href_list["handle"])
-// 				flush = text2num(href_list["handle"])
-// 				update()
-
-// 			if(href_list["eject"])
-// 				eject()
-// 	else
-// 		usr << browse(null, "window=disposal")
-// 		usr.unset_machine()
-// 		return
-// 	return
 
 // eject the contents of the disposal unit
 
@@ -539,32 +461,18 @@
 	. = ..()
 	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
 		if(prob(75))
-			if(istype(AM, /obj/item/holder/micro))
-				log_and_message_admins("[AM] was thrown into \the [src]", null)
 			AM.forceMove(src)
 			visible_message("\The [AM] lands in \the [src].")
 		else
 			visible_message("\The [AM] bounces off of \the [src]'s rim!")
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item/projectile))
-		return 1
-	if (istype(mover,/obj/item) && mover.throwing)
-		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
-			return
+	if(istype(AM,/mob/living))
 		if(prob(75))
-			I.forceMove(src)
-			if(istype(I, /obj/item/holder/micro))
-				log_and_message_admins("[I.name] was thrown into \the [src]", null)
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] lands in \the [src].", 3)
-		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
-		return 0
-	else
-		return ..(mover, target)
+			var/mob/living/to_be_dunked = AM
+			if(ishuman(AM) ||to_be_dunked.client)
+				log_and_message_admins("[AM] was thrown into \the [src]", null)
+			AM.forceMove(src)
+			visible_message("\The [AM] lands in \the [src].")
 
 /obj/machinery/disposal/wall
 	name = "inset disposal unit"

@@ -183,3 +183,21 @@
 /datum/preference/text/living/private_notes/apply_to_living(mob/living/target, value)
 	target.private_notes = value
 	return
+
+/datum/preference/choiced/living/emote_sound_mode
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "emote_sound_mode"
+
+/datum/preference/choiced/living/emote_sound_mode/init_possible_values()
+	return list(
+		EMOTE_SOUND_NO_FREQ,
+		EMOTE_SOUND_VOICE_FREQ,
+		EMOTE_SOUND_VOICE_LIST,
+	)
+
+/datum/preference/choiced/living/emote_sound_mode/apply_to_living(mob/living/target, value)
+	target.emote_sound_mode = value
+
+/datum/preference/choiced/living/emote_sound_mode/create_informed_default_value(datum/preferences/preferences)
+	return EMOTE_SOUND_VOICE_FREQ

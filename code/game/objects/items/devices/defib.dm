@@ -298,10 +298,10 @@
 	H.updatehealth()
 
 	if(H.isSynthetic())
-		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
+		if(H.health + H.getOxyLoss() + H.getToxLoss() <= -(H.getMaxHealth()))
 			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin damage restoration before further attempts.\""
 
-	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead)) //They need to be healed first.
+	else if(H.health + H.getOxyLoss() <= -(H.getMaxHealth())) //They need to be healed first.
 		return "buzzes, \"Resuscitation failed - Severe tissue damage detected. Repair of anatomical damage required.\""
 
 	else if(HUSK in H.mutations) //Husked! Need to fix their husk status first.
@@ -434,7 +434,7 @@
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
 
 	//set oxyloss so that the patient is just barely in crit, if possible
-	var/barely_in_crit = CONFIG_GET(number/health_threshold_crit) - 1
+	var/barely_in_crit = H.get_crit_point() - 1
 	var/adjust_health = barely_in_crit - H.health //need to increase health by this much
 	H.adjustOxyLoss(-adjust_health)
 
@@ -477,7 +477,7 @@
 
 	user.visible_message(span_danger(span_italics("\The [user] shocks [H] with \the [src]!")), span_warning("You shock [H] with \the [src]!"))
 	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
-	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
+	playsound(src, 'sound/weapons/egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
 
 	H.stun_effect_act(2, 120, target_zone)
@@ -503,9 +503,10 @@
 	M.updatehealth()
 	apply_brain_damage(M)
 	// VOREStation Edits Start: Defib pain
-	if(istype(M.species, /datum/species/xenochimera)) // Only do the following to Xenochimera. Handwave this however you want, this is to balance defibs on an alien race.
+	var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+	if(xc) // Only do the following to Xenochimera. Handwave this however you want, this is to balance defibs on an alien race.
 		M.adjustHalLoss(220) // This hurts a LOT, stacks on top of the previous halloss.
-		M.feral += 100 // If they somehow weren't already feral, force them feral by increasing ferality var directly, to avoid any messy checks. handle_feralness() will immediately set our feral properly according to halloss anyhow.
+		xc.feral += 100 // If they somehow weren't already feral, force them feral by increasing ferality var directly, to avoid any messy checks. handle_feralness() will immediately set our feral properly according to halloss anyhow.
 	// VOREStation Edits End
 	// SSgame_master.adjust_danger(-20) // VOREStation Edit - We don't use SSgame_master yet.
 

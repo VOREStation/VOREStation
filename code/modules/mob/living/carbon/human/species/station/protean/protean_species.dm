@@ -12,7 +12,6 @@
 
 	selects_bodytype = SELECTS_BODYTYPE_SHAPESHIFTER
 	base_species = SPECIES_HUMAN
-	digi_allowed = TRUE
 
 	blood_color = "#505050" //This is the same as the 80,80,80 below, but in hex
 	flesh_color = "#505050"
@@ -266,7 +265,7 @@
 	pseudodead = 1
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
-	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
+	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.getMaxHealth()*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
