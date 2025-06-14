@@ -1,4 +1,9 @@
-import { CheckboxInput, type FeatureToggle } from '../base';
+import {
+  CheckboxInput,
+  type FeatureChoiced,
+  type FeatureToggle,
+} from '../base';
+import { FeatureDropdownInput } from '../dropdowns';
 
 export const CHAT_SHOWICONS: FeatureToggle = {
   name: 'Chat Tags',
@@ -70,4 +75,12 @@ export const PAIN_FREQUENCY: FeatureToggle = {
   description:
     'When enabled, reduces the amount of pain messages for minor wounds that you see.',
   component: CheckboxInput,
+};
+
+export const EXAMINE_MODE: FeatureChoiced = {
+  name: 'Examine Mode',
+  category: 'CHAT',
+  description:
+    'Choose how you want to examine items. "Verbose" will include all information found in the examine panel as foldable groups, "Switch To Panel" will switch you to the examine panel upon examining, and "Slim" will do neither. ',
+  component: FeatureDropdownInput,
 };
