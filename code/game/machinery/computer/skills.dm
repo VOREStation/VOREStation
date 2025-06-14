@@ -216,7 +216,7 @@
 				set_temp("All employment records deleted.")
 			if("sync_r")
 				if(active1)
-					set_temp(client_update_record(src,active1,ui.user))
+					set_temp(client_update_record(src,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
 				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
