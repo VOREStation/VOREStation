@@ -110,14 +110,20 @@
 
 	// Check for vore inflation connectors.
 	if(istype(src,/datum/component/hose_connector/inflation) || istype(target,/datum/component/hose_connector/inflation))
+		// Handle the connection target once we setup the hose. Needs to be done like this as either ends can be the inflation connector
+		// Also has to be done on finalize, as players would be able to click one then the other, then potentially drop or do other stuff with the hose!
 		var/datum/component/hose_connector/inflation/I = src
-		if(!istype(I))
+		if(istype(I))
+			if(!I.inflation_setup(user,target))
+				return FALSE
+		else
 			I = target
-		if(!istype(I)) // Good going, you broke it
-			to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
-			return FALSE
-		if(!I.inflation_setup(user))
-			return FALSE
+			if(istype(I))
+				if(!I.inflation_setup(user,src))
+					return FALSE
+			else // Good going, you broke it
+				to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
+				return FALSE
 	else
 		to_chat(user, span_notice("You connect the [src] to \the [target]."))
 
@@ -259,12 +265,17 @@
 	. = ..()
 
 // Succ command center
-/datum/component/hose_connector/inflation/proc/inflation_setup(var/mob/user)
+/datum/component/hose_connector/inflation/proc/inflation_setup(var/mob/user,var/datum/component/hose_connector/other)
+	if(!other || QDELETED(other))
+		to_chat(user,span_danger("You couldn't connect the hose, as the connection stopped existing! Ohno!"))
+		return FALSE
+
 	// Check for destinations
 	var/list/options = list("Mouth")
 	if(human_owner?.vore_selected)
 		options.Add("Belly ([sanitize(human_owner.vore_selected.name)])")
-	options.Add("Bloodstream")
+	if(!human_owner.isSynthetic()) // Results in a lot of bad behaviors...
+		options.Add("Bloodstream")
 
 	// Choose destination
 	var/choice = tgui_alert(user, "Select where this hose connects.", "Hose Connection", options)
@@ -280,10 +291,7 @@
 			feedback = "mouth"
 		if("Bloodstream")
 			connection_mode = CONNECTION_MODE_BLOOD
-			if(human_owner.isSynthetic())
-				feedback = span_warning("internal systems")
-			else
-				feedback = span_danger("bloodstream")
+			feedback = span_danger("bloodstream")
 		else
 			connection_mode = CONNECTION_MODE_BELLY // Anything else is a vore belly name
 			if(human_owner.vore_selected)
@@ -295,7 +303,13 @@
 	if(!do_after(user,7 SECONDS,human_owner))
 		to_chat(user,span_warning("You couldn't connect the hose!"))
 		return FALSE
-	else if(connection_mode == CONNECTION_MODE_BLOOD && !human_owner.isSynthetic()) //OWCH!
+	if(other.get_hose())
+		to_chat(user,span_warning("You couldn't connect the hose, another hose is already connected!"))
+		return FALSE
+	if(!user.Adjacent(other.get_carrier()))
+		to_chat(user,span_warning("You couldn't connect the hose, you are too far away!"))
+		return FALSE
+	if(connection_mode == CONNECTION_MODE_BLOOD) //OWCH!
 		human_owner.adjustBruteLossByPart(10,BP_TORSO)
 		if(human_owner.can_pain_emote) // Doing this probably doesn't feel too good
 			human_owner.emote("pain")
@@ -349,16 +363,20 @@
 	switch(other.flow_direction)
 		if(HOSE_OUTPUT)
 			// inflating us
-			human_owner.ingest(reagents,connected_to,rate)
+			if(reagents.total_volume > 0)
+				if(connection_mode == CONNECTION_MODE_STOMACH || (connection_mode == CONNECTION_MODE_BELLY && human_owner?.vore_selected?.can_taste))
+					human_owner.ingest(reagents,connected_to,rate)
+				else
+					reagents.trans_to_holder(connected_to, rate)
 		if(HOSE_INPUT)
 			// draining us
 			connected_to.trans_to_holder(reagents,rate)
 		if(HOSE_NEUTRAL)
 			// Sharing with us
 			reagents.trans_to_holder(connected_to, reagents.maximum_volume) // Load our current reagents back into tank, it's mixed!
-			carrier.reagents.trans_to_holder(reagents, rand(1,reagents.maximum_volume) ) // Fill back up to a random amount
+			connected_to.trans_to_holder(reagents, rand(1,reagents.maximum_volume) ) // Fill back up to a random amount
 
-	if(prob(5))
+	if(prob(5) && (reagents.total_volume > 0 || connected_to.total_volume > 0))
 		var/atom/pumper = other.get_carrier()
 		pumper.visible_message(span_infoplain(span_bold("\The [pumper]") + " gurgles."))
 
