@@ -62,7 +62,7 @@
 		tail_lower_dirs.Cut()
 	else if (H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
-	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_ALT : TAIL_UPPER_LAYER
+	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
 	max_integrity = H.getMaxHealth() + 100
 	obj_integrity = H.health + 100
@@ -96,7 +96,7 @@
 		if (istype(H.overlays_standing[i], /image) && (i in body_layers))
 			var/image/old_image = H.overlays_standing[i]
 			var/image/new_image = image(old_image)
-			if (i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_ALT)
+			if (i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_HIGH)
 				tail_image = new_image
 			new_image.color = tint_color
 			new_image.layer = old_image.layer

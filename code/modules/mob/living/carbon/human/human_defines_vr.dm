@@ -11,6 +11,8 @@
 	var/markings_len = 0 //mostly an arbitrary number
 	var/low_sorting_priority = FALSE
 
+	tail_alt = TAIL_UPPER_LAYER // not a toggle for humans but a pointer for what layer the tail should be when facing North/East/West
+
 /mob/living/carbon/human/proc/shadekin_get_energy()
 	var/datum/species/shadekin/SK = species
 
