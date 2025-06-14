@@ -165,8 +165,6 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(istype(H))
 		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking.
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
-		newDNA.dna.b_type = "AB+" // This acts as a changeling test.
-		H.b_type = "AB+"
 		absorbDNA(newDNA)
 
 	return TRUE
@@ -391,9 +389,6 @@ var/list/datum/power/changeling/powerinstances = list()
 	desc = "A katana imbued with special powers. It is said that those who wield it will become a changeling."
 /obj/item/toy/katana/changeling_debug/attack_self(mob/user)
 	user.make_changeling()
-
-
-
 
 ///Changeling Panel
 /datum/changeling_panel
