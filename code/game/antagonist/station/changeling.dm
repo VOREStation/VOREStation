@@ -29,6 +29,8 @@
 		comp.owner.remove_changeling_powers()
 		remove_verb(comp.owner, /mob/proc/EvolutionMenu)
 		comp.RemoveComponent()
+		if(comp.owner.mind)
+			comp.owner.mind.antag_holder.changeling = null
 
 /datum/antagonist/changeling/create_objectives(var/datum/mind/changeling)
 	if(!..())
