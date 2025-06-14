@@ -54,7 +54,7 @@
 	stop_flying()
 
 	//Handle snowflake ling stuff.
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(comp)
 		// If the ling is capable of revival, don't allow them to see deadchat.
 		if(comp.chem_charges >= CHANGELING_STASIS_COST)

@@ -76,7 +76,7 @@
 		to_world_log("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
 	var/datum/component/antag/changeling/comp
 	if(current)
-		comp = current.GetComponent(/datum/component/antag/changeling)			//remove ourself from our old body's mind variable
+		comp = is_changeling(current)			//remove ourself from our old body's mind variable
 		if(comp)
 			current.remove_changeling_powers()
 			remove_verb(current, /mob/proc/EvolutionMenu)

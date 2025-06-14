@@ -15,7 +15,7 @@
 	set desc="Sting target"
 
 	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!T)
 		return FALSE
 	add_attack_logs(src,T,"Silence sting (changeling)")

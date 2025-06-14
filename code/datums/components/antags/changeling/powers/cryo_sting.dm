@@ -14,7 +14,7 @@
 	set desc = "Chills and freezes a biological creature."
 
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting, CRYO_STING)
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!T)
 		return FALSE
 	if(comp.is_on_cooldown(CRYO_STING))

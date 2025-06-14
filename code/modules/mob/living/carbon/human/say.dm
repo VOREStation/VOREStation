@@ -101,7 +101,7 @@
 					voice_sub = get_id_name()
 	if(voice_sub)
 		return voice_sub
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(comp && comp.mimicing)
 		return comp.mimicing
 	if(GetSpecialVoice())

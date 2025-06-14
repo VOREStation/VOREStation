@@ -124,7 +124,7 @@
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(user)
 	if(istype(target,/mob/living/carbon))
 		var/mob/living/carbon/C = target
 

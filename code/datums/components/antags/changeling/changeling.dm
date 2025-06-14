@@ -53,6 +53,11 @@ var/list/datum/power/changeling/powerinstances = list()
 		CHANGELING_SCREECH = 0
 	)
 
+///Proc to check if the MOB is a changeling.
+/proc/is_changeling(mob/M)
+	return (M.GetComponent(/datum/component/antag/changeling))
+
+
 ///Handles the cooldown for the power. Returns TRUE if the cooldown has passed. FALSE if it's still on cooldown.
 ///This is just a general anti-spam thing and not really a true cooldown
 /datum/component/antag/changeling/proc/handle_cooldown()
@@ -109,7 +114,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 //Former /mob procs
 /mob/proc/absorbDNA(var/datum/absorbed_dna/newDNA)
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
 		return
 
@@ -173,7 +178,7 @@ var/list/datum/power/changeling/powerinstances = list()
 /mob/proc/remove_changeling_powers()
 	if(!mind)
 		return
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
 		return
 	for(var/datum/power/changeling/P in comp.purchased_powers)
@@ -190,7 +195,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(!src.mind)		return
 	if(!iscarbon(src))	return
 
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
 		to_world_log("[src] used a changeling verb but is not a changeling.")
 		return
@@ -268,7 +273,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	comp.sting_range = 1
 
 	to_chat(src, span_notice("We stealthily sting [T]."))
-	var/datum/component/antag/changeling/target_comp = T.GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/target_comp = is_changeling(T)
 	if(!T.mind || !target_comp)
 		return T	//T will be affected by the sting
 	to_chat(T, span_warning("You feel a tiny prick.")) //Stings on other lings have no effect, but they know you're a ling, too.
@@ -321,7 +326,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	set category = "Changeling"
 	set desc = "Adapt yourself carefully."
 
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
 		to_chat(src, "You are not a changeling!")
 		return

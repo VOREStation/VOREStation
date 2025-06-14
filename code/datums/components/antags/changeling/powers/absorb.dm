@@ -29,7 +29,7 @@
 		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return
 
-	var/datum/component/antag/changeling/target_changeling = T.GetComponent(/datum/component/antag/changeling) //If the target is a changeling
+	var/datum/component/antag/changeling/target_changeling = is_changeling(T) //If the target is a changeling
 
 	if(HUSK in T.mutations) //Lings can always absorb other lings, unless someone beat them to it first.
 		if(!target_changeling || target_changeling && target_changeling.geneticpoints < 0)
@@ -82,13 +82,13 @@
 	if(!victim || !ishuman(victim)) //There MUST be a victim and it MUST be a human and NOT a monkey!
 		return
 	if(!target_changeling)
-		target_changeling = victim.GetComponent(/datum/component/antag/changeling) //Let's see if the victim is a changeling or not.
+		target_changeling = is_changeling(victim) //Let's see if the victim is a changeling or not.
 	if(!target_changeling && isMonkey(victim)) //No absorbing non-changeling monkeys.
 		return
 
 	//If we weren't fed a changeling component, we get it ourselves. If that fails, we see if the target is a changeling. If so, they get the DNA of the person predding them. Preyling!
 	if(!changeling)
-		changeling = GetComponent(/datum/component/antag/changeling)
+		changeling = is_changeling(src)
 		if(!changeling && target_changeling) //Prey is a ling but owner is not.
 			changeling_obtain_dna(src, target_changeling, drain = FALSE) //Flip the tables!~ Don't steal the pred's nutrition, though!
 			return

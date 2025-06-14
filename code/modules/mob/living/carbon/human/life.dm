@@ -1794,7 +1794,7 @@
 			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/proc/handle_changeling()
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
 		if(mind && hud_used)
 			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT

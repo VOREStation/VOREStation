@@ -123,7 +123,7 @@
 		if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 		. += "Suit charge: [cell_status]"
 
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(comp)
 		. += "Chemical Storage: [comp.chem_charges]"
 		. += "Genetic Damage Time: [comp.geneticdamage]"

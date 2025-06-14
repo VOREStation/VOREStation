@@ -49,7 +49,7 @@
 		return
 	if(!proximity)
 		return
-	var/datum/component/antag/changeling/ling_datum = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/ling_datum = is_changeling(user)
 	if(!ling_datum)
 		return
 

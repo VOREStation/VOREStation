@@ -12,7 +12,7 @@
 	set category = "Changeling"
 	set name = "Blind sting (20)"
 	set desc="Sting target"
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
 		return FALSE

@@ -56,7 +56,7 @@
 
 //This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.
 /mob/living/carbon/human/break_cloak()
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(comp) //Changeling visible camo
 		comp.cloaked = 0
 	if(istype(back, /obj/item/rig)) //Ninja cloak
@@ -68,7 +68,7 @@
 		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
-	var/datum/component/antag/changeling/comp = GetComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(comp && comp.cloaked) // Ling camo.
 		return TRUE
 	else if(istype(back, /obj/item/rig)) //Ninja cloak
