@@ -550,6 +550,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(antag_data)
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
+			if(new_character.mind.antag_holder)
+				new_character.mind.antag_holder.apply_antags(new_character)
 
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
