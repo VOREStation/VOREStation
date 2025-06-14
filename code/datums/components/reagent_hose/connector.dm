@@ -47,8 +47,29 @@
 /datum/component/hose_connector/proc/get_id()
 	return "[name] #[connector_number]"
 
-/datum/component/hose_connector/output/process()
-	return
+/datum/component/hose_connector/proc/connected_reagents()
+	return carrier.reagents
+
+/datum/component/hose_connector/process()
+	// Return reagents to source if no hose, lossy to avoid exploits
+	if(!my_hose)
+		if(!reagents.total_volume)
+			reagents.trans_to_holder(connected_reagents(), reagents.maximum_volume)
+			reagents.clear_reagents() // Wipe it to avoid exploits
+		return
+	var/datum/reagents/connected_to = connected_reagents()
+	if(!connected_to) // Emergency. the vorebelly was deleted or something. Lets just hard lock that out from maintaining state by disconnecting the tube.
+		reagents.clear_reagents()
+		my_hose.disconnect()
+		return
+	handle_pump(connected_to)
+
+/datum/component/hose_connector/proc/handle_pump(var/datum/reagents/connected_to)
+	PROTECTED_PROC(TRUE)
+	ASSERT(connected_to)
+	// Drain our connector back into tank, and then fill it randomly. The hose handles swapping.
+	reagents.trans_to_holder(connected_to, reagents.maximum_volume)
+	connected_to.trans_to_holder(reagents, rand(1,reagents.maximum_volume))
 
 /datum/component/hose_connector/proc/force_pump()
 	process()
@@ -59,6 +80,8 @@
 	if(istype(C))
 		if(C.my_hose)
 			return FALSE
+		if(C.flow_direction == HOSE_NEUTRAL || flow_direction == HOSE_NEUTRAL) // Always allowed
+			return TRUE
 		if(C.flow_direction in (list(HOSE_INPUT, HOSE_OUTPUT) - flow_direction))
 			return TRUE
 	return FALSE
@@ -72,10 +95,47 @@
 /datum/component/hose_connector/proc/connect(var/datum/hose/H = null)
 	my_hose = H
 
-/datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode)
-	if(target)
-		var/datum/hose/H = new()
-		H.set_hose(src, target, distancetonode)
+/datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode, var/mob/user)
+	if(!target || QDELETED(target))
+		to_chat(user,span_danger("What you were connecting to has stopped existing! Ohno!"))
+		return FALSE
+
+	// Logic for handling two mobs at once would be a mess of option selections and prefs...
+	if(istype(src,/datum/component/hose_connector/inflation) && istype(target,/datum/component/hose_connector/inflation))
+		to_chat(user,span_notice("Nothing would flow between \the [get_carrier()] and \the [target.get_carrier()] without anything to pump it!"))
+		return FALSE
+
+	// Check for vore inflation connectors.
+	if(istype(src,/datum/component/hose_connector/inflation) || istype(target,/datum/component/hose_connector/inflation))
+		// Handle the connection target once we setup the hose. Needs to be done like this as either ends can be the inflation connector
+		// Also has to be done on finalize, as players would be able to click one then the other, then potentially drop or do other stuff with the hose!
+		var/datum/component/hose_connector/inflation/I = src
+		if(istype(I))
+			if(!I.inflation_setup(user,target))
+				return FALSE
+		else
+			I = target
+			if(istype(I))
+				if(!I.inflation_setup(user,src))
+					return FALSE
+			else // Good going, you broke it
+				to_chat(user,span_notice("You're not sure what happened, but you couldn't connect the hose..."))
+				return FALSE
+	else
+		to_chat(user, span_notice("You connect the [src] to \the [target]."))
+
+	// Handle invalid vorebellies, has to be done after inflation_setup()
+	if(!src.connected_reagents())
+		to_chat(user,span_warning("\The [get_carrier()] doesn't seem ready to connect yet."))
+		return FALSE
+	if(!target.connected_reagents())
+		to_chat(user,span_warning("\The [target.get_carrier()] doesn't seem ready to connect yet."))
+		return FALSE
+
+	// Hose prepared!
+	var/datum/hose/H = new()
+	H.set_hose(src, target, distancetonode, user)
+	return TRUE
 
 /datum/component/hose_connector/proc/get_pairing()
 	RETURN_TYPE(/datum/component/hose_connector)
@@ -89,7 +149,9 @@
 /datum/component/hose_connector/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
 	var/datum/component/hose_connector/hose_pair = my_hose?.get_pairing(src)
-	if(hose_pair)
+	if(istype(hose_pair,/datum/component/hose_connector/inflation))
+		hose_pair = "\the [hose_pair.name]" // Slightly different, so it shows the belly attached
+	else if(hose_pair)
 		hose_pair = "\the [hose_pair.get_carrier()]"
 	else
 		hose_pair = "nothing"
@@ -104,30 +166,6 @@
 		return
 	// Handle distance check if too far
 	my_hose.update_beam()
-
-/*
- * Subtypes
- */
-
-/// Pumps reagents out of carrier
-/datum/component/hose_connector/input
-	name = "hose input"
-	flow_direction = HOSE_INPUT
-
-/datum/component/hose_connector/input/process()
-	if(carrier)
-		reagents.trans_to_obj(carrier, reagents.maximum_volume)
-
-/// Pumps reagents into carrier
-/datum/component/hose_connector/output
-	name = "hose output"
-	flow_direction = HOSE_OUTPUT
-
-/datum/component/hose_connector/output/process()
-	if(carrier && my_hose)
-		carrier.reagents.trans_to_holder(reagents, reagents.maximum_volume)
-	else if(reagents.total_volume && carrier && !my_hose)
-		reagents.trans_to_obj(carrier, reagents.maximum_volume)
 
 /*
  * Support procs/verbs
@@ -155,3 +193,26 @@
 		if(choice)
 			var/datum/component/hose_connector/AC = available_sockets[choice]
 			AC.disconnect_action(usr)
+
+
+/*
+ * Standard subtypes
+ */
+
+/// Pumps reagents out of carrier
+/datum/component/hose_connector/input
+	name = "hose input"
+	flow_direction = HOSE_INPUT
+
+/datum/component/hose_connector/input/handle_pump(var/datum/reagents/connected_to)
+	ASSERT(connected_to)
+	reagents.trans_to_holder(connected_to, reagents.maximum_volume)
+
+/// Pumps reagents into carrier
+/datum/component/hose_connector/output
+	name = "hose output"
+	flow_direction = HOSE_OUTPUT
+
+/datum/component/hose_connector/output/handle_pump(var/datum/reagents/connected_to)
+	ASSERT(connected_to)
+	connected_to.trans_to_holder(reagents, reagents.maximum_volume)

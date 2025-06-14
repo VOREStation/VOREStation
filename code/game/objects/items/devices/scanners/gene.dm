@@ -1,6 +1,6 @@
 /obj/item/gene_scanner
 	name = "DNA identifier"
-	desc = "The GenePeeper 3000, scans and identifies traits enabled by a subject's genetics. Can also scan limbs and organs to identify their dna. Decades of genetic research in your pocket, today! "
+	desc = "The GenePeeper 3000, scans and identifies traits enabled by a subject's genetics. Can also scan limbs, organs, and DNA injectors. Decades of genetic research in your pocket, today! "
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "health"
 	flags = NOBLUDGEON
@@ -12,7 +12,7 @@
 /obj/item/gene_scanner/afterattack(atom/movable/AM, mob/user, proximity)
 	if(!proximity)
 		return
-	if(!ismob(AM) && !istype(AM,/obj/item/organ))
+	if(!ismob(AM) && !istype(AM,/obj/item/organ) && !istype(AM,/obj/item/dnainjector))
 		return
 
 	to_chat(user,span_boldnotice("You assesses \the [AM]'s genetic traits."))
@@ -25,6 +25,7 @@
 /obj/item/gene_scanner/proc/scan_genes(atom/movable/AM,mob/user)
 	var/obj/item/organ/O = AM
 	var/mob/living/L = AM
+	var/obj/item/dnainjector/I = AM
 	var/output = ""
 
 	// Actually do the scan
@@ -70,15 +71,16 @@
 		for(var/datum/gene/G in GLOB.dna_genes)
 			if(!L.dna.GetSEState(G.block))
 				continue
+			var/dna_val = L.dna.GetSEValue(G.block)
 			if(istype(G,/datum/gene/trait))
 				var/datum/gene/trait/TG = G
 				if(ishuman(L))
-					output += span_info("-[TG.linked_trait.name]") + span_warning((TG.has_conflict(H.species.traits) ? " (Suppressed)" : "")) + "<br>"
+					output += span_info("-\[[EncodeDNABlock(dna_val)]\]:[TG.linked_trait.name]") + span_warning((TG.has_conflict(H.species.traits) ? " (Suppressed)" : "")) + "<br>"
 				else
-					output += span_info("-[TG.linked_trait.name]") + "<br>"
+					output += span_info("-\[[EncodeDNABlock(dna_val)]\]:[TG.linked_trait.name]") + "<br>"
 				output += span_infoplain("  [TG.linked_trait.desc]") + "<br>"
 			else
-				output += span_info("-[G.name]") + "<br>"
+				output += span_info("-\[[EncodeDNABlock(dna_val)]\]:[G.name]") + "<br>"
 				output += span_infoplain("  [G.desc]") + "<br>"
 
 	else if(istype(O)) // Organs
@@ -89,5 +91,24 @@
 
 		output += span_infoplain("Unique enzymes: [O.data.unique_enzymes]") + "<br>"
 		output += span_infoplain("Bloodtype: [O.data.b_type]") + "<br>"
+
+	else if(istype(I)) // Dna injectors
+		if(I.buf?.dna)
+			output += span_infoplain("Unique enzymes: [I.buf.dna.unique_enzymes != "" ? I.buf.dna.unique_enzymes : "STRIPPED" ]") + "<br>"
+			output += span_infoplain("Bloodtype: [I.buf.dna.b_type]") + "<br>"
+			output += span_boldnotice("Detected genes:") + "<br>"
+			for(var/datum/gene/G in GLOB.dna_genes)
+				if(!I.buf.dna.GetSEState(G.block))
+					continue
+				var/dna_val = I.buf.dna.GetSEValue(G.block)
+				if(istype(G,/datum/gene/trait))
+					var/datum/gene/trait/TG = G
+					output += span_info("-\[[EncodeDNABlock(dna_val)]\]:[TG.linked_trait.name]") + "<br>"
+					output += span_infoplain("  [TG.linked_trait.desc]") + "<br>"
+				else
+					output += span_info("-\[[EncodeDNABlock(dna_val)]\]:[G.name]") + "<br>"
+					output += span_infoplain("  [G.desc]") + "<br>"
+		else
+			output += span_danger("ERR - Invalid sequencing data.")
 
 	to_chat(user,output)

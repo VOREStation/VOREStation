@@ -31,6 +31,8 @@
 
 	stat = POWEROFF // Starts turned off
 
+	tgui_id = "CookingFryer"
+
 	var/datum/reagents/oil
 	var/optimal_oil = 9000 //90 litres of cooking oil
 

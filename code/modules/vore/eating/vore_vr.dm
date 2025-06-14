@@ -92,6 +92,7 @@
 	var/belly_rub_target = null
 	var/soulcatcher_pref_flags = 0
 	var/list/soulcatcher_prefs = list()
+	var/max_voreoverlay_alpha = 255
 	var/persistend_edit_mode = FALSE
 
 	var/list/belly_prefs = list()
@@ -250,6 +251,7 @@
 	soulcatcher_pref_flags = json_from_file["soulcatcher_pref_flags"]
 	soulcatcher_prefs = json_from_file["soulcatcher_prefs"]
 	persistend_edit_mode = json_from_file["persistend_edit_mode"]
+	max_voreoverlay_alpha = json_from_file["max_voreoverlay_alpha"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -381,6 +383,8 @@
 		soulcatcher_prefs = list()
 	if(isnull(persistend_edit_mode))
 		persistend_edit_mode = FALSE
+	if(isnull(max_voreoverlay_alpha))
+		max_voreoverlay_alpha = 255
 
 	return TRUE
 
@@ -443,7 +447,8 @@
 			"belly_rub_target" = belly_rub_target,
 			"soulcatcher_pref_flags" = soulcatcher_pref_flags,
 			"soulcatcher_prefs"			= soulcatcher_prefs,
-			"persistend_edit_mode" = persistend_edit_mode
+			"persistend_edit_mode" = persistend_edit_mode,
+			"max_voreoverlay_alpha" = max_voreoverlay_alpha,
 		)
 
 	//List to JSON

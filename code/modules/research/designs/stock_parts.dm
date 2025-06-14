@@ -266,3 +266,13 @@
 	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000, MAT_SILVER = 5000, MAT_GOLD = 5000, MAT_DIAMOND = 1000)
 	build_path = /obj/item/storage/part_replacer/adv/discount_bluespace
 	sort_string = "ABAAB"
+
+/datum/design/item/stock_part/BRPED
+	name = "Bluespace Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a remarkably upgraded storage capacity, \
+	the ability to manipulate beakers, and works at range."
+	id = "brped"
+	req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_PRECURSOR = 1)
+	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000, MAT_SILVER = 5000, MAT_GOLD = 5000, MAT_DIAMOND = 1000)
+	build_path = /obj/item/storage/part_replacer/adv/bluespace
+	sort_string = "ABAAB"

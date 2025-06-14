@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "fixed a crash when updating a player record from the employment records computer"

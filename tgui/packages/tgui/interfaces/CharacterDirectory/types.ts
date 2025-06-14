@@ -27,4 +27,5 @@ export type mobEntry = {
   character_ad: string;
   flavor_text: string;
   custom_link: string;
+  photo: string | null;
 };

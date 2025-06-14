@@ -50,6 +50,7 @@
 	target.no_latejoin_prey_warning_time = source.no_latejoin_prey_warning_time;		\
 	target.no_latejoin_vore_warning_persists = source.no_latejoin_vore_warning_persists;\
 	target.no_latejoin_prey_warning_persists = source.no_latejoin_prey_warning_persists;\
+	target.max_voreoverlay_alpha = source.max_voreoverlay_alpha;						\
 																						\
 	target.autotransferable = source.autotransferable;									\
 	target.strip_pref = source.strip_pref;												\
