@@ -188,6 +188,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	var/mob/living/carbon/human/H = src
 	if(istype(H))
+		add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking.
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
 		absorbDNA(newDNA)
