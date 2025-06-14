@@ -191,6 +191,13 @@ var/list/datum/power/changeling/powerinstances = list()
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
 		absorbDNA(newDNA)
 
+		//Code to make it so our BR is marked as a changeling body, so it can't be stolen.
+		for(var/key in SStranscore.databases)
+			var/datum/transcore_db/db = SStranscore.databases[key]
+			if(H.mind.name in db.body_scans)
+				var/datum/transhuman/body_record/BR = db.body_scans[H.mind.name]
+				BR.changeling_locked = TRUE
+
 	return TRUE
 
 //removes our changeling verbs
