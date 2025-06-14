@@ -11,3 +11,13 @@
 /datum/component/antag/Destroy(force = FALSE)
 	owner = null
 	. = ..()
+
+///Antag datum that is held on /datum/mind. Holds all the antag data.
+/datum/antag_holder
+	var/datum/component/antag/changeling/changeling
+
+/datum/antag_holder/proc/apply_antags(mob/M)
+	if(!M)
+		return
+	if(changeling)
+		M.make_changeling()

@@ -53,9 +53,22 @@ var/list/datum/power/changeling/powerinstances = list()
 		CHANGELING_SCREECH = 0
 	)
 
-///Proc to check if the MOB is a changeling.
+///Checks if a mind or a mob is a changeling.
+///Checks to see if the thing fed to it is a changeling first, then does some deeper searching.
 /proc/is_changeling(mob/M)
-	return (M.GetComponent(/datum/component/antag/changeling))
+	var/datum/component/antag/changeling/changeling = (M.GetComponent(/datum/component/antag/changeling))
+	if(changeling) // Whatever we fed it is a changeling. Return it.
+		return changeling
+
+	//The below is what happens if we fail the above. We do some deeper searching.
+	if(istype(M, /datum/mind)) //Fed a mind and we failed.
+		var/datum/mind/our_mind = M
+		if(our_mind.current)
+			changeling = (our_mind.current.GetComponent(/datum/component/antag/changeling)) //Check to see if the mob we are currently inhabiting is a changeling.
+	else //Fed it a mob and we failed
+		if(M.mind)
+			changeling = M.mind.antag_holder.changeling //Check our mind's antag holder.
+	return changeling
 
 
 ///Handles the cooldown for the power. Returns TRUE if the cooldown has passed. FALSE if it's still on cooldown.
@@ -89,7 +102,11 @@ var/list/datum/power/changeling/powerinstances = list()
 		add_verb(owner,/mob/proc/changeling_respec)
 		owner.add_language("Changeling")
 
+///This is a component that is referenced to by the mind, so it should never be deleted
 /datum/component/antag/changeling/Destroy(force = FALSE)
+	return QDEL_HINT_LETMELIVE
+	//Old code from when it did destroy itself.
+	/*
 	if(owner)
 		remove_verb(owner,/mob/proc/EvolutionMenu)
 		remove_verb(owner,/mob/proc/changeling_respec)
@@ -99,8 +116,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	purchased_powers.Cut()
 	purchased_powers_history.Cut()
 	. = ..()
-
-	//TODO: Clear all the lists and stuff here
+	*/
 
 //Former /datum/changeling procs
 /datum/component/antag/changeling/proc/regenerate()
@@ -132,8 +148,9 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	if(!mind)
 		return
+	//The current mob is made a changeling AND the mind is made a changeling.
 	var/datum/component/antag/changeling/comp = LoadComponent(/datum/component/antag/changeling)
-
+	mind.antag_holder.changeling = comp
 	var/lesser_form = !ishuman(src)
 
 	if(!powerinstances.len)

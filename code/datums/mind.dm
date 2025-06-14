@@ -31,6 +31,8 @@
 	var/assigned_role
 	var/special_role
 
+	var/datum/antag_holder/antag_holder
+
 	var/role_alt_title
 
 	var/datum/job/assigned_job
@@ -69,6 +71,7 @@
 /datum/mind/New(var/key)
 	src.key = key
 	purchase_log = list()
+	antag_holder = new
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
