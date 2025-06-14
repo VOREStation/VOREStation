@@ -527,6 +527,7 @@
 #include "code\datums\components\disabilities\tourettes.dm"
 #include "code\datums\components\reagent_hose\connector.dm"
 #include "code\datums\components\reagent_hose\datum.dm"
+#include "code\datums\components\reagent_hose\inflation.dm"
 #include "code\datums\components\reagent_hose\item.dm"
 #include "code\datums\components\species\shadekin.dm"
 #include "code\datums\components\species\xenochimera.dm"
