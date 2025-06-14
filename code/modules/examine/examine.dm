@@ -92,6 +92,8 @@
 			var/datum/component/antag/comp = GetComponent(/datum/component/antag)
 			if(comp)
 				is_antag = TRUE
+			else if(mob.mind && mob.mind.antag_holder.is_antag())
+				is_antag = TRUE
 		client.update_description_holders(A, is_antag)
 		SSstatpanels.set_examine_tab(client)
 
