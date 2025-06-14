@@ -78,9 +78,10 @@
 		// END AUTOFIX
 		if(op)
 			dat += "<A href='byond://?src=\ref[src];spell_choice=rememorize'>Re-memorize Spells</A><BR>"
-	user << browse("<html>[dat]</html>", "window=radio")
-	onclose(user, "radio")
-	return
+
+	var/datum/browser/popup = new(user, "radio", "Spellbook")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/spellbook/Topic(href, href_list)
 	..()

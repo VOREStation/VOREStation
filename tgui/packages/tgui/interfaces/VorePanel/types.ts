@@ -327,6 +327,7 @@ export type prefData = {
   soulcatcher_allow_transfer: BooleanLike;
   soulcatcher_allow_deletion: BooleanLike;
   soulcatcher_allow_takeover: BooleanLike;
+  max_voreoverlay_alpha: number;
 };
 
 export type scMessageData = {
@@ -373,7 +374,7 @@ export type generalPrefData = {
   active_belly: string | null;
   belly_rub_target: string | null;
   aestethic_messages: aestMessageData;
-  vore_sprite_color: Record<string, string>;
+  vore_sprite_color: Record<string, string | undefined>;
   vore_sprite_multiply: Record<string, BooleanLike>;
   vore_icon_options: string[];
 };

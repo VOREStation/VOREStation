@@ -8,6 +8,9 @@
   z-index: 10;
   padding: 0px;
   margin: 0px;
+  // this is like this because byond's coordinates are from bottom left so we want to place the
+  // dot at the bottom left corner of it's x/y
+  transform: translate(-50%, 50%);
 }
 
 .NanoMap__zoomer {

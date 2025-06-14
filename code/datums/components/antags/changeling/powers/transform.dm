@@ -43,7 +43,6 @@
 	dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		H.b_type = "AB+" //For some reason we have two blood types on the mob.
 		H.identifying_gender = chosen_dna.identifying_gender
 		H.flavor_texts = chosen_dna.flavour_texts ? chosen_dna.flavour_texts.Copy() : null
 	real_name = chosen_dna.name

@@ -679,7 +679,12 @@
 			return 1
 	return 0
 
+/// Revives a body using the client's preferences if human
 /mob/living/proc/revive()
+	revival_healing_action()
+
+/// Performs the actual healing of Aheal, seperate from revive() because it does not use client prefs. Will not heal everything, and expects to be called through revive() or with a bodyrecord doing a respawn/revive.
+/mob/living/proc/revival_healing_action()
 	rejuvenate()
 	if(buckled)
 		buckled.unbuckle_mob()
@@ -700,6 +705,8 @@
 	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
+
+	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -1013,7 +1020,7 @@
 		for(var/i=0 to distance)
 			if(blood)
 				if(T)
-					blood_splatter(T, large = TRUE)
+					blood_splatter(T, src, large = TRUE)
 				if(stun)
 					adjustBruteLoss(2)
 			else if(T)
@@ -1187,6 +1194,11 @@
 				animate(client, color = M.client_color, time = 10)
 				return
 			colors_to_blend += M.client_color
+
+	if(!colors_to_blend.len) // Modifiers take priority over passive area blending, to prevent changes on every area entered
+		var/location_grade = get_location_color_tint() // Area or weather!
+		if(location_grade)
+			colors_to_blend += location_grade
 
 	if(colors_to_blend.len)
 		var/final_color

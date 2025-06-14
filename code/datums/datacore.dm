@@ -374,7 +374,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 			M.fields["species"] = "[H.custom_species ? "[H.custom_species]" : H.species.name]"
 		else
 			M.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]"
-		M.fields["b_type"]		= H.b_type
+		M.fields["b_type"]		= H.dna ? H.dna.b_type : DEFAULT_BLOOD_TYPE
 		M.fields["blood_reagent"]	= H.dna.blood_reagents
 		M.fields["blood_color"]	= H.dna.blood_color
 		M.fields["b_dna"]		= H.dna.unique_enzymes
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 			L.fields["brain_type"] = H.get_FBP_type()
 		else
 			L.fields["brain_type"] = "Organic"
-		L.fields["b_type"]		= H.b_type
+		L.fields["b_type"]		= H.dna ? H.dna.b_type : DEFAULT_BLOOD_TYPE
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "

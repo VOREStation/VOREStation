@@ -496,6 +496,15 @@
 		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
 
+/obj/belly/Moved(atom/old_loc)
+	. = ..()
+
+	for(var/mob/living/L in src)
+		if(L.ckey)
+			log_admin("[key_name(owner)]'s belly `[src]` moved from [old_loc] ([old_loc?.x],[old_loc?.y],[old_loc?.z]) to [loc] ([loc?.x],[loc?.y],[loc?.z]) while containing [key_name(L)].")
+			break
+
+
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
@@ -654,23 +663,25 @@
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
 				CRASH("Icon datum was not defined for [belly_fullscreen]")
+
+			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
 			F.cut_overlays()
 			var/image/I = image(F.icon, belly_fullscreen) //Would be cool if I could just include color and alpha in the image define so we don't have to copy paste
 			I.color = belly_fullscreen_color
-			I.alpha = belly_fullscreen_alpha
+			I.alpha = alpha
 			F.add_overlay(I)
 			I = image(F.icon, belly_fullscreen+"-2")
 			I.color = belly_fullscreen_color2
-			I.alpha = belly_fullscreen_alpha
+			I.alpha = alpha
 			F.add_overlay(I)
 			I = image(F.icon, belly_fullscreen+"-3")
 			I.color = belly_fullscreen_color3
-			I.alpha = belly_fullscreen_alpha
+			I.alpha = alpha
 			F.add_overlay(I)
 			I = image(F.icon, belly_fullscreen+"-4")
 			I.color = belly_fullscreen_color4
-			I.alpha = belly_fullscreen_alpha
+			I.alpha = alpha
 			F.add_overlay(I)
 			var/extra_mush = 0
 			var/extra_mush_color = mush_color
@@ -686,13 +697,13 @@
 				if(!mush_overlay)
 					I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
 					I.color = extra_mush_color
-					I.alpha = custom_ingested_alpha
+					I.alpha = min(custom_ingested_alpha, L.max_voreoverlay_alpha)
 					I.pixel_y = -450 + ((450 / max(max_ingested, 1)) * min(max_ingested, ingested.total_volume))
 					F.add_overlay(I)
 			if(show_liquids && L.liquidbelly_visuals && mush_overlay && (owner.nutrition > 0 || max_mush == 0 || min_mush > 0 || (LAZYLEN(contents) * item_mush_val) > 0))
 				I = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
 				I.color = mush_color
-				I.alpha = mush_alpha
+				I.alpha = min(mush_alpha, L.max_voreoverlay_alpha)
 				var/total_mush_content = owner.nutrition + LAZYLEN(contents) * item_mush_val + extra_mush
 				I.pixel_y = -450 + (450 / max(max_mush, 1) * max(min(max_mush, total_mush_content), 1))
 				if(I.pixel_y < -450 + (450 / 100 * min_mush))
@@ -719,6 +730,7 @@
 				else
 					I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
 				I.pixel_y = -450 + min((450 / custom_max_volume * reagents.total_volume), 450 / 100 * max_liquid_level)
+				I.alpha = min(I.alpha, L.max_voreoverlay_alpha)
 				F.add_overlay(I)
 			F.update_for_view(L.client.view)
 		else
@@ -1215,6 +1227,11 @@
 //Typically just to the owner's location.
 /obj/belly/drop_location()
 	//Should be the case 99.99% of the time
+	if(isAI(owner))
+		var/mob/living/silicon/ai/AI = owner
+		if(AI.holo && AI.holo.masters[AI])
+			return AI.holo.masters[AI].drop_location()
+
 	if(owner)
 		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.

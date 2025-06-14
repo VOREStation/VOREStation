@@ -26,4 +26,6 @@ export type mobEntry = {
   erptag: string;
   character_ad: string;
   flavor_text: string;
+  custom_link: string;
+  photo: string | null;
 };

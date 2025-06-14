@@ -577,11 +577,9 @@ emp_act
 		var/obj/item/clothing/gloves/gl = gloves
 		gl.add_blood(source)
 		gl.transfer_blood = amount
-		gl.bloody_hands_mob = source
 	else
 		add_blood(source)
 		bloody_hands = amount
-		bloody_hands_mob = source
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)

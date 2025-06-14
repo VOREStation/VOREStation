@@ -593,6 +593,8 @@
 #define COMSIG_HUMAN_DISARM_HIT	"human_disarm_hit"
 ///Whenever EquipRanked is called, called after job is set
 #define COMSIG_JOB_RECEIVED "job_received"
+///When the mob's dna and species have been fully applied
+#define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
 
 // /datum/species signals
 

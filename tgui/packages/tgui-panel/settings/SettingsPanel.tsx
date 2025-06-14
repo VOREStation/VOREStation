@@ -17,6 +17,7 @@ import { ExportTab } from './SettingTabs/ExportTab';
 import { MessageLimits } from './SettingTabs/MessageLimits';
 import { SettingsGeneral } from './SettingTabs/SettingsGeneral';
 import { TextHighlightSettings } from './SettingTabs/TextHighlightSettings';
+import { TTSSettings } from './SettingTabs/TTSSettings';
 
 export const SettingsPanel = (props) => {
   const activeTab = useSelector(selectActiveTab);
@@ -52,6 +53,7 @@ export const SettingsPanel = (props) => {
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
         {activeTab === 'statPanel' && <SettingsStatPanel />}
         {activeTab === 'adminSettings' && <AdminSettings />}
+        {activeTab === 'ttsSettings' && <TTSSettings />}
       </Stack.Item>
     </Stack>
   );

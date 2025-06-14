@@ -900,10 +900,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "bJ" = (
-/obj/structure/table/steel,
-/obj/item/storage/box/lights/mixed,
 /obj/machinery/alarm/angled{
 	dir = 4
+	},
+/obj/vehicle/train/engine/janicart{
+	dir = 2
+	},
+/obj/item/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
@@ -5988,8 +5993,14 @@
 /area/stellardelight/deck1/shuttlebay)
 "lQ" = (
 /obj/structure/table/steel,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/item/storage/box/lights/mixed,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 21
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = 1;
+	pixel_x = 15
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "lR" = (
@@ -18789,10 +18800,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "NC" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	pixel_x = -24
+/obj/structure/closet/walllocker_double/generic_civ/west{
+	name = "Janicart keys"
 	},
+/obj/item/key/janicart,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "ND" = (

@@ -191,10 +191,14 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 		/obj/item/stack/material/morphium
 		// Include if you enable in the .dme /obj/item/stack/material/debug
 		)
+	possible_object_paths -= banned_sheet_materials
 	var/obj/item/stack/new_metal = /obj/item/stack/material/supermatter
 	for(var/x=1;x<=10;x++) //You got 10 chances to hit a metal that is NOT banned.
-		var/picked_metal = pick(possible_object_paths) //We select
+		var/obj/item/stack/material/picked_metal = pick(possible_object_paths) //We select
 		if(picked_metal in banned_sheet_materials)
+			continue
+		var/datum/material/M = get_material_by_name(initial(picked_metal.default_type))
+		if(M.flags & MATERIAL_NO_SYNTH)
 			continue
 		else
 			new_metal = picked_metal

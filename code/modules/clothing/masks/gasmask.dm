@@ -49,10 +49,9 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		user.drop_item(src)
 		var/obj/item/clothing/mask/gas/sechailer/N = new /obj/item/clothing/mask/gas/sechailer(src.loc)
-		N.fingerprints = src.fingerprints
-		N.fingerprintshidden = src.fingerprintshidden
-		N.fingerprintslast = src.fingerprintslast
-		N.suit_fibers = src.suit_fibers
+		transfer_blooddna_to(N)
+		transfer_fingerprints_to(N)
+		transfer_fibres_to(N)
 		N.hailer = I
 		I.loc = N
 		if(!isturf(N.loc))

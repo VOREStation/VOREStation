@@ -4,6 +4,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { digestModeToColor } from '../constants';
 import type { localPrefs, prefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
+import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
 import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
 import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher';
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
@@ -61,6 +62,7 @@ export const VoreUserPreferences = (props: {
     soulcatcher_allow_transfer,
     soulcatcher_allow_deletion,
     soulcatcher_allow_takeover,
+    max_voreoverlay_alpha,
   } = prefs;
 
   const preferences: localPrefs = {
@@ -713,6 +715,11 @@ export const VoreUserPreferences = (props: {
         latejoin_prey={latejoin_prey}
         no_spawnprey_warning_time={no_spawnprey_warning_time}
         no_spawnprey_warning_save={no_spawnprey_warning_save}
+      />
+      <VoreUserPreferencesFX
+        preferences={preferences}
+        show_vore_fx={show_vore_fx}
+        max_voreoverlay_alpha={max_voreoverlay_alpha}
       />
     </Section>
   );

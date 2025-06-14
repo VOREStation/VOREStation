@@ -72,6 +72,7 @@
 			to_chat(user, span_notice("You scrub \the [target.name] clean."))
 			var/turf/T = target
 			T.wash(CLEAN_SCRUB)
+			reagents.trans_to_turf(T, 1, 10)
 			decreaseUses(user)
 	else if(ishuman(target) && user.zone_sel.selecting == O_MOUTH)
 		if(target == user)

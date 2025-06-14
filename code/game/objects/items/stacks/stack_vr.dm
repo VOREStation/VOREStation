@@ -6,8 +6,7 @@
 	if(pulledby)
 		pulledby.start_pulling(S)
 	transfer_fingerprints_to(S)
-	if(blood_DNA)
-		S.blood_DNA |= blood_DNA
+	S.init_forensic_data().merge_blooddna(forensic_data)
 	use(transfer)
 	S.add(transfer)
 

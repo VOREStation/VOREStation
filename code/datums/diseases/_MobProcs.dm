@@ -23,6 +23,11 @@
 		return FALSE
 	return TRUE
 
+/mob/proc/isInfective()
+	if(isemptylist(GetSpreadableViruses()))
+		return FALSE
+	return TRUE
+
 /mob/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD && !global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 		return FALSE
@@ -186,6 +191,14 @@
 		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
 			continue
 		viruses_to_return += D
+	return viruses_to_return
+
+/mob/proc/GetDormantDiseases()
+	LAZYINITLIST(viruses)
+	var/list/viruses_to_return = list()
+	for(var/datum/disease/D in viruses)
+		if(D.virus_modifiers & DORMANT)
+			viruses_to_return += D
 	return viruses_to_return
 
 /mob/proc/GetResistances()
