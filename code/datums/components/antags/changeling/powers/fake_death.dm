@@ -48,7 +48,5 @@
 	return 1
 
 /mob/proc/finish_changeling_revive()
-	//The ling will now be able to choose when to revive
-	add_verb(src, /mob/proc/changeling_revive)
-
+	//Lets the ling know it's revive time.
 	to_chat(src, span_notice(span_giant("We are ready to rise.  Use the <b>Revive</b> verb when you are ready.")))
