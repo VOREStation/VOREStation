@@ -358,6 +358,14 @@
 			parts += O
 	return parts
 
+//Returns a list of fracturable organs
+/mob/living/carbon/human/proc/get_fracturable_organs()
+	var/list/obj/item/organ/external/parts = list()
+	for(var/obj/item/organ/external/O in organs)
+		if(O.is_fracturable())
+			parts += O
+	return parts
+
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
