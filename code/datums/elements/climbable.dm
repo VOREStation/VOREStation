@@ -43,18 +43,21 @@
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
 /datum/element/climbable/proc/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
+	if(user.is_incorporeal()) // No! Bad shadekin!
+		return FALSE
+
 	var/list/climbers = LAZYACCESS(current_climbers, climbed_thing)
 	if (!can_touch(climbed_thing, user) || (!post_climb_check && (user in climbers)))
-		return 0
+		return FALSE
 
 	if (!user.Adjacent(climbed_thing))
 		to_chat(user, span_danger("You can't climb there, the way is blocked."))
-		return 0
+		return FALSE
 
 	var/obj/occupied = can_climb_turf(climbed_thing)
 	if(occupied)
 		to_chat(user, span_danger("There's \a [occupied] in the way."))
-		return 0
+		return FALSE
 
 	// Railings are a bit snowflakey, but needed for when you climb from their turf to their facing turf!
 	if(climb_to_adjacent_turf)
@@ -62,8 +65,8 @@
 			occupied = can_climb_neighbor_turf(climbed_thing)
 			if(occupied)
 				to_chat(user, span_danger("You can't climb there, there's \a [occupied] in the way."))
-				return 0
-	return 1
+				return FALSE
+	return TRUE
 
 /// Performs the wait and any remaining checks before the climb resolves.
 /datum/element/climbable/proc/do_climb(var/obj/climbed_thing, var/mob/living/user, var/delay_time)
@@ -130,8 +133,10 @@
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(climbed_thing))
+		if(M.is_incorporeal())
+			continue
 		if(M.lying) //No spamming this on people.
-			return
+			continue
 
 		M.Weaken(3)
 		to_chat(M, span_danger("You topple as \the [climbed_thing] moves under you!"))
@@ -142,7 +147,7 @@
 			if(!istype(H))
 				to_chat(H, span_danger("You land heavily!"))
 				M.adjustBruteLoss(damage)
-				return
+				continue
 
 			var/obj/item/organ/external/affecting
 
