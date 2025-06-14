@@ -8,7 +8,10 @@
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 
+///Should never be destroyed as these are applied to the mind.
 /datum/component/antag/Destroy(force = FALSE)
+	if(!force)
+		return QDEL_HINT_LETMELIVE
 	owner = null
 	. = ..()
 

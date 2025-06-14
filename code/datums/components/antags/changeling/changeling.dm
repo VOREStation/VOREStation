@@ -104,7 +104,9 @@ var/list/datum/power/changeling/powerinstances = list()
 
 ///This is a component that is referenced to by the mind, so it should never be deleted
 /datum/component/antag/changeling/Destroy(force = FALSE)
-	return QDEL_HINT_LETMELIVE
+	if(!force)
+		return QDEL_HINT_LETMELIVE
+	return ..()
 	//Old code from when it did destroy itself.
 	/*
 	if(owner)
