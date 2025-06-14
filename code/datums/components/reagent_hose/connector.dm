@@ -311,9 +311,7 @@
 		if(CONNECTION_MODE_BLOOD)
 			// Inflating
 			var/datum/component/hose_connector/other = get_pairing()
-			if(!other)
-				return null
-			if(other.flow_direction == HOSE_OUTPUT)
+			if(!other || other.flow_direction == HOSE_OUTPUT)
 				return human_owner.bloodstr // Pump into blood reagents
 			// Draining
 			if(prob(30) && my_hose) // NEVER put normal reagents into the vessel...
