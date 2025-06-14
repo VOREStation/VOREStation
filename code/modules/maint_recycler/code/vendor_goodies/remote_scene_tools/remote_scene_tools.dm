@@ -13,7 +13,7 @@ why aren't these accessories?
 /obj/item/remote_scene_tool
 	var/obj/item/remote_scene_tool/linked
 	icon = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools.dmi'
-	icon_override = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools_worn.dmi'
+	icon_override = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools.dmi'
 	item_state = "InvalidState" //so it defaults to the empty icon
 	var/icon_root = "sticker"
 	icon_state = "sticker_inactive"
@@ -25,6 +25,7 @@ why aren't these accessories?
 	var/mob/worn_mob = null
 	var/last_loc
 	var/can_summon = TRUE
+	var/can_replace = TRUE
 
 	var/replacementType = /obj/item/remote_scene_tool
 
@@ -198,7 +199,7 @@ why aren't these accessories?
 /obj/item/remote_scene_tool/verb/summon_counterpart()
 	set name = "Summon Counterpart"
 	set desc = "Forcibly moves the linked object over to you - or, if it doesn't exist, spawn a new one."
-	if(can_summon || linked == null)
+	if(can_summon || (linked == null && can_replace))
 		if(linked == null)
 			create_counterpart()
 			to_chat(usr,span_notice("\The [src] forms a new [linked]!"))

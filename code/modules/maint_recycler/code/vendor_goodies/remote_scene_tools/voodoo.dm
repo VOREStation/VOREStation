@@ -11,6 +11,8 @@
 	icon_root = "voodoo_doll"
 	description_info = "The Doll acts as a remote scene tool - any sort of emotes or subtles that the wearer does will go DIRECTLY to the necklace! It's vague, so use it how you want in RP! Just remember bystander consent!"
 
+	replacementType = /obj/item/remote_scene_tool/voodoo_necklace
+
 	//this is just a copy of the remote scene tool, but with a different icon
 	//and a different name
 
@@ -57,6 +59,7 @@
 	icon_root = "necklace"
 	slot_flags = SLOT_MASK
 	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vague, so use it how you want in RP! Just remember bystander consent!"
+	replacementType = /obj/item/remote_scene_tool/voodoo_doll
 
 /obj/item/storage/box/remote_scene_tools/voodoo
 	icon_state = "voodoobox"
@@ -125,6 +128,8 @@
 	if(istype(owner,/mob/living/carbon/human/teshari)) return //no flesh horror, sorry
 
 	if(!ismob(loc) && !ismob(loc.loc)) return //only render the funny when we're on a humie
+
+	if(no_fun_mode) return //no fun allowed
 
 	if(ishuman(owner)) //TODO, refactor the fuck out of this once I port the tgui filter manager stuff over.
 		var/mob/living/carbon/human/buddy = owner
