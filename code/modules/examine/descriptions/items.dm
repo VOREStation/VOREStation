@@ -96,7 +96,7 @@
 	var/assembled_string = ""
 	for(var/index in 1 to weapon_stats.len)
 		var/msg = weapon_stats[index]
-		if(index > 1)
+		if(index != weapon_stats.len)
 			msg += "\n"
 		assembled_string += msg
 		if(msg == description_info) //keeping the formatting as identical as I can
