@@ -82,6 +82,8 @@
 /datum/forensics_crime/proc/merge_prints(var/datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprints))
 		return
+	if(!fingerprints)
+		fingerprints = list()
 	if(fingerprints)
 		fingerprints |= origin.fingerprints
 	else
@@ -146,6 +148,8 @@
 /datum/forensics_crime/proc/merge_hiddenprints(var/datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprintshidden))
 		return
+	if(!fingerprintshidden)
+		fingerprintshidden = list()
 	if(fingerprintshidden)
 		fingerprintshidden |= origin.fingerprintshidden
 	else
@@ -201,6 +205,8 @@
 /datum/forensics_crime/proc/merge_fibres(var/datum/forensics_crime/origin)
 	if(!islist(origin?.suit_fibres))
 		return
+	if(!suit_fibres)
+		suit_fibres = list()
 	if(suit_fibres)
 		suit_fibres |= origin.suit_fibres
 	else
@@ -262,6 +268,8 @@
 /datum/forensics_crime/proc/merge_blooddna(var/datum/forensics_crime/origin, var/list/raw_list = null)
 	// Copying from a list, blood on a mob's feet is stored as a list outside of forensics data
 	if(raw_list)
+		if(!blood_DNA)
+			blood_DNA = list()
 		if(blood_DNA)
 			blood_DNA |= raw_list
 		else
@@ -270,6 +278,8 @@
 	// Copying from another datums
 	if(!islist(origin?.blood_DNA))
 		return
+	if(!blood_DNA)
+		blood_DNA = list()
 	if(blood_DNA)
 		blood_DNA |= origin.blood_DNA
 	else
