@@ -1,3 +1,12 @@
+/datum/power/changeling/changeling_revive
+	name = "Revive"
+	desc = "We revive from our death-like state."
+	helptext = "Regeneration must first be started via Regenerative Stasis."
+	ability_icon_state = "ling_revive"
+	genomecost = 0
+	allowduringlesserform = TRUE
+	verbpath = /mob/proc/changeling_revive
+
 //Revive from revival stasis
 /mob/proc/changeling_revive()
 	set category = "Changeling"
@@ -6,11 +15,21 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(0,0,100,DEAD)
 	if(!changeling)
-		return 0
+		return FALSE
+
+	if(stat != DEAD)
+		to_chat(src, span_danger("We are not dead."))
+		return FALSE
+	if(!changeling.is_reviving)
+		to_chat(src, span_danger("We have not begun the regeneration process yet.."))
+		return FALSE
+	if(changeling.is_on_cooldown(FAKE_DEATH))
+		to_chat(src, span_danger("We are still recovering. We will be able to revive again in [(changeling.get_cooldown(FAKE_DEATH) - world.time)/10] seconds."))
+		return FALSE
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
 		to_chat(src, span_danger("You have no genomes, not even your own, and cannot revive."))
-		return 0
+		return FALSE
 
 	if(src.stat == DEAD)
 		dead_mob_list -= src
@@ -78,17 +97,15 @@
 	C.shock_stage = 0 //Pain
 	to_chat(C, span_notice("We have regenerated."))
 	C.update_canmove()
-	changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")
 	C.set_stat(CONSCIOUS)
 	C.forbid_seeing_deadchat = FALSE
 	C.timeofdeath = null
-	remove_verb(src, /mob/proc/changeling_revive)
-	// re-add our changeling powers
-	C.make_changeling()
+	changeling.is_reviving = FALSE
 
-	return 1
+	return TRUE
 
+/*
 //Revive from revival stasis, but one level removed, as the tab refuses to update. Placed in its own tab to avoid hyper-exploding the original tab through the same name being used.
 
 /obj/changeling_revive_holder
@@ -108,3 +125,4 @@
 		C.changeling_revive()
 
 	qdel(src)
+*/

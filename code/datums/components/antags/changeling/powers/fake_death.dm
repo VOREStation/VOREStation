@@ -24,30 +24,31 @@
 
 	if(!C.stat && tgui_alert(src, "Are we sure we wish to regenerate? We will appear to be dead while doing so.","Revival",list("Yes","No")) != "Yes")
 		return
-	to_chat(C, span_notice("We will attempt to regenerate our form."))
 
 	C.update_canmove()
-	C.remove_changeling_powers()
 	changeling.chem_charges -= CHANGELING_STASIS_COST
 
 	if(C.suiciding)
-		C.suiciding = 0
+		C.suiciding = FALSE
 
 	if(C.does_not_breathe)
-		C.does_not_breathe = 0	//This means they don't autoheal the oxy damage from the next step
+		C.does_not_breathe = FALSE	//This means they don't autoheal the oxy damage from the next step
 
 	if(C.stat != DEAD)
 		C.adjustOxyLoss(C.getMaxHealth() * 2)
 
 	C.forbid_seeing_deadchat = TRUE
 
-	spawn(rand(2 MINUTES, 4 MINUTES))
-		//The ling will now be able to choose when to revive
-		add_verb(src, /mob/proc/changeling_revive)
-
-		new /obj/changeling_revive_holder(src)
-
-		to_chat(src, span_notice(span_giant("We are ready to rise.  Use the <b>Revive</b> verb when you are ready.")))
-
+	var/resurrection_time = rand(2 MINUTES, 4 MINUTES)
+	changeling.set_cooldown(FAKE_DEATH, resurrection_time)
+	changeling.is_reviving = TRUE
+	to_chat(C, span_notice("We will attempt to regenerate our form. This will take [(changeling.get_cooldown(FAKE_DEATH) - world.time)/600] minutes."))
+	addtimer(CALLBACK(src, PROC_REF(finish_changeling_revive)), resurrection_time, TIMER_DELETE_ME)
 	feedback_add_details("changeling_powers","FD")
 	return 1
+
+/mob/proc/finish_changeling_revive()
+	//The ling will now be able to choose when to revive
+	add_verb(src, /mob/proc/changeling_revive)
+
+	to_chat(src, span_notice(span_giant("We are ready to rise.  Use the <b>Revive</b> verb when you are ready.")))
