@@ -20,6 +20,10 @@
 	var/obj/machinery/shield_gen/owned_gen
 	interact_offline = TRUE
 
+/obj/machinery/shield_capacitor/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"
 	desc = "A machine that charges a shield generator.  This version can store, input, and output more electricity."

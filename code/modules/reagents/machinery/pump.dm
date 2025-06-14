@@ -33,6 +33,8 @@
 	RefreshParts()
 	update_icon()
 
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/pump/Destroy()
 	QDEL_NULL(cell)
 	. = ..()

@@ -16,6 +16,7 @@
 /obj/machinery/floodlight/Initialize(mapload)
 	. = ..()
 	cell = new(src)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/floodlight/update_icon()
 	cut_overlays()

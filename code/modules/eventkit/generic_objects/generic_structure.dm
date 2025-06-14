@@ -5,7 +5,6 @@
 	icon_state = "bsb_off"
 	anchored = 1
 	density = 1
-	climbable = 0
 	breakable = 0
 	var/on = 0
 	var/icon_state_off = "bsb_off"

@@ -54,6 +54,7 @@
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)

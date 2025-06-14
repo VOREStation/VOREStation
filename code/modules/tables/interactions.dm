@@ -14,14 +14,6 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/table/climb_to(mob/living/mover)
-	if(flipped == 1 && mover.loc == loc)
-		var/turf/T = get_step(src, dir)
-		if(T.Enter(mover))
-			return T
-
-	return ..()
-
 /obj/structure/table/Uncross(atom/movable/mover, turf/target)
 	if(flipped == 1 && (get_dir(mover, target) == dir)) // From here to elsewhere, can't move in our dir
 		return !density
@@ -96,7 +88,7 @@
 		var/obj/item/grab/G = W
 		if (isliving(G.affecting))
 			var/mob/living/M = G.affecting
-			var/obj/occupied = turf_is_crowded()
+			var/obj/occupied = can_climb_turf(src)
 			if(occupied)
 				to_chat(user, span_danger("There's \a [occupied] in the way."))
 				return

@@ -64,10 +64,14 @@
 	icon = 'icons/obj/closets/poireactor.dmi'
 	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
-	climbable = FALSE
 
 	starts_with = list(
 		/obj/item/fuel_assembly/deuterium = 6)
+
+/obj/structure/closet/crate/oldreactor/Initialize(mapload)
+	. = ..()
+	// Not climbable!
+	RemoveElement(/datum/element/climbable)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"

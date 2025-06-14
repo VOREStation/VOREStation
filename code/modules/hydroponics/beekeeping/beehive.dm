@@ -12,6 +12,10 @@
 	var/list/frames = list()	// List of frames inside.
 	var/maxFrames = 5
 
+/obj/machinery/beehive/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/beehive/update_icon()
 	cut_overlays()
 	icon_state = "beehive"

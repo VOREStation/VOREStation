@@ -141,6 +141,10 @@
 		/turf/simulated/floor/outdoors,
 	)
 
+/obj/machinery/shieldgen/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()
 	. = ..()
