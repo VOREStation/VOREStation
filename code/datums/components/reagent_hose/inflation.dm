@@ -81,7 +81,7 @@
 	if(!do_after(user,7 SECONDS,human_owner))
 		to_chat(user,span_warning("You couldn't connect the hose!"))
 		return FALSE
-	if(other.get_hose())
+	if(other.get_hose() || get_hose()) // SHouldn't be connected to anything yet!
 		to_chat(user,span_warning("You couldn't connect the hose, another hose is already connected!"))
 		return FALSE
 	if(connection_mode == CHEM_BLOOD) //OWCH!
@@ -148,6 +148,9 @@
 			// Sharing with us
 			reagents.trans_to_holder(connected_to, reagents.maximum_volume) // Load our current reagents back into tank, it's mixed!
 			connected_to.trans_to_holder(reagents, rand(1,reagents.maximum_volume) ) // Fill back up to a random amount
+
+	if(connection_mode == CHEM_VORE && human_owner.vore_selected.count_liquid_for_sprite)
+		human_owner.handle_belly_update()
 
 	if(prob(5) && (reagents.total_volume > 0 || connected_to.total_volume > 0))
 		var/atom/pumper = other.get_carrier()
