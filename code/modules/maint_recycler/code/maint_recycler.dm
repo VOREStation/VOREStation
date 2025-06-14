@@ -485,7 +485,7 @@ UTILITY PROCS
 /obj/machinery/maint_recycler/proc/credit_user(var/mob/user, var/amount)
 	if(!user || !user.client || !user.client.prefs) return
 	var/currentValue = 	user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
-	user.client?.prefs?.write_preference_by_type(/datum/preference/numeric/recycler_points, currentValue + amount)
+	user.client?.prefs?.write_preference_by_type(/datum/preference/numeric/recycler_points, min(currentValue + amount,999))
 	if(granted_points[user.key])
 		granted_points[user.key] += amount
 	else
@@ -503,7 +503,7 @@ UTILITY PROCS
 /obj/machinery/maint_recycler/proc/mob_consent_check(var/mob/probable_victim)
 	if(probable_victim.key)
 		if(probable_victim.client) //sanity check to make sure they are alright with getting squished to death
-			return (tgui_alert(usr,"Do you want to be put in \The [src]? Industrial machinery is pretty damn deadly, you'll probably die. to death. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
+			return (tgui_alert(probable_victim,"Do you want to be put in \The [src]? Industrial machinery is pretty damn deadly, you'll probably die. to death. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
 		else return FALSE //no logged out users
 	else return TRUE //mindless mobs that've never felt the gentle touch of a client are fine
 
