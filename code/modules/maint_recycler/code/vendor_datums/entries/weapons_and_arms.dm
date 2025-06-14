@@ -14,18 +14,6 @@
 	name = "MUNITIONS FOR GUN"
 	ad_message =  "FOAM FLINGING PAIN!"
 	desc = "BIG BOX? BIG AMMO. THAT'S RIGHT. WE'LL BIG YOUR AMMO. FOAM DARTS, FOR FOAM DART GUNS - LIMITED EDITION FRAG MONTAGE BUY NOW"
-	object_type_to_spawn = /obj/item/toy/russian_revolver/trick_revolver
-	item_cost = 15 //cheap!
-	tagline = "to war!"
-	per_person_cap = 1
-	per_round_cap = 3 //limited supply!
-	required_access = list(access_security)
-	vendor_category = MAINTVENDOR_WEAPONS
-
-/datum/maint_recycler_vendor_entry/foamforce_ammo //fun!
-	name = "MUNITIONS FOR GUN"
-	ad_message =  "FOAM FLINGING PAIN!"
-	desc = "BIG BOX? BIG AMMO. THAT'S RIGHT. WE'LL BIG YOUR AMMO. FOAM DARTS, FOR FOAM DART GUNS - LIMITED EDITION FRAG MONTAGE BUY NOW"
 	object_type_to_spawn = /obj/item/ammo_magazine/ammo_box/foam
 	item_cost = 15 //cheap!
 	tagline = "hoo rah!"
