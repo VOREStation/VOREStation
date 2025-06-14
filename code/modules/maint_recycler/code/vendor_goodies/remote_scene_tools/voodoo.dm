@@ -21,17 +21,8 @@
 	var/list/tail_data = list( DATA_X_OFFSET = 2, DATA_Y_OFFSET = -2,DATA_SCALE = 1.6, DATA_ROTATION = 45)
 	var/list/taur_data = list( DATA_X_OFFSET = 2, DATA_Y_OFFSET = 2, DATA_SCALE = 1.1, DATA_ROTATION = 45)
 	var/list/wing_data = list( DATA_X_OFFSET = 2, DATA_Y_OFFSET = -2,DATA_SCALE = 1,   DATA_ROTATION = 45)
-	var/list/ear_data =  list( DATA_X_OFFSET = 0, DATA_Y_OFFSET = 1, DATA_SCALE = 1,   DATA_ROTATION = 45)
+	var/list/ear_data =  list( DATA_X_OFFSET = 0, DATA_Y_OFFSET = 1, DATA_SCALE = 1.5,   DATA_ROTATION = 45)
 	var/list/hat_data =  list( DATA_X_OFFSET = 0, DATA_Y_OFFSET = 3, DATA_SCALE = 1,   DATA_ROTATION = 45)
-
-	var/earScaleX = 1.5
-	var/earScaleY = 1.5
-	var/earPixelX = 0
-	var/earPixelY = 1
-
-	var/hatScale = 1
-	var/hatPixelX = 0
-	var/hatPixelY = 3
 	var/outline_size = 1
 
 	var/list/discarded_layer_indicies = list(
@@ -98,6 +89,7 @@
 
 	input.dir = SOUTH
 	input.transform = newtransform
+	input.layer = FLOAT_LAYER
 	if(outline_width > 0)
 		input.filters += filter(type="outline", size = outline_width, color = outline_color)
 
@@ -157,21 +149,24 @@
 		var/image/under_wing_image = generate_layer_image(buddy.get_wing_image(TRUE),generate_layer_matrix(wing_data),outline_size,wingoutlinecolor)
 
 		//the rest are pretty simple
-		var/image/ear_image = generate_layer_image(image(icon = buddy.get_ears_overlay()),generate_layer_matrix(ear_data))
+		var/ear_icon = buddy.get_ears_overlay()
+		var/image/ear_image = generate_layer_image(image(icon = ear_icon),generate_layer_matrix(ear_data))
 
 		//hat
-		var/image/hat_image = buddy.head?.make_worn_icon(body_type = buddy.species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
-		hat_image = generate_layer_image(hat_image,generate_layer_matrix(hat_data))
+		var/hat_icon = buddy.head?.make_worn_icon(body_type = buddy.species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+		var/image/hat_image = generate_layer_image(image(icon = hat_icon),generate_layer_matrix(hat_data))
+
+
 
 		//add them all
 		overlays |= displacement_rendered
-		overlays |= hat_image
-		overlays |= ear_image
+		overlays += ear_image
+		overlays += hat_image
 
 		if(!is_tail_taur)
-			underlays |= tail_image
+			underlays += tail_image
 		else
-			overlays |= tail_image
+			overlays += tail_image
 
 		underlays |= wing_image
 		underlays |= under_wing_image
