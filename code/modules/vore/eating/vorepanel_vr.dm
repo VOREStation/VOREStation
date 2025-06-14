@@ -1334,7 +1334,7 @@
 		CRASH("[type] set message lists with invalid length!")
 
 	for(var/i = 1, i <= messages.len, i++)
-		messages[i] = sanitize(messages[i], limit, FALSE, TRUE, FALSE)
+		messages[i] = sanitize(messages[i], limit, FALSE, TRUE, FALSE) || ""
 
 	switch(type)
 		if(GENERAL_EXAMINE_NUTRI)
