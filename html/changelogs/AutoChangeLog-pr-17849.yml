@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "reagent hoses can be used to inflate and drain other human mobs in various ways"
-  - rscadd: "borgs now have hose connectors that go to their current vore belly"
-  - qol: "Show belly fluid verb now shows composition of belly fluids and not just amount"
-  - code_imp: "reagents that enter someone's belly become belly reagents to respect prefs"
