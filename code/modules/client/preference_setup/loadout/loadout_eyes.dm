@@ -196,20 +196,20 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/eyes/arglasses/visor
+/datum/gear/eyes/arglasses_visor
 	display_name = "AR visor"
 	path = /obj/item/clothing/glasses/omnihud/visor
 
-/datum/gear/eyes/arglasses/visor/New()
+/datum/gear/eyes/arglasses_visor/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
-/datum/gear/eyes/arglasses/sec
+/datum/gear/eyes/arglasses_sec
 	display_name = "AR-Security glasses"
 	path = /obj/item/clothing/glasses/omnihud/sec
 	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_DETECTIVE)
 
-/datum/gear/eyes/arglasses/sec/New()
+/datum/gear/eyes/arglasses_sec/New()
 	..()
 	var/list/selector_uniforms = list(
 		"standard AR-Security glasses"=/obj/item/clothing/glasses/omnihud/sec,
@@ -217,12 +217,12 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/eyes/arglasses/sci
+/datum/gear/eyes/arglasses_sci
 	display_name = "AR-Research glasses"
 	path = /obj/item/clothing/glasses/omnihud/rnd
 	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST,JOB_ROBOTICIST)
 
-/datum/gear/eyes/arglasses/sci/New()
+/datum/gear/eyes/arglasses_sci/New()
 	..()
 	var/list/selector_uniforms = list(
 		"standard AR-Research glasses"=/obj/item/clothing/glasses/omnihud/rnd,
@@ -230,12 +230,12 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/eyes/arglasses/eng
+/datum/gear/eyes/arglasses_eng
 	display_name = "AR-Engineering glasses"
 	path = /obj/item/clothing/glasses/omnihud/eng
 	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
 
-/datum/gear/eyes/arglasses/eng/New()
+/datum/gear/eyes/arglasses_eng/New()
 	..()
 	var/list/selector_uniforms = list(
 		"standard AR-Engineering glasses"=/obj/item/clothing/glasses/omnihud/eng,
@@ -243,12 +243,12 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/eyes/arglasses/med
+/datum/gear/eyes/arglasses_med
 	display_name = "AR-Medical glasses"
 	path = /obj/item/clothing/glasses/omnihud/med
 	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
-/datum/gear/eyes/arglasses/med/New()
+/datum/gear/eyes/arglasses_med/New()
 	..()
 	var/list/selector_uniforms = list(
 		"standard AR-Medical glasses"=/obj/item/clothing/glasses/omnihud/med,
@@ -256,13 +256,13 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
-/datum/gear/eyes/arglasses/all
+/datum/gear/eyes/arglasses_all
 	display_name = "AR-Command glasses"
 	path = /obj/item/clothing/glasses/omnihud/all
 	cost = 2
 	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL)
 
-/datum/gear/eyes/arglasses/all/New()
+/datum/gear/eyes/arglasses_all/New()
 	..()
 	var/list/selector_uniforms = list(
 		"standard AR-Command glasses"=/obj/item/clothing/glasses/omnihud/all,
