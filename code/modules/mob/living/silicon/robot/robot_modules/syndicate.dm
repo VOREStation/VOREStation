@@ -136,6 +136,10 @@
 	name = "combat medic robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
+/obj/item/robot_module/robot/syndicate/ninja
+	name = "ninja robot module"
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
+
 /obj/item/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/healthanalyzer/phasic(src)
@@ -193,3 +197,15 @@
 		S.desc = initial(S.desc)
 		S.update_icon()
 	..()
+
+
+/obj/item/robot_module/robot/syndicate/ninja/create_equipment(var/mob/living/silicon/robot/robot)
+	..()
+	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
+	src.modules += new /obj/item/gripper/omni(src)
+	src.modules += new /obj/item/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/multitool(src)
