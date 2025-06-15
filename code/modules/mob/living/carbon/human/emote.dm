@@ -382,7 +382,10 @@ var/list/_simple_mob_default_emotes = list(
 	HTML += "<hr />"
 	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt></body></html>"
-	src << browse(HTML, "window=flavor_changes;size=430x300")
+
+	var/datum/browser/popup = new(src, "flavor_changes", "Change Flavortexts", 430, 300)
+	popup.set_content(HTML)
+	popup.open()
 
 /mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)

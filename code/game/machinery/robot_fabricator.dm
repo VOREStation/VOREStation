@@ -56,9 +56,10 @@ Please wait until completion...</TT><BR>
 <A href='byond://?src=\ref[src];make=7'>Robot Frame (75,000 cc metal).<BR>
 "}
 
-	user << browse("<html><HEAD><TITLE>Robotic Fabricator Control Panel</TITLE></HEAD><TT>[dat]</TT></html>", "window=robot_fabricator")
-	onclose(user, "robot_fabricator")
-	return
+	var/datum/browser/popup = new(user, "robot_fabricator", "Robot Fabricator")
+	popup.add_head_content("<TITLE>Robotic Fabricator Control Panel</TITLE>")
+	popup.set_content("<TT>[dat]</TT>")
+	popup.open()
 
 /obj/machinery/robotic_fabricator/Topic(href, href_list)
 	if(..())

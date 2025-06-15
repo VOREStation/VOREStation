@@ -52,12 +52,15 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			title = "Resolved Tickets"
 	if(!l2b)
 		return
-	var/list/dat = list("<html><head><title>[title]</title></head>")
+	var/list/dat = list()
 	dat += "<A href='byond://?_src_=mentorholder;[HrefToken()];mhelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/datum/mentor_help/MH as anything in l2b)
 		dat += span_adminnotice(span_adminhelp("Ticket #[MH.id]") + " <A href='byond://?_src_=mentorholder;mhelp=\ref[MH];[HrefToken()];mhelp_action=ticket'>[MH.initiator_ckey]: [MH.name]</A>") + "<br>"
-	dat += "</html>"
-	usr << browse(dat.Join(), "window=mhelp_list[state];size=600x480")
+
+	var/datum/browser/popup = new(usr, "mhelp_list[state]", "Mentor Help List", 600, 480)
+	popup.add_head_content("<title>[title]</title>")
+	popup.set_content(dat.Join())
+	popup.open()
 
 //Tickets statpanel
 /datum/mentor_help_tickets/proc/stat_entry()
@@ -269,7 +272,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/mticket_list)
 	tgui_interact(usr.client.mob)
 
 /datum/mentor_help/proc/TicketPanelLegacy()
-	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
+	var/list/dat = list()
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Mentor Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
 	dat += span_bold("State: ")
@@ -294,8 +297,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/mticket_list)
 	dat += "<br>" + span_bold("Log:") + "<br><br>"
 	for(var/I in _interactions)
 		dat += "[I]<br>"
-	dat += "</html>"
-	usr << browse(dat.Join(), "window=mhelp[id];size=620x480")
+
+	var/datum/browser/popup = new(usr, "mhelp[id]", "Mento Help [id]", 620, 480)
+	popup.add_head_content("<title>Ticket #[id]</title>")
+	popup.set_content(dat.Join())
+	popup.open()
 
 /datum/mentor_help/tgui_fallback(payload)
 	if(..())

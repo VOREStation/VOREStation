@@ -42,9 +42,10 @@
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
 	user.set_machine(src)
-	user << browse("<html>[dat]</html>", "window=implant")
-	onclose(user, "implant")
 
+	var/datum/browser/popup = new(user, "implant", "Implant")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/implantchair/Topic(href, href_list)
 	if((get_dist(src, usr) <= 1) || isAI(usr))

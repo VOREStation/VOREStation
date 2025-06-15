@@ -23,7 +23,7 @@
 			else
 				inactive_on_main_station++
 
-	var/output = {"<html><B>AIR SYSTEMS REPORT</B><HR>
+	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
 	Cycle: [SSair.current_cycle]<br>
 	Groups: [SSair.zones.len]<BR>
@@ -36,10 +36,12 @@
 	Hotspot Processing: [hotspots]<BR>
 <br>
 <B>Geometry Processing Data</B><BR>
-	Tile Update: [SSair.tiles_to_update.len]<BR></html>
+	Tile Update: [SSair.tiles_to_update.len]<BR>
 "}
 
-	usr << browse(output,"window=airreport")
+	var/datum/browser/popup = new(src, "airreport", "Airreport")
+	popup.set_content(output)
+	popup.open()
 
 /client/proc/fix_next_move()
 	set category = "Debug.Game"
@@ -95,7 +97,9 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
-	usr << browse("<html>[output]</html>","window=radioreport")
+	var/datum/browser/popup = new(src, "radioreport", "Radioreport")
+	popup.set_content(output)
+	popup.open()
 	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/reload_admins()

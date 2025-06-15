@@ -537,7 +537,9 @@
 		else
 			dat += span_bold("Primarily [u_attack.attack_name]") + " - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
 
-	src << browse("<html>[dat]</html>", "window=checkattack")
+	var/datum/browser/popup = new(src, "checkattack")
+	popup.set_content(dat)
+	popup.open()
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if(href_list["default_attk"])
@@ -554,7 +556,6 @@
 
 /mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
 	default_attack = u_attack
-
 
 /mob/living/carbon/human/proc/perform_cpr(var/mob/living/carbon/human/reviver)
 	// Check for sanity

@@ -88,11 +88,10 @@
 		dat += "<br>"
 	dat += "<i>Device ID:</i> [machine_id]"
 
-	dat = "<html><head><title>Retail Scanner</title></head><body>[dat]</body></html>"
-
-	user << browse(dat, "window=retail;size=350x500")
-	onclose(user, "retail")
-
+	var/datum/browser/popup = new(user, "retail", "Retail", 350, 500)
+	popup.add_head_content("<title>Retail Scanner</title>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/retail_scanner/Topic(var/href, var/href_list)
 	if(..())
