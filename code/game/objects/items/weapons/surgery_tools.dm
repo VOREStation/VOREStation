@@ -225,46 +225,7 @@
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
 
-/*
- * Cyborg Tools
- */
-/obj/item/surgical/retractor/cyborg
-	icon_state = "cyborg_retractor"
-	toolspeed = 0.5
 
-/obj/item/surgical/hemostat/cyborg
-	icon_state = "cyborg_hemostat"
-	toolspeed = 0.5
-
-/obj/item/surgical/cautery/cyborg
-	icon_state = "cyborg_cautery"
-	toolspeed = 0.5
-
-/obj/item/surgical/surgicaldrill/cyborg
-	icon_state = "cyborg_drill"
-	toolspeed = 0.5
-
-/obj/item/surgical/scalpel/cyborg
-	icon_state = "cyborg_scalpel"
-	toolspeed = 0.5
-
-/obj/item/surgical/circular_saw/cyborg
-	icon_state = "cyborg_saw"
-	toolspeed = 0.5
-
-/obj/item/surgical/bonegel/cyborg
-	toolspeed = 0.5
-
-/obj/item/surgical/FixOVein/cyborg
-	toolspeed = 0.5
-
-/obj/item/surgical/bonesetter/cyborg
-	icon_state = "cyborg_setter"
-	toolspeed = 0.5
-
-/obj/item/surgical/bioregen/cyborg //VoreStation edit: let the borgs S U C C
-	icon_state = "cyborg_bioregen"
-	toolspeed = 0.5
 
 /*
  * Alien Tools
