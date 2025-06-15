@@ -368,7 +368,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
 				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newAI.ogg')
+				//world << sound('sound/AI/newai.ogg')
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -831,18 +831,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	else
 		O=new original.type(locate(0,0,0))
 
-	var/static/list/blacklisted_var_names = list(
-		"ATOM_TOPIC_EXAMINE",
-		"type",
-		"loc",
-		"locs",
-		"vars",
-		"parent",
-		"parent_type",
-		"verbs",
-		"ckey",
-		"key"
-	)
+	var/static/list/blacklisted_var_names = list(BLACKLISTED_COPY_VARS)
 	if(perfectcopy)
 		if((O) && (original))
 			for(var/V in original.vars)

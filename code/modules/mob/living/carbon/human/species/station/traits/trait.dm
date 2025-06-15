@@ -16,8 +16,7 @@
 	var/varchange_type = TRAIT_VARCHANGE_ALWAYS_OVERRIDE	//Mostly used for non-custom species.
 	var/has_preferences //if set, should be a list of the preferences for this trait in the format: list("identifier/name of var to edit" = list(typeofpref, "text to display in prefs", TRAIT_NO_VAREDIT_TARGET/TRAIT_VAREDIT_TARGET_SPECIES/etc, (optional: default value)), etc) typeofpref should follow the defines in _traits.dm (eg. TRAIT_PREF_TYPE_BOOLEAN)
 	var/special_env = FALSE
-
-
+	var/added_component_path		//What component this trait applies, if any.
 
 
 	// Traitgenes Traits can toggle mutations and disabilities
@@ -35,6 +34,7 @@
 	var/mutation = 0 	// Mutation to give (or 0)
 	var/disability = 0 	// Disability to give (or 0)
 	var/sdisability = 0 // SDisability to give (or 0)
+	var/addiction = null // Addiction reagent, null otherwise
 	var/activation_message = null // If not null, shows a message when activated as a gene
 	var/deactivation_message = null // If not null, shows a message when deactivated as a gene
 	var/list/primitive_expression_messages=list() // Monkey's custom emote when they have this gene!
@@ -73,6 +73,8 @@
 	add_verb(H, /mob/living/carbon/human/proc/trait_tutorial)
 	if(special_env)
 		S.env_traits += src
+	if(added_component_path)
+		H.AddComponent(added_component_path)
 	return
 
 // Traitgenes Disabling traits, genes can be turned off after all!
@@ -102,6 +104,10 @@
 		H.sdisabilities &= ~sdisability // bitflag
 	if(special_env)
 		S.env_traits -= src
+	if(added_component_path)
+		var/datum/component/C = H.GetComponent(added_component_path)
+		if(C)
+			qdel(C)
 	return
 
 /datum/trait/proc/send_message(var/mob/living/carbon/human/H, var/enabled)

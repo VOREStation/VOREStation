@@ -106,6 +106,8 @@
 			if(is_lang_whitelisted(usr,chosen_language) || (avatar.species && (chosen_language.name in avatar.species.secondary_langs)))
 				avatar.add_language(lang)
 
+	SEND_SIGNAL(avatar, COMSIG_HUMAN_DNA_FINALIZED)
+
 	avatar.regenerate_icons()
 	avatar.update_transform()
 	job_master.EquipRank(avatar,JOB_VR, 1, FALSE)

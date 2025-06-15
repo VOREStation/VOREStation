@@ -26,6 +26,7 @@
 	add_verb(src, /mob/proc/insidePanel)
 
 /mob/new_player/Destroy()
+	GLOB.new_player_list -= src
 	if(manifest_dialog)
 		QDEL_NULL(manifest_dialog)
 	if(late_choices_dialog)
@@ -404,7 +405,6 @@
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character, icon_updates = TRUE)
 
@@ -424,6 +424,7 @@
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 	new_character.sync_organ_dna()
+	new_character.sync_addictions() // Handle round-start addictions
 	new_character.initialize_vessel()
 
 	for(var/lang in client.prefs.alternate_languages)
@@ -436,14 +437,14 @@
 			var/datum/language/keylang = GLOB.all_languages[client.prefs.language_custom_keys[key]]
 			if(keylang)
 				new_character.language_keys[key] = keylang
-	// VOREStation Add: Preferred Language Setting;
 	if(client.prefs.preferred_language) // Do we have a preferred language?
 		var/datum/language/def_lang = GLOB.all_languages[client.prefs.preferred_language]
 		if(def_lang)
 			new_character.default_language = def_lang
-	// VOREStation Add End
 	// And uncomment this, too.
 	//new_character.dna.UpdateSE()
+
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
 
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()

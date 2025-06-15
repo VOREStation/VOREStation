@@ -4,7 +4,6 @@
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
-	var/gunshot_residue //Used by forensics.
 
 	var/list/accessories
 	var/list/valid_accessory_slots
@@ -32,12 +31,6 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-// Aurora forensics port.
-/obj/item/clothing/clean_blood()
-	. = ..()
-	gunshot_residue = null
-
-
 /obj/item/clothing/Initialize(mapload)
 	. = ..()
 	if(starting_accessories)
@@ -53,7 +46,7 @@
 
 /obj/item/clothing/update_icon()
 	cut_overlays() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
-	if(blood_DNA)
+	if(forensic_data?.has_blooddna())
 		add_blood()
 	. = ..()
 
@@ -387,7 +380,7 @@
 		return
 */
 
-/obj/item/clothing/gloves/clean_blood()
+/obj/item/clothing/gloves/wash()
 	. = ..()
 	transfer_blood = 0
 	update_icon()
@@ -558,17 +551,17 @@
 
 	if(light_on)
 		// Generate object icon.
-		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image(icon = 'icons/obj/light_overlays.dmi', icon_state = "[light_overlay]")
-		helmet_light = light_overlay_cache["[light_overlay]_icon"]
+		if(!GLOB.light_overlay_cache["[light_overlay]_icon"])
+			GLOB.light_overlay_cache["[light_overlay]_icon"] = image(icon = 'icons/obj/light_overlays.dmi', icon_state = "[light_overlay]")
+		helmet_light = GLOB.light_overlay_cache["[light_overlay]_icon"]
 		add_overlay(helmet_light)
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/body_type = (H && H.species.get_bodytype(H))
 		var/cache_key = "[light_overlay][body_type && LAZYACCESS(sprite_sheets, body_type) ? body_type : ""]"
-		if(!light_overlay_cache[cache_key])
+		if(!GLOB.light_overlay_cache[cache_key])
 			var/use_icon = LAZYACCESS(sprite_sheets, body_type) || 'icons/mob/light_overlays.dmi'
-			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
+			GLOB.light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
 
 	else if(helmet_light)
 		cut_overlay(helmet_light)
@@ -734,15 +727,15 @@
 	if(contaminated)
 		add_overlay(contamination_overlay)
 	if(gurgled) //VOREStation Edit Start
-		decontaminate()
+		wash(CLEAN_ALL)
 		gurgle_contaminate() //VOREStation Edit End
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
 
-/obj/item/clothing/shoes/clean_blood()
+/obj/item/clothing/shoes/wash()
+	. = ..()
 	update_icon()
-	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	if(prob(1) && !recent_squish) //VOREStation edit begin

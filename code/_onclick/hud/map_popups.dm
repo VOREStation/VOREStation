@@ -178,3 +178,4 @@
 /client/verb/handle_popup_close(window_id as text)
 	set hidden = TRUE
 	clear_map("[window_id]_map")
+	SEND_SIGNAL(src, COMSIG_POPUP_CLEARED, window_id)

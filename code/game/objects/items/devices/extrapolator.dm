@@ -79,7 +79,7 @@
 			. += span_notice("The scanner is missing.")
 		else
 			. += span_notice("A class " + span_bold("[scanner.rating]") + " scanning module is installed. It is <i>screwed</i> in place.")
-			. += span_notice("Can detect diseases below stealth " + span_bold("[maximum_stealth]") + ".")
+			// . += span_notice("Can detect diseases below stealth " + span_bold("[maximum_stealth]") + ".")
 			. += span_notice("Can extract diseases in " + span_bold("[DisplayTimeText(extract_time)]") + ".")
 			. += span_notice("Can isolate symptoms <b>[maximum_level >= 9 ? "of any level" : "below level [maximum_level]"]</b>, in <b>[DisplayTimeText(isolate_time)]</b>.")
 
@@ -89,7 +89,7 @@
 	var/effective_scanner_rating = scanner.rating +1
 	extract_time = (10 SECONDS) / effective_scanner_rating
 	isolate_time = (15 SECONDS) / effective_scanner_rating
-	maximum_stealth = scanner.rating + 2
+	// maximum_stealth = scanner.rating + 2
 	maximum_level = scanner.rating + 5
 
 /obj/item/extrapolator/attack(atom/AM, mob/living/user)
@@ -162,7 +162,9 @@
 				var/list/properties
 				if(global_flag_check(advance_disease.virus_modifiers, CARRIER))
 					LAZYADD(properties, "carrier")
-				message += "<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], stage [advance_disease.stage]/5"
+				if(global_flag_check(advance_disease.virus_modifiers, FALTERED))
+					LAZYADD(properties, "faltered")
+				message += span_info("<b>[advance_disease.name]</b>[LAZYLEN(properties) ? " ([properties.Join(", ")])" : ""], [global_flag_check(advance_disease.virus_modifiers, DORMANT) ? "<i>dormant virus</i>" : "stage [advance_disease.stage]/5"]")
 				if(extracted_ids[advance_disease.GetDiseaseID()])
 					message += "This virus has been extracted by \the [src] previously."
 				message += "[advance_disease.name] has the following symptoms:"
@@ -182,15 +184,17 @@
 		return TRUE
 	if(EXTRAPOLATOR_ACT_CHECK(result, EXTRAPOLATOR_ACT_PRIORITY_ISOLATE))
 		isolate = TRUE
-	var/list/advance_diseases = list()
+	//var/list/advance_diseases = list()
+	/*
 	for(var/datum/disease/advance/candidate in diseases)
 		if(candidate.stealth >= maximum_stealth)
 			continue
 		advance_diseases += candidate
-	if(!length(advance_diseases))
+	*/
+	if(!length(diseases))
 		to_chat(user, span_warning("[icon2html(src, user)] There are no valid diseases to make a culture from."))
 		return
-	var/datum/disease/advance/target_disease = length(advance_diseases) > 1 ? tgui_input_list(user, "Select disease to extract", "Viral Extraction", advance_diseases, default = advance_diseases[1]) : advance_diseases[1]
+	var/datum/disease/advance/target_disease = length(diseases) > 1 ? tgui_input_list(user, "Select disease to extract", "Viral Extraction", diseases, default = diseases[1]) : diseases[1]
 	if(!target_disease)
 		return
 	using = TRUE
@@ -234,23 +238,21 @@
 
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
-	var/datum/disease/advance/D = disease.Copy()
+	disease = disease.Copy()
+	disease.virus_modifiers &= ~DORMANT
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
 		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
-	culture_bottle.name = "[D.name] culture bottle"
-	culture_bottle.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
+	culture_bottle.name = "[disease.name] culture bottle"
+	culture_bottle.desc = "A small bottle. Contains [disease.agent] culture in synthblood medium."
 	culture_bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 5, data)
 	user.put_in_hands(culture_bottle)
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE)
 	COOLDOWN_START(src, usage_cooldown, 1 SECONDS)
-	extracted_ids[D.GetDiseaseID()] = TRUE
+	extracted_ids[disease.GetDiseaseID()] = TRUE
 	return TRUE
-
-/obj/item/extrapolator/tier4
-	default_scanning_module = /obj/item/stock_parts/scanning_module/hyper
 
 /obj/item/extrapolator/tier5
 	default_scanning_module = /obj/item/stock_parts/scanning_module/omni

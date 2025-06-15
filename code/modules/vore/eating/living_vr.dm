@@ -7,10 +7,7 @@
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/vore_egg_type = "egg" 			// Default egg type.
-	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
-	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
-	var/revive_finished = 0				// Only used for xenochimera regen, allows us to find out when the regen will finish.
+	var/vore_egg_type = "egg" 			// Default egg type.	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/no_vore = FALSE					// If the character/mob can vore.
 	var/restrict_vore_ventcrawl = FALSE // Self explanatory
@@ -25,13 +22,6 @@
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
 	var/appendage_alt_setting = FALSE	// Dictates if 'long_vore' user pulls prey to them or not. 1 = user thrown towards target.
 	var/digestion_in_progress = FALSE	// Gradual corpse gurgles
-	var/regen_sounds = list(
-		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
-		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
-	)
 	var/trash_catching = FALSE					//Toggle for trash throw vore
 	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
 	var/trait_injection_selected = null			//What trait reagent you're injecting.
@@ -546,12 +536,6 @@
 		log_and_message_admins("used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])", src)
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
-	//You're in an AI hologram!
-	else if(istype(loc, /obj/effect/overlay/aiholo))
-		var/obj/effect/overlay/aiholo/holo = loc
-		holo.drop_prey() //Easiest way
-		log_and_message_admins("used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])", src)
-
 	//You're in a capture crystal! ((It's not vore but close enough!))
 	else if(iscapturecrystal(loc))
 		var/obj/item/capture_crystal/crystal = loc
@@ -677,6 +661,11 @@
 	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
 	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
 	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
+
+	if(user == pred && isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		if(AI.holo && AI.holo.masters[AI])
+			user_to_prey = get_dist(get_turf(AI.holo.masters[AI]), get_turf(prey))
 
 	if(user_to_pred > 1 || user_to_prey > 1)
 		return FALSE
@@ -1422,7 +1411,12 @@
 	if(!RTB)
 		return FALSE
 
-	to_chat(src, span_vnotice("[RTB] has [RTB.reagents.total_volume] units of liquid."))
+	var/total_report = span_vnotice("[RTB] has [RTB.reagents.total_volume] units of liquid.")
+	if(RTB.reagents.total_volume > 0)
+		for(var/datum/reagent/R in RTB.reagents.reagent_list)
+			total_report += "<br>"
+			total_report += span_info("  -[R.name]: [R.volume]u")
+	to_chat(src, total_report)
 
 /mob/living/proc/vore_transfer_reagents()
 	set name = "Transfer Liquid (Vore)"

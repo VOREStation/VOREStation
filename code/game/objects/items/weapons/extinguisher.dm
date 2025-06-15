@@ -43,8 +43,8 @@
 	icon_state = "atmos_extinguisher0"
 	item_state = "atmos_extinguisher"
 	throwforce = 12
+	force = 12
 	w_class = ITEMSIZE_LARGE
-	force = 3.0
 	max_water = 600
 	spray_particles = 3
 	sprite_name = "atmos_extinguisher"

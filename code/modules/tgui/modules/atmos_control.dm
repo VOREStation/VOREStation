@@ -36,7 +36,7 @@
 
 /datum/tgui_module/atmos_control/ui_assets(mob/user)
 	. = ..()
-	. += get_asset_datum(/datum/asset/simple/nanomaps)
+	. += get_asset_datum(/datum/asset/simple/holo_nanomap)
 
 /datum/tgui_module/atmos_control/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -67,7 +67,6 @@
 			"y" = alarm.y,
 			"z" = alarm.z)
 	.["alarms"] = alarms
-	.["zoomScale"] = world.maxx + world.maxy
 
 /datum/tgui_module/atmos_control/tgui_data(mob/user)
 	var/list/data = list()

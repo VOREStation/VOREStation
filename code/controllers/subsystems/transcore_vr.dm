@@ -76,7 +76,6 @@ SUBSYSTEM_DEF(transcore)
 
 		if(H == imp.imp_in && H.mind && H.stat < DEAD)
 			db.m_backup(H.mind,H.nif)
-			persist_nif_data(H)
 
 		if(MC_TICK_CHECK)
 			return

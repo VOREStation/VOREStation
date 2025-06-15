@@ -417,8 +417,7 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 			R.word2 = english[required[2]]
 			R.word3 = english[required[3]]
 			R.check_icon()
-			R.blood_DNA = list()
-			R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+			R.add_blooddna(H.dna,H)
 		return
 	else
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
@@ -451,8 +450,7 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 		var/obj/effect/rune/R = new /obj/effect/rune
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			R.blood_DNA = list()
-			R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+			R.add_blooddna(H.dna,H)
 		var/area/A = get_area(user)
 		log_and_message_admins("created \an [r] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].")
 		switch(r)
@@ -608,3 +606,9 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 				R.word3=GLOB.cultwords["technology"]
 				R.loc = user.loc
 				R.check_icon()
+
+/obj/effect/rune/wash(clean_types)
+	. = ..()
+	if (. || (clean_types & CLEAN_TYPE_RUNES))
+		qdel(src)
+		return TRUE

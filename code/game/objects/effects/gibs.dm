@@ -46,11 +46,11 @@
 
 				gib.update_icon()
 
-				gib.blood_DNA = list()
+				gib.init_forensic_data()
 				if(MobDNA)
-					gib.blood_DNA[MobDNA.unique_enzymes] = MobDNA.b_type
+					gib.add_blooddna(MobDNA,null)
 				else if(istype(src, /obj/effect/gibspawner/human)) // Probably a monkey
-					gib.blood_DNA["Non-human DNA"] = "A+"
+					gib.add_blooddna(null,null)
 				if(istype(location,/turf/))
 					var/list/directions = gibdirections[i]
 					if(directions.len)

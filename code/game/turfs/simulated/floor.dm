@@ -43,7 +43,7 @@
 
 /turf/simulated/floor/LateInitialize()
 	. = ..()
-	update_icon(1)
+	update_icon()
 
 /turf/simulated/floor/proc/swap_decals()
 	var/current_decals = decals

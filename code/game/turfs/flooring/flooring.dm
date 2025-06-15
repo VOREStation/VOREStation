@@ -44,10 +44,8 @@ var/list/flooring_types
 	var/flags
 	var/can_paint
 	var/can_engrave = FALSE
-	var/list/footstep_sounds = list() // key=species name, value = list of sounds,
-									  // For instance, footstep_sounds = list("key" = list(sound.ogg))
 	var/is_plating = FALSE
-	var/list/flooring_cache = list() // Cached overlays for our edges and corners and junk
+	var/list/flooring_cache = null // Cached overlays for our edges and corners and junk
 
 	//Plating types, can be overridden
 	var/plating_type = null
@@ -73,8 +71,8 @@ var/list/flooring_types
 
 	//How we smooth with other flooring
 	var/floor_smooth = SMOOTH_NONE
-	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
-	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
+	var/list/flooring_whitelist = null //Smooth with nothing except the contents of this list
+	var/list/flooring_blacklist = null //Smooth with everything except the contents of this list
 
 	//How we smooth with walls
 	var/wall_smooth = SMOOTH_NONE
@@ -112,8 +110,8 @@ var/list/flooring_types
 
 	*/
 	var/smooth_movable_atom = SMOOTH_NONE
-	var/list/movable_atom_whitelist = list()
-	var/list/movable_atom_blacklist = list()
+	var/list/movable_atom_whitelist = null
+	var/list/movable_atom_blacklist = null
 
 	var/check_season = FALSE	//VOREStation Addition
 
@@ -121,11 +119,11 @@ var/list/flooring_types
 	return plating_type
 
 /decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
-	if(!flooring_cache[cache_key])
+	if(!LAZYACCESS(flooring_cache, cache_key))
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
-		flooring_cache[cache_key] = I
-	return flooring_cache[cache_key]
+		LAZYSET(flooring_cache, cache_key, I)
+	return LAZYACCESS(flooring_cache, cache_key)
 
 /decl/flooring/grass
 	name = "grass"
@@ -136,11 +134,6 @@ var/list/flooring_types
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/grass1.ogg',
-		'sound/effects/footstep/grass2.ogg',
-		'sound/effects/footstep/grass3.ogg',
-		'sound/effects/footstep/grass4.ogg'))
 
 /decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
@@ -164,22 +157,12 @@ var/list/flooring_types
 	desc = "Water is wet, gosh, who knew!"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "seashallow"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/water1.ogg',
-		'sound/effects/footstep/water2.ogg',
-		'sound/effects/footstep/water3.ogg',
-		'sound/effects/footstep/water4.ogg'))
 
 /decl/flooring/sand
 	name = "sand"
 	desc = "I don't like sand. It's coarse and rough and irritating and it gets everywhere."
 	icon = 'icons/misc/beach.dmi'
 	icon_base = "sand"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/HeavySand1.ogg',
-		'sound/effects/footstep/HeavySand2.ogg',
-		'sound/effects/footstep/HeavySand3.ogg',
-		'sound/effects/footstep/HeavySand4.ogg'))
 
 /decl/flooring/sand/desert // Subtype of sand, desert.
 	name = "desert"
@@ -192,22 +175,12 @@ var/list/flooring_types
 	desc = "Wet and fragrant mud, bane of the freshly mopped floor."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "mud_dark"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/mud1.ogg',
-		'sound/effects/footstep/mud2.ogg',
-		'sound/effects/footstep/mud3.ogg',
-		'sound/effects/footstep/mud4.ogg'))
 
 /decl/flooring/rock
 	name = "rocks"
 	desc = "Hard as a rock."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "rock"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/LightStone1.ogg',
-		'sound/effects/footstep/LightStone2.ogg',
-		'sound/effects/footstep/LightStone3.ogg',
-		'sound/effects/footstep/LightStone4.ogg'))
 
 /decl/flooring/asteroid
 	name = "coarse sand"
@@ -216,12 +189,6 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
 	build_type = null
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'))
 
 /decl/flooring/dirt
 	name = "soil"
@@ -230,28 +197,12 @@ var/list/flooring_types
 	icon_base = "dirt-dark"
 	flags = TURF_REMOVE_SHOVEL
 	build_type = null
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg',
-		'sound/effects/footstep/MedDirt1.ogg',
-		'sound/effects/footstep/MedDirt2.ogg',
-		'sound/effects/footstep/MedDirt3.ogg',
-		'sound/effects/footstep/MedDirt4.ogg',))
 
 /decl/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "snow"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/snow1.ogg',
-		'sound/effects/footstep/snow2.ogg',
-		'sound/effects/footstep/snow3.ogg',
-		'sound/effects/footstep/snow4.ogg',
-		'sound/effects/footstep/snow5.ogg'))
 
 /decl/flooring/snow/fake
 		desc = "A coating of fake snow, looks surprisingly realistic, though not as cold as the real thing."
@@ -292,12 +243,6 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/carpet1.ogg',
-		'sound/effects/footstep/carpet2.ogg',
-		'sound/effects/footstep/carpet3.ogg',
-		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg'))
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -394,12 +339,6 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
 	can_engrave = TRUE
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/floor1.ogg',
-		'sound/effects/footstep/floor2.ogg',
-		'sound/effects/footstep/floor3.ogg',
-		'sound/effects/footstep/floor4.ogg',
-		'sound/effects/footstep/floor5.ogg'))
 
 /decl/flooring/tiling/tech
 	desc = "Metal floor tiles with a corrugated anti-slip texture."
@@ -537,12 +476,6 @@ var/list/flooring_types
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
 	flags = TURF_CAN_BREAK | TURF_REMOVE_CROWBAR | TURF_REMOVE_SCREWDRIVER
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/wood1.ogg',
-		'sound/effects/footstep/wood2.ogg',
-		'sound/effects/footstep/wood3.ogg',
-		'sound/effects/footstep/wood4.ogg',
-		'sound/effects/footstep/wood5.ogg'))
 
 /decl/flooring/wood/sif
 	desc = "Polished wood planks made from sivian wood."
@@ -587,12 +520,6 @@ var/list/flooring_types
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/hull1.ogg',
-		'sound/effects/footstep/hull2.ogg',
-		'sound/effects/footstep/hull3.ogg',
-		'sound/effects/footstep/hull4.ogg',
-		'sound/effects/footstep/hull5.ogg'))
 
 /decl/flooring/reinforced/circuit
 	name = "processing strata"
@@ -623,10 +550,6 @@ var/list/flooring_types
 	icon_base = "lava"
 	is_plating = TRUE
 	flags = TURF_ACID_IMMUNE
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/lava1.ogg',
-		'sound/effects/footstep/lava2.ogg',
-		'sound/effects/footstep/lava3.ogg'))
 
 /decl/flooring/concrete
 	name = "concrete"

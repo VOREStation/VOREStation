@@ -62,7 +62,6 @@
 	var/max_age = 70
 
 	var/icodigi = 'icons/mob/human_races/r_digi.dmi'
-	var/digi_allowed = FALSE
 
 	// Language/culture vars.
 	var/default_language = LANGUAGE_GALCOM					// Default language is used when 'say' is used without modifiers.
@@ -202,7 +201,6 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
 	var/safe_pressure = ONE_ATMOSPHERE
-	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
 
@@ -244,10 +242,6 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
-	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
-	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
-	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
-	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
@@ -273,10 +267,11 @@
 		O_LUNGS =		/obj/item/organ/internal/lungs,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =		/obj/item/organ/internal/liver,
-		O_KIDNEYS =	/obj/item/organ/internal/kidneys,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
 		O_BRAIN =		/obj/item/organ/internal/brain,
-		O_APPENDIX = /obj/item/organ/internal/appendix,
-		O_EYES =		 /obj/item/organ/internal/eyes,
+		O_APPENDIX =	/obj/item/organ/internal/appendix,
+		O_SPLEEN =		/obj/item/organ/internal/spleen,
+		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
@@ -306,8 +301,6 @@
 	var/swap_flags = ~HEAVY			// What can we swap place with?
 
 	var/pass_flags = 0
-
-	var/list/descriptors = list()
 
 	//This is used in character setup preview generation (prefences_setup.dm) and human mob
 	//rendering (update_icons.dm)
@@ -348,12 +341,6 @@
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
 	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
-	var/is_weaver = FALSE
-	var/silk_production = FALSE
-	var/silk_reserve = 100
-	var/silk_max_reserve = 500
-	var/silk_color = "#FFFFFF"
-
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
@@ -371,6 +358,7 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -394,15 +382,6 @@
 		hud = new hud_type()
 	else
 		hud = new()
-
-	// Prep the descriptors for the species
-	if(LAZYLEN(descriptors))
-		var/list/descriptor_datums = list()
-		for(var/desctype in descriptors)
-			var/datum/mob_descriptor/descriptor = new desctype
-			descriptor.comparison_offset = descriptors[desctype]
-			descriptor_datums[descriptor.name] = descriptor
-		descriptors = descriptor_datums
 
 	//If the species has eyes, they are the default vision organ
 	if(!vision_organ && has_organ[O_EYES])
@@ -605,6 +584,23 @@
 		env_trait.handle_environment_special(H)
 	return
 
+/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//Xenochimera Species Component
+	var/datum/component/xenochimera/xc = H.get_xenochimera_component()
+	if(xc)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
+
+	//Shadekin Species Component.
+	/* //For when shadekin actually have their component control everything.
+	var/datum/component/shadekin/sk = H.get_xenochimera_component()
+	if(sk)
+		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
+	*/
+
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return
@@ -756,6 +752,10 @@
 	else
 		..()
 
+/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+	if(species_component)
+		H.LoadComponent(species_component)
+
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
 	ASSERT(istype(H))
@@ -800,11 +800,11 @@
 //We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515
 /datum/species/proc/copy_variables(var/datum/species/S, var/list/whitelist)
 	//List of variables to ignore, trying to copy type will runtime.
-	//var/list/blacklist = list("type", "loc", "client", "ckey")
+	//var/list/blacklist = list(BLACKLISTED_COPY_VARS)
 	//Makes thorough copy of species datum.
 	for(var/i in whitelist)
-		if(!(i in S.vars)) //Don't copy incompatible vars.
-			continue
+		//if(!(i in S.vars)) // This check SOUNDS like a good idea, until you realize it loops over every var in base datum + species datum + byond builtin vars for EACH var in the whitelist. All the vars in whitelist are in the base species datum anyway, so this is unneeded.
+		//	continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
 			S.vars[i] = vars[i]
 

@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/gunshot_light.ogg'
 	load_method = MAGAZINE
 	force = 3
 	recoil = 2

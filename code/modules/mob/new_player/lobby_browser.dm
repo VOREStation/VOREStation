@@ -95,11 +95,13 @@
 			LateChoices()
 			return TRUE
 		if("observe")
+			if(QDELETED(src))
+				return FALSE
 			if(!SSticker || SSticker.current_state == GAME_STATE_INIT)
 				to_chat(src, span_warning("The game is still setting up, please try again later."))
 				return TRUE
 			if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
-				if(!client)
+				if(QDELETED(src) || !client)
 					return TRUE
 
 				//Make a new mannequin quickly, and allow the observer to take the appearance
@@ -129,9 +131,12 @@
 				observer.name = observer.real_name
 				if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 					remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD)        // Poor guys, don't know what they are missing!
+
 				observer.key = key
+
 				observer.set_respawn_timer(time_till_respawn()) // Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
 				observer.client.init_verbs()
+				QDEL_NULL(mind)
 				qdel(src)
 
 			return TRUE

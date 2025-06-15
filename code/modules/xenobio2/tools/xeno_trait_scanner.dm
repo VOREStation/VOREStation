@@ -180,6 +180,7 @@
 	if(dat)
 		last_data = dat
 		dat += "<br><br>\[<a href='byond://?src=\ref[src];print=1'>print report</a>\]"
-		user << browse("<html>[dat]</html>","window=xeno_analyzer")
 
-	return
+		var/datum/browser/popup = new(user, "xeno_analyzer", "Xeno Analyzer")
+		popup.set_content(dat)
+		popup.open()

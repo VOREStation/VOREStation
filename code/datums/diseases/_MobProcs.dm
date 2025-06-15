@@ -5,17 +5,26 @@
 			return TRUE
 	return FALSE
 
+/mob/proc/addDisease(datum/disease/D)
+	LAZYADD(viruses, D)
+	return TRUE
+
 /mob/proc/RemoveDisease(datum/disease/D)
-	viruses -= D
+	LAZYREMOVE(viruses, D)
 	return TRUE
 
 /mob/proc/HasResistance(resistance)
-	if(resistances.Find(resistance))
+	if(LAZYFIND(resistances, resistance))
 		return TRUE
 	return FALSE
 
 /mob/proc/IsInfected()
 	if(isemptylist(GetViruses()))
+		return FALSE
+	return TRUE
+
+/mob/proc/isInfective()
+	if(isemptylist(GetSpreadableViruses()))
 		return FALSE
 	return TRUE
 
@@ -29,8 +38,13 @@
 	if(HasDisease(D))
 		return FALSE
 
-	if(istype(D, /datum/disease/advance) && count_by_type(GetViruses(), /datum/disease/advance) > 0)
-		return FALSE
+	if(istype(D, /datum/disease/advance))
+		var/active_diseases = 0
+		for(var/datum/disease/AD in GetViruses())
+			if(!(AD.virus_modifiers & DORMANT)) // You can have as many dormant diseases as you want
+				active_diseases++
+		if(active_diseases > 0) // But ONLY one active disease
+			return FALSE
 
 	var/compatible_type = FALSE
 	for(var/type_to_test in D.viable_mobtypes)
@@ -50,33 +64,14 @@
 /mob/proc/ContractDisease(datum/disease/D, var/target_zone)
 	if(!CanContractDisease(D))
 		return 0
-	AddDisease(D)
+	D.infect(src)
 	return TRUE
-
-/mob/proc/AddDisease(datum/disease/D, respect_carrier = FALSE)
-	var/datum/disease/DD = new D.type(1, D, 0)
-	DD.start_cure_timer()
-	viruses += DD
-	DD.affected_mob = src
-	GLOB.active_diseases += DD
-
-	var/list/skipped = list("affected_mob", "holder", "carrier", "stage", "type", "parent_type", "vars", "transformed", "_active_timers")
-	if(respect_carrier)
-		skipped -= "carrier"
-	for(var/V in DD.vars)
-		if(V in skipped)
-			continue
-		if(istype(DD.vars[V],/list))
-			var/list/L = D.vars[V]
-			if(islist(L))
-				DD.vars[V] = L.Copy()
-		else
-			DD.vars[V] = D.vars[V]
-
-	log_admin("[key_name(src)] has contracted the virus \"[DD]\"")
 
 /mob/living/carbon/human/ContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))
+		return FALSE
+
+	if(species.virus_immune && !global_flag_check(D.virus_modifiers, BYPASSES_IMMUNITY))
 		return FALSE
 
 	var/obj/item/clothing/Cl = null
@@ -141,7 +136,7 @@
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
 	if(passed)
-		AddDisease(D)
+		D.infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
 	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.spreading_modifier) - 1)
@@ -158,7 +153,7 @@
 	if(!CanContractDisease(D))
 		return FALSE
 
-	AddDisease(D, respect_carrier)
+	D.infect(src, respect_carrier)
 	return TRUE
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/D)
@@ -196,6 +191,14 @@
 		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
 			continue
 		viruses_to_return += D
+	return viruses_to_return
+
+/mob/proc/GetDormantDiseases()
+	LAZYINITLIST(viruses)
+	var/list/viruses_to_return = list()
+	for(var/datum/disease/D in viruses)
+		if(D.virus_modifiers & DORMANT)
+			viruses_to_return += D
 	return viruses_to_return
 
 /mob/proc/GetResistances()

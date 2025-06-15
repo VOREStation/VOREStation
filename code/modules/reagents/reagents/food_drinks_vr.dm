@@ -101,10 +101,11 @@
 					M.adjust_nutrition(alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
@@ -466,10 +467,11 @@
 					M.nutrition += (alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
@@ -555,10 +557,11 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-			H.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
-			if(H.feral <=0) //Check if they're unferalled
-				H.feral = 0
+		var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+			xc.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
+			if(xc.feral <=0) //Check if they're unferalled
+				xc.feral = 0
 				to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 				log_and_message_admins("is no longer feral.", H)
 
@@ -955,3 +958,29 @@
 	..()
 	var/new_size = clamp((M.size_multiplier + 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+
+/////////////////////////////Event only nukie//////////////////////////////////////
+
+/datum/reagent/drink/coffee/nukie/mega/one //Basically macrocillin but for ingesting
+	name = REAGENT_NUKIEONE
+	id = REAGENT_ID_NUKIEONE
+	color = "#90ed87"
+	taste_description = "everything"
+	overdose = 10
+	adj_drowsy = -50
+	adj_sleepy = -100
+
+/datum/reagent/drink/coffee/nukie/mega/one/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_DARKSIGHT, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.heal_organ_damage(1.5 * removed, 1.5 * removed)
+
+/datum/reagent/drink/coffee/nukie/mega/one/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.eye_blurry += 20
+		H.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustFireLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustBruteLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.add_modifier(/datum/modifier/berserk, 2 SECONDS, suppress_failure = TRUE)

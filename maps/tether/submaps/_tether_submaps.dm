@@ -73,7 +73,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas
-
+/* Included in common
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
 #include "../../submaps/admin_use_vr/salamander_trader.dm"
@@ -117,7 +117,7 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = "maps/submaps/admin_use_vr/dojo.dmm"
-
+*/
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
 

@@ -7,6 +7,7 @@
 #define get_z(A) (get_step(A, 0)?.z || 0)
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+#define DEFAULT_BLOOD_TYPE "A+"
 
 // #define to_chat(target, message) target << message Not anymore!
 //#define to_chat to_chat_filename=__FILE__;to_chat_line=__LINE__;to_chat_src=src;__to_chat
