@@ -229,6 +229,12 @@
 	ckeywhitelist = list("bricker98")
 	character_name = list("Nettie Stough")
 
+/datum/gear/fluff/tally_doll
+	path = /obj/item/remote_scene_tool/tally_necklace
+	display_name = "Custom Collar"
+	ckeywhitelist = list("bricker98")
+	character_name = list("Talenya Lapushkina")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
