@@ -1581,17 +1581,24 @@
 	icon_state = "kintacts"
 	item_state = "kintacts_mob"
 
-//Bricker98:Nettie Stough
+//Bricker98: Talenya Lapushkina
 /obj/item/remote_scene_tool/tally_necklace  //A reskinned sticker for the collar, using a modified golden collar sprite
 	name = "link bell collar"
-	desc = "A collar, what appears to be a simple golden bell contains advanced bluespace systmes inside, allowing it to link to- and even recall, a matching doll."
+	desc = "A collar with a seemingly simple golden bell that contains advanced bluespace tech inside, allowing it to link to, and even recall, a matching doll."
 	icon = 'icons/vore/custom_remote_scene_tools.dmi'
 	icon_override = 'icons/vore/custom_remote_scene_tools.dmi'
 	icon_state = "collar_inactive"
 	icon_root = "collar"
 	item_state = "on_mob_collar"
-	slot_flags = SLOT_MASK | SLOT_OCLOTHING //Probably shouldn't wear these on your feet, only face
+	slot_flags = SLOT_MASK | SLOT_OCLOTHING
 	var/replacementType = /obj/item/remote_scene_tool/tally_doll
+
+/obj/item/remote_scene_tool/tally_necklace/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(H.ckey != "bricker98")
+			to_chat(H, span_warning("The collar doesn't fit you!"))
+			return 0
+		return 1
 
 /obj/item/remote_scene_tool/tally_doll  //A reskinned sticker for the doll, using a custom sprite
 	name = "Talenya's voodoo doll"
