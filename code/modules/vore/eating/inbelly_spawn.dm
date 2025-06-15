@@ -154,10 +154,10 @@ Please do not abuse this ability.
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)
-
-	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
+		if(new_character.mind.antag_holder)
+			new_character.mind.antag_holder.apply_antags(new_character)
 
 	for(var/lang in prey.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
