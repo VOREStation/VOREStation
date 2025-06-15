@@ -600,6 +600,12 @@
 		to_chat(user, span_notice("You wet \the [O] in \the [src]."))
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return
+	else if(istype(O, /obj/item/soap))
+		var/obj/item/soap/soap = O
+		to_chat(user, span_notice("You wet \the [O] in \the [src]"))
+		soap.wet()
+		O.wash(CLEAN_SCRUB)
+		return
 
 	var/turf/location = user.loc
 	if(!isturf(location)) return
