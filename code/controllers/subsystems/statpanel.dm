@@ -170,7 +170,11 @@ SUBSYSTEM_DEF(statpanels)
 	if(description_holders["antag"])
 		examine_update += span_red(span_bold("[description_holders["antag"]]")) + "<br />" //Red, malicious antag-related text
 
-	target.stat_panel.send_message("update_examine", list("EX" = examine_update, "UPD" = target.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL))
+	var/update_panel = FALSE
+	if(target.prefs?.read_preference(/datum/preference/choiced/examine_mode) == EXAMINE_MODE_SWITCH_TO_PANEL)
+		update_panel = TRUE
+
+	target.stat_panel.send_message("update_examine", list("EX" = examine_update, "UPD" = update_panel))
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/tickets = list()

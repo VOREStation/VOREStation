@@ -76,16 +76,30 @@
 		return "an average attack speed"
 
 /obj/item/get_description_info()
-	var/weapon_stats = description_info + "\
-	<br>"
+	var/list/weapon_stats = list()
+
+	if(description_info)
+		weapon_stats += description_info
 
 	if(force)
-		weapon_stats += "\nIf used in melee, it deals [describe_power()] [sharp ? "sharp" : "blunt"] damage, [describe_penetration()], and has [describe_speed()]."
+		weapon_stats += "If used in melee, it deals [describe_power()] [sharp ? "sharp" : "blunt"] damage, [describe_penetration()], and has [describe_speed()]."
 	if(throwforce)
-		weapon_stats += "\nIf thrown, it would deal [describe_throwpower()] [sharp ? "sharp" : "blunt"] damage."
+		weapon_stats += "If thrown, it would deal [describe_throwpower()] [sharp ? "sharp" : "blunt"] damage."
 	if(can_cleave)
-		weapon_stats += "\nIt is capable of hitting multiple targets with a single swing."
+		weapon_stats += "It is capable of hitting multiple targets with a single swing."
 	if(reach > 1)
-		weapon_stats += "\nIt can attack targets up to [reach] tiles away, and can attack over certain objects."
+		weapon_stats += "It can attack targets up to [reach] tiles away, and can attack over certain objects."
 
-	return weapon_stats
+	if(weapon_stats.len < 1)
+		return ""
+
+	var/assembled_string = ""
+	for(var/index in 1 to weapon_stats.len)
+		var/msg = weapon_stats[index]
+		if(index != weapon_stats.len)
+			msg += "\n"
+		assembled_string += msg
+		if(msg == description_info) //keeping the formatting as identical as I can
+			assembled_string += "<br>"
+
+	return assembled_string

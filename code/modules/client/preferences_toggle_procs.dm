@@ -14,24 +14,6 @@
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-// Not attached to a pref datum because those are strict binary toggles
-/client/verb/toggle_examine_mode()
-	set name = "Toggle Examine Mode"
-	set category = "Preferences.Game"
-	set desc = "Toggle the additional behaviour of examining things."
-
-	prefs.examine_text_mode++
-	prefs.examine_text_mode %= EXAMINE_MODE_MAX // This cycles through them because if you're already specifically being routed to the examine panel, you probably don't need to have the extra text printed to chat
-	switch(prefs.examine_text_mode)				// ... And I only wanted to add one verb
-		if(EXAMINE_MODE_DEFAULT)
-			to_chat(src, span_filter_system("Examining things will only output the base examine text, and you will not be redirected to the examine panel automatically."))
-
-		if(EXAMINE_MODE_INCLUDE_USAGE)
-			to_chat(src, span_filter_system("Examining things will also print any extra usage information normally included in the examine panel to the chat."))
-
-		if(EXAMINE_MODE_SWITCH_TO_PANEL)
-			to_chat(src, span_filter_system("Examining things will direct you to the examine panel, where you can view extended information about the thing."))
-
 /client/verb/toggle_multilingual_mode()
 	set name = "Toggle Multilingual Mode"
 	set category = "Preferences.Character"
