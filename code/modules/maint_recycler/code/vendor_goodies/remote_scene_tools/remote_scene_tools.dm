@@ -204,8 +204,9 @@ why aren't these accessories?
 			create_counterpart()
 			to_chat(usr,span_notice("\The [src] forms a new [linked]!"))
 		else
-			if(linked.getWearer())
-				linked.getWearer().remove_from_mob(linked,get_turf(src))
+			var/mob/counterpart = linked.getWearer()
+			if(counterpart)
+				counterpart.remove_from_mob(linked,get_turf(src))
 			else
 				linked.forceMove(get_turf(src))
 			to_chat(usr,span_notice("\The [linked] materializes in front of you!"))
