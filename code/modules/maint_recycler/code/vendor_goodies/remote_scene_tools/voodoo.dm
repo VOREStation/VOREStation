@@ -29,7 +29,8 @@
 		VORE_BELLY_LAYER, //not even gonna try with this lmfao
 		TAIL_LOWER_LAYER,
 		TAIL_UPPER_LAYER,
-		TAIL_UPPER_LAYER_ALT, //drawn manually
+		TAIL_UPPER_LAYER_LOW,
+		TAIL_UPPER_LAYER_HIGH, //drawn manually
 		FIRE_LAYER, //not relevant
 		TARGETED_LAYER, //not relevant
 		MOB_WATER_LAYER, //not relevant
