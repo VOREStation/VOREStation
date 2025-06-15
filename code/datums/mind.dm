@@ -45,7 +45,7 @@
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
-	var/list/purchase_log = new
+	var/list/purchase_log = list()
 	var/used_TC = 0
 
 	var/list/learned_recipes //List of learned recipe TYPES.

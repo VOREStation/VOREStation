@@ -23,6 +23,11 @@
 		return FALSE
 	return TRUE
 
+/mob/proc/isInfective()
+	if(isemptylist(GetSpreadableViruses()))
+		return FALSE
+	return TRUE
+
 /mob/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD && !global_flag_check(D.virus_modifiers, SPREAD_DEAD))
 		return FALSE

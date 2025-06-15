@@ -1,5 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "phased shadekin no longer prevent airlocks from closing"
-  - bugfix: "phased shadekin are no longer crushed by dangerous airlocks closing"

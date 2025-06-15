@@ -34,7 +34,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(access_genetics) // For premature unlocking.
-	var/mob/living/occupant
+	VAR_PRIVATE/datum/weakref/weakref_occupant = null
 	var/heal_level = 20				// The clone is released once its health reaches this level.
 	var/heal_rate = 1
 	var/locked = 0
@@ -54,12 +54,25 @@
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!L)
+		weakref_occupant = null
+		return
+	weakref_occupant = WEAKREF(L)
+
+/obj/machinery/clonepod/proc/get_occupant()
+	RETURN_TYPE(/mob/living)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return weakref_occupant?.resolve()
+
 /obj/machinery/clonepod/attack_ai(mob/user as mob)
 
 	add_hiddenprint(user)
 	return attack_hand(user)
 
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
+	var/mob/living/occupant = get_occupant()
 	if((isnull(occupant)) || (stat & NOPOWER))
 		return
 	if((!isnull(occupant)) && (occupant.stat != 2))
@@ -68,27 +81,27 @@
 	return
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(var/datum/dna2/record/R)
+/obj/machinery/clonepod/proc/growclone(var/datum/transhuman/body_record/BR)
 	if(mess || attempting)
 		return 0
-	var/datum/mind/clonemind = locate(R.mind)
+	var/datum/mind/clonemind = locate(BR.mydna.mind)
 
 	if(!istype(clonemind, /datum/mind))	//not a mind
 		return 0
 	if(clonemind.current && clonemind.current.stat != DEAD)	//mind is associated with a non-dead body
 		return 0
 	if(clonemind.active)	//somebody is using that mind
-		if(ckey(clonemind.key) != R.ckey)
+		if(ckey(clonemind.key) != BR.ckey)
 			return 0
 	else
 		for(var/mob/observer/dead/G in player_list)
-			if(G.ckey == R.ckey)
+			if(G.ckey == BR.ckey)
 				if(G.can_reenter_corpse)
 					break
 				else
 					return 0
 
-	for(var/modifier_type in R.genetic_modifiers)	//Can't be cloned, even if they had a previous scan
+	for(var/modifier_type in BR.genetic_modifiers)	//Can't be cloned, even if they had a previous scan
 		if(istype(modifier_type, /datum/modifier/no_clone))
 			return 0
 
@@ -102,23 +115,20 @@
 	spawn(30)
 		eject_wait = 0
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
-	occupant = H
-
-	if(!R.dna.real_name)	//to prevent null names
-		R.dna.real_name = "clone ([rand(0,999)])"
-	H.real_name = R.dna.real_name
-	H.gender = R.gender
+	//Get the clone body ready, let's calculate their health so the pod doesn't immediately eject them!!!
+	var/mob/living/carbon/human/H = BR.produce_human_mob(src,FALSE, FALSE, "clone ([rand(0,999)])")
+	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
 
 	//Get the clone body ready
-	H.adjustCloneLoss(150) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
+	var/damage_to_deal = H.getMaxHealth() * 1.5 //If you have 100, you get 150. Have 200? Get 300. 25hp? get 37.5
+	H.adjustCloneLoss(damage_to_deal) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
 	H.Paralyse(4)
-
-	//Here let's calculate their health so the pod doesn't immediately eject them!!!
 	H.updatehealth()
+	H.set_cloned_appearance()
 
+	// Move mind to body along with key
 	clonemind.transfer_to(H)
-	H.ckey = R.ckey
+	H.ckey = BR.ckey
 	to_chat(H, span_warning(span_bold("Consciousness slowly creeps over you as your body regenerates.") + "<br>" + span_bold(span_large("Your recent memories are fuzzy, and it's hard to remember anything from today...")) + \
 		"<br>" + span_notice(span_italics("So this is what cloning feels like?"))))
 
@@ -127,48 +137,29 @@
 	update_antag_icons(H.mind)
 	// -- End mode specific stuff
 
-	if(!R.dna)
-		H.dna = new /datum/dna()
-		qdel_swap(H.dna, new /datum/dna())
-	else
-		qdel_swap(H.dna, R.dna)
-	H.UpdateAppearance()
-	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
-	H.sync_organ_dna()
-	H.initialize_vessel()
-
-	H.set_cloned_appearance()
-	update_icon()
-
 	// A modifier is added which makes the new clone be unrobust.
+	// Upgraded cloners can reduce the time of the modifier, up to 80%
 	var/modifier_lower_bound = 25 MINUTES
 	var/modifier_upper_bound = 40 MINUTES
 
-	// Upgraded cloners can reduce the time of the modifier, up to 80%
 	var/clone_sickness_length = abs(((heal_level - 20) / 100 ) - 1)
 	clone_sickness_length = between(0.2, clone_sickness_length, 1.0) // Caps it off just incase.
 	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
 	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
 
 	H.add_modifier(H.species.cloning_modifier, rand(modifier_lower_bound, modifier_upper_bound))
-
-	// Modifier that doesn't do anything.
 	H.add_modifier(/datum/modifier/cloned)
 
-	// This is really stupid.
-	for(var/modifier_type in R.genetic_modifiers)
-		H.add_modifier(modifier_type)
-
-	for(var/datum/language/L in R.languages)
-		H.add_language(L.name)
-
-	H.flavor_texts = R.flavor.Copy()
-	H.suiciding = 0
+	// Finished!
+	update_icon()
+	set_occupant(H)
 	attempting = 0
+
 	return 1
 
 //Grow clones to maturity then kick them out.  FREELOADERS
 /obj/machinery/clonepod/process()
+	var/mob/living/occupant = get_occupant()
 	if(stat & NOPOWER) //Autoeject if power is lost
 		if(occupant)
 			locked = 0
@@ -210,7 +201,7 @@
 			return
 
 	else if((!occupant) || (occupant.loc != src))
-		occupant = null
+		set_occupant(null)
 		if(locked)
 			locked = 0
 		return
@@ -219,6 +210,7 @@
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
+	var/mob/living/occupant = get_occupant()
 	if(isnull(occupant))
 		if(default_deconstruction_screwdriver(user, W))
 			return
@@ -272,7 +264,7 @@
 		..()
 
 /obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
-	if(isnull(occupant))
+	if(isnull(get_occupant()))
 		return
 	to_chat(user, "You force an emergency ejection.")
 	locked = 0
@@ -301,7 +293,7 @@
 	heal_level = max(min((efficiency * 15) + 10, 100), MINIMUM_HEAL_LEVEL)
 
 /obj/machinery/clonepod/proc/get_completion()
-	. = (100 * ((occupant.health + 100) / (heal_level + 100)))
+	. = (100 * ((get_occupant().health + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/verb/eject()
 	set name = "Eject Cloner"
@@ -324,20 +316,21 @@
 		update_icon()
 		return
 
+	var/mob/living/occupant = get_occupant()
 	if(!(occupant))
 		return
 
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = src.loc
+	occupant.forceMove(get_turf(src))
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
 		var/mob/living/carbon/human/patient = occupant
 		if(!(patient.species.flags & NO_DNA)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
 			domutcheck(occupant) //Waiting until they're out before possible transforming.
 			occupant.UpdateAppearance()
-	occupant = null
+	set_occupant(null)
 
 	update_icon()
 	return
@@ -400,6 +393,7 @@
 	return 0
 
 /obj/machinery/clonepod/proc/malfunction()
+	var/mob/living/occupant = get_occupant()
 	if(occupant)
 		connected_message("Critical Error!")
 		mess = 1
@@ -421,21 +415,21 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+				A.forceMove(get_turf(src))
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 				qdel(src)
 				return
@@ -444,7 +438,7 @@
 /obj/machinery/clonepod/update_icon()
 	..()
 	icon_state = "pod_0"
-	if(occupant && !(stat & NOPOWER))
+	if(get_occupant() && !(stat & NOPOWER))
 		icon_state = "pod_1"
 	else if(mess)
 		icon_state = "pod_g"

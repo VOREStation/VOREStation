@@ -47,6 +47,19 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 	return data
 
+GLOBAL_LIST_EMPTY(chardirectory_photos)
+/mob/proc/set_chardirectory_photo(base64)
+	LAZYSET(GLOB.chardirectory_photos, REF(src), base64)
+
+/mob/proc/get_chardirectory_photo()
+	if(LAZYACCESS(GLOB.chardirectory_photos, REF(src)))
+		return LAZYACCESS(GLOB.chardirectory_photos, REF(src))
+
+	var/icon/F = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
+	var/new_base64 = "'data:image/png;base64,[icon2base64(F)]'"
+	set_chardirectory_photo(new_base64)
+	return new_base64
+
 /datum/character_directory/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
@@ -74,6 +87,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/tag
 		var/erptag
 		var/character_ad
+		var/photo = C.mob?.get_chardirectory_photo()
 		if (C.mob?.mind) //could use ternary for all three but this is more efficient
 			tag = C.mob.mind.directory_tag || "Unset"
 			erptag = C.mob.mind.directory_erptag || "Unset"
@@ -238,6 +252,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"custom_link" = custom_link,
+			"photo" = photo,
 		)))
 
 	data["directory"] = directory_mobs
