@@ -1,5 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - rscadd: "Added new hackable wires to disposal pipe junctions. Divert the flow of junk as you desire."
-  - bugfix: "Fixed disposal pipe deconstruction"
