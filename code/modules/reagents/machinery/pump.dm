@@ -92,8 +92,7 @@
 	T.pump_reagents(reagents, reagents_per_cycle)
 	update_icon()
 
-	for(var/datum/component/hose_connector/HC in GetComponents(/datum/component/hose_connector))
-		HC.force_pump()
+	SEND_SIGNAL(src, COMSIG_HOSE_FORCEPUMP)
 
 // Sets the power state, if possible.
 // Returns TRUE/FALSE on power state changing
