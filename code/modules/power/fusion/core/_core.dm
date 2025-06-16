@@ -63,8 +63,8 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 
-	var/datum/component/hose_connector/HC = GetComponent(/datum/component/hose_connector)
-	HC.force_pump()
+	for(var/datum/component/hose_connector/HC in GetComponents(/datum/component/hose_connector))
+		HC.force_pump()
 
 	if(owned_field)
 
