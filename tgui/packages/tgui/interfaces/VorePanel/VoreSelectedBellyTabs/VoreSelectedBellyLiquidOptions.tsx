@@ -31,7 +31,7 @@ export const VoreSelectedBellyLiquidOptions = (props: {
                   tooltip="Clear this belly's liquids."
                   confirmContent="Confirm Purge?"
                   onClick={() =>
-                    act('liq_set_attribute', { liq_attribute: 'b_liq_purge' })
+                    act('liq_set_attribute', { attribute: 'b_liq_purge' })
                   }
                 >
                   Purge Liquids
