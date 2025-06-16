@@ -90,13 +90,15 @@ export const VoreSelectedBellyLiquidOptions = (props: {
       <Stack.Item>
         <Section title="Current Liquids">
           <LabeledList>
-            {liq_interacts.current_reagents.map((reagent) => (
-              <LabeledList.Item key={reagent.name} label={reagent.name}>
-                <Box color={reagentToColor[reagent.name]}>
-                  {reagent.volume} u
-                </Box>
-              </LabeledList.Item>
-            ))}
+            {liq_interacts.current_reagents
+              .sort((a, b) => a.volume - b.volume)
+              .map((reagent) => (
+                <LabeledList.Item key={reagent.name} label={reagent.name}>
+                  <Box color={reagentToColor[reagent.name]}>
+                    {reagent.volume} u
+                  </Box>
+                </LabeledList.Item>
+              ))}
             {!!liq_interacts.current_reagents.length && <LabeledList.Divider />}
             <LabeledList.Item label="Total volume">
               {liq_interacts.total_volume} u
