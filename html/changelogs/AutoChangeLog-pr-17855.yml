@@ -1,0 +1,5 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "New process option, \"Break Bone\"."
+  - qol: "If you have digestion pain turned on, you will receive broken bone notifications even inside a stomach."
