@@ -196,7 +196,7 @@
 	if(!door_open)
 		if(O.has_tool_quality(TOOL_CROWBAR))
 			if(stat & (BROKEN|NOPOWER))
-				to_chat(user, span_warning("you lever \the  [src]'s door open!"))
+				to_chat(user, span_warning("you lever \the [src]'s door open!"))
 				open_door(user)
 				eject_item(user) //also kick out the item they're looking for
 				playsound(src,"sound/machines/door/airlock_creaking.ogg",4,FALSE)
@@ -220,7 +220,7 @@
 			evil_act(O,user)
 			return
 
-	to_chat(user, span_notice("You put \the [O] into \the  [src]'s processing compartment!"))
+	to_chat(user, span_notice("You put \the [O] into \the [src]'s processing compartment!"))
 	if(istype(O,/obj/item/holder))
 		var/obj/item/holder/h = O
 		var/mob/m = h.held_mob
@@ -264,7 +264,7 @@
 
 /obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
 	set_screen_state("screen_deny",10)
-	to_chat(user, span_warning("\The  [src] rejects \the [O]!"))
+	to_chat(user, span_warning("\The [src] rejects \the [O]!"))
 	if(prob(99))
 		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
 		return
@@ -360,7 +360,7 @@
 
 /obj/machinery/maint_recycler/proc/recycle_act(var/mob/user)
 	if(!inserted_item)
-		to_chat(user, span_warning("\The  [src] doesn't have anything to recycle!"))
+		to_chat(user, span_warning("\The [src] doesn't have anything to recycle!"))
 		return //sanity check
 	door_locked = TRUE
 	playsound(src, 'code/modules/maint_recycler/sfx/recycle_act.ogg', 50)
@@ -497,7 +497,7 @@ UTILITY PROCS
 
 /obj/machinery/maint_recycler/proc/canRecycle(var/mob/user, var/potentialValue)
 	if(!user.key) return FALSE
-	if(granted_points[user.key]+potentialValue > point_cap)  return FALSE
+	if(granted_points[user.key]+potentialValue > point_cap) return FALSE
 	return TRUE
 
 /obj/machinery/maint_recycler/proc/mob_consent_check(var/mob/probable_victim)

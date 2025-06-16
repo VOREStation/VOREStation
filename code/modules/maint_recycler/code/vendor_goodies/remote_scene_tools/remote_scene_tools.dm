@@ -48,14 +48,14 @@ why aren't these accessories?
 
 	RegisterSignal(mob, COMSIG_MOB_LOGIN, PROC_REF(worn_mob_logged_in))
 	RegisterSignal(mob, COMSIG_MOB_LOGOUT, PROC_REF(worn_mob_logged_out))
-	transmit_emote(src, span_notice("\The [src]\ has been put on by [mob]!"))
+	transmit_emote(src, span_notice("\The [src] has been put on by [mob]!"))
 
 /obj/item/remote_scene_tool/proc/unregister_from_mob(var/mob)
 	if(worn_mob == null) return
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGIN)
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGOUT)
 	worn_mob = null
-	transmit_emote(src, span_warning("\The [src]\'s wearer has removed it!"))
+	transmit_emote(src, span_warning("\The [src]'s wearer has removed it!"))
 
 
 //called when the mob wearing this item logs out
@@ -63,7 +63,7 @@ why aren't these accessories?
 	SIGNAL_HANDLER
 	if(!linked)
 		return
-	transmit_emote(src, span_warning("\The [src]\'s wearer has gone SSD!"))
+	transmit_emote(src, span_warning("\The [src]'s wearer has gone SSD!"))
 	linked?.linked_updated()
 
 
@@ -72,7 +72,7 @@ why aren't these accessories?
 	//called when the mob wearing this item logs in
 	if(!linked)
 		return
-	transmit_emote(src, "\The [src]\'s wearer has returned from SSD!")
+	transmit_emote(src, "\The [src]'s wearer has returned from SSD!")
 	linked?.linked_updated()
 
 /obj/item/remote_scene_tool/see_emote(var/mob/M as mob, var/text, var/emote_type)
@@ -154,7 +154,7 @@ why aren't these accessories?
 	var/mob/living/carbon/human/lw = linked?.getWearer()
 
 	if(lw)
-		. += span_notice("This is linked to [lw]\'s [linked.name].")
+		. += span_notice("This is linked to [lw]'s [linked.name].")
 		if(!lw.client || lw.stat == UNCONSCIOUS || lw.stat == DEAD)
 			. += span_warning("The wearer of \the [src]'s counterpart doesn't appear to be conscious!")
 	else
