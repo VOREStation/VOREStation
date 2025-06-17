@@ -20,6 +20,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/drinkreact = list()
 	VAR_PRIVATE/list/chemreact = list()
 	VAR_PRIVATE/list/botseeds = list()
+	VAR_PRIVATE/list/viruses = list()
 
 	VAR_PRIVATE/list/foodrecipe = list()
 
@@ -33,6 +34,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_chemreact = list()
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
+	VAR_PRIVATE/list/searchcache_viruses = list()
 
 	VAR_PRIVATE/list/spoiler_entries = list()
 
@@ -44,7 +46,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] "
+	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] | V: [viruses.len] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -53,6 +55,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_particle_smasher_data()
 	init_reagent_data()
 	init_seed_data()
+	init_virus_data()
 	init_kitchen_data()
 	init_lore_data()
 	// Donation gag
@@ -126,6 +129,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/datum/internal_wiki/page/seed)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_virus(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/virus)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return viruses[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -163,6 +170,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_botseeds
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_viruses()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_viruses
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -510,6 +521,20 @@ SUBSYSTEM_DEF(internal_wiki)
 			searchcache_botseeds.Add("[S.display_name]")
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
+
+/datum/controller/subsystem/internal_wiki/proc/init_virus_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/disease/D in subtypesof(/datum/disease))
+		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
+			spoiler_entries.Add(D)
+			continue
+		var/datum/internal_wiki/page/virus/P = new()
+		P.assemble(D)
+		searchcache_viruses.Add("[initial(D.medical_name)]")
+		viruses["[initial(D.medical_name)]"] = P
+		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -1310,6 +1335,18 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/catalog/assemble()
 	data["name"] = catalog_record.name
 	data["desc"] = catalog_record.desc
+
+// VIRUSES
+/////////////////////////////////////////////
+datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
+	title = initial(D.name)
+	data["title"] = title
+	data["description"] = initial(D.description)
+
+/datum/internal_wiki/page/virus/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	return body
 
 // MISC HELPERS
 ////////////////////////////////////////////
