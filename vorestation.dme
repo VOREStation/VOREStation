@@ -4551,6 +4551,7 @@
 #include "code\unit_tests\clothing_tests.dm"
 #include "code\unit_tests\cosmetic_tests.dm"
 #include "code\unit_tests\decl_tests.dm"
+#include "code\unit_tests\disease_tests.dm"
 #include "code\unit_tests\genetics_tests.dm"
 #include "code\unit_tests\language_tests.dm"
 #include "code\unit_tests\loadout_tests.dm"
