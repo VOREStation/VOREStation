@@ -22,6 +22,7 @@ export type PageData = {
   chemistry_data: ReagentData | null;
   drink_data: DrinkData | null;
   food_data: FoodData | null;
+  virus_data: VirusData | null;
 };
 
 export type FoodData = DrinkData & Partial<{ recipe: RedipeData }>;
@@ -83,6 +84,21 @@ export type OreData = {
   pump_reagent: string | null;
   grind_reagents: Record<string, string>;
 } & Icon;
+
+export type VirusData = {
+  title: string;
+  description: string | null;
+  form: string;
+  agent: string;
+  danger: string;
+  infectivity: number;
+  cure_chance: number;
+  max_stages: number;
+  discovery: number;
+  flags: number;
+  modifiers: number;
+  spread: number;
+};
 
 export type ParticleData = {
   title: string;
