@@ -7,6 +7,7 @@ export const WikiPages = [
   'Materials',
   'Ores',
   'Particle Physics',
+  'Viruses',
 ];
 
 export const wikiAds = [

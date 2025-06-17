@@ -113,7 +113,7 @@
 					if(P)
 						data["ore_data"] = P.get_data()
 
-				if("Virus")
+				if("Viruses")
 					data["search"] = SSinternal_wiki.get_searchcache_viruses()
 					if(P)
 						data["virus_data"] = P.get_data()
