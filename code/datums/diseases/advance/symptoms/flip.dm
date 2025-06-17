@@ -27,6 +27,9 @@ BONUS
 	level = 1
 	severity = 0
 
+	prefixes = list("Acrobat's ", "Flippin' ")
+	bodies = list("Flip")
+
 /datum/symptom/flip/Activate(datum/disease/advance/A)
 	if(!..())
 		return
