@@ -7,6 +7,9 @@
 
 	var/count = 0
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
+		if(initial(D.name == DEVELOPER_WARNING_NAME))
+			continue
+
 		count++
 		if(initial(D.medical_name) in used_ids)
 			log_unit_test("[D]: Disease - Had a reused medical name, this is used as an ID and must be unique.")

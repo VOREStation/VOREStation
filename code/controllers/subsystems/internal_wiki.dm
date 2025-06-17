@@ -527,7 +527,9 @@ SUBSYSTEM_DEF(internal_wiki)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
-		if(D.visibility_flags & HIDDEN_PANDEMIC)
+		if(initial(D.name == DEVELOPER_WARNING_NAME))
+			continue
+		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/internal_wiki/page/virus/P = new()
@@ -1342,14 +1344,76 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = initial(D.name)
 	data["title"] = title
 	data["description"] = initial(D.desc)
+	data["form"] = initial(D.form)
 	data["agent"] = initial(D.agent)
-	data["cure_chance"] = initial(D.cure_chance)
 	data["danger"] = initial(D.danger)
 	data["infectivity"] = initial(D.infectivity)
+	data["cure_chance"] = initial(D.cure_chance)
+	data["max_stages"] = initial(D.max_stages)
+	data["discovery"] = initial(D.discovery_threshold)
+	data["flags"] = initial(D.disease_flags)
+	data["modifiers"] = initial(D.virus_modifiers)
+	data["spread"] = initial(D.spread_flags)
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
+	body += "<b>Danger: [data["danger"]]</b><br>"
+	body += "<b>Stages: [data["max_stages"]]</b><br>"
+	var/get_flags = data["flags"]
+	var/mod_flags = data["modifiers"]
+	body += "<b>Curable: [(get_flags & CURABLE) ? "Yes" : "No"][(mod_flags & NEEDS_ALL_CURES) ? " - Multiple Treatments Required" : ""]</b><br>"
+	body += "<b>Resistable: [(get_flags & CAN_RESIST) ? "Yes" : "No"]</b><br>"
+	body += "<br>"
+	// Transmission type
+	var/spread_type = "NA"
+	if(data["spread"] & DISEASE_SPREAD_CONTACT)
+		spread_type = "Contact"
+	else if(data["spread"] & DISEASE_SPREAD_FLUIDS)
+		spread_type = "Fluids"
+	else if(data["spread"] & DISEASE_SPREAD_BLOOD)
+		spread_type = "Blood"
+	body += "<b>Transmission: [spread_type] [(mod_flags & BYPASSES_IMMUNITY) ? "Aggressive" : ""]</b><br>"
+	if((get_flags & CAN_CARRY))
+		body += "<b>Transmissable without symptoms</b><br>"
+	if((mod_flags & SPREAD_DEAD))
+		body += "<b>Transmissable from dead tissue</b><br>"
+	if((mod_flags & INFECT_SYNTHETICS))
+		body += "<b>Inorganic pathogen</b><br>"
+	// Difficulty of discovery
+	switch(data["discovery"])
+		if(0 to 0.24)
+			body += "<b>Discoverability: Extremely Elusive</b><br>"
+		if(0.25 to 0.49)
+			body += "<b>Discoverability: Difficult</b><br>"
+		if(0.5 to 0.74)
+			body += "<b>Discoverability: Moderate</b><br>"
+		if(0.75 to 0.89)
+			body += "<b>Discoverability: Easy</b><br>"
+		if(0.9 to INFINITY)
+			body += "<b>Discoverability: Trivial</b><br>"
+	// Probability of spreading
+	switch(data["infectivity"])
+		if(0)
+			body += "<b>Infectivity: NA</b><br>"
+		if(1 to 3)
+			body += "<b>Infectivity: Low</b><br>"
+		if(4 to 7)
+			body += "<b>Infectivity: Medium</b><br>"
+		if(8 to INFINITY)
+			body += "<b>Infectivity: High</b><br>"
+	// Probability of cure, 10 to 20 regularly
+	switch(data["cure_chance"])
+		if(0 to 8)
+			body += "<b>Resiliance: Extreme</b><br>"
+		if(9 to 12)
+			body += "<b>Resiliance: High</b><br>"
+		if(13 to 16)
+			body += "<b>Resiliance: Medium</b><br>"
+		if(17 to INFINITY)
+			body += "<b>Resiliance: Low</b><br>"
 	return body
 
 // MISC HELPERS
