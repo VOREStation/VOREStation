@@ -526,14 +526,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
-	for(var/datum/disease/D in GLOB.diseases)
+	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
 		if(D.visibility_flags & HIDDEN_PANDEMIC)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/internal_wiki/page/virus/P = new()
 		P.assemble(D)
-		searchcache_viruses.Add("[D.medical_name]")
-		viruses["[D.medical_name]"] = P
+		searchcache_viruses.Add("[initial(D.medical_name)]")
+		viruses["[initial(D.medical_name)]"] = P
 		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
@@ -1339,15 +1339,13 @@ SUBSYSTEM_DEF(internal_wiki)
 // VIRUSES
 /////////////////////////////////////////////
 /datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
-	title = D.name
+	title = initial(D.name)
 	data["title"] = title
-	data["description"] = D.desc
-	data["spread"] = D.spread_text
-	data["agent"] = D.agent
-	data["cure"] = D.cure_text
-	data["cure_chance"] = D.cure_chance
-	data["danger"] = D.danger
-	data["infectivity"] = D.infectivity
+	data["description"] = initial(D.desc)
+	data["agent"] = initial(D.agent)
+	data["cure_chance"] = initial(D.cure_chance)
+	data["danger"] = initial(D.danger)
+	data["infectivity"] = initial(D.infectivity)
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""

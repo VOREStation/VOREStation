@@ -5,18 +5,18 @@
 	var/failed = FALSE
 	var/list/used_ids = list()
 
-	for(var/datum/disease/D in GLOB.diseases)
-		if(D.medical_name in used_ids)
+	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
+		if(initial(D.medical_name) in used_ids)
 			log_unit_test("[D]: Disease - Had a reused medical name, this is used as an ID and must be unique.")
 			failed = TRUE
 		else
-			used_ids.Add(D.medical_name)
+			used_ids.Add(initial(D.medical_name))
 
-		if(!D.name || D.name == "")
+		if(!initial(D.name) || initial(D.name) == "")
 			log_unit_test("[D]: Disease - Lacks a name.")
 			failed = TRUE
 
-		if(!D.desc || D.desc == "")
+		if(!initial(D.desc) || initial(D.desc) == "")
 			log_unit_test("[D]: Disease - Lacks a description.")
 			failed = TRUE
 
