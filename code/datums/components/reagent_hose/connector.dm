@@ -18,6 +18,7 @@
 	connector_number = CL.len + 1
 	RegisterSignal(carrier, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(carrier, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
+	RegisterSignal(carrier, COMSIG_HOSE_FORCEPUMP, PROC_REF(force_pump))
 	carrier.verbs |= /atom/proc/disconnect_hose
 
 	START_PROCESSING(SSobj, src)
@@ -26,6 +27,7 @@
 	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(carrier, COMSIG_PARENT_EXAMINE)
 	UnregisterSignal(carrier, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(carrier, COMSIG_HOSE_FORCEPUMP)
 	carrier.verbs -= /atom/proc/disconnect_hose
 	carrier = null
 	if(my_hose)
@@ -72,6 +74,7 @@
 	connected_to.trans_to_holder(reagents, rand(1,reagents.maximum_volume))
 
 /datum/component/hose_connector/proc/force_pump()
+	SIGNAL_HANDLER
 	process()
 	if(prob(5))
 		carrier.visible_message(span_infoplain(span_bold("\The [carrier]") + " gurgles as it pumps fluid."))

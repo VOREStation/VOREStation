@@ -234,3 +234,18 @@
   - bugfix: fixed a crash when updating a player record from the employment records
       computer
   - bugfix: airflow thrown objects don't hit phased shadekin now
+2025-06-16:
+  SatinIsle:
+  - maptweak: Added another 8 space heaters to the SD. Three of them in general maint,
+      5 of them specifically in a totally forgotten maint corner attached only to
+      atmos. Also generally spruced up that little room so it's not just blank.
+  timothyteakettle:
+  - rscadd: makes the switch tail layer verb let you choose from three layers
+2025-06-17:
+  ShadowLarkens:
+  - rscadd: Xenoarch's Radiocarbon Spectrometer has been rewritten to be more engaging.
+  - rscadd: New process option, "Break Bone".
+  - qol: If you have digestion pain turned on, you will receive broken bone notifications
+      even inside a stomach.
+  Willburd:
+  - code_imp: Corrected CI issue with component hose connectors
