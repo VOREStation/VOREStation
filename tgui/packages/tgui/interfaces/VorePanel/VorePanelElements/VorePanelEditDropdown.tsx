@@ -14,9 +14,9 @@ import type { DropdownEntry } from '../types';
 export const VorePanelEditDropdown = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
-  /** Our backend action on text area blur */
+  /** Our backend action on selection */
   action: string;
-  /** Our secondary backend action on text area blur */
+  /** Our secondary backend action on selection */
   subAction?: string;
   /** Our dropdown inputs and actions */
   options: (string | DropdownEntry)[];
