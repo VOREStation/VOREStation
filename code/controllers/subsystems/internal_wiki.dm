@@ -526,14 +526,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
-	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
-		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
+	for(var/datum/disease/D in GLOB.diseases)
+		if(D.visibility_flags & HIDDEN_PANDEMIC)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/internal_wiki/page/virus/P = new()
 		P.assemble(D)
-		searchcache_viruses.Add("[initial(D.medical_name)]")
-		viruses["[initial(D.medical_name)]"] = P
+		searchcache_viruses.Add("[D.medical_name]")
+		viruses["[D.medical_name]"] = P
 		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
@@ -1339,9 +1339,10 @@ SUBSYSTEM_DEF(internal_wiki)
 // VIRUSES
 /////////////////////////////////////////////
 /datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
-	title = initial(D.name)
+	title = D.name
 	data["title"] = title
-	data["description"] = initial(D.desc)
+	data["description"] = D.desc
+	data["description"] = D.desc
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""
