@@ -183,6 +183,8 @@ export const virusSpreadToIcon = {
   Contact: 'handshake',
   Fluids: 'water',
   Blood: 'droplet',
+  Airborne: 'wind',
+  Faltered: 'syringe',
 };
 
 export const virusDiscoveryToColor = {

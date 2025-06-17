@@ -1387,8 +1387,6 @@ SUBSYSTEM_DEF(internal_wiki)
 			discovery = "Trivial"
 	data["discovery"] = discovery
 
-
-
 	var/spread_flags = initial(D.spread_flags)
 	var/spread_type = "NA"
 	if(spread_flags & DISEASE_SPREAD_CONTACT)
@@ -1397,8 +1395,11 @@ SUBSYSTEM_DEF(internal_wiki)
 		spread_type = "Fluids"
 	else if(spread_flags & DISEASE_SPREAD_BLOOD)
 		spread_type = "Blood"
+	else if(spread_flags & DISEASE_SPREAD_AIRBORNE)
+		spread_type = "Airborne"
+	else if(spread_flags & DISEASE_SPREAD_FALTERED)
+		spread_type = "Faltered"
 	data["spread"] = spread_type
-
 
 	var/mod_flags = initial(D.virus_modifiers)
 	data["all_cures"] = mod_flags & NEEDS_ALL_CURES
