@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - code_imp: "Corrected CI issue with component hose connectors"
