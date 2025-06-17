@@ -7,7 +7,7 @@
 
 	var/count = 0
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
-		if(initial(D.name == DEVELOPER_WARNING_NAME))
+		if(initial(D.name) == DEVELOPER_WARNING_NAME)
 			continue
 
 		count++
