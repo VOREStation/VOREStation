@@ -526,7 +526,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
-	for(var/datum/disease/D in subtypesof(/datum/disease))
+	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
 		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
 			spoiler_entries.Add(D)
 			continue
