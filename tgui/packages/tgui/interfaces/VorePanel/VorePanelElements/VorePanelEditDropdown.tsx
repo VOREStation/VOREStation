@@ -18,7 +18,7 @@ export const VorePanelEditDropdown = (props: {
   action: string;
   /** Our secondary backend action on text area blur */
   subAction?: string;
-  /** Our dropdown inouts and actions */
+  /** Our dropdown inputs and actions */
   options: (string | DropdownEntry)[];
   /** The currently shown selection */
   entry: string;
