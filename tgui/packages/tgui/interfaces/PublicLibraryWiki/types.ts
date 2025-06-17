@@ -91,13 +91,18 @@ export type VirusData = {
   form: string;
   agent: string;
   danger: string;
-  infectivity: number;
-  cure_chance: number;
+  infectivity: string;
+  resiliance: string;
   max_stages: number;
-  discovery: number;
-  flags: number;
-  modifiers: number;
-  spread: number;
+  discovery: string;
+  spread: string;
+  all_cures: BooleanLike;
+  aggressive: BooleanLike;
+  curable: BooleanLike;
+  resistable: BooleanLike;
+  carriable: BooleanLike;
+  spread_dead: BooleanLike;
+  infect_synth: BooleanLike;
 };
 
 export type ParticleData = {

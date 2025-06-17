@@ -1347,13 +1347,68 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["form"] = initial(D.form)
 	data["agent"] = initial(D.agent)
 	data["danger"] = initial(D.danger)
-	data["infectivity"] = initial(D.infectivity)
-	data["cure_chance"] = initial(D.cure_chance)
 	data["max_stages"] = initial(D.max_stages)
-	data["discovery"] = initial(D.discovery_threshold)
-	data["flags"] = initial(D.disease_flags)
-	data["modifiers"] = initial(D.virus_modifiers)
-	data["spread"] = initial(D.spread_flags)
+
+	var/infectivity = ""
+	switch(initial(D.infectivity))
+		if(0)
+			infectivity = "NA"
+		if(1 to 3)
+			infectivity = "Low"
+		if(4 to 7)
+			infectivity = "Medium"
+		if(8 to INFINITY)
+			infectivity = "High"
+	data["infectivity"] = infectivity
+
+	var/resiliance = ""
+	switch(initial(D.cure_chance))
+		if(0 to 8)
+			resiliance = "Extreme"
+		if(9 to 12)
+			resiliance = "High"
+		if(13 to 16)
+			resiliance = "Medium"
+		if(17 to INFINITY)
+			resiliance = "Low"
+	data["resiliance"] = resiliance
+
+	var/discovery = ""
+	switch(initial(D.discovery_threshold))
+		if(0 to 0.24)
+			discovery = "Extremely Elusive"
+		if(0.25 to 0.49)
+			discovery = "Difficult"
+		if(0.5 to 0.74)
+			discovery = "Moderate"
+		if(0.75 to 0.89)
+			discovery = "Easy"
+		if(0.9 to INFINITY)
+			discovery = "Trivial"
+	data["discovery"] = discovery
+
+
+
+	var/spread_flags = initial(D.spread_flags)
+	var/spread_type = "NA"
+	if(spread_flags & DISEASE_SPREAD_CONTACT)
+		spread_type = "Contact"
+	else if(spread_flags & DISEASE_SPREAD_FLUIDS)
+		spread_type = "Fluids"
+	else if(spread_flags & DISEASE_SPREAD_BLOOD)
+		spread_type = "Blood"
+	data["spread"] = spread_type
+
+
+	var/mod_flags = initial(D.virus_modifiers)
+	data["all_cures"] = mod_flags & NEEDS_ALL_CURES
+	data["aggressive"] = mod_flags & BYPASSES_IMMUNITY
+	var/flags = initial(D.disease_flags)
+	data["curable"] = flags & CURABLE
+	data["resistable"] = flags & CAN_RESIST
+	data["carriable"] = flags & CAN_CARRY
+	data["spread_dead"] = flags & SPREAD_DEAD
+	data["infect_synth"] = flags & INFECT_SYNTHETICS
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""
@@ -1362,58 +1417,24 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
 	body += "<b>Hazard Level: [data["danger"]]</b><br>"
 	body += "<b>Growth Stages: [data["max_stages"]]</b><br>"
-	var/get_flags = data["flags"]
 	var/mod_flags = data["modifiers"]
-	body += "<b>Curable: [(get_flags & CURABLE) ? "Yes" : "No"][!(mod_flags & NEEDS_ALL_CURES) ? " - single treatment" : ""]</b><br>"
-	body += "<b>Resistable: [(get_flags & CAN_RESIST) ? "Yes" : "No"]</b><br>"
+	body += "<b>Curable: [(data["curable"]) ? "Yes" : "No"][!(data["all_cures"]) ? " - single treatment" : ""]</b><br>"
+	body += "<b>Resistable: [(data["resistable"]) ? "Yes" : "No"]</b><br>"
 	body += "<br>"
 	// Transmission type
-	var/spread_type = "NA"
-	if(data["spread"] & DISEASE_SPREAD_CONTACT)
-		spread_type = "Contact"
-	else if(data["spread"] & DISEASE_SPREAD_FLUIDS)
-		spread_type = "Fluids"
-	else if(data["spread"] & DISEASE_SPREAD_BLOOD)
-		spread_type = "Blood"
-	body += "<b>Transmission: [spread_type] [(mod_flags & BYPASSES_IMMUNITY) ? "Aggressive" : ""]</b><br>"
-	if((get_flags & CAN_CARRY))
+	body += "<b>Transmission: [data["spread"]] [(data["aggressive"]) ? "Aggressive" : ""]</b><br>"
+	if(data["carriable"])
 		body += "<b>Transmissable without symptoms</b><br>"
-	if((mod_flags & SPREAD_DEAD))
+	if(data["spread_dead"])
 		body += "<b>Transmissable from dead tissue</b><br>"
-	if((mod_flags & INFECT_SYNTHETICS))
+	if(data["infect_synth"])
 		body += "<b>Inorganic pathogen</b><br>"
 	// Difficulty of discovery
-	switch(data["discovery"])
-		if(0 to 0.24)
-			body += "<b>Discoverability: Extremely Elusive</b><br>"
-		if(0.25 to 0.49)
-			body += "<b>Discoverability: Difficult</b><br>"
-		if(0.5 to 0.74)
-			body += "<b>Discoverability: Moderate</b><br>"
-		if(0.75 to 0.89)
-			body += "<b>Discoverability: Easy</b><br>"
-		if(0.9 to INFINITY)
-			body += "<b>Discoverability: Trivial</b><br>"
+		body += "<b>Discoverability: [data["discovery"]]</b><br>"
 	// Probability of spreading
-	switch(data["infectivity"])
-		if(0)
-			body += "<b>Infectivity: NA</b><br>"
-		if(1 to 3)
-			body += "<b>Infectivity: Low</b><br>"
-		if(4 to 7)
-			body += "<b>Infectivity: Medium</b><br>"
-		if(8 to INFINITY)
-			body += "<b>Infectivity: High</b><br>"
+		body += "<b>Infectivity: [data["infectivity"]]</b><br>"
 	// Probability of cure, 10 to 20 regularly
-	switch(data["cure_chance"])
-		if(0 to 8)
-			body += "<b>Resiliance: Extreme</b><br>"
-		if(9 to 12)
-			body += "<b>Resiliance: High</b><br>"
-		if(13 to 16)
-			body += "<b>Resiliance: Medium</b><br>"
-		if(17 to INFINITY)
-			body += "<b>Resiliance: Low</b><br>"
+		body += "<b>Resiliance: [data["resiliance"]]</b><br>"
 	return body
 
 // MISC HELPERS
