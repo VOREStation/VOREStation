@@ -1341,7 +1341,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
 	title = initial(D.name)
 	data["title"] = title
-	data["description"] = initial(D.description)
+	data["description"] = initial(D.desc)
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""

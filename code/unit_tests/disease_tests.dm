@@ -1,7 +1,7 @@
-/datum/unit_test/disease_unique
-	name = "DISEASE: All diseases must have a unique medical name"
+/datum/unit_test/disease_must_be_valid
+	name = "DISEASE: All diseases must have valid data"
 
-/datum/unit_test/disease_unique/start_test()
+/datum/unit_test/disease_must_be_valid/start_test()
 	var/failed = FALSE
 	var/list/used_ids = list()
 
@@ -12,8 +12,16 @@
 		else
 			used_ids.Add(initial(D.medical_name))
 
+		if(!initial(D.name) || initial(D.name) == "")
+			log_unit_test("[D]: Disease - Lacks a name.")
+			failed = TRUE
+
+		if(!initial(D.desc) || initial(D.desc) == "")
+			log_unit_test("[D]: Disease - Lacks a description.")
+			failed = TRUE
+
 	if(failed)
-		fail("All diseases must have a unique medical name.")
+		fail("All diseases must have valid data.")
 	else
-		pass("All diseases have proper and unique ids.")
+		pass("All diseases have proper data.")
 	return failed
