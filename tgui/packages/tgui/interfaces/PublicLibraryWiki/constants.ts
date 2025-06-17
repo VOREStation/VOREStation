@@ -176,6 +176,8 @@ export const virusSpreadToColor = {
   Contact: undefined,
   Fluids: 'blue',
   Blood: 'red',
+  Airborne: 'teal',
+  Faltered: 'grey',
 };
 
 export const virusSpreadToIcon = {
