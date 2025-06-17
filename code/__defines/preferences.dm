@@ -5,10 +5,10 @@
 
 
 // Modes for parsing multilingual speech
-#define MULTILINGUAL_DEFAULT			0
-#define MULTILINGUAL_SPACE				1
-#define MULTILINGUAL_DOUBLE_DELIMITER	2
-#define MULTILINGUAL_OFF				3
+#define MULTILINGUAL_DEFAULT			"Default"
+#define MULTILINGUAL_SPACE				"Space"
+#define MULTILINGUAL_DOUBLE_DELIMITER	"Double Delimiter"
+#define MULTILINGUAL_OFF				"Single Language"
 
 #define MULTILINGUAL_MODE_MAX			4
 
