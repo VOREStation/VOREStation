@@ -209,7 +209,7 @@
 					new_page = SSinternal_wiki.get_page_particle(search)
 				if(searchmode == "Ores")
 					new_page = SSinternal_wiki.get_page_ore(search)
-				if(searchmode == "Virus")
+				if(searchmode == "Viruses")
 					new_page = SSinternal_wiki.get_page_virus(search)
 
 				if(new_page == P)

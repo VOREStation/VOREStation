@@ -1360,11 +1360,11 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
 	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
-	body += "<b>Danger: [data["danger"]]</b><br>"
-	body += "<b>Stages: [data["max_stages"]]</b><br>"
+	body += "<b>Hazard Level: [data["danger"]]</b><br>"
+	body += "<b>Growth Stages: [data["max_stages"]]</b><br>"
 	var/get_flags = data["flags"]
 	var/mod_flags = data["modifiers"]
-	body += "<b>Curable: [(get_flags & CURABLE) ? "Yes" : "No"][(mod_flags & NEEDS_ALL_CURES) ? " - Multiple Treatments Required" : ""]</b><br>"
+	body += "<b>Curable: [(get_flags & CURABLE) ? "Yes" : "No"][!(mod_flags & NEEDS_ALL_CURES) ? " - single treatment" : ""]</b><br>"
 	body += "<b>Resistable: [(get_flags & CAN_RESIST) ? "Yes" : "No"]</b><br>"
 	body += "<br>"
 	// Transmission type
