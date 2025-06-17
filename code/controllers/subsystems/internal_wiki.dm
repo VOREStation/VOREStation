@@ -1342,7 +1342,12 @@ SUBSYSTEM_DEF(internal_wiki)
 	title = D.name
 	data["title"] = title
 	data["description"] = D.desc
-	data["description"] = D.desc
+	data["spread"] = D.spread_text
+	data["agent"] = D.agent
+	data["cure"] = D.cure_text
+	data["cure_chance"] = D.cure_chance
+	data["danger"] = D.danger
+	data["infectivity"] = D.infectivity
 
 /datum/internal_wiki/page/virus/get_print()
 	var/body = ""
