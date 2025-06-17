@@ -857,6 +857,9 @@
 ///from /datum/species/xenochimera/handle_environment_special()
 #define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
 
+// Hose Connector Component
+#define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
+
 //Unittest data update
 #ifdef UNIT_TEST
 #define COMSIG_UNITTEST_DATA "unittest_send_data"

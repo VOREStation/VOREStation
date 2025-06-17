@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Kinetic Crusher and Kinetic Glaive now in mining vending machine"
-  - balance: "Kinetic weapon damage variables shifted around. Gaunelts stronger, Dagger hits harder when thrown, Machete does more when backstabbing."
-  - bugfix: "Kinetic crusher now does 25 damage, up from 0"
-  - rscadd: "Miners now start with a kinetic crusher in their starting locker"

@@ -35,7 +35,7 @@
 	for(var/reagent in picked_reagents)
 		reagents.add_reagent(reagent, picked_reagents[reagent])
 
-	var/list/names = new
+	var/list/names = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		names += R.name
 

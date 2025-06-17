@@ -38,6 +38,8 @@ BONUS
 		"Transmission 11" = "The hosts coughing will occasionally spread the virus."
 	)
 
+	bodies = list("Cough")
+
 /datum/symptom/cough/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 3)

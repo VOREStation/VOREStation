@@ -126,7 +126,7 @@
 
 	var/datum/hud/hud_used = null
 
-	var/list/grabbed_by = list(  )
+	var/list/grabbed_by = list()
 
 	var/list/mapobjs = list()
 

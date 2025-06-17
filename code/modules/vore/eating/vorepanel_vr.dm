@@ -1227,6 +1227,7 @@
 
 			if(ourtarget.digestable)
 				process_options += "Digest"
+				process_options += "Break Bone"
 
 			if(ourtarget.absorbable)
 				process_options += "Absorb"
@@ -1246,58 +1247,18 @@
 				to_chat(user, span_vwarning("You cannot instantly process [ourtarget]."))
 				return FALSE
 			var/obj/belly/b = ourtarget.loc
+			if(!istype(b) || b.owner != user)
+				to_chat(user, span_vwarning("[ourtarget] isn't in your belly."))
+				return FALSE
 			switch(ourchoice)
 				if("Digest")
-					if(ourtarget.absorbed)
-						to_chat(user, span_vwarning("\The [ourtarget] is absorbed, and cannot presently be digested."))
-						return FALSE
-					if(tgui_alert(ourtarget, "\The [user] is attempting to instantly digest you. Is this something you are okay with happening to you?","Instant Digest", list("No", "Yes")) != "Yes")
-						to_chat(user, span_vwarning("\The [ourtarget] declined your digest attempt."))
-						to_chat(ourtarget, span_vwarning("You declined the digest attempt."))
-						return FALSE
-					if(ourtarget.loc != b)
-						to_chat(user, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
-						return FALSE
-					if(isliving(user))
-						var/mob/living/l = user
-						var/thismuch = ourtarget.health + 100
-						if(ishuman(l))
-							var/mob/living/carbon/human/h = l
-							thismuch = thismuch * h.species.digestion_nutrition_modifier
-						l.adjust_nutrition(thismuch)
-					ourtarget.death()		// To make sure all on-death procs get properly called
-					if(ourtarget)
-						if(ourtarget.check_sound_preference(/datum/preference/toggle/digestion_noises))
-							if(!b.fancy_vore)
-								SEND_SOUND(ourtarget, sound(get_sfx("classic_death_sounds")))
-							else
-								SEND_SOUND(ourtarget, sound(get_sfx("fancy_death_prey")))
-						ourtarget.mind?.vore_death = TRUE
-						b.handle_digestion_death(ourtarget)
+					return b.instant_digest(user, ourtarget)
+				if("Break Bone")
+					return b.instant_break_bone(user, ourtarget)
 				if("Absorb")
-					if(tgui_alert(ourtarget, "\The [user] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
-						to_chat(user, span_vwarning("\The [ourtarget] declined your absorb attempt."))
-						to_chat(ourtarget, span_vwarning("You declined the absorb attempt."))
-						return FALSE
-					if(ourtarget.loc != b)
-						to_chat(user, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
-						return FALSE
-					if(isliving(user))
-						var/mob/living/l = user
-						l.adjust_nutrition(ourtarget.nutrition)
-						var/n = 0 - ourtarget.nutrition
-						ourtarget.adjust_nutrition(n)
-					b.absorb_living(ourtarget)
+					return b.instant_absorb(user, ourtarget)
 				if("Knockout")
-					if(tgui_alert(ourtarget, "\The [user] is attempting to instantly make you unconscious, you will be unable until ejected from the pred. Is this something you are okay with happening to you?","Instant Knockout", list("No", "Yes")) != "Yes")
-						to_chat(user, span_vwarning("\The [ourtarget] declined your knockout attempt."))
-						to_chat(ourtarget, span_vwarning("You declined the knockout attempt."))
-						return FALSE
-					if(ourtarget.loc != b)
-						to_chat(user, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
-						return FALSE
-					ourtarget.AdjustSleeping(500000)
-					to_chat(ourtarget, span_vwarning("\The [user] has put you to sleep, you will remain unconscious until ejected from the belly."))
+					return b.instant_knockout(user, ourtarget)
 				if("Cancel")
 					return FALSE
 		if("Health Check")

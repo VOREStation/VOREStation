@@ -32,6 +32,9 @@ BONUS
 		"Transmission 8" = "The host will spread the virus through saliva when mlemming."
 	)
 
+	prefixes = list("Mlemington's ", "Licking-")
+	bodies = list("Mlem", "Lick")
+
 /datum/symptom/mlem/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.transmission >= 8)
