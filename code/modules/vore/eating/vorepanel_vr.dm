@@ -494,6 +494,16 @@
 			host.noisy = !host.noisy
 			unsaved_changes = TRUE
 			return TRUE
+		if("set_max_voreoverlay_alpha")
+			var/new_alpha = CLAMP(params["val"], 0, 255)
+			host.max_voreoverlay_alpha = new_alpha
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.max_voreoverlay_alpha = host.max_voreoverlay_alpha
+			if (isbelly(host.loc))
+				var/obj/belly/B = host.loc
+				B.vore_fx(host, TRUE)
+			unsaved_changes = TRUE
+			return TRUE
 		// liquid belly code
 		if("liq_set_attribute")
 			return liq_set_attr(ui.user, params)
@@ -1324,7 +1334,7 @@
 		CRASH("[type] set message lists with invalid length!")
 
 	for(var/i = 1, i <= messages.len, i++)
-		messages[i] = sanitize(messages[i], limit, FALSE, TRUE, FALSE)
+		messages[i] = sanitize(messages[i], limit, FALSE, TRUE, FALSE) || ""
 
 	switch(type)
 		if(GENERAL_EXAMINE_NUTRI)

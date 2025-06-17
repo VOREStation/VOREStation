@@ -1430,7 +1430,7 @@ var/mob/dview/dview_mob
 	return pre_generated_list
 
 /proc/filter_fancy_list(list/L, filter as text)
-	var/list/matches = new
+	var/list/matches = list()
 	for(var/key in L)
 		var/value = L[key]
 		if(findtext("[key]", filter) || findtext("[value]", filter))

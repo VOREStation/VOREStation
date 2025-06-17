@@ -180,3 +180,57 @@
   - rscadd: Electric fences for POIs
   - bugfix: Multiple reagent hoses on one object are now properly usable
   - qol: The maximum distance of a reagent hose matches its stack size of 10
+2025-06-13:
+  SatinIsle:
+  - admin: Added a new smite that forces the skyrim intro meme onto someone.
+  ShadowLarkens:
+  - sound: SMESes now make a big contactor noise when switched on and off.
+  - rscadd: The cooking machines now have unique UIs.
+  - qol: The cooking machines like the grill and deep fryer now attempt to predict
+      what they will produce.
+  - qol: Paint bucket no longer tries to preview, it's too confusing to look at
+  - qol: Added a new vore pref to force belly visuals to be capped at a certain alpha.
+  - rscadd: Character Directory now shows profile pictures.
+  - rscadd: 'Succubi care about consent and have a safeword~ :heart:'
+  - qol: The stripping menu is more intuitive now
+  - rscadd: Real Bluespace RPED that works at range. Locked behind prototype brped
+      requirements + anomalous 1.
+  - rscadd: Improved AI holonoms, they use real bellies now
+  - bugfix: Emote sound mode should now apply to things like *meow.
+  Will:
+  - qol: dna modification console takes 5 seconds instead of 30 to make a new injector
+  - qol: gene scanner provides the current value of an active gene, but not it's block
+      ID
+  - qol: gene scanner can now scan dna injectors to find out what unmarked injectors
+      do
+  Willburd:
+  - code_imp: added primitive color grading for areas and weather
+2025-06-14:
+  Willburd:
+  - code_imp: fixed colorgrading issues
+2025-06-15:
+  Diana:
+  - balance: Dogborg blade can be turned on/off. Glows when on.
+  - rscadd: Dogborg blade can be recolored.
+  - rscadd: Ninja blade (more damage) and Syndicate blade (starts red)
+  - rscadd: Kinetic Crusher and Kinetic Glaive now in mining vending machine
+  - balance: Kinetic weapon damage variables shifted around. Gaunelts stronger, Dagger
+      hits harder when thrown, Machete does more when backstabbing.
+  - bugfix: Kinetic crusher now does 25 damage, up from 0
+  - rscadd: Miners now start with a kinetic crusher in their starting locker
+  ReoDaProtovali:
+  - rscadd: Added new hackable wires to disposal pipe junctions. Divert the flow of
+      junk as you desire.
+  - bugfix: Fixed disposal pipe deconstruction
+  Will:
+  - rscadd: reagent hoses can be used to inflate and drain other human mobs in various
+      ways
+  - rscadd: borgs now have hose connectors that go to their current vore belly
+  - qol: Show belly fluid verb now shows composition of belly fluids and not just
+      amount
+  - code_imp: reagents that enter someone's belly become belly reagents to respect
+      prefs
+  Willburd:
+  - bugfix: fixed a crash when updating a player record from the employment records
+      computer
+  - bugfix: airflow thrown objects don't hit phased shadekin now

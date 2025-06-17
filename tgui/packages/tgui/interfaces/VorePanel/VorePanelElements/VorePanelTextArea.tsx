@@ -191,8 +191,9 @@ export const VorePanelEditTextArea = (props: {
               <Stack fill vertical>
                 <Stack.Item>
                   <Box color="label">
-                    Copy paste the fields as legacy block text. Use enter to
-                    apply. Shift + Enter for new lines.
+                    {
+                      'Copy paste the fields as legacy block text. Use "Enter" to apply. "Shift + Enter" for new lines.'
+                    }
                   </Box>
                 </Stack.Item>
                 <Stack.Item grow>

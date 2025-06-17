@@ -18,6 +18,17 @@
 	var/list/prize_list //Generated during Initialize
 	var/dirty_items = FALSE // Used to refresh the static/redundant data in case the machine gets VV'd
 
+/obj/machinery/mineral/equipment_vendor/Destroy()
+	if(inserted_id)
+		var/turf/T = get_turf(src)
+		if(T)
+			inserted_id.forceMove(T)
+			inserted_id = null
+		else
+			qdel_null(inserted_id)
+	QDEL_NULL_LIST(prize_list)
+	. = ..()
+
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
 	var/equipment_path = null
@@ -38,9 +49,11 @@
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/grenade/smokebomb,								100),
 		EQUIPMENT("Defense Equipment - Phase Pistol",			/obj/item/gun/energy/phasegun/pistol,						1500),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Crusher",	/obj/item/kinetic_crusher,									1000),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,				1000), //eh this is two-handed so whatever, same price for slight dmg increase!
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Glaive",	/obj/item/kinetic_crusher/glaive,							10000), //strong spear. Pay up.
 		EQUIPMENT("Machete Holster",							/obj/item/clothing/accessory/holster/machete,				350),
 		EQUIPMENT("Defense Equipment - PSG-B (Melee)",			/obj/item/personal_shield_generator/belt/melee/loaded, 		5000),
 		EQUIPMENT("Defense Equipment - PSG-M (General)",		/obj/item/personal_shield_generator/belt/mining/loaded,		1000),

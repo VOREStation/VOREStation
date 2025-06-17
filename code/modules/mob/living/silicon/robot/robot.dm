@@ -203,6 +203,8 @@
 
 	riding_datum = new /datum/riding/dogborg(src)
 
+	AddComponent(/datum/component/hose_connector/input/borg)
+	AddComponent(/datum/component/hose_connector/output/borg)
 
 /mob/living/silicon/robot/LateInitialize()
 	pick_module()
