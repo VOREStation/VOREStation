@@ -5,7 +5,9 @@
 	var/failed = FALSE
 	var/list/used_ids = list()
 
+	var/count = 0
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
+		count++
 		if(initial(D.medical_name) in used_ids)
 			log_unit_test("[D]: Disease - Had a reused medical name, this is used as an ID and must be unique.")
 			failed = TRUE
@@ -23,5 +25,5 @@
 	if(failed)
 		fail("All diseases must have valid data.")
 	else
-		pass("All diseases have proper data.")
+		pass("All [count] diseases have proper data.")
 	return failed
