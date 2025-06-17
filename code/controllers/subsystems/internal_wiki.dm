@@ -1338,7 +1338,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // VIRUSES
 /////////////////////////////////////////////
-datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
+/datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
 	title = initial(D.name)
 	data["title"] = title
 	data["description"] = initial(D.description)
