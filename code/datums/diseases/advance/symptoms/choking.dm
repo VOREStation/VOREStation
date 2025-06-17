@@ -35,6 +35,9 @@ Bonus
 		"Transmission 8" = "Doubles the damage caused by the symptom."
 	)
 
+	bodies = list("Lung")
+	suffixes = list(" Tuberculosis")
+
 /datum/symptom/choking/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.transmission >= 8)

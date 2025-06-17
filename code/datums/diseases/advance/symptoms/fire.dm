@@ -38,6 +38,10 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Burning ")
+	bodies = list("Combustion")
+	suffixes = list(" Combustion")
+
 /datum/symptom/fire/Start(datum/disease/advance/A)
 	if(!..())
 		return
