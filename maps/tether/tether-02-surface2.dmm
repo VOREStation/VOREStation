@@ -24602,7 +24602,7 @@
 /obj/effect/floor_decal/corner/purple/border,
 /obj/machinery/button/remote/blast_door{
 	id = "janitor_garage";
-	name = "Desk Shutters";
+	name = "Garage Doors";
 	pixel_x = -4;
 	pixel_y = -26;
 	dir = 1
@@ -26825,7 +26825,7 @@
 	dir = 10
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "janitor_garage";
+	id = "janitor_blast";
 	name = "Desk Shutters";
 	pixel_x = -22
 	},
