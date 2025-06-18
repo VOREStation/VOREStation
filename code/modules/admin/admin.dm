@@ -53,8 +53,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
-	body += "<body>Options panel for" + span_bold("[M]")
+	var/body = "Options panel for" + span_bold("[M]")
 	if(M.client)
 		body += " played by " + span_bold("[M.client]")
 		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank_names() : "Player"]</A>\]"
@@ -236,11 +235,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			else
 				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
 
-	body += {"<br>
-		</body></html>
-	"}
+	body += {"<br>"}
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	var/datum/browser/popup = new(owner, "adminplayeropts", "Edit Player", 550, 515)
+	popup.add_head_content("<title>Options for [M.key]</title>")
+	popup.set_content(body)
+	popup.open()
+
 	feedback_add_details("admin_verb","SPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -314,7 +315,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 	var/dat
-	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
+	dat = text("<H3>Admin Newscaster Unit</H3>")
 
 	switch(admincaster_screen)
 		if(0)
@@ -547,10 +548,11 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse("<html>[dat]</html>", "window=admincaster_main;size=400x600")
-	onclose(usr, "admincaster_main")
 
-
+	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
@@ -562,13 +564,17 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse("<html>[dat]</html>", "window=ban;size=400x400")
+
+	var/datum/browser/popup = new(owner, "ban", "Job Bans", 400, 400)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
 	var/dat = {"
-		<html><center>"} + span_bold("Game Panel") + {"</center><hr>\n
+		<center>"} + span_bold("Game Panel") + {"</center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(GLOB.master_mode == "secret")
@@ -582,11 +588,12 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
 		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br></html>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
-	return
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
@@ -1255,7 +1262,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 		out += " None."
 	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
+	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
+	popup.set_content(out)
+	popup.open()
 	feedback_add_details("admin_verb","SGM")
 
 

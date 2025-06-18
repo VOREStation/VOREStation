@@ -1,0 +1,6 @@
+author: "TeleTubby2"
+delete-after: True
+changes:
+  - rscadd: "Examines now embed extra information that used to be examine tab exclusive. This is a preference, so can be configured to remain as the old behavior."
+  - rscdel: "Removed the old verb for setting examine mode"
+  - refactor: "Examine Mode is now a TG preference"

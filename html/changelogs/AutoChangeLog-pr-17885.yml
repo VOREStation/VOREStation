@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "reagent dispenser tanks no longer perform alchemy, turning all reagents into fuel spills"
