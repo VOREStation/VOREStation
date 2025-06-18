@@ -1492,8 +1492,6 @@ SUBSYSTEM_DEF(internal_wiki)
 		var/list/output_blockers = list()
 		var/list/blockers = T.conflict_traits
 		for(var/path in blockers)
-			if(!blockers[path])
-				continue
 			var/datum/trait/TG = GLOB.all_traits[path]
 			output_blockers.Add(TG.name)
 		if(output_blockers.len)
