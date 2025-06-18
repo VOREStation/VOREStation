@@ -14,6 +14,7 @@
     "tgui:lint": "eslint packages --ext .js,.cjs,.ts,.tsx",
     "tgui:prettier": "prettier --check .",
     "tgui:sonar": "eslint packages -c .eslintrc-sonar.yml",
+		"tgui:test": "bun test",
     "tgui:tsc": "tsc",
     "tgui:prettier-fix": "prettier --write .",
     "tgui:eslint-fix": "eslint --fix packages --ext .js,.cjs,.ts,.jsx,.tsx"
