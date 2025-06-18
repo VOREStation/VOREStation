@@ -10,7 +10,7 @@ import {
   viursThreatToColor,
 } from '../../constants';
 import type { VirusData } from '../../types';
-import { NoBox, YesBox } from '../../WikiCommon/WikiQuickElements';
+import { YesNoBox } from '../../WikiCommon/WikiQuickElements';
 
 export const WikiVirusPage = (props: { virus: VirusData }) => {
   const {
@@ -52,11 +52,11 @@ export const WikiVirusPage = (props: { virus: VirusData }) => {
               <Box>{max_stages}</Box>
             </LabeledList.Item>
             <LabeledList.Item label="Curable">
-              {curable ? <YesBox /> : <NoBox />}
+              <YesNoBox value={!!curable} />
               {!all_cures ? ' - single treatment' : ''}
             </LabeledList.Item>
             <LabeledList.Item label="Resistable">
-              {resistable ? <YesBox /> : <NoBox />}
+              <YesNoBox value={!!resistable} />
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item label="Transmission">
