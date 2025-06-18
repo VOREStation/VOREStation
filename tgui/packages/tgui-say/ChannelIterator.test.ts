@@ -51,9 +51,7 @@ describe('ChannelIterator', () => {
     expect(channelIterator.isVisible()).toBe(true);
   });
 
-  it('should return false when current channel is not visible', ({
-    expect,
-  }) => {
+  it('should return false when current channel is not visible', () => {
     channelIterator.set('OOC');
     expect(channelIterator.isVisible()).toBe(false);
   });

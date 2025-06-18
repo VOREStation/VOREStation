@@ -32,9 +32,7 @@ describe('captureExternalLinks', () => {
     );
   });
 
-  it('should preventDefault and send a message when a non-BYOND external link is clicked', ({
-    expect,
-  }) => {
+  it('should preventDefault and send a message when a non-BYOND external link is clicked', () => {
     const externalLink = {
       tagName: 'A',
       getAttribute: () => 'https://example.com',
@@ -54,9 +52,7 @@ describe('captureExternalLinks', () => {
     });
   });
 
-  it('should not preventDefault or send a message when a BYOND link is clicked', ({
-    expect,
-  }) => {
+  it('should not preventDefault or send a message when a BYOND link is clicked', () => {
     const byondLink = {
       tagName: 'A',
       getAttribute: () => 'byond://server-address',
