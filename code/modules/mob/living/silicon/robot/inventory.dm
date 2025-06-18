@@ -1,9 +1,7 @@
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting stuff manually
 //as they handle all relevant stuff like adding it to the player's screen and such
 
-//Returns the thing in our active hand (whatever is in our active module-slot, in this case)
-/mob/living/silicon/robot/get_active_hand()
-	return module_active
+
 
 /*-------TODOOOOOOOOOO--------*/
 
@@ -355,23 +353,3 @@
 	if(O)
 		for(var/datum/action/A as anything in O.actions)
 			A.Grant(src)
-
-/mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
-	W.forceMove(get_turf(src))
-	return 1
-
-/mob/living/silicon/robot/is_holding_item_of_type(typepath)
-	for(var/obj/item/I in list(module_state_1, module_state_2, module_state_3))
-		if(istype(I, typepath))
-			return I
-	return FALSE
-
-// Returns a list of all held items in a borg's 'hands'.
-/mob/living/silicon/robot/get_all_held_items()
-	. = list()
-	if(module_state_1)
-		. += module_state_1
-	if(module_state_2)
-		. += module_state_2
-	if(module_state_3)
-		. += module_state_3

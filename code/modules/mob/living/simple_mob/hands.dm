@@ -10,12 +10,6 @@
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
 	return
 
-/mob/living/simple_mob/put_in_hands(var/obj/item/W) // No hands.
-	if(has_hands)
-		put_in_active_hand(W)
-		return 1
-	W.forceMove(get_turf(src))
-	return 1
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/simple_mob/put_in_active_hand(var/obj/item/W)
@@ -134,16 +128,3 @@
 			display_name = "object"
 		to_chat(src, span_danger("Your [hand_form] are not fit for use of \the [display_name]."))
 	return humanoid_hands
-
-/mob/living/simple_mob/is_holding_item_of_type(typepath)
-	for(var/obj/item/I in list(l_hand, r_hand))
-		if(istype(I, typepath))
-			return I
-	return FALSE
-
-/mob/living/simple_mob/get_all_held_items()
-	. = list()
-	if(l_hand)
-		. += l_hand
-	if(r_hand)
-		. += r_hand
