@@ -489,7 +489,7 @@
 /obj/item/reagent_containers/syringe/old/Initialize(mapload)
 	. = ..()
 	if(prob(75))
-		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(1, 3), rand(7, 9), 2)
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(1, 3), rand(7, 9), 2, infected = src)
 		src.viruses += new_disease
 
 #undef SYRINGE_DRAW

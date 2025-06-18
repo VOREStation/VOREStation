@@ -37,6 +37,9 @@ BONUS
 	var/strong_blob
 	var/node_blob
 
+	prefixes = list("Xeno", "Sporing ")
+	bodies = list("Blob")
+
 /datum/symptom/blobspores/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 14)

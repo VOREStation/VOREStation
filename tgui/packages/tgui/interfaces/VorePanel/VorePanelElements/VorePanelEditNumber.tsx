@@ -12,9 +12,9 @@ import { round, toFixed } from 'tgui-core/math';
 export const VorePanelEditNumber = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
-  /** Our backend action on text area blur */
+  /** Our backend action on number change */
   action: string;
-  /** Our secondary backend action on text area blur */
+  /** Our secondary backend action on number change */
   subAction?: string;
   /** The current displayed number */
   value: number;

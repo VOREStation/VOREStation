@@ -28,7 +28,7 @@ export const VoreUserPreferencesSoulcatcher = (props: {
               tooltipPosition="right"
             />
           </Stack.Item>
-          <Stack.Item basis="32%">
+          <Stack.Item basis="32%" grow>
             <VoreUserPreferenceItem
               spec={preferences.soulcatcher_takeover}
               tooltipPosition="top"

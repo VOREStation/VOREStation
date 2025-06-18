@@ -29,6 +29,8 @@ export const VoreBellySelectionAndCustomization = (props: {
   toggleEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   editMode: boolean;
   persist_edit_mode: BooleanLike;
+  minBellyName: number;
+  maxBellyName: number;
 }) => {
   const { act } = useBackend();
 
@@ -43,9 +45,13 @@ export const VoreBellySelectionAndCustomization = (props: {
     toggleEditMode,
     editMode,
     persist_edit_mode,
+    minBellyName,
+    maxBellyName,
   } = props;
 
   const [showSearch, setShowSearch] = useState(false);
+  const [createNewBelly, setCreateNewBelly] = useState(false);
+  const [currentNewName, setCurrentNewName] = useState('');
   const [searchedBellies, setSearchedBellies] = useState('');
 
   const bellySearch = createSearch(
@@ -58,6 +64,16 @@ export const VoreBellySelectionAndCustomization = (props: {
   const bellyDropdownNames = our_bellies.map((belly) => {
     return { displayText: belly.name, value: belly.ref };
   });
+
+  function applyNewBelly(newName: string) {
+    act('newbelly', { val: newName });
+    clearBellyNameInput();
+  }
+
+  function clearBellyNameInput() {
+    setCreateNewBelly(false);
+    setCurrentNewName('');
+  }
 
   return (
     <Stack fill>
@@ -75,9 +91,29 @@ export const VoreBellySelectionAndCustomization = (props: {
           }
         >
           <Tabs vertical>
-            <Tabs.Tab onClick={() => act('newbelly')}>
-              New
-              <Icon name="plus" ml={0.5} />
+            <Tabs.Tab onClick={() => setCreateNewBelly(true)}>
+              {createNewBelly ? (
+                <Input
+                  fluid
+                  autoFocus
+                  value={currentNewName}
+                  color={
+                    currentNewName.length < minBellyName ? 'red' : undefined
+                  }
+                  maxLength={maxBellyName}
+                  onEnter={(value) => {
+                    applyNewBelly(value);
+                  }}
+                  onChange={(value) => setCurrentNewName(value)}
+                  onEscape={() => clearBellyNameInput()}
+                  onBlur={() => clearBellyNameInput()}
+                />
+              ) : (
+                <>
+                  New
+                  <Icon name="plus" ml={0.5} />
+                </>
+              )}
             </Tabs.Tab>
             <Tabs.Tab onClick={() => act('exportpanel')}>
               Export
