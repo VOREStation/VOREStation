@@ -206,6 +206,8 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 	var/list/minihuds = list()
 
+	var/list/inventory_slots = list()
+
 /datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
@@ -216,6 +218,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		mymob.hud_used = null
 
 	QDEL_NULL_LIST(minihuds)
+	QDEL_NULL_LIST(inventory_slots)
 
 	// Actions
 	QDEL_NULL(toggle_palette)
@@ -347,6 +350,8 @@ GLOBAL_LIST_INIT(global_huds, list(
 	mymob.create_mob_hud(src)
 
 	// Past this point, mymob.hud_used is set
+
+	mymob.inventory.build_hud(src)
 
 	toggle_palette.set_hud(src)
 	palette_down.set_hud(src)

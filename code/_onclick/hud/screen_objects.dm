@@ -636,11 +636,11 @@
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
 	switch(name)
-		if("r_hand")
+		if("r_hand", "Right Hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
-		if("l_hand")
+		if("l_hand", "Left Hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")

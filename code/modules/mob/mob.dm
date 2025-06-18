@@ -19,6 +19,7 @@
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
+	QDEL_NULL(inventory)
 	for(var/key in alerts) //clear out alerts
 		clear_alert(key)
 	if(pulling)
@@ -69,6 +70,7 @@
 	zone_sel = null
 
 /mob/Initialize(mapload)
+	inventory = new inventory_type(src)
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src

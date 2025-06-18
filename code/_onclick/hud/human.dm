@@ -22,44 +22,44 @@
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
-	var/obj/screen/inventory/inv_box
+	// var/obj/screen/inventory/inv_box
 
 	// Draw the various inventory equipment slots.
-	var/has_hidden_gear
-	for(var/gear_slot in hud_data.gear)
+	// var/has_hidden_gear
+	// for(var/gear_slot in hud_data.gear)
 
-		inv_box = new /obj/screen/inventory()
-		inv_box.icon = HUD.ui_style
-		inv_box.color = HUD.ui_color
-		inv_box.alpha = HUD.ui_alpha
-		inv_box.hud = HUD
+	// 	inv_box = new /obj/screen/inventory()
+	// 	inv_box.icon = HUD.ui_style
+	// 	inv_box.color = HUD.ui_color
+	// 	inv_box.alpha = HUD.ui_alpha
+	// 	inv_box.hud = HUD
 
-		var/list/slot_data =  hud_data.gear[gear_slot]
-		inv_box.name =        gear_slot
-		inv_box.screen_loc =  slot_data["loc"]
-		inv_box.slot_id =     slot_data["slot"]
-		inv_box.icon_state =  slot_data["state"]
-		slot_info["[inv_box.slot_id]"] = inv_box.screen_loc
+	// 	var/list/slot_data =  hud_data.gear[gear_slot]
+	// 	inv_box.name =        gear_slot
+	// 	inv_box.screen_loc =  slot_data["loc"]
+	// 	inv_box.slot_id =     slot_data["slot"]
+	// 	inv_box.icon_state =  slot_data["state"]
+	// 	slot_info["[inv_box.slot_id]"] = inv_box.screen_loc
 
-		if(slot_data["dir"])
-			inv_box.set_dir(slot_data["dir"])
+	// 	if(slot_data["dir"])
+	// 		inv_box.set_dir(slot_data["dir"])
 
-		if(slot_data["toggle"])
-			other += inv_box
-			has_hidden_gear = 1
-		else
-			adding += inv_box
+	// 	if(slot_data["toggle"])
+	// 		other += inv_box
+	// 		has_hidden_gear = 1
+	// 	else
+	// 		adding += inv_box
 
-	if(has_hidden_gear)
-		using = new /obj/screen()
-		using.name = "toggle"
-		using.icon = HUD.ui_style
-		using.icon_state = "other"
-		using.screen_loc = ui_inventory
-		using.hud_layerise()
-		using.color = HUD.ui_color
-		using.alpha = HUD.ui_alpha
-		adding += using
+	// if(has_hidden_gear)
+	// 	using = new /obj/screen()
+	// 	using.name = "toggle"
+	// 	using.icon = HUD.ui_style
+	// 	using.icon_state = "other"
+	// 	using.screen_loc = ui_inventory
+	// 	using.hud_layerise()
+	// 	using.color = HUD.ui_color
+	// 	using.alpha = HUD.ui_alpha
+	// 	adding += using
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
@@ -167,35 +167,35 @@
 		using.alpha = HUD.ui_alpha
 		adding |= using
 
-		inv_box = new /obj/screen/inventory/hand()
-		inv_box.hud = HUD
-		inv_box.name = "r_hand"
-		inv_box.icon = HUD.ui_style
-		inv_box.icon_state = "r_hand_inactive"
-		if(!hand)	//This being 0 or null means the right hand is in use
-			inv_box.icon_state = "r_hand_active"
-		inv_box.screen_loc = ui_rhand
-		inv_box.slot_id = slot_r_hand
-		inv_box.color = HUD.ui_color
-		inv_box.alpha = HUD.ui_alpha
-		HUD.r_hand_hud_object = inv_box
-		adding += inv_box
-		slot_info["[slot_r_hand]"] = inv_box.screen_loc
+		// inv_box = new /obj/screen/inventory/hand()
+		// inv_box.hud = HUD
+		// inv_box.name = "r_hand"
+		// inv_box.icon = HUD.ui_style
+		// inv_box.icon_state = "r_hand_inactive"
+		// if(!hand)	//This being 0 or null means the right hand is in use
+		// 	inv_box.icon_state = "r_hand_active"
+		// inv_box.screen_loc = ui_rhand
+		// inv_box.slot_id = slot_r_hand
+		// inv_box.color = HUD.ui_color
+		// inv_box.alpha = HUD.ui_alpha
+		// HUD.r_hand_hud_object = inv_box
+		// adding += inv_box
+		// slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
-		inv_box = new /obj/screen/inventory/hand()
-		inv_box.hud = HUD
-		inv_box.name = "l_hand"
-		inv_box.icon = HUD.ui_style
-		inv_box.icon_state = "l_hand_inactive"
-		if(hand)	//This being 1 means the left hand is in use
-			inv_box.icon_state = "l_hand_active"
-		inv_box.screen_loc = ui_lhand
-		inv_box.slot_id = slot_l_hand
-		inv_box.color = HUD.ui_color
-		inv_box.alpha = HUD.ui_alpha
-		HUD.l_hand_hud_object = inv_box
-		adding += inv_box
-		slot_info["[slot_l_hand]"] = inv_box.screen_loc
+		// inv_box = new /obj/screen/inventory/hand()
+		// inv_box.hud = HUD
+		// inv_box.name = "l_hand"
+		// inv_box.icon = HUD.ui_style
+		// inv_box.icon_state = "l_hand_inactive"
+		// if(hand)	//This being 1 means the left hand is in use
+		// 	inv_box.icon_state = "l_hand_active"
+		// inv_box.screen_loc = ui_lhand
+		// inv_box.slot_id = slot_l_hand
+		// inv_box.color = HUD.ui_color
+		// inv_box.alpha = HUD.ui_alpha
+		// HUD.l_hand_hud_object = inv_box
+		// adding += inv_box
+		// slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"

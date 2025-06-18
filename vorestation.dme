@@ -3089,6 +3089,8 @@
 #include "code\modules\mob\inventory\inventory_panel.dm"
 #include "code\modules\mob\inventory\living.dm"
 #include "code\modules\mob\inventory\mob_defines.dm"
+#include "code\modules\mob\inventory\new\inventory.dm"
+#include "code\modules\mob\inventory\new\inventory_slot.dm"
 #include "code\modules\mob\language\animal.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"
