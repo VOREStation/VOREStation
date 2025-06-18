@@ -1418,7 +1418,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
 	body += "<b>Hazard Level: [data["danger"]]</b><br>"
 	body += "<b>Growth Stages: [data["max_stages"]]</b><br>"
-	var/mod_flags = data["modifiers"]
 	body += "<b>Curable: [(data["curable"]) ? "Yes" : "No"][!(data["all_cures"]) ? " - single treatment" : ""]</b><br>"
 	body += "<b>Resistable: [(data["resistable"]) ? "Yes" : "No"]</b><br>"
 	body += "<br>"
