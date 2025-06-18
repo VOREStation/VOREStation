@@ -374,6 +374,8 @@
 #define REAGENT_ID_AMMONIA "ammonia"
 #define REAGENT_DIETHYLAMINE "Diethylamine"
 #define REAGENT_ID_DIETHYLAMINE "diethylamine"
+#define REAGENT_LYE "Lye"
+#define REAGENT_ID_LYE "lye"
 #define REAGENT_FLUOROSURFACTANT "Fluorosurfactant"
 #define REAGENT_ID_FLUOROSURFACTANT "fluorosurfactant"
 #define REAGENT_FOAMINGAGENT "Foaming agent"
