@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/chemreact = list()
 	VAR_PRIVATE/list/botseeds = list()
 	VAR_PRIVATE/list/viruses = list()
+	VAR_PRIVATE/list/genes = list()
 
 	VAR_PRIVATE/list/foodrecipe = list()
 
@@ -35,6 +36,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
 	VAR_PRIVATE/list/searchcache_viruses = list()
+	VAR_PRIVATE/list/searchcache_genes = list()
 
 	VAR_PRIVATE/list/spoiler_entries = list()
 
@@ -46,7 +48,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] | V: [viruses.len] "
+	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] | V: [viruses.len] | G: [genes.len] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -58,6 +60,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_virus_data()
 	init_kitchen_data()
 	init_lore_data()
+	init_gene_data()
 	// Donation gag
 	donation_goal = rand(min_donation,max_donation)
 	donation_goal = round(donation_goal,1)
@@ -133,6 +136,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/datum/internal_wiki/page/virus)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return viruses[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_gene(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/gene)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return genes[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -174,6 +181,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_viruses
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_genes()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_genes
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -536,6 +547,21 @@ SUBSYSTEM_DEF(internal_wiki)
 		P.assemble(D)
 		searchcache_viruses.Add("[initial(D.medical_name)]")
 		viruses["[initial(D.medical_name)]"] = P
+		pages.Add(P)
+
+/datum/controller/subsystem/internal_wiki/proc/init_gene_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/gene/G in GLOB.dna_genes)
+		var/N = G.name
+		if(istype(G,/datum/gene/trait))
+			var/datum/gene/trait/T = G
+			N = T.get_name()
+		var/datum/internal_wiki/page/gene/P = new()
+		P.assemble(G)
+		searchcache_genes.Add("[N]")
+		genes["[N]"] = P
 		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
@@ -1435,6 +1461,69 @@ SUBSYSTEM_DEF(internal_wiki)
 		body += "<b>Infectivity: [data["infectivity"]]</b><br>"
 	// Probability of cure, 10 to 20 regularly
 		body += "<b>Resiliance: [data["resiliance"]]</b><br>"
+	return body
+
+// GENES
+/////////////////////////////////////////////
+/datum/internal_wiki/page/gene/assemble(var/datum/gene/G)
+	if(istype(G,/datum/gene/trait))
+		// Trait genetics
+		var/datum/gene/trait/T = G
+		title = T.get_name()
+		data["title"] = title
+		data["description"] = T.get_desc()
+		if(istype(T.linked_trait,/datum/trait/positive))
+			if(!T.linked_trait.hidden)
+				data["type"] = "Positive"
+			else
+				data["type"] = "Super Power" // Likely eye lasers
+		else if(istype(T.linked_trait,/datum/trait/negative))
+			if(!T.linked_trait.hidden)
+				data["type"] = "Negative"
+			else
+				data["type"] = "Disability" // Likely gibbings or such
+		else
+			if(!T.linked_trait.hidden)
+				data["type"] = "Neutral"
+			else
+				data["type"] = "Strange" // Not sure what neutrals are hidden, but just incase
+		// Conflicts
+		data["blockers"] = null
+		var/list/output_blockers = list()
+		var/list/blockers = T.conflict_traits
+		for(var/path in blockers)
+			if(!blockers[path])
+				continue
+			var/datum/trait/TG = GLOB.all_traits[path]
+			output_blockers.Add(TG.name)
+		if(output_blockers.len)
+			data["blockers"] = output_blockers
+	else
+		// Old style gene
+		title = G.name
+		data["title"] = title
+		data["description"] = G.desc
+		data["type"] = "Neutral"
+		data["blockers"] = null
+	var/list/bounds = GetDNABounds(G.block)
+	data["bounds_off_min"] = EncodeDNABlock(bounds[1]) // Minimum hex where gene is off
+	data["bounds_off_max"] = EncodeDNABlock(bounds[2]) // Maximum hex where gene is off
+	data["bounds_on_min"] = EncodeDNABlock(bounds[3]) // Minimum hex where gene is on
+	data["bounds_on_max"] = EncodeDNABlock(bounds[4]) // Maximum hex where gene is on
+
+/datum/internal_wiki/page/gene/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["type"]]</b><br>"
+	body += "<b>Active Range: [data["bounds_on_min"]] - [data["bounds_on_max"]]</b><br>"
+	body += "<b>Inactive Range: [data["bounds_off_min"]] - [data["bounds_off_max"]]</b><br>"
+	body += "<br>"
+	var/list/blockers = data["blockers"]
+	if(blockers)
+		body += "<b>Supressed By:</b><br>"
+		for(var/trait_name in blockers)
+			body += "-[trait_name]<br>"
 	return body
 
 // MISC HELPERS
