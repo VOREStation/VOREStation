@@ -249,3 +249,10 @@
       even inside a stomach.
   Willburd:
   - code_imp: Corrected CI issue with component hose connectors
+2025-06-18:
+  Kashargul:
+  - code_imp: tgui-core 4.3.1
+  TheCaramelion:
+  - rscadd: Viruses now spawn with random names, depending on the symptoms, source,
+      and random factors.
+  - rscadd: Added medical names to all the common diseases

@@ -1,5 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - rscadd: "Viruses now spawn with random names, depending on the symptoms, source, and random factors."
-  - rscadd: "Added medical names to all the common diseases"
