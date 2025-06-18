@@ -211,3 +211,12 @@ export const virusResilienceToColor = {
   Medium: 'yellow',
   Low: 'olive',
 };
+
+export const geneTypeToColor = {
+  Positive: 'green',
+  'Super Power': 'teal',
+  Negative: 'red',
+  Disability: 'orange',
+  Neutral: undefined,
+  Strange: 'purple',
+};
