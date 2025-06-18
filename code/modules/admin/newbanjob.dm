@@ -232,7 +232,10 @@ var/savefile/Banlistjob
 
 	dat += "</table>"
 	dat = "<HR>" + span_bold("Bans:") + " " span_blue("(U) = Unban , ") + " - " + span_green("([count] Bans)") + "<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
-	usr << browse("<html>[dat]</html>", "window=unbanp;size=875x400")
+
+	var/datum/browser/popup = new(owner, "unbanjob", "Unban Job", 875, 400)
+	popup.set_content(dat)
+	popup.open()
 
 /*/datum/admins/proc/permjobban(ckey, computerid, reason, bannedby, temp, minutes, rank)
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 0, 0, job))

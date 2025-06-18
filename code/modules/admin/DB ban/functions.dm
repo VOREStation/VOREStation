@@ -486,4 +486,6 @@
 			output += "</table></div>"
 			qdel(select_query)
 
-	usr << browse("<html>[output]</html>","window=lookupbans;size=900x700")
+	var/datum/browser/popup = new(owner, "lookupbans", "Lookup Bans", 900, 700)
+	popup.set_content(output)
+	popup.open()

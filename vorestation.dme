@@ -3188,7 +3188,6 @@
 #include "code\modules\mob\living\carbon\human\human_powers_vr.dm"
 #include "code\modules\mob\living\carbon\human\human_resist.dm"
 #include "code\modules\mob\living\carbon\human\human_species.dm"
-#include "code\modules\mob\living\carbon\human\human_species_vr.dm"
 #include "code\modules\mob\living\carbon\human\inventory.dm"
 #include "code\modules\mob\living\carbon\human\life.dm"
 #include "code\modules\mob\living\carbon\human\life_vr.dm"
