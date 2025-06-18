@@ -96,9 +96,9 @@
 
 		// Quickscan time
 		if(quick_scan)
-			for(var/T in conflict_traits)
-				if(P == T) return TRUE
-			return FALSE
+			if(P in conflict_traits)
+				return TRUE
+			continue
 
 		// check trait if not. CONFLICT-O-TRON ENGAGE
 		var/datum/trait/instance_test = GLOB.all_traits[P]
