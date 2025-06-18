@@ -3,7 +3,6 @@
  * @copyright 2020 Aleksej Komarov
  * @license MIT
  */
-
 import { useState } from 'react';
 import { Section, Stack, Tabs } from 'tgui-core/components';
 
@@ -28,13 +27,13 @@ function getStories() {
 
 export function KitchenSink(props) {
   const { panel } = props;
-
   const [pageIndex, setPageIndex] = useState(0);
 
   const stories = getStories();
   if (stories.length === 0) {
     return <div>Loading stories...</div>;
   }
+
   const story = stories[pageIndex];
   const Layout = panel ? Pane : Window;
 
