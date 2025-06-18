@@ -80,6 +80,17 @@ var/list/slot_equipment_priority = list( \
 	if(!species || !species.hud || !(slot in species.hud.equip_slots))
 		return
 
+	// Need to clear out hands
+	if((W == src.l_hand) && (slot != slot_l_hand))
+		src.l_hand = null
+		update_inv_l_hand() //So items actually disappear from hands.
+	else if((W == src.r_hand) && (slot != slot_r_hand))
+		src.r_hand = null
+		update_inv_r_hand()
+
+	if(inventory.equip_to_slot(slot, W))
+		return TRUE
+
 	W.loc = src
 	switch(slot)
 		if(slot_back)
@@ -175,14 +186,6 @@ var/list/slot_equipment_priority = list( \
 			W.equipped(src, slot)
 			worn_clothing += w_uniform
 			update_inv_w_uniform()
-		if(slot_l_store)
-			src.l_store = W
-			W.equipped(src, slot)
-			//update_inv_pockets() //Doesn't do anything
-		if(slot_r_store)
-			src.r_store = W
-			W.equipped(src, slot)
-			//update_inv_pockets() //Doesn't do anything
 		if(slot_s_store)
 			src.s_store = W
 			W.equipped(src, slot)
@@ -200,13 +203,6 @@ var/list/slot_equipment_priority = list( \
 		else
 			to_chat(src, span_red("You are trying to equip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."))
 			return
-
-	if((W == src.l_hand) && (slot != slot_l_hand))
-		src.l_hand = null
-		update_inv_l_hand() //So items actually disappear from hands.
-	else if((W == src.r_hand) && (slot != slot_r_hand))
-		src.r_hand = null
-		update_inv_r_hand()
 
 	W.hud_layerise()
 
@@ -409,6 +405,34 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/put_in_inactive_hand(var/obj/item/W)
 	return FALSE // As above.
 
+//Puts the item into our active hand if possible. returns 1 on success.
+/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
+	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
+
+//Puts the item into our inactive hand if possible. returns 1 on success.
+/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
+	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
+
+/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
+	if(!..() || l_hand)
+		return 0
+	W.forceMove(src)
+	l_hand = W
+	W.equipped(src,slot_l_hand)
+	W.add_fingerprint(src)
+	update_inv_l_hand()
+	return 1
+
+/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
+	if(!..() || r_hand)
+		return 0
+	W.forceMove(src)
+	r_hand = W
+	W.equipped(src,slot_r_hand)
+	W.add_fingerprint(src)
+	update_inv_r_hand()
+	return 1
+
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
@@ -528,8 +552,14 @@ var/list/slot_equipment_priority = list( \
 	the search through all the slots, without having to duplicate the rest of the item dropping.
 */
 /mob/proc/u_equip(obj/W)
+	if(inventory.u_equip(W))
+		return TRUE
+	return FALSE
 
 /mob/living/u_equip(obj/W)
+	if(inventory.u_equip(W))
+		. = TRUE // TODO: become return TRUE when we've ported everything
+
 	if (W == r_hand)
 		r_hand = null
 		update_inv_r_hand()
@@ -547,12 +577,14 @@ var/list/slot_equipment_priority = list( \
 /mob/living/carbon/u_equip(obj/item/W)
 	if(!W)	return 0
 
-	else if (W == handcuffed)
+	if(inventory.u_equip(W))
+		. = TRUE // TODO: become return TRUE when we've ported everything
+
+	if (W == handcuffed)
 		handcuffed = null
 		update_handcuffed()
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
-
 	else if (W == legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
@@ -565,6 +597,9 @@ var/list/slot_equipment_priority = list( \
 /mob/living/carbon/human/u_equip(obj/W)
 	if(!W)	return 0
 
+	if(inventory.u_equip(W))
+		. = TRUE // TODO: become return TRUE when we've ported everything
+
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
@@ -572,10 +607,10 @@ var/list/slot_equipment_priority = list( \
 		wear_suit = null
 		update_inv_wear_suit()
 	else if (W == w_uniform)
-		if (r_store)
-			drop_from_inventory(r_store)
-		if (l_store)
-			drop_from_inventory(l_store)
+		if (inventory.get_item_in_slot(slot_r_store_str))
+			drop_from_inventory(inventory.get_item_in_slot(slot_r_store_str))
+		if (inventory.get_item_in_slot(slot_l_store_str))
+			drop_from_inventory(inventory.get_item_in_slot(slot_l_store_str))
 		if (wear_id)
 			drop_from_inventory(wear_id)
 		if (belt && belt.suitlink == 1)
@@ -635,12 +670,6 @@ var/list/slot_equipment_priority = list( \
 		update_inv_wear_id()
 		BITSET(hud_updateflag, ID_HUD)
 		BITSET(hud_updateflag, WANTED_HUD)
-	else if (W == r_store)
-		r_store = null
-		//update_inv_pockets() //Doesn't do anything.
-	else if (W == l_store)
-		l_store = null
-		//update_inv_pockets() //Doesn't do anything.
 	else if (W == s_store)
 		s_store = null
 		update_inv_s_store()
@@ -692,6 +721,7 @@ var/list/slot_equipment_priority = list( \
 		if(get_equipped_item(s) == I)
 			slot = s
 			break
+	world.log << "get_inventory_slot([I]) = [slot]"
 	return slot
 
 
@@ -749,10 +779,10 @@ var/list/slot_equipment_priority = list( \
 		if(slot_legcuffed_str)  return legcuffed
 		if(slot_handcuffed)     return handcuffed
 		if(slot_handcuffed_str) return handcuffed
-		if(slot_l_store)        return l_store
-		if(slot_l_store_str)    return l_store
-		if(slot_r_store)        return r_store
-		if(slot_r_store_str)    return r_store
+		if(slot_l_store)        return inventory.get_item_in_slot(slot_l_store_str)
+		if(slot_l_store_str)    return inventory.get_item_in_slot(slot_l_store_str)
+		if(slot_r_store)        return inventory.get_item_in_slot(slot_r_store_str)
+		if(slot_r_store_str)    return inventory.get_item_in_slot(slot_r_store_str)
 		if(slot_wear_mask)      return wear_mask
 		if(slot_wear_mask_str)  return wear_mask
 		if(slot_l_hand)         return l_hand

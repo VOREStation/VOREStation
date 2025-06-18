@@ -29,6 +29,9 @@
 
 	return I
 
+/datum/inventory_slot/proc/update_icon(atom/movable/contents)
+	return
+
 // TYPES
 /datum/inventory_slot/l_hand
 	name = "Left Hand"
@@ -51,6 +54,15 @@
 
 	return I
 
+/datum/inventory_slot/l_hand/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_l_hand()
+	// TODO: don't assume they're items
+	var/obj/item/r_hand = owner.get_item_in_slot(slot_r_hand_str)
+	if(r_hand)
+		r_hand.update_twohanding()
+		r_hand.update_held_icon()
+		owner.mymob.update_inv_r_hand()
+
 /datum/inventory_slot/r_hand
 	name = "Right Hand"
 
@@ -71,3 +83,32 @@
 			I.icon_state = "r_hand_active"
 
 	return I
+
+/datum/inventory_slot/r_hand/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_r_hand()
+	// TODO: don't assume they're items
+	var/obj/item/l_hand = owner.get_item_in_slot(slot_l_hand_str)
+	if(l_hand)
+		l_hand.update_twohanding()
+		l_hand.update_held_icon()
+		owner.mymob.update_inv_l_hand()
+
+/datum/inventory_slot/l_store
+	name = "Left Pocket"
+
+	slot_id = slot_l_store
+	slot_id_str = slot_l_store_str
+
+	hud_location = ui_storage1
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "pocket"
+
+/datum/inventory_slot/r_store
+	name = "Right Pocket"
+
+	slot_id = slot_r_store
+	slot_id_str = slot_r_store_str
+
+	hud_location = ui_storage2
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "pocket"

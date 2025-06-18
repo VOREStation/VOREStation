@@ -84,7 +84,6 @@
 #define slot_l_ear       16
 #define slot_r_ear       17
 //Secret slots
-#define slot_legs        18
 #define slot_tie         19
 #define slot_handcuffed  20
 #define slot_legcuffed   21

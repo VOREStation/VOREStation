@@ -321,9 +321,9 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_back)
 						if(H.back)    H.back.screen_loc =    hud_data["loc"]
 					if(slot_l_store)
-						if(H.l_store) H.l_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = hud_data["loc"]
 					if(slot_r_store)
-						if(H.r_store) H.r_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_r_store_str)) H.inventory.get_item_in_slot(slot_r_store_str).screen_loc = hud_data["loc"]
 			else
 				switch(hud_data["slot"])
 					if(slot_s_store)
@@ -335,9 +335,9 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_back)
 						if(H.back)    H.back.screen_loc =    null
 					if(slot_l_store)
-						if(H.l_store) H.l_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = null
 					if(slot_r_store)
-						if(H.r_store) H.r_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_r_store_str)) H.inventory.get_item_in_slot(slot_r_store_str).screen_loc = null
 
 
 /datum/hud/proc/instantiate()

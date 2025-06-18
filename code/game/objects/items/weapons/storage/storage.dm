@@ -612,13 +612,13 @@
 /obj/item/storage/attack_hand(mob/user as mob)
 	if(ishuman(user) && !pocketable)
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if(H.inventory.get_item_in_slot(slot_l_store_str) == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
-			H.l_store = null
+			H.inventory.put_item_in_slot(slot_l_store_str, null)
 			return
-		if(H.r_store == src && !H.get_active_hand())
+		if(H.inventory.get_item_in_slot(slot_r_store_str) == src && !H.get_active_hand())
 			H.put_in_hands(src)
-			H.r_store = null
+			H.inventory.put_item_in_slot(slot_r_store_str, null)
 			return
 
 	if (src.loc == user)

@@ -114,13 +114,13 @@
 
 // Empty out everything in the target's pockets.
 /mob/living/carbon/human/proc/empty_pockets(var/mob/living/user)
-	if(!r_store && !l_store)
+	if(!inventory.get_item_in_slot(slot_r_store_str) && !inventory.get_item_in_slot(slot_l_store_str))
 		to_chat(user, span_warning("\The [src] has nothing in their pockets."))
 		return
-	if(r_store)
-		unEquip(r_store)
-	if(l_store)
-		unEquip(l_store)
+	if(inventory.get_item_in_slot(slot_r_store_str))
+		unEquip(inventory.get_item_in_slot(slot_r_store_str))
+	if(inventory.get_item_in_slot(slot_l_store_str))
+		unEquip(inventory.get_item_in_slot(slot_l_store_str))
 	visible_message(span_danger("\The [user] empties \the [src]'s pockets!"))
 
 // Modify the current target sensor level.

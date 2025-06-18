@@ -351,7 +351,7 @@
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	var/list/things_to_not_drop = list(w_uniform,nif,inventory.get_item_in_slot(slot_l_store_str),inventory.get_item_in_slot(slot_r_store_str),wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
 	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists

@@ -137,7 +137,7 @@
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
 				var/list/clothing_slots = list(H.back, H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
 				if(H == holder)
-					clothing_slots += list(H.l_store, H.r_store)
+					clothing_slots += list(H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
 
 				for(var/obj/item/clothing/C in clothing_slots)
 					if(C.forensic_data?.has_blooddna() && C.blood_color && C.blood_color != SYNTH_BLOOD_COLOUR)

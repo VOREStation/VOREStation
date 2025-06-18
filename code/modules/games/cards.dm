@@ -68,7 +68,7 @@
 
 /obj/item/deck/attack_hand(mob/user as mob)
 	var/mob/living/carbon/human/H = user
-	if(ishuman(H) && (istype(src.loc, /obj/item/storage) || src == H.r_store || src == H.l_store || src.loc == user)) // so objects can be removed from storage containers or pockets. also added a catch-all, so if it's in the mob you'll pick it up. Human only, however!
+	if(ishuman(H) && (istype(src.loc, /obj/item/storage) || src == H.inventory.get_item_in_slot(slot_r_store_str) || src == H.inventory.get_item_in_slot(slot_l_store_str) || src.loc == user)) // so objects can be removed from storage containers or pockets. also added a catch-all, so if it's in the mob you'll pick it up. Human only, however!
 		..()
 	else // but if they're not, or are in your hands, you can still draw cards.
 		draw_card()

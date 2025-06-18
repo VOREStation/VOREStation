@@ -37,14 +37,14 @@
 		return 1
 
 	if(user.a_intent == I_DISARM)
-		var/obj/item/LTarg = target.l_store
-		var/obj/item/LUser = user.l_store
+		var/obj/item/LTarg = target.inventory.get_item_in_slot(slot_l_store_str)
+		var/obj/item/LUser = user.inventory.get_item_in_slot(slot_l_store_str)
 
 		if(do_after(user, 1 SECOND, target))
 			if(istype(LTarg) && do_after(user, 1 SECOND, target))
 				target.drop_from_inventory(LTarg)
-				target.l_store = null
-				user.l_store = LTarg
+				target.inventory.put_item_in_slot(slot_l_store_str, null)
+				user.inventory.put_item_in_slot(slot_l_store_str, LTarg)
 				LTarg.forceMove(user)
 				LTarg.equipped(user, slot_l_store)
 			else
@@ -52,23 +52,23 @@
 
 			if(istype(LUser) && do_after(user, 1 SECOND, target))
 				user.drop_from_inventory(LUser)
-				target.l_store = LUser
+				target.inventory.put_item_in_slot(slot_l_store_str, LUser)
 				LUser.forceMove(target)
 				LUser.equipped(target, slot_l_store)
-			else if(istype(LUser) && LUser != user.l_store) // We've taken something, so drop the one that's in bluespace.
+			else if(istype(LUser) && LUser != user.inventory.get_item_in_slot(slot_l_store_str)) // We've taken something, so drop the one that's in bluespace.
 				user.drop_from_inventory(LUser)
 
 		return 1
 
 	if(user.a_intent == I_GRAB)
-		var/obj/item/RTarg = target.r_store
-		var/obj/item/RUser = user.r_store
+		var/obj/item/RTarg = target.inventory.get_item_in_slot(slot_r_store_str)
+		var/obj/item/RUser = user.inventory.get_item_in_slot(slot_r_store_str)
 
 		if(do_after(user, 1 SECOND, target))
 			if(istype(RTarg) && do_after(user, 1 SECOND, target))
 				target.drop_from_inventory(RTarg)
-				target.r_store = null
-				user.r_store = RTarg
+				target.inventory.put_item_in_slot(slot_r_store_str, null)
+				user.inventory.put_item_in_slot(slot_r_store_str, RTarg)
 				RTarg.forceMove(user)
 				RTarg.equipped(user, slot_r_store)
 			else
@@ -76,10 +76,10 @@
 
 			if(istype(RUser) && do_after(user, 1 SECOND, target))
 				user.drop_from_inventory(RUser)
-				target.r_store = RUser
+				target.inventory.put_item_in_slot(slot_r_store_str, RUser)
 				RUser.forceMove(target)
 				RUser.equipped(target, slot_r_store)
-			else if(istype(RUser) && RUser != user.r_store) // We've taken something, so drop the one that's in bluespace.
+			else if(istype(RUser) && RUser != user.inventory.get_item_in_slot(slot_r_store_str)) // We've taken something, so drop the one that's in bluespace.
 				user.drop_from_inventory(RUser)
 
 		return 1
