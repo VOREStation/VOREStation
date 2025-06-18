@@ -50,9 +50,8 @@
 		if(gene.conflict_traits.len)
 			var/summery = ""
 			for(var/path in gene.conflict_traits)
-				if(gene.conflict_traits[path]) // check if it actually conflicts
-					var/datum/trait/T = GLOB.all_traits[path]
-					if(summery != "")
-						summery += ", "
-					summery += "[T.name]"
+				var/datum/trait/T = GLOB.all_traits[path]
+				if(summery != "")
+					summery += ", "
+				summery += "[T.name]"
 			log_world("DNA2: [gene.get_name()] - ([summery])")
