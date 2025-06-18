@@ -1,9 +1,9 @@
-import { describe, it } from 'vitest';
+import { describe, it } from 'bun:test';
 
 import { sanitizeText } from './sanitize';
 
 describe('sanitizeText', () => {
-  it('should sanitize basic HTML input', ({ expect }) => {
+  it('should sanitize basic HTML input', () => {
     const input = '<b>Hello, world!</b><script>alert("hack")</script>';
     const expected = '<b>Hello, world!</b>';
     const result = sanitizeText(input);

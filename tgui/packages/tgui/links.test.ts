@@ -1,4 +1,13 @@
-import { afterEach, beforeEach, describe, it, vi } from 'vitest';
+
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  mock,
+  spyOn,
+} from 'bun:test';
 
 import { captureExternalLinks } from './links';
 
@@ -7,7 +16,7 @@ describe('captureExternalLinks', () => {
   let clickHandler;
 
   beforeEach(() => {
-    addEventListenerSpy = vi.spyOn(document, 'addEventListener');
+    addEventListenerSpy = spyOn(document, 'addEventListener');
     captureExternalLinks();
     clickHandler = addEventListenerSpy.mock.calls[0][1];
   });
@@ -16,7 +25,7 @@ describe('captureExternalLinks', () => {
     addEventListenerSpy.mockRestore();
   });
 
-  it('should subscribe to document clicks', ({ expect }) => {
+  it('should subscribe to document clicks', () => {
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'click',
       expect.any(Function),
@@ -31,11 +40,11 @@ describe('captureExternalLinks', () => {
       getAttribute: () => 'https://example.com',
       parentElement: document.body,
     };
-    const byond = { sendMessage: vi.fn() };
+    const byond = { sendMessage: mock() };
     // @ts-ignore
     global.Byond = byond;
 
-    const evt = { target: externalLink, preventDefault: vi.fn() };
+    const evt = { target: externalLink, preventDefault: mock() };
     clickHandler(evt);
 
     expect(evt.preventDefault).toHaveBeenCalled();
@@ -53,28 +62,28 @@ describe('captureExternalLinks', () => {
       getAttribute: () => 'byond://server-address',
       parentElement: document.body,
     };
-    const byond = { sendMessage: vi.fn() };
+    const byond = { sendMessage: mock() };
     // @ts-ignore
     global.Byond = byond;
 
-    const evt = { target: byondLink, preventDefault: vi.fn() };
+    const evt = { target: byondLink, preventDefault: mock() };
     clickHandler(evt);
 
     expect(evt.preventDefault).not.toHaveBeenCalled();
     expect(byond.sendMessage).not.toHaveBeenCalled();
   });
 
-  it('should add https:// to www links', ({ expect }) => {
+  it('should add https:// to www links', () => {
     const wwwLink = {
       tagName: 'A',
       getAttribute: () => 'www.example.com',
       parentElement: document.body,
     };
-    const byond = { sendMessage: vi.fn() };
+    const byond = { sendMessage: mock() };
     // @ts-ignore
     global.Byond = byond;
 
-    const evt = { target: wwwLink, preventDefault: vi.fn() };
+    const evt = { target: wwwLink, preventDefault: mock() };
     clickHandler(evt);
 
     expect(byond.sendMessage).toHaveBeenCalledWith({

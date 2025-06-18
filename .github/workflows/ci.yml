@@ -20,8 +20,8 @@ jobs:
         with:
             fetch-depth: 0
       # Caches
-      - name: Setup Node
-        uses: ./.github/actions/setup_node
+      - name: Setup Bun
+        uses: ./.github/actions/setup_bun
         with:
           restore-yarn-cache: true
       - name: Restore Bootstrap cache
