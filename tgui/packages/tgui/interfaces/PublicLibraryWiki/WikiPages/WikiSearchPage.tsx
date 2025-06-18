@@ -14,6 +14,7 @@ import { WikiNoDataPage } from './WikiSubPages/WikiNoDataPage';
 import { WikiOrePage } from './WikiSubPages/WikiOrePage';
 import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
 import { WikiVirusPage } from './WikiSubPages/WikiVirusPage';
+import { WikiGenePage } from './WikiSubPages/WikiGenePage';
 
 export const WikiSearchPage = (
   props: {
@@ -39,6 +40,7 @@ export const WikiSearchPage = (
     botany_data,
     ore_data,
     virus_data,
+    gene_data,
     food_data,
     drink_data,
     chemistry_data,
@@ -84,6 +86,7 @@ export const WikiSearchPage = (
   tabs['Botany'] = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
   tabs['Ores'] = !!ore_data && <WikiOrePage ores={ore_data} />;
   tabs['Viruses'] = !!virus_data && <WikiVirusPage virus={virus_data} />;
+  tabs['Genes'] = !!gene_data && <WikiGenePage gene={gene_data} />;
   tabs['Materials'] = !!material_data && (
     <WikiMaterialPage materials={material_data} />
   );

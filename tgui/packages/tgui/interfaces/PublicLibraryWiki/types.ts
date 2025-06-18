@@ -23,6 +23,7 @@ export type PageData = {
   drink_data: DrinkData | null;
   food_data: FoodData | null;
   virus_data: VirusData | null;
+  gene_data: GeneData | null;
 };
 
 export type FoodData = DrinkData & Partial<{ recipe: RedipeData }>;
@@ -103,6 +104,17 @@ export type VirusData = {
   carriable: BooleanLike;
   spread_dead: BooleanLike;
   infect_synth: BooleanLike;
+};
+
+export type GeneData = {
+  title: string;
+  description: string | null;
+  trait_type: string;
+  blockers: string[] | null;
+  bounds_off_min: string;
+  bounds_off_max: string;
+  bounds_on_min: string;
+  bounds_on_max: string;
 };
 
 export type ParticleData = {

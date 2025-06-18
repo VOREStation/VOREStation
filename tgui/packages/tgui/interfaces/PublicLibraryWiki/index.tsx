@@ -35,6 +35,7 @@ export const PublicLibraryWiki = (props) => {
     catalog_data,
     ore_data,
     virus_data,
+    gene_data,
     has_donated,
     donated,
     goal,
@@ -150,6 +151,7 @@ export const PublicLibraryWiki = (props) => {
           botany_data={botany_data}
           ore_data={ore_data}
           virus_data={virus_data}
+          gene_data={gene_data}
           material_data={material_data}
           particle_data={particle_data}
           catalog_data={catalog_data}

@@ -1474,19 +1474,19 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["description"] = T.get_desc()
 		if(istype(T.linked_trait,/datum/trait/positive))
 			if(!T.linked_trait.hidden)
-				data["type"] = "Positive"
+				data["trait_type"] = "Positive"
 			else
-				data["type"] = "Super Power" // Likely eye lasers
+				data["trait_type"] = "Super Power" // Likely eye lasers
 		else if(istype(T.linked_trait,/datum/trait/negative))
 			if(!T.linked_trait.hidden)
-				data["type"] = "Negative"
+				data["trait_type"] = "Negative"
 			else
-				data["type"] = "Disability" // Likely gibbings or such
+				data["trait_type"] = "Disability" // Likely gibbings or such
 		else
 			if(!T.linked_trait.hidden)
-				data["type"] = "Neutral"
+				data["trait_type"] = "Neutral"
 			else
-				data["type"] = "Strange" // Not sure what neutrals are hidden, but just incase
+				data["trait_type"] = "Strange" // Not sure what neutrals are hidden, but just incase
 		// Conflicts
 		data["blockers"] = null
 		var/list/output_blockers = list()
@@ -1501,7 +1501,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		title = G.name
 		data["title"] = title
 		data["description"] = G.desc
-		data["type"] = "Neutral"
+		data["trait_type"] = "Neutral"
 		data["blockers"] = null
 	var/list/bounds = GetDNABounds(G.block)
 	data["bounds_off_min"] = EncodeDNABlock(bounds[1]) // Minimum hex where gene is off
@@ -1513,7 +1513,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
-	body += "<b>Type: [data["type"]]</b><br>"
+	body += "<b>Type: [data["trait_type"]]</b><br>"
 	body += "<b>Active Range: [data["bounds_on_min"]] - [data["bounds_on_max"]]</b><br>"
 	body += "<b>Inactive Range: [data["bounds_off_min"]] - [data["bounds_off_max"]]</b><br>"
 	body += "<br>"
