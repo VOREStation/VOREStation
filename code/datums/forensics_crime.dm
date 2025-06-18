@@ -82,12 +82,7 @@
 /datum/forensics_crime/proc/merge_prints(var/datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprints))
 		return
-	if(!fingerprints)
-		fingerprints = list()
-	if(fingerprints)
-		fingerprints |= origin.fingerprints
-	else
-		fingerprints = origin.fingerprints.Copy()
+	LAZYOR(fingerprints,origin.fingerprints)
 
 /// Clears data to default state, wiping all evidence
 /datum/forensics_crime/proc/clear_prints()
@@ -148,12 +143,7 @@
 /datum/forensics_crime/proc/merge_hiddenprints(var/datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprintshidden))
 		return
-	if(!fingerprintshidden)
-		fingerprintshidden = list()
-	if(fingerprintshidden)
-		fingerprintshidden |= origin.fingerprintshidden
-	else
-		fingerprintshidden = origin.fingerprintshidden.Copy()
+	LAZYOR(fingerprintshidden,origin.fingerprintshidden)
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -205,12 +195,7 @@
 /datum/forensics_crime/proc/merge_fibres(var/datum/forensics_crime/origin)
 	if(!islist(origin?.suit_fibres))
 		return
-	if(!suit_fibres)
-		suit_fibres = list()
-	if(suit_fibres)
-		suit_fibres |= origin.suit_fibres
-	else
-		suit_fibres = origin.suit_fibres.Copy()
+	LAZYOR(suit_fibres,origin.suit_fibres)
 
 /// Clears data to default state, wiping all evidence
 /datum/forensics_crime/proc/clear_fibres()
@@ -268,22 +253,12 @@
 /datum/forensics_crime/proc/merge_blooddna(var/datum/forensics_crime/origin, var/list/raw_list = null)
 	// Copying from a list, blood on a mob's feet is stored as a list outside of forensics data
 	if(raw_list)
-		if(!blood_DNA)
-			blood_DNA = list()
-		if(blood_DNA)
-			blood_DNA |= raw_list
-		else
-			blood_DNA = raw_list.Copy()
+		LAZYOR(blood_DNA,raw_list)
 		return
 	// Copying from another datums
 	if(!islist(origin?.blood_DNA))
 		return
-	if(!blood_DNA)
-		blood_DNA = list()
-	if(blood_DNA)
-		blood_DNA |= origin.blood_DNA
-	else
-		blood_DNA = origin.blood_DNA.Copy()
+	LAZYOR(blood_DNA,origin.blood_DNA)
 
 /// Clears data to default state, wiping all evidence
 /datum/forensics_crime/proc/clear_blooddna()
