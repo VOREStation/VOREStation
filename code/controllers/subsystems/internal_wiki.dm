@@ -1519,7 +1519,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	body += "<br>"
 	var/list/blockers = data["blockers"]
 	if(blockers)
-		body += "<b>Supressed By:</b><br>"
+		body += "<b>Suppressed By:</b><br>"
 		for(var/trait_name in blockers)
 			body += "-[trait_name]<br>"
 	return body
