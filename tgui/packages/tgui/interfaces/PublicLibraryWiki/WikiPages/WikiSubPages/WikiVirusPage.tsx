@@ -52,8 +52,14 @@ export const WikiVirusPage = (props: { virus: VirusData }) => {
               <Box>{max_stages}</Box>
             </LabeledList.Item>
             <LabeledList.Item label="Curable">
-              <YesNoBox value={!!curable} />
-              {!all_cures ? ' - single treatment' : ''}
+              <Stack>
+                <Stack.Item>
+                  <YesNoBox value={!!curable} />
+                </Stack.Item>
+                <Stack.Item>
+                  {!all_cures ? ' - single treatment' : ''}
+                </Stack.Item>
+              </Stack>
             </LabeledList.Item>
             <LabeledList.Item label="Resistable">
               <YesNoBox value={!!resistable} />
@@ -86,26 +92,44 @@ export const WikiVirusPage = (props: { virus: VirusData }) => {
                 </Stack.Item>
                 {!!carriable && (
                   <Stack.Item>
-                    <Box inline>{'> '}</Box>
-                    <Box inline color="yellow">
-                      Transmissable without symptoms
-                    </Box>
+                    <Stack>
+                      <Stack.Item>
+                        <Box inline>{'>'}</Box>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Box inline color="yellow">
+                          {'Transmissable without symptoms'}
+                        </Box>
+                      </Stack.Item>
+                    </Stack>
                   </Stack.Item>
                 )}
                 {!!spread_dead && (
                   <Stack.Item>
-                    <Box inline>{'> '}</Box>
-                    <Box inline color="yellow">
-                      Transmissable from dead tissue
-                    </Box>
+                    <Stack>
+                      <Stack.Item>
+                        <Box inline>{'>'}</Box>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Box inline color="yellow">
+                          {'Transmissable from dead tissue'}
+                        </Box>
+                      </Stack.Item>
+                    </Stack>
                   </Stack.Item>
                 )}
                 {!!infect_synth && (
                   <Stack.Item>
-                    <Box inline>{'> '}</Box>
-                    <Box inline color="yellow">
-                      Inorganic pathogen
-                    </Box>
+                    <Stack>
+                      <Stack.Item>
+                        <Box inline>{'>'}</Box>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Box inline color="yellow">
+                          {'Inorganic pathogen'}
+                        </Box>
+                      </Stack.Item>
+                    </Stack>
                   </Stack.Item>
                 )}
               </Stack>
