@@ -10,9 +10,7 @@ describe('sanitizeText', () => {
     expect(result).toBe(expected);
   });
 
-  it('should sanitize advanced HTML input when advHtml flag is true', ({
-    expect,
-  }) => {
+  it('should sanitize advanced HTML input when advHtml flag is true', () => {
     const input =
       '<b>Hello, world!</b><iframe src="https://example.com"></iframe>';
     const expected = '<b>Hello, world!</b>';
@@ -20,9 +18,7 @@ describe('sanitizeText', () => {
     expect(result).toBe(expected);
   });
 
-  it('should allow specific HTML tags when tags array is provided', ({
-    expect,
-  }) => {
+  it('should allow specific HTML tags when tags array is provided', () => {
     const input = '<b>Hello, world!</b><span>Goodbye, world!</span>';
     const tags = ['b'];
     const expected = '<b>Hello, world!</b>Goodbye, world!';
@@ -30,9 +26,7 @@ describe('sanitizeText', () => {
     expect(result).toBe(expected);
   });
 
-  it('should allow advanced HTML tags when advTags array is provided and advHtml flag is true', ({
-    expect,
-  }) => {
+  it('should allow advanced HTML tags when advTags array is provided and advHtml flag is true', () => {
     const input =
       '<b>Hello, world!</b><iframe src="https://example.com"></iframe>';
     const advTags = ['iframe'];
