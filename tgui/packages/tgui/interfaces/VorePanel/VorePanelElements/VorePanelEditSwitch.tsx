@@ -5,9 +5,9 @@ import { Box, Button, type Floating } from 'tgui-core/components';
 export const VorePanelEditSwitch = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
-  /** Our backend action on text area blur */
+  /** Our backend action on click*/
   action: string;
-  /** Our secondary backend action on text area blur */
+  /** Our secondary backend action on click */
   subAction?: string;
   /** Is the button currently active / selected */
   active?: boolean;

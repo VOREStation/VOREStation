@@ -1082,7 +1082,7 @@
 		to_chat(src, span_notice("You will [trait_injection_verb] your targets."))
 		return
 	if(choice == "Chemical Refresher")
-		var/output = {""} + span_bold("Chemical Refresher!") + {"<HR>
+		var/output = {"<HR>
 					"} + span_bold("Options for venoms") + {"<BR>
 					<BR>
 					"} + span_bold("Size Chemicals") + {"<BR>
@@ -1111,7 +1111,10 @@
 					You can also bite synthetics, but due to how synths work, they won't have anything injected into them.
 					<br>
 					"}
-		src << browse("<html>[output]</html>","window=chemicalrefresher")
+
+		var/datum/browser/popup = new(src, "chemicalrefresher", "Chemical Refresher")
+		popup.set_content(output)
+		popup.open()
 		return
 	else
 		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT. AND KEEP COPYPASTING IT  (Pointing Rick Dalton: "That's my code!" ~CL)

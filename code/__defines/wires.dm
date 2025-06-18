@@ -120,3 +120,8 @@
 #define WIRE_RIG_SYSTEM_CONTROL "System Control"
 #define WIRE_RIG_INTERFACE_LOCK "Interface Lock"
 #define WIRE_RIG_INTERFACE_SHOCK "Interface Shock"
+
+// Disposal Sorting Junctions
+#define WIRE_SORT_FORWARD "Sort Forward"
+#define WIRE_SORT_SIDE "Sort Side"
+#define WIRE_SORT_SCAN "Sort Scan"

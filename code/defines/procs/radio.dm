@@ -39,7 +39,7 @@
 /datum/receptions
 	var/obj/machinery/message_server/message_server = null
 	var/sender_reception = TELECOMMS_RECEPTION_NONE
-	var/list/receiver_reception = new
+	var/list/receiver_reception = list()
 
 /proc/get_message_server()
 	if(message_servers)

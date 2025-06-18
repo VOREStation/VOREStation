@@ -1,5 +1,6 @@
 /datum/disease/food_poisoning
 	name = "Food Poisoning"
+	medical_name = "Gastroenteritis"
 	max_stages = 3
 	stage_prob = 5
 	spread_text = "Non-Contagious"
