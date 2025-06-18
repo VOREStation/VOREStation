@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - balance: "Dogborg blade can be turned on/off. Glows when on."
-  - rscadd: "Dogborg blade can be recolored."
-  - rscadd: "Ninja blade (more damage) and Syndicate blade (starts red)"

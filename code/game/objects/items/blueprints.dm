@@ -239,7 +239,7 @@
 /obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		if (found.len+pending.len > 300)

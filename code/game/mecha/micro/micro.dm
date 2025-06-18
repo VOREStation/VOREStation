@@ -1,11 +1,3 @@
-/obj/mecha
-	var/max_micro_utility_equip = 0
-	var/max_micro_weapon_equip = 0
-	var/list/micro_utility_equipment = new
-	var/list/micro_weapon_equipment = new
-
-
-
 /obj/mecha/micro
 	icon = 'icons/mecha/micro.dmi'
 	force = 10 //still a robot
