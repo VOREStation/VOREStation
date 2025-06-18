@@ -115,8 +115,9 @@ world/New()
 	else
 		output += "Whoops, no reports!"
 
-	usr << browse("<html>[output]</html>", "window=news;size=600x400")
-
+	var/datum/browser/popup = new(src, "news", "News", 600, 400)
+	popup.set_content(output)
+	popup.open()
 
 /client/proc/Report(mob/M as mob in world)
 	set category = "Admin.Moderation"

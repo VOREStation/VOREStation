@@ -75,7 +75,7 @@
 			if(!S)
 				break
 			if(step_towards(S,trg))
-				var/list/mobs = new
+				var/list/mobs = list()
 				for(var/mob/living/carbon/M in S.loc)
 					mobs += M
 				var/mob/living/carbon/M = safepick(mobs)

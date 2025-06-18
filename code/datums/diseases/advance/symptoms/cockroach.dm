@@ -17,6 +17,9 @@
 		"Transmission 8" = "When the host dies, more roaches spawn."
 	)
 
+	prefixes = list("Blatto")
+	bodies = list("Roach")
+
 /datum/symptom/cockroach/Start(datum/disease/advance/A)
 	if(!..())
 		return

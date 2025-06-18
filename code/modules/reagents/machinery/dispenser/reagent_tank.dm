@@ -283,10 +283,8 @@
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
 	if (reagents.total_volume == 0)
 		return
-
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	reagents.trans_to_turf(get_turf(src),amount)
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"

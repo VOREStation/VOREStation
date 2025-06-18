@@ -26,6 +26,8 @@ Bonus
 	level = 3
 	severity = 3
 
+	prefixes = list("Weakening ", "Weak's ")
+
 /datum/symptom/weakness/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))

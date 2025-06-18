@@ -34,13 +34,13 @@
 
 	var/obj/item/cell/cell
 	var/state = MECHA_OPERATING
-	var/list/log = new
+	var/list/log = list()
 	var/last_message = 0
 	var/add_req_access = 1
 	var/maint_access = 1
 	var/dna								//Dna-locking the mech
 	var/list/proc_res = list() 			//Stores proc owners, like proc_res["functionname"] = owner reference
-	var/datum/effect/effect/system/spark_spread/spark_system = new
+	var/datum/effect/effect/system/spark_spread/spark_system
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
@@ -70,7 +70,7 @@
 
 	var/wreckage
 
-	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
+	var/list/equipment = list()		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
 
@@ -82,11 +82,11 @@
 	var/current_processes = MECHA_PROC_INT_TEMP
 
 //mechaequipt2 stuffs
-	var/list/hull_equipment = new
-	var/list/weapon_equipment = new
-	var/list/utility_equipment = new
-	var/list/universal_equipment = new
-	var/list/special_equipment = new
+	var/list/hull_equipment = list()
+	var/list/weapon_equipment = list()
+	var/list/utility_equipment = list()
+	var/list/universal_equipment = list()
+	var/list/special_equipment = list()
 	var/max_hull_equip = 2
 	var/max_weapon_equip = 2
 	var/max_utility_equip = 2
@@ -149,32 +149,55 @@
 	var/smoke_reserve = 5			//How many shots you have. Might make a reload later on. MIGHT.
 	var/smoke_ready = 1				//This is a check for the whether or not the cooldown is ongoing.
 	var/smoke_cooldown = 100		//How long you have between uses.
-	var/datum/effect/effect/system/smoke_spread/smoke_system = new
+	var/datum/effect/effect/system/smoke_spread/smoke_system
 
 	var/cloak_possible = FALSE		// Can this exosuit innately cloak?
 
 ////All of those are for the HUD buttons in the top left. See Grant and Remove procs in mecha_actions.
 
-	var/datum/action/innate/mecha/mech_eject/eject_action = new
-	var/datum/action/innate/mecha/mech_toggle_internals/internals_action = new
-	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
-	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
-	var/datum/action/innate/mecha/strafe/strafing_action = new
+	var/datum/action/innate/mecha/mech_eject/eject_action
+	var/datum/action/innate/mecha/mech_toggle_internals/internals_action
+	var/datum/action/innate/mecha/mech_toggle_lights/lights_action
+	var/datum/action/innate/mecha/mech_view_stats/stats_action
+	var/datum/action/innate/mecha/strafe/strafing_action
 
-	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
-	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
-	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
-	var/datum/action/innate/mecha/mech_zoom/zoom_action = new
-	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
-	var/datum/action/innate/mecha/mech_cycle_equip/cycle_action = new
-	var/datum/action/innate/mecha/mech_switch_damtype/switch_damtype_action = new
-	var/datum/action/innate/mecha/mech_toggle_phasing/phasing_action = new
-	var/datum/action/innate/mecha/mech_toggle_cloaking/cloak_action = new
+	var/datum/action/innate/mecha/mech_defence_mode/defence_action
+	var/datum/action/innate/mecha/mech_overload_mode/overload_action
+	var/datum/action/innate/mecha/mech_smoke/smoke_action
+	var/datum/action/innate/mecha/mech_zoom/zoom_action
+	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action
+	var/datum/action/innate/mecha/mech_cycle_equip/cycle_action
+	var/datum/action/innate/mecha/mech_switch_damtype/switch_damtype_action
+	var/datum/action/innate/mecha/mech_toggle_phasing/phasing_action
+	var/datum/action/innate/mecha/mech_toggle_cloaking/cloak_action
 
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
 
+	//Micro Mech Code
+	var/max_micro_utility_equip = 0
+	var/max_micro_weapon_equip = 0
+	var/list/micro_utility_equipment = list()
+	var/list/micro_weapon_equipment = list()
+
 /obj/mecha/Initialize(mapload)
 	. = ..()
+
+	//All this used to be set to =new on the object itself which...bad.
+	eject_action = new
+	internals_action = new
+	lights_action = new
+	stats_action = new
+	strafing_action = new
+
+	defence_action = new
+	overload_action = new
+	smoke_action = new
+	zoom_action = new
+	thrusters_action = new
+	cycle_action = new
+	switch_damtype_action = new
+	phasing_action = new
+	cloak_action = new
 
 	for(var/path in starting_components)
 		var/obj/item/mecha_parts/component/C = new path(src)
@@ -196,9 +219,11 @@
 		removeVerb(/obj/mecha/verb/connect_to_port)
 		removeVerb(/obj/mecha/verb/toggle_internal_tank)
 
+	spark_system = new
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
 
+	smoke_system = new
 	if(smoke_possible)//I am pretty sure that's needed here.
 		src.smoke_system.set_up(3, 0, src)
 		src.smoke_system.attach(src)
