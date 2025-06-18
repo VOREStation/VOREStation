@@ -115,6 +115,8 @@
 		"%hot" = GLOB.vore_words_hot,
 		"%snake" = GLOB.vore_words_snake,
 	)
+	data["min_belly_name"] = BELLIES_NAME_MIN
+	data["max_belly_name"] = BELLIES_NAME_MAX
 
 	return data
 
@@ -245,7 +247,7 @@
 			if(host.vore_organs.len >= BELLIES_MAX)
 				return FALSE
 
-			var/new_name = html_encode(tgui_input_text(ui.user,"New belly's name:","New Belly"))
+			var/new_name = sanitize(params["val"], BELLIES_NAME_MAX, FALSE, TRUE, FALSE)
 
 			if(!new_name)
 				return FALSE
