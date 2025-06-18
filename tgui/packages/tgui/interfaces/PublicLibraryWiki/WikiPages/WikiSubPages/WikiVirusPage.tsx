@@ -86,21 +86,26 @@ export const WikiVirusPage = (props: { virus: VirusData }) => {
                 </Stack.Item>
                 {!!carriable && (
                   <Stack.Item>
-                    <Box color="yellow">
-                      {'> Transmissable without symptoms'}
+                    <Box inline>{'> '}</Box>
+                    <Box inline color="yellow">
+                      Transmissable without symptoms
                     </Box>
                   </Stack.Item>
                 )}
                 {!!spread_dead && (
                   <Stack.Item>
-                    <Box color="yellow">
-                      {'> Transmissable from dead tissue'}
+                    <Box inline>{'> '}</Box>
+                    <Box inline color="yellow">
+                      Transmissable from dead tissue
                     </Box>
                   </Stack.Item>
                 )}
                 {!!infect_synth && (
                   <Stack.Item>
-                    <Box color="yellow">{'> Inorganic pathogen'}</Box>
+                    <Box inline>{'> '}</Box>
+                    <Box inline color="yellow">
+                      Inorganic pathogen
+                    </Box>
                   </Stack.Item>
                 )}
               </Stack>
