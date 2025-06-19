@@ -12,7 +12,6 @@
 				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
 		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
 		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
-		if(rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
 		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
 		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
 		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
@@ -31,7 +30,6 @@
 		admin_verbs_debug,
 		admin_verbs_possess,
 		/client/proc/stealth,
-		admin_verbs_rejuv,
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs
@@ -141,6 +139,21 @@
 		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
 		mob.alpha = max(mob.alpha - 100, 0)
 
+ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
+	user.holder.list_bombers()
+	//BLACKBOX_LOG_ADMIN_VERB("List Bombers")
+
+ADMIN_VERB(list_signalers, R_ADMIN, "List Signalers", "View all signalers.", ADMIN_CATEGORY_GAME)
+	user.holder.list_signalers()
+	//BLACKBOX_LOG_ADMIN_VERB("List Signalers")
+
+ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG)
+	user.holder.list_law_changes()
+	//BLACKBOX_LOG_ADMIN_VERB("List Law Changes")
+
+ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG)
+	user.holder.show_manifest()
+	//BLACKBOX_LOG_ADMIN_VERB("Show Manifest")
 
 /client/proc/player_panel()
 	set name = "Player Panel"
@@ -184,14 +197,6 @@ ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_C
 ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
 	user.holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/secrets()
-	set name = "Secrets"
-	set category = "Admin.Secrets"
-	if(check_rights(R_HOLDER))
-		holder.Secrets()
-	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
 /client/proc/findStealthKey(txt)
 	if(txt)
@@ -538,7 +543,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
 	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(T)] the spell [S]."), 1)
 
-ADMIN_VERB(debugstatpanel, R_DEBUG, "Debug Stat Panel", "Allows to debug the statpanel", "Debug.Misc")
+ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", "Debug.Misc")
 	user.stat_panel.send_message("create_debug")
 
 /client/proc/spawn_reagent()
