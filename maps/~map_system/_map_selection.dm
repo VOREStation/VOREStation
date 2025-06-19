@@ -5,7 +5,7 @@
 /* FOR LIVE SERVER   */
 /*********************/
 
-#define USE_MAP_TETHER
+//#define USE_MAP_TETHER
 //#define USE_MAP_STELLARDELIGHT
 //#define USE_MAP_GROUNDBASE
 
