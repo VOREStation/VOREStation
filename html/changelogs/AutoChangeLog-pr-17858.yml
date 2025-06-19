@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Forensics data merging on objects without data but with data on the merging object, no longer crash on merge"
