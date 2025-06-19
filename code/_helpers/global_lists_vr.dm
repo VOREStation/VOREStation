@@ -1221,3 +1221,13 @@ GLOBAL_LIST_INIT(all_borg_multitool_options, list(
 	/obj/item/material/kitchen/rollingpin/cyborg,
 	/obj/item/reagent_containers/spray,
 ))
+
+GLOBAL_LIST_INIT(material_synth_list, list(
+								METAL_SYNTH,
+								PLASTEEL_SYNTH,
+								GLASS_SYNTH,
+								WOOD_SYNTH,
+								PLASTIC_SYNTH,
+								WIRE_SYNTH,
+								CLOTH_SYNTH
+							))

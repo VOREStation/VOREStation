@@ -347,18 +347,12 @@
 		if("install_tool")
 			if(!istype(multibelt_holder))
 				return FALSE
+			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
+				target.add_new_material(ui.user, params["tool"])
+				return TRUE
 			var/new_tool = text2path(params["tool"])
 			multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
 			multibelt_holder.generate_tools()
-			/*//wip
-			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
-				if(multibelt_holder in target.module.contents) //If it's stowed in our inventory
-					mat_belt.has_performed_first_use_init = FALSE
-					mat_belt.first_use_generation(TRUE)
-				if(multibelt_holder in target.contents) //If it's in our hands
-					mat_belt.has_performed_first_use_init = FALSE
-					mat_belt.first_use_generation()
-			*/
 			return TRUE
 
 		if("remove_tool")
@@ -740,11 +734,19 @@
 		integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
 	multi_belt_list["integrated_tools"] = integrated_tools
 	var/list/tools = list()
-	for(var/tool in GLOB.all_borg_multitool_options)
-		if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
-			continue
-		var/obj/item/tool_to_add = tool
-		tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
+	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
+		for(var/tool in GLOB.material_synth_list)
+		/*TODO
+			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
+				continue
+			*/
+			tools += list(list("name" = tool, "path" = tool))
+	else
+		for(var/tool in GLOB.all_borg_multitool_options)
+			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
+				continue
+			var/obj/item/tool_to_add = tool
+			tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
 	multi_belt_list["tools"] = tools
 	return multi_belt_list
 

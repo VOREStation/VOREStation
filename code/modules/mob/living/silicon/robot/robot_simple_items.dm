@@ -311,62 +311,61 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_rolling_pin"
 
-
-
-
-#define METAL_SYNTH "Metal Synthesizer"
-#define PLASTEEL_SYNTH "Plasteel Synthesizer"
-#define GLASS_SYNTH "Glass Synthesizer"
-#define WOOD_SYNTH "Wood Synthesizer"
-#define PLASTIC_SYNTH "Plastic Synthesizer"
-#define WIRE_SYNTH "Wire Synthesizer"
-#define CLOTH_SYNTH "Cloth Synthesizer"
-
 //Admin proc to add new materials to their fabricator
-/mob/living/silicon/robot/proc/add_new_material() //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
+/mob/living/silicon/robot/proc/add_new_material(mob/user, mat_to_add) //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
 	if(!module)
 		return
-	var/mat_to_add
-	var/list/material_list = list(
-									METAL_SYNTH,
-									PLASTEEL_SYNTH,
-									GLASS_SYNTH,
-									WOOD_SYNTH,
-									PLASTIC_SYNTH,
-									WIRE_SYNTH,
-									CLOTH_SYNTH
-								)
 
-	mat_to_add = tgui_input_list(usr, "Select a material to add", "Material selection", material_list)
-	if(mat_to_add)
-		switch(mat_to_add)
-			if(METAL_SYNTH)
-				var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
-				module.synths += metal
-			if(PLASTEEL_SYNTH)
-				var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
-				module.synths += plasteel
-			if(GLASS_SYNTH)
-				var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
-				module.synths += glass
-			if(WOOD_SYNTH)
-				var/datum/matter_synth/wood = new /datum/matter_synth/wood(40000)
-				module.synths += wood
-			if(PLASTIC_SYNTH)
-				var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(40000)
-				module.synths += plastic
-			if(WIRE_SYNTH)
-				var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
-				module.synths += wire
-			if(CLOTH_SYNTH)
-				var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
-				module.synths += cloth
+	if(!mat_to_add)
+		mat_to_add = tgui_input_list(user, "Select a material to add", "Material selection", GLOB.material_synth_list)
+
+	if(!mat_to_add)
+		return
+
+	var/datum/matter_synth/new_synth
+	var/amount
+	switch(mat_to_add)
+		if(METAL_SYNTH)
+			new_synth = /datum/matter_synth/metal
+			amount = 40000
+		if(PLASTEEL_SYNTH)
+			new_synth = /datum/matter_synth/plasteel
+			amount = 20000
+		if(GLASS_SYNTH)
+			new_synth = /datum/matter_synth/glass
+			amount = 40000
+		if(WOOD_SYNTH)
+			new_synth = /datum/matter_synth/wood
+			amount = 40000
+		if(PLASTIC_SYNTH)
+			new_synth = /datum/matter_synth/plastic
+			amount = 40000
+		if(WIRE_SYNTH)
+			new_synth = /datum/matter_synth/wire
+			amount = 50
+		if(CLOTH_SYNTH)
+			new_synth = /datum/matter_synth/cloth
+			amount = 40000
+
+	if(check_for_synth(new_synth))
+		return
+
+	module.synths += new new_synth(amount)
+
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
 		mat_belt.has_performed_first_use_init = FALSE
 		mat_belt.first_use_generation(TRUE)
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our hands
 		mat_belt.has_performed_first_use_init = FALSE
 		mat_belt.first_use_generation()
+
+/mob/living/silicon/robot/proc/check_for_synth(type_to_check)
+	if(!type_to_check)
+		return FALSE
+	for(var/datum/matter_synth/synths in module.synths)
+		if(istype(synths, type_to_check))
+			return TRUE
+	return FALSE
 
 //The Material Dispenser Multibelt
 //This thing is uh...Bulky. And took a lot of effort to get to work.
@@ -478,14 +477,6 @@
 							cyborg_integrated_tools += current_stack
 
 	generate_tools()
-
-#undef METAL_SYNTH
-#undef PLASTEEL_SYNTH
-#undef GLASS_SYNTH
-#undef WOOD_SYNTH
-#undef PLASTIC_SYNTH
-#undef WIRE_SYNTH
-#undef CLOTH_SYNTH
 
 /*
  * Grippers
