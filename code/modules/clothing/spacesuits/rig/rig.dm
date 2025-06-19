@@ -243,7 +243,7 @@
 		return 0
 	if(boot_type && !(boots && wearer.shoes == boots))
 		return 0
-	if(chest_type && !(chest && wearer.wear_suit == chest))
+	if(chest_type && !(chest && wearer.inventory.get_item_in_slot(slot_wear_suit_str) == chest))
 		return 0
 	return 1
 
@@ -327,7 +327,11 @@
 		if(!M)
 			failed_to_seal = 1
 		else
-			for(var/list/piece_data in list(list(M.shoes,boots,"boots",boot_type),list(M.gloves,gloves,"gloves",glove_type),list(M.head,helmet,"helmet",helm_type),list(M.wear_suit,chest,"chest",chest_type)))
+			for(var/list/piece_data in list(
+					list(M.shoes,boots,"boots",boot_type),
+					list(M.gloves,gloves,"gloves",glove_type),
+					list(M.head,helmet,"helmet",helm_type),
+					list(M.inventory.get_item_in_slot(slot_wear_suit_str),chest,"chest",chest_type)))
 
 				var/obj/item/piece = piece_data[1]
 				var/obj/item/compare_piece = piece_data[2]
@@ -477,7 +481,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || (H.inventory.get_item_in_slot(slot_back_str) != src && H.belt != src))
+	if (!H.inventory.get_item_in_slot(slot_wear_suit_str) || (H.inventory.get_item_in_slot(slot_back_str) != src && H.belt != src))
 		return 0
 
 	return 1
@@ -728,7 +732,7 @@
 		if("chest")
 			equip_to = slot_wear_suit
 			use_obj = chest
-			check_slot = H.wear_suit
+			check_slot = H.inventory.get_item_in_slot(slot_wear_suit_str)
 
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
@@ -777,25 +781,21 @@
 		if(H.head)
 			var/obj/item/garbage = H.head
 			H.drop_from_inventory(garbage)
-			H.head = null
 			qdel(garbage)
 
 		if(H.gloves)
 			var/obj/item/garbage = H.gloves
 			H.drop_from_inventory(garbage)
-			H.gloves = null
 			qdel(garbage)
 
 		if(H.shoes)
 			var/obj/item/garbage = H.shoes
 			H.drop_from_inventory(garbage)
-			H.shoes = null
 			qdel(garbage)
 
-		if(H.wear_suit)
-			var/obj/item/garbage = H.wear_suit
+		if(H.inventory.get_item_in_slot(slot_wear_suit_str))
+			var/obj/item/garbage = H.inventory.get_item_in_slot(slot_wear_suit_str)
 			H.drop_from_inventory(garbage)
-			H.wear_suit = null
 			qdel(garbage)
 
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
@@ -1032,8 +1032,8 @@
 	return null
 
 /mob/living/carbon/human/get_voidsuit()
-	if(istype(wear_suit, /obj/item/clothing/suit/space/void))
-		return wear_suit
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/space/void))
+		return inventory.get_item_in_slot(slot_wear_suit_str)
 	else
 		return null
 

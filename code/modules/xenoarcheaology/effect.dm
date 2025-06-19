@@ -222,9 +222,10 @@
 		if(rig.suit_is_deployed() && !rig.offline)
 			protected += 1
 
-	if(istype(H.wear_suit,/obj/item/clothing/suit/bio_suit/anomaly))
+	var/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit,/obj/item/clothing/suit/bio_suit/anomaly))
 		protected += 0.6
-	else if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
+	else if(istype(wear_suit,/obj/item/clothing/suit/space/anomaly))
 		protected += 0.5
 
 	if(istype(H.head,/obj/item/clothing/head/bio_hood/anomaly))

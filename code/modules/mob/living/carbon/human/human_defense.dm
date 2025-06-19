@@ -141,7 +141,7 @@ emp_act
 
 	var/siemens_coefficient = max(species.siemens_coefficient,0)
 
-	var/list/clothing_items = list(head, wear_mask, wear_suit, inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
+	var/list/clothing_items = list(head, wear_mask, inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
@@ -177,7 +177,7 @@ emp_act
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
-	var/list/clothing_items = list(head, wear_mask, wear_suit, inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
+	var/list/clothing_items = list(head, wear_mask, inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part))
 			results.Add(C)
@@ -240,7 +240,7 @@ emp_act
 	return null
 
 /mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	for(var/obj/item/shield in list(get_left_hand(), get_right_hand(), wear_suit))
+	for(var/obj/item/shield in list(get_left_hand(), get_right_hand(), inventory.get_item_in_slot(slot_wear_suit_str)))
 		if(!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
@@ -583,7 +583,8 @@ emp_act
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
-	if(wear_suit)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
 	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
@@ -602,6 +603,7 @@ emp_act
 		rig.take_hit(damage)
 
 	// We may also be taking a suit breach.
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 	if(!wear_suit) return
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
@@ -696,7 +698,9 @@ emp_act
 	if(!check_has_mouth())
 		return TRUE
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (istype(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

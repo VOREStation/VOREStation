@@ -268,7 +268,7 @@
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
 		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+	if (istype(inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/straight_jacket))
 		return 1
 	return 0
 
@@ -1028,7 +1028,8 @@
 		if(VISIBLE_GENDER_FORCE_BIOLOGICAL)
 			return gender
 		else
-			if(((wear_mask?.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (wear_suit?.flags_inv & HIDEJUMPSUIT))
+			var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+			if(((wear_mask?.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
 				return PLURAL
 			if(species?.ambiguous_genders && user)
 				if(ishuman(user))
@@ -1422,7 +1423,8 @@
 				if(head && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 			else
-				if(wear_suit && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
+				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+				if(istype(wear_suit) && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)
@@ -1430,7 +1432,14 @@
 		to_chat(user, span_warning("[fail_msg]"))
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,inventory.get_item_in_slot(slot_w_uniform_str),src.wear_suit,src.gloves,src.shoes)
+	var/list/equipment = list(
+		head,
+		wear_mask,
+		glasses,
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		gloves,
+		shoes)
 	var/head_exposed = 1
 	var/face_exposed = 1
 	var/eyes_exposed = 1
@@ -1484,7 +1493,7 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),src.wear_suit,src.shoes)
+	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),inventory.get_item_in_slot(slot_wear_suit_str),src.shoes)
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FEET)
@@ -1785,7 +1794,7 @@
 			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 /mob/living/carbon/human/get_mob_riding_slots()
-	return list(inventory.get_item_in_slot(slot_back_str), head, wear_suit)
+	return list(inventory.get_item_in_slot(slot_back_str), head, inventory.get_item_in_slot(slot_wear_suit_str))
 
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"

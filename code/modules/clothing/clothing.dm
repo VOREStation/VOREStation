@@ -861,7 +861,7 @@
 		return
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = src.loc
-		if(H.wear_suit != src)
+		if(H.inventory.get_item_in_slot(slot_wear_suit_str) != src)
 			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 			return
 		if(H.head)

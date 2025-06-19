@@ -63,9 +63,8 @@
 
 /datum/inventory_slot/l_hand/update_icon(atom/movable/contents)
 	owner.mymob.update_inv_l_hand()
-	// TODO: don't assume they're items
 	var/obj/item/r_hand = owner.get_item_in_slot(slot_r_hand_str)
-	if(r_hand)
+	if(istype(r_hand))
 		r_hand.update_twohanding()
 		r_hand.update_held_icon()
 		owner.mymob.update_inv_r_hand()
@@ -93,9 +92,8 @@
 
 /datum/inventory_slot/r_hand/update_icon(atom/movable/contents)
 	owner.mymob.update_inv_r_hand()
-	// TODO: don't assume they're items
 	var/obj/item/l_hand = owner.get_item_in_slot(slot_l_hand_str)
-	if(l_hand)
+	if(istype(l_hand))
 		l_hand.update_twohanding()
 		l_hand.update_held_icon()
 		owner.mymob.update_inv_l_hand()
@@ -228,3 +226,29 @@
 			O.forceMove(owner.mymob)
 			O.hud_layerise()
 			owner.put_item_in_slot(slot_l_ear_str, O)
+
+/datum/inventory_slot/suit
+	name = "Suit"
+
+	slot_id = slot_wear_suit
+	slot_id_str = slot_wear_suit_str
+
+	hud_location = ui_oclothing
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "center"
+	hideable = TRUE
+
+/datum/inventory_slot/suit/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_wear_suit()
+
+/datum/inventory_slot/suit/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/suit/unequipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents
+		if(H.s_store)
+			H.drop_from_inventory(H.s_store)

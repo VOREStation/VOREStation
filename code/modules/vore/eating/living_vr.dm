@@ -396,8 +396,8 @@
 			return FALSE
 
 	//We return as soon as we find one, no need for 'else' really.
-	if(istype(wear_suit,/obj/item/clothing))
-		var/obj/item/clothing/suit = wear_suit
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing))
+		var/obj/item/clothing/suit = inventory.get_item_in_slot(slot_wear_suit_str)
 		if(istype(suit) && suit.hides_bulges)
 			return FALSE
 

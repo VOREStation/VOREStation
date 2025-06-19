@@ -120,7 +120,8 @@
 			return 1
 
 	//Look at their torso
-	if(!wear_suit || (wear_suit && !(wear_suit.flags_inv & HIDEJUMPSUIT)))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!istype(wear_suit) || (istype(wear_suit) && !(wear_suit.flags_inv & HIDEJUMPSUIT)))
 		var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
 		if(!istype(w_uniform) || (w_uniform && !(w_uniform.body_parts_covered & UPPER_TORSO)))
 			if(T && T.robotic == ORGAN_ROBOT)

@@ -118,7 +118,8 @@
 			if(H.species.siemens_coefficient<0.5) //Thick skin.
 				return
 
-			if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
+			var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+			if( H.shoes || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
 				return
 
 			if(H.species.flags & NO_MINOR_CUT)

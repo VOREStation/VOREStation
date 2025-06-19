@@ -322,7 +322,7 @@
 
 /obj/item/shockpaddles/proc/check_contact(mob/living/carbon/human/H)
 	if(!combat)
-		for(var/obj/item/clothing/cloth in list(H.wear_suit, H.inventory.get_item_in_slot(slot_w_uniform_str)))
+		for(var/obj/item/clothing/cloth in list(H.inventory.get_item_in_slot(slot_wear_suit_str), H.inventory.get_item_in_slot(slot_w_uniform_str)))
 			if((cloth.body_parts_covered & UPPER_TORSO) && (cloth.item_flags & THICKMATERIAL))
 				return FALSE
 	return TRUE

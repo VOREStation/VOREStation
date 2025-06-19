@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_w_uniform)
 						if(H.inventory.get_item_in_slot(slot_w_uniform_str)) H.inventory.get_item_in_slot(slot_w_uniform_str).screen_loc = hud_data["loc"]
 					if(slot_wear_suit)
-						if(H.wear_suit) H.wear_suit.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = hud_data["loc"]
 					if(slot_wear_mask)
 						if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
 			else
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_w_uniform)
 						if(H.inventory.get_item_in_slot(slot_w_uniform_str)) H.inventory.get_item_in_slot(slot_w_uniform_str).screen_loc = null
 					if(slot_wear_suit)
-						if(H.wear_suit) H.wear_suit.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = null
 					if(slot_wear_mask)
 						if(H.wear_mask) H.wear_mask.screen_loc = null
 

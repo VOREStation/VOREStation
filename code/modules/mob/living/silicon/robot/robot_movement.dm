@@ -76,13 +76,14 @@
 				var/mob/living/carbon/human/cleaned_human = A
 
 				var/obj/item/w_uniform = cleaned_human.inventory.get_item_in_slot(slot_w_uniform_str)
+				var/obj/item/wear_suit = cleaned_human.inventory.get_item_in_slot(slot_wear_suit_str)
 
 				if(cleaned_human.lying)
 					if(cleaned_human.head)
 						cleaned_human.head.wash(CLEAN_SCRUB)
 						cleaned_human.update_inv_head(0)
-					if(cleaned_human.wear_suit)
-						cleaned_human.wear_suit.wash(CLEAN_SCRUB)
+					if(istype(wear_suit))
+						wear_suit.wash(CLEAN_SCRUB)
 						cleaned_human.update_inv_wear_suit(0)
 					else if(istype(w_uniform))
 						w_uniform.wash(CLEAN_SCRUB)

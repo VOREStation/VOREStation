@@ -1172,8 +1172,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
 
-	if(!(splinted) && owner && istype(owner.wear_suit, /obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = owner.wear_suit
+	if(!(splinted) && owner && istype(owner.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = owner.inventory.get_item_in_slot(slot_wear_suit_str)
 		suit.handle_fracture(owner, src)
 
 	return 1
@@ -1474,7 +1474,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		target_covering = src.body_part
 
 	if(owner)
-		var/list/protective_gear = list(owner.head, owner.wear_mask, owner.wear_suit, owner.inventory.get_item_in_slot(slot_w_uniform_str), owner.gloves, owner.shoes, owner.glasses)
+		var/list/protective_gear = list(owner.head, owner.wear_mask, owner.inventory.get_item_in_slot(slot_wear_suit_str), owner.inventory.get_item_in_slot(slot_w_uniform_str), owner.gloves, owner.shoes, owner.glasses)
 		for(var/obj/item/clothing/gear in protective_gear)
 			if(gear.body_parts_covered & target_covering)
 				covering_clothing |= gear

@@ -21,7 +21,7 @@
 	if(world.time < changeling.next_escape)
 		to_chat(src, span_warning("We are still recovering from our last escape..."))
 		return 0
-	if(!(C.handcuffed || C.legcuffed || istype(C.wear_suit,/obj/item/clothing/suit/straight_jacket)))	// No need to waste chems if there's nothing to break out of
+	if(!(C.handcuffed || C.legcuffed || istype(C.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/straight_jacket)))	// No need to waste chems if there's nothing to break out of
 		to_chat(C, span_warning("We are are not restrained in a way we can escape..."))
 		return 0
 
@@ -51,11 +51,10 @@
 		W.dropped(C)
 		if(W)
 			W.layer = initial(W.layer)
-	if(istype(C.wear_suit, /obj/item/clothing/suit/straight_jacket))
-		var/obj/item/clothing/suit/straight_jacket/SJ = C.wear_suit
+	if(istype(C.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/straight_jacket))
+		var/obj/item/clothing/suit/straight_jacket/SJ = C.inventory.get_item_in_slot(slot_wear_suit_str)
 		SJ.forceMove(C.loc)
 		SJ.dropped(C)
-		C.wear_suit = null
 		escape_cooldown *= 1.5	// Straight jackets are tedious compared to cuffs.
 
 	if(src.mind.changeling.recursive_enhancement)

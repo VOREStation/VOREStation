@@ -649,7 +649,8 @@
 
 // Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
-	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
+	var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+	if( H.shoes || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
 		return /obj/effect/decal/cleanable/blood/tracks/footprints
 	else
 		return move_trail

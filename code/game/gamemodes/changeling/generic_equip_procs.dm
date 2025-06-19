@@ -5,8 +5,9 @@
 		return 0
 
 	var/mob/living/carbon/human/M = src
+	var/obj/item/wear_suit = M.inventory.get_item_in_slot(slot_wear_suit_str)
 
-	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
+	if(istype(wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
 		chem_cost = 0
 
 	var/datum/changeling/changeling = changeling_power(chem_cost, 1, 100, CONSCIOUS)
@@ -15,12 +16,12 @@
 		return
 
 	//First, check if we're already wearing the armor, and if so, take it off.
-	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
-		M.visible_message(span_warning("[M] casts off their [M.wear_suit.name]!"),
-		span_warning("We cast off our [M.wear_suit.name]"),
+	if(istype(wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
+		M.visible_message(span_warning("[M] casts off their [wear_suit.name]!"),
+		span_warning("We cast off our [wear_suit.name]"),
 		span_warningplain("You hear the organic matter ripping and tearing!"))
-		if(istype(M.wear_suit, armor_type))
-			qdel(M.wear_suit)
+		if(istype(wear_suit, armor_type))
+			qdel(wear_suit)
 		if(istype(M.head, helmet_type))
 			qdel(M.head)
 		if(istype(M.shoes, boot_type))
@@ -31,7 +32,7 @@
 		M.update_inv_shoes()
 		return 1
 
-	if(M.head || M.wear_suit) //Make sure our slots aren't full
+	if(M.head || wear_suit) //Make sure our slots aren't full
 		to_chat(src, span_warning("We require nothing to be on our head, and we cannot wear any external suits, or shoes."))
 		return 0
 
@@ -77,9 +78,9 @@
 				qdel(M.wear_id)
 				success = 1
 
-		if(M.wear_suit && stuff_to_equip["wear_suit"])
-			if(istype(M.wear_suit, stuff_to_equip["wear_suit"]))
-				qdel(M.wear_suit)
+		if( stuff_to_equip["wear_suit"])
+			if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), stuff_to_equip["wear_suit"]))
+				qdel(M.inventory.get_item_in_slot(slot_wear_suit_str))
 				success = 1
 
 		if(M.gloves && stuff_to_equip["gloves"])
@@ -206,7 +207,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_suit"]
-		if(!M.wear_suit && t)
+		if(!M.inventory.get_item_in_slot(slot_wear_suit_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_wear_suit)
 			grown_items_list.Add("an exosuit")

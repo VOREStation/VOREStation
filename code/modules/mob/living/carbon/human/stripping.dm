@@ -139,8 +139,8 @@
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
 	var/can_reach_splints = 1
-	if(istype(wear_suit,/obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = wear_suit
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = inventory.get_item_in_slot(slot_wear_suit_str)
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
 			to_chat(user, span_warning("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks."))
 			can_reach_splints = 0

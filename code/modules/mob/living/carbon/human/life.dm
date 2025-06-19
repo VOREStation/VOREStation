@@ -109,8 +109,9 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 	// Check suit
-	if(wear_suit && wear_suit.max_pressure_protection != null && wear_suit.min_pressure_protection != null)
+	if(istype(wear_suit) && wear_suit.max_pressure_protection != null && wear_suit.min_pressure_protection != null)
 		pressure_adjustment_coefficient = 0
 		// Pressure is too high
 		if(wear_suit.max_pressure_protection < pressure)
@@ -982,7 +983,8 @@
 										// Being in higher pressure decreases the damage taken, down to a minimum of (species.hazard_low_pressure / ONE_ATMOSPHERE) at species.hazard_low_pressure
 				pressure_dam *= (ONE_ATMOSPHERE - adjusted_pressure) / ONE_ATMOSPHERE
 
-				if(wear_suit && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
+				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+				if(istype(wear_suit) && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
 					var/protection = max(wear_suit.min_pressure_protection, head.min_pressure_protection) // Take the weakest protection
 					pressure_dam *= (protection) / (ONE_ATMOSPHERE) 	// Divide by ONE_ATMOSPHERE to get a fractional protection
 																		// Stronger protection (Closer to 0) results in a smaller fraction
@@ -1041,7 +1043,7 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(head,inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
 		if(C)
 			if(C.handle_high_temperature(temperature))
 				. |= C.get_heat_protection_flags()
@@ -1050,7 +1052,7 @@
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(head,inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
 		if(C)
 			if(C.handle_low_temperature(temperature))
 				. |= C.get_cold_protection_flags()

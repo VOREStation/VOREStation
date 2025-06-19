@@ -531,15 +531,16 @@ var/list/global/slot_flags_enumeration = list(
 			if( w_class > ITEMSIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
-			if(!H.wear_suit && (slot_wear_suit in mob_equip))
+			var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+			if(!wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return 0
-			if(!H.wear_suit.allowed)
+			if(istype(wear_suit) && !wear_suit.allowed)
 				if(!disable_warning)
 					to_chat(usr, span_warning("You somehow have a suit with no defined allowed items for suit storage, stop that."))
 				return 0
-			if( !(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, wear_suit.allowed)) )
 				return 0
 		if(slot_legcuffed) //Going to put this check above the handcuff check because the survival of the universe depends on it.
 			if(!istype(src, /obj/item/handcuffs/legcuffs)) //Putting it here might actually do nothing.

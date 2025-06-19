@@ -85,8 +85,8 @@
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
 				return TRUE
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
+			if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))
+				to_chat(user, span_warning("You can't apply [src] through [H.inventory.get_item_in_slot(slot_wear_suit_str)]!"))
 				return TRUE
 
 		if(!welding)

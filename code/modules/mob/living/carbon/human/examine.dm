@@ -11,7 +11,8 @@
 	var/looks_synth = looksSynthetic()
 
 	//exosuits and helmets obscure our view and stuff.
-	if(wear_suit)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
 		if(wear_suit.flags_inv & HIDESUITSTORAGE)
 			skip_gear |= EXAMINE_SKIPSUITSTORAGE
 

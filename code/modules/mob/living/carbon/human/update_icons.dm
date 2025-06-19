@@ -633,7 +633,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!istype(w_uniform))
 		return
 
-	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
 		return //Wearing a suit that prevents uniform rendering
 
 	var/obj/item/clothing/under/under = w_uniform
@@ -759,7 +760,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(SHOES_LAYER_ALT) //Dumb alternate layer for shoes being under the uniform.
 
 	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
-	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!shoes || (istype(wear_suit) && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
 
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
@@ -856,7 +858,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_tail_showing()
 	update_wing_showing()
 
-	if(!wear_suit)
+
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!istype(wear_suit))
 		return //No point, no suit.
 
 	var/obj/item/clothing/suit/suit = wear_suit
@@ -899,10 +903,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(BACK_LAYER)
 
-	// TODO: don't assume it's an item
 	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
 
-	if(!back)
+	if(!istype(back))
 		return //Why do anything
 
 	var/icon/c_mask = tail_style?.clip_mask
@@ -1030,7 +1033,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/species_tail = species?.get_tail(src) // Species tail icon_state prefix.
 
 	//This one is actually not that bad I guess.
-	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(species_tail && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
 		tail_image = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+tail_layer)
 		tail_image.alpha = chest?.transparent ? 180 : 255
@@ -1235,7 +1239,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return working
 
 	//If you have custom wings selected
-	if(wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(wing_style && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
 		var/wing_state = (flapping && wing_style.ani_state) ? wing_style.ani_state : wing_style.icon_state
 		if(wing_style.multi_dir)
 			wing_state += "_[under_layer ? "back" : "front"]"
@@ -1330,7 +1335,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return image(tail_s)
 
 	//If you have a custom tail selected
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(tail_style && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
 		if(tail_style.can_loaf && !is_shifted)
 			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly. Taur Loafing
@@ -1406,7 +1412,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	apply_layer(VORE_BELLY_LAYER)
 
 /mob/living/carbon/human/proc/get_vore_belly_image()
-	if(!(wear_suit && wear_suit.flags_inv & HIDETAIL))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL))
 		var/vs_fullness = vore_fullness_ex["stomach"]
 		var/icon/vorebelly_s = new/icon(icon = 'icons/mob/vore/Bellies.dmi', icon_state = "[species.vore_belly_default_variant]Belly[vs_fullness][struggle_anim_stomach ? "" : " idle"]")
 		vorebelly_s.Blend(vore_sprite_color["stomach"], vore_sprite_multiply["stomach"] ? ICON_MULTIPLY : ICON_ADD)

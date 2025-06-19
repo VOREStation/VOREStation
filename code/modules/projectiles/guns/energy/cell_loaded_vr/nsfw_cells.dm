@@ -69,8 +69,8 @@
 /obj/item/projectile/bullet/stripper/on_hit(var/atom/stripped)
 	if(ishuman(stripped))
 		var/mob/living/carbon/human/H = stripped
-		if(H.wear_suit)
-			H.unEquip(H.wear_suit)
+		if(H.inventory.get_item_in_slot(slot_wear_suit_str))
+			H.unEquip(H.inventory.get_item_in_slot(slot_wear_suit_str))
 		if(H.inventory.get_item_in_slot(slot_w_uniform_str))
 			H.unEquip(H.inventory.get_item_in_slot(slot_w_uniform_str))
 		if(H.inventory.get_item_in_slot(slot_back_str))

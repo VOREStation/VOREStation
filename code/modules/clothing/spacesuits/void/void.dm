@@ -82,7 +82,7 @@
 
 	if(!istype(H)) return
 
-	if(H.wear_suit != src)
+	if(H.inventory.get_item_in_slot(slot_wear_suit_str) != src)
 		return
 
 	if(boots)
@@ -169,7 +169,7 @@
 
 	if(!istype(H)) return
 	if(H.stat) return
-	if(H.wear_suit != src) return
+	if(H.inventory.get_item_in_slot(slot_wear_suit_str) != src) return
 
 	if(hood.light_on)
 		to_chat(H, span_notice("The helmet light shuts off as it retracts."))
@@ -208,7 +208,7 @@
 
 	if(!istype(H)) return
 	if(H.stat) return
-	if(H.wear_suit != src) return
+	if(H.inventory.get_item_in_slot(slot_wear_suit_str) != src) return
 
 	var/obj/item/removing = null
 	if(tank)

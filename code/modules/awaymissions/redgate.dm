@@ -1527,9 +1527,9 @@
 		return
 
 	//get their uniform
-	if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+	if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag))
 		grabbing_team = "red"
-	else if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+	else if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))
 		grabbing_team = "blue"
 	else
 		return	//if they're not on a team, stop!
@@ -1655,11 +1655,11 @@
 		return
 
 	//get their uniform
-	if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+	if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag))
 		grabbing_team = "red"
 		icon_state = "[initial(icon_state)]_red"
 		item_state = "[initial(icon_state)]_red"
-	else if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+	else if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))
 		grabbing_team = "blue"
 		icon_state = "[initial(icon_state)]_blue"
 		item_state = "[initial(icon_state)]_blue"
@@ -1718,9 +1718,9 @@
 	. = ..()
 	var/mob/living/carbon/human/M = user
 	var/dunking_team
-	if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+	if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag))
 		dunking_team = "red"
-	else if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+	else if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))
 		dunking_team = "blue"
 	else
 		return	//if they're not on a team, stop!

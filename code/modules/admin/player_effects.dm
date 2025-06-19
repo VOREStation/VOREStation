@@ -273,8 +273,8 @@
 			var/mob/living/carbon/human/H = target
 			if(H.head)
 				H.unEquip(H.head)
-			if(H.wear_suit)
-				H.unEquip(H.wear_suit)
+			if(H.inventory.get_item_in_slot(slot_wear_suit_str))
+				H.unEquip(H.inventory.get_item_in_slot(slot_wear_suit_str))
 			var/obj/item/clothing/suit = new /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog
 			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood_vr/hotdog_hood
 			H.equip_to_slot_if_possible(suit, slot_wear_suit, 0, 0, 1)
