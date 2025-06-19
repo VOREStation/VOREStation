@@ -12,9 +12,9 @@ import {
 } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import { NoSpriteWarning } from '../components';
-import { getModuleIcon, prepareSearch } from '../functions';
-import type { Target } from '../types';
+import { NoSpriteWarning } from '../../components';
+import { getModuleIcon, prepareSearch } from '../../functions';
+import type { Target } from '../../types';
 
 export const ModifyRobotMultiBelt = (props: { target: Target }) => {
   const { act } = useBackend();
@@ -27,16 +27,18 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
   const currentMultibelt = multibelt[selectedMultibelt];
 
   useEffect(() => {
-    act('select_multibelt', {
-      multibelt: currentMultibelt.ref,
-    });
+    if (currentMultibelt) {
+      act('select_multibelt', {
+        multibelt: currentMultibelt.ref,
+      });
+    }
   }, []);
 
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
       {!target.multibelt?.length ? (
-        <NoticeBox danger>No module selected.</NoticeBox>
+        <NoticeBox danger>{target.name} has no Multibelt installed.</NoticeBox>
       ) : (
         <Stack vertical fill>
           <Stack.Item>
@@ -52,7 +54,7 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
                     });
                   }}
                 >
-                  {i}
+                  {i + 1}
                 </Tabs.Tab>
               ))}
             </Tabs>

@@ -17,9 +17,8 @@ import { ModifyRobotNoModule } from './ModifyRobotNoModule';
 import { ModifyRobotAccess } from './ModifyRobotTabs/ModifyRobotAccess';
 import { ModifyRobotComponent } from './ModifyRobotTabs/ModifyRobotComponent';
 import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
-import { ModifyRobotMultiBelt } from './ModifyRobotTabs/ModifyRobotMultiBelt';
-import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
 import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
+import { ModifyRobotSpecialModules } from './ModifyRobotTabs/ModifyRobotSpecialModules';
 import { ModifyRobotUpgrades } from './ModifyRobotTabs/ModifyRobotUpgrades';
 import type { Data } from './types';
 
@@ -86,7 +85,7 @@ export const ModifyRobot = (props) => {
     />
   );
   tabs[1] = <ModifyRobotUpgrades target={target!} />;
-  tabs[2] = <ModifyRobotPKA target={target!} />;
+  tabs[2] = <ModifyRobotSpecialModules target={target!} />;
   tabs[3] = <ModifyRobotRadio target={target!} />;
   tabs[4] = (
     <ModifyRobotComponent
@@ -145,7 +144,6 @@ export const ModifyRobot = (props) => {
       />
     </Section>
   );
-  tabs[8] = <ModifyRobotMultiBelt target={target!} />;
 
   return (
     <Window width={target?.module ? 900 : 400} height={700}>
@@ -272,7 +270,7 @@ export const ModifyRobot = (props) => {
                       Upgrade Manager
                     </Tabs.Tab>
                     <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                      PKA
+                      Sub Modules
                     </Tabs.Tab>
                     <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
                       Radio Manager
@@ -288,9 +286,6 @@ export const ModifyRobot = (props) => {
                     </Tabs.Tab>
                     <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
                       Law Sets
-                    </Tabs.Tab>
-                    <Tabs.Tab selected={tab === 8} onClick={() => setTab(8)}>
-                      Modify Multibelt
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
