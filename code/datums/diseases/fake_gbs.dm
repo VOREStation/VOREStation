@@ -1,5 +1,6 @@
 /datum/disease/fake_gbs
 	name = "GBS"
+	medical_name = "Neutered Guillain-Barré Syndrome"
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
@@ -7,7 +8,7 @@
 	cures = list(REAGENT_ID_ADRANOL, REAGENT_ID_SULFUR)
 	agent = "Gravitokinetic Bipotential SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
-	desc = "if left untreated death will occur."
+	desc = "If left untreated death will occur."
 	danger = DISEASE_BIOHAZARD // Mimics real GBS
 
 /datum/disease/fake_gbs/stage_act()

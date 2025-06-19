@@ -1,6 +1,8 @@
 // ported from Citadel-Station-13/Citadel-Station-13-RP#3015, basically all the work done by silicons
 // thanks silicons
 
+//TODO: Two handed component. Update this file in its ENTIRETY to be 1:1 with TG.
+
 /*********************Mining Hammer****************/
 /obj/item/kinetic_crusher
 	icon = 'icons/obj/mining_vr.dmi'
@@ -13,26 +15,22 @@
 	name = "proto-kinetic crusher"
 	desc = "An early design of the proto-kinetic accelerator, it is little more than an combination of various mining tools cobbled together, forming a high-tech club. \
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
-	force = 0 //You can't hit stuff unless wielded
+	force = 25
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	throwforce = 5
 	throw_speed = 4
-/*
-	armour_penetration = 10
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
-*/
+	armor_penetration = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
-	sharp = TRUE
-	edge = TRUE
-	// sharpness = SHARP_EDGED
+	sharp = FALSE //crushing damage
+	edge = FALSE
+	embed_chance = FALSE
 	actions_types = list(/datum/action/item_action/toggle_light)
-	// var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
-	var/detonation_damage = 50
-	var/backstab_bonus = 30
+	var/detonation_damage = 50 //75
+	var/backstab_bonus = 30 //105
 	/// does it have a light icon
 	var/integ_light_icon = TRUE
 	/// is the light on?
@@ -46,9 +44,9 @@
 	/// Damage penalty factor to backstab bonus damage to non simple mobs
 	var/human_backstab_nerf = 0.25
 	/// damage buff for throw impacts
-	var/thrown_bonus = 35
+	var/thrown_bonus = 35 //140
 	/// do we need to be wielded?
-	var/requires_wield = TRUE
+	var/requires_wield = FALSE
 	/// do we have a charge overlay?
 	var/charge_overlay = TRUE
 	/// do we update item state?
@@ -64,22 +62,7 @@
 	. = ..()
 	AddElement(/datum/element/conflict_checking, CONFLICT_ELEMENT_CRUSHER)
 
-/*
-/obj/item/kinetic_crusher/Initialize(mapload)
-	. = ..()
-	if(requires_Wield)
-		RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
-		RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
-
-/obj/item/kinetic_crusher/ComponentInitialize()
-	. = ..()
-	if(requires_wield)
-		AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
-		AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
-*/
-
 /obj/item/kinetic_crusher/Destroy()
-	// QDEL_LIST(trophies)
 	return ..()
 
 /obj/item/kinetic_crusher/emag_act()
@@ -106,29 +89,6 @@
 	. = ..()
 	. += span_notice("Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
 	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
-/*
-	for(var/t in trophies)
-		var/obj/item/crusher_trophy/T = t
-		. += span_notice("It has \a [T] attached, which causes [T.effect_desc()].")
-*/
-
-/*
-/obj/item/kinetic_crusher/attackby(obj/item/I, mob/living/user)
-	if(I.tool_behaviour == TOOL_CROWBAR)
-		if(LAZYLEN(trophies))
-			to_chat(user, span_notice("You remove [src]'s trophies."))
-			I.play_tool_sound(src)
-			for(var/t in trophies)
-				var/obj/item/crusher_trophy/T = t
-				T.remove_from(src, user)
-		else
-			to_chat(user, span_warning("There are no trophies on [src]."))
-	else if(istype(I, /obj/item/crusher_trophy))
-		var/obj/item/crusher_trophy/T = I
-		T.add_to(src, user)
-	else
-		return ..()
-*/
 
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!wielded && requires_wield)
@@ -138,11 +98,7 @@
 
 /obj/item/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
-/*
-	if(istype(target, /obj/item/crusher_trophy))
-		var/obj/item/crusher_trophy/T = target
-		T.add_to(src, user)
-*/
+
 	if(requires_wield && !wielded)
 		return
 	if(!proximity_flag && charged)//Mark a target, or mine a tile.
@@ -150,11 +106,6 @@
 		if(!isturf(proj_turf))
 			return
 		var/obj/item/projectile/destabilizer/D = new /obj/item/projectile/destabilizer(proj_turf)
-/*
-		for(var/t in trophies)
-			var/obj/item/crusher_trophy/T = t
-			T.on_projectile_fire(D, user)
-*/
 		D.preparePixelProjectile(target, user, clickparams)
 		D.firer = user
 		D.hammer_synced = src
@@ -163,7 +114,6 @@
 		charged = FALSE
 		update_icon()
 		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
-		// * (user?.ConflictElementCount(CONFLICT_ELEMENT_CRUSHER) || 1 - tentatively commented out
 		return
 	if(proximity_flag && isliving(target))
 		detonate(target, user)
@@ -223,16 +173,16 @@
 		if(integ_light_on)
 			add_overlay("[icon_state]_lit")
 
-/*
 /obj/item/kinetic_crusher/glaive
-	name = "proto-kinetic glaive"
-	desc = "A modified design of a proto-kinetic crusher, it is still little more of a combination of various mining tools cobbled together \
-	and kit-bashed into a high-tech cleaver on a stick - with a handguard and a goliath hide grip. While it is still of little use to any \
-	but the most skilled and/or suicidal miners against local fauna, it's an elegant weapon for a more civilized hunter."
-
-	look gary there i am
-	- hatterhat
-*/
+	name = "kinetic glaive"
+	icon_state = "crusher-glaive"
+	force = 20
+	detonation_damage = 20 // 40
+	backstab_bonus = 30 // 60
+	reach = 2
+	slot_flags = SLOT_BELT
+	w_class = ITEMSIZE_NORMAL
+	requires_wield = FALSE
 
 
 /obj/item/kinetic_crusher/machete
@@ -249,11 +199,13 @@
 	attack_verb = list("cleaved", "chopped", "pulped", "stabbed", "skewered")
 	can_cleave = TRUE
 	requires_wield = FALSE
+	sharp = TRUE
+	edge = TRUE
 	// yeah yeah buff but polaris mobs are meatwalls.
 	force = 24
 	detonation_damage = 36 // 60
-	backstab_bonus = 40 // 100
-	thrown_bonus = 20 // 120
+	backstab_bonus = 80 // 140
+	thrown_bonus = 20 // 160
 	update_item_state = FALSE
 	slot_flags = SLOT_BELT
 
@@ -273,9 +225,10 @@
 	w_class = ITEMSIZE_NORMAL
 	can_cleave = FALSE
 	requires_wield = TRUE
-	force = 28
-	detonation_damage = 37 // 75
-	backstab_bonus = 55 // 130
+	armor_penetration = 0
+	force = 35
+	detonation_damage = 65 // 100
+	backstab_bonus = 25 // 125
 	var/obj/item/offhand/crushergauntlets/offhand
 	slot_flags = null
 
@@ -334,8 +287,6 @@
 	icon_state = "offhand"
 	name = "offhand that shouldn't exist doo dee doo"
 	w_class = ITEMSIZE_NO_CONTAINER
-	// var/linked - redefine this wherever
-	// man i really should try porting the twohand component this is hacky and Sucks
 
 /obj/item/offhand/crushergauntlets
 	var/obj/item/kinetic_crusher/machete/gauntlets/linked
@@ -379,10 +330,11 @@
 	charge_overlay = FALSE
 	charge_time = 10 // lowered charge in return for lowered damage
 	force = 18
+	armor_penetration = 50
 	detonation_damage = 27 // 45
-	backstab_bonus = 40 // 85
+	backstab_bonus = 30 // 75
 	// gimmick mode
-	thrown_bonus = 50 // 135 but you drop your knife because you threw it
+	thrown_bonus = 60 // 135 but you drop your knife because you threw it
 
 
 
@@ -396,7 +348,6 @@
 	check_armour = "bomb"
 	range = 6
 	accuracy = INFINITY	// NO.
-	// log_override = TRUE
 	var/obj/item/kinetic_crusher/hammer_synced
 
 /obj/item/projectile/destabilizer/Destroy()
@@ -416,12 +367,3 @@
 		if(hammer_synced.can_mark(L))
 			L.add_modifier(/datum/modifier/crusher_mark, 30 SECONDS, firer, TRUE)
 	..()
-
-/*
-//trophies
-
-there would be any if we had some
-but alas
-- hatterhat
-
-*/

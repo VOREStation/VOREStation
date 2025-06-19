@@ -671,7 +671,7 @@
 		return ROOM_ERR_LOLWAT
 	if(!visual && forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?
 		return ROOM_ERR_FORBIDDEN
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		if (found.len+pending.len > BP_MAX_ROOM_SIZE)
@@ -827,8 +827,8 @@
 	if(!istype(first)) //Not on a turf.
 		to_chat(usr, span_warning("You can not create a room here."))
 		return
-	if(get_new_area_type(first.loc) == 1) //Are they in an area they can build? I tried to do this GLOB.BUILDABLE_AREA_TYPES[first.loc.type] but it refused.
-		var/list/turf/found = new
+	if(get_new_area_type(first.loc) == 1) //Are they in an area they can build? I tried to do this BUILDABLE_AREA_TYPES[first.loc.type] but it refused.
+		var/list/turf/found = list()
 		var/list/turf/pending = list(first)
 		while(pending.len)
 			if (found.len+pending.len > 70)

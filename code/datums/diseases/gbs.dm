@@ -1,5 +1,7 @@
 /datum/disease/gbs
 	name = "GBS"
+	medical_name = "Guillain-Barré Syndrome"
+	desc = "If left untreated death will occur."
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_CONTACT | DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
@@ -40,6 +42,8 @@
 
 /datum/disease/gbs/curable
 	name = "Non-Contagious GBS"
+	medical_name = "Non-Contagious Guillain-Barré Syndrome"
+	desc = "If left untreated death will occur."
 	stage_prob = 5
 	spread_text = "Non-contagious"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
