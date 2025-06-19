@@ -314,38 +314,51 @@
 
 
 
-
-
+#define METAL_SYNTH "Metal Synthesizer"
+#define PLASTEEL_SYNTH "Plasteel Synthesizer"
+#define GLASS_SYNTH "Glass Synthesizer"
+#define WOOD_SYNTH "Wood Synthesizer"
+#define PLASTIC_SYNTH "Plastic Synthesizer"
+#define WIRE_SYNTH "Wire Synthesizer"
+#define CLOTH_SYNTH "Cloth Synthesizer"
 
 //Admin proc to add new materials to their fabricator
 /mob/living/silicon/robot/proc/add_new_material() //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
 	if(!module)
 		return
 	var/mat_to_add
-	var/list/material_list = list("Metal Synthesizer","Plasteel Synthesizer","Glass Synthesizer","Wood Synthesizer","Plastic Synthesizer","Wire Synthesizer","Cloth Synthesizer")
+	var/list/material_list = list(
+									METAL_SYNTH,
+									PLASTEEL_SYNTH,
+									GLASS_SYNTH,
+									WOOD_SYNTH,
+									PLASTIC_SYNTH,
+									WIRE_SYNTH,
+									CLOTH_SYNTH
+								)
 
 	mat_to_add = tgui_input_list(usr, "Select a material to add", "Material selection", material_list)
 	if(mat_to_add)
 		switch(mat_to_add)
-			if("Metal Synthesizer")
+			if(METAL_SYNTH)
 				var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 				module.synths += metal
-			if("Plasteel Synthesizer")
+			if(PLASTEEL_SYNTH)
 				var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
 				module.synths += plasteel
-			if("Glass Synthesizer")
+			if(GLASS_SYNTH)
 				var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
 				module.synths += glass
-			if("Wood Synthesizer")
+			if(WOOD_SYNTH)
 				var/datum/matter_synth/wood = new /datum/matter_synth/wood(40000)
 				module.synths += wood
-			if("Plastic Synthesizer")
+			if(PLASTIC_SYNTH)
 				var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(40000)
 				module.synths += plastic
-			if("Wire Synthesizer")
+			if(WIRE_SYNTH)
 				var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
 				module.synths += wire
-			if("Cloth Synthesizer")
+			if(CLOTH_SYNTH)
 				var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 				module.synths += cloth
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
@@ -354,7 +367,6 @@
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our hands
 		mat_belt.has_performed_first_use_init = FALSE
 		mat_belt.first_use_generation()
-
 
 //The Material Dispenser Multibelt
 //This thing is uh...Bulky. And took a lot of effort to get to work.
@@ -388,7 +400,7 @@
 				for(var/datum/matter_synth/our_synths in module.synths)
 					var/obj/item/stack/current_stack
 					switch(our_synths.name)
-						if("Metal Synthesizer")
+						if(METAL_SYNTH)
 							//Add steel
 							current_stack = new /obj/item/stack/material/cyborg/steel(src)
 							current_stack.synths = list(our_synths)
@@ -413,12 +425,12 @@
 							else
 								has_steel = our_synths
 
-						if("Plasteel Synthesizer")
+						if(PLASTEEL_SYNTH)
 							current_stack = new /obj/item/stack/material/cyborg/plasteel(src)
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 
-						if("Glass Synthesizer")
+						if(GLASS_SYNTH)
 							current_stack = new /obj/item/stack/material/cyborg/glass(src)
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
@@ -430,7 +442,7 @@
 							else
 								has_glass = our_synths
 
-						if("Wood Synthesizer")
+						if(WOOD_SYNTH)
 							//Wood Tiles
 							current_stack = new /obj/item/stack/tile/wood/cyborg(src)
 							current_stack.synths = list(our_synths)
@@ -440,12 +452,12 @@
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 
-						if("Plastic Synthesizer")
+						if(PLASTIC_SYNTH)
 							current_stack = new /obj/item/stack/material/cyborg/plastic(src)
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 
-						if("Wire Synthesizer")
+						if(WIRE_SYNTH)
 							current_stack = new /obj/item/stack/cable_coil/cyborg(src)
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
@@ -460,12 +472,20 @@
 							cyborg_integrated_tools += current_stack
 						*/
 
-						if("Cloth Synthesizer")
+						if(CLOTH_SYNTH)
 							current_stack = new /obj/item/stack/sandbags/cyborg(src)
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 
 	generate_tools()
+
+#undef METAL_SYNTH
+#undef PLASTEEL_SYNTH
+#undef GLASS_SYNTH
+#undef WOOD_SYNTH
+#undef PLASTIC_SYNTH
+#undef WIRE_SYNTH
+#undef CLOTH_SYNTH
 
 /*
  * Grippers
