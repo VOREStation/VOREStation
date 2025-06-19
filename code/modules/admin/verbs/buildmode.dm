@@ -860,11 +860,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in BUILDABLE_AREA_TYPES)
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
 		if ( istype(A,type) )
 			return AREA_SPACE
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return AREA_SPECIAL
 	return AREA_STATION

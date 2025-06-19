@@ -11,9 +11,9 @@ import {
 } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import { NoSpriteWarning } from '../components';
-import { getModuleIcon, prepareSearch } from '../functions';
-import type { Target } from '../types';
+import { NoSpriteWarning } from '../../components';
+import { getModuleIcon, prepareSearch } from '../../functions';
+import type { Target } from '../../types';
 
 export const ModifyRobotPKA = (props: { target: Target }) => {
   const { act } = useBackend();
@@ -27,7 +27,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
       {!target.pka ? (
         <NoticeBox danger>{target.name} has no PKA installed.</NoticeBox>
       ) : (
-        <Stack height={!target.active ? '75%' : '80%'}>
+        <Stack fill>
           <Stack.Item width="35%">
             <Divider />
             <Box>Remaining Capacity: {target.pka.capacity}</Box>
@@ -67,6 +67,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
           <Stack.Item grow />
           <Stack.Item>
             <Image
+              fixErrors
               src={getModuleIcon(target.modules, target.pka.name)}
               width="150px"
             />

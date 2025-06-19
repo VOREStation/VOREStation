@@ -259,8 +259,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			egg_contents += E
 	if(egg_contents.len)
 		if(!B.ownegg)
-			if(B.egg_type in tf_vore_egg_types)
-				B.egg_path = tf_vore_egg_types[B.egg_type]
+			if(B.egg_type in GLOB.tf_vore_egg_types)
+				B.egg_path = GLOB.tf_vore_egg_types[B.egg_type]
 			B.ownegg = new B.egg_path(B)
 			if(B.ownegg && B.egg_name)
 				B.ownegg.egg_name = B.egg_name

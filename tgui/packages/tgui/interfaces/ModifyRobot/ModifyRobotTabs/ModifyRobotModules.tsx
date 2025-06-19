@@ -31,7 +31,7 @@ export const ModifyRobotModules = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="40%">
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>
@@ -179,7 +179,7 @@ const SelectionField = (props: {
               >
                 <Stack fill align="center">
                   <Stack.Item>
-                    <Image src={modul_option.icon} />
+                    <Image fixErrors src={modul_option.icon} />
                   </Stack.Item>
                   <Stack.Item grow overflow="hidden" ml="10px">
                     {capitalize(modul_option.name)}

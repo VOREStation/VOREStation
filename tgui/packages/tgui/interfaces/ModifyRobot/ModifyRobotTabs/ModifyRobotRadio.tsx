@@ -25,7 +25,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="30%">
           <RadioSection
             title="Add Radio Channel"
