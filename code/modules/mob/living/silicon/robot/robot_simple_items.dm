@@ -345,13 +345,13 @@
 		return
 
 	module.synths += new synth_path(amount)
+	update_material_multibelts()
 
+/mob/living/silicon/robot/proc/update_material_multibelts()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
-		mat_belt.has_performed_first_use_init = FALSE
-		mat_belt.first_use_generation(TRUE)
+		mat_belt.update_materials()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our hands
-		mat_belt.has_performed_first_use_init = FALSE
-		mat_belt.first_use_generation()
+		mat_belt.update_materials()
 
 /mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
@@ -374,6 +374,7 @@
 		if(istype(synth, synth_path))
 			module.synths -= synth
 			qdel(synth)
+	update_material_multibelts()
 
 //The Material Dispenser Multibelt
 //This thing is uh...Bulky. And took a lot of effort to get to work.
@@ -425,7 +426,7 @@
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 							//Add reinforced glass if we have glass already, OR set our steel var to true (since glass will be checked later)
-							if(has_glass == TRUE)
+							if(has_glass)
 								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
 								current_stack.synths = list(our_synths, has_glass)
 								cyborg_integrated_tools += current_stack
@@ -442,7 +443,7 @@
 							current_stack.synths = list(our_synths)
 							cyborg_integrated_tools += current_stack
 							//Add reinforced glass if we have steel already, OR set our glass var to true (since steel will be checked later)
-							if(has_steel == TRUE)
+							if(has_steel)
 								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
 								current_stack.synths = list(our_synths, has_steel)
 								cyborg_integrated_tools += current_stack

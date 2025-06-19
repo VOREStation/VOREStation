@@ -361,7 +361,9 @@
 				return FALSE
 			var/obj/item/rem_tool = locate(params["tool"])
 			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
-				// target.remove_material(HERE WE NEED THE DATUM NAME...)
+				target.module.synths -= locate(params["tool"])
+				target.update_material_multibelts()
+				return TRUE
 			if(multibelt_holder.selected_item == rem_tool)
 				multibelt_holder.dropped() //Reset to original icon.
 			multibelt_holder.contents -= rem_tool
@@ -733,22 +735,24 @@
 	multi_belt_list["name"] = mult_belt.name
 	multi_belt_list["ref"] = REF(mult_belt)
 	var/list/integrated_tools = list()
-	for(var/obj/tool in mult_belt.contents)
-		integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
-	multi_belt_list["integrated_tools"] = integrated_tools
 	var/list/tools = list()
 	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
+		for(var/datum/matter_synth/synth in target.module.synths)
+			integrated_tools += list(list("name" = synth.name, "ref" = "\ref[synth]"))
 		for(var/tool in GLOB.material_synth_list)
 			var/material_path = GLOB.material_synth_list[tool]
 			if(!target.can_install_synth(material_path)) //Don't add it to the list if we already have it!
 				continue
 			tools += list(list("name" = tool, "path" = material_path))
 	else
+		for(var/obj/tool in mult_belt.contents)
+			integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
 		for(var/tool in GLOB.all_borg_multitool_options)
 			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
 				continue
 			var/obj/item/tool_to_add = tool
 			tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
+	multi_belt_list["integrated_tools"] = integrated_tools
 	multi_belt_list["tools"] = tools
 	return multi_belt_list
 
