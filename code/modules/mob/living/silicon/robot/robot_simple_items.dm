@@ -426,21 +426,14 @@
 			if(CLOTH_SYNTH)
 				possible_synths += list(/obj/item/stack/sandbags/cyborg = list(our_synth))
 
-	for(var/robot_stack in cyborg_integrated_tools)
-		var/obj/item/stack/our_item = cyborg_integrated_tools[robot_stack]
-		if(our_item)
-			if(is_type_in_list(our_item, possible_synths))
-				possible_synths -= our_item.type
-			else
-				cyborg_integrated_tools -= our_item.type
-				integrated_tools_by_name -= our_item.name
-				integrated_tool_images -= our_item.name
-				qdel(our_item)
+	for(var/obj/item/stack/our_item in cyborg_integrated_tools)
+		if(is_type_in_list(our_item, possible_synths))
+			possible_synths -= our_item.type
 		else
-			if(is_path_in_list(robot_stack, possible_synths))
-				possible_synths -= robot_stack
-			else
-				cyborg_integrated_tools -= robot_stack
+			cyborg_integrated_tools -= our_item
+			integrated_tools_by_name -= our_item
+			integrated_tool_images -= our_item
+			qdel(our_item)
 
 	for(var/stack_to_add in possible_synths)
 		var/obj/item/stack/current_stack = new stack_to_add(src)
