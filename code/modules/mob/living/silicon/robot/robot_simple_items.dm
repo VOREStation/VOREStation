@@ -27,9 +27,6 @@
 
 	var/list/integrated_tool_images
 
-	var/requires_first_use_init = FALSE //If our tool REQUIRES us to initialize the integrated tools the FIRST time we use it. Used for things like the material synth.
-	var/has_performed_first_use_init = FALSE
-
 /obj/item/robotic_multibelt/CtrlClick(mob/user)
 	if(selected_item)
 		selected_item.attack_self(user)
@@ -56,13 +53,7 @@
 //'Alterate Tools' means we do special tool handling in Init
 /obj/item/robotic_multibelt/Initialize(mapload, custom_handling = FALSE)
 	. = ..()
-
-	if(cyborg_integrated_tools && LAZYLEN(cyborg_integrated_tools) && !requires_first_use_init)
-		generate_tools()
-
-/obj/item/robotic_multibelt/proc/first_use_generation() //Used for special multibelts, like the material multibelt.
-	has_performed_first_use_init = TRUE
-	return
+	generate_tools()
 
 /obj/item/robotic_multibelt/proc/generate_tools()
 	integrated_tools_by_name = list()
@@ -393,7 +384,6 @@
 	icon_state = "toolkit_material"
 
 	cyborg_integrated_tools = list()
-	requires_first_use_init = TRUE
 
 /obj/item/robotic_multibelt/materials/generate_tools()
 	var/obj/item/robot_module/module = get_module()
