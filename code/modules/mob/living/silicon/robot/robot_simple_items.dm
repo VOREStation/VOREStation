@@ -321,7 +321,7 @@
 
 	var/datum/matter_synth/synth_path = ispath(mat_to_add) ? mat_to_add : GLOB.material_synth_list[mat_to_add]
 
-	if(check_for_synth(synth_path))
+	if(!check_for_synth(synth_path))
 		return
 
 	var/amount
@@ -354,7 +354,7 @@
 		mat_belt.first_use_generation()
 
 /mob/living/silicon/robot/proc/check_for_synth(var/datum/matter_synth/type_to_check)
-	if(!istype(type_to_check))
+	if(!ispath(type_to_check, /datum/matter_synth))
 		return FALSE
 	for(var/datum/matter_synth/synth in module.synths)
 		if(istype(synth, type_to_check))
