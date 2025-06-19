@@ -351,7 +351,14 @@
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(inventory.get_item_in_slot(slot_w_uniform_str),nif,inventory.get_item_in_slot(slot_l_store_str),inventory.get_item_in_slot(slot_r_store_str),wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	var/list/things_to_not_drop = list(
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		nif,
+		inventory.get_item_in_slot(slot_l_store_str),
+		inventory.get_item_in_slot(slot_r_store_str),
+		wear_id,
+		inventory.get_item_in_slot(slot_l_ear_str),
+		inventory.get_item_in_slot(slot_r_ear_str)) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
 	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists
@@ -403,10 +410,10 @@
 	temporary_form = blob
 
 	var/obj/item/radio/R = null
-	if(isradio(l_ear))
-		R = l_ear
-	if(isradio(r_ear))
-		R = r_ear
+	if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+		R = inventory.get_item_in_slot(slot_l_ear_str)
+	if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+		R = inventory.get_item_in_slot(slot_r_ear_str)
 	if(R)
 		blob.mob_radio = R
 		R.forceMove(blob)

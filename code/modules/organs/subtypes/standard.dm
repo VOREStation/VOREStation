@@ -313,8 +313,8 @@
 			name = "[owner.real_name]'s head"
 			owner.drop_from_inventory(owner.glasses)
 			owner.drop_from_inventory(owner.head)
-			owner.drop_from_inventory(owner.l_ear)
-			owner.drop_from_inventory(owner.r_ear)
+			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_l_ear_str))
+			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_r_ear_str))
 			owner.drop_from_inventory(owner.wear_mask)
 			spawn(1)
 				owner.update_hair()

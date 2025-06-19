@@ -26,7 +26,7 @@
 	I.alpha = HUD.ui_alpha
 	I.icon_state = hud_icon_state
 
-	HUD.slot_info["[slot_id]"] = I.screen_loc
+	LAZYSET(HUD.slot_info, "[slot_id]", hud_location)
 
 	return I
 
@@ -178,3 +178,53 @@
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
 		H.worn_clothing -= contents
+
+/datum/inventory_slot/l_ear
+	name = "Left Ear"
+
+	slot_id = slot_l_ear
+	slot_id_str = slot_l_ear_str
+
+	hud_location = ui_l_ear
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "ears"
+	hideable = TRUE
+
+/datum/inventory_slot/l_ear/update_icon(atom/movable/contents)
+	. = ..()
+	owner.mymob.update_inv_ears()
+
+/datum/inventory_slot/l_ear/equipped(atom/movable/contents)
+	. = ..()
+	if(isitem(contents))
+		var/obj/item/I = contents
+		if(I.slot_flags & SLOT_TWOEARS)
+			var/obj/item/clothing/ears/offear/O = new(I)
+			O.forceMove(owner.mymob)
+			O.hud_layerise()
+			owner.put_item_in_slot(slot_r_ear_str, O)
+
+/datum/inventory_slot/r_ear
+	name = "Right Ear"
+
+	slot_id = slot_r_ear
+	slot_id_str = slot_r_ear_str
+
+	hud_location = ui_r_ear
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "ears"
+	hideable = TRUE
+
+/datum/inventory_slot/r_ear/update_icon(atom/movable/contents)
+	. = ..()
+	owner.mymob.update_inv_ears()
+
+/datum/inventory_slot/r_ear/equipped(atom/movable/contents)
+	. = ..()
+	if(isitem(contents))
+		var/obj/item/I = contents
+		if(I.slot_flags & SLOT_TWOEARS)
+			var/obj/item/clothing/ears/offear/O = new(I)
+			O.forceMove(owner.mymob)
+			O.hud_layerise()
+			owner.put_item_in_slot(slot_l_ear_str, O)

@@ -249,11 +249,13 @@
 			msg += "[T.He] [T.has] [icon2html(glasses,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>\a [glasses]</a> covering [T.his] eyes."
 
 	//left ear
-	if(l_ear && !(skip_gear & EXAMINE_SKIPEARS) && l_ear.show_examine)
+	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+	if(istype(l_ear) && !(skip_gear & EXAMINE_SKIPEARS) && l_ear.show_examine)
 		msg += "[T.He] [T.has] [icon2html(l_ear,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_ear]'>\a [l_ear]</a> on [T.his] left ear."
 
 	//right ear
-	if(r_ear && !(skip_gear & EXAMINE_SKIPEARS) && r_ear.show_examine)
+	var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
+	if(istype(r_ear) && !(skip_gear & EXAMINE_SKIPEARS) && r_ear.show_examine)
 		msg += "[T.He] [T.has] [icon2html(r_ear,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_ear]'>\a [r_ear]</a> on [T.his] right ear."
 
 	//ID

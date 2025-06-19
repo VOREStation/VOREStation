@@ -153,21 +153,21 @@
 					used_radios += I
 		if("headset")
 			var/obj/item/radio/R = null
-			if(isradio(l_ear))
-				R = l_ear
+			if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+				R = inventory.get_item_in_slot(slot_l_ear_str)
 				if(R.talk_into(src, message_pieces, null, verb))
 					used_radios += R
 					return
 
-			if(isradio(r_ear))
-				R = r_ear
+			if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+				R = inventory.get_item_in_slot(slot_r_ear_str)
 				if(R.talk_into(src, message_pieces, null, verb))
 					used_radios += R
 					return
 		if("right ear")
 			var/obj/item/radio/R = null
-			if(isradio(r_ear))
-				R = r_ear
+			if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+				R = inventory.get_item_in_slot(slot_r_ear_str)
 			if(isradio(r_hand))
 				R = r_hand
 			if(istype(R))
@@ -175,8 +175,8 @@
 					used_radios += R
 		if("left ear")
 			var/obj/item/radio/R = null
-			if(isradio(l_ear))
-				R = l_ear
+			if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+				R = inventory.get_item_in_slot(slot_l_ear_str)
 			if(isradio(l_hand))
 				R = l_hand
 			if(istype(R))
@@ -184,6 +184,8 @@
 					used_radios += R
 		else
 			if(message_mode)
+				var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+				var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
 				if(isradio(l_ear))
 					if(l_ear.talk_into(src, message_pieces, message_mode, verb))
 						used_radios += l_ear
@@ -203,6 +205,8 @@
 /mob/living/carbon/human/binarycheck()
 	. = FALSE
 	var/obj/item/radio/headset/R = null
+	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+	var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
 	if(istype(l_ear, /obj/item/radio/headset))
 		R = l_ear
 		if(R.translate_binary)

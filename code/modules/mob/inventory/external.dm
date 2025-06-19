@@ -132,24 +132,24 @@ var/list/slot_equipment_priority = list( \
 			update_inv_wear_id()
 			BITSET(hud_updateflag, ID_HUD)
 			BITSET(hud_updateflag, WANTED_HUD)
-		if(slot_l_ear)
-			src.l_ear = W
-			if(l_ear.slot_flags & SLOT_TWOEARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
-				src.r_ear = O
-				O.hud_layerise()
-			W.equipped(src, slot)
-			update_inv_ears()
-		if(slot_r_ear)
-			src.r_ear = W
-			if(r_ear.slot_flags & SLOT_TWOEARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
-				src.l_ear = O
-				O.hud_layerise()
-			W.equipped(src, slot)
-			update_inv_ears()
+		// if(slot_l_ear)
+		// 	src.l_ear = W
+		// 	if(l_ear.slot_flags & SLOT_TWOEARS)
+		// 		var/obj/item/clothing/ears/offear/O = new(W)
+		// 		O.loc = src
+		// 		src.r_ear = O
+		// 		O.hud_layerise()
+		// 	W.equipped(src, slot)
+		// 	update_inv_ears()
+		// if(slot_r_ear)
+		// 	src.r_ear = W
+		// 	if(r_ear.slot_flags & SLOT_TWOEARS)
+		// 		var/obj/item/clothing/ears/offear/O = new(W)
+		// 		O.loc = src
+		// 		src.l_ear = O
+		// 		O.hud_layerise()
+		// 	W.equipped(src, slot)
+		// 	update_inv_ears()
 		if(slot_glasses)
 			src.glasses = W
 			W.equipped(src, slot)
@@ -639,12 +639,12 @@ var/list/slot_equipment_priority = list( \
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
 		update_inv_head()
-	else if (W == l_ear)
-		l_ear = null
-		update_inv_ears()
-	else if (W == r_ear)
-		r_ear = null
-		update_inv_ears()
+	// else if (W == l_ear)
+	// 	l_ear = null
+	// 	update_inv_ears()
+	// else if (W == r_ear)
+	// 	r_ear = null
+	// 	update_inv_ears()
 	else if (W == shoes)
 		worn_clothing -= shoes
 		shoes = null
@@ -808,10 +808,10 @@ var/list/slot_equipment_priority = list( \
 		if(slot_w_uniform_str)  return inventory.get_item_in_slot(slot_w_uniform_str)
 		if(slot_s_store)        return s_store
 		if(slot_s_store_str)    return s_store
-		if(slot_l_ear)          return l_ear
-		if(slot_l_ear_str)      return l_ear
-		if(slot_r_ear)          return r_ear
-		if(slot_r_ear_str)      return r_ear
+		if(slot_l_ear)          return inventory.get_item_in_slot(slot_l_ear_str)
+		if(slot_l_ear_str)      return inventory.get_item_in_slot(slot_l_ear_str)
+		if(slot_r_ear)          return inventory.get_item_in_slot(slot_r_ear_str)
+		if(slot_r_ear_str)      return inventory.get_item_in_slot(slot_r_ear_str)
 	return ..()
 
 /mob/proc/get_equipped_items()
@@ -827,8 +827,8 @@ var/list/slot_equipment_priority = list( \
 /mob/living/carbon/human/get_equipped_items()
 	. = ..()
 	. += belt
-	. += l_ear
-	. += r_ear
+	. += inventory.get_item_in_slot(slot_l_ear_str)
+	. += inventory.get_item_in_slot(slot_r_ear_str)
 	. += glasses
 	. += gloves
 	. += head
@@ -858,7 +858,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || wear_suit || glasses || l_ear || r_ear || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || wear_suit || glasses || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
 			return TRUE
 
 	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)

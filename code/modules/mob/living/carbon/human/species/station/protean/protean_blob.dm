@@ -480,10 +480,10 @@
 		blob.ooc_notes_style = ooc_notes_style
 		temporary_form = blob
 		var/obj/item/radio/R = null
-		if(isradio(l_ear))
-			R = l_ear
-		if(isradio(r_ear))
-			R = r_ear
+		if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+			R = inventory.get_item_in_slot(slot_l_ear_str)
+		if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+			R = inventory.get_item_in_slot(slot_r_ear_str)
 		if(R)
 			blob.mob_radio = R
 			R.forceMove(blob)

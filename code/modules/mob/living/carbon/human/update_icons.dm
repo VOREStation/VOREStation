@@ -713,6 +713,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (wear_mask && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
 		return //Ears are blocked (by hair being blocked, overloaded)
 
+	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+	var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
+
 	if(!l_ear && !r_ear)
 		return //Why bother, if no ear sprites
 

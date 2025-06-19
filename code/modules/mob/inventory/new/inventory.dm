@@ -67,14 +67,18 @@
 	slot_to_item = null
 
 /datum/inventory/proc/build_hud(datum/hud/HUD)
+	if(!HUD)
+		return
+
 	var/list/adding = list()
 	var/list/other = list()
 
 	for(var/datum/inventory_slot/slot as anything in slots)
+		var/obj/screen/hud_item = slot.build_hud(HUD)
 		if(slot.hideable)
-			other += slot.build_hud(HUD)
+			other += hud_item
 		else
-			adding += slot.build_hud(HUD)
+			adding += hud_item
 
 	LAZYADD(HUD.adding, adding)
 	LAZYADD(HUD.other, other)
@@ -145,4 +149,6 @@
 		/datum/inventory_slot/r_store,
 		/datum/inventory_slot/back,
 		/datum/inventory_slot/uniform,
+		/datum/inventory_slot/l_ear,
+		/datum/inventory_slot/r_ear
 	)

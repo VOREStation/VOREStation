@@ -81,11 +81,11 @@
 
 /mob/living/carbon/human/get_ear_protection()
 	var/sum = 0
-	if(istype(l_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/L = l_ear
+	if(istype(inventory.get_item_in_slot(slot_l_ear_str), /obj/item/clothing/ears))
+		var/obj/item/clothing/ears/L = inventory.get_item_in_slot(slot_l_ear_str)
 		sum += L.ear_protection
-	if(istype(r_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/R = r_ear
+	if(istype(inventory.get_item_in_slot(slot_r_ear_str), /obj/item/clothing/ears))
+		var/obj/item/clothing/ears/R = inventory.get_item_in_slot(slot_r_ear_str)
 		sum += R.ear_protection
 	if(istype(head, /obj/item/clothing/head))
 		var/obj/item/clothing/head/H = head

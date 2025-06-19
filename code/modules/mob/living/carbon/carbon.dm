@@ -439,6 +439,8 @@
 		var/washglasses = 1
 
 		var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+		var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+		var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
 
 		if(H.wear_suit)
 			washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
@@ -483,12 +485,12 @@
 			if(H.glasses.wash(clean_types))
 				H.update_inv_glasses(0)
 
-		if(H.l_ear && washears)
-			if(H.l_ear.wash(clean_types))
+		if(istype(l_ear) && washears)
+			if(l_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
-		if(H.r_ear && washears)
-			if(H.r_ear.wash(clean_types))
+		if(istype(r_ear) && washears)
+			if(r_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
 		if(H.belt)

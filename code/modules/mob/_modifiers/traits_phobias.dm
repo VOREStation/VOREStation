@@ -135,7 +135,22 @@
 					human_blood_fear_amount += 1
 
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
-				var/list/clothing_slots = list(H.inventory.get_item_in_slot(slot_back_str), H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.inventory.get_item_in_slot(slot_w_uniform_str), H.s_store, H.l_ear, H.r_ear)
+				var/list/clothing_slots = list(
+					H.inventory.get_item_in_slot(slot_back_str),
+					H.wear_mask,
+					H.l_hand,
+					H.r_hand,
+					H.wear_id,
+					H.glasses,
+					H.gloves,
+					H.head,
+					H.shoes,
+					H.belt,
+					H.wear_suit,
+					H.inventory.get_item_in_slot(slot_w_uniform_str),
+					H.s_store,
+					H.inventory.get_item_in_slot(slot_l_ear_str),
+					H.inventory.get_item_in_slot(slot_r_ear_str))
 				if(H == holder)
 					clothing_slots += list(H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
 
@@ -552,7 +567,7 @@
 				if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
 					fear_amount += 10
 
-				if(H.l_ear && istype(H.l_ear, /obj/item/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/reagent_containers/syringe))
+				if(istype(H.inventory.get_item_in_slot(slot_l_ear_str), /obj/item/reagent_containers/syringe) || istype(H.inventory.get_item_in_slot(slot_r_ear_str), /obj/item/reagent_containers/syringe))
 					fear_amount +=10
 
 

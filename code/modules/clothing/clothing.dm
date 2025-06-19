@@ -225,7 +225,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	if(H.l_ear != src && H.r_ear != src)
+	if(H.inventory.get_item_in_slot(slot_l_ear_str) != src && H.inventory.get_item_in_slot(slot_r_ear_str) != src)
 		..()
 		return
 
@@ -234,7 +234,7 @@
 
 	var/obj/item/clothing/ears/O
 	if(slot_flags & SLOT_TWOEARS )
-		O = (H.l_ear == src ? H.r_ear : H.l_ear)
+		O = (H.inventory.get_item_in_slot(slot_l_ear_str) == src ? H.inventory.get_item_in_slot(slot_r_ear_str) : H.inventory.get_item_in_slot(slot_l_ear_str))
 		user.u_equip(O)
 		if(!istype(src,/obj/item/clothing/ears/offear))
 			qdel(O)
@@ -261,7 +261,7 @@
 		var/mob/living/carbon/human/H = usr
 		// If this covers both ears, we want to return the result of unequipping the primary object, and kill the off-ear one
 		if(slot_flags & SLOT_TWOEARS)
-			var/obj/item/clothing/ears/O = (H.l_ear == src ? H.r_ear : H.l_ear)
+			var/obj/item/clothing/ears/O = (H.inventory.get_item_in_slot(slot_l_ear_str) == src ? H.inventory.get_item_in_slot(slot_r_ear_str) : H.inventory.get_item_in_slot(slot_l_ear_str))
 			if(istype(src, /obj/item/clothing/ears/offear))
 				. = O.MouseDrop(over_object)
 				H.drop_from_inventory(src)

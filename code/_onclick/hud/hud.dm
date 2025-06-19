@@ -267,9 +267,9 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_shoes)
 						if(H.shoes)     H.shoes.screen_loc =     hud_data["loc"]
 					if(slot_l_ear)
-						if(H.l_ear)     H.l_ear.screen_loc =     hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_l_ear_str))     H.inventory.get_item_in_slot(slot_l_ear_str).screen_loc =     hud_data["loc"]
 					if(slot_r_ear)
-						if(H.r_ear)     H.r_ear.screen_loc =     hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_r_ear_str))     H.inventory.get_item_in_slot(slot_r_ear_str).screen_loc =     hud_data["loc"]
 					if(slot_gloves)
 						if(H.gloves)    H.gloves.screen_loc =    hud_data["loc"]
 					if(slot_glasses)
@@ -287,9 +287,9 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_shoes)
 						if(H.shoes)     H.shoes.screen_loc =     null
 					if(slot_l_ear)
-						if(H.l_ear)     H.l_ear.screen_loc =     null
+						if(H.inventory.get_item_in_slot(slot_l_ear_str))     H.inventory.get_item_in_slot(slot_l_ear_str).screen_loc =     null
 					if(slot_r_ear)
-						if(H.r_ear)     H.r_ear.screen_loc =     null
+						if(H.inventory.get_item_in_slot(slot_r_ear_str))     H.inventory.get_item_in_slot(slot_r_ear_str).screen_loc =     null
 					if(slot_gloves)
 						if(H.gloves)    H.gloves.screen_loc =    null
 					if(slot_glasses)

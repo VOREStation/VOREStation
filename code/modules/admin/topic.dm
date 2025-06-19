@@ -1437,7 +1437,7 @@
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
-		if(!istype(H.l_ear, /obj/item/radio/headset) && !istype(H.r_ear, /obj/item/radio/headset))
+		if(!istype(H.inventory.get_item_in_slot(slot_l_ear_str), /obj/item/radio/headset) && !istype(H.inventory.get_item_in_slot(slot_r_ear_str), /obj/item/radio/headset))
 			to_chat(usr, span_filter_adminlog("The person you are trying to contact is not wearing a headset"))
 			return
 
@@ -1997,7 +1997,7 @@
 	return 0
 
 /mob/living/carbon/human/can_centcom_reply()
-	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
+	return istype(inventory.get_item_in_slot(slot_l_ear_str), /obj/item/radio/headset) || istype(inventory.get_item_in_slot(slot_r_ear_str), /obj/item/radio/headset)
 
 /mob/living/silicon/ai/can_centcom_reply()
 	return common_radio != null && !check_unable(2)
