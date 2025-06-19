@@ -149,4 +149,5 @@
 		/datum/inventory_slot/belt,
 		/datum/inventory_slot/mask,
 		/datum/inventory_slot/id,
+		/datum/inventory_slot/glasses,
 	)

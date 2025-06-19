@@ -385,7 +385,7 @@
 		env.merge(removed)
 
 	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || l.is_incorporeal()) // VOREStation Edit - Only mesons can protect you! OR if they're not in the same plane of existence
+		if(!istype(l.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/meson) || l.is_incorporeal()) // VOREStation Edit - Only mesons can protect you! OR if they're not in the same plane of existence
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
 	SSradiation.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!

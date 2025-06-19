@@ -349,3 +349,28 @@
 		var/mob/living/carbon/human/H = owner.mymob
 		BITSET(H.hud_updateflag, ID_HUD)
 		BITSET(H.hud_updateflag, WANTED_HUD)
+
+/datum/inventory_slot/glasses
+	name = "Glasses"
+
+	slot_id = slot_glasses
+	slot_id_str = slot_glasses_str
+
+	hud_location = ui_glasses
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "glasses"
+	hideable = TRUE
+
+/datum/inventory_slot/glasses/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_glasses()
+
+/datum/inventory_slot/glasses/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/glasses/unequipped(atom/movable/contents)
+	// If this is how the internals are connected, disable them
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents

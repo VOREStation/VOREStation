@@ -248,7 +248,8 @@
 			msg += "[T.He] [T.has] [icon2html(wear_mask,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>\a [wear_mask]</a> [descriptor]."
 
 	//eyes
-	if(glasses && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+	if(istype(glasses) && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
 		if(glasses.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(glasses,user.client)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>[glasses]</a> covering [T.his] eyes!")
 		else
@@ -480,9 +481,9 @@
 		if(hasHUD_vr(H,hudtype)) return 1 //VOREStation Add - Added records access for certain modes of omni-hud glasses
 		switch(hudtype)
 			if("security")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
+				return istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/hud/security) || istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
+				return istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/hud/health)
 	else if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off

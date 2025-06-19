@@ -465,13 +465,14 @@
 		if(removed <= 0)
 			return
 
-		if(H.glasses)
-			if(H.glasses.unacidable)
-				to_chat(H, span_danger("Your [H.glasses] partially protect you from the acid!"))
+		var/obj/item/glasses = H.inventory.get_item_in_slot(slot_glasses_str)
+		if(istype(glasses))
+			if(glasses.unacidable)
+				to_chat(H, span_danger("Your [glasses] partially protect you from the acid!"))
 				removed /= 2
 			else if(removed > meltdose)
-				to_chat(H, span_danger("Your [H.glasses] melt away!"))
-				qdel(H.glasses)
+				to_chat(H, span_danger("Your [glasses] melt away!"))
+				qdel(glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
 		if(removed <= 0)

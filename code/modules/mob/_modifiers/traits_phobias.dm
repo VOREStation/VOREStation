@@ -141,7 +141,7 @@
 					H.get_left_hand(),
 					H.get_right_hand(),
 					H.inventory.get_item_in_slot(slot_wear_id_str),
-					H.glasses,
+					H.inventory.get_item_in_slot(slot_glasses_str),
 					H.gloves,
 					H.head,
 					H.shoes,

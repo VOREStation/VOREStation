@@ -1474,7 +1474,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		target_covering = src.body_part
 
 	if(owner)
-		var/list/protective_gear = list(owner.head, owner.inventory.get_item_in_slot(slot_wear_mask_str), owner.inventory.get_item_in_slot(slot_wear_suit_str), owner.inventory.get_item_in_slot(slot_w_uniform_str), owner.gloves, owner.shoes, owner.glasses)
+		var/list/protective_gear = list(owner.head, owner.inventory.get_item_in_slot(slot_wear_mask_str), owner.inventory.get_item_in_slot(slot_wear_suit_str), owner.inventory.get_item_in_slot(slot_w_uniform_str), owner.gloves, owner.shoes, owner.inventory.get_item_in_slot(slot_glasses_str))
 		for(var/obj/item/clothing/gear in protective_gear)
 			if(gear.body_parts_covered & target_covering)
 				covering_clothing |= gear

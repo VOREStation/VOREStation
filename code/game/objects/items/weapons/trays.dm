@@ -87,8 +87,9 @@
 				wear_mask.add_blood(H)
 			if (H.head)
 				H.head.add_blood(H)
-			if (H.glasses && prob(33))
-				H.glasses.add_blood(H)
+			var/obj/item/glasses = H.inventory.get_item_in_slot(slot_glasses_str)
+			if (istype(glasses) && prob(33))
+				glasses.add_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf/simulated))     //Addin' blood! At least on the floor and item :v
 				location.add_blood(H)

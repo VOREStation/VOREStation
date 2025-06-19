@@ -97,9 +97,10 @@
 				qdel(M.inventory.get_item_in_slot(slot_belt_str))
 				success = 1
 
-		if(M.glasses && stuff_to_equip["glasses"])
-			if(istype(M.glasses, stuff_to_equip["glasses"]))
-				qdel(M.glasses)
+
+		if(stuff_to_equip["glasses"])
+			if(istype(M.inventory.get_item_in_slot(slot_glasses_str), stuff_to_equip["glasses"]))
+				qdel(M.inventory.get_item_in_slot(slot_glasses_str))
 				success = 1
 
 		if(stuff_to_equip["wear_mask"])
@@ -180,7 +181,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["glasses"]
-		if(!M.glasses && t)
+		if(!M.inventory.get_item_in_slot(slot_glasses_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_glasses)
 			grown_items_list.Add("some glasses")

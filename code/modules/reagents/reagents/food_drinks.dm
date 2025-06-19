@@ -881,11 +881,12 @@
 			if(!mouth_covered && (wear_mask.body_parts_covered & FACE) && !(wear_mask.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
 				safe_thing = wear_mask
-		if(H.glasses && H.glasses.body_parts_covered & EYES)
+		var/obj/item/glasses = H.inventory.get_item_in_slot(slot_glasses_str)
+		if(istype(glasses) && glasses.body_parts_covered & EYES)
 			if(!eyes_covered)
 				eyes_covered = 1
 				if(!safe_thing)
-					safe_thing = H.glasses
+					safe_thing = glasses
 		if(alien == IS_SLIME)
 			for(var/obj/item/clothing/C in H.worn_clothing)
 				if(C.body_parts_covered & HEAD)

@@ -643,7 +643,7 @@ var/list/global/slot_flags_enumeration = list(
 	var/mob/living/carbon/human/H = M
 	var/mob/living/carbon/human/U = user
 	if(istype(H))
-		for(var/obj/item/protection in list(H.head, H.inventory.get_item_in_slot(slot_wear_mask_str), H.glasses))
+		for(var/obj/item/protection in list(H.head, H.inventory.get_item_in_slot(slot_wear_mask_str), H.inventory.get_item_in_slot(slot_glasses_str)))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				to_chat(user, span_warning("You're going to need to remove the eye covering first."))

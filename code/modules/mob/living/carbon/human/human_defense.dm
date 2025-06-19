@@ -347,7 +347,8 @@ emp_act
 						if(head)
 							head.add_blood(src)
 							update_inv_head(0)
-						if(glasses && prob(33))
+						var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+						if(istype(glasses) && prob(33))
 							glasses.add_blood(src)
 							update_inv_glasses(0)
 				if(BP_TORSO)//Easier to score a stun but lasts less time

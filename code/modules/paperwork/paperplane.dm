@@ -85,7 +85,8 @@
 	var/mob/living/carbon/human/H = hit_atom
 	if(prob(2))
 		var/obj/item/wear_mask = H.inventory.get_item_in_slot(slot_wear_mask_str)
-		if((H.head && H.head.body_parts_covered & EYES) || (istype(wear_mask) && wear_mask.body_parts_covered & EYES) || (H.glasses && H.glasses.body_parts_covered & EYES))
+		var/obj/item/glasses = H.inventory.get_item_in_slot(slot_glasses_str)
+		if((H.head && H.head.body_parts_covered & EYES) || (istype(wear_mask) && wear_mask.body_parts_covered & EYES) || (istype(glasses) && glasses.body_parts_covered & EYES))
 			return
 		visible_message(span_danger("\The [src] hits [H] in the eye!"))
 		H.eye_blurry += 10

@@ -486,8 +486,9 @@
 			if(wear_mask.wash(clean_types))
 				H.update_inv_wear_mask(0)
 
-		if(H.glasses && washglasses)
-			if(H.glasses.wash(clean_types))
+		var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+		if(istype(glasses) && washglasses)
+			if(glasses.wash(clean_types))
 				H.update_inv_glasses(0)
 
 		if(istype(l_ear) && washears)

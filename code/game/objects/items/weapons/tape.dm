@@ -35,7 +35,7 @@
 				if(!H.has_eyes())
 					to_chat(user, span_warning("\The [H] doesn't have any eyes."))
 					return
-				if(H.glasses)
+				if(H.inventory.get_item_in_slot(slot_glasses_str))
 					to_chat(user, span_warning("\The [H] is already wearing something on their eyes."))
 					return
 				if(H.head && (H.head.body_parts_covered & FACE))
@@ -49,7 +49,7 @@
 				if(!can_place(H, user))
 					return
 
-				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.inventory.get_item_in_slot(slot_glasses_str) || (H.head && (H.head.body_parts_covered & FACE)))
 					return
 
 				user.visible_message(span_danger("\The [user] has taped up \the [H]'s eyes!"))

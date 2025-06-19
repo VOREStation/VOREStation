@@ -806,8 +806,8 @@
 
 	if(istype(src.head, /obj/item/clothing/head))
 		add_clothing_protection(head)
-	if(istype(src.glasses, /obj/item/clothing/glasses))
-		add_clothing_protection(glasses)
+	if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses))
+		add_clothing_protection(inventory.get_item_in_slot(slot_glasses_str))
 	if(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask))
 		add_clothing_protection(inventory.get_item_in_slot(slot_wear_mask_str))
 
@@ -1439,7 +1439,7 @@
 	var/list/equipment = list(
 		head,
 		inventory.get_item_in_slot(slot_wear_mask_str),
-		glasses,
+		inventory.get_item_in_slot(slot_glasses_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		gloves,
@@ -1783,8 +1783,8 @@
 // Certain stuff like genetic xray vision is allowed to be kept on.
 /mob/living/carbon/human/disable_spoiler_vision()
 	// Glasses.
-	if(istype(glasses, /obj/item/clothing/glasses))
-		var/obj/item/clothing/glasses/goggles = glasses
+	if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/goggles = inventory.get_item_in_slot(slot_glasses_str)
 		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
 			goggles.toggle_active(src)
 			to_chat(src, span_warning("Your [goggles.name] have suddenly turned off!"))

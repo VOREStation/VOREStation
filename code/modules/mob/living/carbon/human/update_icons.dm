@@ -701,7 +701,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(GLASSES_LAYER)
 	remove_layer(GLASSES_LAYER_ALT)
 
-	if(!glasses || hide_glasses)
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+
+	if(!istype(glasses) || hide_glasses)
 		return //Not wearing glasses, no need to update anything.
 
 	var/glasses_layer = GLASSES_LAYER

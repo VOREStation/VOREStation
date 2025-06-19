@@ -480,7 +480,8 @@
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
 	if(istype(wear_mask) && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
-	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+	if(istype(glasses) && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
@@ -1366,7 +1367,7 @@
 				AdjustBlinded(-1)
 				blinded =    1
 				throw_alert("blind", /obj/screen/alert/blind)
-			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
+			else if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
 				eye_blurry = max(eye_blurry-3, 0)
 				blinded =    1
 				throw_alert("blind", /obj/screen/alert/blind)
@@ -1600,10 +1601,9 @@
 		if(disabilities & NEARSIGHTED)
 			apply_nearsighted_overlay = TRUE
 
-			if(glasses)
-				var/obj/item/clothing/glasses/G = glasses
-				if(G.prescription)
-					apply_nearsighted_overlay = FALSE
+			var/obj/item/clothing/glasses/G = inventory.get_item_in_slot(slot_glasses_str)
+			if(istype(G) && G.prescription)
+				apply_nearsighted_overlay = FALSE
 
 			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION))
 				apply_nearsighted_overlay = FALSE
@@ -1625,12 +1625,12 @@
 			if(species.short_sighted)
 				found_welder = 1
 			else
-				if(istype(glasses, /obj/item/clothing/glasses/welding))
-					var/obj/item/clothing/glasses/welding/O = glasses
+				if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/welding))
+					var/obj/item/clothing/glasses/welding/O = inventory.get_item_in_slot(slot_glasses_str)
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1
-				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+				if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/thinblindfold))
 					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
@@ -1707,8 +1707,8 @@
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
-		if(glasses && !glasses_processed && !looking_elsewhere)
-			glasses_processed = process_glasses(glasses)
+		if(inventory.get_item_in_slot(slot_glasses_str) && !glasses_processed && !looking_elsewhere)
+			glasses_processed = process_glasses(inventory.get_item_in_slot(slot_glasses_str))
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
@@ -1757,7 +1757,7 @@
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	. = FALSE
-	if(G && G.active)
+	if(istype(G) && G.active)
 		if(G.darkness_view)
 			see_in_dark += G.darkness_view
 			. = TRUE

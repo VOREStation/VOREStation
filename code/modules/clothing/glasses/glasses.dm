@@ -539,7 +539,7 @@ BLIND     // can't see anything
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_red("The Optical Thermal Scanner overloads and blinds you!"))
-		if(M.glasses == src)
+		if(M.inventory.get_item_in_slot(slot_glasses_str) == src)
 			M.Blind(3)
 			M.eye_blurry = 5
 			// Don't cure being nearsighted

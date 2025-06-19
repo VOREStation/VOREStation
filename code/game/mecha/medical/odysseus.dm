@@ -26,10 +26,10 @@
 
 /obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
-		if(H.glasses)
-			occupant_message(span_red("[H.glasses] prevent you from using [src] [hud]!"))
+		if(H.inventory.get_item_in_slot(slot_glasses_str))
+			occupant_message(span_red("[H.inventory.get_item_in_slot(slot_glasses_str)] prevent you from using [src] [hud]!"))
 		else
-			H.glasses = hud
+			H.equip_to_slot(hud, slot_glasses)
 			H.recalculate_vis()
 		return 1
 	else
@@ -38,8 +38,8 @@
 /obj/mecha/medical/odysseus/go_out()
 	if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
-		if(H.glasses == hud)
-			H.glasses = null
+		if(H.inventory.get_item_in_slot(slot_glasses_str) == hud)
+			H.unEquip(hud, force = TRUE)
 			H.recalculate_vis()
 	..()
 	return

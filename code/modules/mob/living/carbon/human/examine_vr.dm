@@ -69,8 +69,8 @@
 				if(H.nif.flag_check(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION))
 					return TRUE
 
-	if(istype(H.glasses, /obj/item/clothing/glasses/omnihud))
-		var/obj/item/clothing/glasses/omnihud/omni = H.glasses
+	if(istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/omnihud))
+		var/obj/item/clothing/glasses/omnihud/omni = H.inventory.get_item_in_slot(slot_glasses_str)
 		switch(hudtype)
 			if("security")
 				if(omni.mode == "sec" || omni.mode == "best")

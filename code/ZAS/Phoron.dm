@@ -107,7 +107,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		var/burn_eyes = 1
 
 		//Check for protective glasses
-		if(glasses && (glasses.body_parts_covered & EYES) && (glasses.item_flags & AIRTIGHT))
+		var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+		if(istype(glasses) && (glasses.body_parts_covered & EYES) && (glasses.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
 		//Check for protective maskwear
