@@ -450,14 +450,15 @@
 		if(removed <= 0)
 			return
 
-		if(H.wear_mask)
-			if(H.wear_mask.unacidable)
-				to_chat(H, span_danger("Your [H.wear_mask] protects you from the acid."))
+		var/obj/item/wear_mask = H.inventory.get_item_in_slot(slot_wear_mask_str)
+		if(istype(wear_mask))
+			if(wear_mask.unacidable)
+				to_chat(H, span_danger("Your [wear_mask] protects you from the acid."))
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				to_chat(H, span_danger("Your [H.wear_mask] melts away!"))
-				qdel(H.wear_mask)
+				to_chat(H, span_danger("Your [wear_mask] melts away!"))
+				qdel(wear_mask)
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
 				removed -= meltdose

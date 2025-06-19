@@ -123,10 +123,11 @@
 		if(!check_has_mouth())
 			to_chat(H, span_danger("They don't have a mouth, you cannot perform CPR!"))
 			return FALSE
-		if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		if((H.head && (H.head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove your mask!"))
 			return FALSE
-		if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
+		if((head && (head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove [src]'s mask!"))
 			return FALSE
 
@@ -273,7 +274,8 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//As a note: This intentionally doesn't immediately return if has_hands is false. This is because you can attack with kicks/bites!
-	if(has_hands && M.zone_sel.selecting == "mouth" && wear_mask && istype(wear_mask, /obj/item/grenade))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(has_hands && M.zone_sel.selecting == "mouth" && istype(wear_mask, /obj/item/grenade))
 		var/obj/item/grenade/G = wear_mask
 		if(!G.active)
 			visible_message(span_danger("\The [M] pulls the pin from \the [src]'s [G.name]!"))

@@ -44,7 +44,8 @@
 	if(internal)
 		if (!contents.Find(internal))
 			internal = null
-		if (!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		if (!(istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT)))
 			internal = null
 		if(internal)
 			if (internals)
@@ -68,8 +69,8 @@
 
 	if(breath)
 		//handle mask filtering
-		if(istype(wear_mask, /obj/item/clothing/mask) && breath)
-			var/obj/item/clothing/mask/M = wear_mask
+		if(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) && breath)
+			var/obj/item/clothing/mask/M = inventory.get_item_in_slot(slot_wear_mask_str)
 			var/datum/gas_mixture/gas_filtered = M.filter_air(breath)
 			loc.assume_air(gas_filtered)
 		return breath
@@ -77,7 +78,8 @@
 
 //Handle possble chem smoke effect
 /mob/living/carbon/proc/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))

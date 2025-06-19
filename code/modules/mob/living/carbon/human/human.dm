@@ -336,7 +336,8 @@
 /mob/living/carbon/human/proc/get_visible_name()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return "Something"	// Something
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if( istype(wear_mask) && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv&HIDEFACE) )
 		return get_id_name("Unknown")		//Likewise for hats
@@ -805,8 +806,8 @@
 		add_clothing_protection(head)
 	if(istype(src.glasses, /obj/item/clothing/glasses))
 		add_clothing_protection(glasses)
-	if(istype(src.wear_mask, /obj/item/clothing/mask))
-		add_clothing_protection(wear_mask)
+	if(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask))
+		add_clothing_protection(inventory.get_item_in_slot(slot_wear_mask_str))
 
 	return flash_protection
 
@@ -1029,7 +1030,8 @@
 			return gender
 		else
 			var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
-			if(((wear_mask?.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
+			var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+			if(((istype(wear_mask) && wear_mask.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
 				return PLURAL
 			if(species?.ambiguous_genders && user)
 				if(ishuman(user))
@@ -1434,7 +1436,7 @@
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(
 		head,
-		wear_mask,
+		inventory.get_item_in_slot(slot_wear_mask_str),
 		glasses,
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
@@ -1663,7 +1665,7 @@
 	return ..()
 
 /mob/living/carbon/human/is_muzzled()
-	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/grenade)))
+	return istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/muzzle) || istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/grenade)
 
 /mob/living/carbon/human/get_fire_icon_state()
 	return species.fire_icon_state

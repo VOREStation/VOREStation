@@ -147,4 +147,5 @@
 		/datum/inventory_slot/uniform,
 		/datum/inventory_slot/suit,
 		/datum/inventory_slot/belt,
+		/datum/inventory_slot/mask,
 	)

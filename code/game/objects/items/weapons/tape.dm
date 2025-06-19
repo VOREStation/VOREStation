@@ -64,7 +64,7 @@
 				if(!H.check_has_mouth())
 					to_chat(user, span_warning("\The [H] doesn't have a mouth."))
 					return
-				if(H.wear_mask)
+				if(H.inventory.get_item_in_slot(slot_wear_mask_str))
 					to_chat(user, span_warning("\The [H] is already wearing a mask."))
 					return
 				if(H.head && (H.head.body_parts_covered & FACE))

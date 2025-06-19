@@ -115,7 +115,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(reagents && reagents.total_volume) // check if it has any reagents at all
 		if(ishuman(loc))
 			var/mob/living/carbon/human/C = loc
-			if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
+			if (src == C.inventory.get_item_in_slot(slot_wear_mask_str) && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 				reagents.trans_to_mob(C, amount, CHEM_INGEST, 1.5) // I don't predict significant balance issues by letting blunts actually WORK.
 		else // else just remove some of the reagents
 			reagents.remove_any(REM)
@@ -647,8 +647,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.IgniteMob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
+	if(istype(M.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
+		var/obj/item/clothing/mask/smokable/cigarette/cig = M.inventory.get_item_in_slot(slot_wear_mask_str)
 		if(M == user)
 			cig.attackby(src, user)
 		else
@@ -847,8 +847,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.IgniteMob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
+	if(istype(M.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
+		var/obj/item/clothing/mask/smokable/cigarette/cig = M.inventory.get_item_in_slot(slot_wear_mask_str)
 		if(M == user)
 			cig.attackby(src, user)
 		else
@@ -918,8 +918,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.IgniteMob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
+	if(istype(M.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
+		var/obj/item/clothing/mask/smokable/cigarette/cig = M.inventory.get_item_in_slot(slot_wear_mask_str)
 		if(M == user)
 			cig.attackby(src, user)
 		else
@@ -1084,8 +1084,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.IgniteMob()
 		add_attack_logs(user, M, "Lit on fire with [src]")
 
-	if (istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
+	if (istype(M.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
+		var/obj/item/clothing/mask/smokable/cigarette/cig = M.inventory.get_item_in_slot(slot_wear_mask_str)
 		if (M == user)
 			cig.attackby(src, user)
 		else

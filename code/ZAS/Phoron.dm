@@ -111,7 +111,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			burn_eyes = 0
 
 		//Check for protective maskwear
-		if(burn_eyes && wear_mask && (wear_mask.body_parts_covered & EYES) && (wear_mask.item_flags & AIRTIGHT))
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		if(burn_eyes && istype(wear_mask) && (wear_mask.body_parts_covered & EYES) && (wear_mask.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
 		//Check for protective helmets

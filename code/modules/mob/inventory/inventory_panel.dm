@@ -69,7 +69,7 @@
 	var/list/slots = list()
 	slots.Add(list(list(
 		"name" = "Head (Mask)",
-		"item" = host.wear_mask,
+		"item" = host.inventory.get_item_in_slot(slot_wear_mask_str),
 		"act" = "mask",
 	)))
 	slots.Add(list(list(
@@ -95,7 +95,7 @@
 	data["slots"] = slots
 
 	data["internals"] = host.internals
-	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.inventory.get_item_in_slot(slot_back_str), /obj/item/tank)
+	data["internalsValid"] = istype(host.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) && istype(host.inventory.get_item_in_slot(slot_back_str), /obj/item/tank)
 
 	return data
 
@@ -181,7 +181,7 @@
 
 	data["internals"] = H.internals
 	data["internalsValid"] = \
-		(istype(H.wear_mask, /obj/item/clothing/mask) \
+		(istype(H.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) \
 		|| istype(H.head, /obj/item/clothing/head/helmet/space)) \
 		&& (istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/tank) \
 			|| istype(H.inventory.get_item_in_slot(slot_belt_str), /obj/item/tank) \

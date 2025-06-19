@@ -285,12 +285,11 @@
 		// Put out cigarettes if splashed.
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			if(H.wear_mask)
-				if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
-					var/obj/item/clothing/mask/smokable/S = H.wear_mask
-					if(S.lit)
-						S.quench()
-						H.visible_message(span_notice("[H]\'s [S.name] is put out."))
+			if(istype(H.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable))
+				var/obj/item/clothing/mask/smokable/S = H.inventory.get_item_in_slot(slot_wear_mask_str)
+				if(S.lit)
+					S.quench()
+					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)

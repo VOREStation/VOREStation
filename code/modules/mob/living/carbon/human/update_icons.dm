@@ -431,7 +431,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		apply_layer(UNDERWEAR_LAYER)
 
 //HAIR OVERLAY
-/mob/living/carbon/human/proc/update_hair()
+/mob/proc/update_hair()
+	return
+
+/mob/living/carbon/human/update_hair()
 	if(QDESTROYING(src))
 		return
 
@@ -445,7 +448,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	//masks and helmets can obscure our hair.
-	if( (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if( (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//base icons
@@ -532,8 +537,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!species.has_glowing_eyes)
 		return
 
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
 	//Our glowy eyes should be hidden if some equipment hides them.
-	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//Get the head, we'll need it later.
@@ -711,7 +718,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(EARS_LAYER)
 
-	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (wear_mask && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (istype(wear_mask) && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
 		return //Ears are blocked (by hair being blocked, overloaded)
 
 	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
@@ -894,7 +903,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(FACEMASK_LAYER)
 
-	if(!wear_mask || (head && head.flags_inv & HIDEMASK))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if(!istype(wear_mask) || (head && head.flags_inv & HIDEMASK))
 		return //Why bother, nothing in mask slot.
 
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_mask_str, default_icon = INV_MASK_DEF_ICON, default_layer = FACEMASK_LAYER)

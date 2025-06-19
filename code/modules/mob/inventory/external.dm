@@ -102,14 +102,14 @@ var/list/slot_equipment_priority = list( \
 		// 	W.equipped(src, slot)
 		// 	worn_clothing += back
 		// 	update_inv_back()
-		if(slot_wear_mask)
-			src.wear_mask = W
-			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-				update_hair()	//rebuild hair
-				update_inv_ears()
-			W.equipped(src, slot)
-			worn_clothing += wear_mask
-			update_inv_wear_mask()
+		// if(slot_wear_mask)
+		// 	src.wear_mask = W
+		// 	if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+		// 		update_hair()	//rebuild hair
+		// 		update_inv_ears()
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += wear_mask
+		// 	update_inv_wear_mask()
 		if(slot_handcuffed)
 			src.handcuffed = W
 			update_inv_handcuffed()
@@ -575,9 +575,9 @@ var/list/slot_equipment_priority = list( \
 	// else if (W == back)
 	// 	back = null
 	// 	update_inv_back()
-	else if (W == wear_mask)
-		wear_mask = null
-		update_inv_wear_mask()
+	// else if (W == wear_mask)
+	// 	wear_mask = null
+	// 	update_inv_wear_mask()
 	return
 
 /mob/living/carbon/u_equip(obj/item/W)
@@ -657,20 +657,20 @@ var/list/slot_equipment_priority = list( \
 	// 	worn_clothing -= belt
 	// 	belt = null
 	// 	update_inv_belt()
-	else if (W == wear_mask)
-		worn_clothing -= wear_mask
-		wear_mask = null
-		if(istype(W, /obj/item))
-			var/obj/item/I = W
-			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-				update_hair(0)	//rebuild hair
-				update_inv_ears(0)
-		// If this is how the internals are connected, disable them
-		if(internal && !(head?.item_flags & AIRTIGHT))
-			if(internals)
-				internals.icon_state = "internal0"
-			internal = null
-		update_inv_wear_mask()
+	// else if (W == wear_mask)
+	// 	worn_clothing -= wear_mask
+	// 	wear_mask = null
+	// 	if(istype(W, /obj/item))
+	// 		var/obj/item/I = W
+	// 		if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+	// 			update_hair(0)	//rebuild hair
+	// 			update_inv_ears(0)
+	// 	// If this is how the internals are connected, disable them
+	// 	if(internal && !(head?.item_flags & AIRTIGHT))
+	// 		if(internals)
+	// 			internals.icon_state = "internal0"
+	// 		internal = null
+	// 	update_inv_wear_mask()
 	else if (W == wear_id)
 		wear_id = null
 		update_inv_wear_id()
@@ -772,8 +772,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_r_hand_str)    return get_right_hand()
 		if(slot_back)          return inventory.get_item_in_slot(slot_back_str)
 		if(slot_back_str)      return inventory.get_item_in_slot(slot_back_str)
-		if(slot_wear_mask)     return wear_mask
-		if(slot_wear_mask_str) return wear_mask
+		if(slot_wear_mask)     return inventory.get_item_in_slot(slot_wear_mask_str)
+		if(slot_wear_mask_str) return inventory.get_item_in_slot(slot_wear_mask_str)
 	return null
 
 /mob/living/carbon/human/get_equipped_item(slot)
@@ -788,8 +788,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_l_store_str)    return inventory.get_item_in_slot(slot_l_store_str)
 		if(slot_r_store)        return inventory.get_item_in_slot(slot_r_store_str)
 		if(slot_r_store_str)    return inventory.get_item_in_slot(slot_r_store_str)
-		if(slot_wear_mask)      return wear_mask
-		if(slot_wear_mask_str)  return wear_mask
+		if(slot_wear_mask)      return inventory.get_item_in_slot(slot_wear_mask_str)
+		if(slot_wear_mask_str)  return inventory.get_item_in_slot(slot_wear_mask_str)
 		if(slot_l_hand)         return get_left_hand()
 		if(slot_l_hand_str)     return get_left_hand()
 		if(slot_r_hand)         return get_right_hand()
@@ -826,7 +826,7 @@ var/list/slot_equipment_priority = list( \
 	. += get_left_hand()
 	. += get_right_hand()
 	. += inventory.get_item_in_slot(slot_back_str)
-	. += wear_mask
+	. += inventory.get_item_in_slot(slot_wear_mask_str)
 
 /mob/living/carbon/human/get_equipped_items()
 	. = ..()
@@ -855,7 +855,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || wear_mask)
+		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str))
 			return TRUE
 
 	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)
@@ -866,7 +866,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || glasses || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str) || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || glasses || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
 			return TRUE
 
 	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)

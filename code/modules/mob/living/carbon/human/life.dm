@@ -477,7 +477,8 @@
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
@@ -507,13 +508,14 @@
 		var/obj/item/tank/suit_supply
 		var/obj/item/rig/Rig = get_rig()
 		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
 
 		if(Rig)
 			suit_supply = Rig.air_supply
 		else if(Void)
 			suit_supply = Void.tank
 
-		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
@@ -536,7 +538,8 @@
 		suiciding--
 		return 0
 
-	if(wear_mask && (wear_mask.item_flags & INFINITE_AIR))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & INFINITE_AIR))
 		failed_last_breath = 0
 		adjustOxyLoss(-5)
 		return
@@ -1043,7 +1046,13 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(
+		head,
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		shoes,
+		gloves,
+		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_high_temperature(temperature))
 				. |= C.get_heat_protection_flags()
@@ -1052,7 +1061,13 @@
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(
+		head,
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		shoes,
+		gloves,
+		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_low_temperature(temperature))
 				. |= C.get_cold_protection_flags()

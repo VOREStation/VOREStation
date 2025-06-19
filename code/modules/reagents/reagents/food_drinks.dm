@@ -873,13 +873,14 @@
 			if((H.head.body_parts_covered & FACE) && !(H.head.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
 				safe_thing = H.head
-		if(H.wear_mask)
-			if(!eyes_covered && H.wear_mask.body_parts_covered & EYES)
+		var/obj/item/wear_mask = H.inventory.get_item_in_slot(slot_wear_mask_str)
+		if(istype(wear_mask))
+			if(!eyes_covered && wear_mask.body_parts_covered & EYES)
 				eyes_covered = 1
-				safe_thing = H.wear_mask
-			if(!mouth_covered && (H.wear_mask.body_parts_covered & FACE) && !(H.wear_mask.item_flags & FLEXIBLEMATERIAL))
+				safe_thing = wear_mask
+			if(!mouth_covered && (wear_mask.body_parts_covered & FACE) && !(wear_mask.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
-				safe_thing = H.wear_mask
+				safe_thing = wear_mask
 		if(H.glasses && H.glasses.body_parts_covered & EYES)
 			if(!eyes_covered)
 				eyes_covered = 1

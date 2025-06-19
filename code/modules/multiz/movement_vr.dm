@@ -130,7 +130,7 @@
 			climbing_delay_min = H.species.climbing_delay
 		var/list/gear = list(
 			H.head,
-			H.wear_mask,
+			H.inventory.get_item_in_slot(slot_wear_mask_str),
 			H.inventory.get_item_in_slot(slot_wear_suit_str),
 			H.inventory.get_item_in_slot(slot_w_uniform_str),
 			H.gloves,
@@ -261,7 +261,7 @@
 			climbing_delay_min = H.species.climbing_delay
 		var/list/gear = list(
 			H.head,
-			H.wear_mask,
+			H.inventory.get_item_in_slot(slot_wear_mask_str),
 			H.inventory.get_item_in_slot(slot_wear_suit_str),
 			H.inventory.get_item_in_slot(slot_w_uniform_str),
 			H.gloves,

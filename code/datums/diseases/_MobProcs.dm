@@ -109,8 +109,8 @@
 				if(isobj(H.head) && !istype(H.head, /obj/item/paper))
 					Cl = H.head
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.wear_mask))
-					Cl = H.wear_mask
+				if(passed && isobj(H.inventory.get_item_in_slot(slot_wear_mask_str)))
+					Cl = H.inventory.get_item_in_slot(slot_wear_mask_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(BP_TORSO)
 				if(isobj(H.inventory.get_item_in_slot(slot_wear_suit_str)))

@@ -248,7 +248,8 @@ var/list/global/tank_gauge_cache = list()
 		data["connected"] = FALSE
 
 	data["maskConnected"] = FALSE
-	if(C.wear_mask && (C.wear_mask.item_flags & AIRTIGHT))
+	var/obj/item/wear_mask = C.inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT))
 		data["maskConnected"] = TRUE
 	else if(ishuman(C))
 		var/mob/living/carbon/human/H = C
@@ -294,7 +295,8 @@ var/list/global/tank_gauge_cache = list()
 				location.internals.icon_state = "internal0"
 		else
 			var/can_open_valve
-			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
+			var/obj/item/wear_mask = location.inventory.get_item_in_slot(slot_wear_mask_str)
+			if(istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT))
 				can_open_valve = 1
 			else if(ishuman(location))
 				var/mob/living/carbon/human/H = location

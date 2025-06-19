@@ -62,7 +62,8 @@
 		if(head.flags_inv & HIDEFACE)
 			skip_body |= EXAMINE_SKIPFACE
 
-	if(wear_mask && (wear_mask.flags_inv & HIDEFACE))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.flags_inv & HIDEFACE))
 		skip_body |= EXAMINE_SKIPFACE
 
 	//This is what hides what
@@ -236,7 +237,7 @@
 		msg += span_warning("[T.He] [T.has] [(feet_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained feet!")
 
 	//mask
-	if(wear_mask && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
+	if(istype(wear_mask) && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
 		var/descriptor = "on [T.his] face"
 		if(istype(wear_mask, /obj/item/grenade) && check_has_mouth())
 			descriptor = "in [T.his] mouth"

@@ -137,7 +137,7 @@
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
 				var/list/clothing_slots = list(
 					H.inventory.get_item_in_slot(slot_back_str),
-					H.wear_mask,
+					H.inventory.get_item_in_slot(slot_wear_mask_str),
 					H.get_left_hand(),
 					H.get_right_hand(),
 					H.wear_id,

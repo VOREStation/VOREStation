@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_wear_suit)
 						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = hud_data["loc"]
 					if(slot_wear_mask)
-						if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_wear_mask_str)) H.inventory.get_item_in_slot(slot_wear_mask_str).screen_loc = hud_data["loc"]
 			else
 				switch(hud_data["slot"])
 					if(slot_head)
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_wear_suit)
 						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = null
 					if(slot_wear_mask)
-						if(H.wear_mask) H.wear_mask.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_wear_mask_str)) H.inventory.get_item_in_slot(slot_wear_mask_str).screen_loc = null
 
 
 /datum/hud/proc/persistant_inventory_update()

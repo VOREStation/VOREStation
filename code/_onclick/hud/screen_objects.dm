@@ -336,7 +336,8 @@
 					else
 
 						var/no_mask
-						if(!(C.wear_mask && C.wear_mask.item_flags & AIRTIGHT))
+						var/obj/item/wear_mask = C.inventory.get_item_in_slot(slot_wear_mask_str)
+						if(!(istype(wear_mask) && wear_mask.item_flags & AIRTIGHT))
 							var/mob/living/carbon/human/H = C
 							if(!(H.head && H.head.item_flags & AIRTIGHT))
 								no_mask = 1

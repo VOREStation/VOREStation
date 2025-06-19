@@ -432,6 +432,7 @@
 		if(back.wash(clean_types))
 			update_inv_back(0)
 
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		var/washgloves = 1
@@ -455,11 +456,11 @@
 			washglasses = !(H.head.flags_inv & HIDEEYES)
 			washears = !(H.head.flags_inv & HIDEEARS)
 
-		if(H.wear_mask)
+		if(istype(wear_mask))
 			if (washears)
-				washears = !(H.wear_mask.flags_inv & HIDEEARS)
+				washears = !(wear_mask.flags_inv & HIDEEARS)
 			if (washglasses)
-				washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
+				washglasses = !(wear_mask.flags_inv & HIDEEYES)
 
 		if(H.head)
 			if(H.head.wash(clean_types))
@@ -481,8 +482,8 @@
 			if(H.shoes.wash(clean_types))
 				H.update_inv_shoes(0)
 
-		if(H.wear_mask && washmask)
-			if(H.wear_mask.wash(clean_types))
+		if(istype(wear_mask) && washmask)
+			if(wear_mask.wash(clean_types))
 				H.update_inv_wear_mask(0)
 
 		if(H.glasses && washglasses)
@@ -502,8 +503,8 @@
 				H.update_inv_belt(0)
 
 	else
-		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-			if(src.wear_mask.wash(clean_types))
+		if(istype(wear_mask))						//if the mob is not human, it cleans the mask without asking for bitflags
+			if(wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit

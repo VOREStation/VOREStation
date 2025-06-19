@@ -296,3 +296,37 @@
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
 		H.worn_clothing -= contents
+
+/datum/inventory_slot/mask
+	name = "Mask"
+
+	slot_id = slot_wear_mask
+	slot_id_str = slot_wear_mask_str
+
+	hud_location = ui_mask
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "mask"
+
+/datum/inventory_slot/mask/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_wear_mask()
+
+	if(isitem(contents))
+		var/obj/item/I = contents
+		if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
+			owner.mymob.update_hair(0)	//rebuild hair
+			owner.mymob.update_inv_ears(0)
+
+/datum/inventory_slot/mask/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/mask/unequipped(atom/movable/contents)
+	// If this is how the internals are connected, disable them
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents
+		if(H.internal && !(H.head?.item_flags & AIRTIGHT))
+			if(H.internals)
+				H.internals.icon_state = "internal0"
+			H.internal = null

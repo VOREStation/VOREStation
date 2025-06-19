@@ -946,7 +946,7 @@ var/list/ai_verbs_default = list(
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
-		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
+		if(istype(H.inventory.get_item_in_slot(slot_wear_mask_str),/obj/item/clothing/mask/gas/voice))
 			changed_voice = 1
 			var/list/impersonated = new()
 			var/mob/living/carbon/human/I = impersonated[speaker_name]

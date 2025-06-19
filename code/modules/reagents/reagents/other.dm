@@ -480,8 +480,9 @@
 		r_hand.wash(CLEAN_SCRUB)
 	if(istype(l_hand))
 		l_hand.wash(CLEAN_SCRUB)
-	if(M.wear_mask)
-		if(M.wear_mask.wash(CLEAN_SCRUB))
+	var/obj/item/wear_mask = M.inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask))
+		if(wear_mask.wash(CLEAN_SCRUB))
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -520,12 +521,11 @@
 	..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.wear_mask)
-			if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
-				var/obj/item/clothing/mask/smokable/S = H.wear_mask
-				if(S.lit)
-					S.quench() // No smoking in my medbay!
-					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
+		if(istype(H.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable))
+			var/obj/item/clothing/mask/smokable/S = H.inventory.get_item_in_slot(slot_wear_mask_str)
+			if(S.lit)
+				S.quench() // No smoking in my medbay!
+				H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = REAGENT_LUBE

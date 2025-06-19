@@ -102,9 +102,9 @@
 				qdel(M.glasses)
 				success = 1
 
-		if(M.wear_mask && stuff_to_equip["wear_mask"])
-			if(istype(M.wear_mask, stuff_to_equip["wear_mask"]))
-				qdel(M.wear_mask)
+		if(stuff_to_equip["wear_mask"])
+			if(istype(M.inventory.get_item_in_slot(slot_wear_mask_str), stuff_to_equip["wear_mask"]))
+				qdel(M.inventory.get_item_in_slot(slot_wear_mask_str))
 				success = 1
 
 		var/atom/movable/back = inventory.get_item_in_slot(slot_back_str)
@@ -189,7 +189,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_mask"]
-		if(!M.wear_mask && t)
+		if(!M.inventory.get_item_in_slot(slot_wear_mask_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_wear_mask)
 			grown_items_list.Add("a mask")
