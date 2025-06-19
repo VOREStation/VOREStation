@@ -901,7 +901,7 @@
 		return
 
 	//They can select an area they want to turn their current area into.
-	str = sanitizeSafe(tgui_input_text(usr, "What would you like to name the area?", "Area Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	str = sanitizeSafe(tgui_input_text(creator, "What would you like to name the area?", "Area Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(isnull(str)) //They pressed cancel.
 		to_chat(creator, span_warning("No new area made. Cancelling."))
 		return
