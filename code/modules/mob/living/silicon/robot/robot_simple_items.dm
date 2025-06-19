@@ -83,9 +83,6 @@
 
 
 /obj/item/robotic_multibelt/attack_self(mob/user)
-	if(requires_first_use_init && !has_performed_first_use_init)
-		first_use_generation()
-
 	if(!cyborg_integrated_tools || !LAZYLEN(cyborg_integrated_tools))
 		to_chat(user, "Your multibelt is empty!")
 		return
@@ -349,9 +346,9 @@
 
 /mob/living/silicon/robot/proc/update_material_multibelts()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
-		mat_belt.first_use_generation(TRUE)
+		mat_belt.generate_tools(TRUE)
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
-		mat_belt.first_use_generation()
+		mat_belt.generate_tools()
 
 /mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
@@ -387,7 +384,7 @@
 	cyborg_integrated_tools = list()
 	requires_first_use_init = TRUE
 
-/obj/item/robotic_multibelt/materials/first_use_generation(is_in_module)
+/obj/item/robotic_multibelt/materials/generate_tools(is_in_module)
 	..()
 	var/mob/living/silicon/robot/our_robot
 	var/obj/item/robot_module/module
@@ -408,16 +405,16 @@
 	var/datum/matter_synth/has_steel //Steel synth. For generating Rglass
 	var/datum/matter_synth/has_glass //Glass synth. For generating Rglass
 	for(var/datum/matter_synth/our_synth in module.synths)
-		if(our_synths.name == METAL_SYNTH)
+		if(our_synth.name == METAL_SYNTH)
 			has_steel = our_synth
 			continue
-		if(our_synths.name == GLASS_SYNTH)
+		if(our_synth.name == GLASS_SYNTH)
 			has_glass = our_synth
 			continue
 
 	var/list/possible_synths = list()
 	for(var/datum/matter_synth/our_synth in module.synths)
-		switch(our_synths.name)
+		switch(our_synth.name)
 			if(METAL_SYNTH)
 				possible_synths += list(/obj/item/stack/material/cyborg/steel = list(our_synth))
 				possible_synths += list(/obj/item/stack/tile/floor/cyborg = list(our_synth))
@@ -462,7 +459,7 @@
 		current_stack.synths = possible_synths[stack_to_add]
 		cyborg_integrated_tools += current_stack
 
-	generate_tools()
+	. = ..()
 
 /*
  * Grippers
