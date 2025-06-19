@@ -1,5 +1,5 @@
 /mob/living/carbon/human/resist_restraints()
-	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/straight_jacket))
 		return escape_straight_jacket()
 	return ..()
 
@@ -15,7 +15,7 @@
 		return
 
 	var/mob/living/carbon/human/H = src
-	var/obj/item/clothing/suit/straight_jacket/SJ = H.wear_suit
+	var/obj/item/clothing/suit/straight_jacket/SJ = H.inventory.get_item_in_slot(slot_wear_suit_str)
 
 	var/breakouttime = SJ.resist_time	// Configurable per-jacket!
 
@@ -52,13 +52,13 @@
 			)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
-		if(!wear_suit)
+		if(!inventory.get_item_in_slot(slot_wear_suit_str))
 			return
 		visible_message(
-			span_danger("\The [src] manages to remove \the [wear_suit]!"),
-			span_notice("You successfully remove \the [wear_suit].")
+			span_danger("\The [src] manages to remove \the [inventory.get_item_in_slot(slot_wear_suit_str)]!"),
+			span_notice("You successfully remove \the [inventory.get_item_in_slot(slot_wear_suit_str)].")
 			)
-		drop_from_inventory(wear_suit)
+		drop_from_inventory(inventory.get_item_in_slot(slot_wear_suit_str))
 
 #undef RESIST_ATTACK_DEFAULT
 #undef RESIST_ATTACK_CLAWS
@@ -69,6 +69,8 @@
 		return 1
 
 /mob/living/carbon/human/proc/break_straight_jacket()
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+
 	visible_message(
 		span_danger("[src] is trying to rip \the [wear_suit]!"),
 		span_warning("You attempt to rip your [wear_suit.name] apart. (This will take around 5 seconds and you need to stand still)")

@@ -515,9 +515,9 @@
 
 	if(user == src.owner)
 		var/grasp
-		if(user.l_hand == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
+		if(user.get_left_hand() == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
 			grasp = BP_L_HAND
-		else if(user.r_hand == tool && (src.body_part & (ARM_RIGHT|HAND_RIGHT)))
+		else if(user.get_right_hand() == tool && (src.body_part & (ARM_RIGHT|HAND_RIGHT)))
 			grasp = BP_R_HAND
 
 		if(grasp)
@@ -1047,12 +1047,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 			M.Turn(rand(180))
 			transform = M
 
-	if(victim.l_hand)
-		if(istype(victim.l_hand,/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
-			victim.l_hand.update_held_icon()
-	if(victim.r_hand)
-		if(istype(victim.r_hand,/obj/item/material/twohanded))
-			victim.r_hand.update_held_icon()
+	if(istype(victim.get_left_hand(),/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
+		var/obj/item/material/twohanded/TH = victim.get_left_hand()
+		TH.update_held_icon()
+	if(istype(victim.get_right_hand(),/obj/item/material/twohanded))
+		var/obj/item/material/twohanded/TH = victim.get_right_hand()
+		TH.update_held_icon()
 
 /****************************************************
 			   HELPERS
@@ -1172,8 +1172,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
 
-	if(!(splinted) && owner && istype(owner.wear_suit, /obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = owner.wear_suit
+	if(!(splinted) && owner && istype(owner.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = owner.inventory.get_item_in_slot(slot_wear_suit_str)
 		suit.handle_fracture(owner, src)
 
 	return 1
@@ -1474,7 +1474,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		target_covering = src.body_part
 
 	if(owner)
-		var/list/protective_gear = list(owner.head, owner.wear_mask, owner.wear_suit, owner.w_uniform, owner.gloves, owner.shoes, owner.glasses)
+		var/list/protective_gear = list(owner.head, owner.inventory.get_item_in_slot(slot_wear_mask_str), owner.inventory.get_item_in_slot(slot_wear_suit_str), owner.inventory.get_item_in_slot(slot_w_uniform_str), owner.gloves, owner.shoes, owner.inventory.get_item_in_slot(slot_glasses_str))
 		for(var/obj/item/clothing/gear in protective_gear)
 			if(gear.body_parts_covered & target_covering)
 				covering_clothing |= gear

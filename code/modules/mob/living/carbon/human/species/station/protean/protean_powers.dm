@@ -356,9 +356,9 @@
 					if(P.stat || P.resting && !forced)
 						to_chat(P,span_warning("You can only do this while not stunned."))
 					else
-						if(P.l_hand)
+						if(P.get_left_hand())
 							P.drop_l_hand()
-						if(P.r_hand)
+						if(P.get_right_hand())
 							P.drop_r_hand()
 						P.has_hands = 0
 						S.OurRig.myprotean = P
@@ -702,7 +702,7 @@
 				protie.visible_message(span_warning("[protie] is attempting to latch onto [target]!"), span_danger("You attempt to latch onto [target]!"))
 				if(do_after(protie, 50, target,exclusive = TASK_ALL_EXCLUSIVE))
 					if(G.loc == protie && G.state >= GRAB_AGGRESSIVE)
-						target.drop_from_inventory(target.back)
+						target.drop_from_inventory(target.inventory.get_item_in_slot(slot_back_str))
 						protie.visible_message(span_danger("[protie] latched onto [target]!"), span_danger("You latch yourself onto [target]!"))
 						target.Weaken(3)
 						nano_rig_transform(1)

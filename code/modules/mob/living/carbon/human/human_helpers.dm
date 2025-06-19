@@ -58,8 +58,8 @@
 /mob/living/carbon/human/break_cloak()
 	if(mind && mind.changeling) //Changeling visible camo
 		mind.changeling.cloaked = 0
-	if(istype(back, /obj/item/rig)) //Ninja cloak
-		var/obj/item/rig/suit = back
+	if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
@@ -69,8 +69,8 @@
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
 		return TRUE
-	else if(istype(back, /obj/item/rig)) //Ninja cloak
-		var/obj/item/rig/suit = back
+	else if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
@@ -81,11 +81,11 @@
 
 /mob/living/carbon/human/get_ear_protection()
 	var/sum = 0
-	if(istype(l_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/L = l_ear
+	if(istype(inventory.get_item_in_slot(slot_l_ear_str), /obj/item/clothing/ears))
+		var/obj/item/clothing/ears/L = inventory.get_item_in_slot(slot_l_ear_str)
 		sum += L.ear_protection
-	if(istype(r_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/R = r_ear
+	if(istype(inventory.get_item_in_slot(slot_r_ear_str), /obj/item/clothing/ears))
+		var/obj/item/clothing/ears/R = inventory.get_item_in_slot(slot_r_ear_str)
 		sum += R.ear_protection
 	if(istype(head, /obj/item/clothing/head))
 		var/obj/item/clothing/head/H = head
@@ -120,8 +120,10 @@
 			return 1
 
 	//Look at their torso
-	if(!wear_suit || (wear_suit && !(wear_suit.flags_inv & HIDEJUMPSUIT)))
-		if(!w_uniform || (w_uniform && !(w_uniform.body_parts_covered & UPPER_TORSO)))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!istype(wear_suit) || (istype(wear_suit) && !(wear_suit.flags_inv & HIDEJUMPSUIT)))
+		var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+		if(!istype(w_uniform) || (w_uniform && !(w_uniform.body_parts_covered & UPPER_TORSO)))
 			if(T && T.robotic == ORGAN_ROBOT)
 				return 1
 

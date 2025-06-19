@@ -467,8 +467,8 @@
 		//dir update
 		blob.dir = dir
 
-		if(l_hand) drop_l_hand()
-		if(r_hand) drop_r_hand()
+		if(get_left_hand()) drop_l_hand()
+		if(get_right_hand()) drop_r_hand()
 
 		//Put our owner in it (don't transfer var/mind)
 		blob.ckey = ckey
@@ -480,14 +480,15 @@
 		blob.ooc_notes_style = ooc_notes_style
 		temporary_form = blob
 		var/obj/item/radio/R = null
-		if(isradio(l_ear))
-			R = l_ear
-		if(isradio(r_ear))
-			R = r_ear
+		if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+			R = inventory.get_item_in_slot(slot_l_ear_str)
+		if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+			R = inventory.get_item_in_slot(slot_r_ear_str)
 		if(R)
 			blob.mob_radio = R
 			R.forceMove(blob)
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			blob.myid = wear_id.GetID()
 
 		//Mail them to nullspace
@@ -597,8 +598,8 @@
 		//Move them back where the blob was
 		forceMove(reform_spot)
 
-		if(blob.l_hand) blob.drop_l_hand()
-		if(blob.r_hand) blob.drop_r_hand()
+		if(blob.get_left_hand()) blob.drop_l_hand()
+		if(blob.get_right_hand()) blob.drop_r_hand()
 
 		//Put our owner in it (don't transfer var/mind)
 		ckey = blob.ckey

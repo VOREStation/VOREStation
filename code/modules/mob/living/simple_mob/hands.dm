@@ -10,12 +10,6 @@
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
 	return
 
-/mob/living/simple_mob/put_in_hands(var/obj/item/W) // No hands.
-	if(has_hands)
-		put_in_active_hand(W)
-		return 1
-	W.forceMove(get_turf(src))
-	return 1
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/simple_mob/put_in_active_hand(var/obj/item/W)
@@ -23,21 +17,23 @@
 		return FALSE
 	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
 
+// TODO: this is bad
 /mob/living/simple_mob/put_in_l_hand(var/obj/item/W)
-	if(!..() || l_hand)
+	if(!..() || get_left_hand())
 		return 0
 	W.forceMove(src)
-	l_hand = W
+	inventory.put_item_in_slot(slot_l_hand_str, W)
 	W.equipped(src,slot_l_hand)
 	W.add_fingerprint(src)
 	update_inv_l_hand()
 	return TRUE
 
+// TODO: this is bad
 /mob/living/simple_mob/put_in_r_hand(var/obj/item/W)
-	if(!..() || r_hand)
+	if(!..() || get_right_hand())
 		return 0
 	W.forceMove(src)
-	r_hand = W
+	inventory.put_item_in_slot(slot_r_hand_str, W)
 	W.equipped(src,slot_r_hand)
 	W.add_fingerprint(src)
 	update_inv_r_hand()
@@ -47,7 +43,8 @@
 	if(QDESTROYING(src))
 		return
 
-	if(r_hand)
+	var/obj/item/r_hand = get_right_hand()
+	if(istype(r_hand))
 		r_hand.screen_loc = ui_rhand	//TODO
 
 		//determine icon state to use
@@ -84,7 +81,8 @@
 	if(QDESTROYING(src))
 		return
 
-	if(l_hand)
+	var/obj/item/l_hand = get_left_hand()
+	if(istype(l_hand))
 		l_hand.screen_loc = ui_lhand	//TODO
 
 		//determine icon state to use
@@ -134,16 +132,3 @@
 			display_name = "object"
 		to_chat(src, span_danger("Your [hand_form] are not fit for use of \the [display_name]."))
 	return humanoid_hands
-
-/mob/living/simple_mob/is_holding_item_of_type(typepath)
-	for(var/obj/item/I in list(l_hand, r_hand))
-		if(istype(I, typepath))
-			return I
-	return FALSE
-
-/mob/living/simple_mob/get_all_held_items()
-	. = list()
-	if(l_hand)
-		. += l_hand
-	if(r_hand)
-		. += r_hand

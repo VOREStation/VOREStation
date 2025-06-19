@@ -259,10 +259,10 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/M = L
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
 			return TURRET_PRIORITY_TARGET
 
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
 			return TURRET_PRIORITY_TARGET
 
 /obj/machinery/porta_turret/lasertag/tgui_data(mob/user)

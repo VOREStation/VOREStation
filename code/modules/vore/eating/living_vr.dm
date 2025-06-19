@@ -389,14 +389,15 @@
 
 /mob/living/carbon/human/show_pudge()
 	//A uniform could hide it.
+	var/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
 	if(istype(w_uniform,/obj/item/clothing))
 		var/obj/item/clothing/under = w_uniform
 		if(istype(under) && under.hides_bulges)
 			return FALSE
 
 	//We return as soon as we find one, no need for 'else' really.
-	if(istype(wear_suit,/obj/item/clothing))
-		var/obj/item/clothing/suit = wear_suit
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing))
+		var/obj/item/clothing/suit = inventory.get_item_in_slot(slot_wear_suit_str)
 		if(istype(suit) && suit.hides_bulges)
 			return FALSE
 

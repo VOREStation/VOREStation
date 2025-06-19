@@ -42,7 +42,7 @@
 		return
 	if (ishuman(user) && src.loc == user)
 		var/mob/living/carbon/human/H = user
-		if(src == H.w_uniform) // VOREStation Edit - Un-equip on single click, but not on uniform.
+		if(src == H.inventory.get_item_in_slot(slot_w_uniform_str)) // VOREStation Edit - Un-equip on single click, but not on uniform.
 			return
 	return ..()
 
@@ -58,10 +58,11 @@
 		if (!usr.unEquip(src))
 			return
 
+		// TODO: Unhardcode this
 		switch(over_object.name)
-			if("r_hand")
+			if("r_hand", "Right Hand")
 				usr.put_in_r_hand(src)
-			if("l_hand")
+			if("l_hand", "Left Hand")
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 

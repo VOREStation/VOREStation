@@ -125,8 +125,8 @@
 				charge_to_give += nutrition_delta * SIPHON_FBP_TO_ENERGY
 				flow_remaining = flow_remaining - nutrition_to_steal / 0.025
 			// Let's steal some energy from another Technomancer.
-			if(istype(H.back, /obj/item/technomancer_core) && H != user)
-				var/obj/item/technomancer_core/their_core = H.back
+			if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/technomancer_core) && H != user)
+				var/obj/item/technomancer_core/their_core = H.inventory.get_item_in_slot(slot_back_str)
 				if(their_core.pay_energy(flow_remaining / 2)) // Don't give energy from nothing.
 					charge_to_give += flow_remaining * SIPHON_CORE_TO_ENERGY
 					flow_remaining = 0

@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/anti_revolution/demote/check_completion()
 	if(target && target.current && ishuman(target))
-		var/obj/item/card/id/I = target.current:wear_id
+		var/obj/item/card/id/I = target.current.inventory.get_item_in_slot(slot_wear_id_str)
 		if(istype(I, /obj/item/pda))
 			var/obj/item/pda/P = I
 			I = P.id
@@ -560,7 +560,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/obj/item/rig/S
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
-		S = H.back
+		S = H.inventory.get_item_in_slot(slot_back_str)
 
 	if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
 		return 0

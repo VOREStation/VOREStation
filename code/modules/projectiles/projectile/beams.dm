@@ -238,7 +238,7 @@
 /obj/item/projectile/beam/lasertag/blue/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
 	return 1
 
@@ -248,8 +248,8 @@
 /obj/item/projectile/beam/lasertag/blue/multihit/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			var/obj/item/clothing/suit/redtag/S = M.wear_suit
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag))
+			var/obj/item/clothing/suit/redtag/S = M.inventory.get_item_in_slot(slot_wear_suit_str)
 			if (S.lasertag_health <= 1)
 				M.Weaken(5)
 				to_chat(M,span_warning("You have been defeated!"))
@@ -267,7 +267,7 @@
 /obj/item/projectile/beam/lasertag/red/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))
 			M.Weaken(5)
 	return 1
 
@@ -277,8 +277,8 @@
 /obj/item/projectile/beam/lasertag/red/multihit/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			var/obj/item/clothing/suit/bluetag/S = M.wear_suit
+		if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))
+			var/obj/item/clothing/suit/bluetag/S = M.inventory.get_item_in_slot(slot_wear_suit_str)
 			if(S.lasertag_health <= 1)
 				M.Weaken(5)
 				to_chat(M,span_warning("You have been defeated!"))
@@ -300,7 +300,7 @@
 /obj/item/projectile/beam/lasertag/omni/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
+		if((istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/bluetag))||(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/redtag)))
 			M.Weaken(5)
 	return 1
 

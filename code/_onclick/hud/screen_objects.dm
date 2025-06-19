@@ -336,7 +336,8 @@
 					else
 
 						var/no_mask
-						if(!(C.wear_mask && C.wear_mask.item_flags & AIRTIGHT))
+						var/obj/item/wear_mask = C.inventory.get_item_in_slot(slot_wear_mask_str)
+						if(!(istype(wear_mask) && wear_mask.item_flags & AIRTIGHT))
 							var/mob/living/carbon/human/H = C
 							if(!(H.head && H.head.item_flags & AIRTIGHT))
 								no_mask = 1
@@ -355,10 +356,17 @@
 								var/mob/living/carbon/human/H = C
 								breathes = H.species.breath_type
 								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-								tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
+								tankcheck = list(
+									H.inventory.get_item_in_slot(slot_s_store_str),
+									C.inventory.get_item_in_slot(slot_back_str),
+									H.inventory.get_item_in_slot(slot_belt_str),
+									C.get_right_hand(),
+									C.get_left_hand(),
+									H.inventory.get_item_in_slot(slot_l_store_str),
+									H.inventory.get_item_in_slot(slot_r_store_str))
 							else
 								nicename = list("right hand", "left hand", "back")
-								tankcheck = list(C.r_hand, C.l_hand, C.back)
+								tankcheck = list(C.get_right_hand(), C.get_left_hand(), C.inventory.get_item_in_slot(slot_back_str))
 
 							// Rigs are a fucking pain since they keep an air tank in nullspace.
 							var/obj/item/rig/Rig = C.get_rig()
@@ -636,11 +644,11 @@
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
 	switch(name)
-		if("r_hand")
+		if("r_hand", "Right Hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
-		if("l_hand")
+		if("l_hand", "Left Hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")

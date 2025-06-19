@@ -69,15 +69,15 @@
 
 /proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	if(istype(H) && istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		return U.sensor_mode >= level
 	return 0
 
 /proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	if(istype(H) && istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		return U.sensor_mode
 	return SUIT_SENSOR_OFF
 
@@ -387,8 +387,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 
-/mob/proc/abiotic(var/full_body = 0)
-	return 0
 
 //converts intent-strings into numbers and back
 var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
@@ -605,13 +603,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		threatcount += 4
 
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/gun) || istype(l_hand, /obj/item/melee))
+		if(istype(get_left_hand(), /obj/item/gun) || istype(get_left_hand(), /obj/item/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/gun) || istype(r_hand, /obj/item/melee))
+		if(istype(get_right_hand(), /obj/item/gun) || istype(get_right_hand(), /obj/item/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/melee))
+		if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/gun) || istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/melee))
 			threatcount += 2
 
 		if(species.name != SPECIES_HUMAN)

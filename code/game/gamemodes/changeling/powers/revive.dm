@@ -67,11 +67,10 @@
 			W.dropped(H)
 			if(W)
 				W.layer = initial(W.layer)
-		if(istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
-			var/obj/item/clothing/suit/straight_jacket/SJ = H.wear_suit
+		if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/straight_jacket))
+			var/obj/item/clothing/suit/straight_jacket/SJ = H.inventory.get_item_in_slot(slot_wear_suit_str)
 			SJ.forceMove(H.loc)
 			SJ.dropped(H)
-			H.wear_suit = null
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain

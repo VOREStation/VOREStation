@@ -217,14 +217,15 @@
 	var/protected = 0
 
 	//anomaly suits give best protection, but excavation suits are almost as good
-	if(istype(H.back,/obj/item/rig/hazmat))
-		var/obj/item/rig/hazmat/rig = H.back
+	if(istype(H.inventory.get_item_in_slot(slot_back_str),/obj/item/rig/hazmat))
+		var/obj/item/rig/hazmat/rig = H.inventory.get_item_in_slot(slot_back_str)
 		if(rig.suit_is_deployed() && !rig.offline)
 			protected += 1
 
-	if(istype(H.wear_suit,/obj/item/clothing/suit/bio_suit/anomaly))
+	var/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit,/obj/item/clothing/suit/bio_suit/anomaly))
 		protected += 0.6
-	else if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
+	else if(istype(wear_suit,/obj/item/clothing/suit/space/anomaly))
 		protected += 0.5
 
 	if(istype(H.head,/obj/item/clothing/head/bio_hood/anomaly))
@@ -236,7 +237,7 @@
 	if(istype(H.gloves,/obj/item/clothing/gloves/sterile))
 		protected += 0.1
 
-	if(istype(H.glasses,/obj/item/clothing/glasses/science))
+	if(istype(H.inventory.get_item_in_slot(slot_glasses_str),/obj/item/clothing/glasses/science))
 		protected += 0.1
 
 	return 1 - protected

@@ -154,14 +154,16 @@
 	var/fibertext = null
 	var/item_multiplier = istype(src,/obj/item)?1.2:1
 	var/suit_coverage = 0
-	if(M.wear_suit)
+	var/obj/item/wear_suit = M.inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
 		if(prob(10*item_multiplier))
-			fibertext = "Material from \a [M.wear_suit]."
-		suit_coverage = M.wear_suit.body_parts_covered
+			fibertext = "Material from \a [wear_suit]."
+		suit_coverage = wear_suit.body_parts_covered
 
-	if(M.w_uniform && (M.w_uniform.body_parts_covered & ~suit_coverage))
+	var/obj/item/w_uniform = M.inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform) && (w_uniform.body_parts_covered & ~suit_coverage))
 		if(prob(15*item_multiplier))
-			fibertext = "Fibers from \a [M.w_uniform]."
+			fibertext = "Fibers from \a [w_uniform]."
 
 	if(M.gloves && (M.gloves.body_parts_covered & ~suit_coverage))
 		if(prob(20*item_multiplier))

@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/H = M
 	var/sample_type
 
-	if(H.wear_mask)
+	if(H.inventory.get_item_in_slot(slot_wear_mask_str))
 		to_chat(user, span_warning("\The [H] is wearing a mask."))
 		return
 

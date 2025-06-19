@@ -107,11 +107,13 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		var/burn_eyes = 1
 
 		//Check for protective glasses
-		if(glasses && (glasses.body_parts_covered & EYES) && (glasses.item_flags & AIRTIGHT))
+		var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+		if(istype(glasses) && (glasses.body_parts_covered & EYES) && (glasses.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
 		//Check for protective maskwear
-		if(burn_eyes && wear_mask && (wear_mask.body_parts_covered & EYES) && (wear_mask.item_flags & AIRTIGHT))
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		if(burn_eyes && istype(wear_mask) && (wear_mask.body_parts_covered & EYES) && (wear_mask.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
 		//Check for protective helmets
@@ -158,7 +160,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /mob/living/carbon/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	var/coverage = 0
-	for(var/obj/item/protection in list(wear_suit, gloves, shoes))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
+	for(var/obj/item/protection in list(inventory.get_item_in_slot(slot_wear_suit_str), gloves, shoes))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
 		if(!protection)
 			continue
 		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD))
@@ -172,7 +174,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
-	if(w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		w_uniform.contaminate()
 	if(shoes)
 		shoes.contaminate()

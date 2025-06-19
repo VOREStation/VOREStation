@@ -351,7 +351,14 @@
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	var/list/things_to_not_drop = list(
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		nif,
+		inventory.get_item_in_slot(slot_l_store_str),
+		inventory.get_item_in_slot(slot_r_store_str),
+		inventory.get_item_in_slot(slot_wear_id_str),
+		inventory.get_item_in_slot(slot_l_ear_str),
+		inventory.get_item_in_slot(slot_r_ear_str)) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
 	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists
@@ -369,8 +376,8 @@
 	blob.transform = matrix()*size_multiplier
 	blob.size_multiplier = size_multiplier
 
-	if(l_hand) drop_from_inventory(l_hand)
-	if(r_hand) drop_from_inventory(r_hand)
+	if(get_left_hand()) drop_from_inventory(get_left_hand())
+	if(get_right_hand()) drop_from_inventory(get_right_hand())
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.transforming = TRUE
@@ -403,14 +410,15 @@
 	temporary_form = blob
 
 	var/obj/item/radio/R = null
-	if(isradio(l_ear))
-		R = l_ear
-	if(isradio(r_ear))
-		R = r_ear
+	if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
+		R = inventory.get_item_in_slot(slot_l_ear_str)
+	if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
+		R = inventory.get_item_in_slot(slot_r_ear_str)
 	if(R)
 		blob.mob_radio = R
 		R.forceMove(blob)
-	if(wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id))
 		blob.myid = wear_id.GetID()
 
 	//Mail them to nullspace
@@ -502,8 +510,8 @@
 
 	//vore_organs.Cut()
 
-	if(blob.l_hand) blob.drop_from_inventory(blob.l_hand)
-	if(blob.r_hand) blob.drop_from_inventory(blob.r_hand)
+	if(blob.get_left_hand()) blob.drop_from_inventory(blob.get_left_hand())
+	if(blob.get_right_hand()) blob.drop_from_inventory(blob.get_right_hand())
 
 	if(blob.mob_radio)
 		blob.mob_radio.forceMove(src)

@@ -109,8 +109,9 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 	// Check suit
-	if(wear_suit && wear_suit.max_pressure_protection != null && wear_suit.min_pressure_protection != null)
+	if(istype(wear_suit) && wear_suit.max_pressure_protection != null && wear_suit.min_pressure_protection != null)
 		pressure_adjustment_coefficient = 0
 		// Pressure is too high
 		if(wear_suit.max_pressure_protection < pressure)
@@ -476,9 +477,11 @@
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
-	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+	if(istype(glasses) && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
@@ -506,13 +509,14 @@
 		var/obj/item/tank/suit_supply
 		var/obj/item/rig/Rig = get_rig()
 		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
 
 		if(Rig)
 			suit_supply = Rig.air_supply
 		else if(Void)
 			suit_supply = Void.tank
 
-		if ((!suit_supply && !contents.Find(internal)) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
@@ -535,7 +539,8 @@
 		suiciding--
 		return 0
 
-	if(wear_mask && (wear_mask.item_flags & INFINITE_AIR))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.item_flags & INFINITE_AIR))
 		failed_last_breath = 0
 		adjustOxyLoss(-5)
 		return
@@ -982,7 +987,8 @@
 										// Being in higher pressure decreases the damage taken, down to a minimum of (species.hazard_low_pressure / ONE_ATMOSPHERE) at species.hazard_low_pressure
 				pressure_dam *= (ONE_ATMOSPHERE - adjusted_pressure) / ONE_ATMOSPHERE
 
-				if(wear_suit && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
+				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+				if(istype(wear_suit) && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
 					var/protection = max(wear_suit.min_pressure_protection, head.min_pressure_protection) // Take the weakest protection
 					pressure_dam *= (protection) / (ONE_ATMOSPHERE) 	// Divide by ONE_ATMOSPHERE to get a fractional protection
 																		// Stronger protection (Closer to 0) results in a smaller fraction
@@ -1041,7 +1047,13 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(
+		head,
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		shoes,
+		gloves,
+		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_high_temperature(temperature))
 				. |= C.get_heat_protection_flags()
@@ -1050,7 +1062,13 @@
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(
+		head,
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		shoes,
+		gloves,
+		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_low_temperature(temperature))
 				. |= C.get_cold_protection_flags()
@@ -1140,13 +1158,13 @@
 					if(check_belly(I)) continue
 					if(src.species && src.species.get_bodytype() != "Vox" && src.species.get_bodytype() != "Shadekin")
 						// This is hacky, I'm so sorry.
-						if(I != l_hand && I != r_hand)	//If the item isn't in your hands, you're probably wearing it. Full damage for you.
+						if(I != get_left_hand() && I != get_right_hand())	//If the item isn't in your hands, you're probably wearing it. Full damage for you.
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS
-						else if(I == l_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
+						else if(I == get_left_hand())	//If the item is in your hands, but you're wearing protection, you might be alright.
 							var/l_hand_blocked = 0
 							l_hand_blocked = 1-(100-getarmor(BP_L_HAND, "bio"))/100	//This should get a number between 0 and 1
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * l_hand_blocked
-						else if(I == r_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
+						else if(I == get_right_hand())	//If the item is in your hands, but you're wearing protection, you might be alright.
 							var/r_hand_blocked = 0
 							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
@@ -1314,8 +1332,8 @@
 
 		//Eyes
 		//Check rig first because it's two-check and other checks will override it.
-		if(istype(back,/obj/item/rig))
-			var/obj/item/rig/O = back
+		if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+			var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
 			if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 				if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
 					blinded = 1
@@ -1349,7 +1367,7 @@
 				AdjustBlinded(-1)
 				blinded =    1
 				throw_alert("blind", /obj/screen/alert/blind)
-			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
+			else if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
 				eye_blurry = max(eye_blurry-3, 0)
 				blinded =    1
 				throw_alert("blind", /obj/screen/alert/blind)
@@ -1583,10 +1601,9 @@
 		if(disabilities & NEARSIGHTED)
 			apply_nearsighted_overlay = TRUE
 
-			if(glasses)
-				var/obj/item/clothing/glasses/G = glasses
-				if(G.prescription)
-					apply_nearsighted_overlay = FALSE
+			var/obj/item/clothing/glasses/G = inventory.get_item_in_slot(slot_glasses_str)
+			if(istype(G) && G.prescription)
+				apply_nearsighted_overlay = FALSE
 
 			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION))
 				apply_nearsighted_overlay = FALSE
@@ -1608,19 +1625,19 @@
 			if(species.short_sighted)
 				found_welder = 1
 			else
-				if(istype(glasses, /obj/item/clothing/glasses/welding))
-					var/obj/item/clothing/glasses/welding/O = glasses
+				if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/welding))
+					var/obj/item/clothing/glasses/welding/O = inventory.get_item_in_slot(slot_glasses_str)
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1
-				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+				if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/thinblindfold))
 					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
 						found_welder = 1
-				if(!found_welder && istype(back, /obj/item/rig))
-					var/obj/item/rig/O = back
+				if(!found_welder && istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig))
+					var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
 					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
 							found_welder = 1
@@ -1690,8 +1707,8 @@
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
-		if(glasses && !glasses_processed && !looking_elsewhere)
-			glasses_processed = process_glasses(glasses)
+		if(inventory.get_item_in_slot(slot_glasses_str) && !glasses_processed && !looking_elsewhere)
+			glasses_processed = process_glasses(inventory.get_item_in_slot(slot_glasses_str))
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
@@ -1740,7 +1757,7 @@
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	. = FALSE
-	if(G && G.active)
+	if(istype(G) && G.active)
 		if(G.darkness_view)
 			see_in_dark += G.darkness_view
 			. = TRUE
@@ -2075,7 +2092,8 @@
 
 	if (BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = grab_hud(ID_HUD)
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				holder.icon_state = "hud[ckey(I.GetJobName())]"
@@ -2092,7 +2110,8 @@
 		var/image/holder = grab_hud(WANTED_HUD)
 		holder.icon_state = "hudblank"
 		var/perpname = name
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				perpname = I.registered_name

@@ -68,13 +68,13 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if(H.inventory.get_item_in_slot(slot_l_store_str) == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(master_item)
-			H.l_store = null
+			H.inventory.put_item_in_slot(slot_l_store_str, null)
 			return 0
-		if(H.r_store == master_item && !H.get_active_hand())
+		if(H.inventory.get_item_in_slot(slot_r_store_str) == master_item && !H.get_active_hand())
 			H.put_in_hands(master_item)
-			H.r_store = null
+			H.inventory.put_item_in_slot(slot_r_store_str, null)
 			return 0
 
 	src.add_fingerprint(user)

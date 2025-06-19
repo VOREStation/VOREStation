@@ -102,33 +102,34 @@
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
+		var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 
 		switch(target_zone)
 			if(BP_HEAD)
 				if(isobj(H.head) && !istype(H.head, /obj/item/paper))
 					Cl = H.head
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.wear_mask))
-					Cl = H.wear_mask
+				if(passed && isobj(H.inventory.get_item_in_slot(slot_wear_mask_str)))
+					Cl = H.inventory.get_item_in_slot(slot_wear_mask_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(BP_TORSO)
-				if(isobj(H.wear_suit))
-					Cl = H.wear_suit
+				if(isobj(H.inventory.get_item_in_slot(slot_wear_suit_str)))
+					Cl = H.inventory.get_item_in_slot(slot_wear_suit_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(H.w_uniform))
-					Cl = H.w_uniform
+				if(passed && isobj(H.inventory.get_item_in_slot(slot_w_uniform_str)))
+					Cl = H.inventory.get_item_in_slot(slot_w_uniform_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(BP_L_HAND, BP_R_HAND)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered & HANDS)
-					Cl = H.wear_suit
+				if(istype(wear_suit) && wear_suit.body_parts_covered & HANDS)
+					Cl = wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
 				if(passed && isobj(H.gloves))
 					Cl = H.gloves
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(BP_L_FOOT, BP_R_FOOT)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered & FEET)
-					Cl = H.wear_suit
+				if(istype(wear_suit) && wear_suit.body_parts_covered & FEET)
+					Cl = wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
 				if(passed && isobj(H.shoes))

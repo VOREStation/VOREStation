@@ -33,7 +33,7 @@
 /obj/item/rig_module/self_destruct/process()
 
 	// Not being worn, leave it alone.
-	if(!holder || !holder.wearer || !holder.wearer.wear_suit == holder)
+	if(!holder || !holder.wearer || !holder.wearer.inventory.get_item_in_slot(slot_wear_suit_str) == holder)
 		return 0
 
 	//OH SHIT.

@@ -52,15 +52,15 @@
 		return
 
 	var/list/slots_free = list(ui_lhand,ui_rhand)
-	if(our_human.l_hand)
+	if(our_human.get_left_hand())
 		slots_free -= ui_lhand
-	if(our_human.r_hand)
+	if(our_human.get_right_hand())
 		slots_free -= ui_rhand
-	if(!our_human.belt)
+	if(!our_human.inventory.get_item_in_slot(slot_belt_str))
 		slots_free += ui_belt
-	if(!our_human.l_store)
+	if(!our_human.inventory.get_item_in_slot(slot_l_store_str))
 		slots_free += ui_storage1
-	if(!our_human.r_store)
+	if(!our_human.inventory.get_item_in_slot(slot_r_store_str))
 		slots_free += ui_storage2
 
 	if(!slots_free.len)

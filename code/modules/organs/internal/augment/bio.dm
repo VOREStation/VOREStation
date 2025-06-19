@@ -48,7 +48,9 @@
 
 	var/obj/item/organ/internal/augment/aug = internal_organs_by_name[O_AUG_EYES]
 
-	if(glasses)
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+
+	if(istype(glasses))
 		if(aug && aug.integrated_object == glasses)
 			drop_from_inventory(glasses)
 			aug.integrated_object.forceMove(aug)

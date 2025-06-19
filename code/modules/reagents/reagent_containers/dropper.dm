@@ -49,15 +49,17 @@
 				var/mob/living/carbon/human/victim = target
 
 				var/obj/item/safe_thing = null
-				if(victim.wear_mask)
-					if (victim.wear_mask.body_parts_covered & EYES)
-						safe_thing = victim.wear_mask
+				var/obj/item/wear_mask = victim.inventory.get_item_in_slot(slot_wear_mask_str)
+				var/obj/item/glasses = victim.inventory.get_item_in_slot(slot_glasses_str)
+				if(istype(wear_mask))
+					if (wear_mask.body_parts_covered & EYES)
+						safe_thing = wear_mask
 				if(victim.head)
 					if (victim.head.body_parts_covered & EYES)
 						safe_thing = victim.head
-				if(victim.glasses)
+				if(istype(glasses))
 					if (!safe_thing)
-						safe_thing = victim.glasses
+						safe_thing = glasses
 
 				if(safe_thing)
 					trans = reagents.splash(safe_thing, min(amount_per_transfer_from_this, reagents.total_volume), max_spill=30)

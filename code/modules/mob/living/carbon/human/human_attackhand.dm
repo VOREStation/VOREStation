@@ -123,10 +123,11 @@
 		if(!check_has_mouth())
 			to_chat(H, span_danger("They don't have a mouth, you cannot perform CPR!"))
 			return FALSE
-		if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
+		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		if((H.head && (H.head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove your mask!"))
 			return FALSE
-		if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
+		if((head && (head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove [src]'s mask!"))
 			return FALSE
 
@@ -161,8 +162,8 @@
 
 	M.do_attack_animation(src)
 
-	if(w_uniform)
-		w_uniform.add_fingerprint(M)
+	if(inventory.get_item_in_slot(slot_w_uniform_str))
+		inventory.get_item_in_slot(slot_w_uniform_str).add_fingerprint(M)
 
 	if(M.lying && (M.loc == src.loc)) //If we are on the ground and they're on top of us, we don't have enough space to push them! Also antispam.
 		if(world.time <= (last_push_time + 6 SECONDS))
@@ -250,7 +251,9 @@
 		if(G.assailant == M)
 			to_chat(M, span_notice("You already grabbed [src]."))
 			return
-	if(w_uniform)
+
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		w_uniform.add_fingerprint(M)
 
 	if(buckled)
@@ -271,7 +274,8 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//As a note: This intentionally doesn't immediately return if has_hands is false. This is because you can attack with kicks/bites!
-	if(has_hands && M.zone_sel.selecting == "mouth" && wear_mask && istype(wear_mask, /obj/item/grenade))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(has_hands && M.zone_sel.selecting == "mouth" && istype(wear_mask, /obj/item/grenade))
 		var/obj/item/grenade/G = wear_mask
 		if(!G.active)
 			visible_message(span_danger("\The [M] pulls the pin from \the [src]'s [G.name]!"))
@@ -436,7 +440,7 @@
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
-	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
+	for(var/obj/item/grab/G in list(user.get_left_hand(), user.get_right_hand()))
 		if(G.affecting == src && G.state == GRAB_NECK)
 			has_grab = 1
 			break
@@ -467,15 +471,16 @@
 		success = TRUE
 		stop_pulling()
 
-	if(istype(l_hand, /obj/item/grab))
-		var/obj/item/grab/lgrab = l_hand
+	// TODO: multihand
+	if(istype(get_left_hand(), /obj/item/grab))
+		var/obj/item/grab/lgrab = get_left_hand()
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
 		spawn(1)
 			qdel(lgrab)
-	if(istype(r_hand, /obj/item/grab))
-		var/obj/item/grab/rgrab = r_hand
+	if(istype(get_right_hand(), /obj/item/grab))
+		var/obj/item/grab/rgrab = get_right_hand()
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE

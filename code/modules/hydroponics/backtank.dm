@@ -56,7 +56,7 @@
 		..()
 
 /obj/item/watertank/item_action_slot_check(slot, mob/user)
-	if(slot == user.getBackSlot())
+	if(slot == SLOT_BACK)
 		return 1
 
 //checks that the base unit is in the correct slot to be used

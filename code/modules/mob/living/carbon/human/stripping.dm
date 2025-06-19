@@ -32,7 +32,7 @@
 				toggle_internals(user)
 			return
 		if("tie")
-			var/obj/item/clothing/under/suit = w_uniform
+			var/obj/item/clothing/under/suit = inventory.get_item_in_slot(slot_w_uniform_str)
 			if(!istype(suit) || !LAZYLEN(suit.accessories))
 				return
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
@@ -114,18 +114,18 @@
 
 // Empty out everything in the target's pockets.
 /mob/living/carbon/human/proc/empty_pockets(var/mob/living/user)
-	if(!r_store && !l_store)
+	if(!inventory.get_item_in_slot(slot_r_store_str) && !inventory.get_item_in_slot(slot_l_store_str))
 		to_chat(user, span_warning("\The [src] has nothing in their pockets."))
 		return
-	if(r_store)
-		unEquip(r_store)
-	if(l_store)
-		unEquip(l_store)
+	if(inventory.get_item_in_slot(slot_r_store_str))
+		unEquip(inventory.get_item_in_slot(slot_r_store_str))
+	if(inventory.get_item_in_slot(slot_l_store_str))
+		unEquip(inventory.get_item_in_slot(slot_l_store_str))
 	visible_message(span_danger("\The [user] empties \the [src]'s pockets!"))
 
 // Modify the current target sensor level.
 /mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
+	var/obj/item/clothing/under/suit = inventory.get_item_in_slot(slot_w_uniform_str)
 	if(!suit)
 		to_chat(user, span_warning("\The [src] is not wearing a suit with sensors."))
 		return
@@ -139,8 +139,8 @@
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
 	var/can_reach_splints = 1
-	if(istype(wear_suit,/obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = wear_suit
+	if(istype(inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/suit = inventory.get_item_in_slot(slot_wear_suit_str)
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
 			to_chat(user, span_warning("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks."))
 			can_reach_splints = 0
@@ -169,15 +169,15 @@
 			internals.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
-		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
+		if(!(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
 			return
 		// Find an internal source.
-		if(istype(back, /obj/item/tank))
-			internal = back
-		else if(istype(s_store, /obj/item/tank))
-			internal = s_store
-		else if(istype(belt, /obj/item/tank))
-			internal = belt
+		if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_back_str)
+		else if(istype(inventory.get_item_in_slot(slot_s_store_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_s_store_str)
+		else if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_belt_str)
 
 	if(internal)
 		visible_message(span_warning("\The [src] is now running on internals!"))

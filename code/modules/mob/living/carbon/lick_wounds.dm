@@ -33,8 +33,8 @@
 				return
 
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(src, span_warning("You can't lick your way through [H.wear_suit]!"))
+			if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))
+				to_chat(src, span_warning("You can't lick your way through [H.inventory.get_item_in_slot(slot_wear_suit_str)]!"))
 				return
 
 		if(affecting.robotic == ORGAN_ROBOT)

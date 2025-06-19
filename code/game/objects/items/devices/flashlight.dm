@@ -119,7 +119,7 @@
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(istype(H))
-			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
+			for(var/obj/item/clothing/C in list(H.head,H.inventory.get_item_in_slot(slot_wear_mask_str),H.inventory.get_item_in_slot(slot_glasses_str)))
 				if(istype(C) && (C.body_parts_covered & EYES))
 					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
 					return
@@ -201,12 +201,13 @@
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
+		// TODO: generalize hands
 		switch(over_object.name)
-			if("r_hand")
-				usr.u_equip(src)
+			if("r_hand", "Right Hand")
+				usr.unEquip(src)
 				usr.put_in_r_hand(src)
-			if("l_hand")
-				usr.u_equip(src)
+			if("l_hand", "Left Hand")
+				usr.unEquip(src)
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 

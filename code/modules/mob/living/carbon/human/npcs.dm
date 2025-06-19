@@ -10,5 +10,5 @@
 	. = ..()
 	name = "Pun Pun"
 	real_name = name
-	w_uniform = new /obj/item/clothing/under/punpun(src)
+	equip_to_slot_or_del(new /obj/item/clothing/under/punpun(src), slot_w_uniform)
 	regenerate_icons()

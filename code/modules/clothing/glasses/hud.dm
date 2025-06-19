@@ -135,7 +135,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	if(!H.glasses || !(H.glasses == src))
+	if(H.inventory.get_item_in_slot(slot_glasses_str) != src)
 		to_chat(user, span_warning("You must be wearing the [src] to see the display."))
 	else
 		if(!ar_interact(H))

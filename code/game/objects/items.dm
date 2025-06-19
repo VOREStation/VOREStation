@@ -208,9 +208,9 @@
 
 /obj/item/proc/is_held_twohanded(mob/living/M)
 	var/check_hand
-	if(M.l_hand == src && !M.r_hand)
+	if(M.get_left_hand() == src && !M.get_right_hand())
 		check_hand = BP_R_HAND //item in left hand, check right hand
-	else if(M.r_hand == src && !M.l_hand)
+	else if(M.get_right_hand() == src && !M.get_left_hand())
 		check_hand = BP_L_HAND //item in right hand, check left hand
 	else
 		return FALSE
@@ -230,12 +230,13 @@
 
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
+// TODO: multihand
 /obj/item/proc/update_held_icon()
 	if(isliving(src.loc))
 		var/mob/living/M = src.loc
-		if(M.l_hand == src)
+		if(M.get_left_hand() == src)
 			M.update_inv_l_hand()
-		else if(M.r_hand == src)
+		else if(M.get_right_hand() == src)
 			M.update_inv_r_hand()
 
 /obj/item/ex_act(severity)
@@ -516,12 +517,12 @@ var/list/global/slot_flags_enumeration = list(
 			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
 				return 0
 		if(slot_wear_id)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			if(!H.inventory.get_item_in_slot(slot_w_uniform_str) && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
 		if(slot_l_store, slot_r_store)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			if(!H.inventory.get_item_in_slot(slot_w_uniform_str) && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
@@ -530,15 +531,16 @@ var/list/global/slot_flags_enumeration = list(
 			if( w_class > ITEMSIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
-			if(!H.wear_suit && (slot_wear_suit in mob_equip))
+			var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+			if(!wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return 0
-			if(!H.wear_suit.allowed)
+			if(istype(wear_suit) && !wear_suit.allowed)
 				if(!disable_warning)
 					to_chat(usr, span_warning("You somehow have a suit with no defined allowed items for suit storage, stop that."))
 				return 0
-			if( !(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, wear_suit.allowed)) )
 				return 0
 		if(slot_legcuffed) //Going to put this check above the handcuff check because the survival of the universe depends on it.
 			if(!istype(src, /obj/item/handcuffs/legcuffs)) //Putting it here might actually do nothing.
@@ -548,8 +550,8 @@ var/list/global/slot_flags_enumeration = list(
 				return 0 //In theory, this would never happen, but let's just do the legcuff check anyways.
 		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
 			var/allow = 0
-			if(H.back && istype(H.back, /obj/item/storage/backpack))
-				var/obj/item/storage/backpack/B = H.back
+			if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/storage/backpack))
+				var/obj/item/storage/backpack/B = H.inventory.get_item_in_slot(slot_back_str)
 				if(B.can_be_inserted(src,1))
 					allow = 1
 			if(!allow)
@@ -641,7 +643,7 @@ var/list/global/slot_flags_enumeration = list(
 	var/mob/living/carbon/human/H = M
 	var/mob/living/carbon/human/U = user
 	if(istype(H))
-		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
+		for(var/obj/item/protection in list(H.head, H.inventory.get_item_in_slot(slot_wear_mask_str), H.inventory.get_item_in_slot(slot_glasses_str)))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				to_chat(user, span_warning("You're going to need to remove the eye covering first."))

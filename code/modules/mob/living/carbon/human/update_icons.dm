@@ -75,6 +75,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_icon_special()
 
 /mob/living/carbon/human/update_transform(var/instant = FALSE)
+	if(!species) // needed for init order fuckery
+		return
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
 	desired_scale_x *= species.icon_scale_x
@@ -429,7 +431,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		apply_layer(UNDERWEAR_LAYER)
 
 //HAIR OVERLAY
-/mob/living/carbon/human/proc/update_hair()
+/mob/proc/update_hair()
+	return
+
+/mob/living/carbon/human/update_hair()
 	if(QDESTROYING(src))
 		return
 
@@ -443,7 +448,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	//masks and helmets can obscure our hair.
-	if( (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if( (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//base icons
@@ -530,8 +537,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!species.has_glowing_eyes)
 		return
 
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
 	//Our glowy eyes should be hidden if some equipment hides them.
-	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//Get the head, we'll need it later.
@@ -627,10 +636,12 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	//Shoes can be affected by uniform being drawn onto them
 	update_inv_shoes()
 
-	if(!w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(!istype(w_uniform))
 		return
 
-	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
 		return //Wearing a suit that prevents uniform rendering
 
 	var/obj/item/clothing/under/under = w_uniform
@@ -656,11 +667,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(ID_LAYER)
 
-	if(!wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+
+	if(!istype(wear_id))
 		return //Not wearing an ID
 
 	//Only draw the ID on the mob if the uniform allows for it
-	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
+	var/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = w_uniform
 		if(U.displays_id)
 			overlays_standing[ID_LAYER] = wear_id.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_id_str, default_icon = INV_WEAR_ID_DEF_ICON, default_layer = ID_LAYER)
@@ -687,7 +701,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(GLASSES_LAYER)
 	remove_layer(GLASSES_LAYER_ALT)
 
-	if(!glasses || hide_glasses)
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+
+	if(!istype(glasses) || hide_glasses)
 		return //Not wearing glasses, no need to update anything.
 
 	var/glasses_layer = GLASSES_LAYER
@@ -706,8 +722,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(EARS_LAYER)
 
-	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (wear_mask && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (istype(wear_mask) && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
 		return //Ears are blocked (by hair being blocked, overloaded)
+
+	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+	var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
 
 	if(!l_ear && !r_ear)
 		return //Why bother, if no ear sprites
@@ -751,7 +772,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(SHOES_LAYER)
 	remove_layer(SHOES_LAYER_ALT) //Dumb alternate layer for shoes being under the uniform.
 
-	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!shoes || (istype(wear_suit) && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
 
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
@@ -786,7 +809,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(SUIT_STORE_LAYER)
 
-	if(!s_store)
+	var/obj/item/s_store = inventory.get_item_in_slot(slot_s_store_str)
+
+	if(!istype(s_store))
 		return //Why bother, nothing there.
 
 	//TODO, this is unlike the rest of the things
@@ -818,7 +843,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(BELT_LAYER)
 	remove_layer(BELT_LAYER_ALT) //Because you can toggle belt layer with a verb
 
-	if(!belt)
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+
+	if(!istype(belt))
 		return //No belt, why bother.
 
 	//Toggle for belt layering with uniform
@@ -848,7 +875,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_tail_showing()
 	update_wing_showing()
 
-	if(!wear_suit)
+
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!istype(wear_suit))
 		return //No point, no suit.
 
 	var/obj/item/clothing/suit/suit = wear_suit
@@ -878,7 +907,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(FACEMASK_LAYER)
 
-	if(!wear_mask || (head && head.flags_inv & HIDEMASK))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if(!istype(wear_mask) || (head && head.flags_inv & HIDEMASK))
 		return //Why bother, nothing in mask slot.
 
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_mask_str, default_icon = INV_MASK_DEF_ICON, default_layer = FACEMASK_LAYER)
@@ -891,7 +922,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(BACK_LAYER)
 
-	if(!back)
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
+
+	if(!istype(back))
 		return //Why do anything
 
 	var/icon/c_mask = tail_style?.clip_mask
@@ -958,7 +991,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(R_HAND_LAYER)
 
-	if(!r_hand)
+	var/obj/item/r_hand = get_right_hand()
+
+	if(!istype(r_hand))
 		return //No hand, no bother.
 
 	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
@@ -971,7 +1006,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(L_HAND_LAYER)
 
-	if(!l_hand)
+	var/obj/item/l_hand = get_left_hand()
+
+	if(!istype(l_hand))
 		return //No hand, no bother.
 
 	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)
@@ -1015,7 +1052,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/species_tail = species?.get_tail(src) // Species tail icon_state prefix.
 
 	//This one is actually not that bad I guess.
-	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(species_tail && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
 		tail_image = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+tail_layer)
 		tail_image.alpha = chest?.transparent ? 180 : 255
@@ -1220,7 +1258,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return working
 
 	//If you have custom wings selected
-	if(wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(wing_style && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
 		var/wing_state = (flapping && wing_style.ani_state) ? wing_style.ani_state : wing_style.icon_state
 		if(wing_style.multi_dir)
 			wing_state += "_[under_layer ? "back" : "front"]"
@@ -1315,7 +1354,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return image(tail_s)
 
 	//If you have a custom tail selected
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(tail_style && !(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
 		if(tail_style.can_loaf && !is_shifted)
 			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly. Taur Loafing
@@ -1391,7 +1431,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	apply_layer(VORE_BELLY_LAYER)
 
 /mob/living/carbon/human/proc/get_vore_belly_image()
-	if(!(wear_suit && wear_suit.flags_inv & HIDETAIL))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(!(istype(wear_suit) && wear_suit.flags_inv & HIDETAIL))
 		var/vs_fullness = vore_fullness_ex["stomach"]
 		var/icon/vorebelly_s = new/icon(icon = 'icons/mob/vore/Bellies.dmi', icon_state = "[species.vore_belly_default_variant]Belly[vs_fullness][struggle_anim_stomach ? "" : " idle"]")
 		vorebelly_s.Blend(vore_sprite_color["stomach"], vore_sprite_multiply["stomach"] ? ICON_MULTIPLY : ICON_ADD)

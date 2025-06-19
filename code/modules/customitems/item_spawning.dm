@@ -189,7 +189,7 @@
 			continue
 
 		// Check for required access.
-		var/obj/item/card/id/current_id = M.wear_id
+		var/obj/item/card/id/current_id = M.inventory.get_item_in_slot(slot_wear_id_str)
 		if(citem.req_access && citem.req_access > 0) // These are numbers, not lists
 			if(!(istype(current_id) && (citem.req_access in current_id.GetAccess())))
 				log_debug("Custom Item: [key_name(M)] Does not have required access.")
@@ -210,7 +210,7 @@
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.
 		var/obj/item/existing_item
 		if(citem.item_path == /obj/item/card/id && istype(current_id)) //Set earlier.
-			existing_item = M.wear_id
+			existing_item = M.inventory.get_item_in_slot(slot_wear_id_str)
 		else if(citem.item_path == /obj/item/pda)
 			existing_item = locate(/obj/item/pda) in M.contents
 		else if(citem.item_path == /obj/item/storage/backpack)

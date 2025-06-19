@@ -116,7 +116,7 @@
 	if(!istype(user) || isnull(supporting_limbs))
 		return
 
-	if(user.wear_suit == src)
+	if(user.inventory.get_item_in_slot(slot_wear_suit_str) == src)
 		for(var/obj/item/organ/external/E in user.bad_external_organs)
 			if(E.is_broken() && E.apply_splint(src))
 				to_chat(user, "You feel [src] constrict about your [E.name], supporting it.")

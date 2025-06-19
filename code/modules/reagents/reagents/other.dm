@@ -474,25 +474,32 @@
 			virus.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.r_hand)
-		M.r_hand.wash(CLEAN_SCRUB)
-	if(M.l_hand)
-		M.l_hand.wash(CLEAN_SCRUB)
-	if(M.wear_mask)
-		if(M.wear_mask.wash(CLEAN_SCRUB))
+	var/obj/item/l_hand = M.get_left_hand()
+	var/obj/item/r_hand = M.get_right_hand()
+	if(istype(r_hand))
+		r_hand.wash(CLEAN_SCRUB)
+	if(istype(l_hand))
+		l_hand.wash(CLEAN_SCRUB)
+	var/obj/item/wear_mask = M.inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask))
+		if(wear_mask.wash(CLEAN_SCRUB))
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+
+		var/obj/item/w_uniform = H.inventory.get_item_in_slot(slot_w_uniform_str)
+		var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+
 		if(alien == IS_SLIME)
 			M.adjustToxLoss(rand(5, 10))
 		if(H.head)
 			if(H.head.wash(CLEAN_SCRUB))
 				H.update_inv_head(0)
-		if(H.wear_suit)
-			if(H.wear_suit.wash(CLEAN_SCRUB))
+		if(istype(wear_suit))
+			if(wear_suit.wash(CLEAN_SCRUB))
 				H.update_inv_wear_suit(0)
-		else if(H.w_uniform)
-			if(H.w_uniform.wash(CLEAN_SCRUB))
+		else if(istype(w_uniform))
+			if(w_uniform.wash(CLEAN_SCRUB))
 				H.update_inv_w_uniform(0)
 		if(H.shoes)
 			if(H.shoes.wash(CLEAN_SCRUB))
@@ -514,12 +521,11 @@
 	..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.wear_mask)
-			if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
-				var/obj/item/clothing/mask/smokable/S = H.wear_mask
-				if(S.lit)
-					S.quench() // No smoking in my medbay!
-					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
+		if(istype(H.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/smokable))
+			var/obj/item/clothing/mask/smokable/S = H.inventory.get_item_in_slot(slot_wear_mask_str)
+			if(S.lit)
+				S.quench() // No smoking in my medbay!
+				H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = REAGENT_LUBE

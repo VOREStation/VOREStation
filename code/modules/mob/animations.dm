@@ -239,10 +239,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// What icon do we use for the attack?
 	var/obj/used_item
-	if(hand && l_hand) // Attacked with item in left hand.
-		used_item = l_hand
-	else if (!hand && r_hand) // Attacked with item in right hand.
-		used_item = r_hand
+	if(hand && get_left_hand()) // Attacked with item in left hand.
+		used_item = get_left_hand()
+	else if (!hand && get_right_hand()) // Attacked with item in right hand.
+		used_item = get_right_hand()
 
 	//Couldn't find an item, do they have a sprite specified (like animal claw stuff?)
 	if(!used_item && !(attack_icon && attack_icon_state))

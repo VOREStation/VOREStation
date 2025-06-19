@@ -425,7 +425,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != STAGE_SUPER)
+				if(istype(H.inventory.get_item_in_slot(slot_glasses_str),/obj/item/clothing/glasses/meson) && current_size != STAGE_SUPER)
 					to_chat(H, span_notice("You look directly into The [src.name], good thing you had your protective eyewear on!"))
 					return
 				else

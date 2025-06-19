@@ -59,9 +59,6 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item()
-	return
-
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)

@@ -194,7 +194,7 @@
 /obj/item/clothing/accessory/poncho/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
 	..()
 	var/mob/living/carbon/human/H = loc
-	if(istype(H) && H.wear_suit == src)
+	if(istype(H) && H.inventory.get_item_in_slot(slot_wear_suit_str) == src)
 		if(H.species.name == SPECIES_TESHARI)
 			icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 		else

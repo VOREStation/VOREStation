@@ -956,7 +956,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
+		if(check_access(H.get_active_hand()) || check_access(H.inventory.get_item_in_slot(slot_wear_id_str)))
 			return 1
 	else if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
@@ -1343,10 +1343,6 @@
 	return braintype != BORG_BRAINTYPE_DRONE
 
 
-/mob/living/silicon/robot/drop_item()
-	if(module_active && istype(module_active,/obj/item/gripper))
-		var/obj/item/gripper/G = module_active
-		G.drop_item_nm()
 
 /mob/living/silicon/robot/disable_spoiler_vision()
 	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY|BORGANOMALOUS)) // Whyyyyyyyy have seperate defines.

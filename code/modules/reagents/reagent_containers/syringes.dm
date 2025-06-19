@@ -220,9 +220,8 @@
 				warmup_time = injtime*0.66 //66% of the time is warmup
 
 				if(istype(H))
-					if(H.wear_suit)
-						if(istype(H.wear_suit, /obj/item/clothing/suit/space))
-							injtime = injtime * 2
+					if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/space))
+						injtime = injtime * 2
 
 				else if(isliving(target))
 

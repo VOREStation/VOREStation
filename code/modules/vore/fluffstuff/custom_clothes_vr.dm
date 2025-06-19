@@ -2192,7 +2192,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/equipped()
 	..()
 	var/mob/living/carbon/human/H = loc
-	if(istype(H) && H.wear_suit == src)
+	if(istype(H) && H.inventory.get_item_in_slot(slot_wear_suit_str) == src)
 		icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	update_clothing_icon()
 

@@ -34,6 +34,8 @@
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
+	. = ..()
+
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -54,7 +56,6 @@
 
 	human_mob_list |= src
 
-	. = ..()
 
 	hide_underwear.Cut()
 	for(var/category in global_underwear.categories_by_name)
@@ -117,8 +118,8 @@
 		. += "Phoron Stored: [P.stored_plasma]/[P.max_plasma]"
 
 
-	if(back && istype(back,/obj/item/rig))
-		var/obj/item/rig/suit = back
+	if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		var/cell_status = "ERROR"
 		if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 		. += "Suit charge: [cell_status]"
@@ -157,12 +158,12 @@
 	if(species)
 		species.update_misc_tabs(src)
 
-	if(istype(back,/obj/item/rig))
-		var/obj/item/rig/R = back
+	if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+		var/obj/item/rig/R = inventory.get_item_in_slot(slot_back_str)
 		RigPanel(R)
 
-	else if(istype(belt,/obj/item/rig))
-		var/obj/item/rig/R = belt
+	else if(istype(inventory.get_item_in_slot(slot_belt_str),/obj/item/rig))
+		var/obj/item/rig/R = inventory.get_item_in_slot(slot_belt_str)
 		RigPanel(R)
 
 /mob/living/carbon/human/ex_act(severity)
@@ -267,7 +268,7 @@
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
 		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+	if (istype(inventory.get_item_in_slot(slot_wear_suit_str), /obj/item/clothing/suit/straight_jacket))
 		return 1
 	return 0
 
@@ -286,7 +287,7 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.rank ? pda.id.rank : if_no_job
@@ -302,7 +303,7 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.assignment
@@ -318,7 +319,7 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.registered_name
@@ -335,7 +336,8 @@
 /mob/living/carbon/human/proc/get_visible_name()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return "Something"	// Something
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if( istype(wear_mask) && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv&HIDEFACE) )
 		return get_id_name("Unknown")		//Likewise for hats
@@ -356,10 +358,11 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
 	if(istype(wear_id,/obj/item/pda))
 		var/obj/item/pda/P = wear_id
 		return P.owner ? P.owner : if_no_id
-	if(wear_id)
+	if(istype(wear_id))
 		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			return I.registered_name
@@ -367,7 +370,8 @@
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
-	if(wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id))
 		return wear_id.GetID()
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
@@ -802,10 +806,10 @@
 
 	if(istype(src.head, /obj/item/clothing/head))
 		add_clothing_protection(head)
-	if(istype(src.glasses, /obj/item/clothing/glasses))
-		add_clothing_protection(glasses)
-	if(istype(src.wear_mask, /obj/item/clothing/mask))
-		add_clothing_protection(wear_mask)
+	if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses))
+		add_clothing_protection(inventory.get_item_in_slot(slot_glasses_str))
+	if(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask))
+		add_clothing_protection(inventory.get_item_in_slot(slot_wear_mask_str))
 
 	return flash_protection
 
@@ -841,14 +845,6 @@
 		to_chat(src, span_warning("You don't have the dexterity to use that!"))
 	return 0
 
-/mob/living/carbon/human/abiotic(var/full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
-		return 1
-
-	if( (src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) )
-		return 1
-
-	return 0
 
 
 /mob/living/carbon/human/proc/check_dna()
@@ -1035,7 +1031,9 @@
 		if(VISIBLE_GENDER_FORCE_BIOLOGICAL)
 			return gender
 		else
-			if(((wear_mask?.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (wear_suit?.flags_inv & HIDEJUMPSUIT))
+			var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+			var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+			if(((istype(wear_mask) && wear_mask.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
 				return PLURAL
 			if(species?.ambiguous_genders && user)
 				if(ishuman(user))
@@ -1429,7 +1427,8 @@
 				if(head && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 			else
-				if(wear_suit && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
+				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+				if(istype(wear_suit) && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)
@@ -1437,7 +1436,14 @@
 		to_chat(user, span_warning("[fail_msg]"))
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
+	var/list/equipment = list(
+		head,
+		inventory.get_item_in_slot(slot_wear_mask_str),
+		inventory.get_item_in_slot(slot_glasses_str),
+		inventory.get_item_in_slot(slot_w_uniform_str),
+		inventory.get_item_in_slot(slot_wear_suit_str),
+		gloves,
+		shoes)
 	var/head_exposed = 1
 	var/face_exposed = 1
 	var/eyes_exposed = 1
@@ -1491,7 +1497,7 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),inventory.get_item_in_slot(slot_wear_suit_str),src.shoes)
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FEET)
@@ -1559,12 +1565,6 @@
 		to_chat(S, span_danger("[U] pops your [current_limb.joint] back in!"))
 	current_limb.relocate()
 
-/mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/target = null)
-	if(W in organs)
-		return FALSE
-	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
-		return remove_from_mob(W, src.loc)
-	return ..()
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1578,47 +1578,6 @@
 		return 1
 	return 0
 
-//Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
-	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
-
-//Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
-	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
-
-/mob/living/carbon/human/put_in_hands(var/obj/item/W)
-	if(!W)
-		return 0
-	if(put_in_active_hand(W))
-		update_inv_l_hand()
-		update_inv_r_hand()
-		return 1
-	else if(put_in_inactive_hand(W))
-		update_inv_l_hand()
-		update_inv_r_hand()
-		return 1
-	else
-		return ..()
-
-/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
-	if(!..() || l_hand)
-		return 0
-	W.forceMove(src)
-	l_hand = W
-	W.equipped(src,slot_l_hand)
-	W.add_fingerprint(src)
-	update_inv_l_hand()
-	return 1
-
-/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
-	if(!..() || r_hand)
-		return 0
-	W.forceMove(src)
-	r_hand = W
-	W.equipped(src,slot_r_hand)
-	W.add_fingerprint(src)
-	update_inv_r_hand()
-	return 1
 
 /mob/living/carbon/human/can_stand_overridden()
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
@@ -1708,7 +1667,7 @@
 	return ..()
 
 /mob/living/carbon/human/is_muzzled()
-	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/grenade)))
+	return istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask/muzzle) || istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/grenade)
 
 /mob/living/carbon/human/get_fire_icon_state()
 	return species.fire_icon_state
@@ -1824,8 +1783,8 @@
 // Certain stuff like genetic xray vision is allowed to be kept on.
 /mob/living/carbon/human/disable_spoiler_vision()
 	// Glasses.
-	if(istype(glasses, /obj/item/clothing/glasses))
-		var/obj/item/clothing/glasses/goggles = glasses
+	if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/goggles = inventory.get_item_in_slot(slot_glasses_str)
 		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
 			goggles.toggle_active(src)
 			to_chat(src, span_warning("Your [goggles.name] have suddenly turned off!"))
@@ -1839,7 +1798,7 @@
 			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 /mob/living/carbon/human/get_mob_riding_slots()
-	return list(back, head, wear_suit)
+	return list(inventory.get_item_in_slot(slot_back_str), head, inventory.get_item_in_slot(slot_wear_suit_str))
 
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"

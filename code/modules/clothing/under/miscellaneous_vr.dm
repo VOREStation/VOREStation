@@ -72,7 +72,7 @@
 	if (H.stat || H.restrained())
 		return
 
-	if (src != H.w_uniform)
+	if (src != H.inventory.get_item_in_slot(slot_w_uniform_str))
 		to_chat(H,span_warning("You must be WEARING the uniform to change your size."))
 		return
 
@@ -85,7 +85,7 @@
 		return //cancelled
 
 	//Check AGAIN because we accepted user input which is blocking.
-	if (src != H.w_uniform)
+	if (src != H.inventory.get_item_in_slot(slot_w_uniform_str))
 		to_chat(H,span_warning("You must be WEARING the uniform to change your size."))
 		return
 

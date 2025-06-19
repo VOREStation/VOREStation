@@ -206,6 +206,8 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 	var/list/minihuds = list()
 
+	var/list/inventory_slots = list()
+
 /datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
@@ -216,6 +218,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		mymob.hud_used = null
 
 	QDEL_NULL_LIST(minihuds)
+	QDEL_NULL_LIST(inventory_slots)
 
 	// Actions
 	QDEL_NULL(toggle_palette)
@@ -264,19 +267,19 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_shoes)
 						if(H.shoes)     H.shoes.screen_loc =     hud_data["loc"]
 					if(slot_l_ear)
-						if(H.l_ear)     H.l_ear.screen_loc =     hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_l_ear_str))     H.inventory.get_item_in_slot(slot_l_ear_str).screen_loc =     hud_data["loc"]
 					if(slot_r_ear)
-						if(H.r_ear)     H.r_ear.screen_loc =     hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_r_ear_str))     H.inventory.get_item_in_slot(slot_r_ear_str).screen_loc =     hud_data["loc"]
 					if(slot_gloves)
 						if(H.gloves)    H.gloves.screen_loc =    hud_data["loc"]
 					if(slot_glasses)
-						if(H.glasses)   H.glasses.screen_loc =   hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_glasses_str))   H.inventory.get_item_in_slot(slot_glasses_str).screen_loc =   hud_data["loc"]
 					if(slot_w_uniform)
-						if(H.w_uniform) H.w_uniform.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_w_uniform_str)) H.inventory.get_item_in_slot(slot_w_uniform_str).screen_loc = hud_data["loc"]
 					if(slot_wear_suit)
-						if(H.wear_suit) H.wear_suit.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = hud_data["loc"]
 					if(slot_wear_mask)
-						if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_wear_mask_str)) H.inventory.get_item_in_slot(slot_wear_mask_str).screen_loc = hud_data["loc"]
 			else
 				switch(hud_data["slot"])
 					if(slot_head)
@@ -284,25 +287,26 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_shoes)
 						if(H.shoes)     H.shoes.screen_loc =     null
 					if(slot_l_ear)
-						if(H.l_ear)     H.l_ear.screen_loc =     null
+						if(H.inventory.get_item_in_slot(slot_l_ear_str))     H.inventory.get_item_in_slot(slot_l_ear_str).screen_loc =     null
 					if(slot_r_ear)
-						if(H.r_ear)     H.r_ear.screen_loc =     null
+						if(H.inventory.get_item_in_slot(slot_r_ear_str))     H.inventory.get_item_in_slot(slot_r_ear_str).screen_loc =     null
 					if(slot_gloves)
 						if(H.gloves)    H.gloves.screen_loc =    null
 					if(slot_glasses)
-						if(H.glasses)   H.glasses.screen_loc =   null
+						if(H.inventory.get_item_in_slot(slot_glasses_str))   H.inventory.get_item_in_slot(slot_glasses_str).screen_loc =   null
 					if(slot_w_uniform)
-						if(H.w_uniform) H.w_uniform.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_w_uniform_str)) H.inventory.get_item_in_slot(slot_w_uniform_str).screen_loc = null
 					if(slot_wear_suit)
-						if(H.wear_suit) H.wear_suit.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_wear_suit_str)) H.inventory.get_item_in_slot(slot_wear_suit_str).screen_loc = null
 					if(slot_wear_mask)
-						if(H.wear_mask) H.wear_mask.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_wear_mask_str)) H.inventory.get_item_in_slot(slot_wear_mask_str).screen_loc = null
 
 
 /datum/hud/proc/persistant_inventory_update()
 	if(!mymob)
 		return
 
+	// TODO: integrate this into /datum/inventory
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
@@ -310,31 +314,31 @@ GLOBAL_LIST_INIT(global_huds, list(
 			if(hud_shown)
 				switch(hud_data["slot"])
 					if(slot_s_store)
-						if(H.s_store) H.s_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_s_store_str)) H.inventory.get_item_in_slot(slot_s_store_str).screen_loc = hud_data["loc"]
 					if(slot_wear_id)
-						if(H.wear_id) H.wear_id.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_wear_id_str)) H.inventory.get_item_in_slot(slot_wear_id_str).screen_loc = hud_data["loc"]
 					if(slot_belt)
-						if(H.belt)    H.belt.screen_loc =    hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_belt_str))    H.inventory.get_item_in_slot(slot_belt_str).screen_loc =    hud_data["loc"]
 					if(slot_back)
-						if(H.back)    H.back.screen_loc =    hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_back_str))    H.inventory.get_item_in_slot(slot_back_str).screen_loc =    hud_data["loc"]
 					if(slot_l_store)
-						if(H.l_store) H.l_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = hud_data["loc"]
 					if(slot_r_store)
-						if(H.r_store) H.r_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_r_store_str)) H.inventory.get_item_in_slot(slot_r_store_str).screen_loc = hud_data["loc"]
 			else
 				switch(hud_data["slot"])
 					if(slot_s_store)
-						if(H.s_store) H.s_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_s_store_str)) H.inventory.get_item_in_slot(slot_s_store_str).screen_loc = null
 					if(slot_wear_id)
-						if(H.wear_id) H.wear_id.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_wear_id_str)) H.inventory.get_item_in_slot(slot_wear_id_str).screen_loc = null
 					if(slot_belt)
-						if(H.belt)    H.belt.screen_loc =    null
+						if(H.inventory.get_item_in_slot(slot_belt_str))    H.inventory.get_item_in_slot(slot_belt_str).screen_loc =    null
 					if(slot_back)
-						if(H.back)    H.back.screen_loc =    null
+						if(H.inventory.get_item_in_slot(slot_back_str))    H.inventory.get_item_in_slot(slot_back_str).screen_loc =    null
 					if(slot_l_store)
-						if(H.l_store) H.l_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = null
 					if(slot_r_store)
-						if(H.r_store) H.r_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_r_store_str)) H.inventory.get_item_in_slot(slot_r_store_str).screen_loc = null
 
 
 /datum/hud/proc/instantiate()
@@ -347,6 +351,8 @@ GLOBAL_LIST_INIT(global_huds, list(
 	mymob.create_mob_hud(src)
 
 	// Past this point, mymob.hud_used is set
+
+	mymob.inventory.build_hud(src)
 
 	toggle_palette.set_hud(src)
 	palette_down.set_hud(src)

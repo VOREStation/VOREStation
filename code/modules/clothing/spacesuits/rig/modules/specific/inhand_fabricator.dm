@@ -29,7 +29,7 @@
 		H.visible_message(span_danger("[H] launches \a [firing]!"))
 		firing.throw_at(target,fire_force,fire_distance)
 	else
-		if(H.l_hand && H.r_hand)
+		if(H.get_left_hand() && H.get_right_hand())
 			to_chat(H, span_danger("Your hands are full."))
 		else
 			var/obj/item/new_weapon = new fabrication_type()

@@ -100,9 +100,9 @@
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.
 	// Two canes are needed for a lost leg. If you are missing both legs, canes aren't gonna help you.
-	if (l_hand && istype(l_hand, /obj/item/cane))
+	if (istype(get_left_hand(), /obj/item/cane))
 		stance_damage -= 2
-	if (r_hand && istype(r_hand, /obj/item/cane))
+	if (istype(get_right_hand(), /obj/item/cane))
 		stance_damage -= 2
 
 	// standing is poor
@@ -115,6 +115,9 @@
 			Weaken(5) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
+
 	if(!l_hand && !r_hand)
 		return
 

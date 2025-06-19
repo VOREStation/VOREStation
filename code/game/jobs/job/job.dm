@@ -188,8 +188,8 @@
 /datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)
 	equip_preview(mannequin)
-	if(mannequin.back)
-		var/obj/O = mannequin.back
+	if(mannequin.inventory.get_item_in_slot(slot_back_str))
+		var/obj/O = mannequin.inventory.get_item_in_slot(slot_back_str)
 		mannequin.drop_from_inventory(O)
 		qdel(O)
 

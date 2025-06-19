@@ -11,7 +11,8 @@
 	var/looks_synth = looksSynthetic()
 
 	//exosuits and helmets obscure our view and stuff.
-	if(wear_suit)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
 		if(wear_suit.flags_inv & HIDESUITSTORAGE)
 			skip_gear |= EXAMINE_SKIPSUITSTORAGE
 
@@ -33,7 +34,8 @@
 			skip_gear |= EXAMINE_SKIPGLOVES
 			skip_body |= EXAMINE_SKIPHANDS
 
-	if(w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		if(w_uniform.body_parts_covered & LEGS)
 			skip_body |= EXAMINE_SKIPLEGS
 		if(w_uniform.body_parts_covered & ARMS)
@@ -60,7 +62,8 @@
 		if(head.flags_inv & HIDEFACE)
 			skip_body |= EXAMINE_SKIPFACE
 
-	if(wear_mask && (wear_mask.flags_inv & HIDEFACE))
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	if(istype(wear_mask) && (wear_mask.flags_inv & HIDEFACE))
 		skip_body |= EXAMINE_SKIPFACE
 
 	//This is what hides what
@@ -105,7 +108,7 @@
 	var/list/msg = list("This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
-	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
+	if(istype(w_uniform) && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
 		//Ties
 		var/tie_msg
 		if(istype(w_uniform,/obj/item/clothing/under) && !(skip_gear & EXAMINE_SKIPTIE))
@@ -153,28 +156,33 @@
 			msg += "[T.He] [T.is] wearing [icon2html(wear_suit,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_suit]'>\a [wear_suit]</a>.[tie_msg]"
 
 		//suit/armour storage
-		if(s_store && !(skip_gear & EXAMINE_SKIPSUITSTORAGE) && s_store.show_examine)
+		var/obj/item/s_store = inventory.get_item_in_slot(slot_s_store_str)
+		if(istype(s_store) && !(skip_gear & EXAMINE_SKIPSUITSTORAGE) && s_store.show_examine)
 			if(s_store.forensic_data?.has_blooddna())
 				msg += span_warning("[T.He] [T.is] carrying [icon2html(s_store,user.client)] [s_store.gender==PLURAL?"some":"a"] [(s_store.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>[s_store.name]</a> on [T.his] [wear_suit.name]!")
 			else
 				msg += "[T.He] [T.is] carrying [icon2html(s_store,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>\a [s_store]</a> on [T.his] [wear_suit.name]."
 
 	//back
-	if(back && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
+	if(istype(back) && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
 		if(back.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(back,user.client)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>[back]</a> on [T.his] back.")
 		else
 			msg += "[T.He] [T.has] [icon2html(back,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>\a [back]</a> on [T.his] back."
 
 	//left hand
-	if(l_hand && l_hand.show_examine)
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_left_hand()
+
+	if(istype(l_hand) && l_hand.show_examine)
 		if(l_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(l_hand,user.client)] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>[l_hand.name]</a> in [T.his] left hand!")
 		else
 			msg += "[T.He] [T.is] holding [icon2html(l_hand,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>\a [l_hand]</a> in [T.his] left hand."
 
 	//right hand
-	if(r_hand && r_hand.show_examine)
+	if(istype(r_hand) && r_hand.show_examine)
 		if(r_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(r_hand,user.client)] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>[r_hand.name]</a> in [T.his] right hand!")
 		else
@@ -212,7 +220,8 @@
 		msg += span_warning("[T.He] [T.is] [icon2html(buckled,user.client)] buckled to [buckled]!")
 
 	//belt
-	if(belt && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+	if(istype(belt) && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
 		if(belt.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(belt,user.client)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[belt]'>[belt.name]</a> about [T.his] waist!")
 		else
@@ -228,7 +237,7 @@
 		msg += span_warning("[T.He] [T.has] [(feet_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained feet!")
 
 	//mask
-	if(wear_mask && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
+	if(istype(wear_mask) && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
 		var/descriptor = "on [T.his] face"
 		if(istype(wear_mask, /obj/item/grenade) && check_has_mouth())
 			descriptor = "in [T.his] mouth"
@@ -239,22 +248,26 @@
 			msg += "[T.He] [T.has] [icon2html(wear_mask,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_mask]'>\a [wear_mask]</a> [descriptor]."
 
 	//eyes
-	if(glasses && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
+	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+	if(istype(glasses) && !(skip_gear & EXAMINE_SKIPEYEWEAR) && glasses.show_examine)
 		if(glasses.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(glasses,user.client)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>[glasses]</a> covering [T.his] eyes!")
 		else
 			msg += "[T.He] [T.has] [icon2html(glasses,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[glasses]'>\a [glasses]</a> covering [T.his] eyes."
 
 	//left ear
-	if(l_ear && !(skip_gear & EXAMINE_SKIPEARS) && l_ear.show_examine)
+	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
+	if(istype(l_ear) && !(skip_gear & EXAMINE_SKIPEARS) && l_ear.show_examine)
 		msg += "[T.He] [T.has] [icon2html(l_ear,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_ear]'>\a [l_ear]</a> on [T.his] left ear."
 
 	//right ear
-	if(r_ear && !(skip_gear & EXAMINE_SKIPEARS) && r_ear.show_examine)
+	var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
+	if(istype(r_ear) && !(skip_gear & EXAMINE_SKIPEARS) && r_ear.show_examine)
 		msg += "[T.He] [T.has] [icon2html(r_ear,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_ear]'>\a [r_ear]</a> on [T.his] right ear."
 
 	//ID
-	if(wear_id && wear_id.show_examine)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id) && wear_id.show_examine)
 		msg += "[T.He] [T.is] wearing [icon2html(wear_id,user.client)]<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_id]'>\a [wear_id]</a>."
 
 	//Jitters
@@ -468,9 +481,9 @@
 		if(hasHUD_vr(H,hudtype)) return 1 //VOREStation Add - Added records access for certain modes of omni-hud glasses
 		switch(hudtype)
 			if("security")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
+				return istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/hud/security) || istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
+				return istype(H.inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/hud/health)
 	else if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off

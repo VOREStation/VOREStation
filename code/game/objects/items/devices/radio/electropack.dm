@@ -16,7 +16,7 @@
 	var/code = 2
 
 /obj/item/radio/electropack/attack_hand(mob/living/user as mob)
-	if(src == user.back)
+	if(src == user.inventory.get_item_in_slot(slot_back_str))
 		to_chat(user, span_notice("You need help taking this off!"))
 		return
 	..()

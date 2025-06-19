@@ -115,8 +115,9 @@
 
 /mob/living/simple_mob/blob/spore/proc/infest(mob/living/carbon/human/H)
 	is_infesting = TRUE
-	if(H.wear_suit)
-		var/obj/item/clothing/suit/A = H.wear_suit
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
+		var/obj/item/clothing/suit/A = wear_suit
 		if(A.armor && A.armor["melee"])
 			maxHealth += A.armor["melee"] //That zombie's got armor, I want armor!
 

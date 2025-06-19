@@ -72,9 +72,9 @@ emp_act
 		if(BP_L_HAND, BP_R_HAND)
 			var/c_hand
 			if (def_zone == BP_L_HAND)
-				c_hand = l_hand
+				c_hand = get_left_hand()
 			else
-				c_hand = r_hand
+				c_hand = get_right_hand()
 
 			if(c_hand && (stun_amount || agony_amount > 10))
 				msg_admin_attack("[key_name(src)] was disarmed by a stun effect")
@@ -141,7 +141,7 @@ emp_act
 
 	var/siemens_coefficient = max(species.siemens_coefficient,0)
 
-	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
+	var/list/clothing_items = list(head, inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
@@ -177,7 +177,7 @@ emp_act
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
-	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	var/list/clothing_items = list(head, inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part))
 			results.Add(C)
@@ -240,7 +240,7 @@ emp_act
 	return null
 
 /mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	for(var/obj/item/shield in list(l_hand, r_hand, wear_suit))
+	for(var/obj/item/shield in list(get_left_hand(), get_right_hand(), inventory.get_item_in_slot(slot_wear_suit_str)))
 		if(!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
@@ -340,13 +340,15 @@ emp_act
 						apply_effect(20, PARALYZE, blocked, soaked)
 						visible_message(span_danger("\The [src] has been knocked unconscious!"))
 					if(bloody)//Apply blood
-						if(wear_mask)
+						var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+						if(istype(wear_mask))
 							wear_mask.add_blood(src)
 							update_inv_wear_mask(0)
 						if(head)
 							head.add_blood(src)
 							update_inv_head(0)
-						if(glasses && prob(33))
+						var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
+						if(istype(glasses) && prob(33))
 							glasses.add_blood(src)
 							update_inv_glasses(0)
 				if(BP_TORSO)//Easier to score a stun but lasts less time
@@ -583,10 +585,12 @@ emp_act
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
-	if(wear_suit)
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit))
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
-	if(w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		w_uniform.add_blood(source)
 		update_inv_w_uniform(0)
 
@@ -601,6 +605,7 @@ emp_act
 		rig.take_hit(damage)
 
 	// We may also be taking a suit breach.
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 	if(!wear_suit) return
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
@@ -695,7 +700,10 @@ emp_act
 	if(!check_has_mouth())
 		return TRUE
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (istype(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

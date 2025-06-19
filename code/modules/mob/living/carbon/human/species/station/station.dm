@@ -525,10 +525,10 @@
 
 /datum/species/zaddat/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
-	if(H.wear_suit) //get rid of job labcoats so they don't stop us from equipping the Shroud
-		qdel(H.wear_suit) //if you know how to gently set it in like, their backpack or whatever, be my guest
-	if(H.wear_mask)
-		qdel(H.wear_mask)
+	if(H.inventory.get_item_in_slot(slot_wear_suit_str)) //get rid of job labcoats so they don't stop us from equipping the Shroud
+		qdel(H.inventory.get_item_in_slot(slot_wear_suit_str)) //if you know how to gently set it in like, their backpack or whatever, be my guest
+	if(H.inventory.get_item_in_slot(slot_wear_mask_str))
+		qdel(H.inventory.get_item_in_slot(slot_wear_mask_str))
 	if(H.head)
 		qdel(H.head)
 
@@ -643,7 +643,7 @@
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot_r_hand)
 	else
-		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H.inventory.get_item_in_slot(slot_back_str)), slot_in_backpack)
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
 	H.gender = NEUTER

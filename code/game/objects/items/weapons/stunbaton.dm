@@ -54,12 +54,13 @@
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
+		// TODO: generalize hands
 		switch(over_object.name)
-			if("r_hand")
-				usr.u_equip(src)
+			if("r_hand", "Right Hand")
+				usr.unEquip(src)
 				usr.put_in_r_hand(src)
-			if("l_hand")
-				usr.u_equip(src)
+			if("l_hand", "Left Hand")
+				usr.unEquip(src)
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 

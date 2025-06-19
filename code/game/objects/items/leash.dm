@@ -168,7 +168,7 @@
 
 /obj/item/leash/proc/drop_effects(mob/user)
 	SIGNAL_HANDLER
-	if(leash_master.item_is_in_hands(src) || leash_master.get_item_by_slot(SLOT_TIE) == src)
+	if(leash_master.item_is_in_hands(src) || leash_master.get_equipped_item(SLOT_TIE) == src)
 		return  //Dom still has the leash as it turns out. Cancel the proc.
 	leash_master.visible_message(span_notice("\The [leash_master] drops \the [src]."), span_notice("You drop \the [src]."))
 	//DOM HAS DROPPED LEASH. PET IS FREE. SCP HAS BREACHED CONTAINMENT.

@@ -85,8 +85,8 @@
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
 				return TRUE
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
+			if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))
+				to_chat(user, span_warning("You can't apply [src] through [H.inventory.get_item_in_slot(slot_wear_suit_str)]!"))
 				return TRUE
 
 		if(!welding)
@@ -250,12 +250,13 @@
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
+		// TODO: generalize hands
 		switch(over_object.name)
-			if("r_hand")
-				usr.u_equip(src)
+			if("r_hand", "Right Hand")
+				usr.unEquip(src)
 				usr.put_in_r_hand(src)
-			if("l_hand")
-				usr.u_equip(src)
+			if("l_hand", "Left Hand")
+				usr.unEquip(src)
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
@@ -501,7 +502,7 @@
 			mounted_pack.return_nozzle()
 		else
 			var/mob/living/carbon/human/H = mounted_pack.loc
-			if(H.back != mounted_pack)
+			if(H.inventory.get_item_in_slot(slot_back_str) != mounted_pack)
 				mounted_pack.return_nozzle()
 
 	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
@@ -646,8 +647,8 @@
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
-			if(istype(H) && H.back)
-				var/obj/item/rig/suit = H.back
+			if(istype(H) && H.inventory.get_item_in_slot(slot_back_str))
+				var/obj/item/rig/suit = H.inventory.get_item_in_slot(slot_back_str)
 				if(istype(suit))
 					return suit.cell
 	if(istype(src.loc, /obj/item/mecha_parts/mecha_equipment))

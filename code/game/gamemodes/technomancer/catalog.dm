@@ -301,8 +301,8 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 					break
 
 			var/obj/item/technomancer_core/core = null
-			if(istype(H.back, /obj/item/technomancer_core))
-				core = H.back
+			if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/technomancer_core))
+				core = H.inventory.get_item_in_slot(slot_back_str)
 
 			if(new_spell && core)
 				if(new_spell.cost <= budget)
@@ -343,8 +343,8 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 				to_chat(H, span_danger("You can only refund at your base, it's too late now!"))
 				return
 			var/obj/item/technomancer_core/core = null
-			if(istype(H.back, /obj/item/technomancer_core))
-				core = H.back
+			if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/technomancer_core))
+				core = H.inventory.get_item_in_slot(slot_back_str)
 			if(core)
 				for(var/obj/spellbutton/spell in core.spells)
 					for(var/datum/technomancer/spell/spell_datum in spell_instances)

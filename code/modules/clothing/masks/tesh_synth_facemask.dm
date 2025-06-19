@@ -15,7 +15,7 @@
 /obj/item/clothing/mask/synthfacemask/equipped()
 	..()
 	var/mob/living/carbon/human/H = loc
-	if(istype(H) && H.wear_mask == src)
+	if(istype(H) && H.inventory.get_item_in_slot(slot_wear_mask_str) == src)
 		canremove = 0
 		maskmaster = H
 		START_PROCESSING(SSprocessing, src)

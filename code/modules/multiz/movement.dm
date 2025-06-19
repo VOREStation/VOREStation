@@ -154,7 +154,7 @@
 		var/mob/living/L = src
 		if(L.pulling && !L.pulling.anchored)
 			pulling |= L.pulling
-		for(var/obj/item/grab/G in list(L.l_hand, L.r_hand))
+		for(var/obj/item/grab/G in list(L.get_left_hand(), L.get_right_hand()))
 			pulling |= G.affecting
 		if(direction == UP)
 			src.audible_message(span_notice("[src] moves up."))
@@ -610,20 +610,25 @@
 /mob/living/carbon/human/CanParachute()
 	//Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
 	//This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
-	if(back && back.isParachute())
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
+	if(istype(back) && back.isParachute())
 		back.handleParachute()
 		return TRUE
-	if(s_store && s_store.isParachute())
-		back.handleParachute()
+	var/obj/item/s_store = inventory.get_item_in_slot(slot_s_store_str)
+	if(istype(s_store) && s_store.isParachute())
+		s_store.handleParachute()
 		return TRUE
-	if(belt && belt.isParachute())
-		back.handleParachute()
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+	if(istype(belt) && belt.isParachute())
+		belt.handleParachute()
 		return TRUE
-	if(wear_suit && wear_suit.isParachute())
-		back.handleParachute()
+	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+	if(istype(wear_suit) && wear_suit.isParachute())
+		wear_suit.handleParachute()
 		return TRUE
-	if(w_uniform && w_uniform.isParachute())
-		back.handleParachute()
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform) && w_uniform.isParachute())
+		w_uniform.handleParachute()
 		return TRUE
 	else
 		return parachuting

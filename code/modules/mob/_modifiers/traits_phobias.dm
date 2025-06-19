@@ -135,9 +135,24 @@
 					human_blood_fear_amount += 1
 
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
-				var/list/clothing_slots = list(H.back, H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
+				var/list/clothing_slots = list(
+					H.inventory.get_item_in_slot(slot_back_str),
+					H.inventory.get_item_in_slot(slot_wear_mask_str),
+					H.get_left_hand(),
+					H.get_right_hand(),
+					H.inventory.get_item_in_slot(slot_wear_id_str),
+					H.inventory.get_item_in_slot(slot_glasses_str),
+					H.gloves,
+					H.head,
+					H.shoes,
+					H.inventory.get_item_in_slot(slot_belt_str),
+					H.inventory.get_item_in_slot(slot_wear_suit_str),
+					H.inventory.get_item_in_slot(slot_w_uniform_str),
+					H.inventory.get_item_in_slot(slot_s_store_str),
+					H.inventory.get_item_in_slot(slot_l_ear_str),
+					H.inventory.get_item_in_slot(slot_r_ear_str))
 				if(H == holder)
-					clothing_slots += list(H.l_store, H.r_store)
+					clothing_slots += list(H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
 
 				for(var/obj/item/clothing/C in clothing_slots)
 					if(C.forensic_data?.has_blooddna() && C.blood_color && C.blood_color != SYNTH_BLOOD_COLOUR)
@@ -549,10 +564,10 @@
 				continue
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
+				if(H.get_left_hand() && istype(H.get_left_hand(), /obj/item/reagent_containers/syringe) || H.get_right_hand() && istype(H.get_right_hand(), /obj/item/reagent_containers/syringe))
 					fear_amount += 10
 
-				if(H.l_ear && istype(H.l_ear, /obj/item/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/reagent_containers/syringe))
+				if(istype(H.inventory.get_item_in_slot(slot_l_ear_str), /obj/item/reagent_containers/syringe) || istype(H.inventory.get_item_in_slot(slot_r_ear_str), /obj/item/reagent_containers/syringe))
 					fear_amount +=10
 
 

@@ -214,7 +214,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	//They gain nutrition from doing this.
 	var/turf/T = get_turf(H)
 	if(istype(T))
-		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
+		var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+		if(!(H.shoes || (istype(wear_suit) && (wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
 				if(O.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
@@ -235,12 +236,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.hand_blood_color = null
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))
-		if(!(H.gloves || (H.wear_suit && (H.wear_suit.body_parts_covered & HANDS))))
-			if(H.r_hand)
-				if(H.r_hand.wash(CLEAN_SCRUB))
+		if(!(H.gloves || (istype(wear_suit) && (wear_suit.body_parts_covered & HANDS))))
+			var/obj/item/l_hand = H.get_left_hand()
+			var/obj/item/r_hand = H.get_right_hand()
+			if(istype(r_hand))
+				if(r_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
-			if(H.l_hand)
-				if(H.l_hand.wash(CLEAN_SCRUB))
+			if(istype(l_hand))
+				if(l_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
 /*
 		if(H.head)

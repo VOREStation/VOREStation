@@ -894,10 +894,12 @@
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/target = null)
-	return !(W in internal_organs) && ..()
 
 /mob/living/proc/drop_both_hands()
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
+
+	// TODO: multihand
 	if(l_hand)
 		unEquip(l_hand)
 	if(r_hand)
@@ -1127,7 +1129,7 @@
 
 // Mob holders in these slots will be spilled if the mob goes prone.
 /mob/living/proc/get_mob_riding_slots()
-	return list(back)
+	return list(inventory.get_item_in_slot(slot_back_str))
 
 // Adds overlays for specific modifiers.
 // You'll have to add your own implementation for non-humans currently, just override this proc.

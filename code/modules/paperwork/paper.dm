@@ -431,8 +431,8 @@
 
 		if(!istype(i, /obj/item/pen))
 			var/mob/living/M = usr
-			if(istype(M) && M.back && istype(M.back,/obj/item/rig))
-				var/obj/item/rig/r = M.back
+			if(istype(M) && istype(M.inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+				var/obj/item/rig/r = M.inventory.get_item_in_slot(slot_back_str)
 				var/obj/item/rig_module/device/pen/m = locate(/obj/item/rig_module/device/pen) in r.installed_modules
 				if(!r.offline && m)
 					i = m.device
@@ -540,17 +540,17 @@
 		user.drop_from_inventory(P)
 		if (ishuman(user))
 			var/mob/living/carbon/human/h_user = user
-			if (h_user.r_hand == src)
+			if (h_user.get_right_hand() == src)
 				h_user.drop_from_inventory(src)
 				h_user.put_in_r_hand(B)
-			else if (h_user.l_hand == src)
+			else if (h_user.get_left_hand() == src)
 				h_user.drop_from_inventory(src)
 				h_user.put_in_l_hand(B)
-			else if (h_user.l_store == src)
+			else if (h_user.inventory.get_item_in_slot(slot_l_store_str) == src)
 				h_user.drop_from_inventory(src)
 				if(!h_user.equip_to_slot_if_possible(B, slot_l_store))
 					h_user.drop_from_inventory(B)
-			else if (h_user.r_store == src)
+			else if (h_user.inventory.get_item_in_slot(slot_r_store_str) == src)
 				h_user.drop_from_inventory(src)
 				if(!h_user.equip_to_slot_if_possible(B, slot_r_store))
 					h_user.drop_from_inventory(B)

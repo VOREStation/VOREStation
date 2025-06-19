@@ -581,8 +581,9 @@ var/global/datum/controller/occupations/job_master
 	if(H.disabilities & NEARSIGHTED)
 		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
 		if(equipped != 1)
-			var/obj/item/clothing/glasses/G = H.glasses
-			G.prescription = TRUE
+			var/obj/item/clothing/glasses/G = H.inventory.get_item_in_slot(slot_glasses_str)
+			if(istype(G))
+				G.prescription = TRUE
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)

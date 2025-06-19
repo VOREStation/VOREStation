@@ -102,7 +102,7 @@
 	if(!target.check_has_mouth())
 		to_chat(user, span_warning("\The [target] doesn't have a mouth."))
 		return
-	if(target.wear_mask && target != breather)
+	if(target.inventory.get_item_in_slot(slot_wear_mask_str) && target != breather)
 		to_chat(user, span_warning("\The [target] is already wearing a mask."))
 		return
 	if(target.head && (target.head.body_parts_covered & FACE))
@@ -122,7 +122,7 @@
 		to_chat(user, span_warning("\The [src] is already in use."))
 		return
 	//Checking if breather is still valid
-	if(target == breather && target.wear_mask != contained)
+	if(target == breather && target.inventory.get_item_in_slot(slot_wear_mask_str) != contained)
 		to_chat(user, span_warning("\The [target] is not using the supplied [contained]."))
 		return
 	return 1

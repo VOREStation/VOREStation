@@ -260,9 +260,9 @@ var/datum/antagonist/raider/raiders
 		holster = new new_holster(T)
 		holster.holstered = primary
 		primary.loc = holster
-	else if(!player.belt && (primary.slot_flags & SLOT_BELT))
+	else if(!player.inventory.get_item_in_slot(slot_belt_str) && (primary.slot_flags & SLOT_BELT))
 		player.equip_to_slot_or_del(primary, slot_belt)
-	else if(!player.back && (primary.slot_flags & SLOT_BACK))
+	else if(!player.inventory.get_item_in_slot(slot_back_str) && (primary.slot_flags & SLOT_BACK))
 		player.equip_to_slot_or_del(primary, slot_back)
 	else
 		player.put_in_any_hand_if_possible(primary)
@@ -271,7 +271,7 @@ var/datum/antagonist/raider/raiders
 	equip_ammo(player, primary)
 
 	if(holster)
-		var/obj/item/clothing/under/uniform = player.w_uniform
+		var/obj/item/clothing/under/uniform = player.inventory.get_item_in_slot(slot_w_uniform_str)
 		if(istype(uniform) && uniform.can_attach_accessory(holster))
 			uniform.attackby(holster, player)
 		else

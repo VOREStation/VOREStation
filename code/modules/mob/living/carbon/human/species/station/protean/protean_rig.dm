@@ -51,8 +51,8 @@
 	if(P)
 		var/datum/species/protean/S = P.species
 		S.OurRig = src
-		if(P.back)
-			addtimer(CALLBACK(src, PROC_REF(AssimilateBag), P, 1, P.back), 3)
+		if(P.inventory.get_item_in_slot(slot_back_str))
+			addtimer(CALLBACK(src, PROC_REF(AssimilateBag), P, 1, P.inventory.get_item_in_slot(slot_back_str)), 3)
 			myprotean = P
 		else
 			to_chat(P, span_notice("You should have spawned with a backpack to assimilate into your RIG. Try clicking it with a backpack."))
@@ -74,8 +74,8 @@
 /obj/item/rig/proc/AssimilateBag(var/mob/living/carbon/human/P, var/spawned, var/obj/item/storage/backpack/B)
 	if(istype(B,/obj/item/storage/backpack))
 		if(spawned)
-			B = P.back
-			P.unEquip(P.back)
+			B = P.inventory.get_item_in_slot(slot_back_str)
+			P.unEquip(P.inventory.get_item_in_slot(slot_back_str))
 		if(QDELETED(B)) // for mannequins or such
 			return
 		B.forceMove(src)
@@ -327,7 +327,7 @@
 			to_chat(user, "There is no tank to remove.")
 			return
 
-		if(user.r_hand && user.l_hand)
+		if(user.get_right_hand() && user.get_left_hand())
 			air_supply.forceMove(get_turf(user))
 		else
 			user.put_in_hands(air_supply)
@@ -464,7 +464,7 @@
 		if(user)
 			to_chat(user, span_warning("Your host rig is unpowered and unresponsive."))
 		return 0
-	if(!wearer || (wearer.back != src && wearer.belt != src))
+	if(!wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src))
 		if(user)
 			to_chat(user, span_warning("Your host rig is not being worn."))
 		return 0
@@ -610,11 +610,12 @@
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
+		// TODO: generalize hands
 		switch(over_object.name)
-			if("r_hand")
+			if("r_hand", "Right Hand")
 				usr.unEquip(src)
 				usr.put_in_r_hand(src)
-			if("l_hand")
+			if("l_hand", "Left Hand")
 				usr.unEquip(src)
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)

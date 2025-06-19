@@ -56,7 +56,7 @@
 	if(reagents && reagents.total_volume)
 		if(ishuman(loc))
 			var/mob/living/carbon/human/C = loc
-			if (src == C.wear_mask && C.check_has_mouth())
+			if (src == C.inventory.get_item_in_slot(slot_wear_mask_str) && C.check_has_mouth())
 				reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2)
 		else
 			STOP_PROCESSING(SSprocessing, src)
@@ -91,7 +91,7 @@
 			var/mob/living/M = loc
 			if(!no_message)
 				to_chat(M, span_notice("The [name] runs out of flavor."))
-			if(M.wear_mask)
+			if(M.inventory.get_item_in_slot(slot_wear_mask_str))
 				M.remove_from_mob(src) //un-equip it so the overlays can update
 				M.update_inv_wear_mask(0)
 				if(!M.equip_to_slot_if_possible(butt, slot_wear_mask))

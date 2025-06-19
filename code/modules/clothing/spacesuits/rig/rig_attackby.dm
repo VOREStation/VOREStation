@@ -66,7 +66,7 @@
 		else if(istype(W,/obj/item/rig_module))
 			if(ishuman(src.loc))
 				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src || H.belt == src)
+				if(H.inventory.get_item_in_slot(slot_back_str) == src || H.inventory.get_item_in_slot(slot_belt_str) == src)
 					to_chat(user, span_danger("You can't install a hardsuit module while the suit is being worn."))
 					return 1
 
@@ -108,7 +108,7 @@
 				to_chat(user, "There is no tank to remove.")
 				return
 
-			if(user.r_hand && user.l_hand)
+			if(user.get_right_hand() && user.get_left_hand())
 				air_supply.forceMove(get_turf(user))
 			else
 				user.put_in_hands(air_supply)
@@ -128,7 +128,7 @@
 
 			if(ishuman(src.loc) && to_remove != "cell")
 				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src || H.belt == src)
+				if(H.inventory.get_item_in_slot(slot_back_str) == src || H.inventory.get_item_in_slot(slot_belt_str) == src)
 					to_chat(user, "You can't remove an installed device while the hardsuit is being worn.")
 					return
 
@@ -140,7 +140,7 @@
 						to_chat(user, "You detach \the [cell] from \the [src]'s battery mount.")
 						for(var/obj/item/rig_module/module in installed_modules)
 							module.deactivate()
-						if(user.r_hand && user.l_hand)
+						if(user.get_right_hand() && user.get_left_hand())
 							cell.forceMove(get_turf(user))
 						else
 							cell.forceMove(user.put_in_hands(cell))
