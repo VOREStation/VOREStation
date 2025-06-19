@@ -11,9 +11,6 @@
 
 	var/has_sockets = TRUE
 
-	var/obj/item/hose_connector/input/active/InputSocket
-	var/obj/item/hose_connector/output/active/OutputSocket
-
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
@@ -21,12 +18,6 @@
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	return
-
-/obj/structure/reagent_dispensers/Destroy()
-	QDEL_NULL(InputSocket)
-	QDEL_NULL(OutputSocket)
-
-	. = ..()
 
 /obj/structure/reagent_dispensers/Initialize(mapload)
 	var/datum/reagents/R = new/datum/reagents(5000)
@@ -36,10 +27,8 @@
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 
 	if(has_sockets)
-		InputSocket = new(src)
-		InputSocket.carrier = src
-		OutputSocket = new(src)
-		OutputSocket.carrier = src
+		AddComponent(/datum/component/hose_connector/input)
+		AddComponent(/datum/component/hose_connector/output)
 
 	. = ..()
 
@@ -158,12 +147,12 @@
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
-	name = "/improper He3 tank"
+	name = "He3 tank"
 	desc = "A Helium3 tank."
 	icon_state = "he3"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispenser/he3/Initialize(mapload)
+/obj/structure/reagent_dispensers/he3/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
 
@@ -290,10 +279,8 @@
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
 	if (reagents.total_volume == 0)
 		return
-
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	reagents.trans_to_turf(get_turf(src),amount)
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"

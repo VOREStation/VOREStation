@@ -44,6 +44,14 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		End()
 	return ..()
 
+/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
+	var/datum/disease/D = make_copy ? Copy() : src
+	infectee.addDisease(D)
+	D.affected_mob = infectee
+	GLOB.active_diseases += D
+
+	log_admin("[key_name(src)] has contracted the virus \"[D]\"")
+
 /datum/disease/proc/stage_act()
 	if(!affected_mob)
 		return FALSE

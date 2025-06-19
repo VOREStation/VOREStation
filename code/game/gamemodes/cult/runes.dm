@@ -881,7 +881,7 @@ var/list/sacrificed = list()
 			var/datum/gender/TU = GLOB.gender_datums[cultist.get_visible_gender()]
 			to_chat(user, span_warning("You cannot summon \the [cultist], for [TU.his] shackles of blood are strong."))
 			return fizzle()
-		cultist.loc = src.loc
+		cultist.forceMove(src.loc)
 		cultist.lying = 1
 		cultist.regenerate_icons()
 
@@ -995,8 +995,8 @@ var/list/sacrificed = list()
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 */
-	var/list/cultists = new //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
-	var/list/victims = new
+	var/list/cultists = list() //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
+	var/list/victims = list()
 //			var/list/cultboil = list(cultists-usr) //and for this words are destroy-see-blood.
 	for(var/mob/living/carbon/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
@@ -1036,7 +1036,7 @@ var/list/sacrificed = list()
 			culcount++
 	if(culcount >= 5)
 		for(var/obj/effect/rune/R in rune_list)
-			if(R.blood_DNA == src.blood_DNA)
+			if(R.forensic_data?.get_blooddna() == src.forensic_data?.get_blooddna())
 				for(var/mob/living/M in orange(2,R))
 					M.take_overall_damage(0,15)
 					if (R.invisibility>M.see_invisible)
@@ -1046,7 +1046,7 @@ var/list/sacrificed = list()
 					var/turf/T = get_turf(R)
 					T.hotspot_expose(700,125)
 		for(var/obj/effect/decal/cleanable/blood/B in world)
-			if(B.blood_DNA == src.blood_DNA)
+			if(B.forensic_data?.get_blooddna() == src.forensic_data?.get_blooddna())
 				for(var/mob/living/M in orange(1,B))
 					M.take_overall_damage(0,5)
 					to_chat(M, span_danger("Blood suddenly ignites, burning you!"))

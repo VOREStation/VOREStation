@@ -11,7 +11,7 @@
 	name = "self deleting effect"
 	desc = "How are you examining what which cannot be seen?"
 	icon = 'icons/effects/effects.dmi'
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/time_to_die = 10 SECONDS // Afer which, it will delete itself.
 
 /obj/effect/temporary_effect/Initialize(mapload)
@@ -110,11 +110,12 @@
 	pixel_y = -16
 
 /obj/effect/abstract/directional_lighting
-	var/obj/effect/abstract/light_spot/light_spot = new
+	var/obj/effect/abstract/light_spot/light_spot
 	var/trans_angle
 	var/icon_dist
 
 /obj/effect/abstract/directional_lighting/Initialize(mapload)
+	light_spot = new
 	. = ..()
 	vis_contents += light_spot
 

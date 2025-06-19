@@ -156,6 +156,7 @@
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
+	new_character.sync_addictions() // These are addicitions our profile wants... May as well give them!
 	new_character.initialize_vessel()
 	if(ghost.mind)
 		ghost.mind.transfer_to(new_character)
@@ -185,6 +186,8 @@
 		var/datum/language/def_lang = GLOB.all_languages[ghost_client.prefs.preferred_language]
 		if(def_lang)
 			new_character.default_language = def_lang
+
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
 
 	//If desired, apply equipment.
 	if(equip_body)

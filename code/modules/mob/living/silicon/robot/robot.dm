@@ -140,7 +140,7 @@
 	vore_fullness_ex = list()
 	vore_icon_bellies = list()
 
-/mob/living/silicon/robot/Initialize(mapload, is_decoy, unfinished = FALSE)
+/mob/living/silicon/robot/Initialize(mapload, is_decoy)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -171,7 +171,6 @@
 
 	init()
 	initialize_components()
-	//if(!unfinished)
 	// Create all the robot parts.
 	for(var/V in components) if(V != "power cell")
 		var/datum/robot_component/C = components[V]
@@ -204,9 +203,10 @@
 
 	riding_datum = new /datum/riding/dogborg(src)
 
+	AddComponent(/datum/component/hose_connector/input/borg)
+	AddComponent(/datum/component/hose_connector/output/borg)
 
 /mob/living/silicon/robot/LateInitialize()
-	. = ..()
 	pick_module()
 	update_icon()
 
@@ -412,6 +412,9 @@
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		ooc_notes_favs = read_preference(/datum/preference/text/living/ooc_notes_favs)
+		ooc_notes_maybes = read_preference(/datum/preference/text/living/ooc_notes_maybes)
+		ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
 		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 		custom_link = client.prefs.custom_link
 

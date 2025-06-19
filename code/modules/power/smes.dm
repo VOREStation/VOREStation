@@ -78,10 +78,12 @@ GLOBAL_LIST_EMPTY(smeses)
 		connect_to_network()
 	if(!should_be_mapped)
 		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
+
+/obj/machinery/power/smes/buildable/Initialize(mapload)
+	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/smes/buildable/LateInitialize()
-	. = ..()
 	// Detect new coils placed by mappers
 	var/list/parts_found = list()
 	for(var/i = 1, i <= loc.contents.len, i++)
@@ -425,6 +427,10 @@ GLOBAL_LIST_EMPTY(smeses)
 			. = TRUE
 		if("tryoutput")
 			outputting(!output_attempt)
+			if(output_attempt)
+				playsound(loc, 'sound/effects/contactor_on.ogg', 50, FALSE)
+			else
+				playsound(loc, 'sound/effects/contactor_off.ogg', 50, FALSE)
 			update_icon()
 			. = TRUE
 		if("input")

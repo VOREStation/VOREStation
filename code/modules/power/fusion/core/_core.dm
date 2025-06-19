@@ -20,8 +20,6 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	circuit = /obj/item/circuitboard/fusion_core
 
-	var/obj/item/hose_connector/output/Output
-
 	var/obj/effect/fusion_em_field/owned_field
 	var/field_strength = 1//0.01
 	var/target_field_strength = 1
@@ -36,7 +34,8 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	. = ..()
 	GLOB.fusion_cores += src
 
-	Output = new(src)
+	AddComponent(/datum/component/hose_connector/output)
+
 	create_reagents(10000)
 
 	default_apply_parts()
@@ -64,10 +63,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 
-	if(Output.get_pairing())
-		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
-		if(prob(5))
-			visible_message(span_infoplain(span_bold("\The [src]") + " gurgles as it exports fluid."))
+	SEND_SIGNAL(src, COMSIG_HOSE_FORCEPUMP)
 
 	if(owned_field)
 

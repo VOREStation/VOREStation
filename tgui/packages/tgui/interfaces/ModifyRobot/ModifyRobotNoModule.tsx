@@ -17,7 +17,7 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
 
   return (
     <>
-      <NoticeBox warning>
+      <NoticeBox>
         Target has no active module. Limited options available.
       </NoticeBox>
       <Divider />

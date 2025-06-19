@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/machinery/power/terminal/hide(var/i)
-	invisibility = i ? 101 : 0
+	invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	icon_state = i ? "term-f" : "term"
 
 /obj/machinery/power/terminal/hides_under_flooring()

@@ -85,6 +85,7 @@
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
+	SIGNAL_HANDLER
 	user.reset_view()
 	user.set_viewsize() // reset to default
 	if(map_view_used)

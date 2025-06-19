@@ -220,9 +220,26 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","loincloth","eyecover")
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/science/dullataursci
+	name = "Dullataur"
+	sprite_icon_state = "dullataursci"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
 	icon_x = 32
 	pixel_x = 0
 
@@ -246,12 +263,11 @@
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 
-
 /datum/robot_sprite/dogborg/science/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_sci.dmi'
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
-	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	rest_sprite_options = list("Default", "Sit")
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")

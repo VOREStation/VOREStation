@@ -253,7 +253,8 @@
 
 /obj/machinery/microwave/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes)
+		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes),
+		get_asset_datum(/datum/asset/simple/microwave)
 	)
 
 /obj/machinery/microwave/tgui_static_data(mob/user)

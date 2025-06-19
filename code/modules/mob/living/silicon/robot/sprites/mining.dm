@@ -196,6 +196,8 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate","loincloth","eyecover")
 	rest_sprite_options = list("Default", "sit")
 	icon_x = 32
@@ -221,8 +223,40 @@
 	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 	sprite_decals = list("breastplate","eyecover")
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/mining/dullataurcargo
+	name = "Dullataur cargo"
+	sprite_icon_state = "dullataurcargo"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/mining/dullataurmining
+	name = "Dullataur mining"
+	sprite_icon_state = "dullataurmine"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
 	icon_x = 32
 	pixel_x = 0
 
@@ -291,20 +325,15 @@
 	icon_x = 32
 	pixel_x = 0
 
-/datum/robot_sprite/dogborg/mining/smolraptorminer
+/datum/robot_sprite/dogborg/mining/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'
 	name = "Small Raptor Miner"
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
-	rest_sprite_options = list("Default", "Sit")
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
-/datum/robot_sprite/dogborg/mining/smolraptorcargo
+/datum/robot_sprite/dogborg/mining/smolraptor/alt
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_car.dmi'
 	name = "Small Raptor Cargo"
-	sprite_icon_state = "smolraptor"
-	has_eye_light_sprites = TRUE
-	has_vore_belly_sprites = TRUE
-	has_dead_sprite_overlay = FALSE
-	rest_sprite_options = list("Default", "Sit")

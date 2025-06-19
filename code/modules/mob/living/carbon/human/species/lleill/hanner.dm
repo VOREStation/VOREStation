@@ -20,8 +20,6 @@
 	min_age = 18
 	max_age = 200
 
-	digi_allowed = TRUE
-
 	//Specific abilities
 
 	burn_mod = 0.8 //Slightly resistant to fire
@@ -129,7 +127,7 @@
 					)
 	spawn (50)
 		if(H.lleill_display)
-			H.lleill_display.invisibility = 0
+			H.lleill_display.invisibility = INVISIBILITY_NONE
 			H.lleill_display.icon_state = "lleill-4"
 
 /datum/species/shapeshifter/hanner/add_inherent_verbs(var/mob/living/carbon/human/H)

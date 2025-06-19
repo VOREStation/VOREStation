@@ -30,15 +30,15 @@
 
 	if(ext_blind)
 		eye_blind = 5
-		client.screen.Remove(global_hud.whitense)
+		client.screen.Remove(GLOB.global_hud.whitense)
 		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 	else
 		eye_blind = 0
 		clear_fullscreen("blind")
 		if(!gem.flag_check(SOULGEM_SHOW_VORE_SFX))
-			client.screen.Add(global_hud.whitense)
+			client.screen.Add(GLOB.global_hud.whitense)
 	if(gem.flag_check(SOULGEM_SHOW_VORE_SFX))
-		client.screen.Remove(global_hud.whitense)
+		client.screen.Remove(GLOB.global_hud.whitense)
 
 // Say proc for captures souls
 /mob/living/carbon/brain/caught_soul/vore/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
@@ -156,7 +156,7 @@
 		return
 
 	if(!(gem.setting_flags & NIF_SC_PROJECTING))
-		to_chat(src, span_warning("Projecting from this NIF has been disabled!"))
+		to_chat(src, span_warning("Projecting from this soulcatcher has been disabled!"))
 		return
 
 	if(!client || !client.prefs)

@@ -61,7 +61,7 @@ Frequency:
 			if (sr)
 				src.temp += span_bold("Located Beacons:") + "<BR>"
 
-				for(var/obj/item/radio/beacon/W in all_beacons)
+				for(var/obj/item/radio/beacon/W in GLOB.all_beacons)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -79,7 +79,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += span_bold("Extraneous Signals:") + "<BR>"
-				for (var/obj/item/implant/tracking/W in all_tracking_implants)
+				for (var/obj/item/implant/tracking/W in GLOB.all_tracking_implants)
 					if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc) || W.malfunction))
 						continue
 
@@ -168,7 +168,7 @@ Frequency:
 	if ((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in world
-	for(var/obj/effect/portal/PO in all_portals)
+	for(var/obj/effect/portal/PO in GLOB.all_portals)
 		if(PO.creator == src)	count++
 	if(count >= 3)
 		user.show_message(span_notice("\The [src] is recharging!"))

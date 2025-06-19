@@ -44,7 +44,7 @@
 		if("message")
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
-			var/mob/user = pda.fingerprintslast
+			var/mob/user = pda.forensic_data?.get_lastprint()
 			if(isliving(pda.loc))
 				user = pda.loc
 			log_admin("STATUS: [user] set status screen with [pda]. Message: [data1] [data2]")
@@ -264,7 +264,7 @@
 		JaniData["user_loc"] = list("x" = 0, "y" = 0)
 
 	var/MopData[0]
-	for(var/obj/item/mop/M in all_mops)//GLOB.janitorial_equipment)
+	for(var/obj/item/mop/M in GLOB.all_mops)//GLOB.janitorial_equipment)
 		var/turf/ml = get_turf(M)
 		if(ml)
 			if(ml.z != cl.z)
@@ -273,7 +273,7 @@
 			MopData[++MopData.len] = list ("x" = ml.x, "y" = ml.y, "dir" = uppertext(dir2text(direction)), "status" = M.reagents.total_volume ? "Wet" : "Dry")
 
 	var/BucketData[0]
-	for(var/obj/structure/mopbucket/B in all_mopbuckets)//GLOB.janitorial_equipment)
+	for(var/obj/structure/mopbucket/B in GLOB.all_mopbuckets)//GLOB.janitorial_equipment)
 		var/turf/bl = get_turf(B)
 		if(bl)
 			if(bl.z != cl.z)
@@ -291,7 +291,7 @@
 			CbotData[++CbotData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.on ? "Online" : "Offline")
 
 	var/CartData[0]
-	for(var/obj/structure/janitorialcart/B in all_janitorial_carts)//GLOB.janitorial_equipment)
+	for(var/obj/structure/janitorialcart/B in GLOB.all_janitorial_carts)//GLOB.janitorial_equipment)
 		var/turf/bl = get_turf(B)
 		if(bl)
 			if(bl.z != cl.z)

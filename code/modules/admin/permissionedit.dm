@@ -133,7 +133,10 @@
 		output += "</table></div><div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div></body>"
 	if(QDELETED(usr))
 		return
-	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
+
+	var/datum/browser/popup = new(owner, "editrights", "Edit Rights", 1000, 650)
+	popup.set_content(jointext(output, ""))
+	popup.open()
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
@@ -467,7 +470,7 @@
 		admin_holder.rank_flags(),
 		350,
 		590,
-		allowed_edit_list = usr.client.holder.can_edit_rights_flags(),
+		allowed_edit_field = usr.client.holder.can_edit_rights_flags(),
 	)
 
 	admin_holder.disassociate()

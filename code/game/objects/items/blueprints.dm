@@ -77,10 +77,10 @@
 
 /obj/item/blueprints/interact()
 	var/area/A = get_area()
-	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[station_name()] blueprints</h2>
-<small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
-"}
+	var/text = {"
+					<h2>[station_name()] blueprints</h2>
+					<small>Property of [using_map.company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+				"}
 	var/curAreaType = get_area_type()
 	switch (curAreaType)
 		if (AREA_SPACE)
@@ -101,10 +101,10 @@
 	if(curAreaType & can_rename_areas_in)
 		text += "<p>You can <a href='byond://?src=\ref[src];action=edit_area'>rename the area</a>.</p>"
 
-	text += "</BODY></HTML>"
-	usr << browse(text, "window=blueprints")
-	onclose(usr, "blueprints")
-
+	var/datum/browser/popup = new(usr, "blueprints", "Blueprints")
+	popup.add_head_content("<title>[src]</title>")
+	popup.set_content(text)
+	popup.open()
 
 /obj/item/blueprints/proc/get_area()
 	var/turf/T = get_turf(usr)
@@ -239,7 +239,7 @@
 /obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		if (found.len+pending.len > 300)

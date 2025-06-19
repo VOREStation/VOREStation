@@ -33,17 +33,11 @@
 
 // disabilities
 #define NEARSIGHTED 0x1
-#define EPILEPSY    0x2
-#define COUGHING    0x4
-#define TOURETTES   0x8
-#define NERVOUS     0x10
 /*
 #define DEPRESSION     	0x20	// Roleplay drugs
 #define SCHIZOPHRENIA  	0x40	// Roleplay drugs
 */
 #define WINGDINGS     	0x80	// Better handling as disability
-#define DETERIORATE     0x100	// Body melts slowly, medical loves you!
-#define GIBBING     	0x200	// Landmine for genetics to find
 #define CENSORED     	0x400	// Cannot swear
 // sdisabilities
 #define BLIND 0x1
@@ -109,8 +103,8 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA_UI_GENDER      14
 #define DNA_UI_BEARD_STYLE 15
 #define DNA_UI_HAIR_STYLE  16
-#define DNA_UI_EAR_STYLE   17 // VOREStation snippet.
-#define DNA_UI_EAR_SECONDARY_STYLE   18 // VOREStation snippet.
+#define DNA_UI_EAR_STYLE   17
+#define DNA_UI_EAR_SECONDARY_STYLE   18
 #define DNA_UI_TAIL_STYLE  19
 #define DNA_UI_PLAYERSCALE 20
 #define DNA_UI_TAIL_R      21
@@ -158,9 +152,14 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA_UI_WING2_B     57
 #define DNA_UI_WING3_R     58
 #define DNA_UI_WING3_G     59
-#define DNA_UI_WING3_B     60 // VOREStation snippet end.
+#define DNA_UI_WING3_B     60
 #define DNA_UI_WING_ALPHA  61
-#define DNA_UI_LENGTH      61 // VOREStation Edit - Needs to match the highest number above.
+#define DNA_UI_GRAD_STYLE  62
+#define DNA_UI_GRAD_R      63
+#define DNA_UI_GRAD_G      64
+#define DNA_UI_GRAD_B      65
+// Needs to match the highest number above.
+#define DNA_UI_LENGTH      65
 
 #define DNA_SE_LENGTH 90 // Traitgenes (Expanded from 49 to 84, there have been a considerable expansion of genes.
 // This leaves room for future expansion. This can be arbitrarily raised without worry if genes start to get crowded.

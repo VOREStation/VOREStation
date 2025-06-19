@@ -27,3 +27,11 @@ export const RUNECHAT_LONG: FeatureToggle = {
   description: 'Sets runechat to show more characters.',
   component: CheckboxInput,
 };
+
+export const RUNECHAT_BALLOON_MESSAGES: FeatureToggle = {
+  name: 'Runechat: Balloon Messages',
+  category: 'RUNECHAT',
+  description:
+    'Enables or Disables the "Balloon Messages" performed by visible actions.',
+  component: CheckboxInput,
+};

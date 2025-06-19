@@ -205,6 +205,9 @@
 					if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
+		for(var/obj/o in contents)
+			vis_objs |= o
+
 		for(var/obj/O as anything in vis_objs)
 			spawn(0)
 				O.see_emote(src, message, 2)
@@ -494,3 +497,5 @@
 	var/new_speech_bubble = tgui_input_list(src, "Pick new voice (default for automatic selection)", "Character Preference", GLOB.selectable_speech_bubbles)
 	if(new_speech_bubble)
 		custom_speech_bubble = new_speech_bubble
+		if(dna)
+			dna.custom_speech_bubble = new_speech_bubble

@@ -134,7 +134,7 @@ var/global/list/emotes_by_key
 	if (!use_range)
 		use_range = world.view
 
-	if(ismob(user))
+	if(ismob(user) && (use_3p || use_1p)) //Adds functionality for emotes that don't give use feedback, such as bellyrubs.
 		var/mob/M = user
 		if(message_type == AUDIBLE_MESSAGE)
 			if(isliving(user))
@@ -189,7 +189,14 @@ var/global/list/emotes_by_key
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+		if(istype(user, /mob))
+			var/mob/u = user
+			var/freq_to_use = u.voice_freq
+			if(u.emote_sound_mode == EMOTE_SOUND_NO_FREQ)
+				freq_to_use = 0
+			playsound(user.loc, sound_to_play, use_sound["vol"], u.read_preference(/datum/preference/toggle/random_emote_pitch) && sound_vary, extrarange = use_sound["exr"], frequency = freq_to_use, preference = sound_preferences, volume_channel = use_sound["volchannel"])
+		else
+			playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, extrarange = use_sound["exr"], frequency = null, preference = sound_preferences, volume_channel = use_sound["volchannel"])
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

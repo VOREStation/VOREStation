@@ -1,6 +1,3 @@
-
-
-
 //endless reagents!
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
@@ -8,18 +5,9 @@
 /obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
-	var/list/banned_chems = list(
-		REAGENT_ID_ADMINORDRAZINE,
-		REAGENT_ID_NUTRIMENT,
-		REAGENT_ID_MACROCILLIN,
-		REAGENT_ID_MICROCILLIN,
-		REAGENT_ID_NORMALCILLIN,
-		REAGENT_ID_MAGICDUST
-		)
 	for(var/x=1;x<=10;x++) //You got 10 chances to hit a reagent that is NOT banned.
 		var/new_chem = pick(SSchemistry.chemical_reagents)
-		if(new_chem in banned_chems)
+		if(new_chem in GLOB.obtainable_chemical_blacklist)
 			continue
 		else
 			spawning_id = new_chem
@@ -149,8 +137,7 @@
 		to_chat(M, span_red("The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out."))
 		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
 		B.target_turf = pick(range(1, src))
-		B.blood_DNA = list()
-		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		B.add_blooddna(M.dna,M)
 		M.remove_blood(rand(25,50))
 
 //animated blood 2 SPOOKY
@@ -173,13 +160,13 @@
 		//leave some drips behind
 		if(prob(50))
 			var/obj/effect/decal/cleanable/blood/drip/D = new(src.loc)
-			D.blood_DNA = src.blood_DNA.Copy()
+			D.init_forensic_data().merge_blooddna(forensic_data)
 			if(prob(50))
 				D = new(src.loc)
-				D.blood_DNA = src.blood_DNA.Copy()
+				D.init_forensic_data().merge_blooddna(forensic_data)
 				if(prob(50))
 					D = new(src.loc)
-					D.blood_DNA = src.blood_DNA.Copy()
+					D.init_forensic_data().merge_blooddna(forensic_data)
 	else
 		..()
 

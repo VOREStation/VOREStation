@@ -46,7 +46,7 @@ export function WikiDonationBanner(props: {
 
   if (progress < 0.66) {
     return (
-      <NoticeBox warning>
+      <NoticeBox>
         <WikiDonationContent
           donated={donated}
           goal={goal}
@@ -107,7 +107,7 @@ const WikiDonationContent = (props: {
         </Stack.Item>
         <Stack.Item>
           <Box>
-            {donated} / {goal}₮
+            {donated}₮ / {goal}₮
           </Box>
         </Stack.Item>
         {!hideButtons && donated < goal && (

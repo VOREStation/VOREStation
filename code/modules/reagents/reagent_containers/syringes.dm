@@ -37,7 +37,6 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-
 /obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -68,7 +67,7 @@
 	switch(mode)
 		if(SYRINGE_CAPPED)
 			mode = SYRINGE_DRAW
-			to_chat(user,span_notice("You uncap the syringe."))
+			balloon_alert(user, "[src] uncapped")
 		if(SYRINGE_DRAW)
 			mode = SYRINGE_INJECT
 		if(SYRINGE_INJECT)
@@ -275,7 +274,7 @@
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 
 		if (!affecting || affecting.is_stump())
-			to_chat(user, span_danger("They are missing that limb!"))
+			balloon_alert(user, "they are missing that limb!") // CHOMPEdit - Changed to balloon_alert
 			return
 
 		var/hit_area = affecting.name
@@ -293,13 +292,13 @@
 
 			return
 
-		user.visible_message(span_danger("[user] stabs [target] in \the [hit_area] with [src.name]!"))
+		balloon_alert_visible("stabs [target] in \the [hit_area] with [src.name]!")
 
 		if(affecting.take_damage(3))
 			H.UpdateDamageIcon()
 
 	else
-		user.visible_message(span_danger("[user] stabs [target] with [src.name]!"))
+		balloon_alert_visible("stabs [user] in \the [target] with [src.name]!")
 		target.take_organ_damage(3)// 7 is the same as crowbar punch
 
 
@@ -481,6 +480,17 @@
 
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
+
+/obj/item/reagent_containers/syringe/old
+	name = "old syringe"
+	desc = "An old, broken syringe. Are you sure it's a good idea to pick it up without gloves?"
+	mode = SYRINGE_BROKEN
+
+/obj/item/reagent_containers/syringe/old/Initialize(mapload)
+	. = ..()
+	if(prob(75))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(1, 3), rand(7, 9), 2, infected = src)
+		src.viruses += new_disease
 
 #undef SYRINGE_DRAW
 #undef SYRINGE_INJECT

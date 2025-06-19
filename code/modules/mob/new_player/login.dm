@@ -1,61 +1,39 @@
-///var/atom/movable/lobby_image = new /atom/movable{icon = 'icons/misc/title.dmi'; icon_state = lobby_image_state; screen_loc = "1,1"; name = "Polaris"}
-
-var/obj/effect/lobby_image = new /obj/effect/lobby_image
-
-/obj/effect/lobby_image
-	name = "VORE Station"
-	desc = "How are you reading this?"
-	screen_loc = "1,1"
-	icon = 'icons/misc/loading.dmi'
-	icon_state = "loading"
-
-/obj/effect/lobby_image/Initialize(mapload)
-	icon = using_map.lobby_icon
-	var/known_icon_states = cached_icon_states(icon)
-	for(var/lobby_screen in using_map.lobby_screens)
-		if(!(lobby_screen in known_icon_states))
-			error("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
-			using_map.lobby_screens -= lobby_screen
-
-	if(using_map.lobby_screens.len)
-		icon_state = pick(using_map.lobby_screens)
-	else
-		icon_state = known_icon_states[1]
-	. = ..()
-
-/mob/new_player
-	var/client/my_client // Need to keep track of this ourselves, since by the time Logout() is called the client has already been nulled
-
 /mob/new_player/Login()
-	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
-	if(GLOB.join_motd)
-		GLOB.join_motd = GLOB.is_valid_url.Replace(GLOB.join_motd, span_linkify("$1"))
-		to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
+	// Happens sometimes
+	if(QDELETED(src))
+		var/mob/new_player/replacement = new /mob/new_player()
+		replacement.key = key
+		return
 
-	if(has_respawned)
-		to_chat(src, CONFIG_GET(string/respawn_message))
-		has_respawned = FALSE
-
+	update_Login_details()    //handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = 1
 		mind.current = src
 
+	if(client)
+		persistent_ckey = client.ckey
+
 	loc = null
-	client.screen += lobby_image
-	my_client = client
 	sight |= SEE_TURFS
+
 	player_list |= src
+	GLOB.new_player_list += src
 
 	created_for = ckey
 
-	if(!QDELETED(src))
-		new_player_panel()
-		addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(do_after_login)), 4 SECONDS, TIMER_DELETE_ME)
+	initialize_lobby_screen()
 
 /mob/new_player/proc/do_after_login()
 	PRIVATE_PROC(TRUE)
 	if(client)
+		if(GLOB.join_motd)
+			to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
+
+		if(has_respawned)
+			to_chat(src, CONFIG_GET(string/respawn_message))
+		has_respawned = FALSE
 		handle_privacy_poll()
 		client.playtitlemusic()
 		version_warnings()

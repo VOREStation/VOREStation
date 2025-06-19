@@ -77,9 +77,9 @@
 	if (body_color == "black")
 		holder_type = /obj/item/holder/mouse/black
 
-	if(prob(25))
+	if(prob(40))
 		LAZYINITLIST(rat_diseases)
-		rat_diseases += new /datum/disease/advance/random(rand(1, 5), 9, 1)
+		rat_diseases += new /datum/disease/advance/random(rand(1, 5), 9, 1, infected = src)
 
 /mob/living/simple_mob/animal/passive/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
 	. = ..()
@@ -209,7 +209,7 @@
 	..()
 	name = initial(name)
 	desc = initial(desc)
-	rat_diseases += new /datum/disease/advance/random(2, 2, 1)
+	rat_diseases += new /datum/disease/advance/random(2, 2, 1, infected = src)
 
 /mob/living/simple_mob/animal/passive/mouse/white/virology/Crossed(atom/movable/AM)
 	. = ..()

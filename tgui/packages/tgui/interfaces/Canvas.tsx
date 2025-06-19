@@ -175,8 +175,6 @@ class PaintCanvas extends Component<PaintCanvasProps> {
 
     if (this.mouseIsDown && propSource.tool === Tool.Line) {
       this.drawLine(grid);
-    } else if (propSource.tool === Tool.Fill) {
-      this.areaFill(grid);
     }
 
     for (let x = 0; x < grid.length; x++) {

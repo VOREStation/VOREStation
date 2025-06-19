@@ -38,6 +38,10 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Burning ")
+	bodies = list("Combustion")
+	suffixes = list(" Combustion")
+
 /datum/symptom/fire/Start(datum/disease/advance/A)
 	if(!..())
 		return
@@ -74,13 +78,13 @@ Bonus
 /datum/symptom/fire/proc/Firestacks_stage_4(mob/living/M, datum/disease/advance/A)
 	M.adjust_fire_stacks(1 * power)
 	M.take_overall_damage(burn = 2 * power)
-	if(infective)
+	if(infective && !(A.spread_flags & DISEASE_SPREAD_FALTERED))
 		M.visible_message(span_danger("[M] bursts into flames, spreading burning sparks about the area!"))
 	return TRUE
 
 /datum/symptom/fire/proc/Firestacks_stage_5(mob/living/M, datum/disease/advance/A)
 	M.adjust_fire_stacks(3 * power)
 	M.take_overall_damage(burn = 5 * power)
-	if(infective)
+	if(infective && !(A.spread_flags & DISEASE_SPREAD_FALTERED))
 		M.visible_message(span_danger("[M] bursts into flames, spreading burning sparks about the area!"))
 	return TRUE

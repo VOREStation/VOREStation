@@ -74,12 +74,12 @@
 		return
 
 	var/prints = ""
-	if(src.fingerprintshidden)
-		prints = ", all touchers : " + src.fingerprintshidden
+	if(forensic_data?.get_hiddenprints())
+		prints = ", all touchers : " + forensic_data?.get_hiddenprints()
 
 	SetUniversalState(/datum/universal_state/supermatter_cascade)
-	log_admin("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
-	message_admins("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
+	log_admin("New super singularity made by eating a SM crystal [prints]. Last touched by [forensic_data?.get_lastprint()].")
+	message_admins("New super singularity made by eating a SM crystal [prints]. Last touched by [forensic_data?.get_lastprint()].")
 	qdel(src)
 	return 50000
 
@@ -99,7 +99,7 @@
 		for(var/obj/O in contents)
 			if(O.level != 1)
 				continue
-			if(O.invisibility == 101)
+			if(O.invisibility == INVISIBILITY_ABSTRACT)
 				O.singularity_act(src, current_size)
 	ChangeTurf(get_base_turf_by_area(src))
 	return 2

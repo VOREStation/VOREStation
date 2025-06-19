@@ -23,6 +23,8 @@ BONUS
 	level = 4
 	severity = 0
 
+	prefixes = list("Chronic ")
+
 /*
 //////////////////////////////////////
 Viral evolution
@@ -46,6 +48,8 @@ BONUS
 	stage_speed = 5
 	transmission = 3
 	level = 4
+
+	prefixes = list("Unstable ")
 
 /datum/symptom/viralpower
 	name = "Viral Power Multiplier"
@@ -77,7 +81,7 @@ BONUS
 	if(!..())
 		return
 	if(!used)
-		for(var/datum/symptom/S as() in A.symptoms)
+		for(var/datum/symptom/S as anything in A.symptoms)
 			if(S == src)
 				return
 			S.power += power
@@ -115,6 +119,8 @@ BONUS
 	)
 
 	var/time_to_cure
+
+	prefixes = list("Spontaneous ")
 
 /datum/symptom/viralreverse/Activate(datum/disease/advance/A)
 	if(!..())
@@ -156,13 +162,13 @@ BONUS
 	if(!..())
 		return
 	if(A.stage >= 5)
-		for(var/datum/symptom/S as() in captives)
+		for(var/datum/symptom/S as anything in captives)
 			S.stopped = FALSE
 			captives -= S
 		if(!LAZYLEN(captives))
 			stopped = TRUE
 	else if(!used)
-		for(var/datum/symptom/S as() in A.symptoms)
+		for(var/datum/symptom/S as anything in A.symptoms)
 			if(S.neutered)
 				continue
 			if(S == src)

@@ -165,7 +165,7 @@ var/specops_shuttle_timeleft = 0
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Exit")
 				var/obj/effect/portal/P = new(L.loc)
-				P.invisibility = 101//So it is not seen by anyone.
+				P.invisibility = INVISIBILITY_ABSTRACT//So it is not seen by anyone.
 				P.failchance = 0//So it has no fail chance when teleporting.
 				P.target = pick(spawn_marauder)//Where the marauder will arrive.
 				spawn_marauder.Remove(P.target)
@@ -270,9 +270,9 @@ var/specops_shuttle_timeleft = 0
 		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
 		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse("<html>[dat]</html>", "window=computer;size=575x450")
-	onclose(user, "computer")
-	return
+	var/datum/browser/popup = new(usr, "computer", "Computer", 575, 450)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/computer/specops_shuttle/Topic(href, href_list)
 	if(..())

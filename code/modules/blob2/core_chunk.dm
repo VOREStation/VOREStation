@@ -62,6 +62,7 @@
 		START_PROCESSING(SSobj, src)
 
 /obj/item/blobcore_chunk/proc/call_chunk_unique()
+	SIGNAL_HANDLER
 	if(blob_type)
 		blob_type.chunk_unique(src, args)
 	return

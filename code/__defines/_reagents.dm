@@ -266,6 +266,8 @@
 #define REAGENT_ID_MENTHOL "menthol"
 #define REAGENT_EARTHSBLOOD "Earthsblood"
 #define REAGENT_ID_EARTHSBLOOD "earthsblood"
+#define REAGENT_ASUSTENANCE	"Artificial Sustenance"
+#define REAGENT_ID_ASUSTENANCE "a_sustenance"
 
 
 // Virology
@@ -281,6 +283,14 @@
 #define REAGENT_ID_PHORONVIRUSFOOD "phoronvirusfood"
 #define REAGENT_WEAKPHORONVIRUSFOOD "Weakened phoronic virus food"
 #define REAGENT_ID_WEAKPHORONVIRUSFOOD "weakphoronvirusfood"
+#define REAGENT_URANIUMVIRUSFOOD "Unstable virus food"
+#define REAGENT_ID_URANIUMVIRUSFOOD "uraniumvirusfood"
+#define REAGENT_UNSTABLEURANIUMVIRUSFOOD "Unstable uranium gel"
+#define REAGENT_ID_UNSTABLEURANIUMVIRUSFOOD "unstableuraniumvirusfood"
+#define REAGENT_STABLEURANIUMVIRUSFOOD "Stable uranium gel"
+#define REAGENT_ID_STABLEURANIUMVIRUSFOOD_ALT "stableuraniumvirusfood_alt"
+#define REAGENT_STABLEURANIUMVIRUSFOOD_ALT "Stable uranium gel"
+#define REAGENT_ID_STABLEURANIUMVIRUSFOOD "stableuraniumvirusfood"
 #define REAGENT_SIZEVIRUSFOOD "Sizeoxadone virus food"
 #define REAGENT_ID_SIZEVIRUSFOOD "sizevirusfood"
 
@@ -571,6 +581,8 @@
 #define REAGENT_ID_NUKIEMEGASHRINK "nukie_mega_shrink"
 #define REAGENT_NUKIEMEGAGROWTH "Nukie Mega Growth"
 #define REAGENT_ID_NUKIEMEGAGROWTH "nukie_mega_growth"
+#define REAGENT_NUKIEONE "Nukie One"
+#define REAGENT_ID_NUKIEONE "nukie_one"
 #define REAGENT_COATING "coating"
 #define REAGENT_ID_COATING "coating"
 #define REAGENT_BATTER "batter mix"
@@ -1256,6 +1268,8 @@
 #define REAGENT_ID_PHORON "phoron"
 #define REAGENT_SPIDERTOXIN "Spidertoxin"
 #define REAGENT_ID_SPIDERTOXIN "spidertoxin"
+#define REAGENT_WARNINGTOXIN "Warningtoxin"
+#define REAGENT_ID_WARNINGTOXIN "warningtoxin"
 #define REAGENT_LEAD "Lead"
 #define REAGENT_ID_LEAD "lead"
 #define REAGENT_PLASTICIDE "Plasticide"
@@ -1353,18 +1367,3 @@
 #define REAGENT_ID_SLIMEBONEFIXER "slime_bone_fixer"
 #define REAGENT_SLIMEORGANFIXER "Agent C"
 #define REAGENT_ID_SLIMEORGANFIXER "slime_organ_fixer"
-
-// Vore Belly Options
-
-#define REAGENT_ID_WATER_BELLY "water_liquidbelly"
-#define REAGENT_ID_MILK_BELLY "milk_liquidbelly"
-#define REAGENT_ID_CREAM_BELLY "cream_liquidbelly"
-#define REAGENT_ID_HONEY_BELLY "honey_liquidbelly"
-#define REAGENT_ID_CHERRYJELLY_BELLY "cherry_liquidbelly"
-#define REAGENT_ID_STOMACID_BELLY "stomacid_liquidbelly"
-#define REAGENT_ID_DIETSTOMACID_BELLY "diet_stomacid_liquidbelly"
-#define REAGENT_ID_CLEANER_BELLY "cleaner_liquidbelly"
-#define REAGENT_ID_LUBE_BELLY "lube_liquidbelly"
-#define REAGENT_ID_BIOMASS_BELLY "biomass_liquidbelly"
-#define REAGENT_ID_CONCENTRATEDRADIUM_BELLY "cradium_liquidbelly"
-#define REAGENT_ID_TRICORDRAZINE_BELLY "tricordrazine_liquidbelly"

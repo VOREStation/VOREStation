@@ -263,65 +263,6 @@
 
 		return(span_red("[formatted_message]<BR>"))
 
-
-// The next function gets the messages set on the belly, in human-readable format.
-// This is useful in customization boxes and such. The delimiter right now is \n\n so
-// in message boxes, this looks nice and is easily delimited.
-/obj/belly/proc/get_reagent_messages(var/type, var/delim = "\n\n")
-	ASSERT(type == "full1" || type == "full2" || type == "full3" || type == "full4" || type == "full5")
-	var/list/raw_messages
-
-	switch(type)
-		if("full1")
-			raw_messages = fullness1_messages
-		if("full2")
-			raw_messages = fullness2_messages
-		if("full3")
-			raw_messages = fullness3_messages
-		if("full4")
-			raw_messages = fullness4_messages
-		if("full5")
-			raw_messages = fullness5_messages
-
-	var/messages = raw_messages.Join(delim)
-	return messages
-
-// The next function sets the messages on the belly, from human-readable var
-// replacement strings and linebreaks as delimiters (two \n\n by default).
-// They also sanitize the messages.
-/obj/belly/proc/set_reagent_messages(var/raw_text, var/type, var/delim = "\n\n")
-	ASSERT(type == "full1" || type == "full2" || type == "full3" || type == "full4" || type == "full5")
-
-	var/list/raw_list = splittext(html_encode(raw_text),delim)
-	if(raw_list.len > 10)
-		raw_list.Cut(11)
-		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
-
-	for(var/i = 1, i <= raw_list.len, i++)
-		if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
-			raw_list.Cut(i,i)
-			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-		else
-			raw_list[i] = readd_quotes(raw_list[i])
-			//Also fix % sign for var replacement
-			raw_list[i] = replacetext(raw_list[i],"&#37;","%")
-
-	ASSERT(raw_list.len <= 10) //Sanity
-
-	switch(type)
-		if("full1")
-			fullness1_messages = raw_list
-		if("full2")
-			fullness2_messages = raw_list
-		if("full3")
-			fullness3_messages = raw_list
-		if("full4")
-			fullness4_messages = raw_list
-		if("full5")
-			fullness5_messages = raw_list
-
-	return
-
 /////////////////////////// Process Cycle Lite /////////////////////////// CHOMP PCL
 /obj/belly/proc/quick_cycle() //For manual belly cycling without straining the bellies subsystem.
 	HandleBellyReagents()	//reagent belly stuff.

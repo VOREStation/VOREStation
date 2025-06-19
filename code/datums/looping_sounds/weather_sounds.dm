@@ -1,5 +1,6 @@
 /datum/looping_sound/weather
 	pref_check = /datum/preference/toggle/weather_sounds
+	volume_chan = VOLUME_CHANNEL_WEATHER
 
 /datum/looping_sound/weather/outside_blizzard
 	mid_sounds = list(

@@ -21,6 +21,7 @@
 	RegisterSignal(target, COMSIG_CONFLICT_ELEMENT_CHECK, PROC_REF(check))
 
 /datum/element/conflict_checking/proc/check(datum/source, id_to_check)
+	SIGNAL_HANDLER
 	if(id == id_to_check)
 		return ELEMENT_CONFLICT_FOUND
 
