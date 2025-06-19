@@ -349,9 +349,11 @@
 
 /mob/living/silicon/robot/proc/update_material_multibelts()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
-		mat_belt.update_materials()
-	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our hands
-		mat_belt.update_materials()
+		pass()
+		//mat_belt.update_materials()
+	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
+		pass()
+		//mat_belt.update_materials()
 
 /mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
@@ -389,101 +391,78 @@
 
 /obj/item/robotic_multibelt/materials/first_use_generation(is_in_module)
 	..()
-	cyborg_integrated_tools = list() //Clear our tools.
-	integrated_tools_by_name = list()
-	integrated_tool_images = list()
 	var/mob/living/silicon/robot/our_robot
 	var/obj/item/robot_module/module
-	if(isrobot(loc) || is_in_module)
-		if(!is_in_module)
-			our_robot = loc
-		if(is_in_module || our_robot.module)
-			if(is_in_module)
-				module = loc
+	if(!isrobot(loc) && !is_in_module)
+		return
+
+	if(!is_in_module)
+		our_robot = loc
+
+	if(is_in_module)
+		module = loc
+	else
+		module = our_robot.module
+
+	if(!module || !module.synths || !LAZYLEN(module.synths)) //We have a synths list and it has contents within it!
+		return
+
+	var/datum/matter_synth/has_steel //Steel synth. For generating Rglass
+	var/datum/matter_synth/has_glass //Glass synth. For generating Rglass
+	for(var/datum/matter_synth/our_synth in module.synths)
+		if(our_synths.name == METAL_SYNTH)
+			has_steel = our_synth
+			continue
+		if(our_synths.name == GLASS_SYNTH)
+			has_glass = our_synth
+			continue
+
+	var/list/possible_synths = list()
+	for(var/datum/matter_synth/our_synth in module.synths)
+		switch(our_synths.name)
+			if(METAL_SYNTH)
+				possible_synths += list(/obj/item/stack/material/cyborg/steel = list(our_synth))
+				possible_synths += list(/obj/item/stack/tile/floor/cyborg = list(our_synth))
+				possible_synths += list(/obj/item/stack/rods/cyborg = list(our_synth))
+				possible_synths += list(/obj/item/stack/tile/roofing/cyborg = list(our_synth))
+				if(has_glass)
+					possible_synths |= list(/obj/item/stack/material/cyborg/glass/reinforced = list(our_synth, has_glass))
+			if(PLASTEEL_SYNTH)
+				possible_synths += list(/obj/item/stack/material/cyborg/plasteel = list(our_synth))
+			if(GLASS_SYNTH)
+				possible_synths += list(/obj/item/stack/material/cyborg/glass = list(our_synth))
+				if(has_steel)
+					possible_synths |= list(/obj/item/stack/material/cyborg/glass/reinforced = list(our_synth, has_steel))
+			if(WOOD_SYNTH)
+				possible_synths += list(/obj/item/stack/tile/wood/cyborg = list(our_synth))
+				possible_synths += list(/obj/item/stack/material/cyborg/wood = list(our_synth))
+			if(PLASTIC_SYNTH)
+				possible_synths += list(/obj/item/stack/material/cyborg/plastic = list(our_synth))
+			if(WIRE_SYNTH)
+				possible_synths += list(/obj/item/stack/cable_coil/cyborg = list(our_synth))
+			if(CLOTH_SYNTH)
+				possible_synths += list(/obj/item/stack/sandbags/cyborg = list(our_synth))
+
+	for(var/obj/item/stack/robot_stack in cyborg_integrated_tools)
+		var/obj/item/stack/our_item = cyborg_integrated_tools[robot_stack]
+		if(our_item)
+			if(is_type_in_list(our_item, possible_synths))
+				possible_synths -= our_item.type
 			else
-				module = our_robot.module
-			if(module.synths && LAZYLEN(module.synths)) //We have a synths list and it has contents within it!
-				var/datum/matter_synth/has_glass //Glass synth. For generating Rglass
-				var/datum/matter_synth/has_steel //Steel synth. For generating Rglass
-				for(var/datum/matter_synth/our_synths in module.synths)
-					var/obj/item/stack/current_stack
-					switch(our_synths.name)
-						if(METAL_SYNTH)
-							//Add steel
-							current_stack = new /obj/item/stack/material/cyborg/steel(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Add floor tiless
-							current_stack = new /obj/item/stack/tile/floor/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Add Rods
-							current_stack = new /obj/item/stack/rods/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Add roofing tiles
-							current_stack = new /obj/item/stack/tile/roofing/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Add reinforced glass if we have glass already, OR set our steel var to true (since glass will be checked later)
-							if(has_glass)
-								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced(src)
-								current_stack.synths = list(our_synths, has_glass)
-								cyborg_integrated_tools += current_stack
-							else
-								has_steel = our_synths
+				cyborg_integrated_tools -= our_item.type
+				integrated_tools_by_name -= our_item.name
+				integrated_tool_images -= our_item.name
+				qdel(robot_stack)
+		else
+			if(is_path_in_list(robot_stack, possible_synths))
+				possible_synths -= robot_stack
+			else
+				cyborg_integrated_tools -= robot_stack
 
-						if(PLASTEEL_SYNTH)
-							current_stack = new /obj/item/stack/material/cyborg/plasteel(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-
-						if(GLASS_SYNTH)
-							current_stack = new /obj/item/stack/material/cyborg/glass(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Add reinforced glass if we have steel already, OR set our glass var to true (since steel will be checked later)
-							if(has_steel)
-								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced(src)
-								current_stack.synths = list(our_synths, has_steel)
-								cyborg_integrated_tools += current_stack
-							else
-								has_glass = our_synths
-
-						if(WOOD_SYNTH)
-							//Wood Tiles
-							current_stack = new /obj/item/stack/tile/wood/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-							//Wood planks
-							current_stack = new /obj/item/stack/material/cyborg/wood(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-
-						if(PLASTIC_SYNTH)
-							current_stack = new /obj/item/stack/material/cyborg/plastic(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-
-						if(WIRE_SYNTH)
-							current_stack = new /obj/item/stack/cable_coil/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-
-						/* //Kept its own individual item
-						if("Nanite Synthesizer")
-							var/obj/item/stack/nanopaste/nanopaste = new /obj/item/stack/nanopaste(src)
-							nanopaste.uses_charge = 1
-							nanopaste.charge_costs = list(1000)
-							current_stack = nanopaste
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
-						*/
-
-						if(CLOTH_SYNTH)
-							current_stack = new /obj/item/stack/sandbags/cyborg(src)
-							current_stack.synths = list(our_synths)
-							cyborg_integrated_tools += current_stack
+	for(var/obj/item/stack/stack_to_add in possible_synths)
+		var/obj/item/stack/current_stack = new stack_to_add(src)
+		current_stack.synths = possible_synths[stack_to_add]
+		cyborg_integrated_tools += current_stack
 
 	generate_tools()
 
