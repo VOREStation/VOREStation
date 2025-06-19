@@ -13,7 +13,7 @@
 	var/wrenchable = 0
 	var/activatable_hand = 1
 	var/togglable = 1
-	var/text_activated = "The strucutre turns on."
+	var/text_activated = "The structure turns on."
 	var/text_deactivated = "The structure turns off."
 	var/effect = 0
 	var/object = 0
