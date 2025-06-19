@@ -442,7 +442,7 @@
 			else
 				cyborg_integrated_tools -= robot_stack
 
-	for(var/obj/item/stack/stack_to_add in possible_synths)
+	for(var/obj/item/stack/stack_to_add as anything in possible_synths)
 		var/obj/item/stack/current_stack = new stack_to_add(src)
 		current_stack.synths = possible_synths[stack_to_add]
 		cyborg_integrated_tools += current_stack
