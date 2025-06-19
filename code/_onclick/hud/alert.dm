@@ -2,18 +2,6 @@
 
 //PUBLIC - call these wherever you want
 
-/**
- *Proc to create or update an alert. Returns the alert if the alert is new or updated, 0 if it was thrown already
- *category is a text string. Each mob may only have one alert per category; the previous one will be replaced
- *path is a type path of the actual alert type to throw
- *severity is an optional number that will be placed at the end of the icon_state for this alert
- *for example, high pressure's icon_state is "highpressure" and can be serverity 1 or 2 to get "highpressure1" or "highpressure2"
- *new_master is optional and sets the alert's icon state to "template" in the ui_style icons with the master as an overlay.
- *flicks are forwarded to master
- *override makes it so the alert is not replaced until cleared by a clear_alert with clear_override, and it's used for hallucinations.
- */
-/mob/proc/throw_alert(category, type, severity, obj/new_master)
-
 /** Proc to create or update an alert. Returns the alert if the alert is new or updated, 0 if it was thrown already
  * category is a text string. Each mob may only have one alert per category; the previous one will be replaced
  * path is a type path of the actual alert type to throw
@@ -22,7 +10,7 @@
  * new_master is optional and sets the alert's icon state to "template" in the ui_style icons with the master as an overlay.
  * Clicks are forwarded to master
  */
-
+/mob/proc/throw_alert(category, type, severity, obj/new_master)
 	if(!category)
 		return
 
