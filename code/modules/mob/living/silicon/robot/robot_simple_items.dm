@@ -349,11 +349,9 @@
 
 /mob/living/silicon/robot/proc/update_material_multibelts()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
-		pass()
-		//mat_belt.update_materials()
+		mat_belt.first_use_generation(TRUE)
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
-		pass()
-		//mat_belt.update_materials()
+		mat_belt.first_use_generation()
 
 /mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
