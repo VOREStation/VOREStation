@@ -984,15 +984,15 @@ GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
 // These lists are, obviously, unfinished.
 
 // ALLOWING BUILDING IN AN AREA:
-// If you want someone to be able to build a new area in a place, add the area to the 'BUILDABLE_AREA_TYPES' and 'blacklisted_areas'
-// BUILDABLE_AREA_TYPES means they can build an area there. The blacklisted_areas means they CAN NOT EXPAND that area. No making space bigger!
+// If you want someone to be able to build a new area in a place, add the area to the 'GLOB.BUILDABLE_AREA_TYPES' and 'GLOB.blacklisted_areas'
+// GLOB.BUILDABLE_AREA_TYPES means they can build an area there. The GLOB.blacklisted_areas means they CAN NOT EXPAND that area. No making space bigger!
 
 // DISALLOW BUILDING/AREA MANIPULATION IN AN AREA (OR A TURF TYPE):
 // Likewise, if you want someone to never ever EVER be able to do anything area generation/expansion related to an area
-// Then add it to SPECIALS and area_or_turf_fail_types
+// Then add it to GLOB.SPECIALS and GLOB.area_or_turf_fail_types
 
 // If you want someone to
-var/global/list/BUILDABLE_AREA_TYPES = list(
+GLOBAL_LIST_INIT(BUILDABLE_AREA_TYPES, list(
 	/area/space,
 	/area/mine,
 //	/area/surface/outside, 	//SC
@@ -1005,9 +1005,9 @@ var/global/list/BUILDABLE_AREA_TYPES = list(
 	/area/offmap/aerostat/surface,
 	/area/tether_away/beach,
 	/area/tether_away/cave,
-)
+))
 
-var/static/list/blacklisted_areas = typecacheof(list(
+GLOBAL_LIST_INIT(blacklisted_areas, typecacheof(list(
 	/area/space,
 	/area/mine,
 //	/area/surface/outside,	//SC
@@ -1022,9 +1022,9 @@ var/static/list/blacklisted_areas = typecacheof(list(
 	/area/offmap/aerostat/surface,
 	/area/tether_away/beach,
 	/area/tether_away/cave
-	))
+	)))
 
-var/global/list/SPECIALS = list(
+GLOBAL_LIST_INIT(SPECIALS, list(
 	/turf/space,
 	/area/shuttle,
 	/area/admin,
@@ -1044,9 +1044,9 @@ var/global/list/SPECIALS = list(
 	/area/submap/casino_event,
 	/area/vr
 	// /area/derelict //commented out, all hail derelict-rebuilders!
-)
+))
 
-var/global/list/area_or_turf_fail_types = typecacheof(list(
+GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/turf/space,
 	/area/shuttle,
 	/area/admin,
@@ -1065,7 +1065,7 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/area/submap/virgo2,
 	/area/submap/event,
 	/area/submap/casino_event
-	))
+	)))
 
 //GRIPPERS!!!
 #define BASIC_GRIPPER \
