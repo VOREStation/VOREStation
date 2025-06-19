@@ -326,20 +326,23 @@
 
 	var/amount
 	switch(mat_to_add)
-		if(METAL_SYNTH)
+		if(/datum/matter_synth/metal)
 			amount = 40000
-		if(PLASTEEL_SYNTH)
+		if(/datum/matter_synth/plasteel)
 			amount = 20000
-		if(GLASS_SYNTH)
+		if(/datum/matter_synth/glass)
 			amount = 40000
-		if(WOOD_SYNTH)
+		if(/datum/matter_synth/wood)
 			amount = 40000
-		if(PLASTIC_SYNTH)
+		if(/datum/matter_synth/plastic)
 			amount = 40000
-		if(WIRE_SYNTH)
+		if(/datum/matter_synth/wire)
 			amount = 50
-		if(CLOTH_SYNTH)
+		if(/datum/matter_synth/cloth)
 			amount = 40000
+
+	if(!amount)
+		return
 
 	module.synths += new synth_path(amount)
 
