@@ -3,7 +3,6 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Button,
-  Divider,
   Dropdown,
   Input,
   LabeledList,
@@ -18,8 +17,8 @@ import { ModifyRobotNoModule } from './ModifyRobotNoModule';
 import { ModifyRobotAccess } from './ModifyRobotTabs/ModifyRobotAccess';
 import { ModifyRobotComponent } from './ModifyRobotTabs/ModifyRobotComponent';
 import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
-import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
 import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
+import { ModifyRobotSpecialModules } from './ModifyRobotTabs/ModifyRobotSpecialModules';
 import { ModifyRobotUpgrades } from './ModifyRobotTabs/ModifyRobotUpgrades';
 import type { Data } from './types';
 
@@ -86,7 +85,7 @@ export const ModifyRobot = (props) => {
     />
   );
   tabs[1] = <ModifyRobotUpgrades target={target!} />;
-  tabs[2] = <ModifyRobotPKA target={target!} />;
+  tabs[2] = <ModifyRobotSpecialModules target={target!} />;
   tabs[3] = <ModifyRobotRadio target={target!} />;
   tabs[4] = (
     <ModifyRobotComponent
@@ -113,7 +112,6 @@ export const ModifyRobot = (props) => {
     <LawManagerLaws
       isAdmin
       hasScroll
-      sectionHeight="80%"
       ion_law_nr={ion_law_nr}
       ion_law={ion_law}
       zeroth_law={zeroth_law}
@@ -135,7 +133,7 @@ export const ModifyRobot = (props) => {
     />
   );
   tabs[7] = (
-    <Section scrollable fill height="80%">
+    <Section scrollable fill>
       <LawManagerLawSets
         isAdmin
         isMalf={isMalf}
@@ -150,141 +148,151 @@ export const ModifyRobot = (props) => {
   return (
     <Window width={target?.module ? 900 : 400} height={700}>
       <Window.Content>
-        {target ? (
-          <NoticeBox info>
-            {target.name}
-            {!!target.ckey && ' played by ' + target.ckey}.
-          </NoticeBox>
-        ) : (
-          <NoticeBox danger>No target selected. Please pick one.</NoticeBox>
-        )}
-        <LabeledList>
-          <LabeledList.Item label="Player Selection">
-            <Stack align="baseline">
-              <Stack.Item>
-                <Dropdown
-                  selected={target ? target.name : ''}
-                  options={all_robots}
-                  onSelected={(value) =>
-                    act('select_target', {
-                      new_target: value,
-                    })
-                  }
-                />
-              </Stack.Item>
-              {!!target?.module && (
-                <>
+        <Stack fill vertical>
+          <Stack.Item>
+            {target ? (
+              <NoticeBox info>
+                {target.name}
+                {!!target.ckey && ' played by ' + target.ckey}.
+              </NoticeBox>
+            ) : (
+              <NoticeBox danger>No target selected. Please pick one.</NoticeBox>
+            )}
+          </Stack.Item>
+          <Stack.Item>
+            <LabeledList>
+              <LabeledList.Item label="Player Selection">
+                <Stack align="baseline">
                   <Stack.Item>
-                    <Input
-                      width="200px"
-                      value={robotName}
-                      onChange={(value) => setRobotName(value)}
-                    />
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      disabled={robotName.length < 3}
-                      onClick={() =>
-                        act('rename', {
-                          new_name: robotName,
+                    <Dropdown
+                      selected={target ? target.name : ''}
+                      options={all_robots}
+                      onSelected={(value) =>
+                        act('select_target', {
+                          new_target: value,
                         })
                       }
-                    >
-                      Rename
-                    </Button>
+                    />
                   </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      icon={target.emagged ? 'sd-card' : 'bolt'}
-                      color={target.emagged ? 'green' : 'red'}
-                      onClick={() => act('toggle_emag')}
-                      tooltip={
-                        (target.emagged ? 'Disables' : 'Enables') +
-                        ' hacked state'
-                      }
-                    >
-                      EMAG
-                    </Button>
-                  </Stack.Item>
-                </>
+                  {!!target?.module && (
+                    <>
+                      <Stack.Item>
+                        <Input
+                          width="200px"
+                          value={robotName}
+                          onChange={(value) => setRobotName(value)}
+                        />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          disabled={robotName.length < 3}
+                          onClick={() =>
+                            act('rename', {
+                              new_name: robotName,
+                            })
+                          }
+                        >
+                          Rename
+                        </Button>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button
+                          icon={target.emagged ? 'sd-card' : 'bolt'}
+                          color={target.emagged ? 'green' : 'red'}
+                          onClick={() => act('toggle_emag')}
+                          tooltip={
+                            (target.emagged ? 'Disables' : 'Enables') +
+                            ' hacked state'
+                          }
+                        >
+                          EMAG
+                        </Button>
+                      </Stack.Item>
+                    </>
+                  )}
+                </Stack>
+              </LabeledList.Item>
+              {!!target?.module && (
+                <LabeledList.Item label="AI Selection">
+                  <Stack align="baseline">
+                    <Stack.Item>
+                      <Dropdown
+                        selected={selected_ai || ''}
+                        options={active_ais}
+                        onSelected={(value) =>
+                          act('select_ai', {
+                            new_ai: value,
+                          })
+                        }
+                      />
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="plug"
+                        disabled={selected_ai === isSlaved}
+                        color="green"
+                        tooltip="Connect the robot to an AI"
+                        onClick={() => act('swap_sync')}
+                      >
+                        {isSlaved ? isSlaved : 'Connect AI'}
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="plug-circle-minus"
+                        disabled={!isSlaved}
+                        color="red"
+                        tooltip="Disconnects the robot from the AI"
+                        onClick={() => act('disconnect_ai')}
+                      >
+                        DC
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                </LabeledList.Item>
               )}
-            </Stack>
-          </LabeledList.Item>
-          {!!target?.module && (
-            <LabeledList.Item label="AI Selection">
-              <Stack align="baseline">
+            </LabeledList>
+          </Stack.Item>
+          <Stack.Divider />
+          {!!target &&
+            (!target.module ? (
+              <Stack.Item grow>
+                <ModifyRobotNoModule target={target} />
+              </Stack.Item>
+            ) : (
+              <>
                 <Stack.Item>
-                  <Dropdown
-                    selected={selected_ai || ''}
-                    options={active_ais}
-                    onSelected={(value) =>
-                      act('select_ai', {
-                        new_ai: value,
-                      })
-                    }
-                  />
+                  <Tabs>
+                    <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
+                      Module Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+                      Upgrade Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
+                      Sub Modules
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
+                      Radio Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
+                      Component Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
+                      Access Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 6} onClick={() => setTab(6)}>
+                      Law Manager
+                    </Tabs.Tab>
+                    <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
+                      Law Sets
+                    </Tabs.Tab>
+                  </Tabs>
                 </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="plug"
-                    disabled={selected_ai === isSlaved}
-                    color="green"
-                    tooltip="Connect the robot to an AI"
-                    onClick={() => act('swap_sync')}
-                  >
-                    {isSlaved ? isSlaved : 'Connect AI'}
-                  </Button>
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="plug-circle-minus"
-                    disabled={!isSlaved}
-                    color="red"
-                    tooltip="Disconnects the robot from the AI"
-                    onClick={() => act('disconnect_ai')}
-                  >
-                    DC
-                  </Button>
-                </Stack.Item>
-              </Stack>
-            </LabeledList.Item>
-          )}
-        </LabeledList>
-        <Divider />
-        {!!target &&
-          (!target.module ? (
-            <ModifyRobotNoModule target={target} />
-          ) : (
-            <>
-              <Tabs>
-                <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
-                  Module Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-                  Upgrade Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                  PKA
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-                  Radio Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
-                  Component Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
-                  Access Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 6} onClick={() => setTab(6)}>
-                  Law Manager
-                </Tabs.Tab>
-                <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
-                  Law Sets
-                </Tabs.Tab>
-              </Tabs>
-              {tabs[tab]}
-            </>
-          ))}
+                <Stack.Item grow>{tabs[tab]}</Stack.Item>
+              </>
+            ))}
+        </Stack>
       </Window.Content>
     </Window>
   );

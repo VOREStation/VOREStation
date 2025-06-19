@@ -44,9 +44,9 @@
 		var/list/spawn_list
 		switch(WL.wildlife_type)
 			if(1)
-				spawn_list = event_wildlife_aquatic
+				spawn_list = GLOB.event_wildlife_aquatic
 			if(2)
-				spawn_list = event_wildlife_roaming
+				spawn_list = GLOB.event_wildlife_roaming
 		if(!spawn_list)
 			continue
 

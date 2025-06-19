@@ -8,7 +8,7 @@
 
 // Now that I've scared away half the people looking at this file, here's the relevant info:
 
-// Banning areas: Go to global_lists_vr, jump to the BUILDABLE_AREA_TYPES and read the comments left there.
+// Banning areas: Go to global_lists_vr, jump to the GLOB.BUILDABLE_AREA_TYPES and read the comments left there.
 
 
 
@@ -339,11 +339,11 @@
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in BUILDABLE_AREA_TYPES)
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
 		if ( istype(A,type) )
 			return AREA_SPACE
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return AREA_SPECIAL
 	return AREA_STATION
@@ -471,7 +471,7 @@
 			to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
 			return
 
-	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
+	var/list/turfs = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
 		return
@@ -483,7 +483,7 @@
 
 	for(var/i in 1 to length(turfs))
 		var/area/place = get_area(turfs[i])
-		if(blacklisted_areas[place.type])
+		if(GLOB.blacklisted_areas[place.type])
 			continue
 		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
@@ -551,7 +551,7 @@
 		to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
 		return
 
-	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, area_or_turf_fail_types)
+	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, GLOB.area_or_turf_fail_types)
 	if(!res)
 		to_chat(creator, span_warning("There is an area forbidden from being edited here! Use the fine-tune area creator! (3x3)"))
 		return
@@ -578,7 +578,7 @@
 	var/str										//What the new area is named.
 	var/can_make_new_area = 1					//If they can make a new area here or not.
 
-	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2) //Get the nearby areas.
+	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2) //Get the nearby areas.
 
 	if(!nearby_turfs_to_check)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
@@ -589,10 +589,10 @@
 
 	for(var/i in 1 to length(nearby_turfs_to_check))
 		var/area/place = get_area(nearby_turfs_to_check[i])
-		if(blacklisted_areas[place.type])
+		if(GLOB.blacklisted_areas[place.type])
 			if(!creator.lastarea != place) //Stops them from merging a blacklisted area to make it larger. Allows them to merge a blacklisted area into an allowed area. (Expansion!)
 				continue
-		if(!BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
+		if(!GLOB.BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
 			can_make_new_area = 0
 		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
@@ -671,7 +671,7 @@
 		return ROOM_ERR_LOLWAT
 	if(!visual && forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?
 		return ROOM_ERR_FORBIDDEN
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		if (found.len+pending.len > BP_MAX_ROOM_SIZE)
@@ -810,14 +810,14 @@
 /proc/get_new_area_type(area/A) //1 = can build in. 0 = can not build in.
 	if (!A)
 		A = get_area(usr)
-	if(A.outdoors) //ALWAYS able to build outdoors. This means if it's missed in BUILDABLE_AREA_TYPES it's fine.
+	if(A.outdoors) //ALWAYS able to build outdoors. This means if it's missed in GLOB.BUILDABLE_AREA_TYPES it's fine.
 		return 1
 
-	for (var/type in BUILDABLE_AREA_TYPES) //This works well.
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES) //This works well.
 		if ( istype(A,type) )
 			return 1
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return 0
 	return 0 //If it's not a buildable area, don't let them build in it.
@@ -828,7 +828,7 @@
 		to_chat(usr, span_warning("You can not create a room here."))
 		return
 	if(get_new_area_type(first.loc) == 1) //Are they in an area they can build? I tried to do this BUILDABLE_AREA_TYPES[first.loc.type] but it refused.
-		var/list/turf/found = new
+		var/list/turf/found = list()
 		var/list/turf/pending = list(first)
 		while(pending.len)
 			if (found.len+pending.len > 70)
@@ -891,7 +891,7 @@
 	var/area/oldA = get_area(get_turf(creator))	//The old area (area currently standing in)
 	var/str										//What the new area is named.
 
-	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, 70) //Get the nearby areas.
+	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, 70) //Get the nearby areas.
 
 	if(!nearby_turfs_to_check)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
@@ -901,7 +901,7 @@
 		return
 
 	//They can select an area they want to turn their current area into.
-	str = sanitizeSafe(tgui_input_text(usr, "What would you like to name the area?", "Area Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	str = sanitizeSafe(tgui_input_text(creator, "What would you like to name the area?", "Area Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(isnull(str)) //They pressed cancel.
 		to_chat(creator, span_warning("No new area made. Cancelling."))
 		return

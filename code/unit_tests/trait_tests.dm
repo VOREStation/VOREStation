@@ -1,3 +1,25 @@
+/datum/unit_test/all_traits_unique_names
+	name = "TRAITS: All traits shall have unique names"
+
+/datum/unit_test/all_traits_unique_names/start_test()
+	var/failed = FALSE
+
+	var/list/used_named = list()
+	for(var/traitpath in GLOB.all_traits)
+		var/datum/trait/T = GLOB.all_traits[traitpath]
+		if(T.name in used_named)
+			log_unit_test("[T.type]: Trait - The name \"[T.name]\" is already in use.")
+			failed = TRUE
+		else
+			used_named.Add(T.name)
+
+	if(failed)
+		fail("One or more traits shared a name.")
+	else
+		pass("All [GLOB.all_traits.len] have unique names.")
+	return failed
+
+
 /datum/unit_test/autohiss_shall_be_exclusive
 	name = "TRAITS: Autohiss traits shall be exclusive"
 

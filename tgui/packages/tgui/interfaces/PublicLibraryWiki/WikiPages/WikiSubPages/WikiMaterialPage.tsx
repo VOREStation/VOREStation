@@ -5,11 +5,10 @@ import type { MaterialData } from '../../types';
 import { ColorizedImage } from '../../WikiCommon/WikiColorIcon';
 import { WikiSpoileredList } from '../../WikiCommon/WikiListElements';
 import {
-  NoBox,
   NotAvilableBox,
   SupplyEntry,
   TemperatureBox,
-  YesBox,
+  YesNoBox,
 } from '../../WikiCommon/WikiQuickElements';
 
 export const WikiMaterialPage = (props: { materials: MaterialData }) => {
@@ -58,10 +57,10 @@ export const WikiMaterialPage = (props: { materials: MaterialData }) => {
             />
             <LabeledList.Divider />
             <LabeledList.Item label="Transparent">
-              {opacity > 0.5 ? <YesBox /> : <NoBox />}
+              <YesNoBox value={opacity > 0.5} />
             </LabeledList.Item>
             <LabeledList.Item label="Conductive">
-              {conductive ? <YesBox /> : <NoBox />}
+              <YesNoBox value={!!conductive} />
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item label="Stability">

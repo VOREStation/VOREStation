@@ -1,5 +1,6 @@
 /datum/disease/cold
 	name = "The Cold"
+	medical_name = "Common Cold"
 	max_stages = 3
 	spread_text = "Airborne"
 	spread_flags = DISEASE_SPREAD_AIRBORNE

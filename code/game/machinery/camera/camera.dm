@@ -217,7 +217,11 @@
 				to_chat(O, span_infoplain(span_bold("[U]") + " holds \a [itemname] up to one of your cameras ..."))
 			else
 				to_chat(O, span_infoplain(span_bold("<a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a>") + " holds \a [itemname] up to one of your cameras ..."))
-			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+
+			var/datum/browser/popup = new(O, itemname, itemname)
+			popup.add_head_content("<TITLE>[itemname]</TITLE>")
+			popup.set_content("<TT>[info]</TT>")
+			popup.open()
 
 	else if (istype(W, /obj/item/camera_bug))
 		if (!src.can_use())

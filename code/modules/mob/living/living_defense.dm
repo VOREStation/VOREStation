@@ -261,7 +261,7 @@
 		var/obj/O = AM
 		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //ported from chompstation
 			var/obj/item/I = O
-			if(adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+			if(adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
 				visible_message(span_warning("[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
 				I.throwing = 0
 				I.forceMove(vore_selected)

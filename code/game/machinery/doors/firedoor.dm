@@ -31,7 +31,7 @@
 	var/nextstate = null
 	var/net_id
 	var/list/areas_added
-	var/list/users_to_open = new
+	var/list/users_to_open = list()
 	var/next_process_time = 0
 
 	var/hatch_open = 0

@@ -18,13 +18,13 @@
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
 	var/obj/item/cell/cell //Our power source
 	var/state = 0
-	var/list/log = new
+	var/list/log = list()
 	var/last_message = 0
 	var/add_req_access = 1
 	var/maint_access = 1
 	//var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
-	var/datum/effect/effect/system/spark_spread/spark_system = new
+	var/datum/effect/effect/system/spark_spread/spark_system
 	var/lights = 0
 	var/lights_power = 6
 
@@ -46,7 +46,7 @@
 
 	var/wreckage
 
-	var/list/equipment = new
+	var/list/equipment = list()
 	var/obj/selected
 	//var/max_equip = 3
 
@@ -58,6 +58,7 @@
 	icon_state += "-unmanned"
 	add_radio()
 
+	spark_system = new
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
 	add_cell()

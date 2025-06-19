@@ -35,5 +35,5 @@
 /mob/living/simple_mob/death()
 	..()
 	ghostjoin = 0
-	active_ghost_pods -= src
+	GLOB.active_ghost_pods -= src
 	ghostjoin_icon()

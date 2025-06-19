@@ -28,7 +28,7 @@ export const ModifyRobotAccess = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="30%">
           <AccessSection
             title="Add Access"
@@ -42,6 +42,7 @@ export const ModifyRobotAccess = (props: {
         </Stack.Item>
         <Stack.Item width="40%">
           <Image
+            fixErrors
             src={tab_icon}
             style={{
               display: 'block',

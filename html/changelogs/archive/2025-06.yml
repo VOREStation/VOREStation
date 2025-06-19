@@ -234,3 +234,51 @@
   - bugfix: fixed a crash when updating a player record from the employment records
       computer
   - bugfix: airflow thrown objects don't hit phased shadekin now
+2025-06-16:
+  SatinIsle:
+  - maptweak: Added another 8 space heaters to the SD. Three of them in general maint,
+      5 of them specifically in a totally forgotten maint corner attached only to
+      atmos. Also generally spruced up that little room so it's not just blank.
+  timothyteakettle:
+  - rscadd: makes the switch tail layer verb let you choose from three layers
+2025-06-17:
+  ShadowLarkens:
+  - rscadd: Xenoarch's Radiocarbon Spectrometer has been rewritten to be more engaging.
+  - rscadd: New process option, "Break Bone".
+  - qol: If you have digestion pain turned on, you will receive broken bone notifications
+      even inside a stomach.
+  Willburd:
+  - code_imp: Corrected CI issue with component hose connectors
+2025-06-18:
+  Kashargul:
+  - code_imp: tgui-core 4.3.1
+  TheCaramelion:
+  - rscadd: Viruses now spawn with random names, depending on the symptoms, source,
+      and random factors.
+  - rscadd: Added medical names to all the common diseases
+2025-06-19:
+  Diana:
+  - bugfix: arglasses can be properly selected in the loadout
+  Kashargul:
+  - code_imp: more browse to datum browser
+  SatinIsle:
+  - bugfix: Fixed janitor shutter buttons on the tether.
+  TeleTubby2:
+  - rscadd: Voodoo dolls now render things all scrungly
+  - rscadd: Remote scene tools have some new utility verbs
+  - qol: Remote scene tools now show the status of their counterpart's wearer on examine
+  - bugfix: Various typos have been fixed for the recycler and recycling vendor
+  - bugfix: The maint recycler doesn't nuke your points after getting to 999 anymore.
+      whoops.
+  - rscadd: Examines now embed extra information that used to be examine tab exclusive.
+      This is a preference, so can be configured to remain as the old behavior.
+  - rscdel: Removed the old verb for setting examine mode
+  - refactor: Examine Mode is now a TG preference
+  Willburd:
+  - bugfix: blood without dna from simple mobs will track onto shoes, floors and hands
+      again
+  - bugfix: Forensics data merging on objects without data but with data on the merging
+      object, no longer crash on merge
+  - bugfix: reagent dispenser tanks no longer perform alchemy, turning all reagents
+      into fuel spills
+  - code_imp: gene conflict list uses much less memory

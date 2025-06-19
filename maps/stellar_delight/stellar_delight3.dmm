@@ -556,6 +556,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
+"bq" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/aftstarroom)
 "br" = (
 /obj/structure/lattice,
 /obj/structure/cable{
@@ -571,6 +575,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"bt" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/maintenance/stellardelight/deck3/foreportroomb)
+"bu" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/foreportrooma)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/purcarpet,
@@ -21914,7 +21926,7 @@ MP
 hD
 zt
 dL
-xP
+bt
 pN
 pN
 zp
@@ -22762,7 +22774,7 @@ Zn
 zQ
 DM
 WI
-il
+bu
 hD
 ne
 vF
@@ -26180,7 +26192,7 @@ Ub
 Yj
 Yj
 Ef
-FE
+Ps
 Ps
 eE
 dx
@@ -27360,7 +27372,7 @@ CK
 CK
 by
 hQ
-lq
+bq
 lq
 rq
 lq

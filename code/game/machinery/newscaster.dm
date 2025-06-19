@@ -103,7 +103,7 @@
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
 
-	// var/list/receiving_pdas = new
+	// var/list/receiving_pdas = list()
 	// for (var/obj/item/pda/P in PDAs)
 	// 	if(!P.owner)
 	// 		continue

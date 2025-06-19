@@ -31,6 +31,9 @@ BONUS
 
 	var/bigspin = FALSE
 
+	prefixes = list("Spinning ", "Rotatory ")
+	bodies = list("Rotato")
+
 /datum/symptom/spyndrome/Start(datum/disease/advance/A)
 	if(!..())
 		return
