@@ -464,7 +464,7 @@
 		if(user)
 			to_chat(user, span_warning("Your host rig is unpowered and unresponsive."))
 		return 0
-	if(!wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.belt != src))
+	if(!wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src))
 		if(user)
 			to_chat(user, span_warning("Your host rig is not being worn."))
 		return 0

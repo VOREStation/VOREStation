@@ -169,9 +169,9 @@
 		var/mob/living/carbon/human/H = owner.mymob
 		if(H.wear_id)
 			H.drop_from_inventory(H.wear_id)
-		if(H.belt && H.belt.suitlink == 1)
-			H.worn_clothing -= H.belt
-			H.drop_from_inventory(H.belt)
+		var/obj/item/belt = owner.get_item_in_slot(slot_belt_str)
+		if(istype(belt) && belt.suitlink == 1)
+			H.drop_from_inventory(belt)
 
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
@@ -235,7 +235,7 @@
 
 	hud_location = ui_oclothing
 	hud_object_type = /obj/screen/inventory
-	hud_icon_state = "center"
+	hud_icon_state = "suit"
 	hideable = TRUE
 
 /datum/inventory_slot/suit/update_icon(atom/movable/contents)
@@ -252,3 +252,26 @@
 		H.worn_clothing -= contents
 		if(H.s_store)
 			H.drop_from_inventory(H.s_store)
+
+/datum/inventory_slot/belt
+	name = "Belt"
+
+	slot_id = slot_belt
+	slot_id_str = slot_belt_str
+
+	hud_location = ui_belt
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "belt"
+
+/datum/inventory_slot/belt/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_belt()
+
+/datum/inventory_slot/belt/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/belt/unequipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents

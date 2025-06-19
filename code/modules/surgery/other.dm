@@ -221,12 +221,18 @@
 		var/obj/item/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
-	return (target_zone == BP_TORSO) && ((istype(target.inventory.get_item_in_slot(slot_back_str), /obj/item/rig) && !(target.inventory.get_item_in_slot(slot_back_str).canremove)) || (istype(target.belt, /obj/item/rig) && !(target.belt.canremove)))
+
+	var/obj/item/back = target.inventory.get_item_in_slot(slot_back_str)
+	var/obj/item/belt = target.inventory.get_item_in_slot(slot_belt_str)
+
+	return (target_zone == BP_TORSO) \
+		&& (istype(back, /obj/item/rig) && !(back.canremove)) \
+		|| (istype(belt, /obj/item/rig) && !(belt.canremove))
 
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/rig/rig = target.inventory.get_item_in_slot(slot_back_str)
 	if(!istype(rig))
-		rig = target.belt
+		rig = target.inventory.get_item_in_slot(slot_belt_str)
 		if(!istype(rig))
 			return
 	user.visible_message(span_filter_notice("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool].") , \
@@ -237,7 +243,7 @@
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/rig/rig = target.inventory.get_item_in_slot(slot_back_str)
 	if(!istype(rig))
-		rig = target.belt
+		rig = target.inventory.get_item_in_slot(slot_belt_str)
 		if(!istype(rig))
 			return
 	rig.cut_suit()

@@ -235,7 +235,7 @@
 	return ..()
 
 /obj/item/rig/proc/suit_is_deployed()
-	if(!istype(wearer) || src.loc != wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.belt != src))
+	if(!istype(wearer) || src.loc != wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src))
 		return 0
 	if(helm_type && !(helmet && wearer.head == helmet))
 		return 0
@@ -347,7 +347,7 @@
 					failed_to_seal = 1
 					break
 
-				if(!failed_to_seal && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src) && piece == compare_piece)
+				if(!failed_to_seal && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src) && piece == compare_piece)
 
 					if(seal_delay && !instant && !do_after(M,seal_delay,needhand=0))
 						failed_to_seal = 1
@@ -379,7 +379,7 @@
 				else
 					failed_to_seal = 1
 
-		if((M && !(istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src)) && !istype(M,/mob/living/silicon)) || (!seal_target && !suit_is_deployed()))
+		if((M && !(istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src)) && !istype(M,/mob/living/silicon)) || (!seal_target && !suit_is_deployed()))
 			failed_to_seal = 1
 
 	sealing = null
@@ -481,7 +481,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.inventory.get_item_in_slot(slot_wear_suit_str) || (H.inventory.get_item_in_slot(slot_back_str) != src && H.belt != src))
+	if (!H.inventory.get_item_in_slot(slot_wear_suit_str) || (H.inventory.get_item_in_slot(slot_back_str) != src && H.inventory.get_item_in_slot(slot_belt_str) != src))
 		return 0
 
 	return 1
@@ -536,7 +536,7 @@
 	// Run through cooling
 	coolingProcess()
 
-	if(!istype(wearer) || loc != wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.belt != src) || canremove || !cell || cell.charge <= 0)
+	if(!istype(wearer) || loc != wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src) || canremove || !cell || cell.charge <= 0)
 		if(!cell || cell.charge <= 0)
 			if(electrified > 0)
 				electrified = 0
@@ -590,7 +590,7 @@
 
 	if(!user_is_ai)
 		var/mob/living/carbon/human/H = user
-		if(istype(H) && (H.inventory.get_item_in_slot(slot_back_str) != src && H.belt != src))
+		if(istype(H) && (H.inventory.get_item_in_slot(slot_back_str) != src && H.inventory.get_item_in_slot(slot_belt_str) != src))
 			fail_msg = span_warning("You must be wearing \the [src] to do this.")
 		else if(user.is_incorporeal())
 			fail_msg = span_warning("You must be solid to do this.")
@@ -652,7 +652,7 @@
 			return 1
 		if(malfunction_check(user))
 			return 0
-		if(user.inventory.get_item_in_slot(slot_back_str) != src && user.belt != src)
+		if(user.inventory.get_item_in_slot(slot_back_str) != src && user.inventory.get_item_in_slot(slot_belt_str) != src)
 			return 0
 		else if(!src.allowed(user))
 			if(do_message)
@@ -675,24 +675,24 @@
 /obj/item/rig/equipped(mob/living/carbon/human/M)
 	..()
 
-	if(istype(M.inventory.get_item_in_slot(slot_back_str), /obj/item/rig) && istype(M.belt, /obj/item/rig))
+	if(istype(M.inventory.get_item_in_slot(slot_back_str), /obj/item/rig) && istype(M.inventory.get_item_in_slot(slot_belt_str), /obj/item/rig))
 		to_chat(M, span_notice("You try to put on the [src], but it won't fit."))
-		if(M && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src))
+		if(M && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src))
 			if(!M.unEquip(src))
 				return
 		src.forceMove(get_turf(src))
 		return
 
-	if(seal_delay > 0 && istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src))
+	if(seal_delay > 0 && istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src))
 		M.visible_message(span_notice("[M] starts putting on \the [src]..."), span_notice("You start putting on \the [src]..."))
 		if(!do_after(M,seal_delay))
-			if(M && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src))
+			if(M && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src))
 				if(!M.unEquip(src))
 					return
 			src.forceMove(get_turf(src))
 			return
 
-	if(istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.belt == src))
+	if(istype(M) && (M.inventory.get_item_in_slot(slot_back_str) == src || M.inventory.get_item_in_slot(slot_belt_str) == src))
 		M.visible_message(span_boldnotice("[M] struggles into \the [src]."), span_boldnotice("You struggle into \the [src]."))
 		wearer = M
 		wearer.wearing_rig = src
@@ -703,7 +703,7 @@
 	if((sealing || !cell || !cell.charge) && !forced)
 		return
 
-	if((!istype(wearer) || (!wearer.inventory.get_item_in_slot(slot_back_str) == src && !wearer.belt == src)) && !forced)
+	if((!istype(wearer) || (!wearer.inventory.get_item_in_slot(slot_back_str) == src && !wearer.inventory.get_item_in_slot(slot_belt_str) == src)) && !forced)
 		return
 
 	if(!H)
@@ -774,7 +774,7 @@
 
 	if(!H || !istype(H)) return
 
-	if(H.inventory.get_item_in_slot(slot_back_str) != src && H.belt != src)
+	if(H.inventory.get_item_in_slot(slot_back_str) != src && H.inventory.get_item_in_slot(slot_belt_str) != src)
 		return
 
 	if(destructive)
@@ -917,7 +917,7 @@
 		if(user)
 			to_chat(user, span_warning("Your host rig is unpowered and unresponsive."))
 		return 0
-	if(!wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.belt != src))
+	if(!wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src))
 		if(user)
 			to_chat(user, span_warning("Your host rig is not being worn."))
 		return 0
@@ -1023,8 +1023,8 @@
 /mob/living/carbon/human/get_rig()
 	if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig))
 		return inventory.get_item_in_slot(slot_back_str)
-	else if(istype(belt, /obj/item/rig))
-		return belt
+	else if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/rig))
+		return inventory.get_item_in_slot(slot_belt_str)
 	else
 		return null
 

@@ -56,7 +56,7 @@
 		slots_free -= ui_lhand
 	if(our_human.get_right_hand())
 		slots_free -= ui_rhand
-	if(!our_human.belt)
+	if(!our_human.inventory.get_item_in_slot(slot_belt_str))
 		slots_free += ui_belt
 	if(!our_human.inventory.get_item_in_slot(slot_l_store_str))
 		slots_free += ui_storage1

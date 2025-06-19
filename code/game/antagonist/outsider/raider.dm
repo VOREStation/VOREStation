@@ -260,7 +260,7 @@ var/datum/antagonist/raider/raiders
 		holster = new new_holster(T)
 		holster.holstered = primary
 		primary.loc = holster
-	else if(!player.belt && (primary.slot_flags & SLOT_BELT))
+	else if(!player.inventory.get_item_in_slot(slot_belt_str) && (primary.slot_flags & SLOT_BELT))
 		player.equip_to_slot_or_del(primary, slot_belt)
 	else if(!player.inventory.get_item_in_slot(slot_back_str) && (primary.slot_flags & SLOT_BACK))
 		player.equip_to_slot_or_del(primary, slot_back)

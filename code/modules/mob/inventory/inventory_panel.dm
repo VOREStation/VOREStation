@@ -180,7 +180,7 @@
 	data["specialSlots"] = specialSlots
 
 	data["internals"] = H.internals
-	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/tank) || istype(H.belt, /obj/item/tank) || istype(H.s_store, /obj/item/tank))
+	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/tank) || istype(H.inventory.get_item_in_slot(slot_belt_str), /obj/item/tank) || istype(H.s_store, /obj/item/tank))
 
 	data["sensors"] = FALSE
 	if(istype(suit) && suit.has_sensor == 1)

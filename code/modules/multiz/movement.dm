@@ -617,7 +617,8 @@
 	if(s_store && s_store.isParachute())
 		s_store.handleParachute()
 		return TRUE
-	if(belt && belt.isParachute())
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+	if(istype(belt) && belt.isParachute())
 		belt.handleParachute()
 		return TRUE
 	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)

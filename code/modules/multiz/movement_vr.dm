@@ -135,7 +135,7 @@
 			H.inventory.get_item_in_slot(slot_w_uniform_str),
 			H.gloves,
 			H.shoes,
-			H.belt,
+			H.inventory.get_item_in_slot(slot_belt_str),
 			H.get_active_hand(),
 			H.get_inactive_hand())
 		if(H.can_climb || H.species.can_climb)
@@ -259,8 +259,16 @@
 		var/mob/living/carbon/human/H = src
 		if(H.species.climbing_delay < H.climbing_delay)
 			climbing_delay_min = H.species.climbing_delay
-		var/list/gear = list(H.head, H.wear_mask, H.inventory.get_item_in_slot(slot_wear_suit_str), H.inventory.get_item_in_slot(slot_w_uniform_str),
-		H.gloves, H.shoes, H.belt, H.get_active_hand(), H.get_inactive_hand())
+		var/list/gear = list(
+			H.head,
+			H.wear_mask,
+			H.inventory.get_item_in_slot(slot_wear_suit_str),
+			H.inventory.get_item_in_slot(slot_w_uniform_str),
+			H.gloves,
+			H.shoes,
+			H.inventory.get_item_in_slot(slot_belt_str),
+			H.get_active_hand(),
+			H.get_inactive_hand())
 		if(H.can_climb || H.species.can_climb)
 			permit_human = TRUE
 		for(var/obj/item/I in gear)

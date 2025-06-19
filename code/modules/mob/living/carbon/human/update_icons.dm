@@ -828,7 +828,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(BELT_LAYER)
 	remove_layer(BELT_LAYER_ALT) //Because you can toggle belt layer with a verb
 
-	if(!belt)
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+
+	if(!istype(belt))
 		return //No belt, why bother.
 
 	//Toggle for belt layering with uniform

@@ -176,8 +176,8 @@
 			internal = inventory.get_item_in_slot(slot_back_str)
 		else if(istype(s_store, /obj/item/tank))
 			internal = s_store
-		else if(istype(belt, /obj/item/tank))
-			internal = belt
+		else if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_belt_str)
 
 	if(internal)
 		visible_message(span_warning("\The [src] is now running on internals!"))

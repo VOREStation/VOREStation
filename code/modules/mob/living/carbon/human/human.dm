@@ -162,8 +162,8 @@
 		var/obj/item/rig/R = inventory.get_item_in_slot(slot_back_str)
 		RigPanel(R)
 
-	else if(istype(belt,/obj/item/rig))
-		var/obj/item/rig/R = belt
+	else if(istype(inventory.get_item_in_slot(slot_belt_str),/obj/item/rig))
+		var/obj/item/rig/R = inventory.get_item_in_slot(slot_belt_str)
 		RigPanel(R)
 
 /mob/living/carbon/human/ex_act(severity)

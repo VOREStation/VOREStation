@@ -218,7 +218,8 @@
 		msg += span_warning("[T.He] [T.is] [icon2html(buckled,user.client)] buckled to [buckled]!")
 
 	//belt
-	if(belt && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
+	var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
+	if(istype(belt) && !(skip_gear & EXAMINE_SKIPBELT) && belt.show_examine)
 		if(belt.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(belt,user.client)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[belt]'>[belt.name]</a> about [T.his] waist!")
 		else

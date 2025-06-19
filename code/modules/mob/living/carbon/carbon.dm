@@ -444,6 +444,7 @@
 		var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
 		var/obj/item/r_ear = inventory.get_item_in_slot(slot_r_ear_str)
 		var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
+		var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
 
 		if(istype(wear_suit))
 			washgloves = !(wear_suit.flags_inv & HIDEGLOVES)
@@ -496,8 +497,8 @@
 			if(r_ear.wash(clean_types))
 				H.update_inv_ears(0)
 
-		if(H.belt)
-			if(H.belt.wash(clean_types))
+		if(istype(belt))
+			if(belt.wash(clean_types))
 				H.update_inv_belt(0)
 
 	else

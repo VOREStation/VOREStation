@@ -125,11 +125,11 @@ var/list/slot_equipment_priority = list( \
 		// 	src.r_hand = W
 		// 	W.equipped(src, slot)
 		// 	update_inv_r_hand()
-		if(slot_belt)
-			src.belt = W
-			W.equipped(src, slot)
-			worn_clothing += belt
-			update_inv_belt()
+		// if(slot_belt)
+		// 	src.belt = W
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += belt
+		// 	update_inv_belt()
 		if(slot_wear_id)
 			src.wear_id = W
 			W.equipped(src, slot)
@@ -308,8 +308,8 @@ var/list/slot_equipment_priority = list( \
 
 /mob/living/carbon/human/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	// Try put it in their belt first
-	if(istype(src.belt,/obj/item/storage))
-		var/obj/item/storage/wornbelt = src.belt
+	if(istype(inventory.get_item_in_slot(slot_belt_str),/obj/item/storage))
+		var/obj/item/storage/wornbelt = inventory.get_item_in_slot(slot_belt_str)
 		if(wornbelt.can_be_inserted(newitem, 1))
 			if(user_initiated)
 				wornbelt.handle_item_insertion(newitem)
@@ -653,10 +653,10 @@ var/list/slot_equipment_priority = list( \
 		worn_clothing -= shoes
 		shoes = null
 		update_inv_shoes()
-	else if (W == belt)
-		worn_clothing -= belt
-		belt = null
-		update_inv_belt()
+	// else if (W == belt)
+	// 	worn_clothing -= belt
+	// 	belt = null
+	// 	update_inv_belt()
 	else if (W == wear_mask)
 		worn_clothing -= wear_mask
 		wear_mask = null
@@ -804,8 +804,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_head_str)       return head
 		if(slot_shoes)          return shoes
 		if(slot_shoes_str)      return shoes
-		if(slot_belt)           return belt
-		if(slot_belt_str)       return belt
+		if(slot_belt)           return inventory.get_item_in_slot(slot_belt_str)
+		if(slot_belt_str)       return inventory.get_item_in_slot(slot_belt_str)
 		if(slot_wear_suit)      return inventory.get_item_in_slot(slot_wear_suit_str)
 		if(slot_wear_suit_str)  return inventory.get_item_in_slot(slot_wear_suit_str)
 		if(slot_w_uniform)      return inventory.get_item_in_slot(slot_w_uniform_str)
@@ -830,7 +830,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/living/carbon/human/get_equipped_items()
 	. = ..()
-	. += belt
+	. += inventory.get_item_in_slot(slot_belt_str)
 	. += inventory.get_item_in_slot(slot_l_ear_str)
 	. += inventory.get_item_in_slot(slot_r_ear_str)
 	. += glasses

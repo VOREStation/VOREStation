@@ -609,7 +609,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		if(istype(get_right_hand(), /obj/item/gun) || istype(get_right_hand(), /obj/item/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/melee))
+		if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/gun) || istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/melee))
 			threatcount += 2
 
 		if(species.name != SPECIES_HUMAN)

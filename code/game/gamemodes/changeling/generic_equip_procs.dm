@@ -92,9 +92,9 @@
 				qdel(M.shoes)
 				success = 1
 
-		if(M.belt && stuff_to_equip["belt"])
-			if(istype(M.belt, stuff_to_equip["belt"]))
-				qdel(M.belt)
+		if(stuff_to_equip["belt"])
+			if(istype(M.inventory.get_item_in_slot(slot_belt_str), stuff_to_equip["belt"]))
+				qdel(M.inventory.get_item_in_slot(slot_belt_str))
 				success = 1
 
 		if(M.glasses && stuff_to_equip["glasses"])
@@ -171,7 +171,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["belt"]
-		if(!M.belt && t)
+		if(!M.inventory.get_item_in_slot(slot_belt_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_belt)
 			grown_items_list.Add("a belt")

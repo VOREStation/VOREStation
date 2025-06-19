@@ -16,7 +16,6 @@
 	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
 	//Equipment slots
 	var/obj/item/shoes = null
-	var/obj/item/belt = null
 	var/obj/item/gloves = null
 	var/obj/item/glasses = null
 	var/obj/item/head = null
