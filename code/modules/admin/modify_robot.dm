@@ -740,7 +740,7 @@
 	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
 		for(var/tool in GLOB.material_synth_list)
 			var/material_path = GLOB.material_synth_list[tool]
-			if(target.check_for_synth(material_path)) //Don't add it to the list if we already have it!
+			if(target.can_install_synth(material_path)) //Don't add it to the list if we already have it!
 				continue
 			tools += list(list("name" = tool, "path" = material_path))
 	else
