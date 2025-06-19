@@ -37,6 +37,10 @@ Bonus
 		"Stealth 4" = "The symptom remans hidden until active."
 	)
 
+	prefixes = list("Digestive ")
+	bodies = list("Vomit")
+	suffixes = list(" Emission")
+
 /datum/symptom/vomit/Start(datum/disease/advance/A)
 	if(!..())
 		return

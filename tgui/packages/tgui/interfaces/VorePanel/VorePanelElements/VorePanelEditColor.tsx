@@ -9,15 +9,15 @@ import { VorePanelEditNumber } from './VorePanelEditNumber';
 export const VorePanelEditColor = (props: {
   /** Switch between Element editing and display */
   editMode: boolean;
-  /** Our backend action on text area blur */
+  /** Our backend action on click */
   action: string;
-  /** Our secondary backend action on text area blur */
+  /** Our secondary backend action on click */
   subAction?: string;
   /** Our color value sent to byond */
   value_of: BooleanLike | string;
   /** The displayed color of the color box */
   back_color: string;
-  /** A number representing the alpha value for alpha inouts */
+  /** A number representing the alpha value for alpha inputs */
   alpha?: number;
   /** Optional label to show before the color box */
   name_of?: string;

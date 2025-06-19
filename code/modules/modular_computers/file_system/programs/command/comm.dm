@@ -12,7 +12,11 @@
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	network_destination = "long-range communication array"
 	category = PROG_COMMAND
-	var/datum/comm_message_listener/message_core = new
+	var/datum/comm_message_listener/message_core
+
+/datum/computer_file/program/comm/New(var/obj/item/modular_computer/comp = null)
+	..()
+	message_core = new
 
 /datum/computer_file/program/comm/clone()
 	var/datum/computer_file/program/comm/temp = ..()
