@@ -69,15 +69,15 @@
 
 /proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	if(istype(H) && istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		return U.sensor_mode >= level
 	return 0
 
 /proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	if(istype(H) && istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		return U.sensor_mode
 	return SUIT_SENSOR_OFF
 

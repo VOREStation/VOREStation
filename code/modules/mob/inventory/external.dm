@@ -91,7 +91,7 @@ var/list/slot_equipment_priority = list( \
 	if(inventory.equip_to_slot(slot, W))
 		return TRUE
 
-	W.loc = src
+	W.forceMove(src)
 	switch(slot)
 		// if(slot_back)
 		// 	src.back = W
@@ -181,11 +181,11 @@ var/list/slot_equipment_priority = list( \
 			W.equipped(src, slot)
 			worn_clothing += wear_suit
 			update_inv_wear_suit()
-		if(slot_w_uniform)
-			src.w_uniform = W
-			W.equipped(src, slot)
-			worn_clothing += w_uniform
-			update_inv_w_uniform()
+		// if(slot_w_uniform)
+		// 	src.w_uniform = W
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += w_uniform
+		// 	update_inv_w_uniform()
 		if(slot_s_store)
 			src.s_store = W
 			W.equipped(src, slot)
@@ -193,7 +193,7 @@ var/list/slot_equipment_priority = list( \
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
-			W.loc = inventory.get_item_in_slot(slot_back_str)
+			W.forceMove(inventory.get_item_in_slot(slot_back_str))
 		if(slot_tie)
 			for(var/obj/item/clothing/C in worn_clothing)
 				if(istype(W, /obj/item/clothing/accessory))
@@ -608,19 +608,19 @@ var/list/slot_equipment_priority = list( \
 		worn_clothing -= wear_suit
 		wear_suit = null
 		update_inv_wear_suit()
-	else if (W == w_uniform)
-		if (inventory.get_item_in_slot(slot_r_store_str))
-			drop_from_inventory(inventory.get_item_in_slot(slot_r_store_str))
-		if (inventory.get_item_in_slot(slot_l_store_str))
-			drop_from_inventory(inventory.get_item_in_slot(slot_l_store_str))
-		if (wear_id)
-			drop_from_inventory(wear_id)
-		if (belt && belt.suitlink == 1)
-			worn_clothing -= belt
-			drop_from_inventory(belt)
-		worn_clothing -= w_uniform
-		w_uniform = null
-		update_inv_w_uniform()
+	// else if (W == w_uniform)
+	// 	if (inventory.get_item_in_slot(slot_r_store_str))
+	// 		drop_from_inventory(inventory.get_item_in_slot(slot_r_store_str))
+	// 	if (inventory.get_item_in_slot(slot_l_store_str))
+	// 		drop_from_inventory(inventory.get_item_in_slot(slot_l_store_str))
+	// 	if (wear_id)
+	// 		drop_from_inventory(wear_id)
+	// 	if (belt && belt.suitlink == 1)
+	// 		worn_clothing -= belt
+	// 		drop_from_inventory(belt)
+	// 	worn_clothing -= w_uniform
+	// 	w_uniform = null
+	// 	update_inv_w_uniform()
 	else if (W == gloves)
 		worn_clothing -= gloves
 		gloves = null
@@ -804,8 +804,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_belt_str)       return belt
 		if(slot_wear_suit)      return wear_suit
 		if(slot_wear_suit_str)  return wear_suit
-		if(slot_w_uniform)      return w_uniform
-		if(slot_w_uniform_str)  return w_uniform
+		if(slot_w_uniform)      return inventory.get_item_in_slot(slot_w_uniform_str)
+		if(slot_w_uniform_str)  return inventory.get_item_in_slot(slot_w_uniform_str)
 		if(slot_s_store)        return s_store
 		if(slot_s_store_str)    return s_store
 		if(slot_l_ear)          return l_ear
@@ -835,7 +835,7 @@ var/list/slot_equipment_priority = list( \
 	. += shoes
 	. += wear_id
 	. += wear_suit
-	. += w_uniform
+	. += inventory.get_item_in_slot(slot_w_uniform_str)
 
 /mob/proc/delete_inventory()
 	for(var/entry in get_equipped_items())
@@ -858,7 +858,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || w_uniform || wear_suit || glasses || l_ear || r_ear || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || wear_suit || glasses || l_ear || r_ear || gloves)
 			return TRUE
 
 	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)

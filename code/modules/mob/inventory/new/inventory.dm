@@ -67,15 +67,21 @@
 	slot_to_item = null
 
 /datum/inventory/proc/build_hud(datum/hud/HUD)
-	var/list/items = list()
+	var/list/adding = list()
+	var/list/other = list()
 
 	for(var/datum/inventory_slot/slot as anything in slots)
-		items += slot.build_hud(HUD)
+		if(slot.hideable)
+			other += slot.build_hud(HUD)
+		else
+			adding += slot.build_hud(HUD)
 
-	LAZYADD(HUD.adding, items)
+	LAZYADD(HUD.adding, adding)
+	LAZYADD(HUD.other, other)
 
 	if(mymob.client)
-		mymob.client.screen |= items
+		// don't add other, it's hidden by default
+		mymob.client.screen |= adding
 
 /datum/inventory/proc/get_item_in_slot(slot_id)
 	return LAZYACCESS(slot_to_item, slot_id)
@@ -138,4 +144,5 @@
 		/datum/inventory_slot/l_store,
 		/datum/inventory_slot/r_store,
 		/datum/inventory_slot/back,
+		/datum/inventory_slot/uniform,
 	)

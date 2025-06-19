@@ -71,8 +71,8 @@
 		var/mob/living/carbon/human/H = stripped
 		if(H.wear_suit)
 			H.unEquip(H.wear_suit)
-		if(H.w_uniform)
-			H.unEquip(H.w_uniform)
+		if(H.inventory.get_item_in_slot(slot_w_uniform_str))
+			H.unEquip(H.inventory.get_item_in_slot(slot_w_uniform_str))
 		if(H.inventory.get_item_in_slot(slot_back_str))
 			H.unEquip(H.inventory.get_item_in_slot(slot_back_str))
 		if(H.shoes)

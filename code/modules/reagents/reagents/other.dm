@@ -483,6 +483,9 @@
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+
+		var/obj/item/w_uniform = H.inventory.get_item_in_slot(slot_w_uniform_str)
+
 		if(alien == IS_SLIME)
 			M.adjustToxLoss(rand(5, 10))
 		if(H.head)
@@ -491,8 +494,8 @@
 		if(H.wear_suit)
 			if(H.wear_suit.wash(CLEAN_SCRUB))
 				H.update_inv_wear_suit(0)
-		else if(H.w_uniform)
-			if(H.w_uniform.wash(CLEAN_SCRUB))
+		else if(istype(w_uniform))
+			if(w_uniform.wash(CLEAN_SCRUB))
 				H.update_inv_w_uniform(0)
 		if(H.shoes)
 			if(H.shoes.wash(CLEAN_SCRUB))

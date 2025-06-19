@@ -147,7 +147,7 @@
 
 	var/total_item_slowdown = 0
 	var/slowdown_mod = species.item_slowdown_mod //HIGHER = MAKES YOU SLOWER
-	for(var/slot in list(inventory.get_item_in_slot(slot_back_str), belt, l_ear, r_ear, glasses, gloves, head, shoes, wear_id, wear_mask, wear_suit, w_uniform)) //Two things to note here. ONE: If you add a new inventory slot, ADD IT HERE. Two: If we ever get a global list on human of all the inventory slots (MINUS HANDS) add it here.
+	for(var/slot in list(inventory.get_item_in_slot(slot_back_str), belt, l_ear, r_ear, glasses, gloves, head, shoes, wear_id, wear_mask, wear_suit, inventory.get_item_in_slot(slot_w_uniform_str))) //Two things to note here. ONE: If you add a new inventory slot, ADD IT HERE. Two: If we ever get a global list on human of all the inventory slots (MINUS HANDS) add it here.
 		if(!slot) //ZOOM
 			continue
 		var/obj/item/I = slot

@@ -33,7 +33,8 @@
 			skip_gear |= EXAMINE_SKIPGLOVES
 			skip_body |= EXAMINE_SKIPHANDS
 
-	if(w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		if(w_uniform.body_parts_covered & LEGS)
 			skip_body |= EXAMINE_SKIPLEGS
 		if(w_uniform.body_parts_covered & ARMS)
@@ -105,7 +106,7 @@
 	var/list/msg = list("This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
-	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
+	if(istype(w_uniform) && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
 		//Ties
 		var/tie_msg
 		if(istype(w_uniform,/obj/item/clothing/under) && !(skip_gear & EXAMINE_SKIPTIE))

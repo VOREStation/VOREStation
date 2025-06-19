@@ -114,9 +114,10 @@
 				qdel(back)
 				success = 1
 
-		if(M.w_uniform && stuff_to_equip["w_uniform"])
-			if(istype(M.w_uniform, stuff_to_equip["w_uniform"]))
-				qdel(M.w_uniform)
+		var/atom/movable/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+		if(w_uniform && stuff_to_equip["w_uniform"])
+			if(istype(w_uniform, stuff_to_equip["w_uniform"]))
+				qdel(w_uniform)
 				success = 1
 
 		if(success)
@@ -142,7 +143,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["w_uniform"]
-		if(!M.w_uniform && t)
+		if(!M.inventory.get_item_in_slot(slot_w_uniform_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_w_uniform)
 			grown_items_list.Add("a uniform")

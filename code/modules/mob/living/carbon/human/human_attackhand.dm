@@ -161,8 +161,8 @@
 
 	M.do_attack_animation(src)
 
-	if(w_uniform)
-		w_uniform.add_fingerprint(M)
+	if(inventory.get_item_in_slot(slot_w_uniform_str))
+		inventory.get_item_in_slot(slot_w_uniform_str).add_fingerprint(M)
 
 	if(M.lying && (M.loc == src.loc)) //If we are on the ground and they're on top of us, we don't have enough space to push them! Also antispam.
 		if(world.time <= (last_push_time + 6 SECONDS))
@@ -250,7 +250,9 @@
 		if(G.assailant == M)
 			to_chat(M, span_notice("You already grabbed [src]."))
 			return
-	if(w_uniform)
+
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		w_uniform.add_fingerprint(M)
 
 	if(buckled)

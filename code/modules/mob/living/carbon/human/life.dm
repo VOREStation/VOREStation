@@ -1041,7 +1041,7 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(head,wear_suit,inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
 		if(C)
 			if(C.handle_high_temperature(temperature))
 				. |= C.get_heat_protection_flags()
@@ -1050,7 +1050,7 @@
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = 0
 	//Handle normal clothing
-	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
+	for(var/obj/item/clothing/C in list(head,wear_suit,inventory.get_item_in_slot(slot_w_uniform_str),shoes,gloves,wear_mask))
 		if(C)
 			if(C.handle_low_temperature(temperature))
 				. |= C.get_cold_protection_flags()

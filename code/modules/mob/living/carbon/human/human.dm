@@ -1430,7 +1430,7 @@
 		to_chat(user, span_warning("[fail_msg]"))
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
+	var/list/equipment = list(src.head,src.wear_mask,src.glasses,inventory.get_item_in_slot(slot_w_uniform_str),src.wear_suit,src.gloves,src.shoes)
 	var/head_exposed = 1
 	var/face_exposed = 1
 	var/eyes_exposed = 1
@@ -1484,7 +1484,7 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),src.wear_suit,src.shoes)
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FEET)

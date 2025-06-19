@@ -140,8 +140,8 @@
 	var/mob/living/carbon/human/H = host // Not my fault if this runtimes, a human inventory panel should never be created without a human attached.
 
 	var/obj/item/clothing/under/suit = null
-	if(istype(H.w_uniform, /obj/item/clothing/under))
-		suit = H.w_uniform
+	if(istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+		suit = H.inventory.get_item_in_slot(slot_w_uniform_str)
 
 	var/list/slots = list()
 	for(var/entry in H.species.hud.gear)

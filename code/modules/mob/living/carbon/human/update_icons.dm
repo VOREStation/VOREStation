@@ -629,7 +629,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	//Shoes can be affected by uniform being drawn onto them
 	update_inv_shoes()
 
-	if(!w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(!istype(w_uniform))
 		return
 
 	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
@@ -662,7 +663,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return //Not wearing an ID
 
 	//Only draw the ID on the mob if the uniform allows for it
-	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
+	var/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = w_uniform
 		if(U.displays_id)
 			overlays_standing[ID_LAYER] = wear_id.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_id_str, default_icon = INV_WEAR_ID_DEF_ICON, default_layer = ID_LAYER)
@@ -753,7 +755,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(SHOES_LAYER)
 	remove_layer(SHOES_LAYER_ALT) //Dumb alternate layer for shoes being under the uniform.
 
-	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
 
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))

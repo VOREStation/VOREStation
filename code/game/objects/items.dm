@@ -516,12 +516,12 @@ var/list/global/slot_flags_enumeration = list(
 			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
 				return 0
 		if(slot_wear_id)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			if(!H.inventory.get_item_in_slot(slot_w_uniform_str) && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
 		if(slot_l_store, slot_r_store)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			if(!H.inventory.get_item_in_slot(slot_w_uniform_str) && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0

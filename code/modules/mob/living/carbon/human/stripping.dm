@@ -32,7 +32,7 @@
 				toggle_internals(user)
 			return
 		if("tie")
-			var/obj/item/clothing/under/suit = w_uniform
+			var/obj/item/clothing/under/suit = inventory.get_item_in_slot(slot_w_uniform_str)
 			if(!istype(suit) || !LAZYLEN(suit.accessories))
 				return
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
@@ -125,7 +125,7 @@
 
 // Modify the current target sensor level.
 /mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
+	var/obj/item/clothing/under/suit = inventory.get_item_in_slot(slot_w_uniform_str)
 	if(!suit)
 		to_chat(user, span_warning("\The [src] is not wearing a suit with sensors."))
 		return

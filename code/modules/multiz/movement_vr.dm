@@ -128,7 +128,7 @@
 		var/mob/living/carbon/human/H = L
 		if(H.species.climbing_delay < H.climbing_delay)
 			climbing_delay_min = H.species.climbing_delay
-		var/list/gear = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform,
+		var/list/gear = list(H.head, H.wear_mask, H.wear_suit, H.inventory.get_item_in_slot(slot_w_uniform_str),
 		H.gloves, H.shoes, H.belt, H.get_active_hand(), H.get_inactive_hand())
 		if(H.can_climb || H.species.can_climb)
 			permit_human = TRUE
@@ -251,7 +251,7 @@
 		var/mob/living/carbon/human/H = src
 		if(H.species.climbing_delay < H.climbing_delay)
 			climbing_delay_min = H.species.climbing_delay
-		var/list/gear = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform,
+		var/list/gear = list(H.head, H.wear_mask, H.wear_suit, H.inventory.get_item_in_slot(slot_w_uniform_str),
 		H.gloves, H.shoes, H.belt, H.get_active_hand(), H.get_inactive_hand())
 		if(H.can_climb || H.species.can_climb)
 			permit_human = TRUE

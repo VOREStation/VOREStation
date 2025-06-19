@@ -25,41 +25,40 @@
 	// var/obj/screen/inventory/inv_box
 
 	// Draw the various inventory equipment slots.
-	// var/has_hidden_gear
-	// for(var/gear_slot in hud_data.gear)
+	var/has_hidden_gear
+	for(var/gear_slot in hud_data.gear)
+		// inv_box = new /obj/screen/inventory()
+		// inv_box.icon = HUD.ui_style
+		// inv_box.color = HUD.ui_color
+		// inv_box.alpha = HUD.ui_alpha
+		// inv_box.hud = HUD
 
-	// 	inv_box = new /obj/screen/inventory()
-	// 	inv_box.icon = HUD.ui_style
-	// 	inv_box.color = HUD.ui_color
-	// 	inv_box.alpha = HUD.ui_alpha
-	// 	inv_box.hud = HUD
+		var/list/slot_data =  hud_data.gear[gear_slot]
+		// inv_box.name =        gear_slot
+		// inv_box.screen_loc =  slot_data["loc"]
+		// inv_box.slot_id =     slot_data["slot"]
+		// inv_box.icon_state =  slot_data["state"]
+		// slot_info["[inv_box.slot_id]"] = inv_box.screen_loc
 
-	// 	var/list/slot_data =  hud_data.gear[gear_slot]
-	// 	inv_box.name =        gear_slot
-	// 	inv_box.screen_loc =  slot_data["loc"]
-	// 	inv_box.slot_id =     slot_data["slot"]
-	// 	inv_box.icon_state =  slot_data["state"]
-	// 	slot_info["[inv_box.slot_id]"] = inv_box.screen_loc
+		// if(slot_data["dir"])
+		// 	inv_box.set_dir(slot_data["dir"])
 
-	// 	if(slot_data["dir"])
-	// 		inv_box.set_dir(slot_data["dir"])
+		if(slot_data["toggle"])
+			// other += inv_box
+			has_hidden_gear = 1
+		// else
+		// 	adding += inv_box
 
-	// 	if(slot_data["toggle"])
-	// 		other += inv_box
-	// 		has_hidden_gear = 1
-	// 	else
-	// 		adding += inv_box
-
-	// if(has_hidden_gear)
-	// 	using = new /obj/screen()
-	// 	using.name = "toggle"
-	// 	using.icon = HUD.ui_style
-	// 	using.icon_state = "other"
-	// 	using.screen_loc = ui_inventory
-	// 	using.hud_layerise()
-	// 	using.color = HUD.ui_color
-	// 	using.alpha = HUD.ui_alpha
-	// 	adding += using
+	if(has_hidden_gear)
+		using = new /obj/screen()
+		using.name = "toggle"
+		using.icon = HUD.ui_style
+		using.icon_state = "other"
+		using.screen_loc = ui_inventory
+		using.hud_layerise()
+		using.color = HUD.ui_color
+		using.alpha = HUD.ui_alpha
+		adding += using
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)

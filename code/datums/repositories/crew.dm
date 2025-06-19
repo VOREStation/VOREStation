@@ -28,7 +28,7 @@ var/global/datum/repository/crew/crew_repository = new()
 		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.flag_check(AREA_BLOCK_SUIT_SENSORS)) && !(is_jammed(C)) && !(is_vore_jammed(C)))
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
-				if(H.w_uniform != C)
+				if(H.inventory.get_item_in_slot(slot_w_uniform_str) != C)
 					continue
 
 				var/list/crewmemberData = list("dead"=0, "oxy"=-1, "tox"=-1, "fire"=-1, "brute"=-1, "area"="", "x"=-1, "y"=-1, "realZ"=-1, "z"="", "ref" = "\ref[H]")
@@ -67,8 +67,8 @@ var/global/datum/repository/crew/crew_repository = new()
 /datum/repository/crew/proc/scan()
 	var/list/tracked = list()
 	for(var/mob/living/carbon/human/H in mob_list)
-		if(istype(H.w_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/C = H.w_uniform
+		if(istype(H.inventory.get_item_in_slot(slot_w_uniform_str), /obj/item/clothing/under))
+			var/obj/item/clothing/under/C = H.inventory.get_item_in_slot(slot_w_uniform_str)
 			if (C.has_sensor)
 				tracked |= C
 	return tracked

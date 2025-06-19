@@ -141,7 +141,7 @@ emp_act
 
 	var/siemens_coefficient = max(species.siemens_coefficient,0)
 
-	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
+	var/list/clothing_items = list(head, wear_mask, wear_suit, inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
@@ -177,7 +177,7 @@ emp_act
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
-	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	var/list/clothing_items = list(head, wear_mask, wear_suit, inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part))
 			results.Add(C)
@@ -586,7 +586,8 @@ emp_act
 	if(wear_suit)
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
-	if(w_uniform)
+	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+	if(istype(w_uniform))
 		w_uniform.add_blood(source)
 		update_inv_w_uniform(0)
 

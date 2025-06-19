@@ -389,6 +389,7 @@
 
 /mob/living/carbon/human/show_pudge()
 	//A uniform could hide it.
+	var/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
 	if(istype(w_uniform,/obj/item/clothing))
 		var/obj/item/clothing/under = w_uniform
 		if(istype(under) && under.hides_bulges)

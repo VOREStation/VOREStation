@@ -218,7 +218,7 @@
 				else
 					src.show_message("My [org.name] is " + span_notice("OK."),1)
 
-			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
+			if((SKELETON in H.mutations) && (!H.inventory.get_item_in_slot(slot_w_uniform_str)) && (!H.wear_suit))
 				H.play_xylophone()
 		else if (on_fire)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -244,9 +244,9 @@
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
-			if (ishuman(src) && src:w_uniform)
-				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
+			var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+			if(istype(w_uniform))
+				w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
@@ -438,6 +438,8 @@
 		var/washears = 1
 		var/washglasses = 1
 
+		var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
+
 		if(H.wear_suit)
 			washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
 			washshoes = !(H.wear_suit.flags_inv & HIDESHOES)
@@ -461,9 +463,9 @@
 			if(H.wear_suit.wash(clean_types))
 				H.update_inv_wear_suit()
 
-		else if(H.w_uniform)
-			if(H.w_uniform.wash(clean_types))
-				H.update_inv_w_uniform()
+		else if(istype(w_uniform))
+			if(w_uniform.wash(clean_types))
+				update_inv_w_uniform()
 
 		if(H.gloves && washgloves)
 			if(H.gloves.wash(clean_types))
