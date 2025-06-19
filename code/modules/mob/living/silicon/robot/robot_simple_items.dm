@@ -107,6 +107,8 @@
 	..()
 
 /obj/item/robotic_multibelt/proc/assume_selected_item(obj/item/chosen_item)
+	if(!chosen_item)
+		return
 	icon = chosen_item.icon
 	icon_state = chosen_item.icon_state
 	selected_item = chosen_item
