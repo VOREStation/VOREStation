@@ -2,7 +2,7 @@
  * VOREStation global lists
 */
 
-var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
+GLOBAL_LIST_EMPTY(hair_accesories_list) // Stores /datum/sprite_accessory/hair_accessory indexed by type
 GLOBAL_LIST_EMPTY(negative_traits)	// Negative custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(neutral_traits)		// Neutral custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(positive_traits)	// Positive custom species traits, indexed by path
@@ -536,7 +536,7 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 	paths = subtypesof(/datum/sprite_accessory/hair_accessory)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
-		hair_accesories_list[path] = instance
+		GLOB.hair_accesories_list[path] = instance
 
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/negative - /datum/trait/neutral - /datum/trait/positive
