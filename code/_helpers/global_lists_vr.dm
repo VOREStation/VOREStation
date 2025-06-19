@@ -11,11 +11,11 @@ GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all sp
 GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
 GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
 GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
-var/global/list/active_ghost_pods = list()
+GLOBAL_LIST_EMPTY(active_ghost_pods)
 
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
-var/global/list/visitable_overmap_object_instances = list()
+GLOBAL_LIST_EMPTY(visitable_overmap_object_instances)
 
 GLOBAL_LIST_INIT(sensorpreflist, list("Off", "Binary", "Vitals", "Tracking", "No Preference"))
 
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(vantag_choices_list, list(
 		VANTAG_KILL		=	"Be Killed"))
 
 //Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
-var/global/list/item_vore_blacklist = list(
+GLOBAL_LIST_INIT(item_vore_blacklist, list(
 		/obj/item/hand_tele,
 		/obj/item/card/id/gold/captain/spare,
 		/obj/item/gun,
@@ -50,7 +50,7 @@ var/global/list/item_vore_blacklist = list(
 		/obj/item/areaeditor/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz))
 
 //Classic Vore sounds
 GLOBAL_LIST_INIT(classic_vore_sounds, list(
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(global_vore_egg_types, list(
 	"Spotted Pink"
 	))
 
-var/global/list/tf_vore_egg_types = list(
+GLOBAL_LIST_INIT(tf_vore_egg_types, list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
 	"Tajara" 		= /obj/item/storage/vore_egg/tajaran,
 	"Akula" 		= /obj/item/storage/vore_egg/shark,
@@ -188,9 +188,9 @@ var/global/list/tf_vore_egg_types = list(
 	"Purple"		= /obj/item/storage/vore_egg/purple,
 	"Red"			= /obj/item/storage/vore_egg/red,
 	"Rainbow"		= /obj/item/storage/vore_egg/rainbow,
-	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots)
+	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots))
 
-var/global/list/edible_trash = list(/obj/item/broken_device,
+GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/clothing/accessory/collar,
 				/obj/item/communicator,
 				/obj/item/clothing/mask,
@@ -248,7 +248,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/roulette_ball,
 				/obj/item/pizzabox,
 				/obj/item/card/id
-				)
+				))
 
 GLOBAL_LIST_INIT(contamination_flavors, list(
 				"Generic" = GLOB.contamination_flavors_generic,
@@ -1195,7 +1195,7 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 #define SHEET_GRIPPER \
 	/obj/item/stack/material
 
-var/global/list/all_borg_multitool_options = list(
+GLOBAL_LIST_INIT(all_borg_multitool_options, list(
 	/obj/item/tool/screwdriver/cyborg,
 	/obj/item/tool/wrench/cyborg,
 	/obj/item/tool/crowbar/cyborg,
@@ -1220,4 +1220,4 @@ var/global/list/all_borg_multitool_options = list(
 	/obj/item/robot_harvester,
 	/obj/item/material/kitchen/rollingpin/cyborg,
 	/obj/item/reagent_containers/spray,
-)
+))

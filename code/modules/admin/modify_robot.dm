@@ -740,7 +740,7 @@
 		integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
 	multi_belt_list["integrated_tools"] = integrated_tools
 	var/list/tools = list()
-	for(var/tool in all_borg_multitool_options)
+	for(var/tool in GLOB.all_borg_multitool_options)
 		if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
 			continue
 		var/obj/item/tool_to_add = tool
