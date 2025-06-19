@@ -76,7 +76,7 @@
 
 /obj/item/robotic_multibelt/Destroy()
 	selected_item = null
-	QDEL_LIST_ASSOC(cyborg_integrated_tools)
+	QDEL_LIST_ASSOC_VAL(cyborg_integrated_tools)
 	integrated_tools_by_name.Cut()
 	integrated_tool_images.Cut()
 	. = ..()
