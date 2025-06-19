@@ -582,7 +582,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						AI.wander = FALSE
 				if(pa.Find("alt") && isatom(object))
 					to_chat(user, span_notice("Adding [object] to Entity Narrate List!"))
-					user.client.add_mob_for_narration(object)
+					SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/add_mob_for_narration, object)
 
 
 			if(pa.Find("right"))

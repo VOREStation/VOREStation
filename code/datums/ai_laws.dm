@@ -18,6 +18,7 @@
 	return 0
 
 /datum/ai_laws
+	/// The name of the lawset
 	var/name = "Unknown Laws"
 	var/law_header = "Prime Directives"
 	var/selectable = 0

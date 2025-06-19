@@ -681,7 +681,7 @@
 			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
 
 		if("resize")
-			user.client.resize(target)
+			SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/resize, target)
 
 		if("teleport")
 			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
