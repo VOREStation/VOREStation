@@ -361,7 +361,7 @@
 
 /obj/item/robotic_multibelt/materials
 	name = "Robotic Material Dispenser"
-	desc = "An integrated material dispenser! Click once to select your material. Use Alt, Ctrl, or Doubleclick to open the menu for the selected material."
+	desc = "An integrated material dispenser! Click once to select your material. Use Ctrl + Click to open the menu for the selected material."
 	icon_state = "toolkit_material"
 
 	cyborg_integrated_tools = list()
