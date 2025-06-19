@@ -312,45 +312,36 @@
 	icon_state = "sili_rolling_pin"
 
 //Admin proc to add new materials to their fabricator
-/mob/living/silicon/robot/proc/add_new_material(mob/user, mat_to_add) //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
+/mob/living/silicon/robot/proc/add_new_material(mat_to_add) //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
 	if(!module)
 		return
 
 	if(!mat_to_add)
-		mat_to_add = tgui_input_list(user, "Select a material to add", "Material selection", GLOB.material_synth_list)
-
-	if(!mat_to_add)
 		return
 
-	var/datum/matter_synth/new_synth
+	var/datum/matter_synth/synth_path = ispath(mat_to_remove) ? mat_to_remove : GLOB.material_synth_list[mat_to_remove]
+
+	if(check_for_synth(synth_path))
+		return
+
 	var/amount
 	switch(mat_to_add)
 		if(METAL_SYNTH)
-			new_synth = /datum/matter_synth/metal
 			amount = 40000
 		if(PLASTEEL_SYNTH)
-			new_synth = /datum/matter_synth/plasteel
 			amount = 20000
 		if(GLASS_SYNTH)
-			new_synth = /datum/matter_synth/glass
 			amount = 40000
 		if(WOOD_SYNTH)
-			new_synth = /datum/matter_synth/wood
 			amount = 40000
 		if(PLASTIC_SYNTH)
-			new_synth = /datum/matter_synth/plastic
 			amount = 40000
 		if(WIRE_SYNTH)
-			new_synth = /datum/matter_synth/wire
 			amount = 50
 		if(CLOTH_SYNTH)
-			new_synth = /datum/matter_synth/cloth
 			amount = 40000
 
-	if(check_for_synth(new_synth))
-		return
-
-	module.synths += new new_synth(amount)
+	module.synths += new synth_path(amount)
 
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
 		mat_belt.has_performed_first_use_init = FALSE
@@ -362,10 +353,24 @@
 /mob/living/silicon/robot/proc/check_for_synth(type_to_check)
 	if(!type_to_check)
 		return FALSE
-	for(var/datum/matter_synth/synths in module.synths)
-		if(istype(synths, type_to_check))
+	for(var/datum/matter_synth/synth in module.synths)
+		if(istype(synth, type_to_check))
 			return TRUE
 	return FALSE
+
+/mob/living/silicon/robot/proc/remove_material(mat_to_remove)
+	if(!module)
+		return
+
+	if(!mat_to_remove)
+		return
+
+	var/datum/matter_synth/synth_path = ispath(mat_to_remove) ? mat_to_remove : GLOB.material_synth_list[mat_to_remove]
+
+	for(var/datum/matter_synth/synth in module.synths)
+		if(istype(synth, synth_path))
+			module.synths -= synth
+			qdel(synth)
 
 //The Material Dispenser Multibelt
 //This thing is uh...Bulky. And took a lot of effort to get to work.

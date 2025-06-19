@@ -1223,11 +1223,11 @@ GLOBAL_LIST_INIT(all_borg_multitool_options, list(
 ))
 
 GLOBAL_LIST_INIT(material_synth_list, list(
-								METAL_SYNTH,
-								PLASTEEL_SYNTH,
-								GLASS_SYNTH,
-								WOOD_SYNTH,
-								PLASTIC_SYNTH,
-								WIRE_SYNTH,
-								CLOTH_SYNTH
+								METAL_SYNTH = /datum/matter_synth/metal,
+								PLASTEEL_SYNTH = /datum/matter_synth/plasteel,
+								GLASS_SYNTH = /datum/matter_synth/glass,
+								WOOD_SYNTH = /datum/matter_synth/wood,
+								PLASTIC_SYNTH = /datum/matter_synth/plastic,
+								WIRE_SYNTH = /datum/matter_synth/wire,
+								CLOTH_SYNTH = /datum/matter_synth/cloth
 							))

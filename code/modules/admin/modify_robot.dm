@@ -348,7 +348,7 @@
 			if(!istype(multibelt_holder))
 				return FALSE
 			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
-				target.add_new_material(ui.user, params["tool"])
+				target.add_new_material(params["tool"])
 				return TRUE
 			var/new_tool = text2path(params["tool"])
 			multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
@@ -359,6 +359,8 @@
 			if(!istype(multibelt_holder))
 				return FALSE
 			var/obj/item/rem_tool = locate(params["tool"])
+			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
+				target.remove_material(rem_tool)
 			if(multibelt_holder.selected_item == rem_tool)
 				multibelt_holder.dropped() //Reset to original icon.
 			multibelt_holder.contents -= rem_tool
@@ -736,10 +738,8 @@
 	var/list/tools = list()
 	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
 		for(var/tool in GLOB.material_synth_list)
-		/*TODO
-			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
+			if(target.check_for_synth(GLOB.material_synth_list[tool])) //Don't add it to the list if we already have it!
 				continue
-			*/
 			tools += list(list("name" = tool, "path" = tool))
 	else
 		for(var/tool in GLOB.all_borg_multitool_options)
