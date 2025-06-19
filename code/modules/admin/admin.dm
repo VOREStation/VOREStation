@@ -89,13 +89,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		body += "\ <A href='byond://?src=\ref[src];[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br>"} + span_bold("Mute: ") + {"
-			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
@@ -171,10 +171,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						if(istype(gene,/datum/gene/trait))
 							var/datum/gene/trait/T = gene
 							tname = T.get_name()
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
-							bcolor="#d88d00"
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						if(bstate)
+							bname = span_green(bname)
+						else if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+							bname = span_orange(bname)
+						else
+							bname = span_red(bname)
+						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -231,9 +234,11 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			if(!f) body += " | "
 			else f = 0
 			if(L in M.languages)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+				k = span_green(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 			else
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				k = span_red(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 
 	body += {"<br>"}
 
