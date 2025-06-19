@@ -73,12 +73,12 @@
 				qdel(M.head)
 				success = 1
 
-		if(M.wear_id && stuff_to_equip["wear_id"])
-			if(istype(M.wear_id, stuff_to_equip["wear_id"]))
-				qdel(M.wear_id)
+		if(stuff_to_equip["wear_id"])
+			if(istype(M.inventory.get_item_in_slot(slot_wear_id_str), stuff_to_equip["wear_id"]))
+				qdel(M.inventory.get_item_in_slot(slot_wear_id_str))
 				success = 1
 
-		if( stuff_to_equip["wear_suit"])
+		if(stuff_to_equip["wear_suit"])
 			if(istype(M.inventory.get_item_in_slot(slot_wear_suit_str), stuff_to_equip["wear_suit"]))
 				qdel(M.inventory.get_item_in_slot(slot_wear_suit_str))
 				success = 1
@@ -216,7 +216,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_id"]
-		if(!M.wear_id && t)
+		if(!M.inventory.get_item_in_slot(slot_wear_id_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_wear_id)
 			grown_items_list.Add("an ID card")

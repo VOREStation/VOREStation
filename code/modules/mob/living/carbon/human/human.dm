@@ -287,7 +287,7 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.rank ? pda.id.rank : if_no_job
@@ -303,7 +303,7 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.assignment
@@ -319,7 +319,7 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/pda/pda = wear_id
+	var/obj/item/pda/pda = inventory.get_item_in_slot(slot_wear_id_str)
 	if (istype(pda))
 		if (pda.id)
 			return pda.id.registered_name
@@ -358,10 +358,11 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
 	. = if_no_id
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
 	if(istype(wear_id,/obj/item/pda))
 		var/obj/item/pda/P = wear_id
 		return P.owner ? P.owner : if_no_id
-	if(wear_id)
+	if(istype(wear_id))
 		var/obj/item/card/id/I = wear_id.GetID()
 		if(I)
 			return I.registered_name
@@ -369,7 +370,8 @@
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
-	if(wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id))
 		return wear_id.GetID()
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.

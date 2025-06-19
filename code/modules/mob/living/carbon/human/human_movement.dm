@@ -156,7 +156,7 @@
 		gloves,
 		head,
 		shoes,
-		wear_id,
+		inventory.get_item_in_slot(slot_wear_id_str),
 		inventory.get_item_in_slot(slot_wear_mask_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str))) //Two things to note here. ONE: If you add a new inventory slot, ADD IT HERE. Two: If we ever get a global list on human of all the inventory slots (MINUS HANDS) add it here.

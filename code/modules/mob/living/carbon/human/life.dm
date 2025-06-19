@@ -2092,7 +2092,8 @@
 
 	if (BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = grab_hud(ID_HUD)
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				holder.icon_state = "hud[ckey(I.GetJobName())]"
@@ -2109,7 +2110,8 @@
 		var/image/holder = grab_hud(WANTED_HUD)
 		holder.icon_state = "hudblank"
 		var/perpname = name
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				perpname = I.registered_name

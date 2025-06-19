@@ -487,7 +487,8 @@
 		if(R)
 			blob.mob_radio = R
 			R.forceMove(blob)
-		if(wear_id)
+		var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+		if(istype(wear_id))
 			blob.myid = wear_id.GetID()
 
 		//Mail them to nullspace

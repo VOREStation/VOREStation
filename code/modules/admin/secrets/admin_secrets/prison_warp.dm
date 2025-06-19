@@ -16,8 +16,8 @@
 		//don't warp them if they aren't ready or are already there
 			continue
 		H.Paralyse(5)
-		if(H.wear_id)
-			var/obj/item/card/id/id = H.get_idcard()
+		var/obj/item/card/id/id = H.get_idcard()
+		if(istype(id))
 			for(var/A in id.GetAccess())
 				if(A == access_security)
 					security++

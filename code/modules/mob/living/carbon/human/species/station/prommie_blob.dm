@@ -356,7 +356,7 @@
 		nif,
 		inventory.get_item_in_slot(slot_l_store_str),
 		inventory.get_item_in_slot(slot_r_store_str),
-		wear_id,
+		inventory.get_item_in_slot(slot_wear_id_str),
 		inventory.get_item_in_slot(slot_l_ear_str),
 		inventory.get_item_in_slot(slot_r_ear_str)) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
@@ -417,7 +417,8 @@
 	if(R)
 		blob.mob_radio = R
 		R.forceMove(blob)
-	if(wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id))
 		blob.myid = wear_id.GetID()
 
 	//Mail them to nullspace

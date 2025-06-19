@@ -221,7 +221,8 @@
 		var/id = I.GetID()
 		if(id)
 			return id
-	if(wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id))
 		var/id = wear_id.GetID()
 		if(id)
 			return id

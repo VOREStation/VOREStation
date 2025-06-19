@@ -188,8 +188,8 @@
 		owner.mymob.drop_from_inventory(owner.get_item_in_slot(slot_l_store_str))
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
-		if(H.wear_id)
-			H.drop_from_inventory(H.wear_id)
+		if(H.inventory.get_item_in_slot(slot_wear_id_str))
+			H.drop_from_inventory(H.inventory.get_item_in_slot(slot_wear_id_str))
 		var/obj/item/belt = owner.get_item_in_slot(slot_belt_str)
 		if(istype(belt) && belt.suitlink == 1)
 			H.drop_from_inventory(belt)
@@ -306,6 +306,7 @@
 	hud_location = ui_mask
 	hud_object_type = /obj/screen/inventory
 	hud_icon_state = "mask"
+	hideable = TRUE
 
 /datum/inventory_slot/mask/update_icon(atom/movable/contents)
 	owner.mymob.update_inv_wear_mask()
@@ -330,3 +331,21 @@
 			if(H.internals)
 				H.internals.icon_state = "internal0"
 			H.internal = null
+
+/datum/inventory_slot/id
+	name = "ID"
+
+	slot_id = slot_wear_id
+	slot_id_str = slot_wear_id_str
+
+	hud_location = ui_id
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "id"
+
+/datum/inventory_slot/mask/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_wear_id()
+
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		BITSET(H.hud_updateflag, ID_HUD)
+		BITSET(H.hud_updateflag, WANTED_HUD)

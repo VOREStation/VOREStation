@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/anti_revolution/demote/check_completion()
 	if(target && target.current && ishuman(target))
-		var/obj/item/card/id/I = target.current:wear_id
+		var/obj/item/card/id/I = target.current.inventory.get_item_in_slot(slot_wear_id_str)
 		if(istype(I, /obj/item/pda))
 			var/obj/item/pda/P = I
 			I = P.id

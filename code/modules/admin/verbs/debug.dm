@@ -282,13 +282,15 @@
 		return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (H.wear_id)
-			var/obj/item/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/pda))
-				var/obj/item/pda/pda = H.wear_id
+		var/obj/item/wear_id = H.inventory.get_item_in_slot(slot_wear_id_str)
+		if(wear_id)
+			var/obj/item/card/id/id = wear_id
+			if(istype(wear_id, /obj/item/pda))
+				var/obj/item/pda/pda = wear_id
 				id = pda.id
-			id.icon_state = "gold"
-			id.access = get_all_accesses().Copy()
+			if(istype(id))
+				id.icon_state = "gold"
+				id.access = get_all_accesses().Copy()
 		else
 			var/obj/item/card/id/id = new/obj/item/card/id(M);
 			id.icon_state = "gold"

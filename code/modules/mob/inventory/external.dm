@@ -130,12 +130,12 @@ var/list/slot_equipment_priority = list( \
 		// 	W.equipped(src, slot)
 		// 	worn_clothing += belt
 		// 	update_inv_belt()
-		if(slot_wear_id)
-			src.wear_id = W
-			W.equipped(src, slot)
-			update_inv_wear_id()
-			BITSET(hud_updateflag, ID_HUD)
-			BITSET(hud_updateflag, WANTED_HUD)
+		// if(slot_wear_id)
+		// 	src.wear_id = W
+		// 	W.equipped(src, slot)
+		// 	update_inv_wear_id()
+		// 	BITSET(hud_updateflag, ID_HUD)
+		// 	BITSET(hud_updateflag, WANTED_HUD)
 		// if(slot_l_ear)
 		// 	src.l_ear = W
 		// 	if(l_ear.slot_flags & SLOT_TWOEARS)
@@ -671,11 +671,11 @@ var/list/slot_equipment_priority = list( \
 	// 			internals.icon_state = "internal0"
 	// 		internal = null
 	// 	update_inv_wear_mask()
-	else if (W == wear_id)
-		wear_id = null
-		update_inv_wear_id()
-		BITSET(hud_updateflag, ID_HUD)
-		BITSET(hud_updateflag, WANTED_HUD)
+	// else if (W == wear_id)
+	// 	wear_id = null
+	// 	update_inv_wear_id()
+	// 	BITSET(hud_updateflag, ID_HUD)
+	// 	BITSET(hud_updateflag, WANTED_HUD)
 	// else if (W == s_store)
 	// 	s_store = null
 	// 	update_inv_s_store()
@@ -794,8 +794,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_l_hand_str)     return get_left_hand()
 		if(slot_r_hand)         return get_right_hand()
 		if(slot_r_hand_str)     return get_right_hand()
-		if(slot_wear_id)        return wear_id
-		if(slot_wear_id_str)    return wear_id
+		if(slot_wear_id)        return inventory.get_item_in_slot(slot_wear_id_str)
+		if(slot_wear_id_str)    return inventory.get_item_in_slot(slot_wear_id_str)
 		if(slot_glasses)        return glasses
 		if(slot_glasses_str)    return glasses
 		if(slot_gloves)         return gloves
@@ -837,7 +837,7 @@ var/list/slot_equipment_priority = list( \
 	. += gloves
 	. += head
 	. += shoes
-	. += wear_id
+	. += inventory.get_item_in_slot(slot_wear_id_str)
 	. += inventory.get_item_in_slot(slot_wear_suit_str)
 	. += inventory.get_item_in_slot(slot_w_uniform_str)
 

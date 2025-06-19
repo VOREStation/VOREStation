@@ -265,7 +265,8 @@
 		msg += "[T.He] [T.has] [icon2html(r_ear,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_ear]'>\a [r_ear]</a> on [T.his] right ear."
 
 	//ID
-	if(wear_id && wear_id.show_examine)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+	if(istype(wear_id) && wear_id.show_examine)
 		msg += "[T.He] [T.is] wearing [icon2html(wear_id,user.client)]<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_id]'>\a [wear_id]</a>."
 
 	//Jitters

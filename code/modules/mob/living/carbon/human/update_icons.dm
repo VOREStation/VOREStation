@@ -667,7 +667,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(ID_LAYER)
 
-	if(!wear_id)
+	var/obj/item/wear_id = inventory.get_item_in_slot(slot_wear_id_str)
+
+	if(!istype(wear_id))
 		return //Not wearing an ID
 
 	//Only draw the ID on the mob if the uniform allows for it
