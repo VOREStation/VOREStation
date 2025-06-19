@@ -348,11 +348,12 @@
 			if(!istype(multibelt_holder))
 				return FALSE
 			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
-				target.add_new_material(params["tool"])
+				target.add_new_material(text2path(params["tool"]))
 				return TRUE
 			var/new_tool = text2path(params["tool"])
-			multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
-			multibelt_holder.generate_tools()
+			if(new_tool in GLOB.all_borg_multitool_options)
+				multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
+				multibelt_holder.generate_tools()
 			return TRUE
 
 		if("remove_tool")
