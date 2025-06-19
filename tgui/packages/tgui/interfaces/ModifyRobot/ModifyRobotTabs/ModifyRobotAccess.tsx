@@ -42,6 +42,7 @@ export const ModifyRobotAccess = (props: {
         </Stack.Item>
         <Stack.Item width="40%">
           <Image
+            fixErrors
             src={tab_icon}
             style={{
               display: 'block',

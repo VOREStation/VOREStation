@@ -94,6 +94,7 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
                 <Stack.Item grow />
                 <Stack.Item>
                   <Image
+                    fixErrors
                     src={getModuleIcon(
                       target.modules,
                       target.multibelt[selectedMultibelt].name,

@@ -67,6 +67,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
           <Stack.Item grow />
           <Stack.Item>
             <Image
+              fixErrors
               src={getModuleIcon(target.modules, target.pka.name)}
               width="150px"
             />

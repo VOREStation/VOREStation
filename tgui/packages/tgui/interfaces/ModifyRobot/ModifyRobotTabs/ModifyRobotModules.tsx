@@ -179,7 +179,7 @@ const SelectionField = (props: {
               >
                 <Stack fill align="center">
                   <Stack.Item>
-                    <Image src={modul_option.icon} />
+                    <Image fixErrors src={modul_option.icon} />
                   </Stack.Item>
                   <Stack.Item grow overflow="hidden" ml="10px">
                     {capitalize(modul_option.name)}
