@@ -256,3 +256,29 @@
   - rscadd: Viruses now spawn with random names, depending on the symptoms, source,
       and random factors.
   - rscadd: Added medical names to all the common diseases
+2025-06-19:
+  Diana:
+  - bugfix: arglasses can be properly selected in the loadout
+  Kashargul:
+  - code_imp: more browse to datum browser
+  SatinIsle:
+  - bugfix: Fixed janitor shutter buttons on the tether.
+  TeleTubby2:
+  - rscadd: Voodoo dolls now render things all scrungly
+  - rscadd: Remote scene tools have some new utility verbs
+  - qol: Remote scene tools now show the status of their counterpart's wearer on examine
+  - bugfix: Various typos have been fixed for the recycler and recycling vendor
+  - bugfix: The maint recycler doesn't nuke your points after getting to 999 anymore.
+      whoops.
+  - rscadd: Examines now embed extra information that used to be examine tab exclusive.
+      This is a preference, so can be configured to remain as the old behavior.
+  - rscdel: Removed the old verb for setting examine mode
+  - refactor: Examine Mode is now a TG preference
+  Willburd:
+  - bugfix: blood without dna from simple mobs will track onto shoes, floors and hands
+      again
+  - bugfix: Forensics data merging on objects without data but with data on the merging
+      object, no longer crash on merge
+  - bugfix: reagent dispenser tanks no longer perform alchemy, turning all reagents
+      into fuel spills
+  - code_imp: gene conflict list uses much less memory
