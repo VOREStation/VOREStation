@@ -321,7 +321,7 @@
 
 	var/datum/matter_synth/synth_path = ispath(mat_to_add) ? mat_to_add : GLOB.material_synth_list[mat_to_add]
 
-	if(!check_for_synth(synth_path))
+	if(!can_install_synth(synth_path))
 		return
 
 	var/amount
@@ -353,13 +353,13 @@
 		mat_belt.has_performed_first_use_init = FALSE
 		mat_belt.first_use_generation()
 
-/mob/living/silicon/robot/proc/check_for_synth(var/datum/matter_synth/type_to_check)
+/mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
 		return FALSE
 	for(var/datum/matter_synth/synth in module.synths)
 		if(istype(synth, type_to_check))
-			return TRUE
-	return FALSE
+			return FALSE
+	return TRUE
 
 /mob/living/silicon/robot/proc/remove_material(mat_to_remove)
 	if(!module)
