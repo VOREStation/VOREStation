@@ -32,23 +32,23 @@
 	name = "Nanite Synthesizer"
 
 /datum/matter_synth/metal
-	name = "Metal Synthesizer"
+	name = METAL_SYNTH
 
 /datum/matter_synth/plasteel
-	name = "Plasteel Synthesizer"
+	name = PLASTEEL_SYNTH
 	max_energy = 10000
 
 /datum/matter_synth/glass
-	name = "Glass Synthesizer"
+	name = GLASS_SYNTH
 
 /datum/matter_synth/wood
-	name = "Wood Synthesizer"
+	name = WOOD_SYNTH
 
 /datum/matter_synth/plastic
-	name = "Plastic Synthesizer"
+	name = PLASTIC_SYNTH
 
 /datum/matter_synth/wire
-	name = "Wire Synthesizer"
+	name = WIRE_SYNTH
 	max_energy = 50
 	recharge_rate = 2
 
@@ -58,7 +58,7 @@
 	recharge_rate = 1
 
 /datum/matter_synth/cloth
-	name = "Cloth Synthesizer"
+	name = CLOTH_SYNTH
 
 /datum/matter_synth/beacon
 	name = "Beacon Synthesizer"
