@@ -29,6 +29,10 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	var/neutered = FALSE
 	var/stopped = FALSE // Used for Viral Suspended Animaton, stops a symptom but doesn't neuter it.
 
+	var/list/prefixes = list()
+	var/list/bodies = list()
+	var/list/suffixes = list()
+
 /datum/symptom/New()
 	var/list/S = GLOB.list_symptoms
 	for(var/i = 1; i <= length(S); i++)
@@ -53,6 +57,9 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 /datum/symptom/proc/severityset(datum/disease/advance/A)
 	severity = initial(severity)
+	prefixes = initial(prefixes)
+	bodies = initial(bodies)
+	suffixes = initial(suffixes)
 
 // Called when the advance disease is going to be deleted or when the advance disease stops processing.
 /datum/symptom/proc/End(datum/disease/advance/A)

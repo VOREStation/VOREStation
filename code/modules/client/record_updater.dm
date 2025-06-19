@@ -19,7 +19,7 @@ var/global/client_record_update_lock = FALSE
 	if(!COM || QDELETED(COM))
 		return "Invalid console"
 
-	if(jobban_isbanned(user, "Records") )
+	if(jobban_isbanned(user, JOB_RECORDS) )
 		COM.visible_message(span_notice("\The [COM] buzzes!"))
 		playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update syncronization denied (OOC: You are banned from editing records)"

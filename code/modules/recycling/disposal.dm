@@ -909,16 +909,12 @@
 	src.add_fingerprint(user)
 	if(I.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/W = I.get_welder()
-
 		if(W.remove_fuel(0,user))
-			playsound(src, W.usesound, 50, 1)
-			// check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
-			to_chat(user, "Slicing the disposal pipe.")
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
+			playsound(src, W.usesound, 100, 1)
+			to_chat(user, "You start slicing [src]....")
+			if(do_after(user, 20 * W.toolspeed))
+				if(!src || !W.isOn()) return
+				to_chat(user, "You slice [src]")
 				welded()
 			else
 				to_chat(user, "You must stay still while welding the pipe.")
@@ -1219,9 +1215,12 @@
 	icon_state = "pipe-j1s"
 	desc = "An underfloor disposal pipe with a package sorting mechanism."
 
-	var/posdir = 0
-	var/negdir = 0
 	var/sortdir = 0
+
+	var/last_sort = FALSE
+	var/sort_scan = TRUE
+	var/panel_open = FALSE
+	var/datum/wires/wires = null // ...Why isnt this defined on /atom...
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -1234,20 +1233,25 @@
 	else
 		name = initial(name)
 
+/obj/structure/disposalpipe/sortjunction/Destroy()
+	qdel_null(wires)
+	. = ..()
+
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
-	posdir = dir
-	negdir = turn(posdir, 180)
+	var/negdir = turn(dir, 180)
 
 	if(icon_state == "pipe-j1s")
-		sortdir = turn(posdir, -90)
+		sortdir = turn(dir, -90)
 	else if(icon_state == "pipe-j2s")
-		sortdir = turn(posdir, 90)
+		sortdir = turn(dir, 90)
 
-	dpdir = sortdir | posdir | negdir
+	dpdir = sortdir | dir | negdir
 
 /obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
 	if(sortType) GLOB.tagger_locations |= list("[sortType]" = get_z(src))
+
+	wires = new /datum/wires/disposals(src)
 
 	updatedir()
 	updatename()
@@ -1257,6 +1261,17 @@
 /obj/structure/disposalpipe/sortjunction/attackby(var/obj/item/I, var/mob/user)
 	if(..())
 		return
+
+	if(I.has_tool_quality(TOOL_SCREWDRIVER)) //Who is screwdriver_act()?
+		panel_open = !panel_open
+		playsound(src, I.usesound, 100, 1)
+		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the wire panel."))
+		update_icon()
+		return
+
+	if(panel_open && is_wire_tool(I))
+		wires.Interact(user)
+		return TRUE
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1272,19 +1287,26 @@
 	return sortType == checkTag
 
 // next direction to move
-// if coming in from negdir, then next is primary dir or sortdir
-// if coming in from posdir, then flip around and go back to posdir
-// if coming in from sortdir, go to posdir
+// if coming in from negdir then next is primary dir or sortdir
+// if coming in from dir, Then next is negdir or sortdir
+// if coming in from sortdir, always go to posdir
 
 /obj/structure/disposalpipe/sortjunction/nextdir(var/fromdir, var/sortTag)
-	if(fromdir != sortdir)	// probably came from the negdir
+	if(sort_scan)
 		if(divert_check(sortTag))
-			return sortdir
+			if(!wires.is_cut(WIRE_SORT_SIDE))
+				last_sort = TRUE
 		else
-			return posdir
-	else				// came from sortdir
-						// so go with the flow to positive direction
-		return posdir
+			if(!wires.is_cut(WIRE_SORT_FORWARD))
+				last_sort = FALSE
+	if(fromdir != sortdir && last_sort)
+		return sortdir
+		// so go with the flow to positive direction
+	return dir
+
+/obj/structure/disposalpipe/sortjunction/proc/reset_scan()
+	if(!wires.is_cut(WIRE_SORT_SCAN))
+		sort_scan = TRUE
 
 /obj/structure/disposalpipe/sortjunction/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir, H.destinationTag)
@@ -1304,6 +1326,12 @@
 		return null
 
 	return P
+
+/obj/structure/disposalpipe/sortjunction/update_icon()
+	cut_overlays()
+	. = ..()
+	if(panel_open)
+		add_overlay("[icon_state]-open")
 
 //a three-way junction that filters all wrapped and tagged items
 /obj/structure/disposalpipe/sortjunction/wildcard

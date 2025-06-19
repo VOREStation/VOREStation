@@ -23,6 +23,8 @@ BONUS
 	level = 4
 	severity = 0
 
+	prefixes = list("Chronic ")
+
 /*
 //////////////////////////////////////
 Viral evolution
@@ -46,6 +48,8 @@ BONUS
 	stage_speed = 5
 	transmission = 3
 	level = 4
+
+	prefixes = list("Unstable ")
 
 /datum/symptom/viralpower
 	name = "Viral Power Multiplier"
@@ -115,6 +119,8 @@ BONUS
 	)
 
 	var/time_to_cure
+
+	prefixes = list("Spontaneous ")
 
 /datum/symptom/viralreverse/Activate(datum/disease/advance/A)
 	if(!..())

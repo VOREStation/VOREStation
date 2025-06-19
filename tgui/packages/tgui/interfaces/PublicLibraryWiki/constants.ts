@@ -7,6 +7,8 @@ export const WikiPages = [
   'Materials',
   'Ores',
   'Particle Physics',
+  'Viruses',
+  'Genes',
 ];
 
 export const wikiAds = [
@@ -157,3 +159,64 @@ export const WikiTippOfTheDay = [
   'Your kitchen is a chemistry set too!',
   'With Bingle, no sin will remain hidden from sight!',
 ];
+
+export const viursThreatToColor = {
+  Beneficial: 'green',
+  Positive: 'olive',
+  'No threat': undefined,
+  Minor: 'yellow',
+  Medium: '#f5ad42',
+  Harmful: 'orange',
+  Dangerous: 'red',
+  BIOHAZARD: '#b80000',
+  PANDEMIC: '#990202',
+};
+
+export const virusSpreadToColor = {
+  NA: 'label',
+  Contact: undefined,
+  Fluids: 'blue',
+  Blood: 'red',
+  Airborne: 'teal',
+  Faltered: 'grey',
+};
+
+export const virusSpreadToIcon = {
+  NA: undefined,
+  Contact: 'handshake',
+  Fluids: 'water',
+  Blood: 'droplet',
+  Airborne: 'wind',
+  Faltered: 'syringe',
+};
+
+export const virusDiscoveryToColor = {
+  'Extremely Elusive': 'red',
+  Difficult: 'orange',
+  Moderate: 'yellow',
+  Easy: 'olive',
+  Trivial: undefined,
+};
+
+export const virusInfectivityToColor = {
+  High: 'red',
+  Medium: 'orange',
+  Low: 'yellow',
+  NA: undefined,
+};
+
+export const virusResilienceToColor = {
+  Extreme: 'red',
+  High: 'orange',
+  Medium: 'yellow',
+  Low: 'olive',
+};
+
+export const geneTypeToColor = {
+  Positive: 'green',
+  'Super Power': 'teal',
+  Negative: 'red',
+  Disability: 'orange',
+  Neutral: undefined,
+  Strange: 'purple',
+};

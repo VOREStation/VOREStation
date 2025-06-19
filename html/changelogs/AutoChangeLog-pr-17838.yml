@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Multiple reagent hoses on one object are now properly usable"
-  - qol: "The maximum distance of a reagent hose matches its stack size of 10"

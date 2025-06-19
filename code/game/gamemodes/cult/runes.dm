@@ -995,8 +995,8 @@ var/list/sacrificed = list()
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 */
-	var/list/cultists = new //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
-	var/list/victims = new
+	var/list/cultists = list() //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
+	var/list/victims = list()
 //			var/list/cultboil = list(cultists-usr) //and for this words are destroy-see-blood.
 	for(var/mob/living/carbon/C in orange(1,src))
 		if(iscultist(C) && !C.stat)

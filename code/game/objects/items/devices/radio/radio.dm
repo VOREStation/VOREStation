@@ -65,7 +65,7 @@ var/global/list/default_medbay_channels = list(
 	var/list/internal_channels
 
 	var/datum/radio_frequency/radio_connection
-	var/list/datum/radio_frequency/secure_radio_connections = new
+	var/list/datum/radio_frequency/secure_radio_connections
 
 /obj/item/radio/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
@@ -74,6 +74,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/radio/Initialize(mapload)
 	. = ..()
+	secure_radio_connections = new
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)

@@ -1,3 +1,7 @@
+#define SWITCH_TAIL_LAYER_UPPER    	"Upper"
+#define SWITCH_TAIL_LAYER_STANDARD 	"Standard"
+#define SWITCH_TAIL_LAYER_LOWER	   	"Lower"
+
 /mob/living/carbon/human/verb/toggle_resizing_immunity()
 	set name = "Toggle Resizing Immunity"
 	set desc = "Toggles your ability to resist resizing attempts"
@@ -46,7 +50,18 @@
 	set name = "Switch tail layer"
 	set category = "IC.Game"
 	set desc = "Switch tail layer on top."
-	tail_alt = !tail_alt
+
+	var/input = tgui_input_list(usr, "Select a tail layer.", "Set Tail Layer", list(SWITCH_TAIL_LAYER_UPPER, SWITCH_TAIL_LAYER_STANDARD, SWITCH_TAIL_LAYER_LOWER))
+	if(isnull(input))
+		return
+	switch(input)
+		if(SWITCH_TAIL_LAYER_UPPER)
+			tail_alt = TAIL_UPPER_LAYER_HIGH
+		if(SWITCH_TAIL_LAYER_STANDARD)
+			tail_alt = TAIL_UPPER_LAYER
+		if(SWITCH_TAIL_LAYER_LOWER)
+			tail_alt = TAIL_UPPER_LAYER_LOW
+
 	update_tail_showing()
 
 /mob/living/carbon/human/verb/hide_wings_vr()
@@ -84,3 +99,7 @@
 	else
 		message = "hides their tail."
 	visible_message(span_filter_notice("[src] [message]"))
+
+#undef SWITCH_TAIL_LAYER_UPPER
+#undef SWITCH_TAIL_LAYER_STANDARD
+#undef SWITCH_TAIL_LAYER_LOWER

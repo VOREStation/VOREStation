@@ -14,12 +14,12 @@
 	See Also:
 	- <scriptError>
 */
-	var/list/errors   = new
+	var/list/errors = list()
 /*
 	Var: warnings
 	A list of non-fatal problems in the source code found by the scanner.
 */
-	var/list/warnings = new
+	var/list/warnings = list()
 
 /*
 	Proc: LoadCode
@@ -84,7 +84,7 @@
 	Variable: delim
 	A list of characters that denote the start of a new token. This list is automatically populated.
 */
-	var/list/delim = new
+	var/list/delim = list()
 
 /*
 	Macro: COL
