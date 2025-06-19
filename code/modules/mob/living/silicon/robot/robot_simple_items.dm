@@ -319,7 +319,7 @@
 	if(!mat_to_add)
 		return
 
-	var/datum/matter_synth/synth_path = ispath(mat_to_remove) ? mat_to_remove : GLOB.material_synth_list[mat_to_remove]
+	var/datum/matter_synth/synth_path = ispath(mat_to_add) ? mat_to_add : GLOB.material_synth_list[mat_to_add]
 
 	if(check_for_synth(synth_path))
 		return
