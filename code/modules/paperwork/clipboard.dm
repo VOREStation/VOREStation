@@ -23,13 +23,14 @@
 			return ..()
 
 		if(!M.restrained() && !M.stat)
+			// TODO: generalize hands
 			switch(over_object.name)
-				if("r_hand")
-					M.unEquip(src)
-					M.put_in_r_hand(src)
-				if("l_hand")
-					M.unEquip(src)
-					M.put_in_l_hand(src)
+				if("r_hand", "Right Hand")
+					usr.unEquip(src)
+					usr.put_in_r_hand(src)
+				if("l_hand", "Left Hand")
+					usr.unEquip(src)
+					usr.put_in_l_hand(src)
 
 			add_fingerprint(usr)
 			return
