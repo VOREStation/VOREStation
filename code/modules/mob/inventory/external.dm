@@ -190,10 +190,10 @@ var/list/slot_equipment_priority = list( \
 		// 	W.equipped(src, slot)
 		// 	worn_clothing += w_uniform
 		// 	update_inv_w_uniform()
-		if(slot_s_store)
-			src.s_store = W
-			W.equipped(src, slot)
-			update_inv_s_store()
+		// if(slot_s_store)
+		// 	src.s_store = W
+		// 	W.equipped(src, slot)
+		// 	update_inv_s_store()
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
@@ -676,9 +676,9 @@ var/list/slot_equipment_priority = list( \
 		update_inv_wear_id()
 		BITSET(hud_updateflag, ID_HUD)
 		BITSET(hud_updateflag, WANTED_HUD)
-	else if (W == s_store)
-		s_store = null
-		update_inv_s_store()
+	// else if (W == s_store)
+	// 	s_store = null
+	// 	update_inv_s_store()
 	// else if (W == back)
 	// 	worn_clothing -= back
 	// 	back = null
@@ -810,8 +810,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_wear_suit_str)  return inventory.get_item_in_slot(slot_wear_suit_str)
 		if(slot_w_uniform)      return inventory.get_item_in_slot(slot_w_uniform_str)
 		if(slot_w_uniform_str)  return inventory.get_item_in_slot(slot_w_uniform_str)
-		if(slot_s_store)        return s_store
-		if(slot_s_store_str)    return s_store
+		if(slot_s_store)        return inventory.get_item_in_slot(slot_s_store_str)
+		if(slot_s_store_str)    return inventory.get_item_in_slot(slot_s_store_str)
 		if(slot_l_ear)          return inventory.get_item_in_slot(slot_l_ear_str)
 		if(slot_l_ear_str)      return inventory.get_item_in_slot(slot_l_ear_str)
 		if(slot_r_ear)          return inventory.get_item_in_slot(slot_r_ear_str)

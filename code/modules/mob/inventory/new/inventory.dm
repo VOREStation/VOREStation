@@ -140,6 +140,7 @@
 		/datum/inventory_slot/r_hand,
 		/datum/inventory_slot/l_store,
 		/datum/inventory_slot/r_store,
+		/datum/inventory_slot/s_store,
 		/datum/inventory_slot/l_ear,
 		/datum/inventory_slot/r_ear,
 		/datum/inventory_slot/back,

@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 			if(hud_shown)
 				switch(hud_data["slot"])
 					if(slot_s_store)
-						if(H.s_store) H.s_store.screen_loc = hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_s_store_str)) H.inventory.get_item_in_slot(slot_s_store_str).screen_loc = hud_data["loc"]
 					if(slot_wear_id)
 						if(H.wear_id) H.wear_id.screen_loc = hud_data["loc"]
 					if(slot_belt)
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 			else
 				switch(hud_data["slot"])
 					if(slot_s_store)
-						if(H.s_store) H.s_store.screen_loc = null
+						if(H.inventory.get_item_in_slot(slot_s_store_str)) H.inventory.get_item_in_slot(slot_s_store_str).screen_loc = null
 					if(slot_wear_id)
 						if(H.wear_id) H.wear_id.screen_loc = null
 					if(slot_belt)

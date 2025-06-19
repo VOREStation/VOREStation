@@ -356,7 +356,7 @@
 								breathes = H.species.breath_type
 								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
 								tankcheck = list(
-									H.s_store,
+									H.inventory.get_item_in_slot(slot_s_store_str),
 									C.inventory.get_item_in_slot(slot_back_str),
 									H.inventory.get_item_in_slot(slot_belt_str),
 									C.get_right_hand(),

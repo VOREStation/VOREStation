@@ -796,7 +796,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(SUIT_STORE_LAYER)
 
-	if(!s_store)
+	var/obj/item/s_store = inventory.get_item_in_slot(slot_s_store_str)
+
+	if(!istype(s_store))
 		return //Why bother, nothing there.
 
 	//TODO, this is unlike the rest of the things
@@ -989,7 +991,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(L_HAND_LAYER)
 
-	var/obj/item/l_hand = get_right_hand()
+	var/obj/item/l_hand = get_left_hand()
 
 	if(!istype(l_hand))
 		return //No hand, no bother.

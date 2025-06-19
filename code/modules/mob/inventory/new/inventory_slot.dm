@@ -63,6 +63,9 @@
 
 /datum/inventory_slot/l_hand/update_icon(atom/movable/contents)
 	owner.mymob.update_inv_l_hand()
+
+/datum/inventory_slot/l_hand/unequipped(atom/movable/contents)
+	. = ..()
 	var/obj/item/r_hand = owner.get_item_in_slot(slot_r_hand_str)
 	if(istype(r_hand))
 		r_hand.update_twohanding()
@@ -91,7 +94,11 @@
 	return I
 
 /datum/inventory_slot/r_hand/update_icon(atom/movable/contents)
+	. = ..()
 	owner.mymob.update_inv_r_hand()
+
+/datum/inventory_slot/r_hand/unequipped(atom/movable/contents)
+	. = ..()
 	var/obj/item/l_hand = owner.get_item_in_slot(slot_l_hand_str)
 	if(istype(l_hand))
 		l_hand.update_twohanding()
@@ -117,6 +124,20 @@
 	hud_location = ui_storage2
 	hud_object_type = /obj/screen/inventory
 	hud_icon_state = "pocket"
+
+/datum/inventory_slot/s_store
+	name = "Suit Storage"
+
+	slot_id = slot_s_store
+	slot_id_str = slot_s_store_str
+
+	hud_location = ui_sstore1
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "suitstore"
+
+/datum/inventory_slot/s_store/update_icon(atom/movable/contents)
+	. = ..()
+	owner.mymob.update_inv_s_store()
 
 /datum/inventory_slot/back
 	name = "Back"
@@ -250,8 +271,8 @@
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
 		H.worn_clothing -= contents
-		if(H.s_store)
-			H.drop_from_inventory(H.s_store)
+		if(H.inventory.get_item_in_slot(slot_s_store_str))
+			H.drop_from_inventory(H.inventory.get_item_in_slot(slot_s_store_str))
 
 /datum/inventory_slot/belt
 	name = "Belt"

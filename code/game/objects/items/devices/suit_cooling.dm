@@ -102,7 +102,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.inventory.get_item_in_slot(slot_wear_suit_str) || (H.s_store != src && H.inventory.get_item_in_slot(slot_back_str) != src))
+	if (!H.inventory.get_item_in_slot(slot_wear_suit_str) || (H.inventory.get_item_in_slot(slot_s_store_str) != src && H.inventory.get_item_in_slot(slot_back_str) != src))
 		return 0
 
 	return 1

@@ -97,7 +97,7 @@
 			hood.canremove = FALSE
 
 	if(cooler)
-		if(H.s_store) //Ditto
+		if(H.inventory.get_item_in_slot(slot_s_store_str)) //Ditto
 			to_chat(M, "Alarmingly, the cooling unit installed into your suit fails to deploy.")
 		else if (H.equip_to_slot_if_possible(cooler, slot_s_store))
 			to_chat(M, "Your suit's cooling unit deploys.")

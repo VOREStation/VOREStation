@@ -20,6 +20,5 @@
 	var/obj/item/glasses = null
 	var/obj/item/head = null
 	var/obj/item/wear_id = null
-	var/obj/item/s_store = null
 
 	inventory_type = /datum/inventory/human

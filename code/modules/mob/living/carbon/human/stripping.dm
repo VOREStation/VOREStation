@@ -174,8 +174,8 @@
 		// Find an internal source.
 		if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/tank))
 			internal = inventory.get_item_in_slot(slot_back_str)
-		else if(istype(s_store, /obj/item/tank))
-			internal = s_store
+		else if(istype(inventory.get_item_in_slot(slot_s_store_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_s_store_str)
 		else if(istype(inventory.get_item_in_slot(slot_belt_str), /obj/item/tank))
 			internal = inventory.get_item_in_slot(slot_belt_str)
 

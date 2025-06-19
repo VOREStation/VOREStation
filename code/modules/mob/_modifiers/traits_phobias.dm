@@ -148,7 +148,7 @@
 					H.inventory.get_item_in_slot(slot_belt_str),
 					H.inventory.get_item_in_slot(slot_wear_suit_str),
 					H.inventory.get_item_in_slot(slot_w_uniform_str),
-					H.s_store,
+					H.inventory.get_item_in_slot(slot_s_store_str),
 					H.inventory.get_item_in_slot(slot_l_ear_str),
 					H.inventory.get_item_in_slot(slot_r_ear_str))
 				if(H == holder)
