@@ -110,11 +110,12 @@
 	pixel_y = -16
 
 /obj/effect/abstract/directional_lighting
-	var/obj/effect/abstract/light_spot/light_spot = new
+	var/obj/effect/abstract/light_spot/light_spot
 	var/trans_angle
 	var/icon_dist
 
 /obj/effect/abstract/directional_lighting/Initialize(mapload)
+	light_spot = new
 	. = ..()
 	vis_contents += light_spot
 

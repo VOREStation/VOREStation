@@ -33,6 +33,9 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active."
 	)
 
+	prefixes = list("Dizzy ")
+	bodies = list("Ditz")
+
 /datum/symptom/confusion/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 6)

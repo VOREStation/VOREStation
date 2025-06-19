@@ -16,8 +16,10 @@
 			if(!selfdestructing)
 				dat += "<br><br><A href='byond://?src=\ref[src];betraitor=1;traitormob=\ref[user]'>\"[pick("Send me some supplies!", "Transfer supplies.")]\"</A><BR>"
 	dat += temptext
-	user << browse("<html>[dat]</html>", "window=syndbeacon")
-	onclose(user, "syndbeacon")
+
+	var/datum/browser/popup = new(user, "syndbeacon", "Ominous Beacon")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/syndicate_beacon/virgo/Topic(href, href_list)
 	if(href_list["betraitor"])

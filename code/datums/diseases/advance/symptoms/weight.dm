@@ -35,6 +35,8 @@ Bonus
 		"Stealth 2" = "The symptom is less noticeable, and does not cause starvation."
 	)
 
+	prefixes = list("Hungry ")
+
 /datum/symptom/weight_loss/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.stealth >= 2)

@@ -34,12 +34,17 @@ Bonus
 		"Stage 8" = "The virus causes extreme nervousness and paranoia, resulting in occasional hallucinations, and extreme restlessness, but great overall energy."
 	)
 
+	prefixes = list("Gray ", "Amped ", "Nervous ")
+	bodies = list("Hyper")
+
 /datum/symptom/stimulant/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.resistance >= 8)
 		severity -= 1
 	if(A.stage_rate >= 8)
 		severity -= 1
+		prefixes = list("Gray ", "Amped ", "Paranoid ")
+		suffixes = list(" Madness", " Insanity")
 
 /datum/symptom/stimulant/Start(datum/disease/advance/A)
 	if(!..())

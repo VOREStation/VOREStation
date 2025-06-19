@@ -31,7 +31,7 @@ var/list/ai_status_emotions = list(
 	)
 
 /proc/get_ai_emotions(var/ckey)
-	var/list/emotions = new
+	var/list/emotions = list()
 	for(var/emotion_name in ai_status_emotions)
 		var/datum/ai_emotion/emotion = ai_status_emotions[emotion_name]
 		if(!emotion.ckey || emotion.ckey == ckey)

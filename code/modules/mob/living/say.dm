@@ -64,7 +64,7 @@ var/list/department_radio_keys = list(
 )
 
 
-var/list/channel_to_radio_key = new
+var/list/channel_to_radio_key = list()
 /proc/get_radio_key_from_channel(var/channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)

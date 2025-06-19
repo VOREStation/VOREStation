@@ -34,6 +34,9 @@ Bonus
 		"Stage Speed 10" = "Further increases cooling speed."
 	)
 
+	bodies = list("Shiver")
+	suffixes = list(" Shivers")
+
 /datum/symptom/shivering/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.stage_rate >= 5)
