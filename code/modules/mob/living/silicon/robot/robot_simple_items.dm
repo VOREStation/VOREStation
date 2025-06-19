@@ -41,6 +41,17 @@
 		. += span_notice("\The [src] is currently set to \the [selected_item].")
 		. += selected_item.examine(user)
 
+/obj/item/robotic_multibelt/proc/get_module()
+	var/obj/item/robot_module/module
+	if(isrobot(loc)) //We're in a robot (in hands)
+		var/mob/living/silicon/robot/our_robot = loc
+		module = our_robot.module
+	else if(istype(loc, /obj/item/robot_module)) //We're inside the module itself (in inventory)
+		module = loc
+	else //Admin spawned us outside of a module.
+		CRASH("Robotic Multibelt is not in a robot or module. This should not happen.")
+	return module
+
 
 //'Alterate Tools' means we do special tool handling in Init
 /obj/item/robotic_multibelt/Initialize(mapload, custom_handling = FALSE)
@@ -346,7 +357,7 @@
 
 /mob/living/silicon/robot/proc/update_material_multibelts()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in module.contents) //If it's stowed in our inventory
-		mat_belt.generate_tools(TRUE)
+		mat_belt.generate_tools()
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
 		mat_belt.generate_tools()
 
@@ -384,21 +395,8 @@
 	cyborg_integrated_tools = list()
 	requires_first_use_init = TRUE
 
-/obj/item/robotic_multibelt/materials/generate_tools(is_in_module)
-	..()
-	var/mob/living/silicon/robot/our_robot
-	var/obj/item/robot_module/module
-	if(!isrobot(loc) && !is_in_module)
-		return
-
-	if(!is_in_module)
-		our_robot = loc
-
-	if(is_in_module)
-		module = loc
-	else
-		module = our_robot.module
-
+/obj/item/robotic_multibelt/materials/generate_tools()
+	var/obj/item/robot_module/module = get_module()
 	if(!module || !module.synths || !LAZYLEN(module.synths)) //We have a synths list and it has contents within it!
 		return
 
