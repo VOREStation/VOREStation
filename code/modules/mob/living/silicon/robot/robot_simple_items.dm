@@ -76,9 +76,9 @@
 	selected_item = null
 	for(var/tool in cyborg_integrated_tools)
 		qdel_null(tool)
-	qdel_null(cyborg_integrated_tools)
-	qdel_null(integrated_tools_by_name)
-	qdel_null(integrated_tool_images)
+	cyborg_integrated_tools.Cut()
+	integrated_tools_by_name.Cut()
+	integrated_tool_images.Cut()
 	. = ..()
 
 
