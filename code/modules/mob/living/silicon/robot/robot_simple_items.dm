@@ -70,15 +70,13 @@
 		I.canremove = FALSE
 
 	for(var/tool in cyborg_integrated_tools)
-		var/obj/item/Tool = cyborg_integrated_tools[tool]
-		integrated_tools_by_name[Tool.name] = Tool
-		integrated_tool_images[Tool.name] = image(icon = Tool.icon, icon_state = Tool.icon_state)
+		var/obj/item/real_tool = cyborg_integrated_tools[tool]
+		integrated_tools_by_name[real_tool.name] = real_tool
+		integrated_tool_images[real_tool.name] = image(icon = real_tool.icon, icon_state = real_tool.icon_state)
 
 /obj/item/robotic_multibelt/Destroy()
 	selected_item = null
-	for(var/tool in cyborg_integrated_tools)
-		qdel_null(tool)
-	cyborg_integrated_tools.Cut()
+	QDEL_LIST_ASSOC(cyborg_integrated_tools)
 	integrated_tools_by_name.Cut()
 	integrated_tool_images.Cut()
 	. = ..()
