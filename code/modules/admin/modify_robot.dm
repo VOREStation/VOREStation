@@ -359,11 +359,13 @@
 		if("remove_tool")
 			if(!istype(multibelt_holder))
 				return FALSE
-			var/obj/item/rem_tool = locate(params["tool"])
 			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
-				target.module.synths -= locate(params["tool"])
+				var/datum/matter_synth/synth = locate(params["tool"])
+				target.module.synths -= synth
+				qdel(synth)
 				target.update_material_multibelts()
 				return TRUE
+			var/obj/item/rem_tool = locate(params["tool"])
 			if(multibelt_holder.selected_item == rem_tool)
 				multibelt_holder.dropped() //Reset to original icon.
 			multibelt_holder.contents -= rem_tool
