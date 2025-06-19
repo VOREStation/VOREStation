@@ -376,8 +376,8 @@
 	blob.transform = matrix()*size_multiplier
 	blob.size_multiplier = size_multiplier
 
-	if(l_hand) drop_from_inventory(l_hand)
-	if(r_hand) drop_from_inventory(r_hand)
+	if(get_left_hand()) drop_from_inventory(get_left_hand())
+	if(get_right_hand()) drop_from_inventory(get_right_hand())
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.transforming = TRUE
@@ -509,8 +509,8 @@
 
 	//vore_organs.Cut()
 
-	if(blob.l_hand) blob.drop_from_inventory(blob.l_hand)
-	if(blob.r_hand) blob.drop_from_inventory(blob.r_hand)
+	if(blob.get_left_hand()) blob.drop_from_inventory(blob.get_left_hand())
+	if(blob.get_right_hand()) blob.drop_from_inventory(blob.get_right_hand())
 
 	if(blob.mob_radio)
 		blob.mob_radio.forceMove(src)

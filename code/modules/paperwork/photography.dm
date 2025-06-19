@@ -102,10 +102,10 @@ GLOBAL_VAR_INIT(photo_count, 0)
 		playsound(src, "rustle", 50, 1, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.inventory.get_item_in_slot(slot_back_str) == src))
 			switch(over_object.name)
-				if("r_hand")
+				if("r_hand", "Right Hand")
 					M.unEquip(src)
 					M.put_in_r_hand(src)
-				if("l_hand")
+				if("l_hand", "Left Hand")
 					M.unEquip(src)
 					M.put_in_l_hand(src)
 			add_fingerprint(usr)
@@ -225,13 +225,13 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility) continue
 		var/holding = null
-		if(A.l_hand || A.r_hand)
-			if(A.l_hand) holding = "They are holding \a [A.l_hand]"
-			if(A.r_hand)
+		if(A.get_left_hand() || A.get_right_hand())
+			if(A.get_left_hand()) holding = "They are holding \a [A.get_left_hand()]"
+			if(A.get_right_hand())
 				if(holding)
-					holding += " and \a [A.r_hand]"
+					holding += " and \a [A.get_right_hand()]"
 				else
-					holding = "They are holding \a [A.r_hand]"
+					holding = "They are holding \a [A.get_right_hand()]"
 
 		if(!mob_detail)
 			mob_detail = "You can see [A] on the photo[(A:health / A.getMaxHealth()) < 0.75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "

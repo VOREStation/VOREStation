@@ -356,9 +356,9 @@
 					if(P.stat || P.resting && !forced)
 						to_chat(P,span_warning("You can only do this while not stunned."))
 					else
-						if(P.l_hand)
+						if(P.get_left_hand())
 							P.drop_l_hand()
-						if(P.r_hand)
+						if(P.get_right_hand())
 							P.drop_r_hand()
 						P.has_hands = 0
 						S.OurRig.myprotean = P

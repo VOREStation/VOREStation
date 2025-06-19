@@ -138,8 +138,8 @@
 				var/list/clothing_slots = list(
 					H.inventory.get_item_in_slot(slot_back_str),
 					H.wear_mask,
-					H.l_hand,
-					H.r_hand,
+					H.get_left_hand(),
+					H.get_right_hand(),
 					H.wear_id,
 					H.glasses,
 					H.gloves,
@@ -564,7 +564,7 @@
 				continue
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
+				if(H.get_left_hand() && istype(H.get_left_hand(), /obj/item/reagent_containers/syringe) || H.get_right_hand() && istype(H.get_right_hand(), /obj/item/reagent_containers/syringe))
 					fear_amount += 10
 
 				if(istype(H.inventory.get_item_in_slot(slot_l_ear_str), /obj/item/reagent_containers/syringe) || istype(H.inventory.get_item_in_slot(slot_r_ear_str), /obj/item/reagent_containers/syringe))

@@ -969,7 +969,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(R_HAND_LAYER)
 
-	if(!r_hand)
+	var/obj/item/r_hand = get_right_hand()
+
+	if(!istype(r_hand))
 		return //No hand, no bother.
 
 	overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_r_hand_str, default_icon = INV_R_HAND_DEF_ICON, default_layer = R_HAND_LAYER)
@@ -982,7 +984,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(L_HAND_LAYER)
 
-	if(!l_hand)
+	var/obj/item/l_hand = get_right_hand()
+
+	if(!istype(l_hand))
 		return //No hand, no bother.
 
 	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.get_bodytype(src), inhands = TRUE, slot_name = slot_l_hand_str, default_icon = INV_L_HAND_DEF_ICON, default_layer = L_HAND_LAYER)

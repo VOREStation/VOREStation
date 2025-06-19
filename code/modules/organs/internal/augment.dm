@@ -158,7 +158,7 @@
 			to_chat(M, span_notice("You cannot use your augments when restrained."))
 			return 0
 
-	if((slot == slot_l_hand && l_hand) || (slot == slot_r_hand && r_hand))
+	if((slot == slot_l_hand && get_left_hand()) || (slot == slot_r_hand && get_right_hand()))
 		to_chat(M,span_warning("Your hand is full.  Drop something first."))
 		return 0
 

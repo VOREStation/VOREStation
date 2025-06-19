@@ -74,12 +74,12 @@
 	)))
 	slots.Add(list(list(
 		"name" = "Left Hand",
-		"item" = host.l_hand,
+		"item" = host.get_left_hand(),
 		"act" = "l_hand",
 	)))
 	slots.Add(list(list(
 		"name" = "Right Hand",
-		"item" = host.r_hand,
+		"item" = host.get_right_hand(),
 		"act" = "r_hand",
 	)))
 	slots.Add(list(list(
@@ -160,17 +160,20 @@
 
 	var/list/specialSlots = list()
 	if(H.species.hud.has_hands)
+		var/obj/item/l_hand = H.get_left_hand()
+		var/obj/item/r_hand = H.get_right_hand()
+
 		UNTYPED_LIST_ADD(specialSlots, list(
 			"name" = "Left Hand",
-			"item" = H.l_hand,
-			"icon" = H.l_hand ? icon2base64(icon(H.l_hand.icon, H.l_hand.icon_state, frame = 1)) : null,
+			"item" = l_hand,
+			"icon" = l_hand ? icon2base64(icon(l_hand.icon, l_hand.icon_state, frame = 1)) : null,
 			"act" = "targetSlot",
 			"params" = list("slot" = slot_l_hand),
 		))
 		UNTYPED_LIST_ADD(specialSlots, list(
 			"name" = "Right Hand",
-			"item" = H.r_hand,
-			"icon" = H.r_hand ? icon2base64(icon(H.r_hand.icon, H.r_hand.icon_state, frame = 1)) : null,
+			"item" = r_hand,
+			"icon" = r_hand ? icon2base64(icon(r_hand.icon, r_hand.icon_state, frame = 1)) : null,
 			"act" = "targetSlot",
 			"params" = list("slot" = slot_r_hand),
 		))

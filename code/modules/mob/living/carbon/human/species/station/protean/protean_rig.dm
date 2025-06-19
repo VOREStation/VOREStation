@@ -327,7 +327,7 @@
 			to_chat(user, "There is no tank to remove.")
 			return
 
-		if(user.r_hand && user.l_hand)
+		if(user.get_right_hand() && user.get_left_hand())
 			air_supply.forceMove(get_turf(user))
 		else
 			user.put_in_hands(air_supply)

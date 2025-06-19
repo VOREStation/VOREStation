@@ -52,9 +52,9 @@
 		return
 
 	var/list/slots_free = list(ui_lhand,ui_rhand)
-	if(our_human.l_hand)
+	if(our_human.get_left_hand())
 		slots_free -= ui_lhand
-	if(our_human.r_hand)
+	if(our_human.get_right_hand())
 		slots_free -= ui_rhand
 	if(!our_human.belt)
 		slots_free += ui_belt

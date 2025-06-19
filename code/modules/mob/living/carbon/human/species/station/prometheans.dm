@@ -236,11 +236,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))
 		if(!(H.gloves || (H.wear_suit && (H.wear_suit.body_parts_covered & HANDS))))
-			if(H.r_hand)
-				if(H.r_hand.wash(CLEAN_SCRUB))
+			var/obj/item/l_hand = H.get_left_hand()
+			var/obj/item/r_hand = H.get_right_hand()
+			if(istype(r_hand))
+				if(r_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
-			if(H.l_hand)
-				if(H.l_hand.wash(CLEAN_SCRUB))
+			if(istype(l_hand))
+				if(l_hand.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))
 /*
 		if(H.head)

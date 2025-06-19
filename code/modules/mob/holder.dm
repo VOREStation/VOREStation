@@ -40,9 +40,9 @@ var/list/holder_mob_icon_cache = list()
 		var/obj/item/holder/H = loc
 		if(ishuman(H.loc))
 			var/mob/living/carbon/human/HH = H.loc
-			if(HH.l_hand == H)
+			if(HH.get_left_hand() == H)
 				location = "[HH]'s left hand"
-			else if(HH.r_hand == H)
+			else if(HH.get_right_hand() == H)
 				location = "[HH]'s right hand"
 			else if(HH.inventory.get_item_in_slot(slot_r_store_str) == H || HH.inventory.get_item_in_slot(slot_l_store_str) == H)
 				location = "[HH]'s pocket"
@@ -54,9 +54,9 @@ var/list/holder_mob_icon_cache = list()
 				location = "[HH]"
 		else if(ismob(H.loc))
 			var/mob/living/M = H.loc
-			if(M.l_hand == H)
+			if(M.get_left_hand() == H)
 				location = "[M]'s left hand"
-			else if(M.r_hand == H)
+			else if(M.get_right_hand() == H)
 				location = "[M]'s right hand"
 			else
 				location = "[M]"

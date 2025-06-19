@@ -603,10 +603,10 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		threatcount += 4
 
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/gun) || istype(l_hand, /obj/item/melee))
+		if(istype(get_left_hand(), /obj/item/gun) || istype(get_left_hand(), /obj/item/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/gun) || istype(r_hand, /obj/item/melee))
+		if(istype(get_right_hand(), /obj/item/gun) || istype(get_right_hand(), /obj/item/melee))
 			threatcount += 4
 
 		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/melee))

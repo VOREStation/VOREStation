@@ -168,8 +168,8 @@
 			var/obj/item/radio/R = null
 			if(isradio(inventory.get_item_in_slot(slot_r_ear_str)))
 				R = inventory.get_item_in_slot(slot_r_ear_str)
-			if(isradio(r_hand))
-				R = r_hand
+			if(isradio(get_right_hand()))
+				R = get_right_hand()
 			if(istype(R))
 				if(R.talk_into(src, message_pieces, null, verb))
 					used_radios += R
@@ -177,8 +177,8 @@
 			var/obj/item/radio/R = null
 			if(isradio(inventory.get_item_in_slot(slot_l_ear_str)))
 				R = inventory.get_item_in_slot(slot_l_ear_str)
-			if(isradio(l_hand))
-				R = l_hand
+			if(isradio(get_left_hand()))
+				R = get_left_hand()
 			if(istype(R))
 				if(R.talk_into(src, message_pieces, null, verb))
 					used_radios += R

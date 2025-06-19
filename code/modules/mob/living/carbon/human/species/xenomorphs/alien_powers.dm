@@ -324,8 +324,8 @@
 	T.Weaken(3)
 
 	var/use_hand = "left"
-	if(l_hand)
-		if(r_hand)
+	if(get_left_hand())
+		if(get_right_hand())
 			to_chat(src, span_danger("You need to have one hand free to grab someone."))
 			return
 		else
@@ -333,11 +333,12 @@
 
 	src.visible_message(span_boldwarning("\The [src]") + " seizes [T] aggressively!")
 
+	// TODO: better?
 	var/obj/item/grab/G = new(src,T)
 	if(use_hand == "left")
-		l_hand = G
+		inventory.put_item_in_slot(slot_l_hand_str, G)
 	else
-		r_hand = G
+		inventory.put_item_in_slot(slot_r_hand_str, G)
 
 	G.state = GRAB_PASSIVE
 	G.icon_state = "grabbed1"

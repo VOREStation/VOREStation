@@ -163,7 +163,7 @@
 				else if(slowdown_mod < 0 && item_slowdown > 0)
 					item_slowdown = item_slowdown + slowdown_mod //Yes, this is + (Adding a negative), not multiplied. You are not making the 5 slowdown rigsuit give you 5*X speed. You're getting 5-X slowdown instead.
 			total_item_slowdown += item_slowdown
-	for(var/hands in list(l_hand, r_hand)) //Hands get special treatment. We want slowdown_mod
+	for(var/hands in list(get_left_hand(), get_right_hand())) //Hands get special treatment. We want slowdown_mod
 		if(!hands)
 			continue
 		var/obj/item/H = hands

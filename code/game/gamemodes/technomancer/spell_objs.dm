@@ -174,18 +174,27 @@
 // Description: Terrible code to check if a scepter is in the offhand, returns 1 if yes.
 /obj/item/spell/proc/check_for_scepter()
 	if(!src || !owner) return 0
-	if(owner.r_hand == src)
-		if(istype(owner.l_hand, /obj/item/scepter))
+	// TODO: multihand
+	var/obj/item/l_hand = owner.get_left_hand()
+	var/obj/item/r_hand = owner.get_right_hand()
+
+	if(r_hand == src)
+		if(istype(l_hand, /obj/item/scepter))
 			return 1
 	else
-		if(istype(owner.r_hand, /obj/item/scepter))
+		if(istype(r_hand, /obj/item/scepter))
 			return 1
 	return 0
 
 // Proc: get_other_hand()
 // Parameters: 1 (I - item being compared to determine what the offhand is)
 // Description: Helper for Aspect spells.
+// TODO: Kill this
 /mob/living/carbon/human/proc/get_other_hand(var/obj/item/I)
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
+
+	// TODO: multihand
 	if(r_hand == I)
 		return l_hand
 	else
@@ -252,6 +261,9 @@
 
 	//var/obj/item/spell/S = new path(src)
 	var/obj/item/spell/S = new path(src)
+
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
 
 	//No hands needed for innate casts.
 	if(S.cast_methods & CAST_INNATE)

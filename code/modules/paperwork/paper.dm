@@ -540,10 +540,10 @@
 		user.drop_from_inventory(P)
 		if (ishuman(user))
 			var/mob/living/carbon/human/h_user = user
-			if (h_user.r_hand == src)
+			if (h_user.get_right_hand() == src)
 				h_user.drop_from_inventory(src)
 				h_user.put_in_r_hand(B)
-			else if (h_user.l_hand == src)
+			else if (h_user.get_left_hand() == src)
 				h_user.drop_from_inventory(src)
 				h_user.put_in_l_hand(B)
 			else if (h_user.inventory.get_item_in_slot(slot_l_store_str) == src)

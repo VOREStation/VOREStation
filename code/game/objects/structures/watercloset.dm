@@ -551,10 +551,12 @@
 			H.update_inv_gloves()
 			H.gloves.germ_level = 0
 		else
-			if(H.r_hand)
-				H.r_hand.wash(CLEAN_SCRUB)
-			if(H.l_hand)
-				H.l_hand.wash(CLEAN_SCRUB)
+			var/obj/item/l_hand = H.get_left_hand()
+			var/obj/item/r_hand = H.get_right_hand()
+			if(istype(r_hand))
+				r_hand.wash(CLEAN_SCRUB)
+			if(istype(l_hand))
+				l_hand.wash(CLEAN_SCRUB)
 			H.bloody_hands = 0
 			H.germ_level = 0
 			H.hand_blood_color = null

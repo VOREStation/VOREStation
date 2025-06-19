@@ -161,23 +161,25 @@
 				msg += "[T.He] [T.is] carrying [icon2html(s_store,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>\a [s_store]</a> on [T.his] [wear_suit.name]."
 
 	//back
-	// TODO: don't assume item
 	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
-	if(back && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
+	if(istype(back) && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
 		if(back.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(back,user.client)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>[back]</a> on [T.his] back.")
 		else
 			msg += "[T.He] [T.has] [icon2html(back,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>\a [back]</a> on [T.his] back."
 
 	//left hand
-	if(l_hand && l_hand.show_examine)
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_left_hand()
+
+	if(istype(l_hand) && l_hand.show_examine)
 		if(l_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(l_hand,user.client)] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>[l_hand.name]</a> in [T.his] left hand!")
 		else
 			msg += "[T.He] [T.is] holding [icon2html(l_hand,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[l_hand]'>\a [l_hand]</a> in [T.his] left hand."
 
 	//right hand
-	if(r_hand && r_hand.show_examine)
+	if(istype(r_hand) && r_hand.show_examine)
 		if(r_hand.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] holding [icon2html(r_hand,user.client)] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>[r_hand.name]</a> in [T.his] right hand!")
 		else

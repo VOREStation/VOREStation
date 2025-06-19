@@ -355,10 +355,10 @@
 								var/mob/living/carbon/human/H = C
 								breathes = H.species.breath_type
 								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-								tankcheck = list (H.s_store, C.inventory.get_item_in_slot(slot_back_str), H.belt, C.r_hand, C.l_hand, H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
+								tankcheck = list (H.s_store, C.inventory.get_item_in_slot(slot_back_str), H.belt, C.get_right_hand(), C.get_left_hand(), H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
 							else
 								nicename = list("right hand", "left hand", "back")
-								tankcheck = list(C.r_hand, C.l_hand, C.inventory.get_item_in_slot(slot_back_str))
+								tankcheck = list(C.get_right_hand(), C.get_left_hand(), C.inventory.get_item_in_slot(slot_back_str))
 
 							// Rigs are a fucking pain since they keep an air tank in nullspace.
 							var/obj/item/rig/Rig = C.get_rig()

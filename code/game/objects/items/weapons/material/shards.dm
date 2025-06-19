@@ -68,14 +68,14 @@
 			/obj/item/clothing/gloves/sterile
 		)
 
-	if(src == user.l_hand)
+	if(src == user.get_left_hand())
 		active_hand = BP_L_HAND
-	else if(src == user.r_hand)
+	else if(src == user.get_right_hand())
 		active_hand = BP_R_HAND
 	else
 		return // If it's not actually in our hands anymore, we were probably gentle with it
 
-	active_hand = (src == user.l_hand) ? BP_L_HAND : BP_R_HAND // May not actually be faster than an if-else block, but a little bit cleaner -Ater
+	active_hand = (src == user.get_left_hand()) ? BP_L_HAND : BP_R_HAND // May not actually be faster than an if-else block, but a little bit cleaner -Ater
 
 	if(prob(75))
 		will_break = TRUE

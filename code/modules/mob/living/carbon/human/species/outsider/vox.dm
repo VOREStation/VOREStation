@@ -103,7 +103,7 @@
 		H.internal = H.inventory.get_item_in_slot(slot_back_str)
 	else
 		H.equip_to_slot_or_del(new /obj/item/tank/vox(H), slot_r_hand)
-		H.internal = H.r_hand
+		H.internal = H.get_right_hand()
 	H.internal = locate(/obj/item/tank) in H.contents
 	if(istype(H.internal,/obj/item/tank) && H.internals)
 		H.internals.icon_state = "internal1"

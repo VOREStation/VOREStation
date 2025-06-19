@@ -208,9 +208,9 @@
 
 /obj/item/proc/is_held_twohanded(mob/living/M)
 	var/check_hand
-	if(M.l_hand == src && !M.r_hand)
+	if(M.get_left_hand() == src && !M.get_right_hand())
 		check_hand = BP_R_HAND //item in left hand, check right hand
-	else if(M.r_hand == src && !M.l_hand)
+	else if(M.get_right_hand() == src && !M.get_left_hand())
 		check_hand = BP_L_HAND //item in right hand, check left hand
 	else
 		return FALSE
@@ -230,12 +230,13 @@
 
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
+// TODO: multihand
 /obj/item/proc/update_held_icon()
 	if(isliving(src.loc))
 		var/mob/living/M = src.loc
-		if(M.l_hand == src)
+		if(M.get_left_hand() == src)
 			M.update_inv_l_hand()
-		else if(M.r_hand == src)
+		else if(M.get_right_hand() == src)
 			M.update_inv_r_hand()
 
 /obj/item/ex_act(severity)

@@ -438,7 +438,7 @@
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
-	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
+	for(var/obj/item/grab/G in list(user.get_left_hand(), user.get_right_hand()))
 		if(G.affecting == src && G.state == GRAB_NECK)
 			has_grab = 1
 			break
@@ -469,15 +469,16 @@
 		success = TRUE
 		stop_pulling()
 
-	if(istype(l_hand, /obj/item/grab))
-		var/obj/item/grab/lgrab = l_hand
+	// TODO: multihand
+	if(istype(get_left_hand(), /obj/item/grab))
+		var/obj/item/grab/lgrab = get_left_hand()
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
 		spawn(1)
 			qdel(lgrab)
-	if(istype(r_hand, /obj/item/grab))
-		var/obj/item/grab/rgrab = r_hand
+	if(istype(get_right_hand(), /obj/item/grab))
+		var/obj/item/grab/rgrab = get_right_hand()
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE

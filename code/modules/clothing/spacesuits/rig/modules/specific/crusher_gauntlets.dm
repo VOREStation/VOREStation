@@ -27,7 +27,7 @@
 	var/mob/living/M = holder.wearer
 	var/datum/gender/TU = GLOB.gender_datums[M.get_visible_gender()]
 
-	if(M.l_hand && M.r_hand)
+	if(M.get_left_hand() && M.get_right_hand())
 		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return

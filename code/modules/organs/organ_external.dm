@@ -515,9 +515,9 @@
 
 	if(user == src.owner)
 		var/grasp
-		if(user.l_hand == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
+		if(user.get_left_hand() == tool && (src.body_part & (ARM_LEFT|HAND_LEFT)))
 			grasp = BP_L_HAND
-		else if(user.r_hand == tool && (src.body_part & (ARM_RIGHT|HAND_RIGHT)))
+		else if(user.get_right_hand() == tool && (src.body_part & (ARM_RIGHT|HAND_RIGHT)))
 			grasp = BP_R_HAND
 
 		if(grasp)
@@ -1047,12 +1047,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 			M.Turn(rand(180))
 			transform = M
 
-	if(victim.l_hand)
-		if(istype(victim.l_hand,/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
-			victim.l_hand.update_held_icon()
-	if(victim.r_hand)
-		if(istype(victim.r_hand,/obj/item/material/twohanded))
-			victim.r_hand.update_held_icon()
+	if(istype(victim.get_left_hand(),/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
+		var/obj/item/material/twohanded/TH = victim.get_left_hand()
+		TH.update_held_icon()
+	if(istype(victim.get_right_hand(),/obj/item/material/twohanded))
+		var/obj/item/material/twohanded/TH = victim.get_right_hand()
+		TH.update_held_icon()
 
 /****************************************************
 			   HELPERS

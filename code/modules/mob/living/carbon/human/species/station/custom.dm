@@ -78,6 +78,6 @@
 
 		if(tankpath)
 			H.equip_to_slot_or_del(new tankpath(H), slot_r_hand)
-			H.internal = H.r_hand
+			H.internal = H.get_right_hand()
 			if(istype(H.internal,/obj/item/tank) && H.internals)
 				H.internals.icon_state = "internal1"

@@ -896,6 +896,10 @@
 
 
 /mob/living/proc/drop_both_hands()
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
+
+	// TODO: multihand
 	if(l_hand)
 		unEquip(l_hand)
 	if(r_hand)

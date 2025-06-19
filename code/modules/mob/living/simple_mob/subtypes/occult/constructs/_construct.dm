@@ -77,13 +77,13 @@
 		if(S.run_checks())
 			S.on_innate_cast(src)
 
-	if(l_hand && r_hand) //Make sure our hands aren't full.
-		if(istype(r_hand, /obj/item/spell)) //If they are full, perhaps we can still be useful.
-			var/obj/item/spell/r_spell = r_hand
+	if(get_left_hand() && get_right_hand()) //Make sure our hands aren't full.
+		if(istype(get_right_hand(), /obj/item/spell)) //If they are full, perhaps we can still be useful.
+			var/obj/item/spell/r_spell = get_right_hand()
 			if(r_spell.aspect == ASPECT_CHROMATIC) //Check if we can combine the new spell with one in our hands.
 				r_spell.on_combine_cast(S, src)
-		else if(istype(l_hand, /obj/item/spell))
-			var/obj/item/spell/l_spell = l_hand
+		else if(istype(get_left_hand(), /obj/item/spell))
+			var/obj/item/spell/l_spell = get_left_hand()
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp

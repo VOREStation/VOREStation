@@ -467,8 +467,8 @@
 		//dir update
 		blob.dir = dir
 
-		if(l_hand) drop_l_hand()
-		if(r_hand) drop_r_hand()
+		if(get_left_hand()) drop_l_hand()
+		if(get_right_hand()) drop_r_hand()
 
 		//Put our owner in it (don't transfer var/mind)
 		blob.ckey = ckey
@@ -597,8 +597,8 @@
 		//Move them back where the blob was
 		forceMove(reform_spot)
 
-		if(blob.l_hand) blob.drop_l_hand()
-		if(blob.r_hand) blob.drop_r_hand()
+		if(blob.get_left_hand()) blob.drop_l_hand()
+		if(blob.get_right_hand()) blob.drop_r_hand()
 
 		//Put our owner in it (don't transfer var/mind)
 		ckey = blob.ckey

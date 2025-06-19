@@ -17,21 +17,23 @@
 		return FALSE
 	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
 
+// TODO: this is bad
 /mob/living/simple_mob/put_in_l_hand(var/obj/item/W)
-	if(!..() || l_hand)
+	if(!..() || get_left_hand())
 		return 0
 	W.forceMove(src)
-	l_hand = W
+	inventory.put_item_in_slot(slot_l_hand_str, W)
 	W.equipped(src,slot_l_hand)
 	W.add_fingerprint(src)
 	update_inv_l_hand()
 	return TRUE
 
+// TODO: this is bad
 /mob/living/simple_mob/put_in_r_hand(var/obj/item/W)
-	if(!..() || r_hand)
+	if(!..() || get_right_hand())
 		return 0
 	W.forceMove(src)
-	r_hand = W
+	inventory.put_item_in_slot(slot_r_hand_str, W)
 	W.equipped(src,slot_r_hand)
 	W.add_fingerprint(src)
 	update_inv_r_hand()
@@ -41,7 +43,8 @@
 	if(QDESTROYING(src))
 		return
 
-	if(r_hand)
+	var/obj/item/r_hand = get_right_hand()
+	if(istype(r_hand))
 		r_hand.screen_loc = ui_rhand	//TODO
 
 		//determine icon state to use
@@ -78,7 +81,8 @@
 	if(QDESTROYING(src))
 		return
 
-	if(l_hand)
+	var/obj/item/l_hand = get_left_hand()
+	if(istype(l_hand))
 		l_hand.screen_loc = ui_lhand	//TODO
 
 		//determine icon state to use

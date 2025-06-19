@@ -81,11 +81,15 @@ var/list/slot_equipment_priority = list( \
 		return
 
 	// Need to clear out hands
-	if((W == src.l_hand) && (slot != slot_l_hand))
-		src.l_hand = null
+	var/atom/movable/l_hand = get_left_hand()
+	var/atom/movable/r_hand = get_right_hand()
+
+	// TODO: Make hands dynamic
+	if((W == l_hand) && (slot != slot_l_hand))
+		inventory.put_item_in_slot(slot_l_hand_str, null)
 		update_inv_l_hand() //So items actually disappear from hands.
-	else if((W == src.r_hand) && (slot != slot_r_hand))
-		src.r_hand = null
+	else if((W == r_hand) && (slot != slot_r_hand))
+		inventory.put_item_in_slot(slot_r_hand_str, null)
 		update_inv_r_hand()
 
 	if(inventory.equip_to_slot(slot, W))
@@ -113,14 +117,14 @@ var/list/slot_equipment_priority = list( \
 			src.legcuffed = W
 			W.equipped(src, slot)
 			update_inv_legcuffed()
-		if(slot_l_hand)
-			src.l_hand = W
-			W.equipped(src, slot)
-			update_inv_l_hand()
-		if(slot_r_hand)
-			src.r_hand = W
-			W.equipped(src, slot)
-			update_inv_r_hand()
+		// if(slot_l_hand)
+		// 	src.l_hand = W
+		// 	W.equipped(src, slot)
+		// 	update_inv_l_hand()
+		// if(slot_r_hand)
+		// 	src.r_hand = W
+		// 	W.equipped(src, slot)
+		// 	update_inv_r_hand()
 		if(slot_belt)
 			src.belt = W
 			W.equipped(src, slot)
@@ -321,8 +325,8 @@ var/list/slot_equipment_priority = list( \
 
 //Returns the thing in our active hand
 /mob/living/get_active_hand()
-	if(hand)	return l_hand
-	else		return r_hand
+	if(hand)	return get_left_hand()
+	else		return get_right_hand()
 
 //Returns the thing in our active hand (whatever is in our active module-slot, in this case)
 /mob/living/silicon/robot/get_active_hand()
@@ -333,8 +337,8 @@ var/list/slot_equipment_priority = list( \
 
 //Returns the thing in our inactive hand
 /mob/living/get_inactive_hand()
-	if(hand)	return r_hand
-	else		return l_hand
+	if(hand)	return get_right_hand()
+	else		return get_left_hand()
 
 // Override for your specific mob's hands or lack thereof.
 /mob/proc/is_holding_item_of_type(typepath)
@@ -347,13 +351,13 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 /mob/living/simple_mob/is_holding_item_of_type(typepath)
-	for(var/obj/item/I in list(l_hand, r_hand))
+	for(var/obj/item/I in list(get_left_hand(), get_right_hand()))
 		if(istype(I, typepath))
 			return I
 	return FALSE
 
 /mob/living/carbon/human/is_holding_item_of_type(typepath)
-	for(var/obj/item/I in list(l_hand, r_hand))
+	for(var/obj/item/I in list(get_left_hand(), get_right_hand()))
 		if(istype(I, typepath))
 			return I
 	return FALSE
@@ -364,18 +368,18 @@ var/list/slot_equipment_priority = list( \
 
 /mob/living/simple_mob/get_all_held_items()
 	. = list()
-	if(l_hand)
-		. += l_hand
-	if(r_hand)
-		. += r_hand
+	if(get_left_hand())
+		. += get_left_hand()
+	if(get_right_hand())
+		. += get_right_hand()
 
 // Returns a list of items held in both hands.
 /mob/living/carbon/human/get_all_held_items()
 	. = list()
-	if(l_hand)
-		. += l_hand
-	if(r_hand)
-		. += r_hand
+	if(get_left_hand())
+		. += get_left_hand()
+	if(get_right_hand())
+		. += get_right_hand()
 
 // Returns a list of all held items in a borg's 'hands'.
 /mob/living/silicon/robot/get_all_held_items()
@@ -416,20 +420,20 @@ var/list/slot_equipment_priority = list( \
 	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
 
 /mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
-	if(!..() || l_hand)
+	if(!..() || get_left_hand())
 		return 0
 	W.forceMove(src)
-	l_hand = W
+	inventory.put_item_in_slot(slot_l_hand_str, W)
 	W.equipped(src,slot_l_hand)
 	W.add_fingerprint(src)
 	update_inv_l_hand()
 	return 1
 
 /mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
-	if(!..() || r_hand)
+	if(!..() || get_right_hand())
 		return 0
 	W.forceMove(src)
-	r_hand = W
+	inventory.put_item_in_slot(slot_r_hand_str, W)
 	W.equipped(src,slot_r_hand)
 	W.add_fingerprint(src)
 	update_inv_r_hand()
@@ -499,7 +503,7 @@ var/list/slot_equipment_priority = list( \
 
 //Drops the item in our left hand
 /mob/living/drop_l_hand(var/atom/Target)
-	return drop_from_inventory(l_hand, Target)
+	return drop_from_inventory(get_left_hand(), Target)
 
 //Drops the item in our right hand
 /mob/proc/drop_r_hand(var/atom/Target)
@@ -507,7 +511,7 @@ var/list/slot_equipment_priority = list( \
 
 //Drops the item in our right hand
 /mob/living/drop_r_hand(var/atom/Target)
-	return drop_from_inventory(r_hand, Target)
+	return drop_from_inventory(get_right_hand(), Target)
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
@@ -525,10 +529,10 @@ var/list/slot_equipment_priority = list( \
 	var/obj/item/item_dropped = null
 
 	if (hand)
-		item_dropped = l_hand
+		item_dropped = get_left_hand()
 		. = drop_l_hand(Target)
 	else
-		item_dropped = r_hand
+		item_dropped = get_right_hand()
 		. = drop_r_hand(Target)
 
 	if (istype(item_dropped) && !QDELETED(item_dropped) && check_sound_preference(/datum/preference/toggle/drop_sounds))
@@ -562,12 +566,12 @@ var/list/slot_equipment_priority = list( \
 	if(inventory.u_equip(W))
 		. = TRUE // TODO: become return TRUE when we've ported everything
 
-	if (W == r_hand)
-		r_hand = null
-		update_inv_r_hand()
-	else if (W == l_hand)
-		l_hand = null
-		update_inv_l_hand()
+	// if (W == r_hand)
+	// 	r_hand = null
+	// 	update_inv_r_hand()
+	// else if (W == l_hand)
+	// 	l_hand = null
+	// 	update_inv_l_hand()
 	// else if (W == back)
 	// 	back = null
 	// 	update_inv_back()
@@ -687,20 +691,20 @@ var/list/slot_equipment_priority = list( \
 	else if (W == legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
-	else if (W == r_hand)
-		r_hand = null
-		if(l_hand)
-			l_hand.update_twohanding()
-			l_hand.update_held_icon()
-			update_inv_l_hand()
-		update_inv_r_hand()
-	else if (W == l_hand)
-		l_hand = null
-		if(r_hand)
-			r_hand.update_twohanding()
-			r_hand.update_held_icon()
-			update_inv_l_hand()
-		update_inv_l_hand()
+	// else if (W == r_hand)
+	// 	r_hand = null
+	// 	if(l_hand)
+	// 		l_hand.update_twohanding()
+	// 		l_hand.update_held_icon()
+	// 		update_inv_l_hand()
+	// 	update_inv_r_hand()
+	// else if (W == l_hand)
+	// 	l_hand = null
+	// 	if(r_hand)
+	// 		r_hand.update_twohanding()
+	// 		r_hand.update_held_icon()
+	// 		update_inv_l_hand()
+	// 	update_inv_l_hand()
 	else
 		return 0
 
@@ -762,10 +766,10 @@ var/list/slot_equipment_priority = list( \
 
 /mob/living/get_equipped_item(slot)
 	switch(slot)
-		if(slot_l_hand)        return l_hand
-		if(slot_l_hand_str)    return l_hand
-		if(slot_r_hand)        return r_hand
-		if(slot_r_hand_str)    return r_hand
+		if(slot_l_hand)        return get_left_hand()
+		if(slot_l_hand_str)    return get_left_hand()
+		if(slot_r_hand)        return get_right_hand()
+		if(slot_r_hand_str)    return get_right_hand()
 		if(slot_back)          return inventory.get_item_in_slot(slot_back_str)
 		if(slot_back_str)      return inventory.get_item_in_slot(slot_back_str)
 		if(slot_wear_mask)     return wear_mask
@@ -786,10 +790,10 @@ var/list/slot_equipment_priority = list( \
 		if(slot_r_store_str)    return inventory.get_item_in_slot(slot_r_store_str)
 		if(slot_wear_mask)      return wear_mask
 		if(slot_wear_mask_str)  return wear_mask
-		if(slot_l_hand)         return l_hand
-		if(slot_l_hand_str)     return l_hand
-		if(slot_r_hand)         return r_hand
-		if(slot_r_hand_str)     return r_hand
+		if(slot_l_hand)         return get_left_hand()
+		if(slot_l_hand_str)     return get_left_hand()
+		if(slot_r_hand)         return get_right_hand()
+		if(slot_r_hand_str)     return get_right_hand()
 		if(slot_wear_id)        return wear_id
 		if(slot_wear_id_str)    return wear_id
 		if(slot_glasses)        return glasses
@@ -819,8 +823,8 @@ var/list/slot_equipment_priority = list( \
 
 /mob/living/get_equipped_items()
 	. = ..()
-	. += l_hand
-	. += r_hand
+	. += get_left_hand()
+	. += get_right_hand()
 	. += inventory.get_item_in_slot(slot_back_str)
 	. += wear_mask
 
@@ -846,19 +850,30 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 /mob/living/abiotic(full_body = FALSE)
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
 	if(full_body)
-		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
+		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
 		if(inventory.get_item_in_slot(slot_back_str) || wear_mask)
 			return TRUE
 
-	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)
+	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)
 
 /mob/living/carbon/human/abiotic(full_body = FALSE)
+	var/obj/item/l_hand = get_left_hand()
+	var/obj/item/r_hand = get_right_hand()
 	if(full_body)
-		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
+		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
 		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || wear_suit || glasses || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
 			return TRUE
 
-	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)
+	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)
+
+// TODO: multihand
+/mob/proc/get_left_hand()
+	return inventory.get_item_in_slot(slot_l_hand_str)
+
+/mob/proc/get_right_hand()
+	return inventory.get_item_in_slot(slot_r_hand_str)
