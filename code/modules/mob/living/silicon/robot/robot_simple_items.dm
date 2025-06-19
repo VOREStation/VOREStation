@@ -76,9 +76,9 @@
 	selected_item = null
 	for(var/tool in cyborg_integrated_tools)
 		qdel_null(tool)
-	qdel_null(cyborg_integrated_tools)
-	qdel_null(integrated_tools_by_name)
-	qdel_null(integrated_tool_images)
+	cyborg_integrated_tools.Cut()
+	integrated_tools_by_name.Cut()
+	integrated_tool_images.Cut()
 	. = ..()
 
 
@@ -427,7 +427,7 @@
 							cyborg_integrated_tools += current_stack
 							//Add reinforced glass if we have glass already, OR set our steel var to true (since glass will be checked later)
 							if(has_glass)
-								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
+								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced(src)
 								current_stack.synths = list(our_synths, has_glass)
 								cyborg_integrated_tools += current_stack
 							else
@@ -444,7 +444,7 @@
 							cyborg_integrated_tools += current_stack
 							//Add reinforced glass if we have steel already, OR set our glass var to true (since steel will be checked later)
 							if(has_steel)
-								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced/(src)
+								current_stack = new /obj/item/stack/material/cyborg/glass/reinforced(src)
 								current_stack.synths = list(our_synths, has_steel)
 								cyborg_integrated_tools += current_stack
 							else

@@ -56,6 +56,7 @@
 
 	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 
 // 95% engi-borg and 15% roboticist.
 /obj/item/robot_module/robot/syndicate/mechanist
@@ -106,6 +107,8 @@
 
 	src.modules += new /obj/item/dogborg/pounce(src)
 
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
+
 
 
 // Mediborg optimized for on-the-field healing, but can also do surgery if needed.
@@ -123,6 +126,7 @@
 	src.modules += new /obj/item/robotic_multibelt/medical(src)
 	src.modules += new /obj/item/robotic_multibelt/medical(src)
 	src.modules += new /obj/item/gripper/medical(src)
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 
 	// General healing.
 	src.modules += new /obj/item/shockpaddles/robot/combat(src)

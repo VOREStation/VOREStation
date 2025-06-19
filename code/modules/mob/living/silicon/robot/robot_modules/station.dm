@@ -219,7 +219,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/gripper/scene(src)
-	src.modules += new /obj/item/robotic_multibelt/materials(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"
@@ -422,6 +421,7 @@ var/global/list/robot_modules = list(
 	BD.plastic = plastic
 	src.modules += BD
 
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
 
 /obj/item/robot_module/robot/security
@@ -443,7 +443,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/reagent_containers/spray/pepper(src)
 	src.modules += new /obj/item/gripper/security(src)
-	src.modules += new /obj/item/ticket_printer(src)	//VOREStation Add
+	src.modules += new /obj/item/ticket_printer(src)
 	src.emag += new /obj/item/gun/energy/robotic/laser/rifle(src)
 
 	src.modules += new /obj/item/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
@@ -726,6 +726,7 @@ var/global/list/robot_modules = list(
 	src.modules += N
 
 	src.modules += new /obj/item/dogborg/sleeper/compactor/analyzer(src)
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
 
 /obj/item/robot_module/robot/research/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -811,6 +812,7 @@ var/global/list/robot_modules = list(
 	MD.glass = glass
 	MD.wood = wood
 	MD.plastic = plastic
+	src.modules += new /obj/item/robotic_multibelt/materials(src)
 	src.modules += MD
 
 /obj/item/robot_module/drone/construction
