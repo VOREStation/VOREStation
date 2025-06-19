@@ -54,7 +54,7 @@ export const ModifyRobotMultiBelt = (props: { target: Target }) => {
                     });
                   }}
                 >
-                  {i + 1}
+                  {multibelt[i].name} {i + 1}
                 </Tabs.Tab>
               ))}
             </Tabs>
