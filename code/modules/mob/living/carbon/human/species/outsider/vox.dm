@@ -100,7 +100,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/tank/vox(H), slot_back)
-		H.internal = H.back
+		H.internal = H.inventory.get_item_in_slot(slot_back_str)
 	else
 		H.equip_to_slot_or_del(new /obj/item/tank/vox(H), slot_r_hand)
 		H.internal = H.r_hand

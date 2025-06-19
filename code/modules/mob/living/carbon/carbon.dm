@@ -425,9 +425,10 @@
 		src.r_hand.wash(clean_types)
 	if(src.l_hand)
 		src.l_hand.wash(clean_types)
-	if(src.back)
-		if(src.back.wash(clean_types))
-			src.update_inv_back(0)
+	var/atom/movable/back = inventory.get_item_in_slot(slot_back_str)
+	if(back)
+		if(back.wash(clean_types))
+			update_inv_back(0)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src

@@ -34,6 +34,8 @@
 	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
+	. = ..()
+
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -54,7 +56,6 @@
 
 	human_mob_list |= src
 
-	. = ..()
 
 	hide_underwear.Cut()
 	for(var/category in global_underwear.categories_by_name)
@@ -117,8 +118,8 @@
 		. += "Phoron Stored: [P.stored_plasma]/[P.max_plasma]"
 
 
-	if(back && istype(back,/obj/item/rig))
-		var/obj/item/rig/suit = back
+	if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		var/cell_status = "ERROR"
 		if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 		. += "Suit charge: [cell_status]"
@@ -157,8 +158,8 @@
 	if(species)
 		species.update_misc_tabs(src)
 
-	if(istype(back,/obj/item/rig))
-		var/obj/item/rig/R = back
+	if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+		var/obj/item/rig/R = inventory.get_item_in_slot(slot_back_str)
 		RigPanel(R)
 
 	else if(istype(belt,/obj/item/rig))
@@ -1784,7 +1785,7 @@
 			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 /mob/living/carbon/human/get_mob_riding_slots()
-	return list(back, head, wear_suit)
+	return list(inventory.get_item_in_slot(slot_back_str), head, wear_suit)
 
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"

@@ -32,6 +32,12 @@
 /datum/inventory_slot/proc/update_icon(atom/movable/contents)
 	return
 
+/datum/inventory_slot/proc/equipped(atom/movable/contents)
+	return
+
+/datum/inventory_slot/proc/unequipped(atom/movable/contents)
+	return
+
 // TYPES
 /datum/inventory_slot/l_hand
 	name = "Left Hand"
@@ -112,3 +118,26 @@
 	hud_location = ui_storage2
 	hud_object_type = /obj/screen/inventory
 	hud_icon_state = "pocket"
+
+/datum/inventory_slot/back
+	name = "Back"
+
+	slot_id = slot_back
+	slot_id_str = slot_back_str
+
+	hud_location = ui_back
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "back"
+
+/datum/inventory_slot/back/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_back()
+
+/datum/inventory_slot/back/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/back/unequipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents

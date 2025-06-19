@@ -102,7 +102,7 @@
 	return null
 
 /mob/living/carbon/human/get_technomancer_core()
-	var/obj/item/technomancer_core/core = back
+	var/obj/item/technomancer_core/core = inventory.get_item_in_slot(slot_back_str)
 	if(istype(core))
 		return core
 	return null
@@ -161,7 +161,7 @@
 		if(!core)
 			to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 			return 0
-	if(core.loc != owner || owner.back != core) //Make sure the core's being worn.
+	if(core.loc != owner || owner.inventory.get_item_in_slot(slot_back_str) != core) //Make sure the core's being worn.
 		to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 		return 0
 	if(!technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores

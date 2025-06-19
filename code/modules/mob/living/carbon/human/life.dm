@@ -1314,8 +1314,8 @@
 
 		//Eyes
 		//Check rig first because it's two-check and other checks will override it.
-		if(istype(back,/obj/item/rig))
-			var/obj/item/rig/O = back
+		if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+			var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
 			if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 				if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
 					blinded = 1
@@ -1619,8 +1619,8 @@
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
 						found_welder = 1
-				if(!found_welder && istype(back, /obj/item/rig))
-					var/obj/item/rig/O = back
+				if(!found_welder && istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig))
+					var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
 					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
 							found_welder = 1

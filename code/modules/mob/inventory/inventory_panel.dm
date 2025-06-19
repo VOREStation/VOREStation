@@ -84,7 +84,7 @@
 	)))
 	slots.Add(list(list(
 		"name" = "Back",
-		"item" = host.back,
+		"item" = host.inventory.get_item_in_slot(slot_back_str),
 		"act" = "back",
 	)))
 	slots.Add(list(list(
@@ -95,7 +95,7 @@
 	data["slots"] = slots
 
 	data["internals"] = host.internals
-	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/tank)
+	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.inventory.get_item_in_slot(slot_back_str), /obj/item/tank)
 
 	return data
 
@@ -177,7 +177,7 @@
 	data["specialSlots"] = specialSlots
 
 	data["internals"] = H.internals
-	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.back, /obj/item/tank) || istype(H.belt, /obj/item/tank) || istype(H.s_store, /obj/item/tank))
+	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/tank) || istype(H.belt, /obj/item/tank) || istype(H.s_store, /obj/item/tank))
 
 	data["sensors"] = FALSE
 	if(istype(suit) && suit.has_sensor == 1)

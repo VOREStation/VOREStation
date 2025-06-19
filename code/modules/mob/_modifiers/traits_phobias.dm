@@ -135,7 +135,7 @@
 					human_blood_fear_amount += 1
 
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
-				var/list/clothing_slots = list(H.back, H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
+				var/list/clothing_slots = list(H.inventory.get_item_in_slot(slot_back_str), H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
 				if(H == holder)
 					clothing_slots += list(H.inventory.get_item_in_slot(slot_l_store_str), H.inventory.get_item_in_slot(slot_r_store_str))
 

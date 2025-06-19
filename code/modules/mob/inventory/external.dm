@@ -93,11 +93,11 @@ var/list/slot_equipment_priority = list( \
 
 	W.loc = src
 	switch(slot)
-		if(slot_back)
-			src.back = W
-			W.equipped(src, slot)
-			worn_clothing += back
-			update_inv_back()
+		// if(slot_back)
+		// 	src.back = W
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += back
+		// 	update_inv_back()
 		if(slot_wear_mask)
 			src.wear_mask = W
 			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
@@ -193,7 +193,7 @@ var/list/slot_equipment_priority = list( \
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
-			W.loc = src.back
+			W.loc = inventory.get_item_in_slot(slot_back_str)
 		if(slot_tie)
 			for(var/obj/item/clothing/C in worn_clothing)
 				if(istype(W, /obj/item/clothing/accessory))
@@ -269,15 +269,17 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 /mob/living/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
+	var/back = inventory.get_item_in_slot(slot_back_str)
+
 	// Try put it in their backpack
-	if(istype(src.back,/obj/item/storage))
-		var/obj/item/storage/backpack = src.back
+	if(istype(back,/obj/item/storage))
+		var/obj/item/storage/backpack = back
 		if(backpack.can_be_inserted(newitem, 1))
 			if(user_initiated)
 				backpack.handle_item_insertion(newitem)
 			else
-				newitem.forceMove(src.back)
-			return src.back
+				newitem.forceMove(back)
+			return back
 
 	// Try to place it in any item that can store stuff, on the mob.
 	for(var/obj/item/storage/S in src.contents)
@@ -288,15 +290,15 @@ var/list/slot_equipment_priority = list( \
 				newitem.forceMove(S)
 			return S
 
-	if(istype(src.back,/obj/item/rig))	//This would be much cooler if we had componentized storage datums
-		var/obj/item/rig/R = src.back
+	if(istype(back,/obj/item/rig))	//This would be much cooler if we had componentized storage datums
+		var/obj/item/rig/R = back
 		if(R.rig_storage)
 			var/obj/item/storage/backpack = R.rig_storage
 			if(backpack.can_be_inserted(newitem, 1))
 				if(user_initiated)
 					backpack.handle_item_insertion(newitem)
 				else
-					newitem.forceMove(src.back)
+					newitem.forceMove(back)
 				return backpack
 	return 0
 
@@ -566,9 +568,9 @@ var/list/slot_equipment_priority = list( \
 	else if (W == l_hand)
 		l_hand = null
 		update_inv_l_hand()
-	else if (W == back)
-		back = null
-		update_inv_back()
+	// else if (W == back)
+	// 	back = null
+	// 	update_inv_back()
 	else if (W == wear_mask)
 		wear_mask = null
 		update_inv_wear_mask()
@@ -673,10 +675,10 @@ var/list/slot_equipment_priority = list( \
 	else if (W == s_store)
 		s_store = null
 		update_inv_s_store()
-	else if (W == back)
-		worn_clothing -= back
-		back = null
-		update_inv_back()
+	// else if (W == back)
+	// 	worn_clothing -= back
+	// 	back = null
+	// 	update_inv_back()
 	else if (W == handcuffed)
 		handcuffed = null
 		if(buckled && buckled.buckle_require_restraints)
@@ -721,7 +723,6 @@ var/list/slot_equipment_priority = list( \
 		if(get_equipped_item(s) == I)
 			slot = s
 			break
-	world.log << "get_inventory_slot([I]) = [slot]"
 	return slot
 
 
@@ -765,16 +766,16 @@ var/list/slot_equipment_priority = list( \
 		if(slot_l_hand_str)    return l_hand
 		if(slot_r_hand)        return r_hand
 		if(slot_r_hand_str)    return r_hand
-		if(slot_back)          return back
-		if(slot_back_str)      return back
+		if(slot_back)          return inventory.get_item_in_slot(slot_back_str)
+		if(slot_back_str)      return inventory.get_item_in_slot(slot_back_str)
 		if(slot_wear_mask)     return wear_mask
 		if(slot_wear_mask_str) return wear_mask
 	return null
 
 /mob/living/carbon/human/get_equipped_item(slot)
 	switch(slot)
-		if(slot_back)           return back
-		if(slot_back_str)       return back
+		if(slot_back)           return inventory.get_item_in_slot(slot_back_str)
+		if(slot_back_str)       return inventory.get_item_in_slot(slot_back_str)
 		if(slot_legcuffed)      return legcuffed
 		if(slot_legcuffed_str)  return legcuffed
 		if(slot_handcuffed)     return handcuffed
@@ -820,7 +821,7 @@ var/list/slot_equipment_priority = list( \
 	. = ..()
 	. += l_hand
 	. += r_hand
-	. += back
+	. += inventory.get_item_in_slot(slot_back_str)
 	. += wear_mask
 
 /mob/living/carbon/human/get_equipped_items()
@@ -848,7 +849,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
 			return TRUE
-		if(back || wear_mask)
+		if(inventory.get_item_in_slot(slot_back_str) || wear_mask)
 			return TRUE
 
 	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)
@@ -857,7 +858,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
 			return TRUE
-		if(back || wear_mask || head || shoes || w_uniform || wear_suit || glasses || l_ear || r_ear || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || wear_mask || head || shoes || w_uniform || wear_suit || glasses || l_ear || r_ear || gloves)
 			return TRUE
 
 	return (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract)

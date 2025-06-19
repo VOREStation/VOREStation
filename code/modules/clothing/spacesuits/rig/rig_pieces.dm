@@ -88,10 +88,10 @@
 		return 0
 
 	var/mob/living/carbon/human/H = loc
-	if(!istype(H) || (!H.back && !H.belt))
+	if(!istype(H) || (!H.inventory.get_item_in_slot(slot_back_str) && !H.belt))
 		return 0
 
-	var/obj/item/rig/suit = H.back
+	var/obj/item/rig/suit = H.inventory.get_item_in_slot(slot_back_str)
 	if(!suit || !istype(suit) || !suit.installed_modules.len)
 		return 0
 

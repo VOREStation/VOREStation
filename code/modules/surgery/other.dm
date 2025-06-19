@@ -221,10 +221,10 @@
 		var/obj/item/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
-	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/rig) && !(target.belt.canremove)))
+	return (target_zone == BP_TORSO) && ((istype(target.inventory.get_item_in_slot(slot_back_str), /obj/item/rig) && !(target.inventory.get_item_in_slot(slot_back_str).canremove)) || (istype(target.belt, /obj/item/rig) && !(target.belt.canremove)))
 
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/rig/rig = target.back
+	var/obj/item/rig/rig = target.inventory.get_item_in_slot(slot_back_str)
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))
@@ -235,7 +235,7 @@
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/rig/rig = target.back
+	var/obj/item/rig/rig = target.inventory.get_item_in_slot(slot_back_str)
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))

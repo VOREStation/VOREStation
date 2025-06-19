@@ -518,7 +518,7 @@
 		return
 	if(H.stat)
 		return
-	if(H.back == src)
+	if(H.inventory.get_item_in_slot(slot_back_str) == src)
 		to_chat(H, span_warning("How do you expect to work on \the [src] while it's on your back?"))
 		return
 

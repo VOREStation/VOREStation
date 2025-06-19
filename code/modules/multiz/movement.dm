@@ -610,20 +610,22 @@
 /mob/living/carbon/human/CanParachute()
 	//Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
 	//This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
+	// TODO: don't assume back is a parachute
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
 	if(back && back.isParachute())
 		back.handleParachute()
 		return TRUE
 	if(s_store && s_store.isParachute())
-		back.handleParachute()
+		s_store.handleParachute()
 		return TRUE
 	if(belt && belt.isParachute())
-		back.handleParachute()
+		belt.handleParachute()
 		return TRUE
 	if(wear_suit && wear_suit.isParachute())
-		back.handleParachute()
+		wear_suit.handleParachute()
 		return TRUE
 	if(w_uniform && w_uniform.isParachute())
-		back.handleParachute()
+		w_uniform.handleParachute()
 		return TRUE
 	else
 		return parachuting

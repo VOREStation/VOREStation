@@ -46,8 +46,8 @@
 			C.species_restricted = null
 		equip_to_appropriate_slot(I)
 
-	if(istype(back, /obj/item/rig))
-		var/obj/item/rig/rig = back
+	if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig))
+		var/obj/item/rig/rig = inventory.get_item_in_slot(slot_back_str)
 		rig.toggle_seals(src)
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/turntable()

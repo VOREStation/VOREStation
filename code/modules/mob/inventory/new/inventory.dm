@@ -95,6 +95,7 @@
 	put_item_in_slot(slot_id, AM)
 
 	var/datum/inventory_slot/slot = slots_by_str[slot_id]
+	slot.equipped(AM)
 	slot.update_icon(AM)
 
 	AM.hud_layerise()
@@ -113,8 +114,12 @@
 /datum/inventory/proc/u_equip(atom/movable/AM)
 	for(var/slot in slot_to_item)
 		if(slot_to_item[slot] == AM)
-			slots_by_str[slot].update_icon(AM)
 			put_item_in_slot(slot, null)
+
+			var/datum/inventory_slot/slot_datum = slots_by_str[slot]
+			slot_datum.unequipped(AM)
+			slot_datum.update_icon(AM)
+
 			return slot
 	return FALSE
 
@@ -122,7 +127,8 @@
 /datum/inventory/living
 	slot_types = list(
 		/datum/inventory_slot/l_hand,
-		/datum/inventory_slot/r_hand
+		/datum/inventory_slot/r_hand,
+		/datum/inventory_slot/back
 	)
 
 /datum/inventory/human
@@ -131,4 +137,5 @@
 		/datum/inventory_slot/r_hand,
 		/datum/inventory_slot/l_store,
 		/datum/inventory_slot/r_store,
+		/datum/inventory_slot/back,
 	)

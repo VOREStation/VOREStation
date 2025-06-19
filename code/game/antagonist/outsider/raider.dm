@@ -262,7 +262,7 @@ var/datum/antagonist/raider/raiders
 		primary.loc = holster
 	else if(!player.belt && (primary.slot_flags & SLOT_BELT))
 		player.equip_to_slot_or_del(primary, slot_belt)
-	else if(!player.back && (primary.slot_flags & SLOT_BACK))
+	else if(!player.inventory.get_item_in_slot(slot_back_str) && (primary.slot_flags & SLOT_BACK))
 		player.equip_to_slot_or_del(primary, slot_back)
 	else
 		player.put_in_any_hand_if_possible(primary)

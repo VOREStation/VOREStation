@@ -106,11 +106,12 @@
 				qdel(M.wear_mask)
 				success = 1
 
-		if(M.back && stuff_to_equip["back"])
-			if(istype(M.back, stuff_to_equip["back"]))
-				for(var/atom/movable/AM in M.back.contents) //Dump whatever's in the bag before deleting.
+		var/atom/movable/back = inventory.get_item_in_slot(slot_back_str)
+		if(back && stuff_to_equip["back"])
+			if(istype(back, stuff_to_equip["back"]))
+				for(var/atom/movable/AM in back.contents) //Dump whatever's in the bag before deleting.
 					AM.forceMove(src.loc)
-				qdel(M.back)
+				qdel(back)
 				success = 1
 
 		if(M.w_uniform && stuff_to_equip["w_uniform"])
@@ -195,7 +196,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["back"]
-		if(!M.back && t)
+		if(!M.inventory.get_item_in_slot(slot_back_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_back)
 			grown_items_list.Add("a backpack")

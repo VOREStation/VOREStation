@@ -306,6 +306,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	if(!mymob)
 		return
 
+	// TODO: integrate this into /datum/inventory
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
@@ -319,7 +320,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_belt)
 						if(H.belt)    H.belt.screen_loc =    hud_data["loc"]
 					if(slot_back)
-						if(H.back)    H.back.screen_loc =    hud_data["loc"]
+						if(H.inventory.get_item_in_slot(slot_back_str))    H.inventory.get_item_in_slot(slot_back_str).screen_loc =    hud_data["loc"]
 					if(slot_l_store)
 						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = hud_data["loc"]
 					if(slot_r_store)
@@ -333,7 +334,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 					if(slot_belt)
 						if(H.belt)    H.belt.screen_loc =    null
 					if(slot_back)
-						if(H.back)    H.back.screen_loc =    null
+						if(H.inventory.get_item_in_slot(slot_back_str))    H.inventory.get_item_in_slot(slot_back_str).screen_loc =    null
 					if(slot_l_store)
 						if(H.inventory.get_item_in_slot(slot_l_store_str)) H.inventory.get_item_in_slot(slot_l_store_str).screen_loc = null
 					if(slot_r_store)

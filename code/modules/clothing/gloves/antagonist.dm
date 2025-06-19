@@ -28,8 +28,8 @@
 		to_chat(target, span_warning("[user] rifles in your pockets!"))
 
 	if(user.a_intent == I_HELP)
-		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target))
-			var/obj/item/storage/Backpack = target.back
+		if(istype(target.inventory.get_item_in_slot(slot_back_str),/obj/item/storage) && do_after(user, 3 SECONDS, target))
+			var/obj/item/storage/Backpack = target.inventory.get_item_in_slot(slot_back_str)
 			Backpack.open(user)
 		else if(istype(target.belt, /obj/item/storage) && do_after(user, 5 SECONDS, target))
 			var/obj/item/storage/Belt = target.belt

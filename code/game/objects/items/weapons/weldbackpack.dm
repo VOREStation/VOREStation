@@ -89,7 +89,7 @@
 /obj/item/weldpack/attack_hand(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/wearer = user
-		if(wearer.back == src)
+		if(wearer.inventory.get_item_in_slot(slot_back_str) == src)
 			if(nozzle && nozzle_attached)
 				if(!wearer.incapacitated())
 					get_nozzle(user)

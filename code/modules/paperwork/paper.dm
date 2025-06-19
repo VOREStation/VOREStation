@@ -431,8 +431,8 @@
 
 		if(!istype(i, /obj/item/pen))
 			var/mob/living/M = usr
-			if(istype(M) && M.back && istype(M.back,/obj/item/rig))
-				var/obj/item/rig/r = M.back
+			if(istype(M) && istype(M.inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+				var/obj/item/rig/r = M.inventory.get_item_in_slot(slot_back_str)
 				var/obj/item/rig_module/device/pen/m = locate(/obj/item/rig_module/device/pen) in r.installed_modules
 				if(!r.offline && m)
 					i = m.device

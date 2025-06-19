@@ -117,8 +117,8 @@ var/datum/antagonist/ninja/ninjas
 		ninjasuit.toggle_seals(src,TRUE,TRUE)
 		ninjasuit.seal_delay = initial(ninjasuit.seal_delay)
 
-	if(istype(player.back,/obj/item/rig))
-		var/obj/item/rig/rig = player.back
+	if(istype(player.inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
+		var/obj/item/rig/rig = player.inventory.get_item_in_slot(slot_back_str)
 		if(rig.air_supply)
 			player.internal = rig.air_supply
 

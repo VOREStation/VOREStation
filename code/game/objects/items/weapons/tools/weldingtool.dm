@@ -501,7 +501,7 @@
 			mounted_pack.return_nozzle()
 		else
 			var/mob/living/carbon/human/H = mounted_pack.loc
-			if(H.back != mounted_pack)
+			if(H.inventory.get_item_in_slot(slot_back_str) != mounted_pack)
 				mounted_pack.return_nozzle()
 
 	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
@@ -646,8 +646,8 @@
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
-			if(istype(H) && H.back)
-				var/obj/item/rig/suit = H.back
+			if(istype(H) && H.inventory.get_item_in_slot(slot_back_str))
+				var/obj/item/rig/suit = H.inventory.get_item_in_slot(slot_back_str)
 				if(istype(suit))
 					return suit.cell
 	if(istype(src.loc, /obj/item/mecha_parts/mecha_equipment))

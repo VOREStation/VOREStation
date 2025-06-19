@@ -75,6 +75,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_icon_special()
 
 /mob/living/carbon/human/update_transform(var/instant = FALSE)
+	if(!species) // needed for init order fuckery
+		return
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
 	desired_scale_x *= species.icon_scale_x
@@ -890,6 +892,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	remove_layer(BACK_LAYER)
+
+	// TODO: don't assume it's an item
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
 
 	if(!back)
 		return //Why do anything

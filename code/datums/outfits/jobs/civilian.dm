@@ -34,8 +34,9 @@
 
 /decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
 	..()
-	if(H.back)
-		for(var/obj/item/clothing/accessory/permit/gun/bar/permit in H.back.contents)
+	var/atom/movable/back = H.inventory.get_item_in_slot(slot_back_str)
+	if(back)
+		for(var/obj/item/clothing/accessory/permit/gun/bar/permit in back.contents)
 			permit.set_name(H.real_name)
 
 /decl/hierarchy/outfit/job/service/bartender/barista

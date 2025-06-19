@@ -58,8 +58,8 @@
 /mob/living/carbon/human/break_cloak()
 	if(mind && mind.changeling) //Changeling visible camo
 		mind.changeling.cloaked = 0
-	if(istype(back, /obj/item/rig)) //Ninja cloak
-		var/obj/item/rig/suit = back
+	if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
@@ -69,8 +69,8 @@
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
 		return TRUE
-	else if(istype(back, /obj/item/rig)) //Ninja cloak
-		var/obj/item/rig/suit = back
+	else if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = inventory.get_item_in_slot(slot_back_str)
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE

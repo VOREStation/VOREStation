@@ -160,6 +160,8 @@
 				msg += "[T.He] [T.is] carrying [icon2html(s_store,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[s_store]'>\a [s_store]</a> on [T.his] [wear_suit.name]."
 
 	//back
+	// TODO: don't assume item
+	var/obj/item/back = inventory.get_item_in_slot(slot_back_str)
 	if(back && !(skip_gear & EXAMINE_SKIPBACKPACK) && back.show_examine)
 		if(back.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.has] [icon2html(back,user.client)] [back.gender==PLURAL?"some":"a"] [(back.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[back]'>[back]</a> on [T.his] back.")

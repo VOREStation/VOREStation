@@ -172,8 +172,8 @@
 		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
 			return
 		// Find an internal source.
-		if(istype(back, /obj/item/tank))
-			internal = back
+		if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/tank))
+			internal = inventory.get_item_in_slot(slot_back_str)
 		else if(istype(s_store, /obj/item/tank))
 			internal = s_store
 		else if(istype(belt, /obj/item/tank))

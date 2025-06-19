@@ -338,7 +338,7 @@
 			busy = TRUE
 			if(do_mob(src, H, 60))
 				if(!H.handcuffed)
-					if(istype(H.back, /obj/item/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
+					if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
 						H.handcuffed = new /obj/item/handcuffs/cable(H) // Better to be cable cuffed than stun-locked
 					else
 						H.handcuffed = new /obj/item/handcuffs(H)

@@ -548,8 +548,8 @@ var/list/global/slot_flags_enumeration = list(
 				return 0 //In theory, this would never happen, but let's just do the legcuff check anyways.
 		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
 			var/allow = 0
-			if(H.back && istype(H.back, /obj/item/storage/backpack))
-				var/obj/item/storage/backpack/B = H.back
+			if(istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/storage/backpack))
+				var/obj/item/storage/backpack/B = H.inventory.get_item_in_slot(slot_back_str)
 				if(B.can_be_inserted(src,1))
 					allow = 1
 			if(!allow)

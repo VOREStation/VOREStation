@@ -1125,7 +1125,7 @@
 
 // Mob holders in these slots will be spilled if the mob goes prone.
 /mob/living/proc/get_mob_riding_slots()
-	return list(back)
+	return list(inventory.get_item_in_slot(slot_back_str))
 
 // Adds overlays for specific modifiers.
 // You'll have to add your own implementation for non-humans currently, just override this proc.
