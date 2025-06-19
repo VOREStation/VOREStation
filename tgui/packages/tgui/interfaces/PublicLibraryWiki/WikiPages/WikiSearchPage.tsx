@@ -9,12 +9,12 @@ import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
+import { WikiGenePage } from './WikiSubPages/WikiGenePage';
 import { WikiMaterialPage } from './WikiSubPages/WikiMaterialPage';
 import { WikiNoDataPage } from './WikiSubPages/WikiNoDataPage';
 import { WikiOrePage } from './WikiSubPages/WikiOrePage';
 import { WikiParticlePage } from './WikiSubPages/WikiParticlePage';
 import { WikiVirusPage } from './WikiSubPages/WikiVirusPage';
-import { WikiGenePage } from './WikiSubPages/WikiGenePage';
 
 export const WikiSearchPage = (
   props: {
