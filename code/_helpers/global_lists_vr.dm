@@ -595,7 +595,7 @@ GLOBAL_LIST_EMPTY(weavable_structures)
 GLOBAL_LIST_EMPTY(weavable_items)
 
 
-var/global/list/xenobio_metal_materials_normal = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_normal, list(
 										/obj/item/stack/material/steel = 20,
 										/obj/item/stack/material/glass = 15,
 										/obj/item/stack/material/plastic = 12,
@@ -609,9 +609,9 @@ var/global/list/xenobio_metal_materials_normal = list(
 										/obj/item/stack/material/copper = 4,
 										/obj/item/stack/material/tin = 4,
 										/obj/item/stack/material/bronze = 4,
-										/obj/item/stack/material/aluminium = 4)
+										/obj/item/stack/material/aluminium = 4))
 
-var/global/list/xenobio_metal_materials_adv = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_adv, list(
 										/obj/item/stack/material/glass/reinforced = 15,
 										/obj/item/stack/material/marble = 10,
 										/obj/item/stack/material/plasteel = 10,
@@ -626,9 +626,9 @@ var/global/list/xenobio_metal_materials_adv = list(
 										/obj/item/stack/material/durasteel = 2,
 										/obj/item/stack/material/painite = 1,
 										/obj/item/stack/material/void_opal = 1,
-										/obj/item/stack/material/quartz = 1)
+										/obj/item/stack/material/quartz = 1))
 
-var/global/list/xenobio_metal_materials_weird = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_weird, list(
 										/obj/item/stack/material/cloth = 10,
 										/obj/item/stack/material/leather = 5,
 										/obj/item/stack/material/fiber = 5,
@@ -637,29 +637,29 @@ var/global/list/xenobio_metal_materials_weird = list(
 										/obj/item/stack/material/snowbrick = 3,
 										/obj/item/stack/material/flint = 3,
 										/obj/item/stack/material/stick = 3,
-										/obj/item/stack/material/chitin = 1)
+										/obj/item/stack/material/chitin = 1))
 
-var/global/list/xenobio_silver_materials_basic = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_basic, list(
 										/obj/item/stack/material/silver = 10,
 										/obj/item/stack/material/uranium = 8,
 										/obj/item/stack/material/gold = 6,
 										/obj/item/stack/material/titanium = 4,
-										/obj/item/stack/material/phoron = 1)
+										/obj/item/stack/material/phoron = 1))
 
-var/global/list/xenobio_silver_materials_adv = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_adv, list(
 										/obj/item/stack/material/deuterium = 5,
 										/obj/item/stack/material/tritium = 5,
 										/obj/item/stack/material/osmium = 5,
 										/obj/item/stack/material/mhydrogen = 3,
 										/obj/item/stack/material/diamond = 2,
-										/obj/item/stack/material/verdantium = 1)
+										/obj/item/stack/material/verdantium = 1))
 
-var/global/list/xenobio_silver_materials_special = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_special, list(
 										/obj/item/stack/material/valhollide = 1,
 										/obj/item/stack/material/morphium = 1,
-										/obj/item/stack/material/supermatter = 1)
+										/obj/item/stack/material/supermatter = 1))
 
-var/global/list/xenobio_gold_mobs_hostile = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_hostile, list(
 										/mob/living/simple_mob/vore/alienanimals/space_jellyfish,
 										/mob/living/simple_mob/vore/alienanimals/skeleton,
 										/mob/living/simple_mob/vore/alienanimals/space_ghost,
@@ -721,9 +721,9 @@ var/global/list/xenobio_gold_mobs_hostile = list(
 										/mob/living/simple_mob/vore/sect_queen,
 										/mob/living/simple_mob/vore/weretiger,
 										/mob/living/simple_mob/vore/wolf,
-										/mob/living/simple_mob/vore/xeno_defanged)
+										/mob/living/simple_mob/vore/xeno_defanged))
 
-var/global/list/xenobio_gold_mobs_bosses = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_bosses, list(
 										/mob/living/simple_mob/animal/giant_spider/broodmother,
 										/mob/living/simple_mob/vore/leopardmander,
 										/mob/living/simple_mob/vore/leopardmander/blue,
@@ -731,9 +731,9 @@ var/global/list/xenobio_gold_mobs_bosses = list(
 										/mob/living/simple_mob/vore/greatwolf,
 										/mob/living/simple_mob/vore/greatwolf/black,
 										/mob/living/simple_mob/vore/greatwolf/grey,
-										/mob/living/simple_mob/vore/bigdragon)
+										/mob/living/simple_mob/vore/bigdragon))
 
-var/global/list/xenobio_gold_mobs_safe = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_safe, list(
 										/mob/living/simple_mob/vore/alienanimals/dustjumper,
 										/mob/living/simple_mob/animal/passive/chicken,
 										/mob/living/simple_mob/animal/passive/cow,
@@ -774,9 +774,9 @@ var/global/list/xenobio_gold_mobs_safe = list(
 										/mob/living/simple_mob/vore/redpanda,
 										/mob/living/simple_mob/vore/sheep,
 										/mob/living/simple_mob/vore/squirrel,
-										/mob/living/simple_mob/vore/solargrub)
+										/mob/living/simple_mob/vore/solargrub))
 
-var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/passive/bird/black_bird,
+GLOBAL_LIST_INIT(xenobio_gold_mobs_birds, list(/mob/living/simple_mob/animal/passive/bird/black_bird,
 										/mob/living/simple_mob/animal/passive/bird/azure_tit,
 										/mob/living/simple_mob/animal/passive/bird/european_robin,
 										/mob/living/simple_mob/animal/passive/bird/goldcrest,
@@ -796,9 +796,9 @@ var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/pas
 										/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey,
 										/mob/living/simple_mob/animal/passive/bird/parrot/sulphur_cockatoo,
 										/mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo,
-										/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo)			//There's too dang many
+										/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo))			//There's too dang many
 
-var/global/list/xenobio_cerulean_potions = list(
+GLOBAL_LIST_INIT(xenobio_cerulean_potions, list(
 										/obj/item/slimepotion/enhancer,
 										/obj/item/slimepotion/stabilizer,
 										/obj/item/slimepotion/mutator,
@@ -816,9 +816,9 @@ var/global/list/xenobio_cerulean_potions = list(
 										/obj/item/slimepotion/reinvigoration,
 										/obj/item/slimepotion/mimic,
 										/obj/item/slimepotion/sapience,
-										/obj/item/slimepotion/obedience)
+										/obj/item/slimepotion/obedience))
 
-var/global/list/xenobio_rainbow_extracts = list(
+GLOBAL_LIST_INIT(xenobio_rainbow_extracts, list(
 										/obj/item/slime_extract/grey = 2,
 										/obj/item/slime_extract/metal = 3,
 										/obj/item/slime_extract/blue = 3,
@@ -840,13 +840,13 @@ var/global/list/xenobio_rainbow_extracts = list(
 										/obj/item/slime_extract/ruby = 3,
 										/obj/item/slime_extract/emerald = 3,
 										/obj/item/slime_extract/light_pink = 1,
-										/obj/item/slime_extract/rainbow = 1)
+										/obj/item/slime_extract/rainbow = 1))
 
 
 //// Wildlife lists
 //Listed by-type. Under each type are lists of lists that contain 'groupings' of wildlife. Sorted from 1 to 5 by threat level.
 
-var/global/list/event_wildlife_aquatic = list(
+GLOBAL_LIST_INIT(event_wildlife_aquatic, list(
 										list(
 												list(/mob/living/simple_mob/animal/passive/fish/koi = 1,
 														/mob/living/simple_mob/animal/passive/fish/pike = 2,
@@ -875,9 +875,9 @@ var/global/list/event_wildlife_aquatic = list(
 										list(
 												list(/mob/living/simple_mob/animal/sif/hooligan_crab = 1)
 											)
-										)
+										))
 
-var/global/list/event_wildlife_roaming = list(
+GLOBAL_LIST_INIT(event_wildlife_roaming, list(
 										list(
 												list(/mob/living/simple_mob/animal/passive/mouse/jerboa = 1,
 														/mob/living/simple_mob/animal/passive/mouse/black = 2,
@@ -931,7 +931,7 @@ var/global/list/event_wildlife_roaming = list(
 												list(/mob/living/simple_mob/vore/aggressive/giant_snake = 1),
 												list(/mob/living/simple_mob/vore/aggressive/corrupthound = 1)
 											)
-										)
+										))
 
 
 GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
