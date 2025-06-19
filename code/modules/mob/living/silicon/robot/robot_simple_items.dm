@@ -350,8 +350,8 @@
 		mat_belt.has_performed_first_use_init = FALSE
 		mat_belt.first_use_generation()
 
-/mob/living/silicon/robot/proc/check_for_synth(type_to_check)
-	if(!type_to_check)
+/mob/living/silicon/robot/proc/check_for_synth(var/datum/matter_synth/type_to_check)
+	if(!istype(type_to_check))
 		return FALSE
 	for(var/datum/matter_synth/synth in module.synths)
 		if(istype(synth, type_to_check))

@@ -738,9 +738,10 @@
 	var/list/tools = list()
 	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
 		for(var/tool in GLOB.material_synth_list)
-			if(target.check_for_synth(GLOB.material_synth_list[tool])) //Don't add it to the list if we already have it!
+			var/material_path = GLOB.material_synth_list[tool]
+			if(target.check_for_synth(material_path)) //Don't add it to the list if we already have it!
 				continue
-			tools += list(list("name" = tool, "path" = tool))
+			tools += list(list("name" = tool, "path" = material_path))
 	else
 		for(var/tool in GLOB.all_borg_multitool_options)
 			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
