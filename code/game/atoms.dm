@@ -199,9 +199,6 @@
 	var/examine_text = replacetext(get_examine_desc(), "||", "")
 	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", examine_text)
 
-	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
-		output += description_info
-
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 

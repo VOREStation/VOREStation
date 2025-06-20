@@ -24,7 +24,7 @@
 /obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
-	src.modules += new /obj/item/melee/robotic/blade(src)
+	src.modules += new /obj/item/melee/robotic/blade/syndicate(src)
 
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth

@@ -41,6 +41,9 @@
 		var/mob/living/carbon/alien/A = data["donor"]
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
 		B.add_blooddna(A.dna,A)
+	else
+		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
+		B.add_blooddna(null,null)
 
 /datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 

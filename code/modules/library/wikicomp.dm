@@ -56,6 +56,8 @@
 		data["particle_data"] = null
 		data["catalog_data"] = null
 		data["ore_data"] = null
+		data["virus_data"] = null
+		data["gene_data"] = null
 		data["sub_categories"] = null
 		data["donated"] = SSinternal_wiki.get_donation_current()
 		data["goal"] = SSinternal_wiki.get_donation_goal()
@@ -111,6 +113,16 @@
 					data["search"] = SSinternal_wiki.get_searchcache_ore()
 					if(P)
 						data["ore_data"] = P.get_data()
+
+				if("Viruses")
+					data["search"] = SSinternal_wiki.get_searchcache_viruses()
+					if(P)
+						data["virus_data"] = P.get_data()
+
+				if("Genes")
+					data["search"] = SSinternal_wiki.get_searchcache_genes()
+					if(P)
+						data["gene_data"] = P.get_data()
 
 				else
 					data["search"] = list()
@@ -203,6 +215,10 @@
 					new_page = SSinternal_wiki.get_page_particle(search)
 				if(searchmode == "Ores")
 					new_page = SSinternal_wiki.get_page_ore(search)
+				if(searchmode == "Viruses")
+					new_page = SSinternal_wiki.get_page_virus(search)
+				if(searchmode == "Genes")
+					new_page = SSinternal_wiki.get_page_gene(search)
 
 				if(new_page == P)
 					return FALSE
@@ -211,7 +227,7 @@
 
 				if(P)
 					doc_title = P.title
-					doc_body = P.get_print() // TODO - pass get_data() instead, as only printing should use get_print()
+					doc_body = P.get_print()
 				else
 					doc_title = "Error"
 					doc_body = "Invalid data."

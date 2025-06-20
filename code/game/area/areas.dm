@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 //////////////////////////////////////////////////////////////////
 
-var/list/mob/living/forced_ambiance_list = new
+var/list/mob/living/forced_ambiance_list = list()
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)

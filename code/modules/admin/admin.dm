@@ -53,8 +53,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
-	body += "<body>Options panel for" + span_bold("[M]")
+	var/body = "Options panel for" + span_bold("[M]")
 	if(M.client)
 		body += " played by " + span_bold("[M.client]")
 		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank_names() : "Player"]</A>\]"
@@ -90,13 +89,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		body += "\ <A href='byond://?src=\ref[src];[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br>"} + span_bold("Mute: ") + {"
-			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
@@ -172,10 +171,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						if(istype(gene,/datum/gene/trait))
 							var/datum/gene/trait/T = gene
 							tname = T.get_name()
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
-							bcolor="#d88d00"
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						if(bstate)
+							bname = span_green(bname)
+						else if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+							bname = span_orange(bname)
+						else
+							bname = span_red(bname)
+						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -232,15 +234,19 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			if(!f) body += " | "
 			else f = 0
 			if(L in M.languages)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+				k = span_green(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 			else
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				k = span_red(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 
-	body += {"<br>
-		</body></html>
-	"}
+	body += {"<br>"}
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	var/datum/browser/popup = new(owner, "adminplayeropts", "Edit Player", 550, 515)
+	popup.add_head_content("<title>Options for [M.key]</title>")
+	popup.set_content(body)
+	popup.open()
+
 	feedback_add_details("admin_verb","SPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -314,7 +320,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 	var/dat
-	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
+	dat = text("<H3>Admin Newscaster Unit</H3>")
 
 	switch(admincaster_screen)
 		if(0)
@@ -547,10 +553,11 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse("<html>[dat]</html>", "window=admincaster_main;size=400x600")
-	onclose(usr, "admincaster_main")
 
-
+	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
@@ -562,13 +569,17 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse("<html>[dat]</html>", "window=ban;size=400x400")
+
+	var/datum/browser/popup = new(owner, "ban", "Job Bans", 400, 400)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
 	var/dat = {"
-		<html><center>"} + span_bold("Game Panel") + {"</center><hr>\n
+		<center>"} + span_bold("Game Panel") + {"</center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(GLOB.master_mode == "secret")
@@ -582,11 +593,12 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
 		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br></html>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
-	return
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
@@ -1255,7 +1267,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 		out += " None."
 	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
+	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
+	popup.set_content(out)
+	popup.open()
 	feedback_add_details("admin_verb","SGM")
 
 
