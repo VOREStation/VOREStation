@@ -43,6 +43,8 @@
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 	//todo remove verbs proc
 	owner = null
+	shadekin_abilities.Cut()
+	shadekin_ability_datums.Cut()
 	. = ..()
 
 ///Handles the component running.
