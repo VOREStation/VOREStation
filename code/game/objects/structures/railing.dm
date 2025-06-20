@@ -27,9 +27,6 @@
 	if (constructed) // player-constructed railings
 		anchored = FALSE
 	AddElement(/datum/element/climbable/unanchored_can_break, 3.4 SECONDS, TRUE) // It's a RAILING!
-
-/obj/structure/railing/Initialize(mapload)
-	. = ..()
 	if(src.anchored)
 		update_icon(0)
 
