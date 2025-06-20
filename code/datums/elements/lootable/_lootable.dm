@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	if(L && islist(searched_by)) // This can handle no mob and no list if you just want to use this as a way to hold drop tables
 		//You already searched this one
 		if((L.ckey in searched_by) && !allow_multiple_looting)
-			to_chat(L, span_warning("You can't find anything else vaguely useful in \the [src].  Another set of eyes might, however."))
+			to_chat(L, span_warning("You can't find anything else vaguely useful in \the [source].  Another set of eyes might, however."))
 			return
 		searched_by |= L.ckey // List is stored in the caller!
 
