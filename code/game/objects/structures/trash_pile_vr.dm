@@ -121,22 +121,14 @@
 		//Do the searching
 		busy = TRUE
 		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
-
-			//If there was a hider, chance to reveal them
 			if(hider && prob(50))
+				//If there was a hider, chance to reveal them
 				to_chat(hider,span_danger("You've been discovered!"))
 				hider.forceMove(get_turf(src))
 				hider = null
 				to_chat(user,span_danger("Some sort of creature leaps out of \the [src]!"))
-
-			//You already searched this one bruh
-			else if(user.ckey in searchedby)
-				to_chat(H,span_warning("There's nothing else for you in \the [src]!"))
-
-			//You found an item!
 			else
-				SEND_SIGNAL(src,COMSIG_LOOT_REWARD,user)
-				searchedby += user.ckey
+				SEND_SIGNAL(src,COMSIG_LOOT_REWARD,user,searchedby)
 		busy = FALSE
 	else
 		return ..()

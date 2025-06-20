@@ -25,7 +25,6 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/list/icon_states_to_use = list() // List of icon states the pile can choose from on initialization. If empty or null, it will stay the initial icon_state.
 
 	var/list/searched_by = list()	// Keys that have searched this loot pile, with values of searched time.
-	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/busy = FALSE				// Used so you can't spamclick to loot.
 	var/loot_element_path = null
 
@@ -47,12 +46,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		//Do the searching
 		busy = TRUE
 		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
-			//You already searched this one
-			if((user.ckey in searched_by) && !allow_multiple_looting)
-				to_chat(L, span_warning("You can't find anything else vaguely useful in \the [src].  Another set of eyes might, however."))
-			else
-				SEND_SIGNAL(src,COMSIG_LOOT_REWARD,L)
-				searched_by |= user.ckey
+			SEND_SIGNAL(src,COMSIG_LOOT_REWARD,L,searchedby)
 		busy = FALSE
 	else
 		return ..()

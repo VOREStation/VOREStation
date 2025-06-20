@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
 	var/chance_gamma = 0			// Singledrop global loot table shaded with all piles.
 
+	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
 	var/loot_left = 0				// When this reaches zero, and loot_depleted is true, you can't obtain anymore loot.
 	var/delete_on_depletion = FALSE	// If true, and if the loot gets depleted as above, the pile is deleted.
@@ -32,7 +33,8 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	. = ..()
 	UnregisterSignal(target, COMSIG_LOOT_REWARD)
 
-/datum/element/lootable/proc/loot(atom/source,mob/living/L)
+/// Calculates and drops loot, the source's turf is where it will be dropped, L is the searching mob, and searched_by is a passed list for storing who has searched a loot pile.
+/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by)
 	SIGNAL_HANDLER
 	// The loot's all gone.
 	if(loot_depletion && loot_left <= 0)
@@ -43,6 +45,13 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	if(chance_nothing && prob(chance_nothing))
 		to_chat(L, span_warning("Nothing in this pile really catches your eye..."))
 		return
+
+	if(L && islist(searched_by)) // This can handle no mob and no list if you just want to use this as a way to hold drop tables
+		//You already searched this one
+		if((L.ckey in searched_by) && !allow_multiple_looting)
+			to_chat(L, span_warning("You can't find anything else vaguely useful in \the [src].  Another set of eyes might, however."))
+			return
+		searched_by |= L.ckey // List is stored in the caller!
 
 	// You found something!
 	var/obj/item/loot = null
@@ -63,29 +72,35 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	else  // Welp.
 		loot = produce_common_item(source)
 
+	// Handle randomized items in our tables.
 	if(istype(loot,/obj/random))
 		var/obj/random/randy = loot
 		var/new_I = randy.spawn_item()
 		qdel_swap(loot,new_I)
 
 	//We either have an item to hand over or we don't, at this point!
-	if(loot)
-		loot.forceMove(get_turf(source))
-		var/final_message = "You found \a [loot]!"
-		switch(span)
-			if("notice")
-				final_message = span_notice(final_message)
-			if("cult")
-				final_message = span_cult(final_message)
-			if("alium")
-				final_message = span_alium(final_message)
-		to_chat(L, span_info(final_message))
-		if(loot_depletion)
-			loot_left--
-			if(loot_left <= 0)
-				to_chat(L, span_warning("You seem to have gotten the last of the spoils inside \the [source]."))
-				if(delete_on_depletion)
-					qdel(source)
+	if(!loot)
+		return
+	loot.forceMove(get_turf(source))
+	var/final_message = "You found \a [loot]!"
+	switch(span)
+		if("notice")
+			final_message = span_notice(final_message)
+		if("cult")
+			final_message = span_cult(final_message)
+		if("alium")
+			final_message = span_alium(final_message)
+	to_chat(L, span_info(final_message))
+
+	// Check if we should delete on depletion
+	if(!loot_depletion)
+		return
+	loot_left--
+	if(loot_left > 0)
+		return
+	to_chat(L, span_warning("You seem to have gotten the last of the spoils inside \the [source]."))
+	if(delete_on_depletion)
+		qdel(source)
 
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
@@ -113,11 +128,11 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 				break
 
 	if(path)
-		var/obj/item/I = new path()
+		var/obj/item/I = new path(source)
 		GLOB.allocated_gamma_loot[path] = WEAKREF(I)
 		return I
-	else
-		return produce_rare_item(source)
+
+	return produce_rare_item(source)
 
 /// Restores a removed gamma loot item back to the loot table
 /proc/restore_gamma_loot(var/w_type)
