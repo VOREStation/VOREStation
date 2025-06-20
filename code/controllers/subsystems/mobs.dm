@@ -7,7 +7,7 @@
 
 SUBSYSTEM_DEF(mobs)
 	name = "Mobs"
-	priority = 100
+	priority = FIRE_PRIORITY_MOBS
 	wait = 2 SECONDS
 	flags = SS_KEEP_TIMING|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
