@@ -30,6 +30,7 @@
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 			I.loc = src
 	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/paper_bundle))

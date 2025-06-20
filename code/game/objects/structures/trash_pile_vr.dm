@@ -27,6 +27,7 @@
 		"brokecomp")
 	mouse_nest = new(src)
 	AddElement(/datum/element/lootable/trash_pile)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/trash_pile/Destroy()
 	qdel(mouse_nest)
