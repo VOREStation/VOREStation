@@ -546,10 +546,11 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.gloves)
-			H.gloves.wash(CLEAN_SCRUB)
+		var/obj/item/gloves = H.inventory.get_item_in_slot(slot_gloves_str)
+		if(istype(gloves))
+			gloves.wash(CLEAN_SCRUB)
+			gloves.germ_level = 0
 			H.update_inv_gloves()
-			H.gloves.germ_level = 0
 		else
 			var/obj/item/l_hand = H.get_left_hand()
 			var/obj/item/r_hand = H.get_right_hand()

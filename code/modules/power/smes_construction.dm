@@ -187,8 +187,9 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	// Check if user has protected gloves.
 	var/user_protected = 0
-	if(h_user.gloves)
-		var/obj/item/clothing/gloves/G = h_user.gloves
+	var/obj/item/gloves = h_user.inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves))
+		var/obj/item/clothing/gloves/G = gloves
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
 	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [h_user.ckey], Intensity: [intensity]/100")

@@ -86,10 +86,10 @@
 	if(chambered.leaves_residue)
 		var/mob/living/carbon/human/H = loc
 		if(istype(H))
-			if(!istype(H.gloves, /obj/item/clothing))
+			if(!istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing))
 				H.add_gunshotresidue(chambered)
 			else
-				var/obj/item/clothing/G = H.gloves
+				var/obj/item/clothing/G = H.inventory.get_item_in_slot(slot_gloves_str)
 				G.add_gunshotresidue(chambered)
 
 	switch(handle_casings)

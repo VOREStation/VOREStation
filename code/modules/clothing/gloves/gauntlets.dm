@@ -15,14 +15,14 @@
 
 /obj/item/clothing/gloves/gauntlets/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
-	if(H.gloves)
-		gloves = H.gloves
+	if(H.inventory.get_item_in_slot(slot_gloves_str))
+		gloves = H.inventory.get_item_in_slot(slot_gloves_str)
 		if(!istype(gloves))
-			to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
+			to_chat(user, "You are unable to wear \the [src] as \the [H.inventory.get_item_in_slot(slot_gloves_str)] are in the way.")
 			gloves = null
 			return 0
 		if(gloves.overgloves)
-			to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
+			to_chat(user, "You are unable to wear \the [src] as \the [H.inventory.get_item_in_slot(slot_gloves_str)] are in the way.")
 			gloves = null
 			return 0
 		H.drop_from_inventory(gloves)

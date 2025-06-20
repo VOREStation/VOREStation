@@ -78,7 +78,7 @@
 	var/burn_user = TRUE
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/gloves/G = H.gloves
+		var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
 		var/obj/item/clothing/suit/S = H.inventory.get_item_in_slot(slot_wear_suit_str)
 		var/gloves_permeability	= 1
 		var/suit_permeability = 1
@@ -135,7 +135,7 @@
 	var/burn_user = TRUE
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/gloves/G = H.gloves
+		var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
 		var/obj/item/clothing/suit/S = H.inventory.get_item_in_slot(slot_wear_suit_str)
 		var/gloves_permeability	= 1
 		var/suit_permeability = 1

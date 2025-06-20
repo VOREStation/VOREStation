@@ -234,7 +234,7 @@
 		protected += 0.2
 
 	//latex gloves and science goggles also give a bit of bonus protection
-	if(istype(H.gloves,/obj/item/clothing/gloves/sterile))
+	if(istype(H.inventory.get_item_in_slot(slot_gloves_str),/obj/item/clothing/gloves/sterile))
 		protected += 0.1
 
 	if(istype(H.inventory.get_item_in_slot(slot_glasses_str),/obj/item/clothing/glasses/science))

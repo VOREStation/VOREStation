@@ -73,8 +73,8 @@
 		to_chat(user, span_danger("\The [H] needs at least two wrists before you can cuff them together!"))
 		return 0
 
-	if(istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		to_chat(user, span_danger("\The [src] won't fit around \the [H.gloves]!"))
+	if(istype(H.inventory.get_item_in_slot(slot_gloves_str),/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
+		to_chat(user, span_danger("\The [src] won't fit around \the [H.inventory.get_item_in_slot(slot_gloves_str)]!"))
 		return 0
 
 	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [H]!"))

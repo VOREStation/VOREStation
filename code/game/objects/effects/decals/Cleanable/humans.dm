@@ -137,7 +137,7 @@ var/global/list/image/splatter_cache=list()
 	if (amount && istype(user))
 		add_fingerprint(user)
 
-		if (user.gloves)
+		if (user.inventory.get_item_in_slot(slot_gloves_str))
 			return
 		var/taken = rand(1,amount)
 		amount -= taken

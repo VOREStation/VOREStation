@@ -119,8 +119,9 @@
 	if(!istype(user) || !istype(E)) return
 
 	var/germ_level = user.germ_level
-	if(user.gloves)
-		germ_level = user.gloves.germ_level
+	var/obj/item/gloves = user.inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves))
+		germ_level = gloves.germ_level
 
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 

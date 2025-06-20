@@ -1056,7 +1056,7 @@
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_shoes_str),
-		gloves,
+		inventory.get_item_in_slot(slot_gloves_str),
 		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_high_temperature(temperature))
@@ -1071,7 +1071,7 @@
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_shoes_str),
-		gloves,
+		inventory.get_item_in_slot(slot_gloves_str),
 		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
 			if(C.handle_low_temperature(temperature))
@@ -1417,7 +1417,8 @@
 				Paralyse(5)
 
 		// If you're dirty, your gloves will become dirty, too.
-		if(gloves && germ_level > gloves.germ_level && prob(10))
+		var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
+		if(istype(gloves) && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
 	return 1

@@ -28,8 +28,9 @@ var/const/FINGERPRINT_COMPLETE = 6
 	// bloodied gloves and hands transfer blood to touched objects. Blood does not transfer if we are already bloody.
 	if(!forensic_data?.has_blooddna())
 		var/mob/living/carbon/human/H = M
-		if(ishuman(M) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves))
-			var/obj/item/clothing/gloves/G = H.gloves
+		var/obj/item/gloves = H.inventory.get_item_in_slot(slot_gloves_str)
+		if(ishuman(M) && istype(gloves,/obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = gloves
 			if(G.transfer_blood)
 				forensic_data.merge_blooddna(G.forensic_data)
 				G.transfer_blood--
@@ -55,15 +56,16 @@ var/const/FINGERPRINT_COMPLETE = 6
 	C.add_fibres(H)
 
 	//Now, deal with gloves.
-	if (H.gloves && H.gloves != src)
+	var/obj/item/gloves = H.inventory.get_item_in_slot(slot_gloves_str)
+	if (istype(gloves) && gloves != src)
 		C.add_hiddenprints(M)
-		H.gloves.add_fingerprint(M,ignoregloves)
+		gloves.add_fingerprint(M,ignoregloves)
 
 	//Deal with gloves the pass finger/palm prints.
 	if(!ignoregloves)
-		if(H.gloves && H.gloves != src)
-			if(istype(H.gloves, /obj/item/clothing/gloves))
-				var/obj/item/clothing/gloves/G = H.gloves
+		if(istype(gloves) && gloves != src)
+			if(istype(gloves, /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = gloves
 				if(!prob(G.fingerprint_chance))
 					return 0
 

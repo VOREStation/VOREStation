@@ -41,7 +41,7 @@
 	var/unresizable = FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
+		if(istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves/bluespace))
 			unresizable = TRUE
 			return
 
@@ -110,7 +110,7 @@
 	var/unresizable = FALSE
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
+		if(istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves/bluespace))
 			unresizable = TRUE
 			return
 

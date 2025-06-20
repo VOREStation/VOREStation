@@ -159,11 +159,11 @@ var/list/slot_equipment_priority = list( \
 		// 	W.equipped(src, slot)
 		// 	worn_clothing += glasses
 		// 	update_inv_glasses()
-		if(slot_gloves)
-			src.gloves = W
-			W.equipped(src, slot)
-			worn_clothing += gloves
-			update_inv_gloves()
+		// if(slot_gloves)
+		// 	src.gloves = W
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += gloves
+		// 	update_inv_gloves()
 		// if(slot_head)
 		// 	src.head = W
 		// 	if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
@@ -625,10 +625,10 @@ var/list/slot_equipment_priority = list( \
 	// 	worn_clothing -= w_uniform
 	// 	w_uniform = null
 	// 	update_inv_w_uniform()
-	if (W == gloves)
-		worn_clothing -= gloves
-		gloves = null
-		update_inv_gloves()
+	// if (W == gloves)
+	// 	worn_clothing -= gloves
+	// 	gloves = null
+	// 	update_inv_gloves()
 	// else if (W == glasses)
 	// 	worn_clothing -= glasses
 	// 	glasses = null
@@ -798,8 +798,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_wear_id_str)    return inventory.get_item_in_slot(slot_wear_id_str)
 		if(slot_glasses)        return inventory.get_item_in_slot(slot_glasses_str)
 		if(slot_glasses_str)    return inventory.get_item_in_slot(slot_glasses_str)
-		if(slot_gloves)         return gloves
-		if(slot_gloves_str)     return gloves
+		if(slot_gloves)         return inventory.get_item_in_slot(slot_gloves_str)
+		if(slot_gloves_str)     return inventory.get_item_in_slot(slot_gloves_str)
 		if(slot_head)           return inventory.get_item_in_slot(slot_head_str)
 		if(slot_head_str)       return inventory.get_item_in_slot(slot_head_str)
 		if(slot_shoes)          return inventory.get_item_in_slot(slot_shoes_str)
@@ -834,7 +834,7 @@ var/list/slot_equipment_priority = list( \
 	. += inventory.get_item_in_slot(slot_l_ear_str)
 	. += inventory.get_item_in_slot(slot_r_ear_str)
 	. += inventory.get_item_in_slot(slot_glasses_str)
-	. += gloves
+	. += inventory.get_item_in_slot(slot_gloves_str)
 	. += inventory.get_item_in_slot(slot_head_str)
 	. += inventory.get_item_in_slot(slot_shoes_str)
 	. += inventory.get_item_in_slot(slot_wear_id_str)
@@ -866,7 +866,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str) || inventory.get_item_in_slot(slot_head_str) || inventory.get_item_in_slot(slot_shoes_str) || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || inventory.get_item_in_slot(slot_glasses_str) || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str) || inventory.get_item_in_slot(slot_head_str) || inventory.get_item_in_slot(slot_shoes_str) || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || inventory.get_item_in_slot(slot_glasses_str) || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || inventory.get_item_in_slot(slot_gloves_str))
 			return TRUE
 
 	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)

@@ -236,7 +236,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.hand_blood_color = null
 			H.bloody_hands = 0
 			H.adjust_nutrition(rand(3, 10))
-		if(!(H.gloves || (istype(wear_suit) && (wear_suit.body_parts_covered & HANDS))))
+		if(!(H.inventory.get_item_in_slot(slot_gloves_str) || (istype(wear_suit) && (wear_suit.body_parts_covered & HANDS))))
 			var/obj/item/l_hand = H.get_left_hand()
 			var/obj/item/r_hand = H.get_right_hand()
 			if(istype(r_hand))

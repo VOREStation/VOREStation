@@ -156,10 +156,9 @@
 				damage_guess += 5
 
 			var/punch_damage = attack.get_unarmed_damage(H)
-			if(H.gloves)
-				if(istype(H.gloves, /obj/item/clothing/gloves))
-					var/obj/item/clothing/gloves/G = H.gloves
-					punch_damage += G.punch_force
+			if(istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
+				punch_damage += G.punch_force
 
 			damage_guess += punch_damage
 

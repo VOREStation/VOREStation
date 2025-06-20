@@ -162,7 +162,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /mob/living/carbon/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	var/coverage = 0
-	for(var/obj/item/protection in list(inventory.get_item_in_slot(slot_wear_suit_str), gloves, inventory.get_item_in_slot(slot_shoes_str)))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
+	for(var/obj/item/protection in list(inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_gloves_str), inventory.get_item_in_slot(slot_shoes_str)))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
 		if(!protection)
 			continue
 		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD))
@@ -178,11 +178,12 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	//Runs over the things that can be contaminated and does so.
 	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
 	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
 	if(istype(w_uniform))
 		w_uniform.contaminate()
 	if(istype(shoes))
 		shoes.contaminate()
-	if(gloves)
+	if(istype(gloves))
 		gloves.contaminate()
 
 

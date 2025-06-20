@@ -45,7 +45,8 @@
 		if(w_uniform.body_parts_covered & LOWER_TORSO)
 			skip_body |= EXAMINE_SKIPGROIN
 
-	if(gloves && (gloves.body_parts_covered & HANDS))
+	var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves) && (gloves.body_parts_covered & HANDS))
 		skip_body |= EXAMINE_SKIPHANDS
 
 	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
@@ -191,7 +192,7 @@
 			msg += "[T.He] [T.is] holding [icon2html(r_hand,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[r_hand]'>\a [r_hand]</a> in [T.his] right hand."
 
 	//gloves
-	if(gloves && !(skip_gear & EXAMINE_SKIPGLOVES) && gloves.show_examine)
+	if(istype(gloves) && !(skip_gear & EXAMINE_SKIPGLOVES) && gloves.show_examine)
 		var/gloves_acc_msg
 		if(istype(gloves,/obj/item/clothing/gloves))
 			var/obj/item/clothing/gloves/G = gloves

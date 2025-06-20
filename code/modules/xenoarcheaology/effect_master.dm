@@ -324,7 +324,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	var/triggered = FALSE
 
-	if(ishuman(user) && !istype(user:gloves,/obj/item/clothing/gloves))
+	if(ishuman(user) && !istype(user.inventory.get_item_in_slot(slot_gloves_str),/obj/item/clothing/gloves))
 		for(var/datum/artifact_effect/my_effect in my_effects)
 			if(my_effect.trigger == TRIGGER_TOUCH)
 				triggered = TRUE

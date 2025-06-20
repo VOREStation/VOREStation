@@ -1479,7 +1479,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.inventory.get_item_in_slot(slot_wear_mask_str),
 			owner.inventory.get_item_in_slot(slot_wear_suit_str),
 			owner.inventory.get_item_in_slot(slot_w_uniform_str),
-			owner.gloves,
+			owner.inventory.get_item_in_slot(slot_gloves_str),
 			owner.inventory.get_item_in_slot(slot_shoes_str),
 			owner.inventory.get_item_in_slot(slot_glasses_str))
 		for(var/obj/item/clothing/gear in protective_gear)

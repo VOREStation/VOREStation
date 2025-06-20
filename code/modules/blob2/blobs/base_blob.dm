@@ -265,11 +265,10 @@ GLOBAL_LIST_EMPTY(all_blobs)
 		var/real_damage = rand(3,6)
 		var/hit_dam_type = attack.damage_type
 		real_damage += attack.get_unarmed_damage(H)
-		if(H.gloves)
-			if(istype(H.gloves, /obj/item/clothing/gloves))
-				var/obj/item/clothing/gloves/G = H.gloves
-				real_damage += G.punch_force
-				hit_dam_type = G.punch_damtype
+		if(istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
+			real_damage += G.punch_force
+			hit_dam_type = G.punch_damtype
 		if(HULK in H.mutations)
 			real_damage *= 2 // Hulks do twice the damage
 

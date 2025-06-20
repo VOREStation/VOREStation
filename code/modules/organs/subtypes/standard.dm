@@ -238,7 +238,7 @@
 
 /obj/item/organ/external/hand/removed()
 	if(owner)
-		owner.drop_from_inventory(owner.gloves)
+		owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_gloves_str))
 	..()
 
 /obj/item/organ/external/hand/handle_germ_effects()

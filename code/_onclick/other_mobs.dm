@@ -19,7 +19,7 @@
 	// Special glove functions:
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
-	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
+	var/obj/item/clothing/gloves/G = inventory.get_item_in_slot(slot_gloves_str) // not typecast specifically enough in defines
 	if(istype(G) && G.Touch(A,1))
 		return
 
@@ -34,9 +34,9 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len && !spitting)
+	if(!inventory.get_item_in_slot(slot_gloves_str) && !mutations.len && !spitting)
 		return
-	var/obj/item/clothing/gloves/G = gloves
+	var/obj/item/clothing/gloves/G = inventory.get_item_in_slot(slot_gloves_str)
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 

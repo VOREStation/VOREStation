@@ -67,8 +67,8 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.gloves)
-		to_chat(user, span_warning("Take \the [H.gloves] off first."))
+	if(H.inventory.get_item_in_slot(slot_gloves_str))
+		to_chat(user, span_warning("Take \the [H.inventory.get_item_in_slot(slot_gloves_str)] off first."))
 		return
 
 	to_chat(user, span_notice("You firmly press your fingertips onto the card."))
@@ -87,7 +87,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(H.gloves)
+	if(H.inventory.get_item_in_slot(slot_gloves_str))
 		to_chat(user, span_warning("\The [H] is wearing gloves."))
 		return 1
 

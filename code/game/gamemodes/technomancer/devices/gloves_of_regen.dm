@@ -22,7 +22,7 @@
 /obj/item/clothing/gloves/regen/equipped(var/mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.gloves == src)
+		if(H.inventory.get_item_in_slot(slot_gloves_str) == src)
 			wearer = WEAKREF(H)
 			if(H.can_feel_pain())
 				to_chat(H, span_danger("You feel a stabbing sensation in your hands as you slide \the [src] on!"))

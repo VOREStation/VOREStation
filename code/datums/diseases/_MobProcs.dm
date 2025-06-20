@@ -124,8 +124,8 @@
 					Cl = wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
-				if(passed && isobj(H.gloves))
-					Cl = H.gloves
+				if(passed && isobj(H.inventory.get_item_in_slot(slot_gloves_str)))
+					Cl = H.inventory.get_item_in_slot(slot_gloves_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(BP_L_FOOT, BP_R_FOOT)
 				if(istype(wear_suit) && wear_suit.body_parts_covered & FEET)

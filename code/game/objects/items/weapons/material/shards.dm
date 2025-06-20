@@ -80,18 +80,19 @@
 	if(prob(75))
 		will_break = TRUE
 
-	if(user.gloves && (user.gloves.body_parts_covered & HANDS) && istype(user.gloves, /obj/item/clothing/gloves)) // Not-gloves aren't gloves, and therefore don't protect us
+	var/obj/item/gloves = user.inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves, /obj/item/clothing/gloves) && (gloves.body_parts_covered & HANDS)) // Not-gloves aren't gloves, and therefore don't protect us
 		protected_hands = TRUE // If we're wearing gloves we can probably handle it just fine
 		for(var/I in forbidden_gloves)
-			if(istype(user.gloves, I)) // forbidden_gloves is a blacklist, so if we match anything in there, our hands are not protected
+			if(istype(gloves, I)) // forbidden_gloves is a blacklist, so if we match anything in there, our hands are not protected
 				protected_hands = FALSE
 				break
 
-	if(user.gloves && !protected_hands)
+	if(gloves && !protected_hands)
 		to_chat(user, span_warning("\The [src] partially cuts into your hand through your gloves as you hit \the [target]!"))
 		user.apply_damage(light_glove_d + will_break ? break_damage : 0, BRUTE, active_hand, 0, 0, src.sharp, src.edge, src) // Ternary to include break damage
 
-	else if(!user.gloves)
+	else if(!gloves)
 		to_chat(user, span_warning("\The [src] cuts into your hand as you hit \the [target]!"))
 		user.apply_damage(no_glove_d + will_break ? break_damage : 0, BRUTE, active_hand, 0, 0, src.sharp, src.edge, src)
 

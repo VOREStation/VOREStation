@@ -14,8 +14,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.inventory.get_item_in_slot(slot_wear_suit_str) == S)
-			if((body_parts_covered & ARMS) && istype(H.gloves, /obj/item/clothing))
-				var/obj/item/clothing/G = H.gloves
+			if((body_parts_covered & ARMS) && istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing))
+				var/obj/item/clothing/G = H.inventory.get_item_in_slot(slot_gloves_str)
 				if(G.body_parts_covered & ARMS)
 					to_chat(H, span_warning("You can't wear \the [src] with \the [G], it's in the way."))
 					S.accessories -= src

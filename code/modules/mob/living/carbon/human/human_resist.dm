@@ -21,7 +21,7 @@
 
 	var/attack_type = RESIST_ATTACK_DEFAULT
 
-	if(H.gloves && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
+	if(istype(H.inventory.get_item_in_slot(slot_gloves_str),/obj/item/clothing/gloves/gauntlets/rig))
 		breakouttime /= 2	// Pneumatic force goes a long way.
 	else if(H.species.unarmed_types)
 		for(var/datum/unarmed_attack/U in H.species.unarmed_types)

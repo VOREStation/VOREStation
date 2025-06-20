@@ -306,8 +306,8 @@
 		var/mob/living/carbon/human/H = M
 		if(H.species.siemens_coefficient <= 0)
 			return
-		if(H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves
+		if(istype(H.inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
 			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
 
 	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning

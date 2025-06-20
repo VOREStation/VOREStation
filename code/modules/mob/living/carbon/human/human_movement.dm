@@ -153,7 +153,7 @@
 		inventory.get_item_in_slot(slot_l_ear_str),
 		inventory.get_item_in_slot(slot_r_ear_str),
 		inventory.get_item_in_slot(slot_glasses_str),
-		gloves,
+		inventory.get_item_in_slot(slot_gloves_str),
 		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_shoes_str),
 		inventory.get_item_in_slot(slot_wear_id_str),

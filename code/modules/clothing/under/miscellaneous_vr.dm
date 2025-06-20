@@ -220,7 +220,7 @@
 	if (H.stat || H.restrained())
 		return
 
-	if (src != H.gloves)
+	if (src != H.inventory.get_item_in_slot(slot_gloves_str))
 		to_chat(H, span_warning("You must be WEARING the bracelet and have it uncovered to change your size."))
 		return
 
@@ -234,7 +234,7 @@
 		return
 
 	//Check AGAIN because we accepted user input which is blocking.
-	if (src != H.gloves)
+	if (src != H.inventory.get_item_in_slot(slot_gloves_str))
 		to_chat(H, span_warning("You must be WEARING the bracelet and have it uncovered to change your size."))
 		return
 

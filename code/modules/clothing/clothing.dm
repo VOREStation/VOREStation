@@ -389,11 +389,11 @@
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
-		var/obj/item/clothing/G = H.gloves
+		var/obj/item/clothing/G = H.inventory.get_item_in_slot(slot_gloves_str)
 		if(istype(G))
-			ring = H.gloves
+			ring = H.inventory.get_item_in_slot(slot_gloves_str)
 			if(ring.glove_level >= src.glove_level)
-				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
+				to_chat(user, "You are unable to wear \the [src] as \the [H.inventory.get_item_in_slot(slot_gloves_str)] are in the way.")
 				ring = null
 				return 0
 			else

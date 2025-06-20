@@ -9,8 +9,8 @@
 			if(soft_type)
 				return soft_type
 		return src.default_attack
-	if(src.gloves)
-		var/obj/item/clothing/gloves/G = src.gloves
+	if(inventory.get_item_in_slot(slot_gloves_str))
+		var/obj/item/clothing/gloves/G = inventory.get_item_in_slot(slot_gloves_str)
 		if(istype(G) && G.special_attack && G.special_attack.is_usable(src, target, hit_zone))
 			if(pulling_punches)
 				var/datum/unarmed_attack/soft_type = G.special_attack.get_sparring_variant()
@@ -390,13 +390,14 @@
 	var/real_damage = rand_damage
 	var/hit_dam_type = attack.damage_type
 	real_damage += attack.get_unarmed_damage(H)
-	if(H.gloves && attack.is_punch)
-		if(istype(H.gloves, /obj/item/clothing/gloves))
-			var/obj/item/clothing/gloves/G = H.gloves
+	var/obj/item/gloves = H.inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves) && attack.is_punch)
+		if(istype(gloves, /obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = gloves
 			real_damage += G.punch_force
 			hit_dam_type = G.punch_damtype
-		else if(istype(H.gloves, /obj/item/clothing/accessory))
-			var/obj/item/clothing/accessory/G = H.gloves
+		else if(istype(gloves, /obj/item/clothing/accessory))
+			var/obj/item/clothing/accessory/G = gloves
 			real_damage += G.punch_force
 			hit_dam_type = G.punch_damtype
 		if(H.pulling_punches && !attack.sharp && !attack.edge)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN, BUT YOU CAN'T "PULL" A KNIFE

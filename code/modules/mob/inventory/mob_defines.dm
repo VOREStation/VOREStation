@@ -13,7 +13,5 @@
 
 /mob/living/carbon/human
 	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
-	//Equipment slots
-	var/obj/item/gloves = null
 
 	inventory_type = /datum/inventory/human

@@ -109,7 +109,7 @@
 			fingerprintslast = M.key
 		return FALSE
 	var/mob/living/carbon/human/H = M
-	if(H.gloves)
+	if(H.inventory.get_item_in_slot(slot_gloves_str))
 		if(fingerprintslast != H.key)
 			fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
 			fingerprintslast = H.key
@@ -165,9 +165,10 @@
 		if(prob(15*item_multiplier))
 			fibertext = "Fibers from \a [w_uniform]."
 
-	if(M.gloves && (M.gloves.body_parts_covered & ~suit_coverage))
+	var/obj/item/gloves = M.inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves) && (gloves.body_parts_covered & ~suit_coverage))
 		if(prob(20*item_multiplier))
-			fibertext = "Material from a pair of [M.gloves.name]."
+			fibertext = "Material from a pair of [gloves.name]."
 
 	if(!fibertext)
 		return

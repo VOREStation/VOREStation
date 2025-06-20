@@ -689,7 +689,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(GLOVES_LAYER)
 
-	if(!gloves)
+	var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
+
+	if(!istype(gloves))
 		return //No gloves, no reason to be here.
 
 	overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)

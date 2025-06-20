@@ -793,9 +793,9 @@ var/global/list/light_type_cache = list()
 		if(istype(H))
 			if(H.species.heat_level_1 > LIGHT_BULB_TEMPERATURE)
 				prot = 1
-			else if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.max_heat_protection_temperature)
+			else if(H.inventory.get_item_in_slot(slot_gloves_str))
+				var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
+				if(istype(G) && G.max_heat_protection_temperature)
 					if(G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
 						prot = 1
 		else

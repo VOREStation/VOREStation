@@ -28,7 +28,7 @@
 	var/burn_user = TRUE
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/gloves/G = H.gloves
+		var/obj/item/clothing/gloves/G = H.inventory.get_item_in_slot(slot_gloves_str)
 		if(istype(G) && ((G.flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
 			burn_user = FALSE
 

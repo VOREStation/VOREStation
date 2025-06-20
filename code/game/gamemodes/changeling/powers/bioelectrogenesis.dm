@@ -34,9 +34,9 @@
 
 	else
 		// Handle glove conductivity.
-		var/obj/item/clothing/gloves/gloves = src.gloves
+		var/obj/item/clothing/gloves/gloves = inventory.get_item_in_slot(slot_gloves_str)
 		var/siemens = 1
-		if(gloves)
+		if(istype(gloves))
 			siemens = gloves.siemens_coefficient
 
 		//If we're grabbing someone, electrocute them.
@@ -135,9 +135,9 @@
 		return
 
 	// Handle glove conductivity.
-	var/obj/item/clothing/gloves/gloves = user.gloves
+	var/obj/item/clothing/gloves/gloves = user.inventory.get_item_in_slot(slot_gloves_str)
 	var/siemens = 1
-	if(gloves)
+	if(istype(gloves))
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.

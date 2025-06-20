@@ -152,4 +152,5 @@
 		/datum/inventory_slot/glasses,
 		/datum/inventory_slot/head,
 		/datum/inventory_slot/shoes,
+		/datum/inventory_slot/gloves,
 	)

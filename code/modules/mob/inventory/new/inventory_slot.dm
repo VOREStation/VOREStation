@@ -436,3 +436,29 @@
 	if(ishuman(owner.mymob))
 		var/mob/living/carbon/human/H = owner.mymob
 		H.worn_clothing -= contents
+
+
+/datum/inventory_slot/gloves
+	name = "Gloves"
+
+	slot_id = slot_gloves
+	slot_id_str = slot_gloves_str
+
+	hud_location = ui_gloves
+	hud_object_type = /obj/screen/inventory
+	hud_icon_state = "gloves"
+	hideable = TRUE
+
+/datum/inventory_slot/gloves/update_icon(atom/movable/contents)
+	owner.mymob.update_inv_gloves()
+
+/datum/inventory_slot/gloves/equipped(atom/movable/contents)
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing |= contents
+
+/datum/inventory_slot/gloves/unequipped(atom/movable/contents)
+	// If this is how the internals are connected, disable them
+	if(ishuman(owner.mymob))
+		var/mob/living/carbon/human/H = owner.mymob
+		H.worn_clothing -= contents

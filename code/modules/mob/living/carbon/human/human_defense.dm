@@ -141,7 +141,7 @@ emp_act
 
 	var/siemens_coefficient = max(species.siemens_coefficient,0)
 
-	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, inventory.get_item_in_slot(slot_shoes_str)) // What all are we checking?
+	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), inventory.get_item_in_slot(slot_gloves_str), inventory.get_item_in_slot(slot_shoes_str)) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
@@ -177,7 +177,7 @@ emp_act
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
-	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, inventory.get_item_in_slot(slot_shoes_str))
+	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), inventory.get_item_in_slot(slot_gloves_str), inventory.get_item_in_slot(slot_shoes_str))
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part))
 			results.Add(C)
@@ -576,8 +576,8 @@ emp_act
 
 
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
-	if (istype(gloves, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/gl = gloves
+	if (istype(inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/gl = inventory.get_item_in_slot(slot_gloves_str)
 		gl.add_blood(source)
 		gl.transfer_blood = amount
 	else

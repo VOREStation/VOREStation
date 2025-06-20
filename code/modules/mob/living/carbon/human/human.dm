@@ -1047,7 +1047,8 @@
 			return get_gender()
 
 /mob/living/carbon/human/proc/increase_germ_level(n)
-	if(gloves)
+	var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves))
 		gloves.germ_level += n
 	else
 		germ_level += n
@@ -1153,7 +1154,8 @@
 	. = ..()
 
 	//Always do hands (or whatever's on our hands)
-	if(gloves)
+	var/obj/item/gloves = inventory.get_item_in_slot(slot_gloves_str)
+	if(istype(gloves))
 		gloves.wash(clean_types)
 		update_inv_gloves()
 		gloves.germ_level = 0
@@ -1360,8 +1362,8 @@
 	if (!bloody_hands)
 		remove_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 
-	if (src.gloves)
-		to_chat(src, span_warning("Your [src.gloves] are getting in the way."))
+	if (inventory.get_item_in_slot(slot_gloves_str))
+		to_chat(src, span_warning("Your [inventory.get_item_in_slot(slot_gloves_str)] are getting in the way."))
 		return
 
 	var/turf/simulated/T = src.loc
@@ -1446,7 +1448,7 @@
 		inventory.get_item_in_slot(slot_glasses_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
-		gloves,
+		inventory.get_item_in_slot(slot_gloves_str),
 		inventory.get_item_in_slot(slot_shoes_str))
 	var/head_exposed = 1
 	var/face_exposed = 1
@@ -1751,7 +1753,7 @@
 	return msg
 
 /mob/living/carbon/human/reduce_cuff_time()
-	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+	if(istype(inventory.get_item_in_slot(slot_gloves_str), /obj/item/clothing/gloves/gauntlets/rig))
 		return 2
 	return ..()
 
