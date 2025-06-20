@@ -68,7 +68,6 @@
 	breath_type = null
 	poison_type = null
 	water_breather = TRUE	//They don't quite breathe
-	var/doing_phase = FALSE // Prevent bugs when spamming phase button
 
 	vision_flags = SEE_SELF|SEE_MOBS
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
@@ -101,21 +100,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
-	//SHADEKIN-UNIQUE STUFF GOES HERE
-	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-									   /datum/power/shadekin/regenerate_other,
-									   /datum/power/shadekin/create_shade)
-	var/list/shadekin_ability_datums = list()
-	var/kin_type
-	var/energy_light = 0.25
-	var/energy_dark = 0.75
 	species_component = /datum/component/shadekin
-
-/datum/species/shadekin/New()
-	..()
-	for(var/power in shadekin_abilities)
-		var/datum/power/shadekin/SKP = new power(src)
-		shadekin_ability_datums.Add(SKP)
 
 /datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
 	spawn(1)
@@ -128,129 +113,6 @@
 
 /datum/species/shadekin/get_random_name()
 	return "shadekin"
-
-/datum/species/shadekin/handle_environment_special(var/mob/living/carbon/human/H)
-	handle_shade(H)
-
-/datum/species/shadekin/add_inherent_verbs(var/mob/living/carbon/human/H)
-	..()
-	add_shadekin_abilities(H)
-
-/datum/species/shadekin/proc/add_shadekin_abilities(var/mob/living/carbon/human/H)
-	if(!H.ability_master || !istype(H.ability_master, /obj/screen/movable/ability_master/shadekin))
-		H.ability_master = null
-		H.ability_master = new /obj/screen/movable/ability_master/shadekin(H)
-	for(var/datum/power/shadekin/P in shadekin_ability_datums)
-		if(!(P.verbpath in H.verbs))
-			add_verb(H, P.verbpath)
-			H.ability_master.add_shadekin_ability(
-					object_given = H,
-					verb_given = P.verbpath,
-					name_given = P.name,
-					ability_icon_given = P.ability_icon_state,
-					arguments = list()
-					)
-
-/datum/species/shadekin/proc/handle_shade(var/mob/living/carbon/human/H)
-	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
-	var/darkness = 1
-	var/dark_gains = 0
-
-	var/turf/T = get_turf(H)
-	if(!T)
-		dark_gains = 0
-		return
-
-	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
-	darkness = 1-brightness //Invert
-	var/is_dark = (darkness >= 0.5)
-
-	if(H.ability_flags & AB_PHASE_SHIFTED)
-		dark_gains = 0
-	else
-		//Heal (very) slowly in good darkness
-		if(is_dark)
-			H.adjustFireLoss((-0.10)*darkness)
-			H.adjustBruteLoss((-0.10)*darkness)
-			H.adjustToxLoss((-0.10)*darkness)
-			//energy_dark and energy_light are set by the shadekin eye traits.
-			//These are balanced around their playstyles and 2 planned new aggressive abilities
-			dark_gains = energy_dark
-		else
-			dark_gains = energy_light
-
-	set_energy(H, get_energy(H) + dark_gains)
-
-	//Update huds
-	update_shadekin_hud(H)
-
-/datum/species/shadekin/proc/get_energy(var/mob/living/carbon/human/H)
-	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
-	if(!comp)
-		return FALSE //No component, no energy to be had.
-
-	if(comp.dark_energy_infinite)
-		return comp.max_dark_energy
-
-	return comp.dark_energy
-
-/datum/species/shadekin/proc/get_max_energy(var/mob/living/carbon/human/H)
-	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
-	if(!comp)
-		return FALSE //No component, no energy to be had.
-
-	return comp.max_dark_energy
-
-/datum/species/shadekin/proc/set_energy(var/mob/living/carbon/human/H, var/new_energy)
-	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
-	if(!comp)
-		return FALSE //No component, no energy to be had.
-
-	comp.dark_energy = CLAMP(new_energy, 0, get_max_energy(H))
-
-/datum/species/shadekin/proc/set_max_energy(var/mob/living/carbon/human/H, var/new_max_energy)
-	var/datum/component/shadekin/comp = H.GetComponent(/datum/component/shadekin)
-	if(!comp)
-		return FALSE //No component, no energy to be had.
-
-	comp.max_dark_energy = new_max_energy
-
-/datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
-	var/turf/T = get_turf(H)
-	if(H.shadekin_display)
-		var/l_icon = 0
-		var/e_icon = 0
-
-		H.shadekin_display.invisibility = INVISIBILITY_NONE
-		if(T)
-			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
-			var/darkness = 1-brightness //Invert
-			switch(darkness)
-				if(0.80 to 1.00)
-					l_icon = 0
-				if(0.60 to 0.80)
-					l_icon = 1
-				if(0.40 to 0.60)
-					l_icon = 2
-				if(0.20 to 0.40)
-					l_icon = 3
-				if(0.00 to 0.20)
-					l_icon = 4
-
-		switch(get_energy(H))
-			if(0 to 24)
-				e_icon = 0
-			if(25 to 49)
-				e_icon = 1
-			if(50 to 74)
-				e_icon = 2
-			if(75 to 99)
-				e_icon = 3
-			if(100 to INFINITY)
-				e_icon = 4
-
-		H.shadekin_display.icon_state = "shadekin-[l_icon]-[e_icon]"
-	return
 
 /datum/species/shadekin/proc/get_shadekin_eyecolor(var/mob/living/carbon/human/H)
 	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
@@ -295,45 +157,36 @@
 	.=..()
 
 	var/eyecolor_type = get_shadekin_eyecolor(H)
+	var/datum/component/shadekin/SK = H.get_shadekin_component()
+	if(!SK)
+		CRASH("A shadekin [H] somehow is missing their shadekin component post-spawn!")
 
 	switch(eyecolor_type)
 		if(BLUE_EYES)
 			total_health = 100
-			energy_light = 0.5
-			energy_dark = 0.5
+			SK.set_light_and_darkness(0.75,0.75)
 		if(RED_EYES)
 			total_health = 200
-			energy_light = -1
-			energy_dark = 0.1
+			SK.set_light_and_darkness(-0.5,0.5)
 		if(PURPLE_EYES)
 			total_health = 150
-			energy_light = -0.5
-			energy_dark = 1
+			SK.set_light_and_darkness(-0.5,1)
 		if(YELLOW_EYES)
 			total_health = 100
-			energy_light = -2
-			energy_dark = 3
+			SK.set_light_and_darkness(-2,3)
 		if(GREEN_EYES)
 			total_health = 100
-			energy_light = 0.125
-			energy_dark = 2
+			SK.set_light_and_darkness(0.125,2)
 		if(ORANGE_EYES)
 			total_health = 175
-			energy_light = -0.5
-			energy_dark = 0.25
+			SK.set_light_and_darkness(-0.25,0.75)
 
 	H.maxHealth = total_health
 
 	H.health = H.getMaxHealth()
 
 /datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
-
 	var/datum/species/shadekin/new_copy = ..()
-
 	new_copy.total_health = total_health
-
-	new_copy.energy_light = energy_light
-
-	new_copy.energy_dark = energy_dark
 
 	return new_copy
