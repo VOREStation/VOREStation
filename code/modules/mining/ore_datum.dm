@@ -158,6 +158,7 @@
 		"billion" = 13,
 		"billion_lower" = 10
 		)
+	reagent = REAGENT_ID_PHOSPHORUS
 
 /ore/marble
 	name = ORE_MARBLE
@@ -199,6 +200,7 @@
 	spread_chance = 10
 	ore = /obj/item/ore/tin
 	scan_icon = "mineral_common"
+	reagent = REAGENT_ID_TIN
 
 /ore/quartz
 	name = ORE_QUARTZ
@@ -208,6 +210,7 @@
 	spread_chance = 5
 	ore = /obj/item/ore/quartz
 	scan_icon = "mineral_common"
+	reagent = REAGENT_ID_SILICON
 
 /ore/bauxite
 	name = ORE_BAUXITE
@@ -228,6 +231,7 @@
 	alloy = 1
 	ore = /obj/item/ore/rutile
 	scan_icon = "mineral_uncommon"
+	reagent = REAGENT_ID_TITANIUMDIOX
 /*
 /ore/painite
 	name = ORE_PAINITE
@@ -237,6 +241,7 @@
 	spread_chance = 3
 	ore = /obj/item/ore/painite
 	scan_icon = "mineral_rare"
+	reagent = REAGENT_ID_CALCIUM
 
 /ore/void_opal
 	name = ORE_VOPAL
@@ -246,4 +251,5 @@
 	spread_chance = 1
 	ore = /obj/item/ore/void_opal
 	scan_icon = "mineral_rare"
+	reagent = REAGENT_ID_SULFUR
 */
