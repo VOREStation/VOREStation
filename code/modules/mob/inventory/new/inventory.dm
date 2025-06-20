@@ -134,6 +134,12 @@
 	return FALSE
 
 // Types
+/datum/inventory/hands_only
+	slot_types = list(
+		/datum/inventory_slot/l_hand,
+		/datum/inventory_slot/r_hand,
+	)
+
 /datum/inventory/human
 	slot_types = list(
 		/datum/inventory_slot/l_hand,

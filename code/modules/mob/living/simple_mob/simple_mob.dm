@@ -188,6 +188,9 @@
 	strip_pref = FALSE
 
 /mob/living/simple_mob/Initialize(mapload)
+	if(has_hands)
+		inventory_type = /datum/inventory/hands_only
+
 	remove_verb(src, /mob/verb/observe)
 	health = maxHealth
 
