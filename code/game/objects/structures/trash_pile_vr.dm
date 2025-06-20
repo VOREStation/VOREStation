@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
+	var/busy = FALSE				// Used so you can't spamclick to loot.
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile
 	var/obj/structure/mob_spawner/mouse_nest/mouse_nest = null
@@ -107,11 +108,17 @@
 	//Human mob
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+
+		if(busy)
+			to_chat(H, span_warning("\The [src] is already being searched."))
+			return
+
 		H.visible_message("[user] searches through \the [src].",span_notice("You search through \the [src]."))
 		if(hider)
 			to_chat(hider,span_warning("[user] is searching the trash pile you're in!"))
 
 		//Do the searching
+		busy = TRUE
 		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
 
 			//If there was a hider, chance to reveal them
@@ -129,6 +136,7 @@
 			else
 				SEND_SIGNAL(src,COMSIG_LOOT_REWARD,user)
 				searchedby += user.ckey
+		busy = FALSE
 	else
 		return ..()
 
