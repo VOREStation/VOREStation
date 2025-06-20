@@ -447,6 +447,7 @@
 		var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 		var/obj/item/belt = inventory.get_item_in_slot(slot_belt_str)
 		var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+		var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
 
 		if(istype(wear_suit))
 			washgloves = !(wear_suit.flags_inv & HIDEGLOVES)
@@ -479,8 +480,8 @@
 			if(H.gloves.wash(clean_types))
 				H.update_inv_gloves(0)
 
-		if(H.shoes && washshoes)
-			if(H.shoes.wash(clean_types))
+		if(istype(shoes) && washshoes)
+			if(shoes.wash(clean_types))
 				H.update_inv_shoes(0)
 
 		if(istype(wear_mask) && washmask)

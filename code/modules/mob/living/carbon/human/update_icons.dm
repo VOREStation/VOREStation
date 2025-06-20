@@ -777,7 +777,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/obj/item/w_uniform = inventory.get_item_in_slot(slot_w_uniform_str)
 	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
-	if(!shoes || (istype(wear_suit) && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(!istype(shoes) || (istype(wear_suit) && wear_suit.flags_inv & HIDESHOES) || (istype(w_uniform) && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
 
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))

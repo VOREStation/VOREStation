@@ -241,7 +241,7 @@
 		return 0
 	if(glove_type && !(gloves && wearer.gloves == gloves))
 		return 0
-	if(boot_type && !(boots && wearer.shoes == boots))
+	if(boot_type && !(boots && wearer.inventory.get_item_in_slot(slot_shoes_str) == boots))
 		return 0
 	if(chest_type && !(chest && wearer.inventory.get_item_in_slot(slot_wear_suit_str) == chest))
 		return 0
@@ -328,7 +328,7 @@
 			failed_to_seal = 1
 		else
 			for(var/list/piece_data in list(
-					list(M.shoes,boots,"boots",boot_type),
+					list(M.inventory.get_item_in_slot(slot_shoes_str),boots,"boots",boot_type),
 					list(M.gloves,gloves,"gloves",glove_type),
 					list(M.inventory.get_item_in_slot(slot_head_str),helmet,"helmet",helm_type),
 					list(M.inventory.get_item_in_slot(slot_wear_suit_str),chest,"chest",chest_type)))
@@ -728,7 +728,7 @@
 		if("boots")
 			equip_to = slot_shoes
 			use_obj = boots
-			check_slot = H.shoes
+			check_slot = H.inventory.get_item_in_slot(slot_shoes_str)
 		if("chest")
 			equip_to = slot_wear_suit
 			use_obj = chest
@@ -788,8 +788,8 @@
 			H.drop_from_inventory(garbage)
 			qdel(garbage)
 
-		if(H.shoes)
-			var/obj/item/garbage = H.shoes
+		if(H.inventory.get_item_in_slot(slot_shoes_str))
+			var/obj/item/garbage = H.inventory.get_item_in_slot(slot_shoes_str)
 			H.drop_from_inventory(garbage)
 			qdel(garbage)
 

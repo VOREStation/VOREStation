@@ -78,6 +78,7 @@
 				var/obj/item/w_uniform = cleaned_human.inventory.get_item_in_slot(slot_w_uniform_str)
 				var/obj/item/wear_suit = cleaned_human.inventory.get_item_in_slot(slot_wear_suit_str)
 				var/obj/item/head = cleaned_human.inventory.get_item_in_slot(slot_head_str)
+				var/obj/item/shoes = cleaned_human.inventory.get_item_in_slot(slot_shoes_str)
 
 				if(cleaned_human.lying)
 					if(istype(head))
@@ -89,8 +90,8 @@
 					else if(istype(w_uniform))
 						w_uniform.wash(CLEAN_SCRUB)
 						cleaned_human.update_inv_w_uniform(0)
-					if(cleaned_human.shoes)
-						cleaned_human.shoes.wash(CLEAN_SCRUB)
+					if(istype(shoes))
+						shoes.wash(CLEAN_SCRUB)
 						cleaned_human.update_inv_shoes(0)
 					cleaned_human.wash(CLEAN_SCRUB)
 					to_chat(cleaned_human, span_warning("[src] cleans your face!"))

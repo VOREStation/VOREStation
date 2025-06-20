@@ -32,7 +32,8 @@
 				step_towards(hand, S)
 				to_chat(src, span_warning("The [S] pulls \the [hand] from your grip!"))
 
-	if(!lying && (!shoes || !(shoes.item_flags & NOSLIP)) && (!species || !(species.flags & NOSLIP)) && prob(current_size*5))
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(!lying && (!istype(shoes) || !(shoes.item_flags & NOSLIP)) && (!species || !(species.flags & NOSLIP)) && prob(current_size*5))
 		to_chat(src, span_danger("A strong gravitational force slams you to the ground!"))
 		Weaken(current_size)
 	..()

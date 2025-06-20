@@ -28,7 +28,7 @@
 		var/mob/living/carbon/human/H = target
 		switch(type)
 			if("feet")
-				if(!H.shoes)
+				if(!H.inventory.get_item_in_slot(slot_shoes_str))
 					affecting = H.get_organ(pick(BP_L_LEG, BP_R_LEG))
 					H.Weaken(3)
 			if(BP_L_HAND, BP_R_HAND)

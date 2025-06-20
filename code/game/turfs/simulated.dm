@@ -114,8 +114,8 @@
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
-			if(H.shoes)
-				var/obj/item/clothing/shoes/S = H.shoes
+			if(H.inventory.get_item_in_slot(slot_shoes_str))
+				var/obj/item/clothing/shoes/S = H.inventory.get_item_in_slot(slot_shoes_str)
 				if(istype(S))
 					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0), H) // handle_movement now needs to know who is moving, for inshoe steppies
 					if(S.track_blood && S.forensic_data?.has_blooddna())

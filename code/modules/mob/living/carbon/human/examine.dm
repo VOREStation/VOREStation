@@ -48,7 +48,8 @@
 	if(gloves && (gloves.body_parts_covered & HANDS))
 		skip_body |= EXAMINE_SKIPHANDS
 
-	if(shoes && (shoes.body_parts_covered & FEET))
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(istype(shoes) && (shoes.body_parts_covered & FEET))
 		skip_body |= EXAMINE_SKIPFEET
 
 	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
@@ -229,7 +230,7 @@
 			msg += "[T.He] [T.has] [icon2html(belt,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[belt]'>\a [belt]</a> about [T.his] waist."
 
 	//shoes
-	if(shoes && !(skip_gear & EXAMINE_SKIPSHOES) && shoes.show_examine)
+	if(istype(shoes) && !(skip_gear & EXAMINE_SKIPSHOES) && shoes.show_examine)
 		if(shoes.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(shoes,user.client)] [shoes.gender==PLURAL?"some":"a"] [(shoes.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[shoes]'>[shoes.name]</a> on [T.his] feet!")
 		else

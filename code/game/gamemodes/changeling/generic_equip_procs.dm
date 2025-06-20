@@ -7,7 +7,7 @@
 	var/mob/living/carbon/human/M = src
 	var/obj/item/wear_suit = M.inventory.get_item_in_slot(slot_wear_suit_str)
 
-	if(istype(wear_suit, armor_type) || istype(M.inventory.get_item_in_slot(slot_head_str), helmet_type) || istype(M.shoes, boot_type))
+	if(istype(wear_suit, armor_type) || istype(M.inventory.get_item_in_slot(slot_head_str), helmet_type) || istype(M.inventory.get_item_in_slot(slot_shoes_str), boot_type))
 		chem_cost = 0
 
 	var/datum/changeling/changeling = changeling_power(chem_cost, 1, 100, CONSCIOUS)
@@ -16,7 +16,7 @@
 		return
 
 	//First, check if we're already wearing the armor, and if so, take it off.
-	if(istype(wear_suit, armor_type) || istype(M.inventory.get_item_in_slot(slot_head_str), helmet_type) || istype(M.shoes, boot_type))
+	if(istype(wear_suit, armor_type) || istype(M.inventory.get_item_in_slot(slot_head_str), helmet_type) || istype(M.inventory.get_item_in_slot(slot_shoes_str), boot_type))
 		M.visible_message(span_warning("[M] casts off their [wear_suit.name]!"),
 		span_warning("We cast off our [wear_suit.name]"),
 		span_warningplain("You hear the organic matter ripping and tearing!"))
@@ -24,8 +24,8 @@
 			qdel(wear_suit)
 		if(istype(M.inventory.get_item_in_slot(slot_head_str), helmet_type))
 			qdel(M.inventory.get_item_in_slot(slot_head_str))
-		if(istype(M.shoes, boot_type))
-			qdel(M.shoes)
+		if(istype(M.inventory.get_item_in_slot(slot_shoes_str), boot_type))
+			qdel(M.inventory.get_item_in_slot(slot_shoes_str))
 		M.update_inv_wear_suit()
 		M.update_inv_head()
 		M.update_hair()
@@ -87,9 +87,10 @@
 			if(istype(M.gloves, stuff_to_equip["gloves"]))
 				qdel(M.gloves)
 				success = 1
-		if(M.shoes && stuff_to_equip["shoes"])
-			if(istype(M.shoes, stuff_to_equip["shoes"]))
-				qdel(M.shoes)
+
+		if(stuff_to_equip["shoes"])
+			if(istype(M.inventory.get_item_in_slot(slot_shoes_str), stuff_to_equip["shoes"]))
+				qdel(M.inventory.get_item_in_slot(slot_shoes_str))
 				success = 1
 
 		if(stuff_to_equip["belt"])
@@ -163,7 +164,7 @@
 			sleep(1 SECOND)
 
 		t = stuff_to_equip["shoes"]
-		if(!M.shoes && t)
+		if(!M.inventory.get_item_in_slot(slot_shoes_str) && t)
 			var/I = new t
 			M.equip_to_slot_or_del(I, slot_shoes)
 			grown_items_list.Add("shoes")

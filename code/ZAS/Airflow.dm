@@ -23,7 +23,8 @@ Contains helper procs for airflow, handled in /connection_group.
 	return
 
 /mob/living/carbon/human/airflow_stun()
-	if(shoes && (shoes.item_flags & NOSLIP))
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(istype(shoes) && (shoes.item_flags & NOSLIP))
 		to_chat(src, span_notice("Air suddenly rushes past you!"))
 		return 0
 	..()

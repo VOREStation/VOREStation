@@ -12,7 +12,7 @@
 
 /obj/item/clothing/suit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
 	if(..()) //This will only run if no other problems occured when equiping.
-		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
+		for(var/obj/item/clothing/I in list(H.gloves, H.inventory.get_item_in_slot(slot_shoes_str)))
 			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
 				to_chat(H, span_warning("You can't wear \the [src] with \the [I], it's in the way."))
 				return 0
@@ -540,11 +540,12 @@
 					if(A.body_parts_covered & ARMS)
 						to_chat(H, span_warning("You can't wear \the [A] with \the [H.gloves], they're in the way."))
 						return 0
-		if(H.shoes)
-			if(H.shoes.body_parts_covered & LEGS)
+		var/obj/item/shoes = H.inventory.get_item_in_slot(slot_shoes_str)
+		if(istype(shoes))
+			if(shoes.body_parts_covered & LEGS)
 				for(var/obj/item/clothing/accessory/A in src)
 					if(A.body_parts_covered & LEGS)
-						to_chat(H, span_warning("You can't wear \the [A] with \the [H.shoes], they're in the way."))
+						to_chat(H, span_warning("You can't wear \the [A] with \the [shoes], they're in the way."))
 						return 0
 		return 1
 

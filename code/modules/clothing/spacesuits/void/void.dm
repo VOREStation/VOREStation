@@ -120,7 +120,7 @@
 		boots.canremove = TRUE
 		H = boots.loc
 		if(istype(H))
-			if(boots && H.shoes == boots)
+			if(boots && H.inventory.get_item_in_slot(slot_shoes_str) == boots)
 				H.drop_from_inventory(boots)
 				boots.forceMove(src)
 

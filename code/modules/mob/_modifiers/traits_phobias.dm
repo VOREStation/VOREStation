@@ -131,7 +131,7 @@
 				var/human_blood_fear_amount = 0
 				if(!H.gloves && H.bloody_hands && H.hand_blood_color != SYNTH_BLOOD_COLOUR)
 					human_blood_fear_amount += 1
-				if(!H.shoes && H.feet_blood_color && H.feet_blood_color != SYNTH_BLOOD_COLOUR)
+				if(!H.inventory.get_item_in_slot(slot_shoes_str) && H.feet_blood_color && H.feet_blood_color != SYNTH_BLOOD_COLOUR)
 					human_blood_fear_amount += 1
 
 				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
@@ -144,7 +144,7 @@
 					H.inventory.get_item_in_slot(slot_glasses_str),
 					H.gloves,
 					H.inventory.get_item_in_slot(slot_head_str),
-					H.shoes,
+					H.inventory.get_item_in_slot(slot_shoes_str),
 					H.inventory.get_item_in_slot(slot_belt_str),
 					H.inventory.get_item_in_slot(slot_wear_suit_str),
 					H.inventory.get_item_in_slot(slot_w_uniform_str),

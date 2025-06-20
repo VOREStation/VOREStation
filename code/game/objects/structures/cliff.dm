@@ -258,8 +258,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	// Cliff climbing requires climbing gear.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/shoes/shoes = H.shoes
-		if(shoes && shoes.rock_climbing)
+		var/obj/item/clothing/shoes/shoes = H.inventory.get_item_in_slot(slot_shoes_str)
+		if(istype(shoes) && shoes.rock_climbing)
 			return ..() // Do the other checks too.
 
 	to_chat(user, span_warning("\The [src] is too steep to climb unassisted."))

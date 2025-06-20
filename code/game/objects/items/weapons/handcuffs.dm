@@ -250,8 +250,8 @@ var/last_chew = 0
 		to_chat(user, span_danger("\The [H] needs at least two ankles before you can cuff them together!"))
 		return 0
 
-	if(istype(H.shoes,/obj/item/clothing/shoes/magboots/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		to_chat(user, span_danger("\The [src] won't fit around \the [H.shoes]!"))
+	if(istype(H.inventory.get_item_in_slot(slot_shoes_str),/obj/item/clothing/shoes/magboots/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
+		to_chat(user, span_danger("\The [src] won't fit around \the [H.inventory.get_item_in_slot(slot_shoes_str)]!"))
 		return 0
 
 	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [H]!"))

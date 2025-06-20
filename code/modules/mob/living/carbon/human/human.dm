@@ -1161,7 +1161,8 @@
 		bloody_hands = 0
 		germ_level = 0
 
-	if(shoes)
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(istype(shoes))
 		shoes.wash(clean_types)
 		update_inv_shoes()
 		shoes.germ_level = 0
@@ -1446,7 +1447,7 @@
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		gloves,
-		shoes)
+		inventory.get_item_in_slot(slot_shoes_str))
 	var/head_exposed = 1
 	var/face_exposed = 1
 	var/eyes_exposed = 1
@@ -1500,7 +1501,7 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),inventory.get_item_in_slot(slot_wear_suit_str),src.shoes)
+	var/list/equipment = list(inventory.get_item_in_slot(slot_w_uniform_str),inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_shoes_str))
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FEET)
@@ -1510,7 +1511,8 @@
 		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
 		drop_both_hands()
 		return 0
-	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if((species.flags & NO_SLIP && !footcoverage_check) || (istype(shoes) && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
 		return 0
 	if(..(slipped_on,stun_duration))
 		drop_both_hands()
@@ -1575,7 +1577,8 @@
 		handle_regular_hud_updates()
 
 /mob/living/carbon/human/Check_Shoegrip()
-	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
+	var/obj/item/shoes = inventory.get_item_in_slot(slot_shoes_str)
+	if(istype(shoes) && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
 	if(flying) // Checks to see if they have wings and are flying.
 		return 1

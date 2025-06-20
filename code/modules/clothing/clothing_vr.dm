@@ -76,7 +76,7 @@
 	var/escape_message_macro = "Something is trying to climb out of your [src]!"
 	var/escape_time = 60
 
-	if(macro.shoes == src)
+	if(macro.inventory.get_item_in_slot(slot_shoes_str) == src)
 		escape_message_micro = "You start to climb around the larger creature's feet and ankles!"
 		escape_time = 100
 
@@ -118,7 +118,7 @@
 		if(isvoice(user)) //Is this a possessed item? Spooky. It can move on it's own!
 			to_chat(H, span_red("The [src] shifts about, almost as if squirming!"))
 			to_chat(user, span_red("You cause the [src] to shift against [H]'s form! Well, what little you can get to, given your current state!"))
-		else if(H.shoes == src)
+		else if(H.inventory.get_item_in_slot(slot_shoes_str) == src)
 			to_chat(H, span_red("[user]'s tiny body presses against you in \the [src], squirming!"))
 			to_chat(user, span_red("Your body presses out against [H]'s form! Well, what little you can get to!"))
 		else

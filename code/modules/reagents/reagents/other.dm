@@ -490,6 +490,7 @@
 		var/obj/item/w_uniform = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
 		var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+		var/obj/item/shoes = H.inventory.get_item_in_slot(slot_shoes_str)
 
 		if(alien == IS_SLIME)
 			M.adjustToxLoss(rand(5, 10))
@@ -502,8 +503,8 @@
 		else if(istype(w_uniform))
 			if(w_uniform.wash(CLEAN_SCRUB))
 				H.update_inv_w_uniform(0)
-		if(H.shoes)
-			if(H.shoes.wash(CLEAN_SCRUB))
+		if(istype(shoes))
+			if(shoes.wash(CLEAN_SCRUB))
 				H.update_inv_shoes(0)
 		else
 			H.wash(CLEAN_SCRUB)

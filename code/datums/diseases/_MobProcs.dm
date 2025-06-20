@@ -132,8 +132,8 @@
 					Cl = wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
-				if(passed && isobj(H.shoes))
-					Cl = H.shoes
+				if(passed && isobj(H.inventory.get_item_in_slot(slot_shoes_str)))
+					Cl = H.inventory.get_item_in_slot(slot_shoes_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
 	if(passed)

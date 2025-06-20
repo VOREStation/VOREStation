@@ -20,8 +20,8 @@
 					to_chat(H, span_warning("You can't wear \the [src] with \the [G], it's in the way."))
 					S.accessories -= src
 					return
-			else if((body_parts_covered & LEGS) && istype(H.shoes, /obj/item/clothing))
-				var/obj/item/clothing/Sh = H.shoes
+			else if((body_parts_covered & LEGS) && istype(H.inventory.get_item_in_slot(slot_shoes_str), /obj/item/clothing))
+				var/obj/item/clothing/Sh = H.inventory.get_item_in_slot(slot_shoes_str)
 				if(Sh.body_parts_covered & LEGS)
 					to_chat(H, span_warning("You can't wear \the [src] with \the [Sh], it's in the way."))
 					S.accessories -= src

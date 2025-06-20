@@ -153,7 +153,8 @@
 
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(H.shoes && H.shoes.item_flags & NOSLIP)
+				var/obj/item/shoes = H.inventory.get_item_in_slot(slot_shoes_str)
+				if(istype(shoes) && shoes.item_flags & NOSLIP)
 					return
 
 			M.stop_pulling()

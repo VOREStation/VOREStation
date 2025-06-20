@@ -149,11 +149,11 @@
 	var/footstep_sounds = GLOB.footstep
 
 	var/obj/item/wear_suit = source.inventory.get_item_in_slot(slot_wear_suit_str)
-	if ( istype(source.shoes, /obj/item/clothing/shoes) || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
+	if ( istype(source.inventory.get_item_in_slot(slot_shoes_str), /obj/item/clothing/shoes) || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
-		var/obj/item/clothing/shoes/feet = source.shoes
-		if(feet.blocks_footsteps)
+		var/obj/item/clothing/shoes/feet = source.inventory.get_item_in_slot(slot_shoes_str)
+		if(istype(feet) && feet.blocks_footsteps)
 			var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 			if(!isnull(shoestep_type) && footstep_sounds[shoestep_type]) // shoestep type can be null
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),

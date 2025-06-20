@@ -213,7 +213,7 @@ var/global/list/sparring_attack_cache = list()
 	return FALSE
 
 /datum/unarmed_attack/kick/get_unarmed_damage(var/mob/living/carbon/human/user)
-	var/obj/item/clothing/shoes = user.shoes
+	var/obj/item/clothing/shoes = user.inventory.get_item_in_slot(slot_shoes_str)
 	if(!istype(shoes))
 		return damage
 	return damage + (shoes ? shoes.force : 0)
@@ -261,19 +261,19 @@ var/global/list/sparring_attack_cache = list()
 		return FALSE
 
 /datum/unarmed_attack/stomp/get_unarmed_damage(var/mob/living/carbon/human/user)
-	var/obj/item/clothing/shoes = user.shoes
-	return damage + (shoes ? shoes.force : 0)
+	var/obj/item/clothing/shoes = user.inventory.get_item_in_slot(slot_shoes_str)
+	return damage + (istype(shoes) ? shoes.force : 0)
 
 /datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
-	var/obj/item/clothing/shoes = user.shoes
+	var/obj/item/clothing/shoes = user.inventory.get_item_in_slot(slot_shoes_str)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 
 	attack_damage = CLAMP(attack_damage, 1, 5)
 
 	switch(attack_damage)
-		if(1 to 4)	user.visible_message(span_danger("[pick("[user] stomped on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down onto")] [target]'s [organ]!"))
+		if(1 to 4)	user.visible_message(span_danger("[pick("[user] stomped on", "[user] slammed [TU.his] [istype(shoes) ? copytext(shoes.name, 1, -1) : "foot"] down onto")] [target]'s [organ]!"))
 		if(5)		user.visible_message(span_danger("[pick("[user] landed a powerful stomp on", "[user] stomped down hard on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down hard onto")] [target]'s [organ]!")) //Devastated lol. No. We want to say that the stomp was powerful or forceful, not that it /wrought devastation/
 
 /datum/unarmed_attack/light_strike

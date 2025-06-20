@@ -46,11 +46,11 @@
 
 	var/mob/living/carbon/human/H = user
 
-	if(H.shoes)
-		shoes = H.shoes
+	if(H.inventory.get_item_in_slot(slot_shoes_str))
+		shoes = H.inventory.get_item_in_slot(slot_shoes_str)
 		if(istype(shoes, /obj/item/clothing/shoes) && shoes.overshoes)
 			if(slot && slot == slot_shoes)
-				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
+				to_chat(user, "You are unable to wear \the [src] as \the [shoes] are in the way.")
 			shoes = null
 			return 0
 		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
@@ -106,7 +106,7 @@
 		if(!ishuman(user))
 			return
 		var/mob/living/carbon/human/H = user
-		if (H.shoes != src)
+		if (H.inventory.get_item_in_slot(slot_shoes_str) != src)
 			to_chat(user, "You will have to put on the [src] before you can do that.")
 			return
 

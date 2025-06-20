@@ -1055,7 +1055,7 @@
 		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
-		shoes,
+		inventory.get_item_in_slot(slot_shoes_str),
 		gloves,
 		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)
@@ -1070,7 +1070,7 @@
 		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
-		shoes,
+		inventory.get_item_in_slot(slot_shoes_str),
 		gloves,
 		inventory.get_item_in_slot(slot_wear_mask_str)))
 		if(C)

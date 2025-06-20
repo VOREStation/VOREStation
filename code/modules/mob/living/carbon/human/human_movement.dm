@@ -155,7 +155,7 @@
 		inventory.get_item_in_slot(slot_glasses_str),
 		gloves,
 		inventory.get_item_in_slot(slot_head_str),
-		shoes,
+		inventory.get_item_in_slot(slot_shoes_str),
 		inventory.get_item_in_slot(slot_wear_id_str),
 		inventory.get_item_in_slot(slot_wear_mask_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
@@ -218,16 +218,16 @@
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
 				turf_move_cost = 0
-			if(istype(shoes, /obj/item/clothing/shoes))
-				var/obj/item/clothing/shoes/feet = shoes
+			if(istype(inventory.get_item_in_slot(slot_shoes_str), /obj/item/clothing/shoes))
+				var/obj/item/clothing/shoes/feet = inventory.get_item_in_slot(slot_shoes_str)
 				if(istype(feet) && feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
 		else if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
-			if(istype(shoes, /obj/item/clothing/shoes))
-				var/obj/item/clothing/shoes/feet = shoes
+			if(istype(inventory.get_item_in_slot(slot_shoes_str), /obj/item/clothing/shoes))
+				var/obj/item/clothing/shoes/feet = inventory.get_item_in_slot(slot_shoes_str)
 				if(istype(feet) && feet.snow_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
@@ -287,8 +287,8 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
-	if(shoes && loc == T && get_gravity(loc) && !flying)
-		if(SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION, m_intent))
+	if(inventory.get_item_in_slot(slot_shoes_str) && loc == T && get_gravity(loc) && !flying)
+		if(SEND_SIGNAL(inventory.get_item_in_slot(slot_shoes_str), COMSIG_SHOES_STEP_ACTION, m_intent))
 			return
 	return
 

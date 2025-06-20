@@ -216,7 +216,7 @@ var/datum/antagonist/raider/raiders
 		var/new_suit =    pick(raider_suits)
 
 		player.equip_to_slot_or_del(new new_shoes(player),slot_shoes)
-		if(!player.shoes)
+		if(!player.inventory.get_item_in_slot(slot_shoes_str))
 			//If equipping shoes failed, fall back to equipping sandals
 			var/fallback_type = pick(/obj/item/clothing/shoes/sandal, /obj/item/clothing/shoes/boots/jackboots/toeless)
 			player.equip_to_slot_or_del(new fallback_type(player), slot_shoes)

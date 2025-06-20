@@ -134,7 +134,7 @@
 			H.inventory.get_item_in_slot(slot_wear_suit_str),
 			H.inventory.get_item_in_slot(slot_w_uniform_str),
 			H.gloves,
-			H.shoes,
+			H.inventory.get_item_in_slot(slot_shoes_str),
 			H.inventory.get_item_in_slot(slot_belt_str),
 			H.get_active_hand(),
 			H.get_inactive_hand())
@@ -265,7 +265,7 @@
 			H.inventory.get_item_in_slot(slot_wear_suit_str),
 			H.inventory.get_item_in_slot(slot_w_uniform_str),
 			H.gloves,
-			H.shoes,
+			H.inventory.get_item_in_slot(slot_shoes_str),
 			H.inventory.get_item_in_slot(slot_belt_str),
 			H.get_active_hand(),
 			H.get_inactive_hand())

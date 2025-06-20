@@ -215,7 +215,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/turf/T = get_turf(H)
 	if(istype(T))
 		var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
-		if(!(H.shoes || (istype(wear_suit) && (wear_suit.body_parts_covered & FEET))))
+		if(!(H.inventory.get_item_in_slot(slot_shoes_str) || (istype(wear_suit) && (wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
 				if(O.wash(CLEAN_SCRUB))
 					H.adjust_nutrition(rand(5, 15))

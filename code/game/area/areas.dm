@@ -450,7 +450,8 @@ var/list/mob/living/forced_ambiance_list = list()
 		var/mob/living/carbon/human/H = mob
 		if(H.buckled)
 			return // Being buckled to something solid keeps you in place.
-		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
+		var/obj/item/shoes = H.inventory.get_item_in_slot(slot_shoes_str)
+		if(istype(shoes, /obj/item/clothing/shoes/magboots) && (shoes.item_flags & NOSLIP))
 			return
 		if(H.is_incorporeal()) // VOREstation edit - Phaseshifted beings should not be affected by gravity
 			return

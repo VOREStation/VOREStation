@@ -119,7 +119,7 @@
 				return
 
 			var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
-			if( H.shoes || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
+			if( H.inventory.get_item_in_slot(slot_shoes_str) || ( istype(wear_suit) && (wear_suit.body_parts_covered & FEET) ) )
 				return
 
 			if(H.species.flags & NO_MINOR_CUT)

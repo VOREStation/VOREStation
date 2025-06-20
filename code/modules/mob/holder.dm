@@ -48,7 +48,7 @@ var/list/holder_mob_icon_cache = list()
 				location = "[HH]'s pocket"
 			else if(HH.inventory.get_item_in_slot(slot_head_str) == H)
 				location = "[HH]'s head"
-			else if(HH.shoes == H)
+			else if(HH.inventory.get_item_in_slot(slot_shoes_str) == H)
 				location = "[HH]'s feet"
 			else
 				location = "[HH]"

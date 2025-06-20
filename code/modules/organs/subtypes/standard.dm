@@ -188,7 +188,7 @@
 
 /obj/item/organ/external/foot/removed()
 	if(owner)
-		owner.drop_from_inventory(owner.shoes)
+		owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_shoes_str))
 	..()
 
 /obj/item/organ/external/foot/handle_germ_effects()

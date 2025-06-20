@@ -75,8 +75,8 @@
 			H.unEquip(H.inventory.get_item_in_slot(slot_w_uniform_str))
 		if(H.inventory.get_item_in_slot(slot_back_str))
 			H.unEquip(H.inventory.get_item_in_slot(slot_back_str))
-		if(H.shoes)
-			H.unEquip(H.shoes)
+		if(H.inventory.get_item_in_slot(slot_shoes_str))
+			H.unEquip(H.inventory.get_item_in_slot(slot_shoes_str))
 		if(H.gloves)
 			H.unEquip(H.gloves)
 		//Hats can stay! Most other things fall off with removing these.

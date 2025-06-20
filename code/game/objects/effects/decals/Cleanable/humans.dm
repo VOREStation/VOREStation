@@ -92,8 +92,8 @@ var/global/list/image/splatter_cache=list()
 	var/hasfeet = 1
 	if((!l_foot || l_foot.is_stump()) && (!r_foot || r_foot.is_stump()))
 		hasfeet = 0
-	if(perp.shoes && !perp.buckled)//Adding blood to shoes
-		var/obj/item/clothing/shoes/S = perp.shoes
+	if(perp.inventory.get_item_in_slot(slot_shoes_str) && !perp.buckled)//Adding blood to shoes
+		var/obj/item/clothing/shoes/S = perp.inventory.get_item_in_slot(slot_shoes_str)
 		if(istype(S))
 			S.blood_color = basecolor
 			S.track_blood = max(amount,S.track_blood)
