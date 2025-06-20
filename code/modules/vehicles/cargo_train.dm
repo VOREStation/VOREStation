@@ -421,8 +421,6 @@
 	icon_state = "cargo_tank"
 	anchored = FALSE
 	flags = OPENCONTAINER
-
-	var/obj/item/reagent_containers/glass/stored_container = null
 	paint_color = "#efdd16"
 
 /obj/vehicle/train/trolly_tank/Initialize(mapload)
@@ -433,9 +431,7 @@
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
-
-/obj/vehicle/train/trolly_tank/Destroy()
-	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/vehicle/train/trolly_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	return
@@ -453,6 +449,20 @@
 	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
 /obj/vehicle/train/trolly_tank/attackby(obj/item/W, mob/user)
+
+	if(istype(W,/obj/item/reagent_containers/glass))
+		var/item/reagent_containers/glass/G = W
+		if(reagents.total_volume <= 0)
+			to_chat(usr,"\The [src] is empty.")
+			return
+		if(G.reagents.total_volume >= G.reagents.maximum_volume)
+			to_chat(usr,"\The [G] is full.")
+			return
+		playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
+		to_chat(usr,"You drain \the [src] into the \the [G].")
+		reagents.trans_to_holder( G.reagents, G.reagents.maximum_volume)
+		update_icon()
+		return
 
 	if(istype(W, /obj/item/multitool))
 		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
@@ -484,72 +494,6 @@
 		anchored = FALSE
 	else
 		anchored = TRUE
-
-/obj/vehicle/train/trolly_tank/attack_hand(mob/user)
-	if(stored_container)
-		unload_container()
-		return
-	. = ..()
-
-/obj/vehicle/train/trolly_tank/verb/load_container_verb()
-	set name = "Load Container"
-	set category = "Object"
-	set src in oview(1)
-
-	var/mob/M = usr
-	if(!M || M.incapacitated())
-		return
-
-	if(stored_container)
-		return
-
-	var/obj/item/W = M.get_active_hand()
-	if(istype(W,/obj/item/reagent_containers/glass))
-		stored_container = W
-		M.drop_from_inventory(stored_container,src)
-		visible_message("\The [M] loads \the [stored_container] into \the [src].")
-
-/obj/vehicle/train/trolly_tank/proc/load_container(var/mob/user,var/obj/item/W)
-	if(stored_container)
-		return
-	if(istype(W,/obj/item/reagent_containers/glass))
-		if(W.loc == user)
-			stored_container = W
-			user.drop_from_inventory(stored_container,src)
-			visible_message("\The [user] loads \the [stored_container] into \the [src].")
-
-/obj/vehicle/train/trolly_tank/AltClick(mob/user)
-	fill_container()
-
-/obj/vehicle/train/trolly_tank/verb/unload_container()
-	set name = "Unload Container"
-	set category = "Object"
-	set src in oview(1)
-
-	if(stored_container)
-		visible_message("\The [usr] removes \the [stored_container] from \the [src].")
-		stored_container.forceMove(loc) // drop it outside even if user fails to pick it up
-		stored_container.attack_hand(usr) // Attempt pickup
-		stored_container = null
-		return
-
-/obj/vehicle/train/trolly_tank/verb/fill_container()
-	set name = "Fill Loaded Container"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!stored_container)
-		to_chat(usr,"No container loaded.")
-		return
-	if(reagents.total_volume <= 0)
-		to_chat(usr,"\The [src] is empty.")
-		return
-	if(stored_container.reagents.total_volume >= stored_container.reagents.maximum_volume)
-		to_chat(usr,"\The [stored_container] is full.")
-		return
-	playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
-	to_chat(usr,"You drain \the [src] into the loaded [stored_container].")
-	reagents.trans_to_holder( stored_container.reagents, stored_container.reagents.maximum_volume)
 
 /obj/vehicle/train/trolly_tank/examine(mob/user, infix, suffix)
 	. = ..()
