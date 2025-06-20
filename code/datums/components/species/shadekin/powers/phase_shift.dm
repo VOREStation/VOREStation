@@ -17,7 +17,7 @@
 	name = "Phase Shift (100)"
 	desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	verbpath = /mob/living/proc/phase_shift
-	ability_icon_state = "tech_passwall"
+	ability_icon_state = "phase_shift"
 
 /mob/living/proc/phase_shift()
 	set name = "Phase Shift (100)"
@@ -26,6 +26,9 @@
 
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(!SK)
+		return FALSE
+	if(stat)
+		to_chat(src, span_warning("Can't use that ability in your state!"))
 		return FALSE
 	var/area/A = get_area(src)
 	if(!client?.holder && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
@@ -60,10 +63,7 @@
 		log_debug("[src] attempted to shift with [watcher] visible Carbons with a  cost of [ability_cost] in a darkness level of [darkness]")
 	*/
 
-	if(stat)
-		to_chat(src, span_warning("Can't use that ability in your state!"))
-		return FALSE
-	else if(SK.doing_phase)
+	if(SK.doing_phase)
 		to_chat(src, span_warning("You are already trying to phase!"))
 		return FALSE
 	else if(SK.shadekin_get_energy() < ability_cost && !(SK.in_phase))
@@ -78,14 +78,12 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
-	SK.doing_phase = TRUE // Prevent bugs when spamming phase button
 	//Shifting in
 	if(SK.in_phase)
 		phase_in(T, SK)
 	//Shifting out
 	else
 		phase_out(T, SK)
-	SK.doing_phase = FALSE // Prevent bugs when spamming phase button
 
 
 /mob/living/proc/phase_in(var/turf/T, var/datum/component/shadekin/SK)
@@ -150,12 +148,14 @@
 
 	//Affect nearby lights
 	var/destroy_lights = 0
-
+	if(SK.phase_gentle)
+		Stun(1)
 	for(var/obj/machinery/light/L in GLOB.machines)
 		if(L.z != z || get_dist(src,L) > 10)
 			continue
-
-		if(prob(destroy_lights))
+		if(SK.phase_gentle)
+			L.flicker(1)
+		else if(prob(destroy_lights))
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, broken)), rand(5,25), TIMER_DELETE_ME)
 		else
 			L.flicker(10)
@@ -191,18 +191,20 @@
 		phaseanim.dir = dir
 		alpha = 0
 		add_modifier(/datum/modifier/shadekin_phase_vision)
-		sleep(5)
-		invisibility = INVISIBILITY_SHADEKIN
-		see_invisible = INVISIBILITY_SHADEKIN
-		see_invisible_default = INVISIBILITY_SHADEKIN // Allow seeing phased entities while phased.
-		update_icon()
-		alpha = 127
+		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), 5, TIMER_DELETE_ME)
 
-		canmove = original_canmove
-		incorporeal_move = TRUE
-		density = FALSE
-		force_max_speed = TRUE
-		SK.doing_phase = FALSE
+
+/mob/living/proc/complete_phase_out(original_canmove, var/datum/component/shadekin/SK)
+	invisibility = INVISIBILITY_SHADEKIN
+	see_invisible = INVISIBILITY_SHADEKIN
+	see_invisible_default = INVISIBILITY_SHADEKIN // Allow seeing phased entities while phased.
+	update_icon()
+	alpha = 127
+
+	canmove = original_canmove
+	incorporeal_move = TRUE
+	density = FALSE
+	SK.doing_phase = FALSE
 
 /datum/modifier/shadekin_phase_vision
 	name = "Shadekin Phase Vision"

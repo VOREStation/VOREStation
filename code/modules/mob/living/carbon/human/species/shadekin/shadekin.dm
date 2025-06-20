@@ -114,72 +114,26 @@
 /datum/species/shadekin/get_random_name()
 	return "shadekin"
 
-/datum/species/shadekin/proc/get_shadekin_eyecolor(var/mob/living/carbon/human/H)
-	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
-
-	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
-	var/eyecolor_sat = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[2]
-	var/eyecolor_val = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[3]
-
-	//First, clamp the saturation/value to prevent black/grey/white eyes
-	if(eyecolor_sat < 10)
-		eyecolor_sat = 10
-	if(eyecolor_val < 40)
-		eyecolor_val = 40
-
-	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, space=COLORSPACE_HSV)
-
-	H.r_eyes = rgb2num(eyecolor_rgb)[1]
-	H.g_eyes = rgb2num(eyecolor_rgb)[2]
-	H.b_eyes = rgb2num(eyecolor_rgb)[3]
-
-	//Now determine what color we fall into.
-	var/eyecolor_type = BLUE_EYES
-	switch(eyecolor_hue)
-		if(0 to 20)
-			eyecolor_type = RED_EYES
-		if(21 to 50)
-			eyecolor_type = ORANGE_EYES
-		if(51 to 70)
-			eyecolor_type = YELLOW_EYES
-		if(71 to 160)
-			eyecolor_type = GREEN_EYES
-		if(161 to 260)
-			eyecolor_type = BLUE_EYES
-		if(261 to 340)
-			eyecolor_type = PURPLE_EYES
-		if(341 to 360)
-			eyecolor_type = RED_EYES
-
-	return eyecolor_type
-
 /datum/species/shadekin/post_spawn_special(var/mob/living/carbon/human/H)
 	.=..()
 
-	var/eyecolor_type = get_shadekin_eyecolor(H)
 	var/datum/component/shadekin/SK = H.get_shadekin_component()
 	if(!SK)
 		CRASH("A shadekin [H] somehow is missing their shadekin component post-spawn!")
 
-	switch(eyecolor_type)
+	switch(SK.eye_color)
 		if(BLUE_EYES)
 			total_health = 100
-			SK.set_light_and_darkness(0.75,0.75)
 		if(RED_EYES)
 			total_health = 200
-			SK.set_light_and_darkness(-0.5,0.5)
 		if(PURPLE_EYES)
 			total_health = 150
-			SK.set_light_and_darkness(-0.5,1)
 		if(YELLOW_EYES)
 			total_health = 100
-			SK.set_light_and_darkness(-2,3)
 		if(GREEN_EYES)
 			total_health = 100
-			SK.set_light_and_darkness(0.125,2)
 		if(ORANGE_EYES)
 			total_health = 175
-			SK.set_light_and_darkness(-0.25,0.75)
 
 	H.maxHealth = total_health
 

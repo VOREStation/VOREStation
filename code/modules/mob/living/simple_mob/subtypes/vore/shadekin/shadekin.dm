@@ -247,13 +247,89 @@
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
-	cut_overlays()
-	icon_state = ""
-	flick("tp_out",src)
-	spawn(1 SECOND)
-		qdel(src) //Back from whence you came!
+	var/special_handling = FALSE //varswitch for downstream
+	if(!special_handling)
+		cut_overlays()
+		icon_state = ""
+		flick("tp_out",src)
+		QDEL_IN(src, 1 SECOND)
+		. = ..(FALSE, deathmessage)
+	else
+		if(comp.respite_activating)
+			return
+		cut_overlays()
+		flick("tp_out",src)
 
-	. = ..(FALSE, deathmessage)
+		var/area/current_area = get_area(src)
+		if((comp.in_dark_respite) || current_area.flag_check(AREA_LIMIT_DARK_RESPITE))
+			icon_state = ""
+			spawn(1 SECOND)
+				qdel(src) //Back from whence you came!
+
+			return ..(FALSE, deathmessage)
+
+
+		if(!LAZYLEN(GLOB.latejoin_thedark))
+			log_and_message_admins("[src] died outside of the dark but there were no valid floors to warp to")
+			icon_state = ""
+			spawn(1 SECOND)
+				qdel(src) //Back from whence you came!
+
+			return ..(FALSE, deathmessage)
+
+		visible_message("<b>\The [src.name]</b> [deathmessage]")
+		comp.respite_activating = TRUE
+
+		drop_l_hand()
+		drop_r_hand()
+
+		comp.dark_energy = 0
+		comp.in_dark_respite = TRUE
+		invisibility = INVISIBILITY_LEVEL_TWO
+
+		adjustFireLoss(-(getFireLoss() / 2))
+		adjustBruteLoss(-(getBruteLoss() / 2))
+		adjustToxLoss(-(getToxLoss() / 2))
+		Stun(10)
+		movement_cooldown = 5
+		nutrition = 0
+
+		if(istype(src.loc, /obj/belly))
+			//Yay digestion... presumably...
+			var/obj/belly/belly = src.loc
+			add_attack_logs(belly.owner, src, "Digested in [lowertext(belly.name)]")
+			to_chat(belly.owner, span_notice("\The [src.name] suddenly vanishes within your [belly.name]"))
+			forceMove(pick(GLOB.latejoin_thedark))
+			flick("tp_in",src)
+			comp.respite_activating = FALSE
+			comp.in_dark_respite = TRUE
+			belly.owner.handle_belly_update()
+			clear_fullscreen("belly")
+			if(hud_used)
+				if(!hud_used.hud_shown)
+					toggle_hud_vis()
+			stop_sound_channel(CHANNEL_PREYLOOP)
+
+			addtimer(CALLBACK(src, PROC_REF(can_leave_dark)), 10 MINUTES, TIMER_DELETE_ME)
+		else
+			addtimer(CALLBACK(src, PROC_REF(enter_the_dark)), 1 SECOND, TIMER_DELETE_ME)
+			addtimer(CALLBACK(src, PROC_REF(can_leave_dark)), 15 MINUTES, TIMER_DELETE_ME)
+
+/mob/living/simple_mob/shadekin/proc/enter_the_dark()
+	comp.respite_activating = FALSE
+	comp.in_dark_respite = TRUE
+
+	forceMove(pick(GLOB.latejoin_thedark))
+	update_icon()
+	flick("tp_in",src)
+	invisibility = initial(invisibility)
+	comp.respite_activating = FALSE
+
+/mob/living/simple_mob/shadekin/proc/can_leave_dark()
+	comp.in_dark_respite = FALSE
+	movement_cooldown = initial(movement_cooldown)
+	to_chat(src, span_notice("You feel like you can leave the Dark again"))
+
 
 /* //VOREStation AI Temporary Removal
 //Blue-eyes want to nom people to heal them
@@ -378,13 +454,6 @@
 					gains = 5
 
 			comp.dark_energy += gains
-
-//Special hud elements for darkness and energy gains
-/mob/living/simple_mob/shadekin/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
-	shadekin_display = new /obj/screen/shadekin()
-	shadekin_display.screen_loc = ui_shadekin_display
-	shadekin_display.icon_state = "shadekin"
-	hud_elements |= shadekin_display
 
 // When someone clicks us with an empty hand
 /mob/living/simple_mob/shadekin/attack_hand(mob/living/carbon/human/M as mob)

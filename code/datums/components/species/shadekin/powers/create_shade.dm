@@ -5,7 +5,7 @@
 	name = "Create Shade (25)"
 	desc = "Create a field of darkness that follows you."
 	verbpath = /mob/living/proc/create_shade
-	ability_icon_state = "tech_dispelold"
+	ability_icon_state = "create_shade"
 
 /mob/living/proc/create_shade()
 	set name = "Create Shade (25)"

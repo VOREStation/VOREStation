@@ -5,7 +5,7 @@
 	name = "Regenerate Other (50)"
 	desc = "Spend energy to heal physical wounds in another creature."
 	verbpath = /mob/living/proc/regenerate_other
-	ability_icon_state = "tech_biomedaura"
+	ability_icon_state = "shadekin_regen"
 
 /mob/living/proc/regenerate_other()
 	set name = "Regenerate Other (50)"
