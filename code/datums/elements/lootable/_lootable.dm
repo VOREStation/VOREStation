@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 
 	// You got unlucky.
 	if(chance_nothing && prob(chance_nothing))
-		to_chat(L, span_warning("Nothing in this pile really catches your eye..."))
+		to_chat(L, span_warning("Nothing in \the [source] really catches your eye..."))
 		return
 
 	if(L && islist(searched_by)) // This can handle no mob and no list if you just want to use this as a way to hold drop tables
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	loot_left--
 	if(loot_left > 0)
 		return
-	to_chat(L, span_warning("You seem to have gotten the last of the spoils inside \the [source]."))
+	to_chat(L, span_warning("You seem to have gotten the last of the spoils in \the [source]."))
 	if(delete_on_depletion)
 		qdel(source)
 
