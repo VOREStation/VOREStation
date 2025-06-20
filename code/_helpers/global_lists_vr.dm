@@ -1073,6 +1073,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/airlock_electronics, \
 	/obj/item/tracker_electronics, \
 	/obj/item/module/power_control, \
+	/obj/item/bluespace_crystal, \
 	/obj/item/stock_parts, \
 	/obj/item/frame, \
 	/obj/item/camera_assembly, \
@@ -1112,6 +1113,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/storage/pill_bottle, \
 	/obj/item/reagent_containers/pill, \
 	/obj/item/reagent_containers/blood, \
+	/obj/item/nif, \
 	/obj/item/stack/material/phoron, \
 	/obj/item/tank/anesthetic, \
 	/obj/item/disk/body_record
