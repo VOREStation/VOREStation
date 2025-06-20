@@ -30,6 +30,8 @@
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi(GAS_O2, air_mix[GAS_O2], GAS_N2, air_mix[GAS_N2])
 
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/portable_atmospherics/powered/pump/update_icon()
 	cut_overlays()
 

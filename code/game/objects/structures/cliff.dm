@@ -19,6 +19,7 @@ When mapping these in, be sure to give at least a one tile clearance, as NORTH f
 two tiles on initialization, and which way a cliff is facing may change during maploading.
 */
 
+#define CLIFF_CLIMB_DELAY 10
 /obj/structure/cliff
 	name = "cliff"
 	desc = "A steep rock ledge. You might be able to climb it if you feel bold enough."
@@ -31,8 +32,6 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	anchored = TRUE
 	density = TRUE
 	opacity = FALSE
-	climbable = TRUE
-	climb_delay = 10 SECONDS
 	unacidable = TRUE
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
 	plane = TURF_PLANE
@@ -48,6 +47,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/Initialize(mapload)
 	. = ..()
 	register_dangerous_to_step()
+	AddElement(/datum/element/climbable/cliff,CLIFF_CLIMB_DELAY SECONDS)
 
 /obj/structure/cliff/Destroy()
 	unregister_dangerous_to_step()
@@ -106,11 +106,8 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	// Now make the bottom cliff have mostly the same variables.
 	var/obj/structure/cliff/bottom/bottom = new(T)
 	is_double_cliff = TRUE
-	climb_delay /= 2 // Since there are two cliffs to climb when going north, both take half the time.
-
 	bottom.dir = dir
 	bottom.is_double_cliff = TRUE
-	bottom.climb_delay = climb_delay
 	bottom.icon_variant = icon_variant
 	bottom.corner = corner
 	bottom.ramp = ramp
@@ -254,19 +251,10 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			sleep(5)
 			bottom_cliff.fall_off_cliff(L)
 
-/obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
-	// Cliff climbing requires climbing gear.
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/shoes/shoes = H.shoes
-		if(shoes && shoes.rock_climbing)
-			return ..() // Do the other checks too.
-
-	to_chat(user, span_warning("\The [src] is too steep to climb unassisted."))
-	return FALSE
-
 // This tells AI mobs to not be dumb and step off cliffs willingly.
 /obj/structure/cliff/is_safe_to_step(mob/living/L)
 	if(should_fall(L))
 		return FALSE
 	return ..()
+
+#undef CLIFF_CLIMB_DELAY
