@@ -144,6 +144,8 @@
 	else
 		//Heal (very) slowly in good darkness
 		if(is_dark)
+		//The below sends a DB query...This needs to be fixed before this can be enabled as we're now dealing with signal handlers.
+		//Reenable once that mess is taken care of.
 		/*
 			owner.adjustFireLoss((-0.10)*darkness)
 			owner.adjustBruteLoss((-0.10)*darkness)
