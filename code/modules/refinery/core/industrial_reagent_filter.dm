@@ -24,6 +24,7 @@
 	// Update neighbours and self for state
 	update_neighbours()
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/reagent_refinery/filter/process()
 	if(!anchored)
