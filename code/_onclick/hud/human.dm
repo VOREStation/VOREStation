@@ -321,7 +321,6 @@
 	using.alpha = HUD.ui_alpha
 	adding |= using
 
-	//VOREStation Addition begin
 	shadekin_display = new /obj/screen/shadekin()
 	shadekin_display.screen_loc = ui_shadekin_display
 	shadekin_display.icon_state = "shadekin"
@@ -336,7 +335,6 @@
 	lleill_display.screen_loc = ui_lleill_display
 	lleill_display.icon_state = "lleill"
 	hud_elements |= lleill_display
-	//VOREStation Addition end
 
 	ling_chem_display = new /obj/screen/ling/chems()
 	ling_chem_display.screen_loc = ui_ling_chemical_display
