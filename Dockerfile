@@ -38,7 +38,7 @@ RUN apt-get install -y --no-install-recommends \
 
 COPY . .
 
-RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build
+RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build.sh
 
 FROM base AS rust
 RUN apt-get install -y --no-install-recommends \
