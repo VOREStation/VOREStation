@@ -113,12 +113,12 @@
 	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	var/input = tgui_input_list(src, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
+	var/input = tgui_input_list(src, "Select a ghost pod:", "Ghost Jump", observe_list_format(GLOB.active_ghost_pods))
 	if(!input)
 		to_chat(src, span_filter_notice("No active ghost pods detected."))
 		return
 
-	var/target = observe_list_format(active_ghost_pods)[input]
+	var/target = observe_list_format(GLOB.active_ghost_pods)[input]
 	if (!target)//Make sure we actually have a target
 		return
 	else

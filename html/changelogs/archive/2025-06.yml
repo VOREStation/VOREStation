@@ -282,3 +282,15 @@
   - bugfix: reagent dispenser tanks no longer perform alchemy, turning all reagents
       into fuel spills
   - code_imp: gene conflict list uses much less memory
+2025-06-20:
+  Diana, Kash:
+  - rscadd: Borgs now have toolbelts instead of various misc tools in their inventory.
+  - rscadd: Borgs now have a Material Dispenser that holds all the various materials
+      they can make, instead of being scattered throughout your inventory
+  - rscadd: Grippers are now consolidated and have 5 inventory slots each. No more
+      guessing 'What gripper is used for what'
+  - rscdel: tool bloat
+  Kash Guti Will:
+  - rscadd: Adds genes and diseases to bingle's database so symptoms and genetics
+      stuff can be looked up ingame
+  - code_imp: added unit test for virus names and trait names to prevent tgui issues

@@ -103,19 +103,19 @@
 		// check trait if not. CONFLICT-O-TRON ENGAGE
 		var/datum/trait/instance_test = GLOB.all_traits[P]
 		if(path in instance_test.excludes)
-			conflict_traits.Add(P)
+			conflict_traits |= P
 			has_conflict = TRUE
 			continue
 		for(var/V in linked_trait.var_changes)
 			if(V == "flags")
 				continue
 			if(V in instance_test.var_changes)
-				conflict_traits.Add(P)
+				conflict_traits |= P
 				has_conflict = TRUE
 				continue
 		for(var/V in linked_trait.var_changes_pref)
 			if(V in instance_test.var_changes_pref)
-				conflict_traits.Add(P)
+				conflict_traits |= P
 				has_conflict = TRUE
 				continue
 	return has_conflict
