@@ -592,3 +592,12 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 
 ## Uncomment to limit resize caps depending on sprite icon height
 #PIXEL_SIZE_LIMIT
+
+# This is the tgs4 channel tag, for discord chatbots used in TGS
+#AHELP_CHANNEL_TAG admin
+
+# Turn this off if you don't want the TGS bot sending you messages whenever an ahelp ticket is created.
+#DISCORD_AHELPS_DISABLED
+
+#Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
+#DISCORD_AHELPS_ALL
