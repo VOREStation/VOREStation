@@ -4,11 +4,7 @@
 
 
 /datum/events
-	var/list/events
-
-/datum/events/New()
-	..()
-	events = new
+	var/list/events = list()
 
 /datum/events/proc/addEventType(event_type as text)
 	if(!(event_type in events) || !islist(events[event_type]))

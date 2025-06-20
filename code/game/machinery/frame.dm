@@ -293,7 +293,7 @@ GLOBAL_LIST(construction_frame_floor)
 /obj/structure/frame/proc/update_desc()
 	var/D
 	if(req_components)
-		var/list/component_list = new
+		var/list/component_list = list()
 		for(var/I in req_components)
 			if(req_components[I] > 0)
 				component_list += "[num2text(req_components[I])] [req_component_names[I]]"
@@ -341,6 +341,8 @@ GLOBAL_LIST(construction_frame_floor)
 		density = TRUE
 
 	update_icon()
+
+	AddElement(/datum/element/climbable)
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(P.has_tool_quality(TOOL_WRENCH))

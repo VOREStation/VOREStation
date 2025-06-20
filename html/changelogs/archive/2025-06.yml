@@ -172,3 +172,125 @@
   - qol: Reagent hoses have feedback on connection and disconnection
   - qol: Reagent hoses drop on disconnection instead of being destroyed
   - qol: Reagent hoses change colors as reagents are pumped through them
+2025-06-12:
+  TeleTubby2:
+  - qol: You can configure whether or not you want the runechat "Balloon Messages"
+      to appear to you or not
+  Will:
+  - rscadd: Electric fences for POIs
+  - bugfix: Multiple reagent hoses on one object are now properly usable
+  - qol: The maximum distance of a reagent hose matches its stack size of 10
+2025-06-13:
+  SatinIsle:
+  - admin: Added a new smite that forces the skyrim intro meme onto someone.
+  ShadowLarkens:
+  - sound: SMESes now make a big contactor noise when switched on and off.
+  - rscadd: The cooking machines now have unique UIs.
+  - qol: The cooking machines like the grill and deep fryer now attempt to predict
+      what they will produce.
+  - qol: Paint bucket no longer tries to preview, it's too confusing to look at
+  - qol: Added a new vore pref to force belly visuals to be capped at a certain alpha.
+  - rscadd: Character Directory now shows profile pictures.
+  - rscadd: 'Succubi care about consent and have a safeword~ :heart:'
+  - qol: The stripping menu is more intuitive now
+  - rscadd: Real Bluespace RPED that works at range. Locked behind prototype brped
+      requirements + anomalous 1.
+  - rscadd: Improved AI holonoms, they use real bellies now
+  - bugfix: Emote sound mode should now apply to things like *meow.
+  Will:
+  - qol: dna modification console takes 5 seconds instead of 30 to make a new injector
+  - qol: gene scanner provides the current value of an active gene, but not it's block
+      ID
+  - qol: gene scanner can now scan dna injectors to find out what unmarked injectors
+      do
+  Willburd:
+  - code_imp: added primitive color grading for areas and weather
+2025-06-14:
+  Willburd:
+  - code_imp: fixed colorgrading issues
+2025-06-15:
+  Diana:
+  - balance: Dogborg blade can be turned on/off. Glows when on.
+  - rscadd: Dogborg blade can be recolored.
+  - rscadd: Ninja blade (more damage) and Syndicate blade (starts red)
+  - rscadd: Kinetic Crusher and Kinetic Glaive now in mining vending machine
+  - balance: Kinetic weapon damage variables shifted around. Gaunelts stronger, Dagger
+      hits harder when thrown, Machete does more when backstabbing.
+  - bugfix: Kinetic crusher now does 25 damage, up from 0
+  - rscadd: Miners now start with a kinetic crusher in their starting locker
+  ReoDaProtovali:
+  - rscadd: Added new hackable wires to disposal pipe junctions. Divert the flow of
+      junk as you desire.
+  - bugfix: Fixed disposal pipe deconstruction
+  Will:
+  - rscadd: reagent hoses can be used to inflate and drain other human mobs in various
+      ways
+  - rscadd: borgs now have hose connectors that go to their current vore belly
+  - qol: Show belly fluid verb now shows composition of belly fluids and not just
+      amount
+  - code_imp: reagents that enter someone's belly become belly reagents to respect
+      prefs
+  Willburd:
+  - bugfix: fixed a crash when updating a player record from the employment records
+      computer
+  - bugfix: airflow thrown objects don't hit phased shadekin now
+2025-06-16:
+  SatinIsle:
+  - maptweak: Added another 8 space heaters to the SD. Three of them in general maint,
+      5 of them specifically in a totally forgotten maint corner attached only to
+      atmos. Also generally spruced up that little room so it's not just blank.
+  timothyteakettle:
+  - rscadd: makes the switch tail layer verb let you choose from three layers
+2025-06-17:
+  ShadowLarkens:
+  - rscadd: Xenoarch's Radiocarbon Spectrometer has been rewritten to be more engaging.
+  - rscadd: New process option, "Break Bone".
+  - qol: If you have digestion pain turned on, you will receive broken bone notifications
+      even inside a stomach.
+  Willburd:
+  - code_imp: Corrected CI issue with component hose connectors
+2025-06-18:
+  Kashargul:
+  - code_imp: tgui-core 4.3.1
+  TheCaramelion:
+  - rscadd: Viruses now spawn with random names, depending on the symptoms, source,
+      and random factors.
+  - rscadd: Added medical names to all the common diseases
+2025-06-19:
+  Diana:
+  - bugfix: arglasses can be properly selected in the loadout
+  Kashargul:
+  - code_imp: more browse to datum browser
+  SatinIsle:
+  - bugfix: Fixed janitor shutter buttons on the tether.
+  TeleTubby2:
+  - rscadd: Voodoo dolls now render things all scrungly
+  - rscadd: Remote scene tools have some new utility verbs
+  - qol: Remote scene tools now show the status of their counterpart's wearer on examine
+  - bugfix: Various typos have been fixed for the recycler and recycling vendor
+  - bugfix: The maint recycler doesn't nuke your points after getting to 999 anymore.
+      whoops.
+  - rscadd: Examines now embed extra information that used to be examine tab exclusive.
+      This is a preference, so can be configured to remain as the old behavior.
+  - rscdel: Removed the old verb for setting examine mode
+  - refactor: Examine Mode is now a TG preference
+  Willburd:
+  - bugfix: blood without dna from simple mobs will track onto shoes, floors and hands
+      again
+  - bugfix: Forensics data merging on objects without data but with data on the merging
+      object, no longer crash on merge
+  - bugfix: reagent dispenser tanks no longer perform alchemy, turning all reagents
+      into fuel spills
+  - code_imp: gene conflict list uses much less memory
+2025-06-20:
+  Diana, Kash:
+  - rscadd: Borgs now have toolbelts instead of various misc tools in their inventory.
+  - rscadd: Borgs now have a Material Dispenser that holds all the various materials
+      they can make, instead of being scattered throughout your inventory
+  - rscadd: Grippers are now consolidated and have 5 inventory slots each. No more
+      guessing 'What gripper is used for what'
+  - rscdel: tool bloat
+  Kash Guti Will:
+  - rscadd: Adds genes and diseases to bingle's database so symptoms and genetics
+      stuff can be looked up ingame
+  - code_imp: added unit test for virus names and trait names to prevent tgui issues

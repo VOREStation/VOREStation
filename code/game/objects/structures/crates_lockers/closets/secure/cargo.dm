@@ -85,6 +85,7 @@
 		/obj/item/flashlight/lantern,
 		/obj/item/shovel,
 		/obj/item/pickaxe/drill,
+		/obj/item/kinetic_crusher,
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
 		/obj/item/clothing/shoes/boots/winter/mining,

@@ -1,0 +1,6 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "moves sql death reporting to SSmobs as a single massinsert"
+  - refactor: "turns object climbing code into a component"
+  - qol: "many more objects are climbable, preventing softlocks, especially for engineers and miners"

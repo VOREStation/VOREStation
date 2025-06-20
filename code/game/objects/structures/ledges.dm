@@ -4,12 +4,15 @@
 	icon = 'icons/obj/ledges.dmi'
 	density = TRUE
 	throwpass = 1
-	climbable = TRUE
 	anchored = TRUE
 	var/solidledge = 1
 	flags = ON_BORDER
 	layer = STAIRS_LAYER
 	icon_state = "ledge"
+
+/obj/structure/ledge/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable, vaulting = TRUE)
 
 /obj/structure/ledge_corner
 	icon_state = "ledge-corner"
@@ -19,9 +22,12 @@
 	icon = 'icons/obj/ledges.dmi'
 	density = TRUE
 	throwpass = 1
-	climbable = TRUE
 	anchored = TRUE
 	layer = STAIRS_LAYER
+
+/obj/structure/ledge_corner/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable, vaulting = TRUE)
 
 /obj/structure/ledge/ledge_nub
 	desc = "Part of a rocky ledge."
@@ -49,37 +55,3 @@
 	if(solidledge && get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return FALSE
 	return TRUE
-
-/obj/structure/ledge/do_climb(var/mob/living/user)
-	if(!can_climb(user))
-		return
-
-	user.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
-	LAZYDISTINCTADD(climbers, user)
-
-	if(!do_after(user,(issmall(user) ? 20 : 34)))
-		LAZYREMOVE(climbers, user)
-		return
-
-	if(!can_climb(user, post_climb_check=1))
-		LAZYREMOVE(climbers, user)
-		return
-
-	if(get_turf(user) == get_turf(src))
-		user.forceMove(get_step(src, src.dir))
-	else
-		user.forceMove(get_turf(src))
-
-	user.visible_message(span_warning("[user] climbed over \the [src]!"))
-	LAZYREMOVE(climbers, user)
-
-/obj/structure/ledge/can_climb(var/mob/living/user, post_climb_check=0)
-	if(!..())
-		return 0
-
-	if(get_turf(user) == get_turf(src))
-		var/obj/occupied = neighbor_turf_impassable()
-		if(occupied)
-			to_chat(user, span_danger("You can't climb there, there's \a [occupied] in the way."))
-			return 0
-	return 1

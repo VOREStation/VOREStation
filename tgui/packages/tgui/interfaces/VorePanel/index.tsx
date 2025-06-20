@@ -169,6 +169,8 @@ export const VorePanel = () => {
     unsaved_changes,
     vore_words,
     general_pref_data,
+    min_belly_name,
+    max_belly_name,
   } = data;
 
   const [editMode, setEditMode] = useState(!!persist_edit_mode);
@@ -187,6 +189,8 @@ export const VorePanel = () => {
       toggleEditMode={setEditMode}
       editMode={editMode}
       persist_edit_mode={persist_edit_mode}
+      minBellyName={min_belly_name}
+      maxBellyName={max_belly_name}
     />
   );
   tabs[1] = our_bellies && soulcatcher && abilities && (

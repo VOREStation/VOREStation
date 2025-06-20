@@ -62,7 +62,7 @@
 		tail_lower_dirs.Cut()
 	else if (H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
-	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_ALT : TAIL_UPPER_LAYER
+	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
 	max_integrity = H.getMaxHealth() + 100
 	obj_integrity = H.health + 100
@@ -96,7 +96,7 @@
 		if (istype(H.overlays_standing[i], /image) && (i in body_layers))
 			var/image/old_image = H.overlays_standing[i]
 			var/image/new_image = image(old_image)
-			if (i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_ALT)
+			if (i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_HIGH)
 				tail_image = new_image
 			new_image.color = tint_color
 			new_image.layer = old_image.layer
@@ -252,7 +252,7 @@
 		if(istype(W,/obj/item/grab || /obj/item/holder))
 			gargoyle.vore_attackby(W, user)
 			return
-		if(gargoyle.adminbus_trash || is_type_in_list(W,edible_trash) && W.trash_eatable && !is_type_in_list(W,item_vore_blacklist))
+		if(gargoyle.adminbus_trash || is_type_in_list(W, GLOB.edible_trash) && W.trash_eatable && !is_type_in_list(W, GLOB.item_vore_blacklist))
 			to_chat(user, span_warning("You slip [W] into [gargoyle]'s [lowertext(gargoyle.vore_selected.name)] ."))
 			user.drop_item()
 			W.forceMove(gargoyle.vore_selected)
@@ -276,7 +276,7 @@
 /obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(istype(AM,/obj/item) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
 		var/obj/item/I = AM
-		if(gargoyle.adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
 			gargoyle.hitby(AM, speed)
 			return
 	else if(isliving(AM) && gargoyle)

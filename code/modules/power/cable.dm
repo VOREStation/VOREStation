@@ -519,14 +519,6 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	tool_qualities = list(TOOL_CABLE_COIL)
 	singular_name = "cable"
 
-/obj/item/stack/cable_coil/cyborg
-	name = "cable coil synthesizer"
-	desc = "A device that makes cable."
-	gender = NEUTER
-	matter = null
-	uses_charge = 1
-	charge_costs = list(1)
-
 /obj/item/stack/cable_coil/Initialize(mapload, length = MAXCOIL, var/param_color = null)
 	. = ..()
 	amount = length
@@ -625,13 +617,6 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		src.use(15)
 	else
 		to_chat(M, span_notice("You cannot do that."))
-
-/obj/item/stack/cable_coil/cyborg/verb/set_colour()
-	set name = "Change Colour"
-	set category = "Object"
-
-	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
-	set_cable_color(selected_type, usr)
 
 // Items usable on a cable coil :
 //   - Wirecutters : cut them duh !

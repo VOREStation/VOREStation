@@ -3,6 +3,9 @@
 // Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
 
+//for the foldout stuff
+#define span_details(title, content) ("<details>"+"<summary>" + title + "</summary>" + content + "</details>")
+
 // Filtered both under OOC!
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_aooc(str) ("<span class='aooc'>" + str + "</span>")

@@ -20,6 +20,7 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
 	rad_collectors += src
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src

@@ -584,6 +584,10 @@
 	anchored = TRUE
 	density = TRUE
 
+/obj/machinery/bookbinder/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle))
 		if(istype(O, /obj/item/paper))
