@@ -210,7 +210,7 @@
 
 
 /obj/machinery/replicator/vore/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting possessed items in it!
+	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W, GLOB.item_vore_blacklist)) //No armblades, no putting possessed items in it!
 		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
 	if(istype(W, /obj/item/holder/micro)) //Are you putting a micro in it?
@@ -477,7 +477,7 @@
 	last_process_time = world.time
 
 /obj/machinery/replicator/clothing/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting already possessed items in it!
+	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W, GLOB.item_vore_blacklist)) //No armblades, no putting already possessed items in it!
 		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
 	if(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)) //Are you putting a micro/mouse in it?

@@ -2,11 +2,17 @@ import { Box, LabeledList } from 'tgui-core/components';
 
 import { zeroC } from '../constants';
 
-export const YesBox = (props) => {
+export const YesNoBox = (props: { value: boolean }) => {
+  const { value } = props;
+
+  return value ? <YesBox /> : <NoBox />;
+};
+
+const YesBox = (props) => {
   return <Box textColor="green">Yes</Box>;
 };
 
-export const NoBox = (props) => {
+const NoBox = (props) => {
   return <Box textColor="red">No</Box>;
 };
 

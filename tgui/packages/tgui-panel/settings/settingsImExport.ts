@@ -5,7 +5,7 @@ import { importSettings } from './actions';
 
 export function exportChatSettings(
   settings: Record<string, any>,
-  pages: Record<string, Page>[],
+  pages: Record<string, Page>,
 ) {
   const opts: SaveFilePickerOptions = {
     id: `ss13-chatprefs-${Date.now()}`,
@@ -18,8 +18,7 @@ export function exportChatSettings(
     ],
   };
 
-  const pagesEntry: Record<string, Page>[] = [];
-  pagesEntry['chatPages'] = pages;
+  const pagesEntry = { chatPages: pages };
 
   const exportObject = Object.assign(settings, pagesEntry);
 

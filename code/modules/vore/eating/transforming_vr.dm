@@ -3,8 +3,8 @@
 	var/egg_path = /obj/structure/closet/secure_closet/egg
 	var/egg_name = "odd egg"
 
-	if(O.vore_egg_type in tf_vore_egg_types)
-		egg_path = tf_vore_egg_types[O.vore_egg_type]
+	if(O.vore_egg_type in GLOB.tf_vore_egg_types)
+		egg_path = GLOB.tf_vore_egg_types[O.vore_egg_type]
 		egg_name = "[O.vore_egg_type] egg"
 
 	var/obj/structure/closet/secure_closet/egg/egg = new egg_path(src)

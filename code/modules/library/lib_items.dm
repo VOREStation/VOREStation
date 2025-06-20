@@ -26,6 +26,7 @@
 		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bookcase/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/book))

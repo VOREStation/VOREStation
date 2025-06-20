@@ -97,6 +97,7 @@
 /obj/structure/reagent_dispensers/watertank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
@@ -124,6 +125,7 @@
 /obj/structure/reagent_dispensers/fueltank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/fueltank/high
 	name = "high-capacity fuel tank"
@@ -144,6 +146,7 @@
 /obj/structure/reagent_dispensers/foam/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
+	AddElement(/datum/element/climbable)
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
@@ -155,6 +158,7 @@
 /obj/structure/reagent_dispensers/he3/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
+	AddElement(/datum/element/climbable)
 
 /*
  * Misc
@@ -344,6 +348,7 @@
 	if(bottle)
 		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
@@ -482,6 +487,7 @@
 /obj/structure/reagent_dispensers/beerkeg/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BEER,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/beerkeg/wood
 	name = "beer keg"
@@ -514,6 +520,7 @@
 /obj/structure/reagent_dispensers/cookingoil/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
@@ -537,3 +544,4 @@
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	AddElement(/datum/element/climbable)
