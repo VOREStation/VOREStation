@@ -5,7 +5,8 @@
 	chance_rare = 2
 	chance_gamma = 1 // Special single drop table
 
-	common_loot = list(/obj/item/clothing/gloves/rainbow,
+	common_loot = list(
+		/obj/item/clothing/gloves/rainbow,
 		/obj/item/clothing/gloves/white,
 		/obj/item/storage/backpack,
 		/obj/item/storage/backpack/satchel/norm,
@@ -108,7 +109,7 @@
 		/obj/item/storage/box/cups)
 
 	rare_loot = list(
-		/obj/item/pizzavoucher
+		/obj/item/pizzavoucher,
 		/obj/item/storage/pill_bottle/paracetamol,
 		/obj/item/storage/pill_bottle/happy,
 		/obj/item/storage/pill_bottle/zoom,

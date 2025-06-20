@@ -128,7 +128,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	desc = "The ruins of some unfortunate pod. Perhaps something is salvageable."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "engineering_pod-broken"
-	loot_element_path = /datum/element/lootable/surface/mecha
+	loot_element_path = /datum/element/lootable/mecha
 	density = TRUE
 	anchored = FALSE // In case a dead mecha-mob dies in a bad spot.
 
@@ -136,7 +136,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	name = "ripley wreckage"
 	desc = "The ruins of some unfortunate ripley. Perhaps something is salvageable."
 	icon_state = "ripley-broken"
-	loot_element_path = /datum/element/lootable/surface/mecha/ripley
+	loot_element_path = /datum/element/lootable/mecha/ripley
 /obj/structure/loot_pile/mecha/ripley/firefighter
 	icon_state = "firefighter-broken"
 /obj/structure/loot_pile/mecha/ripley/random_sprite
@@ -145,7 +145,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 /obj/structure/loot_pile/mecha/deathripley
 	name = "strange ripley wreckage"
 	icon_state = "deathripley-broken"
-	loot_element_path = /datum/element/lootable/surface/mecha/deathripley
+	loot_element_path = /datum/element/lootable/mecha/deathripley
 
 /obj/structure/loot_pile/mecha/odysseus
 	name = "odysseus wreckage"
