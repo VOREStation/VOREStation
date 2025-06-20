@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - balance: "Changed the level that you can use backup batteries as a synth to 150 nutrition, and it also gives you 150 nutrition back. This means you can use it as soon as you reach slowdown levels of hunger and it fills you up a decent amount."
