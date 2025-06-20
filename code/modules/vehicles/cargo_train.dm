@@ -451,7 +451,7 @@
 /obj/vehicle/train/trolly_tank/attackby(obj/item/W, mob/user)
 
 	if(istype(W,/obj/item/reagent_containers/glass))
-		var/item/reagent_containers/glass/G = W
+		var/obj/item/reagent_containers/glass/G = W
 		if(reagents.total_volume <= 0)
 			to_chat(usr,"\The [src] is empty.")
 			return
