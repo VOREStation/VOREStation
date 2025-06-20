@@ -232,10 +232,11 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	var/obj/item/wear_mask = H.inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
 	if(!(istype(H)))
 		to_chat(user, span_warning("Invalid user detected. Access denied."))
 		return FALSE
-	else if((istype(wear_mask) && (wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
+	else if((istype(wear_mask) && (wear_mask.flags_inv & HIDEFACE)) || (istype(head) && (head.flags_inv & HIDEFACE)))	//Face hiding bad
 		to_chat(user, span_warning("Facial recognition scan failed due to physical obstructions. Access denied."))
 		return FALSE
 	else if(H.get_face_name() == "Unknown" || !(H.real_name == card.registered_name))

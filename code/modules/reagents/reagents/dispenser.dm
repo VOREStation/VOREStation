@@ -436,14 +436,15 @@
 /datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.head)
-			if(H.head.unacidable)
-				to_chat(H, span_danger("Your [H.head] protects you from the acid."))
+		var/obj/item/head = M.inventory.get_item_in_slot(slot_head_str)
+		if(istype(head))
+			if(head.unacidable)
+				to_chat(H, span_danger("Your [head] protects you from the acid."))
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				to_chat(H, span_danger("Your [H.head] melts away!"))
-				qdel(H.head)
+				to_chat(H, span_danger("Your [head] melts away!"))
+				qdel(head)
 				H.update_inv_head(1)
 				H.update_hair(1)
 				removed -= meltdose

@@ -90,8 +90,8 @@
 			boots.canremove = FALSE
 
 	if(hood)
-		if(H.head)
-			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
+		if(H.inventory.get_item_in_slot(slot_head_str))
+			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.inventory.get_item_in_slot(slot_head_str)] is in the way.")
 		else if (H.equip_to_slot_if_possible(hood, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			hood.canremove = FALSE
@@ -112,7 +112,7 @@
 		hood.canremove = TRUE
 		H = hood.loc
 		if(istype(H))
-			if(hood && H.head == hood)
+			if(hood && H.inventory.get_item_in_slot(slot_head_str) == hood)
 				H.drop_from_inventory(hood)
 				hood.forceMove(src)
 
@@ -175,15 +175,15 @@
 		to_chat(H, span_notice("The helmet light shuts off as it retracts."))
 		hood.update_flashlight(H)
 
-	if(H.head == hood)
+	if(H.inventory.get_item_in_slot(slot_head_str) == hood)
 		to_chat(H, span_notice("You retract your suit helmet."))
 		hood.canremove = TRUE
 		H.drop_from_inventory(hood)
 		hood.forceMove(src)
 		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 	else
-		if(H.head)
-			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
+		if(H.inventory.get_item_in_slot(slot_head_str))
+			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.inventory.get_item_in_slot(slot_head_str)]."))
 			return
 		if(H.equip_to_slot_if_possible(hood, slot_head))
 			hood.canremove = FALSE

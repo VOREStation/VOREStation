@@ -164,17 +164,17 @@ var/list/slot_equipment_priority = list( \
 			W.equipped(src, slot)
 			worn_clothing += gloves
 			update_inv_gloves()
-		if(slot_head)
-			src.head = W
-			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
-				update_hair()	//rebuild hair
-				update_inv_ears(0)
-				update_inv_wear_mask(0)
-			if(istype(W,/obj/item/clothing/head/kitty))
-				W.update_icon(src)
-			W.equipped(src, slot)
-			worn_clothing += head
-			update_inv_head()
+		// if(slot_head)
+		// 	src.head = W
+		// 	if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
+		// 		update_hair()	//rebuild hair
+		// 		update_inv_ears(0)
+		// 		update_inv_wear_mask(0)
+		// 	if(istype(W,/obj/item/clothing/head/kitty))
+		// 		W.update_icon(src)
+		// 	W.equipped(src, slot)
+		// 	worn_clothing += head
+		// 	update_inv_head()
 		if(slot_shoes)
 			src.shoes = W
 			W.equipped(src, slot)
@@ -247,10 +247,10 @@ var/list/slot_equipment_priority = list( \
 
 	switch(slot)
 		if(slot_wear_mask)
-			covering = src.head
+			covering = inventory.get_item_in_slot(slot_head_str)
 			check_flags = FACE
 		if(slot_glasses)
-			covering = src.head
+			covering = inventory.get_item_in_slot(slot_head_str)
 			check_flags = EYES
 		if(slot_gloves, slot_w_uniform)
 			covering = inventory.get_item_in_slot(slot_wear_suit_str)
@@ -633,16 +633,16 @@ var/list/slot_equipment_priority = list( \
 	// 	worn_clothing -= glasses
 	// 	glasses = null
 	// 	update_inv_glasses()
-	else if (W == head)
-		worn_clothing -= head
-		head = null
-		if(istype(W, /obj/item))
-			var/obj/item/I = W
-			if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR))
-				update_hair(0)	//rebuild hair
-				update_inv_ears(0)
-				update_inv_wear_mask(0)
-		update_inv_head()
+	// else if (W == head)
+	// 	worn_clothing -= head
+	// 	head = null
+	// 	if(istype(W, /obj/item))
+	// 		var/obj/item/I = W
+	// 		if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR))
+	// 			update_hair(0)	//rebuild hair
+	// 			update_inv_ears(0)
+	// 			update_inv_wear_mask(0)
+	// 	update_inv_head()
 	// else if (W == l_ear)
 	// 	l_ear = null
 	// 	update_inv_ears()
@@ -800,8 +800,8 @@ var/list/slot_equipment_priority = list( \
 		if(slot_glasses_str)    return inventory.get_item_in_slot(slot_glasses_str)
 		if(slot_gloves)         return gloves
 		if(slot_gloves_str)     return gloves
-		if(slot_head)           return head
-		if(slot_head_str)       return head
+		if(slot_head)           return inventory.get_item_in_slot(slot_head_str)
+		if(slot_head_str)       return inventory.get_item_in_slot(slot_head_str)
 		if(slot_shoes)          return shoes
 		if(slot_shoes_str)      return shoes
 		if(slot_belt)           return inventory.get_item_in_slot(slot_belt_str)
@@ -835,7 +835,7 @@ var/list/slot_equipment_priority = list( \
 	. += inventory.get_item_in_slot(slot_r_ear_str)
 	. += inventory.get_item_in_slot(slot_glasses_str)
 	. += gloves
-	. += head
+	. += inventory.get_item_in_slot(slot_head_str)
 	. += shoes
 	. += inventory.get_item_in_slot(slot_wear_id_str)
 	. += inventory.get_item_in_slot(slot_wear_suit_str)
@@ -866,7 +866,7 @@ var/list/slot_equipment_priority = list( \
 	if(full_body)
 		if((istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract))
 			return TRUE
-		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str) || head || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || inventory.get_item_in_slot(slot_glasses_str) || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
+		if(inventory.get_item_in_slot(slot_back_str) || inventory.get_item_in_slot(slot_wear_mask_str) || inventory.get_item_in_slot(slot_head_str) || shoes || inventory.get_item_in_slot(slot_w_uniform_str) || inventory.get_item_in_slot(slot_wear_suit_str) || inventory.get_item_in_slot(slot_glasses_str) || inventory.get_item_in_slot(slot_l_ear_str) || inventory.get_item_in_slot(slot_r_ear_str) || gloves)
 			return TRUE
 
 	return (istype(l_hand) && !l_hand.abstract) || (istype(r_hand) && !r_hand.abstract)

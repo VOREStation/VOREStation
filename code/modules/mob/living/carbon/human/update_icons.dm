@@ -449,8 +449,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	//masks and helmets can obscure our hair.
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
-	if( (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
+	if( (istype(head) && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//base icons
@@ -467,7 +468,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	if(h_style)
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
-		if(head && (head.flags_inv & BLOCKHEADHAIR))
+		if(istype(head) && (head.flags_inv & BLOCKHEADHAIR))
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
 				hair_style = hair_styles_list["Short Hair"]
 
@@ -538,9 +539,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
 	//Our glowy eyes should be hidden if some equipment hides them.
-	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
+	if(!should_have_organ(O_EYES) || (istype(head) && (head.flags_inv & BLOCKHAIR)) || (istype(wear_mask) && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//Get the head, we'll need it later.
@@ -723,8 +725,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(EARS_LAYER)
 
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
-	if((head && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (istype(wear_mask) && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
+	if((istype(head) && head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)) || (istype(wear_mask) && wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR)))
 		return //Ears are blocked (by hair being blocked, overloaded)
 
 	var/obj/item/l_ear = inventory.get_item_in_slot(slot_l_ear_str)
@@ -829,7 +832,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(HEAD_LAYER)
 
-	if(!head)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+
+	if(!istype(head))
 		return //No head item, why bother.
 
 	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
@@ -908,8 +913,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(FACEMASK_LAYER)
 
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
-	if(!istype(wear_mask) || (head && head.flags_inv & HIDEMASK))
+	if(!istype(wear_mask) || (istype(head) && head.flags_inv & HIDEMASK))
 		return //Why bother, nothing in mask slot.
 
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_mask_str, default_icon = INV_MASK_DEF_ICON, default_layer = FACEMASK_LAYER)
@@ -1299,7 +1305,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/icon/rendered
 
-	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(ear_style && !(istype(head) && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
 			ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), ear_style.color_blend_mode)
@@ -1317,7 +1324,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		rendered += rgb(,,,src.a_ears) //idk why this isn't an img but there's surely a good reason
 
 	// todo: this is utterly horrible but i don't think i should be violently refactoring sprite acc rendering in a feature PR ~silicons
-	if(ear_secondary_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+	if(ear_secondary_style && !(istype(head) && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.icon_state)
 		if(ear_secondary_style.do_colouration)
 			var/color = LAZYACCESS(ear_secondary_colors, 1)

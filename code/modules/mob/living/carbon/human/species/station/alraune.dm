@@ -109,7 +109,8 @@
 	var/fullysealed = FALSE //are they covered in a sealed suit or not
 
 	var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
-	if(istype(wear_suit) && (wear_suit.min_pressure_protection < hazard_low_pressure) && H.head && (H.head.min_pressure_protection < hazard_low_pressure))
+	var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+	if(istype(wear_suit) && (wear_suit.min_pressure_protection < hazard_low_pressure) && istype(head) && (head.min_pressure_protection < hazard_low_pressure))
 		//if they're wearing a fully sealed suit, their internals take priority.
 		breath = H.get_breath_from_internal()
 		fullysealed = TRUE

@@ -268,8 +268,9 @@
 	if(target.inventory.get_item_in_slot(slot_wear_mask_str) && target != breather)
 		to_chat(user, span_warning("\The [target] is already wearing a mask."))
 		return
-	if(target.head && (target.head.body_parts_covered & FACE))
-		to_chat(user, span_warning("Remove their [target.head] first."))
+	var/obj/item/head = target.inventory.get_item_in_slot(slot_head_str)
+	if(istype(head) && (head.body_parts_covered & FACE))
+		to_chat(user, span_warning("Remove their [head] first."))
 		return
 	if(!tank)
 		to_chat(user, span_warning("There is no tank in \the [src]."))

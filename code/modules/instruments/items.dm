@@ -95,7 +95,7 @@
 		var/mob/living/carbon/human/H = loc
 		if(H.inventory.get_item_in_slot(slot_l_ear_str) == src || H.inventory.get_item_in_slot(slot_r_ear_str) == src)
 			H.update_inv_ears()
-		else if(H.head == src)
+		else if(H.inventory.get_item_in_slot(slot_head_str) == src)
 			H.update_inv_head()
 
 /**
@@ -109,7 +109,7 @@
 		var/mob/living/carbon/human/H = loc
 		if(H.inventory.get_item_in_slot(slot_l_ear_str) == src || H.inventory.get_item_in_slot(slot_r_ear_str) == src)
 			H.update_inv_ears()
-		else if(H.head == src)
+		else if(H.inventory.get_item_in_slot(slot_head_str) == src)
 			H.update_inv_head()
 
 

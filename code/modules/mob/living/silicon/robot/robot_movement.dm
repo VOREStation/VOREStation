@@ -77,10 +77,11 @@
 
 				var/obj/item/w_uniform = cleaned_human.inventory.get_item_in_slot(slot_w_uniform_str)
 				var/obj/item/wear_suit = cleaned_human.inventory.get_item_in_slot(slot_wear_suit_str)
+				var/obj/item/head = cleaned_human.inventory.get_item_in_slot(slot_head_str)
 
 				if(cleaned_human.lying)
-					if(cleaned_human.head)
-						cleaned_human.head.wash(CLEAN_SCRUB)
+					if(istype(head))
+						head.wash(CLEAN_SCRUB)
 						cleaned_human.update_inv_head(0)
 					if(istype(wear_suit))
 						wear_suit.wash(CLEAN_SCRUB)

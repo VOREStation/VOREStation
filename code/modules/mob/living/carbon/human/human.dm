@@ -339,7 +339,8 @@
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
 	if( istype(wear_mask) && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if( head && (head.flags_inv&HIDEFACE) )
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(istype(head) && (head.flags_inv & HIDEFACE))
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -804,8 +805,8 @@
 /mob/living/carbon/human/proc/get_equipment_flash_protection()
 	var/flash_protection = 0
 
-	if(istype(src.head, /obj/item/clothing/head))
-		add_clothing_protection(head)
+	if(istype(inventory.get_item_in_slot(slot_head_str), /obj/item/clothing/head))
+		add_clothing_protection(inventory.get_item_in_slot(slot_head_str))
 	if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses))
 		add_clothing_protection(inventory.get_item_in_slot(slot_glasses_str))
 	if(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask))
@@ -1033,7 +1034,8 @@
 		else
 			var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 			var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
-			if(((istype(wear_mask) && wear_mask.flags_inv & HIDEFACE) || (head?.flags_inv & HIDEMASK) || (head?.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
+			var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+			if(((istype(wear_mask) && wear_mask.flags_inv & HIDEFACE) || (istype(head) && head.flags_inv & HIDEMASK) || (istype(head) && head.flags_inv & HIDEFACE)) && (istype(wear_suit) && (wear_suit.flags_inv & HIDEJUMPSUIT)))
 				return PLURAL
 			if(species?.ambiguous_genders && user)
 				if(ishuman(user))
@@ -1424,7 +1426,8 @@
 	else
 		switch(target_zone)
 			if(BP_HEAD)
-				if(head && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
+				var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+				if(istype(head) && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 			else
 				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
@@ -1437,7 +1440,7 @@
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(
-		head,
+		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_wear_mask_str),
 		inventory.get_item_in_slot(slot_glasses_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
@@ -1798,7 +1801,7 @@
 			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 /mob/living/carbon/human/get_mob_riding_slots()
-	return list(inventory.get_item_in_slot(slot_back_str), head, inventory.get_item_in_slot(slot_wear_suit_str))
+	return list(inventory.get_item_in_slot(slot_back_str), inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_suit_str))
 
 /mob/living/carbon/human/verb/flip_lying()
 	set name = "Flip Resting Direction"

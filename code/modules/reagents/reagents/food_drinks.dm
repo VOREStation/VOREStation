@@ -866,13 +866,14 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
-		if(H.head)
-			if(H.head.body_parts_covered & EYES)
+		var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+		if(istype(head))
+			if(head.body_parts_covered & EYES)
 				eyes_covered = 1
-				safe_thing = H.head
-			if((H.head.body_parts_covered & FACE) && !(H.head.item_flags & FLEXIBLEMATERIAL))
+				safe_thing = head
+			if((head.body_parts_covered & FACE) && !(head.item_flags & FLEXIBLEMATERIAL))
 				mouth_covered = 1
-				safe_thing = H.head
+				safe_thing = head
 		var/obj/item/wear_mask = H.inventory.get_item_in_slot(slot_wear_mask_str)
 		if(istype(wear_mask))
 			if(!eyes_covered && wear_mask.body_parts_covered & EYES)

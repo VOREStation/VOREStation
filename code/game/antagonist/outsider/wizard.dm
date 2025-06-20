@@ -127,7 +127,7 @@ Made a proc so this is not repeated 14 (or more) times.*/
 	if(!is_wiz_garb(src.shoes))
 		to_chat(src, span_warning("I don't feel strong enough without my sandals."))
 		return 0
-	if(!is_wiz_garb(src.head))
+	if(!is_wiz_garb(inventory.get_item_in_slot(slot_head_str)))
 		to_chat(src, span_warning("I don't feel strong enough without my hat."))
 		return 0
 	return 1

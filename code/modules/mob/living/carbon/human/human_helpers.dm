@@ -87,8 +87,8 @@
 	if(istype(inventory.get_item_in_slot(slot_r_ear_str), /obj/item/clothing/ears))
 		var/obj/item/clothing/ears/R = inventory.get_item_in_slot(slot_r_ear_str)
 		sum += R.ear_protection
-	if(istype(head, /obj/item/clothing/head))
-		var/obj/item/clothing/head/H = head
+	if(istype(inventory.get_item_in_slot(slot_head_str), /obj/item/clothing/head))
+		var/obj/item/clothing/head/H = inventory.get_item_in_slot(slot_head_str)
 		sum += H.ear_protection
 	return sum
 
@@ -115,7 +115,8 @@
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
 
 	//Look at their head
-	if(!head || !(head && (head.flags_inv & HIDEFACE)))
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(!istype(head) || !(head.flags_inv & HIDEFACE))
 		if(H && H.robotic == ORGAN_ROBOT) //Exactly robotic, not higher as lifelike is higher
 			return 1
 
@@ -188,7 +189,7 @@
 	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
 	var/obj/item/rig/rig = get_rig()
 	if(istype(rig) && rig.visor)
-		if(!rig.helmet || (head && rig.helmet == head))
+		if(!rig.helmet || (rig.helmet == inventory.get_item_in_slot(slot_head_str)))
 			if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 				var/obj/item/clothing/glasses/V = rig.visor.vision.glasses
 				compiled_vis |= V.enables_planes

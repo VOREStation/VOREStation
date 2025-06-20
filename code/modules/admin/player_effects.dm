@@ -271,8 +271,8 @@
 			if(!ishuman(target))
 				return
 			var/mob/living/carbon/human/H = target
-			if(H.head)
-				H.unEquip(H.head)
+			if(H.inventory.get_item_in_slot(slot_head_str))
+				H.unEquip(H.inventory.get_item_in_slot(slot_head_str))
 			if(H.inventory.get_item_in_slot(slot_wear_suit_str))
 				H.unEquip(H.inventory.get_item_in_slot(slot_wear_suit_str))
 			var/obj/item/clothing/suit = new /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog

@@ -51,12 +51,13 @@
 				var/obj/item/safe_thing = null
 				var/obj/item/wear_mask = victim.inventory.get_item_in_slot(slot_wear_mask_str)
 				var/obj/item/glasses = victim.inventory.get_item_in_slot(slot_glasses_str)
+				var/obj/item/head = victim.inventory.get_item_in_slot(slot_head_str)
 				if(istype(wear_mask))
 					if (wear_mask.body_parts_covered & EYES)
 						safe_thing = wear_mask
-				if(victim.head)
-					if (victim.head.body_parts_covered & EYES)
-						safe_thing = victim.head
+				if(istype(head))
+					if (head.body_parts_covered & EYES)
+						safe_thing = head
 				if(istype(glasses))
 					if (!safe_thing)
 						safe_thing = glasses

@@ -66,6 +66,8 @@
 /datum/inventory_panel/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
+	// TODO: rewrite to use new inventory system
+
 	var/list/slots = list()
 	slots.Add(list(list(
 		"name" = "Head (Mask)",
@@ -182,7 +184,7 @@
 	data["internals"] = H.internals
 	data["internalsValid"] = \
 		(istype(H.inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) \
-		|| istype(H.head, /obj/item/clothing/head/helmet/space)) \
+		|| istype(H.inventory.get_item_in_slot(slot_head_str), /obj/item/clothing/head/helmet/space)) \
 		&& (istype(H.inventory.get_item_in_slot(slot_back_str), /obj/item/tank) \
 			|| istype(H.inventory.get_item_in_slot(slot_belt_str), /obj/item/tank) \
 			|| istype(H.inventory.get_item_in_slot(slot_s_store_str), /obj/item/tank))

@@ -38,8 +38,9 @@
 				if(H.inventory.get_item_in_slot(slot_glasses_str))
 					to_chat(user, span_warning("\The [H] is already wearing something on their eyes."))
 					return
-				if(H.head && (H.head.body_parts_covered & FACE))
-					to_chat(user, span_warning("Remove their [H.head] first."))
+				var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+				if(istype(head) && (head.body_parts_covered & FACE))
+					to_chat(user, span_warning("Remove their [head] first."))
 					return
 				user.visible_message(span_danger("\The [user] begins taping over \the [H]'s eyes!"))
 
@@ -49,7 +50,7 @@
 				if(!can_place(H, user))
 					return
 
-				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.inventory.get_item_in_slot(slot_glasses_str) || (H.head && (H.head.body_parts_covered & FACE)))
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.inventory.get_item_in_slot(slot_glasses_str) || (istype(head) && (head.body_parts_covered & FACE)))
 					return
 
 				user.visible_message(span_danger("\The [user] has taped up \the [H]'s eyes!"))
@@ -67,8 +68,9 @@
 				if(H.inventory.get_item_in_slot(slot_wear_mask_str))
 					to_chat(user, span_warning("\The [H] is already wearing a mask."))
 					return
-				if(H.head && (H.head.body_parts_covered & FACE))
-					to_chat(user, span_warning("Remove their [H.head] first."))
+				var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+				if(istype(head) && (head.body_parts_covered & FACE))
+					to_chat(user, span_warning("Remove their [head] first."))
 					return
 				user.visible_message(span_danger("\The [user] begins taping up \the [H]'s mouth!"))
 
@@ -78,7 +80,7 @@
 				if(!can_place(H, user))
 					return
 
-				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (H.head && (H.head.body_parts_covered & FACE)))
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (istype(head) && (head.body_parts_covered & FACE)))
 					return
 
 				user.visible_message(span_danger("\The [user] has taped up \the [H]'s mouth!"))

@@ -199,7 +199,8 @@ steam.start() -- spawns the effect
 		return 0
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.head && (H.head.item_flags & AIRTIGHT))
+		var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+		if(istype(head) && (head.item_flags & AIRTIGHT))
 			return 0
 	return 1
 

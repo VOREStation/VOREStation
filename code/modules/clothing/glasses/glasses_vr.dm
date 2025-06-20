@@ -44,7 +44,8 @@
 	//We're getting a prescription
 	else if(ishuman(target))
 		var/mob/living/carbon/human/T = target
-		if(T.inventory.get_item_in_slot(slot_glasses_str) || (T.head && T.head.flags_inv & HIDEEYES))
+		var/obj/item/head = T.inventory.get_item_in_slot(slot_head_str)
+		if(T.inventory.get_item_in_slot(slot_glasses_str) || (istype(head) && head.flags_inv & HIDEEYES))
 			to_chat(user, span_warning("The person's eyes can't be covered!"))
 			return
 

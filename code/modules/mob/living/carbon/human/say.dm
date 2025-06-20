@@ -90,7 +90,7 @@
 		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
 			voice_sub = rig.speech.voice_holder.voice
 	if(!voice_sub)	// If the rig has a voice changer, then we use that. Otherwise, use this
-		for(var/obj/item/gear in list(inventory.get_item_in_slot(slot_wear_mask_str),inventory.get_item_in_slot(slot_wear_suit_str),head))
+		for(var/obj/item/gear in list(inventory.get_item_in_slot(slot_wear_mask_str),inventory.get_item_in_slot(slot_wear_suit_str),inventory.get_item_in_slot(slot_head_str)))
 			if(!gear)
 				continue
 			var/obj/item/voice_changer/changer = locate() in gear

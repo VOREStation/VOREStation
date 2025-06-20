@@ -133,7 +133,8 @@
 		pressure_adjustment_coefficient = 1
 
 	// Check hat
-	if(head && head.max_pressure_protection != null && head.min_pressure_protection != null)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(istype(head) && head.max_pressure_protection != null && head.min_pressure_protection != null)
 		// Pressure is too high
 		if(head.max_pressure_protection < pressure)
 			// Protection scales down from 100% at the boundary to 0% at 20% in excess of the boundary
@@ -483,7 +484,8 @@
 	var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
 	if(istype(glasses) && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
-	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(istype(head) && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
 /*
@@ -510,13 +512,14 @@
 		var/obj/item/rig/Rig = get_rig()
 		var/obj/item/clothing/suit/space/void/Void = get_voidsuit()
 		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+		var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
 		if(Rig)
 			suit_supply = Rig.air_supply
 		else if(Void)
 			suit_supply = Void.tank
 
-		if ((!suit_supply && !contents.Find(internal)) || !((istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
+		if ((!suit_supply && !contents.Find(internal)) || !((istype(wear_mask) && (wear_mask.item_flags & AIRTIGHT)) || (istype(head) && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)
@@ -988,7 +991,8 @@
 				pressure_dam *= (ONE_ATMOSPHERE - adjusted_pressure) / ONE_ATMOSPHERE
 
 				var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
-				if(istype(wear_suit) && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
+				var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+				if(istype(wear_suit) && wear_suit.min_pressure_protection && istype(head) && head.min_pressure_protection)
 					var/protection = max(wear_suit.min_pressure_protection, head.min_pressure_protection) // Take the weakest protection
 					pressure_dam *= (protection) / (ONE_ATMOSPHERE) 	// Divide by ONE_ATMOSPHERE to get a fractional protection
 																		// Stronger protection (Closer to 0) results in a smaller fraction
@@ -1048,7 +1052,7 @@
 	. = 0
 	//Handle normal clothing
 	for(var/obj/item/clothing/C in list(
-		head,
+		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		shoes,
@@ -1063,7 +1067,7 @@
 	. = 0
 	//Handle normal clothing
 	for(var/obj/item/clothing/C in list(
-		head,
+		inventory.get_item_in_slot(slot_head_str),
 		inventory.get_item_in_slot(slot_wear_suit_str),
 		inventory.get_item_in_slot(slot_w_uniform_str),
 		shoes,
@@ -1334,7 +1338,7 @@
 		//Check rig first because it's two-check and other checks will override it.
 		if(istype(inventory.get_item_in_slot(slot_back_str),/obj/item/rig))
 			var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
-			if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
+			if(O.helmet && O.helmet == inventory.get_item_in_slot(slot_head_str) && (O.helmet.body_parts_covered & EYES))
 				if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
 					blinded = 1
 
@@ -1632,13 +1636,13 @@
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1
 				if(istype(inventory.get_item_in_slot(slot_glasses_str), /obj/item/clothing/glasses/sunglasses/thinblindfold))
 					found_welder = 1
-				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
-					var/obj/item/clothing/head/welding/O = head
+				if(!found_welder && istype(inventory.get_item_in_slot(slot_head_str), /obj/item/clothing/head/welding))
+					var/obj/item/clothing/head/welding/O = inventory.get_item_in_slot(slot_head_str)
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && istype(inventory.get_item_in_slot(slot_back_str), /obj/item/rig))
 					var/obj/item/rig/O = inventory.get_item_in_slot(slot_back_str)
-					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
+					if(O.helmet && O.helmet == inventory.get_item_in_slot(slot_head_str) && (O.helmet.body_parts_covered & EYES))
 						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
 							found_welder = 1
 				if(absorbed) found_welder = 1
@@ -1703,7 +1707,7 @@
 		var/glasses_processed = 0
 		var/obj/item/rig/rig = get_rig()
 		if(istype(rig) && rig.visor && !looking_elsewhere)
-			if(!rig.helmet || (head && rig.helmet == head))
+			if(!rig.helmet || (rig.helmet == inventory.get_item_in_slot(slot_head_str)))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 					glasses_processed = process_glasses(rig.visor.vision.glasses)
 

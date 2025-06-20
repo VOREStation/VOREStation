@@ -119,7 +119,7 @@
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(istype(H))
-			for(var/obj/item/clothing/C in list(H.head,H.inventory.get_item_in_slot(slot_wear_mask_str),H.inventory.get_item_in_slot(slot_glasses_str)))
+			for(var/obj/item/clothing/C in list(H.inventory.get_item_in_slot(slot_head_str),H.inventory.get_item_in_slot(slot_wear_mask_str),H.inventory.get_item_in_slot(slot_glasses_str)))
 				if(istype(C) && (C.body_parts_covered & EYES))
 					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
 					return

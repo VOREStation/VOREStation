@@ -760,7 +760,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.head == src)
+		if(H.inventory.get_item_in_slot(slot_head_str) == src)
 			H.update_inv_head()
 
 //Viveret:Keturah

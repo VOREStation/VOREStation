@@ -34,8 +34,8 @@
 			return 1
 
 		if(S.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				balloon_alert(user, "you can't apply [src] through [H.head]!")
+			if(istype(H.inventory.get_item_in_slot(slot_head_str),/obj/item/clothing/head/helmet/space))
+				balloon_alert(user, "you can't apply [src] through [H.inventory.get_item_in_slot(slot_head_str)]!")
 				return 1
 		else
 			if(istype(H.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))

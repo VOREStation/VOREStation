@@ -51,7 +51,8 @@
 	if(shoes && (shoes.body_parts_covered & FEET))
 		skip_body |= EXAMINE_SKIPFEET
 
-	if(head)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(istype(head))
 		if(head.flags_inv & HIDEMASK)
 			skip_gear |= EXAMINE_SKIPMASK
 		if(head.flags_inv & HIDEEYES)
@@ -132,7 +133,7 @@
 			msg += "[T.He] [T.is] wearing [icon2html(w_uniform,user.client)] <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[w_uniform]'>\a [w_uniform]</a>.[tie_msg]"
 
 	//head
-	if(head && !(skip_gear & EXAMINE_SKIPHELMET) && head.show_examine)
+	if(istype(head) && !(skip_gear & EXAMINE_SKIPHELMET) && head.show_examine)
 		if(head.forensic_data?.has_blooddna())
 			msg += span_warning("[T.He] [T.is] wearing [icon2html(head,user.client)] [head.gender==PLURAL?"some":"a"] [(head.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='byond://?src=\ref[src];lookitem_desc_only=\ref[head]'>[head.name]</a> on [T.his] head!")
 		else

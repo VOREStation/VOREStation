@@ -228,9 +228,9 @@
 	else if(istype(wear_suit,/obj/item/clothing/suit/space/anomaly))
 		protected += 0.5
 
-	if(istype(H.head,/obj/item/clothing/head/bio_hood/anomaly))
+	if(istype(H.inventory.get_item_in_slot(slot_head_str),/obj/item/clothing/head/bio_hood/anomaly))
 		protected += 0.3
-	else if(istype(H.head,/obj/item/clothing/head/helmet/space/anomaly))
+	else if(istype(H.inventory.get_item_in_slot(slot_head_str),/obj/item/clothing/head/helmet/space/anomaly))
 		protected += 0.2
 
 	//latex gloves and science goggles also give a bit of bonus protection

@@ -117,7 +117,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			burn_eyes = 0
 
 		//Check for protective helmets
-		if(burn_eyes && head && (head.body_parts_covered & EYES) && (head.item_flags & AIRTIGHT))
+		var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+		if(burn_eyes && istype(head) && (head.body_parts_covered & EYES) && (head.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
 		//VOREStation Edit - NIF Support
@@ -149,7 +150,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/living/carbon/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
-	if(head)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+	if(istype(head))
 		if(vsc.plc.PHORONGUARD_ONLY)
 			if(head.flags & PHORONGUARD)
 				return 1

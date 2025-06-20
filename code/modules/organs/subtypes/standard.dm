@@ -312,7 +312,7 @@
 		if(iscarbon(owner))
 			name = "[owner.real_name]'s head"
 			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_glasses_str))
-			owner.drop_from_inventory(owner.head)
+			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_head_str))
 			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_l_ear_str))
 			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_r_ear_str))
 			owner.drop_from_inventory(owner.inventory.get_item_in_slot(slot_wear_mask_str))

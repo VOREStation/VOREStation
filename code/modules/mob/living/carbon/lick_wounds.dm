@@ -28,8 +28,8 @@
 			return
 
 		if(affecting.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				to_chat(src, span_warning("You can't seem to lick through [H.head]!"))
+			if(istype(H.inventory.get_item_in_slot(slot_head_str),/obj/item/clothing/head/helmet/space))
+				to_chat(src, span_warning("You can't seem to lick through [H.inventory.get_item_in_slot(slot_head_str)]!"))
 				return
 
 		else

@@ -529,8 +529,8 @@
 		qdel(H.inventory.get_item_in_slot(slot_wear_suit_str)) //if you know how to gently set it in like, their backpack or whatever, be my guest
 	if(H.inventory.get_item_in_slot(slot_wear_mask_str))
 		qdel(H.inventory.get_item_in_slot(slot_wear_mask_str))
-	if(H.head)
-		qdel(H.head)
+	if(H.inventory.get_item_in_slot(slot_head_str))
+		qdel(H.inventory.get_item_in_slot(slot_head_str))
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/zaddat/(H), slot_wear_mask) // mask has to come first or Shroud helmet will get in the way
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/void/zaddat/(H), slot_wear_suit)

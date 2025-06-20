@@ -124,10 +124,12 @@
 			to_chat(H, span_danger("They don't have a mouth, you cannot perform CPR!"))
 			return FALSE
 		var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
-		if((H.head && (H.head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
+		var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+		var/obj/item/their_head = H.inventory.get_item_in_slot(slot_head_str)
+		if((istype(their_head) && (their_head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove your mask!"))
 			return FALSE
-		if((head && (head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
+		if((istype(head) && (head.body_parts_covered & FACE)) || (istype(wear_mask) && (wear_mask.body_parts_covered & FACE)))
 			to_chat(H, span_notice("Remove [src]'s mask!"))
 			return FALSE
 

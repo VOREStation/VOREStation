@@ -169,7 +169,7 @@
 			internals.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
-		if(!(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
+		if(!(istype(inventory.get_item_in_slot(slot_wear_mask_str), /obj/item/clothing/mask) || istype(inventory.get_item_in_slot(slot_head_str), /obj/item/clothing/head/helmet/space)))
 			return
 		// Find an internal source.
 		if(istype(inventory.get_item_in_slot(slot_back_str), /obj/item/tank))

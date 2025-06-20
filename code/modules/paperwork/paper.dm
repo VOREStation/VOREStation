@@ -554,7 +554,7 @@
 				h_user.drop_from_inventory(src)
 				if(!h_user.equip_to_slot_if_possible(B, slot_r_store))
 					h_user.drop_from_inventory(B)
-			else if (h_user.head == src)
+			else if (h_user.inventory.get_item_in_slot(slot_head_str) == src)
 				h_user.u_equip(src)
 				h_user.put_in_hands(B)
 			else if (!istype(src.loc, /turf))

@@ -253,7 +253,8 @@ var/list/global/tank_gauge_cache = list()
 		data["maskConnected"] = TRUE
 	else if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(H.head && (H.head.item_flags & AIRTIGHT))
+		var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+		if(istype(head) && (head.item_flags & AIRTIGHT))
 			data["maskConnected"] = TRUE
 
 	return data
@@ -300,7 +301,8 @@ var/list/global/tank_gauge_cache = list()
 				can_open_valve = 1
 			else if(ishuman(location))
 				var/mob/living/carbon/human/H = location
-				if(H.head && (H.head.item_flags & AIRTIGHT))
+				var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
+				if(istype(head) && (head.item_flags & AIRTIGHT))
 					can_open_valve = 1
 
 			if(can_open_valve)

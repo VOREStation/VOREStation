@@ -237,7 +237,7 @@
 /obj/item/rig/proc/suit_is_deployed()
 	if(!istype(wearer) || src.loc != wearer || (wearer.inventory.get_item_in_slot(slot_back_str) != src && wearer.inventory.get_item_in_slot(slot_belt_str) != src))
 		return 0
-	if(helm_type && !(helmet && wearer.head == helmet))
+	if(helm_type && !(helmet && wearer.inventory.get_item_in_slot(slot_head_str) == helmet))
 		return 0
 	if(glove_type && !(gloves && wearer.gloves == gloves))
 		return 0
@@ -330,7 +330,7 @@
 			for(var/list/piece_data in list(
 					list(M.shoes,boots,"boots",boot_type),
 					list(M.gloves,gloves,"gloves",glove_type),
-					list(M.head,helmet,"helmet",helm_type),
+					list(M.inventory.get_item_in_slot(slot_head_str),helmet,"helmet",helm_type),
 					list(M.inventory.get_item_in_slot(slot_wear_suit_str),chest,"chest",chest_type)))
 
 				var/obj/item/piece = piece_data[1]
@@ -720,7 +720,7 @@
 		if("helmet")
 			equip_to = slot_head
 			use_obj = helmet
-			check_slot = H.head
+			check_slot = H.inventory.get_item_in_slot(slot_head_str)
 		if("gauntlets")
 			equip_to = slot_gloves
 			use_obj = gloves
@@ -778,8 +778,8 @@
 		return
 
 	if(destructive)
-		if(H.head)
-			var/obj/item/garbage = H.head
+		if(H.inventory.get_item_in_slot(slot_head_str))
+			var/obj/item/garbage = H.inventory.get_item_in_slot(slot_head_str)
 			H.drop_from_inventory(garbage)
 			qdel(garbage)
 

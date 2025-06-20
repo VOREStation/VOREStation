@@ -864,7 +864,7 @@
 		if(H.inventory.get_item_in_slot(slot_wear_suit_str) != src)
 			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 			return
-		if(H.head)
+		if(H.inventory.get_item_in_slot(slot_head_str))
 			to_chat(H, span_warning("You're already wearing something on your head!"))
 			return
 		else

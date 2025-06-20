@@ -143,7 +143,7 @@
 					H.inventory.get_item_in_slot(slot_wear_id_str),
 					H.inventory.get_item_in_slot(slot_glasses_str),
 					H.gloves,
-					H.head,
+					H.inventory.get_item_in_slot(slot_head_str),
 					H.shoes,
 					H.inventory.get_item_in_slot(slot_belt_str),
 					H.inventory.get_item_in_slot(slot_wear_suit_str),

@@ -80,7 +80,7 @@
 		return FALSE
 
 	if(affected.organ_tag == BP_HEAD)
-		if(istype(target.head,/obj/item/clothing/head/helmet/space))
+		if(istype(target.inventory.get_item_in_slot(slot_head_str),/obj/item/clothing/head/helmet/space))
 			return TRUE
 	else
 		if(istype(target.inventory.get_item_in_slot(slot_wear_suit_str),/obj/item/clothing/suit/space))

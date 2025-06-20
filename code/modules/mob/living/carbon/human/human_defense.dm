@@ -141,7 +141,7 @@ emp_act
 
 	var/siemens_coefficient = max(species.siemens_coefficient,0)
 
-	var/list/clothing_items = list(head, inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
+	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
@@ -177,7 +177,7 @@ emp_act
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
-	var/list/clothing_items = list(head, inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
+	var/list/clothing_items = list(inventory.get_item_in_slot(slot_head_str), inventory.get_item_in_slot(slot_wear_mask_str), inventory.get_item_in_slot(slot_wear_suit_str), inventory.get_item_in_slot(slot_w_uniform_str), gloves, shoes)
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part))
 			results.Add(C)
@@ -344,7 +344,8 @@ emp_act
 						if(istype(wear_mask))
 							wear_mask.add_blood(src)
 							update_inv_wear_mask(0)
-						if(head)
+						var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
+						if(istype(head))
 							head.add_blood(src)
 							update_inv_head(0)
 						var/obj/item/glasses = inventory.get_item_in_slot(slot_glasses_str)
@@ -702,8 +703,9 @@ emp_act
 
 	var/obj/item/wear_suit = inventory.get_item_in_slot(slot_wear_suit_str)
 	var/obj/item/wear_mask = inventory.get_item_in_slot(slot_wear_mask_str)
+	var/obj/item/head = inventory.get_item_in_slot(slot_head_str)
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (istype(wear_suit) && wear_suit.body_parts_covered & FACE))
+	if((istype(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (istype(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

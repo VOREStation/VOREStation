@@ -489,11 +489,12 @@
 
 		var/obj/item/w_uniform = H.inventory.get_item_in_slot(slot_w_uniform_str)
 		var/obj/item/wear_suit = H.inventory.get_item_in_slot(slot_wear_suit_str)
+		var/obj/item/head = H.inventory.get_item_in_slot(slot_head_str)
 
 		if(alien == IS_SLIME)
 			M.adjustToxLoss(rand(5, 10))
-		if(H.head)
-			if(H.head.wash(CLEAN_SCRUB))
+		if(istype(head))
+			if(head.wash(CLEAN_SCRUB))
 				H.update_inv_head(0)
 		if(istype(wear_suit))
 			if(wear_suit.wash(CLEAN_SCRUB))

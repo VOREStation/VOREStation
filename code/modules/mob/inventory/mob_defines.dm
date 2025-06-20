@@ -16,6 +16,5 @@
 	//Equipment slots
 	var/obj/item/shoes = null
 	var/obj/item/gloves = null
-	var/obj/item/head = null
 
 	inventory_type = /datum/inventory/human

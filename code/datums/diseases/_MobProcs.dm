@@ -106,8 +106,8 @@
 
 		switch(target_zone)
 			if(BP_HEAD)
-				if(isobj(H.head) && !istype(H.head, /obj/item/paper))
-					Cl = H.head
+				if(isobj(H.inventory.get_item_in_slot(slot_head_str)) && !istype(H.inventory.get_item_in_slot(slot_head_str), /obj/item/paper))
+					Cl = H.inventory.get_item_in_slot(slot_head_str)
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 				if(passed && isobj(H.inventory.get_item_in_slot(slot_wear_mask_str)))
 					Cl = H.inventory.get_item_in_slot(slot_wear_mask_str)
