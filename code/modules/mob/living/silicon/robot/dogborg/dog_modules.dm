@@ -345,8 +345,8 @@
 
 	if(get_dist(get_turf(T), get_turf(src)) > leap_distance) return
 
-	if(ismob(T))
-		var/mob/M = T
+	if(iisliving(T))
+		var/mob/living/M = T
 		var/datum/component/shadekin/SK = M.get_shadekin_component()
 		if(SK && SK.in_phase)
 			power_cost *= 2

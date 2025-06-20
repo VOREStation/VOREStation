@@ -6,7 +6,7 @@
 			if(T)
 				var/darkness = round(1 - T.get_lumcount(),0.1)
 				to_chat(usr,span_notice(span_bold("Darkness:") + " [darkness]"))
-			var/mob/H = usr
+			var/mob/living/H = usr
 			if(ismob(H))
 				var/datum/component/shadekin/SK = H.get_shadekin_component()
 				if(SK)
