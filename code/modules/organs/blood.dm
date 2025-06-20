@@ -364,9 +364,10 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(!our)
 			log_debug("Failed to re-initialize blood datums on [src]!")
 			return
-
-
-	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
+	if(is_changeling(src)) //Changelings don't reject blood!
+		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
+		vessel.update_total()
+	else if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
 		reagents.add_reagent(REAGENT_ID_TOXIN,amount * 0.5)
 		reagents.update_total()
 	else

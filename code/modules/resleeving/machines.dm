@@ -493,8 +493,15 @@
 	if(!occupant.mind)
 		log_debug("[occupant] didn't have a mind to check for vore_death, which may be problematic.")
 
-	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
-		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
+	if(occupant.mind)
+		if(occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
+			log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
+		var/datum/antagonist/antag_data = get_antag_data(occupant.mind.special_role)
+		if(antag_data)
+			antag_data.add_antagonist(occupant.mind)
+			antag_data.place_mob(occupant)
+		if(occupant.mind.antag_holder)
+			occupant.mind.antag_holder.apply_antags(occupant)
 
 	if(original_occupant)
 		occupant = original_occupant
