@@ -294,3 +294,14 @@
   - rscadd: Adds genes and diseases to bingle's database so symptoms and genetics
       stuff can be looked up ingame
   - code_imp: added unit test for virus names and trait names to prevent tgui issues
+2025-06-21:
+  SatinIsle:
+  - balance: Changed the level that you can use backup batteries as a synth to 150
+      nutrition, and it also gives you 150 nutrition back. This means you can use
+      it as soon as you reach slowdown levels of hunger and it fills you up a decent
+      amount.
+  Will:
+  - code_imp: moves sql death reporting to SSmobs as a single massinsert
+  - refactor: turns object climbing code into a component
+  - qol: many more objects are climbable, preventing softlocks, especially for engineers
+      and miners
