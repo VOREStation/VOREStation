@@ -500,6 +500,11 @@
 	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
+/obj/structure/sink/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/hose_connector/endless_source/water)
+	AddComponent(/datum/component/hose_connector/endless_drain)
+
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()
 	if(!istype(thing) || !thing.is_open_container())
