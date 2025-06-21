@@ -1,17 +1,23 @@
-//TODO: rewrite and standardise all controller datums to the datum/controller type
-//TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff) - MC done - lighting done
-
 // Clickable stat() button.
 /obj/effect/statclick
 	name = "Initializing..."
-	blocks_emissive = FALSE
+	blocks_emissive = FALSE // EMISSIVE_BLOCK_NONE
 	var/target
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick)
+
 /obj/effect/statclick/Initialize(mapload, text, target)
 	. = ..()
 	name = text
 	src.target = target
+
+/obj/effect/statclick/Destroy()
+	target = null
+	return ..()
+
+/obj/effect/statclick/proc/cleanup()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/effect/statclick/proc/update(text)
 	name = text
@@ -28,7 +34,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			class = "subsystem"
 		else if(istype(target, /datum/controller))
 			class = "controller"
-		else if(istype(target, /datum))
+		else if(isdatum(target))
 			class = "datum"
 		else
 			class = "unknown"
@@ -36,15 +42,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	usr.client.debug_variables(target)
 	message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
 
-
-// Debug verbs.
-/client/proc/restart_controller(controller in list("Master", "Failsafe"))
-	set category = "Debug.Dangerous"
-	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
-
-	if(!holder)
-		return
+ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG, controller in list("Master", "Failsafe"))
 	switch(controller)
 		if("Master")
 			Recreate_MC()
@@ -53,25 +51,15 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			new /datum/controller/failsafe()
 			feedback_add_details("admin_verb","RFailsafe")
 
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
+	message_admins("Admin [key_name_admin(user)] has restarted the [controller] controller.")
 
-/client/proc/debug_antagonist_template(antag_type in GLOB.all_antag_types)
-	set category = "Debug.Investigate"
-	set name = "Debug Antagonist"
-	set desc = "Debug an antagonist template."
-
+ADMIN_VERB(debug_antagonist_template, R_DEBUG, "Debug Antagonist", "Debug an antagonist template", ADMIN_CATEGORY_DEBUG, antag_type in GLOB.all_antag_types)
 	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 	if(antag)
-		usr.client.debug_variables(antag)
-		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
+		user.debug_variables(antag)
+		message_admins("Admin [key_name_admin(user)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller()
-	set category = "Debug.Investigate"
-	set name = "Debug Controller"
-	set desc = "Debug the various subsystems/controllers for the game (be careful!)"
-
-	if(!holder)
-		return
+ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG)
 	var/list/options = list()
 	options["MC"] = Master
 	options["Failsafe"] = Failsafe
@@ -97,12 +85,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	options["LEGACY: cameranet"] = cameranet
 	options["LEGACY: transfer_controller"] = transfer_controller
 
-	var/pick = tgui_input_list(mob, "Choose a controller to debug/view variables of.", "VV controller:", options)
+	var/pick = tgui_input_list(user, "Choose a controller to debug/view variables of.", "VV controller:", options)
 	if(!pick)
 		return
 	var/datum/D = options[pick]
 	if(!istype(D))
 		return
 	feedback_add_details("admin_verb", "DebugController")
-	message_admins("Admin [key_name_admin(mob)] is debugging the [pick] controller.")
-	debug_variables(D)
+	message_admins("Admin [key_name_admin(user)] is debugging the [pick] controller.")
+	user.debug_variables(D)

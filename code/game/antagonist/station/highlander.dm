@@ -57,16 +57,33 @@ var/datum/antagonist/highlander/highlanders
 		id.icon_state = "centcom"
 	create_radio(DTH_FREQ, player)
 
-/proc/only_one()
+/**
+ * Gives everyone kilts, berets, claymores, and pinpointers, with the objective to hijack the emergency shuttle.
+ * Uses highlander controller to do so!
+ *
+ * Arguments:
+ * * was_delayed: boolean: whether the option to do a "delayed" highlander was pressed before this was called, changes up the logging a bit.
 
-	if(!ticker)
-		tgui_alert_async(usr,"The game hasn't started yet!")
+ */
+/client/proc/only_one(was_delayed = FALSE)
+	if(!SSticker.HasRoundStarted())
+		tgui_alert(usr,"The game hasn't started yet!")
 		return
+
+	if(was_delayed) //sends more accurate logs
+		message_admins(span_adminnotice("[key_name_admin(usr)]'s delayed THERE CAN ONLY BE ONE started!"))
+		log_admin("[key_name(usr)] delayed THERE CAN ONLY BE ONE started.")
+	else
+		message_admins(span_adminnotice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"))
+		log_admin("[key_name(usr)] used THERE CAN BE ONLY ONE.")
 
 	for(var/mob/living/carbon/human/H in player_list)
 		if(H.stat == 2 || !(H.client)) continue
 		if(is_special_character(H)) continue
 		highlanders.add_antagonist(H.mind)
 
-	message_admins(span_notice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"), 1)
-	log_admin("[key_name(usr)] used there can be only one.")
+/client/proc/only_one_delayed()
+	//send_to_playing_players(span_userdanger("Bagpipes begin to blare. You feel Scottish pride coming over you."))
+	message_admins(span_adminnotice("[key_name_admin(usr)] used (delayed) THERE CAN BE ONLY ONE!"))
+	log_admin("[key_name(usr)] used delayed THERE CAN BE ONLY ONE.")
+	addtimer(CALLBACK(src, PROC_REF(only_one), TRUE), 42 SECONDS)

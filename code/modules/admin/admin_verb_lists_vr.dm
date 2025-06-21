@@ -17,7 +17,6 @@ var/list/admin_verbs_default = list(
 //	/client/proc/cmd_mod_say,
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
-	/client/proc/debugstatpanel,
 	)
 
 var/list/admin_verbs_admin = list(
@@ -52,7 +51,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_check_player_logs,	//checks a player's attack logs,
 	/client/proc/cmd_admin_check_dialogue_logs,	//checks a player's dialogue logs,
 	/datum/admins/proc/access_news_network,	//allows access of newscasters,
-	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/client/proc/jumptocoord,			//we ghost and jump to a coordinate,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
@@ -77,7 +75,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
 //	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
-	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		//toggles ooc on/off for everyone,
 	/datum/admins/proc/togglelooc,		//toggles looc on/off for everyone,
 	/datum/admins/proc/toggleoocdead,	//toggles ooc on/off for everyone who is dead,
@@ -153,13 +150,8 @@ var/list/admin_verbs_fun = list(
 //	/client/proc/smite,  //Replaced by player_effects
 	/client/proc/player_effects,
 	/client/proc/admin_lightning_strike,
-	/client/proc/resize, //VOREStation Add,
 	/client/proc/cmd_admin_droppod_deploy,
 	/client/proc/adminorbit, //VOREStation Add
-	/client/proc/add_mob_for_narration,	//VOREStation Add
-	/client/proc/remove_mob_for_narration,	//VOREStation Add
-	/client/proc/narrate_mob,	//VOREStation Add
-	/client/proc/narrate_mob_args, //VOREStation Add
 	/client/proc/getPlayerStatus, //VORESTation Add
 	/client/proc/manage_event_triggers,
 	/client/proc/fake_pdaconvos
@@ -174,7 +166,6 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
 	/datum/admins/proc/spawn_mail,
 	/client/proc/cmd_admin_droppod_spawn,
-	/client/proc/respawn_character,
 	/client/proc/spawn_character_mob,  //VOREStation Add,
 	/client/proc/spawn_chemdisp_cartridge,
 	/client/proc/map_template_load,
@@ -227,8 +218,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/ZASSettings,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
-	/client/proc/debug_controller,
-	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_using_map,
 	/client/proc/cmd_admin_delete,
@@ -240,7 +229,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/reload_eventMs,
-	/client/proc/restart_controller,
 	/datum/admins/proc/restart,
 	/client/proc/print_random_map,
 	/client/proc/create_random_map,
@@ -251,7 +239,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
-	/client/proc/SDQL2_query,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
@@ -283,7 +270,6 @@ var/list/admin_verbs_debug = list(
 var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
-	/client/proc/debug_controller
 	)
 
 var/list/admin_verbs_possess = list(
@@ -292,9 +278,6 @@ var/list/admin_verbs_possess = list(
 	)
 var/list/admin_verbs_permissions = list(
 	/client/proc/edit_admin_permissions
-	)
-var/list/admin_verbs_rejuv = list(
-	/client/proc/respawn_character
 	)
 
 //verbs which can be hidden - needs work
@@ -347,7 +330,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
@@ -356,7 +338,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
-	/client/proc/debug_controller,
 	/client/proc/startSinglo,
 	/client/proc/simple_DPS,
 	/client/proc/cmd_debug_mob_lists,
@@ -402,7 +383,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/allow_character_respawn,   // Allows a ghost to respawn ,
 	/datum/admins/proc/sendFax,
-	/client/proc/getserverlog,			//allows us to fetch server logs (GLOB.diary) for other days,
 	/datum/admins/proc/view_persistent_data,
 	/client/proc/start_vote
 )
@@ -432,7 +412,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/allow_character_respawn,
 	/datum/admins/proc/sendFax,
-	/client/proc/respawn_character,
 	/proc/possess,
 	/proc/release,
 	/datum/admins/proc/change_weather,
@@ -463,7 +442,6 @@ var/list/admin_verbs_event_manager = list(
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
-	/client/proc/debug_controller,
 	// /client/proc/show_gm_status,  // VOREStation Edit - We don't use SSgame_master yet.
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
@@ -514,7 +492,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,                        //admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,                                      //talk in deadchat using our ckey/fakekey,
-	/client/proc/secrets,
 	/client/proc/cmd_mod_say,
 	/client/proc/cmd_event_say,
 	/datum/admins/proc/show_player_info,
