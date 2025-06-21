@@ -17,7 +17,8 @@ var/global/list/robot_modules = list(
 	"Lost"			= /obj/item/robot_module/robot/lost,
 	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
 	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
-	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
+	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic,
+	"Ninja"			= /obj/item/robot_module/robot/syndicate/ninja
 	)
 
 /obj/item/robot_module
