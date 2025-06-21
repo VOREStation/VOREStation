@@ -1597,8 +1597,8 @@
 	if(..())
 		if(H.ckey != "bricker98")
 			to_chat(H, span_warning("The collar doesn't fit you!"))
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 
 /obj/item/remote_scene_tool/tally_doll  //A reskinned sticker for the doll, using a custom sprite
 	name = "Talenya's voodoo doll"
