@@ -860,8 +860,9 @@
 #define COMSIG_GARGOYLE_CHECK_ENERGY "gargoyle_check_energy"
 
 // Species Components
-///from /datum/species/xenochimera/handle_environment_special()
+///from /datum/species/proc/handle_species_components()
 #define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
+#define COMSIG_SHADEKIN_COMPONENT "shadekin_component"
 
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"

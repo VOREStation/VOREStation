@@ -203,6 +203,11 @@
 	zone_sel.update_icon()
 	hud_elements |= zone_sel
 
+	//Component hud elements. Made in /mob/living/create_mob_hud
+	hud_elements |= shadekin_display
+	hud_elements |= xenochimera_danger_display
+	hud_elements |= lleill_display
+
 	//Hand things
 	if(has_hands)
 		//Drop button

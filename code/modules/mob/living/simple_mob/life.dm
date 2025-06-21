@@ -105,6 +105,8 @@
 
 	if(in_stasis)
 		return 1 // return early to skip atmos checks
+	if(is_incorporeal())
+		return 1
 
 	var/atom/A = src.loc
 
