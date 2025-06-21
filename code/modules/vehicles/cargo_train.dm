@@ -441,6 +441,20 @@
 		return //so people can't knock others over by pushing a trolley around
 	..()
 
+/obj/vehicle/train/trolly_tank/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+	if(C == user)
+		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
+		return
+
+	if(istype(C,/obj/item/reagent_containers/glass))
+		var/obj/item/reagent_containers/glass/G = C
+		G.reagents.trans_to(src,G.reagents.total_volume)
+		to_chat(usr,"You empty \the [G] into the \the [src].")
+		return
+
+	if(istype(C,/obj/vehicle/train)) // Only allow latching
+		. = ..()
+
 /obj/vehicle/train/trolly_tank/load(var/atom/movable/C, var/mob/living/user)
 	return FALSE // Cannot load anything onto this
 
