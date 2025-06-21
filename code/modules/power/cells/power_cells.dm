@@ -219,7 +219,7 @@
 	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "backup"
 	w_class = ITEMSIZE_SMALL
-	var/amount = 100
+	var/amount = 150
 	var/used = FALSE
 
 /obj/item/fbp_backup_cell/Initialize(mapload)
