@@ -219,3 +219,43 @@
 /datum/component/hose_connector/output/handle_pump(var/datum/reagents/connected_to)
 	ASSERT(connected_to)
 	connected_to.trans_to_holder(reagents, reagents.maximum_volume)
+
+/// Endless source, produces a reagent and pumps it out forever. Does not require attached object to have reagents.
+/datum/component/hose_connector/endless_source
+	name = "source connector"
+	flow_direction = HOSE_OUTPUT
+	var/reagent_id = null
+
+/datum/component/hose_connector/endless_source/Initialize()
+	. = ..()
+	name = initial(name)
+
+/datum/component/hose_connector/endless_source/connected_reagents()
+	if(!carrier)
+		return null
+	return reagents // Ourselves, not our carrier
+
+/datum/component/hose_connector/endless_source/handle_pump(var/datum/reagents/connected_to)
+	ASSERT(connected_to)
+	connected_to.add_reagent(reagent_id,5)
+
+/datum/component/hose_connector/endless_source/water
+	reagent_id = REAGENT_ID_WATER
+
+/// Endless drain, removes reagents from existance
+/datum/component/hose_connector/endless_drain
+	name = "drain connector"
+	flow_direction = HOSE_INPUT
+
+/datum/component/hose_connector/endless_drain/Initialize()
+	. = ..()
+	name = initial(name)
+
+/datum/component/hose_connector/endless_drain/connected_reagents()
+	if(!carrier)
+		return null
+	return reagents // Ourselves, not our carrier
+
+/datum/component/hose_connector/endless_drain/handle_pump(var/datum/reagents/connected_to)
+	ASSERT(connected_to)
+	connected_to.clear_reagents()
