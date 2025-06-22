@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Miners now start with a voucher that can be redeemed for various loadouts at the ore vendor."
