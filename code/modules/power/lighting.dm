@@ -731,29 +731,31 @@ var/global/list/light_type_cache = list()
 	if(flickering) return
 	if(on && status == LIGHT_OK)
 		flickering = 1
-		do_flicker(amount, flicker_color)
+		do_flicker(amount, flicker_color, brightness_color, brightness_color_ns)
 
-/obj/machinery/light/proc/do_flicker(remaining_flicks, flicker_color)
+/obj/machinery/light/proc/do_flicker(remaining_flicks, flicker_color, original_color, original_color_ns)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(status != LIGHT_OK)
 		flickering = 0
 		return
-	var/original_color = brightness_color
 	on = !on
-	if(color && brightness_color != color)
+	if(flicker_color && brightness_color != flicker_color)
 		brightness_color = flicker_color
+		brightness_color_ns = flicker_color
 	update(0)
 	if(!on) // Only play when the light turns off.
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 	if(remaining_flicks > 0)
 		remaining_flicks--
-		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks), rand(5, 15), TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks, flicker_color, original_color, original_color_ns), rand(5, 15), TIMER_DELETE_ME)
 		return
 	on = (status == LIGHT_OK)
 	brightness_color = original_color
+	brightness_color_ns = original_color_ns
 	update(0)
 	flickering = 0
+	update_icon()
 
 // ai attack - turn on/off emergency lighting for a specific fixture
 /obj/machinery/light/attack_ai(mob/user)
