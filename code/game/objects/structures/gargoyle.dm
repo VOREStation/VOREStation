@@ -252,7 +252,7 @@
 		if(istype(W,/obj/item/grab || /obj/item/holder))
 			gargoyle.vore_attackby(W, user)
 			return
-		if(gargoyle.adminbus_trash || is_type_in_list(W,edible_trash) && W.trash_eatable && !is_type_in_list(W,item_vore_blacklist))
+		if(gargoyle.adminbus_trash || is_type_in_list(W, GLOB.edible_trash) && W.trash_eatable && !is_type_in_list(W, GLOB.item_vore_blacklist))
 			to_chat(user, span_warning("You slip [W] into [gargoyle]'s [lowertext(gargoyle.vore_selected.name)] ."))
 			user.drop_item()
 			W.forceMove(gargoyle.vore_selected)
@@ -276,7 +276,7 @@
 /obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(istype(AM,/obj/item) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
 		var/obj/item/I = AM
-		if(gargoyle.adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
 			gargoyle.hitby(AM, speed)
 			return
 	else if(isliving(AM) && gargoyle)

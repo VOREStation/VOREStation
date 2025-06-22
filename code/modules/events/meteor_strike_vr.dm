@@ -74,7 +74,6 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
 	density = TRUE
-	climbable = TRUE
 
 /obj/structure/meteorite/Initialize(mapload)
 	. = ..()
@@ -91,6 +90,7 @@
 				new /obj/item/ore/diamond(src)
 		if(91 to 100)
 			new /obj/machinery/artifact(src)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/meteorite/ex_act()
 	return

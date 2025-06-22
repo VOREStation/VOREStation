@@ -1,6 +1,13 @@
-//remote stuff! like uhhhh
-// the funny stickers
-// the funny voodoo doll
+/*
+Remote scene tools! These, in effects, serve 2 purposes:
+
+* Forward emotes from wearer of one to wearer of its partner
+* Provide simple feedback - is your partner dead, SSD, did they log out? - some are more explicit.
+
+why aren't these accessories?
+	They easily could be! I'm just lazy and don't wanna forward the "see emote" from wearables to all the accessories
+
+*/
 
 
 /obj/item/remote_scene_tool
@@ -12,11 +19,15 @@
 	icon_state = "sticker_inactive"
 	name = "Bluespace Sticker"
 	desc = "A stretchable, flexible sticker that induces a quasi-stable 4th dimensional bluespace buzzword rift, enabling moderate levels of touch between the two."
-	description_info = "These stickers act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other sticker! It's vauge, so use it how you want in RP! Just remember bystander consent!"
+	description_info = "These stickers act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other sticker! It's vague, so use it how you want in RP! Just remember bystander consent!"
 	slot_flags = (SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_GLOVES | SLOT_MASK | SLOT_HEAD | SLOT_FEET | SLOT_ID | SLOT_BELT | SLOT_BACK | SLOT_POCKET)
-
+	w_class = ITEMSIZE_SMALL
 	var/mob/worn_mob = null
 	var/last_loc
+	var/can_summon = TRUE
+	var/can_replace = TRUE
+
+	var/replacementType = /obj/item/remote_scene_tool
 
 /obj/item/remote_scene_tool/proc/link_to(var/obj/item/remote_scene_tool/to_link)
 	//link to a remote scene tool
@@ -37,43 +48,43 @@
 
 	RegisterSignal(mob, COMSIG_MOB_LOGIN, PROC_REF(worn_mob_logged_in))
 	RegisterSignal(mob, COMSIG_MOB_LOGOUT, PROC_REF(worn_mob_logged_out))
-	transmit_emote(src, span_notice("The [src]\'s has been put on by [mob]!"))
-
-
+	transmit_emote(src, span_notice("\The [src] has been put on by [mob]!"))
 
 /obj/item/remote_scene_tool/proc/unregister_from_mob(var/mob)
 	if(worn_mob == null) return
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGIN)
 	UnregisterSignal(worn_mob, COMSIG_MOB_LOGOUT)
 	worn_mob = null
-	transmit_emote(src, span_warning("The [src]\'s wearer has removed it!"))
+	transmit_emote(src, span_warning("\The [src]'s wearer has removed it!"))
 
+
+//called when the mob wearing this item logs out
 /obj/item/remote_scene_tool/proc/worn_mob_logged_out()
 	SIGNAL_HANDLER
 	if(!linked)
 		return
-	transmit_emote(src, span_warning("The [src]\'s wearer has gone SSD!"))
+	transmit_emote(src, span_warning("\The [src]'s wearer has gone SSD!"))
 	linked?.linked_updated()
 
-	//called when the mob wearing this item logs out
 
 /obj/item/remote_scene_tool/proc/worn_mob_logged_in()
 	SIGNAL_HANDLER
 	//called when the mob wearing this item logs in
 	if(!linked)
 		return
-	transmit_emote(src, "The [src]\'s wearer has returned from SSD!")
+	transmit_emote(src, "\The [src]'s wearer has returned from SSD!")
 	linked?.linked_updated()
 
 /obj/item/remote_scene_tool/see_emote(var/mob/M as mob, var/text, var/emote_type)
 	//to_world_log("emote: [text] from [M] to [linked]")
-	if(M == loc)
+	if(M == getWearer())
 		//we're the one doing the emote
 		transmit_emote(src, text,emote_type)
 
 /obj/item/remote_scene_tool/proc/transmit_emote(var/mob/M as mob, var/text, var/emote_type)
-	if(ismob(linked.loc))
-		var/mob/m = linked.loc
+	if(linked == null) return
+	if(ismob(linked.getWearer()))
+		var/mob/m = linked.getWearer()
 		if(!m.client) return;
 		to_chat(linked.loc, icon2html(src,m.client) + text)
 
@@ -87,9 +98,10 @@
 		return FALSE
 	if(linked.linked != src)
 		return FALSE
-	if(!ismob(linked.loc))
+
+	var/mob/m = linked.getWearer()
+	if(!ismob(m))
 		return FALSE
-	var/mob/m = linked.loc
 	if(!m.client) //no scene partner? whoopsie!
 		return FALSE
 
@@ -104,18 +116,21 @@
 /obj/item/remote_scene_tool/proc/delayed_loc_check()
 //why is this delayed? because when moving stuff between slots, it considers it in a different spot, and calls the commsig multiple times - so the end
 //user just gets the shit spammed out of them
-
 	if(last_loc == loc)
 		return
 	last_loc = loc
 	linked?.linked_updated()
 	linked_updated()
 
-	if(ismob(loc))
-		register_to_mob(loc) //handles any caching
+	var/mob/m = getWearer()
+
+
+	if(ismob(m))
+		register_to_mob(m) //handles any caching
 	else
 		if(worn_mob)
 			unregister_from_mob(worn_mob) //unregister from the mob if we aren't on it anymore
+
 /obj/item/remote_scene_tool/proc/linked_updated()
 	update_icon()
 
@@ -136,13 +151,18 @@
 
 /obj/item/remote_scene_tool/examine(mob/user)
 	. = ..()
-	if(linked && ismob(linked.loc))
-		. += span_notice("This is linked to [linked.loc]\'s [linked.name].")
-		var/mob/m = linked.loc
-		if(!m.client)
-			. += span_warning("The wearer of \The [src]'s counterpart doesn't appear to be all there!")
+	var/mob/living/carbon/human/lw = linked?.getWearer()
+
+	if(lw)
+		. += span_notice("This is linked to [lw]'s [linked.name].")
+		if(!lw.client || lw.stat == UNCONSCIOUS || lw.stat == DEAD)
+			. += span_warning("The wearer of \the [src]'s counterpart doesn't appear to be conscious!")
+	else
+		. += span_notice("Its counterpart seems to be in \the [get_area(linked).name]")
+
 	if(!linked)
 		. += span_warning("This is not linked to anything!")
+
 	if(!ismob(linked.loc))
 		. += span_warning("\The [src]'s counterpart isn't being worn or carried by anyone!")
 
@@ -168,56 +188,32 @@
 	contents += RST2
 	calibrate_size()
 
-/obj/item/remote_scene_tool/voodoo_doll
-	name = "voodoo doll"
-	desc = "A dubiously-cursed-esq Voodoo doll that mimics whoever is wearing it's matching necklace via built in hardlight projection."
-	icon = 'code/modules/maint_recycler/icons/goodies/remote_scene_tools.dmi'
-	icon_state = "voodoo_doll_inactive"
-	icon_root = "voodoo_doll"
-	description_info = "The Doll acts as a remote scene tool - any sort of emotes or subtles that the wearer does will go DIRECTLY to the necklace! It's vauge, so use it how you want in RP! Just remember bystander consent!"
-	//this is just a copy of the remote scene tool, but with a different icon
-	//and a different name
+/obj/item/remote_scene_tool/proc/getWearer()
+	if(ismob(loc))
+		return loc
+	if(istype(loc,/obj/item/clothing))
+		if(ismob(loc.loc))
+			return loc.loc
+	return null
 
-	var/last_loc_update = null
+/obj/item/remote_scene_tool/verb/summon_counterpart()
+	set name = "Summon Counterpart"
+	set desc = "Forcibly moves the linked object over to you - or, if it doesn't exist, spawn a new one."
+	if(can_summon || (linked == null && can_replace))
+		if(linked == null)
+			create_counterpart()
+			to_chat(usr,span_notice("\The [src] forms a new [linked]!"))
+		else
+			var/mob/counterpart = linked.getWearer()
+			if(counterpart)
+				counterpart.remove_from_mob(linked,get_turf(src))
+			else
+				linked.forceMove(get_turf(src))
+			to_chat(usr,span_notice("\The [linked] materializes in front of you!"))
+	else
+		to_chat(usr,span_notice("Nothing seems to happen!"))
 
-/obj/item/remote_scene_tool/voodoo_doll/update_icon()
-	. = ..()
-
-	last_loc_update = linked.loc
-
-	overlays.Cut()
-
-	dir = SOUTH
-	src.alpha = 255
-
-	name = initial(name)
-	desc = initial(desc)
-
-	if(!linked)
-		return
-	if(!ismob(linked.loc))
-		return
-	if(!ismob(loc)) //only show the person's icon if we're holding it. makes "found in the hall" interactions less weird
-		return
-
-	var/mob/M = linked.loc
-	if(ismob(M))
-		src.alpha = 190 //make it a bit transparent so it doesn't look like a mob holder.
-		name = "Voodoo doll of " + M.name
-		desc = "A small, marketable doll that looks suspiciously like [M]... "
-		overlays |= M.overlays
-
-/obj/item/remote_scene_tool/voodoo_necklace
-	name = "Gem-Encruseted Necklace"
-	desc = "A bitingly cold metal necklace with a swirling gem in the center. haters will say it's not magical"
-	icon_state = "necklace_inactive"
-	icon_root = "necklace"
-	slot_flags = SLOT_MASK
-	description_info = "The necklace and the associated doll act as remote scene tools - any sort of emotes or subtles that the wearer does will go DIRECTLY to the other! It's vauge, so use it how you want in RP! Just remember bystander consent!"
-
-/obj/item/storage/box/remote_scene_tools/voodoo
-	icon_state = "voodoobox"
-	name = "Voodoo Supplies Box"
-	desc = "a horribly dusty box from 'magici-corp' with a ludicrously corny image of a voodoo doll on the front. marketed as part of a DIY magician routine, they stopped making them after someone broke their nose when the doll was dropped."
-	primary = /obj/item/remote_scene_tool/voodoo_doll
-	secondary = /obj/item/remote_scene_tool/voodoo_necklace
+/obj/item/remote_scene_tool/proc/create_counterpart()
+	var/obj/item/remote_scene_tool/newrst = new replacementType(get_turf(src))
+	link_to(newrst)
+	newrst.link_to(src)

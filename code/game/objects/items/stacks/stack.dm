@@ -50,6 +50,8 @@
 		return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
+	if(islist(synths))
+		synths.Cut()
 	return ..()
 
 /obj/item/stack/update_icon()

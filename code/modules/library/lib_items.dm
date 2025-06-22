@@ -26,6 +26,7 @@
 		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bookcase/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/book))
@@ -204,9 +205,9 @@ Book Cart End
 		to_chat(user, "This book is completely blank!")
 
 /obj/item/book/proc/display_content(mob/living/user)
-	if(!findtext(dat, regex("^<html")))
-		dat = "<html>[dat]</html>"
-	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
+	var/datum/browser/popup = new(user, "book", "<TT><I>Penned by [author].</I></TT>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/book/attackby(obj/item/W, mob/user)
 	if(carved)

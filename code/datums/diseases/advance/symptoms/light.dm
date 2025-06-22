@@ -12,6 +12,9 @@
 		"Stealth 3" = "The virus causes a wider disparity between light and dark."
 	)
 
+	prefixes = list("Photo", "Light ")
+	bodies = list("Cramp")
+
 /datum/symptom/light/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.stealth >= 3)

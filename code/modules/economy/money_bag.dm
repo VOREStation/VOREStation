@@ -43,7 +43,10 @@
 		dat += text("Phoron coins: [amt_phoron] <A href='byond://?src=\ref[src];remove=phoron'>Remove one</A><br>")
 	if (amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='byond://?src=\ref[src];remove=uranium'>Remove one</A><br>")
-	user << browse("<html>[dat]</html>", "window=moneybag")
+
+	var/datum/browser/popup = new(user, "moneybag", "Moneybag")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/moneybag/attackby(obj/item/W, mob/user)
 	..()

@@ -357,6 +357,9 @@
 	if(!isturf(user.loc)) // are you in a container/closet/pod/etc?
 		return
 	if(!opened)
+		// Attempt to climb if not opened!
+		if(O == user)
+			SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
 		return
 	if(istype(O, /obj/structure/closet))
 		return

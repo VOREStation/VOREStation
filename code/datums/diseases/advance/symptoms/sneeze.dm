@@ -35,6 +35,9 @@ Bonus
 		"Trasmission 12" = "The host may spread the disease through sneezing."
 	)
 
+	prefixes = list("Nasal ")
+	bodies = list("Cold")
+
 /datum/symptom/sneeze/Start(datum/disease/advance/A)
 	if(!..())
 		return
@@ -85,6 +88,9 @@ Bonus
 	symptom_delay_max = 30 SECONDS
 	level = 4
 	severity = 3
+
+	prefixes = list("Nasal ", "Displacing ")
+	bodies = list("Cold", "Bluespace")
 
 /datum/symptom/bsneeze/Activate(datum/disease/advance/A)
 	if(!..())
