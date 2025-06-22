@@ -25,8 +25,14 @@
 	var/doing_phase = FALSE
 	///Are we currently phased?
 	var/in_phase = FALSE
-	///Do we damage lights on phase?
-	var/phase_gentle = FALSE
+	///Chance to break lights on phase-in
+	var/flicker_break_chance = 0
+	///Color that lights will flicker to on phase-in. Off by default.
+	var/flicker_color
+	///Time that lights will flicker on phase-in. Default is 10 times.
+	var/flicker_time = 10
+	///Range that we flicker lights. Default is 10.
+	var/flicker_distance = 10
 
 	//Dark Respite Vars (Unused on Virgo)
 	///If we are in dark respite or not
@@ -91,6 +97,7 @@
 	//Misc stuff we need to do
 	//add_verb(owner, /mob/living/proc/phase_strength_toggle) //Disabled on Virgo
 	//add_verb(owner, /mob/living/proc/nutrition_conversion_toggle) //Disabled on Virgo
+	add_verb(owner, /mob/living/proc/flicker_adjustment)
 
 /datum/component/shadekin/Destroy(force)
 	if(ishuman(owner))
@@ -99,6 +106,7 @@
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 	//remove_verb(owner, /mob/living/proc/phase_strength_toggle) //Disabled on Virgo
 	//remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle) //Disabled on Virgo
+	remove_verb(owner, /mob/living/proc/flicker_adjustment)
 	//todo remove verbs proc
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
@@ -159,30 +167,13 @@
 	update_shadekin_hud()
 
 
-/mob/living/proc/phase_strength_toggle()
-	set name = "Toggle Phase Strength"
-	set desc = "Toggle strength of phase. Gentle but slower, or faster but destructive to lights."
-	set category = "Abilities.Shadekin"
-
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(!SK)
-		return
-
-	if(SK.phase_gentle)
-		to_chat(src, span_notice("Phasing toggled to Normal. You may damage lights."))
-		SK.phase_gentle = 0
-	else
-		to_chat(src, span_notice("Phasing toggled to Gentle. You won't damage lights, but concentrating on that incurs a short stun."))
-		SK.phase_gentle = 1
-
-
 /mob/living/proc/nutrition_conversion_toggle()
 	set name = "Toggle Energy <-> Nutrition conversions"
 	set desc = "Toggle dark energy and nutrition being converted into each other when full"
 	set category = "Abilities.Shadekin"
 
 	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(SK)
+	if(!SK)
 		to_chat(src, span_warning("Only a shadekin can use that!"))
 		return FALSE
 
@@ -192,3 +183,31 @@
 	else
 		to_chat(src, span_notice("Nutrition and dark energy conversions enabled."))
 		SK.nutrition_energy_conversion = 1
+
+/mob/living/proc/flicker_adjustment()
+	set name = "Adjust Light Flicker"
+	set desc = "Allows you to adjust the settings of the light flicker when you phase in!"
+	set category = "Abilities.Shadekin"
+
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(!SK)
+		to_chat(src, span_warning("Only a shadekin can use that!"))
+		return FALSE
+	var/flicker_timer = tgui_input_number(src, "Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)", "Set Flicker", SK.flicker_time, 20, 10)
+	if(flicker_timer > 20 || flicker_timer < 10)
+		to_chat(src,"<span class='warning'>You must choose a number between 10 and 20</span>")
+		return
+	SK.flicker_time = flicker_timer
+	to_chat(src,"<span class='warning'>Flicker timer set to [SK.flicker_time] seconds!</span>")
+
+	var/set_new_color = tgui_color_picker(src,"Select a color you wish the lights to flicker as (Default is #E0EFF0)","Color Selector", SK.flicker_color)
+	if(set_new_color)
+		SK.flicker_color = set_new_color
+	to_chat(src,"<span class='warning'>Flicker color set to [SK.flicker_color]!</span>")
+
+	var/break_chance = tgui_input_number(src, "Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)", "Set Break Chance", 0, 25, 0)
+	if(break_chance > 25 || break_chance < 0)
+		to_chat(src,"<span class='warning'>You must choose a number between 0 and 25</span>")
+		return
+	SK.flicker_break_chance = break_chance
+	to_chat(src,"<span class='warning'>Break chance set to [SK.flicker_break_chance]%</span>")

@@ -145,20 +145,26 @@
 				to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
 	SK.doing_phase = FALSE
-
+	if(!SK.flicker_time)
+		return //Early return. No time, no flickering.
 	//Affect nearby lights
-	var/destroy_lights = 0
-	if(SK.phase_gentle)
-		Stun(1)
-	for(var/obj/machinery/light/L in GLOB.machines)
-		if(L.z != z || get_dist(src,L) > 10)
-			continue
-		if(SK.phase_gentle)
-			L.flicker(1)
-		else if(prob(destroy_lights))
+	for(var/obj/machinery/light/L in range(SK.flicker_distance, src))
+		if(prob(SK.flicker_break_chance))
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, broken)), rand(5,25), TIMER_DELETE_ME)
 		else
-			L.flicker(10)
+			if(SK.flicker_color)
+				L.flicker(SK.flicker_time, SK.flicker_color)
+			else
+				L.flicker(SK.flicker_time)
+	for(var/obj/item/flashlight/flashlights in range(SK.flicker_distance, src)) //Find any flashlights near us and make them flicker too!
+		if(istype(flashlights,/obj/item/flashlight/glowstick) ||istype(flashlights,/obj/item/flashlight/flare)) //No affecting glowsticks or flares...As funny as that is
+			continue
+		flashlights.flicker(SK.flicker_time, SK.flicker_color, TRUE)
+	for(var/mob/living/creatures in range(SK.flicker_distance, src))
+		for(var/obj/item/flashlight/held_lights in creatures.contents)
+			if(istype(held_lights,/obj/item/flashlight/glowstick) ||istype(held_lights,/obj/item/flashlight/flare) ) //No affecting glowsticks or flares...As funny as that is
+				continue
+			held_lights.flicker(SK.flicker_time, SK.flicker_color, TRUE)
 
 /mob/living/proc/phase_out(var/turf/T)
 	var/datum/component/shadekin/SK = get_shadekin_component()

@@ -727,19 +727,22 @@ var/global/list/light_type_cache = list()
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
 	return TRUE
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(var/amount = rand(10, 20), var/flicker_color)
 	if(flickering) return
 	if(on && status == LIGHT_OK)
 		flickering = 1
-		do_flicker(amount)
+		do_flicker(amount, flicker_color)
 
-/obj/machinery/light/proc/do_flicker(remaining_flicks)
+/obj/machinery/light/proc/do_flicker(remaining_flicks, flicker_color)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(status != LIGHT_OK)
 		flickering = 0
 		return
+	var/original_color = brightness_color
 	on = !on
+	if(color && brightness_color != color)
+		brightness_color = flicker_color
 	update(0)
 	if(!on) // Only play when the light turns off.
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
@@ -748,6 +751,7 @@ var/global/list/light_type_cache = list()
 		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks), rand(5, 15), TIMER_DELETE_ME)
 		return
 	on = (status == LIGHT_OK)
+	brightness_color = original_color
 	update(0)
 	flickering = 0
 
