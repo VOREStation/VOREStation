@@ -257,6 +257,9 @@
 		var/mob/living/carbon/human/H = target
 		H.forcesay(GLOB.hit_appends)
 
+/obj/item/melee/robotic/proc/refresh_light()
+	return
+
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
 	desc = "A glowing blade. It appears to be extremely sharp."
@@ -292,6 +295,10 @@
 		var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 		blade_overlay.color = lcolor
 		add_overlay(blade_overlay)
+	refresh_light()
+
+/obj/item/melee/robotic/blade/refresh_light()
+	if(active)
 		set_light(2, 2, lcolor)
 	else
 		set_light(0)
@@ -395,6 +402,9 @@
 		icon_state = "[initial(name)]_active"
 	else
 		icon_state = "[initial(name)]"
+	refresh_light()
+
+/obj/item/melee/robotic/baton/refresh_light()
 	if(icon_state == "[initial(name)]_active")
 		set_light(2, 1, lightcolor)
 	else
