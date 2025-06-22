@@ -292,7 +292,7 @@
 		var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 		blade_overlay.color = lcolor
 		add_overlay(blade_overlay)
-		set_light(2, 1, lcolor)
+		set_light(2, 2, lcolor)
 	else
 		set_light(0)
 
