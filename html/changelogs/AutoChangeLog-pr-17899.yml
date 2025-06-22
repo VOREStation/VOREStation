@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - qol: "climbable objects being pulled up or down stairs no longer knock you around"
