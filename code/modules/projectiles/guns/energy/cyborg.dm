@@ -257,7 +257,7 @@
 		var/mob/living/carbon/human/H = target
 		H.forcesay(GLOB.hit_appends)
 
-/obj/item/melee/robotic/proc/refresh_light()
+/obj/item/melee/robotic/proc/refresh_light(clear)
 	return
 
 /obj/item/melee/robotic/blade //For downstreams that use blade
