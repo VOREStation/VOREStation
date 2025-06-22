@@ -62,5 +62,5 @@
 	. += "Use an empty hand on it to scoop up some snow, which you can use to make snowballs or snowmen."
 
 /turf/simulated/floor/outdoors/grass/get_description_interaction()
-	. = "Use floor tiles on it to make a plating."  // using . = ..() would incorrectly say you can remove the grass with a shovel
+	. = list("Use floor tiles on it to make a plating.")  // using . = ..() would incorrectly say you can remove the grass with a shovel
 	. += "Use a shovel on it to dig for worms."
