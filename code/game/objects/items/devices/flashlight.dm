@@ -270,7 +270,6 @@
 	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
 		finish_flicker(original_color, original_on, OL)
 		return
-	to_world("Amount = [amount] ticker = [ticker]")
 	on = !on
 	update_brightness()
 	if(!on) // Only play when the light turns off.
