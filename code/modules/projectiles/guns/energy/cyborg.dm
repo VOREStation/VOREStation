@@ -297,8 +297,10 @@
 		add_overlay(blade_overlay)
 	refresh_light()
 
-/obj/item/melee/robotic/blade/refresh_light()
+/obj/item/melee/robotic/blade/refresh_light(clear)
 	if(active)
+		if(clear)
+			set_light(0)
 		set_light(2, 2, lcolor)
 	else
 		set_light(0)
@@ -404,8 +406,10 @@
 		icon_state = "[initial(name)]"
 	refresh_light()
 
-/obj/item/melee/robotic/baton/refresh_light()
+/obj/item/melee/robotic/baton/refresh_light(clear)
 	if(icon_state == "[initial(name)]_active")
+		if(clear)
+			set_light(0)
 		set_light(2, 1, lightcolor)
 	else
 		set_light(0)
