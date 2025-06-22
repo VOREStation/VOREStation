@@ -1596,7 +1596,8 @@
 /obj/item/remote_scene_tool/tally_necklace/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "bricker98")
-			to_chat(H, span_warning("The collar doesn't fit you!"))
+			if(!disable_warning)
+				to_chat(H, span_warning("The collar doesn't fit you!"))
 			return FALSE
 		return TRUE
 
