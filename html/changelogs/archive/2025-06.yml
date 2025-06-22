@@ -305,3 +305,14 @@
   - refactor: turns object climbing code into a component
   - qol: many more objects are climbable, preventing softlocks, especially for engineers
       and miners
+2025-06-22:
+  Diana:
+  - rscadd: Miners now start with a voucher that can be redeemed for various loadouts
+      at the ore vendor.
+  TeleTubby2:
+  - spellcheck: removed all strucutres from the game
+  Will:
+  - qol: Borgs can now examine items to know if any of their grippers can hold it.
+  Willburd:
+  - qol: climbable objects being pulled up or down stairs no longer knock you around
+  - rscadd: Hoses can connect to sinks for endless water, or as an endless drain
