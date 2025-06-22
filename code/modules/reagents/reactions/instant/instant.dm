@@ -564,7 +564,7 @@
 	var/sheet_to_give = /obj/item/stack/material/iron
 
 /decl/chemical_reaction/instant/solidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new sheet_to_give(get_turf(holder.my_atom), created_volume)
+	new sheet_to_give(get_turf(holder.my_atom), round(created_volume))
 	return
 
 
