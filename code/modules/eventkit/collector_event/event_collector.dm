@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(event_collector_blockers,list()) //ditto
 	. = ..()
 	GLOB.event_collectors |= src
 
-/obj/strucutre/event_collector/Destroy()
+/obj/structure/event_collector/Destroy()
 	GLOB.event_collectors -= src
 	. = ..()
 
