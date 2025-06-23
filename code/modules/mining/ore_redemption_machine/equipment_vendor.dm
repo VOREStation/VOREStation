@@ -248,27 +248,25 @@
 			inserted_id = null
 		if("purchase")
 			if(!inserted_id)
-				flick(icon_deny, src) //VOREStation Add
+				flick(icon_deny, src)
 				return
 			var/category = params["cat"] // meow
 			var/name = params["name"]
 			if(!(category in prize_list) || !(name in prize_list[category])) // Not trying something that's not in the list, are you?
-				flick(icon_deny, src) //VOREStation Add
+				flick(icon_deny, src)
 				return
 			var/datum/data/mining_equipment/prize = prize_list[category][name]
 			if(prize.cost > get_points(inserted_id)) // shouldn't be able to access this since the button is greyed out, but..
 				to_chat(ui.user, span_danger("You have insufficient points."))
-				flick(icon_deny, src) //VOREStation Add
+				flick(icon_deny, src)
 				return
 
 			remove_points(inserted_id, prize.cost)
-			//VOREStation Edit Start
 			var/obj/I = new prize.equipment_path(loc)
 			I.persist_storable = FALSE
-			//VOREStation Edit End
-			flick(icon_vend, src) //VOREStation Add
+			flick(icon_vend, src)
 		else
-			flick(icon_deny, src) //VOREStation Add
+			flick(icon_deny, src)
 			return FALSE
 	add_fingerprint()
 
@@ -308,23 +306,62 @@
  * * redeemer - The person holding it
  */
 /obj/machinery/mineral/equipment_vendor/proc/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/selection = tgui_input_list(redeemer, "Pick your equipment", "Mining Voucher Redemption", list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher"))
-	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)
-		return
-	//VOREStation Edit Start - Uncommented these
+	to_chat(redeemer, "You insert your voucher into the machine!")
+	var/selection = tgui_input_list(redeemer, "Pick your equipment.", "Mining Voucher Redemption", list("Kinetic Accelerator + KA Addon", "Resonator + Advanced Ore Scanner", "Survival Pistol & Machete + Survival Addon","1000 Points"))
 	var/drop_location = drop_location()
+	if(!Adjacent(redeemer))
+		to_chat(redeemer, "You must stay near the machine to use it.")
+		return
+	if(!selection)
+		to_chat(redeemer, "You decide not to redeem anything for now.")
+		return
 	switch(selection)
-		if("Kinetic Accelerator")
+
+		if("Kinetic Accelerator + KA Addon") //1250-2100 points worth
+			var/addon_selection = tgui_input_list(redeemer, "Pick your addon", "Mining Voucher Redemption", list("Cooldown", "Range","Holster")) //Just the basics. Nothing too crazy.
+			if(!addon_selection)
+				to_chat(redeemer, "You must select an addon.")
+				return
 			new /obj/item/gun/energy/kinetic_accelerator(drop_location)
-		if("Resonator")
+			switch(addon_selection)
+				if("Cooldown")
+					new /obj/item/borg/upgrade/modkit/cooldown(drop_location)
+				if("Range")
+					new /obj/item/borg/upgrade/modkit/range(drop_location)
+				if("Holster")
+					new /obj/item/clothing/accessory/holster/waist/kinetic_accelerator(drop_location)
+
+
+		if("Resonator + Advanced Ore Scanner") //1400 points worth
 			new /obj/item/resonator(drop_location)
-	//VOREStation Edit End
-		// if("Mining Drone")
-		// 	new /obj/item/storage/box/drone_kit(drop_location)
-		// if("Advanced Scanner")
-		// 	new /obj/item/t_scanner/adv_mining_scanner(drop_location)
-		// if("Crusher")
-		// 	new /obj/item/twohanded/required/mining_hammer(drop_location)
+			new /obj/item/mining_scanner/advanced(drop_location)
+			qdel(voucher)
+
+		if("Survival Pistol & Machete + Survival Addon") // ~3000-3500 points worth.
+			var/addon_selection = tgui_input_list(redeemer, "Pick your survival addon", "Mining Voucher Redemption", list("Shelter Capsule", "Glucose", "Panacea", "Trauma", "Medipens")) //Just the basics. Nothing too crazy.
+			if(!addon_selection)
+				to_chat(redeemer, "You must select an addon.")
+				return
+			new /obj/item/gun/energy/phasegun/pistol(drop_location) //1500
+			new /obj/item/material/knife/machete(drop_location) //1000
+			switch(addon_selection)
+				if("Shelter Capsule")
+					new /obj/item/survivalcapsule(drop_location) //500
+				if("Glucose")
+					new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose(drop_location) //500
+				if("Panacea")
+					new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/purity(drop_location) //500
+				if("Trauma")
+					new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute(drop_location) //500
+				if("Medipens")
+					var/obj/item/storage/box/medbox = new /obj/item/storage/box(drop_location) //1000
+					new /obj/item/reagent_containers/hypospray/autoinjector/burn(medbox)
+					new /obj/item/reagent_containers/hypospray/autoinjector/detox(medbox)
+					new /obj/item/reagent_containers/hypospray/autoinjector/oxy(medbox)
+					new /obj/item/reagent_containers/hypospray/autoinjector/trauma(medbox)
+		if("1000 Points") //1000 points
+			var/obj/item/card/mining_point_card/new_card = new(drop_location)
+			new_card.mine_points = 1000
 	qdel(voucher)
 
 /obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
