@@ -207,6 +207,8 @@
 		return
 	if(!isturf(O.loc) || !isturf(user.loc))
 		return
+	if(!is_incorporeal(user))
+		return
 	if(isanimal(user) && O != user)
 		return
 	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))

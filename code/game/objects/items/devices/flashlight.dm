@@ -247,6 +247,8 @@
 /obj/item/flashlight/proc/flicker(var/amount = rand(10, 20), var/flicker_color, var/forced)
 	if(flickering)
 		return
+	if(!flicker_color)
+		flicker_color = light_color //If we don't have a flicker color, use our current light color.
 	if((!power_use && !forced) || (!power_usage && !forced))
 		return //We don't use power / have no power, so we're probably a flare or dead.
 	flickering = TRUE

@@ -1,6 +1,7 @@
 //See comp_helpers.dm for helper procs.
 /datum/component/shadekin
 	VAR_PRIVATE/mob/living/owner
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 	//Energy Vars
 	///How much energy we have RIGHT NOW
@@ -33,6 +34,10 @@
 	var/flicker_time = 10
 	///Range that we flicker lights. Default is 10.
 	var/flicker_distance = 10
+	///If we can get the 'phase debuff' applied to us. (No using guns, dropping things in hands, etc).
+	var/normal_phase = TRUE
+	///If we drop items on phase.
+	var/drop_items_on_phase = FALSE
 
 	//Dark Respite Vars (Unused on Virgo)
 	///If we are in dark respite or not
@@ -53,12 +58,14 @@
 	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
 									   /datum/power/shadekin/regenerate_other,
 									   /datum/power/shadekin/create_shade)
+	///Datum holder. Largely ignore this.
 	var/list/shadekin_ability_datums = list()
-	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 	//Misc Vars
 	///Eyecolor
 	var/eye_color = BLUE_EYES
+	///For downstream. Enables some extra verbs. Causes things to drop in hand when you phase.
+	var/extended_kin = FALSE
 
 /datum/component/shadekin/phase_only
 	shadekin_abilities = list(/datum/power/shadekin/phase_shift)
@@ -70,6 +77,13 @@
 							  /datum/power/shadekin/dark_maw,
 							  /datum/power/shadekin/dark_respite,
 							  /datum/power/shadekin/dark_tunneling)
+	extended_kin = TRUE
+	drop_items_on_phase = TRUE
+
+/datum/component/shadekin/full/rakshasa
+	flicker_time = 0 //Rakshasa don't flicker lights when they phase in.
+	dark_energy_infinite = TRUE
+	normal_phase = FALSE
 
 /datum/component/shadekin/Initialize()
 	//normal component bs
@@ -95,8 +109,8 @@
 	set_eye_energy() //Sets the energy values based on our eye color.
 
 	//Misc stuff we need to do
-	//add_verb(owner, /mob/living/proc/phase_strength_toggle) //Disabled on Virgo
-	//add_verb(owner, /mob/living/proc/nutrition_conversion_toggle) //Disabled on Virgo
+	if(extended_kin)
+		add_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
 	add_verb(owner, /mob/living/proc/flicker_adjustment)
 
 /datum/component/shadekin/Destroy(force)
@@ -104,10 +118,9 @@
 		UnregisterSignal(owner, COMSIG_SHADEKIN_COMPONENT)
 	else
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
-	//remove_verb(owner, /mob/living/proc/phase_strength_toggle) //Disabled on Virgo
-	//remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle) //Disabled on Virgo
+	if(extended_kin)
+		remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
 	remove_verb(owner, /mob/living/proc/flicker_adjustment)
-	//todo remove verbs proc
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
 	for(var/obj/effect/abstract/dark_maw/dm as anything in active_dark_maws) //if the component gets destroyed so does your precious maws
@@ -143,7 +156,7 @@
 	darkness = 1-brightness //Invert
 	var/is_dark = (darkness >= 0.5)
 
-	if(in_phase) //Only humans have ability flags
+	if(in_phase)
 		dark_gains = 0
 	else
 		//Heal (very) slowly in good darkness

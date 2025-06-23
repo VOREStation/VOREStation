@@ -116,7 +116,9 @@
 		see_invisible = initial(see_invisible)
 		incorporeal_move = initial(incorporeal_move)
 		density = initial(density)
-		force_max_speed = initial(force_max_speed)
+		can_pull_size = initial(can_pull_size)
+		can_pull_mobs = initial(can_pull_mobs)
+		hovering = initial(hovering)
 		update_icon()
 
 		//Cosmetics mostly
@@ -134,15 +136,31 @@
 	canmove = original_canmove
 	alpha = initial(alpha)
 	remove_modifiers_of_type(/datum/modifier/shadekin_phase_vision)
+	remove_modifiers_of_type(/datum/modifier/phased_out)
 
 	//Potential phase-in vore
-	if(can_be_drop_pred) //Toggleable in vore panel
+
+	if(can_be_drop_pred || can_be_drop_prey) //Toggleable in vore panel
 		var/list/potentials = living_mobs(0)
+		var/mob/living/our_prey
 		if(potentials.len)
 			var/mob/living/target = pick(potentials)
-			if(istype(target) && target.devourable && target.can_be_drop_prey && target.phase_vore && vore_selected && phase_vore)
+			if(can_be_drop_pred && istype(target) && target.devourable && target.can_be_drop_prey && target.phase_vore && vore_selected && phase_vore)
 				target.forceMove(vore_selected)
-				to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
+				to_chat(target, span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
+				to_chat(src, span_vwarning("You phase around [target], [vore_selected.vore_verb]ing them into your [vore_selected.name]!"))
+				our_prey = target
+			else if(can_be_drop_prey && istype(target) && devourable && target.can_be_drop_pred && target.phase_vore && target.vore_selected && phase_vore)
+				our_prey = src
+				forceMove(target.vore_selected)
+				to_chat(target, span_vwarning("\The [src] phases into you, [target.vore_selected.vore_verb]ing them into your [target.vore_selected.name]!"))
+				to_chat(src, span_vwarning("You phase into [target], having them [target.vore_selected.vore_verb] you into their [target.vore_selected.name]!"))
+			if(our_prey)
+				for(var/obj/item/flashlight/held_lights in our_prey.contents)
+					if(istype(held_lights,/obj/item/flashlight/glowstick) ||istype(held_lights,/obj/item/flashlight/flare) ) //No affecting glowsticks or flares...As funny as that is
+						continue
+					held_lights.on = 0
+					held_lights.update_brightness()
 
 	SK.doing_phase = FALSE
 	if(!SK.flicker_time)
@@ -161,6 +179,8 @@
 			continue
 		flashlights.flicker(SK.flicker_time, SK.flicker_color, TRUE)
 	for(var/mob/living/creatures in range(SK.flicker_distance, src))
+		if(isbelly(creatures.loc)) //don't flicker anyone that gets nomphed.
+			continue
 		for(var/obj/item/flashlight/held_lights in creatures.contents)
 			if(istype(held_lights,/obj/item/flashlight/glowstick) ||istype(held_lights,/obj/item/flashlight/flare) ) //No affecting glowsticks or flares...As funny as that is
 				continue
@@ -179,6 +199,14 @@
 		if(pulledby)
 			pulledby.stop_pulling()
 		stop_pulling()
+		if(SK.normal_phase && SK.drop_items_on_phase)
+			drop_both_hands()
+			if(back)
+				unEquip(back)
+
+		can_pull_size = 0
+		can_pull_mobs = MOB_PULL_NONE
+		hovering = TRUE
 		canmove = FALSE
 
 		// change
@@ -197,6 +225,8 @@
 		phaseanim.dir = dir
 		alpha = 0
 		add_modifier(/datum/modifier/shadekin_phase_vision)
+		if(SK.normal_phase)
+			add_modifier(/datum/modifier/phased_out)
 		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), 5, TIMER_DELETE_ME)
 
 
@@ -215,3 +245,9 @@
 /datum/modifier/shadekin_phase_vision
 	name = "Shadekin Phase Vision"
 	vision_flags = SEE_THRU
+
+/datum/modifier/phased_out
+	name = "Phased Out"
+	desc = "You are currently phased out of realspace, and cannot interact with it."
+	hidden = TRUE
+	//Stops you from using guns. See /obj/item/gun/proc/special_check(var/mob/user)
