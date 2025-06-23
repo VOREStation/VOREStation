@@ -166,7 +166,10 @@
 	for(var/name in character.species.has_limbs)
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(!O)
-			prefs.organ_data[name] = "amputated"
+			if(name in GLOB.storeable_amputated_organs)
+				prefs.organ_data[name] = "amputated"
+			else
+				prefs.rlimb_data.Remove(name) // Missing limb and not in the global list means default model
 		else if(O.robotic >= ORGAN_ROBOT)
 			prefs.organ_data[name] = "cyborg"
 			if(O.model)
