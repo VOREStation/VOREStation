@@ -286,22 +286,22 @@
 
 //Some Spooky sounds.
 /decl/emote/audible/evil_laugh
-	key = "elaugh"
+	key = "evillaugh"
 	emote_message_3p = "laughs!"
 	emote_sound = 'sound/mob/spooky/laugh.ogg'
 
 /decl/emote/audible/evil_no
-	key = "eno"
+	key = "evilno"
 	emote_message_3p = "says no!"
 	emote_sound = 'sound/mob/spooky/no.ogg'
 
 /decl/emote/audible/evil_breathing
-	key = "ebreath"
+	key = "evilbreath"
 	emote_message_3p = "breaths heavily!"
 	emote_sound = 'sound/mob/spooky/breath1.ogg'
 
 /decl/emote/audible/evil_breathing_2
-	key = "ebreath2"
+	key = "evilbreath2"
 	emote_message_3p = "breaths heavily!"
 	emote_sound = 'sound/mob/spooky/breath2.ogg'
 

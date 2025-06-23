@@ -53,7 +53,7 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
-	if(user.is_incorporeal() || user.stat)
+	if(user.stat)
 		return
 	if(can_reinforce && isliving(user) && istype(O, /obj/item/stack/material) && user.get_active_hand() == O && Adjacent(user))
 		reinforce_table(O, user)
