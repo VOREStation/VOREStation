@@ -1,8 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - rscadd: "Voodoo dolls now render things all scrungly"
-  - rscadd: "Remote scene tools have some new utility verbs"
-  - qol: "Remote scene tools now show the status of their counterpart's wearer on examine"
-  - bugfix: "Various typos have been fixed for the recycler and recycling vendor"
-  - bugfix: "The maint recycler doesn't nuke your points after getting to 999 anymore. whoops."

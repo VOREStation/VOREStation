@@ -91,7 +91,7 @@
 		real_desc = desc
 		desc = "Scan this to find out more information."
 	//at the moment only used for the OM location renamer. Initializing here in case we want shuttles incl as well in future. Also proc definition convenience.
-	visitable_overmap_object_instances |= src
+	GLOB.visitable_overmap_object_instances += src
 
 	for(var/i in 1 to length(levels_for_distress))
 		var/current = levels_for_distress[i]
