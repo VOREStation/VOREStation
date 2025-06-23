@@ -306,21 +306,21 @@
  * * redeemer - The person holding it
  */
 /obj/machinery/mineral/equipment_vendor/proc/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	to_chat(redeemer, "You insert your voucher into the machine!")
+	to_chat(redeemer, span_notice("You insert your voucher into the machine!"))
 	var/selection = tgui_input_list(redeemer, "Pick your equipment.", "Mining Voucher Redemption", list("Kinetic Accelerator + KA Addon", "Resonator + Advanced Ore Scanner", "Survival Pistol & Machete + Survival Addon","1000 Points"))
 	var/drop_location = drop_location()
 	if(!Adjacent(redeemer))
-		to_chat(redeemer, "You must stay near the machine to use it.")
+		to_chat(redeemer, span_warning("You must stay near the machine to use it."))
 		return
 	if(!selection)
-		to_chat(redeemer, "You decide not to redeem anything for now.")
+		to_chat(redeemer, span_notice("You decide not to redeem anything for now."))
 		return
 	switch(selection)
 
 		if("Kinetic Accelerator + KA Addon") //1250-2100 points worth
 			var/addon_selection = tgui_input_list(redeemer, "Pick your addon", "Mining Voucher Redemption", list("Cooldown", "Range","Holster")) //Just the basics. Nothing too crazy.
 			if(!addon_selection)
-				to_chat(redeemer, "You must select an addon.")
+				to_chat(redeemer, span_warning("You must select an addon."))
 				return
 			new /obj/item/gun/energy/kinetic_accelerator(drop_location)
 			switch(addon_selection)
@@ -340,7 +340,7 @@
 		if("Survival Pistol & Machete + Survival Addon") // ~3000-3500 points worth.
 			var/addon_selection = tgui_input_list(redeemer, "Pick your survival addon", "Mining Voucher Redemption", list("Shelter Capsule", "Glucose", "Panacea", "Trauma", "Medipens")) //Just the basics. Nothing too crazy.
 			if(!addon_selection)
-				to_chat(redeemer, "You must select an addon.")
+				to_chat(redeemer, span_warning("You must select an addon."))
 				return
 			new /obj/item/gun/energy/phasegun/pistol(drop_location) //1500
 			new /obj/item/material/knife/machete(drop_location) //1000
