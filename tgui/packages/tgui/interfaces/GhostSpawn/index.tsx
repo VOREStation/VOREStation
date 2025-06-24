@@ -44,7 +44,7 @@ export const GhostSpawn = (props) => {
               onSelectedPod={setSelectedType}
             />
           </Stack.Item>
-          <Stack.Item basis="50%" grow>
+          <Stack.Item grow>
             <SelectionList
               allPods={selectedGhostPods}
               userZ={user_z}
