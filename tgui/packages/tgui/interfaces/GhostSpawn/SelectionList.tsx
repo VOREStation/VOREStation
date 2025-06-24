@@ -35,7 +35,6 @@ export const SelectionList = (props: {
     <Section
       title="Active Pods"
       fill
-      scrollable
       buttons={
         <Stack>
           <Stack.Item>
@@ -57,30 +56,35 @@ export const SelectionList = (props: {
         </Stack>
       }
     >
-      <Stack.Item mb={'10px'}>
-        <Input
-          fluid
-          value={searchText}
-          placeholder="Search for pods..."
-          onChange={(value: string) => setSearchText(value)}
-        />
-      </Stack.Item>
-      <Stack.Item>
-        <Stack vertical fill>
-          {!!filtered &&
-            filtered.map((our_pod) => (
-              <Stack.Item key={our_pod.ref}>
-                <Button
-                  fluid
-                  selected={selectedPod === our_pod.ref}
-                  onClick={() => onSelectedPod(our_pod.ref)}
-                >
-                  {our_pod.pod_name}
-                </Button>
-              </Stack.Item>
-            ))}
-        </Stack>
-      </Stack.Item>
+      <Stack vertical fill>
+        <Stack.Item>
+          <Input
+            fluid
+            value={searchText}
+            placeholder="Search for pods..."
+            onChange={(value: string) => setSearchText(value)}
+          />
+        </Stack.Item>
+        <Stack.Divider />
+        <Stack.Item grow>
+          <Section fill scrollable>
+            <Stack vertical fill>
+              {!!filtered &&
+                filtered.map((our_pod) => (
+                  <Stack.Item key={our_pod.ref}>
+                    <Button
+                      fluid
+                      selected={selectedPod === our_pod.ref}
+                      onClick={() => onSelectedPod(our_pod.ref)}
+                    >
+                      {our_pod.pod_name}
+                    </Button>
+                  </Stack.Item>
+                ))}
+            </Stack>
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

@@ -34,7 +34,7 @@ export const GhostSpawn = (props) => {
   }, [selecctedType]);
 
   return (
-    <Window width={650} height={510}>
+    <Window width={650} height={510} theme="abstract">
       <Window.Content>
         <Stack fill>
           <Stack.Item basis="30%">
