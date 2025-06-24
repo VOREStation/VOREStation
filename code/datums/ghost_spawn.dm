@@ -52,7 +52,6 @@
 		if("select_pod")
 			if(istype(observer))
 				jump_to_pod(ui.user, params["selected_pod"])
-			close_ui()
 			. = TRUE
 
 /datum/tgui_module/proc/jump_to_pod(mob/observer/dead/user, selected_pod)
