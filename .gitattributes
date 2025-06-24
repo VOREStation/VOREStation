@@ -25,7 +25,6 @@
 *.txt text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
-
 ## Enforce binary mode
 *.bmp binary
 *.dll binary
@@ -36,10 +35,9 @@
 *.png binary
 *.so binary
 *.zip binary
-
 ## Merger hooks, run tools/hooks/install.bat or install.sh to set up
 *.dmm text eol=lf merge=dmm
 *.dmi binary merge=dmi
-
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab
+librust_g.so filter=lfs diff=lfs merge=lfs -text
