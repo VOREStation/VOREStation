@@ -471,6 +471,7 @@
 #include "code\datums\forensics_crime.dm"
 #include "code\datums\ghost_query.dm"
 #include "code\datums\ghost_query_vr.dm"
+#include "code\datums\ghost_spawn.dm"
 #include "code\datums\hierarchy.dm"
 #include "code\datums\json_savefile.dm"
 #include "code\datums\mind.dm"

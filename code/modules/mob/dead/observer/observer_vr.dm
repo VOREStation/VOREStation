@@ -113,23 +113,11 @@
 	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	var/input = tgui_input_list(src, "Select a ghost pod:", "Ghost Jump", observe_list_format(GLOB.active_ghost_pods))
-	if(!input)
-		to_chat(src, span_filter_notice("No active ghost pods detected."))
+	if(selecting_ghostrole)
 		return
 
-	var/target = observe_list_format(GLOB.active_ghost_pods)[input]
-	if (!target)//Make sure we actually have a target
-		return
-	else
-		var/obj/O = target //Destination mob
-		var/turf/T = get_turf(O) //Turf of the destination mob
-
-		if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
-			forceMove(T)
-			stop_following()
-		else
-			to_chat(src, span_filter_notice("This ghost pod is not located in the game world."))
+	var/datum/tgui_module/ghost_spawn_menu/ui = new(src)
+	ui.tgui_interact(src)
 
 /mob/observer/dead/verb/findautoresleever()
 	set category = "Ghost.Join"
