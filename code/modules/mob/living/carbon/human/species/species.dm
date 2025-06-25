@@ -371,6 +371,8 @@
 	var/grab_power_self = 0 //NYI - Used Downstream
 	var/waking_speed = 1 //NYI - Used Downstream
 	var/lightweight_light = 0 //NYI - Used Downstream
+	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
+	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
@@ -622,7 +624,7 @@
 
 	if(!ignore_intent && H.a_intent != I_HURT)
 		return 0
-	if(H.shredding)
+	if(shredding)
 		return 1
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
