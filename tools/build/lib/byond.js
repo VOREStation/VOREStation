@@ -147,10 +147,8 @@ export const DreamMaker = async (dmeFile, options = {}) => {
   };
 
   const testDmVersion = async (dmPath) => {
-    const execReturn = await Juke.exec(dmPath, [], { silent: false, throw: false });
+    const execReturn = await Juke.exec(dmPath, [], { silent: true, throw: false });
     const version = execReturn.combined.match(`DM compiler version (\\d+)\\.(\\d+)`)
-    Juke.logger.info(`execReturn code: ${execReturn.code}`)
-    Juke.logger.info(`version: ${version}`)
     if(version == null){
       Juke.logger.error(`Unexpected DreamMaker return, ensure "${dmPath}" is correct DM path.`)
       throw new Juke.ExitCode(1);
