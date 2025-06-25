@@ -19,7 +19,6 @@
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
-	QDEL_NULL(inventory)
 	for(var/key in alerts) //clear out alerts
 		clear_alert(key)
 	if(pulling)
@@ -50,6 +49,7 @@
 
 	. = ..()
 	update_client_z(null)
+	QDEL_NULL(inventory)
 	//return QDEL_HINT_HARDDEL_NOW
 
 

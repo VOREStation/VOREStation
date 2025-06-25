@@ -97,19 +97,6 @@ var/list/slot_equipment_priority = list( \
 
 	W.forceMove(src)
 	switch(slot)
-		// if(slot_back)
-		// 	src.back = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += back
-		// 	update_inv_back()
-		// if(slot_wear_mask)
-		// 	src.wear_mask = W
-		// 	if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-		// 		update_hair()	//rebuild hair
-		// 		update_inv_ears()
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += wear_mask
-		// 	update_inv_wear_mask()
 		if(slot_handcuffed)
 			src.handcuffed = W
 			update_inv_handcuffed()
@@ -117,83 +104,6 @@ var/list/slot_equipment_priority = list( \
 			src.legcuffed = W
 			W.equipped(src, slot)
 			update_inv_legcuffed()
-		// if(slot_l_hand)
-		// 	src.l_hand = W
-		// 	W.equipped(src, slot)
-		// 	update_inv_l_hand()
-		// if(slot_r_hand)
-		// 	src.r_hand = W
-		// 	W.equipped(src, slot)
-		// 	update_inv_r_hand()
-		// if(slot_belt)
-		// 	src.belt = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += belt
-		// 	update_inv_belt()
-		// if(slot_wear_id)
-		// 	src.wear_id = W
-		// 	W.equipped(src, slot)
-		// 	update_inv_wear_id()
-		// 	BITSET(hud_updateflag, ID_HUD)
-		// 	BITSET(hud_updateflag, WANTED_HUD)
-		// if(slot_l_ear)
-		// 	src.l_ear = W
-		// 	if(l_ear.slot_flags & SLOT_TWOEARS)
-		// 		var/obj/item/clothing/ears/offear/O = new(W)
-		// 		O.loc = src
-		// 		src.r_ear = O
-		// 		O.hud_layerise()
-		// 	W.equipped(src, slot)
-		// 	update_inv_ears()
-		// if(slot_r_ear)
-		// 	src.r_ear = W
-		// 	if(r_ear.slot_flags & SLOT_TWOEARS)
-		// 		var/obj/item/clothing/ears/offear/O = new(W)
-		// 		O.loc = src
-		// 		src.l_ear = O
-		// 		O.hud_layerise()
-		// 	W.equipped(src, slot)
-		// 	update_inv_ears()
-		// if(slot_glasses)
-		// 	src.glasses = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += glasses
-		// 	update_inv_glasses()
-		// if(slot_gloves)
-		// 	src.gloves = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += gloves
-		// 	update_inv_gloves()
-		// if(slot_head)
-		// 	src.head = W
-		// 	if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
-		// 		update_hair()	//rebuild hair
-		// 		update_inv_ears(0)
-		// 		update_inv_wear_mask(0)
-		// 	if(istype(W,/obj/item/clothing/head/kitty))
-		// 		W.update_icon(src)
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += head
-		// 	update_inv_head()
-		// if(slot_shoes)
-		// 	src.shoes = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += shoes
-		// 	update_inv_shoes()
-		// if(slot_wear_suit)
-		// 	src.wear_suit = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += wear_suit
-		// 	update_inv_wear_suit()
-		// if(slot_w_uniform)
-		// 	src.w_uniform = W
-		// 	W.equipped(src, slot)
-		// 	worn_clothing += w_uniform
-		// 	update_inv_w_uniform()
-		// if(slot_s_store)
-		// 	src.s_store = W
-		// 	W.equipped(src, slot)
-		// 	update_inv_s_store()
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
@@ -562,24 +472,6 @@ var/list/slot_equipment_priority = list( \
 		return TRUE
 	return FALSE
 
-/mob/living/u_equip(obj/W)
-	if(inventory.u_equip(W))
-		. = TRUE // TODO: become return TRUE when we've ported everything
-
-	// if (W == r_hand)
-	// 	r_hand = null
-	// 	update_inv_r_hand()
-	// else if (W == l_hand)
-	// 	l_hand = null
-	// 	update_inv_l_hand()
-	// else if (W == back)
-	// 	back = null
-	// 	update_inv_back()
-	// else if (W == wear_mask)
-	// 	wear_mask = null
-	// 	update_inv_wear_mask()
-	return
-
 /mob/living/carbon/u_equip(obj/item/W)
 	if(!W)	return 0
 
@@ -606,84 +498,7 @@ var/list/slot_equipment_priority = list( \
 	if(inventory.u_equip(W))
 		. = TRUE // TODO: become return TRUE when we've ported everything
 
-	// if (W == wear_suit)
-	// 	if(s_store)
-	// 		drop_from_inventory(s_store)
-	// 	worn_clothing -= wear_suit
-	// 	wear_suit = null
-	// 	update_inv_wear_suit()
-	// else if (W == w_uniform)
-	// 	if (inventory.get_item_in_slot(slot_r_store_str))
-	// 		drop_from_inventory(inventory.get_item_in_slot(slot_r_store_str))
-	// 	if (inventory.get_item_in_slot(slot_l_store_str))
-	// 		drop_from_inventory(inventory.get_item_in_slot(slot_l_store_str))
-	// 	if (wear_id)
-	// 		drop_from_inventory(wear_id)
-	// 	if (belt && belt.suitlink == 1)
-	// 		worn_clothing -= belt
-	// 		drop_from_inventory(belt)
-	// 	worn_clothing -= w_uniform
-	// 	w_uniform = null
-	// 	update_inv_w_uniform()
-	// if (W == gloves)
-	// 	worn_clothing -= gloves
-	// 	gloves = null
-	// 	update_inv_gloves()
-	// else if (W == glasses)
-	// 	worn_clothing -= glasses
-	// 	glasses = null
-	// 	update_inv_glasses()
-	// else if (W == head)
-	// 	worn_clothing -= head
-	// 	head = null
-	// 	if(istype(W, /obj/item))
-	// 		var/obj/item/I = W
-	// 		if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR))
-	// 			update_hair(0)	//rebuild hair
-	// 			update_inv_ears(0)
-	// 			update_inv_wear_mask(0)
-	// 	update_inv_head()
-	// else if (W == l_ear)
-	// 	l_ear = null
-	// 	update_inv_ears()
-	// else if (W == r_ear)
-	// 	r_ear = null
-	// 	update_inv_ears()
-	// else if (W == shoes)
-	// 	worn_clothing -= shoes
-	// 	shoes = null
-	// 	update_inv_shoes()
-	// else if (W == belt)
-	// 	worn_clothing -= belt
-	// 	belt = null
-	// 	update_inv_belt()
-	// else if (W == wear_mask)
-	// 	worn_clothing -= wear_mask
-	// 	wear_mask = null
-	// 	if(istype(W, /obj/item))
-	// 		var/obj/item/I = W
-	// 		if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-	// 			update_hair(0)	//rebuild hair
-	// 			update_inv_ears(0)
-	// 	// If this is how the internals are connected, disable them
-	// 	if(internal && !(head?.item_flags & AIRTIGHT))
-	// 		if(internals)
-	// 			internals.icon_state = "internal0"
-	// 		internal = null
-	// 	update_inv_wear_mask()
-	// else if (W == wear_id)
-	// 	wear_id = null
-	// 	update_inv_wear_id()
-	// 	BITSET(hud_updateflag, ID_HUD)
-	// 	BITSET(hud_updateflag, WANTED_HUD)
-	// else if (W == s_store)
-	// 	s_store = null
-	// 	update_inv_s_store()
-	// else if (W == back)
-	// 	worn_clothing -= back
-	// 	back = null
-	// 	update_inv_back()
-	else if (W == handcuffed)
+	if (W == handcuffed)
 		handcuffed = null
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
@@ -691,20 +506,6 @@ var/list/slot_equipment_priority = list( \
 	else if (W == legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
-	// else if (W == r_hand)
-	// 	r_hand = null
-	// 	if(l_hand)
-	// 		l_hand.update_twohanding()
-	// 		l_hand.update_held_icon()
-	// 		update_inv_l_hand()
-	// 	update_inv_r_hand()
-	// else if (W == l_hand)
-	// 	l_hand = null
-	// 	if(r_hand)
-	// 		r_hand.update_twohanding()
-	// 		r_hand.update_held_icon()
-	// 		update_inv_l_hand()
-	// 	update_inv_l_hand()
 	else
 		return 0
 
