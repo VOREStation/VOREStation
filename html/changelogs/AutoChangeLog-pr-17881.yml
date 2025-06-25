@@ -1,5 +1,0 @@
-author: "Kash Guti Will"
-delete-after: True
-changes:
-  - rscadd: "Adds genes and diseases to bingle's database so symptoms and genetics stuff can be looked up ingame"
-  - code_imp: "added unit test for virus names and trait names to prevent tgui issues"

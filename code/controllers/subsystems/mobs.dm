@@ -7,7 +7,7 @@
 
 SUBSYSTEM_DEF(mobs)
 	name = "Mobs"
-	priority = 100
+	priority = FIRE_PRIORITY_MOBS
 	wait = 2 SECONDS
 	flags = SS_KEEP_TIMING|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -19,8 +19,10 @@ SUBSYSTEM_DEF(mobs)
 	var/slept_mobs = 0
 	var/list/process_z = list()
 
+	var/list/death_list = list()
+
 /datum/controller/subsystem/mobs/stat_entry(msg)
-	msg = "P: [global.mob_list.len] | S: [slept_mobs]"
+	msg = "P: [global.mob_list.len] | S: [slept_mobs] | D: [death_list.len]"
 	return ..()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
@@ -30,6 +32,15 @@ SUBSYSTEM_DEF(mobs)
 		slept_mobs = 0
 		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
+		// Lets handle all of these while we have time, should always remain extremely small...
+		if(death_list.len) // Don't contact DB if this list is empty
+			if(CONFIG_GET(flag/sql_enabled))
+				establish_db_connection()
+				if(!SSdbcore.IsConnected())
+					log_game("SQL ERROR during death reporting. Failed to connect.")
+				else
+					SSdbcore.MassInsert(format_table_name("death"), death_list)
+			death_list.Cut()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -92,3 +103,37 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/critfail()
 	..()
 	log_recent()
+
+/datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
+	if(!L)
+		return
+	if(!L.key || !L.mind)
+		return
+	if(!ticker || !ticker.mode)
+		return
+	ticker.mode.check_win()
+
+	// Don't bother with the rest if we've not got a DB to do anything with
+	if(!CONFIG_GET(flag/enable_stat_tracking) || !CONFIG_GET(flag/sql_enabled))
+		return
+
+	var/area/placeofdeath = get_area(L)
+	var/podname = placeofdeath ? placeofdeath.name : "Unknown area"
+
+	var/list/data = list(
+	"name" = L.real_name,
+	"byondkey" = L.key,
+	"job" = L.mind.assigned_role,
+	"special" = L.mind.special_role,
+	"pod" = podname,
+	"tod" = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss"),
+	"laname" = L.lastattacker ? L.lastattacker:real_name : null,
+	"lakey" = L.lastattacker ? L.lastattacker:key : null,
+	"gender" = L.gender,
+	"bruteloss" = L.getBruteLoss(),
+	"fireloss" = L.getFireLoss(),
+	"brainloss" = L.brainloss,
+	"oxyloss" = L.getOxyLoss(),
+	"coord" = "[L.x], [L.y], [L.z]"
+	)
+	death_list += list(data)
