@@ -4,6 +4,9 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 source $HOME/BYOND/byond/bin/byondsetup
+echo "BYOND_SYSTEM: ${BYOND_SYSTEM}"
+echo "PATH: ${PATH}"
+echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
 
 # Clean up between steps so Juke doesn't refuse to recompile with different -D options
 rm vorestation.dmb
