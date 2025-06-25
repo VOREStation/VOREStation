@@ -12,6 +12,104 @@
 	else
 		to_chat(user, span_filter_notice("This ghost pod is not located in the game world."))
 
+/datum/tgui_module/proc/become_mouse(mob/observer/dead/user)
+	if(CONFIG_GET(flag/disable_player_mice))
+		to_chat(user, span_warning("Spawning as a mouse is currently disabled."))
+		return
+
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
+		return
+
+	if(!user.MayRespawn(1))
+		return
+
+	var/turf/T = get_turf(user)
+	if(!T || (T.z in using_map.admin_levels))
+		to_chat(user, span_warning("You may not spawn as a mouse on this Z-level."))
+		return
+
+	var/timedifference = world.time - user.client.time_died_as_mouse
+	if(user.client.time_died_as_mouse && timedifference <= CONFIG_GET(number/mouse_respawn_time) MINUTES)
+		var/timedifference_text = time2text(CONFIG_GET(number/mouse_respawn_time) MINUTES - timedifference,"mm:ss")
+		to_chat(user, span_warning("You may only spawn again as a mouse more than [CONFIG_GET(number/mouse_respawn_time)] minutes after your death. You have [timedifference_text] left."))
+		return
+
+	//find a viable mouse candidate
+	var/mob/living/simple_mob/animal/passive/mouse/host
+	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
+	var/list/found_vents = list()
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
+		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > MOUSE_VENT_NETWORK_LENGTH)
+			found_vents.Add(v)
+	if(found_vents.len)
+		vent_found = pick(found_vents)
+		host = new /mob/living/simple_mob/animal/passive/mouse(vent_found)
+	else
+		to_chat(user, span_warning("Unable to find any unwelded vents to spawn mice at."))
+
+	if(host)
+		if(CONFIG_GET(flag/uneducated_mice))
+			host.universal_understand = 0
+		announce_ghost_joinleave(user, 0, "They are now a mouse.")
+		host.ckey = user.ckey
+		host.add_ventcrawl(vent_found)
+		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
+
+/datum/tgui_module/proc/become_drone(mob/observer/dead/user, fabricator)
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		to_chat(user, span_danger("The game hasn't started yet!"))
+		return
+
+	if(!CONFIG_GET(flag/allow_drone_spawn))
+		to_chat(user, span_danger("That verb is not currently permitted."))
+		return
+
+	if(jobban_isbanned(user, JOB_CYBORG))
+		to_chat(src, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
+		return
+
+	if(CONFIG_GET(flag/use_age_restriction_for_jobs) && isnum(user.client.player_age))
+		var/time_till_play = max(0, 3 - user.client.player_age)
+		if(time_till_play)
+			to_chat(user, span_danger("You have not been playing on the server long enough to join as drone."))
+			return
+
+	if(!user.MayRespawn(1))
+		return
+
+	var/deathtime = world.time - user.timeofdeath
+	var/deathtimeminutes = round(deathtime / (1 MINUTE))
+	var/pluralcheck = "minute"
+	if(deathtimeminutes == 0)
+		pluralcheck = ""
+	else if(deathtimeminutes == 1)
+		pluralcheck = " [deathtimeminutes] minute and"
+	else if(deathtimeminutes > 1)
+		pluralcheck = " [deathtimeminutes] minutes and"
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 1 MINUTE) / 10,1)
+
+	if (deathtime < 5 MINUTES)
+		to_chat(user, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
+		to_chat(user, "You must wait 5 minutes to respawn as a drone!")
+		return
+
+	var/obj/machinery/drone_fabricator/chosen_fabricator = locate(fabricator) in GLOB.all_drone_fabricators
+
+	if(!chosen_fabricator)
+		return
+	if(chosen_fabricator.stat & NOPOWER || !chosen_fabricator.produce_drones)
+		return
+	if(!chosen_fabricator.drone_progress >= 100)
+		return
+
+	chosen_fabricator.create_drone(user.client)
+
+/datum/tgui_module/proc/join_vr(mob/observer/dead/user, landmark)
+	var/S = locate(landmark) in landmarks_list
+
+	user.fake_enter_vr(S)
+
 /datum/tgui_module/proc/soulcatcher_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in player_list
 		//Didn't pick anyone or picked a null

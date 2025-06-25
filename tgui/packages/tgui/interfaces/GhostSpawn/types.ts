@@ -5,6 +5,7 @@ export type Data = {
   active_tab: number;
   all_ghost_pods?: PodData[];
   all_vore_spawns?: Record<string, VoreSpawnData>;
+  all_ghost_join_options?: GhostJoinData;
 };
 
 export type PodData = {
@@ -24,4 +25,32 @@ export type VoreSpawnData = {
 export type DropdownEntry = {
   displayText: string;
   value: string;
+};
+
+export type GhostJoinData = {
+  mouse_data: MouseData;
+  drone_data: DroneData;
+  vr_data: VRData;
+  may_respawn: BooleanLike;
+};
+
+export type MouseData = {
+  disabled: BooleanLike;
+  banned: BooleanLike;
+  bad_turf: BooleanLike;
+  respawn_time: string;
+  found_vents: BooleanLike;
+};
+
+export type DroneData = {
+  disabled: BooleanLike;
+  banned: BooleanLike;
+  days_to_play: number;
+  respawn_time: string;
+  fabricators: Record<string, string>;
+};
+
+export type VRData = {
+  record_found: BooleanLike;
+  vr_landmarks: Record<string, string>;
 };

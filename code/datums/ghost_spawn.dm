@@ -1,5 +1,6 @@
 #define GHOST_POD_TAB 0
-#define GHOST_VORE_SPAWN 1
+#define GHOST_JOIN 1
+#define GHOST_VORE_SPAWN 2
 
 // Ghost spawn menu
 /datum/tgui_module/ghost_spawn_menu
@@ -27,6 +28,9 @@
 
 	if(active_tab == GHOST_POD_TAB)
 		data["all_ghost_pods"] = compile_pod_data()
+
+	if(active_tab == GHOST_JOIN)
+		data["all_ghost_join_options"] = compile_ghost_join_data(user)
 
 	if(active_tab == GHOST_VORE_SPAWN)
 		data["all_vore_spawns"] = compile_vorespawn_data()
@@ -64,6 +68,15 @@
 			vore_belly_spawn(ui.user, params["selected_player"])
 			close_ui()
 			. = TRUE
+		if("mouse_spawn")
+			become_mouse(ui.user)
+			. = TRUE
+		if("drone_spawn")
+			become_drone(ui.user, params["fabricator"])
+			. = TRUE
+		if("vr_spawn")
+			join_vr(ui.user, params["landmark"])
+			. = TRUE
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_pod_data()
 	var/list/compiled_pods = list()
@@ -77,6 +90,69 @@
 			type = "Structure"
 		UNTYPED_LIST_ADD(compiled_pods, list("pod_type" = type, "pod_name" = spawn_object.name, "z_level" = spawn_object.z, "ref" = REF(spawn_object)))
 	return compiled_pods
+
+/datum/tgui_module/ghost_spawn_menu/proc/compile_ghost_join_data(mob/user)
+	var/list/ghost_join_data = list(
+		"mouse_data" =  get_mouse_data(user),
+		"drone_data" = get_drone_data(user),
+		"vr_data" = get_vr_data(user),
+		"may_respawn" = user.MayRespawn()
+	)
+	return ghost_join_data
+
+/datum/tgui_module/ghost_spawn_menu/proc/get_mouse_data(mob/user)
+	var/turf/T = get_turf(user)
+	var/timedifference_mouse = world.time - user.client.time_died_as_mouse
+	var/timedifference_mouse_text = ""
+	if(user.client.time_died_as_mouse && timedifference_mouse <= CONFIG_GET(number/mouse_respawn_time) MINUTES)
+		timedifference_mouse_text = time2text(CONFIG_GET(number/mouse_respawn_time) MINUTES - timedifference_mouse,"mm:ss")
+	var/found_vents = FALSE
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
+		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > MOUSE_VENT_NETWORK_LENGTH)
+			found_vents = TRUE
+			break
+
+	return list(
+				"disabled" = CONFIG_GET(flag/disable_player_mice),
+				"banned" = jobban_isbanned(user, JOB_GHOSTROLES),
+				"bad_turf" = (!T || (T.z in using_map.admin_levels)),
+				"respawn_time" = timedifference_mouse_text,
+				"found_vents" = found_vents
+			)
+
+/datum/tgui_module/ghost_spawn_menu/proc/get_drone_data(mob/user)
+	var/time_till_play
+	if(CONFIG_GET(flag/use_age_restriction_for_jobs) && isnum(user.client.player_age))
+		time_till_play = max(0, 3 - user.client.player_age)
+	var/deathtime = world.time - user.timeofdeath
+	var/time_diff = 5 MINUTES - deathtime
+	var/timedifference_text = time_diff > 0 ? time2text(time_diff, "mm:ss") : ""
+	var/list/all_fabricators = list()
+	for(var/obj/machinery/drone_fabricator/DF in GLOB.all_drone_fabricators)
+		if(DF.stat & NOPOWER || !DF.produce_drones)
+			continue
+		if(DF.drone_progress >= 100)
+			all_fabricators += list(REF(DF) = DF.fabricator_tag)
+
+	return list(
+				"disabled" = !CONFIG_GET(flag/allow_drone_spawn),
+				"banned" = jobban_isbanned(user, JOB_CYBORG),
+				"days_to_play" = time_till_play,
+				"respawn_time" = timedifference_text,
+				"fabricators" = all_fabricators
+			)
+
+/datum/tgui_module/ghost_spawn_menu/proc/get_vr_data(mob/user)
+	var/datum/data/record/record_found = find_general_record("name", user.client.prefs.real_name)
+	var/list/vr_landmarks = list()
+	for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+		vr_landmarks += list(REF(sloc) = sloc.name)
+
+
+	return list(
+				"record_found" = !!record_found,
+				"vr_landmarks" = vr_landmarks
+			)
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_vorespawn_data()
 	var/list/compiled_spawn_data = list()
@@ -112,4 +188,5 @@
 	return compiled_spawn_data
 
 #undef GHOST_POD_TAB
+#undef GHOST_JOIN
 #undef GHOST_VORE_SPAWN

@@ -76,43 +76,58 @@ export const Vorespawn = (props: {
             <Section fill title="Spawn Options">
               <Stack vertical>
                 <Stack.Item>
-                  <Button
-                    color={allowSoulcatcher ? 'green' : 'red'}
-                    disabled={!allowSoulcatcher}
-                    onClick={() =>
-                      act('soulcatcher_spawn', {
-                        selected_player: selectedPlayer,
-                      })
-                    }
-                    tooltip="Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
-                  >
-                    Soulcatcher
-                  </Button>
+                  <Stack>
+                    <Stack.Item basis="200px">
+                      <Button.Confirm
+                        fluid
+                        color={allowSoulcatcher ? 'green' : 'red'}
+                        disabled={!allowSoulcatcher}
+                        onClick={() =>
+                          act('soulcatcher_spawn', {
+                            selected_player: selectedPlayer,
+                          })
+                        }
+                        tooltip="Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
+                      >
+                        Soulcatcher
+                      </Button.Confirm>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
                 <Stack.Item>
-                  <Button
-                    color={allowSoulcatcherVore ? 'green' : 'red'}
-                    disabled={!allowSoulcatcherVore}
-                    onClick={() =>
-                      act('soulcatcher_vore_spawn', {
-                        selected_player: selectedPlayer,
-                      })
-                    }
-                    tooltip="Select a player with enabled Vore Soulcatcher to join."
-                  >
-                    Soulcatcher (Vore)
-                  </Button>
+                  <Stack>
+                    <Stack.Item basis="200px">
+                      <Button.Confirm
+                        fluid
+                        color={allowSoulcatcherVore ? 'green' : 'red'}
+                        disabled={!allowSoulcatcherVore}
+                        onClick={() =>
+                          act('soulcatcher_vore_spawn', {
+                            selected_player: selectedPlayer,
+                          })
+                        }
+                        tooltip="Select a player with enabled Vore Soulcatcher to join."
+                      >
+                        Soulcatcher (Vore)
+                      </Button.Confirm>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
                 <Stack.Item>
-                  <Button
-                    color={allowBellySpawn ? 'green' : 'red'}
-                    disabled={!allowBellySpawn}
-                    onClick={() =>
-                      act('bellyspawn', { selected_player: selectedPlayer })
-                    }
-                  >
-                    Spawn In Belly
-                  </Button>
+                  <Stack>
+                    <Stack.Item basis="200px">
+                      <Button.Confirm
+                        fluid
+                        color={allowBellySpawn ? 'green' : 'red'}
+                        disabled={!allowBellySpawn}
+                        onClick={() =>
+                          act('bellyspawn', { selected_player: selectedPlayer })
+                        }
+                      >
+                        Spawn In Belly
+                      </Button.Confirm>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
               </Stack>
             </Section>
