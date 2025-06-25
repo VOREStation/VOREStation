@@ -50,6 +50,17 @@
 				var/real_damage = rand_damage //Let's go ahead and start calculating our damage.
 				var/hit_dam_type = attack.damage_type //Let's get the type of damage. Brute? Burn? Defined by the unarmed_attack.
 				real_damage += attack.get_unarmed_damage(attacker) //Add the damage that their special attack has. Some have 0. Some have 15.
+				if(attacker.gloves && attack.is_punch)
+					if(istype(attacker.gloves, /obj/item/clothing/gloves))
+						var/obj/item/clothing/gloves/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					else if(istype(attacker.gloves, /obj/item/clothing/accessory))
+						var/obj/item/clothing/accessory/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					if(HULK in attacker.mutations)
+						real_damage *= 2
 				if(real_damage <= damage_threshold)
 					L.visible_message(span_warning("\The [L] uselessly hits \the [src]!"))
 					L.do_attack_animation(src)

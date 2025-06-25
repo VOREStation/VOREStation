@@ -40,8 +40,8 @@ var/global/list/sparring_attack_cache = list()
 
 	return FALSE
 
-/datum/unarmed_attack/proc/get_unarmed_damage()
-	return damage
+/datum/unarmed_attack/proc/get_unarmed_damage(var/mob/living/carbon/human/user)
+	return damage + user.unarmed_bonus
 
 /datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 

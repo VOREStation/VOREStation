@@ -622,7 +622,8 @@
 
 	if(!ignore_intent && H.a_intent != I_HURT)
 		return 0
-
+	if(H.shredding)
+		return 1
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
 			continue

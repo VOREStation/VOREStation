@@ -92,6 +92,8 @@
 
 	var/list/flavor_texts = list()
 	var/pulling_punches    // Are you trying not to hurt your opponent?
+	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
+	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
 	var/robolimb_count = 0 // Total number of external robot parts.
 	var/robobody_count = 0 // Counts torso, groin, and head, if they're robotic
 
