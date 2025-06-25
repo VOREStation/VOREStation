@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Dropdown, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
-import type { VoreSpawnData } from '../types';
+import type { DropdownEntry, VoreSpawnData } from '../types';
 
 export const Vorespawn = (props: {
   all_vore_spawns: Record<string, VoreSpawnData>;
 }) => {
   const { act } = useBackend();
-  const [selectedPlayer, setSelectedPlayer] = useState<string>('');
-
   const { all_vore_spawns } = props;
+
+  const [selectedPlayer, setSelectedPlayer] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>('');
 
   const playerDropdown = Object.entries(all_vore_spawns).map((entry) => {
     return { displayText: entry[1].player, value: entry[0] };
@@ -20,6 +22,12 @@ export const Vorespawn = (props: {
   const allowSoulcatcherVore =
     all_vore_spawns[selectedPlayer]?.soulcatcher_vore;
   const allowBellySpawn = all_vore_spawns[selectedPlayer]?.vorespawn;
+
+  const searcher = createSearch(searchText, (element: DropdownEntry) => {
+    return element.displayText;
+  });
+
+  const filtered = playerDropdown?.filter(searcher);
 
   return (
     <Stack vertical fill>
@@ -34,11 +42,34 @@ export const Vorespawn = (props: {
         <Stack fill>
           <Stack.Item basis="30%">
             <Section fill title="Player Selection">
-              <Dropdown
-                onSelected={(value) => setSelectedPlayer(value)}
-                options={playerDropdown}
-                selected={all_vore_spawns[selectedPlayer]?.player}
-              />
+              <Stack vertical fill>
+                <Stack.Item>
+                  <Input
+                    fluid
+                    value={searchText}
+                    placeholder="Search for players..."
+                    onChange={(value: string) => setSearchText(value)}
+                  />
+                </Stack.Item>
+                <Stack.Divider />
+                <Stack.Item grow>
+                  <Section fill scrollable>
+                    <Stack vertical fill>
+                      {filtered.map((player) => (
+                        <Stack.Item key={player.value}>
+                          <Button
+                            fluid
+                            selected={player.value === selectedPlayer}
+                            onClick={() => setSelectedPlayer(player.value)}
+                          >
+                            {player.displayText}
+                          </Button>
+                        </Stack.Item>
+                      ))}
+                    </Stack>
+                  </Section>
+                </Stack.Item>
+              </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item grow>

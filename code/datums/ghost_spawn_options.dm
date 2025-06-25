@@ -121,7 +121,7 @@
 
 	to_chat(user, span_notice("Inbelly spawn request sent to predator."))
 	to_chat(target, span_notice("Incoming belly spawn request."))
-	addtimer(CALLBACK(src, PROC_REF(finish_vore_belly_spawn), user, M), 1.5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(finish_vore_belly_spawn), user, target), 1.5 SECONDS, TIMER_DELETE_ME)
 
-/datum/tgui_module/proc/finish_vore_belly_spawn(mob/observer/dead/user, selected_player)
-	target.inbelly_spawn_prompt(user.client)			// Hand reins over to them
+/datum/tgui_module/proc/finish_vore_belly_spawn(mob/observer/dead/user,  mob/living/L)
+	L.inbelly_spawn_prompt(user.client)			// Hand reins over to them
