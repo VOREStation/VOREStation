@@ -122,6 +122,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
