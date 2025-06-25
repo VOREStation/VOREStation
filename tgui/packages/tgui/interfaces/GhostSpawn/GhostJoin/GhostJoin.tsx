@@ -168,6 +168,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
           <LabeledList>
             {specialRoles.map((role) => (
               <SpawnElement
+                key={role.name}
                 title={role.name || ''}
                 disabled={!role.state || !may_respawn}
                 tooltip={role.text}
