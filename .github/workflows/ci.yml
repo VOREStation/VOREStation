@@ -124,6 +124,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+      - name: Pull LFS files
+        run: git lfs pull
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
