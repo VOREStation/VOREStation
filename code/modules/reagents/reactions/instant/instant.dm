@@ -76,6 +76,7 @@
 	id = REAGENT_ID_WATER
 	result = REAGENT_ID_WATER
 	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_HYDROGEN = 2)
+	inhibitors = list(REAGENT_ID_SODIUM = 1) // So it doesnt turn into water when you try to make lye.
 	result_amount = 1
 
 /decl/chemical_reaction/instant/thermite
@@ -445,13 +446,6 @@
 	result = REAGENT_ID_LYE
 	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
-
-/decl/chemical_reaction/instant/lye_alt //Normally Oxygen and Hydrogen separately but it makes water here for some reason. Epic.
-	name = "LyeWater"
-	id = "lye_water"
-	result = REAGENT_ID_LYE
-	required_reagents = list(REAGENT_ID_SODIUM = 2, REAGENT_ID_OXYGEN = 1, REAGENT_ID_WATER = 1) // This should compensate for it...
-	result_amount = 6
 
 /decl/chemical_reaction/instant/left4zed
 	name = "Left4Zed"
