@@ -31,12 +31,15 @@ export type GhostJoinData = {
   mouse_data: MouseData;
   drone_data: DroneData;
   vr_data: VRData;
+  cyborg_banned: BooleanLike;
+  ghost_banned: BooleanLike;
   may_respawn: BooleanLike;
+  existing_ghost_spawnpoints: BooleanLike;
+  remaining_ghost_roles: number;
 };
 
 export type MouseData = {
   disabled: BooleanLike;
-  banned: BooleanLike;
   bad_turf: BooleanLike;
   respawn_time: string;
   found_vents: BooleanLike;
@@ -44,7 +47,6 @@ export type MouseData = {
 
 export type DroneData = {
   disabled: BooleanLike;
-  banned: BooleanLike;
   days_to_play: number;
   respawn_time: string;
   fabricators: Record<string, string>;
@@ -53,4 +55,11 @@ export type DroneData = {
 export type VRData = {
   record_found: BooleanLike;
   vr_landmarks: Record<string, string>;
+};
+
+export type describeReturnData = {
+  text: string;
+  state: boolean;
+  name?: string;
+  action?: string;
 };

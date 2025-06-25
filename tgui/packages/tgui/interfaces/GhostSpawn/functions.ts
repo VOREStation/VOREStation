@@ -1,15 +1,16 @@
-import type { DroneData, MouseData } from './types';
+import type { describeReturnData, DroneData, MouseData } from './types';
 
-type describeReturnData = { text: string; state: boolean };
-
-export function describeMouseData(data: MouseData): describeReturnData {
+export function describeMouseData(
+  data: MouseData,
+  banned: boolean,
+): describeReturnData {
   const returnData = { text: 'Spawn as mouse.', state: true };
   if (data.disabled) {
     returnData.text = 'Spawning as a mouse is currently disabled.';
     returnData.state = false;
     return returnData;
   }
-  if (data.banned) {
+  if (banned) {
     returnData.text =
       'You cannot become a mouse because you are banned from playing ghost roles.';
     returnData.state = false;
@@ -31,11 +32,15 @@ export function describeMouseData(data: MouseData): describeReturnData {
   if (!data.found_vents) {
     returnData.text = 'Unable to find any unwelded vents to spawn mice at.';
     returnData.state = false;
+    return returnData;
   }
   return returnData;
 }
 
-export function describeDroneData(data: DroneData): describeReturnData {
+export function describeDroneData(
+  data: DroneData,
+  banned: boolean,
+): describeReturnData {
   const returnData = {
     text: 'If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone.',
     state: true,
@@ -45,7 +50,7 @@ export function describeDroneData(data: DroneData): describeReturnData {
     returnData.state = false;
     return returnData;
   }
-  if (data.banned) {
+  if (banned) {
     returnData.text =
       'You are banned from playing synthetics and cannot spawn as a drone.';
     returnData.state = false;
@@ -68,6 +73,37 @@ export function describeDroneData(data: DroneData): describeReturnData {
   if (!Object.keys(data.fabricators).length) {
     returnData.text = 'There are no available drone spawn points, sorry.';
     returnData.state = false;
+    return returnData;
+  }
+  return returnData;
+}
+
+export function describeSpecialData(
+  role: string,
+  banned: boolean,
+  slots: number,
+  spawn_exists: boolean,
+  action: string,
+): describeReturnData {
+  const text = 'Span as ' + role.toLowerCase() + '.';
+  const returnData = { text: text, state: true, name: role, action: action };
+  if (banned) {
+    returnData.text =
+      'You are banned from playing as ' + role.toLowerCase() + '.';
+    returnData.state = false;
+    return returnData;
+  }
+  if (!spawn_exists) {
+    returnData.text =
+      'There are no available ' + role.toLowerCase() + ' spawn points, sorry.';
+    returnData.state = false;
+    return returnData;
+  }
+  returnData.state = false;
+  if (slots < 0) {
+    returnData.text = 'There are no available ghost role slots, sorry.';
+    returnData.state = false;
+    return returnData;
   }
   return returnData;
 }

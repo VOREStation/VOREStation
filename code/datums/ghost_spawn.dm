@@ -2,6 +2,8 @@
 #define GHOST_JOIN 1
 #define GHOST_VORE_SPAWN 2
 
+GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
+
 // Ghost spawn menu
 /datum/tgui_module/ghost_spawn_menu
 	name = "Ghost Spawn Menu"
@@ -77,6 +79,21 @@
 		if("vr_spawn")
 			join_vr(ui.user, params["landmark"])
 			. = TRUE
+		if("corgi_spawn")
+			join_corgi(ui.user)
+			. = TRUE
+		if("lost_drone_spawn")
+			join_lost(ui.user)
+			. = TRUE
+		if("maintpred_spawn")
+			join_maintpred(ui.user)
+			. = TRUE
+		if("gravekeeper_spawn")
+			join_grave(ui.user)
+			. = TRUE
+		if("morph_spawn")
+			join_morpth(ui.user)
+			. = TRUE
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_pod_data()
 	var/list/compiled_pods = list()
@@ -92,11 +109,20 @@
 	return compiled_pods
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_ghost_join_data(mob/user)
+	var/ghost_spawn_exists = FALSE
+	for(var/obj/effect/landmark/L in landmarks_list)
+		if(L.name == JOB_GHOSTROLES)
+			ghost_spawn_exists = TRUE
+			break
 	var/list/ghost_join_data = list(
 		"mouse_data" =  get_mouse_data(user),
 		"drone_data" = get_drone_data(user),
 		"vr_data" = get_vr_data(user),
-		"may_respawn" = user.MayRespawn()
+		"ghost_banned" = jobban_isbanned(user, JOB_CYBORG),
+		"cyborg_banned" = jobban_isbanned(user, JOB_GHOSTROLES),
+		"may_respawn" = user.MayRespawn(),
+		"existing_ghost_spawnpoints" = ghost_spawn_exists,
+		"remaining_ghost_roles" = GLOB.allowed_ghost_spawns
 	)
 	return ghost_join_data
 
@@ -114,7 +140,6 @@
 
 	return list(
 				"disabled" = CONFIG_GET(flag/disable_player_mice),
-				"banned" = jobban_isbanned(user, JOB_GHOSTROLES),
 				"bad_turf" = (!T || (T.z in using_map.admin_levels)),
 				"respawn_time" = timedifference_mouse_text,
 				"found_vents" = found_vents
@@ -136,7 +161,6 @@
 
 	return list(
 				"disabled" = !CONFIG_GET(flag/allow_drone_spawn),
-				"banned" = jobban_isbanned(user, JOB_CYBORG),
 				"days_to_play" = time_till_play,
 				"respawn_time" = timedifference_text,
 				"fabricators" = all_fabricators
@@ -147,7 +171,6 @@
 	var/list/vr_landmarks = list()
 	for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
 		vr_landmarks += list(REF(sloc) = sloc.name)
-
 
 	return list(
 				"record_found" = !!record_found,

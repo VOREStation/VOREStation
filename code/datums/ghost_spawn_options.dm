@@ -1,4 +1,4 @@
-/datum/tgui_module/proc/jump_to_pod(mob/observer/dead/user, selected_pod)
+/datum/tgui_module/ghost_spawn_menu/proc/jump_to_pod(mob/observer/dead/user, selected_pod)
 	var/atom/movable/target = locate(selected_pod) in GLOB.active_ghost_pods
 	if(!target)
 		to_chat(user, span_warning("Invalid ghost pod selected!"))
@@ -12,7 +12,7 @@
 	else
 		to_chat(user, span_filter_notice("This ghost pod is not located in the game world."))
 
-/datum/tgui_module/proc/become_mouse(mob/observer/dead/user)
+/datum/tgui_module/ghost_spawn_menu/proc/become_mouse(mob/observer/dead/user)
 	if(CONFIG_GET(flag/disable_player_mice))
 		to_chat(user, span_warning("Spawning as a mouse is currently disabled."))
 		return
@@ -56,7 +56,7 @@
 		host.add_ventcrawl(vent_found)
 		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
-/datum/tgui_module/proc/become_drone(mob/observer/dead/user, fabricator)
+/datum/tgui_module/ghost_spawn_menu/proc/become_drone(mob/observer/dead/user, fabricator)
 	if(ticker.current_state < GAME_STATE_PLAYING)
 		to_chat(user, span_danger("The game hasn't started yet!"))
 		return
@@ -66,7 +66,7 @@
 		return
 
 	if(jobban_isbanned(user, JOB_CYBORG))
-		to_chat(src, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
+		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	if(CONFIG_GET(flag/use_age_restriction_for_jobs) && isnum(user.client.player_age))
@@ -105,12 +105,12 @@
 
 	chosen_fabricator.create_drone(user.client)
 
-/datum/tgui_module/proc/join_vr(mob/observer/dead/user, landmark)
+/datum/tgui_module/ghost_spawn_menu/proc/join_vr(mob/observer/dead/user, landmark)
 	var/S = locate(landmark) in landmarks_list
 
 	user.fake_enter_vr(S)
 
-/datum/tgui_module/proc/soulcatcher_spawn(mob/observer/dead/user, selected_player)
+/datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in player_list
 		//Didn't pick anyone or picked a null
 	if(!target)
@@ -145,7 +145,7 @@
 	nif.notify("Transient mindstate detected, analyzing...")
 	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_spawn), user, H, SC, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
-/datum/tgui_module/proc/finish_soulcatcher_spawn(mob/observer/dead/user, mob/living/carbon/human/H, datum/nifsoft/soulcatcher/SC, req_time)
+/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_spawn(mob/observer/dead/user, mob/living/carbon/human/H, datum/nifsoft/soulcatcher/SC, req_time)
 	var/response = tgui_alert(H,"[user] ([user.key]) wants to join into your Soulcatcher.","Soulcatcher Request", list("Deny", "Allow"), timeout = 1 MINUTE)
 
 	if(!response || response == "Deny")
@@ -167,7 +167,7 @@
 
 		SC.catch_mob(user) //This will result in us being deleted so...
 
-/datum/tgui_module/proc/soulcatcher_vore_spawn(mob/observer/dead/user, selected_player)
+/datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_vore_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in player_list
 	if(!target)
 		to_chat(user, span_warning("Invalid player selected!"))
@@ -189,7 +189,7 @@
 	gem.notify_holder("Transient mindstate detected, analyzing...")
 	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_vore_spawn), user, M, gem, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
-/datum/tgui_module/proc/finish_soulcatcher_vore_spawn(mob/observer/dead/user, mob/M, obj/soulgem/gem, req_time)
+/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_vore_spawn(mob/observer/dead/user, mob/M, obj/soulgem/gem, req_time)
 	if(tgui_alert(M, "[user.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
 		to_chat(user, span_warning("[M] has denied your request."))
 		return
@@ -210,7 +210,7 @@
 		gem.catch_mob(user) //This will result in us being deleted so...
 
 
-/datum/tgui_module/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
+/datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in player_list
 
 	if(!target)
@@ -221,5 +221,104 @@
 	to_chat(target, span_notice("Incoming belly spawn request."))
 	addtimer(CALLBACK(src, PROC_REF(finish_vore_belly_spawn), user, target), 1.5 SECONDS, TIMER_DELETE_ME)
 
-/datum/tgui_module/proc/finish_vore_belly_spawn(mob/observer/dead/user,  mob/living/L)
+/datum/tgui_module/ghost_spawn_menu/proc/finish_vore_belly_spawn(mob/observer/dead/user,  mob/living/L)
 	L.inbelly_spawn_prompt(user.client)			// Hand reins over to them
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_corgi(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a corgi."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	var/obj/structure/ghost_pod/manual/corgi/corg = new(get_turf(spawnspot))
+	corg.create_occupant(user)
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_lost(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_CYBORG))
+		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
+	lost.create_occupant(user)
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_maintpred(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint pred."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	var/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce/mpred = new(get_turf(spawnspot))
+	mpred.create_occupant(user)
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_CYBORG))
+		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a gravekeeper."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	var/obj/structure/ghost_pod/automatic/gravekeeper_drone/grave = new(get_turf(spawnspot))
+	grave.create_occupant(user)
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_morpth(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a morph."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	var/obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce/morph = new(get_turf(spawnspot))
+	morph.create_occupant(user)
+
+/datum/tgui_module/ghost_spawn_menu/proc/get_ghost_role_spawn()
+	var/list/possibleSpawnspots = list()
+	for(var/obj/effect/landmark/L in landmarks_list)
+		if(L.name == JOB_GHOSTROLES)
+			possibleSpawnspots += L
+	if(possibleSpawnspots.len)
+		return pick(possibleSpawnspots)
+	return null
