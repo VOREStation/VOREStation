@@ -37,8 +37,6 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 			HERM = "Shi/Hir"\
 			)
 
-var/list/mannequins_
-
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
@@ -368,7 +366,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["event_triggers"] = event_triggers
 	GLOB.legacy_globals["side_effects"] = side_effects
 	GLOB.legacy_globals["mechas_list"] = mechas_list
-	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
 	GLOB.legacy_globals["cameranet"] = cameranet

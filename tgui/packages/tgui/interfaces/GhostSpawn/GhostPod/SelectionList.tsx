@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import type { PodData } from './types';
+import type { PodData } from '../types';
 
 export const SelectionList = (props: {
   allPods: PodData[];
@@ -42,7 +42,7 @@ export const SelectionList = (props: {
               checked={usePlayerZ}
               onClick={() => setUsePlayerZ(!usePlayerZ)}
             >
-              Player Z({userZ})
+              Player Z ({userZ})
             </Button.Checkbox>
           </Stack.Item>
           <Stack.Item>
