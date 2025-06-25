@@ -239,6 +239,7 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a corgi.")
 	var/obj/structure/ghost_pod/manual/corgi/corg = new(get_turf(spawnspot))
 	corg.create_occupant(user)
 
@@ -257,6 +258,7 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a lost drone.")
 	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
 	lost.create_occupant(user)
 
@@ -275,6 +277,7 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a maint pred.")
 	var/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce/mpred = new(get_turf(spawnspot))
 	mpred.create_occupant(user)
 
@@ -293,6 +296,7 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a gravekeeper drone.")
 	var/obj/structure/ghost_pod/automatic/gravekeeper_drone/grave = new(get_turf(spawnspot))
 	grave.create_occupant(user)
 
@@ -311,6 +315,7 @@
 		return
 
 	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a morph.")
 	var/obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce/morph = new(get_turf(spawnspot))
 	morph.create_occupant(user)
 
