@@ -49,7 +49,7 @@ export const GhostSpawn = (props) => {
                 selected={active_tab === 2}
                 onClick={() => act('set_tab', { val: 2 })}
               >
-                Vorespawns
+                Vorespawn
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
