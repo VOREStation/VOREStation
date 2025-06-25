@@ -114,6 +114,9 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		if(L.name == JOB_GHOSTROLES)
 			ghost_spawn_exists = TRUE
 			break
+	var/deathtime = world.time - user.timeofdeath
+	var/time_diff = 15 MINUTES - deathtime
+	var/timedifference_text = time_diff > 0 ? time2text(time_diff, "mm:ss") : ""
 	var/list/ghost_join_data = list(
 		"mouse_data" =  get_mouse_data(user),
 		"drone_data" = get_drone_data(user),
@@ -121,6 +124,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		"ghost_banned" = jobban_isbanned(user, JOB_CYBORG),
 		"cyborg_banned" = jobban_isbanned(user, JOB_GHOSTROLES),
 		"may_respawn" = user.MayRespawn(),
+		"special_role_respawn" = timedifference_text,
 		"existing_ghost_spawnpoints" = ghost_spawn_exists,
 		"remaining_ghost_roles" = GLOB.allowed_ghost_spawns
 	)

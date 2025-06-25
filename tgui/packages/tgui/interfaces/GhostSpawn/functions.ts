@@ -83,6 +83,7 @@ export function describeSpecialData(
   banned: boolean,
   slots: number,
   spawn_exists: boolean,
+  respawn: string,
   action: string,
 ): describeReturnData {
   const text = 'Span as ' + role.toLowerCase() + '.';
@@ -99,7 +100,12 @@ export function describeSpecialData(
     returnData.state = false;
     return returnData;
   }
-  returnData.state = false;
+  if (respawn) {
+    returnData.text =
+      'You must wait ' + respawn + ' before being able to respawn again.';
+    returnData.state = false;
+    return returnData;
+  }
   if (slots < 0) {
     returnData.text = 'There are no available ghost role slots, sorry.';
     returnData.state = false;

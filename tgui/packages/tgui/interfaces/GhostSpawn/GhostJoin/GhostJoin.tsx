@@ -30,6 +30,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     cyborg_banned,
     existing_ghost_spawnpoints,
     remaining_ghost_roles,
+    special_role_respawn,
   } = all_ghost_join_options;
 
   const [selectedFab, setSelectedFab] = useState('');
@@ -45,6 +46,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!ghost_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
+    special_role_respawn,
     'corgi_spawn',
   );
   specialRoles[1] = describeSpecialData(
@@ -52,6 +54,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!cyborg_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
+    special_role_respawn,
     'lost_drone_spawn',
   );
   specialRoles[2] = describeSpecialData(
@@ -59,6 +62,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!ghost_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
+    special_role_respawn,
     'maintpred_spawn',
   );
   specialRoles[3] = describeSpecialData(
@@ -66,6 +70,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!cyborg_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
+    special_role_respawn,
     'gravekeeper_spawn',
   );
   specialRoles[4] = describeSpecialData(
@@ -73,6 +78,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!ghost_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
+    special_role_respawn,
     'morph_spawn',
   );
 

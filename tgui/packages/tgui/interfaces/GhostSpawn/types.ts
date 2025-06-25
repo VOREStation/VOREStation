@@ -34,6 +34,7 @@ export type GhostJoinData = {
   cyborg_banned: BooleanLike;
   ghost_banned: BooleanLike;
   may_respawn: BooleanLike;
+  special_role_respawn: string;
   existing_ghost_spawnpoints: BooleanLike;
   remaining_ghost_roles: number;
 };
