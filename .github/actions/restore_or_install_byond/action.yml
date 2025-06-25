@@ -32,7 +32,10 @@ runs:
     # BYOND 516.1664 and later require libcurl on linux
     - name: Install BYOND Dependencies
       shell: bash
-      run: sudo apt update && sudo apt install -y libcurl4
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt update
+        sudo apt install -y libcurl4 libcurl4:i386
 
     # The use of `actions/cache/restore` and `actions/cache/save` here is deliberate, as we want to
     # save the BYOND install to a cache as early as possible. If we used just `actions/cache`, it
