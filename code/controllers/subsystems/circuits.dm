@@ -4,7 +4,6 @@
 //
 SUBSYSTEM_DEF(circuit)
 	name = "Circuit"
-	init_order = INIT_ORDER_CIRCUIT
 	flags = SS_NO_FIRE
 	var/list/all_components = list()								// Associative list of [component_name]:[component_path] pairs
 	var/list/cached_components = list()								// Associative list of [component_path]:[component] pairs

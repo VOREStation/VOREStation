@@ -69,5 +69,5 @@
     "dreammaker.objectTreePane": true,
     "dreammaker.autoUpdate": true,
     "dreammaker.tickOnCreate": true,
-    "tgstationTestExplorer.project.DMEName": "tgmc.dme"
+    "tgstationTestExplorer.project.DMEName": "vorestation.dme"
 }

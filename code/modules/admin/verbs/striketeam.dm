@@ -10,7 +10,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		to_chat(usr, span_red("The game hasn't started yet!"))
 		return
 

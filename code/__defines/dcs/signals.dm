@@ -846,6 +846,6 @@
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
 
 //Unittest data update
-#ifdef UNIT_TEST
+#ifdef UNIT_TESTS
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
 #endif

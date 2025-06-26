@@ -1,14 +1,22 @@
-// DM Environment file for baystation12.dme.
+// DM Environment file for tgstation.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
- // New source code should be placed in .dm files: choose File/New --> Code File.
+// New source code should be placed in .dm files: choose File/New --> Code File.
+
+// This should always be the VERY FIRST THING. No exceptions. Read the file for more info, but basically, this needs to be here so that we can ensure specific code is always the very first thing to execute.
+#include "code\genesis_call.dme"
+// Again, DO NOT MOVE IT OR ALLOW ANY OTHER #include TO PRECEDE THE ONE ABOVE.
+
 // BEGIN_INTERNALS
 // END_INTERNALS
+
 // BEGIN_FILE_DIR
 #define FILE_DIR .
 // END_FILE_DIR
+
 // BEGIN_PREFERENCES
 #define DEBUG
 // END_PREFERENCES
+
 // BEGIN_INCLUDE
 #include "code\__byond_version_compat.dm"
 #include "code\__odlint.dm"
@@ -75,6 +83,7 @@
 #include "code\__defines\exosuit_fab.dm"
 #include "code\__defines\faction.dm"
 #include "code\__defines\flags.dm"
+#include "code\__defines\font_awesome_icons.dm"
 #include "code\__defines\fonts.dm"
 #include "code\__defines\footsteps.dm"
 #include "code\__defines\gamemode.dm"
@@ -169,6 +178,7 @@
 #include "code\__defines\tgui.dm"
 #include "code\__defines\time.dm"
 #include "code\__defines\tools.dm"
+#include "code\__defines\tracy.dm"
 #include "code\__defines\traits.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\typeids.dm"
@@ -426,6 +436,7 @@
 #include "code\controllers\subsystems\plants.dm"
 #include "code\controllers\subsystems\player_tips.dm"
 #include "code\controllers\subsystems\pois.dm"
+#include "code\controllers\subsystems\profiler.dm"
 #include "code\controllers\subsystems\radiation.dm"
 #include "code\controllers\subsystems\robot_sprites.dm"
 #include "code\controllers\subsystems\runechat.dm"
@@ -512,6 +523,9 @@
 #include "code\datums\autolathe\tools.dm"
 #include "code\datums\autolathe\tools_vr.dm"
 #include "code\datums\changelog\changelog.dm"
+#include "code\datums\cinematics\_cinematic.dm"
+#include "code\datums\cinematics\malf_doomsday.dm"
+#include "code\datums\cinematics\nuke_cinematics.dm"
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\connect_loc_behalf.dm"
 #include "code\datums\components\connect_mob_behalf.dm"
@@ -2438,6 +2452,8 @@
 #include "code\modules\compass\compass_waypoint.dm"
 #include "code\modules\compass\~compass.dm"
 #include "code\modules\customitems\item_spawning.dm"
+#include "code\modules\debugging\debugger.dm"
+#include "code\modules\debugging\tracy.dm"
 #include "code\modules\detectivework\footprints.dm"
 #include "code\modules\detectivework\forensics.dm"
 #include "code\modules\detectivework\microscope\dnascanner.dm"
@@ -4400,6 +4416,7 @@
 #include "code\modules\turbolift\turbolift_floor.dm"
 #include "code\modules\turbolift\turbolift_map.dm"
 #include "code\modules\turbolift\turbolift_turfs.dm"
+#include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\bike.dm"
 #include "code\modules\vehicles\boat.dm"
 #include "code\modules\vehicles\cargo_train.dm"
@@ -4552,34 +4569,6 @@
 #include "code\modules\xenobio\machinery\processor.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
-#include "code\unit_tests\clothing_tests.dm"
-#include "code\unit_tests\cosmetic_tests.dm"
-#include "code\unit_tests\decl_tests.dm"
-#include "code\unit_tests\disease_tests.dm"
-#include "code\unit_tests\genetics_tests.dm"
-#include "code\unit_tests\language_tests.dm"
-#include "code\unit_tests\loadout_tests.dm"
-#include "code\unit_tests\map_tests.dm"
-#include "code\unit_tests\material_tests.dm"
-#include "code\unit_tests\mob_tests.dm"
-#include "code\unit_tests\poster_tests.dm"
-#include "code\unit_tests\reagent_tests.dm"
-#include "code\unit_tests\recipe_tests.dm"
-#include "code\unit_tests\recycler_vendor_tests.dm"
-#include "code\unit_tests\research_tests.dm"
-#include "code\unit_tests\robot_tests.dm"
-#include "code\unit_tests\sqlite_tests.dm"
-#include "code\unit_tests\subsystem_tests.dm"
-#include "code\unit_tests\trait_tests.dm"
-#include "code\unit_tests\unit_test.dm"
-#include "code\unit_tests\unit_test_vr.dm"
-#include "code\unit_tests\vore_tests_vr.dm"
-#include "code\unit_tests\zas_tests.dm"
-#include "code\unit_tests\integrated_circuits\arithmetic.dm"
-#include "code\unit_tests\integrated_circuits\circuits.dm"
-#include "code\unit_tests\integrated_circuits\converter.dm"
-#include "code\unit_tests\integrated_circuits\logic.dm"
-#include "code\unit_tests\integrated_circuits\trig.dm"
 #include "code\ZAS\Airflow.dm"
 #include "code\ZAS\Atom.dm"
 #include "code\ZAS\Connection.dm"

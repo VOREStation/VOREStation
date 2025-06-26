@@ -3,7 +3,6 @@ SUBSYSTEM_DEF(overlays)
 	flags = SS_TICKER
 	wait = 1 // SS_TICKER - Ticks
 	priority = FIRE_PRIORITY_OVERLAYS
-	init_order = INIT_ORDER_OVERLAY
 
 	/// The queue of atoms that need overlay updates.
 	var/static/tmp/list/queue = list()

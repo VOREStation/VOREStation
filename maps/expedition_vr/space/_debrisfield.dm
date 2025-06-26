@@ -175,7 +175,7 @@
 	rename_areas(newname)
 
 /obj/effect/overmap/visitable/ship/landable/luxury_boat/proc/rename_areas(newname)
-	if(!SSshuttles.subsystem_initialized)
+	if(!SSshuttles.initialized)
 		spawn(300)
 			rename_areas(newname)
 		return
@@ -266,7 +266,7 @@
 	rename_areas(newname)
 
 /obj/effect/overmap/visitable/ship/landable/tinycarrier/proc/rename_areas(newname)
-	if(!SSshuttles.subsystem_initialized)
+	if(!SSshuttles.initialized)
 		spawn(300)
 			rename_areas(newname)
 		return

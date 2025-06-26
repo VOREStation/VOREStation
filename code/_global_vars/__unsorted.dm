@@ -82,3 +82,5 @@ GLOBAL_DATUM_INIT(buildmode_hud, /icon, icon('icons/misc/buildmode.dmi'))
 //Keyed list for caching icons so you don't need to make them for records, IDs, etc all separately.
 //Could be useful for AI impersonation or something at some point?
 GLOBAL_LIST_EMPTY(cached_character_icons)
+
+GLOBAL_VAR_INIT(triai, FALSE)

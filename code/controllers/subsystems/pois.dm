@@ -3,7 +3,6 @@ SUBSYSTEM_DEF(points_of_interest)
 	name = "Points of Interest"
 	wait = 1 SECONDS
 	priority = FIRE_PRIORITY_POIS
-	init_order = INIT_ORDER_POIS
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT //POIs can be loaded mid-round.
 	var/list/obj/effect/landmark/poi_loader/poi_queue = list()
 

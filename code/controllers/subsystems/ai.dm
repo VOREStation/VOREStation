@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(ai)
 	name = "AI"
-	init_order = INIT_ORDER_AI
 	priority = FIRE_PRIORITY_AI
 	wait = 2 SECONDS
 	flags = SS_NO_INIT

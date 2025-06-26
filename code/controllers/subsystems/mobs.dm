@@ -96,22 +96,14 @@ SUBSYSTEM_DEF(mobs)
 	log_game(msg)
 	log_world(msg)
 
-/datum/controller/subsystem/mobs/fail()
-	..()
-	log_recent()
-
-/datum/controller/subsystem/mobs/critfail()
-	..()
-	log_recent()
-
 /datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
 	if(!L)
 		return
 	if(!L.key || !L.mind)
 		return
-	if(!ticker || !ticker.mode)
+	if(!SSticker || !SSticker.mode)
 		return
-	ticker.mode.check_win()
+	SSticker.mode.check_win()
 
 	// Don't bother with the rest if we've not got a DB to do anything with
 	if(!CONFIG_GET(flag/enable_stat_tracking) || !CONFIG_GET(flag/sql_enabled))

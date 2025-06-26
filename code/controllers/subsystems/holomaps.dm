@@ -4,7 +4,6 @@
 //
 SUBSYSTEM_DEF(holomaps)
 	name = "HoloMiniMaps"
-	init_order = INIT_ORDER_HOLOMAPS
 	flags = SS_NO_FIRE
 	var/static/holomaps_initialized = FALSE
 	var/static/list/holoMiniMaps = list()

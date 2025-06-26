@@ -65,7 +65,10 @@ Class Procs:
 
 SUBSYSTEM_DEF(air)
 	name = "Air"
-	init_order = INIT_ORDER_AIR
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms
+	)
 	priority = FIRE_PRIORITY_AIR
 	wait = 2 SECONDS // seconds (We probably can speed this up actually)
 	flags = SS_BACKGROUND // TODO - Should this really be background? It might be important.

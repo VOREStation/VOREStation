@@ -1,7 +1,10 @@
 SUBSYSTEM_DEF(lighting)
 	name = "Lighting"
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/mapping
+	)
 	wait = 1
-	init_order = INIT_ORDER_LIGHTING
 	flags = SS_TICKER
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY // Do some work during lobby waiting period. May as well.
 	var/sun_mult = 1.0
@@ -20,6 +23,11 @@ SUBSYSTEM_DEF(lighting)
 
 /datum/controller/subsystem/lighting/Initialize()
 	if(!subsystem_initialized)
+		if (CONFIG_GET(flag/starlight))
+			for(var/area/A in world)
+				if (A.dynamic_lighting == DYNAMIC_LIGHTING_IFSTARLIGHT)
+					A.luminosity = 0
+
 		subsystem_initialized = TRUE
 		create_all_lighting_objects()
 
@@ -177,5 +185,5 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting
 
 /datum/controller/subsystem/lighting/Recover()
-	subsystem_initialized = SSlighting.subsystem_initialized
+	initialized = SSlighting.initialized
 	..()
