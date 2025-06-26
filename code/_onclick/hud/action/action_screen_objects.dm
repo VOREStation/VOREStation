@@ -147,7 +147,7 @@
 
 /obj/screen/movable/action_button/proc/dump_save()
 	var/mob/user = our_hud.mymob
-	if(!user?.client)
+	if(!user?.client?.prefs)
 		return
 	LAZYREMOVE(user.client.prefs.action_button_screen_locs, "[name]_[id]")
 

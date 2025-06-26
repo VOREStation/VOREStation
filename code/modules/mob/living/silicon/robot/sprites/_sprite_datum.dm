@@ -66,6 +66,7 @@
 			//Melee Check
 			if(istype(thing_to_check, /obj/item/melee/robotic))
 				var/obj/item/melee/robotic/melee = thing_to_check
+				melee.refresh_light(TRUE)
 				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
 					ourborg.add_overlay("[sprite_icon_state]-melee")
 					continue

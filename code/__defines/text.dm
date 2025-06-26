@@ -21,8 +21,9 @@
 
 #define MAPTEXT(text) {"<span class='maptext'>[##text]</span>"}
 
+// Remove the + 1 at the end once byond fixes the issue. Currently MeasureText returns 1 px too less often
 #define WXH_TO_HEIGHT(measurement, return_var) \
 	do { \
 		var/_measurement = measurement; \
-		return_var = text2num(copytext(_measurement, findtextEx(_measurement, "x") + 1)); \
+		return_var = text2num(copytext(_measurement, findtextEx(_measurement, "x") + 1)) + 1; \
 	} while(FALSE);
