@@ -19,7 +19,7 @@ var/makejson = 1 //temp
 		return
 	var/mode
 	if(ticker)
-		if(ticker.current_state == 1)
+		if(SSticker.current_state == 1)
 			mode = "Round Setup"
 		else if(ticker.hide_mode)
 			mode = "SECRET"

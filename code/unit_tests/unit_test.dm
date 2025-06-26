@@ -29,7 +29,7 @@ var/total_unit_tests = 0
 /proc/initialize_unit_tests()
 	log_unit_test("Initializing Unit Testing")
 
-	if(!ticker)
+	if(!SSticker)
 		stack_trace("No Ticker")
 		world.Del()
 
@@ -44,7 +44,7 @@ var/total_unit_tests = 0
 
 	sleep(1)
 
-	ticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.current_state = GAME_STATE_SETTING_UP
 	Master.SetRunLevel(RUNLEVEL_SETUP)
 
 	log_unit_test("Round has been started.  Waiting 10 seconds to start tests.")
