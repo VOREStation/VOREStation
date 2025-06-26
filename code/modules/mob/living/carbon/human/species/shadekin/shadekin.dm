@@ -131,6 +131,7 @@
 
 /datum/species/shadekin/handle_environment_special(var/mob/living/carbon/human/H)
 	handle_shade(H)
+	..()
 
 /datum/species/shadekin/add_inherent_verbs(var/mob/living/carbon/human/H)
 	..()
