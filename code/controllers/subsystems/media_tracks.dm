@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(media_tracks)
 	name = "Media Tracks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_MEDIA_TRACKS
+	init_stage = INITSTAGE_EARLY
 
 	/// Every track, including secret
 	var/list/all_tracks = list()

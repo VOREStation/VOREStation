@@ -880,7 +880,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
 		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_INIT)
+		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
 		log_admin("[key_name(usr)] has started the game.[msg]")
 		message_admins(span_notice("[key_name_admin(usr)] has started the game.[msg]"))
@@ -1052,7 +1052,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		return 0
 	var/datum/mind/M
 	if (ismob(character))
@@ -1062,8 +1062,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 		M = character
 
 	if(M)
-		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+		if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+			for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 				if(antag.is_antagonist(M))
 					return 2
 		if(M.special_role)
@@ -1197,70 +1197,70 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		tgui_alert_async(usr, "Not before roundstart!", "Alert")
 		return
 
-	var/out = span_large(span_bold("Current mode: [ticker.mode.name] (<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=self'>[ticker.mode.config_tag]</a>)")) + "<br/>"
+	var/out = span_large(span_bold("Current mode: [SSticker.mode.name] (<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=self'>[SSticker.mode.config_tag]</a>)")) + "<br/>"
 	out += "<hr>"
 
-	if(ticker.mode.ert_disabled)
-		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
+	if(SSticker.mode.ert_disabled)
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
 	else
-		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
 	out += "<br/>"
 
-	if(ticker.mode.deny_respawn)
-		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
+	if(SSticker.mode.deny_respawn)
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
 	else
-		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
 	out += "<br/>"
 
-	out += span_bold("Shuttle delay multiplier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
+	out += span_bold("Shuttle delay multiplier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=shuttle_delay'>[SSticker.mode.shuttle_delay]</a><br/>"
 
-	if(ticker.mode.auto_recall_shuttle)
-		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
+	if(SSticker.mode.auto_recall_shuttle)
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
 	else
-		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
 	out += "<br/><br/>"
 
-	if(ticker.mode.event_delay_mod_moderate)
-		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
+	if(SSticker.mode.event_delay_mod_moderate)
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>[SSticker.mode.event_delay_mod_moderate]</a><br/>"
 	else
-		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
 
-	if(ticker.mode.event_delay_mod_major)
-		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
+	if(SSticker.mode.event_delay_mod_major)
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>[SSticker.mode.event_delay_mod_major]</a><br/>"
 	else
-		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
 
 	out += "<hr>"
 
-	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
+	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)
 		out += span_bold("Core antag templates:") + "</br>"
-		for(var/antag_tag in ticker.mode.antag_tags)
-			out += "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
+		for(var/antag_tag in SSticker.mode.antag_tags)
+			out += "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
-	if(ticker.mode.round_autoantag)
-		out += span_bold("Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a>.")
-		if(ticker.mode.antag_scaling_coeff > 0)
-			out += " (scaling with <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
+	if(SSticker.mode.round_autoantag)
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a>.")
+		if(SSticker.mode.antag_scaling_coeff > 0)
+			out += " (scaling with <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>[SSticker.mode.antag_scaling_coeff]</a>)"
 		else
-			out += " (not currently scaling, <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
+			out += " (not currently scaling, <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
 		out += "<br/>"
 	else
-		out += span_bold("Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a>.") + "<br/>"
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a>.") + "<br/>"
 
 	out += span_bold("All antag ids:")
-	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+	if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+		for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 			antag.update_current_antag_max()
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
 	else
 		out += " None."
-	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
+	out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
 	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
 	popup.set_content(out)
@@ -1404,7 +1404,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
@@ -1428,12 +1428,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.try_latespawn()
+	SSticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin.Events"

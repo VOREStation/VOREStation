@@ -139,7 +139,7 @@ jobs:
       - name: Unit Tests
         run: tools/ci/compile_and_run.sh
         env:
-          EXTRA_ARGS: "-DUNIT_TEST -D${{ matrix.map }}"
+          EXTRA_ARGS: "-DUNIT_TESTS -D${{ matrix.map }}"
           RUN: "1"
 
   extra_map_tests:

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(nightshift)
 	name = "Night Shift"
-	init_order = INIT_ORDER_NIGHTSHIFT
+	init_stage = INITSTAGE_LAST
 	priority = FIRE_PRIORITY_NIGHTSHIFT
 	wait = 60 SECONDS
 	flags = SS_NO_TICK_CHECK

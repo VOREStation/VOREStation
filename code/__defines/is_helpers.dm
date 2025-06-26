@@ -90,3 +90,5 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )
 
 #define ismopable(A) (A && (A.plane <= OBJ_PLANE)) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
+
+#define isfloorturf(A) (istype(A, /turf/simulated/floor))

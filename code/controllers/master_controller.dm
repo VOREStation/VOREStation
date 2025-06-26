@@ -42,7 +42,7 @@ var/global/last_tick_duration = 0
 	transfer_controller = new
 	admin_notice(span_danger("Initializations complete."), R_DEBUG)
 
-// #if UNIT_TEST
+// #if UNIT_TESTS
 // # define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
 // #else
 // # define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }

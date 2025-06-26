@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(SSlighting.subsystem_initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		if(SSlighting.initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
 			else
