@@ -10,13 +10,8 @@ export BYOND_MINOR=1664
 # Macro Count
 export MACRO_COUNT=8
 
-<<<<<<< yarnToBun
-# rust_g git tag
-export RUST_G_VERSION=3.9.0
-=======
 #rust_g git tag
 export RUST_G_VERSION=3.11.0
->>>>>>> master
 
 # node version
 export NODE_VERSION_LTS=22.14.0
