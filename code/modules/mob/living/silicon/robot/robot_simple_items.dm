@@ -156,6 +156,7 @@
 	usesound = 'sound/items/Welder2.ogg'
 	toolspeed = 0.5
 	welding = TRUE
+	no_passive_burn = TRUE
 
 /obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
