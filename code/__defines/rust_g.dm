@@ -128,18 +128,6 @@
 	RUSTG_CALL(RUST_G, "dbp_generate")(seed, accuracy, stamp_size, world_size, lower_range, upper_range)
 
 
-/*
- * Syntax Guide: https://docs.rs/caith/latest/caith/#syntax
- * Examples: https://docs.rs/caith/latest/caith/#examples
- *
- * Args:
- * * input: the xdy dice to roll; see syntax guide & examples for proper formatting.
- *
- * Returns:
- * * the total sum of the roll.
- */
-#define rustg_roll_dice(input) text2num(RUSTG_CALL(RUST_G, "roll_dice")("[input]"))
-
 #define rustg_dmi_strip_metadata(fname) RUSTG_CALL(RUST_G, "dmi_strip_metadata")(fname)
 #define rustg_dmi_create_png(path, width, height, data) RUSTG_CALL(RUST_G, "dmi_create_png")(path, width, height, data)
 #define rustg_dmi_resize_png(path, width, height, resizetype) RUSTG_CALL(RUST_G, "dmi_resize_png")(path, width, height, resizetype)
@@ -343,53 +331,6 @@
  */
 #define rustg_generate_path_astar(start_node_id, goal_node_id) RUSTG_CALL(RUST_G, "generate_path_astar")("[start_node_id]", "[goal_node_id]")
 
-#define RUSTG_REDIS_ERROR_CHANNEL "RUSTG_REDIS_ERROR_CHANNEL"
-
-#define rustg_redis_connect(addr) RUSTG_CALL(RUST_G, "redis_connect")(addr)
-/proc/rustg_redis_disconnect() return RUSTG_CALL(RUST_G, "redis_disconnect")()
-#define rustg_redis_subscribe(channel) RUSTG_CALL(RUST_G, "redis_subscribe")(channel)
-/proc/rustg_redis_get_messages() return RUSTG_CALL(RUST_G, "redis_get_messages")()
-#define rustg_redis_publish(channel, message) RUSTG_CALL(RUST_G, "redis_publish")(channel, message)
-
-/**
- * Connects to a given redis server.
- *
- * Arguments:
- * * addr - The address of the server, for example "redis://127.0.0.1/"
- */
-#define rustg_redis_connect_rq(addr) RUSTG_CALL(RUST_G, "redis_connect_rq")(addr)
-/**
- * Disconnects from a previously connected redis server
- */
-/proc/rustg_redis_disconnect_rq() return RUSTG_CALL(RUST_G, "redis_disconnect_rq")()
-/**
- * https://redis.io/commands/lpush/
- *
- * Arguments
- * * key (string) - The key to use
- * * elements (list) - The elements to push, use a list even if there's only one element.
- */
-#define rustg_redis_lpush(key, elements) RUSTG_CALL(RUST_G, "redis_lpush")(key, json_encode(elements))
-/**
- * https://redis.io/commands/lrange/
- *
- * Arguments
- * * key (string) - The key to use
- * * start (string) - The zero-based index to start retrieving at
- * * stop (string) - The zero-based index to stop retrieving at (inclusive)
- */
-#define rustg_redis_lrange(key, start, stop) RUSTG_CALL(RUST_G, "redis_lrange")(key, start, stop)
-/**
- * https://redis.io/commands/lpop/
- *
- * Arguments
- * * key (string) - The key to use
- * * count (string|null) - The amount to pop off the list, pass null to omit (thus just 1)
- *
- * Note: `count` was added in Redis version 6.2.0
- */
-#define rustg_redis_lpop(key, count) RUSTG_CALL(RUST_G, "redis_lpop")(key, count)
-
 /*
  * Takes in a string and json_encode()"d lists to produce a sanitized string.
  * This function operates on whitelists, there is currently no way to blacklist.
@@ -484,9 +425,6 @@
 	else
 		CRASH(output["content"])
 
-#define rustg_unzip_download_async(url, unzip_directory) RUSTG_CALL(RUST_G, "unzip_download_async")(url, unzip_directory)
-#define rustg_unzip_check(job_id) RUSTG_CALL(RUST_G, "unzip_check")("[job_id]")
-
 #define rustg_url_encode(text) RUSTG_CALL(RUST_G, "url_encode")("[text]")
 #define rustg_url_decode(text) RUSTG_CALL(RUST_G, "url_decode")(text)
 
@@ -494,19 +432,3 @@
 	#define url_encode(text) rustg_url_encode(text)
 	#define url_decode(text) rustg_url_decode(text)
 #endif
-
-/**
- * This proc generates a noise grid using worley noise algorithm
- *
- * Returns a single string that goes row by row, with values of 1 representing an alive cell, and a value of 0 representing a dead cell.
- *
- * Arguments:
- * * region_size: The size of regions
- * * threshold: the value that determines wether a cell is dead or alive
- * * node_per_region_chance: chance of a node existiing in a region
- * * size: size of the returned grid
- * * node_min: minimum amount of nodes in a region (after the node_per_region_chance is applied)
- * * node_max: maximum amount of nodes in a region
- */
-#define rustg_worley_generate(region_size, threshold, node_per_region_chance, size, node_min, node_max) \
-	RUSTG_CALL(RUST_G, "worley_generate")(region_size, threshold, node_per_region_chance, size, node_min, node_max)
