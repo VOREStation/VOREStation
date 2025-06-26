@@ -142,13 +142,4 @@
 	if(!has_custom_equipment_sprites)
 		return
 
-	var/obj/item/tool/crowbar/cyborg/C = locate() in module.modules
-	if(C)
-		C.name = "puppy jaws"
-		C.desc = "The jaws of a small dog. Still strong enough to pry things."
-		C.icon = 'icons/mob/dogborg_vr.dmi'
-		C.icon_state = "smalljaws_textless"
-		C.hitsound = 'sound/weapons/bite.ogg'
-		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-
 #undef CUSTOM_BORGSPRITE

@@ -139,6 +139,15 @@
 	force = 10
 	toolspeed = 0.5
 
+/obj/item/tool/crowbar/cyborg/jaws
+	name = "puppy jaws"
+	desc = "The jaws of a small dog. Still strong enough to pry things."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "smalljaws_textless"
+	hitsound = 'sound/weapons/bite.ogg'
+	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+	force = 15
+
 /obj/item/weldingtool/electric/mounted/cyborg
 	name = "integrated electric welding tool"
 	desc = "An advanced welder designed to be used in robotic systems."
