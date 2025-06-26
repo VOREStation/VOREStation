@@ -1,7 +1,7 @@
 [package]
 name = "verdigris"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [lib]
 crate-type = ["cdylib"]
@@ -18,7 +18,7 @@ opt-level = 0
 [dependencies]
 const_format = "0.2.33"
 eyre = "0.6.12"
-meowtonin = { git = "https://github.com/Absolucy/meowtonin.git" }
+meowtonin = { git = "https://github.com/Absolucy/meowtonin.git", branch = "516", features = ["byond-1664"] }
 rand = "0.8.5"
 rayon = "1.10.0"
 
