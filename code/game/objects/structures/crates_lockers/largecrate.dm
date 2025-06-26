@@ -37,7 +37,7 @@
 				if(!AMBLINAL.mind)
 					AMBLINAL.ghostjoin = 1
 					AMBLINAL.ghostjoin_icon()
-					active_ghost_pods |= AMBLINAL
+					GLOB.active_ghost_pods |= AMBLINAL
 			//VOREStation Add End
 		user.visible_message(span_notice("[user] pries \the [src] open."), \
 								span_notice("You pry open \the [src]."), \

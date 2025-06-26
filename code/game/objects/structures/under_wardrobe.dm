@@ -5,6 +5,10 @@
 	icon_state = "wardrobe"
 	density = TRUE
 
+/obj/structure/undies_wardrobe/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/structure/undies_wardrobe/attack_hand(var/mob/user)
 	if(!human_who_can_use_underwear(user))
 		to_chat(user, span_warning("Sadly there's nothing in here for you to wear."))

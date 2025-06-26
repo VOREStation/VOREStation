@@ -51,14 +51,14 @@ How to use - for mappers:
 Important procs, vars etc. contained within the following files:
 
     code\_helpers\global_lists_vr.dm
-        var/list/visitable_overmap_object_instances - Collects instances with reference for things like the Debris Field, Space Whale, Talon etc. We need it to call the proc on the instance
+        GLOBAL_LIST_EMPTY(visitable_overmap_object_instances) - Collects instances with reference for things like the Debris Field, Space Whale, Talon etc. We need it to call the proc on the instance
 
     code\modules\overmap\sectors.dm
         var/list/possible_descriptors - contains a list of list("name","desc","scanner_desc")
         var/unique_identifier - A way to check if the object in question loaded without causing a compiler error. Name them sth easy to recognize, like "Debris field" for... debris field.
         var/real_name - Used to handle known = FALSE overmap objects properly
         var/real_desc - same as real_name
-        /obj/effect/overmap/visitable/Initialize() - adds the object's instance with reference to visitable_overmap_object_instances
+        /obj/effect/overmap/visitable/Initialize() - adds the object's instance with reference to GLOB.visitable_overmap_object_instances
 
     code\modules\awaymissions\overmap_renamer\overmap_renamer.dm
         /obj/effect/overmap/visitable/proc/modify_descriptors() - Takes possible_descriptors from src, picks a valid one after sanitization. Gives warnings if input is invalid.
