@@ -8,7 +8,11 @@ SUBSYSTEM_DEF(shuttles)
 	name = "Shuttles"
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_SHUTTLES
-	init_order = INIT_ORDER_SHUTTLES
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/air,
+	)
 	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 

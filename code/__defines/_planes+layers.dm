@@ -204,6 +204,12 @@ What is the naming convention for planes or layers?
 
 #define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
 
+///Plane of the "splash" icon used that shows on the lobby screen
+#define SPLASHSCREEN_PLANE 100
+
+///cinematics are "below" the splash screen
+#define CINEMATIC_LAYER -1
+
 
 //////////////////////////
 /atom/proc/hud_layerise()

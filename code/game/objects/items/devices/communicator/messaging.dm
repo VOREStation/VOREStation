@@ -118,7 +118,7 @@
 	set name = "Text Communicator"
 	set desc = "If there is a communicator available, send a text message to it."
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
