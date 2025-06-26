@@ -45,8 +45,17 @@
 			unpause()
 		statue.damage(-0.5)
 		energy = min(energy+0.3, 100)
+
+		//This is where we do all the 'make sure we don't die in statue form' stuff (unless you succumb or take MASSIVE damage.)
+		//Bloodloss will still kill us, but if we are patient enough, we'll survive most other stuff.
+		//If we had 150 brute (crit for most species) it'll take 3000 seconds (50 minutes) to heal back to full hp...So yes, while you can heal, it's not a good idea.
+		if(gargoyle.health < gargoyle.getMaxHealth())
+			gargoyle.adjustBruteLoss(-0.1)
+			gargoyle.adjustFireLoss(-0.1)
+			gargoyle.adjustOxyLoss(-1) //So you don't suffocate to death.
+			gargoyle.adjustToxLoss(-0.1)
+			gargoyle.adjustCloneLoss(-0.02) //yeah this is uber slow, no cheese allowed by combining it with bad genetics.
 		return //Early return. If we're transformed, we can stop, we don't need to check anything else.
-	//99% of the time we'll be walking around w/ + energy, so let's check that first.
 	if(energy > 0)
 		if(!transformed && !paused)
 			energy = max(0,energy-0.05)
