@@ -189,7 +189,10 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 /// `prey` may be a string or a specific prey ref.
 /obj/belly/proc/belly_format_string(message, prey, use_absorbed_count = FALSE, item = null, dest = null, use_first_only = FALSE)
 	if(islist(message))
-		. = "[pick(message)]"
+		if(!LAZYLEN(message))
+			. = ""
+		else
+			. = "[pick(message)]"
 	else
 		. = "[message]"
 
@@ -236,6 +239,8 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	. = replacetext(., "%snack", use_first_only ? GLOB.vore_words_snackname[1] : pick(GLOB.vore_words_snackname))
 	. = replacetext(., "%hot", use_first_only ? GLOB.vore_words_hot[1] : pick(GLOB.vore_words_hot))
 	. = replacetext(., "%snake", use_first_only ? GLOB.vore_words_snake[1] : pick(GLOB.vore_words_snake))
+	if(!.)
+		. = "No message set for this action. Please inform your pred to fix this."
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
