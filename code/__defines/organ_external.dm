@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(storeable_amputated_organs, list(
+GLOBAL_LIST_INIT(storable_amputated_organs, list(
 	BP_L_FOOT,
 	BP_R_FOOT,
 	BP_L_LEG,
