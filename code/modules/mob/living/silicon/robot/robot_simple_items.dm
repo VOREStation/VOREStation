@@ -1,5 +1,5 @@
 // Robot toolbelts, such as screwdrivers and the like. All contained in one neat little package.
-// The code for actually 'how these use the item inside of them instead of the item itself' can be found in _onclick/cyborg.dm (yes, click code, gross, I know.)
+// The code for actually 'how these use the item inside of them instead of the item itself' can be found in code\modules\mob\living\silicon\robot\inventory.dm (yes, click code, gross, I know.)
 /*
  * Engineering Tools
  */
