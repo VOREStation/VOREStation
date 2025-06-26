@@ -700,7 +700,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), created_volume)
+	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), round(created_volume))
 	return
 
 /* Grenade reactions */
