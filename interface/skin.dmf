@@ -202,7 +202,7 @@ macro "borghotkeymode"
 		command = "Activate-Held-Object"
 	elem
 		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		command = "Robot-Activate-Held-Object"
 	elem
 		name = "U"
 		command = "Rest"
@@ -955,7 +955,7 @@ macro "borgmacro"
 		command = "Activate-Held-Object"
 	elem
 		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		command = "Robot-Activate-Held-Object"
 	elem
 		name = "CTRL+U"
 		command = "Rest"

@@ -6,7 +6,7 @@
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt. Use CTRL-CLICK to interact with the selected item!"
+	desc = "An integrated toolbelt. Use CTRL-CLICK to interact with the selected item! Use CTRL-Z to open the radial menu!"
 
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
