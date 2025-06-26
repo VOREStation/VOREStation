@@ -3,7 +3,7 @@
 	desc = "A very lifelike carving."
 	density = TRUE
 	anchored = TRUE
-	var/mob/living/carbon/human/gargoyle
+	var/datum/weakref/WR_gargoyle
 	var/initial_sleep
 	var/initial_blind
 	var/initial_is_shifted
@@ -44,7 +44,7 @@
 		adjective = length(comp.adjective) > 0 ? comp.adjective : initial(adjective)
 		if (copytext_char(adjective, -1) != "s")
 			adjective += "s"
-	gargoyle = H
+	WR_gargoyle = WEAKREF(H)
 
 	if (H.get_effective_size(TRUE) < 0.5) // "So small! I can step over it!"
 		density = FALSE
@@ -119,7 +119,6 @@
 	if (H.appearance_flags & PIXEL_SCALE)
 		appearance_flags |= PIXEL_SCALE
 	wagging = H.wagging
-	H.transforming = TRUE
 	flapping = H.flapping
 	H.toggle_tail(FALSE, FALSE)
 	H.toggle_wing(FALSE, FALSE)
@@ -137,18 +136,22 @@
 
 /obj/structure/gargoyle/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if (!gargoyle)
 		return ..()
-	if (can_revert)
+	if(can_revert)
 		unpetrify(deleting = FALSE) //don't delete if we're already deleting!
 	else
 		visible_message(span_warning("The [identifier] loses shape and crumbles into a pile of [material]!"))
+	WR_gargoyle = null
 	. = ..()
 
 /obj/structure/gargoyle/process()
-	if (!gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
 		qdel(src)
-	if (gargoyle.loc != src)
+		return
+	if(gargoyle.loc != src)
 		can_revert = TRUE //something's gone wrong, they escaped, lets not qdel them
 		unpetrify(deal_damage = FALSE, deleting = TRUE)
 
@@ -158,20 +161,23 @@
 	return examine_icon
 
 /obj/structure/gargoyle/get_description_info()
-	if (gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(gargoyle)
 		if (isspace(loc) || isopenspace(loc))
 			return
 		return "It can be [anchored ? "un" : ""]anchored with a wrench."
 
 /obj/structure/gargoyle/examine(mob/user)
 	. = ..()
-	if (gargoyle && stored_examine)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(gargoyle && stored_examine)
 		. += "The [identifier] seems to have a bit more to them..."
 		. += stored_examine
 	return
 
 /obj/structure/gargoyle/proc/unpetrify(var/deal_damage = TRUE, var/deleting = FALSE)
-	if (!gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
 		return
 	var/datum/component/gargoyle/comp = gargoyle.GetComponent(/datum/component/gargoyle)
 	if (comp)
@@ -196,7 +202,6 @@
 	gargoyle.status_flags &= ~GODMODE
 	gargoyle.SetBlinded(initial_blind)
 	gargoyle.SetSleeping(initial_sleep)
-	gargoyle.transforming = FALSE
 	gargoyle.canmove = 1
 	gargoyle.update_canmove()
 	var/hurtmessage = ""
@@ -239,6 +244,7 @@
 	damage(damage)
 
 /obj/structure/gargoyle/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(W.is_wrench())
 		if (isspace(loc) || isopenspace(loc))
 			to_chat(user, span_warning("You can't anchor that here!"))
@@ -274,12 +280,15 @@
 		add_overlay(tail_image)
 
 /obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
-	if(istype(AM,/obj/item) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
+		return
+	if(istype(AM,/obj/item) && gargoyle.vore_selected && gargoyle.trash_catching)
 		var/obj/item/I = AM
 		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
 			gargoyle.hitby(AM, speed)
 			return
-	else if(isliving(AM) && gargoyle)
+	else if(isliving(AM))
 		var/mob/living/L = AM
 		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
 			var/drop_prey_temp = FALSE
