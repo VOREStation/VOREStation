@@ -245,7 +245,7 @@
 	GLOB.directory[ckey] = src
 
 	if (CONFIG_GET(flag/chatlog_database_backend))
-		chatlog_token = vchatlog_generate_token(ckey)
+		chatlog_token = vchatlog_generate_token(ckey, GLOB.round_id)
 
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")

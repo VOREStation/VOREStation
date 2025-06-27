@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - code_imp: "Reagent unit-test is more strict about duplicated reagent names"

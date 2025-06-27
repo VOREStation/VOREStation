@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "dna block injectors no longer show their entire genome, and instead just the relevant block. Doesn't affect full sequence injectors."
+  - bugfix: "dna resequencers from the body record console should not do radiation damage"
