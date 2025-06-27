@@ -98,6 +98,8 @@
 			output += span_infoplain("Bloodtype: [I.buf.dna.b_type]") + "<br>"
 			output += span_boldnotice("Detected genes:") + "<br>"
 			for(var/datum/gene/G in GLOB.dna_genes)
+				if(I.block && G.block != I.block)
+					continue
 				if(!I.buf.dna.GetSEState(G.block))
 					continue
 				var/dna_val = I.buf.dna.GetSEValue(G.block)
