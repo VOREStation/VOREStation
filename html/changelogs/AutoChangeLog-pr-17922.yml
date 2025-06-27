@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - bugfix: "Fixed a query in chatlogging"
