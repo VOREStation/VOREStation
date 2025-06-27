@@ -309,7 +309,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 /datum/ticket/proc/AddInteraction(formatted_message)
 	var/curinteraction = "[gameTimestamp()]: [formatted_message]"
-	if(CONFIG_GET(flag/discord_ahelps_all))	//CHOMPEdit
+	if(CONFIG_GET(flag/discord_ahelps_all))
 		ahelp_discord_message("ADMINHELP: TICKETID:[id] [strip_html_properly(curinteraction)]")
 	_interactions += curinteraction
 
