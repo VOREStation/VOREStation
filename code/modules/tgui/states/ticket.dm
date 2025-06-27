@@ -1,9 +1,8 @@
 /**
-  * tgui state: ticket_state
-  *
-  * Grants the user UI_INTERACTIVE, if a ticket is open.
-  * TODO: FIXME: Should be fixed maybe?
- **/
+ * tgui state: ticket_state
+ *
+ * Grants the user UI_INTERACTIVE, if a ticket is open.
+ */
 
 GLOBAL_DATUM_INIT(tgui_ticket_state, /datum/tgui_state/ticket_state, new)
 
