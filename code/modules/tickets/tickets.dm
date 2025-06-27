@@ -166,9 +166,10 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 /obj/effect/statclick/ticket_list
 	var/current_state
 
-/obj/effect/statclick/ticket_list/New(loc, name, state)
+INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
+/obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
 	current_state = state
-	..()
+	. = ..()
 
 /obj/effect/statclick/ticket_list/Click()
 	GLOB.tickets.BrowseTickets(current_state)
@@ -308,7 +309,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 
 /datum/ticket/proc/AddInteraction(formatted_message)
 	var/curinteraction = "[gameTimestamp()]: [formatted_message]"
-	if(CONFIG_GET(flag/discord_ahelps_all))
+	if(CONFIG_GET(flag/discord_ahelps_all))	//CHOMPEdit
 		ahelp_discord_message("ADMINHELP: TICKETID:[id] [strip_html_properly(curinteraction)]")
 	_interactions += curinteraction
 
@@ -562,7 +563,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		return
 
 	if(handler == key_name(usr, FALSE, TRUE))
-		to_chat(span_red("You are already handling this ticket."))
+		to_chat(usr, span_red("You are already handling this ticket."))
 		return
 
 	var/msg = span_red("Your AdminHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.")
@@ -648,9 +649,10 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 /obj/effect/statclick/ticket
 	var/datum/ticket/ticket_datum
 
-/obj/effect/statclick/ticket/New(loc, datum/ticket/T)
+INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
+/obj/effect/statclick/ticket/Initialize(mapload, datum/ticket/T)
 	ticket_datum = T
-	..(loc)
+	. = ..()
 
 /obj/effect/statclick/ticket/update()
 	return ..(ticket_datum.name)
