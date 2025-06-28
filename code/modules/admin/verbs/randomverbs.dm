@@ -449,7 +449,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", joblist + "-No Job-", "-No Job-")
+		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", GLOB.joblist + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")

@@ -3,7 +3,7 @@
 
 GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
 var/global/list/mob_list = list()					//List of all mobs, including clientless
-GLOBAL_LIST_EMPTY(GLOB.human_mob_list)				//List of all human mobs and sub-types, including clientless
+GLOBAL_LIST_EMPTY(human_mob_list)					//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)					//List of all alive mobs, including clientless. Excludes /mob/new_player
@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(landmarks_list)					//list of all landmarks created
 GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(landmark references) for event triggers
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
-var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
+GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
-		joblist[J.title] = J
+		GLOB.joblist[J.title] = J
 
 	//Languages
 	paths = subtypesof(/datum/language)
