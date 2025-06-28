@@ -91,8 +91,8 @@
 						M.b_ears3 = color_rgb_list[3]
 			M.update_hair()
 	// handle secondary ears
-	if(length(ear_secondary_type) && (ear_secondary_type[1] in global.GLOB.ear_styles_list))
-		M.ear_secondary_style = global.GLOB.ear_styles_list[ear_secondary_type[1]]
+	if(length(ear_secondary_type) && (ear_secondary_type[1] in GLOB.ear_styles_list))
+		M.ear_secondary_style = GLOB.ear_styles_list[ear_secondary_type[1]]
 		if(length(ear_secondary_type) > 1)
 			M.ear_secondary_colors = ear_secondary_type.Copy(2, min(length(GLOB.fancy_sprite_accessory_color_channel_names), length(ear_secondary_type)) + 1)
 

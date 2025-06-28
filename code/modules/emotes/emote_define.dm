@@ -5,9 +5,9 @@
 // - Impaired messages do not do any substitutions.
 
 /proc/get_emote_by_key(var/key)
-	if(!global.GLOB.emotes_by_key)
+	if(!GLOB.emotes_by_key)
 		decls_repository.get_decls_of_type(/decl/emote) // GLOB.emotes_by_key will be updated in emote Initialize()
-	return global.GLOB.emotes_by_key[key]
+	return GLOB.emotes_by_key[key]
 
 /decl/emote
 	var/key                                             // Command to use emote ie. '*[key]'
@@ -47,7 +47,7 @@
 /decl/emote/Initialize(mapload)
 	. = ..()
 	if(key)
-		LAZYSET(global.GLOB.emotes_by_key, key, src)
+		LAZYSET(GLOB.emotes_by_key, key, src)
 
 /decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)

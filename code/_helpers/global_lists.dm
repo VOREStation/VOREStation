@@ -36,8 +36,6 @@ GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 			HERM = "Shi/Hir"\
 			)
 
-var/list/mannequins_
-
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
@@ -89,7 +87,7 @@ GLOBAL_LIST_EMPTY(ore_data)
 GLOBAL_LIST_EMPTY(alloy_data)
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
-var/global/list/string_part_flags = list(
+GLOBAL_LIST_INIT(string_part_flags, list(
 	"head" = HEAD,
 	"face" = FACE,
 	"eyes" = EYES,
@@ -99,10 +97,10 @@ var/global/list/string_part_flags = list(
 	"feet" = FEET,
 	"arms" = ARMS,
 	"hands" = HANDS
-)
+))
 
 // Strings which corraspond to slot flags, useful for outputting what slot something is.
-var/global/list/string_slot_flags = list(
+GLOBAL_LIST_INIT(string_slot_flags, list(
 	"back" = SLOT_BACK,
 	"face" = SLOT_MASK,
 	"waist" = SLOT_BELT,
@@ -116,7 +114,7 @@ var/global/list/string_slot_flags = list(
 	"body" = SLOT_ICLOTHING,
 	"uniform" = SLOT_TIE,
 	"holster" = SLOT_HOLSTER
-)
+))
 
 GLOBAL_LIST_EMPTY(mannequins)
 /proc/get_mannequin(var/ckey = "NULL")
@@ -349,12 +347,10 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
 	GLOB.legacy_globals["cameranet"] = cameranet
 	GLOB.legacy_globals["cultnet"] = cultnet
-	GLOB.legacy_globals["existing_solargrubs"] = GLOB.existing_solargrubs
 
 GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Default" = FOOTSTEP_MOB_HUMAN,
