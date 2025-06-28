@@ -60,7 +60,7 @@
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	wires = new(src)
-	internal_channels = default_internal_channels.Copy()
+	internal_channels = GLOB.default_internal_channels.Copy()
 	GLOB.listening_objects += src
 
 	if(bluespace_radio && (bs_tx_preload_id || bs_rx_preload_id))
@@ -743,7 +743,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/radio/phone/medbay/Initialize(mapload)
 	. = ..()
-	internal_channels = default_medbay_channels.Copy()
+	internal_channels = GLOB.default_medbay_channels.Copy()
 
 /obj/item/radio/proc/can_broadcast_to()
 	var/list/output = list()

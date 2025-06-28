@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(radio_channels_by_freq, list(
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
-var/global/list/default_internal_channels = list(
+GLOBAL_LIST_INIT(default_internal_channels, list(
 	num2text(PUB_FREQ) = list(),
 	num2text(AI_FREQ)  = list(access_synth),
 	num2text(ENT_FREQ) = list(),
@@ -671,10 +671,10 @@ var/global/list/default_internal_channels = list(
 	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
 	num2text(EXP_FREQ) = list(access_explorer)
-)
+))
 
-var/global/list/default_medbay_channels = list(
+GLOBAL_LIST_INIT(default_medbay_channels, list(
 	num2text(PUB_FREQ) = list(),
 	num2text(MED_FREQ) = list(),
 	num2text(MED_I_FREQ) = list()
-)
+))
