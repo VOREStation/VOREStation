@@ -1,11 +1,14 @@
 // Handles map-related tasks, mostly here to ensure it does so after the MC initializes.
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	dependencies = list(
-		/datum/controller/subsystem/job,
+	//dependencies = list(
+	//	/datum/controller/subsystem/job,
 		///datum/controller/subsystem/processing/station,
-		/datum/controller/subsystem/chemistry
-		///datum/controller/subsystem/processing/reagents
+	//	/datum/controller/subsystem/chemistry
+	//	///datum/controller/subsystem/processing/reagents
+	//)
+	dependencies = list(
+		/datum/controller/subsystem/garbage
 	)
 	flags = SS_NO_FIRE
 

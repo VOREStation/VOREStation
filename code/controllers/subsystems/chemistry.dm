@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(chemistry)
 	wait = 20
 	flags = SS_NO_FIRE
 	dependencies = list(
-		/datum/controller/subsystem/atoms
+		/datum/controller/subsystem/garbage
 	)
 
 	var/list/chemical_reactions = list()

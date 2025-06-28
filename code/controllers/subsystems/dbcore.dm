@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(dbcore)
 	name = "Database"
 	flags = SS_TICKER
-	init_stage = INITSTAGE_FIRST
+	init_stage = INITSTAGE_EARLY
 	wait = 10 // Not seconds because we're running on SS_TICKER
 	runlevels = RUNLEVEL_LOBBY|RUNLEVELS_DEFAULT
 	priority = FIRE_PRIORITY_DATABASE

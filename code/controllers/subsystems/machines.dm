@@ -10,7 +10,7 @@
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	dependencies = list(
-		/datum/controller/subsystem/atoms
+		/datum/controller/subsystem/points_of_interest
 	)
 	priority = FIRE_PRIORITY_MACHINES
 	flags = SS_KEEP_TIMING
