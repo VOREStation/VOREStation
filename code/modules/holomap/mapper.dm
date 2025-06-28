@@ -261,8 +261,8 @@
 			map_app.icon = icon(SSholomaps.holoMiniMaps[T.z])
 
 			// Apply markers
-			for(var/marker in holomap_markers)
-				var/datum/holomap_marker/holomarker = holomap_markers[marker]
+			for(var/marker in GLOB.holomap_markers)
+				var/datum/holomap_marker/holomarker = GLOB.holomap_markers[marker]
 				if(holomarker.z == T_z && holomarker.filter & mapper_filter)
 					var/image/markerImage = image(holomarker.icon,holomarker.id)
 					markerImage.plane = FLOAT_PLANE

@@ -42,7 +42,7 @@ var/list/mannequins_
 GLOBAL_LIST_EMPTY(respawn_timers)
 
 // Holomaps
-var/global/list/holomap_markers = list()
+GLOBAL_LIST_EMPTY(holomap_markers)
 var/global/list/mapping_units = list()
 var/global/list/mapping_beacons = list()
 
