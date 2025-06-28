@@ -546,7 +546,7 @@ var/list/preferences_datums = list()
 	var/priority = 0
 	for(var/M in body_markings)
 		priority += 1
-		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
+		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]

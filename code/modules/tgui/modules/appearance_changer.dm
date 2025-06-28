@@ -423,29 +423,29 @@
 				switch (todo)
 					if (0) //delete
 						if (name_marking)
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.remove_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (1) //add
 						if(name_marking && can_still_topic(ui.user, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.add_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (2) //move up
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, FALSE))
 							return TRUE
 					if (3) //move down
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, TRUE))
 							return TRUE
 					if (4) //color
 						var/current = markings[name_marking] ? markings[name_marking]["color"] : "#000000"
 						var/marking_color = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
 						if(marking_color && can_still_topic(ui.user, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.change_marking_color(mark_datum, marking_color))
 								return TRUE
 		if("rotate_view")
@@ -705,12 +705,12 @@
 		data["wing_styles"] = valid_wingstyles
 
 		markings = owner.get_prioritised_markings()
-		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
+		var/list/usable_markings = markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
 			if(marking_style == DEVELOPER_WARNING_NAME)
 				continue
-			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
+			var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[marking_style]
 			var/our_iconstate = S.icon_state
 			if(LAZYLEN(S.body_parts))
 				our_iconstate += "-[S.body_parts[1]]"

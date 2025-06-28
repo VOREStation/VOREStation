@@ -67,7 +67,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		.[instance.name] = instance
 
 /datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
-	var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[marking]
+	var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[marking]
 	var/list/new_marking = marking_value||mark_datum.body_parts
 	for (var/NM in new_marking)
 		if (marking_value && !islist(new_marking[NM])) continue
@@ -141,7 +141,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	if(!pref.organ_data) pref.organ_data = list()
 	if(!pref.rlimb_data || !islist(pref.rlimb_data)) pref.rlimb_data = list()
 	if(!pref.body_markings) pref.body_markings = list()
-	else pref.body_markings &= body_marking_styles_list
+	else pref.body_markings &= GLOB.body_marking_styles_list
 	for (var/M in pref.body_markings)
 		if (!islist(pref.body_markings[M]))
 			var/col = istext(pref.body_markings[M]) ? pref.body_markings[M] : "#000000"
@@ -246,7 +246,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	var/priority = 0
 	for(var/M in pref.body_markings)
 		priority += 1
-		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
+		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
@@ -444,8 +444,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["ear_styles"] = ear_styles
 
 	var/list/body_markings = list()
-	for(var/path in body_marking_styles_list)
-		var/datum/sprite_accessory/marking/S = body_marking_styles_list[path]
+	for(var/path in GLOB.body_marking_styles_list)
+		var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[path]
 
 		var/icon_state = S.icon_state
 		if(LAZYLEN(S.body_parts))
@@ -542,7 +542,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 		/* Markings */
 		if("add_marking")
-			var/list/usable_markings = pref.body_markings.Copy() ^ body_marking_styles_list.Copy()
+			var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
 			var/new_marking = params["new_marking"]
 			if(new_marking && (new_marking in usable_markings))
 				pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
