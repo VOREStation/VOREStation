@@ -245,12 +245,12 @@
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
 	if(ckey)
-		paikeys -= ckey
+		GLOB.paikeys -= ckey
 	return ..()
 
 /mob/living/silicon/pai/clear_client()
 	if(ckey)
-		paikeys -= ckey
+		GLOB.paikeys -= ckey
 	return ..()
 
 /mob/living/silicon/pai/proc/add_eyes()

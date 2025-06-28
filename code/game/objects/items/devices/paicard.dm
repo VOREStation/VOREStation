@@ -73,7 +73,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 		to_chat(user,span_warning("You cannot join a pAI card when you are banned from playing as a pAI."))
 		return
 
-	for(var/ourkey in paikeys)
+	for(var/ourkey in GLOB.paikeys)
 		if(ourkey == user.ckey)
 			to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
 			return
@@ -96,14 +96,14 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 		else
 			var/obj/item/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 
@@ -112,7 +112,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
@@ -123,7 +123,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
