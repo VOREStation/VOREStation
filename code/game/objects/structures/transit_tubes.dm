@@ -13,13 +13,6 @@
 	var/exit_delay = 2
 	var/enter_delay = 1
 
-	// GLOB.alldirs in global.dm is the same list of directions, but since
-	//  the specific order matters to get a usable icon_state, it is
-	//  copied here so that, in the unlikely case that GLOB.alldirs is changed,
-	//  this continues to work.
-	var/global/list/tube_dir_list = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-
-
 // A place where tube pods stop, and people can get in or out.
 // Mappers: use "Generate Instances from Directions" for this
 //  one.
@@ -439,7 +432,7 @@
 	var/list/connected = list()
 	var/list/connected_auto = list()
 
-	for(var/direction in tube_dir_list)
+	for(var/direction in GLOB.tube_dir_list)
 		var/location = get_step(loc, direction)
 		for(var/obj/structure/transit_tube/tube in location)
 			if(tube.directions() == null && tube.icon_state == "auto")
@@ -454,7 +447,7 @@
 
 	tube_dirs = select_automatic_dirs(connected)
 
-	if(length(tube_dirs) == 2 && tube_dir_list.Find(tube_dirs[1]) > tube_dir_list.Find(tube_dirs[2]))
+	if(length(tube_dirs) == 2 && GLOB.tube_dir_list.Find(tube_dirs[1]) > GLOB.tube_dir_list.Find(tube_dirs[2]))
 		tube_dirs.Swap(1, 2)
 
 	generate_automatic_corners(tube_dirs)

@@ -933,3 +933,47 @@ GLOBAL_LIST_INIT(xeno2ChemList, list(REAGENT_ID_INAPROVALINE,
 						REAGENT_ID_CAPSAICIN,
 						REAGENT_ID_CONDENSEDCAPSAICIN,
 						REAGENT_ID_NEUROTOXIN))
+
+//keep synced with the defines BE_* in setup.dm --rastaf
+//some autodetection here.
+//Change these to 0 if the equivalent mode is disabled for whatever reason!
+GLOBAL_LIST_INIT(special_roles, list(
+	"traitor" = 0,										// 0
+	"operative" = 0,									// 1
+	"changeling" = 0,									// 2
+	"wizard" = 0,										// 3
+	"malf AI" = 0,										// 4
+	"revolutionary" = 0,								// 5
+	"alien candidate" = 0,								// 6
+	"positronic brain" = 1,								// 7
+	"cultist" = 0,										// 8
+	"renegade" = 0,										// 9
+	"ninja" = 0,										// 10
+	"raider" = 0,										// 11
+	"diona" = 0,										// 12
+	"mutineer" = 0,										// 13
+	"loyalist" = 0,										// 14
+	"pAI candidate" = 1,								// 15
+	"lost drone" = 1,									// 16
+	"maint pred" = 1,									// 17
+	"maint lurker" = 1,									// 18
+	"morph" = 1,										// 19
+	"corgi" = 1,										// 20
+	"cursed sword" = 1,									// 21
+	"Ship Survivor" = 1,								// 22
+))
+
+
+// GLOB.alldirs in global.dm is the same list of directions, but since
+//  the specific order matters to get a usable icon_state, it is
+//  copied here so that, in the unlikely case that GLOB.alldirs is changed, transit_tube.dm
+//  continues to work.
+GLOBAL_LIST_INIT(tube_dir_list, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST))
