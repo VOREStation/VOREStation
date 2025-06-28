@@ -836,7 +836,7 @@ var/global/datum/controller/occupations/job_master
 			var/list/items = list()
 			var/list/item_names = list()
 			var/list/carriers = list()
-			for(var/obj/item/I in item_tf_spawnpoints)
+			for(var/obj/item/I in GLOB.item_tf_spawnpoints)
 				if(LAZYLEN(I.ckeys_allowed_itemspawn))
 					if(!(C.ckey in I.ckeys_allowed_itemspawn))
 						continue

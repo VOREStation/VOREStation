@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 	REAGENT_ID_SUPERMATTER
 	))
 
-var/global/list/item_tf_spawnpoints = list() // Global variable tracking which items are item tf spawnpoints
+GLOBAL_LIST_EMPTY(item_tf_spawnpoints) // Global variable tracking which items are item tf spawnpoints
 
 // Options for transforming into a different mob in virtual reality.
 var/global/list/vr_mob_tf_options = list(
