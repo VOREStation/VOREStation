@@ -16,8 +16,7 @@ var/global/list/cable_list = list()					//Index for all cables, so that powernet
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
-GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
@@ -366,7 +365,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["cable_list"] = cable_list
 	GLOB.legacy_globals["landmarks_list"] = landmarks_list
 	GLOB.legacy_globals["event_triggers"] = event_triggers
-	GLOB.legacy_globals["side_effects"] = side_effects
 	//GLOB.legacy_globals["mechas_list"] = GLOB.mechas_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
