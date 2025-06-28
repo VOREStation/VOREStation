@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			if(antag)
 				antag_templates |= antag
 
-	newscaster_announcements = pick(newscaster_standard_feeds)
+	newscaster_announcements = pick(GLOB.newscaster_standard_feeds)
 
 /datum/game_mode/proc/check_victory()
 	return
