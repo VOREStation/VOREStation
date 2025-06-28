@@ -15,7 +15,7 @@ var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently t
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
-var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
+GLOBAL_LIST_EMPTY(GLOB.surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
-		surgery_steps += S
+		GLOB.surgery_steps += S
 	sort_surgeries()
 
 	//List of job. I can't believe this was calculated multiple times per tick!
