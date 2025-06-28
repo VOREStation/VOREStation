@@ -25,7 +25,6 @@ const createStats = (verbose) => ({
 
 module.exports = (env = {}, argv) => {
   const mode = argv.mode || 'production';
-  const bench = env.TGUI_BENCH;
   const config = {
     mode,
     context: path.resolve(__dirname),
@@ -71,23 +70,12 @@ module.exports = (env = {}, argv) => {
         {
           test: /\.(s)?css$/,
           use: [
-            {
-              loader: ExtractCssPlugin.loader,
-              options: {
-                esModule: false,
-              },
-            },
-            {
-              loader: require.resolve('css-loader'),
-              options: {
-                esModule: false,
-              },
-            },
-            {
-              loader: require.resolve('sass-loader'),
-            },
+            ExtractCssPlugin.loader,
+            require.resolve('css-loader'),
+            require.resolve('sass-loader'),
           ],
         },
+
         {
           test: /\.(cur|png|jpg)$/,
           type: 'asset/resource',
@@ -126,9 +114,7 @@ module.exports = (env = {}, argv) => {
     stats: createStats(true),
     plugins: [
       new webpack.EnvironmentPlugin({
-        NODE_ENV: env.NODE_ENV || mode,
-        WEBPACK_HMR_ENABLED: env.WEBPACK_HMR_ENABLED || argv.hot || false,
-        DEV_SERVER_IP: env.DEV_SERVER_IP || null,
+        NODE_ENV: mode,
       }),
       new ExtractCssPlugin({
         filename: '[name].bundle.css',
@@ -136,12 +122,6 @@ module.exports = (env = {}, argv) => {
       }),
     ],
   };
-
-  if (bench) {
-    config.entry = {
-      'tgui-bench': ['./packages/tgui-bench/entrypoint'],
-    };
-  }
 
   // Production build specific options
   if (mode === 'production') {
@@ -153,15 +133,15 @@ module.exports = (env = {}, argv) => {
       }),
     ];
   } else {
-    config.devtool = 'cheap-module-source-map';
-
     config.devServer = {
+      clientLogLevel: 'silent',
+      hot: true,
+      noInfo: false,
       progress: false,
       quiet: false,
-      noInfo: false,
-      clientLogLevel: 'silent',
       stats: createStats(false),
     };
+    config.devtool = 'cheap-module-source-map';
   }
 
   return config;
