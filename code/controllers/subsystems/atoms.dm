@@ -1,11 +1,12 @@
 SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
 	dependencies = list(
-		///datum/controller/subsystem/chemistry,
-		///datum/controller/subsystem/processing/reagents,
-		///datum/controller/subsystem/fluids,
+		/datum/controller/subsystem/garbage,
 		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/job,
+		/datum/controller/subsystem/plants,
+		/datum/controller/subsystem/planets,
+		/datum/controller/subsystem/transcore,
+		/datum/controller/subsystem/chemistry
 	)
 	flags = SS_NO_FIRE
 

@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(webhooks)
 	name = "Webhooks"
-	init_stage = INITSTAGE_EARLY
+	dependencies = list(
+		/datum/controller/subsystem/server_maint,
+	)
 	flags = SS_NO_FIRE
 	var/list/webhook_decls = list()
 
