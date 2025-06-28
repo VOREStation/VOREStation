@@ -569,3 +569,6 @@ var/global/list/vr_mob_spawner_options = list(
 	"Stok" = /mob/living/carbon/human/stok,
 	//"Gryphon" = /mob/living/simple_mob/vore/gryphon // Disabled until tested
 	)
+
+//global lists I found in various files and moved here for housekeeping
+GLOBAL_LIST_EMPTY(stool_cache) //haha stool
