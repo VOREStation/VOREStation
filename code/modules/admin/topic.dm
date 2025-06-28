@@ -30,7 +30,7 @@
 		return
 
 	if(href_list["ticket"])
-		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT|R_MENTOR))
 			return
 
 		var/ticket_ref = href_list["ticket"]

@@ -179,7 +179,6 @@
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
-		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
@@ -264,10 +263,6 @@
 	if(holder)
 		GLOB.admins += src
 		holder.owner = src
-
-	mentorholder = mentor_datums[ckey]
-	if (mentorholder)
-		mentorholder.associate(GLOB.directory[ckey])
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -385,9 +380,6 @@
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
-	if (mentorholder)
-		mentorholder.owner = null
-		GLOB.mentors -= src
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 

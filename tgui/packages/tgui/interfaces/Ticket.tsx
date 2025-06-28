@@ -1,5 +1,5 @@
 /* eslint react/no-danger: "off" */
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -15,14 +15,14 @@ import { KEY } from 'tgui-core/keys';
 import { round, toFixed } from 'tgui-core/math';
 
 const Level = {
-  0: 'Adminhelp',
-  1: 'Mentorhelp',
+  0: 'Mentorhelp',
+  1: 'Adminhelp',
   2: 'GM Request',
 };
 
 const LevelColor = {
-  0: 'red',
-  1: 'green',
+  0: 'green',
+  1: 'red',
   2: 'pink',
 };
 
@@ -61,7 +61,7 @@ export const Ticket = (props) => {
   const { act, data } = useBackend<Data>();
   const [ticketChat, setTicketChat] = useState('');
 
-  const messagesEndRef: RefObject<HTMLDivElement> = useRef(null);
+  const messagesEndRef: RefObject<HTMLDivElement | null> = useRef(null);
 
   useEffect(() => {
     const scroll = messagesEndRef.current;
@@ -168,12 +168,11 @@ export const Ticket = (props) => {
                 <Stack.Item grow>
                   <Input
                     autoFocus
-                    updateOnPropsChange
                     autoSelect
                     fluid
                     placeholder="Enter a message..."
                     value={ticketChat}
-                    onInput={(e, value: string) => setTicketChat(value)}
+                    onChange={(value: string) => setTicketChat(value)}
                     onKeyDown={(e) => {
                       if (KEY.Enter === e.key) {
                         act('send_msg', {

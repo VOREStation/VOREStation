@@ -35,7 +35,7 @@
 
 	return data
 
-/datum/ticket_chat/tgui_act(action, params)
+/datum/ticket_chat/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 	switch(action)
@@ -43,5 +43,10 @@
 			if(!params["msg"])
 				return
 
-			usr.client.cmd_admin_pm(usr.client, sanitize(params["msg"]), T)
+			switch(T.level)
+				if (0)
+					ui.user.client.cmd_mentor_pm(ui.user.client, sanitize(params["msg"]), T)
+				if (1)
+					ui.user.client.cmd_admin_pm(ui.user.client, sanitize(params["msg"]), T)
+
 			. = TRUE

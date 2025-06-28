@@ -171,7 +171,7 @@
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if(!recipient.current_ticket)
-					new /datum/ticket(msg, recipient, TRUE, 0)
+					new /datum/ticket(msg, recipient, TRUE, 1)
 
 				to_chat(recipient, span_admin_pm_warning(span_huge(span_bold("-- Administrator private message --"))))
 				to_chat(recipient, span_admin_pm_warning("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]"))

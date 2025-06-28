@@ -1,5 +1,5 @@
 /* eslint react/no-danger: "off" */
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -16,17 +16,21 @@ import {
 } from 'tgui-core/components';
 import { KEY } from 'tgui-core/keys';
 import { round, toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-const Level = {
-  0: 'Admin',
-  1: 'Mentor',
+const AdminLevel = {
+  0: 'Mentor',
+  1: 'Admin',
   2: 'All Levels',
 };
 
+const MentorLevel = {
+  0: 'Mentor',
+};
+
 const LevelColor = {
-  0: 'red',
-  1: 'green',
+  0: 'green',
+  1: 'red',
   2: 'pink',
 };
 
@@ -53,6 +57,7 @@ type Data = {
   tickets: Ticket[];
 
   selected_ticket: Ticket;
+  is_admin: BooleanLike;
 };
 
 type Ticket = {
@@ -78,7 +83,7 @@ const getFilteredTickets = (
   state: string,
   level: number,
 ): Ticket[] => {
-  let result: Ticket[] = [];
+  const result: Ticket[] = [];
 
   tickets.forEach((t) => {
     if (
@@ -94,14 +99,14 @@ const getFilteredTickets = (
 
 export const TicketsPanel = (props) => {
   const { act, data } = useBackend<Data>();
-  const { tickets, selected_ticket } = data;
+  const { tickets, selected_ticket, is_admin } = data;
 
   const [stateFilter, setStateFilter] = useState('open');
   const [levelFilter, setLevelFilter] = useState(2);
 
   const [ticketChat, setTicketChat] = useState('');
 
-  const messagesEndRef: RefObject<HTMLDivElement> = useRef(null);
+  const messagesEndRef: RefObject<HTMLDivElement | null> = useRef(null);
 
   useEffect(() => {
     const scroll = messagesEndRef.current;
@@ -122,7 +127,13 @@ export const TicketsPanel = (props) => {
     }
   });
 
-  let filtered_tickets = getFilteredTickets(tickets, stateFilter, levelFilter);
+  const availableLevel = is_admin ? AdminLevel : MentorLevel;
+
+  const filtered_tickets = getFilteredTickets(
+    tickets,
+    stateFilter,
+    levelFilter,
+  );
   return (
     <Window width={1000} height={600}>
       <Window.Content>
@@ -144,10 +155,10 @@ export const TicketsPanel = (props) => {
               <Dropdown
                 width="100%"
                 maxHeight="160px"
-                options={Object.values(Level)}
-                selected={Level[levelFilter]}
+                options={Object.values(availableLevel)}
+                selected={availableLevel[levelFilter]}
                 onSelected={(val) =>
-                  setLevelFilter(Object.values(Level).indexOf(val))
+                  setLevelFilter(Object.values(availableLevel).indexOf(val))
                 }
               />
             </Section>
@@ -173,7 +184,7 @@ export const TicketsPanel = (props) => {
                     <Box inline>
                       <Box>
                         <Button color={LevelColor[ticket.level]}>
-                          {Level[ticket.level]}
+                          {availableLevel[ticket.level]}
                         </Button>
                         {ticket.name}
                       </Box>
@@ -209,7 +220,7 @@ export const TicketsPanel = (props) => {
                         </Button>
                         <Button onClick={() => act('legacy')}>Legacy UI</Button>
                         <Button color={LevelColor[selected_ticket.level]}>
-                          {Level[selected_ticket.level]}
+                          {availableLevel[selected_ticket.level]}
                         </Button>
                       </Box>
                     }
@@ -224,7 +235,7 @@ export const TicketsPanel = (props) => {
                         />
                       </LabeledList.Item>
                       <LabeledList.Item label="Type">
-                        {Level[selected_ticket.level]}
+                        {availableLevel[selected_ticket.level]}
                       </LabeledList.Item>
                       <LabeledList.Item label="State">
                         {State[selected_ticket.state]}
@@ -296,10 +307,9 @@ export const TicketsPanel = (props) => {
                           autoFocus
                           autoSelect
                           fluid
-                          updateOnPropsChange
                           placeholder="Enter a message..."
                           value={ticketChat}
-                          onInput={(e, value: string) => setTicketChat(value)}
+                          onChange={(value: string) => setTicketChat(value)}
                           onKeyDown={(e) => {
                             if (KEY.Enter === e.key) {
                               act('send_msg', { msg: ticketChat });
