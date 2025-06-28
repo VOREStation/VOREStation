@@ -1,8 +1,6 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 //THE GOAT WAS RIGHT - RKF
 
-var/global/list/cached_icons = list()
-
 /obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
