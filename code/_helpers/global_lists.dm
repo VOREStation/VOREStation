@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(hair_styles_list)			//stores /datum/sprite_accessory/hair inde
 var/global/list/hair_styles_male_list = list()
 GLOBAL_LIST_EMPTY(hair_styles_female_list)
 GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
-var/global/list/facial_hair_styles_male_list = list()
+GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 var/global/list/body_marking_styles_list = list()		//stores /datum/sprite_accessory/marking indexed by name
@@ -155,10 +155,10 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOB.facial_hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	facial_hair_styles_male_list += H.name
+			if(MALE)	GLOB.facial_hair_styles_male_list += H.name
 			if(FEMALE)	facial_hair_styles_female_list += H.name
 			else
-				facial_hair_styles_male_list += H.name
+				GLOB.facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
 
 	//Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
