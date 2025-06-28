@@ -556,8 +556,8 @@
 				S.tgui_interact(src)
 				refresh_software_status()
 			return
-	for(var/thing in pai_software_by_key)
-		var/datum/pai_software/our_soft = pai_software_by_key[thing]
+	for(var/thing in GLOB.pai_software_by_key)
+		var/datum/pai_software/our_soft = GLOB.pai_software_by_key[thing]
 		if(our_soft.name == soft_name)
 			if(!(ram >= our_soft.ram_cost))
 				to_chat(src, span_warning("Insufficient RAM for download. (Cost [our_soft.ram_cost] : [ram] Remaining)"))
