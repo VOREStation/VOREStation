@@ -200,15 +200,6 @@ var/global/list/robot_modules = list(
 			CHANNEL_EXPLORATION = 1
 			)
 
-/obj/item/robot_module/robot/Initialize(mapload)
-	. = ..()
-
-	if(!isrobot(loc))
-		return
-	var/mob/living/silicon/robot/R = loc
-	if(R.sprite_datum)
-		R.sprite_datum.do_equipment_glamour(src)
-
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()

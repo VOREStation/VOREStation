@@ -228,10 +228,10 @@
 	sprite_hud_icon_state = "malf"
 
 /datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)

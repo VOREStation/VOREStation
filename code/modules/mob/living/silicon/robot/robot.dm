@@ -357,7 +357,9 @@
 			if(!module_sprites.len)
 				return
 			sprite_datum = module_sprites[1]
+			to_world("We are doing pick_module")
 			sprite_datum.do_equipment_glamour(module)
+			to_world("We are finished with pick_module")
 			return
 	if(mind)
 		sprite_name = mind.name
