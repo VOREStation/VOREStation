@@ -204,8 +204,8 @@
 
 // Mentor pm filter
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")
-#define span_mentor_pm_notice(str) ("<span class='mentor notice'>" + str + "</span>")
-#define span_mentor_pm_warning(str) ("<span class='mentor warning'>" + str + "</span>")
+#define span_mentor_notice(str) ("<span class='mentor notice'>" + str + "</span>")
+#define span_mentor_warning(str) ("<span class='mentor warning'>" + str + "</span>")
 
 /* Adminchat */
 // All of those have their own filter
