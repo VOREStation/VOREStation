@@ -12,7 +12,6 @@ GLOBAL_LIST_EMPTY(seen_religions)
 		GLOB.seen_religions    |= M.client.prefs.religion*/
 	return
 
-// VOREStation Edits Start
 var/global/list/citizenship_choices = list(
 	"Greater Human Diaspora",
 	"Commonwealth of Sol-Procyon",
@@ -100,7 +99,6 @@ var/global/list/faction_choices = list(
 	"Stealth Assault Enterprises",
 	"Teshari Union"
 	)
-// VOREStation Edits Stop
 
 var/global/list/antag_faction_choices = list()	//Should be populated after brainstorming. Leaving as blank in case brainstorming does not occur.
 
