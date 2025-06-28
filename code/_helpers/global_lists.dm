@@ -17,7 +17,8 @@ GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(la
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
-//cursed lists that are used by sortAtom
+//cursed lists that are used by sortAtom.
+//AKA, these crash the server without /tg/ sortAtom
 GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/obj/item/pda/PDAs = list()
