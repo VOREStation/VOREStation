@@ -559,6 +559,9 @@
 			var/image/pocket_image = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
 			if(pocket_content.color)
 				pocket_image.color = pocket_content.color
+			if(pocket_content.overlays)
+				for(var/overlay in pocket_content.overlays)
+					pocket_image.overlays += overlay
 			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_image
 
 /obj/item/gripper/attack_self(mob/user as mob)
