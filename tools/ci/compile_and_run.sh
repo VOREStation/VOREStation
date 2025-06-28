@@ -15,7 +15,7 @@ cp config/example/* config/
 mkdir -p data/spritesheets
 
 # Compile a copy of the codebase, and print errors as Github Actions annotations
-tools/build/build --ci dm -DCIBUILDING -DCITESTING ${EXTRA_ARGS}
+tools/build/build.sh --ci dm -DCIBUILDING -DCITESTING ${EXTRA_ARGS}
 exitVal=$?
 
 # Compile failed on map_test
