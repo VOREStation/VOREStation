@@ -80,7 +80,7 @@ var/global/list/valid_ringtones = list(
 		pref.headset = 1 //Same as above
 	character.headset = pref.headset
 
-	if(pref.backbag > backbaglist.len || pref.backbag < 1)
+	if(pref.backbag > GLOB.backbaglist.len || pref.backbag < 1)
 		pref.backbag = 2 //Same as above
 	character.backbag = pref.backbag
 
@@ -114,8 +114,8 @@ var/global/list/valid_ringtones = list(
 		if(!(underwear_metadata in pref.all_underwear))
 			pref.all_underwear_metadata -= underwear_metadata
 	pref.headset	= sanitize_integer(pref.headset, 1, GLOB.headsetlist.len, initial(pref.headset))
-	pref.backbag	= sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
-	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
+	pref.backbag	= sanitize_integer(pref.backbag, 1, GLOB.backbaglist.len, initial(pref.backbag))
+	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, GLOB.pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
 
 /datum/category_item/player_setup_item/loadout/equipment/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -142,8 +142,8 @@ var/global/list/valid_ringtones = list(
 	data["underwear"] = underwear_data
 
 	data["headset_type"] = GLOB.headsetlist[pref.headset]
-	data["backpack_type"] = backbaglist[pref.backbag]
-	data["pda_type"] = pdachoicelist[pref.pdachoice]
+	data["backpack_type"] = GLOB.backbaglist[pref.backbag]
+	data["pda_type"] = GLOB.pdachoicelist[pref.pdachoice]
 	data["communicator_visibility"] = pref.communicator_visibility // boolean
 	data["ringtone"] = pref.ringtone
 	data["shoes"] = pref.shoe_hater
@@ -159,8 +159,8 @@ var/global/list/valid_ringtones = list(
 	var/list/data = ..()
 
 	data["headsetlist"] = GLOB.headsetlist
-	data["backbaglist"] = backbaglist
-	data["pdachoicelist"] = pdachoicelist
+	data["GLOB.backbaglist"] = GLOB.backbaglist
+	data["GLOB.pdachoicelist"] = GLOB.pdachoicelist
 
 	return data
 
@@ -198,14 +198,14 @@ var/global/list/valid_ringtones = list(
 		if("change_backpack")
 			// Takes the JS index
 			var/new_backbag = text2num(params["backbag"]) + 1
-			if(LAZYACCESS(backbaglist, new_backbag))
+			if(LAZYACCESS(GLOB.backbaglist, new_backbag))
 				pref.backbag = new_backbag
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("change_pda")
 			// Takes the JS index
 			var/new_pdachoice = text2num(params["pda"]) + 1
-			if(LAZYACCESS(backbaglist, new_pdachoice))
+			if(LAZYACCESS(GLOB.backbaglist, new_pdachoice))
 				pref.pdachoice = new_pdachoice
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 
