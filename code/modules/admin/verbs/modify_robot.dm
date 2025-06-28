@@ -241,7 +241,7 @@
 						target.radio.syndie = 1
 					target.module.channels += list("[selected_radio_channel]" = 1)
 					target.radio.channels[selected_radio_channel] = target.module.channels[selected_radio_channel]
-					target.radio.secure_radio_connections[selected_radio_channel] = radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
+					target.radio.secure_radio_connections[selected_radio_channel] = SSradio.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
 					available_channels -= selected_radio_channel
 					to_chat(usr, span_danger("You added \"[selected_radio_channel]\" channel to [target]."))
 			if(MODIFIY_ROBOT_RADIOC_REMOVE)
@@ -259,7 +259,7 @@
 					target.radio.channels = list()
 					for(var/n_chan in target.module.channels)
 						target.radio.channels[n_chan] = target.module.channels[n_chan]
-					radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
+					SSradio.remove_object(target.radio, radiochannels[selected_radio_channel])
 					target.radio.secure_radio_connections -= selected_radio_channel
 					to_chat(usr, span_danger("You removed \"[selected_radio_channel]\" channel from [target]."))
 			if(MODIFIY_ROBOT_COMP_ADD)

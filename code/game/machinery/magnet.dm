@@ -33,8 +33,8 @@
 	hide(!T.is_plating())
 	center = T
 
-	if(radio_controller)
-		radio_controller.add_object(src, freq, RADIO_MAGNETS)
+	if(SSradio)
+		SSradio.add_object(src, freq, RADIO_MAGNETS)
 
 	magnetic_process()
 
@@ -182,8 +182,8 @@
 	pulling = 0
 
 /obj/machinery/magnetic_module/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	if(SSradio)
+		SSradio.remove_object(src, freq)
 	. = ..()
 
 /obj/machinery/magnetic_controller
@@ -220,8 +220,8 @@
 				magnets.Add(M)
 
 
-	if(radio_controller)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_MAGNETS)
+	if(SSradio)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_MAGNETS)
 
 
 	if(path) // check for default path
@@ -390,6 +390,6 @@
 		// there doesn't HAVE to be separators but it makes paths syntatically visible
 
 /obj/machinery/magnetic_controller/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	. = ..()
