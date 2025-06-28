@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(respawn_timers)
 
 // Holomaps
 GLOBAL_LIST_EMPTY(holomap_markers)
-var/global/list/mapping_units = list()
+GLOBAL_LIST_EMPTY(mapping_units)
 var/global/list/mapping_beacons = list()
 
 //Preferences stuff

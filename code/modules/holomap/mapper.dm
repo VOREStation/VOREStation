@@ -106,11 +106,11 @@
 	if(uses_power && cell_type)
 		cell = new cell_type(src)
 
-	debug_mappers_list = mapping_units
+	debug_mappers_list = GLOB.mapping_units
 	debug_beacons_list = mapping_beacons
 
 /obj/item/mapping_unit/Destroy()
-	mapping_units -= src
+	GLOB.mapping_units -= src
 
 	last_run()
 
@@ -175,7 +175,7 @@
 		hud_datum.apply_to_hud(user.hud_used)
 
 /obj/item/mapping_unit/proc/start_updates()
-	mapping_units += src
+	GLOB.mapping_units += src
 	updating = TRUE
 	START_PROCESSING(SSobj, src)
 	process()
@@ -183,7 +183,7 @@
 
 
 /obj/item/mapping_unit/proc/stop_updates()
-	mapping_units -= src
+	GLOB.mapping_units -= src
 	STOP_PROCESSING(SSobj, src)
 	updating = FALSE
 	if(hud_item)
@@ -285,7 +285,7 @@
 	extras_holder.pixel_y = bgmap.pixel_y = -1*T_y + offset_y
 
 	// Populate other mapper icons
-	for(var/obj/item/mapping_unit/HC as anything in mapping_units)
+	for(var/obj/item/mapping_unit/HC as anything in GLOB.mapping_units)
 		if(HC.mapper_filter != mapper_filter)
 			continue
 		var/mob_indicator = HOLOMAP_ERROR
