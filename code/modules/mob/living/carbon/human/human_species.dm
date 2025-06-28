@@ -8,13 +8,13 @@
 /mob/living/carbon/human/dummy/Initialize(mapload)
 	. = ..()
 	mob_list -= src
-	living_mob_list -= src
+	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
 	human_mob_list -= src
 
 /mob/living/carbon/human/dummy/Life()
 	mob_list -= src
-	living_mob_list -= src
+	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
 	human_mob_list -= src
 	return

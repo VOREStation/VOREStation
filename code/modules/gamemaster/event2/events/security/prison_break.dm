@@ -91,7 +91,7 @@
 
 /datum/event2/meta/prison_break/xenobio/get_odds_from_trapped_mobs()
 	. = 0
-	for(var/mob/living/simple_mob/slime/xenobio/X in living_mob_list)
+	for(var/mob/living/simple_mob/slime/xenobio/X in GLOB.living_mob_list)
 		if(is_mob_in_relevant_area(X))
 			. += 5
 

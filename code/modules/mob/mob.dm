@@ -2,7 +2,7 @@
 	SSmobs.currentrun -= src
 	mob_list -= src
 	GLOB.dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.living_mob_list -= src
 	GLOB.player_list -= src
 	unset_machine()
 	clear_fullscreen()
@@ -73,7 +73,7 @@
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code

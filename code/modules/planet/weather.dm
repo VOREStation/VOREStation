@@ -226,7 +226,7 @@
 					continue
 				planet_effect(M)
 		if(effect_flags & EFFECT_ONLY_LIVING)
-			for(var/mob/living/L as anything in living_mob_list)
+			for(var/mob/living/L as anything in GLOB.living_mob_list)
 				if(L.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
 					continue
 				planet_effect(L)

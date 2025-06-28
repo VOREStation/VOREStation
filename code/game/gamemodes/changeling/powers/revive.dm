@@ -14,7 +14,7 @@
 
 	if(src.stat == DEAD)
 		GLOB.dead_mob_list -= src
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	var/mob/living/carbon/C = src
 
 	C.tod = null

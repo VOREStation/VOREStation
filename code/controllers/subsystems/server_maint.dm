@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(server_maint)
 	lists_to_clear = list(
 		"player_list" = GLOB.player_list,
 		"mob_list" = global.mob_list,
-		"living_mob_list" = global.living_mob_list,
+		"living_mob_list" = GLOB.living_mob_list,
 		"dead_mob_list" = GLOB.dead_mob_list,
 		"observer_mob_list" = GLOB.observer_mob_list,
 		"listening_objects" = global.listening_objects,

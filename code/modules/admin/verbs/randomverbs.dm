@@ -1064,7 +1064,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in living_mob_list)
+/client/proc/despawn_player(var/mob/M in GLOB.living_mob_list)
 	set name = "Cryo Player"
 	set category = "Admin.Game"
 	set desc = "Removes a player from the round as if they'd cryo'd."
@@ -1176,7 +1176,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", living_mob_list)
+	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", GLOB.living_mob_list)
 	if(!L)
 		return
 
@@ -1203,7 +1203,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	GLOB.global_vantag_hud = !GLOB.global_vantag_hud
 	if(GLOB.global_vantag_hud)
-		for(var/mob/living/L in living_mob_list)
+		for(var/mob/living/L in GLOB.living_mob_list)
 			if(L.ckey)
 				L.vantag_hud = TRUE
 				L.recalculate_vis()

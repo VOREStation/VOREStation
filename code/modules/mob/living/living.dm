@@ -751,7 +751,7 @@
 	// remove the character from the list of the dead
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
-		living_mob_list += src
+		GLOB.living_mob_list += src
 		tod = null
 		timeofdeath = 0
 

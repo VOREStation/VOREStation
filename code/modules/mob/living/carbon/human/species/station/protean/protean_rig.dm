@@ -395,7 +395,7 @@
 				new_eo.sync_colour_to_human(H)
 		if(!partial)
 			GLOB.dead_mob_list.Remove(H)
-			living_mob_list += H
+			GLOB.living_mob_list += H
 			H.tod = null
 			H.timeofdeath = 0
 			H.set_stat(CONSCIOUS)

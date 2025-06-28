@@ -30,7 +30,7 @@
 				message_to_send = span_large(span_bold("[message_to_send]"))
 			M.show_message(message_to_send, 2)
 
-	for (var/mob/living/S in living_mob_list)
+	for (var/mob/living/S in GLOB.living_mob_list)
 		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
 			continue
 		else if(isAI(S))

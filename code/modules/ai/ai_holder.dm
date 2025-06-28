@@ -177,7 +177,7 @@
 			types += text2path(typestring)
 			typestring += "/"
 
-		var/list/searching = living_mob_list // Started/seeded with this
+		var/list/searching = GLOB.living_mob_list // Started/seeded with this
 		var/list/choices = list()
 		for(var/typechoice in types)
 			var/list/found = list()

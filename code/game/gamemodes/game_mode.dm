@@ -474,7 +474,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /proc/display_roundstart_logout_report()
 	var/msg = span_bold("Roundstart logout report")
 	msg += "<br><br>"
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 
 		if(L.ckey)
 			var/found = 0

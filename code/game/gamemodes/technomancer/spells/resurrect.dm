@@ -34,7 +34,7 @@
 				SM.health = SM.getMaxHealth() / 3
 				SM.set_stat(CONSCIOUS)
 				GLOB.dead_mob_list -= SM
-				living_mob_list += SM
+				GLOB.living_mob_list += SM
 				SM.update_icon()
 				adjust_instability(15)
 			else if(ishuman(L))
@@ -54,7 +54,7 @@
 				if(H.client)
 					L.set_stat(CONSCIOUS) //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
 					GLOB.dead_mob_list -= H
-					living_mob_list += H
+					GLOB.living_mob_list += H
 					H.timeofdeath = null
 					visible_message(span_danger("\The [H]'s eyes open!"))
 					to_chat(user, span_notice("It's alive!"))

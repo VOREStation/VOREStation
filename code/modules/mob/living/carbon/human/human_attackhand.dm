@@ -604,9 +604,9 @@
 
 		// REVIVE TIME, basically stolen from defib.dm
 		GLOB.dead_mob_list.Remove(src)
-		if((src in living_mob_list) || (src in GLOB.dead_mob_list))
+		if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
 			WARNING("Mob [src] was cpr revived by [reviver], but already in the living or dead list still!")
-		living_mob_list += src
+		GLOB.living_mob_list += src
 
 		timeofdeath = 0
 		set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

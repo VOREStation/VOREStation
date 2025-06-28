@@ -66,7 +66,7 @@
 			SM.health = SM.getMaxHealth() / 3
 			SM.stat = CONSCIOUS
 			GLOB.dead_mob_list -= SM
-			living_mob_list += SM
+			GLOB.living_mob_list += SM
 			SM.update_icon()
 			SM.revive()
 			holder.visible_message(span_alien("\The [SM]'s eyes open in a flash of light!"))
@@ -89,7 +89,7 @@
 			if(H.client)
 				L.stat = CONSCIOUS
 				GLOB.dead_mob_list -= H
-				living_mob_list += H
+				GLOB.living_mob_list += H
 				H.timeofdeath = null
 
 				holder.visible_message(span_alien("\The [H]'s eyes open in a flash of light!"))

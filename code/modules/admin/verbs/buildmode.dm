@@ -706,7 +706,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			var/z = c1.z //Eh
 
 			var/i = 0
-			for(var/mob/living/L in living_mob_list)
+			for(var/mob/living/L in GLOB.living_mob_list)
 				if(L.z != z || L.client)
 					continue
 				if(L.x >= low_x && L.x <= hi_x && L.y >= low_y && L.y <= hi_y)
