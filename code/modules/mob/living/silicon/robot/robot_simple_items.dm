@@ -702,6 +702,10 @@
 		else
 			wrapped = null
 			return
+		if((QDELETED(wrapped) || (wrapped.loc != current_pocket))) //We put our wrapped thing INTO something!
+			wrapped = null
+			current_pocket = pick(pockets)
+			return
 	else if(current_pocket_full) //Pocket is full. No grabbing more things.
 		to_chat(user, "Your gripper is currently full! You can't pick anything else up!")
 		return
@@ -765,7 +769,6 @@
 				A.cell = null
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
-
 
 //Different types of grippers!
 
