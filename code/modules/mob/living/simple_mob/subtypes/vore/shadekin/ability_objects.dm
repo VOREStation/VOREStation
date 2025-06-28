@@ -20,10 +20,9 @@
 
 /obj/effect/shadekin_ability/proc/atom_button_text()
 	var/shift_denial
-
-	if(shift_mode == NOT_WHILE_SHIFTED && (my_kin.ability_flags & AB_PHASE_SHIFTED))
+	if(shift_mode == NOT_WHILE_SHIFTED && my_kin.comp.in_phase)
 		shift_denial = "Physical Only"
-	else if(shift_mode == ONLY_WHILE_SHIFTED && !(my_kin.ability_flags & AB_PHASE_SHIFTED))
+	else if(shift_mode == ONLY_WHILE_SHIFTED && !(my_kin.comp.in_phase))
 		shift_denial = "Shifted Only"
 
 	if(shift_denial)
@@ -47,10 +46,10 @@
 	if(my_kin.stat)
 		to_chat(my_kin,span_warning("Can't use that ability in your state!"))
 		return FALSE
-	if(shift_mode == NOT_WHILE_SHIFTED && (my_kin.ability_flags & AB_PHASE_SHIFTED))
+	if(shift_mode == NOT_WHILE_SHIFTED && (my_kin.comp.in_phase))
 		to_chat(my_kin,span_warning("Can't use that ability while phase shifted!"))
 		return FALSE
-	else if(shift_mode == ONLY_WHILE_SHIFTED && !(my_kin.ability_flags & AB_PHASE_SHIFTED))
+	else if(shift_mode == ONLY_WHILE_SHIFTED && !(my_kin.comp.in_phase))
 		to_chat(my_kin,span_warning("Can only use that ability while phase shifted!"))
 		return FALSE
 	else if(my_kin.comp.dark_energy < cost)
@@ -75,7 +74,7 @@
 	if(!..())
 		return
 	my_kin.phase_shift()
-	if(my_kin.ability_flags & AB_PHASE_SHIFTED)
+	if(my_kin.comp.in_phase)
 		cost = 0 //Shifting back is free (but harmful in light)
 	else
 		cost = initial(cost)
@@ -136,7 +135,7 @@
 	var/mob/living/simple_mob/shadekin/my_kin
 
 /datum/modifier/shadekin/create_shade/tick()
-	if(my_kin.ability_flags & AB_PHASE_SHIFTED)
+	if(my_kin.comp.in_phase)
 		expire()
 
 /datum/modifier/shadekin/create_shade/on_applied()

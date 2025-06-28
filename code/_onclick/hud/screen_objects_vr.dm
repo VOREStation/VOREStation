@@ -1,24 +1,16 @@
 /obj/screen/proc/Click_vr(location, control, params)
 	if(!usr)	return 1
 	switch(name)
-
-		//Shadekin
-		if("darkness")
-			var/turf/T = get_turf(usr)
-			var/darkness = round(1 - T.get_lumcount(),0.1)
-			to_chat(usr,span_notice(span_bold("Darkness:") + " [darkness]"))
-		if("energy")
-			var/mob/living/simple_mob/shadekin/SK = usr
-			if(istype(SK))
-				to_chat(usr,span_notice(span_bold("Energy:") + " [SK.comp.dark_energy] ([SK.dark_gains])"))
 		if("shadekin status")
 			var/turf/T = get_turf(usr)
 			if(T)
 				var/darkness = round(1 - T.get_lumcount(),0.1)
 				to_chat(usr,span_notice(span_bold("Darkness:") + " [darkness]"))
-			var/mob/living/carbon/human/H = usr
-			if(istype(H) && istype(H.species, /datum/species/shadekin))
-				to_chat(usr,span_notice(span_bold("Energy:") + " [H.shadekin_get_energy(H)]"))
+			var/mob/living/H = usr
+			if(ismob(H))
+				var/datum/component/shadekin/SK = H.get_shadekin_component()
+				if(SK)
+					to_chat(usr,span_notice(span_bold("Energy:") + " [SK.shadekin_get_energy()]"))
 		if("glamour")
 			var/mob/living/carbon/human/H = usr
 			if(istype(H))

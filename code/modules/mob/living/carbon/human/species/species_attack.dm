@@ -153,14 +153,18 @@
 /datum/unarmed_attack/claws/shadekin/apply_effects(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
 	if(!(target == user))
-		user.shadekin_adjust_energy(attack_damage)
+		var/datum/component/shadekin/SK = user.get_shadekin_component()
+		if(SK)
+			SK.shadekin_adjust_energy(attack_damage)
 
 /datum/unarmed_attack/bite/sharp/shadekin
 
 /datum/unarmed_attack/bite/sharp/shadekin/apply_effects(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
 	if(!(target == user))
-		user.shadekin_adjust_energy(attack_damage)
+		var/datum/component/shadekin/SK = user.get_shadekin_component()
+		if(SK)
+			SK.shadekin_adjust_energy(attack_damage)
 
 /datum/unarmed_attack/claws/chimera //special feral attack that gets stronger as they get angrier
 
