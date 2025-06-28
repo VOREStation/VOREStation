@@ -1,25 +1,4 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
-var/list/admin_verbs_default = list(
-//	/datum/admins/proc/show_player_panel,	//shows an interface for individual players, with various links (links require additional flags, //VOREStation Remove,
-//	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels, //VOREStation Remove,
-//	/client/proc/player_panel,			//VOREStation Remove,
-	/client/proc/cmd_admin_say,			//VOREStation Add,
-	/client/proc/cmd_mod_say,			//VOREStation Add,
-	/client/proc/cmd_event_say,			//VOREStation Add,
-	/client/proc/cmd_mentor_ticket_panel,
-	/client/proc/cmd_mentor_say,
-//	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Remove,
-//	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Remove,
-//	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Remove,
-//	/client/proc/mark_datum_mapview,	//VOREStation Remove,
-//	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Remove,
-//	/client/proc/check_antagonists,		//shows all antags,
-//	/client/proc/cmd_mod_say,
-//	/client/proc/deadchat				//toggles deadchat on/off,
-//	/client/proc/toggle_ahelp_sound,
-	/client/proc/debugstatpanel,
-	)
-
 var/list/admin_verbs_admin = list(
 	/client/proc/toggle_vantag_hud,
 	/datum/admins/proc/set_tcrystals,
@@ -83,9 +62,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/toggleoocdead,	//toggles ooc on/off for everyone who is dead,
 	/datum/admins/proc/togglehubvisibility, //toggles visibility on the BYOND Hub.,
 	/datum/admins/proc/toggledsay,		//toggles dsay on/off for everyone,
-	/client/proc/cmd_admin_say,			//admin-only ooc chat,
-	/client/proc/cmd_mod_say,
-	/client/proc/cmd_event_say,
 	/datum/admins/proc/PlayerNotes,
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			//frees slot for chosen job,
@@ -117,8 +93,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
 	/datum/admins/proc/view_feedback,
-	/client/proc/make_mentor,
-	/client/proc/unmake_mentor,
 	/client/proc/delbook,
 	/client/proc/toggle_spawning_with_recolour,
 	/client/proc/start_vote,
@@ -199,7 +173,6 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/datum/admins/proc/togglepersistence,
-	/client/proc/cmd_mod_say,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
 	/client/proc/everyone_random,
@@ -289,9 +262,6 @@ var/list/admin_verbs_paranoid_debug = list(
 var/list/admin_verbs_possess = list(
 	/proc/possess,
 	/proc/release
-	)
-var/list/admin_verbs_permissions = list(
-	/client/proc/edit_admin_permissions
 	)
 var/list/admin_verbs_rejuv = list(
 	/client/proc/respawn_character
@@ -387,8 +357,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
 	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
-	/client/proc/cmd_mod_say,
-	/client/proc/cmd_event_say,
 	/datum/admins/proc/show_player_info,
 	/datum/admins/proc/show_traitor_panel,
 	/client/proc/player_panel_new,
@@ -409,7 +377,6 @@ var/list/admin_verbs_mod = list(
 
 var/list/admin_verbs_event_manager = list(
 	/client/proc/toggle_vantag_hud,
-	/client/proc/cmd_event_say,
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/client/proc/admin_ghost,
@@ -515,8 +482,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/admin_memo,                        //admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,                                      //talk in deadchat using our ckey/fakekey,
 	/client/proc/secrets,
-	/client/proc/cmd_mod_say,
-	/client/proc/cmd_event_say,
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,                 //frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
@@ -543,7 +508,6 @@ var/list/admin_verbs_event_manager = list(
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
-	/client/proc/cmd_mod_say,
 	/datum/admins/proc/immreboot,
 	/client/proc/everyone_random,
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,

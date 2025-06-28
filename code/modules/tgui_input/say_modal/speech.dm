@@ -55,7 +55,7 @@
 			return TRUE
 		if(ADMIN_CHANNEL)
 			if(check_rights(R_ADMIN, show_msg = FALSE))
-				client.cmd_admin_say(entry)
+				SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/cmd_admin_say, entry)
 			return TRUE
 	return FALSE
 

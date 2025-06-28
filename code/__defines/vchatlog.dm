@@ -17,7 +17,7 @@
  * * ckey - Ckey of the message receiver
  * * token - Randomized token
  */
-#define vchatlog_generate_token(ckey) VCHATLOG_CALL("generate_token", ckey)
+#define vchatlog_generate_token(ckey, round_id) VCHATLOG_CALL("generate_token", ckey, round_id)
 
 /**
  * Writes a new chatlog entry to the database. This function does not return anything.
