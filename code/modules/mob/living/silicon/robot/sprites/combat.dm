@@ -113,6 +113,7 @@
 	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default", "Sit")
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+
 /datum/robot_sprite/dogborg/tall/combat/derg/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	..()
 	if(ourborg.resting)

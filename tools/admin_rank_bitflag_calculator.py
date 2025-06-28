@@ -18,8 +18,9 @@ bitflags = {
     "R_MOD": 1<<13,
     "R_EVENT": 1<<14,
     "R_HOST": 1<<15,
+    "R_MENTOR": 1<<16,
     "-------------": 0,
-    "EVERYTHING": (1<<16)-1
+    "EVERYTHING": (1<<17)-1
 }
 
 class BitflagCalculator:
