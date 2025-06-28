@@ -493,7 +493,7 @@
 					return TRUE
 		if("blood_reagent") //you know, this feels REALLY odd to be able to change at will but WHATEVER, WE BALL.
 			if(can_change(owner, APPEARANCE_MISC))
-				var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
+				var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", GLOB.valid_bloodreagents)
 				if(new_blood_reagents)
 					owner.dna.blood_reagents = new_blood_reagents
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
