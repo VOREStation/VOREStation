@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	//"Gryphon" = /mob/living/simple_mob/vore/gryphon //TODO: Port from Downstream
 	))
 
-GLOBAL_LIST_INIT(vr_mob_spawner_options = list(
+GLOBAL_LIST_INIT(vr_mob_spawner_options, list(
 	"Parrot" = /mob/living/simple_mob/animal/passive/bird/parrot,
 	"Rabbit" = /mob/living/simple_mob/vore/rabbit,
 	"Cat" = /mob/living/simple_mob/animal/passive/cat,
