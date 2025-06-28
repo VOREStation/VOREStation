@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	//"Gryphon" = /mob/living/simple_mob/vore/gryphon //TODO: Port from Downstream
 	))
 
-var/global/list/vr_mob_spawner_options = list(
+GLOBAL_LIST_INIT(vr_mob_spawner_options = list(
 	"Parrot" = /mob/living/simple_mob/animal/passive/bird/parrot,
 	"Rabbit" = /mob/living/simple_mob/vore/rabbit,
 	"Cat" = /mob/living/simple_mob/animal/passive/cat,
@@ -564,7 +564,7 @@ var/global/list/vr_mob_spawner_options = list(
 	"Neaera" = /mob/living/carbon/human/neaera,
 	"Stok" = /mob/living/carbon/human/stok,
 	//"Gryphon" = /mob/living/simple_mob/vore/gryphon // Disabled until tested
-	)
+	))
 
 //global lists I found in various files and moved here for housekeeping
 GLOBAL_LIST_EMPTY(stool_cache) //haha stool
