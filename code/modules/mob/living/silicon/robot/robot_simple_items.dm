@@ -556,7 +556,10 @@
 				continue
 			var/obj/item/pocket_content = pocket_to_check.contents[1]
 			pockets_by_name["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_content
-			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
+			var/image/pocket_image = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
+			if(pocket_content.color)
+				pocket_image.color = pocket_content.color
+			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_image
 
 /obj/item/gripper/attack_self(mob/user as mob)
 	generate_icons()
@@ -612,6 +615,9 @@
 	drop_item()
 
 /obj/item/gripper/proc/drop_item()
+	if(!wrapped)
+		to_chat(src, span_warning("You have nothing to drop!"))
+		return
 	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
 		wrapped = null
 		current_pocket = pick(pockets)
