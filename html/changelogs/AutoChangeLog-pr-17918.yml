@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Gargoyle statues now regenerate energy properly"
+  - balance: "Gargoyle statues now burn under extreme temperatures (>1600C)"
+  - balance: "Gargoyle statues now regenerate health VERY slowly when in statue state (150 hp will take 50 minutes)"
+  - code_imp: "Gargoyle code quality increased in general."

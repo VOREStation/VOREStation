@@ -86,11 +86,9 @@
 
 	var/name_ender = ""
 	if(!((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)))
-		//VOREStation Add Start
 		if(custom_species)
 			name_ender = ", a " + span_bold("[src.custom_species]")
 		else if(looks_synth)
-		//VOREStation Add End
 			var/use_gender = "a synthetic"
 			if(gender == MALE)
 				use_gender = "an android"
@@ -275,7 +273,6 @@
 	if(suiciding)
 		msg += span_warning("[T.He] appears to have commited suicide... there is no hope of recovery.")
 
-	//VOREStation Add
 	var/list/vorestrings = list()
 	vorestrings += examine_weight()
 	vorestrings += examine_nutrition()
@@ -289,7 +286,6 @@
 		if(entry == "" || entry == null)
 			vorestrings -= entry
 	msg += vorestrings
-	//VOREStation Add End
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] very short!"
@@ -318,14 +314,12 @@
 			msg += span_deadsay("[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.")
 		else if(!client)
 			msg += span_deadsay("[T.He] [T.is] [ssd_msg].")
-		//VOREStation Add Start
 		if(client && away_from_keyboard && manual_afk)
 			msg += "\[Away From Keyboard for [round((client.inactivity/10)/60)] minutes\]"
 		else if(client && ((client.inactivity / 10) / 60 > 10)) //10 Minutes
 			msg += "\[Inactive for [round((client.inactivity/10)/60)] minutes\]"
 		else if(disconnect_time)
 			msg += "\[Disconnected/ghosted [round(((world.realtime - disconnect_time)/10)/60)] minutes ago\]"
-		//VOREStation Add End
 
 	var/list/wound_flavor_text = list()
 	var/list/is_bleeding = list()
@@ -366,7 +360,7 @@
 					wound_flavor_text["[temp.name]"] = span_warning("[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].")
 			else
 				wound_flavor_text["[temp.name]"] = ""
-			if(temp.dislocated == 1) //VOREStation Edit Bugfix
+			if(temp.dislocated == 1)
 				wound_flavor_text["[temp.name]"] += span_warning("[T.His] [temp.joint] is dislocated!")
 			if(temp.brute_dam > temp.min_broken_damage || (temp.status & (ORGAN_BROKEN | ORGAN_MUTATED)))
 				wound_flavor_text["[temp.name]"] += span_warning("[T.His] [temp.name] is dented and swollen!")
@@ -442,14 +436,12 @@
 		flavor_text = replacetext(flavor_text, "||", "")
 		msg += "[flavor_text]"
 
-	// VOREStation Start
 	if(custom_link)
 		msg += "Custom link: " + span_linkify("[custom_link]")
 
 	if(ooc_notes)
 		msg += "OOC Notes: <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='byond://?src=\ref[src];print_ooc_notes_chat=1'>\[Print\]</a>"
 	msg += "<a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
-	// VOREStation End
 	msg = list(span_info(jointext(msg, "<br>")))
 	if(applying_pressure)
 		msg += applying_pressure
@@ -465,7 +457,7 @@
 /proc/hasHUD(mob/M as mob, hudtype)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(hasHUD_vr(H,hudtype)) return 1 //VOREStation Add - Added records access for certain modes of omni-hud glasses
+		if(hasHUD_vr(H,hudtype)) return 1 //Added records access for certain modes of omni-hud glasses
 		switch(hudtype)
 			if("security")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
@@ -473,4 +465,4 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 	else if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off
+		return R.sensor_type //Borgo sensors are now binary so just have them on or off
