@@ -182,7 +182,5 @@
 		resize(tempsize)
 	if(hands)
 		update_hud()
-	to_world("We are doing transform")
 	sprite_datum.do_equipment_glamour(module)
-	to_world("We are done with transform")
 	to_chat(src, span_filter_notice("Your icon has been set. You now require a module reset to change it."))

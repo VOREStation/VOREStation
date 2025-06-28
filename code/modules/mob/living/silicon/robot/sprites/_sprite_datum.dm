@@ -207,14 +207,13 @@
 
 /datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!dogborg_sprites)
-		to_world("Dogborg_sprites is FALSE.")
 		var/obj/item/melee/robotic/jaws/small/small_jaws = locate() in module.modules
 		if(small_jaws)
 			small_jaws.name = "self defense knife"
 			small_jaws.icon = 'icons/obj/tools_robot.dmi'
 			small_jaws.icon_state = "knife_cyborg"
 			small_jaws.hitsound = 'sound/weapons/slash.ogg'
-			small_jaws.desc = "A sharp knife used for defending crew against hostile threats. Not effective for non-defense use."
+			small_jaws.desc = "A sharp knife used for defending crew against hostile threats. Not effective for non-defense use. If emagged, can be upgraded to a claymore."
 			small_jaws.attack_verb = list("sliced", "slashed", "jabbed", "stabbed")
 		var/obj/item/melee/robotic/jaws/big/big_jaws = locate() in module.modules
 		if(big_jaws)
