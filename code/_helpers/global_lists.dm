@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
-var/global/list/ai_list = list()					//List of all AIs, including clientless
+GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)					//List of all alive mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(dead_mob_list)					//List of all dead mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(observer_mob_list)				//List of all /mob/observer/dead, including clientless.
@@ -352,20 +352,12 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	//GLOB.legacy_globals["player_list"] = GLOB.player_list
 	GLOB.legacy_globals["mob_list"] = mob_list
 	GLOB.legacy_globals["human_mob_list"] = human_mob_list
 	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
-	GLOB.legacy_globals["ai_list"] = ai_list
-	//GLOB.legacy_globals["living_mob_list"] = GLOB.living_mob_list
-	GLOB.legacy_globals["GLOB.dead_mob_list"] = GLOB.dead_mob_list
-	//GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list
 	GLOB.legacy_globals["listening_objects"] = listening_objects
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
 	GLOB.legacy_globals["cable_list"] = cable_list
-	//GLOB.legacy_globals["landmarks_list"] = GLOB.landmarks_list
-	//GLOB.legacy_globals["event_triggers"] = GLOB.event_triggers
-	//GLOB.legacy_globals["mechas_list"] = GLOB.mechas_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets

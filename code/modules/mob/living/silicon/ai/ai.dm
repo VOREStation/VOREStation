@@ -33,7 +33,7 @@ var/list/ai_verbs_default = list(
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = 0
 	if (subject!=null)
-		for(var/mob/living/silicon/ai/M as anything in ai_list)
+		for(var/mob/living/silicon/ai/M as anything in GLOB.ai_list)
 			if ((M.client && M.machine == subject))
 				is_in_use = 1
 				subject.attack_ai(M)
@@ -183,7 +183,7 @@ var/list/ai_verbs_default = list(
 		on_mob_init()
 
 
-	ai_list += src
+	GLOB.ai_list += src
 	. = ..()
 
 	new /obj/machinery/ai_powersupply(src)
@@ -231,7 +231,7 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	ai_list -= src
+	GLOB.ai_list -= src
 
 	QDEL_NULL(announcement)
 	QDEL_NULL(eyeobj)
@@ -1022,7 +1022,7 @@ var/list/ai_verbs_default = list(
 	mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
-	ai_list -= src
+	GLOB.ai_list -= src
 	silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 
@@ -1030,7 +1030,7 @@ var/list/ai_verbs_default = list(
 	mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
-	ai_list -= src
+	GLOB.ai_list -= src
 	silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 

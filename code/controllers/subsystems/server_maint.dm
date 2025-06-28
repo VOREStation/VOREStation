@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(server_maint)
 		"listening_objects" = global.listening_objects,
 		"human_mob_list" = global.human_mob_list,
 		"silicon_mob_list" = global.silicon_mob_list,
-		"ai_list" = global.ai_list,
+		"ai_list" = GLOB.ai_list,
 		//"keyloop_list" = global.keyloop_list, //A null here will cause new clients to be unable to move. totally unacceptable
 	)
 
