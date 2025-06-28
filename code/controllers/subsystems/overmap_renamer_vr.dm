@@ -4,7 +4,11 @@ Readme at code\modules\awaymissions\overmap_renamer\readme.md
 
 SUBSYSTEM_DEF(overmap_renamer)
 	name = "Overmap Renamer"
-	init_stage = INITSTAGE_LAST //Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
+	//Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/processing/obj
+	)
 	runlevels = RUNLEVEL_SETUP
 	flags = SS_NO_FIRE
 
