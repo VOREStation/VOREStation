@@ -981,3 +981,7 @@ GLOBAL_LIST_INIT(tube_dir_list, list(
 GLOBAL_LIST_INIT(valid_bloodreagents, list("default",REAGENT_ID_IRON,REAGENT_ID_COPPER,REAGENT_ID_PHORON,REAGENT_ID_SILVER,REAGENT_ID_GOLD,REAGENT_ID_SLIMEJELLY))	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
 
 GLOBAL_LIST_EMPTY(monitor_states)
+
+GLOBAL_LIST_EMPTY(random_junk)
+GLOBAL_LIST_EMPTY(random_junk_)
+GLOBAL_LIST_EMPTY(random_useful_)
