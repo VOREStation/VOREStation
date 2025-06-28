@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start(var/do_not_spawn)
 	var/playerC = 0
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if((player.client)&&(player.ready))
 			playerC++
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 	var/list/area/escape_locations = list(/area/shuttle/escape, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom) //VOREStation Edit
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			clients++
 			var/M_area_type = (get_turf(M))?.loc?.type
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 	// If this is being called post-roundstart then it doesn't care about ready status.
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		for(var/mob/player in player_list)
+		for(var/mob/player in GLOB.player_list)
 			if(!player.client)
 				continue
 			if(isnewplayer(player))
@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 				candidates |= player.mind
 	else
 		// Assemble a list of active players without jobbans.
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			if( player.client && player.ready )
 				players += player
 
@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 /datum/game_mode/proc/num_players()
 	. = 0
-	for(var/mob/new_player/P in player_list)
+	for(var/mob/new_player/P in GLOB.player_list)
 		if(P.client && P.ready)
 			. ++
 
@@ -526,7 +526,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 /proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOB.player_list)
 		if(man.client)
 			if(man.client.prefs.economic_status == CLASS_LOWER)
 				dudes += man

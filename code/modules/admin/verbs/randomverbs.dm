@@ -824,7 +824,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(tgui_alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				keys += M.client
 			var/selection = tgui_input_list(usr, "Please, select a player!", "Admin Jumping", keys)
 			if(!selection)

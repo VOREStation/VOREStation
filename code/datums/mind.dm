@@ -490,7 +490,7 @@
 		return 0
 
 /datum/mind/proc/get_ghost(even_if_they_cant_reenter)
-	for(var/mob/observer/dead/G in player_list)
+	for(var/mob/observer/dead/G in GLOB.player_list)
 		if(G.mind == src)
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G

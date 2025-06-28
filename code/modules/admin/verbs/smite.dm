@@ -1,4 +1,4 @@
-/client/proc/smite(var/mob/living/carbon/human/target in player_list)
+/client/proc/smite(var/mob/living/carbon/human/target in GLOB.player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun.Do Not"

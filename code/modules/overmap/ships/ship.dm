@@ -138,7 +138,7 @@
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
 		//VOREStation Add End
@@ -153,7 +153,7 @@
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
 		//VOREStation Add End

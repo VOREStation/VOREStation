@@ -107,7 +107,7 @@
 	var/pos_z = get_z(src.mob)
 	if (!pos_z)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z == pos_z)
 			to_chat(M, msg)
 	log_admin("ZNarrate: [key_name(usr)] : [msg]")

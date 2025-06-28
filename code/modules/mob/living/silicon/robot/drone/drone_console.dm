@@ -79,7 +79,7 @@
 
 		if("ping")
 			to_chat(ui.user, span_notice("You issue a maintenance request for all active drones, highlighting [drone_call_area]."))
-			for(var/mob/living/silicon/robot/drone/D in player_list)
+			for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 				if(D.stat == 0)
 					to_chat(D, "-- Maintenance drone presence requested in: [drone_call_area].")
 

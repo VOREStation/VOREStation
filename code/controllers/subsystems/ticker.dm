@@ -398,7 +398,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 
 /datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
 
@@ -428,14 +428,14 @@ var/global/datum/controller/subsystem/ticker/ticker
 				GLOB.data_core.manifest_inject(new_char)
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			minds += player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless=1
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == JOB_SITE_MANAGER)
 				captainless=0
@@ -453,14 +453,14 @@ var/global/datum/controller/subsystem/ticker/ticker
 					imp.post_implant(player)
 		//VOREStation Addition End
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))
 				to_chat(M, span_notice("Site Management is not forced on anyone."))
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	to_world(span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)

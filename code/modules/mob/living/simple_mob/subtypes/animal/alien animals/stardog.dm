@@ -77,7 +77,7 @@
 		return ..()
 	var/list/possible_targets = list()
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(!(player.z in child_om_marker.map_z))
 			continue
 		if(!(isliving(player) && istype(player.loc,/turf/simulated/floor/outdoors/fur) && player.client))

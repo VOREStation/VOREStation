@@ -233,7 +233,7 @@
 	for (var/mob/M as anything in .)
 		if (!istype(M) || !M.client)
 			. -= M
-	for (var/mob/observer/O in player_list)
+	for (var/mob/observer/O in GLOB.player_list)
 		. |= O
 
 /mob/proc/can_hear_radio(var/list/hearturfs)
@@ -296,9 +296,9 @@
 			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
-	for(var/mob in player_list)
+	for(var/mob in GLOB.player_list)
 		if(!ismob(mob))
-			player_list -= mob
+			GLOB.player_list -= mob
 			continue
 		//VOREStation Edit End - Trying to fix some vorestation bug.
 		if(get_turf(mob) in hearturfs)
@@ -409,7 +409,7 @@
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -423,7 +423,7 @@
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client.prefs.be_special & BE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))

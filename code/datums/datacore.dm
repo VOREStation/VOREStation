@@ -51,7 +51,7 @@
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 MINUTES)
 					active = 1
 					break
@@ -98,7 +98,7 @@
 			var/real_rank = make_list_rank(t.fields["real_rank"])
 
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 MINUTES)
 					active = 1
 					break
@@ -297,7 +297,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 /datum/datacore/proc/manifest()
 	spawn()
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			manifest_inject(H)
 		return
 

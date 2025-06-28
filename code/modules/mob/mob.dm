@@ -3,7 +3,7 @@
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
-	player_list -= src
+	GLOB.player_list -= src
 	unset_machine()
 	clear_fullscreen()
 	if(client)

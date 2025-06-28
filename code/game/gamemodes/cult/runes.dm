@@ -355,7 +355,7 @@ var/list/sacrificed = list()
 		to_chat(usr, span_warning("The Geometer of Blood refuses to touch this one."))
 		return fizzle()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
-		for(var/mob/observer/dead/ghost in player_list)
+		for(var/mob/observer/dead/ghost in GLOB.player_list)
 			if(ghost.mind == corpse_to_raise.mind)
 				to_chat(ghost, span_interface(span_large(span_bold("The cultist [usr.real_name] is trying to \
 				revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!") + "\
@@ -629,7 +629,7 @@ var/list/sacrificed = list()
 	for(var/datum/mind/H in cult.current_antagonists)
 		if (H.current)
 			to_chat(H.current, span_cult("[input]"))
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		to_chat(O, span_cult("[input]"))
 	qdel(src)
 	return 1

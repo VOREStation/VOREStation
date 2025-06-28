@@ -150,7 +150,7 @@
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
-	observer_mob_list += src
+	GLOB.observer_mob_list += src
 	. = ..()
 	visualnet = ghostnet
 
@@ -599,7 +599,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/M = following
 		M.following_mobs -= src
 	stop_following()
-	observer_mob_list -= src
+	GLOB.observer_mob_list -= src
 	for(var/datum/chunk/ghost/ghost_chunks in visibleChunks)
 		ghost_chunks.remove(src)
 	return ..()

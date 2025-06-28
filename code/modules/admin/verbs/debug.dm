@@ -588,7 +588,7 @@
 
 	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span_filter_debuglogs(jointext(player_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.player_list,",")))
 		if("Admins")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")

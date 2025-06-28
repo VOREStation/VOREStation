@@ -160,7 +160,7 @@
 			to_chat(src, span_notice("You have sent '[text_message]' to [chosen_communicator]."))
 			exonet_messages.Add(span_bold("To [chosen_communicator]:") + "<br>[text_message]")
 			log_pda("(DCOMM: [src]) sent \"[text_message]\" to [chosen_communicator]", src)
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 					if(isnewplayer(M) || M.forbid_seeing_deadchat)
 						continue

@@ -1,14 +1,14 @@
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/ai_list = list()					//List of all AIs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
-var/global/list/observer_mob_list = list()			//List of all /mob/observer/dead, including clientless.
+GLOBAL_LIST_EMPTY(observer_mob_list)				//List of all /mob/observer/dead, including clientless.
 var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
 
@@ -350,17 +350,17 @@ var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 GLOBAL_LIST_EMPTY(legacy_globals)
 
 /proc/populate_legacy_globals()
-	//Note: these lists cannot be changed to a new list anywhere in code!
+	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	GLOB.legacy_globals["player_list"] = player_list
+	//GLOB.legacy_globals["player_list"] = GLOB.player_list //Converted
 	GLOB.legacy_globals["mob_list"] = mob_list
 	GLOB.legacy_globals["human_mob_list"] = human_mob_list
 	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
 	GLOB.legacy_globals["ai_list"] = ai_list
 	GLOB.legacy_globals["living_mob_list"] = living_mob_list
 	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
-	GLOB.legacy_globals["observer_mob_list"] = observer_mob_list
+	//GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list //Converted
 	GLOB.legacy_globals["listening_objects"] = listening_objects
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
 	GLOB.legacy_globals["cable_list"] = cable_list

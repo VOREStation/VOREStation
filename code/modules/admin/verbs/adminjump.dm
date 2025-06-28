@@ -110,7 +110,7 @@
 
 	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			keys += M.client
 		var/selection = tgui_input_list(usr, "Select a key:", "Jump to Key", sortKey(keys))
 		if(!selection)
@@ -157,7 +157,7 @@
 
 	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			keys += M.client
 		var/selection = tgui_input_list(usr, "Pick a key:", "Get Key", sortKey(keys))
 		if(!selection)

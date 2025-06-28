@@ -41,7 +41,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 	world << sound('sound/effects/cascade.ogg')
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		M.flash_eyes()
 
 	if(emergency_shuttle.can_recall())
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/mind/M in player_list)
+	for(var/datum/mind/M in GLOB.player_list)
 		if(!isliving(M.current))
 			continue
 		if(M.current.stat!=2)

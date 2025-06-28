@@ -533,7 +533,7 @@
 		else return
 	else return
 	to_chat(src, span_notice("Your message was relayed."))
-	for (var/mob/G in player_list)
+	for (var/mob/G in GLOB.player_list)
 		if (isnewplayer(G))
 			continue
 		else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
