@@ -59,7 +59,7 @@
         "marked": "^4.3.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
-        "tgui-core": "^4.3.1",
+        "tgui-core": "^4.3.2",
         "tgui-dev-server": "workspace:*",
       },
     },
@@ -81,7 +81,7 @@
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tgui": "workspace:*",
-        "tgui-core": "^4.3.1",
+        "tgui-core": "^4.3.2",
         "tgui-dev-server": "workspace:*",
       },
     },
@@ -93,7 +93,7 @@
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tgui": "workspace:*",
-        "tgui-core": "^4.3.1",
+        "tgui-core": "^4.3.2",
       },
     },
     "packages/tgui-setup": {
@@ -1250,7 +1250,7 @@
 
     "tgui": ["tgui@workspace:packages/tgui"],
 
-    "tgui-core": ["tgui-core@4.3.1", "", { "dependencies": { "@floating-ui/react": "^0.27.12", "@nozbe/microfuzz": "^1.0.0" }, "peerDependencies": { "react": "^19.1.0", "react-dom": "^19.1.0" } }, "sha512-9rHtBQyzDnMR/C09e+WqeMfCulbAX7eY/girN0o+K7ViZArx+s5SaISwwA8bPrUTzsS/JkwwV5bI/x5C5lnZGw=="],
+    "tgui-core": ["tgui-core@4.3.2", "", { "dependencies": { "@floating-ui/react": "^0.27.12", "@nozbe/microfuzz": "^1.0.0" }, "peerDependencies": { "react": "^19.1.0", "react-dom": "^19.1.0" } }, "sha512-6mW9MN8MLaPwQ0IDA0Qrgh+SL9YtBfUiKYgLtaDFZEjpAF1Hc84La8iQlxAeD8zf3G6RIZw+PilZjqlWELfvzg=="],
 
     "tgui-dev-server": ["tgui-dev-server@workspace:packages/tgui-dev-server"],
 
