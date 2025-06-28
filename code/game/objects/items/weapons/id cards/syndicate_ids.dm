@@ -65,8 +65,8 @@
 	registered_user = null
 
 GLOBAL_LIST_EMPTY(id_card_states)
-/proc/GLOB.id_card_states()
-	if(!GLOB.GLOB.id_card_states)
+/proc/id_card_states()
+	if(!GLOB.id_card_states)
 		GLOB.id_card_states = list()
 		for(var/path in typesof(/obj/item/card/id))
 			var/obj/item/card/id/ID = new path()
