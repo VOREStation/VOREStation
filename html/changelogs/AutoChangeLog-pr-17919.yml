@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Xenochimera, spider, diona, shadekin, and alraune now process traits properly."

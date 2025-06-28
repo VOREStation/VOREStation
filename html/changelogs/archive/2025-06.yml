@@ -316,3 +316,16 @@
   Willburd:
   - qol: climbable objects being pulled up or down stairs no longer knock you around
   - rscadd: Hoses can connect to sinks for endless water, or as an endless drain
+2025-06-28:
+  Diana:
+  - bugfix: Xenochimera, spider, diona, shadekin, and alraune now process traits properly.
+  ItsSelis:
+  - bugfix: Fixed a query in chatlogging
+  TheCaramelion:
+  - qol: You can extract blood from blood bags using a syringe
+  Willburd:
+  - bugfix: dna block injectors no longer show their entire genome, and instead just
+      the relevant block. Doesn't affect full sequence injectors.
+  - bugfix: dna resequencers from the body record console should not do radiation
+      damage
+  - code_imp: Reagent unit-test is more strict about duplicated reagent names
