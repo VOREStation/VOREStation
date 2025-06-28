@@ -521,7 +521,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					if(isAI(M) && M.stat != 2) //See if any AI's are alive inside that card.
 						return 1
 
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 				var/turf/T = get_turf(ai)
 				if(istype(T))
 					var/area/check_area = get_area(ai)

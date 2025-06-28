@@ -166,7 +166,7 @@
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(target)
 			ManualFollow(target)
 	if(href_list["reenter"])

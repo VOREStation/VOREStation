@@ -1,6 +1,6 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
 	SSmobs.currentrun -= src
-	mob_list -= src
+	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.player_list -= src
@@ -69,7 +69,7 @@
 	zone_sel = null
 
 /mob/Initialize(mapload)
-	mob_list += src
+	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else
@@ -177,7 +177,7 @@
 			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"), audible = FALSE)
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0

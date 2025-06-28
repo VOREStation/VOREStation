@@ -2,7 +2,7 @@
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
-var/global/list/mob_list = list()					//List of all mobs, including clientless
+GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(human_mob_list)					//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
@@ -352,7 +352,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	GLOB.legacy_globals["mob_list"] = mob_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets

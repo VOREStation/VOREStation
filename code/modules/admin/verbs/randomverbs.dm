@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
+/client/proc/cmd_admin_drop_everything(mob/M as mob in GLOB.mob_list)
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
@@ -19,7 +19,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_prison(mob/M as mob in mob_list)
+/client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Prison"
 	if(!holder)
@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	else
 		to_chat(src, "No matches for that age range found.")
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
+/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Subtle Message"
 
@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
+/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Godmode"
 
@@ -260,7 +260,7 @@ Ccomp's first proc.
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(mob_list)                           // get the mob list.
+	var/list/sortmob = sortAtom(GLOB.mob_list)                           // get the mob list.
 	var/any=0
 	for(var/mob/observer/dead/M in sortmob)
 		mobs.Add(M)                                             //filter it where it's only ghosts
@@ -626,14 +626,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
 	if(!input)
 		return
-	for(var/mob/living/silicon/ai/M in mob_list)
+	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
 		if (M.stat == 2)
 			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
 		else if (M.see_in_dark == 0)
 			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
 		else
 			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in mob_list)
+			for(var/mob/living/silicon/ai/O in GLOB.mob_list)
 				to_chat(O,input + span_red("... LAWS UPDATED!"))
 				O.show_laws()
 
@@ -645,7 +645,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Rejuvenate"
 
@@ -773,7 +773,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M as mob in mob_list)
+/client/proc/cmd_admin_gib(mob/M as mob in GLOB.mob_list)
 	set category = "Fun.Do Not"
 	set name = "Gib"
 
@@ -875,7 +875,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	// I will both remove their SVN access and permanently ban them from my servers.
 	return
 
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Investigate"
 	set name = "Check Contents"
 	set popup_menu = FALSE
@@ -1003,7 +1003,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
-/client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
+/client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Logs"
 	set name = "Attack Log"
 

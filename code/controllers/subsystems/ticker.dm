@@ -484,7 +484,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 					to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
 	to_world(span_filter_system("<br>"))
 
-	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for (var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
 		if (aiPlayer.stat != 2)
 			to_world(span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:"))) // VOREStation edit
 		else
@@ -499,7 +499,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	var/dronecount = 0
 
-	for (var/mob/living/silicon/robot/robo in mob_list)
+	for (var/mob/living/silicon/robot/robo in GLOB.mob_list)
 
 		if(istype(robo, /mob/living/silicon/robot/platform))
 			var/mob/living/silicon/robot/platform/tank = robo

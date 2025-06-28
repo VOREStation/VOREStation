@@ -65,7 +65,7 @@
 */
 /datum/event/ionstorm/tick()
 	if(botEmagChance)
-		for(var/mob/living/bot/bot in mob_list)
+		for(var/mob/living/bot/bot in GLOB.mob_list)
 			if(!(bot.z in affecting_z))
 				continue
 			if(prob(botEmagChance))
@@ -183,7 +183,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("THE STATION IS [who2pref] [who2]")
 
 	if(botEmagChance)
-		for(var/obj/machinery/bot/bot in mob_list)
+		for(var/obj/machinery/bot/bot in GLOB.mob_list)
 			if(prob(botEmagChance))
 				bot.Emag()
 */

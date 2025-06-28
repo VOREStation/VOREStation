@@ -229,11 +229,11 @@ var/world_topic_spam_protect_time = world.timeofday
 				positions["off"][name] = rank
 
 		// Synthetics don't have actual records, so we will pull them from here.
-		for(var/mob/living/silicon/ai/ai in mob_list)
+		for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 			if(!positions["bot"])
 				positions["bot"] = list()
 			positions["bot"][ai.name] = "Artificial Intelligence"
-		for(var/mob/living/silicon/robot/robot in mob_list)
+		for(var/mob/living/silicon/robot/robot in GLOB.mob_list)
 			// No combat/syndicate cyborgs, no drones, and no AI shells.
 			if(robot.shell)
 				continue
@@ -276,7 +276,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		var/list/match = list()
 
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			var/strings = list(M.name, M.ckey)
 			if(M.mind)
 				strings += M.mind.assigned_role

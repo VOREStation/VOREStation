@@ -42,7 +42,7 @@
 			target.show_laws()
 
 	// Emag bots.
-	for(var/mob/living/bot/B in mob_list)
+	for(var/mob/living/bot/B in GLOB.mob_list)
 		if(B.z in get_location_z_levels())
 			if(prob(bot_emag_chance))
 				B.emag_act(1)

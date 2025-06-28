@@ -381,7 +381,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	animate(pixel_x = oldx, pixel_y = oldy, time = 1)
 
 /proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
 			return 1
 	return 0
@@ -445,7 +445,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = list()
-	for(var/M in mob_list)
+	for(var/M in GLOB.mob_list)
 		if(get_area(M) == A)
 			mobs += M
 	return mobs

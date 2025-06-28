@@ -431,7 +431,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortAtom(mob_list)
+	var/list/sortmob = sortAtom(GLOB.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/observer/blob/M in sortmob)
@@ -465,9 +465,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//VOREStation Addition End
 
 //	for(var/mob/living/silicon/hivebot/M in sortmob)
-//		mob_list.Add(M)
+//		GLOB.mob_list.Add(M)
 //	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
-//		mob_list.Add(M)
+//		GLOB.mob_list.Add(M)
 	return moblist
 
 /proc/observe_list_format(input_list)
@@ -984,7 +984,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1236,14 +1236,14 @@ var/mob/dview/dview_mob
 /mob/dview/Initialize(mapload)
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
-	mob_list -= src
+	GLOB.mob_list -= src
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 	else
 		GLOB.living_mob_list -= src
 
 /mob/dview/Life()
-	mob_list -= src
+	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 

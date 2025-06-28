@@ -1,4 +1,4 @@
-/client/proc/resize(var/mob/living/L in mob_list)
+/client/proc/resize(var/mob/living/L in GLOB.mob_list)
 	set name = "Resize"
 	set desc = "Resizes any living mob without any restrictions on size."
 	set category = "Fun.Event Kit"

@@ -520,7 +520,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 	msg = span_notice(msg)// close the span from right at the top
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.client && M.client.holder)
 			to_chat(M,msg)
 

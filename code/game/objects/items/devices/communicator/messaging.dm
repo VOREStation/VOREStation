@@ -128,7 +128,7 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
+	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
 		if(src.client.prefs.real_name == L.real_name)
 			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return

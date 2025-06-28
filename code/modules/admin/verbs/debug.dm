@@ -93,7 +93,7 @@
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Robot"
 
@@ -108,7 +108,7 @@
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Simple Animal"
 
@@ -138,7 +138,7 @@
 	var/turf/T = get_turf(mob)
 
 	var/list/available = list()
-	for(var/mob/C in mob_list)
+	for(var/mob/C in GLOB.mob_list)
 		if(C.key && isobserver(C))
 			available.Add(C)
 	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
@@ -160,7 +160,7 @@
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Alien"
 
@@ -273,7 +273,7 @@
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in mob_list)
+/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set name = "Grant Full Access"
 
@@ -304,7 +304,7 @@
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
+/client/proc/cmd_assume_direct_control(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
@@ -592,7 +592,7 @@
 		if("Admins")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
 		if("Dead Mobs")

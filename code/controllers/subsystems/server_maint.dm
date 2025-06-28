@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(server_maint)
 	//Do it for stuff that's properly important, and shouldn't have null checks inside its other uses
 	lists_to_clear = list(
 		"player_list" = GLOB.player_list,
-		"mob_list" = global.mob_list,
+		"mob_list" = GLOB.mob_list,
 		"living_mob_list" = GLOB.living_mob_list,
 		"dead_mob_list" = GLOB.dead_mob_list,
 		"observer_mob_list" = GLOB.observer_mob_list,

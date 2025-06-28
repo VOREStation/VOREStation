@@ -1,5 +1,5 @@
 // Command to set the ckey of a mob without requiring VV permission
-/client/proc/SetCKey(var/mob/M in mob_list)
+/client/proc/SetCKey(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Set CKey"
 	set desc = "Mob to teleport"
