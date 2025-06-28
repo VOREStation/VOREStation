@@ -1,7 +1,7 @@
 //DO NOT ADD MORE TO THIS FILE.
 //Use vv_do_topic()!
 /client/proc/view_var_Topic(href, href_list, hsrc)
-	if((usr.client != src) || check_rights(R_HOLDER))
+	if((usr.client != src) || !check_rights(R_HOLDER))
 		return
 	var/datum/target = locate(href_list["target"])
 	if(istype(target))
