@@ -515,7 +515,7 @@
 			var/obj/new_pocket = new /obj/item/storage/internal/gripper(src)
 			new_pocket.name = "Pocket [i]"
 			pockets += new_pocket
-	current_pocket = pick(pockets) //Pick a random pocket!
+	current_pocket = peek(pockets)
 
 /obj/item/gripper/Destroy()
 	current_pocket = null
