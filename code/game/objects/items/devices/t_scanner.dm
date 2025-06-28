@@ -1,4 +1,4 @@
-#define GLOB.overlay_cache_LEN 50
+#define overlay_cache_LEN 50
 
 /obj/item/t_scanner
 	name = "\improper T-ray scanner"
@@ -97,8 +97,8 @@
 
 	// Add it to cache, cutting old entries if the list is too long
 	GLOB.overlay_cache[scanned] = .
-	if(GLOB.overlay_cache.len > GLOB.overlay_cache_LEN)
-		GLOB.overlay_cache.Cut(1, GLOB.overlay_cache.len-GLOB.overlay_cache_LEN-1)
+	if(GLOB.overlay_cache.len > overlay_cache_LEN)
+		GLOB.overlay_cache.Cut(1, GLOB.overlay_cache.len-overlay_cache_LEN-1)
 
 /obj/item/t_scanner/proc/get_scanned_objects(var/scan_dist)
 	. = list()
@@ -150,4 +150,4 @@
 	scan_range = 7
 
 
-#undef GLOB.overlay_cache_LEN
+#undef overlay_cache_LEN
