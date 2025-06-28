@@ -18,7 +18,7 @@
 // CI will override these as appropriate
 // #define MAP_TEST 0
 // #define AWAY_MISSION_TEST 0
-#define UNIT_TESTS 1
+// #define UNIT_TESTS 1
 
 // Comment/Uncomment this to turn off/on shuttle code debugging logs
 #define DEBUG_SHUTTLES
