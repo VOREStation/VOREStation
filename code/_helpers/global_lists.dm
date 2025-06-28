@@ -639,6 +639,14 @@ var/global/list/image/fluidtrack_cache=list()
 var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
 
+GLOBAL_LIST_INIT(possible_plants, list(
+	"plant-1",
+	"plant-10",
+	"plant-09",
+	"plant-15",
+	"plant-13"
+))
+
 GLOBAL_LIST_INIT(radio_channels_by_freq, list(
 	num2text(PUB_FREQ) = CHANNEL_COMMON,
 	num2text(AI_FREQ)  = CHANNEL_AI_PRIVATE,
