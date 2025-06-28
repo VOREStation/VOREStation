@@ -678,3 +678,30 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 	num2text(MED_FREQ) = list(),
 	num2text(MED_I_FREQ) = list()
 ))
+
+GLOBAL_LIST_INIT(valid_ringtones, list(
+		"beep",
+		"boom",
+		"slip",
+		"honk",
+		"SKREE",
+		"xeno",
+		"spark",
+		"rad",
+		"servo",
+		"buh-boop",
+		"trombone",
+		"whistle",
+		"chirp",
+		"slurp",
+		"pwing",
+		"clack",
+		"bzzt",
+		"chimes",
+		"prbt",
+		"bark",
+		"bork",
+		"roark",
+		"chitter",
+		"squish"
+		))

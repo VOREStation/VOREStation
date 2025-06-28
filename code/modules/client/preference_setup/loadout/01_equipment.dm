@@ -33,33 +33,6 @@
 	save_data["shoe_hater"] 				= pref.shoe_hater
 	save_data["no_jacket"]					= pref.no_jacket
 
-var/global/list/valid_ringtones = list(
-		"beep",
-		"boom",
-		"slip",
-		"honk",
-		"SKREE",
-		"xeno",
-		"spark",
-		"rad",
-		"servo",
-		"buh-boop",
-		"trombone",
-		"whistle",
-		"chirp",
-		"slurp",
-		"pwing",
-		"clack",
-		"bzzt",
-		"chimes",
-		"prbt",
-		"bark",
-		"bork",
-		"roark",
-		"chitter",
-		"squish"
-		)
-
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/loadout/equipment/copy_to_mob(var/mob/living/carbon/human/character)
 	character.all_underwear.Cut()
@@ -235,7 +208,7 @@ var/global/list/valid_ringtones = list(
 			return TOPIC_REFRESH
 
 		if("set_ringtone")
-			var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+			var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", GLOB.valid_ringtones + "Other", pref.ringtone)
 			if(!choice)
 				return TOPIC_NOACTION
 			if(choice == "Other")
