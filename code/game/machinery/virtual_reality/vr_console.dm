@@ -29,7 +29,6 @@
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
-	//var/global/list/vr_mob_tf_options // Global var located in global_lists.dm
 
 /obj/machinery/vr_sleeper/perfect
 	perfect_replica = TRUE
@@ -275,10 +274,10 @@
 
 		var/tf = null
 		if(tgui_alert(occupant, "Would you like to play as a different creature?", "Join as a mob?", list("Yes", "No")) == "Yes")
-			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", vr_mob_tf_options)
+			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", GLOB.vr_mob_tf_options)
 			if(!k || !occupant) //Our occupant can walk out.
 				return 0
-			tf = vr_mob_tf_options[k]
+			tf = GLOB.vr_mob_tf_options[k]
 
 		for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
 			if(i.name == S)

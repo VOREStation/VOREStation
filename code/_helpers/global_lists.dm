@@ -406,7 +406,7 @@ GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 GLOBAL_LIST_EMPTY(item_tf_spawnpoints) // Global variable tracking which items are item tf spawnpoints
 
 // Options for transforming into a different mob in virtual reality.
-var/global/list/vr_mob_tf_options = list(
+GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	"Borg" = /mob/living/silicon/robot,
 	"Cortical borer" = /mob/living/simple_mob/animal/borer/non_antag,
 	//"Hyena" = /mob/living/simple_mob/animal/hyena, //TODO: Port from Downstream
@@ -464,7 +464,7 @@ var/global/list/vr_mob_tf_options = list(
 	"Abyss leaper" = /mob/living/simple_mob/vore/vore_hostile/leaper,
 	"Gelatinous cube" = /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube,
 	//"Gryphon" = /mob/living/simple_mob/vore/gryphon //TODO: Port from Downstream
-	)
+	))
 
 var/global/list/vr_mob_spawner_options = list(
 	"Parrot" = /mob/living/simple_mob/animal/passive/bird/parrot,
