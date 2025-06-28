@@ -498,7 +498,7 @@
 	channels = list()
 
 	for(var/internal_chan in internal_channels)
-		var/ch_name = radio_channels_by_freq[internal_chan]
+		var/ch_name = GLOB.radio_channels_by_freq[internal_chan]
 		if(has_channel_access(card.pai, internal_chan))
 			channels += ch_name
 			channels[ch_name] = 1

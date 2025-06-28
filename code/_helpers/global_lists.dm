@@ -2,7 +2,6 @@
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
-GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(human_mob_list)					//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
@@ -16,8 +15,14 @@ GLOBAL_LIST_EMPTY(cable_list)						//Index for all cables, so that powernets don
 GLOBAL_LIST_EMPTY(landmarks_list)					//list of all landmarks created
 GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(landmark references) for event triggers
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
-GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
+
+//cursed lists that are used by sortAtom
+GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
+GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
+var/global/list/obj/item/pda/PDAs = list()
+var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
+
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm")
@@ -622,9 +627,6 @@ var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list
 	/obj/item/spell/spawner,
 	/obj/item/spell/summon,
 	/obj/item/spell/modifier)
-var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
-
-
 
 var/global/list/image/splatter_cache=list()
 var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
@@ -633,7 +635,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 // color-dir-dry
 var/global/list/image/fluidtrack_cache=list()
 
-var/global/list/radio_channels_by_freq = list(
+GLOBAL_LIST_INIT(radio_channels_by_freq,
 	num2text(PUB_FREQ) = CHANNEL_COMMON,
 	num2text(AI_FREQ)  = CHANNEL_AI_PRIVATE,
 	num2text(ENT_FREQ) = CHANNEL_ENTERTAINMENT,
@@ -648,6 +650,6 @@ var/global/list/radio_channels_by_freq = list(
 	num2text(SUP_FREQ) = CHANNEL_SUPPLY,
 	num2text(SRV_FREQ) = CHANNEL_SERVICE,
 	num2text(EXP_FREQ) = CHANNEL_EXPLORATION
-	)
+	))
 
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
