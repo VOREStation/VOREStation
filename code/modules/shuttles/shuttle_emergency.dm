@@ -6,7 +6,7 @@
 
 /datum/shuttle/autodock/ferry/emergency/New()
 	..()
-	radio_connection = radio_controller.add_object(src, frequency, null)
+	radio_connection = SSradio.add_object(src, frequency, null)
 	if(emergency_shuttle.shuttle)
 		CRASH("An emergency shuttle has already been defined.")
 	emergency_shuttle.shuttle = src

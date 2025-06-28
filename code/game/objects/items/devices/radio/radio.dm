@@ -68,9 +68,9 @@ var/global/list/default_medbay_channels = list(
 	var/list/datum/radio_frequency/secure_radio_connections
 
 /obj/item/radio/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/radio/Initialize(mapload)
 	. = ..()
@@ -80,7 +80,7 @@ var/global/list/default_medbay_channels = list(
 	set_frequency(frequency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
@@ -129,10 +129,10 @@ var/global/list/default_medbay_channels = list(
 	qdel(wires)
 	wires = null
 	listening_objects -= src
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, radiochannels[ch_name])
 	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
@@ -672,7 +672,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -730,24 +730,24 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/radio/borg/proc/controller_check(var/initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!radio_controller && initial_run)
+	if(!SSradio && initial_run)
 		addtimer(CALLBACK(src,PROC_REF(controller_check), FALSE),3 SECONDS)
 		return
-	if(!radio_controller && !initial_run)
+	if(!SSradio && !initial_run)
 		name = "broken radio headset"
 		return
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
-	if(radio_controller)
+	if(SSradio)
 		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
-	if(radio_controller)
+	if(SSradio)
 		for (var/ch_name in op)
-			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/radio/off
