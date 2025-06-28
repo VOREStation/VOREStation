@@ -195,6 +195,11 @@ SUBSYSTEM_DEF(ticker)
 
 	//	data_core.manifest()
 
+	for(var/I in round_start_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(round_start_events)
+
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
 	callHook("roundstart")
@@ -410,7 +415,13 @@ SUBSYSTEM_DEF(ticker)
 			if(!isnewplayer(M))
 				to_chat(M, span_notice("Site Management is not forced on anyone."))
 
-/datum/controller/subsystem/ticker/proc/declare_completion()
+/datum/controller/subsystem/ticker/proc/declare_completion(was_forced = END_ROUND_AS_NORMAL)
+	set waitfor = FALSE
+
+	for(var/datum/callback/roundend_callbacks as anything in round_end_events)
+		roundend_callbacks.InvokeAsync()
+	LAZYCLEARLIST(round_end_events)
+
 	to_world(span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
@@ -498,7 +509,18 @@ SUBSYSTEM_DEF(ticker)
 
 	SSdbcore.SetRoundEnd()
 
-	return 1
+	sleep(5 SECONDS)
+	ready_for_reboot = TRUE
+	standard_reboot()
+
+/datum/controller/subsystem/ticker/proc/standard_reboot()
+	if(ready_for_reboot)
+		if(mode.station_was_nuked)
+			Reboot("Station destroyed by Nuclear Device.", "nuke")
+		else
+			Reboot("Round ended.", "proper completion")
+	else
+		CRASH("Attempted standard reboot without ticker roundend completion")
 
 ///Whether the game has started, including roundend.
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
@@ -547,3 +569,38 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_GAME)
 			if(GAME_STATE_FINISHED)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+	set waitfor = FALSE
+	if(usr && !check_rights(R_SERVER, TRUE))
+		return
+
+	//if(!delay)
+	//	delay = CONFIG_GET(number/round_end_countdown) * 10
+
+	//var/skip_delay = check_rights()
+	//if(delay_end && !skip_delay)
+	//	to_chat(world, span_boldannounce("An admin has delayed the round end."))
+	//	return
+
+	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
+
+	//var/statspage = CONFIG_GET(string/roundstatsurl)
+	//var/gamelogloc = CONFIG_GET(string/gamelogurl)
+	//if(statspage)
+	//	to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
+	//else if(gamelogloc)
+	//	to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
+
+	//var/start_wait = world.time
+	//UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
+	//reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay - (world.time - start_wait), TIMER_STOPPABLE)
+	reboot_callback(reason, end_string)
+
+/datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
+	if(end_string)
+		end_state = end_string
+
+	log_game(span_boldannounce("Rebooting World. [reason]"))
+
+	world.Reboot()

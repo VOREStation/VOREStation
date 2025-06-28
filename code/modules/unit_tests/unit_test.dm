@@ -70,17 +70,19 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in landmarks_list)
 	run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in landmarks_list)
 
-	TEST_ASSERT(isfloorturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
-	TEST_ASSERT(isfloorturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
+	// NOT IMPLENTED YET, SEE THE BEGINNING OF THIS PROC
+	//TEST_ASSERT(isfloorturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
+	//TEST_ASSERT(isfloorturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
 
 /datum/unit_test/Destroy()
 	QDEL_LIST(allocated)
 	// clear the test area
-	for (var/turf/turf in Z_TURFS(run_loc_floor_bottom_left.z))
-		for (var/content in turf.contents)
-			if (istype(content, /obj/effect/landmark))
-				continue
-			qdel(content)
+	// NOT IMPLEMENTED YET, SEE NEW() PROC
+	//for (var/turf/turf in Z_TURFS(run_loc_floor_bottom_left.z))
+	//	for (var/content in turf.contents)
+	//		if (istype(content, /obj/effect/landmark))
+	//			continue
+	//		qdel(content)
 	return ..()
 
 /datum/unit_test/proc/Run()

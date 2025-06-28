@@ -1,4 +1,8 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
+/// Load byond-tracy. If USE_BYOND_TRACY is defined, then this is ignored and byond-tracy is always loaded.
+#define USE_TRACY_PARAMETER "tracy"
+/// Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"
 
 GLOBAL_VAR(restart_counter)
 
@@ -59,6 +63,25 @@ GLOBAL_VAR(restart_counter)
 /world/proc/Genesis(tracy_initialized = FALSE)
 	RETURN_TYPE(/datum/controller/master)
 
+	if(!tracy_initialized)
+		Tracy = new
+#ifdef USE_BYOND_TRACY
+		if(Tracy.enable("USE_BYOND_TRACY defined"))
+			Genesis(tracy_initialized = TRUE)
+			return
+#else
+		var/tracy_enable_reason
+		if(USE_TRACY_PARAMETER in params)
+			tracy_enable_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			tracy_enable_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			fdel(TRACY_ENABLE_PATH)
+		if(!isnull(tracy_enable_reason) && Tracy.enable(tracy_enable_reason))
+			Genesis(tracy_initialized = TRUE)
+			return
+#endif
+
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
 
@@ -118,9 +141,11 @@ GLOBAL_VAR(restart_counter)
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
-	load_admins()
-
 	ConfigLoaded()
+
+	if(NO_INIT_PARAMETER in params)
+		return
+
 	makeDatumRefLists()
 
 	var servername = CONFIG_GET(string/servername)
@@ -147,8 +172,6 @@ GLOBAL_VAR(restart_counter)
 	if (debug_server)
 		call_ext(debug_server, "auxtools_init")()
 		enable_debugging()
-
-	. = ..()
 
 #ifdef UNIT_TESTS
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
@@ -195,6 +218,8 @@ GLOBAL_VAR(restart_counter)
 	// Try to set round ID
 	SSdbcore.InitializeRound()
 
+	load_admins(initial = TRUE)
+
 	//apply a default value to config.python_path, if needed
 	if (!CONFIG_GET(string/python_path))
 		if(world.system_type == UNIX)
@@ -228,6 +253,15 @@ GLOBAL_VAR(restart_counter)
 	cb = VARSET_CALLBACK(SSticker, force_ending, ADMIN_FORCE_END_ROUND)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
+
+/// Returns a list of data about the world state, don't clutter
+/world/proc/get_world_state_for_logging()
+	var/data = list()
+	data["tick_usage"] = world.tick_usage
+	data["tick_lag"] = world.tick_lag
+	data["time"] = world.time
+	data["timestamp"] = rustg_unix_timestamp()
+	return data
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -471,16 +505,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	/*spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
-
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
 			to_world(span_boldannounce("[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools"))
-
 		else
 			to_world(span_boldannounce("Rebooting world immediately due to host request"))
 	else
@@ -489,6 +518,10 @@ var/world_topic_spam_protect_time = world.timeofday
 			if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 				C << link("byond://[CONFIG_GET(string/server)]")
 
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#else
 	if(check_hard_reboot())
 		log_world("World hard rebooted at [time_stamp()]")
 		//shutdown_logging() // See comment below.
@@ -499,7 +532,14 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	TgsReboot()
 	log_world("World rebooted at [time_stamp()]")
+
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
+
+	TgsReboot()
+
 	..()
+	#endif
 
 /world/Del()
 	QDEL_NULL(Tracy)
@@ -735,3 +775,6 @@ var/failed_old_db_connections = 0
 /world/Profile(command, type, format)
 	if((command & PROFILE_STOP) || !global.config?.loaded || !CONFIG_GET(flag/forbid_all_profiling))
 		. = ..()
+
+#undef NO_INIT_PARAMETER
+#undef USE_TRACY_PARAMETER

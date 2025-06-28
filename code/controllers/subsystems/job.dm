@@ -1,8 +1,8 @@
 SUBSYSTEM_DEF(job)
 	name = "Job"
-	//dependencies = list(
-	//	/datum/controller/subsystem/processing/station,
-	//)
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs

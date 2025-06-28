@@ -66,7 +66,6 @@ Class Procs:
 SUBSYSTEM_DEF(air)
 	name = "Air"
 	dependencies = list(
-		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms
 	)
 	priority = FIRE_PRIORITY_AIR

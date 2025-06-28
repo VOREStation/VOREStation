@@ -3,7 +3,9 @@
 SUBSYSTEM_DEF(sounds)
 	name = "Sounds"
 	flags = SS_NO_FIRE
-	init_stage = INITSTAGE_EARLY
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	var/static/using_channels_max = CHANNEL_HIGHEST_AVAILABLE //BYOND max channels
 	/// Amount of channels to reserve for random usage rather than reservations being allowed to reserve all channels. Also a nice safeguard for when someone screws up.
 	var/static/random_channels_min = 50

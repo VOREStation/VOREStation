@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(transcore)
 	wait = 3 MINUTES
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 
 	// THINGS
 	var/overdue_time = 6 MINUTES			// Has to be a multiple of wait var, or else will just round up anyway.

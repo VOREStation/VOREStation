@@ -4,6 +4,9 @@ SUBSYSTEM_DEF(planets)
 	wait = 2 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	dependencies = list(
+		/datum/controller/subsystem/plants
+	)
 
 	var/static/list/planets = list()
 	var/static/list/z_to_planet = list()
