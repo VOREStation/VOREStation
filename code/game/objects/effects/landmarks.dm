@@ -60,7 +60,7 @@
 			GLOB.xeno_spawn += loc
 			delete_me = TRUE
 		if("endgame_exit")
-			endgame_safespawns += loc
+			GLOB.endgame_safespawns += loc
 			delete_me = TRUE
 		if("bluespacerift")
 			GLOB.endgame_exits += loc
