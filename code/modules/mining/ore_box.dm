@@ -29,6 +29,9 @@
 		ORE_VERDANTIUM = 0,
 		ORE_RUTILE = 0)
 
+/obj/structure/ore_box/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/ore))

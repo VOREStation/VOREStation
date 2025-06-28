@@ -41,10 +41,12 @@
 #define R_MOD (1<<13)
 #define R_EVENT (1<<14)
 #define R_HOST (1<<15) //higher than this will overflow
+#define R_MENTOR (1<<16)
 
 #define R_DEFAULT R_NONE
 
-#define R_EVERYTHING (1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (1<<17)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_HOLDER ((R_EVERYTHING) & (~R_MENTOR))
 
 #define SMITE_BREAKLEGS				"Break Legs"
 #define SMITE_BLUESPACEARTILLERY	"Bluespace Artillery"

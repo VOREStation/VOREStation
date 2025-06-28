@@ -20,8 +20,8 @@ jobs:
         with:
             fetch-depth: 0
       # Caches
-      - name: Setup Node
-        uses: ./.github/actions/setup_node
+      - name: Setup Bun
+        uses: ./.github/actions/setup_bun
         with:
           restore-yarn-cache: true
       - name: Restore Bootstrap cache
@@ -61,7 +61,7 @@ jobs:
           tools/bootstrap/python -m tools.maplint.source
           tools/bootstrap/python -m mapmerge2.dmm_test
       - name: Run TGUI Checks
-        run: tools/build/build --ci lint tgui-test
+        run: tools/build/build.sh --ci lint tgui-test
       - name: Run Nanomap Checks
         run: tools/github-actions/nanomap-renderer-invoker.sh --testing
 

@@ -100,12 +100,6 @@
 	random_color = FALSE
 	reach = 2
 
-/obj/item/tool/screwdriver/cyborg
-	name = "powered screwdriver"
-	desc = "An electrical screwdriver, designed to be both precise and quick."
-	usesound = 'sound/items/drill_use.ogg'
-	toolspeed = 0.5
-
 /obj/item/tool/screwdriver/power
 	name = "power screwdriver"
 	desc = "You shouldn't see this."

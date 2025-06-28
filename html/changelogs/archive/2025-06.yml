@@ -282,3 +282,50 @@
   - bugfix: reagent dispenser tanks no longer perform alchemy, turning all reagents
       into fuel spills
   - code_imp: gene conflict list uses much less memory
+2025-06-20:
+  Diana, Kash:
+  - rscadd: Borgs now have toolbelts instead of various misc tools in their inventory.
+  - rscadd: Borgs now have a Material Dispenser that holds all the various materials
+      they can make, instead of being scattered throughout your inventory
+  - rscadd: Grippers are now consolidated and have 5 inventory slots each. No more
+      guessing 'What gripper is used for what'
+  - rscdel: tool bloat
+  Kash Guti Will:
+  - rscadd: Adds genes and diseases to bingle's database so symptoms and genetics
+      stuff can be looked up ingame
+  - code_imp: added unit test for virus names and trait names to prevent tgui issues
+2025-06-21:
+  SatinIsle:
+  - balance: Changed the level that you can use backup batteries as a synth to 150
+      nutrition, and it also gives you 150 nutrition back. This means you can use
+      it as soon as you reach slowdown levels of hunger and it fills you up a decent
+      amount.
+  Will:
+  - code_imp: moves sql death reporting to SSmobs as a single massinsert
+  - refactor: turns object climbing code into a component
+  - qol: many more objects are climbable, preventing softlocks, especially for engineers
+      and miners
+2025-06-22:
+  Diana:
+  - rscadd: Miners now start with a voucher that can be redeemed for various loadouts
+      at the ore vendor.
+  TeleTubby2:
+  - spellcheck: removed all strucutres from the game
+  Will:
+  - qol: Borgs can now examine items to know if any of their grippers can hold it.
+  Willburd:
+  - qol: climbable objects being pulled up or down stairs no longer knock you around
+  - rscadd: Hoses can connect to sinks for endless water, or as an endless drain
+2025-06-28:
+  Diana:
+  - bugfix: Xenochimera, spider, diona, shadekin, and alraune now process traits properly.
+  ItsSelis:
+  - bugfix: Fixed a query in chatlogging
+  TheCaramelion:
+  - qol: You can extract blood from blood bags using a syringe
+  Willburd:
+  - bugfix: dna block injectors no longer show their entire genome, and instead just
+      the relevant block. Doesn't affect full sequence injectors.
+  - bugfix: dna resequencers from the body record console should not do radiation
+      damage
+  - code_imp: Reagent unit-test is more strict about duplicated reagent names
