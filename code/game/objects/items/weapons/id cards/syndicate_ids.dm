@@ -11,7 +11,7 @@
 /obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	agentcard_module = new(src)
-	access = syndicate_access.Copy()
+	access = GLOB.syndicate_access.Copy()
 
 /obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access

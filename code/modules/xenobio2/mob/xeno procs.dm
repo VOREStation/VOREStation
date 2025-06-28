@@ -97,10 +97,10 @@ Divergence proc, used in mutation to make unique datums.
 	if((COLORMUT & mutable))
 		traitdat.traits[TRAIT_XENO_COLOR] = "#"
 		for(var/i=0, i<6, i++)
-			traitdat.traits[TRAIT_XENO_COLOR] += pick(hexNums)
+			traitdat.traits[TRAIT_XENO_COLOR] += pick(GLOB.hexNums)
 		traitdat.traits[TRAIT_XENO_BIO_COLOR] = "#"
 		for(var/i=0, i<6, i++)
-			traitdat.traits[TRAIT_XENO_BIO_COLOR] += pick(hexNums)
+			traitdat.traits[TRAIT_XENO_BIO_COLOR] += pick(GLOB.hexNums)
 
 	RandomChemicals()
 	//if(SPECIESMUT & mutable)

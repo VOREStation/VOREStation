@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(escape_list)
 GLOBAL_LIST_EMPTY(endgame_exits)
 GLOBAL_LIST_EMPTY(endgame_safespawns)
 
-var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+GLOBAL_LIST_INIT(syndicate_access, list(access_maint_tunnels, access_syndicate, access_external_airlocks))
 
 // Ores (for mining)
 GLOBAL_LIST_EMPTY(ore_data)
@@ -340,7 +340,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	to_world(.)
 */
 //Hexidecimal numbers
-var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+GLOBAL_LIST_INIT(hexNums, list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"))
 
 // Many global vars aren't GLOB type. This puts them there to be more easily inspected.
 GLOBAL_LIST_EMPTY(legacy_globals)
@@ -356,15 +356,15 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["cultnet"] = cultnet
 	GLOB.legacy_globals["existing_solargrubs"] = GLOB.existing_solargrubs
 
-var/global/list/selectable_footstep = list(
+GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Default" = FOOTSTEP_MOB_HUMAN,
 	"Claw" = FOOTSTEP_MOB_CLAW,
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
-)
+))
 
 // Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.
-var/global/list/blacklisted_artifact_effects = list(
+GLOBAL_LIST_INIT(blacklisted_artifact_effects, list(
 	/datum/artifact_effect/gas/sleeping,
 	/datum/artifact_effect/gas/oxy,
 	/datum/artifact_effect/gas/carbondiox,
@@ -372,17 +372,17 @@ var/global/list/blacklisted_artifact_effects = list(
 	/datum/artifact_effect/gas/nitro,
 	/datum/artifact_effect/gas/phoron,
 	/datum/artifact_effect/extreme
-)
+))
 
 //stuff that only synths can eat
-var/global/list/edible_tech = list(/obj/item/cell,
+GLOBAL_LIST_INIT(edible_tech, list(/obj/item/cell,
 				/obj/item/circuitboard,
 				/obj/item/integrated_circuit,
 				/obj/item/broken_device,
 				/obj/item/brokenbug,
-				)
+				))
 
-var/global/list/item_digestion_blacklist = list(
+GLOBAL_LIST_INIT(item_digestion_blacklist, list(
 		/obj/item/hand_tele,
 		/obj/item/card/id,
 		/obj/item/gun,
@@ -394,7 +394,7 @@ var/global/list/item_digestion_blacklist = list(
 		/obj/item/organ/internal/brain/slime,
 		/obj/item/mmi/digital/posibrain,
 		/obj/item/mmi/digital/robot,
-		/obj/item/rig/protean)
+		/obj/item/rig/protean))
 
 ///A list of chemicals that are banned from being obtainable through means that generate chemicals. These chemicals are either lame, annoying, pref-breaking, or OP (This list does NOT include reactions)
 GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
