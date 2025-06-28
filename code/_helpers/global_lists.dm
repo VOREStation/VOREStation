@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(mapping_beacons)
 GLOBAL_LIST_EMPTY(hair_styles_list)			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/hair_styles_male_list = list()
 var/global/list/hair_styles_female_list = list()
-var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
+GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
 var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
-		facial_hair_styles_list[H.name] = H
+		GLOB.facial_hair_styles_list[H.name] = H
 		switch(H.gender)
 			if(MALE)	facial_hair_styles_male_list += H.name
 			if(FEMALE)	facial_hair_styles_female_list += H.name

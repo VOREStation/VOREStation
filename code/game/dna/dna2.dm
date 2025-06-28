@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	// Facial Hair
 	if(!character.f_style)
 		character.f_style = "Shaved"
-	var/beard	= facial_hair_styles_list.Find(character.f_style)
+	var/beard	= GLOB.facial_hair_styles_list.Find(character.f_style)
 
 
 	// VOREStation Edit Start
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
 
 	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  GLOB.hair_styles_list.len,       1)
-	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, facial_hair_styles_list.len,1)
+	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, GLOB.facial_hair_styles_list.len,1)
 
 	body_markings.Cut()
 	for(var/obj/item/organ/external/E in character.organs)
@@ -341,9 +341,9 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		H.h_style = GLOB.hair_styles_list[hair]
 
 	//Facial Hair
-	var/beard = GetUIValueRange(DNA_UI_BEARD_STYLE,facial_hair_styles_list.len)
-	if((0 < beard) && (beard <= facial_hair_styles_list.len))
-		H.f_style = facial_hair_styles_list[beard]
+	var/beard = GetUIValueRange(DNA_UI_BEARD_STYLE,GLOB.facial_hair_styles_list.len)
+	if((0 < beard) && (beard <= GLOB.facial_hair_styles_list.len))
+		H.f_style = GLOB.facial_hair_styles_list[beard]
 
 	// Ears
 	var/ears = GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1

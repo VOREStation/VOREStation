@@ -720,7 +720,7 @@
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
-			var/datum/sprite_accessory/facial_hair/S = facial_hair_styles_list[facial_hair_style]
+			var/datum/sprite_accessory/facial_hair/S = GLOB.facial_hair_styles_list[facial_hair_style]
 			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["facial_hair_styles"] = facial_hair_styles
 

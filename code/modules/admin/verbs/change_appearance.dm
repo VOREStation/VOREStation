@@ -85,7 +85,7 @@
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", facial_hair_styles_list)
+	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", GLOB.facial_hair_styles_list)
 	if(new_fstyle)
 		M.f_style = new_fstyle
 

@@ -134,7 +134,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		pref.species = SPECIES_HUMAN
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
-	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
+	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 
@@ -355,7 +355,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["available_hair_styles"] = available_hair_styles
 
 	var/list/available_facial_styles = list()
-	for(var/path in pref.get_available_styles(facial_hair_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.facial_hair_styles_list))
 		UNTYPED_LIST_ADD(available_facial_styles, path)
 	data["available_facial_styles"] = available_facial_styles
 
@@ -409,8 +409,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["hair_styles"] = hair_styles
 
 	var/list/facial_styles = list()
-	for(var/path in facial_hair_styles_list)
-		var/datum/sprite_accessory/facial_hair/S = facial_hair_styles_list[path]
+	for(var/path in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/facial_hair/S = GLOB.facial_hair_styles_list[path]
 		facial_styles[path] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -514,7 +514,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Facial Hair */
 		if("set_facial_hair_style")
 			var/new_f_style = params["facial_hair_style"]
-			if(new_f_style in pref.get_available_styles(facial_hair_styles_list))
+			if(new_f_style in pref.get_available_styles(GLOB.facial_hair_styles_list))
 				pref.f_style = new_f_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_facial_hair_color")
@@ -775,7 +775,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 						pref.f_style = pick(valid_facialhairstyles)
 				else
 					//this shouldn't happen
-					pref.f_style = facial_hair_styles_list["Shaved"]
+					pref.f_style = GLOB.facial_hair_styles_list["Shaved"]
 
 				//reset hair colour and skin colour
 				pref.update_preference_by_type(/datum/preference/color/human/hair_color, "#000000")
