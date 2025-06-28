@@ -353,7 +353,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
 	GLOB.legacy_globals["mob_list"] = mob_list
-	GLOB.legacy_globals["GLOB.human_mob_list"] = GLOB.human_mob_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
