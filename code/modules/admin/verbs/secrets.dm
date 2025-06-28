@@ -1,4 +1,4 @@
-ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu.", "Admin.Secrets")
+ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu.", "Admin.Secrets")
 	var/datum/secrets_menu/tgui = new(user)
 	tgui.tgui_interact(user.mob)
 	//BLACKBOX_LOG_ADMIN_VERB("Secrets Panel")
