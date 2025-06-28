@@ -80,7 +80,7 @@
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", hair_styles_list)
+	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", GLOB.hair_styles_list)
 	if(new_hstyle)
 		M.h_style = new_hstyle
 

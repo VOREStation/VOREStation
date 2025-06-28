@@ -133,7 +133,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
+	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
 	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
@@ -350,7 +350,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["can_play"] = can_play_list
 
 	var/list/available_hair_styles = list()
-	for(var/path in pref.get_available_styles(hair_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.hair_styles_list))
 		UNTYPED_LIST_ADD(available_hair_styles, path)
 	data["available_hair_styles"] = available_hair_styles
 
@@ -398,8 +398,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["species"] = species_list
 
 	var/list/hair_styles = list()
-	for(var/path in hair_styles_list)
-		var/datum/sprite_accessory/hair/S = hair_styles_list[path]
+	for(var/path in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/hair/S = GLOB.hair_styles_list[path]
 		hair_styles[path] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -500,7 +500,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Hair */
 		if("set_hair_style")
 			var/new_h_style = params["hair_style"]
-			if(new_h_style in pref.get_available_styles(hair_styles_list))
+			if(new_h_style in pref.get_available_styles(GLOB.hair_styles_list))
 				pref.h_style = new_h_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_hair_color")
@@ -765,7 +765,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 						pref.h_style = pick(valid_hairstyles)
 				else
 					//this shouldn't happen
-					pref.h_style = hair_styles_list["Bald"]
+					pref.h_style = GLOB.hair_styles_list["Bald"]
 
 				//grab one of the valid facial hair styles for the newly chosen species
 				var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()

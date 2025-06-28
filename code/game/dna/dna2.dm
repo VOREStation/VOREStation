@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	// FIXME:  Species-specific defaults pls
 	if(!character.h_style)
 		character.h_style = "Skinhead"
-	var/hair = hair_styles_list.Find(character.h_style)
+	var/hair = GLOB.hair_styles_list.Find(character.h_style)
 
 	// Facial Hair
 	if(!character.f_style)
@@ -280,7 +280,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 
 	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
 
-	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  hair_styles_list.len,       1)
+	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  GLOB.hair_styles_list.len,       1)
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, facial_hair_styles_list.len,1)
 
 	body_markings.Cut()
@@ -336,9 +336,9 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 			E.markings = marklist.Copy()
 
 	//Hair style
-	var/hair = GetUIValueRange(DNA_UI_HAIR_STYLE,hair_styles_list.len)
-	if((0 < hair) && (hair <= hair_styles_list.len))
-		H.h_style = hair_styles_list[hair]
+	var/hair = GetUIValueRange(DNA_UI_HAIR_STYLE,GLOB.hair_styles_list.len)
+	if((0 < hair) && (hair <= GLOB.hair_styles_list.len))
+		H.h_style = GLOB.hair_styles_list[hair]
 
 	//Facial Hair
 	var/beard = GetUIValueRange(DNA_UI_BEARD_STYLE,facial_hair_styles_list.len)

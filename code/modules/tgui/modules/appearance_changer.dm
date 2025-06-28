@@ -697,7 +697,7 @@
 	if(can_change(owner, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
-			var/datum/sprite_accessory/hair/S = hair_styles_list[hair_style]
+			var/datum/sprite_accessory/hair/S = GLOB.hair_styles_list[hair_style]
 			hair_styles[++hair_styles.len] = list("name" = hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["hair_styles"] = hair_styles
 		data["ear_styles"] = valid_earstyles

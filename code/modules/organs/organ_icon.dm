@@ -65,10 +65,10 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	//Head hair
 	if(owner.h_style)
 		var/style = owner.h_style
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
+		var/datum/sprite_accessory/hair/hair_style = GLOB.hair_styles_list[style]
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
-				hair_style = hair_styles_list["Short Hair"]
+				hair_style = GLOB.hair_styles_list["Short Hair"]
 		if(hair_style && (data.get_species_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
