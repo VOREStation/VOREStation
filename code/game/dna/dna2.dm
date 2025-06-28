@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 				continue
 			if("body_markings")
 				var/list/body_markings_genetic = body_markings.Copy()
-				body_markings_genetic -= body_marking_nopersist_list
+				body_markings_genetic -= GLOB.body_marking_nopersist_list
 				new_dna.vars[A] = body_markings_genetic
 				continue
 		if(islist(vars[A]))
