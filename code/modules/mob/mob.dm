@@ -1,7 +1,7 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
 	SSmobs.currentrun -= src
 	mob_list -= src
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 	living_mob_list -= src
 	GLOB.player_list -= src
 	unset_machine()
@@ -71,7 +71,7 @@
 /mob/Initialize(mapload)
 	mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
 		living_mob_list += src
 	lastarea = get_area(src)

@@ -1238,13 +1238,13 @@ var/mob/dview/dview_mob
 	// We don't want to be in any mob lists; we're a dummy not a mob.
 	mob_list -= src
 	if(stat == DEAD)
-		dead_mob_list -= src
+		GLOB.dead_mob_list -= src
 	else
 		living_mob_list -= src
 
 /mob/dview/Life()
 	mob_list -= src
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 	living_mob_list -= src
 
 /mob/dview/Destroy(var/force)

@@ -501,7 +501,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 					continue //Dead
 
 			continue //Happy connected client
-		for(var/mob/observer/dead/D in dead_mob_list)
+		for(var/mob/observer/dead/D in GLOB.dead_mob_list)
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider

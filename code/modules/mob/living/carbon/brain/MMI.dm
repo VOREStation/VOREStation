@@ -69,7 +69,7 @@
 		brainmob.container = src
 		brainmob.set_stat(CONSCIOUS)
 		brainmob.blinded = 0 //VOREedit Fixes MMIs vision
-		dead_mob_list -= brainmob//Update dem lists
+		GLOB.dead_mob_list -= brainmob//Update dem lists
 		living_mob_list += brainmob
 
 		user.drop_item()
@@ -196,7 +196,7 @@
 	src.brainmob.container = src
 	src.brainmob.set_stat(CONSCIOUS)
 	src.brainmob.silent = 0
-	dead_mob_list -= src.brainmob
+	GLOB.dead_mob_list -= src.brainmob
 
 /obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these

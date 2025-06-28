@@ -7,7 +7,7 @@ var/global/list/human_mob_list = list()				//List of all human mobs and sub-type
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/ai_list = list()					//List of all AIs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
-var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(dead_mob_list)					//List of all dead mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(observer_mob_list)				//List of all /mob/observer/dead, including clientless.
 var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
 	GLOB.legacy_globals["ai_list"] = ai_list
 	GLOB.legacy_globals["living_mob_list"] = living_mob_list
-	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
+	GLOB.legacy_globals["GLOB.dead_mob_list"] = GLOB.dead_mob_list
 	//GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list
 	GLOB.legacy_globals["listening_objects"] = listening_objects
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs

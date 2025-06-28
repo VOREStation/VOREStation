@@ -92,7 +92,7 @@
 
 	R.set_stat(CONSCIOUS)
 	R.add_robot_verbs()
-	dead_mob_list -= R
+	GLOB.dead_mob_list -= R
 	living_mob_list |= R
 	R.notify_ai(ROBOT_NOTIFICATION_NEW_UNIT)
 	return 1

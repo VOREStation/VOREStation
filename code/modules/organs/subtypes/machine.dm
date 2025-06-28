@@ -91,7 +91,7 @@
 
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
-		dead_mob_list -= owner
+		GLOB.dead_mob_list -= owner
 		living_mob_list |= owner
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 

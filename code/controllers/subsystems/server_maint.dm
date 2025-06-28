@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(server_maint)
 		"player_list" = GLOB.player_list,
 		"mob_list" = global.mob_list,
 		"living_mob_list" = global.living_mob_list,
-		"dead_mob_list" = global.dead_mob_list,
+		"dead_mob_list" = GLOB.dead_mob_list,
 		"observer_mob_list" = GLOB.observer_mob_list,
 		"listening_objects" = global.listening_objects,
 		"human_mob_list" = global.human_mob_list,

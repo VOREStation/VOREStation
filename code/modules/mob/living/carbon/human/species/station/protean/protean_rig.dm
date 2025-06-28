@@ -394,7 +394,7 @@
 				new_eo.robotize(H.synthetic ? H.synthetic.company : null)
 				new_eo.sync_colour_to_human(H)
 		if(!partial)
-			dead_mob_list.Remove(H)
+			GLOB.dead_mob_list.Remove(H)
 			living_mob_list += H
 			H.tod = null
 			H.timeofdeath = 0

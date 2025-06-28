@@ -488,8 +488,8 @@
 	add_attack_logs(user,H,"Shocked using [name]")
 
 /obj/item/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
-	dead_mob_list.Remove(M)
-	if((M in living_mob_list) || (M in dead_mob_list))
+	GLOB.dead_mob_list.Remove(M)
+	if((M in living_mob_list) || (M in GLOB.dead_mob_list))
 		WARNING("Mob [M] was defibbed but already in the living or dead list still!")
 	living_mob_list += M
 

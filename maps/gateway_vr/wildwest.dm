@@ -157,7 +157,7 @@
 
 	spawn(rand(800,1200))
 		if(stat == DEAD)
-			dead_mob_list -= src
+			GLOB.dead_mob_list -= src
 			living_mob_list += src
 		set_stat(CONSCIOUS)
 		tod = null

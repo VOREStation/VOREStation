@@ -1021,7 +1021,7 @@ var/list/ai_verbs_default = list(
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 	ai_list -= src
 	silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
@@ -1029,7 +1029,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/announcer/Life()
 	mob_list -= src
 	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 	ai_list -= src
 	silicon_mob_list -= src
 	QDEL_NULL(eyeobj)

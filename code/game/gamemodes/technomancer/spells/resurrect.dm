@@ -33,7 +33,7 @@
 				var/mob/living/simple_mob/SM = L
 				SM.health = SM.getMaxHealth() / 3
 				SM.set_stat(CONSCIOUS)
-				dead_mob_list -= SM
+				GLOB.dead_mob_list -= SM
 				living_mob_list += SM
 				SM.update_icon()
 				adjust_instability(15)
@@ -53,7 +53,7 @@
 				sleep(10 SECONDS)
 				if(H.client)
 					L.set_stat(CONSCIOUS) //Note that if whatever killed them in the first place wasn't fixed, they're likely to die again.
-					dead_mob_list -= H
+					GLOB.dead_mob_list -= H
 					living_mob_list += H
 					H.timeofdeath = null
 					visible_message(span_danger("\The [H]'s eyes open!"))
