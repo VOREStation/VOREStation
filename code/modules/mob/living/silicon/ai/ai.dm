@@ -1023,7 +1023,7 @@ var/list/ai_verbs_default = list(
 	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.ai_list -= src
-	silicon_mob_list -= src
+	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 
 /mob/living/silicon/ai/announcer/Life()
@@ -1031,7 +1031,7 @@ var/list/ai_verbs_default = list(
 	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.ai_list -= src
-	silicon_mob_list -= src
+	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
 
 #undef AI_CHECK_WIRELESS

@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(persist)
 		return
 	if(!resumed)
 		src.currentrun = human_mob_list.Copy()
-		src.currentrun += silicon_mob_list.Copy()
+		src.currentrun += GLOB.silicon_mob_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun

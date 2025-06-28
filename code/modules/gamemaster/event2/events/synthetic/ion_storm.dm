@@ -22,7 +22,7 @@
 
 /datum/event2/event/ion_storm/start()
 	// Ion laws.
-	for(var/mob/living/silicon/target in silicon_mob_list)
+	for(var/mob/living/silicon/target in GLOB.silicon_mob_list)
 		if(target.z in get_location_z_levels())
 			// Don't ion law drons.
 			if(istype(target, /mob/living/silicon/robot/drone))

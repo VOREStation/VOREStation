@@ -45,7 +45,7 @@
 		S.eye_blurry += (ionbug - 1)
 
 	// Ionize silicon mobs
-	for (var/mob/living/silicon/ai/target in silicon_mob_list)
+	for (var/mob/living/silicon/ai/target in GLOB.silicon_mob_list)
 		if(!(target.z in affecting_z))
 			continue
 		var/law = target.generate_ion_law()

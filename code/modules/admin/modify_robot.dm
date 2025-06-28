@@ -1,4 +1,4 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
 	set name = "Modify Robot"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin.Silicon"
@@ -122,7 +122,7 @@
 			if(source)
 				.["source"] += get_module_source(user, spritesheet)
 	var/list/all_robots = list()
-	for(var/mob/living/silicon/robot/R in silicon_mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mob_list)
 		if(!R.loc)
 			continue
 		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))

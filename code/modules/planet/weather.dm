@@ -236,7 +236,7 @@
 					continue
 				planet_effect(H)
 		if(effect_flags & EFFECT_ONLY_ROBOTS)
-			for(var/mob/living/silicon/R as anything in silicon_mob_list)
+			for(var/mob/living/silicon/R as anything in GLOB.silicon_mob_list)
 				if(R.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
 					continue
 				planet_effect(R)

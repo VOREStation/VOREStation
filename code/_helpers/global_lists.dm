@@ -4,7 +4,7 @@
 GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
+GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)					//List of all alive mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(dead_mob_list)					//List of all dead mobs, including clientless. Excludes /mob/new_player
@@ -354,7 +354,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
 	GLOB.legacy_globals["mob_list"] = mob_list
 	GLOB.legacy_globals["human_mob_list"] = human_mob_list
-	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
