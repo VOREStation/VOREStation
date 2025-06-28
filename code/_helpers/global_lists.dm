@@ -19,8 +19,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
-#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
-#define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
+#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)
+#define all_genders_text_list list("Male","Female","Plural","Neuter","Herm")
 #define pronoun_set_to_genders list(\
 			"He/Him" = MALE,\
 			"She/Her" = FEMALE,\
@@ -279,12 +279,10 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
 
-	// VOREStation Add - Vore Modes!
 	paths = typesof(/datum/digest_mode)
 	for(var/T in paths)
 		var/datum/digest_mode/DM = new T
 		GLOB.digest_modes[DM.id] = DM
-	// VOREStation Add End
 	init_crafting_recipes(GLOB.crafting_recipes)
 
 /*
