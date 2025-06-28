@@ -360,7 +360,7 @@ var/global/datum/controller/occupations/job_master
 	if(!joined_late)
 		var/obj/S = null
 		var/list/possible_spawns = list()
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 			if(sloc.name != rank)	continue
 			if(locate(/mob/living) in sloc.loc)	continue
 			possible_spawns.Add(sloc)

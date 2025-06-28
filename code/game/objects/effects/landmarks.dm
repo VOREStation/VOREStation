@@ -74,11 +74,11 @@
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
 	else
-		landmarks_list += src
+		GLOB.landmarks_list += src
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
 	if(force)
-		landmarks_list -= src
+		GLOB.landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE
 

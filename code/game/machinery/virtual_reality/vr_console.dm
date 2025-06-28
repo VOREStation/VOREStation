@@ -266,7 +266,7 @@
 		// Get the desired spawn location to put the body
 		var/S = null
 		var/list/vr_landmarks = list()
-		for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
 			vr_landmarks += sloc.name
 
 		S = tgui_input_list(occupant, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
@@ -280,7 +280,7 @@
 				return 0
 			tf = vr_mob_tf_options[k]
 
-		for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
 			if(i.name == S)
 				S = i
 				break
