@@ -319,7 +319,7 @@
 /proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact)
 	var/highest_count = 0
 	var/count = 0
-	for (var/datum/recipe/recipe in GLOB.available_recipes)
+	for (var/datum/recipe/recipe in available_recipes)
 		if(!recipe.check_reagents(obj.reagents, exact) || !recipe.check_items(obj, exact)  || !recipe.check_fruit(obj, exact))
 			continue
 		// Taken from cmp_recipe_complexity_dsc, but is way faster.
