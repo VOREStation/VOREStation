@@ -14,8 +14,8 @@ var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently t
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/landmarks_list = list()				//list of all landmarks created
-var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
-GLOBAL_LIST_EMPTY(GLOB.surgery_steps)					//list of all surgery steps  |BS12
+GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(landmark references) for event triggers
+GLOBAL_LIST_EMPTY(surgery_steps)				//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
 	GLOB.legacy_globals["cable_list"] = cable_list
 	GLOB.legacy_globals["landmarks_list"] = landmarks_list
-	GLOB.legacy_globals["event_triggers"] = event_triggers
+	//GLOB.legacy_globals["event_triggers"] = GLOB.event_triggers
 	//GLOB.legacy_globals["mechas_list"] = GLOB.mechas_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
