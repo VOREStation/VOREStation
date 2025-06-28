@@ -7,7 +7,7 @@
 		if(initial(D.name) == DEVELOPER_WARNING_NAME)
 			continue
 
-		TEST_ASSERT(initial(D.medical_name) in used_ids, "[D]: Disease - Had a reused medical name, this is used as an ID and must be unique.")
+		TEST_ASSERT(!(initial(D.medical_name) in used_ids), "[D]: Disease - Had a reused medical name, this is used as an ID and must be unique.")
 		used_ids.Add(initial(D.medical_name))
 
 		TEST_ASSERT_NOTNULL(initial(D.name), "[D]: Disease - Lacks a name.")
