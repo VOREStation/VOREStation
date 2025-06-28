@@ -30,7 +30,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 	// Grandfather in anyone loading paths from a save.
 	if(ispath(ear_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.ear_styles_list[ear_style]
+		var/datum/sprite_accessory/instance = global.GLOB.ear_styles_list[ear_style]
 		if(istype(instance))
 			ear_style = instance.name
 	if(ispath(wing_style, /datum/sprite_accessory))
@@ -43,9 +43,9 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			tail_style = instance.name
 
 	// Sanitize for non-existent keys.
-	if(ear_style && !(ear_style in get_available_styles(global.ear_styles_list)))
+	if(ear_style && !(ear_style in get_available_styles(global.GLOB.ear_styles_list)))
 		ear_style = null
-	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(global.ear_styles_list)))
+	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(global.GLOB.ear_styles_list)))
 		ear_secondary_style = null
 	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
 		wing_style = null
@@ -185,7 +185,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		character.digitigrade = 0
 		pref.digitigrade = 0
 
-	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
+	var/list/ear_styles = pref.get_available_styles(global.GLOB.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
 
 	// apply secondary ears; sanitize again to prevent runtimes in rendering
@@ -361,7 +361,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 	// WARNING: Depends on adding "None"
 	var/list/available_ear_styles = list("None")
-	for(var/path in pref.get_available_styles(ear_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.ear_styles_list))
 		UNTYPED_LIST_ADD(available_ear_styles, path)
 	data["available_ear_styles"] = available_ear_styles
 
@@ -430,8 +430,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["grad_styles"] = grad_styles
 
 	var/list/ear_styles = list()
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/S = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/S = GLOB.ear_styles_list[path]
 		ear_styles[S.name] = list(
 			"name" = S.name,
 			"type" = S.type,
@@ -616,7 +616,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(new_ear_style == "None")
 				pref.ear_style = null
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-			if(new_ear_style in pref.get_available_styles(global.ear_styles_list))
+			if(new_ear_style in pref.get_available_styles(global.GLOB.ear_styles_list))
 				pref.ear_style = new_ear_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_ear_color")
@@ -642,7 +642,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(new_ear_style == "None")
 				pref.ear_secondary_style = null
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-			if(new_ear_style in pref.get_available_styles(ear_styles_list))
+			if(new_ear_style in pref.get_available_styles(GLOB.ear_styles_list))
 				pref.ear_secondary_style = new_ear_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_ear_secondary_color")

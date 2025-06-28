@@ -335,8 +335,8 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_ear_styles = list("Normal" = null)
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_ear_styles[instance.name] = path
 
@@ -346,7 +346,7 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	//Set new style
-	ear_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
+	ear_style = GLOB.ear_styles_list[pretty_ear_styles[new_ear_style]]
 
 	//Allow color picks
 	var/current_pri_color = rgb(r_ears,g_ears,b_ears)
@@ -393,8 +393,8 @@ var/list/wrapped_species_by_ref = list()
 
 	// Construct the list of names allowed for this user.
 	var/list/pretty_ear_styles = list("Normal" = null)
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_ear_styles[instance.name] = path
 
@@ -402,7 +402,7 @@ var/list/wrapped_species_by_ref = list()
 	var/new_ear_style = tgui_input_list(src, "Pick some ears!", "Character Preference", pretty_ear_styles)
 	if(!new_ear_style)
 		return
-	ear_secondary_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
+	ear_secondary_style = GLOB.ear_styles_list[pretty_ear_styles[new_ear_style]]
 
 	// Handle color picks
 	if(ear_secondary_style)

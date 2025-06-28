@@ -928,8 +928,8 @@
 		valid_facial_hairstyles = target.generate_valid_facial_hairstyles()
 
 	if(!LAZYLEN(valid_earstyles))
-		for(var/path in ear_styles_list)
-			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+		for(var/path in GLOB.ear_styles_list)
+			var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_earstyles.Add(list(list(
 					"name" = instance.name,

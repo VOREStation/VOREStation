@@ -460,7 +460,7 @@ var/list/preferences_datums = list()
 
 	character.synth_markings = synth_markings
 
-	var/list/ear_styles = get_available_styles(global.ear_styles_list)
+	var/list/ear_styles = get_available_styles(global.GLOB.ear_styles_list)
 	character.ear_style =  ear_styles[ear_style]
 
 	var/datum/preference/color/ears_color1 = GLOB.preference_entries[/datum/preference/color/human/ears_color1]

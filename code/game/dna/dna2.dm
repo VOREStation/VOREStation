@@ -147,11 +147,11 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	// Demi Ears
 	var/ear_style = 0
 	if(character.ear_style)
-		ear_style = ear_styles_list.Find(character.ear_style.type)
+		ear_style = GLOB.ear_styles_list.Find(character.ear_style.type)
 
 	var/ear_secondary_style = 0
 	if(character.ear_secondary_style)
-		ear_secondary_style = ear_styles_list.Find(character.ear_secondary_style.type)
+		ear_secondary_style = GLOB.ear_styles_list.Find(character.ear_secondary_style.type)
 
 	// Demi Tails
 	var/tail_style = 0
@@ -199,8 +199,8 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	src.custom_footstep = character.custom_footstep
 
 	// +1 to account for the none-of-the-above possibility
-	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               ear_styles_list.len  + 1,  1)
-	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     ear_styles_list.len  + 1,  1)
+	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               GLOB.ear_styles_list.len  + 1,  1)
+	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     GLOB.ear_styles_list.len  + 1,  1)
 	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              tail_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             GLOB.player_sizes_list.len,     1)
 	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              wing_styles_list.len + 1,  1)
@@ -346,16 +346,16 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		H.f_style = GLOB.facial_hair_styles_list[beard]
 
 	// Ears
-	var/ears = GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
+	var/ears = GetUIValueRange(DNA_UI_EAR_STYLE, GLOB.ear_styles_list.len + 1) - 1
 	if(ears < 1)
 		H.ear_style = null
-	else if((0 < ears) && (ears <= ear_styles_list.len))
-		H.ear_style = ear_styles_list[ear_styles_list[ears]]
-	var/ears_secondary = GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, ear_styles_list.len + 1) - 1
+	else if((0 < ears) && (ears <= GLOB.ear_styles_list.len))
+		H.ear_style = GLOB.ear_styles_list[GLOB.ear_styles_list[ears]]
+	var/ears_secondary = GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, GLOB.ear_styles_list.len + 1) - 1
 	if(ears_secondary < 1)
 		H.ear_secondary_style = null
-	else if((0 < ears_secondary) && (ears_secondary <= ear_styles_list.len))
-		H.ear_secondary_style = ear_styles_list[ear_styles_list[ears_secondary]]
+	else if((0 < ears_secondary) && (ears_secondary <= GLOB.ear_styles_list.len))
+		H.ear_secondary_style = GLOB.ear_styles_list[GLOB.ear_styles_list[ears_secondary]]
 
 	// Ear Color
 	H.r_ears  = GetUIValueRange(DNA_UI_EARS_R,    255)

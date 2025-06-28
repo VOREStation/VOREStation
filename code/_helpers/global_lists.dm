@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)
 GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)
 GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/marking indexed by name
 GLOBAL_LIST_EMPTY(body_marking_nopersist_list)	// Body marking styles, minus non-genetic markings and augments
-var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
+GLOBAL_LIST_EMPTY(ear_styles_list)	// Stores /datum/sprite_accessory/ears indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
 
@@ -264,7 +264,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()
-		ear_styles_list[path] = instance
+		GLOB.ear_styles_list[path] = instance
 
 	// Custom Tails
 	paths = subtypesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail/taur
