@@ -63,7 +63,7 @@
 			endgame_safespawns += loc
 			delete_me = TRUE
 		if("bluespacerift")
-			endgame_exits += loc
+			GLOB.endgame_exits += loc
 			delete_me = TRUE
 		//VOREStation Add Start
 		if("vinestart")

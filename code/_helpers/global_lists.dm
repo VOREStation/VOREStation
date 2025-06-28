@@ -77,9 +77,9 @@ var/datum/visualnet/cult/cultnet = new()
 var/datum/visualnet/ghost/ghostnet = new()
 
 // Runes
-var/global/list/rune_list = new()
-var/global/list/escape_list = list()
-var/global/list/endgame_exits = list()
+GLOBAL_LIST_EMPTY(rune_list)
+GLOBAL_LIST_EMPTY(escape_list)
+GLOBAL_LIST_EMPTY(endgame_exits)
 var/global/list/endgame_safespawns = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
