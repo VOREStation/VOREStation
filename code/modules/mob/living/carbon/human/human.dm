@@ -75,14 +75,14 @@
 	var/animal = pick("cow","chicken_brown", "chicken_black", "chicken_white", "chick", "mouse_brown", "mouse_gray", "mouse_white", "lizard", "cat2", "goose", "penguin")
 	var/image/img = image('icons/mob/animal.dmi', src, animal)
 	img.override = TRUE
-	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
+	add_alt_appearance("animals", img, displayTo = GLOB.alt_farmanimals)
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
 	QDEL_NULL_LIST(organs)
 	if(nif)
 		QDEL_NULL(nif)
-	alt_farmanimals -= src
+	GLOB.alt_farmanimals -= src
 	worn_clothing.Cut()
 
 	if(stored_blob)

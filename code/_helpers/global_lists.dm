@@ -1004,3 +1004,106 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"large scorched area",
 	"huge scorched area"
 	))
+
+var/global/list/wide_chassis = list(
+	"rat",
+	"panther",
+	"teppi",
+	"pai-diredog",
+	"pai-horse_lune",
+	"pai-horse_soleil",
+	"pai-pdragon",
+	"pai-protodog"
+	)
+var/global/list/flying_chassis = list(
+	"pai-parrot",
+	"pai-bat",
+	"pai-butterfly",
+	"pai-hawk",
+	"cyberelf"
+	)
+
+//Sure I could spend all day making wacky overlays for all of the different forms
+//but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
+//the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where
+//most of the pixels are different kinds of green and tastefully translate that to whitescale
+//they can have fun with that! I not doing it!
+var/global/list/allows_eye_color = list(
+	"pai-repairbot",
+	"pai-typezero",
+	"pai-bat",
+	"pai-butterfly",
+	"pai-mouse",
+	"pai-monkey",
+	"pai-raccoon",
+	"pai-cat",
+	"rat",
+	"panther",
+	"pai-bear",
+	"pai-fen",
+	"cyberelf",
+	"teppi",
+	"catslug",
+	"car",
+	"typeone",
+	"13",
+	"pai-raptor",
+	"pai-diredog",
+	"pai-horse_lune",
+	"pai-horse_soleil",
+	"pai-pdragon",
+	"pai-protodog"
+	)
+
+
+GLOBAL_LIST_EMPTY(entopic_images)
+GLOBAL_LIST_EMPTY(entopic_users)
+
+GLOBAL_LIST_EMPTY(alt_farmanimals)
+
+GLOBAL_LIST_EMPTY(acceptable_items) // List of the items you can put in
+GLOBAL_LIST_EMPTY(available_recipes) // List of the recipes you can use
+GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
+
+
+
+/var/all_ui_styles = list(
+	"Midnight"     = 'icons/mob/screen/midnight.dmi',
+	"Orange"       = 'icons/mob/screen/orange.dmi',
+	"old"          = 'icons/mob/screen/old.dmi',
+	"White"        = 'icons/mob/screen/white.dmi',
+	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
+	"minimalist"   = 'icons/mob/screen/minimalist.dmi',
+	"Hologram"     = 'icons/mob/screen/holo.dmi'
+	)
+
+/var/all_ui_styles_robot = list(
+	"Midnight"     = 'icons/mob/screen1_robot.dmi',
+	"Orange"       = 'icons/mob/screen1_robot.dmi',
+	"old"          = 'icons/mob/screen1_robot.dmi',
+	"White"        = 'icons/mob/screen1_robot.dmi',
+	"old-noborder" = 'icons/mob/screen1_robot.dmi',
+	"minimalist"   = 'icons/mob/screen1_robot_minimalist.dmi',
+	"Hologram"     = 'icons/mob/screen1_robot_minimalist.dmi'
+	)
+
+var/global/list/all_tooltip_styles = list(
+	"Midnight",		//Default for everyone is the first one,
+	"Plasmafire",
+	"Retro",
+	"Slimecore",
+	"Operative",
+	"Clockwork"
+	)
+
+//Global Datums
+var/global/datum/pipe_icon_manager/icon_manager
+var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
+
+// We manually initialize the alarm handlers instead of looping over all existing types
+// to make it possible to write: camera_alarm.triggerAlarm() rather than SSalarm.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
+/var/global/datum/alarm_handler/atmosphere/atmosphere_alarm	= new()
+/var/global/datum/alarm_handler/camera/camera_alarm			= new()
+/var/global/datum/alarm_handler/fire/fire_alarm				= new()
+/var/global/datum/alarm_handler/motion/motion_alarm			= new()
+/var/global/datum/alarm_handler/power/power_alarm			= new()

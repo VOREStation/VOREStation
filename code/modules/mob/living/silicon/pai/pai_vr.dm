@@ -9,55 +9,6 @@
 	var/icon/holo_icon_north
 	var/holo_icon_dimension_X = 32
 	var/holo_icon_dimension_Y = 32
-	var/global/list/wide_chassis = list(
-		"rat",
-		"panther",
-		"teppi",
-		"pai-diredog",
-		"pai-horse_lune",
-		"pai-horse_soleil",
-		"pai-pdragon",
-		"pai-protodog"
-		)
-	var/global/list/flying_chassis = list(
-		"pai-parrot",
-		"pai-bat",
-		"pai-butterfly",
-		"pai-hawk",
-		"cyberelf"
-		)
-
-	//Sure I could spend all day making wacky overlays for all of the different forms
-	//but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
-	//the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where
-	//most of the pixels are different kinds of green and tastefully translate that to whitescale
-	//they can have fun with that! I not doing it!
-	var/global/list/allows_eye_color = list(
-		"pai-repairbot",
-		"pai-typezero",
-		"pai-bat",
-		"pai-butterfly",
-		"pai-mouse",
-		"pai-monkey",
-		"pai-raccoon",
-		"pai-cat",
-		"rat",
-		"panther",
-		"pai-bear",
-		"pai-fen",
-		"cyberelf",
-		"teppi",
-		"catslug",
-		"car",
-		"typeone",
-		"13",
-		"pai-raptor",
-		"pai-diredog",
-		"pai-horse_lune",
-		"pai-horse_soleil",
-		"pai-pdragon",
-		"pai-protodog"
-		)
 	//These vars keep track of whether you have the related software, used for easily updating the UI
 	var/soft_ut = FALSE	//universal translator
 	var/soft_mr = FALSE	//medical records
