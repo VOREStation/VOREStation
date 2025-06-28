@@ -107,7 +107,7 @@
 		cell = new cell_type(src)
 
 	debug_mappers_list = GLOB.mapping_units
-	debug_beacons_list = mapping_beacons
+	debug_beacons_list = GLOB.mapping_beacons
 
 /obj/item/mapping_unit/Destroy()
 	GLOB.mapping_units -= src
@@ -344,7 +344,7 @@
 			extras += mark
 
 	// Marker beacon items
-	for(var/obj/item/holomap_beacon/HB as anything in mapping_beacons)
+	for(var/obj/item/holomap_beacon/HB as anything in GLOB.mapping_beacons)
 		if(HB.mapper_filter != mapper_filter)
 			continue
 
@@ -410,22 +410,22 @@
 	. = ..()
 	if(in_list) // mapped in turned on
 		in_list = TRUE
-		mapping_beacons += src
+		GLOB.mapping_beacons += src
 		icon_state = initial(icon_state) + in_list ? "_on" : ""
 
 /obj/item/holomap_beacon/attack_self(mob/user)
 	if(!in_list)
 		in_list = TRUE
-		mapping_beacons += src
+		GLOB.mapping_beacons += src
 	else
 		in_list = FALSE
-		mapping_beacons -= src
+		GLOB.mapping_beacons -= src
 	icon_state = "[initial(icon_state)][in_list ? "_on" : ""]"
 	to_chat(user,span_notice("The [src] is now [in_list ? "broadcasting" : "disabled"]."))
 
 /obj/item/holomap_beacon/Destroy()
 	if(in_list)
-		mapping_beacons -= src
+		GLOB.mapping_beacons -= src
 	return ..()
 
 /obj/item/holomap_beacon/deathsquad
