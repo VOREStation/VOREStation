@@ -1017,7 +1017,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/weldingtool,
@@ -1025,10 +1025,10 @@ var/global/list/common_tools = list(
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
 /obj/item/tool/crowbar,
-/obj/item/tool/transforming)
+/obj/item/tool/transforming))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_list(O, GLOB.common_tools))
 		return 1
 	return 0
 
