@@ -575,3 +575,4 @@ GLOBAL_LIST_EMPTY(stool_cache) //haha stool
 GLOBAL_LIST_EMPTY(emotes_by_key)
 GLOBAL_LIST_EMPTY(random_maps)
 GLOBAL_LIST_EMPTY(map_count)
+GLOBAL_LIST_EMPTY(narsie_list)

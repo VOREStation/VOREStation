@@ -1,6 +1,5 @@
 var/global/narsie_behaviour = "CultStation13"
 var/global/narsie_cometh = 0
-var/global/list/narsie_list = list()
 /obj/singularity/narsie //Moving narsie to its own file for the sake of being clearer
 	name = "Nar-Sie"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
@@ -18,10 +17,10 @@ var/global/list/narsie_list = list()
 
 /obj/singularity/narsie/Initialize(mapload)
 	. = ..()
-	narsie_list.Add(src)
+	GLOB.narsie_list.Add(src)
 
 /obj/singularity/narsie/Destroy()
-	narsie_list.Remove(src)
+	GLOB.narsie_list.Remove(src)
 	. = ..()
 
 /obj/singularity/narsie/large
