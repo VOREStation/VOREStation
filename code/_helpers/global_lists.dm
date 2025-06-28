@@ -17,7 +17,7 @@ var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
-var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
@@ -353,21 +353,21 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	//GLOB.legacy_globals["player_list"] = GLOB.player_list //Converted
+	//GLOB.legacy_globals["player_list"] = GLOB.player_list
 	GLOB.legacy_globals["mob_list"] = mob_list
 	GLOB.legacy_globals["human_mob_list"] = human_mob_list
 	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
 	GLOB.legacy_globals["ai_list"] = ai_list
 	GLOB.legacy_globals["living_mob_list"] = living_mob_list
 	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
-	//GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list //Converted
+	//GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list
 	GLOB.legacy_globals["listening_objects"] = listening_objects
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
 	GLOB.legacy_globals["cable_list"] = cable_list
 	GLOB.legacy_globals["landmarks_list"] = landmarks_list
 	GLOB.legacy_globals["event_triggers"] = event_triggers
 	GLOB.legacy_globals["side_effects"] = side_effects
-	GLOB.legacy_globals["mechas_list"] = mechas_list
+	//GLOB.legacy_globals["mechas_list"] = GLOB.mechas_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
