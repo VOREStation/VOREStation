@@ -53,8 +53,8 @@
 	else
 		M.set_species(species)
 	if(tail_type && tail_type.len)
-		if(tail_type[1] in tail_styles_list)
-			M.tail_style = tail_styles_list[tail_type[1]]
+		if(tail_type[1] in GLOB.tail_styles_list)
+			M.tail_style = GLOB.tail_styles_list[tail_type[1]]
 			if(tail_type.len > 1)
 				var/list/color_rgb_list = hex2rgb(tail_type[2])
 				M.r_tail = color_rgb_list[1]

@@ -429,8 +429,8 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_tail_styles = list("Normal" = null)
-	for(var/path in tail_styles_list)
-		var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
+	for(var/path in GLOB.tail_styles_list)
+		var/datum/sprite_accessory/tail/instance = GLOB.tail_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_tail_styles[instance.name] = path
 
@@ -440,7 +440,7 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	//Set new style
-	tail_style = tail_styles_list[pretty_tail_styles[new_tail_style]]
+	tail_style = GLOB.tail_styles_list[pretty_tail_styles[new_tail_style]]
 
 	//Allow color picks
 	var/current_pri_color = rgb(r_tail,g_tail,b_tail)

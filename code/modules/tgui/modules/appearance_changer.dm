@@ -941,8 +941,8 @@
 				)))
 
 	if(!LAZYLEN(valid_tailstyles))
-		for(var/path in tail_styles_list)
-			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
+		for(var/path in GLOB.tail_styles_list)
+			var/datum/sprite_accessory/tail/instance = GLOB.tail_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_tailstyles.Add(list(list(
 					"name" = instance.name,

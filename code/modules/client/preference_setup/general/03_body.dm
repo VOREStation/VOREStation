@@ -30,7 +30,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 	// Grandfather in anyone loading paths from a save.
 	if(ispath(ear_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.GLOB.ear_styles_list[ear_style]
+		var/datum/sprite_accessory/instance = GLOB.ear_styles_list[ear_style]
 		if(istype(instance))
 			ear_style = instance.name
 	if(ispath(wing_style, /datum/sprite_accessory))
@@ -38,18 +38,18 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		if(istype(instance))
 			wing_style = instance.name
 	if(ispath(tail_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.tail_styles_list[tail_style]
+		var/datum/sprite_accessory/instance = GLOB.tail_styles_list[tail_style]
 		if(istype(instance))
 			tail_style = instance.name
 
 	// Sanitize for non-existent keys.
-	if(ear_style && !(ear_style in get_available_styles(global.GLOB.ear_styles_list)))
+	if(ear_style && !(ear_style in get_available_styles(GLOB.ear_styles_list)))
 		ear_style = null
-	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(global.GLOB.ear_styles_list)))
+	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(GLOB.ear_styles_list)))
 		ear_secondary_style = null
 	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
 		wing_style = null
-	if(tail_style && !(tail_style in get_available_styles(global.tail_styles_list)))
+	if(tail_style && !(tail_style in get_available_styles(GLOB.tail_styles_list)))
 		tail_style = null
 
 /datum/preferences/proc/get_available_styles(var/style_list)
@@ -185,14 +185,14 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		character.digitigrade = 0
 		pref.digitigrade = 0
 
-	var/list/ear_styles = pref.get_available_styles(global.GLOB.ear_styles_list)
+	var/list/ear_styles = pref.get_available_styles(GLOB.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
 
 	// apply secondary ears; sanitize again to prevent runtimes in rendering
 	character.ear_secondary_style = ear_styles[pref.ear_secondary_style]
 	character.ear_secondary_colors = SANITIZE_LIST(pref.ear_secondary_colors)
 
-	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
+	var/list/tail_styles = pref.get_available_styles(GLOB.tail_styles_list)
 	character.tail_style = tail_styles[pref.tail_style]
 
 	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
@@ -366,7 +366,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["available_ear_styles"] = available_ear_styles
 
 	var/list/available_tail_styles = list()
-	for(var/path in pref.get_available_styles(tail_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.tail_styles_list))
 		UNTYPED_LIST_ADD(available_tail_styles, path)
 	data["available_tail_styles"] = available_tail_styles
 
@@ -461,8 +461,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["body_markings"] = body_markings
 
 	var/list/tail_styles = list()
-	for(var/path in tail_styles_list)
-		var/datum/sprite_accessory/tail/S = tail_styles_list[path]
+	for(var/path in GLOB.tail_styles_list)
+		var/datum/sprite_accessory/tail/S = GLOB.tail_styles_list[path]
 		tail_styles[S.name] = list(
 			"name" = name,
 			"icon" = REF(S.icon),
@@ -616,7 +616,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(new_ear_style == "None")
 				pref.ear_style = null
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-			if(new_ear_style in pref.get_available_styles(global.GLOB.ear_styles_list))
+			if(new_ear_style in pref.get_available_styles(GLOB.ear_styles_list))
 				pref.ear_style = new_ear_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_ear_color")
@@ -711,7 +711,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Tail */
 		if("set_tail_style")
 			var/new_tail_style = params["style"]
-			if(new_tail_style in pref.get_available_styles(global.tail_styles_list))
+			if(new_tail_style in pref.get_available_styles(GLOB.tail_styles_list))
 				pref.tail_style = new_tail_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_tail_color")
