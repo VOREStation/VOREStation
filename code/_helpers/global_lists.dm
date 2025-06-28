@@ -572,3 +572,82 @@ GLOBAL_LIST_EMPTY(emotes_by_key)
 GLOBAL_LIST_EMPTY(random_maps)
 GLOBAL_LIST_EMPTY(map_count)
 GLOBAL_LIST_EMPTY(narsie_list)
+GLOBAL_LIST_EMPTY(id_card_states)
+GLOBAL_LIST_EMPTY(allocated_gamma)
+GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
+
+GLOBAL_LIST_INIT(unique_gamma, list(
+	/obj/item/perfect_tele,
+	/obj/item/bluespace_harpoon,
+	/obj/item/clothing/glasses/thermal/syndi,
+	/obj/item/gun/energy/netgun,
+	/obj/item/gun/projectile/dartgun,
+	/obj/item/clothing/gloves/black/bloodletter,
+	/obj/item/gun/energy/mouseray/metamorphosis
+	))
+
+GLOBAL_LIST_INIT(newscaster_standard_feeds, list(/datum/news_announcement/bluespace_research, /datum/news_announcement/lotus_tree, /datum/news_announcement/random_junk,  /datum/news_announcement/food_riots))
+
+GLOBAL_LIST_INIT(changeling_fabricated_clothing, list(
+	"w_uniform" = /obj/item/clothing/under/chameleon/changeling,
+	"head" = /obj/item/clothing/head/chameleon/changeling,
+	"wear_suit" = /obj/item/clothing/suit/chameleon/changeling,
+	"shoes" = /obj/item/clothing/shoes/chameleon/changeling,
+	"gloves" = /obj/item/clothing/gloves/chameleon/changeling,
+	"wear_mask" = /obj/item/clothing/mask/chameleon/changeling,
+	"glasses" = /obj/item/clothing/glasses/chameleon/changeling,
+	"back" = /obj/item/storage/backpack/chameleon/changeling,
+	"belt" = /obj/item/storage/belt/chameleon/changeling,
+	"wear_id" = /obj/item/card/id/syndicate/changeling
+	))
+
+//  Defines which values mean "on" or "off".
+//  This is to make some of the more OP superpowers a larger PITA to activate,
+//  and to tell our new DNA datum which values to set in order to turn something
+//  on or off.
+var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
+
+// Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
+var/global/list/assigned_blocks[DNA_SE_LENGTH]
+
+GLOBAL_LIST_EMPTY(gear_distributed_to)
+GLOBAL_LIST_EMPTY(overlay_cache) //cache recent overlays
+
+var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
+	/obj/item/spell,
+	/obj/item/spell/gambit,
+	/obj/item/spell/projectile,
+	/obj/item/spell/aura,
+//	/obj/item/spell/insert,
+	/obj/item/spell/spawner,
+	/obj/item/spell/summon,
+	/obj/item/spell/modifier)
+var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
+
+
+
+var/global/list/image/splatter_cache=list()
+var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
+var/global/list/obj/machinery/telecomms/telecomms_list = list()
+
+// color-dir-dry
+var/global/list/image/fluidtrack_cache=list()
+
+var/global/list/radio_channels_by_freq = list(
+	num2text(PUB_FREQ) = CHANNEL_COMMON,
+	num2text(AI_FREQ)  = CHANNEL_AI_PRIVATE,
+	num2text(ENT_FREQ) = CHANNEL_ENTERTAINMENT,
+	num2text(ERT_FREQ) = CHANNEL_RESPONSE_TEAM,
+	num2text(COMM_FREQ)= CHANNEL_COMMAND,
+	num2text(ENG_FREQ) = CHANNEL_ENGINEERING,
+	num2text(MED_FREQ) = CHANNEL_MEDICAL,
+	num2text(MED_I_FREQ)=CHANNEL_MEDICAL_1,
+	num2text(SEC_FREQ) = CHANNEL_SECURITY,
+	num2text(SEC_I_FREQ)=CHANNEL_SECURITY_1,
+	num2text(SCI_FREQ) = CHANNEL_SCIENCE,
+	num2text(SUP_FREQ) = CHANNEL_SUPPLY,
+	num2text(SRV_FREQ) = CHANNEL_SERVICE,
+	num2text(EXP_FREQ) = CHANNEL_EXPLORATION
+	)
+
+GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)

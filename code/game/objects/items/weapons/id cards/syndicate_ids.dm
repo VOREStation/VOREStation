@@ -64,7 +64,6 @@
 	registered_user.unregister(OBSERVER_EVENT_DESTROY, src)
 	registered_user = null
 
-GLOBAL_LIST_EMPTY(id_card_states)
 /proc/id_card_states()
 	if(!GLOB.id_card_states)
 		GLOB.id_card_states = list()

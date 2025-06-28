@@ -4,15 +4,6 @@
 #define DNA_ON_LOWERBOUND  3
 #define DNA_ON_UPPERBOUND  4
 
-//  Defines which values mean "on" or "off".
-//  This is to make some of the more OP superpowers a larger PITA to activate,
-//  and to tell our new DNA datum which values to set in order to turn something
-//  on or off.
-var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
-
-// Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
-var/global/list/assigned_blocks[DNA_SE_LENGTH]
-
 // Traitgenes Genes accessible by global VV, and lists for good and bad mutations for quick randomized selection of traitgenes. Removed dna from gene's path
 GLOBAL_LIST_EMPTY_TYPED(dna_genes, /datum/gene)
 GLOBAL_LIST_EMPTY(trait_to_dna_genes) // Reverse lookup genes, use get_gene_from_trait(var/trait_path) to read this

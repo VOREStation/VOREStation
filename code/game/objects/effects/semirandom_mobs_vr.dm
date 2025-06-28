@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
-
 /obj/random/mob/semirandom_mob_spawner
 	name = "Semi-Random Spawner"
 	desc = "Spawns groups of mobs that are all of the same theme type/theme."
