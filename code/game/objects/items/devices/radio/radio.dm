@@ -84,7 +84,7 @@ var/global/list/default_medbay_channels = list(
 
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
-	listening_objects += src
+	GLOB.listening_objects += src
 
 	if(bluespace_radio && (bs_tx_preload_id || bs_rx_preload_id))
 		return INITIALIZE_HINT_LATELOAD
@@ -128,7 +128,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/radio/Destroy()
 	qdel(wires)
 	wires = null
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for (var/ch_name in channels)

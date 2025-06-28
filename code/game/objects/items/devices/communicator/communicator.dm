@@ -316,7 +316,7 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 	//Clean up references that might point at us
 	all_communicators -= src
 	STOP_PROCESSING(SSobj, src)
-	listening_objects.Remove(src)
+	GLOB.listening_objects.Remove(src)
 	QDEL_NULL(camera)
 	QDEL_NULL(exonet)
 

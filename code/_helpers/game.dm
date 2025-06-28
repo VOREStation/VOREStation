@@ -316,7 +316,7 @@
 						mobs |= M
 
 	//For objects below the top level who still want to hear
-	for(var/obj in listening_objects)
+	for(var/obj in GLOB.listening_objects)
 		if(get_turf(obj) in hearturfs)
 			objs |= obj
 
