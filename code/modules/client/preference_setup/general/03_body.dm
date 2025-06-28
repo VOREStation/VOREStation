@@ -1,4 +1,3 @@
-var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 // Not actually used; just forces this into the RSC for TGUI.
 var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
@@ -988,7 +987,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("blood_type")
-			var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", valid_bloodtypes, pref.b_type)
+			var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", GLOB.valid_bloodtypes, pref.b_type)
 			if(new_b_type)
 				pref.b_type = new_b_type
 				return TOPIC_REFRESH
