@@ -20,6 +20,10 @@
 // #define AWAY_MISSION_TEST 0
 // #define UNIT_TESTS 1
 
+#if defined(CIBUILDING) && !defined(OPENDREAM)
+#define UNIT_TESTS
+#endif
+
 // Comment/Uncomment this to turn off/on shuttle code debugging logs
 #define DEBUG_SHUTTLES
 
