@@ -190,12 +190,15 @@
 	uses_charge = 1
 	charge_costs = list(1)
 
-/obj/item/stack/cable_coil/cyborg/verb/set_colour()
+/obj/item/stack/cable_coil/cyborg/attack_self(mob/user)
+	set_colour(user)
+
+/obj/item/stack/cable_coil/cyborg/proc/set_colour(mob/user)
 	set name = "Change Colour"
 	set category = "Object"
 
-	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
-	set_cable_color(selected_type, usr)
+	var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
+	set_cable_color(selected_type, user)
 
 /*
  * Surgical Tools
