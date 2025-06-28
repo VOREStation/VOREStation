@@ -986,3 +986,21 @@ GLOBAL_LIST_EMPTY(random_junk)
 GLOBAL_LIST_EMPTY(random_junk_)
 GLOBAL_LIST_EMPTY(random_useful_)
 GLOBAL_LIST_INIT(valid_bloodtypes, list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"))
+
+//Some simple descriptors for breaches. Global because lazy, TODO: work out a better way to do this.
+
+GLOBAL_LIST_INIT(breach_brute_descriptors, list(
+	"tiny puncture",
+	"ragged tear",
+	"large split",
+	"huge tear",
+	"gaping wound"
+	))
+
+GLOBAL_LIST_INIT(breach_burn_descriptors, list(
+	"small burn",
+	"melted patch",
+	"sizable burn",
+	"large scorched area",
+	"huge scorched area"
+	))
