@@ -1,4 +1,4 @@
-var/global/list/semirandom_mob_spawner_decisions = list()
+GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
 
 /obj/random/mob/semirandom_mob_spawner
 	name = "Semi-Random Spawner"
@@ -308,11 +308,11 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		)
 
 /obj/random/mob/semirandom_mob_spawner/item_to_spawn()
-	var/list/choice = semirandom_mob_spawner_decisions[type]
+	var/list/choice = GLOB.semirandom_mob_spawner_decisions[type]
 
 	if(!choice)
 		choice = pickweight(possible_mob_types)
-		semirandom_mob_spawner_decisions[type] = choice
+		GLOB.semirandom_mob_spawner_decisions[type] = choice
 
 	return pickweight(choice)
 
