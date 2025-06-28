@@ -36,7 +36,7 @@
 	for(var/entry in mob_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
-			data += "<tr><td>[subject]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.dna ? subject.dna.b_type : DEFAULT_BLOOD_TYPE]</td></tr>"
+			data += "<tr><td>[subject]</td><td>[subject.dna?.unique_enzymes]</td><td>[subject.dna ? subject.dna.b_type : DEFAULT_BLOOD_TYPE]</td></tr>"
 	data += "</table>"
 
 	var/datum/browser/browser = new(usr, "DNA", "DNA Log", 440, 410)
@@ -49,7 +49,7 @@
 	for(var/entry in mob_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
-			data += "<tr><td>[subject]</td><td>[md5(subject.dna.uni_identity)]</td></tr>"
+			data += "<tr><td>[subject]</td><td>[md5(subject.dna?.uni_identity)]</td></tr>"
 	data += "</table>"
 
 	var/datum/browser/browser = new(usr, "fingerprints", "Fingerprint Log", 440, 410)

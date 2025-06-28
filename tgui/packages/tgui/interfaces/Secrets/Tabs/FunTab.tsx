@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Stack } from 'tgui-core/components';
+import { Button, NoticeBox, Stack } from 'tgui-core/components';
 
 import { buttonWidthNormal, lineHeightNormal } from '../constants';
 
@@ -10,6 +10,7 @@ export const FunTab = (props) => {
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="robot"
               lineHeight={lineHeightNormal}
@@ -18,8 +19,18 @@ export const FunTab = (props) => {
             >
               Make N.E.R.D.
             </Button>
+            */}
+            <Button
+              icon="ghost"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('ghost_mode')}
+            >
+              Ghost Mode
+            </Button>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="flag"
               lineHeight={lineHeightNormal}
@@ -27,6 +38,15 @@ export const FunTab = (props) => {
               onClick={() => act('ctf_instagib')}
             >
               CTF Instagib Mode
+            </Button>
+            */}
+            <Button
+              icon="palette"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('paintball_mode')}
+            >
+              Paintball Mode
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -78,6 +98,7 @@ export const FunTab = (props) => {
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="user-ninja"
               lineHeight={lineHeightNormal}
@@ -85,6 +106,15 @@ export const FunTab = (props) => {
               onClick={() => act('anon_name')}
             >
               Anonymous Names
+            </Button>
+            */}
+            <Button
+              icon="power-off"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('gravity')}
+            >
+              Toggle Station Gravity
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -112,6 +142,7 @@ export const FunTab = (props) => {
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="grin-beam-sweat"
               lineHeight={lineHeightNormal}
@@ -120,8 +151,17 @@ export const FunTab = (props) => {
             >
               Summon Guns
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="magic"
               lineHeight={lineHeightNormal}
@@ -130,8 +170,17 @@ export const FunTab = (props) => {
             >
               Summon Magic
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="meteor"
               lineHeight={lineHeightNormal}
@@ -140,12 +189,21 @@ export const FunTab = (props) => {
             >
               Summon Events
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="hammer"
               lineHeight={lineHeightNormal}
@@ -154,8 +212,17 @@ export const FunTab = (props) => {
             >
               Egalitarian Station
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="dollar-sign"
               lineHeight={lineHeightNormal}
@@ -164,8 +231,17 @@ export const FunTab = (props) => {
             >
               Ancap Station
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="house"
               lineHeight={lineHeightNormal}
@@ -174,12 +250,21 @@ export const FunTab = (props) => {
             >
               Send Shuttle Back
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="bullseye"
               lineHeight={lineHeightNormal}
@@ -188,6 +273,14 @@ export const FunTab = (props) => {
             >
               Custom Portal Storm
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
             <Button
@@ -200,6 +293,7 @@ export const FunTab = (props) => {
             </Button>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="dollar-sign"
               lineHeight={lineHeightNormal}
@@ -207,6 +301,49 @@ export const FunTab = (props) => {
               onClick={() => act('department_cooldown_override')}
             >
               Dpt Order Cooldown
+            </Button>
+            */}
+            <Button
+              icon="pencil"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('alter_narsie')}
+            >
+              Alter Nar-Sie
+            </Button>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item>
+        <Stack fill>
+          <Stack.Item>
+            <Button
+              icon="shirt"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('remove_all_clothing')}
+            >
+              Remove ALL Clothing
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="shirt"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('remove_internal_clothing')}
+            >
+              Rem. &apos;internal&apos; Cloth.
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="person-rifle"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('send_strike_team')}
+            >
+              Send Strike Team
             </Button>
           </Stack.Item>
         </Stack>

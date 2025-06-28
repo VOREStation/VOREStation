@@ -145,6 +145,7 @@ export const HelpfulTab = (props) => {
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <Button
               icon="flag"
               lineHeight={lineHeightNormal}
@@ -153,8 +154,17 @@ export const HelpfulTab = (props) => {
             >
               Toggle CTF
             </Button>
+            */}
+            <NoticeBox
+              mb={-0.5}
+              width={buttonWidthNormal}
+              height={lineHeightNormal}
+            >
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <Button
               icon="sync-alt"
               lineHeight={lineHeightNormal}
@@ -162,6 +172,15 @@ export const HelpfulTab = (props) => {
               onClick={() => act('tdomereset')}
             >
               Reset Thunderdome
+            </Button>
+            */}
+            <Button
+              icon="handcuffs"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('prison_warp')}
+            >
+              Prison Warp
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -178,6 +197,7 @@ export const HelpfulTab = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Stack fill>
+          {/*
           <Stack.Item>
             <Button
               icon="pencil-alt"
@@ -198,14 +218,70 @@ export const HelpfulTab = (props) => {
               Default Station Name
             </Button>
           </Stack.Item>
+          */}
           <Stack.Item>
-            <NoticeBox
-              mb={-0.5}
+            <Button
+              icon="biohazard"
+              lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              height={lineHeightNormal}
+              onClick={() => act('trigger_xenomorph_infestation')}
             >
-              Your admin button here, coder!
-            </NoticeBox>
+              Xenomorph Infest.
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="biohazard"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('trigger_cortical_borer_infestation')}
+            >
+              Cortical Borer Infest.
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="ferry"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('jump_shuttle')}
+            >
+              Jump Shuttle
+            </Button>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item>
+        <Stack fill>
+          <Stack.Item>
+            <Button
+              icon="ferry"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('launch_shuttle_forced')}
+            >
+              Force Shuttle Launch
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="ferry"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('launch_shuttle')}
+            >
+              Launch Shuttle
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="ferry"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              onClick={() => act('move_shuttle')}
+            >
+              Move Shuttle
+            </Button>
           </Stack.Item>
         </Stack>
       </Stack.Item>

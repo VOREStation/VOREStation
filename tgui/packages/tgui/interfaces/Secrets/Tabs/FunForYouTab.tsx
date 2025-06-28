@@ -8,6 +8,7 @@ export const FunForYouTab = (props) => {
       <Stack.Item>
         <Stack>
           <Stack.Item>
+            {/*
             <NoticeBox danger mb={0} width={19.6}>
               <Button
                 color="red"
@@ -18,8 +19,13 @@ export const FunForYouTab = (props) => {
                 Everyone is the antag
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <NoticeBox danger width={19.6} mb={0}>
               <Button
                 color="red"
@@ -30,12 +36,17 @@ export const FunForYouTab = (props) => {
                 Everyone gets brain damage
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>
         <Stack>
           <Stack.Item>
+            {/*
             <NoticeBox danger mb={0} width={19.6}>
               <Button
                 color="red"
@@ -44,6 +55,17 @@ export const FunForYouTab = (props) => {
                 onClick={() => act('allspecies')}
               >
                 {"Change everyone's species"}
+              </Button>
+            </NoticeBox>
+            */}
+            <NoticeBox danger mb={0} width={19.6}>
+              <Button
+                color="red"
+                icon="paw"
+                fluid
+                onClick={() => act('corgie')}
+              >
+                Change everyone to corgies
               </Button>
             </NoticeBox>
           </Stack.Item>
@@ -62,6 +84,7 @@ export const FunForYouTab = (props) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
+        {/*
         <NoticeBox danger mb={0}>
           <Button
             color="black"
@@ -72,17 +95,30 @@ export const FunForYouTab = (props) => {
             The floor is lava! (DANGEROUS: extremely lame)
           </Button>
         </NoticeBox>
+        */}
+        <NoticeBox mb={0}>Your admin button here, coder!</NoticeBox>
       </Stack.Item>
       <Stack.Item>
         <NoticeBox danger mb={0}>
+          {/*
           <Button color="black" icon="fire" fluid onClick={() => act('anime')}>
             Chinese Cartoons! (DANGEROUS: no going back, also fuck you)
+          </Button>
+          */}
+          <Button
+            color="black"
+            icon="fire"
+            fluid
+            onClick={() => act('supermatter_cascade')}
+          >
+            Supermatter Cascade! (DANGEROUS: ends round, also big boom)
           </Button>
         </NoticeBox>
       </Stack.Item>
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
+            {/*
             <NoticeBox danger width={19.6} mb={0}>
               <Button
                 color="red"
@@ -93,8 +129,13 @@ export const FunForYouTab = (props) => {
                 Mass Purrbation
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <NoticeBox info width={19.6} mb={0}>
               <Button
                 color="blue"
@@ -105,12 +146,17 @@ export const FunForYouTab = (props) => {
                 Cure Purrbation
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>
         <Stack>
           <Stack.Item>
+            {/*
             <NoticeBox danger width={19.6} mb={0}>
               <Button
                 color="red"
@@ -121,8 +167,13 @@ export const FunForYouTab = (props) => {
                 Fully Immerse Everyone
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
           <Stack.Item>
+            {/*
             <NoticeBox info width={19.6} mb={0}>
               <Button
                 color="blue"
@@ -133,10 +184,15 @@ export const FunForYouTab = (props) => {
                 Shatter the Immersion
               </Button>
             </NoticeBox>
+            */}
+            <NoticeBox width={19.6} mb={0}>
+              Your admin button here, coder!
+            </NoticeBox>
           </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>
+        {/*
         <Stack fill>
           <Stack.Item>
             <NoticeBox danger width={19.6} mb={0}>
@@ -163,7 +219,32 @@ export const FunForYouTab = (props) => {
             </NoticeBox>
           </Stack.Item>
         </Stack>
+        */}
+        <Stack.Item>
+          <NoticeBox danger mb={0}>
+            <Button
+              color="black"
+              icon="fire"
+              fluid
+              onClick={() => act('summon_narsie')}
+            >
+              Summon Nar-Sie! (DANGEROUS: ends round)
+            </Button>
+          </NoticeBox>
+        </Stack.Item>
       </Stack.Item>
+      <Stack>
+        <Stack.Item>
+          <NoticeBox width={19.6} mb={0}>
+            Your admin button here, coder!
+          </NoticeBox>
+        </Stack.Item>
+        <Stack.Item>
+          <NoticeBox width={19.6} mb={0}>
+            Your admin button here, coder!
+          </NoticeBox>
+        </Stack.Item>
+      </Stack>
     </Stack>
   );
 };

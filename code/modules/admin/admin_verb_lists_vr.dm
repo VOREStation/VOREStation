@@ -34,7 +34,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/jumptocoord,			//we ghost and jump to a coordinate,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
-//	/client/proc/sendmob,				//sends a mob somewhere, -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage,
 	/client/proc/Jump,
 	/client/proc/jumptokey,				//allows us to jump to the location of a mob with a certain ckey,
 	/client/proc/jumptomob,				//allows us to jump to a specific mob,
@@ -43,7 +42,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_cancel_shuttle,	//allows us to cancel the emergency shuttle, sending it back to CentCom,
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
-	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/check_words,			//displays cult-words,
 	/client/proc/check_ai_laws,			//shows AI and borg laws,
@@ -53,7 +51,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
-//	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
 	/datum/admins/proc/toggleooc,		//toggles ooc on/off for everyone,
 	/datum/admins/proc/togglelooc,		//toggles looc on/off for everyone,
@@ -85,8 +82,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/makepAI,
 	/datum/admins/proc/paralyze_mob,
-	/client/proc/fixatmos,
-	/datum/admins/proc/quick_nif, //VOREStation Add,
 	/datum/admins/proc/set_uplink, //VOREStation Add,
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
@@ -246,11 +241,6 @@ var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/callproc_datum,
 	)
 
-var/list/admin_verbs_possess = list(
-	/proc/possess,
-	/proc/release
-	)
-
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
 //	/client/proc/deadchat,
@@ -269,7 +259,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/check_words,
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
@@ -319,8 +308,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
 	/client/proc/roll_dices,
-	/proc/possess,
-	/proc/release,
 	/datum/admins/proc/set_uplink, //VOREStation Add,
 	/datum/admins/proc/set_tcrystals,
 	/client/proc/stop_sounds
@@ -349,7 +336,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message, 	//send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/allow_character_respawn,   // Allows a ghost to respawn ,
 	/datum/admins/proc/sendFax,
 	/datum/admins/proc/view_persistent_data,
@@ -377,11 +363,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/aooc,
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/allow_character_respawn,
 	/datum/admins/proc/sendFax,
-	/proc/possess,
-	/proc/release,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
 	/client/proc/cmd_regenerate_asset_cache,
@@ -410,7 +393,6 @@ var/list/admin_verbs_event_manager = list(
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
-	// /client/proc/show_gm_status,  // VOREStation Edit - We don't use SSgame_master yet.
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
 	/client/proc/cmd_regenerate_asset_cache,
@@ -450,7 +432,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/admin_cancel_shuttle,      //allows us to cancel the emergency shuttle, sending it back to CentCom,
 	/client/proc/cmd_admin_direct_narrate,  //send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,   //sends text to all players with no padding,
-	/client/proc/cmd_admin_z_narrate, //VOREStation Add,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/check_words,                       //displays cult-words,
 	/client/proc/check_ai_laws,                     //shows AI and borg laws,
@@ -477,7 +458,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/change_security_level,
 	/client/proc/makepAI,
 	/datum/admins/proc/paralyze_mob,
-	/client/proc/fixatmos,
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
 	/datum/admins/proc/view_feedback,

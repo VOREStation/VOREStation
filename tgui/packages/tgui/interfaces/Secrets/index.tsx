@@ -21,7 +21,7 @@ export const Secrets = (props) => {
   const TabComponent = TAB2NAME[tabIndex - 1].component();
 
   return (
-    <Window title="Secrets Panel" width={500} height={488} theme="admin">
+    <Window title="Secrets Panel" width={500} height={528} theme="admin">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item mb={1}>
@@ -54,6 +54,15 @@ export const Secrets = (props) => {
                       onClick={() => act('show_admins')}
                     >
                       Show Admins
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      color="blue"
+                      icon="gamepad"
+                      onClick={() => act('show_game_mode')}
+                    >
+                      Game Mode
                     </Button>
                   </Stack.Item>
                 </Stack>

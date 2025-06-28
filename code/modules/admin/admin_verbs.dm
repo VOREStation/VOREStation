@@ -10,7 +10,6 @@
 			add_verb(src, admin_verbs_debug)
 			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
 				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
 		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
 		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
 		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
@@ -28,7 +27,6 @@
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
-		admin_verbs_possess,
 		/client/proc/stealth,
 		admin_verbs_sounds,
 		admin_verbs_spawn,

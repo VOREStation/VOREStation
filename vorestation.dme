@@ -1948,7 +1948,6 @@
 #include "code\modules\admin\verbs\dbcon_fix.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
 #include "code\modules\admin\verbs\debug.dm"
-#include "code\modules\admin\verbs\debug_vr.dm"
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\dice.dm"
 #include "code\modules\admin\verbs\entity_narrate.dm"
