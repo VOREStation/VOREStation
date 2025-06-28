@@ -231,7 +231,7 @@
 					continue
 				planet_effect(L)
 		if(effect_flags & EFFECT_ONLY_HUMANS)
-			for(var/mob/living/carbon/H as anything in human_mob_list)
+			for(var/mob/living/carbon/H as anything in GLOB.human_mob_list)
 				if(H.is_incorporeal() && !(effect_flags & EFFECT_ALWAYS_HITS))
 					continue
 				planet_effect(H)

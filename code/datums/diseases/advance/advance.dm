@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		for(var/datum/disease/advance/AD in GLOB.active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(src, "Choose infectee", "Infectees", human_mob_list)
+		H = tgui_input_list(src, "Choose infectee", "Infectees", GLOB.human_mob_list)
 
 		if(isnull(H))
 			return FALSE

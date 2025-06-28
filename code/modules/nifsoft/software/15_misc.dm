@@ -157,7 +157,7 @@
 /datum/nifsoft/worldbend/activate()
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human
@@ -167,7 +167,7 @@
 /datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human

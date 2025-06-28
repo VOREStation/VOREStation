@@ -52,7 +52,7 @@
 
 	nutrition = rand(200,400)
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 
 	. = ..()
 
@@ -78,7 +78,7 @@
 	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	QDEL_NULL_LIST(organs)
 	if(nif)
 		QDEL_NULL(nif)
