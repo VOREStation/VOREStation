@@ -6,8 +6,10 @@
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt. Use CTRL-CLICK to interact with the selected item! Use CTRL-Z to open the radial menu!"
-
+	desc = "An integrated toolbelt that holds various tools."
+	description_info = "Pressing Z will interact with the item the multibelt has selected.<br>\
+	Pressing Ctrl+Z will open the radial menu to allow item swapping!<br>\
+	Clicking on the selected object will also open the radial menu."
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
 	w_class = ITEMSIZE_HUGE
@@ -454,6 +456,16 @@
 		cyborg_integrated_tools += current_stack
 
 	. = ..()
+
+///Allows the material fabricator to pick up materials if they hit an appropriate stack.
+/obj/item/robotic_multibelt/materials/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(istype(target, /obj/item/stack)) //We are targeting a stack.
+		if(!selected_item)
+			to_chat(user, span_warning("You need to select a material first!"))
+			return
+		var/obj/item/stack/target_stack = target
+		if(istype(selected_item, /obj/item/stack))
+			target_stack.attackby(selected_item, user)
 
 /*
  * Grippers
