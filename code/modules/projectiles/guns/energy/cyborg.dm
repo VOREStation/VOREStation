@@ -169,7 +169,7 @@
 	name = "puppy jaws"
 	icon_state = "smalljaws"
 	desc = "The jaws of a small dog."
-	force = 10
+	force = 15
 	defend_chance = 5
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 	var/emagged = 0
@@ -181,7 +181,7 @@
 			name = "combat jaws"
 			icon_state = "jaws"
 			desc = "The jaws of the law."
-			force = 25
+			force = 30
 			armor_penetration = 25
 			defend_chance = 15
 			attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
@@ -189,7 +189,7 @@
 			name = "puppy jaws"
 			icon_state = "smalljaws"
 			desc = "The jaws of a small dog."
-			force = 10
+			force = 15
 			armor_penetration = 0
 			defend_chance = 5
 			attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
