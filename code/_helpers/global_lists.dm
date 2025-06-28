@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(observer_mob_list)				//List of all /mob/observer/dead, includ
 var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
 
-var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(cable_list)						//Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(landmarks_list)					//list of all landmarks created
 GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(landmark references) for event triggers
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
@@ -357,7 +357,6 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
 	GLOB.legacy_globals["listening_objects"] = listening_objects
 	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
-	GLOB.legacy_globals["cable_list"] = cable_list
 	GLOB.legacy_globals["mannequins_"] = mannequins_
 	//visual nets
 	GLOB.legacy_globals["visual_nets"] = visual_nets
