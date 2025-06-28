@@ -954,8 +954,8 @@
 				)))
 
 	if(!LAZYLEN(valid_wingstyles))
-		for(var/path in wing_styles_list)
-			var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
+		for(var/path in GLOB.wing_styles_list)
+			var/datum/sprite_accessory/wing/instance = GLOB.wing_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_wingstyles.Add(list(list(
 					"name" = instance.name,

@@ -487,7 +487,7 @@ var/list/preferences_datums = list()
 	var/datum/preference/color/tail_color3 = GLOB.preference_entries[/datum/preference/color/human/tail_color3]
 	tail_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/tail_color3))
 
-	var/list/wing_styles = get_available_styles(global.wing_styles_list)
+	var/list/wing_styles = get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[wing_style]
 
 	var/datum/preference/color/wing_color1 = GLOB.preference_entries[/datum/preference/color/human/wing_color1]

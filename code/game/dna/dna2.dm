@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	// Demi Wings
 	var/wing_style = 0
 	if(character.wing_style)
-		wing_style = wing_styles_list.Find(character.wing_style.type)
+		wing_style = GLOB.wing_styles_list.Find(character.wing_style.type)
 
 	// Hairgrad
 	var/grad_style = 0
@@ -203,7 +203,7 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     GLOB.ear_styles_list.len  + 1,  1)
 	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              GLOB.tail_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             GLOB.player_sizes_list.len,     1)
-	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              wing_styles_list.len + 1,  1)
+	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              GLOB.wing_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_GRAD_STYLE,            grad_style,			  	   GLOB.hair_gradients.len,  1)
 
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
@@ -388,11 +388,11 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 		H.tail_style = GLOB.tail_styles_list[GLOB.tail_styles_list[tail]]
 
 	//Wing
-	var/wing = GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
+	var/wing = GetUIValueRange(DNA_UI_WING_STYLE, GLOB.wing_styles_list.len + 1) - 1
 	if(wing < 1)
 		H.wing_style = null
-	else if((0 < wing) && (wing <= wing_styles_list.len))
-		H.wing_style = wing_styles_list[wing_styles_list[wing]]
+	else if((0 < wing) && (wing <= GLOB.wing_styles_list.len))
+		H.wing_style = GLOB.wing_styles_list[GLOB.wing_styles_list[wing]]
 
 	//Wing Color
 	H.r_wing   = GetUIValueRange(DNA_UI_WING_R,     255)

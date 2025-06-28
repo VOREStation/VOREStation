@@ -487,8 +487,8 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_wing_styles = list("None" = null)
-	for(var/path in wing_styles_list)
-		var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
+	for(var/path in GLOB.wing_styles_list)
+		var/datum/sprite_accessory/wing/instance = GLOB.wing_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_wing_styles[instance.name] = path
 
@@ -498,7 +498,7 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	//Set new style
-	wing_style = wing_styles_list[pretty_wing_styles[new_wing_style]]
+	wing_style = GLOB.wing_styles_list[pretty_wing_styles[new_wing_style]]
 
 	//Allow color picks
 	var/current_color = rgb(r_wing,g_wing,b_wing)

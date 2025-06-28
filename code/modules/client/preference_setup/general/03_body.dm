@@ -34,7 +34,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		if(istype(instance))
 			ear_style = instance.name
 	if(ispath(wing_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.wing_styles_list[wing_style]
+		var/datum/sprite_accessory/instance = GLOB.wing_styles_list[wing_style]
 		if(istype(instance))
 			wing_style = instance.name
 	if(ispath(tail_style, /datum/sprite_accessory))
@@ -47,7 +47,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		ear_style = null
 	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(GLOB.ear_styles_list)))
 		ear_secondary_style = null
-	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
+	if(wing_style && !(wing_style in get_available_styles(GLOB.wing_styles_list)))
 		wing_style = null
 	if(tail_style && !(tail_style in get_available_styles(GLOB.tail_styles_list)))
 		tail_style = null
@@ -195,7 +195,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	var/list/tail_styles = pref.get_available_styles(GLOB.tail_styles_list)
 	character.tail_style = tail_styles[pref.tail_style]
 
-	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
+	var/list/wing_styles = pref.get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[pref.wing_style]
 
 	character.set_gender(pref.biological_gender)
@@ -371,7 +371,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["available_tail_styles"] = available_tail_styles
 
 	var/list/available_wing_styles = list()
-	for(var/path in pref.get_available_styles(wing_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.wing_styles_list))
 		UNTYPED_LIST_ADD(available_wing_styles, path)
 	data["available_wing_styles"] = available_wing_styles
 
@@ -474,8 +474,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["tail_styles"] = tail_styles
 
 	var/list/wing_styles = list()
-	for(var/path in wing_styles_list)
-		var/datum/sprite_accessory/wing/S = wing_styles_list[path]
+	for(var/path in GLOB.wing_styles_list)
+		var/datum/sprite_accessory/wing/S = GLOB.wing_styles_list[path]
 		wing_styles[S.name] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -680,7 +680,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Wings */
 		if("set_wing_style")
 			var/new_style = params["style"]
-			if(new_style in pref.get_available_styles(global.wing_styles_list))
+			if(new_style in pref.get_available_styles(GLOB.wing_styles_list))
 				pref.wing_style = new_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_wing_color")

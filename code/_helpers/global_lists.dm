@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/ma
 GLOBAL_LIST_EMPTY(body_marking_nopersist_list)	// Body marking styles, minus non-genetic markings and augments
 GLOBAL_LIST_EMPTY(ear_styles_list)	// Stores /datum/sprite_accessory/ears indexed by type
 GLOBAL_LIST_EMPTY(tail_styles_list)	// Stores /datum/sprite_accessory/tail indexed by type
-var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
+GLOBAL_LIST_EMPTY(wing_styles_list)	// Stores /datum/sprite_accessory/wing indexed by type
 
 GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
 	//Underwear
@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/wing)
 	for(var/path in paths)
 		var/datum/sprite_accessory/wing/instance = new path()
-		wing_styles_list[path] = instance
+		GLOB.wing_styles_list[path] = instance
 
 	paths = typesof(/datum/digest_mode)
 	for(var/T in paths)

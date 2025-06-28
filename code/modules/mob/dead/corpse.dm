@@ -97,8 +97,8 @@
 			M.ear_secondary_colors = ear_secondary_type.Copy(2, min(length(GLOB.fancy_sprite_accessory_color_channel_names), length(ear_secondary_type)) + 1)
 
 	if(wing_type && wing_type.len)
-		if(wing_type[1] in wing_styles_list)
-			M.wing_style = wing_styles_list[wing_type[1]]
+		if(wing_type[1] in GLOB.wing_styles_list)
+			M.wing_style = GLOB.wing_styles_list[wing_type[1]]
 			if(wing_type.len > 1)
 				var/list/color_rgb_list = hex2rgb(wing_type[2])
 				M.r_wing = color_rgb_list[1]
