@@ -7,7 +7,7 @@
 	braintype = "Drone"
 	idcard_type = /obj/item/card/id/syndicate
 	icon_selected = FALSE
-	restrict_modules_to = list("Protector", "Mechanist", "Combat Medic")
+	restrict_modules_to = list("Protector", "Mechanist", "Combat Medic", "Ninja")
 	ui_theme = "syndicate"
 
 /mob/living/silicon/robot/syndicate/init()
@@ -51,6 +51,13 @@
 	modtype = "Combat Medic"
 	restrict_modules_to = list("Combat Medic")
 	updatename("Combat Medic")
+
+/mob/living/silicon/robot/syndicate/ninja/init()
+	..()
+	module = new /obj/item/robot_module/robot/syndicate/ninja(src)
+	modtype = "Ninja"
+	restrict_modules_to = list("Ninja")
+	updatename("Ninja")
 
 /mob/living/silicon/robot/syndicate/speech_bubble_appearance()
 	return "synthetic_evil"
