@@ -137,10 +137,34 @@ jobs:
           ldd libbapi_dmm_reader.so
           ldd libverdigris.so
       - name: Unit Tests
+        id: run_tests
         run: tools/ci/compile_and_run.sh
         env:
           EXTRA_ARGS: "-DUNIT_TESTS -D${{ matrix.map }}"
           RUN: "1"
+      - name: On test fail, write a step summary
+        if: always() && steps.run_tests.outcome == 'failure'
+        run: |
+          # Get a JSON array of failed unit tests
+          FAILED_UNIT_TESTS=$(jq 'to_entries | map(.value | select(.status == 1))' data/unit_tests.json)
+
+          FAIL_COUNT=$(echo $FAILED_UNIT_TESTS | jq 'length')
+
+          echo "# Test failures" >> $GITHUB_STEP_SUMMARY
+          echo "$FAIL_COUNT tests failed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          for i in $( seq $FAIL_COUNT ); do
+            CURRENT_FAIL=$(echo $FAILED_UNIT_TESTS | jq --arg i $i '.[($i | tonumber) - 1]')
+
+            TEST=$(echo $CURRENT_FAIL | jq --raw-output '.name')
+
+            echo "### $TEST" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo $CURRENT_FAIL | jq --raw-output '.message' >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
 
   extra_map_tests:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
