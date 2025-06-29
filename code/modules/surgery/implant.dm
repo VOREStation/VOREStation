@@ -56,7 +56,7 @@
 	)
 
 	min_duration = 60
-	max_duration = 80
+	max_duration = 60
 
 /datum/surgery_step/cavity/make_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
@@ -92,8 +92,8 @@
 		/obj/item/weldingtool = 25
 	)
 
-	min_duration = 60
-	max_duration = 80
+	min_duration = 30
+	max_duration = 30
 
 /datum/surgery_step/cavity/close_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
@@ -125,7 +125,7 @@
 	allowed_tools = list(/obj/item = 100)
 
 	min_duration = 80
-	max_duration = 100
+	max_duration = 80
 
 /datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(tool))
@@ -178,7 +178,7 @@
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
 	affected.implants += tool
 	tool.loc = affected
-	if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
+	if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.implant(target)}
 	affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////
@@ -194,8 +194,8 @@
 
 	allowed_procs = list(IS_WIRECUTTER = 75)
 
-	min_duration = 80
-	max_duration = 100
+	min_duration = 50
+	max_duration = 50
 
 /datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -268,7 +268,7 @@
 				var/obj/item/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = 0
-			else if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
+			else if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.unimplant(target)}
 	else
 		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out."), \
 		span_notice("You could not find anything inside [target]'s [affected.name].") )
@@ -282,7 +282,8 @@
 		fail_prob += 100 - tool_quality(tool)
 		if (prob(fail_prob))
 			var/obj/item/implant/imp = affected.implants[1]
-			user.visible_message(span_danger(" Something beeps inside [target]'s [affected.name]!"))
-			playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
-			spawn(25)
-				imp.activate()
+			if(istype(imp))
+				user.visible_message(span_danger(" Something beeps inside [target]'s [affected.name]!"))
+				playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
+				spawn(25)
+					imp.activate()

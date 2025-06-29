@@ -50,13 +50,17 @@
 					B.visible_message(span_danger("\The [B] lashes out at \the [L]!"))
 					var/datum/beam/drain_beam = beam_origin.Beam(L, icon_state = "drain_life", time = 10 SECONDS)
 					active_beams |= drain_beam
-					spawn(9 SECONDS)
-						if(B && drain_beam)
-							B.visible_message(span_alien("\The [B] siphons energy from \the [L]"))
-							L.add_modifier(/datum/modifier/berserk_exhaustion, 60 SECONDS)
-							B.overmind.add_points(rand(10,30))
-							if(!QDELETED(drain_beam))
-								qdel(drain_beam)
+					addtimer(CALLBACK(src, PROC_REF(handle_drain_beam), B, drain_beam, L), 9 SECONDS, TIMER_DELETE_ME)
+
+
+/datum/blob_type/ectoplasmic_horror/proc/handle_drain_beam(obj/structure/blob/B, datum/beam/drain_beam, mob/living/L)
+	if(B && drain_beam)
+		B.visible_message(span_alien("\The [B] siphons energy from \the [L]"))
+		L.add_modifier(/datum/modifier/berserk_exhaustion, 60 SECONDS)
+		if(B.overmind)
+			B.overmind.add_points(rand(10,30))
+		if(!QDELETED(drain_beam))
+			qdel(drain_beam)
 
 /datum/blob_type/ectoplasmic_horror/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	if(prob(round(damage * 0.5)))
