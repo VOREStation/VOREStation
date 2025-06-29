@@ -25,7 +25,7 @@
 /datum/turf_initializer/maintenance/proc/junk()
 	if(prob(25))
 		return /obj/effect/decal/cleanable/generic
-	if(!GLOB.random_junk)
+	if(!LAZYLEN(GLOB.random_junk))
 		GLOB.random_junk = subtypesof(/obj/item/trash)
 		GLOB.random_junk += typesof(/obj/item/trash/cigbutt)
 		GLOB.random_junk += /obj/effect/decal/cleanable/spiderling_remains

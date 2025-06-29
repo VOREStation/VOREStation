@@ -43,7 +43,7 @@
 	return new build_path(drop_location())
 
 /proc/get_random_useful_type()
-	if(!GLOB.random_useful_)
+	if(!LAZYLEN(GLOB.random_useful_))
 		GLOB.random_useful_ = subtypesof(/obj/item/pen/crayon)
 		GLOB.random_useful_ += /obj/item/pen
 		GLOB.random_useful_ += /obj/item/pen/blue
