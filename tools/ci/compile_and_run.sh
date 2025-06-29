@@ -24,10 +24,6 @@ if [ $exitVal -gt 0 ]; then
   exit 1
 fi
 
-# If we're running, run
-if [ $RUN -eq 1 ];
-then
-  DreamDaemon $BASENAME.dmb -close -trusted -invisible -verbose -core 2>&1 | tee log.txt;
-  grep "All Unit Tests Passed" log.txt || exit 1
-  grep "Caught 0 Runtimes" log.txt || exit 1
-fi
+DreamDaemon $BASENAME.dmb -close -invisible -trusted -verbose;
+
+cat data/logs/ci/clean_run.lk
