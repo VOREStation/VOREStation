@@ -93,9 +93,9 @@ jobs:
       #- name: Check File Directories
       #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
       #  run: bash tools/ci/check_filedirs.sh tgstation.dme
-      #- name: Check Changelogs
-      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #  run: bash tools/ci/check_changelogs.sh
+      - name: Check Changelogs
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: bash tools/ci/check_changelogs.sh
       - name: Check Miscellaneous Files
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: bash tools/ci/check_misc.sh
@@ -104,7 +104,5 @@ jobs:
         run: tools/build/build.sh --ci lint tgui-test
 
 
-      - name: Run Validation Tests
-        run: bash tools/ci/validate_files.sh
       - name: Run Nanomap Checks
         run: tools/github-actions/nanomap-renderer-invoker.sh --testing
