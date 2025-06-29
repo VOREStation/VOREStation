@@ -36,7 +36,7 @@ jobs:
 
   run_extra_map_tests:
     name: Extra Map Tests
-    uses: ./.github/workflows/perform_regular_version_tests.yml
+    uses: ./.github/workflows/run_extra_map_tests.yml
 
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
