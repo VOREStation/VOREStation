@@ -44,7 +44,7 @@
 
 	callHook("startup")
 	//Emergency Fix
-	load_mods()
+	InitTgs()
 	//end-emergency fix
 
 	src.update_status()
@@ -90,6 +90,11 @@
 #undef RECOMMENDED_VERSION
 
 	return
+
+/// Initializes TGS and loads the returned revising info into GLOB.revdata
+/world/proc/InitTgs()
+	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
+	GLOB.revdata.load_tgs_info()
 
 /// Runs after config is loaded but before Master is initialized
 /world/proc/ConfigLoaded()
@@ -247,8 +252,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(positions)
 
 	else if(T == "revision")
-		if(GLOB.revdata.revision)
-			return list2params(list(branch = GLOB.revdata.branch, date = GLOB.revdata.date, revision = GLOB.revdata.revision))
+		if(GLOB.revdata.commit)
+			return list2params(list(testmerge = GLOB.revdata.testmerge, date = GLOB.revdata.date, commit = GLOB.revdata.commit, originmastercommit = GLOB.revdata.originmastercommit))
 		else
 			return "unknown"
 
