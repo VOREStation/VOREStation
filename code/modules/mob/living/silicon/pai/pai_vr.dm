@@ -168,7 +168,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Toggle Eye Glow"
 
-	if(chassis in allows_eye_color)
+	if(chassis in GLOB.allows_eye_color)
 		if(eye_glow && !hide_glow)
 			eye_glow = FALSE
 		else
@@ -183,7 +183,7 @@
 /mob/living/silicon/pai/verb/pick_eye_color()
 	set category = "Abilities.pAI Commands"
 	set name = "Pick Eye Color"
-	if(!(chassis in allows_eye_color))
+	if(!(chassis in GLOB.allows_eye_color))
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 
 	var/new_eye_color = tgui_color_picker(src, "Choose your character's eye color:", "Eye Color")
@@ -221,7 +221,7 @@
 			eye_layer = image('icons/mob/pai_vr64x32.dmi', "type13-eyes")
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
 			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
-	else if(chassis in allows_eye_color)
+	else if(chassis in GLOB.allows_eye_color)
 		eye_layer = image(icon, "[icon_state]-eyes")
 	else return
 	eye_layer.appearance_flags = appearance_flags

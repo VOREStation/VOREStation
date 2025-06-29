@@ -1029,7 +1029,7 @@ GLOBAL_LIST_INIT(flying_chassis, list(
 //the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where
 //most of the pixels are different kinds of green and tastefully translate that to whitescale
 //they can have fun with that! I not doing it!
-var/global/list/allows_eye_color = list(
+GLOBAL_LIST_INIT(allows_eye_color, list(
 	"pai-repairbot",
 	"pai-typezero",
 	"pai-bat",
@@ -1054,7 +1054,7 @@ var/global/list/allows_eye_color = list(
 	"pai-horse_soleil",
 	"pai-pdragon",
 	"pai-protodog"
-	)
+	))
 
 
 GLOBAL_LIST_EMPTY(entopic_images)
