@@ -581,7 +581,8 @@
 /datum/config_entry/flag/allow_url_links
 	default = TRUE // honestly if I were you i'd leave this one off, only use in dire situations
 
-/datum/config_entry/flag/starlight // Whether space turfs have ambient light or not
+/datum/config_entry/number/starlight // Whether space turfs have ambient light or not and how strong it is.
+	default = 0
 
 // FIXME: Unused
 ///datum/config_entry/str_list/ert_species
