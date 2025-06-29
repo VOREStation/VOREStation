@@ -91,17 +91,25 @@
 #include "component_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "decl_tests.dm"
 #include "disease_tests.dm"
 #include "focus_only_tests.dm"
 #include "font_awesome_icons.dm"
+#include "genetics_tests.dm"
+#include "language_tests.dm"
+#include "loadout_tests.dm"
+#include "material_tests.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
+#include "poster_tests.dm"
 #include "recipe_tests.dm"
 #include "recycler_vendor_tests.dm"
 #include "spritesheets.dm"
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
+#include "trait_tests.dm"
 #include "unit_test.dm"
+// #include "vore_tests.dm" // FIXME: REWRITE OR FIX THIS
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"

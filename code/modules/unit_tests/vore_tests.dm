@@ -1,13 +1,41 @@
+/// converted unit test, maybe should be fully refactored
+
+// FIXME: THIS SHOULD BE REPLACED WITH ALLOCATE IN THE END
+// SEE unit_test.dm NEW() WHY THIS ISNT IMPLEMENTED YET
+/datum/unit_test
+	var/static/default_mobloc = null
+
+// FIXME: THIS SHOULD BE REPLACED WITH ALLOCATE IN THE END
+// SEE unit_test.dm NEW() WHY THIS ISNT IMPLEMENTED YET
+/datum/unit_test/proc/create_test_mob(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human, var/with_mind = FALSE)
+	if(isnull(mobloc))
+		if(!default_mobloc)
+			for(var/turf/simulated/floor/tiled/T in world)
+				var/pressure = T.zone.air.return_pressure()
+				if(90 < pressure && pressure < 120) // Find a turf between 90 and 120
+					default_mobloc = T
+					break
+		mobloc = default_mobloc
+	if(!mobloc)
+		fail("Unable to find a location to create test mob")
+		return 0
+
+	var/mob/living/carbon/human/H = new mobtype(mobloc)
+
+	if(with_mind)
+		H.mind_initialize("TestKey[rand(0,10000)]")
+
+	return H
+
+/// Test that a human mob does not suffocate in a belly
 /datum/unit_test/belly_nonsuffocation
-	name = "MOB: human mob does not suffocate in a belly"
 	var/startLifeTick
 	var/startOxyloss
 	var/endOxyloss
 	var/mob/living/carbon/human/pred
 	var/mob/living/carbon/human/prey
-	async = 1
 
-/datum/unit_test/belly_nonsuffocation/start_test()
+/datum/unit_test/belly_nonsuffocation/Run()
 	pred = create_test_mob()
 	if(!istype(pred))
 		return 0

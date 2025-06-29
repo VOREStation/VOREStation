@@ -116,8 +116,8 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 
 /// Resets the air of our testing room to its default
 /datum/unit_test/proc/restore_atmos()
+	// NOT IMPLEMENTED YET, SEE NEW() PROC
 	//var/area/working_area = run_loc_floor_bottom_left.loc
-	TEST_NOTICE(src, "/datum/unit_test/proc/restore_atmos() not yet implemented")
 	//var/list/turf/to_restore = working_area.get_turfs_from_all_zlevels()
 	//for(var/turf/simulated/restore in to_restore)
 	//	var/datum/gas_mixture/GM = SSair.parse_gas_string(restore.initial_gas_mix, /datum/gas_mixture/turf)
