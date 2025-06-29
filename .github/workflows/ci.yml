@@ -34,12 +34,17 @@ jobs:
       maps: '{"paths":["USE_MAP_TETHER","USE_MAP_STELLARDELIGHT","USE_MAP_GROUNDBASE"]}'
       max_required_byond_client: 516
 
+  run_extra_map_tests:
+    name: Extra Map Tests
+    uses: ./.github/workflows/perform_regular_version_tests.yml
+
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
     name: Completion Gate
     needs:
       [
         run_all_tests,
+        run_extra_map_tests,
         run_linters,
       ]
     runs-on: ubuntu-24.04
