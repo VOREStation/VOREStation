@@ -1438,3 +1438,12 @@ GLOBAL_LIST_INIT(nif_look_messages, list(
 			"reads some invisible text",
 			"seems to be daydreaming",
 			"focuses elsewhere for a moment"))
+
+// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
+GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
+	/turf/simulated/floor/beach/water,
+	/turf/simulated/floor/beach/coastline,
+	/turf/simulated/floor/holofloor/beach/water,
+	/turf/simulated/floor/holofloor/beach/coastline,
+	/turf/simulated/floor/water
+))
