@@ -58,6 +58,8 @@
 		"Stage Speed 6" = "Consumed chemicals nourish the host."
 	)
 
+	prefixes = list("Toxo")
+
 /datum/symptom/heal/chem/Start(datum/disease/advance/A)
 	if(!..())
 		return
@@ -97,6 +99,9 @@
 		"Stage Speed 6" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors.",
 		"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced. The disease will also regenerate lost limbs."
 	)
+
+	prefixes = list("Blood ", "Meat ", "Flesh ")
+	bodies = list("Giant")
 
 /datum/symptom/growth/Start(datum/disease/advance/A)
 	if(!..())
@@ -164,6 +169,9 @@
 		"Stealth 3" = "Reduces hunger rate.",
 		"Stage Speed 10" = "Chemical metabolization is tripled instead of doubled."
 	)
+
+	prefixes = list("Metabolic ", "Junkie's ", "Chemical ")
+	bodies = list("Hunger")
 
 /datum/symptom/heal/metabolism/Start(datum/disease/advance/A)
 	if(!..())

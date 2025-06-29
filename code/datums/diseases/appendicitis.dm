@@ -1,6 +1,7 @@
 /datum/disease/appendicitis
 	form = "Condition"
 	name = "Appendicitis"
+	medical_name = "Appendicitis"
 	max_stages = 3
 	spread_text = "Non-contagious"
 	disease_flags = CAN_CARRY|CAN_RESIST|CAN_NOT_POPULATE

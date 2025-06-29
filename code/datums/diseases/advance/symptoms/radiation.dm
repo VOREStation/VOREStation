@@ -13,6 +13,9 @@
 		"Speed 8" = "Host takes radiation damage faster."
 	)
 
+	prefixes = list("Gamma ")
+	bodies = list("Radiation")
+
 /datum/symptom/radiation/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.stage_rate >= 8)
@@ -64,6 +67,8 @@
 		"Stage Speed 6" = "The disease also kills off contaminated cells, converting Toxin damage to Brute damage, at an efficient rate.",
 		"Resistance 12" = "The disease also kills off genetically damaged cells, coverting Genetic damage to Burn damage, an inefficient rate."
 	)
+
+	suffixes = list(" Aptosis")
 
 /datum/symptom/radconversion/severityset(datum/disease/advance/A)
 	. = ..()

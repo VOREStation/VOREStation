@@ -21,6 +21,16 @@
 	object_type_to_spawn = /obj/item/stack/material/wood/hard{amount = 20}
 
 
+/datum/maint_recycler_vendor_entry/cardboard
+	vendor_category = MAINTVENDOR_CONSTRUCTION
+	name = "C.A.R.D.B.O.A.R.D"
+	ad_message = "5 sheets!"
+	desc = "Not an acronym (maybe?), we just asked the person in charge of designating stationbounds to make this listing, we have no idea what it means!"
+	object_type_to_spawn = /obj/item/stack/material/cardboard{amount = 5}
+	item_cost = 10 //not too pricy
+	per_person_cap = 1
+	per_round_cap = 3 //limited supply!
+
 /datum/maint_recycler_vendor_entry/DIY_Steel
 	vendor_category = MAINTVENDOR_CONSTRUCTION
 	name = "steel!"

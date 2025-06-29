@@ -41,24 +41,17 @@
 	if(blocks_remaining.len < 10)
 		warning("DNA2: Blocks remaining is less than 10. The DNA_SE_LENGTH should be raised in dna.dm.")
 	// Run conflict-o-tron on each traitgene all other traits... Lets setup an initial database of conflicts.
-	// Any remaining conflicts will be handled by the conflict-o-tron midround using a quicker scan flag
 	log_world("DNA2: Checking trait gene conflicts")
-	var/list/compare_list = list()
-	for(var/datum/gene/trait/gene in GLOB.dna_genes) // was orginally all_traits, but having 300 entry lists for 50 genes at launch was pointless. the caches will fill as characters spawn with traits instead... A small tradeoff
-		if(gene.linked_trait)
-			compare_list.Add(gene.linked_trait.type)
 	for(var/datum/gene/trait/gene in GLOB.dna_genes)
-		gene.has_conflict( compare_list, FALSE )
+		gene.has_conflict( GLOB.all_traits, FALSE) // Check all traits beforehand to build the conflict list, so all future checks can be done with a quick contents check
 	log_world("DNA2: Initial Conflict summary")
-	// Future coders: Don't worry, has_conflict() is run whenever a traitgene tries to enable itself as well, and adds to the trait conflict lists in each gene...
 	// This is to setup the initial segments for the gene editing machines to sort gene segments with.
 	for(var/datum/gene/trait/gene in GLOB.dna_genes)
 		if(gene.conflict_traits.len)
 			var/summery = ""
 			for(var/path in gene.conflict_traits)
-				if(gene.conflict_traits[path]) // check if it actually conflicts
-					var/datum/trait/T = GLOB.all_traits[path]
-					if(summery != "")
-						summery += ", "
-					summery += "[T.name]"
+				var/datum/trait/T = GLOB.all_traits[path]
+				if(summery != "")
+					summery += ", "
+				summery += "[T.name]"
 			log_world("DNA2: [gene.get_name()] - ([summery])")

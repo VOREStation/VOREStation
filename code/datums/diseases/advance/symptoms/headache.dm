@@ -34,6 +34,8 @@ BONUS
 		"Stealth 4" = "Reduces headache frequency until later stages."
 	)
 
+	bodies = list("Skull", "Migraine")
+
 /datum/symptom/headache/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.stage_rate >= 6)

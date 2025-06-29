@@ -1,5 +1,6 @@
 /datum/disease/flu
 	name = "The Flu"
+	medical_name = "Influenza"
 	max_stages = 3
 	spread_text = "Airborne"
 	cure_text = REAGENT_SPACEACILLIN

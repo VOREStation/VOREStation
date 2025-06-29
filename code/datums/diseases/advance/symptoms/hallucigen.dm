@@ -30,6 +30,9 @@ Bonus
 
 	var/fake_healthy = FALSE
 
+	prefixes = list("Narcotic ", "Narco", "Psycho-")
+	suffixes = list(" Psychosis")
+
 	threshold_descs = list(
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 2" = "The virus mimics positive symptoms"

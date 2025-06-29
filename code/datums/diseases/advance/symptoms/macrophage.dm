@@ -38,6 +38,9 @@ BONUS
 		"Transmission 12" = "Phages will carry all diseases within the host, instead of only containing their own."
 	)
 
+	prefixes = list("Ambulant ", "Macro")
+	bodies = list("Phage")
+
 /datum/symptom/macrophage/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.transmission >= 10)
