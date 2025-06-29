@@ -132,11 +132,11 @@
 	set name = "Choose Chassis"
 	var/choice
 
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
+	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", GLOB.possible_chassis)
 	if(!choice) return
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
-	chassis = possible_chassis[choice]
+	chassis = GLOB.possible_chassis[choice]
 
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)

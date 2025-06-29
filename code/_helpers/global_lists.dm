@@ -1235,3 +1235,71 @@ GLOBAL_LIST_INIT(possible_ghost_sprites, list(
 GLOBAL_LIST_EMPTY(sparring_attack_cache)
 
 GLOBAL_LIST_EMPTY(protean_abilities)
+
+//PAI stuff
+GLOBAL_LIST_INIT(possible_chassis, list(
+	"Drone" = "pai-repairbot",
+	"Cat" = "pai-cat",
+	"Mouse" = "pai-mouse",
+	"Monkey" = "pai-monkey",
+	"Borgi" = "pai-borgi",
+	"Fox" = "pai-fox",
+	"Parrot" = "pai-parrot",
+	"Rabbit" = "pai-rabbit",
+	"Dire wolf" = "pai-diredog",
+	"Horse (Lune)" = "pai-horse_lune",
+	"Horse (Soleil)" = "pai-horse_soleil",
+	"Dragon" = "pai-pdragon",
+	"Bear" = "pai-bear",
+	"Fennec" = "pai-fen",
+	"Type Zero" = "pai-typezero",
+	"Raccoon" = "pai-raccoon",
+	"Raptor" = "pai-raptor",
+	"Corgi" = "pai-corgi",
+	"Bat" = "pai-bat",
+	"Butterfly" = "pai-butterfly",
+	"Hawk" = "pai-hawk",
+	"Duffel" = "pai-duffel",
+	"Rat" = "rat",
+	"Panther" = "panther",
+	"Cyber Elf" = "cyberelf",
+	"Teppi" = "teppi",
+	"Catslug" = "catslug",
+	"Car" = "car",
+	"Type One" = "typeone",
+	"Type Thirteen" = "13",
+	"Protogen Dog" = "pai-protodog"
+	))
+
+//PAI stuff
+GLOBAL_LIST_INIT(possible_say_verbs, list(
+	"Robotic" = list("states","declares","queries"),
+	"Natural" = list("says","yells","asks"),
+	"Beep" = list("beeps","beeps loudly","boops"),
+	"Chirp" = list("chirps","chirrups","cheeps"),
+	"Feline" = list("purrs","yowls","meows"),
+	"Canine" = list("yaps","barks","woofs"),
+	"Rodent" = list("squeaks", "SQUEAKS", "sqiks")
+	))
+
+GLOBAL_LIST_INIT(robot_modules, list(
+	"Standard"		= /obj/item/robot_module/robot/standard,
+	"Service" 		= /obj/item/robot_module/robot/clerical/butler,
+	"Clerical" 		= /obj/item/robot_module/robot/clerical/general,
+	"Clown"			= /obj/item/robot_module/robot/clerical/honkborg,
+	"Command"		= /obj/item/robot_module/robot/chound,
+	"Research" 		= /obj/item/robot_module/robot/research,
+	"Miner" 		= /obj/item/robot_module/robot/miner,
+	"Crisis" 		= /obj/item/robot_module/robot/medical/crisis,
+	"Surgeon" 		= /obj/item/robot_module/robot/medical/surgeon,
+	"Security" 		= /obj/item/robot_module/robot/security/general,
+	"Combat" 		= /obj/item/robot_module/robot/security/combat,
+	"Exploration"	= /obj/item/robot_module/robot/exploration,
+	"Engineering"	= /obj/item/robot_module/robot/engineering,
+	"Janitor" 		= /obj/item/robot_module/robot/janitor,
+	"Gravekeeper"	= /obj/item/robot_module/robot/gravekeeper,
+	"Lost"			= /obj/item/robot_module/robot/lost,
+	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
+	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
+	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
+	))
