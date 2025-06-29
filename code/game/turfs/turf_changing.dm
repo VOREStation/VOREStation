@@ -100,7 +100,7 @@
 	if(SSair)
 		SSair.mark_for_update(W)
 
-	if(CONFIG_GET(flag/starlight))
+	if(CONFIG_GET(number/starlight))
 		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
 	W.levelupdate()
@@ -131,7 +131,7 @@
 		else if(lighting_object && !lighting_object.needs_update)
 			lighting_object.update()
 
-		if(CONFIG_GET(flag/starlight))
+		if(CONFIG_GET(number/starlight))
 			for(var/turf/space/space_tile in RANGE_TURFS(1, src))
 				space_tile.update_starlight()
 
