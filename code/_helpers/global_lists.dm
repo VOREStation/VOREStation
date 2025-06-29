@@ -1430,3 +1430,11 @@ GLOBAL_LIST_INIT(global_ammo_types, list(
 
 //Rad collectors in the world
 GLOBAL_LIST_EMPTY(rad_collectors)
+
+//NIF
+GLOBAL_LIST_INIT(nif_look_messages, list(
+			"flicks their eyes around",
+			"looks at something unseen",
+			"reads some invisible text",
+			"seems to be daydreaming",
+			"focuses elsewhere for a moment"))
