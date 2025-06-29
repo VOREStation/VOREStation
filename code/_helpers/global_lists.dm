@@ -1005,7 +1005,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"huge scorched area"
 	))
 
-var/global/list/wide_chassis = list(
+GLOBAL_LIST_INIT(wide_chassis, list(
 	"rat",
 	"panther",
 	"teppi",
@@ -1014,14 +1014,15 @@ var/global/list/wide_chassis = list(
 	"pai-horse_soleil",
 	"pai-pdragon",
 	"pai-protodog"
-	)
-var/global/list/flying_chassis = list(
+	))
+
+GLOBAL_LIST_INIT(flying_chassis, list(
 	"pai-parrot",
 	"pai-bat",
 	"pai-butterfly",
 	"pai-hawk",
 	"cyberelf"
-	)
+	))
 
 //Sure I could spend all day making wacky overlays for all of the different forms
 //but quite simply most of these sprites aren't made for that, and I'd rather just make new ones

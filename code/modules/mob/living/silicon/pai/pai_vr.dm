@@ -91,7 +91,7 @@
 			icon_state = "[chassis]_rest_full[fullness_extension]"
 		else
 			icon_state = "[chassis]_rest"
-	if(chassis in wide_chassis)
+	if(chassis in GLOB.wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16
 	else
@@ -118,7 +118,7 @@
 		icon_state = "[chassis]_full[fullness_extension]"
 	else if(vore_fullness && resting)
 		icon_state = "[chassis]_rest_full[fullness_extension]"
-	if(chassis in wide_chassis)
+	if(chassis in GLOB.wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16
 	else
@@ -147,7 +147,7 @@
 				return
 		icon_state = null
 		icon = holo_icon
-	else if(chassis in wide_chassis)
+	else if(chassis in GLOB.wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		vis_height = 64
 	else
@@ -155,7 +155,7 @@
 		vis_height = 32
 	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
-	if(chassis in flying_chassis)
+	if(chassis in GLOB.flying_chassis)
 		hovering = TRUE
 	else
 		hovering = FALSE
