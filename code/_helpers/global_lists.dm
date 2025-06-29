@@ -81,7 +81,7 @@ var/datum/visualnet/cult/cultnet = new()
 var/datum/visualnet/ghost/ghostnet = new()
 
 var/global/list/obj/machinery/message_server/message_servers = list()
-
+var/global/list/datum/supply_drop_loot/supply_drop
 // Runes
 GLOBAL_LIST_EMPTY(rune_list)
 GLOBAL_LIST_EMPTY(escape_list)
@@ -1409,3 +1409,21 @@ GLOBAL_LIST_INIT(ore_reagents, list( //have a number of reageents divisible by R
 	/obj/item/ore/verdantium = list(REAGENT_ID_RADIUM,REAGENT_ID_PHORON,REAGENT_ID_NITROGEN,REAGENT_ID_PHOSPHORUS,REAGENT_ID_SODIUM), // Some fun stuff to be useful with
 	/obj/item/ore/rutile = list(REAGENT_ID_TUNGSTEN,REAGENT_ID_OXYGEN) // Should be titanium
 ))
+
+//List of the ammo types that can be used in game.
+GLOBAL_LIST_INIT(global_ammo_types, list(
+	/obj/item/ammo_casing/a357              = ".357",
+	/obj/item/ammo_casing/a9mm		        = "9mm",
+	/obj/item/ammo_casing/a45				= ".45",
+	/obj/item/ammo_casing/a10mm             = "10mm",
+	/obj/item/ammo_casing/a12g              = "12g",
+	/obj/item/ammo_casing/a12g              = "12g",
+	/obj/item/ammo_casing/a12g/pellet       = "12g",
+	/obj/item/ammo_casing/a12g/pellet       = "12g",
+	/obj/item/ammo_casing/a12g/pellet       = "12g",
+	/obj/item/ammo_casing/a12g/beanbag      = "12g",
+	/obj/item/ammo_casing/a12g/stunshell    = "12g",
+	/obj/item/ammo_casing/a12g/flash        = "12g",
+	/obj/item/ammo_casing/a762              = "7.62mm",
+	/obj/item/ammo_casing/a545              = "5.45mm"
+	))
