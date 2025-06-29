@@ -639,6 +639,10 @@ var/global/list/image/fluidtrack_cache=list()
 var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
 
+var/global/list/datum/stack_recipe/wax_recipes = list( \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
+)
+
 GLOBAL_LIST_INIT(possible_plants, list(
 	"plant-1",
 	"plant-10",
@@ -1154,3 +1158,18 @@ GLOBAL_LIST_INIT(description_icons, list(
 
 	"hatchet" = image(icon='icons/obj/weapons.dmi',icon_state="hatchet"),
 	))
+
+// TODO - Optimize this into numerics if this ends up working out
+GLOBAL_LIST_INIT(MOVE_KEY_MAPPINGS, list(
+	"North" = NORTH_KEY,
+	"South" = SOUTH_KEY,
+	"East" = EAST_KEY,
+	"West" = WEST_KEY,
+	"W" = W_KEY,
+	"A" = A_KEY,
+	"S" = S_KEY,
+	"D" = D_KEY,
+	"Shift" = SHIFT_KEY,
+	"Ctrl" = CTRL_KEY,
+	"Alt" = ALT_KEY,
+))
