@@ -1,4 +1,4 @@
-//var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
+//GLOBAL_LIST_EMPTY(event_viruses) // so that event viruses are kept around for admin logs, rather than being GCed
 
 /datum/event/viral_infection
 	var/list/viruses = list()
@@ -54,7 +54,7 @@
 		actual_severity--
 		used_viruses |= D
 
-	event_viruses |= used_viruses
+	GLOB.event_viruses |= used_viruses
 	var/list/used_viruses_links = list()
 	var/list/used_viruses_text = list()
 	for(var/datum/disease2/disease/D in used_viruses)
