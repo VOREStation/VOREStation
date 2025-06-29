@@ -119,7 +119,15 @@
 
 /mob/proc/update_examine_panel(var/atom/A)
 	if(client)
-		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+		var/is_antag
+		if((mind && mind.special_role) || isobserver(src)) //todo: Phase out special_role entirely and make it check for component/antag entirely.
+			is_antag = TRUE
+		else if(isliving(src))
+			var/datum/component/antag/comp = GetComponent(/datum/component/antag)
+			if(comp)
+				is_antag = TRUE
+			else if(mind && mind.antag_holder.is_antag())
+				is_antag = TRUE
 		client.update_description_holders(A, is_antag)
 		SSstatpanels.set_examine_tab(client)
 

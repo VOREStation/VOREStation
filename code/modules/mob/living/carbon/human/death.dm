@@ -54,10 +54,11 @@
 	stop_flying()
 
 	//Handle snowflake ling stuff.
-	if(mind && mind.changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp)
 		// If the ling is capable of revival, don't allow them to see deadchat.
-		if(mind.changeling.chem_charges >= CHANGELING_STASIS_COST)
-			if(mind.changeling.max_geneticpoints >= 0) // Absorbed lings don't count, as they can't revive.
+		if(comp.chem_charges >= CHANGELING_STASIS_COST)
+			if(comp.max_geneticpoints >= 0) // Absorbed lings don't count, as they can't revive.
 				forbid_seeing_deadchat = TRUE
 
 	//Handle brain slugs.

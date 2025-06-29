@@ -543,6 +543,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			if(antag_data)
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
+			if(new_character.mind.antag_holder)
+				new_character.mind.antag_holder.apply_antags(new_character)
 
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey

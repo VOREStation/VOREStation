@@ -368,6 +368,8 @@
 #define REAGENT_ID_SUPERMATTER "supermatter"
 #define REAGENT_ADRENALINE "Adrenaline"
 #define REAGENT_ID_ADRENALINE "adrenaline"
+#define REAGENT_EPINEPHRINE "Epinephrine"
+#define REAGENT_ID_EPINEPHRINE "epinephrine"
 #define REAGENT_HOLYWATER "Holy Water"
 #define REAGENT_ID_HOLYWATER "holywater"
 #define REAGENT_AMMONIA "Ammonia"
