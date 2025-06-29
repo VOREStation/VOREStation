@@ -1,16 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# nb: must be bash to support shopt globstar
+#nb: must be bash to support shopt globstar
 shopt -s globstar extglob
 
 source dependencies.sh
 
-# ANSI Colors
-RED='\033[0;31m'
+#ANSI Escape Codes for colors to increase contrast of errors
+RED="\033[0;31m"
 GREEN="\033[0;32m"
 BLUE="\033[0;34m"
-NC='\033[0m' # No color
+NC="\033[0m" # No Color
 
 FAILED=0
 

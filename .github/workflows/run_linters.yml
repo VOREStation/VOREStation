@@ -62,9 +62,9 @@ jobs:
       - name: Give Linters A Go
         id: linter-setup
         run: ":"
-      #- name: Run Grep Checks
-      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
-      #  run: bash tools/ci/check_grep.sh
+      - name: Run Grep Checks
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: bash tools/ci/check_grep.sh
       #- name: Ticked File Enforcement
       #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
       #  run: |
