@@ -740,7 +740,7 @@
 
 ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
 	var/input_NIF
-	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", player_list)
+	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 
 	if(!H)
 		return
