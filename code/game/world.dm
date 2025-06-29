@@ -785,4 +785,5 @@ var/failed_old_db_connections = 0
 		. = ..()
 
 #undef NO_INIT_PARAMETER
+#undef OVERRIDE_LOG_DIRECTORY_PARAMETER
 #undef USE_TRACY_PARAMETER
