@@ -1450,3 +1450,24 @@ GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
 	/turf/simulated/floor/holofloor/beach/coastline,
 	/turf/simulated/floor/water
 ))
+
+
+//Chamelion clothing was all stupid so it's done here instead.
+//Jumpsuit
+GLOBAL_LIST(chamelion_jumpsuit_choices)
+//Hat
+GLOBAL_LIST(chamelion_head_choices)
+//Suit
+GLOBAL_LIST(chamelion_suit_choices)
+//Shoes
+GLOBAL_LIST(chamelion_shoe_choices)
+//Backpack
+GLOBAL_LIST(chamelion_back_choices)
+//Gloves
+GLOBAL_LIST(chamelion_glove_choices)
+//Mask
+GLOBAL_LIST(chamelion_mask_choices)
+//Belt
+GLOBAL_LIST(chamelion_belt_choices)
+//Accessory
+GLOBAL_LIST(chamelion_accessory_choices)
