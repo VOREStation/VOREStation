@@ -57,7 +57,7 @@
 	if(prob(20)) // Misc. clutter
 		return /obj/effect/decal/cleanable/generic
 	if(prob(70)) // Misc. junk
-		if(!GLOB.random_junk_)
+		if(!LAZYLEN(GLOB.random_junk_))
 			GLOB.random_junk_ = subtypesof(/obj/item/trash)
 			GLOB.random_junk_ += /obj/effect/decal/cleanable/bug_remains
 			GLOB.random_junk_ += /obj/effect/decal/remains/mouse

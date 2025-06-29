@@ -993,7 +993,7 @@ GLOBAL_LIST_INIT(valid_bloodreagents, list("default",REAGENT_ID_IRON,REAGENT_ID_
 GLOBAL_LIST_EMPTY(monitor_states)
 
 GLOBAL_LIST_EMPTY(random_junk)
-GLOBAL_LIST_EMPTY(random_junk_)
+GLOBAL_LIST(random_junk_)
 GLOBAL_LIST_EMPTY(random_useful_)
 GLOBAL_LIST_INIT(valid_bloodtypes, list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"))
 
