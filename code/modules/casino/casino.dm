@@ -12,12 +12,15 @@
 	icon_state = "roulette_table"
 	density = 1
 	anchored = 1
-	climbable = 1
 	layer = TABLE_LAYER
 	throwpass = 1
 	var/item_place = 1 //allows items to be placed on the table, but not on benches.
 
 	var/busy = 0
+
+/obj/structure/casino_table/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/casino_table/attackby(obj/item/W, mob/user)
 	if(item_place)

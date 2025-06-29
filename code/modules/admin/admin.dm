@@ -89,13 +89,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		body += "\ <A href='byond://?src=\ref[src];[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br>"} + span_bold("Mute: ") + {"
-			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
@@ -171,10 +171,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						if(istype(gene,/datum/gene/trait))
 							var/datum/gene/trait/T = gene
 							tname = T.get_name()
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
-							bcolor="#d88d00"
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						if(bstate)
+							bname = span_green(bname)
+						else if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+							bname = span_orange(bname)
+						else
+							bname = span_red(bname)
+						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -231,9 +234,11 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 			if(!f) body += " | "
 			else f = 0
 			if(L in M.languages)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+				k = span_green(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 			else
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				k = span_red(k)
+				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
 
 	body += {"<br>"}
 
@@ -595,6 +600,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 	popup.set_content(dat)
 	popup.open()
 
+/*
 /datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
 
@@ -621,6 +627,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 	popup.set_content(dat)
 	popup.open()
 	return
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
@@ -1293,27 +1300,6 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/output_ai_laws()
-	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
-		ai_number++
-		if(isAI(S))
-			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))
-		else if(isrobot(S))
-			var/mob/living/silicon/robot/R = S
-			to_chat(usr, span_bold("CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:"))
-		else if (ispAI(S))
-			to_chat(usr, span_bold("pAI [key_name(S, usr)]'s laws:"))
-		else
-			to_chat(usr, span_bold("SOMETHING SILICON [key_name(S, usr)]'s laws:"))
-
-		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
-		else
-			S.laws.show_laws(usr)
-	if(!ai_number)
-		to_chat(usr, span_bold("No AIs located")) //Just so you know the thing is actually working and not just ignoring you.
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin.Game"

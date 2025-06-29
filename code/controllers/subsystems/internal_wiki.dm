@@ -20,6 +20,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/drinkreact = list()
 	VAR_PRIVATE/list/chemreact = list()
 	VAR_PRIVATE/list/botseeds = list()
+	VAR_PRIVATE/list/viruses = list()
+	VAR_PRIVATE/list/genes = list()
 
 	VAR_PRIVATE/list/foodrecipe = list()
 
@@ -33,6 +35,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/list/searchcache_chemreact = list()
 	VAR_PRIVATE/list/searchcache_catalogs = list()
 	VAR_PRIVATE/list/searchcache_botseeds = list()
+	VAR_PRIVATE/list/searchcache_viruses = list()
+	VAR_PRIVATE/list/searchcache_genes = list()
 
 	VAR_PRIVATE/list/spoiler_entries = list()
 
@@ -44,7 +48,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	VAR_PRIVATE/highest_cached_donator = null
 
 /datum/controller/subsystem/internal_wiki/stat_entry(msg)
-	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] "
+	msg = "P: [pages.len] | O: [ores.len] | M: [materials.len] | S: [smashers.len] | F: [foodrecipe.len]  | D: [drinkreact.len]  | C: [chemreact.len]  | B: [botseeds.len] | V: [viruses.len] | G: [genes.len] "
 	return ..()
 
 /datum/controller/subsystem/internal_wiki/Initialize()
@@ -53,8 +57,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_particle_smasher_data()
 	init_reagent_data()
 	init_seed_data()
+	init_virus_data()
 	init_kitchen_data()
 	init_lore_data()
+	init_gene_data()
 	// Donation gag
 	donation_goal = rand(min_donation,max_donation)
 	donation_goal = round(donation_goal,1)
@@ -126,6 +132,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/datum/internal_wiki/page/seed)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_virus(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/virus)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return viruses[search]
+/datum/controller/subsystem/internal_wiki/proc/get_page_gene(var/search)
+	RETURN_TYPE(/datum/internal_wiki/page/gene)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return genes[search]
 /datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
 	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -163,6 +177,14 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_botseeds
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_viruses()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_viruses
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_genes()
+	RETURN_TYPE(/list)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return searchcache_genes
 /datum/controller/subsystem/internal_wiki/proc/get_catalogs()
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -510,6 +532,37 @@ SUBSYSTEM_DEF(internal_wiki)
 			searchcache_botseeds.Add("[S.display_name]")
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
+
+/datum/controller/subsystem/internal_wiki/proc/init_virus_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
+		if(initial(D.name) == DEVELOPER_WARNING_NAME)
+			continue
+		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
+			spoiler_entries.Add(D)
+			continue
+		var/datum/internal_wiki/page/virus/P = new()
+		P.assemble(D)
+		searchcache_viruses.Add("[initial(D.medical_name)]")
+		viruses["[initial(D.medical_name)]"] = P
+		pages.Add(P)
+
+/datum/controller/subsystem/internal_wiki/proc/init_gene_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// viruses or diseases
+	for(var/datum/gene/G in GLOB.dna_genes)
+		var/N = G.name
+		if(istype(G,/datum/gene/trait))
+			var/datum/gene/trait/T = G
+			N = T.get_name()
+		var/datum/internal_wiki/page/gene/P = new()
+		P.assemble(G)
+		searchcache_genes.Add("[N]")
+		genes["[N]"] = P
+		pages.Add(P)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -1310,6 +1363,166 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/catalog/assemble()
 	data["name"] = catalog_record.name
 	data["desc"] = catalog_record.desc
+
+// VIRUSES
+/////////////////////////////////////////////
+/datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
+	title = initial(D.name)
+	data["title"] = title
+	data["description"] = initial(D.desc)
+	data["form"] = initial(D.form)
+	data["agent"] = initial(D.agent)
+	data["danger"] = initial(D.danger)
+	data["max_stages"] = initial(D.max_stages)
+
+	var/infectivity = ""
+	switch(initial(D.infectivity))
+		if(0)
+			infectivity = "NA"
+		if(1 to 3)
+			infectivity = "Low"
+		if(4 to 7)
+			infectivity = "Medium"
+		if(8 to INFINITY)
+			infectivity = "High"
+	data["infectivity"] = infectivity
+
+	var/resiliance = ""
+	switch(initial(D.cure_chance))
+		if(0 to 8)
+			resiliance = "Extreme"
+		if(9 to 12)
+			resiliance = "High"
+		if(13 to 16)
+			resiliance = "Medium"
+		if(17 to INFINITY)
+			resiliance = "Low"
+	data["resiliance"] = resiliance
+
+	var/discovery = ""
+	switch(initial(D.discovery_threshold))
+		if(0 to 0.24)
+			discovery = "Extremely Elusive"
+		if(0.25 to 0.49)
+			discovery = "Difficult"
+		if(0.5 to 0.74)
+			discovery = "Moderate"
+		if(0.75 to 0.89)
+			discovery = "Easy"
+		if(0.9 to INFINITY)
+			discovery = "Trivial"
+	data["discovery"] = discovery
+
+	var/spread_flags = initial(D.spread_flags)
+	var/spread_type = "NA"
+	if(spread_flags & DISEASE_SPREAD_CONTACT)
+		spread_type = "Contact"
+	else if(spread_flags & DISEASE_SPREAD_FLUIDS)
+		spread_type = "Fluids"
+	else if(spread_flags & DISEASE_SPREAD_BLOOD)
+		spread_type = "Blood"
+	else if(spread_flags & DISEASE_SPREAD_AIRBORNE)
+		spread_type = "Airborne"
+	else if(spread_flags & DISEASE_SPREAD_FALTERED)
+		spread_type = "Faltered"
+	data["spread"] = spread_type
+
+	var/mod_flags = initial(D.virus_modifiers)
+	data["all_cures"] = mod_flags & NEEDS_ALL_CURES
+	data["aggressive"] = mod_flags & BYPASSES_IMMUNITY
+	var/flags = initial(D.disease_flags)
+	data["curable"] = flags & CURABLE
+	data["resistable"] = flags & CAN_RESIST
+	data["carriable"] = flags & CAN_CARRY
+	data["spread_dead"] = flags & SPREAD_DEAD
+	data["infect_synth"] = flags & INFECT_SYNTHETICS
+
+/datum/internal_wiki/page/virus/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["form"]] - [data["agent"]]</b><br>"
+	body += "<b>Hazard Level: [data["danger"]]</b><br>"
+	body += "<b>Growth Stages: [data["max_stages"]]</b><br>"
+	body += "<b>Curable: [(data["curable"]) ? "Yes" : "No"][!(data["all_cures"]) ? " - single treatment" : ""]</b><br>"
+	body += "<b>Resistable: [(data["resistable"]) ? "Yes" : "No"]</b><br>"
+	body += "<br>"
+	// Transmission type
+	body += "<b>Transmission: [data["spread"]] [(data["aggressive"]) ? "Aggressive" : ""]</b><br>"
+	if(data["carriable"])
+		body += "<b>Transmissable without symptoms</b><br>"
+	if(data["spread_dead"])
+		body += "<b>Transmissable from dead tissue</b><br>"
+	if(data["infect_synth"])
+		body += "<b>Inorganic pathogen</b><br>"
+	// Difficulty of discovery
+		body += "<b>Discoverability: [data["discovery"]]</b><br>"
+	// Probability of spreading
+		body += "<b>Infectivity: [data["infectivity"]]</b><br>"
+	// Probability of cure, 10 to 20 regularly
+		body += "<b>Resiliance: [data["resiliance"]]</b><br>"
+	return body
+
+// GENES
+/////////////////////////////////////////////
+/datum/internal_wiki/page/gene/assemble(var/datum/gene/G)
+	if(istype(G,/datum/gene/trait))
+		// Trait genetics
+		var/datum/gene/trait/T = G
+		title = T.get_name()
+		data["title"] = title
+		data["description"] = T.get_desc()
+		if(istype(T.linked_trait,/datum/trait/positive))
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Positive"
+			else
+				data["trait_type"] = "Super Power" // Likely eye lasers
+		else if(istype(T.linked_trait,/datum/trait/negative))
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Negative"
+			else
+				data["trait_type"] = "Disability" // Likely gibbings or such
+		else
+			if(!T.linked_trait.hidden)
+				data["trait_type"] = "Neutral"
+			else
+				data["trait_type"] = "Strange" // Not sure what neutrals are hidden, but just incase
+		// Conflicts
+		data["blockers"] = null
+		var/list/output_blockers = list()
+		var/list/blockers = T.conflict_traits
+		for(var/path in blockers)
+			var/datum/trait/TG = GLOB.all_traits[path]
+			output_blockers.Add(TG.name)
+		if(output_blockers.len)
+			data["blockers"] = output_blockers
+	else
+		// Old style gene
+		title = G.name
+		data["title"] = title
+		data["description"] = G.desc
+		data["trait_type"] = "Neutral"
+		data["blockers"] = null
+	var/list/bounds = GetDNABounds(G.block)
+	data["bounds_off_min"] = EncodeDNABlock(bounds[1]) // Minimum hex where gene is off
+	data["bounds_off_max"] = EncodeDNABlock(bounds[2]) // Maximum hex where gene is off
+	data["bounds_on_min"] = EncodeDNABlock(bounds[3]) // Minimum hex where gene is on
+	data["bounds_on_max"] = EncodeDNABlock(bounds[4]) // Maximum hex where gene is on
+
+/datum/internal_wiki/page/gene/get_print()
+	var/body = ""
+	body += "<b>Description: </b>[data["description"]]<br>"
+	body += "<br>"
+	body += "<b>Type: [data["trait_type"]]</b><br>"
+	body += "<b>Active Range: [data["bounds_on_min"]] - [data["bounds_on_max"]]</b><br>"
+	body += "<b>Inactive Range: [data["bounds_off_min"]] - [data["bounds_off_max"]]</b><br>"
+	body += "<br>"
+	var/list/blockers = data["blockers"]
+	if(blockers)
+		body += "<b>Suppressed By:</b><br>"
+		for(var/trait_name in blockers)
+			body += "-[trait_name]<br>"
+	return body
 
 // MISC HELPERS
 ////////////////////////////////////////////

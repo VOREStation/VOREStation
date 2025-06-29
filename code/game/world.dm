@@ -494,7 +494,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /hook/startup/proc/loadMods()
 	world.load_mods()
-	world.load_mentors() // no need to write another hook.
 	return 1
 
 /world/proc/load_mods()
@@ -517,40 +516,6 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(GLOB.directory[ckey])
-
-/world/proc/load_mentors()
-	if(CONFIG_GET(flag/admin_legacy_system))
-		var/text = file2text("config/mentors.txt")
-		if (!text)
-			error("Failed to load config/mentors.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/mentor/M = new /datum/mentor(ckey)
-				M.associate(GLOB.directory[ckey])
-	else
-		establish_db_connection()
-		if(!SSdbcore.IsConnected())
-			error("Failed to connect to database in load_mentors().")
-			log_misc("Failed to connect to database in load_mentors().")
-			return
-
-		var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, mentor FROM erro_mentor")
-		query.Execute()
-		while(query.NextRow())
-			var/ckey = query.item[1]
-			var/mentor = query.item[2]
-
-			if(mentor)
-				var/datum/mentor/M = new /datum/mentor(ckey)
-				M.associate(GLOB.directory[ckey])
-		qdel(query)
 
 /world/proc/update_status()
 	var/s = ""

@@ -213,6 +213,7 @@
 	if (rights & R_SPAWN)       . += "[seperator]+SPAWN"
 	if (rights & R_MOD)         . += "[seperator]+MODERATOR"
 	if (rights & R_EVENT)       . += "[seperator]+EVENT"
+	if (rights & R_MENTOR)      . += "[seperator]+MENTOR"
 	return .
 
 // Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).

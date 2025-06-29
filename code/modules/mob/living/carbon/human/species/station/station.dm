@@ -707,6 +707,7 @@
 		//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
 		//Not that it matters much for diona, who have NO_PAIN.
 		H.shock_stage++
+	..()
 
 
 
@@ -1577,7 +1578,7 @@
 			coldshock = 16
 			H.eye_blurry = 5
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage.
-		return
+	..()
 
 /datum/species/werebeast
 	name = SPECIES_WEREBEAST
@@ -1738,6 +1739,7 @@
 	if(temp_diff >= 50)
 		H.shock_stage = min(H.shock_stage + (temp_diff/20), 160) // Divided by 20 is the same as previous numbers, but a full scale
 		H.eye_blurry = max(5,H.eye_blurry)
+	..()
 
 /datum/species/xenochimera/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]

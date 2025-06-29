@@ -153,7 +153,7 @@
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.moveToNullspace()
 	..()
-	if(saved_nif)
+	if(saved_nif && !ismannequin(H))
 		saved_nif.quick_implant(H)
 
 /datum/species/protean/get_race_key()
