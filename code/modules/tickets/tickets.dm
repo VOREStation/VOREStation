@@ -416,7 +416,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		message_mentors(chat_msg)
 	else if(level == 1)
 		for(var/client/X in GLOB.admins)
-			if(check_rights_for(X, R_HOLDER))
+			if(!check_rights_for(X, R_HOLDER))
 				continue
 			if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'
