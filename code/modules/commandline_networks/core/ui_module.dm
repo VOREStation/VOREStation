@@ -1,0 +1,22 @@
+/datum/tgui_module/commandline_network_display
+	name = "COMMANDLINE_NETWORK"
+	tgui_id = "CommandlineTerminal"
+
+	var/datum/commandline_network/network //source network
+	var/datum/commandline_network_node/source_node //what we send commands from
+
+	var/cooldown //anti-spam, 1 command a second max
+
+/datum/tgui_module/commandline_network_display/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	to_chat(world,"YIPEE")
+
+/datum/tgui_module/commandline_network_display/tgui_close()
+	. = ..()
+	//TODO
+
+/datum/tgui_module/commandline_network_display/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
+	if(!network)
+		return
+	if(user)
+		return TRUE
+	//TODO
