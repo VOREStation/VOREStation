@@ -24,6 +24,6 @@ if [ $exitVal -gt 0 ]; then
   exit 1
 fi
 
-DreamDaemon vorestation.dmb -close -invisible -trusted -verbose;
+DreamDaemon vorestation.dmb -close -invisible -trusted -verbose -params "log-directory=ci"
 
-cat data/logs/clean_run.lk
+cat data/logs/ci/clean_run.lk
