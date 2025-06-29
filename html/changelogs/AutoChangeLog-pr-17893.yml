@@ -1,5 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - admin: "More verbs moved to the new subsystem"
-  - admin: "Secrets panel overhauled"
