@@ -520,10 +520,9 @@
 //  but it is probably safer to assume the existence of, and
 //  rely on, a sufficiently smart compiler/optimizer.
 /obj/structure/transit_tube/proc/parse_dirs(text)
-	var/global/list/direction_table = list()
 
-	if(text in direction_table)
-		return direction_table[text]
+	if(text in GLOB.direction_table)
+		return GLOB.direction_table[text]
 
 	var/list/split_text = splittext(text, "-")
 
@@ -531,7 +530,7 @@
 	//  a purely decorative tube, and doesn't actually
 	//  connect to anything.
 	if(split_text[1] == "D")
-		direction_table[text] = list()
+		GLOB.direction_table[text] = list()
 		return null
 
 	var/list/directions = list()
@@ -542,7 +541,7 @@
 		if(direction > 0)
 			directions += direction
 
-	direction_table[text] = directions
+	GLOB.direction_table[text] = directions
 	return directions
 
 
