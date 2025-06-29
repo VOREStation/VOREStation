@@ -1,8 +1,6 @@
-/datum/unit_test/emotes_shall_have_unique_keys
-	name = "DECLS: Emotes Shall Have Unique Keys"
+/// converted unit test, maybe should be fully refactored
 
-/datum/unit_test/emotes_shall_have_unique_keys/start_test()
-
+/datum/unit_test/emotes_shall_have_unique_keys/Run()
 	var/list/keys = list()
 	var/list/duplicates = list()
 
@@ -18,9 +16,4 @@
 		else
 			keys += emote.key
 
-	if(length(duplicates))
-		fail("[length(duplicates)] emote\s had overlapping keys: [english_list(duplicates)].")
-	else
-		pass("All emotes had unique keys.")
-
-	return TRUE
+	TEST_ASSERT(!length(duplicates), "[length(duplicates)] emote\s had overlapping keys: [english_list(duplicates)].")
