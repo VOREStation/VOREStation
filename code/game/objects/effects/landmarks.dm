@@ -60,10 +60,10 @@
 			GLOB.xeno_spawn += loc
 			delete_me = TRUE
 		if("endgame_exit")
-			endgame_safespawns += loc
+			GLOB.endgame_safespawns += loc
 			delete_me = TRUE
 		if("bluespacerift")
-			endgame_exits += loc
+			GLOB.endgame_exits += loc
 			delete_me = TRUE
 		//VOREStation Add Start
 		if("vinestart")
@@ -74,11 +74,11 @@
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
 	else
-		landmarks_list += src
+		GLOB.landmarks_list += src
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
 	if(force)
-		landmarks_list -= src
+		GLOB.landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE
 

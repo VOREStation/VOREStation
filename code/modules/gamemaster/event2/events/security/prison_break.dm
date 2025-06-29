@@ -56,7 +56,7 @@
 
 /datum/event2/meta/prison_break/brig/get_odds_from_trapped_mobs()
 	. = 0
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		if(is_mob_in_relevant_area(L))
 			// Don't count them if they're in security.
 			if(!(L in GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)))
@@ -91,7 +91,7 @@
 
 /datum/event2/meta/prison_break/xenobio/get_odds_from_trapped_mobs()
 	. = 0
-	for(var/mob/living/simple_mob/slime/xenobio/X in living_mob_list)
+	for(var/mob/living/simple_mob/slime/xenobio/X in GLOB.living_mob_list)
 		if(is_mob_in_relevant_area(X))
 			. += 5
 
@@ -107,7 +107,7 @@
 
 /datum/event2/meta/prison_break/virology/get_odds_from_trapped_mobs()
 	. = 0
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		if(is_mob_in_relevant_area(L))
 			// Don't count them if they're in medical.
 			if(!(L in GLOB.metric.count_people_in_department(DEPARTMENT_MEDICAL)))
@@ -200,7 +200,7 @@
 	// Nobody reads the requests consoles so lets use the radio as well.
 	GLOB.global_announcer.autosay(message, my_department, DEPARTMENT_ENGINEERING)
 
-	for(var/mob/living/silicon/ai/A in player_list)
+	for(var/mob/living/silicon/ai/A in GLOB.player_list)
 		to_chat(A, span_danger("Malicious program detected in the [area_display_name] lighting and airlock control systems by [my_department]. \
 		Disabling the main breaker in the APCs will protect the APC's room from being compromised."))
 

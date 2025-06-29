@@ -298,7 +298,7 @@
 
 
 	proc/announce_to_ghosts()
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client)
 				var/area/A = get_area(src)
 				if(A)

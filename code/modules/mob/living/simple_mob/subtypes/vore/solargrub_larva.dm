@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 
 	if(istype(loc, /obj/machinery))
 		if(machine_effect && SSair.current_cycle%30)
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				M << machine_effect
 		if(prob(10))
 			sparks.start()
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 	if(!(M.type in GLOB.grub_machine_overlays))
 		generate_machine_effect(M)
 	machine_effect = image(GLOB.grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
-	for(var/mob/L in player_list)				//because nearly every machine updates its icon by removing all overlays first
+	for(var/mob/L in GLOB.player_list)				//because nearly every machine updates its icon by removing all overlays first
 		L << machine_effect
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)

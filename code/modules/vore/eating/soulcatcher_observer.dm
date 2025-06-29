@@ -4,7 +4,7 @@
 	set desc = "Select a player with enabled Soulcatcher to join."
 
 	var/list/valid_players = list()
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		if(player.soulgem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
 			valid_players += player
 

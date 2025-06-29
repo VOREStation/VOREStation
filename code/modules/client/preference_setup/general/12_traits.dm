@@ -2,8 +2,6 @@
 #define NEUTRAL_MODE 2
 #define NEGATIVE_MODE 3
 
-var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_COPPER,REAGENT_ID_PHORON,REAGENT_ID_SILVER,REAGENT_ID_GOLD,REAGENT_ID_SLIMEJELLY)	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
-
 /datum/preferences
 	var/custom_base		// What to base the custom species on
 	var/blood_color = "#A10808"
@@ -253,7 +251,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				pref.blood_color = new_blood
 			return TOPIC_REFRESH
 		if("blood_reagents")
-			var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", valid_bloodreagents)
+			var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", GLOB.valid_bloodreagents)
 			if(new_blood_reagents && CanUseTopic(user))
 				pref.blood_reagents = new_blood_reagents
 				return TOPIC_REFRESH

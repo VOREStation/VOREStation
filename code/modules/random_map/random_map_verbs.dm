@@ -5,10 +5,10 @@
 
 	if(!holder)	return
 
-	var/choice = tgui_input_list(usr, "Choose a map to display.", "Map Choice", random_maps)
+	var/choice = tgui_input_list(usr, "Choose a map to display.", "Map Choice", GLOB.random_maps)
 	if(!choice)
 		return
-	var/datum/random_map/M = random_maps[choice]
+	var/datum/random_map/M = GLOB.random_maps[choice]
 	if(istype(M))
 		M.display_map(usr)
 
@@ -19,11 +19,11 @@
 
 	if(!holder)	return
 
-	var/choice = tgui_input_list(usr, "Choose a map to delete.", "Map Choice", random_maps)
+	var/choice = tgui_input_list(usr, "Choose a map to delete.", "Map Choice", GLOB.random_maps)
 	if(!choice)
 		return
-	var/datum/random_map/M = random_maps[choice]
-	random_maps[choice] = null
+	var/datum/random_map/M = GLOB.random_maps[choice]
+	GLOB.random_maps[choice] = null
 	if(istype(M))
 		message_admins("[key_name_admin(usr)] has deleted [M.name].")
 		log_admin("[key_name(usr)] has deleted [M.name].")
@@ -60,10 +60,10 @@
 
 	if(!holder)	return
 
-	var/choice = tgui_input_list(usr, "Choose a map to apply.", "Map Choice", random_maps)
+	var/choice = tgui_input_list(usr, "Choose a map to apply.", "Map Choice", GLOB.random_maps)
 	if(!choice)
 		return
-	var/datum/random_map/M = random_maps[choice]
+	var/datum/random_map/M = GLOB.random_maps[choice]
 	if(istype(M))
 		var/tx = tgui_input_number(usr, "X? (default to current turf)")
 		var/ty = tgui_input_number(usr, "Y? (default to current turf)")
@@ -85,17 +85,17 @@
 
 	if(!holder)	return
 
-	var/choice = tgui_input_list(usr, "Choose a map as base.", "Map Choice", random_maps)
+	var/choice = tgui_input_list(usr, "Choose a map as base.", "Map Choice", GLOB.random_maps)
 	if(!choice)
 		return
-	var/datum/random_map/base_map = random_maps[choice]
+	var/datum/random_map/base_map = GLOB.random_maps[choice]
 
 	choice = null
-	choice = tgui_input_list(usr, "Choose a map to overlay.", "Map Choice", random_maps)
+	choice = tgui_input_list(usr, "Choose a map to overlay.", "Map Choice", GLOB.random_maps)
 	if(!choice)
 		return
 
-	var/datum/random_map/overlay_map = random_maps[choice]
+	var/datum/random_map/overlay_map = GLOB.random_maps[choice]
 
 	if(istype(base_map) && istype(overlay_map))
 		var/tx = tgui_input_number(usr, "X? (default to 1)")

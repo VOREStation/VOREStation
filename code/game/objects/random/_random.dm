@@ -42,38 +42,36 @@
 	var/build_path = item_to_spawn()
 	return new build_path(drop_location())
 
-var/list/random_junk_
-var/list/random_useful_
 /proc/get_random_useful_type()
-	if(!random_useful_)
-		random_useful_ = subtypesof(/obj/item/pen/crayon)
-		random_useful_ += /obj/item/pen
-		random_useful_ += /obj/item/pen/blue
-		random_useful_ += /obj/item/pen/red
-		random_useful_ += /obj/item/pen/multi
-		random_useful_ += /obj/item/storage/box/matches
-		random_useful_ += /obj/item/stack/material/cardboard
-	return pick(random_useful_)
+	if(!LAZYLEN(GLOB.random_useful_))
+		GLOB.random_useful_ = subtypesof(/obj/item/pen/crayon)
+		GLOB.random_useful_ += /obj/item/pen
+		GLOB.random_useful_ += /obj/item/pen/blue
+		GLOB.random_useful_ += /obj/item/pen/red
+		GLOB.random_useful_ += /obj/item/pen/multi
+		GLOB.random_useful_ += /obj/item/storage/box/matches
+		GLOB.random_useful_ += /obj/item/stack/material/cardboard
+	return pick(GLOB.random_useful_)
 
 /proc/get_random_junk_type()
 	if(prob(20)) // Misc. clutter
 		return /obj/effect/decal/cleanable/generic
 	if(prob(70)) // Misc. junk
-		if(!random_junk_)
-			random_junk_ = subtypesof(/obj/item/trash)
-			random_junk_ += /obj/effect/decal/cleanable/bug_remains
-			random_junk_ += /obj/effect/decal/remains/mouse
-			random_junk_ += /obj/effect/decal/remains/robot
-			random_junk_ += /obj/item/paper/crumpled
-			random_junk_ += /obj/item/inflatable/torn
-			random_junk_ += /obj/effect/decal/cleanable/molten_item
-			random_junk_ += /obj/item/material/shard
+		if(!LAZYLEN(GLOB.random_junk_))
+			GLOB.random_junk_ = subtypesof(/obj/item/trash)
+			GLOB.random_junk_ += /obj/effect/decal/cleanable/bug_remains
+			GLOB.random_junk_ += /obj/effect/decal/remains/mouse
+			GLOB.random_junk_ += /obj/effect/decal/remains/robot
+			GLOB.random_junk_ += /obj/item/paper/crumpled
+			GLOB.random_junk_ += /obj/item/inflatable/torn
+			GLOB.random_junk_ += /obj/effect/decal/cleanable/molten_item
+			GLOB.random_junk_ += /obj/item/material/shard
 
-			random_junk_ -= /obj/item/trash/plate
-			random_junk_ -= /obj/item/trash/snack_bowl
-			random_junk_ -= /obj/item/trash/syndi_cakes
-			random_junk_ -= /obj/item/trash/tray
-		return pick(random_junk_)
+			GLOB.random_junk_ -= /obj/item/trash/plate
+			GLOB.random_junk_ -= /obj/item/trash/snack_bowl
+			GLOB.random_junk_ -= /obj/item/trash/syndi_cakes
+			GLOB.random_junk_ -= /obj/item/trash/tray
+		return pick(GLOB.random_junk_)
 	// Misc. actually useful stuff
 	return get_random_useful_type()
 

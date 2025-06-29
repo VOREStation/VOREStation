@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(mail)
 	var/obj/structure/closet/crate/mail/mailcrate = new(pick(SSsupply.get_clear_turfs()))
 	// Collect recipients
 	var/list/mail_recipients = list()
-	for(var/mob/living/carbon/human/player_human in player_list)
+	for(var/mob/living/carbon/human/player_human in GLOB.player_list)
 		if(player_human.stat != DEAD && player_human.client && player_human.client.inactivity <= 10 MINUTES && player_human.job != JOB_OUTSIDER && player_human.job != JOB_ANOMALY && player_human.job != JOB_VR && !player_is_antag(player_human.mind) && !isbelly(player_human.loc)) // Only alive, active and NT employeers should be getting mail.
 			mail_recipients += player_human
 

@@ -8,7 +8,7 @@
 	var/land_spot_list = list()
 	var/target_spot
 
-	for(var/obj/effect/landmark/land_spot in landmarks_list)
+	for(var/obj/effect/landmark/land_spot in GLOB.landmarks_list)
 		if(land_spot.name == "droppod_landing" && !(land_spot in land_spot_list))
 			land_spot_list += land_spot
 
@@ -18,7 +18,7 @@
 	if(!land_target)
 		kill()
 	else
-		landmarks_list -= target_spot
+		GLOB.landmarks_list -= target_spot
 		qdel(target_spot)
 
 /datum/event/drone_pod_drop/announce()

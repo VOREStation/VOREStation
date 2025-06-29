@@ -26,9 +26,9 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 		return
 	name = new_name
 	creator_ckey = M.ckey
-	if(!event_triggers[creator_ckey])
-		event_triggers[creator_ckey] = list()
-	event_triggers[creator_ckey] |= list(src)
+	if(!GLOB.event_triggers[creator_ckey])
+		GLOB.event_triggers[creator_ckey] = list()
+	GLOB.event_triggers[creator_ckey] |= list(src)
 	isTeamwork = (tgui_alert(M, "Notify rest of team?", "Teamwork", list("No", "Yes")) == "Yes" ? TRUE : FALSE)
 	if(!isTeamwork)
 		isLoud = (tgui_alert(M, "Should it make a bwoink when triggered for YOU?", "bwoink", list("No", "Yes")) == "Yes" ? TRUE : FALSE)
@@ -41,8 +41,8 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	log_admin("[M.ckey] has created a [isNarrate ? "Narrtion" : "Notification"] landmark trigger at [coordinates]")
 
 /obj/effect/landmark/event_trigger/Destroy()
-	if(event_triggers[creator_ckey])
-		event_triggers[creator_ckey] -= src
+	if(GLOB.event_triggers[creator_ckey])
+		GLOB.event_triggers[creator_ckey] -= src
 	. = ..()
 
 /obj/effect/landmark/event_trigger/Crossed(var/atom/movable/AM)

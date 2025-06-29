@@ -59,9 +59,9 @@
 	the appropriate verb in the chameleon items tab. Any beams or projectiles fired from this gun are actually holograms and useless for actual combat. \
 	Projecting these holograms over distance uses a little bit of charge."
 
-/obj/item/gun/energy/chameleon/change(picked in gun_choices) //Making the gun change its help text to match the weapon's help text.
+/obj/item/gun/energy/chameleon/change(picked in GLOB.gun_choices) //Making the gun change its help text to match the weapon's help text.
 	..(picked)
-	var/obj/O = gun_choices[picked]
+	var/obj/O = GLOB.gun_choices[picked]
 	description_info = initial(O.description_info)
 
 /obj/item/gun/projectile/shotgun/pump

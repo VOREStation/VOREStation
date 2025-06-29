@@ -26,15 +26,15 @@ SUBSYSTEM_DEF(server_maint)
 	//Keep in mind, because of how delay works adding a list here makes each list take wait * delay more time to clear
 	//Do it for stuff that's properly important, and shouldn't have null checks inside its other uses
 	lists_to_clear = list(
-		"player_list" = global.player_list,
-		"mob_list" = global.mob_list,
-		"living_mob_list" = global.living_mob_list,
-		"dead_mob_list" = global.dead_mob_list,
-		"observer_mob_list" = global.observer_mob_list,
-		"listening_objects" = global.listening_objects,
-		"human_mob_list" = global.human_mob_list,
-		"silicon_mob_list" = global.silicon_mob_list,
-		"ai_list" = global.ai_list,
+		"player_list" = GLOB.player_list,
+		"mob_list" = GLOB.mob_list,
+		"living_mob_list" = GLOB.living_mob_list,
+		"dead_mob_list" = GLOB.dead_mob_list,
+		"observer_mob_list" = GLOB.observer_mob_list,
+		"listening_objects" = GLOB.listening_objects,
+		"human_mob_list" = GLOB.human_mob_list,
+		"silicon_mob_list" = GLOB.silicon_mob_list,
+		"ai_list" = GLOB.ai_list,
 		//"keyloop_list" = global.keyloop_list, //A null here will cause new clients to be unable to move. totally unacceptable
 	)
 

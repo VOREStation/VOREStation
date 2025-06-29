@@ -264,7 +264,7 @@
 		|| locate(/obj/machinery/computer/cloning, get_step(src, WEST)))
 
 		if(!M.client && M.mind)
-			for(var/mob/observer/dead/ghost in player_list)
+			for(var/mob/observer/dead/ghost in GLOB.player_list)
 				if(ghost.mind == M.mind)
 					to_chat(ghost, span_interface(span_large(span_bold("Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!") + " (Verbs -> Ghost -> Re-enter corpse)")))
 					break

@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 
 /hook/roundstart/proc/spawn_empty_ai()
-	for(var/obj/effect/landmark/start/S in landmarks_list)
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
 		if(S.name != JOB_AI)
 			continue
 		if(locate(/mob/living) in S.loc)

@@ -1,8 +1,6 @@
 
 //The advanced pea-green monochrome lcd of tomorrow.
 
-var/global/list/obj/item/pda/PDAs = list()
-
 /obj/item/pda
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
@@ -129,7 +127,7 @@ var/global/list/obj/item/pda/PDAs = list()
 /obj/item/pda/Initialize(mapload)
 	. = ..()
 	PDAs += src
-	PDAs = sortAtom(PDAs)
+	PDAs = sort_names(PDAs)
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)

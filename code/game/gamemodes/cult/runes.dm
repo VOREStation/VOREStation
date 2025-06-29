@@ -17,7 +17,7 @@ var/list/sacrificed = list()
 	var/allrunesloc[]
 	allrunesloc = new/list()
 	var/index = 0
-	for(var/obj/effect/rune/R in rune_list)
+	for(var/obj/effect/rune/R in GLOB.rune_list)
 		if(R == src)
 			continue
 		if(R.word1 == GLOB.cultwords["travel"] && R.word2 == GLOB.cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
@@ -51,7 +51,7 @@ var/list/sacrificed = list()
 	var/runecount = 0
 	var/obj/effect/rune/IP = null
 	var/mob/living/user = usr
-	for(var/obj/effect/rune/R in rune_list)
+	for(var/obj/effect/rune/R in GLOB.rune_list)
 		if(R == src)
 			continue
 		if(R.word1 == GLOB.cultwords["travel"] && R.word2 == GLOB.cultwords["other"] && R.word3 == key)
@@ -234,7 +234,7 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/drain()
 	var/drain = 0
-	for(var/obj/effect/rune/R in rune_list)
+	for(var/obj/effect/rune/R in GLOB.rune_list)
 		if(R.word1==GLOB.cultwords["travel"] && R.word2==GLOB.cultwords["blood"] && R.word3==GLOB.cultwords["self"])
 			for(var/mob/living/carbon/D in R.loc)
 				if(D.stat!=2)
@@ -334,7 +334,7 @@ var/list/sacrificed = list()
 
 	is_sacrifice_target = 0
 	find_sacrifice:
-		for(var/obj/effect/rune/R in rune_list)
+		for(var/obj/effect/rune/R in GLOB.rune_list)
 			if(R.word1==GLOB.cultwords["blood"] && R.word2==GLOB.cultwords["join"] && R.word3==GLOB.cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
 					if(cult && N.mind && N.mind == cult.sacrifice_target)
@@ -355,7 +355,7 @@ var/list/sacrificed = list()
 		to_chat(usr, span_warning("The Geometer of Blood refuses to touch this one."))
 		return fizzle()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
-		for(var/mob/observer/dead/ghost in player_list)
+		for(var/mob/observer/dead/ghost in GLOB.player_list)
 			if(ghost.mind == corpse_to_raise.mind)
 				to_chat(ghost, span_interface(span_large(span_bold("The cultist [usr.real_name] is trying to \
 				revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!") + "\
@@ -629,7 +629,7 @@ var/list/sacrificed = list()
 	for(var/datum/mind/H in cult.current_antagonists)
 		if (H.current)
 			to_chat(H.current, span_cult("[input]"))
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		to_chat(O, span_cult("[input]"))
 	qdel(src)
 	return 1
@@ -1035,7 +1035,7 @@ var/list/sacrificed = list()
 		if(iscultist(C) && !C.stat)
 			culcount++
 	if(culcount >= 5)
-		for(var/obj/effect/rune/R in rune_list)
+		for(var/obj/effect/rune/R in GLOB.rune_list)
 			if(R.forensic_data?.get_blooddna() == src.forensic_data?.get_blooddna())
 				for(var/mob/living/M in orange(2,R))
 					M.take_overall_damage(0,15)

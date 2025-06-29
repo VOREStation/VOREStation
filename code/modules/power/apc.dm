@@ -145,7 +145,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/failure_timer = 0
 	var/force_update = 0
 	var/updating_icon = 0
-	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 
 	var/nightshift_lights = FALSE

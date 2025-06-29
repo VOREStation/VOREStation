@@ -22,7 +22,7 @@
 	my_mob = M
 
 /obj/screen/plane_master/augmented/Destroy()
-	entopic_users -= my_mob
+	GLOB.entopic_users -= my_mob
 	my_mob = null
 	. = ..()
 
@@ -36,14 +36,14 @@
 		return
 
 	if(state)
-		entopic_users |= my_mob
+		GLOB.entopic_users |= my_mob
 		if(my_mob.client)
-			my_mob.client.images |= entopic_images
+			my_mob.client.images |= GLOB.entopic_images
 	else
-		entopic_users -= my_mob
+		GLOB.entopic_users -= my_mob
 		if(my_mob.client)
-			my_mob.client.images -= entopic_images
+			my_mob.client.images -= GLOB.entopic_images
 
 /mob/Destroy()
 	. = ..()
-	entopic_users -= src
+	GLOB.entopic_users -= src

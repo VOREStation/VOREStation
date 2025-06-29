@@ -37,7 +37,7 @@
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// First, let's check if any AIs are actively tracking them.
-	for(var/mob/living/silicon/ai/AI in silicon_mob_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mob_list)
 		if(carrier && AI.cameraFollow == carrier)
 			if(!carrier.tracking_status()) // Successful tracking returns a 0, so we need to invert it.
 				return PROXIMITY_TRACKING

@@ -50,10 +50,10 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 	//possibleEvents[/datum/event/mundane_news] = 300
 	possibleEvents[/datum/event/lore_news] = 300 // up this if the above ones get removed as they damn well should
 
-	//possibleEvents[/datum/event/pda_spam] = max(min(25, player_list.len) * 4, 200)
-	possibleEvents[/datum/event/money_lotto] = max(min(5, player_list.len), 50)
+	//possibleEvents[/datum/event/pda_spam] = max(min(25, GLOB.player_list.len) * 4, 200)
+	possibleEvents[/datum/event/money_lotto] = max(min(5, GLOB.player_list.len), 50)
 	if(GLOB.account_hack_attempted)
-		possibleEvents[/datum/event/money_hacker] = max(min(25, player_list.len) * 4, 200)
+		possibleEvents[/datum/event/money_hacker] = max(min(25, GLOB.player_list.len) * 4, 200)
 
 
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[DEPARTMENT_ENGINEERING]
@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 	//moved this to proc/check_event()
 	/*var/chance = possibleEvents[picked_event]
 	var/base_chance = 0.4
-	switch(player_list.len)
+	switch(GLOB.player_list.len)
 		if(5 to 10)
 			base_chance = 0.6
 		if(11 to 15)
@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 	/*switch(picked_event)
 		if("Meteor")
 			command_alert("Meteors have been detected on collision course with the station.", "Meteor Alert")
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(!isnewplayer(M))
 					M << sound('sound/AI/meteors.ogg')
 			spawn(100)
@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(event_last_fired)
 	active_with_role[JOB_JANITOR] = 0
 	active_with_role[JOB_BOTANIST] = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
 			continue
 

@@ -9,16 +9,6 @@
 	obj_path = /obj/item/spell/gambit
 	category = UTILITY_SPELLS
 
-/var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
-	/obj/item/spell,
-	/obj/item/spell/gambit,
-	/obj/item/spell/projectile,
-	/obj/item/spell/aura,
-//	/obj/item/spell/insert,
-	/obj/item/spell/spawner,
-	/obj/item/spell/summon,
-	/obj/item/spell/modifier)
-
 /obj/item/spell/gambit
 	name = "gambit"
 	desc = "Do you feel lucky?"

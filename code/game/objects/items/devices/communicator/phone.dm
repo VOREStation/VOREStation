@@ -5,7 +5,7 @@
 	if(!comm || !istype(comm)) return
 
 	communicating |= comm
-	listening_objects |= src
+	GLOB.listening_objects |= src
 	update_icon()
 
 // Proc: del_communicating()
@@ -73,7 +73,7 @@
 	new_voice.mind = candidate.mind			//Transfer the mind, if any.
 	new_voice.ckey = candidate.ckey			//Finally, bring the client over.
 	voice_mobs.Add(new_voice)
-	listening_objects |= src
+	GLOB.listening_objects |= src
 
 	var/obj/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
 	blackness.screen_loc = ui_entire_screen
@@ -139,7 +139,7 @@
 			comm.end_video()
 
 	if(voice_mobs.len == 0 && communicating.len == 0)
-		listening_objects.Remove(src)
+		GLOB.listening_objects.Remove(src)
 
 // Proc: request()
 // Parameters: 1 (candidate - the ghost or communicator wanting to call the device)
@@ -294,7 +294,7 @@
 		to_chat(src, span_danger("You have used the antagHUD and cannot respawn or use communicators!"))
 		return
 
-	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
+	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
 		if(src.client.prefs.real_name == L.real_name)
 			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return

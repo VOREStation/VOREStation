@@ -768,7 +768,7 @@
 		if(istext(belly_data["tail_to_change_to"]))
 			var/new_tail_to_change_to = sanitize(belly_data["tail_to_change_to"],MAX_MESSAGE_LEN,0,0,0)
 			if(new_tail_to_change_to)
-				if (new_tail_to_change_to in tail_styles_list)
+				if (new_tail_to_change_to in GLOB.tail_styles_list)
 					new_belly.tail_to_change_to = new_tail_to_change_to
 
 		if(istext(belly_data["tail_colouration"]))

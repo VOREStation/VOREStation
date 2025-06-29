@@ -29,7 +29,7 @@
 			return
 		for(var/i = 1 to 3)
 			var/turf/T = get_step_away(src, M)
-			if(T && is_type_in_list(T, suitable_turf_types))
+			if(T && is_type_in_list(T, GLOB.suitable_fish_turf_types))
 				Move(T)
 			else
 				break
@@ -47,7 +47,7 @@
 			return
 		for(var/i = 1 to 3)
 			var/turf/T = get_step_away(src, M)
-			if(T && is_type_in_list(T, suitable_turf_types))
+			if(T && is_type_in_list(T, GLOB.suitable_fish_turf_types))
 				Move(T)
 			else
 				break

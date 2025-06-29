@@ -38,10 +38,6 @@
 	else
 		icon_state = "rods"
 
-var/global/list/datum/stack_recipe/rods_recipes = list( \
-	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
-	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
-
 /obj/item/stack/rods/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()

@@ -65,8 +65,8 @@
 			SM.adjustFireLoss(-40)
 			SM.health = SM.getMaxHealth() / 3
 			SM.stat = CONSCIOUS
-			dead_mob_list -= SM
-			living_mob_list += SM
+			GLOB.dead_mob_list -= SM
+			GLOB.living_mob_list += SM
 			SM.update_icon()
 			SM.revive()
 			holder.visible_message(span_alien("\The [SM]'s eyes open in a flash of light!"))
@@ -74,7 +74,7 @@
 			var/mob/living/carbon/human/H = L
 
 			if(!H.client && H.mind)
-				for(var/mob/observer/dead/ghost in player_list)
+				for(var/mob/observer/dead/ghost in GLOB.player_list)
 					if(ghost.mind == H.mind)
 						to_chat(ghost, span_large(span_interface(span_bold("An artifact is trying to \
 						revive you. Return to your body if you want to be resurrected!") + "\
@@ -88,8 +88,8 @@
 			sleep(10 SECONDS)
 			if(H.client)
 				L.stat = CONSCIOUS
-				dead_mob_list -= H
-				living_mob_list += H
+				GLOB.dead_mob_list -= H
+				GLOB.living_mob_list += H
 				H.timeofdeath = null
 
 				holder.visible_message(span_alien("\The [H]'s eyes open in a flash of light!"))

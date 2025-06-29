@@ -21,7 +21,7 @@
 	if(prob(33))
 		command_announcement.Announce(alert, new_sound = 'sound/misc/interference.ogg')
 	// AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
-	for(var/mob/living/silicon/ai/A in player_list)
+	for(var/mob/living/silicon/ai/A in GLOB.player_list)
 		to_chat(A, span_boldwarning("<br>"))
 		to_chat(A, span_boldwarning("[alert]"))
 		to_chat(A, span_boldwarning("<br>"))

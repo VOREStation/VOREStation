@@ -34,7 +34,7 @@
 	var/obj/item/pda/P = null
 	var/list/viables = list()
 
-	for(var/obj/item/pda/check_pda in sortAtom(PDAs))
+	for(var/obj/item/pda/check_pda in sort_names(PDAs))
 		if (!check_pda.owner || check_pda == src || check_pda.hidden)
 			continue
 

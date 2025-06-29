@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(appreciation)
 			do_appreciate()
 			return
 
-		current_player_list = player_list.Copy()
+		current_player_list = GLOB.player_list.Copy()
 
 	while(current_player_list.len)
 		var/mob/M = current_player_list[current_player_list.len]

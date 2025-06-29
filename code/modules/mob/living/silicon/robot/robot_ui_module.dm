@@ -109,7 +109,7 @@
 			if(R.module)
 				return
 			var/new_module = params["value"]
-			if(!(new_module in robot_modules))
+			if(!(new_module in GLOB.robot_modules))
 				return
 			if(!is_borg_whitelisted(R, new_module))
 				return
@@ -155,7 +155,7 @@
 
 /mob/living/silicon/robot/proc/apply_module(var/datum/robot_sprite/new_datum, var/new_module)
 	icon_selected = TRUE
-	var/module_type = robot_modules[new_module]
+	var/module_type = GLOB.robot_modules[new_module]
 	if(modtype != new_module || !module)
 		if(module)
 			qdel(module)

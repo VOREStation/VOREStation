@@ -237,7 +237,7 @@
 	brainmob.container = src
 	brainmob.stat = 0
 	brainmob.silent = FALSE
-	dead_mob_list -= brainmob
+	GLOB.dead_mob_list -= brainmob
 	brainmob.add_language(LANGUAGE_GALCOM)
 	brainmobs |= brainmob
 

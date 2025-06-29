@@ -16,8 +16,8 @@
 
 /** Checks if any living humans are in a given area! */
 /proc/is_area_occupied(var/area/myarea)
-	// Testing suggests looping over human_mob_list is quicker than looping over area contents
-	for(var/mob/living/carbon/human/H in human_mob_list)
+	// Testing suggests looping over GLOB.human_mob_list is quicker than looping over area contents
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
 		var/area/A = get_area(H)

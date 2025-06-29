@@ -38,7 +38,7 @@
 	else
 		forceMove(source)
 
-	listening_objects |= src
+	GLOB.listening_objects |= src
 
 // Takes place after handle_implant, if that returns TRUE
 /obj/item/implant/proc/post_implant(var/mob/source)
@@ -75,7 +75,7 @@
 	if(part)
 		part.implants.Remove(src)
 		part = null
-	listening_objects.Remove(src)
+	GLOB.listening_objects.Remove(src)
 	imp_in = null
 	return ..()
 
