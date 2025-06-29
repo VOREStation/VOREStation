@@ -206,7 +206,7 @@
 	desc = "A small white rodent, often found in Virology. This one isn't quite the nuisance!"
 
 /mob/living/simple_mob/animal/passive/mouse/white/virology/Initialize(mapload)
-	..()
+	. = ..()
 	name = initial(name)
 	desc = initial(desc)
 	rat_diseases += new /datum/disease/advance/random(2, 2, 1, infected = src)
