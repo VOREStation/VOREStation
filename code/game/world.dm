@@ -1,6 +1,8 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 /// Load byond-tracy. If USE_BYOND_TRACY is defined, then this is ignored and byond-tracy is always loaded.
 #define USE_TRACY_PARAMETER "tracy"
+/// Force the log directory to be something specific in the data/logs folder
+#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
 /// Prevent the master controller from starting automatically
 #define NO_INIT_PARAMETER "no-init"
 
@@ -124,7 +126,13 @@ GLOBAL_VAR(restart_counter)
 	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
 	to_world_log("Map Loading Complete")
 	//logs
-	GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
+	//VOREStation Edit Start
+
+	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
+	if(override_dir)
+		GLOB.log_directory = "data/logs/[override_dir]"
+	else
+		GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
 	GLOB.diary = start_log("[GLOB.log_directory].log")
 	GLOB.href_logfile = start_log("[GLOB.log_directory]-hrefs.htm")
 	GLOB.error_log = start_log("[GLOB.log_directory]-error.log")
