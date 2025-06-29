@@ -63,11 +63,15 @@
 
 SUBSYSTEM_DEF(radio)
 	name = "Radio"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/machines
 	)
 	var/list/datum/radio_frequency/frequencies = list()
+
+/datum/controller/subsystem/radio/Initialize()
+	GLOB.autospeaker = new (null, FALSE, null, null, TRUE) //Set up Global Announcer
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/radio_filter = null as text|null)
 	var/f_text = num2text(new_frequency)

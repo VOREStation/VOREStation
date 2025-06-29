@@ -3,8 +3,7 @@
 SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
 	dependencies = list(
-		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/overmap_renamer
+		/datum/controller/subsystem/mapping
 	)
 	flags = SS_NO_FIRE
 	var/static/list/skybox_cache = list()
