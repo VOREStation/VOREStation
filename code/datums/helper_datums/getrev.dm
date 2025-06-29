@@ -52,35 +52,35 @@
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
 /client/verb/showrevinfo()
-	set category = "OOC"
+	set category = "OOC.Game"
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 
 	var/list/msg = list()
 	// Round ID
 	if(GLOB.round_id)
-		msg += "<b>Round ID:</b> [GLOB.round_id]"
+		msg += span_bold("Round ID") + ": [GLOB.round_id]"
 
-	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	msg += span_bold("BYOND Version") + ": [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
-		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
+		msg += span_bold("Compiled with BYOND Version") + ": [DM_VERSION].[DM_BUILD]"
 
 	// Revision information
 	var/datum/getrev/revdata = GLOB.revdata
-	msg += "<b>Server revision compiled on:</b> [revdata.date]"
+	msg += span_bold("Server revision compiled on") + ": [revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "<b>Master commit:</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += span_bold("Master commit") + ": <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
 	if(length(revdata.testmerge))
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "<b>Local commit:</b> [revdata.commit]"
+		msg += span_bold("Local commit") + ": [revdata.commit]"
 	else if(!pc)
 		msg += "No commit information"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "<b>TGS version</b>: [version.raw_parameter]"
-		msg += "<b>DMAPI version</b>: [TGS_DMAPI_VERSION]"
+		msg += span_bold("TGS version") + ": [version.raw_parameter]"
+		msg += span_bold("DMAPI version") + ": [TGS_DMAPI_VERSION]"
 
 	// Game mode odds
 	//msg += "<br><b>Current Informational Settings:</b>"
