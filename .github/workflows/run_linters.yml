@@ -13,10 +13,15 @@ jobs:
         with:
             fetch-depth: 0
       # Caches
+      - name: Restore SpacemanDMM cache
+        uses: actions/cache@v4
+        with:
+          path: ~/SpacemanDMM
+          key: ${{ runner.os }}-spacemandmm-${{ hashFiles('dependencies.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-spacemandmm-
       - name: Setup Bun
         uses: ./.github/actions/setup_bun
-        with:
-          restore-yarn-cache: true
       - name: Restore Bootstrap cache
         uses: actions/cache@v4
         with:
@@ -37,23 +42,69 @@ jobs:
           path: tools/icon_cutter/cache
           key: ${{ runner.os }}-cutter-${{ hashFiles('dependencies.sh') }}
       # End Caches
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4.2.0
+        with:
+          dotnet-version: 9.x
+      - name: Install OpenDream
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository: "OpenDreamProject/OpenDream"
+          tag: "latest"
+          fileName: "DMCompiler_linux-x64.tar.gz"
+          extract: true
       - name: Install Tools
         run: |
           pip3 install setuptools
+          bash tools/ci/install_spaceman_dmm.sh dreamchecker
           bash tools/ci/install_ripgrep.sh
-          bash tools/ci/install_spaceman_dmm.sh dmm-tools
           tools/bootstrap/python -c ''
-      - name: Run Validation Tests
-        run: bash tools/ci/validate_files.sh
+      - name: Give Linters A Go
+        id: linter-setup
+        run: ":"
+      #- name: Run Grep Checks
+      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
+      #  run: bash tools/ci/check_grep.sh
+      #- name: Ticked File Enforcement
+      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
+      #  run: |
+      #    tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/tgstation_dme.json
+      #    tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/unit_tests.json
       - name: Run Define Sanity Checks
         run: tools/bootstrap/python -m define_sanity.check
-      - name: Run DMI Tests
-        run: tools/bootstrap/python -m dmi.test
+      - name: Run DreamChecker
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        shell: bash
+        run: ~/dreamchecker 2>&1 | bash tools/ci/annotate_dm.sh
+      - name: Run OpenDream
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: ./DMCompiler_linux-x64/DMCompiler vorestation.dme --suppress-unimplemented --define=CIBUILDING | bash tools/ci/annotate_od.sh
       - name: Run Map Checks
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |
-          tools/bootstrap/python -m tools.maplint.source
           tools/bootstrap/python -m mapmerge2.dmm_test
+          tools/bootstrap/python -m tools.maplint.source
+      #- name: Check Cutter
+      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
+      #  run: tools/bootstrap/python -m tools.icon_cutter.check
+      - name: Run DMI Tests
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: tools/bootstrap/python -m dmi.test
+      #- name: Check File Directories
+      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
+      #  run: bash tools/ci/check_filedirs.sh tgstation.dme
+      #- name: Check Changelogs
+      #  if: steps.linter-setup.conclusion == 'success' && !cancelled()
+      #  run: bash tools/ci/check_changelogs.sh
+      - name: Check Miscellaneous Files
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: bash tools/ci/check_misc.sh
       - name: Run TGUI Checks
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/build/build.sh --ci lint tgui-test
+
+
+      - name: Run Validation Tests
+        run: bash tools/ci/validate_files.sh
       - name: Run Nanomap Checks
         run: tools/github-actions/nanomap-renderer-invoker.sh --testing
