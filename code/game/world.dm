@@ -21,7 +21,7 @@
 	if(byond_version < RECOMMENDED_VERSION)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	TgsNew()
+	InitTgs()
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
@@ -44,7 +44,7 @@
 
 	callHook("startup")
 	//Emergency Fix
-	InitTgs()
+	load_mods()
 	//end-emergency fix
 
 	src.update_status()
