@@ -1336,3 +1336,20 @@ GLOBAL_LIST_INIT(finds_as_strings, list(
 	"Metallic derivative", 							//Mercury
 	"Metallic composite", 							//Iron
 	"Anomalous material")) 							//Phoron
+
+
+//tgui law manager
+var/global/list/datum/ai_laws/admin_laws
+var/global/list/datum/ai_laws/player_laws
+
+//shield_gen/external
+GLOBAL_LIST_INIT(external_shield_gen_blockedturfs,  list(
+	/turf/space,
+	/turf/simulated/floor/outdoors,
+))
+
+//machinery/shieldgen
+GLOBAL_LIST_INIT(shieldgen_blockedturfs,  list(
+	/turf/space,
+	/turf/simulated/floor/outdoors,
+))
