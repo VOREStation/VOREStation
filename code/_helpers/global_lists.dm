@@ -1112,3 +1112,9 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 /var/global/datum/alarm_handler/power/power_alarm			= new()
 
 GLOBAL_LIST_EMPTY(gun_choices)
+
+GLOBAL_LIST_INIT(severity_to_string, list(
+	EVENT_LEVEL_MUNDANE = "Mundane",
+	EVENT_LEVEL_MODERATE = "Moderate",
+	EVENT_LEVEL_MAJOR = "Major"
+	))
