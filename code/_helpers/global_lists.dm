@@ -642,6 +642,10 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 var/global/list/datum/stack_recipe/wax_recipes = list( \
 	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
 )
+var/global/list/datum/stack_recipe/rods_recipes = list( \
+	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
+	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
+
 
 GLOBAL_LIST_INIT(possible_plants, list(
 	"plant-1",
@@ -1173,3 +1177,61 @@ GLOBAL_LIST_INIT(MOVE_KEY_MAPPINGS, list(
 	"Ctrl" = CTRL_KEY,
 	"Alt" = ALT_KEY,
 ))
+
+GLOBAL_LIST_EMPTY(total_extraction_beacons)
+
+GLOBAL_LIST_INIT(possible_ghost_sprites, list(
+	"Clear" = "blank",
+	"Green Blob" = "otherthing",
+	"Bland" = "ghost",
+	"Robed-B" = "ghost1",
+	"Robed-BAlt" = "ghost2",
+	"King" = "ghostking",
+	"Shade" = "shade",
+	"Hecate" = "ghost-narsie",
+	"Glowing Statue" = "armour",
+	"Artificer" = "artificer",
+	"Behemoth" = "behemoth",
+	"Harvester" = "harvester",
+	"Wraith" = "wraith",
+	"Viscerator" = "viscerator",
+	"Corgi" = "corgi",
+	"Tamaskan" = "tamaskan",
+	"Black Cat" = "blackcat",
+	"Lizard" = "lizard",
+	"Goat" = "goat",
+	"Space Bear" = "bear",
+	"Bats" = "bat",
+	"Chicken" = "chicken_white",
+	"Parrot"= "parrot_fly",
+	"Goose" = "goose",
+	"Penguin" = "penguin",
+	"Brown Crab" = "crab",
+	"Gray Crab" = "evilcrab",
+	"Trout" = "trout-swim",
+	"Salmon" = "salmon-swim",
+	"Pike" = "pike-swim",
+	"Koi" = "koi-swim",
+	"Carp" = "carp",
+	"Red Robes" = "robe_red",
+	"Faithless" = "faithless",
+	"Shadowform" = "forgotten",
+	"Dark Ethereal" = "bloodguardian",
+	"Holy Ethereal" = "lightguardian",
+	"Red Elemental" = "magicRed",
+	"Blue Elemental" = "magicBlue",
+	"Pink Elemental" = "magicPink",
+	"Orange Elemental" = "magicOrange",
+	"Green Elemental" = "magicGreen",
+	"Daemon" = "daemon",
+	"Guard Spider" = "guard",
+	"Hunter Spider" = "hunter",
+	"Nurse Spider" = "nurse",
+	"Rogue Drone" = "drone",
+	"ED-209" = "ed209",
+	"Beepsky" = "secbot"
+	))
+
+GLOBAL_LIST_EMPTY(sparring_attack_cache)
+
+GLOBAL_LIST_EMPTY(protean_abilities)
