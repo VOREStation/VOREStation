@@ -1427,3 +1427,6 @@ GLOBAL_LIST_INIT(global_ammo_types, list(
 	/obj/item/ammo_casing/a762              = "7.62mm",
 	/obj/item/ammo_casing/a545              = "5.45mm"
 	))
+
+//Rad collectors in the world
+GLOBAL_LIST_EMPTY(rad_collectors)
