@@ -51,9 +51,10 @@ GLOBAL_DATUM(vgs, /datum/tgs_api)
 		return ..()
 
 /world/proc/VgsAddMemberRole(chat_user_id)
-	var/datum/tgs_api/v5/vgs1/api = GLOB.vgs
-	if(api)
-		api.AddMemberRole(chat_user_id)
+	var/port = CONFIG_GET(number/register_server_port)
+	if(port)
+		// Designed to be used with `tools/registration`
+		world.Export("http://127.0.0.1:[port]?member=[url_encode(json_encode(chat_user_id))]")
 
 /datum/tgs_api/v5/vgs1
 	server_port = 8080  // Default port

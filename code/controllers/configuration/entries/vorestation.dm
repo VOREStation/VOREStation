@@ -12,6 +12,12 @@
 	max_val = 65535
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/number/register_server_port
+	default = null
+	min_val = 0
+	max_val = 65535
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/flag/time_off
 	default = FALSE
 	protection = CONFIG_ENTRY_LOCKED
