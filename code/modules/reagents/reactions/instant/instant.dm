@@ -76,6 +76,7 @@
 	id = REAGENT_ID_WATER
 	result = REAGENT_ID_WATER
 	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_HYDROGEN = 2)
+	inhibitors = list(REAGENT_ID_SODIUM = 1) // So it doesnt turn into water when you try to make lye.
 	result_amount = 1
 
 /decl/chemical_reaction/instant/thermite
@@ -439,6 +440,13 @@
 	required_reagents = list (REAGENT_ID_AMMONIA = 1, REAGENT_ID_ETHANOL = 1)
 	result_amount = 2
 
+/decl/chemical_reaction/instant/lye
+	name = REAGENT_LYE
+	id = REAGENT_ID_LYE
+	result = REAGENT_ID_LYE
+	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_OXYGEN = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/left4zed
 	name = "Left4Zed"
 	id = REAGENT_ID_LEFT4ZED
@@ -636,6 +644,31 @@
 /decl/chemical_reaction/instant/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
+
+/decl/chemical_reaction/instant/soapification
+	name = "Soapification"
+	id = "soapification"
+	result = null
+	required_reagents = list(REAGENT_ID_COOKINGOIL = 10, REAGENT_ID_LYE = 2)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/soapification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/soap(get_turf(holder.my_atom))
+
+/decl/chemical_reaction/instant/soapification/alt
+	name = "Soapification2"
+	id = "soapification2"
+	required_reagents = list(REAGENT_ID_CORNOIL = 10, REAGENT_ID_LYE = 2)
+
+/decl/chemical_reaction/instant/soapification/gibs // a bit less convinient and grosser, but it makes more potent soap.
+	name = "Soapification Gibs"
+	id = "soapificationgibs"
+	required_reagents = list(REAGENT_ID_PROTEIN = 10, REAGENT_ID_LYE = 10) //Change the protein to liquid gibs if/when those get ported. Thanks.
+
+/decl/chemical_reaction/instant/soapification/gibs/on_reaction(datum/reagents/holder, created_volume)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/soap/homemade(get_turf(holder.my_atom))
 
 /*Carpet Creation*/
 
