@@ -420,16 +420,14 @@
 	battery_lock = 1
 
 	var/obj/item/projectile/copy_projectile
-	var/global/list/gun_choices
 
 /obj/item/gun/energy/chameleon/Initialize(mapload)
 	. = ..()
 
-	if(!gun_choices)
-		gun_choices = list()
+	if(!LAZYLEN(GLOB.gun_choices))
 		for(var/gun_type in typesof(/obj/item/gun/) - src.type)
 			var/obj/item/gun/G = gun_type
-			src.gun_choices[initial(G.name)] = gun_type
+			GLOB.gun_choices[initial(G.name)] = gun_type
 
 /obj/item/gun/energy/chameleon/consume_next_projectile()
 	var/obj/item/projectile/P = ..()
@@ -474,15 +472,15 @@
 		copy_projectile = null
 		//charge_meter = 0
 
-/obj/item/gun/energy/chameleon/verb/change(picked in gun_choices)
+/obj/item/gun/energy/chameleon/verb/change(picked in GLOB.gun_choices)
 	set name = "Change Gun Appearance"
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(gun_choices[picked]))
+	if(!ispath(GLOB.gun_choices[picked]))
 		return
 
-	disguise(gun_choices[picked])
+	disguise(GLOB.gun_choices[picked])
 
 	//so our overlays update.
 	if (ismob(src.loc))

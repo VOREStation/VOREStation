@@ -1110,3 +1110,5 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 /var/global/datum/alarm_handler/fire/fire_alarm				= new()
 /var/global/datum/alarm_handler/motion/motion_alarm			= new()
 /var/global/datum/alarm_handler/power/power_alarm			= new()
+
+GLOBAL_LIST_EMPTY(gun_choices)
