@@ -1,7 +1,7 @@
+/// Test that a material should have all the name variables set
 /datum/unit_test/materials_shall_have_names
-	name = "MATERIALS: Materials Shall Have All Names"
 
-/datum/unit_test/materials_shall_have_names/start_test()
+/datum/unit_test/materials_shall_have_names/Run()
 	var/list/failures = list()
 	populate_material_list()
 	for(var/name in global.name_to_material)
@@ -12,8 +12,4 @@
 			failures[name] = mat.type
 
 	if(length(failures))
-		fail("[length(failures)] material\s had missing name strings: [english_list(failures)].")
-	else
-		pass("All materials had all their name strings.")
-
-	return TRUE
+		TEST_FAIL("[length(failures)] material\s had missing name strings: [english_list(failures)].")
