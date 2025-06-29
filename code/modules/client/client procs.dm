@@ -151,7 +151,10 @@
 			log_and_message_admins("[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord snowflake ID is: [their_id]", src)
 			admin_chat_message(message = "[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord is: <@[their_id]>", color = "#4eff22")
 			notes_add(ckey, "Discord ID: [their_id]")
-			world.VgsAddMemberRole(their_id)
+			var/port = CONFIG_GET(number/register_server_port)
+			if(port)
+				// Designed to be used with `tools/registration`
+				world.Export("http://127.0.0.1:[port]?member=[url_encode(json_encode(chat_user_id))]")
 		else
 			to_chat(src, span_warning("There was an error registering your Discord ID in the database. Contact an administrator."))
 			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?", src)

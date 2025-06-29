@@ -29,7 +29,6 @@
 
 	ConfigLoaded()
 	makeDatumRefLists()
-	VgsNew()
 
 	var servername = CONFIG_GET(string/servername)
 	if(config && servername != null && CONFIG_GET(flag/server_suffix) && world.port > 0)
@@ -113,7 +112,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
-	VGS_TOPIC // VOREStation Edit - VGS
 	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
