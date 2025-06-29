@@ -427,7 +427,7 @@
 	. = ..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
-	if(loc != oldloc)
+	if(loc != location)
 		for(var/obj/structure/table/T in view(location, 1) | view(loc, 1))
 			T.update_connections()
 			T.update_icon()
