@@ -910,4 +910,5 @@ var/global/game_id = null
 		. = ..()
 
 #undef NO_INIT_PARAMETER
+#undef OVERRIDE_LOG_DIRECTORY_PARAMETER
 #undef USE_TRACY_PARAMETER
