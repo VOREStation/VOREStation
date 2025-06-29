@@ -1,0 +1,59 @@
+name: Run Linters
+
+on:
+  workflow_call:
+
+jobs:
+  linters:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+      # Caches
+      - name: Setup Bun
+        uses: ./.github/actions/setup_bun
+        with:
+          restore-yarn-cache: true
+      - name: Restore Bootstrap cache
+        uses: actions/cache@v4
+        with:
+          path: tools/bootstrap/.cache
+          key: ${{ runner.os }}-bootstrap-${{ hashFiles('tools/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-bootstrap-
+      - name: Restore Rust cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo
+          key: ${{ runner.os }}-rust-${{ hashFiles('tools/ci/ci_dependencies.sh')}}
+          restore-keys: |
+            ${{ runner.os }}-rust-
+      - name: Restore Cutter cache
+        uses: actions/cache@v4
+        with:
+          path: tools/icon_cutter/cache
+          key: ${{ runner.os }}-cutter-${{ hashFiles('dependencies.sh') }}
+      # End Caches
+      - name: Install Tools
+        run: |
+          pip3 install setuptools
+          bash tools/ci/install_ripgrep.sh
+          bash tools/ci/install_spaceman_dmm.sh dmm-tools
+          tools/bootstrap/python -c ''
+      - name: Run Validation Tests
+        run: bash tools/ci/validate_files.sh
+      - name: Run Define Sanity Checks
+        run: tools/bootstrap/python -m define_sanity.check
+      - name: Run DMI Tests
+        run: tools/bootstrap/python -m dmi.test
+      - name: Run Map Checks
+        run: |
+          tools/bootstrap/python -m tools.maplint.source
+          tools/bootstrap/python -m mapmerge2.dmm_test
+      - name: Run TGUI Checks
+        run: tools/build/build.sh --ci lint tgui-test
+      - name: Run Nanomap Checks
+        run: tools/github-actions/nanomap-renderer-invoker.sh --testing
