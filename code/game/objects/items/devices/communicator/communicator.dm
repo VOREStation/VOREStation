@@ -96,7 +96,7 @@
 /obj/item/communicator/Initialize(mapload)
 	. = ..()
 	all_communicators += src
-	all_communicators = sortAtom(all_communicators)
+	all_communicators = sort_names(all_communicators)
 	node = get_exonet_node()
 	START_PROCESSING(SSobj, src)
 	camera = new(src)

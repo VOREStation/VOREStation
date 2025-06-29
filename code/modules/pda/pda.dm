@@ -127,7 +127,7 @@
 /obj/item/pda/Initialize(mapload)
 	. = ..()
 	PDAs += src
-	PDAs = sortAtom(PDAs)
+	PDAs = sort_names(PDAs)
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)

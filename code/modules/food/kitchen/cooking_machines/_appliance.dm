@@ -36,12 +36,12 @@
 	// If the machine has multiple output modes, define them here.
 	var/selected_option
 	var/list/output_options = list()
-	var/list/datum/recipe/appliance_available_recipes
+	var/list/datum/recipe/appliance_available_recipes = list()
 
 	var/container_type = null
 
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
-	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
+	var/food_safety = FALSE	// If true, the appliance automatically ejects food instead of burning it
 
 	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
 	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")

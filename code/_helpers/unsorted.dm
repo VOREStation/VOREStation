@@ -426,48 +426,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
-	return observe_list_format(sortmobs())
+	return observe_list_format(sort_mobs())
 
 //Orders mobs by type then by name
-/proc/sortmobs()
+/proc/sort_mobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortAtom(GLOB.mob_list)
+	var/list/sortmob = sort_names(GLOB.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/blob/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/ai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/robot/M in sortmob)
-		moblist.Add(M)
-	var/list/delaylist = list()
+		moblist += M
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(M.low_sorting_priority && !M.client)
-			delaylist.Add(M)
-		else
-			moblist.Add(M)
-	moblist.Add(delaylist)
+		moblist += M
 	for(var/mob/living/carbon/brain/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/carbon/alien/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/dead/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/simple_mob/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition Start
+		moblist += M
 	for(var/mob/living/dominated_brain/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition End
-
-//	for(var/mob/living/silicon/hivebot/M in sortmob)
-//		GLOB.mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
-//		GLOB.mob_list.Add(M)
+		moblist += M
 	return moblist
 
 /proc/observe_list_format(input_list)

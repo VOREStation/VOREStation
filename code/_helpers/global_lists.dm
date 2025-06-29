@@ -2,6 +2,7 @@
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_LIST_EMPTY(player_list)						//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(human_mob_list)					//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)					//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(ai_list)							//List of all AIs, including clientless
@@ -17,12 +18,9 @@ GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(la
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
-//cursed lists that are used by sortAtom.
-//AKA, these crash the server without /tg/ sortAtom
-GLOBAL_LIST_EMPTY(mob_list)							//List of all mobs, including clientless
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/obj/item/pda/PDAs = list()
-var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
+var/global/list/obj/item/communicator/all_communicators = list()
 
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)

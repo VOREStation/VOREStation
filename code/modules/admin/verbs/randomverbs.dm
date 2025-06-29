@@ -260,17 +260,13 @@ Ccomp's first proc.
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(GLOB.mob_list)                           // get the mob list.
-	var/any=0
-	for(var/mob/observer/dead/M in sortmob)
-		mobs.Add(M)                                             //filter it where it's only ghosts
-		any = 1                                                 //if no ghosts show up, any will just be 0
-	if(!any)
+	if(!LAZYLEN(GLOB.observer_mob_list))
 		if(notify)
 			to_chat(src, "There doesn't appear to be any ghosts for you to select.")
 		return
+	var/list/sortmob = sort_names(GLOB.observer_mob_list)                           // get the mob list.
 
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmob)
 		var/name = M.name
 		ghosts[name] = M                                        //get the name of the mob for the popup list
 	if(what==1)
