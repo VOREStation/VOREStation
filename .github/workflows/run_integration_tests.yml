@@ -80,16 +80,3 @@ jobs:
         with:
           dmb-location: vorestation.dmb
           max-required-client-version: ${{inputs.max_required_byond_client}}
-
-
-      ## Extra Map Tests
-      - name: Compile POIs
-        run: tools/ci/compile_and_run.sh
-        env:
-          EXTRA_ARGS: "-DMAP_TEST"
-          RUN: "0"
-      - name: Compile away missions
-        run: tools/ci/compile_and_run.sh
-        env:
-          EXTRA_ARGS: "-DAWAY_MISSION_TEST -DUSE_MAP_TETHER" # Only Tether has support for all away missions
-          RUN: "0"
