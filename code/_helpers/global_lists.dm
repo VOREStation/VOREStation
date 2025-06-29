@@ -1439,6 +1439,9 @@ GLOBAL_LIST_INIT(nif_look_messages, list(
 			"seems to be daydreaming",
 			"focuses elsewhere for a moment"))
 
+GLOBAL_LIST(starting_legal_nifsoft)
+GLOBAL_LIST(starting_illegal_nifsoft)
+
 // By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
 	/turf/simulated/floor/beach/water,
