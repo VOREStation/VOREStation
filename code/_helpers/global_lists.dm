@@ -1282,6 +1282,7 @@ GLOBAL_LIST_INIT(possible_say_verbs, list(
 	"Rodent" = list("squeaks", "SQUEAKS", "sqiks")
 	))
 
+//Borg modules
 GLOBAL_LIST_INIT(robot_modules, list(
 	"Standard"		= /obj/item/robot_module/robot/standard,
 	"Service" 		= /obj/item/robot_module/robot/clerical/butler,
