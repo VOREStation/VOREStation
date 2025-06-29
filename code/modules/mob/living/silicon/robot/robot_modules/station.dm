@@ -178,15 +178,6 @@
 			CHANNEL_EXPLORATION = 1
 			)
 
-/obj/item/robot_module/robot/Initialize(mapload)
-	. = ..()
-
-	if(!isrobot(loc))
-		return
-	var/mob/living/silicon/robot/R = loc
-	if(R.sprite_datum)
-		R.sprite_datum.do_equipment_glamour(src)
-
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -196,6 +187,7 @@
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
+	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
 
 /obj/item/robot_module/robot/standard

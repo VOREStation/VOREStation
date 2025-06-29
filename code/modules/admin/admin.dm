@@ -600,6 +600,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 	popup.set_content(dat)
 	popup.open()
 
+/*
 /datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
 
@@ -626,6 +627,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 	popup.set_content(dat)
 	popup.open()
 	return
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
@@ -1298,27 +1300,6 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/output_ai_laws()
-	var/ai_number = 0
-	for(var/mob/living/silicon/S in GLOB.mob_list)
-		ai_number++
-		if(isAI(S))
-			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))
-		else if(isrobot(S))
-			var/mob/living/silicon/robot/R = S
-			to_chat(usr, span_bold("CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:"))
-		else if (ispAI(S))
-			to_chat(usr, span_bold("pAI [key_name(S, usr)]'s laws:"))
-		else
-			to_chat(usr, span_bold("SOMETHING SILICON [key_name(S, usr)]'s laws:"))
-
-		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
-		else
-			S.laws.show_laws(usr)
-	if(!ai_number)
-		to_chat(usr, span_bold("No AIs located")) //Just so you know the thing is actually working and not just ignoring you.
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin.Game"
