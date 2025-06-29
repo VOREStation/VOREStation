@@ -52,7 +52,7 @@
 	rename_areas(newname)
 
 /obj/effect/overmap/visitable/ship/landable/event_autonomous_drone/proc/rename_areas(newname)
-	if(!SSshuttles.subsystem_initialized)
+	if(!SSshuttles.initialized)
 		spawn(300)
 			rename_areas(newname)
 		return

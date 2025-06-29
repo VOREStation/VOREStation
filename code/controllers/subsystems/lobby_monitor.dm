@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(lobby_monitor)
 	name = "Lobby Art"
-	init_order = INIT_ORDER_LOBBY
-	// init_stage = INITSTAGE_EARLY
+	init_stage = INITSTAGE_EARLY
 	flags = SS_NO_INIT
 	wait = 1 SECOND
 	runlevels = ALL

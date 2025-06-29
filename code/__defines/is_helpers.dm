@@ -84,3 +84,5 @@ GLOBAL_VAR_INIT(magic_appearance_detecting_image, new /image) // appearances are
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )
 
 #define ismopable(A) (A && (A.plane <= OBJ_PLANE)) //If something can be cleaned by floor-cleaning devices such as mops or clean bots
+
+#define isfloorturf(A) (istype(A, /turf/simulated/floor))

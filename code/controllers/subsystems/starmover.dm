@@ -3,9 +3,11 @@
 //
 SUBSYSTEM_DEF(starmover)
 	name = "Shuttle Star Movement"
-	init_order = INIT_ORDER_STARMOVER
 	priority = FIRE_PRIORITY_STARMOVER
 	wait = 1 // This needs to be done pretty quickly
+	dependencies = list(
+		/datum/controller/subsystem/points_of_interest
+	)
 	var/list/zqueue = list()
 	var/list/current_movement = null
 	//list used to track which zlevels are being 'moved' by the proc below

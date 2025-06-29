@@ -2,7 +2,9 @@
 //Exists to handle a few global variables that change enough to justify this. Technically a parallax, but it exhibits a skybox effect.
 SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
-	init_order = INIT_ORDER_SKYBOX
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	flags = SS_NO_FIRE
 	var/static/list/skybox_cache = list()
 
@@ -93,7 +95,7 @@ SUBSYSTEM_DEF(skybox)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
-	if(!subsystem_initialized)
+	if(!initialized)
 		return // WAIT
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)

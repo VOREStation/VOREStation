@@ -74,7 +74,7 @@
 					open()
 					addtimer(CALLBACK(src, PROC_REF(close)), 50)
 		return
-	if (!( ticker ))
+	if (!( SSticker ))
 		return
 	if (src.operating)
 		return
@@ -106,7 +106,7 @@
 /obj/machinery/door/window/open()
 	if (operating == 1 || !density) //doors can still open when emag-disabled
 		return 0
-	if (!ticker)
+	if (!SSticker)
 		return 0
 	if (!operating) //in case of emag
 		operating = 1

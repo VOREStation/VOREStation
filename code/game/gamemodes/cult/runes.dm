@@ -666,7 +666,7 @@ var/list/sacrificed = list()
 			if(lamb.species.rarity_value > 3)
 				worth = 1
 
-		if (ticker.mode.name == "cult")
+		if (SSticker.mode.name == "cult")
 			if(H.mind == cult.sacrifice_target)
 				if(cultsinrange.len >= 3)
 					sacrificed += H.mind
@@ -991,7 +991,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/bloodboil() //cultists need at least one DANGEROUS rune. Even if they're all stealthy.
 /*
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in ticker.mode.cult)
+	for(var/datum/mind/H in SSticker.mode.cult)
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 */

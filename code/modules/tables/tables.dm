@@ -72,7 +72,7 @@ var/list/table_icon_cache = list()
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
-	update_connections(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	update_connections(SSticker && SSticker.current_state == GAME_STATE_PLAYING)
 	update_icon()
 	update_desc()
 	update_material()
