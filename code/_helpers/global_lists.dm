@@ -1088,14 +1088,14 @@ GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
 	"Hologram"     = 'icons/mob/screen1_robot_minimalist.dmi'
 	)
 
-var/global/list/all_tooltip_styles = list(
+GLOBAL_LIST_INIT(all_tooltip_styles, list(
 	"Midnight",		//Default for everyone is the first one,
 	"Plasmafire",
 	"Retro",
 	"Slimecore",
 	"Operative",
 	"Clockwork"
-	)
+	))
 
 //Global Datums
 var/global/datum/pipe_icon_manager/icon_manager
