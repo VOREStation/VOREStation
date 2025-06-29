@@ -3,17 +3,11 @@ name: Run Extra Map Tests
 on:
   workflow_call:
     inputs:
-      map:
-        required: true
-        type: string
       major:
         required: false
         type: string
       minor:
         required: false
-        type: string
-      max_required_byond_client:
-        required: true
         type: string
 
 jobs:
