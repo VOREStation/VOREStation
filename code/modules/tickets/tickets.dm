@@ -652,7 +652,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 	level = level + 1
 
-	state_change_discord("has been escalated", usr)
+	state_change_discord("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
 	message_mentors("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
 	log_admin("[key_name(usr)] escalated ticket [src.name]")
 	to_chat(src.initiator, span_mentor("[usr.ckey] escalated your ticket to admins."))
@@ -861,7 +861,3 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			return founds
 
 	return msg
-
-/datum/ticket/proc/state_change_discord(new_state, mob/user)
-	if(CONFIG_GET(flag/discord_ahelps_all))
-		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: TICKETID:[id] [new_state] by [key_name(user,FALSE,FALSE)].")
