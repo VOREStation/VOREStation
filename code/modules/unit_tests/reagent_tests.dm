@@ -5,7 +5,6 @@
 /datum/unit_test/reagent_shall_have_unique_name_and_id
 
 /datum/unit_test/reagent_shall_have_unique_name_and_id/Run()
-	var/failed = FALSE
 	var/collection_name = list()
 	var/collection_id = list()
 
@@ -205,7 +204,7 @@
 		TEST_FAIL("[CR.type]: Reagents - Used [test_react] but failed.")
 	return TRUE
 
-/datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
 /// Test that makes sure that chemical grinding has valid results
