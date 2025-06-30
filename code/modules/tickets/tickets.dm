@@ -319,9 +319,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	var/list/activemins = adm["present"]
 	var activeMins = activemins.len
 	if(is_bwoink)
-		ahelp_discord_message("ADMINHELP: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 	else
-		ahelp_discord_message("ADMINHELP: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
@@ -469,6 +469,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
 	//TicketPanel()	//can only be done from here, so refresh it
+	state_change_discord("has been reopened", usr)
 
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
@@ -503,6 +504,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name_admin(usr)]."
 		message_admins(msg)
 		log_admin(msg)
+		state_change_discord("has been closed", usr)
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
 			list(
@@ -532,6 +534,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		else if (type == 0)
 			message_admins(msg)
 
+		state_change_discord("has been resolved")
 		log_admin(msg)
 		if(type == 1)
 			SSwebhooks.send(
@@ -557,6 +560,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 							[span_red(span_bold("Your admin help was rejected."))]<br>\
 							Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting."))
 
+	state_change_discord("has been rejected", usr)
 	feedback_inc("ahelp_reject")
 	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name_admin(usr)]"
 	message_admins(msg)
@@ -584,6 +588,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		to_chat(initiator, span_filter_pm(msg))
 
+	state_change_discord("has been marked as IC issue", usr)
 	feedback_inc("ahelp_icissue")
 	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name_admin(usr)]"
 	message_admins(msg)
@@ -618,6 +623,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		to_chat(initiator, msg)
 
+	state_change_discord("is being handled", usr)
 	feedback_inc("ahelp_handling")
 	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr,FALSE,FALSE)]"
 	message_admins(msg)
@@ -652,6 +658,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 	level = level + 1
 
+	state_change_discord("has been escalated", usr)
 	message_mentors("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
 	log_admin("[key_name(usr)] escalated ticket [src.name]")
 	to_chat(src.initiator, span_mentor("[usr.ckey] escalated your ticket to admins."))
@@ -860,3 +867,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			return founds
 
 	return msg
+
+/datum/ticket/proc/state_change_discord(new_state, mob/user)
+	if(CONFIG_GET(flag/discord_ahelps_all))
+		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: TICKETID:[id] [new_state] by [key_name(user,FALSE,FALSE)].")
