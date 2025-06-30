@@ -45,6 +45,6 @@
 	var/alice_cooldown_allow = SSsqlite.get_feedback_cooldown("Alice", days_to_wait, stub_sqlite_db)
 
 	// Assert.
-	TEST_ASSERT(alice_cooldown_block >= 0, "User 'Alice' did not receive a cooldown, when they were supposed to.")
-	TEST_ASSERT(bob_cooldown < 0, "User 'Bob' did receive a cooldown, when they did not do anything.")
-	TEST_ASSERT(alice_cooldown_allow < 0, "User 'Alice' did receive a cooldown, when no cooldown is supposed to be enforced.")
+	TEST_ASSERT(alice_cooldown_block > 0, "User 'Alice' did not receive a cooldown, when they were supposed to.")
+	TEST_ASSERT(bob_cooldown <= 0, "User 'Bob' did receive a cooldown, when they did not do anything.")
+	TEST_ASSERT(alice_cooldown_allow <= 0, "User 'Alice' did receive a cooldown, when no cooldown is supposed to be enforced.")
