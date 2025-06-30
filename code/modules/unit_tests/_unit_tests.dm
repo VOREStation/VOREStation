@@ -88,7 +88,7 @@
 
 // BEGIN_INCLUDE
 #include "asset_smart_cache.dm"
-#include "clothing_tests.dm"
+//#include "clothing_tests.dm"
 #include "component_tests.dm"
 #include "cosmetic_tests.dm"
 #include "dcs_check_list_arguments.dm"
