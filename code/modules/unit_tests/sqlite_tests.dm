@@ -5,8 +5,8 @@
 
 /datum/unit_test/sqlite_tests_insert/Run()
 	// Arrange.
-	fdel("data/sqlite/testing_[name].db") // In case any remain from a previous local test, so we can have a clean new database.
-	var/database/stub_sqlite_db = new("data/sqlite/testing_[name].db") // Unfortunately, byond doesn't like having working sqlite stuff w/o a file existing.
+	fdel("data/sqlite/testing_sqlite_tests_insert.db") // In case any remain from a previous local test, so we can have a clean new database.
+	var/database/stub_sqlite_db = new("data/sqlite/testing_sqlite_tests_insert.db") // Unfortunately, byond doesn't like having working sqlite stuff w/o a file existing.
 	SSsqlite.init_schema(stub_sqlite_db)
 
 	var/test_author = "alice"
@@ -30,8 +30,8 @@
 
 /datum/unit_test/sqlite_tests_cooldown/Run()
 	// Arrange.
-	fdel("data/sqlite/testing_[name].db") // In case any remain from a previous local test, so we can have a clean new database.
-	var/database/stub_sqlite_db = new("data/sqlite/testing_[name].db") // Unfortunately, byond doesn't like having working sqlite stuff w/o a file existing.
+	fdel("data/sqlite/testing_sqlite_tests_cooldown.db") // In case any remain from a previous local test, so we can have a clean new database.
+	var/database/stub_sqlite_db = new("data/sqlite/testing_sqlite_tests_cooldown.db") // Unfortunately, byond doesn't like having working sqlite stuff w/o a file existing.
 	SSsqlite.init_schema(stub_sqlite_db)
 
 	var/days_to_wait = 1

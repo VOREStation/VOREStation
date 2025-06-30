@@ -5,87 +5,56 @@
 /datum/unit_test/sprite_accessories_shall_be_unique
 
 /datum/unit_test/sprite_accessories_shall_be_unique/Run()
-	var/failed = 0
-
-	failed += validate_accessory_list( /datum/sprite_accessory/ears)
-	failed += validate_accessory_list( /datum/sprite_accessory/facial_hair)
-	failed += validate_accessory_list( /datum/sprite_accessory/hair)
-	failed += validate_accessory_list( /datum/sprite_accessory/hair_accessory)
-	failed += validate_accessory_list( /datum/sprite_accessory/marking)
-	failed += validate_accessory_list( /datum/sprite_accessory/tail)
-	failed += validate_accessory_list( /datum/sprite_accessory/wing)
-
-	if(failed)
-		TEST_FAIL("One or more /datum/sprite_accessory definitions had invalid names, icon_states, or names were reused definitions")
+	validate_accessory_list(/datum/sprite_accessory/ears)
+	validate_accessory_list(/datum/sprite_accessory/facial_hair)
+	validate_accessory_list(/datum/sprite_accessory/hair)
+	validate_accessory_list(/datum/sprite_accessory/hair_accessory)
+	validate_accessory_list(/datum/sprite_accessory/marking)
+	validate_accessory_list(/datum/sprite_accessory/tail)
+	validate_accessory_list(/datum/sprite_accessory/wing)
 
 /datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_accessory_list(var/path)
-	var/failed = 0
-	var/total_good = 0
-	var/total_all = 0
-
 	var/list/collection = list()
 	for(var/SP in subtypesof(path))
-		total_all++
 		var/datum/sprite_accessory/A = new SP()
+		TEST_ASSERT(A, "[SP]: Cosmetic - Path resolved to null in list.")
 		if(!A)
-			TEST_NOTICE("[SP]: Cosmetic - Path resolved to null in list.")
 			continue
 
-		if(!A.name)
-			TEST_NOTICE("[A] - [A.type]: Cosmetic - Missing name.")
-			failed = 1
+		TEST_ASSERT(A.name, "[A] - [A.type]: Cosmetic - Missing name.")
 
 		if(A.name == DEVELOPER_WARNING_NAME)
 			continue
 
-		if(collection[A.name])
-			TEST_NOTICE("[A] - [A.type]: Cosmetic - Name defined twice. Original def [collection[A.name]]")
-			failed = 1
-		else
+		TEST_ASSERT(!collection[A.name], "[A] - [A.type]: Cosmetic - Name defined twice. Original def [collection[A.name]]")
+		if(!collection[A.name])
 			collection[A.name] = A.type
 
 		if(istype(A,text2path("[path]/invisible")))
-			if(A.icon_state)
-				TEST_NOTICE("[A] - [A.type]: Cosmetic - Invisible subtype has icon_state.")
-				failed = 1
+			TEST_ASSERT(!A.icon_state, "[A] - [A.type]: Cosmetic - Invisible subtype has icon_state.")
 		else if(!A.icon_state)
-			TEST_NOTICE("[A] - [A.type]: Cosmetic - Has no icon_state.")
-			failed = 1
+			TEST_ASSERT(A.icon_state, "[A] - [A.type]: Cosmetic - Has no icon_state.")
 		else
 			// Check if valid icon
-			failed += validate_icons(A)
+			validate_icons(A)
 
-		total_good++
 		qdel(A)
 
-	TEST_NOTICE("[path]: Cosmetic - Total valid count: [total_good]/[total_all].")
-	return failed
-
-/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_icons(var/datum/sprite_accessory/A)
-	var/failed = 0
+/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_icons(datum/sprite_accessory/A)
 	var/actual_icon_state = A.icon_state
+
 	if(istype(A,/datum/sprite_accessory/hair))
 		actual_icon_state = "[A.icon_state]_s"
-		if(!(actual_icon_state in cached_icon_states(A.icon)))
-			TEST_NOTICE("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
-			failed = 1
+		TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
 
 	if(istype(A,/datum/sprite_accessory/facial_hair))
 		actual_icon_state = "[A.icon_state]_s"
-		if(!(actual_icon_state in cached_icon_states(A.icon)))
-			TEST_NOTICE("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
-			failed = 1
+		TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
 
 	if(istype(A,/datum/sprite_accessory/marking))
 		var/datum/sprite_accessory/marking/MA = A
 		for(var/BP in MA.body_parts)
-			if(!(BP in BP_ALL))
-				TEST_NOTICE("[A] - [A.type]: Cosmetic - Has an illegal bodypart \"[BP]\". ONLY use parts listed in BP_ALL.")
-				failed = 1
+			TEST_ASSERT(BP in BP_ALL, "[A] - [A.type]: Cosmetic - Has an illegal bodypart \"[BP]\". ONLY use parts listed in BP_ALL.")
 
 			actual_icon_state = "[A.icon_state]-[BP]"
-			if(!(actual_icon_state in cached_icon_states(A.icon)))
-				TEST_NOTICE("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
-				failed = 1
-
-	return failed
+			TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")

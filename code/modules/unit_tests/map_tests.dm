@@ -3,8 +3,8 @@
 
 /// Test that tests the apcs, scrubbers and vents of the defined z-levels
 /datum/unit_test/apc_area_test
-	var/list/bad_areas = list()
-	var/area_test_count = 0
+
+/datum/unit_test/apc_area_test/Run()
 	var/list/exempt_areas = typesof(/area/space,
 					/area/syndicate_station,
 					/area/skipjack_station,
@@ -36,7 +36,6 @@
 						/area/vacant/vacant_shop
 						)
 
-/datum/unit_test/apc_area_test/Run()
 	// Some maps have areas specific to the map, so include those.
 	exempt_areas += using_map.unit_test_exempt_areas.Copy()
 	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
@@ -46,44 +45,28 @@
 
 	for(var/area/A in world)
 		if((A.z in zs_to_test) && !(A.type in exempt_areas))
-			area_test_count++
-			var/area_good = 1
 			var/bad_msg = "--------------- [A.name]([A.type])"
 
 			// Scan for areas with extra APCs
 			if(!(A.type in exempt_from_apc))
-				if(isnull(A.apc))
-					TEST_NOTICE("[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
-					area_good = 0
-				else
+				TEST_ASSERT_NOTNULL(A.apc, "[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
+
+				if(!isnull(A.apc))
 					var/list/apc_list = list()
 					for(var/turf/T in get_current_area_turfs(A))
 						for(var/atom/S in T.contents)
 							if(istype(S,/obj/machinery/power/apc))
 								apc_list.Add(S)
 					if(apc_list.len > 1)
-						area_good = 0
 						for(var/obj/machinery/power/P in apc_list)
-							TEST_NOTICE("[bad_msg] has too many APCs. (X[P.x]|Y[P.y]) - Z[P.z])")
+							TEST_FAIL("[bad_msg] has too many APCs. (X[P.x]|Y[P.y]) - Z[P.z])")
 
-			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
-				TEST_NOTICE("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
-				area_good = 0
-
-			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
-				TEST_NOTICE("[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z])")
-				area_good = 0
-
-			if(!area_good)
-				bad_areas.Add(A)
-
-	if(bad_areas.len)
-		TEST_FAIL("\[[bad_areas.len]/[area_test_count]\]Some areas lacked APCs, Air Scrubbers, or Air vents.")
+			TEST_ASSERT(!(!A.air_scrub_info.len && !(A.type in exempt_from_atmos)), "[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
+			TEST_ASSERT(!(!A.air_vent_info.len && !(A.type in exempt_from_atmos)), "[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z])")
 
 /// Test that tests cables on defined z-levels
 /datum/unit_test/wire_test
 	var/wire_test_count = 0
-	var/bad_tests = 0
 	var/turf/T = null
 	var/obj/structure/cable/C = null
 	var/list/cable_turfs = list()
@@ -114,18 +97,9 @@
 			for(C in T)
 				wire_test_count++
 				var/combined_dir = "[C.d1]-[C.d2]"
-				if(combined_dir in dirs_checked)
-					bad_tests++
-					TEST_NOTICE("[bad_msg] Contains multiple wires with same direction on top of each other.")
-				if(C.dir != SOUTH)
-					bad_tests++
-					TEST_NOTICE("[bad_msg] Contains wire with dir set, wires MUST face south, use icon_states.")
+				TEST_ASSERT(!(combined_dir in dirs_checked), "[bad_msg] Contains multiple wires with same direction on top of each other.")
+				TEST_ASSERT(C.dir == SOUTH, "[bad_msg] Contains wire with dir set, wires MUST face south, use icon_states.")
 				dirs_checked.Add(combined_dir)
-
-		TEST_NOTICE("[color] wires checked.")
-
-	if(bad_tests)
-		TEST_FAIL("\[[bad_tests] / [wire_test_count]\] Some turfs had overlapping wires going the same direction.")
 
 /// Test template no-ops on all maps
 /datum/unit_test/template_noops
@@ -147,10 +121,11 @@
 
 /// Test active edges on all maps
 /datum/unit_test/active_edges
+
+/datum/unit_test/active_edges/Run()
 	var/active_edges = SSair.active_edges.len
 	var/list/edge_log = list()
 
-/datum/unit_test/active_edges/Run()
 	if(active_edges)
 		for(var/connection_edge/E in SSair.active_edges)
 			var/a_temp = E.A.air.temperature
@@ -200,21 +175,13 @@
 /datum/unit_test/ladder_test/Run()
 	for(var/obj/structure/ladder/L in world)
 		var/turf/T = get_turf(L)
+		TEST_ASSERT(T, "[L.x].[L.y].[L.z]: Map - Ladder on invalid turf")
 		if(!T)
-			TEST_NOTICE("[L.x].[L.y].[L.z]: Map - Ladder on invalid turf")
-			failed = TRUE
 			continue
-		if(L.allowed_directions & UP)
-			if(!L.target_up)
-				TEST_NOTICE("[T.x].[T.y].[T.z]: Map - Ladder allows upward movement, but had no ladder above it")
-				failed = TRUE
-		if(L.allowed_directions & DOWN)
-			if(!L.target_down)
-				TEST_NOTICE("[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
-				failed = TRUE
-		if(T.density)
-			TEST_NOTICE("[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
-			failed = TRUE
 
-	if(failed)
-		TEST_FAIL("Ladders were incorrectly placed, or missing connections.")
+		if(L.allowed_directions & UP)
+			TEST_ASSERT(L.target_up, "[T.x].[T.y].[T.z]: Map - Ladder allows upward movement, but had no ladder above it")
+		if(L.allowed_directions & DOWN)
+			TEST_ASSERT(L.target_down, "[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
+
+		TEST_ASSERT(!T.density, "[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
