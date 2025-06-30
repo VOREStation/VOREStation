@@ -469,7 +469,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
 	//TicketPanel()	//can only be done from here, so refresh it
-	state_change_discord("has been reopened", usr)
 
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
@@ -504,7 +503,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name_admin(usr)]."
 		message_admins(msg)
 		log_admin(msg)
-		state_change_discord("has been closed", usr)
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
 			list(
@@ -534,7 +532,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		else if (type == 0)
 			message_admins(msg)
 
-		state_change_discord("has been resolved")
 		log_admin(msg)
 		if(type == 1)
 			SSwebhooks.send(
@@ -560,7 +557,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 							[span_red(span_bold("Your admin help was rejected."))]<br>\
 							Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting."))
 
-	state_change_discord("has been rejected", usr)
 	feedback_inc("ahelp_reject")
 	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name_admin(usr)]"
 	message_admins(msg)
@@ -588,7 +584,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		to_chat(initiator, span_filter_pm(msg))
 
-	state_change_discord("has been marked as IC issue", usr)
 	feedback_inc("ahelp_icissue")
 	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name_admin(usr)]"
 	message_admins(msg)
@@ -623,7 +618,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		to_chat(initiator, msg)
 
-	state_change_discord("is being handled", usr)
 	feedback_inc("ahelp_handling")
 	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr,FALSE,FALSE)]"
 	message_admins(msg)
