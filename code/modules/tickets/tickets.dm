@@ -319,9 +319,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	var/list/activemins = adm["present"]
 	var activeMins = activemins.len
 	if(is_bwoink)
-		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 	else
-		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
@@ -870,4 +870,4 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 
 /datum/ticket/proc/state_change_discord(new_state, mob/user)
 	if(CONFIG_GET(flag/discord_ahelps_all))
-		ahelp_discord_message("[level == 0 : "MENTORHELP" : "ADMINHELP"]: TICKETID:[id] [new_state] by [key_name(user,FALSE,FALSE)].")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: TICKETID:[id] [new_state] by [key_name(user,FALSE,FALSE)].")
