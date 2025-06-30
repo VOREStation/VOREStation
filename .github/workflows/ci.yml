@@ -29,6 +29,7 @@ jobs:
 
   run_all_tests:
     name: Integration Tests
+    needs: start_gate
     uses: ./.github/workflows/perform_regular_version_tests.yml
     with:
       maps: '{"paths":["USE_MAP_TETHER","USE_MAP_STELLARDELIGHT","USE_MAP_GROUNDBASE"]}'
@@ -36,6 +37,7 @@ jobs:
 
   run_extra_map_tests:
     name: Extra Map Tests
+    needs: start_gate
     uses: ./.github/workflows/run_extra_map_tests.yml
 
   completion_gate: # Serves as a non-moving target for branch rulesets
