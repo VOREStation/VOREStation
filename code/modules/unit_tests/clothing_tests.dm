@@ -26,8 +26,8 @@
 		failed += test_clothing(C)
 
 		if(i > tenths * a_tenth)
-			TEST_NOTICE("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
-			TEST_NOTICE("---------------------------------------------------")
+			//TEST_NOTICE("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			//TEST_NOTICE("---------------------------------------------------")
 			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
@@ -50,13 +50,8 @@
 		return FALSE
 
 	// ID
-	if(!C.name)
-		TEST_NOTICE("[C.type]: Clothing - Missing name.")
-		failed = TRUE
-
-	if(C.name == "")
-		TEST_NOTICE("[C.type]: Clothing - Empty name.")
-		failed = TRUE
+	TEST_ASSERT(C.name, "[C.type]: Clothing - Missing name.")
+	TEST_ASSERT(C.name != "", "[C.type]: Clothing - Empty name.")
 
 	// Icons
 	if(!("[C.icon_state]" in cached_icon_states(C.icon)))
@@ -105,9 +100,7 @@
 	#endif
 
 	// Temps
-	if(C.min_cold_protection_temperature < 0)
-		TEST_NOTICE("[C.type]: Clothing - Cold protection was lower than 0.")
-		failed = TRUE
+	TEST_ASSERT(C.min_cold_protection_temperature > 0, "[C.type]: Clothing - Cold protection was lower than 0.")
 
 	if(C.max_heat_protection_temperature && C.min_cold_protection_temperature && C.max_heat_protection_temperature < C.min_cold_protection_temperature)
 		TEST_NOTICE("[C.type]: Clothing - Maximum heat protection was greater than minimum cold protection.")

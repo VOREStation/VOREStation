@@ -15,47 +15,26 @@
 		if(R.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
-		if(R.name == "")
-			TEST_NOTICE("[Rpath]: Reagents - reagent name blank.")
-			failed = TRUE
+		TEST_ASSERT(R.name != "", "[Rpath]: Reagents - reagent name blank.")
+		TEST_ASSERT_NOTEQUAL(R.id, REAGENT_ID_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent ID not set.")
+		TEST_ASSERT_NOTEQUAL(R.description, REAGENT_DESC_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent description unset.")
 
-		if(R.id == REAGENT_ID_DEVELOPER_WARNING)
-			TEST_NOTICE("[Rpath]: Reagents - reagent ID not set.")
-			failed = TRUE
-
-		if(R.id == "")
-			TEST_NOTICE("[Rpath]: Reagents - reagent ID blank.")
-			failed = TRUE
-
-		if(R.id != lowertext(R.id))
-			TEST_NOTICE("[Rpath]: Reagents - Reagent ID must be all lowercase.")
-			failed = TRUE
+		TEST_ASSERT(R.id != "", "[Rpath]: Reagents - reagent ID blank.")
+		TEST_ASSERT_EQUAL(R.id, lowertext(R.id), "[Rpath]: Reagents - Reagent ID must be all lowercase.")
 
 		if(!(R.wiki_flag & WIKI_SPOILER)) // If wiki hidden then don't conflict test it against name, used for intentionally copied names like beer2's
-			if(collection_name[R.name])
-				TEST_NOTICE("[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
-				failed = TRUE
+			TEST_ASSERT(!collection_name[R.name], "[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
 			collection_name[R.name] = R.type
 
-		if(collection_id[R.id])
-			TEST_NOTICE("[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
-			failed = TRUE
+		TEST_ASSERT(!collection_id[R.id], "[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
 		collection_id[R.id] = R.type
 
-		if(R.description == REAGENT_DESC_DEVELOPER_WARNING)
-			TEST_NOTICE("[Rpath]: Reagents - reagent description unset.")
-			failed = TRUE
-
 		qdel(R)
-
-	if(failed)
-		TEST_FAIL("One or more /datum/reagent subtypes had invalid definitions.")
 
 /// Test that makes sure that chemical reactions use and produce valid reagents
 /datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents
 
 /datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents/Run()
-	var/failed = FALSE
 	var/list/collection_id = list()
 
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
@@ -64,83 +43,47 @@
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
-		if(!CR.name)
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had null name.")
-			failed = TRUE
+		TEST_ASSERT_NOTNULL(CR.name, "[CR.type]: Reagents - chemical reaction had null name.")
+		TEST_ASSERT(CR.name != "", "[CR.type]: Reagents - chemical reaction had blank name.")
+		TEST_ASSERT(CR.id, "[CR.type]: Reagents - chemical reaction had invalid ID.")
+		TEST_ASSERT_EQUAL(CR.id, lowertext(CR.id), "[CR.type]: Reagents - chemical reaction ID must be all lowercase.")
+		TEST_ASSERT(!(CR.id in collection_id), "[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
 
-		if(CR.name == "")
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had blank name.")
-			failed = TRUE
 
-		if(!CR.id)
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid ID.")
-			failed = TRUE
-
-		if(CR.id != lowertext(CR.id))
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID must be all lowercase.")
-			failed = TRUE
-
-		if(CR.id in collection_id)
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
-			failed = TRUE
-		else
+		if(!(CR.id in collection_id))
 			collection_id[CR.id] = CR.type
 
-		if(CR.result_amount < 0)
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
-			failed = TRUE
+		TEST_ASSERT(CR.result_amount > 0, "[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
 
 		if(CR.required_reagents && CR.required_reagents.len)
 			for(var/RR in CR.required_reagents)
-				if(!SSchemistry.chemical_reagents[RR])
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
-				if(CR.required_reagents[RR] <= 0)
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent amount or in invalid format \"[CR.required_reagents[RR]]\".")
-					failed = TRUE
-
+				TEST_ASSERT(SSchemistry.chemical_reagents[RR], "[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+				TEST_ASSERT(CR.required_reagents[RR] > 0, "[CR.type]: Reagents - chemical reaction had invalid required reagent amount or in invalid format \"[CR.required_reagents[RR]]\".")
 
 		if(CR.catalysts && CR.catalysts.len)
 			for(var/RR in CR.catalysts)
-				if(!SSchemistry.chemical_reagents[RR])
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
-				if(CR.catalysts[RR] <= 0)
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid catalysts amount or in invalid format \"[CR.catalysts[RR]]\".")
-					failed = TRUE
+				TEST_ASSERT(SSchemistry.chemical_reagents[RR], "[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+				TEST_ASSERT(CR.catalysts[RR] > 0, "[CR.type]: Reagents - chemical reaction had invalid catalysts amount or in invalid format \"[CR.catalysts[RR]]\".")
 
 		if(CR.inhibitors && CR.inhibitors.len)
 			for(var/RR in CR.inhibitors)
-				if(!SSchemistry.chemical_reagents[RR])
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
-				if(CR.inhibitors[RR] <= 0)
-					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid inhibitors amount or in invalid format \"[CR.inhibitors[RR]]\".")
-					failed = TRUE
+				TEST_ASSERT(SSchemistry.chemical_reagents[RR], "[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+				TEST_ASSERT(CR.inhibitors[RR] > 0, "[CR.type]: Reagents - chemical reaction had invalid inhibitors amount or in invalid format \"[CR.inhibitors[RR]]\".")
 
 		if(CR.result)
-			if(!SSchemistry.chemical_reagents[CR.result])
-				TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
-				failed = TRUE
-
-	if(failed)
-		TEST_FAIL("One or more /decl/chemical_reaction subtypes had invalid results or components.")
+			TEST_ASSERT(SSchemistry.chemical_reagents[CR.result], "[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
 
 /// Test that makes sure that prefilled reagent containers have valid reagents
 /datum/unit_test/prefilled_reagent_containers_shall_have_valid_reagents
 
 /datum/unit_test/prefilled_reagent_containers_shall_have_valid_reagents/Run()
-	var/failed = FALSE
-
 	var/obj/container = new /obj
 	for(var/RC in subtypesof(/obj/item/reagent_containers/glass))
 		var/obj/item/reagent_containers/glass/R = new RC(container)
 
 		if(R.prefill && R.prefill.len)
 			for(var/ID in R.prefill)
-				if(!SSchemistry.chemical_reagents[ID])
-					TEST_NOTICE("[RC]: Reagents - reagent prefill had invalid reagent ID \"[ID]\".")
-					failed = TRUE
+				TEST_ASSERT(SSchemistry.chemical_reagents[ID], "[RC]: Reagents - reagent prefill had invalid reagent ID \"[ID]\".")
 
 		qdel(R)
 
@@ -148,16 +91,11 @@
 		var/obj/item/reagent_containers/chem_disp_cartridge/D = new DC(container)
 
 		if(D.spawn_reagent)
-			if(!SSchemistry.chemical_reagents[D.spawn_reagent])
-				TEST_NOTICE("[DC]: Reagents - chemical dispenser cartridge had invalid reagent ID \"[D.spawn_reagent]\".")
-				failed = TRUE
+			TEST_ASSERT(SSchemistry.chemical_reagents[D.spawn_reagent], "[DC]: Reagents - chemical dispenser cartridge had invalid reagent ID \"[D.spawn_reagent]\".")
 
 		qdel(D)
 
 	qdel(container)
-
-	if(failed)
-		TEST_FAIL("One or more /obj/item/reagent_containers had an invalid prefill reagent.")
 
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
@@ -245,7 +183,7 @@
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
 		for(var/decl/chemical_reaction/test_react in result_reactions)
-			TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
+			TEST_FAIL("[CR.type]: Reagents - Used [test_react] but failed.")
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
@@ -264,7 +202,7 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
+		TEST_FAIL("[CR.type]: Reagents - Used [test_react] but failed.")
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
@@ -293,5 +231,14 @@
 				TEST_NOTICE("[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
 				failed = TRUE
 
-	if(failed)
-		TEST_FAIL("One or more grindable sheet or ore entries had invalid reagents or lists.")
+		// Cursed test
+		TEST_ASSERT(!(!results || !islist(results)), "[grind]: Reagents - Grinding result had invalid list.")
+		if(!results || !islist(results))
+			continue
+
+		TEST_ASSERT(results.len, "[grind]: Reagents - Grinding result had empty.")
+		if(!results.len)
+			continue
+
+		for(var/reg_id in results)
+			TEST_ASSERT(SSchemistry.chemical_reagents[reg_id], "[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
