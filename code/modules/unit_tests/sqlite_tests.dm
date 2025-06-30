@@ -35,7 +35,6 @@
 	SSsqlite.init_schema(stub_sqlite_db)
 
 	var/days_to_wait = 1
-	var/issues = 0
 
 	// Act.
 	SSsqlite.insert_feedback(author = "Alice", topic = "Testing", content = "This is a test.", sqlite_object = stub_sqlite_db)
