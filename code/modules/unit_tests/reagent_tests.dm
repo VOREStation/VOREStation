@@ -1,7 +1,10 @@
-/datum/unit_test/reagent_shall_have_unique_name_and_id
-	name = "REAGENTS: Reagent IDs and names shall be unique"
+/// converted unit test, maybe should be fully refactored
+/// MIGHT REQUIRE BIGGER REWORK
 
-/datum/unit_test/reagent_shall_have_unique_name_and_id/start_test()
+/// Test that makes sure that reagent ids and names are unique
+/datum/unit_test/reagent_shall_have_unique_name_and_id
+
+/datum/unit_test/reagent_shall_have_unique_name_and_id/Run()
 	var/failed = FALSE
 	var/collection_name = list()
 	var/collection_id = list()
@@ -13,50 +16,45 @@
 			continue
 
 		if(R.name == "")
-			log_unit_test("[Rpath]: Reagents - reagent name blank.")
+			TEST_NOTICE("[Rpath]: Reagents - reagent name blank.")
 			failed = TRUE
 
 		if(R.id == REAGENT_ID_DEVELOPER_WARNING)
-			log_unit_test("[Rpath]: Reagents - reagent ID not set.")
+			TEST_NOTICE("[Rpath]: Reagents - reagent ID not set.")
 			failed = TRUE
 
 		if(R.id == "")
-			log_unit_test("[Rpath]: Reagents - reagent ID blank.")
+			TEST_NOTICE("[Rpath]: Reagents - reagent ID blank.")
 			failed = TRUE
 
 		if(R.id != lowertext(R.id))
-			log_unit_test("[Rpath]: Reagents - Reagent ID must be all lowercase.")
+			TEST_NOTICE("[Rpath]: Reagents - Reagent ID must be all lowercase.")
 			failed = TRUE
 
 		if(!(R.wiki_flag & WIKI_SPOILER)) // If wiki hidden then don't conflict test it against name, used for intentionally copied names like beer2's
 			if(collection_name[R.name])
-				log_unit_test("[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
+				TEST_NOTICE("[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
 				failed = TRUE
 			collection_name[R.name] = R.type
 
 		if(collection_id[R.id])
-			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
+			TEST_NOTICE("[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
 			failed = TRUE
 		collection_id[R.id] = R.type
 
 		if(R.description == REAGENT_DESC_DEVELOPER_WARNING)
-			log_unit_test("[Rpath]: Reagents - reagent description unset.")
+			TEST_NOTICE("[Rpath]: Reagents - reagent description unset.")
 			failed = TRUE
 
 		qdel(R)
 
 	if(failed)
-		fail("One or more /datum/reagent subtypes had invalid definitions.")
-	else
-		pass("All /datum/reagent subtypes had correct settings.")
-	return TRUE
+		TEST_FAIL("One or more /datum/reagent subtypes had invalid definitions.")
 
-
-
+/// Test that makes sure that chemical reactions use and produce valid reagents
 /datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents
-	name = "REAGENTS: Chemical Reactions shall use and produce valid reagents"
 
-/datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents/start_test()
+/datum/unit_test/chemical_reactions_shall_use_and_produce_valid_reagents/Run()
 	var/failed = FALSE
 	var/list/collection_id = list()
 
@@ -67,76 +65,71 @@
 			continue
 
 		if(!CR.name)
-			log_unit_test("[CR.type]: Reagents - chemical reaction had null name.")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had null name.")
 			failed = TRUE
 
 		if(CR.name == "")
-			log_unit_test("[CR.type]: Reagents - chemical reaction had blank name.")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had blank name.")
 			failed = TRUE
 
 		if(!CR.id)
-			log_unit_test("[CR.type]: Reagents - chemical reaction had invalid ID.")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid ID.")
 			failed = TRUE
 
 		if(CR.id != lowertext(CR.id))
-			log_unit_test("[CR.type]: Reagents - chemical reaction ID must be all lowercase.")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID must be all lowercase.")
 			failed = TRUE
 
 		if(CR.id in collection_id)
-			log_unit_test("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
 			failed = TRUE
 		else
 			collection_id[CR.id] = CR.type
 
 		if(CR.result_amount < 0)
-			log_unit_test("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
 			failed = TRUE
 
 		if(CR.required_reagents && CR.required_reagents.len)
 			for(var/RR in CR.required_reagents)
 				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
 				if(CR.required_reagents[RR] <= 0)
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent amount or in invalid format \"[CR.required_reagents[RR]]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent amount or in invalid format \"[CR.required_reagents[RR]]\".")
 					failed = TRUE
 
 
 		if(CR.catalysts && CR.catalysts.len)
 			for(var/RR in CR.catalysts)
 				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
 				if(CR.catalysts[RR] <= 0)
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid catalysts amount or in invalid format \"[CR.catalysts[RR]]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid catalysts amount or in invalid format \"[CR.catalysts[RR]]\".")
 					failed = TRUE
 
 		if(CR.inhibitors && CR.inhibitors.len)
 			for(var/RR in CR.inhibitors)
 				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
 				if(CR.inhibitors[RR] <= 0)
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid inhibitors amount or in invalid format \"[CR.inhibitors[RR]]\".")
+					TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid inhibitors amount or in invalid format \"[CR.inhibitors[RR]]\".")
 					failed = TRUE
 
 		if(CR.result)
 			if(!SSchemistry.chemical_reagents[CR.result])
-				log_unit_test("[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
+				TEST_NOTICE("[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
 				failed = TRUE
 
 	if(failed)
-		fail("One or more /decl/chemical_reaction subtypes had invalid results or components.")
-	else
-		pass("All /decl/chemical_reaction subtypes had correct settings.")
-	return TRUE
+		TEST_FAIL("One or more /decl/chemical_reaction subtypes had invalid results or components.")
 
-
-
+/// Test that makes sure that prefilled reagent containers have valid reagents
 /datum/unit_test/prefilled_reagent_containers_shall_have_valid_reagents
-	name = "REAGENTS: Prefilled reagent containers shall have valid reagents"
 
-/datum/unit_test/prefilled_reagent_containers_shall_have_valid_reagents/start_test()
+/datum/unit_test/prefilled_reagent_containers_shall_have_valid_reagents/Run()
 	var/failed = FALSE
 
 	var/obj/container = new /obj
@@ -146,7 +139,7 @@
 		if(R.prefill && R.prefill.len)
 			for(var/ID in R.prefill)
 				if(!SSchemistry.chemical_reagents[ID])
-					log_unit_test("[RC]: Reagents - reagent prefill had invalid reagent ID \"[ID]\".")
+					TEST_NOTICE("[RC]: Reagents - reagent prefill had invalid reagent ID \"[ID]\".")
 					failed = TRUE
 
 		qdel(R)
@@ -156,7 +149,7 @@
 
 		if(D.spawn_reagent)
 			if(!SSchemistry.chemical_reagents[D.spawn_reagent])
-				log_unit_test("[DC]: Reagents - chemical dispenser cartridge had invalid reagent ID \"[D.spawn_reagent]\".")
+				TEST_NOTICE("[DC]: Reagents - chemical dispenser cartridge had invalid reagent ID \"[D.spawn_reagent]\".")
 				failed = TRUE
 
 		qdel(D)
@@ -164,18 +157,14 @@
 	qdel(container)
 
 	if(failed)
-		fail("One or more /obj/item/reagent_containers had an invalid prefill reagent.")
-	else
-		pass("All /obj/item/reagent_containers had valid prefill reagents.")
-	return TRUE
+		TEST_FAIL("One or more /obj/item/reagent_containers had an invalid prefill reagent.")
 
-
+/// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
-	name = "REAGENTS: Chemical Reactions shall not conflict"
 	var/obj/fake_beaker = null
 	var/list/result_reactions = list()
 
-/datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
+/datum/unit_test/chemical_reactions_shall_not_conflict/Run()
 	var/failed = FALSE
 
 	#ifdef UNIT_TEST
@@ -217,17 +206,14 @@
 		if(perform_reaction(CR))
 			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 			// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
-			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			TEST_NOTICE("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	qdel_null(fake_beaker)
 	#endif
 
 	if(failed)
-		fail("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
-	else
-		pass("All /decl/chemical_reaction subtypes had no conflicts.")
-	return TRUE
+		TEST_FAIL("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
 	// clear for inhibitor searches
@@ -259,7 +245,7 @@
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
 		for(var/decl/chemical_reaction/test_react in result_reactions)
-			log_unit_test("[CR.type]: Reagents - Used [test_react] but failed.")
+			TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
@@ -278,17 +264,16 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		log_unit_test("[CR.type]: Reagents - Used [test_react] but failed.")
+		TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
-
+/// Test that makes sure that chemical grinding has valid results
 /datum/unit_test/chemical_grinding_must_produce_valid_results
-	name = "REAGENTS: Chemical Grinding Must Have Valid Results"
 
-/datum/unit_test/chemical_grinding_must_produce_valid_results/start_test()
+/datum/unit_test/chemical_grinding_must_produce_valid_results/Run()
 	var/failed = FALSE
 
 	for(var/grind in GLOB.sheet_reagents + GLOB.ore_reagents)
@@ -296,20 +281,17 @@
 		if(!results)
 			results = GLOB.ore_reagents[grind]
 		if(!results || !islist(results))
-			log_unit_test("[grind]: Reagents - Grinding result had invalid list.")
+			TEST_NOTICE("[grind]: Reagents - Grinding result had invalid list.")
 			failed = TRUE
 			continue
 		if(!results.len)
-			log_unit_test("[grind]: Reagents - Grinding result had empty.")
+			TEST_NOTICE("[grind]: Reagents - Grinding result had empty.")
 			failed = TRUE
 			continue
 		for(var/reg_id in results)
 			if(!SSchemistry.chemical_reagents[reg_id])
-				log_unit_test("[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
+				TEST_NOTICE("[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
 				failed = TRUE
 
 	if(failed)
-		fail("One or more grindable sheet or ore entries had invalid reagents or lists.")
-	else
-		pass("All grindable sheet or ore entries had valid lists and reagents.")
-	return TRUE
+		TEST_FAIL("One or more grindable sheet or ore entries had invalid reagents or lists.")

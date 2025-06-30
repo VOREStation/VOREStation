@@ -1,17 +1,19 @@
-/datum/unit_test/all_robot_sprites_must_be_valid
-	name = "ROBOTS: Robot sprites must be valid"
-	var/signal_failed = FALSE
+/// converted unit test, maybe should be fully refactored
+/// MIGHT REQUIRE BIGGER REWORK
 
-/datum/unit_test/all_robot_sprites_must_be_valid/start_test()
+/// Test that all robot sprites are valid
+/datum/unit_test/all_robot_sprites_must_be_valid
+	var/signal_failed = FALSE
 	var/failed = 0
 
+/datum/unit_test/all_robot_sprites_must_be_valid/Run()
 	for(var/sprite in subtypesof(/datum/robot_sprite))
 		var/datum/robot_sprite/RS = new sprite()
 		if(!RS.name) // Parent type, ignore me
 			continue
 
 		if(!RS.sprite_icon)
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing sprite_icon.")
+			TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing sprite_icon.")
 			failed = TRUE
 			continue
 
@@ -190,35 +192,32 @@
 				failed = TRUE
 		if(RS.has_dead_sprite_overlay) // Only one per dmi
 			if(!("wreck-overlay" in cached_icon_states(RS.sprite_icon)))
-				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
+				TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
 				failed = TRUE
 		// offset
 		var/icon/I = new(RS.sprite_icon)
 		if(RS.icon_x != I.Width())
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_x \"[RS.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
+			TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_x \"[RS.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
 			failed = TRUE
 		if(RS.icon_y != I.Height())
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_y \"[RS.icon_y]\" did not match dmi configured height \"[I.Height()]\"")
+			TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", icon_y \"[RS.icon_y]\" did not match dmi configured height \"[I.Height()]\"")
 			failed = TRUE
 		if(RS.icon_y != RS.vis_height)
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", vis_height \"[RS.vis_height]\" did not match icon_y \"[RS.icon_y]\"")
+			TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", vis_height \"[RS.vis_height]\" did not match icon_y \"[RS.icon_y]\"")
 			failed = TRUE
 		var/legal_offset = (I.Width() - world.icon_size) / 2
 		if(RS.pixel_x != -legal_offset)
-			log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[-legal_offset]\"")
+			TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", pixel_x \"[RS.pixel_x]\" did not have correct offset, should be \"[-legal_offset]\"")
 			failed = TRUE
 		qdel(I)
 		qdel(RS)
 
 	if(failed)
-		fail("One or more /datum/robot_sprite items had invalid flags or icons")
-	else
-		pass("All /datum/robot_sprite are valid.")
-	return 1
+		TEST_FAIL("One or more /datum/robot_sprite items had invalid flags or icons")
 
-/datum/unit_test/all_robot_sprites_must_be_valid/proc/check_state(var/datum/robot_sprite/RS,var/append)
+/datum/unit_test/all_robot_sprites_must_be_valid/proc/check_state(var/datum/robot_sprite/RS, var/append)
 	var/check_state = "[RS.sprite_icon_state][append]"
 	if(!(check_state in cached_icon_states(RS.sprite_icon)))
-		log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
+		TEST_NOTICE("[RS.type]: Robots - Robot sprite \"[RS.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[RS.sprite_icon]\".")
 		return TRUE
 	return FALSE

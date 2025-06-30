@@ -1,3 +1,5 @@
+/// converted unit test, maybe should be fully refactored
+
 /// Test that a material should have all the name variables set
 /datum/unit_test/materials_shall_have_names
 

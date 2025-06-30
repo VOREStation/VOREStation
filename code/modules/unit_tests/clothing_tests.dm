@@ -1,8 +1,12 @@
+/// converted unit test, maybe should be fully refactored
+/// MIGHT REQUIRE BIGGER REWORK
+
+/// Test that checks if all clothing is valid
 /datum/unit_test/all_clothing_shall_be_valid
-	name = "CLOTHING: All clothing shall be valid"
 	var/signal_failed = FALSE
 
-/datum/unit_test/all_clothing_shall_be_valid/start_test()
+
+/datum/unit_test/all_clothing_shall_be_valid/Run()
 	var/failed = 0
 	var/obj/storage = new()
 
@@ -22,8 +26,8 @@
 		failed += test_clothing(C)
 
 		if(i > tenths * a_tenth)
-			log_unit_test("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
-			log_unit_test("---------------------------------------------------")
+			TEST_NOTICE("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			TEST_NOTICE("---------------------------------------------------")
 			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
@@ -36,10 +40,7 @@
 	qdel(storage)
 
 	if(failed)
-		fail("One or more /obj/item/clothing items had invalid flags or icons")
-	else
-		pass("All /obj/item/clothing are valid.")
-	return 1
+		TEST_FAIL("One or more /obj/item/clothing items had invalid flags or icons")
 
 /datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(var/obj/item/clothing/C,var/obj/storage)
 	var/failed = FALSE
@@ -50,19 +51,19 @@
 
 	// ID
 	if(!C.name)
-		log_unit_test("[C.type]: Clothing - Missing name.")
+		TEST_NOTICE("[C.type]: Clothing - Missing name.")
 		failed = TRUE
 
 	if(C.name == "")
-		log_unit_test("[C.type]: Clothing - Empty name.")
+		TEST_NOTICE("[C.type]: Clothing - Empty name.")
 		failed = TRUE
 
 	// Icons
 	if(!("[C.icon_state]" in cached_icon_states(C.icon)))
 		if(C.icon == initial(C.icon) && C.icon_state == initial(C.icon_state))
-			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon].")
+			TEST_NOTICE("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon].")
 		else
-			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
+			TEST_NOTICE("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
 	// Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
@@ -105,46 +106,46 @@
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
-		log_unit_test("[C.type]: Clothing - Cold protection was lower than 0.")
+		TEST_NOTICE("[C.type]: Clothing - Cold protection was lower than 0.")
 		failed = TRUE
 
 	if(C.max_heat_protection_temperature && C.min_cold_protection_temperature && C.max_heat_protection_temperature < C.min_cold_protection_temperature)
-		log_unit_test("[C.type]: Clothing - Maximum heat protection was greater than minimum cold protection.")
+		TEST_NOTICE("[C.type]: Clothing - Maximum heat protection was greater than minimum cold protection.")
 		failed = TRUE
 
 	//var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	if(C.cold_protection)
 		if(islist(C.cold_protection))
-			log_unit_test("[C.type]: Clothing - cold_protection was defined as a list, when it is a bitflag.")
+			TEST_NOTICE("[C.type]: Clothing - cold_protection was defined as a list, when it is a bitflag.")
 			failed = TRUE
 		else if(!isnum(C.cold_protection))
-			log_unit_test("[C.type]: Clothing - cold_protection was defined as something other than a number, when it is a bitflag.")
+			TEST_NOTICE("[C.type]: Clothing - cold_protection was defined as something other than a number, when it is a bitflag.")
 			failed = TRUE
 		else
 			if(C.cold_protection && C.cold_protection != FULL_BODY)
 				// Check flags that should be unused
 				if(C.cold_protection & FACE)
-					log_unit_test("[C.type]: Clothing - cold_protection uses FACE bitflag, this provides no protection, use HEAD.")
+					TEST_NOTICE("[C.type]: Clothing - cold_protection uses FACE bitflag, this provides no protection, use HEAD.")
 					failed = TRUE
 				if(C.cold_protection & EYES)
-					log_unit_test("[C.type]: Clothing - cold_protection uses EYES bitflag, this provides no protection, use HEAD.")
+					TEST_NOTICE("[C.type]: Clothing - cold_protection uses EYES bitflag, this provides no protection, use HEAD.")
 					failed = TRUE
 
 	if(C.heat_protection)
 		if(islist(C.heat_protection))
-			log_unit_test("[C.type]: Clothing - heat_protection was defined as a list, when it is a bitflag.")
+			TEST_NOTICE("[C.type]: Clothing - heat_protection was defined as a list, when it is a bitflag.")
 			failed = TRUE
 		else if(!isnum(C.heat_protection))
-			log_unit_test("[C.type]: Clothing - heat_protection was defined as something other than a number, when it is a bitflag.")
+			TEST_NOTICE("[C.type]: Clothing - heat_protection was defined as something other than a number, when it is a bitflag.")
 			failed = TRUE
 		else
 			if(C.heat_protection && C.heat_protection != FULL_BODY)
 				// Check flags that should be unused
 				if(C.heat_protection & FACE)
-					log_unit_test("[C.type]: Clothing - heat_protection uses FACE bitflag, this provides no protection, use HEAD.")
+					TEST_NOTICE("[C.type]: Clothing - heat_protection uses FACE bitflag, this provides no protection, use HEAD.")
 					failed = TRUE
 				if(C.heat_protection & EYES)
-					log_unit_test("[C.type]: Clothing - heat_protection uses EYES bitflag, this provides no protection, use HEAD.")
+					TEST_NOTICE("[C.type]: Clothing - heat_protection uses EYES bitflag, this provides no protection, use HEAD.")
 					failed = TRUE
 	return failed
 
@@ -172,6 +173,6 @@
 
 			// All that matters
 			if(!("[set_state]" in cached_icon_states(set_icon)))
-				log_unit_test("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
+				TEST_NOTICE("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
 				signal_failed = TRUE
 				return

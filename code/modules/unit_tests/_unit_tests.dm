@@ -88,7 +88,9 @@
 
 // BEGIN_INCLUDE
 #include "asset_smart_cache.dm"
+#include "clothing_tests.dm"
 #include "component_tests.dm"
+#include "cosmetic_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "decl_tests.dm"
@@ -98,12 +100,17 @@
 #include "genetics_tests.dm"
 #include "language_tests.dm"
 #include "loadout_tests.dm"
+#include "map_tests.dm"
 #include "material_tests.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
 #include "poster_tests.dm"
+#include "reagent_tests.dm"
 #include "recipe_tests.dm"
 #include "recycler_vendor_tests.dm"
+#include "research_tests.dm"
+#include "robot_tests.dm"
 #include "spritesheets.dm"
+#include "sqlite_tests.dm"
 #include "subsystem_init.dm"
 #include "tgui_create_message.dm"
 #include "timer_sanity.dm"
