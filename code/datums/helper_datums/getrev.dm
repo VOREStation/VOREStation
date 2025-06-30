@@ -1,82 +1,91 @@
 /datum/getrev
-	var/branch
-	var/revision
+	var/commit  // git rev-parse HEAD
 	var/date
-	var/showinfo
+	var/originmastercommit  // git rev-parse origin/master
 	var/list/testmerge = list()
 
 /datum/getrev/New()
-	if(world.TgsAvailable()) // Try TGS maybe
-		testmerge = world.TgsTestMerges()
-		var/datum/tgs_revision_information/REV = world.TgsRevision()
-		if(REV)
-			revision = REV.origin_commit || REV.commit
-			branch = "-Using TGS-" // TGS doesn't provide branch info yet
-			date = "-Using TGS-" // Or date
+	commit = rustg_git_revparse("HEAD")
+	if(commit)
+		date = rustg_git_commit_date(commit)
+	originmastercommit = rustg_git_revparse("origin/master")
 
-	if(!revision) // File parse method
-		var/list/head_branch = file2list(".git/HEAD", "\n")
-		if(head_branch.len)
-			branch = copytext(head_branch[1], 17)
+/datum/getrev/proc/load_tgs_info()
+	testmerge = world.TgsTestMerges()
+	var/datum/tgs_revision_information/revinfo = world.TgsRevision()
+	if(revinfo)
+		commit = revinfo.commit
+		originmastercommit = revinfo.origin_commit
+		date = revinfo.timestamp || rustg_git_commit_date(commit)
 
-		var/list/head_log = file2list(".git/logs/HEAD", "\n")
-		for(var/line=head_log.len, line>=1, line--)
-			if(head_log[line])
-				var/list/last_entry = splittext(head_log[line], " ")
-				if(last_entry.len < 2)	continue
-				revision = last_entry[2]
-				// Get date/time
-				if(last_entry.len >= 5)
-					var/unix_time = text2num(last_entry[5])
-					if(unix_time)
-						date = unix2date(unix_time)
-				break
+	// goes to DD log and config_error.txt
+	log_world(get_log_message())
 
-	to_world_log("-Revision Info-")
-	to_world_log("Branch: [branch]")
-	to_world_log("Date: [date]")
-	to_world_log("Revision: [revision]")
+/datum/getrev/proc/get_log_message()
+	var/list/msg = list()
+	msg += "Running /tg/ revision: [date]"
+	if(originmastercommit)
+		msg += "origin/master: [originmastercommit]"
+
+	for(var/line in testmerge)
+		var/datum/tgs_revision_information/test_merge/tm = line
+		msg += "Test merge active of PR #[tm.number] commit [tm.head_commit]"
+		//SSblackbox.record_feedback("associative", "testmerged_prs", 1, list("number" = "[tm.number]", "commit" = "[tm.head_commit]", "title" = "[tm.title]", "author" = "[tm.author]"))
+
+	if(commit && commit != originmastercommit)
+		msg += "HEAD: [commit]"
+	else if(!originmastercommit)
+		msg += "No commit information"
+
+	msg += "Running rust-g version [rustg_get_version()]"
+
+	return msg.Join("\n")
 
 /datum/getrev/proc/GetTestMergeInfo(header = TRUE)
-	. = list()
 	if(!testmerge.len)
-		return
-	if(header)
-		. += "The following pull requests are currently test merged:"
-	for(var/datum/tgs_revision_information/test_merge/tm as anything in testmerge)
-		var/cm = tm.pull_request_commit
+		return ""
+	. = header ? "The following pull requests are currently test merged:<br>" : ""
+	for(var/line in testmerge)
+		var/datum/tgs_revision_information/test_merge/tm = line
+		var/cm = tm.head_commit
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
-		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
-			continue
-		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a>"
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
 /client/verb/showrevinfo()
 	set category = "OOC.Game"
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 
-	if(!GLOB.revdata)
-		to_chat(src, span_warning("Please wait until server initializations are complete."))
-		return
-
 	var/list/msg = list()
+	// Round ID
+	if(GLOB.round_id)
+		msg += span_bold("Round ID") + ": [GLOB.round_id]"
 
-	if(GLOB.revdata.revision)
-		msg += span_bold("Server revision:") + " B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
-		if(CONFIG_GET(string/githuburl))
-			msg += span_bold("Commit:") + " <a href='[CONFIG_GET(string/githuburl)]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
-		else
-			msg += span_bold("Commit:") + " GLOB.revdata.revision"
-	else
-		msg += span_bold("Server revision:") + " Unknown"
+	msg += span_bold("BYOND Version") + ": [world.byond_version].[world.byond_build]"
+	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
+		msg += span_bold("Compiled with BYOND Version") + ": [DM_VERSION].[DM_BUILD]"
 
+	// Revision information
+	var/datum/getrev/revdata = GLOB.revdata
+	msg += span_bold("Server revision compiled on") + ": [revdata.date]"
+	var/pc = revdata.originmastercommit
+	if(pc)
+		msg += span_bold("Master commit") + ": <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+	if(length(revdata.testmerge))
+		msg += revdata.GetTestMergeInfo()
+	if(revdata.commit && revdata.commit != revdata.originmastercommit)
+		msg += span_bold("Local commit") + ": [revdata.commit]"
+	else if(!pc)
+		msg += "No commit information"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += span_bold("TGS version:") + " [version.raw_parameter]"
-		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += span_bold("DMAPI version:") + " [api_version.raw_parameter]"
+		msg += span_bold("TGS version") + ": [version.raw_parameter]"
+		msg += span_bold("DMAPI version") + ": [TGS_DMAPI_VERSION]"
 
-	if(GLOB.revdata.testmerge.len)
-		msg += GLOB.revdata.GetTestMergeInfo()
-
-	to_chat(src, msg.Join("<br>"))
+	// Game mode odds
+	//msg += "<br><b>Current Informational Settings:</b>"
+	//msg += "<b>Protect Authority Roles From Traitor:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Yes" : "No"]"
+	//msg += "<b>Protect Assistant Role From Traitor:</b> [CONFIG_GET(flag/protect_assistant_from_antagonist) ? "Yes" : "No"]"
+	//msg += "<b>Enforce Human Authority:</b> [CONFIG_GET(string/human_authority) ? "Yes" : "No"]"
+	//msg += "<b>Allow Latejoin Antagonists:</b> [CONFIG_GET(flag/allow_latejoin_antagonists) ? "Yes" : "No"]"
+	to_chat(src, fieldset_block("Server Revision Info", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)

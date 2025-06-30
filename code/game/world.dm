@@ -21,7 +21,7 @@
 	if(byond_version < RECOMMENDED_VERSION)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	TgsNew()
+	InitTgs()
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
@@ -29,7 +29,6 @@
 
 	ConfigLoaded()
 	makeDatumRefLists()
-	VgsNew()
 
 	var servername = CONFIG_GET(string/servername)
 	if(config && servername != null && CONFIG_GET(flag/server_suffix) && world.port > 0)
@@ -92,6 +91,11 @@
 
 	return
 
+/// Initializes TGS and loads the returned revising info into GLOB.revdata
+/world/proc/InitTgs()
+	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
+	GLOB.revdata.load_tgs_info()
+
 /// Runs after config is loaded but before Master is initialized
 /world/proc/ConfigLoaded()
 	// Everything in here is prioritized in a very specific way.
@@ -113,7 +117,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
-	VGS_TOPIC // VOREStation Edit - VGS
 	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
@@ -249,8 +252,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(positions)
 
 	else if(T == "revision")
-		if(GLOB.revdata.revision)
-			return list2params(list(branch = GLOB.revdata.branch, date = GLOB.revdata.date, revision = GLOB.revdata.revision))
+		if(GLOB.revdata.commit)
+			return list2params(list(testmerge = GLOB.revdata.testmerge, date = GLOB.revdata.date, commit = GLOB.revdata.commit, originmastercommit = GLOB.revdata.originmastercommit))
 		else
 			return "unknown"
 

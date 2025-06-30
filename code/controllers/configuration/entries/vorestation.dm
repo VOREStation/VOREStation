@@ -2,11 +2,7 @@
 /datum/config_entry/flag/items_survive_digestion
 	default = TRUE
 
-/datum/config_entry/string/vgs_access_identifier // VGS
-	default = null
-	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
-
-/datum/config_entry/number/vgs_server_port // VGS
+/datum/config_entry/number/register_server_port
 	default = null
 	min_val = 0
 	max_val = 65535

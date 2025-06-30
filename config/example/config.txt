@@ -451,10 +451,8 @@ ITEMS_SURVIVE_DIGESTION
 # Path to the folder that BYOND should export faxes into so they are readable on the web.
 #FAX_EXPORT_DIR data/faxes
 
-# TCP port on which to connect to the VGS instance.
-#VGS_SERVER_PORT 8888
-# Secret pre-shared-key to authenticate to VGS.
-#VGS_ACCESS_IDENTIFIER some_password_here
+# Port for helper script to add member roles in discord (see tools/registration)
+#REGISTER_SERVER_PORT 6969
 
 MULTI_Z_EXPLOSION_SCALAR 0.35
 

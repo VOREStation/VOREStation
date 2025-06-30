@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"windows": {
 				"command": ".\\tools\\build\\build.bat"
 			},
@@ -26,7 +26,7 @@
 		},
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"args": ["-DLOWMEMORYMODE"],
 			"windows": {
 				"command": ".\\tools\\build\\build.bat",
@@ -50,7 +50,7 @@
 		},
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_TETHER"],
 			"windows": {
 				"command": ".\\tools\\build\\build.bat",
@@ -74,7 +74,7 @@
 		},
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_STELLARDELIGHT"],
 			"windows": {
 				"command": ".\\tools\\build\\build.bat",
@@ -98,7 +98,7 @@
 		},
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_GROUNDBASE"],
 			"windows": {
 				"command": ".\\tools\\build\\build.bat",
@@ -122,7 +122,7 @@
 		},
 		{
 			"type": "process",
-			"command": "tools/build/build",
+			"command": "tools/build/build.sh",
 			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_MINITEST"],
 			"windows": {
 				"command": ".\\tools\\build\\build.bat",

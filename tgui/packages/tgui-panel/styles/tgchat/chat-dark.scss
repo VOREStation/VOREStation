@@ -1126,6 +1126,70 @@ img.icon.bigicon {
   border-bottom: 1px dashed hsl(0, 0%, 100%);
 }
 
+.fieldset_legend {
+  position: relative;
+  max-width: 95%;
+  font-size: 120%;
+  background-color: var(--color-section);
+  padding: var(--space-s) var(--space-m);
+  border-color: inherit;
+  z-index: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--border-thickness-tiny) solid;
+    border-color: inherit;
+    border-radius: var(--border-radius-medium);
+    mask-image: linear-gradient(to top, black 50%, transparent 50%);
+    z-index: -1;
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 10%, 10%);
+  border: var(--border-thickness-tiny) solid;
+  border-left: var(--border-thickness-large) solid;
+  border-color: hsla(220, 40%, 75%, 0.25);
+  margin: var(--space-m) 0;
+  padding: var(--space-m) var(--space-l);
+  border-radius: var(--border-radius-medium);
+
+  &.red_box {
+    background: hsl(0, 20%, 10%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 20%, 10%);
+    border-color: hsla(120, 100%, 50%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 20%, 10%);
+    border-color: hsla(225, 90%, 65%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 25%, 12.5%);
+    border-color: hsla(260, 100%, 75%, 0.5);
+  }
+
+  hr {
+    margin: var(--space-m) -0.75em;
+    border-color: inherit;
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 $alert-stripe-colors: (
   'default': hsl(199, 100%, 11%),
   'green': hsl(120, 100%, 12%),

@@ -639,7 +639,7 @@ var/global/list/light_type_cache = list()
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			new construct_type(src.loc, fixture = src)
+			new construct_type(src.loc, src)
 			qdel(src)
 			return
 
