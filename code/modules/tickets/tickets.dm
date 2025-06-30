@@ -652,8 +652,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 	level = level + 1
 
-	if(CONFIG_GET(flag/discord_ahelps_all))
-		ahelp_discord_message("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
+	AddInteraction("[key_name_admin(usr)] escalated Ticket.")
 	message_mentors("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
 	log_admin("[key_name(usr)] escalated ticket [src.name]")
 	to_chat(src.initiator, span_mentor("[usr.ckey] escalated your ticket to admins."))
