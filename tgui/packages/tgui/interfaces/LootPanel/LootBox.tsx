@@ -1,10 +1,10 @@
+import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
 import { IconDisplay } from './IconDisplay';
-import { type SearchGroup, type SearchItem } from './types';
+import type { SearchGroup, SearchItem } from './types';
 
 type Data = {
   is_blind: BooleanLike;
