@@ -1,7 +1,8 @@
-/datum/unit_test/apc_area_test
-	name = "MAP: Area Test APC / Scrubbers / Vents (Defined Z-Levels)"
+/// converted unit test, maybe should be fully refactored
+/// MIGHT REQUIRE BIGGER REWORK
 
-/datum/unit_test/apc_area_test/start_test()
+/// Test that tests the apcs, scrubbers and vents of the defined z-levels
+/datum/unit_test/apc_area_test
 	var/list/bad_areas = list()
 	var/area_test_count = 0
 	var/list/exempt_areas = typesof(/area/space,
@@ -14,7 +15,8 @@
 					/area/mine,
 					/area/vacant/vacant_shop,
 					/area/turbolift,
-					/area/submap					)
+					/area/submap
+					)
 
 	var/list/exempt_from_atmos = typesof(/area/maintenance,
 						/area/storage,
@@ -34,6 +36,7 @@
 						/area/vacant/vacant_shop
 						)
 
+/datum/unit_test/apc_area_test/Run()
 	// Some maps have areas specific to the map, so include those.
 	exempt_areas += using_map.unit_test_exempt_areas.Copy()
 	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
@@ -50,7 +53,7 @@
 			// Scan for areas with extra APCs
 			if(!(A.type in exempt_from_apc))
 				if(isnull(A.apc))
-					log_unit_test("[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
+					TEST_NOTICE("[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
 					area_good = 0
 				else
 					var/list/apc_list = list()
@@ -61,32 +64,24 @@
 					if(apc_list.len > 1)
 						area_good = 0
 						for(var/obj/machinery/power/P in apc_list)
-							log_unit_test("[bad_msg] has too many APCs. (X[P.x]|Y[P.y]) - Z[P.z])")
+							TEST_NOTICE("[bad_msg] has too many APCs. (X[P.x]|Y[P.y]) - Z[P.z])")
 
 			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
+				TEST_NOTICE("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
 				area_good = 0
 
 			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z])")
+				TEST_NOTICE("[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z])")
 				area_good = 0
 
 			if(!area_good)
 				bad_areas.Add(A)
 
 	if(bad_areas.len)
-		fail("\[[bad_areas.len]/[area_test_count]\]Some areas lacked APCs, Air Scrubbers, or Air vents.")
-	else
-		pass("All \[[area_test_count]\] areas contained APCs, Air scrubbers, and Air vents.")
+		TEST_FAIL("\[[bad_areas.len]/[area_test_count]\]Some areas lacked APCs, Air Scrubbers, or Air vents.")
 
-	return 1
-
+/// Test that tests cables on defined z-levels
 /datum/unit_test/wire_test
-	name = "MAP: Cable Test (Defined Z-Levels)"
-
-/datum/unit_test/wire_test/start_test()
-	set background=1
-
 	var/wire_test_count = 0
 	var/bad_tests = 0
 	var/turf/T = null
@@ -95,6 +90,8 @@
 	var/list/dirs_checked = list()
 
 	var/list/exempt_from_wires = list()
+
+/datum/unit_test/wire_test/Run()
 	exempt_from_wires += using_map.unit_test_exempt_from_wires.Copy()
 
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
@@ -119,29 +116,23 @@
 				var/combined_dir = "[C.d1]-[C.d2]"
 				if(combined_dir in dirs_checked)
 					bad_tests++
-					log_unit_test("[bad_msg] Contains multiple wires with same direction on top of each other.")
+					TEST_NOTICE("[bad_msg] Contains multiple wires with same direction on top of each other.")
 				if(C.dir != SOUTH)
 					bad_tests++
-					log_unit_test("[bad_msg] Contains wire with dir set, wires MUST face south, use icon_states.")
+					TEST_NOTICE("[bad_msg] Contains wire with dir set, wires MUST face south, use icon_states.")
 				dirs_checked.Add(combined_dir)
 
-		log_unit_test("[color] wires checked.")
+		TEST_NOTICE("[color] wires checked.")
 
 	if(bad_tests)
-		fail("\[[bad_tests] / [wire_test_count]\] Some turfs had overlapping wires going the same direction.")
-	else
-		pass("All \[[wire_test_count]\] wires had no overlapping cables going the same direction.")
+		TEST_FAIL("\[[bad_tests] / [wire_test_count]\] Some turfs had overlapping wires going the same direction.")
 
-	return 1
-
+/// Test template no-ops on all maps
 /datum/unit_test/template_noops
-	name = "MAP: Template no-ops (all maps)"
-
-/datum/unit_test/template_noops/start_test()
-
 	var/list/log = list()
-
 	var/turf_noop_count = 0
+
+/datum/unit_test/template_noops/Run()
 	for(var/turf/template_noop/T in world)
 		turf_noop_count++
 		log += "+-- Template Turf @ [T.x], [T.y], [T.z] ([T.loc])"
@@ -152,19 +143,14 @@
 		log += "+-- Template Area"
 
 	if(turf_noop_count || area_noop_count)
-		fail("Map contained [turf_noop_count] template turfs and [area_noop_count] template areas at round-start.\n" + log.Join("\n"))
-	else
-		pass("No template turfs or areas.")
+		TEST_FAIL("Map contained [turf_noop_count] template turfs and [area_noop_count] template areas at round-start.\n" + log.Join("\n"))
 
-	return 1
-
+/// Test active edges on all maps
 /datum/unit_test/active_edges
-	name = "MAP: Active edges (all maps)"
-
-/datum/unit_test/active_edges/start_test()
-
 	var/active_edges = SSair.active_edges.len
 	var/list/edge_log = list()
+
+/datum/unit_test/active_edges/Run()
 	if(active_edges)
 		for(var/connection_edge/E in SSair.active_edges)
 			var/a_temp = E.A.air.temperature
@@ -205,38 +191,30 @@
 				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
 
 	if(active_edges)
-		fail("Maps contained [active_edges] active edges at round-start.\n" + edge_log.Join("\n"))
-	else
-		pass("No active edges.")
+		TEST_FAIL("Maps contained [active_edges] active edges at round-start.\n" + edge_log.Join("\n"))
 
-	return 1
-
+/// Test the ladders on the maps
 /datum/unit_test/ladder_test
-	name = "MAP: Ladder Test"
-
-/datum/unit_test/ladder_test/start_test()
 	var/failed = FALSE
 
+/datum/unit_test/ladder_test/Run()
 	for(var/obj/structure/ladder/L in world)
 		var/turf/T = get_turf(L)
 		if(!T)
-			log_unit_test("[L.x].[L.y].[L.z]: Map - Ladder on invalid turf")
+			TEST_NOTICE("[L.x].[L.y].[L.z]: Map - Ladder on invalid turf")
 			failed = TRUE
 			continue
 		if(L.allowed_directions & UP)
 			if(!L.target_up)
-				log_unit_test("[T.x].[T.y].[T.z]: Map - Ladder allows upward movement, but had no ladder above it")
+				TEST_NOTICE("[T.x].[T.y].[T.z]: Map - Ladder allows upward movement, but had no ladder above it")
 				failed = TRUE
 		if(L.allowed_directions & DOWN)
 			if(!L.target_down)
-				log_unit_test("[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
+				TEST_NOTICE("[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
 				failed = TRUE
 		if(T.density)
-			log_unit_test("[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
+			TEST_NOTICE("[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
 			failed = TRUE
 
 	if(failed)
-		fail("Ladders were incorrectly placed, or missing connections.")
-	else
-		pass("All ladders were correctly placed and had connections.")
-	return failed
+		TEST_FAIL("Ladders were incorrectly placed, or missing connections.")
