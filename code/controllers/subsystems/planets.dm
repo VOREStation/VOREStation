@@ -5,7 +5,8 @@ SUBSYSTEM_DEF(planets)
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	dependencies = list(
-		/datum/controller/subsystem/plants
+		/datum/controller/subsystem/plants,
+		/datum/controller/subsystem/vis_overlays
 	)
 
 	var/static/list/planets = list()

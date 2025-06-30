@@ -3,6 +3,9 @@ SUBSYSTEM_DEF(overlays)
 	flags = SS_TICKER
 	wait = 1 // SS_TICKER - Ticks
 	priority = FIRE_PRIORITY_OVERLAYS
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
 
 	/// The queue of atoms that need overlay updates.
 	var/static/tmp/list/queue = list()
