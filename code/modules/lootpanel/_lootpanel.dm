@@ -56,6 +56,10 @@
 
 
 /datum/lootpanel/tgui_status(mob/user, datum/tgui_state/state)
+	// note: different from /tg/, we prohibit non-viewers from trying to update the window and close it automatically for them
+	if(!(user in viewers(source_turf)))
+		return STATUS_CLOSE
+
 	if(user.incapacitated())
 		return STATUS_DISABLED
 
