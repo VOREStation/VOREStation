@@ -37,7 +37,7 @@
 
 	// Icon generation conditions //////////////
 	// Condition 1: Icon is complex
-	if(ismob(item) || length(item.overlays) > 2)
+	if(ismob(item) || length(item.overlays) > 0)
 		return
 
 	// Condition 2: Can't get icon path
