@@ -1,0 +1,4 @@
+author: "Tost"
+delete-after: True
+changes:
+  - balance: "Emergency lights now last longer"
