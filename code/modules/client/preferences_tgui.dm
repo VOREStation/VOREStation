@@ -174,7 +174,6 @@
 					break
 			. = TRUE
 		if("game_prefs")
-			skip_character = TRUE
 			ui.user.client.game_options()
 			. = TRUE
 		if("refresh_character_preview")
