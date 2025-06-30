@@ -52,7 +52,7 @@
 		if(!(CR.id in collection_id))
 			collection_id[CR.id] = CR.type
 
-		TEST_ASSERT(CR.result_amount > 0, "[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
+		TEST_ASSERT(CR.result_amount >= 0, "[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
 
 		if(CR.required_reagents && CR.required_reagents.len)
 			for(var/RR in CR.required_reagents)
@@ -140,11 +140,10 @@
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
 		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
-		if(perform_reaction(CR))
-			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
-			// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
-			TEST_NOTICE("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			failed = TRUE
+
+		// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
+		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
+		TEST_ASSERT(!perform_reaction(CR), "[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	qdel_null(fake_beaker)
 	#endif

@@ -75,6 +75,8 @@
 	var/list/exempt_from_wires = list()
 
 /datum/unit_test/wire_test/Run()
+	set background = 1
+
 	exempt_from_wires += using_map.unit_test_exempt_from_wires.Copy()
 
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
