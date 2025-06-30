@@ -348,3 +348,9 @@
   ItsSelis:
   - admin: More verbs moved to the new subsystem
   - admin: Secrets panel overhauled
+2025-06-30:
+  Diana:
+  - rscadd: Starlight will come through windows and illuminate areas exposed to space!
+  Kashargul:
+  - bugfix: bunch of right issues with the new ticket system and mentors
+  - rscdel: tgui-sonar
