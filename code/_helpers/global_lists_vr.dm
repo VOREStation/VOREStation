@@ -1233,3 +1233,5 @@ GLOBAL_LIST_INIT(material_synth_list, list(
 								WIRE_SYNTH = /datum/matter_synth/wire,
 								CLOTH_SYNTH = /datum/matter_synth/cloth
 							))
+
+GLOBAL_LIST_EMPTY(virusDB) // Stores discovered viruses
