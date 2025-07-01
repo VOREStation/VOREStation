@@ -710,7 +710,7 @@ var/global/list/light_type_cache = list()
 		return FALSE
 	if(!has_emergency_power(pwr))
 		return FALSE
-	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
+	if(cell.charge > 750) //it's meant to handle 120 W, ya doofus. Not Anymore!!
 		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		status = LIGHT_BURNED
 		installed_light.status = status
