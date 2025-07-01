@@ -584,7 +584,6 @@
 	set name = "Game Options"
 	set category = "Preferences.Game"
 
-	prefs.skip_character = TRUE
 	prefs.current_window = PREFERENCE_TAB_GAME_PREFERENCES
 	prefs.update_tgui_static_data(mob)
 	prefs.tgui_interact(mob)

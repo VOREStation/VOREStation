@@ -1,6 +1,5 @@
 /datum/preferences
 	COOLDOWN_DECLARE(ui_refresh_cooldown)
-	var/skip_character = FALSE
 
 /datum/preferences/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
 	if(!char_render_holders)
@@ -193,9 +192,7 @@
 	PMH.screen_loc = LAZYACCESS(preview_screen_locs, "PMH")
 
 /datum/preferences/tgui_close(mob/user)
-	if(skip_character)
-		save_character()
-		skip_character = FALSE
+	// save_character()
 	save_preferences()
 
 /datum/preferences/proc/create_character_profiles()
