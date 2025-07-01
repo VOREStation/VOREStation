@@ -1,0 +1,4 @@
+author: "Tost"
+delete-after: True
+changes:
+  - bugfix: "Emergency lights no longer blow up on activation."
