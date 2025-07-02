@@ -103,7 +103,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 	var/targetselected = FALSE
 	var/returnval
 
-	switch(tgui_alert(usr,"Proc owned by something?",,list("Yes","No")))
+	switch(tgui_alert(usr, "Proc owned by something?",,list("Yes","No")))
 		if("Yes")
 			targetselected = TRUE
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT, VV_MARKED_DATUM, VV_TEXT_LOCATE, VV_PROCCALL_RETVAL))
@@ -117,7 +117,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 			target = null
 			targetselected = FALSE
 
-	var/procpath = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	var/procpath = tgui_input_text(usr, "Proc path, eg: /proc/fake_blood","Path:", null)
 	if(!procpath)
 		return
 
@@ -229,7 +229,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 #endif
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/thing as null|area|mob|obj|turf)
-	var/procname = input(user, "Proc name, eg: fake_blood","Proc:", null) as text|null
+	var/procname = tgui_input_text(user, "Proc name, eg: fake_blood","Proc:", null)
 	if(!procname)
 		return
 	if(!hascall(thing, procname))
@@ -255,14 +255,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 		to_chat(user, ., confidential = TRUE)
 
 /client/proc/get_callproc_args()
-	var/argnum = input("Number of arguments","Number:",0) as num|null
+	var/argnum = tgui_input_number(usr, "Number of arguments","Number:",0)
 	if(isnull(argnum))
 		return
 
 	. = list()
 	var/list/named_args = list()
 	while(argnum--)
-		var/named_arg = input("Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		var/named_arg = tgui_input_text(usr, "Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument")
 		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 		if (!value["class"])
 			return

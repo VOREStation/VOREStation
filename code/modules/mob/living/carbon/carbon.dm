@@ -547,7 +547,7 @@
 	if(href_list[VV_HK_MODIFY_BODYPART])
 		if(!check_rights(R_SPAWN))
 			return
-		var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("replace","remove")
+		var/edit_action = tgui_alert(usr, "What would you like to do?","Modify Body Part", list("replace","remove"))
 		if(!edit_action)
 			return
 		var/list/limb_list = list()
@@ -557,7 +557,7 @@
 				limb_list -= BODY_ZONE_CHEST
 		else
 			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST)
-		var/result = input(usr, "Please choose which bodypart to [edit_action]","[capitalize(edit_action)] Bodypart") as null|anything in sort_list(limb_list)
+		var/result = tgui_input_list(usr, "Please choose which bodypart to [edit_action]","[capitalize(edit_action)] Bodypart", sort_list(limb_list))
 		if(result)
 			var/obj/item/bodypart/part = get_bodypart(result)
 			var/list/limbtypes = list()
@@ -583,7 +583,7 @@
 						to_chat(usr, span_boldwarning("[src] doesn't have such bodypart."))
 						admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
 				if("replace")
-					var/limb2add = input(usr, "Select a bodypart type to add", "Add/Replace Bodypart") as null|anything in sort_list(limbtypes)
+					var/limb2add = tgui_input_list(usr, "Select a bodypart type to add", "Add/Replace Bodypart", sort_list(limbtypes))
 					var/obj/item/bodypart/new_bp = new limb2add()
 					if(new_bp.replace_limb(src, special = TRUE))
 						admin_ticket_log("key_name_admin(usr)] has replaced [src]'s [part.type] with [new_bp.type]")
@@ -603,7 +603,7 @@
 		for(var/i in artpaths)
 			var/datum/martial_art/M = i
 			artnames[initial(M.name)] = M
-		var/result = input(usr, "Choose the martial art to teach","JUDO CHOP") as null|anything in sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc))
+		var/result = tgui_input_list(usr, "Choose the martial art to teach","JUDO CHOP", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc))
 		if(!usr)
 			return
 		if(QDELETED(src))
@@ -620,7 +620,7 @@
 		if(!check_rights(NONE))
 			return
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc))
+		var/result = tgui_input_list(usr, "Choose the brain trauma to apply","Traumatize", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))

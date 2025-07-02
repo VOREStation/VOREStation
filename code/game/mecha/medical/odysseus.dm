@@ -48,9 +48,9 @@
 		set name = "Set client perspective."
 		set category = "Exosuit Interface"
 		set src = usr.loc
-		var/perspective = input(usr, "Select a perspective type.",
+		var/perspective = tgui_input_list(usr, "Select a perspective type.",
 					"Client perspective",
-					occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
+					list(MOB_PERSPECTIVE,EYE_PERSPECTIVE), occupant.client.perspective)
 		to_world("[perspective]")
 		occupant.client.perspective = perspective
 		return
