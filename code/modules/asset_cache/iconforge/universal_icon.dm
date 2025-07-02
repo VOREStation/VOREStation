@@ -11,7 +11,7 @@
 
 /// Don't instantiate these yourself, use uni_icon.
 /datum/universal_icon/New(icon/icon_file, icon_state="", dir=SOUTH, frame=1, datum/icon_transformer/transform=null, color=null)
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	// This check is kinda slow and shouldn't fail unless a developer makes a mistake. So it'll get caught in unit tests.
 	if(!isicon(icon_file) || !isfile(icon_file) || "[icon_file]" == "/icon")
 		// bad! use 'icons/path_to_dmi.dmi' format only
@@ -134,7 +134,7 @@
 	return new_transformer
 
 /datum/icon_transformer/proc/blend_color(color, blend_mode)
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	if(!istext(color))
 		CRASH("Invalid color provided to blend_color: [color]")
 	if(!isnum(blend_mode))
@@ -143,7 +143,7 @@
 	transforms += list(list("type" = RUSTG_ICONFORGE_BLEND_COLOR, "color" = color, "blend_mode" = blend_mode))
 
 /datum/icon_transformer/proc/blend_icon(datum/universal_icon/icon_object, blend_mode)
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	// icon_object's type is checked later in to_list
 	if(!isnum(blend_mode))
 		CRASH("Invalid blend_mode provided to blend_icon: [blend_mode]")
@@ -151,14 +151,14 @@
 	transforms += list(list("type" = RUSTG_ICONFORGE_BLEND_ICON, "icon" = icon_object, "blend_mode" = blend_mode))
 
 /datum/icon_transformer/proc/scale(width, height)
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	if(!isnum(width) || !isnum(height))
 		CRASH("Invalid arguments provided to scale: [width],[height]")
 	#endif
 	transforms += list(list("type" = RUSTG_ICONFORGE_SCALE, "width" = width, "height" = height))
 
 /datum/icon_transformer/proc/crop(x1, y1, x2, y2)
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	if(!isnum(x1) || !isnum(y1) || !isnum(x2) || !isnum(y2))
 		CRASH("Invalid arguments provided to crop: [x1],[y1],[x2],[y2]")
 	#endif

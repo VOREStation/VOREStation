@@ -67,7 +67,7 @@
 	if(GLOB.use_preloader && src.type == GLOB._preloader_path)//in case the instantiated atom is creating other atoms in New()
 		world.preloader_load(src)
 
-	var/do_initialize = SSatoms.initialized
+	var/do_initialize = SSatoms.atom_initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, FALSE, args))

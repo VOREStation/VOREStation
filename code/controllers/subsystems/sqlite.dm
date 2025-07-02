@@ -3,7 +3,9 @@
 // however this makes it a lot easier to test, and it is natively supported by BYOND.
 SUBSYSTEM_DEF(sqlite)
 	name = "SQLite"
-	init_order = INIT_ORDER_SQLITE
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	flags = SS_NO_FIRE
 	var/database/sqlite_db = null
 

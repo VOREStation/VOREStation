@@ -15,10 +15,10 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 	if(!holder)
 		to_chat(usr, span_danger("Only administrators may use this command."))
 		return
-	if(!ticker)
+	if(!SSticker)
 		to_chat(usr, span_danger("The game hasn't started yet!"))
 		return
-	if(ticker.current_state == 1)
+	if(SSticker.current_state == 1)
 		to_chat(usr, span_danger("The round hasn't started yet!"))
 		return
 	if(GLOB.send_emergency_team)

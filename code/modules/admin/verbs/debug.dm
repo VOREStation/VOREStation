@@ -97,7 +97,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Robot"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -112,7 +112,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Simple Animal"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 
@@ -164,7 +164,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Alien"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -277,7 +277,7 @@
 	set category = "Admin.Events"
 	set name = "Grant Full Access"
 
-	if (!ticker)
+	if (!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if (ishuman(M))
@@ -611,7 +611,7 @@
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))
