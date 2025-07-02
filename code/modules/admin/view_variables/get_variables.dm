@@ -331,7 +331,7 @@
 			.["value"] = D
 
 		if(VV_COLOR)
-			.["value"] = input("Enter new color:", "Color", current_value) as color|null
+			.["value"] = tgui_color_picker(src, "Enter new color:", "Color", current_value)
 			if(.["value"] == null)
 				.["class"] = null
 				return

@@ -88,6 +88,9 @@
 			if("brain")
 				L.adjustBrainLoss(amount)
 				newamt = L.getBrainLoss()
+			if("clone")
+				L.adjustCloneLoss(amount)
+				newamt = L.getCloneLoss()
 			//if("brain")
 			//	L.adjustOrganLoss(ORGAN_SLOT_BRAIN, amount)
 			//	newamt = L.get_organ_loss(ORGAN_SLOT_BRAIN)
@@ -129,7 +132,7 @@
 			//new_val = tgui_input_list(usr, "Enter the new damage type for [editing]", "Set Damtype", list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN), existing_val)
 			new_val = tgui_input_list(usr, "Enter the new damage type for [editing]","Set Damtype", list(BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID, SEARING, ELECTROMAG), existing_val)
 		else
-			new_val = input("Enter the new value for [editing]'s [href_list["var_tweak"]]","Set [href_list["var_tweak"]]", existing_val) as num|null
+			new_val = tgui_input_number(usr, "Enter the new value for [editing]'s [href_list["var_tweak"]]","Set [href_list["var_tweak"]]", existing_val)
 		if(isnull(new_val) || new_val == existing_val || QDELETED(editing) || !check_rights(R_VAREDIT))
 			return
 
