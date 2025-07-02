@@ -1875,26 +1875,26 @@
 	hide_glasses = !hide_glasses
 	update_inv_glasses()
 
-/mob/living/carbon/human/vv_edit_var(var_name, var_value)
-	if(var_name == NAMEOF(src, mob_height))
-		// you wanna edit this one not that one
-		var_name = NAMEOF(src, base_mob_height)
-	. = ..()
-	if(!.)
-		return .
-	if(var_name == NAMEOF(src, base_mob_height))
-		update_mob_height()
+///mob/living/carbon/human/vv_edit_var(var_name, var_value)
+//	if(var_name == NAMEOF(src, mob_height))
+//		// you wanna edit this one not that one
+//		var_name = NAMEOF(src, base_mob_height)
+//	. = ..()
+//	if(!.)
+//		return .
+//	if(var_name == NAMEOF(src, base_mob_height))
+//		update_mob_height()
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
-	VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
-	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	//VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	//VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
+	//VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
 	//VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
-	VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
-	VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
+	//VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
+	//VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
 	. = ..()
@@ -1902,6 +1902,7 @@
 	if(!.)
 		return
 
+	/*
 	if(href_list[VV_HK_COPY_OUTFIT])
 		if(!check_rights(R_SPAWN))
 			return
@@ -1949,13 +1950,14 @@
 					remove_quirk(T)
 				else
 					add_quirk(T)
+	*/
 
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc))
 		if(result)
-			var/newtype = GLOB.species_list[result]
+			var/newtype = GLOB.all_species[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
 
@@ -1979,7 +1981,6 @@
 			var/msg = span_notice("[key_name_admin(usr)] has removed [key_name(src)] from purrbation.")
 			message_admins(msg)
 			admin_ticket_log(src, msg)
-	*/
 
 	if(href_list[VV_HK_APPLY_DNA_INFUSION])
 		if(!check_rights(R_SPAWN))
@@ -2018,3 +2019,4 @@
 		log_admin("[key_name(usr)] turned [key_name_and_tag(src)] into an MMI.")
 
 		qdel(src)
+	*/

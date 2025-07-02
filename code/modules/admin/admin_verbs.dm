@@ -522,16 +522,35 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun.Event Kit"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = tgui_input_list(usr, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
-	if(!S) return
-	T.spell_list += new S
+ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
+	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	if(!S)
+		return
+	spell_recipient.spell_list += new S
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(T)] the spell [S]."), 1)
+	log_admin("[key_name(usr)] gave [key_name(spell_recipient)] the spell [S].")
+	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(spell_recipient)] the spell [S]."), 1)
+
+ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+	var/list/target_spell_list = list()
+	for(var/spell/spell in removal_target.spell_list)
+		target_spell_list[spell.name] = spell
+
+	if(!length(target_spell_list))
+		return
+
+	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
+	if(isnull(chosen_spell))
+		return
+	var/spell/to_remove = target_spell_list[chosen_spell]
+	if(!istype(to_remove))
+		return
+
+	qdel(to_remove)
+	log_admin("[key_name(user)] removed the spell [chosen_spell] from [key_name(removal_target)].")
+	message_admins("[key_name_admin(user)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
+	feedback_add_details("admin_verb","RS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
 
 ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", "Debug.Misc")
 	user.stat_panel.send_message("create_debug")

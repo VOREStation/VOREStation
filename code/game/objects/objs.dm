@@ -237,7 +237,7 @@
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---")
 	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
-	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
+	//VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
 
 /obj/vv_do_topic(list/href_list)
 	. = ..()
@@ -245,8 +245,8 @@
 	if(!.)
 		return
 
-	if(href_list[VV_HK_OSAY])
-		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/object_say, src)
+	//if(href_list[VV_HK_OSAY])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/object_say, src)
 
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(!check_rights(R_DEBUG|R_SERVER))

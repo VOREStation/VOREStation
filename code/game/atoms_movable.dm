@@ -725,7 +725,7 @@
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_OBSERVE_FOLLOW, "Observe Follow")
+	//VV_DROPDOWN_OPTION(VV_HK_OBSERVE_FOLLOW, "Observe Follow")
 	VV_DROPDOWN_OPTION(VV_HK_GET_MOVABLE, "Get Movable")
 	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
 	//VV_DROPDOWN_OPTION(VV_HK_DEADCHAT_PLAYS, "Start/Stop Deadchat Plays")
@@ -737,10 +737,10 @@
 	if(!.)
 		return
 
-	if(href_list[VV_HK_OBSERVE_FOLLOW])
-		if(!check_rights(R_ADMIN))
-			return
-		usr.client?.admin_follow(src)
+	//if(href_list[VV_HK_OBSERVE_FOLLOW])
+	//	if(!check_rights(R_ADMIN))
+	//		return
+	//	usr.client?.admin_follow(src)
 
 	if(href_list[VV_HK_GET_MOVABLE])
 		if(!check_rights(R_ADMIN))

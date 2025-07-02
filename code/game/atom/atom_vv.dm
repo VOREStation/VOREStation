@@ -139,7 +139,7 @@
  * the object has been admin edited
  */
 /atom/vv_edit_var(var_name, var_value)
-	var/old_light_flags = light_flags
+	//var/old_light_flags = light_flags
 	// Disable frozen lights for now, so we can actually modify it
 	/*
 	light_flags &= ~LIGHT_FROZEN

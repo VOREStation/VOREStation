@@ -4,6 +4,8 @@
 #define COMPONENT_INCOMPATIBLE 1
 /// Returned in PostTransfer to prevent transfer, similar to `COMPONENT_INCOMPATIBLE`
 #define COMPONENT_NOTRANSFER 2
+/// Deletes the component silently. This is for valid, non-error cases where you still want to execute some of the component's logic.
+#define COMPONENT_REDUNDANT 3
 
 /// Return value to cancel attaching
 #define ELEMENT_INCOMPATIBLE 1
@@ -30,7 +32,7 @@
 #define ELEMENT_DONT_SORT_LIST_ARGS (1<<3)
 /**
  * Elements with this flag will be ignored by the dcs_check_list_arguments test.
- * A good example is connect_loc, for which it's pratically undoable unless we force every signal proc to have a different name.
+ * A good example is connect_loc, for which it's practically undoable unless we force every signal proc to have a different name.
  */
 #define ELEMENT_NO_LIST_UNIT_TEST (1<<4)
 
