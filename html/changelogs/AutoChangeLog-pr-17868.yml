@@ -1,5 +1,0 @@
-author: "Reo"
-delete-after: True
-changes:
-  - qol: "soap can be wetted to instantly clean tiles as it used to work."
-  - balance: "Balances soap so that it's not terrible again. (removed the durability mechanic)"
