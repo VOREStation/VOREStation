@@ -1916,7 +1916,7 @@
 			var/datum/mutation/mut = x
 			var/name = initial(mut.name)
 			options[dna.check_mutation(mut) ? "[name] (Remove)" : "[name] (Add)"] = mut
-		var/result = input(usr, "Choose mutation to add/remove","Mutation Mod") as null|anything in sort_list(options)
+		var/result = tgui_input_list(usr, "Choose mutation to add/remove","Mutation Mod", sort_list(options))
 		if(result)
 			if(result == "Clear")
 				for(var/datum/mutation/mutation as anything in dna.mutations)
@@ -1939,7 +1939,7 @@
 				continue
 			var/qname = initial(quirk_type.name)
 			options[has_quirk(quirk_type) ? "[qname] (Remove)" : "[qname] (Add)"] = quirk_type
-		var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in sort_list(options)
+		var/result = tgui_input_list(usr, "Choose quirk to add/remove","Quirk Mod", sort_list(options))
 		if(result)
 			if(result == "Clear")
 				for(var/datum/quirk/q in quirks)
@@ -1955,7 +1955,7 @@
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc))
+		var/result = tgui_input_list(usr, "Please choose a new species","Species", sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc)))
 		if(result)
 			var/newtype = GLOB.all_species[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
@@ -2000,7 +2000,7 @@
 		if(!check_rights(R_DEBUG))
 			return
 
-		var/result = input(usr, "This will delete the mob, are you sure?", "Turn into MMI") in list("Yes", "No")
+		var/result = tgui_alert(usr, "This will delete the mob, are you sure?", "Turn into MMI", list("Yes", "No"))
 		if(result != "Yes")
 			return
 

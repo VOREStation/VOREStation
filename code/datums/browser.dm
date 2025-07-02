@@ -422,15 +422,15 @@
 					setting["value"] = new_value
 
 			if ("string")
-				setting["value"] = stripped_input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
+				setting["value"] = tgui_input_text(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"], encode = TRUE)
 			if ("number")
-				setting["value"] = input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]") as num
+				setting["value"] = tgui_input_number(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]")
 			if ("color")
-				setting["value"] = input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"]) as color
+				setting["value"] = tgui_color_picker(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
 			if ("boolean")
 				setting["value"] = (setting["value"] == "Yes") ? "No" : "Yes"
 			if ("ckey")
-				setting["value"] = input(user, "[setting["desc"]]?") in (list("none") + GLOB.directory)
+				setting["value"] = tgui_input_list(user, "[setting["desc"]]?", (list("none") + GLOB.directory))
 		if (setting["callback"])
 			var/datum/callback/callback = setting["callback"]
 			settings = callback.Invoke(settings)
