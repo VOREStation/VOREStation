@@ -1,22 +1,20 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
-	set category = null
-	set name = "Drop Everything"
-	if(!holder)
-		return
-
-	var/confirm = tgui_alert(src, "Make [M] drop everything?", "Message", list("Yes", "No"))
+ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in mob_list)
+	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	for(var/obj/item/W in M)
+	for(var/obj/item/W in dropee)
 		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these
 			continue
-		M.drop_from_inventory(W)
+		dropee.drop_from_inventory(W)
 
-	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
+	dropee.regenerate_icons()
+
+	log_admin("[key_name(user)] made [key_name(dropee)] drop everything!")
+	var/msg = "[key_name_admin(user)] made [ADMIN_LOOKUPFLW(dropee)] drop everything!"
+	message_admins(msg)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_prison(mob/M as mob in mob_list)

@@ -112,6 +112,55 @@
 #define VV_HK_GET_MOVABLE "get_movable"
 #define VV_HK_DEADCHAT_PLAYS "deadchat_plays"
 
+// /obj
+#define VV_HK_OSAY "osay"
+#define VV_HK_MASS_DEL_TYPE "mass_delete_type"
+
+// /mob
+#define VV_HK_GIB "gib"
+#define VV_HK_GIVE_MOB_ACTION "give_mob_action"
+#define VV_HK_REMOVE_MOB_ACTION "remove_mob_action"
+#define VV_HK_GIVE_SPELL "give_spell"
+#define VV_HK_REMOVE_SPELL "remove_spell"
+#define VV_HK_GIVE_DISEASE "give_disease"
+#define VV_HK_GODMODE "godmode"
+#define VV_HK_DROP_ALL "dropall"
+#define VV_HK_REGEN_ICONS "regen_icons"
+#define VV_HK_REGEN_ICONS_FULL "regen_icons_full"
+#define VV_HK_PLAYER_PANEL "player_panel"
+#define VV_HK_BUILDMODE "buildmode"
+#define VV_HK_DIRECT_CONTROL "direct_control"
+#define VV_HK_GIVE_DIRECT_CONTROL "give_direct_control"
+#define VV_HK_OFFER_GHOSTS "offer_ghosts"
+#define VV_HK_VIEW_PLANES "view_planes"
+#define VV_HK_GIVE_AI "give_ai"
+#define VV_HK_GIVE_AI_SPEECH "give_ai_speech"
+
+// /mob/living
+#define VV_HK_GIVE_SPEECH_IMPEDIMENT "impede_speech"
+#define VV_HK_ADMIN_RENAME "admin_rename"
+#define VV_HK_ADD_MOOD "addmood"
+#define VV_HK_REMOVE_MOOD "removemood"
+#define VV_HK_GIVE_HALLUCINATION "give_hallucination"
+#define VV_HK_GIVE_DELUSION_HALLUCINATION "give_hallucination_delusion"
+#define VV_HK_GIVE_GUARDIAN_SPIRIT "give_guardian_spirit"
+
+// /mob/living/carbon
+#define VV_HK_MODIFY_BODYPART "mod_bodypart"
+#define VV_HK_MODIFY_ORGANS "organs_modify"
+#define VV_HK_MARTIAL_ART "give_martial_art"
+#define VV_HK_GIVE_TRAUMA "give_trauma"
+#define VV_HK_CURE_TRAUMA "cure_trauma"
+
+// /mob/living/carbon/human
+#define VV_HK_COPY_OUTFIT "copy_outfit"
+#define VV_HK_MOD_MUTATIONS "quirkmut"
+#define VV_HK_MOD_QUIRKS "quirkmod"
+#define VV_HK_SET_SPECIES "setspecies"
+#define VV_HK_PURRBATION "purrbation"
+#define VV_HK_APPLY_DNA_INFUSION "apply_dna_infusion"
+#define VV_HK_TURN_INTO_MMI "turn_into_mmi"
+
 #define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
 
 // Flags for debug_variable() that do little things to what we end up rendering

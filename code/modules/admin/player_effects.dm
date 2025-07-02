@@ -724,7 +724,7 @@
 			user.client.cmd_admin_direct_narrate(target)
 
 		if("player_panel")
-			user.client.holder.show_player_panel(target)
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			user.client.debug_variables(target)
