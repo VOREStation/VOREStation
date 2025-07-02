@@ -128,5 +128,5 @@ export type MasterFilter = {
 export type Data = {
   filter_info: MasterFilter;
   target_name: string;
-  target_filter_data: string[];
+  target_filter_data: Record<string, MasterFilter>;
 };
