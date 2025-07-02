@@ -43,7 +43,7 @@ ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMI
 		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(gib_them, (R_ADMIN|R_FUN), "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/victim in mob_list)
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
+	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
