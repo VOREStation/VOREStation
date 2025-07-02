@@ -55,7 +55,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	GLOB.tickets.BrowseTickets(browse_to)
 
 /proc/message_mentors(var/msg)
-	msg = span_mentor_channel(span_prefix("Mentor:") + span_message("[msg]"))
+	msg = span_mentor_channel(span_prefix("Mentor: ") + span_message("[msg]"))
 
 	for(var/client/C in GLOB.admins)
 		to_chat(C, msg)
