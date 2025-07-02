@@ -267,9 +267,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
  * required is_bwoink boolean TRUE if this ticket was started by an admin PM
  * required level integer The level of the ticket. 0 = Admin, 1 = Mentor
  */
-/datum/ticket/New(msg, client/C, is_bwoink, ticket_level)
+/datum/ticket/New(raw_msg, client/C, is_bwoink, ticket_level)
 	//clean the input msg
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	var/msg = sanitize(copytext(raw_msg,1,MAX_MESSAGE_LEN))
 	if(!msg || !C || !C.mob)
 		qdel(src)
 		return
@@ -319,9 +319,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	var/list/activemins = adm["present"]
 	var activeMins = activemins.len
 	if(is_bwoink)
-		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: \n ```[raw_msg]``` \n Heard by [activeMins] NON-AFK staff members.")
 	else
-		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: \n ```[raw_msg]``` \n Heard by [activeMins] NON-AFK staff members.")
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
