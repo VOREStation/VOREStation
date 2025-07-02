@@ -21,7 +21,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 	is_funmin = check_rights(R_FUN)
 
 /datum/secrets_menu/tgui_state(mob/user)
-	return GLOB.tgui_admin_state// TGUI_ADMIN_STATE(R_NONE)
+	return ADMIN_STATE(R_HOLDER)
 
 /datum/secrets_menu/tgui_close()
 	qdel(src)

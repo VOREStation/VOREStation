@@ -1385,17 +1385,18 @@
 
 /mob/living/vv_get_header()
 	. = ..()
+	var/refid = REF(src)
 	. += {"
-		<a href='byond://?_src_=vars;[HrefToken()];rename=\ref[src]'>"} + span_bold("[src]") + {"</a>
-		"} + span_small("<br><a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>") + {"
-		"} + span_small("<br>") + {"
-		"} + span_small("BRUTE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>") + {"
-		"} + span_small("FIRE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>") + {"
-		"} + span_small("TOXIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>") + {"
-		"} + span_small("OXY:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>") + {"
-		"} + span_small("CLONE:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>") + {"
-		"} + span_small("BRAIN:<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>") + {"
-		"}
+		<br>"} + span_small("[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]") + {"
+		<br>"}span_small({"
+			BRUTE:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>") + {"
+			FIRE:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>") + {"
+			TOXIN:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>") + {"
+			OXY:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>") + {"
+			BRAIN:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getBrainLoss()]</a>") + {"
+			CLONE:"} + span_small("<a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>") + {"
+		"})
+	"}
 
 /mob/living/update_gravity(has_gravity)
 	if(!ticker)
