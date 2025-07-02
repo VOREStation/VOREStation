@@ -36,31 +36,31 @@
 	if(href_list[VV_HK_MODIFY_TRANSFORM])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate","Shear")
+		var/result = tgui_input_list(usr, "Choose the transformation to apply","Transform Mod", list("Scale","Translate","Rotate","Shear"))
 		var/matrix/M = transform
 		if(!result)
 			return
 		switch(result)
 			if("Scale")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = tgui_input_number(usr, "Choose x mod","Transform Mod")
+				var/y = tgui_input_number(usr, "Choose y mod","Transform Mod")
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Scale(x,y)
 			if("Translate")
-				var/x = input(usr, "Choose x mod (negative = left, positive = right)","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod (negative = down, positive = up)","Transform Mod") as null|num
+				var/x = tgui_input_number(usr, "Choose x mod (negative = left, positive = right)","Transform Mod")
+				var/y = tgui_input_number(usr, "Choose y mod (negative = down, positive = up)","Transform Mod")
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Translate(x,y)
 			if("Shear")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = tgui_input_number(usr, "Choose x mod","Transform Mod")
+				var/y = tgui_input_number(usr, "Choose y mod","Transform Mod")
 				if(isnull(x) || isnull(y))
 					return
 				transform = M.Shear(x,y)
 			if("Rotate")
-				var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
+				var/angle = tgui_input_number(usr, "Choose angle to rotate","Transform Mod")
 				if(isnull(angle))
 					return
 				transform = M.Turn(angle)
@@ -69,17 +69,17 @@
 	if(href_list[VV_HK_SPIN_ANIMATION])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/num_spins = input(usr, "Do you want infinite spins?", "Spin Animation") in list("Yes", "No")
+		var/num_spins = tgui_alert(usr, "Do you want infinite spins?", "Spin Animation", list("Yes", "No"))
 		if(num_spins == "No")
-			num_spins = input(usr, "How many spins?", "Spin Animation") as null|num
+			num_spins = tgui_input_number(usr, "How many spins?", "Spin Animation")
 		else
 			num_spins = -1
 		if(!num_spins)
 			return
-		var/spins_per_sec = input(usr, "How many spins per second?", "Spin Animation") as null|num
+		var/spins_per_sec = tgui_input_number(usr, "How many spins per second?", "Spin Animation")
 		if(!spins_per_sec)
 			return
-		var/direction = input(usr, "Which direction?", "Spin Animation") in list("Clockwise", "Counter-clockwise")
+		var/direction = tgui_alert(usr, "Which direction?", "Spin Animation", list("Clockwise", "Counter-clockwise"))
 		switch(direction)
 			if("Clockwise")
 				direction = 1
@@ -92,7 +92,7 @@
 	if(href_list[VV_HK_STOP_ALL_ANIMATIONS])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/result = input(usr, "Are you sure?", "Stop Animating") in list("Yes", "No")
+		var/result = tgui_alert(usr, "Are you sure?", "Stop Animating", list("Yes", "No"))
 		if(result == "Yes")
 			animate(src, transform = null, flags = ANIMATION_END_NOW) // Literally just fucking stop animating entirely because admin said so
 		return
@@ -100,7 +100,7 @@
 	if(href_list[VV_HK_AUTO_RENAME])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
+		var/newname = tgui_input_text(usr, "What do you want to rename this to?", "Automatic Rename")
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
 		//if(newname && !(is_ic_filtered(newname) || is_soft_ic_filtered(newname) && tgui_alert(usr, "Your selected name contains words restricted by IC chat filters. Confirm this new name?", "IC Chat Filter Conflict", list("Confirm", "Cancel")) != "Confirm"))
 		if(newname)
@@ -124,8 +124,8 @@
 /atom/vv_get_header()
 	. = ..()
 	var/refid = REF(src)
-	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
-	. += "<br><font size='1'><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, span_bold("<span id='name'>[src]</span>"))]"
+	. += "<br>" + span_small("<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a>")
 
 /**
  * call back when a var is edited on this atom
