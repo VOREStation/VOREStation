@@ -34,13 +34,13 @@
 	if(isappearance(value))
 		value = get_vv_appearance(value)
 
-	. = "<font color='red'>DISPLAY_ERROR:</font> ([value] [REF(value)])" // Make sure this line can never runtime
+	. = span_red("DISPLAY_ERROR:") + " ([value] [REF(value)])" // Make sure this line can never runtime
 
 	if(isnull(value))
-		return "<span class='value'>null</span>"
+		return span_value("null")
 
 	if(istext(value))
-		return "<span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
+		return span_value("\"[VV_HTML_ENCODE(value)]\"")
 
 	if(isicon(value))
 		#ifdef VARSICON
@@ -48,17 +48,17 @@
 		var/rnd = rand(1,10000)
 		var/rname = "tmp[REF(icon_value)][rnd].png"
 		usr << browse_rsc(icon_value, rname)
-		return "(<span class='value'>[value]</span>) <img class=icon src=\"[rname]\">"
+		return "(" + span_value("[value]") + ") <img class=icon src=\"[rname]\">"
 		#else
-		return "/icon (<span class='value'>[value]</span>)"
+		return "/icon (" + span_value("[value]") + ")"
 		#endif
 
 	if(isfilter(value))
 		var/datum/filter_value = value
-		return "/filter (<span class='value'>[filter_value.type] [REF(filter_value)]</span>)"
+		return "/filter (" + span_value("[filter_value.type] [REF(filter_value)]") + ")"
 
 	if(isfile(value))
-		return "<span class='value'>'[value]'</span>"
+		return span_value("'[value]'")
 
 	if(isdatum(value))
 		var/datum/datum_value = value
@@ -94,7 +94,7 @@
 		valid_bitflags = get_valid_bitflags(name)
 
 	if(!length(valid_bitflags))
-		return "<span class='value'>[VV_HTML_ENCODE(value)]</span>"
+		return span_value("[VV_HTML_ENCODE(value)]")
 
 	var/list/flags = list()
 	for (var/bit_name in valid_bitflags)
@@ -115,14 +115,14 @@
 	return "[.] <a href='byond://?_src_=vars;[HrefToken()];Vars=[reference]'>(Resolve)</a>"
 
 /matrix/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
-	return {"<span class='value'>
-			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
-			<table class='matrix'>
-			<tbody>
-				<tr><td>[a]</td><td>[d]</td><td>0</td></tr>
-				<tr><td>[b]</td><td>[e]</td><td>0</td></tr>
-				<tr><td>[c]</td><td>[f]</td><td>1</td></tr>
-			</tbody>
-			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
+	return span_value("\
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>\
+			<table class='matrix'>\
+			<tbody>\
+				<tr><td>[a]</td><td>[d]</td><td>0</td></tr>\
+				<tr><td>[b]</td><td>[e]</td><td>0</td></tr>\
+				<tr><td>[c]</td><td>[f]</td><td>1</td></tr>\
+			</tbody>\
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table>") //TODO link to modify_transform wrapper for all matrices
 
 #undef VV_HTML_ENCODE

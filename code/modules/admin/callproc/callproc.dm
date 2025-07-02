@@ -145,7 +145,7 @@ ADMIN_VERB(advanced_proc_call, R_DEBUG, "Advanced ProcCall", "Call a proc on any
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>", confidential = TRUE)
+			to_chat(usr, span_red("Error: callproc(): owner of proc no longer exists."), confidential = TRUE)
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
@@ -233,7 +233,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 	if(!procname)
 		return
 	if(!hascall(thing, procname))
-		to_chat(user, "<font color='red'>Error: callproc_datum(): type [thing.type] has no proc named [procname].</font>", confidential = TRUE)
+		to_chat(user, span_red("Error: callproc_datum(): type [thing.type] has no proc named [procname]."), confidential = TRUE)
 		return
 	var/list/lst = user.get_callproc_args()
 	if(!lst)
@@ -277,7 +277,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 	. = ""
 	if(islist(returnval))
 		var/list/returnedlist = returnval
-		. = "<font color='blue'>"
 		if(returnedlist.len)
 			var/assoc_check = returnedlist[1]
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
@@ -291,7 +290,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 					. += "\n[elem]"
 		else
 			. = "[procname] returned an empty list"
-		. += "</font>"
+		. = span_blue(.)
 
 	else
-		. = "<font color='blue'>[procname] returned: [!isnull(returnval) ? html_encode(returnval) : "null"]</font>"
+		. = span_blue("[procname] returned: [!isnull(returnval) ? returnval : "null"]")

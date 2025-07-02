@@ -256,3 +256,13 @@
 
 // special spans
 #define span_spoiler(str) ("<span class='spoiler'>" + str + "</span>")
+
+// damage type spans, mostly used for admin for now
+#define span_brute(str) ("<span class='brute'>" + str + "</span>")
+#define span_burn(str) ("<span class='burn'>" + str + "</span>")
+#define span_tox(str) ("<span class='tox'>" + str + "</span>")
+#define span_oxy(str) ("<span class='oxy'>" + str + "</span>")
+#define span_clone(str) ("<span class='clone'>" + str + "</span>")
+
+// Admin VV
+#define span_value(str) ("<span class='value'>" + str + "</span>")
