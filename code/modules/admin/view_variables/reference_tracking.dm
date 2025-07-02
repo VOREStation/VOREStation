@@ -1,9 +1,5 @@
-// Drop in replacement for reference tracking
 #ifdef REFERENCE_TRACKING
 #define REFSEARCH_RECURSE_LIMIT 64
-
-/datum
-	var/references_to_clear
 
 /datum/proc/find_references(references_to_clear = INFINITY)
 	if(usr?.client)
@@ -17,8 +13,7 @@
 	_search_references()
 	//restart the garbage collector
 	SSgarbage.can_fire = TRUE
-	SSgarbage.next_fire = world.time + world.tick_lag
-	//SSgarbage.update_nextfire(reset_time = TRUE)
+	SSgarbage.update_nextfire(reset_time = TRUE)
 
 /datum/proc/_search_references()
 	log_reftracker("Beginning search for references to a [type], looking for [references_to_clear] refs.")

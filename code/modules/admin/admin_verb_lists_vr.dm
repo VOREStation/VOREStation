@@ -20,7 +20,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/client/proc/toggle_view_range,		//changes how far we can see,
 	/client/proc/cmd_admin_pm_context,	//right-click adminPM interface,
@@ -206,8 +205,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/delete_random_map,
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
@@ -219,7 +216,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/datum/admins/proc/view_runtimes,
 	// /client/proc/show_gm_status, // VOREStation Edit - We don't use SSgame_master yet.
@@ -234,11 +230,6 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/view_feedback,
 	/client/proc/stop_sounds,
 	/client/proc/spawn_reagent
-	)
-
-var/list/admin_verbs_paranoid_debug = list(
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	)
 
 //verbs which can be hidden - needs work
@@ -291,8 +282,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
 	/client/proc/cmd_admin_list_open_jobs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
@@ -324,7 +313,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/datum/admins/proc/show_player_info,
 	/datum/admins/proc/show_traitor_panel,
@@ -353,7 +341,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Add,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Add,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Add,
-	/client/proc/mark_datum_mapview,	//VOREStation Add,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player, //VOREStation Add,
 	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
@@ -391,8 +378,6 @@ var/list/admin_verbs_event_manager = list(
 	/datum/admins/proc/call_supply_drop,
 	/datum/admins/proc/call_drop_pod,
 	/datum/admins/proc/PlayerNotes,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
 	/client/proc/cmd_regenerate_asset_cache,
