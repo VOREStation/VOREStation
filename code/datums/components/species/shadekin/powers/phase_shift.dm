@@ -214,7 +214,12 @@
 		SK.doing_phase = TRUE
 		throwpass = TRUE
 		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
-		name = get_visible_name()
+
+		if(real_name) //If we a real name, perfect, let's just set our name to our newfound visible name.
+			name = get_visible_name()
+		else //If we don't, let's put our real_name as our initial name.
+			real_name = initial(name)
+			name = get_visible_name()
 
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE

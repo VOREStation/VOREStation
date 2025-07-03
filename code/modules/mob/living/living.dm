@@ -25,7 +25,7 @@
 	if(real_name)
 		return real_name
 	else
-		return initial(name)
+		return name
 
 /mob/living/Destroy()
 	SSradiation.listeners -= src
