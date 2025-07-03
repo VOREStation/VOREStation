@@ -11,122 +11,123 @@ export type MasterFilter = {
       MASK_INVERSE: number;
       MASK_SWAP: number;
     };
-
-    angular_blur: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-      };
+  };
+  angular_blur: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
     };
-    displace: {
-      defaults: {
-        x: number;
-        y: number;
-        size: null | number;
-        icon: string;
-        render_source: '';
-      };
+  };
+  displace: {
+    defaults: {
+      x: number;
+      y: number;
+      size: null | number;
+      icon: string;
+      render_source: '';
     };
-    drop_shadow: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-        offset: number;
-        color: string;
-      };
+  };
+  drop_shadow: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
+      offset: number;
+      color: string;
     };
-    blur: {
-      defaults: {
-        size: number;
-      };
+  };
+  blur: {
+    defaults: {
+      size: number;
     };
-    layer: {
-      defaults: {
-        x: number;
-        y: number;
-        icon: string;
-        render_source: string;
-        flags: number;
-        color: string;
-        transform: null | number;
-        blend_mode: number;
-      };
+  };
+  layer: {
+    defaults: {
+      x: number;
+      y: number;
+      icon: string;
+      render_source: string;
+      flags: number;
+      color: string;
+      transform: null | number;
+      blend_mode: number;
     };
-    motion_blur: {
-      defaults: {
-        x: number;
-        y: number;
-      };
+  };
+  motion_blur: {
+    defaults: {
+      x: number;
+      y: number;
     };
-    outline: {
-      defaults: {
-        size: number;
-        color: string;
-        flags: number;
-      };
-      flags: {
-        OUTLINE_SHARP: number;
-        OUTLINE_SQUARE: number;
-      };
+  };
+  outline: {
+    defaults: {
+      size: number;
+      color: string;
+      flags: number;
     };
-    radial_blur: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-      };
+    flags: {
+      OUTLINE_SHARP: number;
+      OUTLINE_SQUARE: number;
     };
-    rays: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-        color: string;
-        offset: number;
-        density: number;
-        threshold: number;
-        factor: number;
-        flags: number;
-      };
-      flags: {
-        FILTER_OVERLAY: number;
-        FILTER_UNDERLAY: number;
-      };
+  };
+  radial_blur: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
     };
-    ripple: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-        repeat: number;
-        radius: number;
-        falloff: number;
-        flags: number;
-      };
-      flags: {
-        WAVE_BOUNDED: number;
-      };
+  };
+  rays: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
+      color: string;
+      offset: number;
+      density: number;
+      threshold: number;
+      factor: number;
+      flags: number;
     };
-    wave: {
-      defaults: {
-        x: number;
-        y: number;
-        size: number;
-        offset: number;
-        flags: number;
-      };
-      flags: {
-        WAVE_SIDEWAYS: number;
-        WAVE_BOUNDED: number;
-      };
+    flags: {
+      FILTER_OVERLAY: number;
+      FILTER_UNDERLAY: number;
+    };
+  };
+  ripple: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
+      repeat: number;
+      radius: number;
+      falloff: number;
+      flags: number;
+    };
+    flags: {
+      WAVE_BOUNDED: number;
+    };
+  };
+  wave: {
+    defaults: {
+      x: number;
+      y: number;
+      size: number;
+      offset: number;
+      flags: number;
+    };
+    flags: {
+      WAVE_SIDEWAYS: number;
+      WAVE_BOUNDED: number;
     };
   };
 };
 
+type ActiveFilters = { type: string; priority: number } & Partial<MasterFilter>;
+
 export type Data = {
   filter_info: MasterFilter;
   target_name: string;
-  target_filter_data: Record<string, MasterFilter>;
+  target_filter_data: Record<string, ActiveFilters>;
 };
