@@ -1,7 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - rscadd: "Registration bot that gives users roles after their verification"
-  - rscadd: "Added tgs testing suite and dmapi update workflow"
-  - refactor: "DMAPI Updated to the latest version"
-  - server: "This PR makes tgs ready to be used"
