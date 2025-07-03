@@ -639,7 +639,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			new construct_type(src.loc, fixture = src)
+			new construct_type(src.loc, src)
 			qdel(src)
 			return
 
@@ -710,7 +710,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		return FALSE
 	if(!has_emergency_power(pwr))
 		return FALSE
-	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
+	if(cell.charge > 750) //it's meant to handle 120 W, ya doofus. Not Anymore!!
 		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		status = LIGHT_BURNED
 		installed_light.status = status

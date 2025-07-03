@@ -403,6 +403,8 @@ var/list/preferences_datums = list()
 		sanitize_preferences()
 		save_preferences()
 		save_character()
+		load_preferences(TRUE)
+		load_character()
 		attempt_vr(user.client?.prefs_vr,"load_vore","")
 		ShowChoices(user)
 

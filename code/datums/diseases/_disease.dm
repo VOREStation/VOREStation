@@ -223,3 +223,23 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 // Called when the mob dies
 /datum/disease/proc/OnDeath()
 	return
+
+// Adds a virus to the virus DB
+// Currently it won't show on the Medical Computers because OLD interface, which needs to be updated
+/datum/disease/proc/addToDB()
+	if(GetDiseaseID() in GLOB.virusDB)
+		return FALSE
+
+	var/datum/data/record/v = new()
+
+	v.fields["id"] = GetDiseaseID()
+	v.fields["name"] = name
+	v.fields["description"] = desc
+	v.fields["form"] = form
+	v.fields["agent"] = agent
+	v.fields["cure"] = cure_text
+	v.fields["spread"] = spread_text
+
+	GLOB.virusDB["[GetDiseaseID()]"] = v
+
+	return TRUE

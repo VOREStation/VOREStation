@@ -172,7 +172,7 @@
 	for(var/client/target in receivers)
 		var/admin_stuff = ""
 
-		if(target in GLOB.admins)
+		if((target in GLOB.admins) && check_rights_for(target, R_HOLDER))
 			admin_stuff += "/([key])"
 
 		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))

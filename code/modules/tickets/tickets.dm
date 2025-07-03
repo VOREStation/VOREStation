@@ -319,9 +319,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	var/list/activemins = adm["present"]
 	var activeMins = activemins.len
 	if(is_bwoink)
-		ahelp_discord_message("ADMINHELP: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 	else
-		ahelp_discord_message("ADMINHELP: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
+		ahelp_discord_message("[level == 0 ? "MENTORHELP" : "ADMINHELP"]: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
@@ -358,11 +358,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	tgui_interact(usr.client.mob)
 
 //private
-/datum/ticket/proc/FullMonty(ref_src, admin = FALSE)
+/datum/ticket/proc/FullMonty(ref_src, admin_commands = FALSE)
 	if(!ref_src)
 		ref_src = "\ref[src]"
 	if(initiator && initiator.mob)
-		if(admin)
+		if(admin_commands)
 			. = ADMIN_FULLMONTY_NONAME(initiator.mob)
 	else
 		. = "Initiator disconnected."
@@ -404,22 +404,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 //won't bug irc
 /datum/ticket/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(": [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:") + msg)
 
 	AddInteraction(span_red("[LinkedReplyName(ref_src)]: [msg]"))
 	//send this msg to all admins
 
-	if(level == 0)
-		for (var/client/C in GLOB.admins)
-			if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
-				C << 'sound/effects/mentorhelp.mp3'
-		message_mentors(chat_msg)
-	else if(level == 1)
-		for(var/client/X in GLOB.admins)
-			if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
-				X << 'sound/effects/adminhelp.ogg'
-			window_flash(X)
-			to_chat(X, chat_msg)
+	switch(level)
+		if(0)
+			for (var/client/C in GLOB.admins)
+				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]:") + msg))
+				if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
+					C << 'sound/effects/mentorhelp.mp3'
+				to_chat(C, chat_msg)
+		if(1)
+			for(var/client/X in GLOB.admins)
+				var/chat_msg = span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)] (Admin)") + span_bold(": [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(X, (R_ADMIN|R_SERVER|R_MOD)))]:") + msg)
+				if(!check_rights_for(X, R_HOLDER))
+					continue
+				if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
+					X << 'sound/effects/adminhelp.ogg'
+				window_flash(X)
+				to_chat(X, chat_msg)
 
 /*
 //Reopen a closed ticket
@@ -650,6 +654,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 	level = level + 1
 
+	AddInteraction("[key_name_admin(usr)] escalated Ticket.")
 	message_mentors("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
 	log_admin("[key_name(usr)] escalated ticket [src.name]")
 	to_chat(src.initiator, span_mentor("[usr.ckey] escalated your ticket to admins."))
