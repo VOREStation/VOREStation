@@ -180,6 +180,7 @@
 			M.turf_resource_types |= TURF_HAS_RARE_ORE
 		else
 			M.turf_resource_types |= TURF_HAS_ORE
+		M.make_ore()
 		mineral_rocks += M
 		//If above difficulty threshold make rare ore instead (M.turf_resource_types |= TURF_HAS_RARE_ORE)
 	//Increase with difficulty etc
