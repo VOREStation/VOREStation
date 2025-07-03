@@ -22,7 +22,10 @@
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(SK && SK.in_phase)
 		return "Something"
-	return real_name
+	if(real_name)
+		return real_name
+	else
+		return initial(name)
 
 /mob/living/Destroy()
 	SSradiation.listeners -= src
