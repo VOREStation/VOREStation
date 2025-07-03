@@ -45,7 +45,7 @@
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
 				"closed_at_date" = gameTimestamp(wtime = T.closed_at),
-				"actions" = check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD)) ? T.FullMonty(,TRUE) : T.FullMonty(),
+				"actions" = T.FullMonty(null, check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD))),
 				"log" = T._interactions,
 			)
 
@@ -235,7 +235,7 @@
 	data["opened_at_date"] = gameTimestamp(wtime = opened_at)
 	data["closed_at_date"] = gameTimestamp(wtime = closed_at)
 
-	data["actions"] = check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD)) ? FullMonty(ref_src, TRUE) : FullMonty(ref_src)
+	data["actions"] = FullMonty(ref_src, check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD)))
 
 	data["log"] = _interactions
 
@@ -296,7 +296,7 @@
 		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [(world.time - closed_at) / 600] minutes ago)"
 	dat += "<br><br>"
 	if(initiator)
-		dat += span_bold("Actions:") + " [check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD)) ? FullMonty(ref_src, TRUE) : FullMonty(ref_src)]<br>"
+		dat += span_bold("Actions:") + " [FullMonty(ref_src, check_rights_for(user.client, (R_ADMIN|R_SERVER|R_MOD)))]<br>"
 	else
 		dat += span_bold("DISCONNECTED") + "[GLOB.TAB][ClosureLinks(ref_src)]<br>"
 	dat += "<br><b>Log:</b><br><br>"

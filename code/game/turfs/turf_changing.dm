@@ -100,8 +100,9 @@
 	if(SSair)
 		SSair.mark_for_update(W)
 
-	for(var/turf/space/S in range(W, 1))
-		S.update_starlight()
+	if(CONFIG_GET(number/starlight))
+		for(var/turf/space/S in range(W, 1))
+			S.update_starlight()
 	W.levelupdate()
 	W.update_icon(1)
 	W.post_change()
@@ -130,8 +131,9 @@
 		else if(lighting_object && !lighting_object.needs_update)
 			lighting_object.update()
 
-		for(var/turf/space/space_tile in RANGE_TURFS(1, src))
-			space_tile.update_starlight()
+		if(CONFIG_GET(number/starlight))
+			for(var/turf/space/space_tile in RANGE_TURFS(1, src))
+				space_tile.update_starlight()
 
 	var/turf/simulated/sim_self = src
 	if(lighting_object && istype(sim_self) && sim_self.shandler) //sanity check, but this should never be null for either of the switch cases (lighting_object will be null during initializations sometimes)
