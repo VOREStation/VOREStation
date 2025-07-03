@@ -80,11 +80,11 @@ export const ExportTab = (props) => {
             </Button>
           ))}
         <Stack.Item grow />
-        <Stack.Item color="label">Round ID:&nbsp;</Stack.Item>
+        <Stack.Item color="label">Round ID:</Stack.Item>
         <Stack.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}
         </Stack.Item>
-        <Stack.Item color="label">DB Chatlogging:&nbsp;</Stack.Item>
+        <Stack.Item color="label">DB Chatlogging:</Stack.Item>
         <Stack.Item color={game.databaseBackendEnabled ? 'green' : 'red'}>
           {game.databaseBackendEnabled ? 'Enabled' : 'Disabled'}
         </Stack.Item>

@@ -614,9 +614,11 @@ var/global/list/light_type_cache = list()
 		//If xenos decide they want to smash a light bulb with a toolbox, who am I to stop them? /N
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
+		if(istype(W, /obj/item/multitool)) //Allow us to swap  the light color.
+			installed_light.attackby(W, user)
+			return
 
-
-		if(prob(1+W.force * 5))
+		else if(prob(1+W.force * 5))
 
 			to_chat(user, "You hit the light, and it smashes!")
 			for(var/mob/M in viewers(src))
@@ -638,7 +640,7 @@ var/global/list/light_type_cache = list()
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			new construct_type(src.loc, fixture = src)
+			new construct_type(src.loc, src)
 			qdel(src)
 			return
 
@@ -709,7 +711,7 @@ var/global/list/light_type_cache = list()
 		return FALSE
 	if(!has_emergency_power(pwr))
 		return FALSE
-	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
+	if(cell.charge > 750) //it's meant to handle 120 W, ya doofus. Not Anymore!!
 		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		status = LIGHT_BURNED
 		installed_light.status = status
@@ -1092,6 +1094,8 @@ var/global/list/light_type_cache = list()
 // if a syringe, can inject phoron to make it explode
 /obj/item/light/attackby(var/obj/item/I, var/mob/user)
 	..()
+	if(isrobot(user))
+		I = user.get_active_hand()
 
 	if(istype(I,/obj/item/multitool))
 		var/list/menu_list = list(
@@ -1139,6 +1143,11 @@ var/global/list/light_type_cache = list()
 
 			else //Should never happen.
 				return
+		if(istype(src.loc, /obj/machinery/light))
+			var/obj/machinery/light/L = src.loc
+			L.update_from_bulb(src)
+			L.update()
+			L.update() //Yes it has to double update...Don't ask me why. I think it's stupid.
 
 	else if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I

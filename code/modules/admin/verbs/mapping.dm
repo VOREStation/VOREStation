@@ -141,7 +141,6 @@ var/list/debug_verbs = list (
 		,/client/proc/cmd_assume_direct_control
 		,/client/proc/jump_to_dead_group
 		,/client/proc/startSinglo
-		,/client/proc/set_server_fps
 		,/client/proc/cmd_admin_grantfullaccess
 		,/client/proc/kaboom
 		,/client/proc/cmd_admin_areatest
