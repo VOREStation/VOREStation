@@ -163,7 +163,7 @@
 	// Admins with RLOOC displayed who weren't already in
 	for(var/client/admin in GLOB.admins)
 		if(!(admin in receivers) && admin.prefs?.read_preference(/datum/preference/toggle/holder/show_rlooc))
-			if(check_rights_for(admin, R_SERVER)) //Stop rLOOC showing for retired staff
+			if(check_rights_for(admin, (R_SERVER|R_ADMIN))) //Stop rLOOC showing for retired staff
 				r_receivers |= admin
 
 	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
