@@ -33,7 +33,7 @@
 
 	if(do_after(src, 10))
 		if(SK.in_phase)
-			new /obj/effect/abstract/dark_maw(loc, src, 1)
+			new /obj/effect/abstract/dark_maw(loc, src, TRUE)
 		else
 			new /obj/effect/abstract/dark_maw(loc, src)
 		SK.shadekin_adjust_energy(-ability_cost)
@@ -61,12 +61,12 @@
 	icon = 'icons/obj/Shadekin_powers.dmi'
 	icon_state = "dark_maw_waiting"
 
-/obj/effect/abstract/dark_maw/Initialize(mapload, var/mob/living/user, var/trigger_now = 0)
+/obj/effect/abstract/dark_maw/Initialize(mapload, var/mob/user, var/trigger_now = FALSE)
 	. = ..()
 	if(!isturf(loc))
 		return INITIALIZE_HINT_QDEL
 	var/datum/component/shadekin/SK
-	if(user && !isliving(user))
+	if(user && isliving(user))
 		owner = user
 		if(owner.vore_selected)
 			target = owner.vore_selected
@@ -188,15 +188,10 @@
 	escape_time = 30 SECONDS
 
 /obj/effect/energy_net/dark/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
-	if(istype(user,/mob/living/simple_mob/shadekin))
-		visible_message(span_danger("[user] dissipates \the [src] with a touch!"))
-		unbuckle_mob(buckled_mob)
-		return
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		var/datum/species/shadekin/SK = H.species
-		if(istype(SK))
+	if(isliving(user))
+		var/mob/living/unbuckler = user
+		var/datum/component/shadekin/SK = unbuckler.get_shadekin_component()
+		if(SK)
 			visible_message(span_danger("[user] dissipates \the [src] with a touch!"))
 			unbuckle_mob(buckled_mob)
 			return
