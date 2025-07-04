@@ -341,10 +341,10 @@
 		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 		t = replacetext(t, "\[row\]", "</td><tr>")
 		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = \ref['html/images/ntlogo.png']>")
-		t = replacetext(t, "\[sglogo\]", "<img src = \ref['html/images/sglogo.png']>")
-		t = replacetext(t, "\[trlogo\]", "<img src = \ref['html/images/trader.png']>")
-		// t = replacetext(t, "\[pclogo\]", "<img src = \ref['html/images/pclogo.png']>") // Not available on virgo
+		t = replacetext(t, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']>")
+		t = replacetext(t, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']>")
+		t = replacetext(t, "\[trlogo\]", "<img src=\ref['html/images/trader.png']>")
+		// t = replacetext(t, "\[pclogo\]", "<img src=\ref['html/images/pclogo.png']>") // Not available on virgo
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!

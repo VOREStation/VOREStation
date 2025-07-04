@@ -52,7 +52,7 @@
 		logo = 'html/images/trader.png'
 	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
-	text = "<center><img src = \ref[logo]></br>"
+	text = "<center><img src=\ref[logo]></br>"
 	text += span_bold("[origin] Quantum Uplink Signed Message") + "<br>"
 	text += span_small("Encryption key: [originhash]<br>Challenge: [timehash]") + "<br></center><hr>"
 
