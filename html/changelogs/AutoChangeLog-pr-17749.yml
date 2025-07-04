@@ -1,0 +1,13 @@
+author: "Diana, Kash"
+delete-after: True
+changes:
+  - rscadd: "Changelings can now absorb via VORE."
+  - refactor: "Changeling is now a component"
+  - balance: "Changelings now get a genetic point upon absorbing someone"
+  - balance: "Changelings don't mc-die from epi"
+  - balance: "Changeling spacesuit is now free"
+  - balance: "A lot of changeling perks adjusted in minor ways. More to come."
+  - rscdel: "Changeling death sting deleted."
+  - balance: "Changeling unfat sting now reduces nutrition by 85% or 100 nutrition, whatever's higher."
+  - qol: "Changeling evolution menu is now TGUI"
+  - code_imp: "General code cleanup in Changeling code. Now runs smoother."
