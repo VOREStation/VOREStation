@@ -61,6 +61,9 @@
 
 		dat += "  (Page <b>[current_news_page]</b> out of <b>[CHANNEL.messages.len]</b>)"
 
+
+	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/paper_images)
+	asset_cache_datum.send(src)
 	var/datum/browser/popup = new(src, "News", "Latest News", 640, 600, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()

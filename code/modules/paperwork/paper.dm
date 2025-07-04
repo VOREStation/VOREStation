@@ -349,6 +349,8 @@
 		t = replacetext(t, "\[cell\]", "<td>")
 		t = replacetext(t, "\[logo\]", "<img src = [SSassets.transport.get_asset_url("ntlogo.png")]>")
 		t = replacetext(t, "\[sglogo\]", "<img src = [SSassets.transport.get_asset_url("sglogo.png")]>")
+		t = replacetext(t, "\[trlogo\]", "<img src = [SSassets.transport.get_asset_url("trader.png")]>")
+		// t = replacetext(t, "\[pclogo\]", "<img src = SSassets.transport.get_asset_url("pclogo.png")]>") // Not available on virgo
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
