@@ -28,6 +28,8 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/datum/whitelist_editor/whitelist_editor
+
 	var/given_profiling = FALSE
 
 

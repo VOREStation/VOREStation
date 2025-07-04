@@ -4,6 +4,4 @@
 #Also don't ignore these things because editing them manually on the server is a pain in the fucking ass.
 !custom_items.txt
 !custom_sprites.txt
-!alienwhitelist.txt
-!jobwhitelist.txt
 !jukebox.json

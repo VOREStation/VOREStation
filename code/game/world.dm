@@ -47,6 +47,15 @@ GLOBAL_VAR(restart_counter)
 	GLOB.timezoneOffset = get_timezone_offset()
 
 	callHook("startup")
+
+	// This should probably moved somewhere else
+	// Maybe even a comsig?
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
+	if(CONFIG_GET(flag/usealienwhitelist))
+		load_alienwhitelist()
+	load_jobwhitelist()
+
 	//Emergency Fix
 	load_mods()
 	//end-emergency fix
