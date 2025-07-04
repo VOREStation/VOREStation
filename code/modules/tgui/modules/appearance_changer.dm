@@ -593,6 +593,7 @@
 				if(DC.allowed(ui.user) || BR.ckey == ui.user.ckey)
 					BD.load_record_to_body(BR)
 					owner.resleeve_lock = BR.locked
+					owner.changeling_locked = BR.changeling_locked
 					DC.selected_record = TRUE
 			return TRUE
 		if("view_stock_brec")
@@ -621,7 +622,9 @@
 				return FALSE
 			if(!DC.disk)
 				return FALSE
-			if(owner.resleeve_lock)
+			if(owner.changeling_locked)
+				to_chat(ui.user, span_warning("ERROR: Record too complex. Disk does not have enough space to store this record."))
+			else if(owner.resleeve_lock)
 				var/answer = tgui_alert(ui.user,"This body record will be written to a disk and allow any mind to inhabit it. This is against the current body owner's configured OOC preferences for body impersonation. Please confirm that you have permission to do this, and are sure! Admins will be notified.","Mind Compatability",list("No","Yes"))
 				if(!answer)
 					return
@@ -630,7 +633,7 @@
 				else
 					message_admins("[ui.user] wrote an unlocked version of [owner.real_name]'s bodyrecord to a disk. Their preferences do not allow body impersonation, but may be allowed with OOC consent.")
 					owner.resleeve_lock = FALSE // unlock it, even though it's only temp, so you don't get the warning every time
-			if(!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE))
+			if(!owner.changeling_locked && (!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE)))
 				// Create it from the mob
 				if(DC.disk.stored)
 					qdel_null(DC.disk.stored)
