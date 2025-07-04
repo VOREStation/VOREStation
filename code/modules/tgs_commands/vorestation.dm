@@ -12,12 +12,10 @@
 	if(using_map && using_map.full_name)
 		map_name = using_map.full_name
 
-	for(var/X in GLOB.clients)
-		var/client/C = X
-		if(C)
-			counts++
-		if(C && !(isnewplayer(C.mob) || istype(C.mob, /mob/observer)))
-			if(C && C.mob && isbelly(C.mob.loc))
+	for(var/client/C in GLOB.clients)
+		counts++
+		if(!(isnewplayer(C.mob) || istype(C.mob, /mob/observer)))
+			if(C.mob && isbelly(C.mob.loc))
 				bellied++
 		if(C.is_afk())
 			afks++

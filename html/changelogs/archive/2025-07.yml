@@ -16,3 +16,6 @@
   - rscadd: Added tgs testing suite and dmapi update workflow
   - refactor: DMAPI Updated to the latest version
   - server: This PR makes tgs ready to be used
+2025-07-04:
+  ItsSelis:
+  - admin: Ranks with the 'R_ADMIN' permission can now see LOOC messages remotely.
