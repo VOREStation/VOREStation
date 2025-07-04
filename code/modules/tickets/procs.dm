@@ -10,7 +10,7 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, span_danger("Error: Mentor-PM: You cannot send adminhelps (Muted)."))
 		return
-	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	if(!msg)
@@ -91,7 +91,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, span_danger("Error: Admin-PM: You cannot send adminhelps (Muted)."))
 		return
-	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	if(!msg)
@@ -261,7 +261,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 		to_chat(src, span_mentor_notice("Message: [msg]"))
 		return
 
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if (src.handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
