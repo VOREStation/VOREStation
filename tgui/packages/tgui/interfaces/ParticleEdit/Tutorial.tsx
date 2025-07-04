@@ -23,24 +23,27 @@ export const ShowDesc = (props) => {
         title={'Var Details'}
         buttons={
           VarExplanation[desc].dataunit ? (
-            <Button content="Dismiss" onClick={() => setDesc('')} />
+            <Button onClick={() => setDesc('')}>Dismiss</Button>
           ) : (
             <>
               <Button
-                content="Motion basics"
                 selected={desc === 'motion'}
                 onClick={() => setDesc('motion')}
-              />
+              >
+                Motion basics
+              </Button>
               <Button
-                content="Rand types"
                 selected={desc === 'randtypes'}
                 onClick={() => setDesc('randtypes')}
-              />
+              >
+                Rand types
+              </Button>
               <Button
-                content="Generator types"
                 selected={desc === 'gentypes'}
                 onClick={() => setDesc('gentypes')}
-              />
+              >
+                Generator types
+              </Button>
               <Button
                 icon="x"
                 tooltip={'Dismiss'}
