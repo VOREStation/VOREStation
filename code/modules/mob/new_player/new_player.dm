@@ -52,7 +52,7 @@
 		totalPlayers = 0
 		totalPlayersReady = 0
 		var/datum/job/refJob = null
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			refJob = player.client?.prefs.get_highest_job()
 			var/obfuscate_key = player.read_preference(/datum/preference/toggle/obfuscate_key)
 			var/obfuscate_job = player.read_preference(/datum/preference/toggle/obfuscate_job)

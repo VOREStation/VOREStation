@@ -22,7 +22,7 @@
 		new_voice.name = "[name]" 					//No name given? Give them the name of the object they're inhabiting.
 	new_voice.real_name = "[new_voice.real_name]" 	//We still know their real name though!
 	possessed_voice.Add(new_voice)
-	listening_objects |= src
+	GLOB.listening_objects |= src
 	remove_verb(new_voice, /mob/living/voice/verb/change_name) //No changing your name! Bad!
 	remove_verb(new_voice, /mob/living/voice/verb/hang_up) //Also you can't hang up. You are the item!
 	src.item_tf_spawnpoint_used()

@@ -176,7 +176,7 @@
 					data["virus"] += list(list("name" = v.fields["name"], "D" = "\ref[v]"))
 			if(MED_DATA_MEDBOT)
 				data["medbots"] = list()
-				for(var/mob/living/bot/medbot/M in mob_list)
+				for(var/mob/living/bot/medbot/M in GLOB.mob_list)
 					if(M.z != z)
 						continue
 					var/turf/T = get_turf(M)

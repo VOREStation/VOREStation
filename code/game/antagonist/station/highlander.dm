@@ -77,7 +77,7 @@ var/datum/antagonist/highlander/highlanders
 		message_admins(span_adminnotice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"))
 		log_admin("[key_name(usr)] used THERE CAN BE ONLY ONE.")
 
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == 2 || !(H.client)) continue
 		if(is_special_character(H)) continue
 		highlanders.add_antagonist(H.mind)

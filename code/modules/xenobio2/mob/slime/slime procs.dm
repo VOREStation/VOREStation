@@ -33,7 +33,7 @@ Slime specific procs go here.
 				hasMutToxin = 1
 		var/chemamount
 		if(hasMutToxin)
-			var/list/chemchoices = (xenoChemList - traitdat.chems)
+			var/list/chemchoices = (GLOB.xenoChemList - traitdat.chems)
 
 			var/chemtype = pick(chemchoices)
 			chemamount = rand(1,5)

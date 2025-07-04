@@ -542,7 +542,7 @@
 /obj/item/toy/AI/attack_self(mob/user as mob)
 	var/list/players = list()
 
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name

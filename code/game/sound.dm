@@ -13,7 +13,7 @@
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
-	var/list/listeners = player_list.Copy()
+	var/list/listeners = GLOB.player_list.Copy()
 	for(var/mob/M as anything in listeners)
 		if(!M || !M.client)
 			continue
@@ -119,7 +119,7 @@
 
 /proc/sound_to_playing_players(sound, volume = 100, vary)
 	sound = get_sfx(sound)
-	for(var/M in player_list)
+	for(var/M in GLOB.player_list)
 		if(ismob(M) && !isnewplayer(M))
 			var/mob/MO = M
 			MO.playsound_local(get_turf(MO), sound, volume, vary, pressure_affected = FALSE)

@@ -331,18 +331,18 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	var/grind_list = list()
 	var/list/display_reactions = list()
-	for(var/ore_type in ore_reagents)
+	for(var/ore_type in GLOB.ore_reagents)
 		var/obj/item/ore/O = ore_type
-		if(R.id in ore_reagents[ore_type])
+		if(R.id in GLOB.ore_reagents[ore_type])
 			display_reactions.Add(initial(O.name))
 	grind_list["ore"] = null
 	if(display_reactions.len > 0)
 		grind_list["ore"] = display_reactions
 
 	display_reactions = list()
-	for(var/sheet_type in sheet_reagents)
+	for(var/sheet_type in GLOB.sheet_reagents)
 		var/obj/item/stack/material/M = sheet_type
-		if(R.id in sheet_reagents[sheet_type])
+		if(R.id in GLOB.sheet_reagents[sheet_type])
 			display_reactions.Add(initial(M.name))
 	grind_list["material"] = null
 	if(display_reactions.len > 0)
@@ -802,8 +802,8 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["pump_reagent"] = REG.name
 
 	data["grind_reagents"] = null
-	if(global.ore_reagents[O.ore])
-		var/list/output = global.ore_reagents[O.ore]
+	if(GLOB.ore_reagents[O.ore])
+		var/list/output = GLOB.ore_reagents[O.ore]
 		var/list/collect = list()
 		var/total_parts = 0
 		for(var/Rid in output)
@@ -874,8 +874,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["ignition_point"] = M.ignition_point
 
 	data["grind_reagents"] = null
-	if(global.sheet_reagents[M.stack_type])
-		var/list/output = global.sheet_reagents[M.stack_type]
+	if(GLOB.sheet_reagents[M.stack_type])
+		var/list/output = GLOB.sheet_reagents[M.stack_type]
 		if(output && output.len > 0)
 			var/list/collect = list()
 			var/total_parts = 0

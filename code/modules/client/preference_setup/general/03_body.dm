@@ -1,4 +1,3 @@
-var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 // Not actually used; just forces this into the RSC for TGUI.
 var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
@@ -30,26 +29,26 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 	// Grandfather in anyone loading paths from a save.
 	if(ispath(ear_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.ear_styles_list[ear_style]
+		var/datum/sprite_accessory/instance = GLOB.ear_styles_list[ear_style]
 		if(istype(instance))
 			ear_style = instance.name
 	if(ispath(wing_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.wing_styles_list[wing_style]
+		var/datum/sprite_accessory/instance = GLOB.wing_styles_list[wing_style]
 		if(istype(instance))
 			wing_style = instance.name
 	if(ispath(tail_style, /datum/sprite_accessory))
-		var/datum/sprite_accessory/instance = global.tail_styles_list[tail_style]
+		var/datum/sprite_accessory/instance = GLOB.tail_styles_list[tail_style]
 		if(istype(instance))
 			tail_style = instance.name
 
 	// Sanitize for non-existent keys.
-	if(ear_style && !(ear_style in get_available_styles(global.ear_styles_list)))
+	if(ear_style && !(ear_style in get_available_styles(GLOB.ear_styles_list)))
 		ear_style = null
-	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(global.ear_styles_list)))
+	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(GLOB.ear_styles_list)))
 		ear_secondary_style = null
-	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
+	if(wing_style && !(wing_style in get_available_styles(GLOB.wing_styles_list)))
 		wing_style = null
-	if(tail_style && !(tail_style in get_available_styles(global.tail_styles_list)))
+	if(tail_style && !(tail_style in get_available_styles(GLOB.tail_styles_list)))
 		tail_style = null
 
 /datum/preferences/proc/get_available_styles(var/style_list)
@@ -67,7 +66,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		.[instance.name] = instance
 
 /datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
-	var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[marking]
+	var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[marking]
 	var/list/new_marking = marking_value||mark_datum.body_parts
 	for (var/NM in new_marking)
 		if (marking_value && !islist(new_marking[NM])) continue
@@ -133,15 +132,15 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
-	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
+	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
+	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 
 	if(!pref.organ_data) pref.organ_data = list()
 	if(!pref.rlimb_data || !islist(pref.rlimb_data)) pref.rlimb_data = list()
 	if(!pref.body_markings) pref.body_markings = list()
-	else pref.body_markings &= body_marking_styles_list
+	else pref.body_markings &= GLOB.body_marking_styles_list
 	for (var/M in pref.body_markings)
 		if (!islist(pref.body_markings[M]))
 			var/col = istext(pref.body_markings[M]) ? pref.body_markings[M] : "#000000"
@@ -185,17 +184,17 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		character.digitigrade = 0
 		pref.digitigrade = 0
 
-	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
+	var/list/ear_styles = pref.get_available_styles(GLOB.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
 
 	// apply secondary ears; sanitize again to prevent runtimes in rendering
 	character.ear_secondary_style = ear_styles[pref.ear_secondary_style]
 	character.ear_secondary_colors = SANITIZE_LIST(pref.ear_secondary_colors)
 
-	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
+	var/list/tail_styles = pref.get_available_styles(GLOB.tail_styles_list)
 	character.tail_style = tail_styles[pref.tail_style]
 
-	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
+	var/list/wing_styles = pref.get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[pref.wing_style]
 
 	character.set_gender(pref.biological_gender)
@@ -246,7 +245,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	var/priority = 0
 	for(var/M in pref.body_markings)
 		priority += 1
-		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
+		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
@@ -350,28 +349,28 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["can_play"] = can_play_list
 
 	var/list/available_hair_styles = list()
-	for(var/path in pref.get_available_styles(hair_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.hair_styles_list))
 		UNTYPED_LIST_ADD(available_hair_styles, path)
 	data["available_hair_styles"] = available_hair_styles
 
 	var/list/available_facial_styles = list()
-	for(var/path in pref.get_available_styles(facial_hair_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.facial_hair_styles_list))
 		UNTYPED_LIST_ADD(available_facial_styles, path)
 	data["available_facial_styles"] = available_facial_styles
 
 	// WARNING: Depends on adding "None"
 	var/list/available_ear_styles = list("None")
-	for(var/path in pref.get_available_styles(ear_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.ear_styles_list))
 		UNTYPED_LIST_ADD(available_ear_styles, path)
 	data["available_ear_styles"] = available_ear_styles
 
 	var/list/available_tail_styles = list()
-	for(var/path in pref.get_available_styles(tail_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.tail_styles_list))
 		UNTYPED_LIST_ADD(available_tail_styles, path)
 	data["available_tail_styles"] = available_tail_styles
 
 	var/list/available_wing_styles = list()
-	for(var/path in pref.get_available_styles(wing_styles_list))
+	for(var/path in pref.get_available_styles(GLOB.wing_styles_list))
 		UNTYPED_LIST_ADD(available_wing_styles, path)
 	data["available_wing_styles"] = available_wing_styles
 
@@ -398,8 +397,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["species"] = species_list
 
 	var/list/hair_styles = list()
-	for(var/path in hair_styles_list)
-		var/datum/sprite_accessory/hair/S = hair_styles_list[path]
+	for(var/path in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/hair/S = GLOB.hair_styles_list[path]
 		hair_styles[path] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -409,8 +408,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["hair_styles"] = hair_styles
 
 	var/list/facial_styles = list()
-	for(var/path in facial_hair_styles_list)
-		var/datum/sprite_accessory/facial_hair/S = facial_hair_styles_list[path]
+	for(var/path in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/facial_hair/S = GLOB.facial_hair_styles_list[path]
 		facial_styles[path] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -430,8 +429,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["grad_styles"] = grad_styles
 
 	var/list/ear_styles = list()
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/S = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/S = GLOB.ear_styles_list[path]
 		ear_styles[S.name] = list(
 			"name" = S.name,
 			"type" = S.type,
@@ -444,8 +443,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["ear_styles"] = ear_styles
 
 	var/list/body_markings = list()
-	for(var/path in body_marking_styles_list)
-		var/datum/sprite_accessory/marking/S = body_marking_styles_list[path]
+	for(var/path in GLOB.body_marking_styles_list)
+		var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[path]
 
 		var/icon_state = S.icon_state
 		if(LAZYLEN(S.body_parts))
@@ -461,8 +460,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["body_markings"] = body_markings
 
 	var/list/tail_styles = list()
-	for(var/path in tail_styles_list)
-		var/datum/sprite_accessory/tail/S = tail_styles_list[path]
+	for(var/path in GLOB.tail_styles_list)
+		var/datum/sprite_accessory/tail/S = GLOB.tail_styles_list[path]
 		tail_styles[S.name] = list(
 			"name" = name,
 			"icon" = REF(S.icon),
@@ -474,8 +473,8 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 	data["tail_styles"] = tail_styles
 
 	var/list/wing_styles = list()
-	for(var/path in wing_styles_list)
-		var/datum/sprite_accessory/wing/S = wing_styles_list[path]
+	for(var/path in GLOB.wing_styles_list)
+		var/datum/sprite_accessory/wing/S = GLOB.wing_styles_list[path]
 		wing_styles[S.name] = list(
 			"name" = S.name,
 			"icon" = REF(S.icon),
@@ -500,7 +499,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Hair */
 		if("set_hair_style")
 			var/new_h_style = params["hair_style"]
-			if(new_h_style in pref.get_available_styles(hair_styles_list))
+			if(new_h_style in pref.get_available_styles(GLOB.hair_styles_list))
 				pref.h_style = new_h_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_hair_color")
@@ -514,7 +513,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Facial Hair */
 		if("set_facial_hair_style")
 			var/new_f_style = params["facial_hair_style"]
-			if(new_f_style in pref.get_available_styles(facial_hair_styles_list))
+			if(new_f_style in pref.get_available_styles(GLOB.facial_hair_styles_list))
 				pref.f_style = new_f_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_facial_hair_color")
@@ -542,7 +541,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 		/* Markings */
 		if("add_marking")
-			var/list/usable_markings = pref.body_markings.Copy() ^ body_marking_styles_list.Copy()
+			var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
 			var/new_marking = params["new_marking"]
 			if(new_marking && (new_marking in usable_markings))
 				pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
@@ -616,7 +615,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(new_ear_style == "None")
 				pref.ear_style = null
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-			if(new_ear_style in pref.get_available_styles(global.ear_styles_list))
+			if(new_ear_style in pref.get_available_styles(GLOB.ear_styles_list))
 				pref.ear_style = new_ear_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_ear_color")
@@ -642,7 +641,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(new_ear_style == "None")
 				pref.ear_secondary_style = null
 				return TOPIC_REFRESH_UPDATE_PREVIEW
-			if(new_ear_style in pref.get_available_styles(ear_styles_list))
+			if(new_ear_style in pref.get_available_styles(GLOB.ear_styles_list))
 				pref.ear_secondary_style = new_ear_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_ear_secondary_color")
@@ -680,7 +679,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Wings */
 		if("set_wing_style")
 			var/new_style = params["style"]
-			if(new_style in pref.get_available_styles(global.wing_styles_list))
+			if(new_style in pref.get_available_styles(GLOB.wing_styles_list))
 				pref.wing_style = new_style
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_wing_color")
@@ -711,7 +710,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		/* Tail */
 		if("set_tail_style")
 			var/new_tail_style = params["style"]
-			if(new_tail_style in pref.get_available_styles(global.tail_styles_list))
+			if(new_tail_style in pref.get_available_styles(GLOB.tail_styles_list))
 				pref.tail_style = new_tail_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("set_tail_color")
@@ -765,7 +764,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 						pref.h_style = pick(valid_hairstyles)
 				else
 					//this shouldn't happen
-					pref.h_style = hair_styles_list["Bald"]
+					pref.h_style = GLOB.hair_styles_list["Bald"]
 
 				//grab one of the valid facial hair styles for the newly chosen species
 				var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
@@ -775,7 +774,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 						pref.f_style = pick(valid_facialhairstyles)
 				else
 					//this shouldn't happen
-					pref.f_style = facial_hair_styles_list["Shaved"]
+					pref.f_style = GLOB.facial_hair_styles_list["Shaved"]
 
 				//reset hair colour and skin colour
 				pref.update_preference_by_type(/datum/preference/color/human/hair_color, "#000000")
@@ -988,7 +987,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("blood_type")
-			var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", valid_bloodtypes, pref.b_type)
+			var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", GLOB.valid_bloodtypes, pref.b_type)
 			if(new_b_type)
 				pref.b_type = new_b_type
 				return TOPIC_REFRESH

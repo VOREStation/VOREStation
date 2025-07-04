@@ -38,14 +38,14 @@ var/datum/antagonist/mutineer/mutineers
 	// Returns an array in case we want to expand on this later.
 	proc/get_head_loyalist_candidates()
 		var/list/candidates[0]
-		for(var/mob/loyalist in player_list)
+		for(var/mob/loyalist in GLOB.player_list)
 			if(loyalist.mind && loyalist.mind.assigned_role == JOB_SITE_MANAGER)
 				candidates.Add(loyalist.mind)
 		return candidates
 
 	proc/get_head_mutineer_candidates()
 		var/list/candidates[0]
-		for(var/mob/mutineer in player_list)
+		for(var/mob/mutineer in GLOB.player_list)
 			if(mutineer.client.prefs.be_special & BE_MUTINEER)
 				for(var/job in command_positions - JOB_SITE_MANAGER)
 					if(mutineer.mind && mutineer.mind.assigned_role == job)

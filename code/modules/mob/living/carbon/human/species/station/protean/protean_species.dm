@@ -115,8 +115,6 @@
 		/mob/living/proc/start_wings_hovering,
 		) //removed fetish verbs, since non-customs can pick neutral traits now. Also added flight, cause shapeshifter can grow wings.
 
-	var/global/list/abilities = list()
-
 	var/blob_appearance = "puddle1"
 	var/blob_color_1 = "#363636"
 	var/blob_color_2 = "#ba3636"
@@ -142,10 +140,10 @@
 
 /datum/species/protean/New()
 	..()
-	if(!LAZYLEN(abilities))
+	if(!LAZYLEN(GLOB.protean_abilities))
 		var/list/powertypes = subtypesof(/obj/effect/protean_ability)
 		for(var/path in powertypes)
-			abilities += new path()
+			GLOB.protean_abilities += new path()
 
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/nif/saved_nif = H.nif
@@ -306,7 +304,7 @@
 		L[++L.len] = list("- -- --- REFACTORY ERROR! --- -- -", null, null, null, null)
 
 	L[++L.len] = list("- -- --- Abilities (Shift+LMB Examines) --- -- -", null, null, null, null)
-	for(var/obj/effect/protean_ability/A as anything in abilities)
+	for(var/obj/effect/protean_ability/A as anything in GLOB.protean_abilities)
 		var/client/C = H.client
 		var/img
 		if(C && istype(C)) //sanity checks

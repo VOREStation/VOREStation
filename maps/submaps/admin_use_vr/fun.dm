@@ -294,7 +294,7 @@
 /obj/effect/overmap/visitable/ship/admin_use/space_dog/Crossed(var/obj/effect/overmap/visitable/ship/enterer)
 	. = ..()
 	if(istype(enterer))
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in enterer.map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/boy.ogg')
 

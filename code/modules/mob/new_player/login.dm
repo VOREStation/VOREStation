@@ -17,7 +17,7 @@
 	loc = null
 	sight |= SEE_TURFS
 
-	player_list |= src
+	GLOB.player_list |= src
 	GLOB.new_player_list += src
 
 	created_for = ckey

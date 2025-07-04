@@ -59,7 +59,7 @@
 		if(!play_sound)
 			return
 
-		for(var/mob/player in player_list)
+		for(var/mob/player in GLOB.player_list)
 			//if(player.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			if(player.client?.prefs.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 				SEND_SOUND(player, sound(sound_override))

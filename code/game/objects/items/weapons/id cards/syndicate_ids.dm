@@ -11,7 +11,7 @@
 /obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	agentcard_module = new(src)
-	access = syndicate_access.Copy()
+	access = GLOB.syndicate_access.Copy()
 
 /obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access
@@ -64,10 +64,9 @@
 	registered_user.unregister(OBSERVER_EVENT_DESTROY, src)
 	registered_user = null
 
-/var/global/list/id_card_states
 /proc/id_card_states()
-	if(!id_card_states)
-		id_card_states = list()
+	if(!GLOB.id_card_states)
+		GLOB.id_card_states = list()
 		for(var/path in typesof(/obj/item/card/id))
 			var/obj/item/card/id/ID = new path()
 			var/datum/card_state/CS = new()
@@ -75,10 +74,10 @@
 			CS.item_state = initial(ID.item_state)
 			CS.sprite_stack = ID.initial_sprite_stack
 			CS.name = initial(ID.name)
-			id_card_states += CS
-		id_card_states = dd_sortedObjectList(id_card_states)
+			GLOB.id_card_states += CS
+		GLOB.id_card_states = dd_sortedObjectList(GLOB.id_card_states)
 
-	return id_card_states
+	return GLOB.id_card_states
 
 /datum/card_state
 	var/name

@@ -18,7 +18,7 @@ Please do not abuse this ability.
 
 	var/list/eligible_targets = list()
 
-	for(var/mob/living/pred in living_mob_list)
+	for(var/mob/living/pred in GLOB.living_mob_list)
 		if(!istype(pred) || !pred.client)		// Ignore preds that aren't living mobs or player controlled
 			continue
 		if(pred.no_vore)						// No vore, no bellies, no inbelly spawning

@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th colspan='2'>Players</td>"
 	dat += "</tr>"
 
-	for(var/mob/M as anything in player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		dat += "<tr>"
 		dat += "<td>[M] ([M.ckey])</td>"
 		dat += "<td>[GLOB.metric.assess_player_activity(M)]%</td>"

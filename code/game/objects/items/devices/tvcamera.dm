@@ -16,10 +16,10 @@
 
 /obj/item/tvcamera/Initialize(mapload)
 	. = ..()
-	listening_objects += src
+	GLOB.listening_objects += src
 
 /obj/item/tvcamera/Destroy()
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	qdel(camera)
 	qdel(radio)
 	camera = null

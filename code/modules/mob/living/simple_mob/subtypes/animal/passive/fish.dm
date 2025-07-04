@@ -25,15 +25,6 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 	meat_amount = 3
 
-	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
-	var/global/list/suitable_turf_types =  list(
-		/turf/simulated/floor/beach/water,
-		/turf/simulated/floor/beach/coastline,
-		/turf/simulated/floor/holofloor/beach/water,
-		/turf/simulated/floor/holofloor/beach/coastline,
-		/turf/simulated/floor/water
-	)
-
 	var/randomize_location = TRUE
 
 /mob/living/simple_mob/animal/passive/fish/Initialize(mapload)
@@ -47,7 +38,7 @@
 
 // Makes the AI unable to willingly go on land.
 /mob/living/simple_mob/animal/passive/fish/IMove(turf/newloc, safety = TRUE)
-	if(is_type_in_list(newloc, suitable_turf_types))
+	if(is_type_in_list(newloc, GLOB.suitable_fish_turf_types))
 		return ..() // Procede as normal.
 	return MOVEMENT_FAILED // Don't leave the water!
 
@@ -59,7 +50,7 @@
 			return
 
 	var/turf/T = get_turf(src)
-	if(T && !is_type_in_list(T, suitable_turf_types))
+	if(T && !is_type_in_list(T, GLOB.suitable_fish_turf_types))
 		if(prob(50))
 			say(pick("Blub", "Glub", "Burble"))
 		adjustBruteLoss(unsuitable_atoms_damage)

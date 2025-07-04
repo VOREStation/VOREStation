@@ -1,5 +1,3 @@
-var/global/list/datum/supply_drop_loot/supply_drop
-
 /proc/supply_drop_random_loot_types()
 	if(!supply_drop)
 		supply_drop = init_subtypes(/datum/supply_drop_loot)

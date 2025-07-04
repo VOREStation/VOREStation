@@ -33,7 +33,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 			AN.set_vars(src)
 
 		if("Manage Personal Triggers")
-			var/personal_list = event_triggers[src.ckey]
+			var/personal_list = GLOB.event_triggers[src.ckey]
 			if(!LAZYLEN(personal_list))
 				to_chat(src, span_notice("You don't have any landmarks to manage!"))
 				return
@@ -68,7 +68,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 					qdel(ET)
 		if("Manage Other's Triggers")
 			var/other_ckey = sanitize(tgui_input_text(src, "input trigger owner's ckey", "CKEY", ""))
-			var/others_list = event_triggers[other_ckey]
+			var/others_list = GLOB.event_triggers[other_ckey]
 			if(!LAZYLEN(others_list))
 				to_chat(src, span_notice("[other_ckey] doesn't have any landmarks to manage!"))
 				return

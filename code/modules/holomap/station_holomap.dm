@@ -260,4 +260,4 @@
 	holomarker.x = src.x
 	holomarker.y = src.y
 	holomarker.z = src.z
-	holomap_markers["[id]_\ref[src]"] = holomarker
+	GLOB.holomap_markers["[id]_\ref[src]"] = holomarker
