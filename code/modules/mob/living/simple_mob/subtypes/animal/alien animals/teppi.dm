@@ -686,7 +686,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		else if (not_hungy)
 			var/nutrition_cost = 500 + (nutrition / 2)
 			adjust_nutrition(-nutrition_cost)
-			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, store_teppy_data(src))
+			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, store_teppi_data(src))
 			qdel(src)
 		else
 			visible_message("\The [src] whines pathetically...", runemessage = "whines")
@@ -919,7 +919,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore() //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
 	return
 
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/store_teppy_data(mob/living/simple_mob/vore/alienanimals/teppi/teppi)
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/store_teppi_data(mob/living/simple_mob/vore/alienanimals/teppi/teppi)
 	var/list/teppi_data = list(
 		"dir" = teppi.dir,
 		"name" = teppi.name,
