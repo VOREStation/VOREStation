@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - admin: "Ranks with the 'R_ADMIN' permission can now see LOOC messages remotely."
