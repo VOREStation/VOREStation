@@ -52,7 +52,7 @@
 		logo = "trader.png"
 	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
-	text = "<center><img src = [logo]></br>"
+	text = "<center><img src = [SSassets.transport.get_asset_url(logo)]></br>"
 	text += span_bold("[origin] Quantum Uplink Signed Message") + "<br>"
 	text += span_small("Encryption key: [originhash]<br>Challenge: [timehash]") + "<br></center><hr>"
 
@@ -77,6 +77,7 @@
 	updateDisplay()
 
 /obj/item/paper/admin/proc/updateDisplay()
+	get_assets(usr)
 	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[headerOn ? header : ""][info_links][stamps][footerOn ? footer : ""][interactions]</BODY></HTML>", "window=[name];can_close=0")
 
 

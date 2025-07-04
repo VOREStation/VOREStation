@@ -423,9 +423,9 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
-	t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
-	t = replacetext(t, "\[redlogo\]", "<img src = redntlogo.png>")
-	t = replacetext(t, "\[sglogo\]", "<img src = sglogo.png>")
+	t = replacetext(t, "\[logo\]", "<img src = [SSassets.transport.get_asset_url("ntlogo.png")]")
+	t = replacetext(t, "\[redlogo\]", "<img src = [SSassets.transport.get_asset_url("redntlogo.png")]>")
+	t = replacetext(t, "\[sglogo\]", "<img src = [SSassets.transport.get_asset_url("sglogo.png>")]")
 	t = replacetext(t, "\[editorbr\]", "")
 	return t
 

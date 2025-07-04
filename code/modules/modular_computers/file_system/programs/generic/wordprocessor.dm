@@ -74,6 +74,8 @@
 
 	switch(action)
 		if("PRG_txtrpeview")
+			var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/paper_images)
+			asset_cache_datum.send(ui.user)
 			show_browser(ui.user,"<HTML><HEAD><TITLE>[open_file]</TITLE></HEAD>[pencode2html(loaded_data)]</BODY></HTML>", "window=[open_file]")
 			return TRUE
 
