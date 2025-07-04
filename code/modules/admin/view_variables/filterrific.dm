@@ -72,7 +72,7 @@
 				target.transition_filter(params["name"], list("color" = new_color), 4)
 				. = TRUE
 		if("modify_icon_value")
-			var/icon/new_icon = input("Pick icon:", "Icon") as null|icon
+			var/icon/new_icon = pick_and_customize_icon()
 			if(new_icon)
 				target.filter_data[params["name"]]["icon"] = new_icon
 				target.update_filters()

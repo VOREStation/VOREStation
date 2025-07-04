@@ -4,15 +4,17 @@ import { Box, NumberInput } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 import { numberOfDecimalDigits } from 'tgui-core/math';
 
-export const FilterFloatEntry = (props) => {
-  const { value, name, filterName } = props;
+import { type FilterEntryProps } from '../types';
+
+export const FilterFloatEntry = (props: FilterEntryProps) => {
+  const { name, value, hasValue, filterName, filterType } = props;
   const { act } = useBackend();
   const [step, setStep] = useState(0.01);
 
   return (
     <>
       <NumberInput
-        value={value || 0}
+        value={value}
         minValue={-500}
         maxValue={500}
         stepPixelSize={4}

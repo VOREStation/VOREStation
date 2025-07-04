@@ -1,28 +1,27 @@
 import { useBackend } from 'tgui/backend';
 import { Button } from 'tgui-core/components';
 
-import type { Data, FilterEntryProps } from '../types';
+import { type Data, type FilterEntryProps } from '../types';
 
-export const FilterFlagsEntry = (props: FilterEntryProps) => {
+export const FilterEnumEntry = (props: FilterEntryProps) => {
   const { name, value, hasValue, filterName, filterType } = props;
   const { act, data } = useBackend<Data>();
-
   const filterInfo = data.filter_info;
-  const flags = filterInfo[filterType]['flags'];
-  return flags.map((bitField, flagName) => (
+  const enums = filterInfo[filterType]['enums'];
+  return enums.map((enumNumber, enumName) => (
     <Button.Checkbox
-      checked={value & bitField}
+      checked={value === enumNumber}
       onClick={() =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
-            [name]: value ^ bitField,
+            [name]: enumNumber,
           },
         })
       }
-      key={flagName}
+      key={enumName}
     >
-      {flagName}
+      {enumName}
     </Button.Checkbox>
   ));
 };

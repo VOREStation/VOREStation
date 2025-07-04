@@ -1,8 +1,10 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button } from 'tgui-core/components';
 
-export const FilterIconEntry = (props) => {
-  const { value, filterName } = props;
+import { type FilterEntryProps } from '../types';
+
+export const FilterIconEntry = (props: FilterEntryProps) => {
+  const { name, value, hasValue, filterName, filterType } = props;
   const { act } = useBackend();
   return (
     <>

@@ -1,4 +1,4 @@
-export type MasterFilter = {
+type MasterFilter = {
   alpha: {
     defaults: {
       x: number;
@@ -19,11 +19,23 @@ export type MasterFilter = {
       size: number;
     };
   };
+  color: {
+    defaults: {
+      color: string;
+      space: number;
+    };
+    enums: {
+      FILTER_COLOR_RGB: number;
+      FILTER_COLOR_HSV: number;
+      FILTER_COLOR_HSL: number;
+      FILTER_COLOR_HCY: number;
+    };
+  };
   displace: {
     defaults: {
       x: number;
       y: number;
-      size: null | number;
+      size: number;
       icon: string;
       render_source: '';
     };
@@ -50,8 +62,16 @@ export type MasterFilter = {
       render_source: string;
       flags: number;
       color: string;
-      transform: null | number;
+      transform: null | number[];
       blend_mode: number;
+    };
+    enums: {
+      BLEND_DEFAULT: number;
+      BLEND_OVERLAY: number;
+      BLEND_ADD: number;
+      BLEND_SUBTRACT: number;
+      BLEND_MULTIPLY: number;
+      BLEND_INSET_OVERLAY: number;
     };
   };
   motion_blur: {
@@ -124,7 +144,18 @@ export type MasterFilter = {
   };
 };
 
-type ActiveFilters = { type: string; priority: number } & Partial<MasterFilter>;
+export type ActiveFilters = {
+  type: string;
+  priority: number;
+} & Partial<MasterFilter>;
+
+export type FilterEntryProps = {
+  readonly name: string;
+  readonly value: any;
+  readonly hasValue: boolean;
+  readonly filterName: string;
+  readonly filterType: string;
+};
 
 export type Data = {
   filter_info: MasterFilter;

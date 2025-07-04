@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -10,8 +10,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { ParticleContext } from '.';
 import {
   type EntryCoordProps,
   type EntryFloatProps,
@@ -19,6 +17,7 @@ import {
   type EntryIconStateProps,
   type EntryTransformProps,
   MatrixTypes,
+  P_DATA_GRADIENT,
   P_DATA_ICON_ADD,
   P_DATA_ICON_REMOVE,
   P_DATA_ICON_WEIGHT,
@@ -29,9 +28,8 @@ import {
 import { editKeyOf, editWeightOf, setGradientSpace } from './helpers';
 
 export const EntryFloat = (props: EntryFloatProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
-  const { name, var_name, float } = props;
+  const { act, data } = useBackend<ParticleUIData>();
+  const { name, var_name, float, setDesc } = props;
   return (
     <LabeledList.Item label={name}>
       <Button
@@ -57,9 +55,8 @@ export const EntryFloat = (props: EntryFloatProps) => {
 };
 
 export const EntryCoord = (props: EntryCoordProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
-  const { name, var_name, coord } = props;
+  const { act, data } = useBackend<ParticleUIData>();
+  const { name, var_name, coord, setDesc } = props;
   return (
     <LabeledList.Item label={name}>
       <Button
@@ -111,15 +108,24 @@ export const EntryCoord = (props: EntryCoordProps) => {
 };
 
 export const EntryGradient = (props: EntryGradientProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
-  const { name, var_name, gradient } = props;
+  const { act, data } = useBackend<ParticleUIData>();
+  const { name, var_name, gradient, setDesc } = props;
+  const cleanGradient = gradient?.map((entry) => {
+    if (typeof entry === 'object') {
+      return Object.keys(entry)[0];
+    } else {
+      return entry;
+    }
+  });
   const isLooping = gradient?.find((x) => x === 'loop');
-  const space_type = gradient?.includes('space')
-    ? Object.keys(SpaceToNum).find(
-        (space) => SpaceToNum[space] === gradient['space'],
-      )
-    : 'COLORSPACE_RGB';
+  const spaceIndex = cleanGradient ? cleanGradient.indexOf('space') : -1;
+  const space_type =
+    spaceIndex >= 0
+      ? Object.keys(SpaceToNum).find(
+          (space) =>
+            SpaceToNum[space] === Object.values(gradient![spaceIndex])[0],
+        )
+      : 'COLORSPACE_RGB';
   return (
     <LabeledList.Item label={name}>
       <Stack>
@@ -138,6 +144,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
             onClick={() =>
               act('edit', {
                 var: var_name,
+                var_mod: P_DATA_GRADIENT,
                 new_value: isLooping
                   ? gradient!.filter((x, i) => i !== gradient!.indexOf('loop'))
                   : [...(gradient || []), 'loop'],
@@ -152,6 +159,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
             onSelected={(e) =>
               act('edit', {
                 var: var_name,
+                var_mod: P_DATA_GRADIENT,
                 new_value: gradient
                   ? setGradientSpace(gradient, SpaceToNum[e])
                   : { space: SpaceToNum[e] },
@@ -161,7 +169,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
           />
         </Stack.Item>
         <Stack.Item>
-          {gradient?.map((entry, index) =>
+          {cleanGradient?.map((entry, index) =>
             entry === 'loop' || entry === 'space' ? null : (
               <>
                 {typeof entry === 'string' ? (
@@ -171,22 +179,26 @@ export const EntryGradient = (props: EntryGradientProps) => {
                   key={index}
                   maxWidth={'70px'}
                   value={entry.toString()}
-                  onBlur={(value) =>
+                  onChange={(value) =>
                     act('edit', {
                       var: var_name,
-                      new_value: gradient!.map((x, i) =>
-                        i === index ? value : x,
-                      ),
+                      var_mod: P_DATA_GRADIENT,
+                      new_value: gradient!.map((x, i) => {
+                        const floatNum = parseFloat(value);
+                        const result = isNaN(floatNum) ? value : floatNum;
+                        return i === index ? result : x;
+                      }),
                     })
                   }
                 />
                 <Button
-                  icon="minus"
-                  tooltip="Remove entry"
+                  icon={'minus'}
+                  tooltip={'Remove entry'}
                   onClick={() =>
                     act('edit', {
                       var: var_name,
-                      new_value: gradient.filter((x, i) => i !== index),
+                      var_mod: P_DATA_GRADIENT,
+                      new_value: gradient!.filter((x, i) => i !== index),
                     })
                   }
                 />
@@ -201,6 +213,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
             onClick={() =>
               act('edit', {
                 var: var_name,
+                var_mod: P_DATA_GRADIENT,
                 new_value: [...(gradient || []), '#FFFFFF'],
               })
             }
@@ -212,8 +225,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
 };
 
 export const EntryTransform = (props: EntryTransformProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
+  const { act, data } = useBackend<ParticleUIData>();
   const len = props.transform?.length ? props.transform.length : 0;
   const selected =
     len < 7
@@ -221,7 +233,7 @@ export const EntryTransform = (props: EntryTransformProps) => {
       : len < 13
         ? 'Complex Matrix'
         : 'Projection Matrix';
-  const { name, var_name, transform } = props;
+  const { name, var_name, transform, setDesc } = props;
   return (
     <LabeledList.Item label={name}>
       <Stack>
@@ -266,9 +278,8 @@ export const EntryTransform = (props: EntryTransformProps) => {
 };
 
 export const EntryIcon = (props: EntryIconStateProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
-  const { name, var_name, icon_state } = props;
+  const { act, data } = useBackend<ParticleUIData>();
+  const { name, var_name, icon_state, setDesc } = props;
   return (
     <LabeledList.Item label={name}>
       <Stack>
@@ -340,9 +351,8 @@ export const EntryIcon = (props: EntryIconStateProps) => {
 };
 
 export const EntryIconState = (props: EntryIconStateProps) => {
-  const { act } = useBackend<ParticleUIData>();
-  const { setDesc } = useContext(ParticleContext);
-  const { name, var_name, icon_state } = props;
+  const { act, data } = useBackend<ParticleUIData>();
+  const { name, var_name, icon_state, setDesc } = props;
   const newValue =
     typeof icon_state === 'string'
       ? { [icon_state]: 1, None: 0 }
@@ -364,9 +374,9 @@ export const EntryIconState = (props: EntryIconStateProps) => {
             <>
               <Stack.Item>
                 <Input
-                  width="70px"
+                  width={'70px'}
                   value={iconstate}
-                  onBlur={(value) =>
+                  onChange={(value) =>
                     act('edit', {
                       var: var_name,
                       new_value: editKeyOf(icon_state, iconstate, value),
@@ -413,7 +423,7 @@ export const EntryIconState = (props: EntryIconStateProps) => {
           <>
             <Input
               value={icon_state ? icon_state : 'None'}
-              onBlur={(value) =>
+              onChange={(value) =>
                 act('edit', {
                   var: var_name,
                   new_value: value,

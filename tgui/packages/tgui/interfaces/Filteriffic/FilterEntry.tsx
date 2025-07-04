@@ -8,9 +8,12 @@ import {
 } from 'tgui-core/components';
 
 import { FilterDataEntry } from './FilterTypes/FilterDataEntry';
-import type { Data } from './typtes';
+import type { ActiveFilters, Data } from './types';
 
-export const FilterEntry = (props) => {
+export const FilterEntry = (props: {
+  readonly name: string;
+  readonly filterDataEntry: ActiveFilters;
+}) => {
   const { act, data } = useBackend<Data>();
   const { name, filterDataEntry } = props;
   const { type, priority, ...restOfProps } = filterDataEntry;

@@ -1,14 +1,17 @@
 import { Box, LabeledList } from 'tgui-core/components';
 
+import { type FilterEntryProps } from '../types';
 import { FilterColorEntry } from './FilterColorEntry';
+import { FilterEnumEntry } from './FilterEnumEntry';
 import { FilterFlagsEntry } from './FilterFlagsEntry';
 import { FilterFloatEntry } from './FilterFloatEntry';
 import { FilterIconEntry } from './FilterIconEntry';
 import { FilterIntegerEntry } from './FilterIntegerEntry';
 import { FilterTextEntry } from './FilterTextEntry';
+import { FilterTransformEntry } from './FilterTransformEntry';
 
-export const FilterDataEntry = (props) => {
-  const { name, value, hasValue, filterName } = props;
+export const FilterDataEntry = (props: FilterEntryProps) => {
+  const { name, value, hasValue, filterName, filterType } = props;
 
   const filterEntryTypes = {
     int: <FilterIntegerEntry {...props} />,
@@ -17,6 +20,8 @@ export const FilterDataEntry = (props) => {
     color: <FilterColorEntry {...props} />,
     icon: <FilterIconEntry {...props} />,
     flags: <FilterFlagsEntry {...props} />,
+    enum: <FilterEnumEntry {...props} />,
+    transform: <FilterTransformEntry {...props} />,
   };
 
   const filterEntryMap = {
@@ -34,6 +39,10 @@ export const FilterDataEntry = (props) => {
     threshold: 'float',
     factor: 'float',
     repeat: 'int',
+    alpha: 'int',
+    space: 'enum',
+    blend_mode: 'enum',
+    transform: 'transform',
   };
 
   return (
