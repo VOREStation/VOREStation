@@ -209,7 +209,7 @@
 /obj/item/robotic_multibelt/medical
 	name = "Robotic surgical multitool"
 	desc = "An integrated surgical toolbelt."
-	icon_state = "toolkit_medborg"
+	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
 		/obj/item/surgical/retractor/cyborg = null,
@@ -292,7 +292,7 @@
 /obj/item/robotic_multibelt/botanical
 	name = "Botanical multitool"
 	desc = "An integrated botanical toolbelt."
-	icon_state = "toolkit_medborg"
+	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
 		/obj/item/material/minihoe/cyborg  = null,
@@ -502,6 +502,9 @@
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
+
+/obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
+	return wrapped
 
 /obj/item/storage/internal/gripper
 	max_w_class = ITEMSIZE_HUGE
