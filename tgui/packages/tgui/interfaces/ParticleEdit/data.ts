@@ -15,6 +15,7 @@ export const P_DATA_GENERATOR = 'generator';
 export const P_DATA_ICON_ADD = 'icon_add';
 export const P_DATA_ICON_REMOVE = 'icon_remove';
 export const P_DATA_ICON_WEIGHT = 'icon_edit';
+export const P_DATA_GRADIENT = 'gradient';
 
 export const MatrixTypes = [
   'Simple Matrix',
@@ -68,7 +69,7 @@ type ParticleData = {
   bound1: number[];
   bound2: number[];
   gravity?: number[];
-  gradient?: (string | number)[];
+  gradient?: (string | number | { space: number })[];
   transform?: number[];
 
   icon?: string | { [key: string]: number };
@@ -93,42 +94,49 @@ export type EntryFloatProps = {
   name: string;
   var_name: string;
   float: number;
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type EntryCoordProps = {
   name: string;
   var_name: string;
   coord?: number[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type EntryGradientProps = {
   name: string;
   var_name: string;
-  gradient?: (string | number)[];
+  gradient?: (string | number | { space: number })[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type EntryTransformProps = {
   name: string;
   var_name: string;
   transform?: number[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type EntryIconStateProps = {
   name: string;
   var_name: string;
   icon_state?: string | { [key: string]: number };
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type FloatGeneratorProps = {
   name: string;
   var_name: string;
   float?: number | string[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type FloatGeneratorColorProps = {
   name: string;
   var_name: string;
   float?: number | string | string[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type GeneratorProps = {
@@ -142,4 +150,5 @@ export type EntryGeneratorNumbersListProps = {
   var_name: string;
   allow_z: boolean;
   input?: number | number[] | string[];
+  setDesc: React.Dispatch<React.SetStateAction<string>>;
 };

@@ -25,3 +25,15 @@
  * 1 is identity. 0 makes everything grey >1 blows out colors and greys
  */
 #define COLOR_MATRIX_CONTRAST(val) list(val,0,0,0, 0,val,0,0, 0,0,val,0, 0,0,0,1, (1-val)*0.5,(1-val)*0.5,(1-val)*0.5,0)
+
+/// Identity transform matrix (2d) with 6 values
+/// list(ax,by,c, dx,dy,f)
+#define TRANSFORM_MATRIX_IDENTITY list(1,0,0, 0,1,0)
+
+/// Identity transform matrix (xyz + translation) with 12 values
+/// list(xx,xy,xz, yx,yy,yz, zx,zy,zz, cx,cy,cz)
+#define TRANSFORM_COMPLEX_MATRIX_IDENTITY list(1,0,0, 0,1,0, 0,0,1, 0,0,0)
+
+/// Identity transform matrix (xyzw + projection) with 16 values exclusive to particles
+/// list(xx,xy,xz,xw, yx,yy,yz,yw, zx,zy,zz,zw, wx,wy,wz,ww)
+#define TRANSFORM_PROJECTION_MATRIX_IDENTITY list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1)

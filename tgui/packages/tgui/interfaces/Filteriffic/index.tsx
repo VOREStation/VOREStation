@@ -8,13 +8,12 @@ import {
   Input,
   NoticeBox,
   Section,
-  Stack,
 } from 'tgui-core/components';
 
 import { FilterEntry } from './FilterEntry';
-import type { Data } from './typtes';
+import type { Data } from './types';
 
-export const Filteriffic = (props) => {
+export const Filteriffic = (props: any) => {
   const { act, data } = useBackend<Data>();
   const name = data.target_name || 'Unknown Object';
   const filters = data.target_filter_data || {};
@@ -26,71 +25,65 @@ export const Filteriffic = (props) => {
   return (
     <Window title="Filteriffic" width={500} height={500}>
       <Window.Content scrollable>
-        <Stack fill vertical>
-          <Stack.Item>
-            <NoticeBox danger>
-              DO NOT MESS WITH EXISTING FILTERS IF YOU DO NOT KNOW THE
-              CONSEQUENCES. YOU HAVE BEEN WARNED.
-            </NoticeBox>
-          </Stack.Item>
-          <Stack.Item grow>
-            <Section
-              fill
-              title={
-                hiddenSecret ? (
-                  <>
-                    <Box mr={0.5} inline>
-                      MASS EDIT:
-                    </Box>
-                    <Input
-                      value={massApplyPath}
-                      width="100px"
-                      onChange={setMassApplyPath}
-                    />
-                    <Button.Confirm
-                      confirmContent="ARE YOU SURE?"
-                      onClick={() => act('mass_apply', { path: massApplyPath })}
-                    >
-                      Apply
-                    </Button.Confirm>
-                  </>
-                ) : (
-                  <Box inline onDoubleClick={() => setHiddenSecret(true)}>
-                    {name}
-                  </Box>
-                )
-              }
-              buttons={
-                <Dropdown
-                  selected={undefined}
-                  icon="plus"
-                  displayText="Add Filter"
-                  noChevron
-                  options={Object.keys(filterDefaults)}
-                  onSelected={(value) =>
-                    act('add_filter', {
-                      name: 'default',
-                      priority: 10,
-                      type: value,
-                    })
-                  }
+        <NoticeBox danger>
+          DO NOT MESS WITH EXISTING FILTERS IF YOU DO NOT KNOW THE CONSEQUENCES.
+          YOU HAVE BEEN WARNED.
+        </NoticeBox>
+        <Section
+          title={
+            hiddenSecret ? (
+              <>
+                <Box mr={0.5} inline>
+                  MASS EDIT:
+                </Box>
+                <Input
+                  value={massApplyPath}
+                  width="100px"
+                  onChange={(value) => setMassApplyPath(value)}
                 />
+                <Button.Confirm
+                  confirmContent="ARE YOU SURE?"
+                  onClick={() => act('mass_apply', { path: massApplyPath })}
+                >
+                  Apply
+                </Button.Confirm>
+              </>
+            ) : (
+              <Box inline onDoubleClick={() => setHiddenSecret(true)}>
+                {name}
+              </Box>
+            )
+          }
+          buttons={
+            <Dropdown
+              selected={null}
+              icon="plus"
+              verticalAlign="bottom"
+              displayText="Add Filter"
+              noChevron
+              options={Object.keys(filterDefaults)}
+              onSelected={(value) =>
+                act('add_filter', {
+                  name: 'default',
+                  priority: 10,
+                  type: value,
+                })
               }
-            >
-              {!hasFilters ? (
-                <Box>No filters</Box>
-              ) : (
-                Object.entries(filters).map(([name, filterData]) => (
-                  <FilterEntry
-                    filterDataEntry={filterData}
-                    name={name}
-                    key={name}
-                  />
-                ))
-              )}
-            </Section>
-          </Stack.Item>
-        </Stack>
+            />
+          }
+        >
+          {!hasFilters ? (
+            <Box>No filters</Box>
+          ) : (
+            Object.entries(filters).map(([name, filterData]) => (
+              <FilterEntry
+                filterDataEntry={filterData}
+                name={name}
+                key={name}
+              />
+            ))
+          )}
+        </Section>
       </Window.Content>
     </Window>
   );

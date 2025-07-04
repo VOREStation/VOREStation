@@ -1,8 +1,10 @@
 import { useBackend } from 'tgui/backend';
 import { Button, ColorBox, Input } from 'tgui-core/components';
 
-export const FilterColorEntry = (props) => {
-  const { value, filterName, name } = props;
+import { type FilterEntryProps } from '../types';
+
+export const FilterColorEntry = (props: FilterEntryProps) => {
+  const { name, value, hasValue, filterName, filterType } = props;
   const { act } = useBackend();
   return (
     <>
@@ -18,7 +20,7 @@ export const FilterColorEntry = (props) => {
       <Input
         value={value}
         width="90px"
-        onBlur={(value) =>
+        onChange={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {

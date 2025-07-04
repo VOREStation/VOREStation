@@ -1,12 +1,14 @@
 import { useBackend } from 'tgui/backend';
 import { NumberInput } from 'tgui-core/components';
 
-export const FilterIntegerEntry = (props) => {
-  const { value, name, filterName } = props;
+import { type FilterEntryProps } from '../types';
+
+export const FilterIntegerEntry = (props: FilterEntryProps) => {
+  const { name, value, hasValue, filterName, filterType } = props;
   const { act } = useBackend();
   return (
     <NumberInput
-      value={value || 0}
+      value={value}
       minValue={-500}
       maxValue={500}
       step={1}
