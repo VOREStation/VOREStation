@@ -220,6 +220,8 @@
 				if((mode_flags & DM_FLAG_STRIPPING) && H.strip_pref) //Stripping pref check
 					for(var/slot in slots)
 						var/obj/item/I = H.get_equipped_item(slot = slot)
+						if(I.flags & NOSTRIP)
+							continue
 						if(I && H.unEquip(I, force = FALSE))
 							handle_digesting_item(I)
 							digestion_noise_chance = 25
