@@ -84,7 +84,7 @@
 			irc = 1
 		else
 			recipient = GLOB.directory[whom]
-	else if(istype(whom,/client))
+	else if(isclient(whom))
 		recipient = whom
 
 
@@ -105,7 +105,8 @@
 		if(!recipient)
 			if(holder)
 				to_chat(src, span_admin_pm_warning("Error: Admin-PM: Client not found."))
-				to_chat(src, msg)
+				if(msg)
+					to_chat(src, msg)
 			else
 				current_ticket.MessageNoRecipient(msg)
 			return
@@ -128,11 +129,11 @@
 					current_ticket.MessageNoRecipient(msg)
 				return
 
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if (src.handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	//clean the message if it's not sent by a high-rank admin
-	if(!check_rights(R_SERVER|R_DEBUG,0)||irc)//no sending html to the poor bots
+	if(!check_rights(R_SERVER|R_DEBUG, FALSE)||irc)//no sending html to the poor bots
 		msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
 		if(!msg)
 			return
