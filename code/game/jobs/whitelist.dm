@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 
 	return data
 
-/datum/whitelist_editor/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/whitelist_editor/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -44,14 +44,14 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 	switch(action)
 		if("add_alienwhitelist")
 			if (!CONFIG_GET(flag/sql_enabled))
-				to_chat(mob.user, "This action is not supported while the database is disabled. Please edit [global.config.directory]/alienwhitelist.txt.")
+				to_chat(ui.user, "This action is not supported while the database is disabled. Please edit [global.config.directory]/alienwhitelist.txt.")
 				return
 			// TODO: Add to database
 			. = TRUE
 
 		if("remove_alienwhitelist")
 			if (!CONFIG_GET(flag/sql_enabled))
-				to_chat(mob.user, "This action is not supported while the database is disabled. Please edit [global.config.directory]/alienwhitelist.txt.")
+				to_chat(ui.user, "This action is not supported while the database is disabled. Please edit [global.config.directory]/alienwhitelist.txt.")
 				return
 			// TODO: Remove from database
 			. = TRUE
