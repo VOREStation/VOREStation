@@ -1,3 +1,5 @@
+#define NO_ADMINS_ONLINE_MESSAGE "Adminhelps are also sent through TGS to services like Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to."
+
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC.Resources"
@@ -57,6 +59,8 @@
 /client/verb/staffwho()
 	set category = "Admin"
 	set name = "Staffwho"
+
+	var/header = GLOB.admins.len == 0 ? "No Admins Currently Online" : "Current Admins"
 
 	var/msg = ""
 	var/modmsg = ""
@@ -132,6 +136,8 @@
 	if(CONFIG_GET(flag/show_mentors))
 		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mentormsg
 
-	msg += "\n" + span_info("Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.")
+	msg += "\n" + span_info(NO_ADMINS_ONLINE_MESSAGE)
 
-	to_chat(src,span_filter_notice("[jointext(msg, "<br>")]"))
+	to_chat(src, fieldset_block(span_bold(header), span_filter_notice("[jointext(msg, "<br>")]"), "boxed_message"), type = MESSAGE_TYPE_INFO)
+
+#undef NO_ADMINS_ONLINE_MESSAGE
