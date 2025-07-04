@@ -161,7 +161,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	grad_style = character.grad_style
 	f_style = character.f_style
 	grad_style = character.grad_style
-	dna?.b_type = character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE
+	//dna?.b_type = character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE //This actually just straight up kills whoever uses it if the blood types aren't compatible
 	synth_color = character.synth_color
 	r_synth = character.r_synth
 	g_synth = character.g_synth
@@ -179,6 +179,9 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	b_ears3 = character.b_ears3
 	g_ears3 = character.g_ears3
 	a_ears = character.a_ears
+
+	ear_secondary_style = character.ear_secondary_style
+	ear_secondary_colors = character.ear_secondary_colors
 
 	tail_style = character.tail_style
 	r_tail = character.r_tail

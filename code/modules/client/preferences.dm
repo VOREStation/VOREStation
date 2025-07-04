@@ -454,7 +454,7 @@ var/list/preferences_datums = list()
 	character.grad_style= grad_style
 	character.f_style	= f_style
 	character.grad_style= grad_style
-	character.dna.b_type= b_type
+	//character.dna.b_type= b_type //This actually just straight up kills whoever uses it if the blood types aren't compatible
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]
