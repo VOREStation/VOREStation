@@ -148,12 +148,7 @@
 	else
 		. += span_notice("You have to go closer if you want to read it.")
 
-/obj/item/paper/proc/get_assets(mob/user)
-	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/simple/paper_images)
-	asset_cache_datum.send(user)
-
 /obj/item/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	get_assets(user)
 	if(!(forceshow || (ishuman(user) || isobserver(user) || issilicon(user) || (istype(user) && user.universal_understand))))
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
@@ -202,7 +197,6 @@
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user)
 	var/dist
-	get_assets(usr)
 	if(istype(user) && user.camera) //is AI
 		dist = get_dist(src, user.camera)
 	else //cyborg or AI not seeing through a camera
@@ -347,10 +341,10 @@
 		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 		t = replacetext(t, "\[row\]", "</td><tr>")
 		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = [SSassets.transport.get_asset_url("ntlogo.png")]>")
-		t = replacetext(t, "\[sglogo\]", "<img src = [SSassets.transport.get_asset_url("sglogo.png")]>")
-		t = replacetext(t, "\[trlogo\]", "<img src = [SSassets.transport.get_asset_url("trader.png")]>")
-		// t = replacetext(t, "\[pclogo\]", "<img src = SSassets.transport.get_asset_url("pclogo.png")]>") // Not available on virgo
+		t = replacetext(t, "\[logo\]", "<img src = \ref['html/images/ntlogo.png']>")
+		t = replacetext(t, "\[sglogo\]", "<img src = \ref['html/images/sglogo.png']>")
+		t = replacetext(t, "\[trlogo\]", "<img src = \ref['html/images/trader.png']>")
+		// t = replacetext(t, "\[pclogo\]", "<img src = \ref['html/images/pclogo.png']>") // Not available on virgo
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
@@ -495,7 +489,6 @@
 
 		update_space(t)
 
-		get_assets(usr)
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 10)
@@ -587,7 +580,6 @@
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
-			get_assets(usr)
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 

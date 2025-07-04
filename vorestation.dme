@@ -2043,7 +2043,6 @@
 #include "code\modules\asset_cache\assets\microwave.dm"
 #include "code\modules\asset_cache\assets\nanomap.dm"
 #include "code\modules\asset_cache\assets\ntos.dm"
-#include "code\modules\asset_cache\assets\paper_images.dm"
 #include "code\modules\asset_cache\assets\permissions.dm"
 #include "code\modules\asset_cache\assets\preferences.dm"
 #include "code\modules\asset_cache\assets\tgfont.dm"
