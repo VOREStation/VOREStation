@@ -488,7 +488,7 @@
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(BASIC_GRIPPER)
 
-	var/obj/item/wrapped = null // Item currently being held.
+	var/obj/item/wrapped = null // Item currently being held. //Convert to weak-ref?
 
 	var/total_pockets = 5 //How many total inventory slots we want to have in the gripper
 
@@ -502,9 +502,6 @@
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
-
-/obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
-	return wrapped
 
 /obj/item/storage/internal/gripper
 	max_w_class = ITEMSIZE_HUGE
@@ -660,7 +657,6 @@
 	return 0
 
 /obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
-
 	if(!proximity)
 		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
 	var/current_pocket_full = FALSE
@@ -691,7 +687,9 @@
 
 	if(wrapped) //Already have an item.
 		//Temporary put wrapped into user so target's attackby() checks pass.
-		var/obj/previous_pocket = wrapped.loc
+		var/obj/previous_pocket
+		if(istype(wrapped.loc, /obj/item/storage/internal/gripper))
+			previous_pocket = wrapped.loc
 		wrapped.loc = user
 
 		//Pass the attack on to the target. This might delete/relocate wrapped.
@@ -699,13 +697,14 @@
 		if(!resolved && wrapped && target)
 			wrapped.afterattack(target,user,1)
 
-		//If wrapped was neither deleted nor put into target, put it back into the gripper.
-		if(wrapped && user && ((wrapped.loc == user) || wrapped.loc == previous_pocket))
+		if((QDELETED(wrapped))) //We put our wrapped thing INTO something!
+			wrapped = null
+			current_pocket = pick(pockets)
+			return
+		//If we had a previous pocket and the wrapped isn't put into something, put it back in our pocket.
+		else if((previous_pocket && wrapped.loc == user))
 			wrapped.loc = previous_pocket
 		else
-			wrapped = null
-			return
-		if((QDELETED(wrapped) || (wrapped.loc != current_pocket))) //We put our wrapped thing INTO something!
 			wrapped = null
 			current_pocket = pick(pockets)
 			return
@@ -772,6 +771,28 @@
 				A.cell = null
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
+
+//HELPER PROCS
+/obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
+	return wrapped
+
+/// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
+/obj/item/gripper/proc/consolidate_stacks(var/obj/item/stack/stack_to_consolidate)
+	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
+		return
+	var/stacked = FALSE //So we can break the for loop 2 forloops deep.
+	for(var/obj/item/storage/internal/gripper/pocket in pockets)
+		if(stacked) //We've stacked our item, break!
+			break
+
+		if(LAZYLEN(pocket.contents))
+			for(var/obj/item/stack/stack in pocket.contents)
+				if(istype(stack_to_consolidate, stack))
+					stack_to_consolidate.transfer_to(stack)
+					stacked = TRUE
+					break
+
+
 
 //Different types of grippers!
 
