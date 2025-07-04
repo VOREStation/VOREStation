@@ -172,7 +172,7 @@
 
 
 
-/obj/machinery/cash_register/attackby(obj/item/O as obj, user as mob)
+/obj/machinery/cash_register/attackby(obj/item/O, user)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
@@ -203,6 +203,8 @@
 
 
 /obj/machinery/cash_register/MouseDrop_T(atom/dropping, mob/user)
+	if(!isobj(dropping))
+		return
 	if(Adjacent(dropping) && Adjacent(user) && !user.stat)
 		attackby(dropping, user)
 
