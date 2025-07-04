@@ -77,7 +77,6 @@
 	updateDisplay()
 
 /obj/item/paper/admin/proc/updateDisplay()
-	get_assets(usr)
 	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[headerOn ? header : ""][info_links][stamps][footerOn ? footer : ""][interactions]</BODY></HTML>", "window=[name];can_close=0")
 
 
