@@ -596,7 +596,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
 	popup.set_content(dat)
 	popup.open()
 
