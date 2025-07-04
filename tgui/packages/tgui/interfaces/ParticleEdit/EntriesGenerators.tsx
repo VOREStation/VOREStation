@@ -38,7 +38,6 @@ export const FloatGenerator = (props: FloatGeneratorProps) => {
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
             selected={Array.isArray(float)}
             onClick={() =>
               act('edit', {
@@ -49,7 +48,9 @@ export const FloatGenerator = (props: FloatGeneratorProps) => {
                   : 0,
               })
             }
-          />
+          >
+            Generator
+          </Button>
         </Stack.Item>
         {!Array.isArray(float) ? (
           <Stack.Item>
@@ -91,7 +92,6 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
             selected={Array.isArray(float)}
             onClick={() =>
               act('edit', {
@@ -102,7 +102,9 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
                   : '#FFFFFF',
               })
             }
-          />
+          >
+            Generator
+          </Button>
         </Stack.Item>
         {typeof float === 'string' ? (
           <Stack.Item>
@@ -147,7 +149,6 @@ export const EntryGeneratorNumbersList = (
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
             selected={isStringArray(input)}
             onClick={() =>
               act('edit', {
@@ -163,7 +164,9 @@ export const EntryGeneratorNumbersList = (
                   : [1, 1, 1],
               })
             }
-          />
+          >
+            Generator
+          </Button>
         </Stack.Item>
         <Stack.Item>
           <Button
