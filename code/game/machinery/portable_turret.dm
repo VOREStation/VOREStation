@@ -587,7 +587,7 @@
 			return
 
 	health -= force
-	if(force > 5 && prob(45))
+	if(spark_system && force > 5 && prob(45))
 		spark_system.start()
 	if(health <= 0)
 		die()	//the death process :(
