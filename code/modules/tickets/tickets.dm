@@ -327,7 +327,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
 			list(
-				"name" = "Ticket ([id]) (Game ID: [game_id]) ticket opened.",
+				"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) ticket opened.",
 				"body" = "[key_name(initiator)] has opened a ticket. \n[msg]",
 				"color" = COLOR_WEBHOOK_POOR
 			)
@@ -475,7 +475,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
-			"name" = "Ticket ([id]) (Game ID: [game_id]) reopened.",
+			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) reopened.",
 			"body" = "Reopened by [key_name(usr)]."
 		)
 	)
@@ -508,7 +508,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
 			list(
-				"name" = "Ticket ([id]) (Game ID: [game_id]) closed.",
+				"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) closed.",
 				"body" = "Closed by [key_name(usr)].",
 				"color" = COLOR_WEBHOOK_BAD
 			)
@@ -539,7 +539,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 			SSwebhooks.send(
 				WEBHOOK_AHELP_SENT,
 				list(
-					"name" = "Ticket ([id]) (Game ID: [game_id]) resolved.",
+					"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) resolved.",
 					"body" = "Marked as Resolved by [key_name(usr)].",
 					"color" = COLOR_WEBHOOK_GOOD
 				)
@@ -568,7 +568,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
-			"name" = "Ticket ([id]) (Game ID: [game_id]) rejected.",
+			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) rejected.",
 			"body" = "Rejected by [key_name(usr)].",
 			"color" = COLOR_WEBHOOK_BAD
 		)
@@ -595,7 +595,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
-			"name" = "Ticket ([id]) (Game ID: [game_id]) marked as IC issue.",
+			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) marked as IC issue.",
 			"body" = "Marked as IC Issue by [key_name(usr)].",
 			"color" = COLOR_WEBHOOK_BAD
 		)
@@ -629,7 +629,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
-			"name" = "Ticket ([id]) (Game ID: [game_id]) being handled.",
+			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id | "No database"]) being handled.",
 			"body" = "[key_name(usr)] is now handling the ticket."
 		)
 	)
