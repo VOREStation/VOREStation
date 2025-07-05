@@ -98,149 +98,106 @@ export const ParticleEdit = (props) => {
                 </>
               }
             >
-              <EntryFloat
-                name={'Width'}
-                var_name={'width'}
-                float={width}
-                setDesc={setDesc}
-              />
-              <EntryFloat
-                name={'Height'}
-                var_name={'height'}
-                float={height}
-                setDesc={setDesc}
-              />
-              <EntryFloat
-                name={'Count'}
-                var_name={'count'}
-                float={count}
-                setDesc={setDesc}
-              />
+              <EntryFloat name={'Width'} var_name={'width'} float={width} />
+              <EntryFloat name={'Height'} var_name={'height'} float={height} />
+              <EntryFloat name={'Count'} var_name={'count'} float={count} />
               <EntryFloat
                 name={'Spawning'}
                 var_name={'spawning'}
                 float={spawning}
-                setDesc={setDesc}
               />
               <EntryCoord
                 name={'Bound corner 1'}
                 var_name={'bound1'}
                 coord={bound1}
-                setDesc={setDesc}
               />
               <EntryCoord
                 name={'Bound corner 2'}
                 var_name={'bound2'}
                 coord={bound2}
-                setDesc={setDesc}
               />
               <EntryCoord
                 name={'Gravity'}
                 var_name={'gravity'}
                 coord={gravity}
-                setDesc={setDesc}
               />
               <EntryGradient
                 name={'Gradient'}
                 var_name={'gradient'}
                 gradient={gradient}
-                setDesc={setDesc}
               />
               <EntryTransform
                 name={'Transform'}
                 var_name={'transform'}
                 transform={transform}
-                setDesc={setDesc}
               />
             </Section>
             <Section title={'Evaluated on particle creation'}>
-              <EntryIcon
-                name={'Icon'}
-                var_name={'icon'}
-                icon_state={icon}
-                setDesc={setDesc}
-              />
+              <EntryIcon name={'Icon'} var_name={'icon'} icon_state={icon} />
               <EntryIconState
                 name={'Icon State'}
                 var_name={'icon_state'}
                 icon_state={icon_state}
-                setDesc={setDesc}
               />
               <FloatGenerator
                 name={'Lifespan'}
                 var_name={'lifespan'}
                 float={lifespan}
-                setDesc={setDesc}
               />
               <FloatGenerator
                 name={'Fade out'}
                 var_name={'fade'}
                 float={fade}
-                setDesc={setDesc}
               />
               <FloatGenerator
                 name={'Fade in'}
                 var_name={'fadein'}
                 float={fadein}
-                setDesc={setDesc}
               />
               <FloatGeneratorColor
                 name={'Color'}
                 var_name={'color'}
                 float={color}
-                setDesc={setDesc}
               />
               <FloatGenerator
                 name={'Color change'}
                 var_name={'color_change'}
                 float={color_change}
-                setDesc={setDesc}
               />
               <EntryGeneratorNumbersList
                 name={'Position'}
                 var_name={'position'}
                 allow_z
                 input={position}
-                setDesc={setDesc}
               />
               <EntryGeneratorNumbersList
                 name={'Velocity'}
                 var_name={'velocity'}
                 allow_z
                 input={velocity}
-                setDesc={setDesc}
               />
               <EntryGeneratorNumbersList
                 name={'Scale'}
                 var_name={'scale'}
                 allow_z={false}
                 input={scale}
-                setDesc={setDesc}
               />
               <EntryGeneratorNumbersList
                 name={'Grow'}
                 var_name={'grow'}
                 allow_z={false}
                 input={grow}
-                setDesc={setDesc}
               />
               <FloatGenerator
                 name={'Rotation'}
                 var_name={'rotation'}
                 float={rotation}
-                setDesc={setDesc}
               />
-              <FloatGenerator
-                name={'Spin'}
-                var_name={'spin'}
-                float={spin}
-                setDesc={setDesc}
-              />
+              <FloatGenerator name={'Spin'} var_name={'spin'} float={spin} />
               <FloatGenerator
                 name={'Friction'}
                 var_name={'friction'}
                 float={friction}
-                setDesc={setDesc}
               />
             </Section>
             <Section title={'Evaluated every tick'}>
@@ -249,7 +206,6 @@ export const ParticleEdit = (props) => {
                 var_name={'drift'}
                 allow_z
                 input={drift}
-                setDesc={setDesc}
               />
             </Section>
           </LabeledList>

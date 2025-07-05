@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -10,6 +11,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
+import { ParticleContext } from '.';
 import {
   type EntryCoordProps,
   type EntryFloatProps,
@@ -29,7 +31,8 @@ import { editKeyOf, editWeightOf, setGradientSpace } from './helpers';
 
 export const EntryFloat = (props: EntryFloatProps) => {
   const { act, data } = useBackend<ParticleUIData>();
-  const { name, var_name, float, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, float } = props;
   return (
     <LabeledList.Item label={name}>
       <Button
@@ -56,7 +59,8 @@ export const EntryFloat = (props: EntryFloatProps) => {
 
 export const EntryCoord = (props: EntryCoordProps) => {
   const { act, data } = useBackend<ParticleUIData>();
-  const { name, var_name, coord, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, coord } = props;
   return (
     <LabeledList.Item label={name}>
       <Button
@@ -109,7 +113,8 @@ export const EntryCoord = (props: EntryCoordProps) => {
 
 export const EntryGradient = (props: EntryGradientProps) => {
   const { act, data } = useBackend<ParticleUIData>();
-  const { name, var_name, gradient, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, gradient } = props;
   const cleanGradient = gradient?.map((entry) => {
     if (typeof entry === 'object') {
       return Object.keys(entry)[0];
@@ -233,7 +238,8 @@ export const EntryTransform = (props: EntryTransformProps) => {
       : len < 13
         ? 'Complex Matrix'
         : 'Projection Matrix';
-  const { name, var_name, transform, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, transform } = props;
   return (
     <LabeledList.Item label={name}>
       <Stack>
@@ -279,7 +285,8 @@ export const EntryTransform = (props: EntryTransformProps) => {
 
 export const EntryIcon = (props: EntryIconStateProps) => {
   const { act, data } = useBackend<ParticleUIData>();
-  const { name, var_name, icon_state, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, icon_state } = props;
   return (
     <LabeledList.Item label={name}>
       <Stack>
@@ -352,7 +359,8 @@ export const EntryIcon = (props: EntryIconStateProps) => {
 
 export const EntryIconState = (props: EntryIconStateProps) => {
   const { act, data } = useBackend<ParticleUIData>();
-  const { name, var_name, icon_state, setDesc } = props;
+  const { setDesc } = useContext(ParticleContext);
+  const { name, var_name, icon_state } = props;
   const newValue =
     typeof icon_state === 'string'
       ? { [icon_state]: 1, None: 0 }
