@@ -35,7 +35,7 @@
 	GLOB.transaction_devices -= src
 	. = ..()
 
-/obj/machinery/cash_register/examine(mob/user as mob)
+/obj/machinery/cash_register/examine(mob/user)
 	. = ..(user)
 	if(transaction_amount)
 		. += "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""]."
@@ -46,7 +46,7 @@
 			. += "It's completely empty."
 
 
-/obj/machinery/cash_register/attack_hand(mob/user as mob)
+/obj/machinery/cash_register/attack_hand(mob/user)
 	// Don't be accessible from the wrong side of the machine
 	if(get_dir(src, user) & GLOB.reverse_dir[src.dir]) return
 
@@ -67,7 +67,7 @@
 		open_cash_box()
 
 
-/obj/machinery/cash_register/interact(mob/user as mob)
+/obj/machinery/cash_register/interact(mob/user)
 	var/dat = "<html><h2>Cash Register<hr></h2>"
 	if (locked)
 		dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
@@ -172,7 +172,7 @@
 
 
 
-/obj/machinery/cash_register/attackby(obj/item/O as obj, user as mob)
+/obj/machinery/cash_register/attackby(obj/item/O, mob/user)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
@@ -203,6 +203,8 @@
 
 
 /obj/machinery/cash_register/MouseDrop_T(atom/dropping, mob/user)
+	if(!isobj(dropping))
+		return
 	if(Adjacent(dropping) && Adjacent(user) && !user.stat)
 		attackby(dropping, user)
 

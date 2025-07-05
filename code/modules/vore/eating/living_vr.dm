@@ -39,19 +39,6 @@
 /mob/living/proc/handle_special_unlocks()
 	return
 
-//
-// Hook for generic creation of stuff on new creatures
-//
-/hook/living_new/proc/vore_setup(mob/living/M)
-
-	//Tries to load prefs if a client is present otherwise gives freebie stomach
-	spawn(2 SECONDS)
-		if(!QDELETED(M))
-			M.init_vore()
-
-	//return TRUE to hook-caller
-	return TRUE
-
 /mob/proc/init_vore()
 	//Something else made organs, meanwhile.
 	if(!isnewplayer(src))
@@ -1436,7 +1423,10 @@
 		to_chat(user, span_vwarning("This person's prefs dont allow that!"))
 		return FALSE
 
-	var/obj/belly/RTB = tgui_input_list(user, "Choose which vore belly to transfer from", "Select Belly", vore_organs)
+	if(!LAZYLEN(TG.vore_organs))
+		return FALSE
+
+	var/obj/belly/RTB = tgui_input_list(user, "Choose which vore belly to transfer from", "Select Belly", TG.vore_organs)
 	if(!RTB)
 		return FALSE
 
