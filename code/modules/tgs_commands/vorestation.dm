@@ -291,4 +291,4 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	if(!found)
 		return "```Ticket with id #[id] was not found!```"
 
-	T.AddInteraction("Discord Relay: " [text_message])
+	T.AddInteraction("Discord Relay: [text_message]")
