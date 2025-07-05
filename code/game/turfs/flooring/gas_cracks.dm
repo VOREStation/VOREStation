@@ -45,7 +45,7 @@
 
 /turf/simulated/floor/gas_crack/oxygen
 	desc = "Rough sand with a huge crack. A strong breeze blows through it."
-	var/gas_type = list(GAS_O2)
+	gas_type = list(GAS_O2)
 
 /turf/simulated/floor/gas_crack/oxygen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -54,7 +54,7 @@
 
 /turf/simulated/floor/gas_crack/nitrogen
 	desc = "Rough sand with a huge crack. A stale breeze blows through it."
-	var/gas_type = list(GAS_N2)
+	gas_type = list(GAS_N2)
 
 /turf/simulated/floor/gas_crack/nitrogen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -63,7 +63,7 @@
 
 /turf/simulated/floor/gas_crack/carbon
 	desc = "Rough sand with a huge crack. A warm breeze blows through it."
-	var/gas_type = list(GAS_CO2)
+	gas_type = list(GAS_CO2)
 
 /turf/simulated/floor/gas_crack/carbon/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -72,7 +72,7 @@
 
 /turf/simulated/floor/gas_crack/nitro
 	desc = "Rough sand with a huge crack. A strange smell wafts from beneath it."
-	var/gas_type = list(GAS_N2O)
+	gas_type = list(GAS_N2O)
 
 /turf/simulated/floor/gas_crack/nitro/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -82,7 +82,7 @@
 
 /turf/simulated/floor/gas_crack/phoron
 	desc = "Rough sand with a huge crack. A terrible smell wafts from beneath it."
-	var/gas_type = list(GAS_PHORON)
+	gas_type = list(GAS_PHORON)
 
 /turf/simulated/floor/gas_crack/phoron/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -91,7 +91,7 @@
 
 /turf/simulated/floor/gas_crack/air
 	desc = "Rough sand with a huge crack. A fresh breeze blows through it."
-	var/gas_type = list(GAS_O2,GAS_N2)
+	gas_type = list(GAS_O2,GAS_N2)
 
 /turf/simulated/floor/gas_crack/air/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -101,7 +101,7 @@
 
 /turf/simulated/floor/gas_crack/terrible
 	desc = "Rough sand with a huge crack. A dangerous smell wafts from beneath it."
-	var/gas_type = list(GAS_CO2,GAS_PHORON,GAS_N2O)
+	gas_type = list(GAS_CO2,GAS_PHORON,GAS_N2O)
 
 /turf/simulated/floor/gas_crack/terrible/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
