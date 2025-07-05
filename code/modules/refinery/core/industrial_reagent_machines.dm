@@ -39,10 +39,11 @@
 	if (istype(O, /obj/item/multitool)) // Solar grubs
 		return ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
-		for(var/obj/machinery/reagent_refinery/R in loc.contents)
-			if(R != src)
-				to_chat(usr,span_warning("You cannot anchor \the [src] until \The [R] is moved out of the way!"))
-				return
+			if(!anchored)
+			for(var/obj/machinery/reagent_refinery/R in loc.contents)
+				if(R != src)
+					to_chat(usr,span_warning("You cannot anchor \the [src] until \The [R] is moved out of the way!"))
+					return
 		playsound(src, O.usesound, 75, 1)
 		anchored = !anchored
 		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \

@@ -36,7 +36,7 @@
 		"million" = 704
 		)
 	xarch_source_mineral = REAGENT_ID_POTASSIUM
-	reagent = REAGENT_ID_URANIUM
+	reagent = REAGENT_ID_RADIUM // Otherwise it emp pulses constantly with iron
 
 /ore/hematite
 	name = ORE_HEMATITE
