@@ -96,6 +96,10 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
             onClick={() =>
               act('edit', {
                 var: var_name,
+                var_mod: !Array.isArray(float) ? P_DATA_GENERATOR : null,
+                new_value: !Array.isArray(float)
+                  ? ['num', 0, 1, RandToNumber['UNIFORM_RAND']]
+                  : '#FFFFFF',
               })
             }
           >
