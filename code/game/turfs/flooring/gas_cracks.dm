@@ -19,7 +19,7 @@
 	name = "cracked sand"
 	icon_state = "asteroid_cracked"
 	initial_flooring = /decl/flooring/rock
-	var/gas_type = null
+	var/list/gas_type = null
 	oxygen = 0
 	nitrogen = 0
 
@@ -203,7 +203,7 @@
 								REAGENT_ID_MERCURY,
 								REAGENT_ID_LITHIUM,
 								REAGENT_ID_POTASSIUM,
-								REAGENT_ID_SILICON
+								REAGENT_ID_SILICON,
 								REAGENT_ID_SODIUMCHLORIDE,
 								REAGENT_ID_RADIUM,
 								REAGENT_ID_CALCIUM,
