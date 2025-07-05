@@ -33,7 +33,7 @@
 // Use these or you'll get weird endround lists
 #define REFINERYEXPORT_REASON_BIOHAZARD "unwanted biohazards"
 #define REFINERYEXPORT_REASON_RAW "raw industrial materials"
-#define REFINERYEXPORT_REASON_PHORON "Nanotrasen patent violations" // Outpost 21 specific
+#define REFINERYEXPORT_REASON_PHORON "advanced phoronics research"
 #define REFINERYEXPORT_REASON_DRUG "pharmaceutical drugs"
 #define REFINERYEXPORT_REASON_ILLDRUG "illegal drugs"
 #define REFINERYEXPORT_REASON_RECDRUG "widespread recreational drugs"

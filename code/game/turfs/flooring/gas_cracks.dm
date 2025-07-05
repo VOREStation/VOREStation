@@ -30,7 +30,7 @@
 	var/i = 0
 	while(i++ < 4) // Do this a few times
 		var/turf/simulated/mineral/M = pick(orange(5,src))
-		if(!M)
+		if(!istype(M))
 			return
 		for(var/metal in ore_types)
 			if(!M.resources[metal])
@@ -44,34 +44,40 @@
 
 
 /turf/simulated/floor/gas_crack/oxygen
-	desc = "Rough sand with a huge crack. A strong breeze blows through it."
 	gas_type = list(GAS_O2)
 
 /turf/simulated/floor/gas_crack/oxygen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_OXYGEN, round(volume / 2, 0.1))
 
+/turf/simulated/floor/gas_crack/oxygen/examine(mob/user)
+	. = ..()
+	. += "A strong breeze blows through it."
+
 
 /turf/simulated/floor/gas_crack/nitrogen
-	desc = "Rough sand with a huge crack. A stale breeze blows through it."
 	gas_type = list(GAS_N2)
 
 /turf/simulated/floor/gas_crack/nitrogen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_NITROGEN, round(volume / 2, 0.1))
 
+/turf/simulated/floor/gas_crack/nitrogen/examine(mob/user)
+	. = ..()
+	. += "A stale breeze blows through it."
 
 /turf/simulated/floor/gas_crack/carbon
-	desc = "Rough sand with a huge crack. A warm breeze blows through it."
 	gas_type = list(GAS_CO2)
 
 /turf/simulated/floor/gas_crack/carbon/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_CARBON, round(volume / 2, 0.1))
 
+/turf/simulated/floor/gas_crack/carbon/examine(mob/user)
+	. = ..()
+	. += "A warm breeze blows through it."
 
 /turf/simulated/floor/gas_crack/nitro
-	desc = "Rough sand with a huge crack. A strange smell wafts from beneath it."
 	gas_type = list(GAS_N2O)
 
 /turf/simulated/floor/gas_crack/nitro/pump_reagents(var/datum/reagents/R, var/volume)
@@ -79,18 +85,22 @@
 	R.add_reagent(REAGENT_ID_OXYGEN, round(volume / 3, 0.1))
 	R.add_reagent(REAGENT_ID_NITROGEN, round(volume / 3, 0.1))
 
+/turf/simulated/floor/gas_crack/nitro/examine(mob/user)
+	. = ..()
+	. += "A strange smell wafts from beneath it."
 
 /turf/simulated/floor/gas_crack/phoron
-	desc = "Rough sand with a huge crack. A terrible smell wafts from beneath it."
 	gas_type = list(GAS_PHORON)
 
 /turf/simulated/floor/gas_crack/phoron/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_PHORON, round(volume / 3, 0.1))
 
+/turf/simulated/floor/gas_crack/phoron/examine(mob/user)
+	. = ..()
+	. += "A terrible smell wafts from beneath it."
 
 /turf/simulated/floor/gas_crack/air
-	desc = "Rough sand with a huge crack. A fresh breeze blows through it."
 	gas_type = list(GAS_O2,GAS_N2)
 
 /turf/simulated/floor/gas_crack/air/pump_reagents(var/datum/reagents/R, var/volume)
@@ -98,9 +108,12 @@
 	R.add_reagent(REAGENT_ID_OXYGEN, round(volume / 2, 0.1))
 	R.add_reagent(REAGENT_ID_NITROGEN, round(volume / 2, 0.1))
 
+/turf/simulated/floor/gas_crack/air/examine(mob/user)
+	. = ..()
+	. += "A fresh breeze blows through it."
+
 
 /turf/simulated/floor/gas_crack/terrible
-	desc = "Rough sand with a huge crack. A dangerous smell wafts from beneath it."
 	gas_type = list(GAS_CO2,GAS_PHORON,GAS_N2O)
 
 /turf/simulated/floor/gas_crack/terrible/pump_reagents(var/datum/reagents/R, var/volume)
@@ -109,3 +122,7 @@
 	R.add_reagent(REAGENT_ID_SULFUR, round(volume / 2, 0.1))
 	R.add_reagent(REAGENT_ID_PHOSPHORUS, round(volume / 2, 0.1))
 	R.add_reagent(REAGENT_ID_PHORON, round(volume / 3, 0.1))
+
+/turf/simulated/floor/gas_crack/terrible/examine(mob/user)
+	. = ..()
+	. += "A dangerous smell wafts from beneath it."
