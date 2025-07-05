@@ -202,8 +202,9 @@
 	if(S.get_bodytype() == SPECIES_VASILISSAN)
 		W.silk_reserve = 500
 		W.silk_max_reserve = 1000
-	W.silk_production = trait_prefs["silk_production"]
-	W.silk_color = lowertext(trait_prefs["silk_color"])
+	if(trait_prefs)
+		W.silk_production = trait_prefs["silk_production"]
+		W.silk_color = lowertext(trait_prefs["silk_color"])
 
 /datum/trait/positive/aquatic
 	name = "Aquatic"
@@ -336,7 +337,7 @@
 
 /datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	if (trait_prefs?["pass_table"] || !trait_prefs)
+	if(trait_prefs?["pass_table"] || !trait_prefs)
 		H.pass_flags |= PASSTABLE
 	add_verb(H,/mob/living/proc/toggle_pass_table)
 
