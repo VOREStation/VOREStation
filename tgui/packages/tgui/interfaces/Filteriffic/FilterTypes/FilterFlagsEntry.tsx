@@ -8,8 +8,8 @@ export const FilterFlagsEntry = (props: FilterEntryProps) => {
   const { act, data } = useBackend<Data>();
 
   const filterInfo = data.filter_info;
-  const flags = filterInfo[filterType]['flags'];
-  return flags.map((bitField, flagName) => (
+  const flags: Record<string, number> = filterInfo[filterType]['flags'];
+  return Object.entries(flags).map(([flagName, bitField]) => (
     <Button.Checkbox
       checked={value & bitField}
       onClick={() =>
