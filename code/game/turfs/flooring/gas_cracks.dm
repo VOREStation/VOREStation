@@ -61,7 +61,7 @@
 
 /turf/simulated/floor/gas_crack/oxygen
 	gas_type = list(GAS_O2)
-	oxygen = 2500
+	oxygen = 500
 
 /turf/simulated/floor/gas_crack/oxygen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -74,7 +74,7 @@
 
 /turf/simulated/floor/gas_crack/nitrogen
 	gas_type = list(GAS_N2)
-	nitrogen = 2500
+	nitrogen = 500
 
 /turf/simulated/floor/gas_crack/nitrogen/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -86,7 +86,7 @@
 
 /turf/simulated/floor/gas_crack/carbon
 	gas_type = list(GAS_CO2)
-	carbon_dioxide = 2500
+	carbon_dioxide = 500
 
 /turf/simulated/floor/gas_crack/carbon/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -98,8 +98,8 @@
 
 /turf/simulated/floor/gas_crack/nitro
 	gas_type = list(GAS_N2O)
-	nitrogen = 1500
-	carbon_dioxide = 1000
+	nitrogen = 250
+	carbon_dioxide = 250
 
 /turf/simulated/floor/gas_crack/nitro/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -112,7 +112,7 @@
 
 /turf/simulated/floor/gas_crack/phoron
 	gas_type = list(GAS_PHORON)
-	phoron = 2500
+	phoron = 500
 
 /turf/simulated/floor/gas_crack/phoron/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -124,8 +124,8 @@
 
 /turf/simulated/floor/gas_crack/air
 	gas_type = list(GAS_O2,GAS_N2)
-	oxygen = 2500
-	nitrogen = 2500
+	oxygen = 250
+	nitrogen = 250
 
 /turf/simulated/floor/gas_crack/air/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -139,8 +139,8 @@
 
 /turf/simulated/floor/gas_crack/terrible
 	gas_type = list(GAS_CO2,GAS_PHORON,GAS_N2O)
-	carbon_dioxide = 1500
-	phoron = 1000
+	carbon_dioxide = 250
+	phoron = 250
 
 /turf/simulated/floor/gas_crack/terrible/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
@@ -156,14 +156,14 @@
 
 
 
-// a highly randomized version of the gascrack.
+// a highly randomized version of the gascrack. Do not use the base type, use the planet atmo overrides.
 /turf/simulated/floor/gas_crack/random
 	var/random_reagents = list()
+	gas_type = list()
 
 /turf/simulated/floor/gas_crack/random/Initialize(mapload, floortype)
 	. = ..()
 	// Set mined gas type
-	gas_type = list()
 	if(prob(15))
 		gas_type.Add(GAS_CO2)
 	if(prob(15))
