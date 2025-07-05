@@ -39,7 +39,7 @@
 	if (istype(O, /obj/item/multitool)) // Solar grubs
 		return ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
-			if(!anchored)
+		if(!anchored)
 			for(var/obj/machinery/reagent_refinery/R in loc.contents)
 				if(R != src)
 					to_chat(usr,span_warning("You cannot anchor \the [src] until \The [R] is moved out of the way!"))
