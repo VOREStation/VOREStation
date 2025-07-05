@@ -76,7 +76,6 @@
 		living_mob_list += src
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
-	hook_vr("mob_new",list(src)) //VOREStation Code
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.

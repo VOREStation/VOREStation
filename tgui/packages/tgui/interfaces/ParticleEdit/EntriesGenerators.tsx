@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import { useContext } from 'react';
+import { useBackend } from 'tgui/backend';
 import {
   Button,
   ColorBox,
@@ -9,7 +10,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
 import { ParticleContext } from '.';
 import {
   type EntryGeneratorNumbersListProps,
@@ -96,10 +96,6 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
             onClick={() =>
               act('edit', {
                 var: var_name,
-                var_mod: !Array.isArray(float) ? P_DATA_GENERATOR : null,
-                new_value: !Array.isArray(float)
-                  ? ['num', 0, 1, RandToNumber['UNIFORM_RAND']]
-                  : '#FFFFFF',
               })
             }
           >

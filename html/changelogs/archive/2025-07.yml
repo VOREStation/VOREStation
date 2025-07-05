@@ -10,3 +10,29 @@
       mechanic)
   Tost:
   - bugfix: Emergency lights no longer blow up on activation.
+2025-07-03:
+  ItsSelis:
+  - rscadd: Registration bot that gives users roles after their verification
+  - rscadd: Added tgs testing suite and dmapi update workflow
+  - refactor: DMAPI Updated to the latest version
+  - server: This PR makes tgs ready to be used
+2025-07-04:
+  ItsSelis:
+  - admin: Ranks with the 'R_ADMIN' permission can now see LOOC messages remotely.
+2025-07-05:
+  Diana:
+  - qol: Cyborg gripper will now smartly stack material stacks.
+  - qol: Cyborg gripper will no longer unselect stacks when used
+  - bugfix: Cyborg surgical and botany multibelt no longer have offset
+  Diana, Kash:
+  - rscadd: Changelings can now absorb via VORE.
+  - refactor: Changeling is now a component
+  - balance: Changelings now get a genetic point upon absorbing someone
+  - balance: Changelings don't mc-die from epi
+  - balance: Changeling spacesuit is now free
+  - balance: A lot of changeling perks adjusted in minor ways. More to come.
+  - rscdel: Changeling death sting deleted.
+  - balance: Changeling unfat sting now reduces nutrition by 85% or 100 nutrition,
+      whatever's higher.
+  - qol: Changeling evolution menu is now TGUI
+  - code_imp: General code cleanup in Changeling code. Now runs smoother.

@@ -1023,6 +1023,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/MouseEntered(location,control,params)
 	. = ..()
+	if(QDELETED(src))
+		return
 	if(usr?.read_preference(/datum/preference/toggle/inv_tooltips) && ((src in usr) || isstorage(loc))) // If in inventory or in storage we're looking at
 		var/user = usr
 		tip_timer = addtimer(CALLBACK(src, PROC_REF(openTip), location, control, params, user), 5, TIMER_STOPPABLE)

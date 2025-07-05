@@ -279,7 +279,7 @@
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
-	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
+	prefs_vr = new/datum/vore_preferences(src)
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()

@@ -589,7 +589,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
 	popup.set_content(dat)
 	popup.open()
 
