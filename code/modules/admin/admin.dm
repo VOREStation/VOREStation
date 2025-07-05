@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/body = "Options panel for" + span_bold("[M]")
+	var/body = "Options panel for " + span_bold("[M]")
 	if(M.client)
 		body += " played by " + span_bold("[M.client]")
 		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank_names() : "Player"]</A>\]"
@@ -596,7 +596,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
 	popup.set_content(dat)
 	popup.open()
 

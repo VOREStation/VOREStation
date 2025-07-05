@@ -267,7 +267,7 @@ var/list/mining_overlay_cache = list()
 				if(LAZYACCESS(ignore_list, T))
 					continue
 
-				if(istype(T, /turf/simulated/mineral))
+				if(ismineralturf(T))
 					T.update_icon()
 
 				if(istype(T, /turf/simulated/wall/solidrock))

@@ -26,7 +26,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 
 /datum/ErrorViewer/proc/browseTo(var/user, var/html)
 	if(user)
-		var/datum/browser/popup = new(user, "error_viewer", "Runtime Viewer", 700, 500)
+		var/datum/browser/popup = new(user, "error_viewer", "Runtime Viewer", 900, 500)
 		popup.add_head_content({"<style>
 			.runtime{
 				background-color: #171717;
@@ -42,6 +42,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 				padding: 0;
 				text-indent:-13ch;
 				margin-left:13ch;
+				white-space:nowrap;
 			}
 			</style>"})
 		popup.set_content(html)

@@ -668,7 +668,7 @@
 	return TRUE
 
 // Used to find a special target for falling on, such as pouncing on someone from above.
-/datum/species/proc/find_fall_target_special(src, landing)
+/datum/species/proc/find_fall_target_special(source, landing)
 	return FALSE
 
 // Used to override normal fall behaviour. Use only when the species does fall down a level.

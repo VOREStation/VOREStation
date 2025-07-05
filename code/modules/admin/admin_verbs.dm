@@ -374,15 +374,15 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 
 ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
 	user.holder.deactivate()
-	to_chat(src, span_interface("You are now a normal player."))
-	log_admin("[key_name(src)] deadminned themselves.")
-	message_admins("[key_name_admin(src)] deadminned themselves.")
+	to_chat(user, span_interface("You are now a normal player."))
+	log_admin("[key_name(user)] deadminned themselves.")
+	message_admins("[key_name_admin(user)] deadminned themselves.")
 	//BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	if(isobserver(user.mob))
 		var/mob/observer/dead/our_mob = user.mob
-		our_mob.visualnet?.removeVisibility(our_mob, src)
+		our_mob.visualnet?.removeVisibility(our_mob, user)
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
