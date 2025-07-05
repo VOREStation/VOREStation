@@ -7,8 +7,8 @@ export const FilterEnumEntry = (props: FilterEntryProps) => {
   const { name, value, hasValue, filterName, filterType } = props;
   const { act, data } = useBackend<Data>();
   const filterInfo = data.filter_info;
-  const enums = filterInfo[filterType]['enums'];
-  return enums.map((enumNumber, enumName) => (
+  const enums: Record<string, number> = filterInfo[filterType]['enums'];
+  return Object.entries(enums).map(([enumName, enumNumber]) => (
     <Button.Checkbox
       checked={value === enumNumber}
       onClick={() =>
