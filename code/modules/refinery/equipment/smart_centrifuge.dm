@@ -5,6 +5,7 @@
 	icon_state = "sextractor"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/circuitboard/smart_centrifuge
 
 	var/working = FALSE
 
