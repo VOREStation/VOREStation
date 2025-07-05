@@ -39,11 +39,11 @@
 			failed = TRUE
 		collection_id[R.id] = R.type
 
-		if(R.supply_conversion_value == 0)
+		if(!R.supply_conversion_value)
 			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" does not have supply_conversion_value set.")
 			failed = TRUE
 
-		if(R.industrial_use == "")
+		if(!R.industrial_use || !R.industrial_use == "")
 			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" does not have industrial_use set.")
 			failed = TRUE
 
