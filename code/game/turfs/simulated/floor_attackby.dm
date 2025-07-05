@@ -43,7 +43,7 @@
 
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
 					playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 					user.visible_message(span_notice("[user] patches a hole in the ceiling."), span_notice("You patch a hole in the ceiling."))
 					expended_tile = TRUE
