@@ -27,7 +27,7 @@
 	return HAS_VALID_ZONE(T)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0, var/preserve_outdoors = FALSE, var/preserve_starting_gas = FALSE)
+/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	if (!N)
 		return
 
@@ -172,13 +172,6 @@
 	if(old_shandler) old_shandler.holder_change()
 	if(preserve_outdoors)
 		outdoors = old_outdoors
-
-	if(preserve_starting_gas)
-		temperature = old_temperature
-		oxygen = old_oxygen
-		nitrogen = old_nitrogen
-		carbon_dioxide = old_carbondioxide
-		phoron = old_phoron
 
 /turf/proc/propogate_sunlight_changes(oldtype, old_density, new_turf, var/above = FALSE)
 	//SEND_SIGNAL(src, COMSIG_TURF_UPDATE, oldtype, old_density, W)

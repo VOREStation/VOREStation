@@ -69,7 +69,7 @@ var/list/mining_overlay_cache = list()
 
 	turf_resource_types = TURF_HAS_MINERALS
 
-/turf/simulated/mineral/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors, var/preserve_outdoors = FALSE, var/preserve_starting_gas = FALSE)
+/turf/simulated/mineral/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
 	clear_ore_effects()
 	. = ..()
 
