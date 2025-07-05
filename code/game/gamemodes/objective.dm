@@ -614,7 +614,8 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					n_p ++
 		else if (ticker.current_state == GAME_STATE_PLAYING)
 			for(var/mob/living/carbon/human/P in player_list)
-				if(P.client && !(P.mind.changeling) && P.mind!=owner)
+				var/datum/component/antag/changeling/comp = P.GetComponent(/datum/component/antag/changeling)
+				if(P.client && !(comp) && P.mind!=owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
 
@@ -622,8 +623,10 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	return target_amount
 
 /datum/objective/absorb/check_completion()
-	if(owner && owner.changeling && owner.changeling.absorbed_dna && (owner.changeling.absorbedcount >= target_amount))
-		return 1
+	if(owner)
+		var/datum/component/antag/changeling/comp = owner.GetComponent(/datum/component/antag/changeling)
+		if(comp && comp.absorbed_dna && (comp.absorbedcount >= target_amount))
+			return 1
 	else
 		return 0
 

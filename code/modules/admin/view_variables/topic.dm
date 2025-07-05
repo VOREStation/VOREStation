@@ -1,7 +1,7 @@
 //DO NOT ADD MORE TO THIS FILE.
 //Use vv_do_topic()!
 /client/proc/view_var_Topic(href, href_list, hsrc)
-	if((usr.client != src) || !src.holder)
+	if((usr.client != src) || !check_rights(R_HOLDER))
 		return
 	var/datum/target = locate(href_list["target"])
 	if(istype(target))
@@ -18,10 +18,10 @@
 
 		var/mob/M = locate(href_list["rename"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
-		var/new_name = sanitize(tgui_input_text(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN), MAX_NAME_LEN)
+		var/new_name = sanitize(tgui_input_text(src,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN), MAX_NAME_LEN)
 		if( !new_name || !M )	return
 
 		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
@@ -33,7 +33,7 @@
 
 		var/D = locate(href_list["datumedit"])
 		if(!istype(D,/datum) && !istype(D,/client))
-			to_chat(usr, "This can only be used on instances of types /client or /datum")
+			to_chat(src, "This can only be used on instances of types /client or /datum")
 			return
 
 		modify_variables(D, href_list["varnameedit"], 1)
@@ -43,7 +43,7 @@
 
 		var/D = locate(href_list["datumchange"])
 		if(!istype(D,/datum) && !istype(D,/client))
-			to_chat(usr, "This can only be used on instances of types /client or /datum")
+			to_chat(src, "This can only be used on instances of types /client or /datum")
 			return
 
 		modify_variables(D, href_list["varnamechange"], 0)
@@ -53,7 +53,7 @@
 
 		var/atom/A = locate(href_list["datummass"])
 		if(!istype(A))
-			to_chat(usr, "This can only be used on instances of type /atom")
+			to_chat(src, "This can only be used on instances of type /atom")
 			return
 
 		cmd_mass_modify_object_variables(A, href_list["varnamemass"])
@@ -63,7 +63,7 @@
 
 		var/mob/M = locate(href_list["mob_player_panel"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		src.holder.show_player_panel(M)
@@ -74,7 +74,7 @@
 
 		var/mob/M = locate(href_list["give_spell"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		src.give_spell(M)
@@ -86,7 +86,7 @@
 
 		var/mob/living/M = locate(href_list["give_modifier"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living")
+			to_chat(src, "This can only be used on instances of type /mob/living")
 			return
 
 		src.admin_give_modifier(M)
@@ -98,22 +98,22 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["give_wound_internal"])
 		if(!istype(H))
-			to_chat(usr, span_notice("This can only be used on instances of type /mob/living/carbon/human"))
+			to_chat(src, span_notice("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
-		var/severity = tgui_input_number(usr, "How much damage should the bleeding internal wound cause? \
+		var/severity = tgui_input_number(src, "How much damage should the bleeding internal wound cause? \
 		Bleed timer directly correlates with this. 0 cancels. Input is rounded to nearest integer.",
 		"Wound Severity", 0)
 		if(!severity) return
 
-		var/obj/item/organ/external/chosen_organ = tgui_input_list(usr, "Choose an external organ to inflict IB on!", "Organ Choice", H.organs)
+		var/obj/item/organ/external/chosen_organ = tgui_input_list(src, "Choose an external organ to inflict IB on!", "Organ Choice", H.organs)
 		if(!chosen_organ || !istype(chosen_organ))
 			to_chat(usr, span_notice("The chosen organ is of inappropriate type or no longer exists."))
 			return
 
 		var/datum/wound/internal_bleeding/I = new /datum/wound/internal_bleeding(severity)
 		if(!I || !istype(I))
-			to_chat(usr, span_notice("Could not initialize internal wound"))
+			to_chat(src, span_notice("Could not initialize internal wound"))
 			log_debug("[usr] attempted to create an internal bleeding wound on [H]'s [chosen_organ] of [severity] damage \
 			and wound initialization failed")
 
@@ -134,7 +134,7 @@
 
 		var/mob/M = locate(href_list["godmode"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		src.cmd_admin_godmode(M)
@@ -145,7 +145,7 @@
 
 		var/mob/M = locate(href_list["gib"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		src.cmd_admin_gib(M)
@@ -155,7 +155,7 @@
 
 		var/mob/M = locate(href_list["build_mode"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		togglebuildmode(M)
@@ -166,7 +166,7 @@
 
 		var/mob/M = locate(href_list["drop_everything"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		if(usr.client)
@@ -177,7 +177,7 @@
 
 		var/mob/M = locate(href_list["direct_control"])
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
+			to_chat(src, "This can only be used on instances of type /mob")
 			return
 
 		if(usr.client)
@@ -188,22 +188,22 @@
 
 		var/mob/M = locate(href_list["give_ai"])
 		if(!isliving(M))
-			to_chat(usr, span_notice("This can only be used on instances of type /mob/living"))
+			to_chat(src, span_notice("This can only be used on instances of type /mob/living"))
 			return
 		var/mob/living/L = M
 		if(L.client || L.teleop)
-			to_chat(usr, span_warning("This cannot be used on player mobs!"))
+			to_chat(src, span_warning("This cannot be used on player mobs!"))
 			return
 
 		if(L.ai_holder)	//Cleaning up the original ai
 			var/ai_holder_old = L.ai_holder
 			L.ai_holder = null
 			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
-		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+		L.ai_holder_type = tgui_input_list(src, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 		L.initialize_ai_holder()
-		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
-		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
-		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+		L.faction = sanitize(tgui_input_text(src, "Please input AI faction", "AI faction", "neutral"))
+		L.a_intent = tgui_input_list(src, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+		if(tgui_alert(src, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 			L.AdjustSleeping(-100)
 
 	else if(href_list["make_skeleton"])
@@ -211,7 +211,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
 		H.ChangeToSkeleton()
@@ -223,17 +223,17 @@
 
 		var/obj/O = locate(href_list["delall"])
 		if(!isobj(O))
-			to_chat(usr, "This can only be used on instances of type /obj")
+			to_chat(src, "This can only be used on instances of type /obj")
 			return
 
-		var/action_type = tgui_alert(usr, "Strict type ([O.type]) or type and all subtypes?","Type Selection",list("Strict type","Type and subtypes","Cancel"))
+		var/action_type = tgui_alert(src, "Strict type ([O.type]) or type and all subtypes?","Type Selection",list("Strict type","Type and subtypes","Cancel"))
 		if(action_type == "Cancel" || !action_type)
 			return
 
-		if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [O.type]?","Delete All?",list("Yes","No")) != "Yes")
+		if(tgui_alert(src, "Are you really sure you want to delete all objects of type [O.type]?","Delete All?",list("Yes","No")) != "Yes")
 			return
 
-		if(tgui_alert(usr, "Second confirmation required. Delete?","REALLY?",list("Yes","No")) != "Yes")
+		if(tgui_alert(src, "Second confirmation required. Delete?","REALLY?",list("Yes","No")) != "Yes")
 			return
 
 		var/O_type = O.type
@@ -246,7 +246,7 @@
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(src, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
@@ -258,7 +258,7 @@
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(src, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
@@ -267,7 +267,7 @@
 
 		var/obj/item/pda/P = locate(href_list["fakepdapropconvo"])
 		if(!istype(P))
-			to_chat(usr, span_warning("This can only be done to instances of type /pda"))
+			to_chat(src, span_warning("This can only be done to instances of type /pda"))
 			return
 
 		P.createPropFakeConversation_admin(usr)
@@ -277,7 +277,7 @@
 
 		var/atom/A = locate(href_list["rotatedatum"])
 		if(!istype(A))
-			to_chat(usr, "This can only be done to instances of type /atom")
+			to_chat(src, "This can only be done to instances of type /atom")
 			return
 
 		switch(href_list["rotatedir"])
@@ -290,12 +290,12 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makemonkey"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
+		if(tgui_alert(src, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("monkeyone"=href_list["makemonkey"]))
 
@@ -304,12 +304,12 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
+		if(tgui_alert(src, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
 
@@ -318,12 +318,12 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
+		if(tgui_alert(src, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
 
@@ -332,12 +332,12 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
+		if(tgui_alert(src, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makeai"=href_list["makeai"]))
 
@@ -346,67 +346,67 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["setspecies"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		var/new_species = tgui_input_list(usr, "Please choose a new species.","Species", GLOB.all_species)
+		var/new_species = tgui_input_list(src, "Please choose a new species.","Species", GLOB.all_species)
 
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		if(H.set_species(new_species))
-			to_chat(usr, "Set species of [H] to [H.species].")
+			to_chat(src, "Set species of [H] to [H.species].")
 		else
-			to_chat(usr, "Failed! Something went wrong.")
+			to_chat(src, "Failed! Something went wrong.")
 
 	else if(href_list["addlanguage"])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/H = locate(href_list["addlanguage"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob")
+			to_chat(src, "This can only be done to instances of type /mob")
 			return
 
-		var/new_language = tgui_input_list(usr, "Please choose a language to add.","Language", GLOB.all_languages)
+		var/new_language = tgui_input_list(src, "Please choose a language to add.","Language", GLOB.all_languages)
 
 		if(!new_language)
 			return
 
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		if(H.add_language(new_language))
-			to_chat(usr, "Added [new_language] to [H].")
+			to_chat(src, "Added [new_language] to [H].")
 		else
-			to_chat(usr, "Mob already knows that language.")
+			to_chat(src, "Mob already knows that language.")
 
 	else if(href_list["remlanguage"])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/H = locate(href_list["remlanguage"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob")
+			to_chat(src, "This can only be done to instances of type /mob")
 			return
 
 		if(!H.languages.len)
-			to_chat(usr, "This mob knows no languages.")
+			to_chat(src, "This mob knows no languages.")
 			return
 
-		var/datum/language/rem_language = tgui_input_list(usr, "Please choose a language to remove.","Language", H.languages)
+		var/datum/language/rem_language = tgui_input_list(src, "Please choose a language to remove.","Language", H.languages)
 
 		if(!rem_language)
 			return
 
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		if(H.remove_language(rem_language.name))
-			to_chat(usr, "Removed [rem_language] from [H].")
+			to_chat(src, "Removed [rem_language] from [H].")
 		else
-			to_chat(usr, "Mob doesn't know that language.")
+			to_chat(src, "Mob doesn't know that language.")
 
 	else if(href_list["addverb"])
 		if(!check_rights(R_DEBUG))      return
@@ -414,7 +414,7 @@
 		var/mob/H = locate(href_list["addverb"])
 
 		if(!ismob(H))
-			to_chat(usr, "This can only be done to instances of type /mob")
+			to_chat(src, "This can only be done to instances of type /mob")
 			return
 		var/list/possibleverbs = list()
 		possibleverbs += "Cancel" 								// One for the top...
@@ -434,9 +434,9 @@
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" 								// ...And one for the bottom
 
-		var/verb = tgui_input_list(usr, "Select a verb!", "Verbs", possibleverbs)
+		var/verb = tgui_input_list(src, "Select a verb!", "Verbs", possibleverbs)
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		if(!verb || verb == "Cancel")
 			return
@@ -449,11 +449,11 @@
 		var/mob/H = locate(href_list["remverb"])
 
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob")
+			to_chat(src, "This can only be done to instances of type /mob")
 			return
-		var/verb = tgui_input_list(usr, "Please choose a verb to remove.","Verbs", H.verbs)
+		var/verb = tgui_input_list(src, "Please choose a verb to remove.","Verbs", H.verbs)
 		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 		if(!verb)
 			return
@@ -465,18 +465,18 @@
 
 		var/mob/living/carbon/M = locate(href_list["addorgan"])
 		if(!istype(M))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon")
 			return
 
-		var/new_organ = tgui_input_list(usr, "Please choose an organ to add.","Organ", subtypesof(/obj/item/organ))
+		var/new_organ = tgui_input_list(src, "Please choose an organ to add.","Organ", subtypesof(/obj/item/organ))
 		if(!new_organ) return
 
 		if(!M)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		if(locate(new_organ) in M.internal_organs)
-			to_chat(usr, "Mob already has that organ.")
+			to_chat(src, "Mob already has that organ.")
 			return
 
 		new new_organ(M)
@@ -487,20 +487,20 @@
 
 		var/mob/living/carbon/M = locate(href_list["remorgan"])
 		if(!istype(M))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon")
 			return
 
-		var/obj/item/organ/rem_organ = tgui_input_list(usr, "Please choose an organ to remove.","Organ", M.internal_organs)
+		var/obj/item/organ/rem_organ = tgui_input_list(src, "Please choose an organ to remove.","Organ", M.internal_organs)
 
 		if(!M)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		if(!(locate(rem_organ) in M.internal_organs))
-			to_chat(usr, "Mob does not have that organ.")
+			to_chat(src, "Mob does not have that organ.")
 			return
 
-		to_chat(usr, "Removed [rem_organ] from [M].")
+		to_chat(src, "Removed [rem_organ] from [M].")
 		rem_organ.removed()
 		qdel(rem_organ)
 
@@ -510,12 +510,12 @@
 		var/mob/H = locate(href_list["fix_nano"])
 
 		if(!istype(H) || !H.client)
-			to_chat(usr, "This can only be done on mobs with clients")
+			to_chat(src, "This can only be done on mobs with clients")
 			return
 
 		H.client.send_resources()
 
-		to_chat(usr, "Resource files sent")
+		to_chat(src, "Resource files sent")
 		to_chat(H, "Your NanoUI Resource files have been refreshed")
 
 		log_admin("[key_name(usr)] resent the NanoUI resource files to [key_name(H)] ")
@@ -525,7 +525,7 @@
 
 		var/mob/M = locate(href_list["regenerateicons"])
 		if(!ismob(M))
-			to_chat(usr, "This can only be done to instances of type /mob")
+			to_chat(src, "This can only be done to instances of type /mob")
 			return
 		M.regenerate_icons()
 
@@ -537,10 +537,10 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount =  tgui_input_number(usr, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0, min_value=-INFINITY, round_value=FALSE)
+		var/amount =  tgui_input_number(src, "Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0, min_value=-INFINITY, round_value=FALSE)
 
 		if(!L)
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(src, "Mob doesn't exist anymore")
 			return
 
 		switch(Text)
@@ -551,7 +551,7 @@
 			if("brain")	L.adjustBrainLoss(amount)
 			if("clone")	L.adjustCloneLoss(amount)
 			else
-				to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
+				to_chat(src, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 				return
 
 		if(amount != 0)
@@ -570,11 +570,11 @@
 		var/client/C = value["value"]
 		if (!C)
 			return
-		var/prompt = tgui_alert(usr, "Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", list("Yes", "No"))
+		var/prompt = tgui_alert(src, "Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", list("Yes", "No"))
 		if (prompt != "Yes")
 			return
 		if(!thing)
-			to_chat(usr, span_warning("The object you tried to expose to [C] no longer exists (GC'd)"))
+			to_chat(src, span_warning("The object you tried to expose to [C] no longer exists (GC'd)"))
 			return
 		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='byond://?_src_=vars;[HrefToken(TRUE)];datumrefresh=\ref[thing]'>VV window</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [src]")

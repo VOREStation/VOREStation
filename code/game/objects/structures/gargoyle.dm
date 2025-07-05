@@ -3,7 +3,7 @@
 	desc = "A very lifelike carving."
 	density = TRUE
 	anchored = TRUE
-	var/mob/living/carbon/human/gargoyle
+	var/datum/weakref/WR_gargoyle
 	var/initial_sleep
 	var/initial_blind
 	var/initial_is_shifted
@@ -27,13 +27,13 @@
 
 /obj/structure/gargoyle/Initialize(mapload, var/mob/living/carbon/human/H, var/ident_ovr, var/mat_ovr, var/adj_ovr, var/tint_ovr, var/revert = TRUE, var/discard_clothes)
 	. = ..()
-	if (isspace(loc) || isopenspace(loc))
+	if(isspace(loc) || isopenspace(loc))
 		anchored = FALSE
-	if (!istype(H) || !isturf(H.loc))
+	if(!istype(H) || !isturf(H.loc))
 		return
 	var/datum/component/gargoyle/comp = H.GetComponent(/datum/component/gargoyle)
 	var/tint = "#FFFFFF"
-	if (comp)
+	if(comp)
 		comp.cooldown = world.time + (15 SECONDS)
 		comp.statue = src
 		comp.transformed = TRUE
@@ -42,25 +42,25 @@
 		material = length(comp.material) > 0 ? comp.material : initial(material)
 		tint = length(comp.tint) > 0 ? comp.tint : initial(comp.tint)
 		adjective = length(comp.adjective) > 0 ? comp.adjective : initial(adjective)
-		if (copytext_char(adjective, -1) != "s")
+		if(copytext_char(adjective, -1) != "s")
 			adjective += "s"
-	gargoyle = H
+	WR_gargoyle = WEAKREF(H)
 
-	if (H.get_effective_size(TRUE) < 0.5) // "So small! I can step over it!"
+	if(H.get_effective_size(TRUE) < 0.5) // "So small! I can step over it!"
 		density = FALSE
 
-	if (ident_ovr)
+	if(ident_ovr)
 		identifier = ident_ovr
-	if (mat_ovr)
+	if(mat_ovr)
 		material = mat_ovr
-	if (adj_ovr)
+	if(adj_ovr)
 		adjective = adj_ovr
-	if (tint_ovr)
+	if(tint_ovr)
 		tint = tint_ovr
 
-	if (H.tail_style?.clip_mask_state)
+	if(H.tail_style?.clip_mask_state)
 		tail_lower_dirs.Cut()
-	else if (H.tail_style)
+	else if(H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
 	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
@@ -72,7 +72,7 @@
 	stored_examine = H.examine(H)
 	description_fluff = H.get_description_fluff()
 
-	if (H.buckled)
+	if(H.buckled)
 		H.buckled.unbuckle_mob(H, TRUE)
 	//icon = H.icon
 	//copy_overlays(H)
@@ -89,20 +89,20 @@
 	var/list/body_layers = HUMAN_BODY_LAYERS
 	var/list/other_layers = HUMAN_OTHER_LAYERS
 	for (var/i = 1; i <= length(H.overlays_standing); i++)
-		if (i in other_layers)
+		if(i in other_layers)
 			continue
-		if (discard_clothes && !(i in body_layers))
+		if(discard_clothes && !(i in body_layers))
 			continue
-		if (istype(H.overlays_standing[i], /image) && (i in body_layers))
+		if(istype(H.overlays_standing[i], /image) && (i in body_layers))
 			var/image/old_image = H.overlays_standing[i]
 			var/image/new_image = image(old_image)
-			if (i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_HIGH)
+			if(i == TAIL_LOWER_LAYER || i == TAIL_UPPER_LAYER || i == TAIL_UPPER_LAYER_HIGH)
 				tail_image = new_image
 			new_image.color = tint_color
 			new_image.layer = old_image.layer
 			add_overlay(new_image)
 		else
-			if (!isnull(H.overlays_standing[i]))
+			if(!isnull(H.overlays_standing[i]))
 				add_overlay(H.overlays_standing[i])
 
 	initial_sleep = H.sleeping
@@ -116,10 +116,9 @@
 	initial_lying = H.lying
 	initial_lying_prev = H.lying_prev
 	H.sdisabilities |= MUTE
-	if (H.appearance_flags & PIXEL_SCALE)
+	if(H.appearance_flags & PIXEL_SCALE)
 		appearance_flags |= PIXEL_SCALE
 	wagging = H.wagging
-	H.transforming = TRUE
 	flapping = H.flapping
 	H.toggle_tail(FALSE, FALSE)
 	H.toggle_wing(FALSE, FALSE)
@@ -127,7 +126,6 @@
 	H.forceMove(src)
 	H.SetBlinded(0)
 	H.SetSleeping(0)
-	H.status_flags |= GODMODE
 	H.updatehealth()
 	H.canmove = 0
 
@@ -137,20 +135,32 @@
 
 /obj/structure/gargoyle/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
-	if (!gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
 		return ..()
-	if (can_revert)
+	if(can_revert)
 		unpetrify(deleting = FALSE) //don't delete if we're already deleting!
 	else
 		visible_message(span_warning("The [identifier] loses shape and crumbles into a pile of [material]!"))
+	WR_gargoyle = null
 	. = ..()
 
 /obj/structure/gargoyle/process()
-	if (!gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
 		qdel(src)
-	if (gargoyle.loc != src)
+		return
+	if(gargoyle.stat == DEAD) //died while in statue state.
+		unpetrify(deal_damage = TRUE, deleting = TRUE)
+		return
+	if(gargoyle.loc != src)
 		can_revert = TRUE //something's gone wrong, they escaped, lets not qdel them
 		unpetrify(deal_damage = FALSE, deleting = TRUE)
+
+/obj/structure/gargoyle/fire_act(datum/gas_mixture/air, temperature, volume)
+	if(temperature > T0C + 1600) //Bingle says the burning point of rock is between 600 to 1600C...Let's use the highest range.
+		damage(temperature/(T0C + 1600)) //1 damage per 1600C
+	return
 
 /obj/structure/gargoyle/examine_icon()
 	var/icon/examine_icon = icon(icon=src.icon, icon_state=src.icon_state, dir=SOUTH, frame=1, moving=0)
@@ -158,30 +168,33 @@
 	return examine_icon
 
 /obj/structure/gargoyle/get_description_info()
-	if (gargoyle)
-		if (isspace(loc) || isopenspace(loc))
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(gargoyle)
+		if(isspace(loc) || isopenspace(loc))
 			return
 		return "It can be [anchored ? "un" : ""]anchored with a wrench."
 
 /obj/structure/gargoyle/examine(mob/user)
 	. = ..()
-	if (gargoyle && stored_examine)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(gargoyle && stored_examine)
 		. += "The [identifier] seems to have a bit more to them..."
 		. += stored_examine
 	return
 
 /obj/structure/gargoyle/proc/unpetrify(var/deal_damage = TRUE, var/deleting = FALSE)
-	if (!gargoyle)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
 		return
 	var/datum/component/gargoyle/comp = gargoyle.GetComponent(/datum/component/gargoyle)
-	if (comp)
+	if(comp)
 		comp.cooldown = world.time + (15 SECONDS)
 		comp.statue = null
 		comp.transformed = FALSE
 	else
-		if (was_rayed)
+		if(was_rayed)
 			remove_verb(gargoyle,/mob/living/carbon/human/proc/gargoyle_transformation)
-	if (gargoyle.loc == src)
+	if(gargoyle.loc == src)
 		gargoyle.forceMove(loc)
 		gargoyle.transform = transform
 		gargoyle.pixel_x = pixel_x
@@ -193,15 +206,13 @@
 		gargoyle.toggle_tail(wagging, FALSE)
 		gargoyle.toggle_wing(flapping, FALSE)
 	gargoyle.sdisabilities &= ~MUTE //why is there no ADD_TRAIT etc here that's actually ussssed
-	gargoyle.status_flags &= ~GODMODE
 	gargoyle.SetBlinded(initial_blind)
 	gargoyle.SetSleeping(initial_sleep)
-	gargoyle.transforming = FALSE
 	gargoyle.canmove = 1
 	gargoyle.update_canmove()
 	var/hurtmessage = ""
-	if (deal_damage)
-		if (obj_integrity < original_int)
+	if(deal_damage)
+		if(obj_integrity < original_int)
 			var/f = (original_int - obj_integrity) / 10
 			for (var/x in 1 to 10)
 				gargoyle.adjustBruteLoss(f)
@@ -210,7 +221,7 @@
 	alpha = 0
 	gargoyle.visible_message(span_warning("[gargoyle]'s skin rapidly reverts, returning them to normal!"), span_warning("Your skin reverts, freeing your movement once more![hurtmessage]"))
 	gargoyle = null
-	if (deleting)
+	if(deleting)
 		qdel(src)
 
 /obj/structure/gargoyle/return_air()
@@ -224,7 +235,7 @@
 	return air
 
 /obj/structure/gargoyle/proc/damage(var/damage)
-	if (was_rayed)
+	if(was_rayed)
 		return //gargoyle quick regenerates, the others don't, so let's not have them getting too damaged
 	obj_integrity = min(obj_integrity-damage, max_integrity)
 	if(obj_integrity <= 0)
@@ -239,13 +250,14 @@
 	damage(damage)
 
 /obj/structure/gargoyle/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(W.is_wrench())
-		if (isspace(loc) || isopenspace(loc))
+		if(isspace(loc) || isopenspace(loc))
 			to_chat(user, span_warning("You can't anchor that here!"))
 			anchored = FALSE
 			return ..()
 		playsound(src, W.usesound, 50, 1)
-		if (do_after(user, (2 SECONDS) * W.toolspeed, target = src))
+		if(do_after(user, (2 SECONDS) * W.toolspeed, target = src))
 			to_chat(user, span_notice("You [anchored ? "un" : ""]anchor the [src]."))
 			anchored = !anchored
 	else if(!isrobot(user) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
@@ -257,7 +269,7 @@
 			user.drop_item()
 			W.forceMove(gargoyle.vore_selected)
 			return
-	else if (!(W.flags & NOBLUDGEON))
+	else if(!(W.flags & NOBLUDGEON))
 		user.setClickCooldown(user.get_attack_speed(W))
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)
@@ -274,12 +286,15 @@
 		add_overlay(tail_image)
 
 /obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
-	if(istype(AM,/obj/item) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
+	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
+	if(!gargoyle)
+		return
+	if(istype(AM,/obj/item) && gargoyle.vore_selected && gargoyle.trash_catching)
 		var/obj/item/I = AM
 		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
 			gargoyle.hitby(AM, speed)
 			return
-	else if(isliving(AM) && gargoyle)
+	else if(isliving(AM))
 		var/mob/living/L = AM
 		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
 			var/drop_prey_temp = FALSE

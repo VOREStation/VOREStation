@@ -136,8 +136,8 @@
 	switch(action)
 		// Basic actions
 		if("load")
-			if(!IsGuestKey(usr.key))
-				open_load_dialog(usr)
+			if(!IsGuestKey(ui.user.key))
+				open_load_dialog(ui.user)
 			. = TRUE
 		if("save")
 			save_character()
@@ -146,22 +146,22 @@
 			VARSET_IN(src, saved_notification, FALSE, 1 SECONDS)
 			. = TRUE
 		if("reload")
-			load_preferences()
+			load_preferences(TRUE)
 			load_character()
 			attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
 			sanitize_preferences()
 			. = TRUE
 		if("resetslot")
-			if("Yes" != tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
+			if("Yes" != tgui_alert(ui.user, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 				return
-			if("Yes" != tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
+			if("Yes" != tgui_alert(ui.user, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
 				return
 			reset_slot()
 			sanitize_preferences()
 			. = TRUE
 		if("copy")
-			if(!IsGuestKey(usr.key))
-				open_copy_dialog(usr)
+			if(!IsGuestKey(ui.user.key))
+				open_copy_dialog(ui.user)
 			. = TRUE
 		// More specific stuff
 		if("switch_category")
@@ -169,11 +169,11 @@
 			for(var/datum/category_group/player_setup_category/PS in player_setup.categories)
 				if(PS.name == new_category)
 					player_setup.selected_category = PS
-					update_tgui_static_data(usr, ui)
+					update_tgui_static_data(ui.user, ui)
 					break
 			. = TRUE
 		if("game_prefs")
-			usr.client.game_options()
+			ui.user.client.game_options()
 			. = TRUE
 		if("refresh_character_preview")
 			if(!COOLDOWN_FINISHED(src, ui_refresh_cooldown))
@@ -192,7 +192,7 @@
 	PMH.screen_loc = LAZYACCESS(preview_screen_locs, "PMH")
 
 /datum/preferences/tgui_close(mob/user)
-	save_character()
+	// save_character()
 	save_preferences()
 
 /datum/preferences/proc/create_character_profiles()

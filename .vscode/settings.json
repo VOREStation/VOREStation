@@ -1,13 +1,5 @@
 {
-    "eslint.nodePath": "./tgui/.yarn/sdks",
     "eslint.workingDirectories": ["./tgui"],
-    "prettier.prettierPath": "./tgui/.yarn/sdks/prettier/index.cjs",
-    "typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "search.exclude": {
-        "**/.yarn": true,
-        "**/.pnp.*": true
-    },
     "workbench.editorAssociations": {
         "*.dmi": "dmiEditor.dmiEditor"
     },
@@ -22,6 +14,7 @@
     "files.associations": {
         "*.{dme,dmf,dmm,dm}": "dm",
     },
+	"git.branchProtection": ["master"],
     "gitlens.advanced.blame.customArguments": [
         "-w", "--ignore-revs-file", ".git-blame-ignore-revs"
     ],

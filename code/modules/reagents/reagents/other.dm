@@ -428,6 +428,14 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
+/datum/reagent/lye
+	name = REAGENT_LYE
+	id = REAGENT_ID_LYE
+	description = "Also known as sodium hydroxide. As a profession making this is somewhat underwhelming."
+	taste_description = "acid"
+	reagent_state = LIQUID
+	color = "#FFFFD6" // very very light yellow"
+
 /datum/reagent/fluorosurfactant // Foam precursor
 	name = REAGENT_FLUOROSURFACTANT
 	id = REAGENT_ID_FLUOROSURFACTANT

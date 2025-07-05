@@ -1,0 +1,21 @@
+2025-07-01:
+  TheCaramelion:
+  - bugfix: Fixed virus databases breaking in Medical Computers
+  Tost:
+  - balance: Emergency lights now last longer
+2025-07-02:
+  Reo:
+  - qol: soap can be wetted to instantly clean tiles as it used to work.
+  - balance: Balances soap so that it's not terrible again. (removed the durability
+      mechanic)
+  Tost:
+  - bugfix: Emergency lights no longer blow up on activation.
+2025-07-03:
+  ItsSelis:
+  - rscadd: Registration bot that gives users roles after their verification
+  - rscadd: Added tgs testing suite and dmapi update workflow
+  - refactor: DMAPI Updated to the latest version
+  - server: This PR makes tgs ready to be used
+2025-07-04:
+  ItsSelis:
+  - admin: Ranks with the 'R_ADMIN' permission can now see LOOC messages remotely.
