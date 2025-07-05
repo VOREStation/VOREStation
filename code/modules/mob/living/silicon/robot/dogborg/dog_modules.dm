@@ -345,9 +345,10 @@
 
 	if(get_dist(get_turf(T), get_turf(src)) > leap_distance) return
 
-	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
-		if(H.get_species() == SPECIES_SHADEKIN && (H.ability_flags & AB_PHASE_SHIFTED))
+	if(isliving(T))
+		var/mob/living/M = T
+		var/datum/component/shadekin/SK = M.get_shadekin_component()
+		if(SK && SK.in_phase)
 			power_cost *= 2
 
 	if(!use_direct_power(power_cost, minimum_power - power_cost))

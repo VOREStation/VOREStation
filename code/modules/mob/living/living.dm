@@ -18,6 +18,15 @@
 
 	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
+/mob/living/proc/get_visible_name()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase)
+		return "Something"
+	if(real_name)
+		return real_name
+	else
+		return name
+
 /mob/living/Destroy()
 	SSradiation.listeners -= src
 	remove_all_modifiers(TRUE)
@@ -1257,7 +1266,7 @@
 		swap_hand()
 
 /mob/living/throw_item(atom/target)
-	if(incapacitated() || !target || istype(target, /obj/screen))
+	if(incapacitated() || !target || istype(target, /obj/screen) || is_incorporeal())
 		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
