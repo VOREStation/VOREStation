@@ -53,7 +53,7 @@
 
 /datum/category_item/player_setup_item/general/nif/copy_to_mob(var/mob/living/carbon/human/character)
 	//If you had a NIF...
-	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability)
+	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability && !ismannequin(character))
 		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)
 
 /datum/category_item/player_setup_item/general/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)

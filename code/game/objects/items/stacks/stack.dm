@@ -29,6 +29,7 @@
 
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
+	var/is_building = FALSE
 
 /obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
@@ -158,6 +159,9 @@
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
+	if(is_building)
+		return
+
 	if (!can_use(required))
 		if (produced>1)
 			to_chat(user, span_warning("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
@@ -175,9 +179,12 @@
 
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
+		is_building = TRUE
 		if (!do_after(user, recipe.time))
+			is_building = FALSE
 			return
 
+	is_building = FALSE
 	if (use(required))
 		var/atom/O
 		if(recipe.use_material)
