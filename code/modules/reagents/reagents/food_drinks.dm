@@ -5058,6 +5058,9 @@
 	glass_name = REAGENT_ID_CINNAMONPOWDER
 	glass_desc = "A glass of ground cinnamon. Dare you take the challenge?"
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
+
 /datum/reagent/gelatin
 	name = REAGENT_GELATIN
 	id = REAGENT_ID_GELATIN

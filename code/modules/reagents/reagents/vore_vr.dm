@@ -147,7 +147,7 @@
 	reagent_state = LIQUID
 	color = "#00BBFF"
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
-	industrial_use = REFINERYEXPORT_REASON_RECDRUG
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/androrovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.allow_spontaneous_tf))
@@ -169,6 +169,8 @@
 	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be female."
 	reagent_state = LIQUID
 	color = "#FF00AA"
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/gynorovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.allow_spontaneous_tf))
@@ -190,6 +192,8 @@
 	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be mixed."
 	reagent_state = LIQUID
 	color = "#6600FF"
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/androgynorovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.allow_spontaneous_tf))
