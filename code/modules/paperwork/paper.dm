@@ -340,7 +340,9 @@
 		t = replacetext(t, "\[grid\]", "<table>")
 		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 		t = replacetext(t, "\[row\]", "</td><tr>")
+		t = replacetext(t, "\[/row\]", "")
 		t = replacetext(t, "\[cell\]", "<td>")
+		t = replacetext(t, "\[/cell\]", "")
 		t = replacetext(t, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']>")
 		t = replacetext(t, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']>")
 		t = replacetext(t, "\[trlogo\]", "<img src=\ref['html/images/trader.png']>")
@@ -358,6 +360,8 @@
 		t = replacetext(t, "\[/table\]", "")
 		t = replacetext(t, "\[row\]", "")
 		t = replacetext(t, "\[cell\]", "")
+		t = replacetext(t, "\[/cell\]", "")
+		t = replacetext(t, "\[/row\]", "")
 		t = replacetext(t, "\[logo\]", "")
 		t = replacetext(t, "\[sglogo\]", "")
 

@@ -1,4 +1,5 @@
 #define ICON_NOT_SET "Not Set"
+
 //This is stored as a nested list instead of datums or whatever because it json encodes nicely for usage in tgui
 GLOBAL_LIST_INIT(master_filter_info, list(
 	"alpha" = list(
@@ -21,20 +22,34 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"size" = 1
 		)
 	),
-	/* Not supported because making a proper matrix editor on the frontend would be a huge dick pain.
-		Uncomment if you ever implement it
+	"bloom" = list(
+		"defaults" = list(
+			"threshold" = COLOR_BLACK,
+			"size" = 1,
+			"offset" = 0,
+			"alpha" = 255
+		)
+	),
+	// Needs either a proper matrix editor, or just a hook to our existing one
+	// Issue is filterrific assumes variables will have the same value type if they share the same name, which this violates
+	// Gotta refactor this sometime
 	"color" = list(
 		"defaults" = list(
 			"color" = matrix(),
 			"space" = FILTER_COLOR_RGB
+		),
+		"enums" = list(
+			"FILTER_COLOR_RGB" = FILTER_COLOR_RGB,
+			"FILTER_COLOR_HSV" = FILTER_COLOR_HSV,
+			"FILTER_COLOR_HSL" = FILTER_COLOR_HSL,
+			"FILTER_COLOR_HCY" = FILTER_COLOR_HCY
 		)
 	),
-	*/
 	"displace" = list(
 		"defaults" = list(
 			"x" = 0,
 			"y" = 0,
-			"size" = null,
+			"size" = 1,
 			"icon" = ICON_NOT_SET,
 			"render_source" = ""
 		)
@@ -61,8 +76,20 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"render_source" = "",
 			"flags" = FILTER_OVERLAY,
 			"color" = "",
-			"transform" = null,
+			"transform" = TRANSFORM_MATRIX_IDENTITY,
 			"blend_mode" = BLEND_DEFAULT
+		),
+		"flags" = list(
+			"FILTER_OVERLAY" = FILTER_OVERLAY,
+			"FILTER_UNDERLAY" = FILTER_UNDERLAY
+		),
+		"enums" = list(
+			"BLEND_DEFAULT" = BLEND_DEFAULT,
+			"BLEND_OVERLAY" = BLEND_OVERLAY,
+			"BLEND_ADD" = BLEND_ADD,
+			"BLEND_SUBTRACT" = BLEND_SUBTRACT,
+			"BLEND_MULTIPLY" = BLEND_MULTIPLY,
+			"BLEND_INSET_OVERLAY" = BLEND_INSET_OVERLAY
 		)
 	),
 	"motion_blur" = list(
@@ -167,7 +194,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(space))
 		.["space"] = space
 
-/proc/displacement_map_filter(icon, render_source, x, y, size = 32)
+/proc/displacement_map_filter(icon, render_source, x, y, size = ICON_SIZE_ALL)
 	. = list("type" = "displace")
 	if(!isnull(icon))
 		.["icon"] = icon
@@ -197,6 +224,17 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	. = list("type" = "blur")
 	if(!isnull(size))
 		.["size"] = size
+
+/proc/bloom_filter(threshold, size, offset, alpha)
+	. = list("type" = "bloom")
+	if(!isnull(threshold))
+		.["threshold"] = threshold
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(offset))
+		.["offset"] = offset
+	if(!isnull(alpha))
+		.["alpha"] = alpha
 
 /proc/layering_filter(icon, render_source, x, y, flags, color, transform, blend_mode)
 	. = list("type" = "layer")
@@ -293,71 +331,6 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/atom/proc/add_filter(name,priority,list/params)
-	LAZYINITLIST(filter_data)
-	var/list/p = params.Copy()
-	p["priority"] = priority
-	filter_data[name] = p
-	update_filters()
-
-/atom/proc/update_filters()
-	filters = null
-	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
-	UNSETEMPTY(filter_data)
-
-/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
-	var/filter = get_filter(name)
-	if(!filter)
-		return
-
-	var/list/old_filter_data = filter_data[name]
-
-	var/list/params = old_filter_data.Copy()
-	for(var/thing in new_params)
-		params[thing] = new_params[thing]
-
-	animate(filter, new_params, time = time, easing = easing, loop = loop)
-	for(var/param in params)
-		filter_data[name][param] = params[param]
-
-/atom/proc/change_filter_priority(name, new_priority)
-	if(!filter_data || !filter_data[name])
-		return
-
-	filter_data[name]["priority"] = new_priority
-	update_filters()
-
-/obj/item/update_filters()
-	. = ..()
-	/* Will port this from TG
-	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
-	*/
-
-/atom/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
-
-/atom/proc/remove_filter(name_or_names)
-	if(!filter_data)
-		return
-
-	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
-
-	for(var/name in names)
-		if(filter_data[name])
-			filter_data -= name
-	update_filters()
-
-/atom/proc/clear_filters()
-	filter_data = null
-	filters = null
-
 /proc/apply_wibbly_filters(atom/in_atom, length)
 	for(var/i in 1 to 7)
 		//This is a very baffling and strange way of doing this but I am just preserving old functionality
@@ -375,9 +348,20 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 		animate(filter, offset = random_roll, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
 		animate(offset = random_roll - 1, time = rand() * 20 + 10)
 
-/proc/remove_wibbly_filters(atom/in_atom)
+/proc/remove_wibbly_filters(atom/in_atom, remove_duration = 0)
+	if(QDELETED(in_atom))
+		return
 	var/filter
 	for(var/i in 1 to 7)
 		filter = in_atom.get_filter("wibbly-[i]")
-		animate(filter)
-		in_atom.remove_filter("wibbly-[i]")
+		if(remove_duration == 0)
+			animate(filter)
+			in_atom.remove_filter("wibbly-[i]")
+			continue
+		animate(filter, x = 0, y = 0, size = 0, offset = 0, time = remove_duration)
+		addtimer(CALLBACK(in_atom, TYPE_PROC_REF(/datum, remove_filter), "wibbly-[i]"), remove_duration)
+
+/proc/convert_list_to_filter(list/list_filter)
+	var/list/arguments = list_filter.Copy()
+	arguments -= "priority"
+	return filter(arglist(arguments))

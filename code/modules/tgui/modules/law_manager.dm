@@ -221,4 +221,4 @@
 
 /datum/tgui_module/law_manager/admin
 /datum/tgui_module/law_manager/admin/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)

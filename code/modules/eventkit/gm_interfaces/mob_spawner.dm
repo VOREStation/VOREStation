@@ -26,7 +26,7 @@
 	. = ..()
 
 /datum/eventkit/mob_spawner/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/mob_spawner/tgui_static_data(mob/user)
 	var/list/data = list()
