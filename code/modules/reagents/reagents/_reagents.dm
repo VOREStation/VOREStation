@@ -46,6 +46,8 @@
 
 	var/from_belly = FALSE
 	var/wiki_flag = 0 // Bitflags for secret/food/drink reagent sorting
+	var/supply_conversion_value = null
+	var/industrial_use = null // unique description for export off station
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
