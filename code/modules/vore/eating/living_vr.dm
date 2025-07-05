@@ -39,19 +39,6 @@
 /mob/living/proc/handle_special_unlocks()
 	return
 
-//
-// Hook for generic creation of stuff on new creatures
-//
-/hook/living_new/proc/vore_setup(mob/living/M)
-
-	//Tries to load prefs if a client is present otherwise gives freebie stomach
-	spawn(2 SECONDS)
-		if(!QDELETED(M))
-			M.init_vore()
-
-	//return TRUE to hook-caller
-	return TRUE
-
 /mob/proc/init_vore()
 	//Something else made organs, meanwhile.
 	if(!isnewplayer(src))
