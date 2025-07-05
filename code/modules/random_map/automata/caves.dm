@@ -65,7 +65,7 @@
 			if(map[current_cell] == FLOOR_CHAR)
 				T.make_floor()
 				if(prob(0.66)) // Spawn a gascrack for mining (does not produce atmo gas unless deep-mined)
-					T.ChangeTurf(pick(subtypesof(/turf/simulated/floor/gas_crack)))
+					T.ChangeTurf(pick(subtypesof(/turf/simulated/floor/gas_crack), preserve_outdoors = TRUE, preserve_starting_gas = TRUE))
 			else
 				T.make_wall()
 			LAZYSET(turfs_changed, T, TRUE)
