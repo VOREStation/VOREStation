@@ -1,3 +1,5 @@
+#define NO_ADMINS_ONLINE_MESSAGE "Adminhelps are also sent through TGS to services like Discord. If no admins are available in game, sending an adminhelp might still be noticed and responded to."
+
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC.Resources"
@@ -58,14 +60,18 @@
 	set category = "Admin"
 	set name = "Staffwho"
 
+	var/header = GLOB.admins.len == 0 ? "No Admins Currently Online" : "Current Admins"
+
 	var/msg = ""
 	var/modmsg = ""
 	var/devmsg = ""
 	var/eventMmsg = ""
+	var/mentormsg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	var/num_devs_online = 0
 	var/num_event_managers_online = 0
+	var/num_mentors_online = 0
 	for(var/client/C in GLOB.admins) // VOREStation Edit - GLOB
 		var/temp = ""
 		var/category = R_ADMIN
@@ -84,6 +90,9 @@
 		else if(check_rights_for(C, R_STEALTH)) // event managers //VOREStation Edit: Retired Staff
 			category = R_EVENT
 			num_event_managers_online++
+		else if(check_rights_for(C, R_MENTOR))
+			category = R_MENTOR
+			num_mentors_online++
 
 		temp += "\t[C] is a [C.holder.rank_names()]"
 		if(holder)
@@ -110,6 +119,8 @@
 				devmsg += temp
 			if(R_EVENT)
 				eventMmsg += temp
+			if(R_MENTOR)
+				mentormsg += temp
 
 	msg = span_bold("Current Admins ([num_admins_online]):") + "\n" + msg
 
@@ -122,28 +133,11 @@
 	if(CONFIG_GET(flag/show_event_managers))
 		msg += "\n" + span_bold(" Current Miscellaneous ([num_event_managers_online]):") + "\n" + eventMmsg
 
-	var/num_mentors_online = 0
-	var/mmsg = ""
-
-	for(var/client/C in GLOB.mentors)
-		num_mentors_online++
-		mmsg += "\t[C] is a Mentor"
-		if(holder)
-			if(isobserver(C.mob))
-				mmsg += " - Observing"
-			else if(isnewplayer(C.mob))
-				mmsg += " - Lobby"
-			else
-				mmsg += " - Playing"
-
-			if(C.is_afk())
-				var/seconds = C.last_activity_seconds()
-				mmsg += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
-		mmsg += "\n"
-
 	if(CONFIG_GET(flag/show_mentors))
-		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mmsg
+		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mentormsg
 
-	msg += "\n" + span_info("Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.")
+	msg += "\n" + span_info(NO_ADMINS_ONLINE_MESSAGE)
 
-	to_chat(src,span_filter_notice("[jointext(msg, "<br>")]"))
+	to_chat(src, fieldset_block(span_bold(header), span_filter_notice("[jointext(msg, "<br>")]"), "boxed_message"), type = MESSAGE_TYPE_INFO)
+
+#undef NO_ADMINS_ONLINE_MESSAGE

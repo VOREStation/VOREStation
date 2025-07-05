@@ -1003,6 +1003,7 @@
 /obj/belly/proc/digestion_death(mob/living/M)
 	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
+	owner.changeling_obtain_dna(M)
 
 	// Reverts TF on death. This fixes a bug with posibrains or similar, and also makes reforming easier.
 	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
@@ -1149,6 +1150,7 @@
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
+		Pred.changeling_obtain_dna(Prey)
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)

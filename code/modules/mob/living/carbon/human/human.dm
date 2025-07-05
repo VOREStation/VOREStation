@@ -123,11 +123,11 @@
 		if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 		. += "Suit charge: [cell_status]"
 
-	if(mind)
-		if(mind.changeling)
-			. += "Chemical Storage: [mind.changeling.chem_charges]"
-			. += "Genetic Damage Time: [mind.changeling.geneticdamage]"
-			. += "Re-Adaptations: [mind.changeling.readapts]/[mind.changeling.max_readapts]"
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp)
+		. += "Chemical Storage: [comp.chem_charges]"
+		. += "Genetic Damage Time: [comp.geneticdamage]"
+		. += "Re-Adaptations: [comp.readapts]/[comp.max_readapts]"
 	if(species)
 		species.get_status_tab_items(src)
 

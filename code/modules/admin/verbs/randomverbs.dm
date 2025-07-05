@@ -384,19 +384,12 @@ If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-/client/proc/respawn_character()
-	set category = "Fun.Event Kit"
-	set name = "Spawn Character"
-	set desc = "(Re)Spawn a client's loaded character."
-
-	if(!holder)
-		return
-
-	var/client/picked_client = tgui_input_list(src, "Please specify which client's character to spawn.", "Client", GLOB.clients)
+ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Spawn a client's loaded character.", "Fun.Event Kit")
+	var/client/picked_client = tgui_input_list(user, "Please specify which client's character to spawn.", "Client", GLOB.clients)
 	if(!picked_client)
 		return
 
-	respawn_character_proper(picked_client)
+	user.respawn_character_proper(picked_client)
 
 /client/proc/respawn_character_proper(client/picked_client)
 	if(!istype(picked_client))
@@ -550,6 +543,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(antag_data)
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
+			if(new_character.mind.antag_holder)
+				new_character.mind.antag_holder.apply_antags(new_character)
 
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey

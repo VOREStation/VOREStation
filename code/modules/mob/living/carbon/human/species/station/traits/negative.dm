@@ -518,14 +518,13 @@
 		if(H.hallucination >= hallucination_cap && H.loneliness_stage >= warning_cap)
 			return
 
-		// Outpost 21 addition begin - extended loneliness mechanics
-		if(H.mind && H.mind.changeling) // We are never alone~
+		var/datum/component/antag/changeling/comp = H.GetComponent(/datum/component/antag/changeling)
+		if(comp) // We are never alone~
 			H.loneliness_stage = 0
 			return
 		if(H.has_brain_worms()) // Brain friends!
 			sub_loneliness(H)
 			return
-		// Outpost 21 addition end
 
 		// Vored? Not gonna get frightened.
 		if(isbelly(H.loc))
