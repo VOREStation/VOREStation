@@ -17,7 +17,7 @@
 	var/static/list/locked = list()
 
 
-/datum/datacore/proc/get_manifest(monochrome, OOC,var/snowflake = FALSE) //CHOMPStation Edit
+/datum/datacore/proc/get_manifest(monochrome, OOC,var/snowflake = FALSE)
 	var/list/heads = new()
 	var/list/sec = new()
 	var/list/eng = new()
