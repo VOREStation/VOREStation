@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/ui_scale = owner.prefs.read_preference(/datum/preference/toggle/ui_scale)
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
@@ -324,7 +324,7 @@
 
 //The old one
 /datum/admins/proc/player_panel_old()
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"

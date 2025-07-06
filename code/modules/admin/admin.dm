@@ -252,7 +252,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Admin.Logs"
 	set name = "Player Notes"
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -260,7 +260,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 /datum/admins/proc/PlayerNotesFilter()
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -292,7 +292,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Admin.Investigate"
 	set name = "Show Player Info"
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -308,7 +308,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set desc = "Allows you to view, add and edit news feeds."
 
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -630,7 +630,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Server.Game"
 	set name = "Restart"
 	set desc="Restarts the world"
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
 	if(!confirm || confirm == "Cancel")
@@ -1021,7 +1021,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server.Game"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!check_rights_for(usr.client, R_HOLDER))	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
 	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
@@ -1299,7 +1299,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
@@ -1399,7 +1399,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Force an antagonist template to spawn."
 
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -1423,7 +1423,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Force autotraitor to proc."
 
 	if (!istype(src,/datum/admins))
-		src = usr.client.holder
+		src = check_rights_for(usr.client, R_HOLDER)
 	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_FUN))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -1495,7 +1495,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(sendto.department == department)
 
 			if (!istype(src,/datum/admins))
-				src = usr.client.holder
+				src = check_rights_for(usr.client, R_HOLDER)
 			if (!istype(src,/datum/admins))
 				to_chat(usr, "Error: you are not an admin!")
 				return
