@@ -1153,6 +1153,8 @@
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
 
+	LAZYCLEARLIST(body_writing)
+
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
 		gloves.wash(clean_types)
