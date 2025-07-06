@@ -10,6 +10,7 @@
 	var/list/connected_networks = list()
 	var/datum/commandline_network/targetted_network //commands go here!
 
+	var/theme = "hex"
 
 
 	var/name = "" //doesn't need to be unique, but! it probably should!
@@ -185,14 +186,25 @@
 /datum/commandline_network/proc/get_log()
 	var/list/outputlogs = list()
 	for(var/datum/commandline_log_entry/L in logs)
-		outputlogs.Add(L.serializeLog())
-	return json_encode(outputlogs)
+		outputlogs += L.serializeLog()
+	return outputlogs
 
 /datum/commandline_network/proc/get_all_logs() //serialized, for TGUI
 	var/list/json_nightmare = list()
 	for(var/datum/commandline_network/n in connected_networks + src)
 		json_nightmare += n.get_log()
-	return json_encode(json_nightmare)
+	return json_nightmare
+
+/datum/commandline_network/proc/export_tgui_data() as list
+	var/list/data = list()
+	data["connectedNetworks"] = list()
+	for(var/datum/commandline_network/x in connected_networks)
+		data["connectedNetworks"][x.name] = x.nodes.len //how many nodes in each network?
+
+	data["logs"] = get_all_logs()
+	data["targetNetworkName"] = targetted_network ? targetted_network.name : "NO_CONNECTION"
+	data["theme"] = theme
+	return data
 /*
 	//JSON FORMAT:
 	// List of network logs

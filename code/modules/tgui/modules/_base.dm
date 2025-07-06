@@ -88,6 +88,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 /datum/tgui_module/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		to_chat(world,"OPENING UI: TGUI_ID:[tgui_id]")
 		ui = new(user, src, tgui_id, name, parent_ui)
 		ui.open()
 

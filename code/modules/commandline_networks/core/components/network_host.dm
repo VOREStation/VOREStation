@@ -12,6 +12,7 @@
 
 /datum/component/commandline_network/RegisterWithParent()
 	var/list/L = parent.GetComponents(/datum/component/commandline_network_node)
+	network.owner = parent
 	for(var/datum/component/commandline_network_node/node in L)
 		network.add_node(node.node)
 	. = ..()

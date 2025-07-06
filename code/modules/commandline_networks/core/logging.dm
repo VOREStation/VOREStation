@@ -31,8 +31,8 @@
 
 	var/list/logout = list()
 	for(var/datum/x in logs)
-		logout["\ref[x]"] = json_encode(logs[x])
+		logout["\ref[x]"] = logs[x]
 
 	out[OUT_LOGS] = logout
 
-	return json_encode(out)
+	return out

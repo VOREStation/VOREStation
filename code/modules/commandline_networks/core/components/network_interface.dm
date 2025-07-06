@@ -38,6 +38,8 @@
 
 	UI = new
 	UI.name = src.name
+	UI.network = localhost.network
+	UI.host = parent
 
 	RegisterSignal(parent,COMSIG_ITEM_PRE_ATTACK,PROC_REF(item_preattack))
 	RegisterSignal(parent,COMSIG_ITEM_ATTACK_SELF,PROC_REF(openInterface))
@@ -61,7 +63,8 @@
 	localhost.network.disconnect_from(remotehost.network)
 	remotehost = null
 
-/datum/component/commandline_network_interface/proc/openInterface(var/mob/user)
+/datum/component/commandline_network_interface/proc/openInterface(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user,"FSDFSDFSD")
+	CallAsync(src,)
 	UI.tgui_interact(user)

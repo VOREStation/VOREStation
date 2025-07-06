@@ -8,15 +8,25 @@
 	var/cooldown //anti-spam, 1 command a second max
 
 /datum/tgui_module/commandline_network_display/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	to_chat(world,"YIPEE")
+	. = ..()
+	to_chat(world,"TGUI ACT: [action] | PARAMS: [params]")
 
 /datum/tgui_module/commandline_network_display/tgui_close()
 	. = ..()
 	//TODO
 
+/datum/tgui_module/commandline_network_display/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/simple/commandline_backgrounds))
+
+
 /datum/tgui_module/commandline_network_display/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
 	if(!network)
+		to_chat(user,"NO NETWORK")
 		return
 	if(user)
-		return TRUE
-	//TODO
+		return ..()
+
+/datum/tgui_module/commandline_network_display/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = network?.export_tgui_data()
+	data["userName"] = user.name
+	return data
