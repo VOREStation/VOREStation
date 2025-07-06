@@ -181,7 +181,7 @@
 	if(!istype(target))
 		return
 
-	var/real_user = user ? user: usr
+	var/real_user = user ? user : usr
 	var/user_name = real_user ? key_name(real_user) : "Remotely (Discord)"
 
 	to_chat(target,"You've been hit by bluespace artillery!")
