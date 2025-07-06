@@ -159,3 +159,39 @@
 	if(!isnum(amount))
 		return //No
 	shadekin_set_energy(dark_energy + amount)
+
+
+/datum/component/shadekin/proc/attack_dephase(var/turf/T = null, atom/dephaser)
+	// no assigned dephase-target, just use our own
+	if(!T)
+		T = get_turf(owner)
+
+	if(!in_phase || doing_phase)
+		return FALSE
+
+	// make sure it's possible to be dephased (and we're in phase)
+	if(!T || !T.CanPass(src,T))
+		return FALSE
+
+
+	log_admin("[key_name_admin(owner)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.forensic_data?.get_lastprint()].")
+	message_admins("[key_name_admin(owner)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.forensic_data?.get_lastprint()]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)", 1)
+	// start the dephase
+	owner.phase_in(T, src)
+	shadekin_adjust_energy(-20) // loss of energy for the interception
+	// apply a little extra stun for good measure
+	owner.Weaken(3)
+
+/mob/living/carbon/human/is_incorporeal()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase) //Shadekin
+		return TRUE
+	return ..()
+
+///Proc that takes in special considerations, such as 'no abilities in VR' and the such
+///Returns TRUE if we try to do something forbidden
+/datum/component/shadekin/proc/special_considerations(allow_vr)
+	if(!allow_vr && istype(get_area(owner), /area/vr))
+		to_chat(owner, span_danger("The VR systems cannot comprehend this power! This is useless to you!"))
+		return TRUE
+	return FALSE
