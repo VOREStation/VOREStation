@@ -141,21 +141,17 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	if(fire || party || atmosalm)
 		firedoors_close()
 		arfgs_activate()
-		// VOREStation Edit - Make the lights colored!
 		if(fire)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_fire()
 		else if(atmosalm)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_atmos()
-		// VOREStation Edit End
 	else
 		firedoors_open()
 		arfgs_deactivate()
-		// VOREStation Edit - Put the lights back!
 		for(var/obj/machinery/light/L in src)
 			L.reset_alert()
-		// VOREStation Edit End
 
 // Close all firedoors in the area
 /area/proc/firedoors_close()
@@ -452,7 +448,7 @@ var/list/mob/living/forced_ambiance_list = list()
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-		if(H.is_incorporeal()) // VOREstation edit - Phaseshifted beings should not be affected by gravity
+		if(H.is_incorporeal()) // Phaseshifted beings should not be affected by gravity
 			return
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
