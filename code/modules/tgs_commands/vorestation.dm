@@ -280,7 +280,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	var/id = message_as_list[1]
 	if(isnum(id))
 		return "```First param must be the ticket ID.```"
-	message_as_list = message_as_list.Cut(1, 2)
+	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: reply id message```"
 	var/text_message = message_as_list.Join(" ")
