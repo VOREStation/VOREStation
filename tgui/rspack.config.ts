@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from '@rspack/cli';
 import rspack, { type StatsOptions } from '@rspack/core';
@@ -20,11 +19,10 @@ export function createStats(verbose: boolean): StatsOptions {
     version: verbose,
   };
 }
-const file = fileURLToPath(import.meta.url);
-const dir = path.dirname(__filename);
+const dirname = path.resolve();
 
 export default defineConfig({
-  context: dir,
+  context: dirname,
   devtool: false,
   entry: {
     tgui: './packages/tgui',
@@ -130,10 +128,10 @@ export default defineConfig({
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
-      tgui: path.resolve(dir, './packages/tgui'),
-      'tgui-panel': path.resolve(dir, './packages/tgui-panel'),
-      'tgui-say': path.resolve(dir, './packages/tgui-say'),
-      'tgui-dev-server': path.resolve(dir, './packages/tgui-dev-server'),
+      tgui: path.resolve(dirname, './packages/tgui'),
+      'tgui-panel': path.resolve(dirname, './packages/tgui-panel'),
+      'tgui-say': path.resolve(dirname, './packages/tgui-say'),
+      'tgui-dev-server': path.resolve(dirname, './packages/tgui-dev-server'),
     },
   },
   stats: createStats(true),
