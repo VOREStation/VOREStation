@@ -181,6 +181,17 @@
 	temp_shift = 0.5
 	temp_range = list(T0C + 7, T0C + 13)
 
+/decl/chemical_reaction/distilling/ethanol
+	name = "Distilling Ethanol"
+	id = "distill_ethanol"
+	result = REAGENT_ID_ETHANOL
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1)
+	result_amount = 2
+
+	reaction_rate = HALF_LIFE(30)
+
+	temp_range = list(T20C+30, T20C + 40)
+
 // Unique
 /decl/chemical_reaction/distilling/berserkjuice
 	name = "Distilling Brute Juice"
@@ -244,20 +255,6 @@
 	reaction_rate = HALF_LIFE(20)
 
 	temp_range = list(T0C + 90, T0C + 95)
-
-/decl/chemical_reaction/distilling/sugar
-	name = "Crystalizing Sugar"
-	id = "distill_sugar"
-	result = REAGENT_ID_SUGAR
-	required_reagents = list(REAGENT_ID_CARBON = 5)
-	catalysts = list(REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1) // Rebuild the crystals!
-	result_amount = 0.1
-
-	temp_range = list(T0C -10, T0C -5) // crystal growth
-	temp_shift = -1
-
-	require_xgm_gas = GAS_PHORON
-	rejects_xgm_gas = GAS_O2
 
 /decl/chemical_reaction/distilling/hydrogen
 	name = "Distilling Hydrogen"
@@ -326,137 +323,3 @@
 
 	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
-
-/decl/chemical_reaction/distilling/titanium_refine
-	name = REAGENT_TITANIUM
-	id = "distill_titanium"
-	result = REAGENT_ID_TITANIUM
-	required_reagents = list(REAGENT_ID_TITANIUMDIOX = 1, REAGENT_ID_CHLORINE = 4, REAGENT_ID_SODIUM = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 900, T20C + 1100)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_N2
-	rejects_xgm_gas = GAS_O2
-
-
-// Marker ink for paint production
-/decl/chemical_reaction/distilling/marker_ink_black
-	name = REAGENT_MARKERINKBLACK
-	id = "distill_marker_black"
-	result = REAGENT_ID_MARKERINKBLACK
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_CARBON = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_red
-	name = REAGENT_MARKERINKRED
-	id = "distill_marker_red"
-	result = REAGENT_ID_MARKERINKRED
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_IRON = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_yellow
-	name = REAGENT_MARKERINKYELLOW
-	id = "distill_marker_yellow"
-	result = REAGENT_ID_MARKERINKYELLOW
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_SULFUR = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_green
-	name = REAGENT_MARKERINKGREEN
-	id = "distill_marker_green"
-	result = REAGENT_ID_MARKERINKGREEN
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_COPPER = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_blue
-	name = REAGENT_MARKERINKBLUE
-	id = "distill_marker_blue"
-	result = REAGENT_ID_MARKERINKBLUE
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_PRUSSIANBLUE = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_grey
-	name = REAGENT_MARKERINKGREY
-	id = "distill_marker_grey"
-	result = REAGENT_ID_MARKERINKGREY
-	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_TIN = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-
-// Secondary distillation for markers
-/decl/chemical_reaction/distilling/marker_ink_orange
-	name = REAGENT_MARKERINKORANGE
-	id = "distill_marker_orange"
-	result = REAGENT_ID_MARKERINKORANGE
-	required_reagents = list(REAGENT_ID_MARKERINKRED = 1, REAGENT_ID_MARKERINKYELLOW = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_purple
-	name = REAGENT_MARKERINKPURPLE
-	id = "distill_marker_purple"
-	result = REAGENT_ID_MARKERINKPURPLE
-	required_reagents = list(REAGENT_ID_MARKERINKRED = 1, REAGENT_ID_MARKERINKBLUE = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
-
-/decl/chemical_reaction/distilling/marker_ink_brown
-	name = REAGENT_MARKERINKBROWN
-	id = "distill_marker_brown"
-	result = REAGENT_ID_MARKERINKBROWN
-	required_reagents = list(REAGENT_ID_MARKERINKRED = 1, REAGENT_ID_MARKERINKGREY = 1)
-	result_amount = 1
-
-	temp_range = list(T20C + 90, T20C + 160)
-	temp_shift = -1
-
-	require_xgm_gas = GAS_O2
-	rejects_xgm_gas = GAS_PHORON
