@@ -276,14 +276,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 /datum/tgs_chat_command/ticketreply/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: ticket \[reply, close\] id message```"
+		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
 
 	var/id = text2num(message_as_list[1])
 	if(isnum(id))
 		return "```First param must be the ticket ID.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: ticket \[reply, close\] id message```"
+		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
 
 	var/action = message_as_list[1]
 	if(isnum(action))
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	message_as_list.Cut(1, 2)
 
 	if(!LAZYLEN(message_as_list) && action == "reply")
-		return "```Invalid command usage: ticket \[reply, close\] id message```"
+		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
 	var/text_message
 	if(LAZYLEN(message_as_list))
 		text_message = message_as_list.Join(" ")
