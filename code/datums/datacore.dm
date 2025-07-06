@@ -17,7 +17,7 @@
 	var/static/list/locked = list()
 
 
-/datum/datacore/proc/get_manifest(monochrome, OOC)
+/datum/datacore/proc/get_manifest(monochrome, OOC,var/snowflake = FALSE) //CHOMPStation Edit
 	var/list/heads = new()
 	var/list/sec = new()
 	var/list/eng = new()
@@ -40,6 +40,7 @@
 		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: [OOC?"#373737; color:white":"#DEF"]"]}
 	</style></head>
 	<table class="manifest" width='350px'>
+	[snowflake?"<tr><th colspan=3 style = \"background-color: #026e6a\"><b>Online players:</b> [TGS_CLIENT_COUNT]</th></tr><tr><th colspan=3 style = \"background-color: #027a76\"><b>Crew members:</b> [GLOB.data_core.general.len]</th></tr><tr class='head'>":""]
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
 	"}
 	var/even = 0
