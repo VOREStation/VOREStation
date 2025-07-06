@@ -1191,7 +1191,8 @@ SUBSYSTEM_DEF(internal_wiki)
 				body += "<b>Sintering Results: DO NOT EVER</b><br>"
 			else
 				var/datum/material/C = get_material_by_name(data["sintering"])
-				body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
+				if(C)
+					body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
 	if(data["overdose"] > 0)
 		body += "<b>Overdose: </b>[data["overdose"]]u<br>"
 	body += "<b>Flavor: </b>[data["flavor"]]<br>"
