@@ -270,23 +270,26 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 // Reply to admin tickets
 /datum/tgs_chat_command/ticketreply
 	name = "ticket"
-	help_text = "allows admins to reply to open tickets. Usage: ticket \[reply, reject, icissue, close, resolve, handle, reopen\] id message"
+	help_text = "allows admins to reply to open tickets. Usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/ticketreply/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: ticket \[reply, close\] id message```"
+
 	var/id = text2num(message_as_list[1])
 	if(isnum(id))
-		return "```First param must be the action type.```"
+		return "```First param must be the ticket ID.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: ticket \[reply, close\] id message```"
+
 	var/action = message_as_list[1]
-	if(isnum(id))
-		return "```Second param must be the ticket ID.```"
+	if(isnum(action))
+		return "```Second param must be the action type.```"
 	message_as_list.Cut(1, 2)
+
 	if(!LAZYLEN(message_as_list) && action == "reply")
 		return "```Invalid command usage: ticket \[reply, close\] id message```"
 	var/text_message
