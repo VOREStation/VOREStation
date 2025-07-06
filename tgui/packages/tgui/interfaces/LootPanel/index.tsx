@@ -55,7 +55,7 @@ export function LootPanel(props) {
 
   return (
     <Window
-      width={300}
+      width={350}
       height={height}
       buttons={
         <Stack align="center">
@@ -75,6 +75,10 @@ export function LootPanel(props) {
             icon="sync"
             onClick={() => act('refresh')}
             tooltip="Refresh"
+          />
+          <Button
+            icon="circle-question"
+            tooltip="If you need keybinds to work while this menu is focused, hit Ctrl+R."
           />
         </Stack>
       }
