@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from '@rspack/cli';
 import rspack, { type StatsOptions } from '@rspack/core';
@@ -19,6 +20,8 @@ export function createStats(verbose: boolean): StatsOptions {
     version: verbose,
   };
 }
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   context: __dirname,
