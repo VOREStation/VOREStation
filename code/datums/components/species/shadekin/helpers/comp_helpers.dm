@@ -170,7 +170,7 @@
 		return FALSE
 
 	// make sure it's possible to be dephased (and we're in phase)
-	if(!T || !T.CanPass(src,T))
+	if(!T || !T.CanPass(owner,T))
 		return FALSE
 
 
