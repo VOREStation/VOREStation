@@ -213,7 +213,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("clear_loadout")
-			active_gear_list.Cut()
+			active_gear_list?.Cut()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("copy_loadout")
