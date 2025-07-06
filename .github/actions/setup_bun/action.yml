@@ -15,5 +15,3 @@ runs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: ${{ env.BUN_VERSION_REQUIRED }}
-        cache: ${{ fromJSON(inputs.restore-bun-cache) && 'bun' || '' }}
-        cache-dependency-path: ${{ fromJSON(inputs.restore-bun-cache) && 'tgui/bun.lock' || '' }}

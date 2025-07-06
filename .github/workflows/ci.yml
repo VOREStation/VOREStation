@@ -22,8 +22,7 @@ jobs:
       # Caches
       - name: Setup Bun
         uses: ./.github/actions/setup_bun
-        with:
-          restore-bun-cache: true
+        with: restore-bun-cache
       - name: Restore Bootstrap cache
         uses: actions/cache@v4
         with:
