@@ -206,6 +206,8 @@
 		if(!message)
 			return TRUE
 
+		add_attack_logs(attacker, us, "wrote \"[message]\"")
+
 		LAZYSET(us.body_writing, affecting.organ_tag, message)
 		return TRUE
 
