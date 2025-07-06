@@ -2,19 +2,15 @@
 	// OLD ADMIN VERB SYSTEM
 	var/rights = holder.rank_flags()
 	if(rights & R_HOLDER)
-		if(rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
+		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
+		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
 		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
 		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)
-			add_verb(src, admin_verbs_debug)
-			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
-				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
+		if(rights & R_DEBUG)		add_verb(src, admin_verbs_debug)
 		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
+		if(rights & R_SPAWN)		add_verb(src, admin_verbs_spawn)
 		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
+		if(rights & R_EVENT)		add_verb(src, admin_verbs_event_manager)
 
 	// NEW ADMIN VERBS SYSTEM
 	SSadmin_verbs.assosciate_admin(src)
@@ -27,7 +23,6 @@
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
-		/client/proc/stealth,
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs
@@ -215,25 +210,22 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 				i = 0
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
-/client/proc/stealth()
-	set category = "Admin.Game"
-	set name = "Stealth Mode"
-	if(check_rights(R_HOLDER))
-		if(holder.fakekey)
-			holder.fakekey = null
-			if(isnewplayer(src.mob))
-				mob.name = capitalize(ckey)
-		else
-			var/new_key = ckeyEx(tgui_input_text(usr, "Enter your desired display name.", "Fake Key", key))
-			if(!new_key)
-				return
-			if(length(new_key) >= 26)
-				new_key = copytext(new_key, 1, 26)
-			holder.fakekey = new_key
-			createStealthKey()
-			if(isnewplayer(mob))
-				mob.name = new_key
-		log_and_message_admins("has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", usr)
+ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
+	if(user.holder.fakekey)
+		user.holder.fakekey = null
+		if(isnewplayer(user.mob))
+			user.mob.name = capitalize(user.ckey)
+	else
+		var/new_key = ckeyEx(tgui_input_text(user, "Enter your desired display name.", "Fake Key", user.key))
+		if(!new_key)
+			return
+		if(length(new_key) >= 26)
+			new_key = copytext(new_key, 1, 26)
+		user.holder.fakekey = new_key
+		user.createStealthKey()
+		if(isnewplayer(user.mob))
+			user.mob.name = new_key
+	log_and_message_admins("has turned stealth mode [user.holder.fakekey ? "ON" : "OFF"]", usr)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 #define MAX_WARNS 3
@@ -530,16 +522,35 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun.Event Kit"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = tgui_input_list(usr, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
-	if(!S) return
-	T.spell_list += new S
+ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
+	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	if(!S)
+		return
+	spell_recipient.spell_list += new S
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(T)] the spell [S]."), 1)
+	log_admin("[key_name(usr)] gave [key_name(spell_recipient)] the spell [S].")
+	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(spell_recipient)] the spell [S]."), 1)
+
+ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+	var/list/target_spell_list = list()
+	for(var/spell/spell in removal_target.spell_list)
+		target_spell_list[spell.name] = spell
+
+	if(!length(target_spell_list))
+		return
+
+	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
+	if(isnull(chosen_spell))
+		return
+	var/spell/to_remove = target_spell_list[chosen_spell]
+	if(!istype(to_remove))
+		return
+
+	qdel(to_remove)
+	log_admin("[key_name(user)] removed the spell [chosen_spell] from [key_name(removal_target)].")
+	message_admins("[key_name_admin(user)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
+	feedback_add_details("admin_verb","RS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
 
 ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", "Debug.Misc")
 	user.stat_panel.send_message("create_debug")

@@ -332,12 +332,13 @@
 			return if_no_id
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
-/mob/living/carbon/human/proc/get_visible_name()
-	if(ability_flags & AB_PHASE_SHIFTED)
+/mob/living/carbon/human/get_visible_name()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase)
 		return "Something"	// Something
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	if(wear_mask && (wear_mask.flags_inv&HIDEFACE))	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if( head && (head.flags_inv&HIDEFACE) )
+	if(head && (head.flags_inv&HIDEFACE))
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -1874,3 +1875,149 @@
 	set desc = "Toggle glasses worn icon visibility."
 	hide_glasses = !hide_glasses
 	update_inv_glasses()
+
+///mob/living/carbon/human/vv_edit_var(var_name, var_value)
+//	if(var_name == NAMEOF(src, mob_height))
+//		// you wanna edit this one not that one
+//		var_name = NAMEOF(src, base_mob_height)
+//	. = ..()
+//	if(!.)
+//		return .
+//	if(var_name == NAMEOF(src, base_mob_height))
+//		update_mob_height()
+
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	//VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	//VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
+	//VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	//VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
+	//VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
+	//VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
+
+/mob/living/carbon/human/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	/*
+	if(href_list[VV_HK_COPY_OUTFIT])
+		if(!check_rights(R_SPAWN))
+			return
+		copy_outfit()
+
+	if(href_list[VV_HK_MOD_MUTATIONS])
+		if(!check_rights(R_SPAWN))
+			return
+		var/list/options = list("Clear"="Clear")
+		for(var/x in subtypesof(/datum/mutation))
+			var/datum/mutation/mut = x
+			var/name = initial(mut.name)
+			options[dna.check_mutation(mut) ? "[name] (Remove)" : "[name] (Add)"] = mut
+		var/result = tgui_input_list(usr, "Choose mutation to add/remove","Mutation Mod", sort_list(options))
+		if(result)
+			if(result == "Clear")
+				for(var/datum/mutation/mutation as anything in dna.mutations)
+					dna.remove_mutation(mutation, mutation.sources)
+			else
+				var/mut = options[result]
+				if(dna.check_mutation(mut))
+					var/datum/mutation/mutation = dna.get_mutation(mut)
+					dna.remove_mutation(mut, mutation.sources)
+				else
+					dna.add_mutation(mut, MUTATION_SOURCE_VV)
+
+	if(href_list[VV_HK_MOD_QUIRKS])
+		if(!check_rights(R_SPAWN))
+			return
+		var/list/options = list("Clear"="Clear")
+		for(var/type in subtypesof(/datum/quirk))
+			var/datum/quirk/quirk_type = type
+			if(initial(quirk_type.abstract_parent_type) == type)
+				continue
+			var/qname = initial(quirk_type.name)
+			options[has_quirk(quirk_type) ? "[qname] (Remove)" : "[qname] (Add)"] = quirk_type
+		var/result = tgui_input_list(usr, "Choose quirk to add/remove","Quirk Mod", sort_list(options))
+		if(result)
+			if(result == "Clear")
+				for(var/datum/quirk/q in quirks)
+					remove_quirk(q.type)
+			else
+				var/T = options[result]
+				if(has_quirk(T))
+					remove_quirk(T)
+				else
+					add_quirk(T)
+	*/
+
+	if(href_list[VV_HK_SET_SPECIES])
+		if(!check_rights(R_SPAWN))
+			return
+		var/result = tgui_input_list(usr, "Please choose a new species","Species", sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc)))
+		if(result)
+			var/newtype = GLOB.all_species[result]
+			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
+			set_species(newtype)
+
+	/*
+	if(href_list[VV_HK_PURRBATION])
+		if(!check_rights(R_SPAWN))
+			return
+		if(!ishuman(src))
+			to_chat(usr, "This can only be done to human species at the moment.")
+			return
+		var/success = purrbation_toggle(src)
+		if(success)
+			to_chat(usr, "Put [src] on purrbation.")
+			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
+			var/msg = span_notice("[key_name_admin(usr)] has put [key_name(src)] on purrbation.")
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+		else
+			to_chat(usr, "Removed [src] from purrbation.")
+			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
+			var/msg = span_notice("[key_name_admin(usr)] has removed [key_name(src)] from purrbation.")
+			message_admins(msg)
+			admin_ticket_log(src, msg)
+
+	if(href_list[VV_HK_APPLY_DNA_INFUSION])
+		if(!check_rights(R_SPAWN))
+			return
+		if(!ishuman(src))
+			to_chat(usr, "This can only be done to human species.")
+			return
+		var/result = usr.client.grant_dna_infusion(src)
+		if(result)
+			to_chat(usr, "Successfully applied DNA Infusion [result] to [src].")
+			log_admin("[key_name(usr)] has applied DNA Infusion [result] to [key_name(src)].")
+		else
+			to_chat(usr, "Failed to apply DNA Infusion to [src].")
+			log_admin("[key_name(usr)] failed to apply a DNA Infusion to [key_name(src)].")
+
+	if(href_list[VV_HK_TURN_INTO_MMI])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/result = tgui_alert(usr, "This will delete the mob, are you sure?", "Turn into MMI", list("Yes", "No"))
+		if(result != "Yes")
+			return
+
+		var/obj/item/organ/brain/target_brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+
+		if(isnull(target_brain))
+			to_chat(usr, "This mob has no brain to insert into an MMI.")
+			return
+
+		var/obj/item/mmi/new_mmi = new(get_turf(src))
+
+		target_brain.Remove(src)
+		new_mmi.force_brain_into(target_brain)
+
+		to_chat(usr, "Turned [src] into an MMI.")
+		log_admin("[key_name(usr)] turned [key_name_and_tag(src)] into an MMI.")
+
+		qdel(src)
+	*/
