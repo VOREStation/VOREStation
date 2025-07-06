@@ -1,11 +1,9 @@
-import { defineConfig } from '@rspack/cli';
-import rspack from '@rspack/core';
+import path from 'node:path';
 
-/**
- * @param {boolean} verbose
- * @returns  {import('@rspack/core').StatsOptions}
- */
-export function createStats(verbose) {
+import { defineConfig } from '@rspack/cli';
+import rspack, { type StatsOptions } from '@rspack/core';
+
+export function createStats(verbose: boolean): StatsOptions {
   return {
     assets: verbose,
     builtAt: verbose,
@@ -22,10 +20,8 @@ export function createStats(verbose) {
   };
 }
 
-const dir = import.meta.dirname;
-
-export default defineConfig({
-  context: dir,
+module.exports = defineConfig({
+  context: __dirname,
   devtool: false,
   entry: {
     tgui: './packages/tgui',
@@ -131,11 +127,10 @@ export default defineConfig({
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
-      tgui: new URL('./packages/tgui', import.meta.url).pathname,
-      'tgui-panel': new URL('./packages/tgui-panel', import.meta.url).pathname,
-      'tgui-say': new URL('./packages/tgui-say', import.meta.url).pathname,
-      'tgui-dev-server': new URL('./packages/tgui-dev-server', import.meta.url)
-        .pathname,
+      tgui: path.resolve(__dirname, './packages/tgui'),
+      'tgui-panel': path.resolve(__dirname, './packages/tgui-panel'),
+      'tgui-say': path.resolve(__dirname, './packages/tgui-say'),
+      'tgui-dev-server': path.resolve(__dirname, './packages/tgui-dev-server'),
     },
   },
   stats: createStats(true),
