@@ -269,26 +269,93 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 // Reply to admin tickets
 /datum/tgs_chat_command/ticketreply
-	name = "reply"
-	help_text = "allows admins to reply to open tickets. Usage: reply id message"
+	name = "ticket"
+	help_text = "allows admins to reply to open tickets. Usage: ticket \[reply, reject, icissue, close, resolve, handle, reopen\] id message"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/ticketreply/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: reply id message```"
-	var/id = message_as_list[1]
+		return "```Invalid command usage: ticket \[reply, close\] id message```"
+	var/id = text2num(message_as_list[1])
 	if(isnum(id))
-		return "```First param must be the ticket ID.```"
+		return "```First param must be the action type.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: reply id message```"
-	var/text_message = message_as_list.Join(" ")
-	var/datum/ticket/found
-	for(var/datum/ticket/ticket in GLOB.tickets.active_tickets)
-		if(ticket.id == id)
-			found = ticket
-	if(!found)
-		return "```Ticket with id #[id] was not found!```"
+		return "```Invalid command usage: ticket \[reply, close\] id message```"
+	var/action = message_as_list[1]
+	if(isnum(id))
+		return "```Second param must be the ticket ID.```"
+	message_as_list.Cut(1, 2)
+	if(!LAZYLEN(message_as_list) && action == "reply")
+		return "```Invalid command usage: ticket \[reply, close\] id message```"
+	var/text_message
+	if(LAZYLEN(message_as_list))
+		text_message = message_as_list.Join(" ")
 
-	found.AddInteraction("Discord Relay: [text_message]")
+	var/datum/ticket/found
+	if(action == "reopen")
+		for(var/datum/ticket/ticket in GLOB.tickets.closed_tickets)
+			if(ticket.id == id)
+				found = ticket
+		if(!found)
+			return "```Ticket with id #[id] was not found in closed tickets!```"
+	else
+		for(var/datum/ticket/ticket in GLOB.tickets.active_tickets)
+			if(ticket.id == id)
+				found = ticket
+		if(!found)
+			return "```Ticket with id #[id] was not found in active tickets!```"
+
+	if(text_message)
+		found.AddInteraction("Discord Relay: [text_message]")
+	switch(action)
+		if("reject")
+			found.Reject("Remotely (Discord)")
+		if("icissue")
+			found.ICIssue("Remotely (Discord)")
+		if("close")
+			found.Close("Remotely (Discord)")
+		if("resolve")
+			found.Resolve("Remotely (Discord)")
+		if("handle")
+			found.HandleIssue("Remotely (Discord)")
+		if("reopen")
+			found.Reopen("Remotely (Discord)")
+
+// Remove smite
+/datum/tgs_chat_command/remote_smite
+	name = "smite"
+	help_text = "allows admins to remotely smite players. Usage: smite \[bsa, lightning, pie\] name"
+	admin_only = TRUE
+
+/datum/tgs_chat_command/remote_smite/Run(datum/tgs_chat_user/sender, params)
+	var/list/message_as_list = splittext(params, " ")
+	if(!LAZYLEN(message_as_list))
+		return "```Invalid command usage: smite \[bsa, lightning, pie\] name```"
+	var/smite_name = message_as_list[1]
+	if(istext(smite_name))
+		return "```First param must be the smite name.```"
+
+	message_as_list.Cut(1, 2)
+	if(!LAZYLEN(message_as_list))
+		return "```Invalid command usage: smite \[bsa, lightning, pie\] name```"
+	switch(smite_name)
+		if("bsa")
+			for(var/mob/living/target in player_list)
+				if(target.real_name == message_as_list.Join(" "))
+					bluespace_artillery(target)
+		if("lightning")
+			for(var/mob/living/target in player_list)
+				if(target.real_name == message_as_list.Join(" "))
+					var/turf/T = get_step(get_step(target, NORTH), NORTH)
+					T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
+					target.electrocute_act(75,def_zone = BP_HEAD)
+					target.visible_message(span_danger("[target] is struck by lightning!"))
+		if("pie")
+			for(var/mob/living/target in player_list)
+				if(target.real_name == message_as_list.Join(" "))
+					new/obj/effect/decal/cleanable/pie_smudge(get_turf(target))
+					playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff = 5)
+					target.Weaken(1)
+					target.visible_message(span_danger("[target] is struck by pie!"))

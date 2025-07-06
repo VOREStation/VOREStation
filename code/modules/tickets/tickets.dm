@@ -287,7 +287,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator.current_ticket)	//This is a bug
 		log_debug("Multiple ahelp current_tickets")
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code")
-		initiator.current_ticket.Close()
+		initiator.current_ticket.Close(usr)
 	initiator.current_ticket = src
 
 	var/parsed_message = keywords_lookup(msg)
@@ -440,7 +440,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	*/
 
 //Reopen a closed ticket
-/datum/ticket/proc/Reopen()
+/datum/ticket/proc/Reopen(user)
 	if(state == AHELP_ACTIVE)
 		to_chat(usr, span_warning("This ticket is already open."))
 		return
@@ -463,10 +463,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		initiator.current_ticket = src
 
-	AddInteraction(span_purple("Reopened by [key_name_admin(usr)]"))
+	var/admin_reopener_name = ismob(user) ? key_name_admin(user) : user
+	AddInteraction(span_purple("Reopened by [admin_reopener_name]"))
 	if(initiator)
-		to_chat(initiator, span_filter_adminlog("[span_purple("Ticket [TicketHref("#[id]")] was reopened by [key_name(usr,FALSE,FALSE)].")]"))
-	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
+		to_chat(initiator, span_filter_adminlog("[span_purple("Ticket [TicketHref("#[id]")] was reopened by [ismob(user) ? key_name(usr,FALSE,FALSE) : user].")]"))
+	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [admin_reopener_name].")
 	message_admins(msg)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
@@ -476,7 +477,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		WEBHOOK_AHELP_SENT,
 		list(
 			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) reopened.",
-			"body" = "Reopened by [key_name(usr)]."
+			"body" = "Reopened by [ismob(user) ? key_name(user) : user]."
 		)
 	)
 
@@ -491,44 +492,46 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		initiator.current_ticket = null
 
 //Mark open ticket as closed/meme
-/datum/ticket/proc/Close(silent = FALSE)
+/datum/ticket/proc/Close(user, silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.tickets.ListInsert(src)
-	AddInteraction(span_filter_adminlog(span_red("Closed by [key_name_admin(usr)].")))
+	var/admin_closer_name = ismob(user) ? key_name_admin(user) : user
+	AddInteraction(span_filter_adminlog(span_red("Closed by [admin_closer_name].")))
 	if(initiator)
-		to_chat(initiator, span_filter_adminlog("[span_red("Ticket [TicketHref("#[id]")] was closed by [key_name(usr,FALSE,FALSE)].")]"))
+		to_chat(initiator, span_filter_adminlog("[span_red("Ticket [TicketHref("#[id]")] was closed by [ismob(user) ? key_name(usr,FALSE,FALSE) : user].")]"))
 	if(!silent)
 		feedback_inc("ahelp_close")
-		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name_admin(usr)]."
+		var/msg = "Ticket [TicketHref("#[id]")] closed by [admin_closer_name]."
 		message_admins(msg)
 		log_admin(msg)
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
 			list(
 				"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) closed.",
-				"body" = "Closed by [key_name(usr)].",
+				"body" = "Closed by [ismob(user) ? key_name(user) : user].",
 				"color" = COLOR_WEBHOOK_BAD
 			)
 		)
 	// initiator?.mob?.clear_alert("open ticket") // Uncomment this line to enable player-side ticket ui
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
-/datum/ticket/proc/Resolve(silent = FALSE)
+/datum/ticket/proc/Resolve(user, silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
 	state = AHELP_RESOLVED
 	GLOB.tickets.ListInsert(src)
 
-	AddInteraction(span_filter_adminlog(span_green("Resolved by [key_name_admin(usr)].")))
+	var/admin_resolver_name = ismob(user) ? key_name_admin(user) : user
+	AddInteraction(span_filter_adminlog(span_green("Resolved by [admin_resolver_name].")))
 	if(initiator)
-		to_chat(initiator, span_filter_adminlog("[span_green("Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr,FALSE,FALSE)].")]"))
+		to_chat(initiator, span_filter_adminlog("[span_green("Ticket [TicketHref("#[id]")] was marked resolved by [ismob(user) ? key_name(usr,FALSE,FALSE) : user].")]"))
 	if(!silent)
 		feedback_inc("ticket_resolve")
-		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name_admin(usr)]"
+		var/msg = "Ticket [TicketHref("#[id]")] resolved by [admin_resolver_name]"
 		if(type == 1)
 			message_mentors(msg)
 		else if (type == 0)
@@ -540,14 +543,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 				WEBHOOK_AHELP_SENT,
 				list(
 					"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) resolved.",
-					"body" = "Marked as Resolved by [key_name(usr)].",
+					"body" = "Marked as Resolved by [ismob(user) ? key_name(user) : user].",
 					"color" = COLOR_WEBHOOK_GOOD
 				)
 			)
 	// initiator?.mob?.clear_alert("open ticket") // Uncomment this line to enable player-side ticket ui
 
 //Close and return ahelp verb, use if ticket is incoherent
-/datum/ticket/proc/Reject(key_name = key_name_admin(usr))
+/datum/ticket/proc/Reject(mob/user)
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -559,23 +562,24 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 							[span_red(span_bold("Your admin help was rejected."))]<br>\
 							Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting."))
 
+	var/admin_rejecter_name = ismob(user) ? key_name_admin(user) : user
 	feedback_inc("ahelp_reject")
-	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name_admin(usr)]"
+	var/msg = "Ticket [TicketHref("#[id]")] rejected by [admin_rejecter_name]"
 	message_admins(msg)
 	log_admin(msg)
-	AddInteraction("Rejected by [key_name_admin(usr)].")
-	Close(silent = TRUE)
+	AddInteraction("Rejected by [admin_rejecter_name].")
+	Close(user, silent = TRUE)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
 			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) rejected.",
-			"body" = "Rejected by [key_name(usr)].",
+			"body" = "Rejected by [ismob(user) ? key_name(user) : user].",
 			"color" = COLOR_WEBHOOK_BAD
 		)
 	)
 
 //Resolve ticket with IC Issue message
-/datum/ticket/proc/ICIssue(key_name = key_name_admin(usr))
+/datum/ticket/proc/ICIssue(user)
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -586,51 +590,54 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(initiator)
 		to_chat(initiator, span_filter_pm(msg))
 
+	var/admin_resolve_name = ismob(user) ? key_name_admin(user) : user
 	feedback_inc("ahelp_icissue")
-	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name_admin(usr)]"
+	msg = "Ticket [TicketHref("#[id]")] marked as IC by [admin_resolve_name]"
 	message_admins(msg)
 	log_admin(msg)
-	AddInteraction("Marked as IC issue by [key_name_admin(usr)]")
-	Resolve(silent = TRUE)
+	AddInteraction("Marked as IC issue by [admin_resolve_name]")
+	Resolve(user, silent = TRUE)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
 			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) marked as IC issue.",
-			"body" = "Marked as IC Issue by [key_name(usr)].",
+			"body" = "Marked as IC Issue by [ismob(user) ? key_name(user) : user].",
 			"color" = COLOR_WEBHOOK_BAD
 		)
 	)
 
-//Resolve ticket with IC Issue message
-/datum/ticket/proc/HandleIssue()
+//Handle ticket
+/datum/ticket/proc/HandleIssue(user)
 	if(state != AHELP_ACTIVE)
 		return
 
-	if(handler == key_name(usr, FALSE, TRUE))
+	var/handler_name = ismob(user) ? key_name(usr, FALSE, TRUE) : user
+	if(handler == handler_name)
 		to_chat(usr, span_red("You are already handling this ticket."))
 		return
 
+	var/handler_shown_name = ismob(user) ? key_name_admin(user) : user
 	var/msg
 	switch(level)
 		if(0)
-			msg = span_green("Your MentorHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.")
+			msg = span_green("Your MentorHelp is being handled by [handler_shown_name] please be patient.")
 		if(1)
-			msg = span_red("Your AdminHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.")
+			msg = span_red("Your AdminHelp is being handled by [handler_shown_name] please be patient.")
 
 	if(initiator)
 		to_chat(initiator, msg)
 
 	feedback_inc("ahelp_handling")
-	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr,FALSE,FALSE)]"
+	msg = "Ticket [TicketHref("#[id]")] being handled by [handler_shown_name]"
 	message_admins(msg)
 	log_admin(msg)
-	AddInteraction("[key_name_admin(usr)] is now handling this ticket.")
-	handler = key_name(usr, FALSE, TRUE)
+	AddInteraction("[handler_shown_name] is now handling this ticket.")
+	handler = handler_name
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
 			"name" = "Ticket ([id]) (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) being handled.",
-			"body" = "[key_name(usr)] is now handling the ticket."
+			"body" = "[ismob(user) ? key_name(user) : user] is now handling the ticket."
 		)
 	)
 
@@ -681,7 +688,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		if("retitle")
 			Retitle()
 		if("reject")
-			Reject()
+			Reject(usr)
 		if("reply")
 			switch(level)
 				if(0)
@@ -689,15 +696,15 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 				if(1)
 					usr.client.cmd_ahelp_reply(initiator)
 		if("icissue")
-			ICIssue()
+			ICIssue(usr)
 		if("close")
-			Close()
+			Close(usr)
 		if("resolve")
-			Resolve()
+			Resolve(usr)
 		if("handleissue")
-			HandleIssue()
+			HandleIssue(usr)
 		if("reopen")
-			Reopen()
+			Reopen(usr)
 		if("escalate")
 			Escalate()
 
