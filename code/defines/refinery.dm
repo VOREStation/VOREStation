@@ -48,15 +48,13 @@ var/global/list/ore_reagents = list( //have a number of reageents divisible by R
 	/obj/item/ore/lead = list(REAGENT_ID_LEAD),
 	/obj/item/ore/hydrogen = list(REAGENT_ID_HYDROGEN),
 	/obj/item/ore/verdantium = list(REAGENT_ID_RADIUM,REAGENT_ID_PHORON,REAGENT_ID_NITROGEN,REAGENT_ID_PHOSPHORUS,REAGENT_ID_SODIUM), // Some fun stuff to be useful with
-	/obj/item/ore/rutile = list(REAGENT_ID_TUNGSTEN,REAGENT_ID_OXYGEN) // Should be titanium
-	/* Downstream features, refinery
+	/obj/item/ore/rutile = list(REAGENT_ID_TITANIUMDIOX,REAGENT_ID_OXYGEN),
 	/obj/item/ore/copper = list(REAGENT_ID_COPPER),
 	/obj/item/ore/tin = list(REAGENT_ID_TIN),
 	/obj/item/ore/void_opal = list(REAGENT_ID_SILICON,REAGENT_ID_SILICON,REAGENT_ID_OXYGEN,REAGENT_ID_WATER),
 	/obj/item/ore/painite = list(REAGENT_ID_CALCIUM,REAGENT_ID_ALUMINIUM,REAGENT_ID_OXYGEN,REAGENT_ID_OXYGEN),
 	/obj/item/ore/quartz = list(REAGENT_ID_SILICON,REAGENT_ID_OXYGEN),
 	/obj/item/ore/bauxite = list(REAGENT_ID_ALUMINIUM,REAGENT_ID_ALUMINIUM),
-	*/
 )
 
 var/global/list/reagent_sheets = list( // Recompressing reagents back into sheets

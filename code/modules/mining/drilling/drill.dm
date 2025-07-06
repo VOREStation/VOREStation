@@ -56,9 +56,9 @@
 		ORE_MHYDROGEN = /obj/item/ore/hydrogen,
 		ORE_SAND = /obj/item/ore/glass,
 		ORE_CARBON = /obj/item/ore/coal,
-	//	ORE_COPPER = /obj/item/ore/copper,
-	//	ORE_TIN = /obj/item/ore/tin,
-	//	ORE_BAUXITE = /obj/item/ore/bauxite,
+		ORE_COPPER = /obj/item/ore/copper,
+		ORE_TIN = /obj/item/ore/tin,
+		ORE_BAUXITE = /obj/item/ore/bauxite,
 		ORE_RUTILE = /obj/item/ore/rutile
 		)
 
@@ -72,14 +72,14 @@
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
 		ORE_MARBLE = /obj/item/ore/marble,
-		//ORE_PAINITE = /obj/item/ore/painite,
-		//ORE_QUARTZ = /obj/item/ore/quartz,
+		ORE_PAINITE = /obj/item/ore/painite,
+		ORE_QUARTZ = /obj/item/ore/quartz,
 		ORE_LEAD = /obj/item/ore/lead
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
-		//ORE_VOPAL = /obj/item/ore/void_opal,
+		ORE_VOPAL = /obj/item/ore/void_opal,
 		ORE_VERDANTIUM = /obj/item/ore/verdantium
 		)
 

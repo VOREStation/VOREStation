@@ -179,7 +179,7 @@
 	ore = /obj/item/ore/lead
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_LEAD
-/*
+
 /ore/copper
 	name = ORE_COPPER
 	display_name = ORE_COPPER
@@ -221,7 +221,7 @@
 	ore = /obj/item/ore/bauxite
 	scan_icon = "mineral_common"
 	reagent = REAGENT_ID_ALUMINIUM
-*/
+
 /ore/rutile
 	name = ORE_RUTILE
 	display_name = ORE_RUTILE
@@ -232,7 +232,7 @@
 	ore = /obj/item/ore/rutile
 	scan_icon = "mineral_uncommon"
 	reagent = REAGENT_ID_TITANIUMDIOX
-/*
+
 /ore/painite
 	name = ORE_PAINITE
 	display_name = "rough painite"
@@ -252,4 +252,3 @@
 	ore = /obj/item/ore/void_opal
 	scan_icon = "mineral_rare"
 	reagent = REAGENT_ID_SULFUR
-*/
