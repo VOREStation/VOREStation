@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		if("reopen")
 			found.Reopen("Remotely (Discord)")
 
-// Remove smite
+// Remote smite
 /datum/tgs_chat_command/remote_smite
 	name = "smite"
 	help_text = "allows admins to remotely smite players. Usage: smite \[bsa, lightning, pie\] name"
