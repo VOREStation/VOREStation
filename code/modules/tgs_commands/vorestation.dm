@@ -283,7 +283,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	message_as_list = message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: reply id message```"
-	var/text_message = message_as_list.join(" ")
+	var/text_message = message_as_list.Join(" ")
 	var/datum/ticket/found
 	for(var/datum/ticket/ticket in GLOB.tickets.active_tickets)
 		if(ticket.id == id)
@@ -291,4 +291,4 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	if(!found)
 		return "```Ticket with id #[id] was not found!```"
 
-	T.AddInteraction("Discord Relay: [text_message]")
+	found.AddInteraction("Discord Relay: [text_message]")
