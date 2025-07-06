@@ -124,11 +124,6 @@
 	if(eye_desc)
 		desc += " This one has [eye_desc]!"
 
-	var/list/ability_types = subtypesof(/obj/effect/shadekin_ability)
-	shadekin_abilities = list()
-	for(var/type in ability_types)
-		shadekin_abilities += new type(src)
-
 	update_icon()
 
 	add_verb(src, /mob/proc/adjust_hive_range)
@@ -228,22 +223,6 @@
 
 	add_overlay(tailimage)
 	add_overlay(eye_icon_state)
-
-/mob/living/simple_mob/shadekin/update_misc_tabs()
-	..()
-	var/list/L = list()
-	for(var/obj/effect/shadekin_ability/A as anything in shadekin_abilities)
-		var/client/C = client
-		var/img
-		if(C && istype(C)) //sanity checks
-			if(A.ability_name in C.misc_cache)
-				img = C.misc_cache[A.ability_name]
-			else
-				img = icon2html(A,C,sourceonly=TRUE)
-				C.misc_cache[A.ability_name] = img
-
-		L[++L.len] = list("[A.ability_name]", A.ability_name, img, A.atom_button_text(), REF(A))
-	misc_tabs["Shadekin"] = L
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
