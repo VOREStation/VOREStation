@@ -20,11 +20,11 @@ export function createStats(verbose: boolean): StatsOptions {
     version: verbose,
   };
 }
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const file = fileURLToPath(import.meta.url);
+const dir = path.dirname(__filename);
 
 export default defineConfig({
-  context: __dirname,
+  context: dir,
   devtool: false,
   entry: {
     tgui: './packages/tgui',
@@ -130,10 +130,10 @@ export default defineConfig({
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
-      tgui: path.resolve(__dirname, './packages/tgui'),
-      'tgui-panel': path.resolve(__dirname, './packages/tgui-panel'),
-      'tgui-say': path.resolve(__dirname, './packages/tgui-say'),
-      'tgui-dev-server': path.resolve(__dirname, './packages/tgui-dev-server'),
+      tgui: path.resolve(dir, './packages/tgui'),
+      'tgui-panel': path.resolve(dir, './packages/tgui-panel'),
+      'tgui-say': path.resolve(dir, './packages/tgui-say'),
+      'tgui-dev-server': path.resolve(dir, './packages/tgui-dev-server'),
     },
   },
   stats: createStats(true),
