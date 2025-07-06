@@ -2,20 +2,18 @@ import { LabeledList, Stack } from 'tgui-core/components';
 
 import { eatingMessagePrivacy } from '../../constants';
 import { sanitize_color } from '../../functions';
-import type { bellyOptionData, hostMob } from '../../types';
+import type { bellyOptionData } from '../../types';
 import { VorePanelColorBox } from '../../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
 import { VoreSelectedWhitelist } from '../VisualTab/VoreSelecetedWhitelist';
-import { VoreSelectedMobTypeBellyButtons } from '../VisualTab/VoreSelectedMobTypeBellyButtons';
 
 export const BellyOptionsLeft = (props: {
   editMode: boolean;
   bellyOptionData: bellyOptionData;
-  host_mobtype: hostMob;
 }) => {
-  const { editMode, bellyOptionData, host_mobtype } = props;
+  const { editMode, bellyOptionData } = props;
   const {
     can_taste,
     is_feedable,
@@ -29,7 +27,6 @@ export const BellyOptionsLeft = (props: {
     save_digest_mode,
     eating_privacy_local,
     private_struggle,
-    mob_belly_controls,
     vorespawn_blacklist,
     vorespawn_whitelist,
     vorespawn_absorbed,
@@ -179,11 +176,6 @@ export const BellyOptionsLeft = (props: {
           />
         </LabeledList.Item>
       </LabeledList>
-      <VoreSelectedMobTypeBellyButtons
-        editMode={editMode}
-        bellyControl={mob_belly_controls}
-        host_mobtype={host_mobtype}
-      />
       <VoreSelectedWhitelist
         editMode={editMode}
         vorespawnBlacklist={vorespawn_blacklist}
