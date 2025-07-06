@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
 
 	var/id = text2num(message_as_list[1])
-	if(isnum(id))
+	if(!isnum(id))
 		return "```First param must be the ticket ID.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
