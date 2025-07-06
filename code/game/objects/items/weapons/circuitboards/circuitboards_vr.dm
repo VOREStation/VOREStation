@@ -78,3 +78,12 @@
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+ /obj/item/circuitboard/machine/rdserver
+	name = T_BOARD("R&D Server")
+	build_path = /obj/machinery/rnd/server
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/scanning_module = 1,
+	)
