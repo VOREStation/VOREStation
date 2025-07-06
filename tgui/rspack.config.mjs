@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 import { defineConfig } from '@rspack/cli';
 import rspack from '@rspack/core';
 
@@ -133,10 +131,11 @@ export default defineConfig({
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
-      tgui: path.resolve(dir, './packages/tgui'),
-      'tgui-panel': path.resolve(dir, './packages/tgui-panel'),
-      'tgui-say': path.resolve(dir, './packages/tgui-say'),
-      'tgui-dev-server': path.resolve(dir, './packages/tgui-dev-server'),
+      tgui: new URL('./packages/tgui', import.meta.url).pathname,
+      'tgui-panel': new URL('./packages/tgui-panel', import.meta.url).pathname,
+      'tgui-say': new URL('./packages/tgui-say', import.meta.url).pathname,
+      'tgui-dev-server': new URL('./packages/tgui-dev-server', import.meta.url)
+        .pathname,
     },
   },
   stats: createStats(true),
