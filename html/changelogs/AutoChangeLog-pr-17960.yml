@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "moves robot sprite setting to the visual tab"
