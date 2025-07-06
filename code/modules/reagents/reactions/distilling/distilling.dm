@@ -396,7 +396,7 @@
 
 /decl/chemical_reaction/distilling/marker_ink_blue
 	name = REAGENT_MARKERINKBLUE
-	id = "distill_marker_green"
+	id = "distill_marker_blue"
 	result = REAGENT_ID_MARKERINKBLUE
 	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_PRUSSIANBLUE = 1)
 	result_amount = 1
@@ -409,7 +409,7 @@
 
 /decl/chemical_reaction/distilling/marker_ink_grey
 	name = REAGENT_MARKERINKGREY
-	id = "distill_marker_green"
+	id = "distill_marker_grey"
 	result = REAGENT_ID_MARKERINKGREY
 	required_reagents = list(REAGENT_ID_LUBE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_TIN = 1)
 	result_amount = 1
@@ -437,7 +437,7 @@
 
 /decl/chemical_reaction/distilling/marker_ink_purple
 	name = REAGENT_MARKERINKPURPLE
-	id = "distill_marker_orange"
+	id = "distill_marker_purple"
 	result = REAGENT_ID_MARKERINKPURPLE
 	required_reagents = list(REAGENT_ID_MARKERINKRED = 1, REAGENT_ID_MARKERINKBLUE = 1)
 	result_amount = 1
