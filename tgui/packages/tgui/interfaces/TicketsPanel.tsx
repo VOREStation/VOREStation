@@ -256,17 +256,25 @@ export const TicketsPanel = (props) => {
                         </LabeledList.Item>
                       ) : (
                         <LabeledList.Item label="Closed At">
-                          {selected_ticket.closed_at_date +
-                            ' (' +
-                            toFixed(
-                              round((selected_ticket.closed_at / 600) * 10, 0) /
-                                10,
-                              1,
-                            ) +
-                            ' minutes ago.)'}
-                          <Button onClick={() => act('reopen_ticket')}>
-                            Reopen
-                          </Button>
+                          <Stack>
+                            <Stack.Item>
+                              {selected_ticket.closed_at_date +
+                                ' (' +
+                                toFixed(
+                                  round(
+                                    (selected_ticket.closed_at / 600) * 10,
+                                    0,
+                                  ) / 10,
+                                  1,
+                                ) +
+                                ' minutes ago.)'}
+                            </Stack.Item>
+                            <Stack.Item>
+                              <Button onClick={() => act('reopen_ticket')}>
+                                Reopen
+                              </Button>
+                            </Stack.Item>
+                          </Stack>
                         </LabeledList.Item>
                       )}
                       <LabeledList.Item label="Actions">

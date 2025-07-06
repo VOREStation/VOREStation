@@ -131,11 +131,17 @@ export const Ticket = (props) => {
                   </LabeledList.Item>
                 ) : (
                   <LabeledList.Item label="Closed At">
-                    {closed_at_date +
-                      ' (' +
-                      toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
-                      ' minutes ago.)'}
-                    <Button onClick={() => act('reopen')}>Reopen</Button>
+                    <Stack>
+                      <Stack.Item>
+                        {closed_at_date +
+                          ' (' +
+                          toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
+                          ' minutes ago.)'}
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button onClick={() => act('reopen')}>Reopen</Button>
+                      </Stack.Item>
+                    </Stack>
                   </LabeledList.Item>
                 )}
                 <LabeledList.Item label="Actions">
