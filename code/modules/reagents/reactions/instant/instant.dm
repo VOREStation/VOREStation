@@ -1292,13 +1292,6 @@
 	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_MUTAGEN = 1, REAGENT_ID_PHORON = 1)
 	result_amount = 1
 
-/decl/chemical_reaction/instant/titanium_refine
-	name = REAGENT_TITANIUM
-	id = "reduce_titanium"
-	result = REAGENT_ID_TITANIUM
-	required_reagents = list(REAGENT_ID_TITANIUMDIOX = 1, REAGENT_ID_CHLORINE = 4, REAGENT_ID_SODIUM = 1)
-	result_amount = 1
-
 /decl/chemical_reaction/instant/titanium_oxidation
 	name = REAGENT_TITANIUMDIOX
 	id = "oxidize_titanium"

@@ -67,7 +67,6 @@ var/global/list/reagent_sheets = list( // Recompressing reagents back into sheet
 	REAGENT_ID_IRON 			= MAT_IRON,
 	REAGENT_ID_LEAD				= MAT_LEAD,
 	REAGENT_ID_URANIUM			= MAT_URANIUM,
-	REAGENT_ID_PHORON 			= MAT_PHORON,
 	REAGENT_ID_GOLD 			= MAT_GOLD,
 	REAGENT_ID_SILVER 			= MAT_SILVER,
 	REAGENT_ID_PLATINUM			= MAT_PLATINUM,
@@ -81,6 +80,7 @@ var/global/list/reagent_sheets = list( // Recompressing reagents back into sheet
 	// Extremely stupid ones
 	REAGENT_ID_OXYGEN 			= REFINERY_SINTERING_EXPLODE,
 	REAGENT_ID_HYDROGEN 		= REFINERY_SINTERING_EXPLODE,
+	REAGENT_ID_PHORON 			= REFINERY_SINTERING_EXPLODE,
 	REAGENT_ID_SUPERMATTER 		= REFINERY_SINTERING_EXPLODE,
 	// Nothing is funnier to me
 	REAGENT_ID_SPIDEREGG 		= REFINERY_SINTERING_SPIDERS,
