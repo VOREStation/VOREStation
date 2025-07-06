@@ -252,7 +252,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Admin.Logs"
 	set name = "Player Notes"
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -260,7 +260,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 /datum/admins/proc/PlayerNotesFilter()
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -292,7 +292,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Admin.Investigate"
 	set name = "Show Player Info"
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -308,7 +308,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set desc = "Allows you to view, add and edit news feeds."
 
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -1399,7 +1399,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Force an antagonist template to spawn."
 
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -1423,7 +1423,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Force autotraitor to proc."
 
 	if (!istype(src,/datum/admins))
-		src = check_rights_for(usr.client, R_HOLDER)
+		src = usr.client.holder
 	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_FUN))
 		to_chat(usr, "Error: you are not an admin!")
 		return
@@ -1495,7 +1495,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(sendto.department == department)
 
 			if (!istype(src,/datum/admins))
-				src = check_rights_for(usr.client, R_HOLDER)
+				src = usr.client.holder
 			if (!istype(src,/datum/admins))
 				to_chat(usr, "Error: you are not an admin!")
 				return
