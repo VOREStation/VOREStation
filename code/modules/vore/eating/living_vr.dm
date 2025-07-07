@@ -181,6 +181,36 @@
 			else
 				return TRUE //You don't get to hit someone 'later'
 
+	// Body writing
+	else if(istype(I, /obj/item/pen))
+		// Avoids having an override on this proc because attempt_vr won't call the override
+		if(!ishuman(src))
+			return FALSE
+		var/mob/living/carbon/human/us = src
+
+		if(!isliving(user))
+			return FALSE
+		var/mob/living/attacker = user
+
+		if(attacker.a_intent != I_HELP)
+			return FALSE
+
+		var/hit_zone = attacker.zone_sel.selecting
+
+		var/obj/item/organ/external/affecting = get_organ(hit_zone)
+		if(!affecting || affecting.is_stump())
+			to_chat(attacker, span_danger("They are missing that limb!"))
+			return TRUE
+
+		var/message = tgui_input_text(attacker, "What would you like to write on [src]'s [affecting]? (This will replace existing writing.)", "Body Writing", "", 128, FALSE)
+		if(!message)
+			return TRUE
+
+		add_attack_logs(attacker, us, "wrote \"[message]\"")
+
+		LAZYSET(us.body_writing, affecting.organ_tag, message)
+		return TRUE
+
 	return FALSE
 
 //
