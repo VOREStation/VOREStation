@@ -401,6 +401,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	if(Thepower.make_hud_button && Thepower.isVerb)
 		if(owner.ability_master)
+			qdel_null(owner.ability_master)
 			owner.ability_master = new /obj/screen/movable/ability_master(owner)
 		owner.ability_master.add_ling_ability(
 			object_given = owner,

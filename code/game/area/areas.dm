@@ -563,23 +563,16 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		return (flags & flag) == flag
 	return flags & flag
 
-// RS Port #658 Start
-/area/proc/check_phase_shift(var/mob/ourmob)
+/area/proc/check_phase_shift(var/mob/living/ourmob)
 	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.is_incorporeal())
 		return
 	if(!isliving(ourmob))
 		return
 	if(ourmob.client?.holder)
 		return
-	if(issimplekin(ourmob))
-		var/mob/living/simple_mob/shadekin/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-	if(ishuman(ourmob))
-		var/mob/living/carbon/human/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-// RS Port #658 End
+	var/datum/component/shadekin/SK = ourmob.get_shadekin_component()
+	if(SK && SK.in_phase)
+		ourmob.phase_in(ourmob.loc, SK)
 
 /area/proc/isAlwaysIndoors()
 	return FALSE

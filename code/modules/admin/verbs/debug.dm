@@ -304,22 +304,21 @@
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
-	set category = "Admin.Game"
-	set name = "Assume direct control"
-	set desc = "Direct intervention"
-
-	if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
+ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
 	if(M.ckey)
-		if(tgui_alert(usr, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
+		if(tgui_alert(user, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
 			return
-		else
-			var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
-			ghost.ckey = M.ckey
-	message_admins(span_blue("[key_name_admin(usr)] assumed direct control of [M]."), 1)
-	log_admin("[key_name(usr)] assumed direct control of [M].")
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
+	if(!M || QDELETED(M))
+		to_chat(user, span_warning("The target mob no longer exists."))
+		return
+
+	var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
+	ghost.ckey = M.ckey
+
+	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."), 1)
+	log_admin("[key_name(user)] assumed direct control of [M].")
+	var/mob/adminmob = user.mob
+	M.ckey = user.ckey
 	if( isobserver(adminmob) )
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

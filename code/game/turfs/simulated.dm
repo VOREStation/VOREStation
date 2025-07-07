@@ -136,7 +136,8 @@
 
 				bloodDNA = null
 
-		if(src.wet || (dirtslip && (dirt > 50 || outdoors == 1)))
+		var/turf_is_outdoors = is_outdoors()
+		if(src.wet || (dirtslip && (dirt > 50 || turf_is_outdoors == OUTDOORS_YES)))
 			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
 				return
 
@@ -147,7 +148,7 @@
 				slip_stun = 10
 				if(dirt > 50)
 					floor_type = "dirty"
-				else if(outdoors)
+				else if(turf_is_outdoors)
 					floor_type = "uneven"
 				if(src.wet == 0 && M.m_intent == I_WALK)
 					return

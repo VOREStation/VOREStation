@@ -1,5 +1,6 @@
 /mob/living/carbon/human/GetAltName()
-	if(ability_flags & AB_PHASE_SHIFTED)
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase)
 		return ""
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
