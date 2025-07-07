@@ -311,20 +311,22 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			return "```Ticket with id #[id] was not found in active tickets!```"
 
 	if(text_message)
+		to_chat(found.initiator, span_admin_pm_warning("Admin PM from-" + span_bold("Discord Relay") + ": [text_message]"))
 		found.AddInteraction("Discord Relay: [text_message]")
 	switch(action)
 		if("reject")
-			found.Reject("Remotely (Discord)")
+			found.Reject("Remote (Discord)")
 		if("icissue")
-			found.ICIssue("Remotely (Discord)")
+			found.ICIssue("Remote (Discord)")
 		if("close")
-			found.Close("Remotely (Discord)")
+			found.Close("Remote (Discord)")
 		if("resolve")
-			found.Resolve("Remotely (Discord)")
+			found.Resolve("Remote (Discord)")
 		if("handle")
-			found.HandleIssue("Remotely (Discord)")
+			found.HandleIssue("Remote (Discord)")
 		if("reopen")
-			found.Reopen("Remotely (Discord)")
+			found.Reopen("Remote (Discord)")
+	return "Ticket command ([action]) sent!"
 
 // Remote smite
 /datum/tgs_chat_command/remote_smite
@@ -362,3 +364,4 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff = 5)
 					target.Weaken(1)
 					target.visible_message(span_danger("[target] is struck by pie!"))
+	return "Smite [smite_name] sent!"
