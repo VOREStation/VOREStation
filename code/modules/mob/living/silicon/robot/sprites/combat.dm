@@ -89,10 +89,10 @@
 	has_custom_equipment_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/melee/robotic/blade/dagger/CBB = locate() in module.modules
 	if(CBB)
@@ -202,10 +202,10 @@
 	has_eye_sprites = FALSE
 
 /datum/robot_sprite/dogborg/wide/combat/blade/do_equipment_glamour(var/obj/item/robot_module/module)
+	..()
+
 	if(!has_custom_equipment_sprites)
 		return
-
-	..()
 
 	var/obj/item/melee/robotic/blade/CBB = locate() in module.modules
 	if(CBB)

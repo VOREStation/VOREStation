@@ -1,22 +1,20 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
-	set category = null
-	set name = "Drop Everything"
-	if(!holder)
-		return
-
-	var/confirm = tgui_alert(src, "Make [M] drop everything?", "Message", list("Yes", "No"))
+ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in mob_list)
+	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	for(var/obj/item/W in M)
+	for(var/obj/item/W in dropee)
 		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these
 			continue
-		M.drop_from_inventory(W)
+		dropee.drop_from_inventory(W)
 
-	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
+	dropee.regenerate_icons()
+
+	log_admin("[key_name(user)] made [key_name(dropee)] drop everything!")
+	var/msg = "[key_name_admin(user)] made [ADMIN_LOOKUPFLW(dropee)] drop everything!"
+	message_admins(msg)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_prison(mob/M as mob in mob_list)
@@ -384,19 +382,12 @@ If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-/client/proc/respawn_character()
-	set category = "Fun.Event Kit"
-	set name = "Spawn Character"
-	set desc = "(Re)Spawn a client's loaded character."
-
-	if(!holder)
-		return
-
-	var/client/picked_client = tgui_input_list(src, "Please specify which client's character to spawn.", "Client", GLOB.clients)
+ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Spawn a client's loaded character.", "Fun.Event Kit")
+	var/client/picked_client = tgui_input_list(user, "Please specify which client's character to spawn.", "Client", GLOB.clients)
 	if(!picked_client)
 		return
 
-	respawn_character_proper(picked_client)
+	user.respawn_character_proper(picked_client)
 
 /client/proc/respawn_character_proper(client/picked_client)
 	if(!istype(picked_client))
@@ -550,6 +541,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(antag_data)
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
+			if(new_character.mind.antag_holder)
+				new_character.mind.antag_holder.apply_antags(new_character)
 
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
@@ -719,100 +712,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
-	set category = "Fun.Do Not"
-	set name = "Explosion"
-
-	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"), min_value=-1)
-	if(devastation == null) return
-	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"), min_value=-1)
-	if(heavy == null) return
-	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"), min_value=-1)
-	if(light == null) return
-	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"), min_value=-1)
-	if(flash == null) return
-
-	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
-		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (tgui_alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) != "Yes")
-				return
-
-		explosion(O, devastation, heavy, light, flash)
-		log_admin("[key_name(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","EXPL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return
-	else
-		return
-
-/client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
-	set category = "Fun.Do Not"
-	set name = "EM Pulse"
-
-	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/heavy = tgui_input_number(usr, "Range of heavy pulse.", text("Input"))
-	if(heavy == null) return
-	var/med = tgui_input_number(usr, "Range of medium pulse.", text("Input"))
-	if(med == null) return
-	var/light = tgui_input_number(usr, "Range of light pulse.", text("Input"))
-	if(light == null) return
-	var/long = tgui_input_number(usr, "Range of long pulse.", text("Input"))
-	if(long == null) return
-
-	if (heavy || med || light || long)
-
-		empulse(O, heavy, med, light, long)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		return
-	else
-		return
-
-/client/proc/cmd_admin_gib(mob/M as mob in mob_list)
-	set category = "Fun.Do Not"
-	set name = "Gib"
-
-	if(!check_rights(R_ADMIN|R_FUN))	return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
-	if(confirm != "Yes") return
-	//Due to the delay here its easy for something to have happened to the mob
-	if(!M)	return
-
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
-
-	if(isobserver(M))
-		gibs(M.loc)
-		return
-
-	M.gib()
-	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_gib_self()
-	set name = "Gibself"
-	set category = "Fun.Do Not"
-
-	if(!holder)
-		return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
-	if(!confirm)
-		return
-	if(confirm == "Yes")
-		if (isobserver(mob)) // so they don't spam gibs everywhere
-			return
-		else
-			mob.gib()
-
-		log_admin("[key_name(usr)] used gibself.")
-		message_admins(span_blue("[key_name_admin(usr)] used gibself."), 1)
-		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /*
 /client/proc/cmd_manual_ban()
 	set name = "Manual Ban"

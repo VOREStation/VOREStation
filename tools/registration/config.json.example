@@ -1,0 +1,6 @@
+{
+	"port": 6969,
+	"token": "your-token-goes-here",
+	"guildId": "your-guild-snowflake-goes-here",
+	"roleId": "your-role-snowflake-goes-here"
+}

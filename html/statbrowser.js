@@ -1066,6 +1066,11 @@ Byond.subscribeTo('add_admin_tabs', function (ht) {
 	addPermanentTab("Tickets");
 });
 
+Byond.subscribeTo('add_tickets_tabs', function (ht) {
+	href_token = ht;
+	addPermanentTab("Tickets");
+});
+
 Byond.subscribeTo('update_examine', function (payload) {
 	examine = payload.EX;
 	if (examine.length > 0 && !verb_tabs.includes("Examine")) {

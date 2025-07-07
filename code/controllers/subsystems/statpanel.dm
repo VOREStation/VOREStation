@@ -63,7 +63,9 @@ SUBSYSTEM_DEF(statpanels)
 			//target.stat_panel.send_message("update_split_admin_tabs", !!(target.prefs.toggles & SPLIT_ADMIN_TABS))
 			target.stat_panel.send_message("update_split_admin_tabs", FALSE)
 
-			if(!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs))
+			if(check_rights_for(target, R_MENTOR))
+				target.stat_panel.send_message("add_tickets_tabs", target.holder.href_token)
+			if(check_rights_for(target, R_HOLDER) && (!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs)))
 				target.stat_panel.send_message("add_admin_tabs", target.holder.href_token)
 
 			//if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0) || target?.prefs.read_preference(/datum/preference/toggle/fast_mc_refresh)))
@@ -178,9 +180,8 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/tickets = list()
-	if(check_rights_for(target, R_ADMIN|R_SERVER|R_MOD)) //Prevents non-staff from opening the list of ahelp tickets
-		tickets += GLOB.ahelp_tickets.stat_entry(target)
-	tickets += GLOB.mhelp_tickets.stat_entry(target)
+	if(check_rights_for(target, R_ADMIN|R_SERVER|R_MOD|R_MENTOR)) //Prevents non-staff from opening the list of ahelp tickets
+		tickets = GLOB.tickets.stat_entry(target)
 	target.stat_panel.send_message("update_tickets", tickets)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
@@ -285,7 +286,7 @@ SUBSYSTEM_DEF(statpanels)
 		list("Instances:", "[num2text(world.contents.len, 10)]"),
 		list("World Time:", "[world.time]"),
 		list("Globals:", GLOB.stat_entry(), "\ref[GLOB]"),
-		// list("[config]:", config.stat_entry(), "\ref[config]"),
+		list("[config]:", config.stat_entry(), "\ref[config]"),
 		list("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)"),
 		list("Master Controller:", Master.stat_entry(), "\ref[Master]"),
 		list("Failsafe Controller:", Failsafe.stat_entry(), "\ref[Failsafe]"),

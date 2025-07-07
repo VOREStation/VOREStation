@@ -97,9 +97,7 @@ export const AtmosControlContent = (props) => {
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>
-      <Stack.Item grow m={2}>
-        {tab[tabIndex]}
-      </Stack.Item>
+      <Stack.Item grow>{tab[tabIndex]}</Stack.Item>
     </Stack>
   );
 };

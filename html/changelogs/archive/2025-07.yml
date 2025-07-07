@@ -1,0 +1,85 @@
+2025-07-01:
+  TheCaramelion:
+  - bugfix: Fixed virus databases breaking in Medical Computers
+  Tost:
+  - balance: Emergency lights now last longer
+2025-07-02:
+  Reo:
+  - qol: soap can be wetted to instantly clean tiles as it used to work.
+  - balance: Balances soap so that it's not terrible again. (removed the durability
+      mechanic)
+  Tost:
+  - bugfix: Emergency lights no longer blow up on activation.
+2025-07-03:
+  ItsSelis:
+  - rscadd: Registration bot that gives users roles after their verification
+  - rscadd: Added tgs testing suite and dmapi update workflow
+  - refactor: DMAPI Updated to the latest version
+  - server: This PR makes tgs ready to be used
+2025-07-04:
+  ItsSelis:
+  - admin: Ranks with the 'R_ADMIN' permission can now see LOOC messages remotely.
+2025-07-05:
+  Diana:
+  - qol: Cyborg gripper will now smartly stack material stacks.
+  - qol: Cyborg gripper will no longer unselect stacks when used
+  - bugfix: Cyborg surgical and botany multibelt no longer have offset
+  Diana, Kash:
+  - rscadd: Changelings can now absorb via VORE.
+  - refactor: Changeling is now a component
+  - balance: Changelings now get a genetic point upon absorbing someone
+  - balance: Changelings don't mc-die from epi
+  - balance: Changeling spacesuit is now free
+  - balance: A lot of changeling perks adjusted in minor ways. More to come.
+  - rscdel: Changeling death sting deleted.
+  - balance: Changeling unfat sting now reduces nutrition by 85% or 100 nutrition,
+      whatever's higher.
+  - qol: Changeling evolution menu is now TGUI
+  - code_imp: General code cleanup in Changeling code. Now runs smoother.
+2025-07-06:
+  Diana:
+  - refactor: Shadekin component fully fleshed out. Can now be applied to any /mob/living.
+      No longer locked to species.
+  - rscadd: Shadekin can phase-nom INTO someone now. Preykin!
+  - rscadd: 'Crossports Adjust Light Flicker, which allows you to adjust your: Duration
+      of light flicker, color of light flicker, and light break chance.'
+  - rscadd: Flashlights will now flicker when shadekin phase in.
+  - bugfix: Flashlights no longer leave a lingering overlay when the user is eaten
+      by a shadekin
+  - qol: BESK, OESK, and RESK generate energy quicker.
+  - bugfix: Fixes mobs dying from no-atmos
+  - bugfix: 8 year bug that causes ability master to disappear upon aghost/relog
+  - bugfix: Antags will now properly get antag-only text when examining things.
+  - bugfix: 3 color wolf (Fat vwag) fixed. No longer has broken sprites.
+  ItsSelis:
+  - rscadd: Added subsystem for handling admin verbs
+  - rscadd: Added particle editor
+  - rscadd: Added filter editor
+  - rscadd: Added matrix editor
+  - rscadd: Added new vv dropdown options for atoms
+  - admin: '''modify transform'' dropdown option'
+  - admin: '''spin animation'' dropdown option'
+  - admin: '''stop all animations'' dropdown option'
+  - admin: '''edit filters'' dropdown option'
+  - admin: '''test matrices'' dropdown option'
+  - refactor: The tgui admin state can now take one or multiple permissions that are
+      allowed to view said state
+  - refactor: Updated vv code
+  - refactor: Moved a few verbs from the old admin verb system to the new one
+  Kashargul:
+  - bugfix: distillery target temperature can no longer be set to null
+  - bugfix: maint lurkers not spawning with their languages
+  - bugfix: protean rigs can no longer get stripped in bellies
+  - bugfix: contractor IDs now take over mining and survey points
+  - bugfix: show and jacket spawn selection being inverted
+  - bugfix: paper icons for 516
+  - bugfix: food tray should update properly on item removal
+  - bugfix: transfer fluids from target
+  - qol: vore bellies now load instantly
+  - admin: fix server log rights
+  - admin: fix deadmin verb
+  - admin: adds missing space to some atom narrate messages
+  - code_imp: clean up some mob hooks
+2025-07-07:
+  Kashargul:
+  - qol: moves robot sprite setting to the visual tab

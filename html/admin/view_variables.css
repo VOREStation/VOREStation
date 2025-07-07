@@ -2,6 +2,20 @@ body {
 	font-family: Verdana, sans-serif;
 	font-size: 9pt;
 }
+
+.bold {
+	font-weight: bold;
+}
+
+.italic,
+.italics {
+	font-style: italic;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
 .value {
 	font-family: "Courier New", monospace;
 	font-size: 8pt;
@@ -40,9 +54,102 @@ table.matrixbrak td.rbrak {
 		border-left: none;
 }
 
+.green {
+	color: hsl(133, 100%, 51%);
+}
+
+.darkgreen {
+	color: hsl(120, 100%, 25%);
+}
+
+.grey {
+	color: hsl(0, 0%, 51%);
+}
+
+.red {
+	color: hsl(0, 100%, 50%);
+}
+
+.crimson {
+	color: hsl(348, 83%, 47%);
+}
+
+.maroon {
+	color: hsl(0, 100%, 25%);
+}
+
+.brown {
+	color: hsl(21, 58%, 35%);
+}
+
+.blue {
+	color: hsl(240, 100%, 50%);
+}
+
+.black {
+	color: hsl(0, 0%, 0%);
+}
+
+.white {
+	color: hsl(0, 0%, 0%);
+}
+
+.darkgray {
+	color: hsl(0, 0%, 50%);
+}
+
+.gray {
+	color: hsl(0, 0%, 66%);
+}
+
+.yellow {
+	color: hsl(48, 100%, 50%);
+}
+
+.pink {
+	color: hsl(350, 100%, 88%);
+}
+
+.cyan {
+	color: hsl(180, 100%, 50%);
+}
+
+.orange {
+	color: hsl(33, 100%, 50%);
+}
+
+.nicegreen {
+	color: hsl(133, 79%, 37%);
+}
+
+.brute
+{
+	color: #FF3333;
+}
+
+.burn
+{
+	color: #FF9933;
+}
+
+.tox
+{
+	color: #00CC66;
+}
+
+.oxy
+{
+	color: #0053FA;
+}
+
+.clone
+{
+	color: #00CCCC;
+}
+
 /* Dark Mode */
 .dark body {
-	background-color: #0d1117;
+	background-color: #131313;
 	color: #f0f6fc;
 }
 
@@ -58,4 +165,72 @@ table.matrixbrak td.rbrak {
 .dark input {
 	background-color: black;
 	color: white;
+}
+
+.dark .green {
+	color: hsl(133, 93%, 30%);
+}
+
+.dark .darkgreen {
+	color: hsl(120, 100%, 25%);
+}
+
+.dark .grey {
+	color: hsl(0, 0%, 51%);
+}
+
+.dark .red {
+	color: hsl(0, 100%, 50%);
+}
+
+.dark .crimson {
+	color: hsl(348, 83%, 47%);
+}
+
+.dark .maroon {
+	color: hsl(0, 100%, 39%);
+}
+
+.dark .brown {
+	color: hsl(21, 69%, 55%);
+}
+
+.dark .blue {
+	color: hsl(224, 98%, 62%);
+}
+
+.dark .black {
+	color: hsl(0, 0%, 100%);
+}
+
+.dark .white {
+	color: hsl(0, 0%, 100%);
+}
+
+.dark .darkgray {
+	color: hsl(0, 0%, 50%);
+}
+
+.dark .gray {
+	color: hsl(0, 0%, 66%);
+}
+
+.dark .yellow {
+	color: hsl(48, 100%, 50%);
+}
+
+.dark .pink {
+	color: hsl(350, 100%, 88%);
+}
+
+.dark .cyan {
+	color: hsl(180, 100%, 50%);
+}
+
+.dark .orange {
+	color: hsl(33, 100%, 50%);
+}
+
+.dark .nicegreen {
+	color: hsl(133, 93%, 30%);
 }

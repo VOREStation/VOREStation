@@ -138,17 +138,4 @@
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
-/datum/robot_sprite/fluff/catborg/do_equipment_glamour(var/obj/item/robot_module/module)
-	if(!has_custom_equipment_sprites)
-		return
-
-	var/obj/item/tool/crowbar/cyborg/C = locate() in module.modules
-	if(C)
-		C.name = "puppy jaws"
-		C.desc = "The jaws of a small dog. Still strong enough to pry things."
-		C.icon = 'icons/mob/dogborg_vr.dmi'
-		C.icon_state = "smalljaws_textless"
-		C.hitsound = 'sound/weapons/bite.ogg'
-		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-
 #undef CUSTOM_BORGSPRITE

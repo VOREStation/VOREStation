@@ -15,7 +15,7 @@
 		to_chat(src, span_danger("You have deadchat muted."))
 		return
 
-	if(!src.client.holder)
+	if(!src.client.holder && !check_rights(R_HOLDER, FALSE))
 		if(!CONFIG_GET(flag/dsay_allowed))
 			to_chat(src, span_danger("Deadchat is globally muted."))
 			return

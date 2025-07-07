@@ -1,13 +1,15 @@
 // Robot toolbelts, such as screwdrivers and the like. All contained in one neat little package.
-// The code for actually 'how these use the item inside of them instead of the item itself' can be found in _onclick/cyborg.dm (yes, click code, gross, I know.)
+// The code for actually 'how these use the item inside of them instead of the item itself' can be found in code\modules\mob\living\silicon\robot\inventory.dm (yes, click code, gross, I know.)
 /*
  * Engineering Tools
  */
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt. Use CTRL-CLICK to interact with the selected item!"
-
+	desc = "An integrated toolbelt that holds various tools."
+	description_info = "Pressing Z will interact with the item the multibelt has selected.<br>\
+	Pressing Ctrl+Z will open the radial menu to allow item swapping!<br>\
+	Clicking on the selected object will also open the radial menu."
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
 	w_class = ITEMSIZE_HUGE
@@ -139,6 +141,15 @@
 	force = 10
 	toolspeed = 0.5
 
+/obj/item/tool/crowbar/cyborg/jaws
+	name = "puppy jaws"
+	desc = "The jaws of a small dog. Still strong enough to pry things."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "smalljaws_textless"
+	hitsound = 'sound/weapons/bite.ogg'
+	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+	force = 15
+
 /obj/item/weldingtool/electric/mounted/cyborg
 	name = "integrated electric welding tool"
 	desc = "An advanced welder designed to be used in robotic systems."
@@ -147,6 +158,7 @@
 	usesound = 'sound/items/Welder2.ogg'
 	toolspeed = 0.5
 	welding = TRUE
+	no_passive_burn = TRUE
 
 /obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
@@ -180,12 +192,15 @@
 	uses_charge = 1
 	charge_costs = list(1)
 
-/obj/item/stack/cable_coil/cyborg/verb/set_colour()
+/obj/item/stack/cable_coil/cyborg/attack_self(mob/user)
+	set_colour(user)
+
+/obj/item/stack/cable_coil/cyborg/proc/set_colour(mob/user)
 	set name = "Change Colour"
 	set category = "Object"
 
-	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
-	set_cable_color(selected_type, usr)
+	var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
+	set_cable_color(selected_type, user)
 
 /*
  * Surgical Tools
@@ -194,7 +209,7 @@
 /obj/item/robotic_multibelt/medical
 	name = "Robotic surgical multitool"
 	desc = "An integrated surgical toolbelt."
-	icon_state = "toolkit_medborg"
+	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
 		/obj/item/surgical/retractor/cyborg = null,
@@ -277,7 +292,7 @@
 /obj/item/robotic_multibelt/botanical
 	name = "Botanical multitool"
 	desc = "An integrated botanical toolbelt."
-	icon_state = "toolkit_medborg"
+	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
 		/obj/item/material/minihoe/cyborg  = null,
@@ -404,18 +419,18 @@
 	for(var/datum/matter_synth/our_synth in module.synths)
 		switch(our_synth.name)
 			if(METAL_SYNTH)
+				if(has_glass)
+					possible_synths[/obj/item/stack/material/cyborg/glass/reinforced] = list(our_synth, has_glass)
 				possible_synths += list(/obj/item/stack/material/cyborg/steel = list(our_synth))
 				possible_synths += list(/obj/item/stack/tile/floor/cyborg = list(our_synth))
 				possible_synths += list(/obj/item/stack/rods/cyborg = list(our_synth))
 				possible_synths += list(/obj/item/stack/tile/roofing/cyborg = list(our_synth))
-				if(has_glass)
-					possible_synths |= list(/obj/item/stack/material/cyborg/glass/reinforced = list(our_synth, has_glass))
 			if(PLASTEEL_SYNTH)
 				possible_synths += list(/obj/item/stack/material/cyborg/plasteel = list(our_synth))
 			if(GLASS_SYNTH)
-				possible_synths += list(/obj/item/stack/material/cyborg/glass = list(our_synth))
 				if(has_steel)
-					possible_synths |= list(/obj/item/stack/material/cyborg/glass/reinforced = list(our_synth, has_steel))
+					possible_synths[/obj/item/stack/material/cyborg/glass/reinforced] = list(our_synth, has_steel)
+				possible_synths += list(/obj/item/stack/material/cyborg/glass = list(our_synth))
 			if(WOOD_SYNTH)
 				possible_synths += list(/obj/item/stack/tile/wood/cyborg = list(our_synth))
 				possible_synths += list(/obj/item/stack/material/cyborg/wood = list(our_synth))
@@ -442,6 +457,16 @@
 
 	. = ..()
 
+///Allows the material fabricator to pick up materials if they hit an appropriate stack.
+/obj/item/robotic_multibelt/materials/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(istype(target, /obj/item/stack)) //We are targeting a stack.
+		if(!selected_item)
+			to_chat(user, span_warning("You need to select a material first!"))
+			return
+		var/obj/item/stack/target_stack = target
+		if(istype(selected_item, /obj/item/stack))
+			target_stack.attackby(selected_item, user)
+
 /*
  * Grippers
  */
@@ -463,7 +488,7 @@
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(BASIC_GRIPPER)
 
-	var/obj/item/wrapped = null // Item currently being held.
+	var/obj/item/wrapped = null // Item currently being held. //Convert to weak-ref?
 
 	var/total_pockets = 5 //How many total inventory slots we want to have in the gripper
 
@@ -490,7 +515,7 @@
 			var/obj/new_pocket = new /obj/item/storage/internal/gripper(src)
 			new_pocket.name = "Pocket [i]"
 			pockets += new_pocket
-	current_pocket = pick(pockets) //Pick a random pocket!
+	current_pocket = peek(pockets)
 
 /obj/item/gripper/Destroy()
 	current_pocket = null
@@ -531,7 +556,13 @@
 				continue
 			var/obj/item/pocket_content = pocket_to_check.contents[1]
 			pockets_by_name["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_content
-			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
+			var/image/pocket_image = image(icon = pocket_content.icon, icon_state = pocket_content.icon_state)
+			if(pocket_content.color)
+				pocket_image.color = pocket_content.color
+			if(pocket_content.overlays)
+				for(var/overlay in pocket_content.overlays)
+					pocket_image.overlays += overlay
+			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_image
 
 /obj/item/gripper/attack_self(mob/user as mob)
 	generate_icons()
@@ -587,6 +618,9 @@
 	drop_item()
 
 /obj/item/gripper/proc/drop_item()
+	if(!wrapped)
+		to_chat(src, span_warning("You have nothing to drop!"))
+		return
 	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
 		wrapped = null
 		current_pocket = pick(pockets)
@@ -623,7 +657,6 @@
 	return 0
 
 /obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
-
 	if(!proximity)
 		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
 	var/current_pocket_full = FALSE
@@ -654,7 +687,9 @@
 
 	if(wrapped) //Already have an item.
 		//Temporary put wrapped into user so target's attackby() checks pass.
-		var/obj/previous_pocket = wrapped.loc
+		var/obj/previous_pocket
+		if(istype(wrapped.loc, /obj/item/storage/internal/gripper))
+			previous_pocket = wrapped.loc
 		wrapped.loc = user
 
 		//Pass the attack on to the target. This might delete/relocate wrapped.
@@ -662,11 +697,16 @@
 		if(!resolved && wrapped && target)
 			wrapped.afterattack(target,user,1)
 
-		//If wrapped was neither deleted nor put into target, put it back into the gripper.
-		if(wrapped && user && ((wrapped.loc == user) || wrapped.loc == previous_pocket))
+		if((QDELETED(wrapped))) //We put our wrapped thing INTO something!
+			wrapped = null
+			current_pocket = pick(pockets)
+			return
+		//If we had a previous pocket and the wrapped isn't put into something, put it back in our pocket.
+		else if((previous_pocket && wrapped.loc == user))
 			wrapped.loc = previous_pocket
 		else
 			wrapped = null
+			current_pocket = pick(pockets)
 			return
 	else if(current_pocket_full) //Pocket is full. No grabbing more things.
 		to_chat(user, "Your gripper is currently full! You can't pick anything else up!")
@@ -731,6 +771,27 @@
 				A.cell = null
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
+
+//HELPER PROCS
+/obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
+	return wrapped
+
+/// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
+/obj/item/gripper/proc/consolidate_stacks(var/obj/item/stack/stack_to_consolidate)
+	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
+		return
+	var/stacked = FALSE //So we can break the for loop 2 forloops deep.
+	for(var/obj/item/storage/internal/gripper/pocket in pockets)
+		if(stacked) //We've stacked our item, break!
+			break
+
+		if(LAZYLEN(pocket.contents))
+			for(var/obj/item/stack/stack in pocket.contents)
+				if(istype(stack_to_consolidate, stack))
+					stack_to_consolidate.transfer_to(stack)
+					stacked = TRUE
+					break
+
 
 
 //Different types of grippers!

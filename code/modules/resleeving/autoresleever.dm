@@ -164,6 +164,7 @@
 	new_character.key = player_key
 
 	//Were they any particular special role? If so, copy.
+
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
@@ -171,6 +172,8 @@
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)
+		if(new_character.mind.antag_holder)
+			new_character.mind.antag_holder.apply_antags(new_character)
 
 	for(var/lang in ghost_client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]

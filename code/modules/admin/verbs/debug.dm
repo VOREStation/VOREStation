@@ -304,22 +304,21 @@
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
-	set category = "Admin.Game"
-	set name = "Assume direct control"
-	set desc = "Direct intervention"
-
-	if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
+ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
 	if(M.ckey)
-		if(tgui_alert(usr, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
+		if(tgui_alert(user, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
 			return
-		else
-			var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
-			ghost.ckey = M.ckey
-	message_admins(span_blue("[key_name_admin(usr)] assumed direct control of [M]."), 1)
-	log_admin("[key_name(usr)] assumed direct control of [M].")
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
+	if(!M || QDELETED(M))
+		to_chat(user, span_warning("The target mob no longer exists."))
+		return
+
+	var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
+	ghost.ckey = M.ckey
+
+	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."), 1)
+	log_admin("[key_name(user)] assumed direct control of [M].")
+	var/mob/adminmob = user.mob
+	M.ckey = user.ckey
 	if( isobserver(adminmob) )
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -737,3 +736,47 @@
 	set desc = "Reloads the dmis from the test folder and creates the test datums."
 
 	SSrobot_sprites.reload_test_sprites()
+
+ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
+	var/input_NIF
+	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", player_list)
+
+	if(!H)
+		return
+
+	if(!istype(H))
+		to_chat(user, span_warning("That mob type ([H.type]) doesn't support NIFs, sorry."))
+		return
+
+	if(!H.get_organ(BP_HEAD))
+		to_chat(user, span_warning("Target is unsuitable."))
+		return
+
+	if(H.nif)
+		to_chat(user, span_warning("Target already has a NIF."))
+		return
+
+	if(H.species.flags & NO_DNA)
+		var/obj/item/nif/S = /obj/item/nif/bioadap
+		input_NIF = initial(S.name)
+		new /obj/item/nif/bioadap(H)
+	else
+		var/list/NIF_types = typesof(/obj/item/nif)
+		var/list/NIFs = list()
+
+		for(var/NIF_type in NIF_types)
+			var/obj/item/nif/S = NIF_type
+			NIFs[capitalize(initial(S.name))] = NIF_type
+
+		var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
+
+		input_NIF = tgui_input_list(user, "Pick the NIF type","Quick NIF", show_NIFs)
+		var/chosen_NIF = NIFs[capitalize(input_NIF)]
+
+		if(chosen_NIF)
+			new chosen_NIF(H)
+		else
+			new /obj/item/nif(H)
+
+	log_and_message_admins("Quick NIF'd [H.real_name] with a [input_NIF].", user)
+	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -152,7 +152,7 @@
 		// we are wearing shoes
 
 		var/obj/item/clothing/shoes/feet = source.shoes
-		if(feet.blocks_footsteps)
+		if(istype(feet) && feet.blocks_footsteps)
 			var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 			if(!isnull(shoestep_type) && footstep_sounds[shoestep_type]) // shoestep type can be null
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),

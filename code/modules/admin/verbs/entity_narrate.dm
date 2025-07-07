@@ -24,75 +24,63 @@
 
 //Appears as a right click verb on any obj and mob within view range.
 //when not right clicking we get a list to pick from in aforementioned view range.
-/client/proc/add_mob_for_narration(E as obj|mob|turf in orange(world.view))
-	set name = "Narrate Entity (Add ref)"
-	set desc = "Saves a reference of target mob to be called when narrating."
-	set category = "Fun.Narrate"
-
-	if(!check_rights(R_FUN)) return
-
+ADMIN_VERB(add_mob_for_narration, R_FUN, "Narrate Entity (Add ref)", "Saves a reference of target mob to be called when narrating.", "Fun.Narrate", E as obj|mob|turf in orange(world.view))
 	//Making sure we got the list datum on our client.
-	if(!entity_narrate_holder)
-		entity_narrate_holder = new /datum/entity_narrate()
-	if(!istype(entity_narrate_holder, /datum/entity_narrate))
+	if(!user.entity_narrate_holder)
+		user.entity_narrate_holder = new /datum/entity_narrate()
+	if(!istype(user.entity_narrate_holder, /datum/entity_narrate))
 		return
-	var/datum/entity_narrate/holder = entity_narrate_holder
+	var/datum/entity_narrate/holder = user.entity_narrate_holder
 
 	//Since we extended to include all atoms, we're shutting things down with a guard clause for ghosts
 	if(istype(E, /mob/observer))
-		to_chat(usr, span_notice("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
+		to_chat(user, span_notice("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
 		return
 	//We require a static mob/living type to check for .client and also later on, to use the unique .say mechanics for stuttering and language
 	if(isliving(E))
 		var/mob/living/L = E
 		if(L.client)
-			to_chat(usr, span_notice("[L.name] is a player. All attempts to speak through them \
+			to_chat(user, span_notice("[L.name] is a player. All attempts to speak through them \
 			gets logged in case of abuse."))
-			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", usr)
+			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", user)
 			return
-		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
+		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", L.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
-			add_mob_for_narration(L) //Recursively calling ourselves until cancelled or a unique name is given.
+			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, L) //Recursively calling ourselves until cancelled or a unique name is given.
 			return
 		holder.entity_names += unique_name
 		holder.entity_refs[unique_name] = WEAKREF(L)
-		log_and_message_admins("added [L.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
+		log_and_message_admins("added [L.name] for their personal list to narrate", user) //Logging here to avoid spam, while still safeguarding abuse
 
 	//Covering functionality for turfs and objs. We need static type to access the name var
 	else if(istype(E, /atom))
 		var/atom/A = E
-		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
+		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", A.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
-			add_mob_for_narration(A)
+			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, A)
 			return
 		holder.entity_names += unique_name
 		holder.entity_refs[unique_name] = WEAKREF(A)
-		log_and_message_admins("added [A.name] for their personal list to narrate", usr) //Logging here to avoid spam, while still safeguarding abuse
+		log_and_message_admins("added [A.name] for their personal list to narrate", user) //Logging here to avoid spam, while still safeguarding abuse
 
 //Proc for keeping our ref list relevant, deleting mobs that are no longer relevant for our event
-/client/proc/remove_mob_for_narration()
-	set name = "Narrate Entity (Remove ref)"
-	set desc = "Remove mobs you're no longer narrating from your list for easier work."
-	set category = "Fun.Narrate"
-
-	if(!check_rights(R_FUN)) return
-
-	if(!entity_narrate_holder)
-		entity_narrate_holder = new /datum/entity_narrate()
-		to_chat(usr, "No references were added yet! First add references!")
+ADMIN_VERB(remove_mob_for_narration, R_FUN, "Narrate Entity (Remove ref)", "Remove mobs you're no longer narrating from your list for easier work.", "Fun.Narrate")
+	if(!user.entity_narrate_holder)
+		user.entity_narrate_holder = new /datum/entity_narrate()
+		to_chat(user, "No references were added yet! First add references!")
 		return
-	if(!istype(entity_narrate_holder, /datum/entity_narrate))
+	if(!istype(user.entity_narrate_holder, /datum/entity_narrate))
 		return
-	var/datum/entity_narrate/holder = entity_narrate_holder
+	var/datum/entity_narrate/holder = user.entity_narrate_holder
 
 	var/options = holder.entity_names + "Clear All"
-	var/removekey = tgui_input_list(usr, "Choose which entity to remove", "remove reference", options, null)
+	var/removekey = tgui_input_list(user, "Choose which entity to remove", "remove reference", options, null)
 	if(removekey == "Clear All")
-		if(tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "Do you really want to clear your entity list?", "confirm", list("Yes", "No")) != "Yes")
 			return
 		holder.entity_names = list()
 		holder.entity_refs = list()
@@ -104,78 +92,63 @@
 //For now brings up a list of all entities on our reference list and gives us the option to choose what we wanna do
 //using TGUI/Byond list/alert inputs
 //Does not actually interact with the game world, it passes user input to narrate_mob_args(name, mode, message) after sanitizing
-/client/proc/narrate_mob()
-	set name = "Narrate Entity (Interface)"
-	set desc = "Send either a visible or audiable message through your chosen entities using an interface"
-	set category = "Fun.Narrate"
-
-	if(!check_rights(R_FUN)) return
-
-	if(!entity_narrate_holder)
-		entity_narrate_holder = new /datum/entity_narrate()
-		to_chat(usr, "No references were added yet! First add references!")
+ADMIN_VERB(narrate_mob, R_FUN, "Narrate Entity (Interface)", "Send either a visible or audiable message through your chosen entities using an interface.", "Fun.Narrate")
+	if(!user.entity_narrate_holder)
+		user.entity_narrate_holder = new /datum/entity_narrate()
+		to_chat(user, "No references were added yet! First add references!")
 		return
-	if(!istype(entity_narrate_holder, /datum/entity_narrate))
+	if(!istype(user.entity_narrate_holder, /datum/entity_narrate))
 		return
-	var/datum/entity_narrate/holder = entity_narrate_holder
-
+	var/datum/entity_narrate/holder = user.entity_narrate_holder
 
 	//Obtaining and sanitizing arguments for the actual proc
 	var/choices = holder.entity_names + "Open TGUI"
-	var/which_entity = tgui_input_list(usr, "Choose which mob to narrate", "Narrate mob", choices, null)
+	var/which_entity = tgui_input_list(user, "Choose which mob to narrate", "Narrate mob", choices, null)
 	if(!which_entity) return
 	if(which_entity == "Open TGUI")
-		holder.tgui_interact(usr)
+		holder.tgui_interact(user)
 	else
-		var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
+		var/mode = tgui_alert(user, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
 		if(!mode || mode == "Cancel") return
-		var/message = tgui_input_text(usr, "Input what you want [which_entity] to [mode]", "narrate",
+		var/message = tgui_input_text(user, "Input what you want [which_entity] to [mode]", "narrate",
 		null, multiline = TRUE, prevent_enter = TRUE)
 		if(message)
-			narrate_mob_args(which_entity, mode, message)
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/narrate_mob_args, which_entity, mode, message)
 
 //The actual logic of the verb. Called by narrate_mob() when used.
-/client/proc/narrate_mob_args(name as text, mode as text, message as text)
-	set name = "Narrate Entity"
-	set desc = "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message"
-	set category = "Fun.Narrate"
-
-
-
-	if(!check_rights(R_FUN)) return
-
-	if(!entity_narrate_holder)
-		entity_narrate_holder = new /datum/entity_narrate()
-		to_chat(usr, "No references were added yet! First add references!")
+ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message.", "Fun.Narrate", name as text, mode as text, message as text)
+	if(!user.entity_narrate_holder)
+		user.entity_narrate_holder = new /datum/entity_narrate()
+		to_chat(user, "No references were added yet! First add references!")
 		return
-	if(!istype(entity_narrate_holder, /datum/entity_narrate))
+	if(!istype(user.entity_narrate_holder, /datum/entity_narrate))
 		return
-	var/datum/entity_narrate/holder = entity_narrate_holder
+	var/datum/entity_narrate/holder = user.entity_narrate_holder
 
 	//Sanitizing args
 	name = sanitize(name)
 	mode = sanitize(mode)
 
 	if(!(mode in list("Speak", "Emote")))
-		to_chat(usr, span_notice("Valid modes are 'Speak' and 'Emote'."))
+		to_chat(user, span_notice("Valid modes are 'Speak' and 'Emote'."))
 		return
 	if(!holder.entity_refs[name])
-		to_chat(usr, span_notice("[name] not in saved references!"))
+		to_chat(user, span_notice("[name] not in saved references!"))
 
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
 	var/datum/weakref/wref = holder.entity_refs[name]
 	var/selection = wref.resolve()
 	if(!selection)
-		to_chat(usr, span_notice("[name] has invalid reference, deleting"))
+		to_chat(user, span_notice("[name] has invalid reference, deleting"))
 		holder.entity_names -= name
 		holder.entity_refs -= name
 	if(isliving(selection))
 		var/mob/living/our_entity = selection
 		if(our_entity.client) //Making sure we can't speak for players
-			log_and_message_admins("used entity-narrate to speak through [our_entity.ckey]'s mob", usr)
+			log_and_message_admins("used entity-narrate to speak through [our_entity.ckey]'s mob", user)
 		if(!message)
-			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null) //say/emote sanitize already
+			message = tgui_input_text(user, "Input what you want [our_entity] to [mode]", "narrate", null) //say/emote sanitize already
 		if(message && mode == "Speak")
 			our_entity.say(message)
 		else if(message && mode == "Emote")
@@ -184,11 +157,11 @@
 			return
 
 	//This does cost us some code duplication, but I think it's worth it.
-	//furthermore, objs/turfs require the usr to specify the verb when speaking, otherwise it looks like an emote.
+	//furthermore, objs/turfs require the user to specify the verb when speaking, otherwise it looks like an emote.
 	else if(istype(selection, /atom))
 		var/atom/our_entity = selection
 		if(!message)
-			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
+			message = tgui_input_text(user, "Input what you want [our_entity] to [mode]", "narrate", null)
 		message = encode_html_emphasis(sanitize(message))
 		if(message && mode == "Speak")
 			our_entity.audible_message(span_bold("[our_entity.name]") + " [message]")
@@ -199,7 +172,7 @@
 
 
 /datum/entity_narrate/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_FUN)
 
 /datum/entity_narrate/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -341,8 +314,8 @@
 	if(tgui_narrate_mode && tgui_narrate_privacy)
 		A.visible_message(span_italics(span_bold("\The [A.name]") + " [message]"), range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
-		A.visible_message(span_bold("\The [A.name]") + "[message]",)
+		A.visible_message(span_bold("\The [A.name]") + " [message]",)
 	else if(!tgui_narrate_mode && tgui_narrate_privacy)
 		A.audible_message(span_italics(span_bold("\The [A.name]") + " [message]"), hearing_distance = 1)
 	else if(!tgui_narrate_mode && !tgui_narrate_privacy)
-		A.audible_message(span_bold("\The [A.name]") + "[message]")
+		A.audible_message(span_bold("\The [A.name]") + " [message]")

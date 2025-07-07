@@ -86,13 +86,7 @@ const copyToClipboard = (messages: message[]) => {
       string += `Them: ${message.message}\n`;
     }
   }
-
-  if (Byond.TRIDENT) {
-    const ie_window = window as IeWindow;
-    ie_window.clipboardData.setData('Text', string);
-  } else {
-    navigator.clipboard.writeText(string);
-  }
+  navigator.clipboard.writeText(string);
 };
 
 export const pda_messenger = (props) => {

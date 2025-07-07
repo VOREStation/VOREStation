@@ -163,7 +163,7 @@
 	// Admins with RLOOC displayed who weren't already in
 	for(var/client/admin in GLOB.admins)
 		if(!(admin in receivers) && admin.prefs?.read_preference(/datum/preference/toggle/holder/show_rlooc))
-			if(check_rights_for(admin, R_SERVER)) //Stop rLOOC showing for retired staff
+			if(check_rights_for(admin, (R_SERVER|R_ADMIN))) //Stop rLOOC showing for retired staff
 				r_receivers |= admin
 
 	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
@@ -172,7 +172,7 @@
 	for(var/client/target in receivers)
 		var/admin_stuff = ""
 
-		if(target in GLOB.admins)
+		if((target in GLOB.admins) && check_rights_for(target, R_HOLDER))
 			admin_stuff += "/([key])"
 
 		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))

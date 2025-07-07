@@ -37,7 +37,7 @@
 	return data
 
 /datum/eventkit/player_effects/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/player_effects/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -681,7 +681,7 @@
 			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
 
 		if("resize")
-			user.client.resize(target)
+			SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/resize, target)
 
 		if("teleport")
 			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
@@ -724,7 +724,7 @@
 			user.client.cmd_admin_direct_narrate(target)
 
 		if("player_panel")
-			user.client.holder.show_player_panel(target)
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			user.client.debug_variables(target)

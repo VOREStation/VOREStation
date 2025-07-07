@@ -1,5 +1,6 @@
 /mob/living/carbon/human/GetAltName()
-	if(ability_flags & AB_PHASE_SHIFTED)
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase)
 		return ""
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
@@ -101,8 +102,9 @@
 					voice_sub = get_id_name()
 	if(voice_sub)
 		return voice_sub
-	if(mind && mind.changeling && mind.changeling.mimicing)
-		return mind.changeling.mimicing
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp && comp.mimicing)
+		return comp.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
 	return real_name
