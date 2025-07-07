@@ -294,7 +294,7 @@
 			addtimer(CALLBACK(src, PROC_REF(enter_the_dark)), 1 SECOND, TIMER_DELETE_ME)
 			addtimer(CALLBACK(src, PROC_REF(can_leave_dark)), 15 MINUTES, TIMER_DELETE_ME)
 
-/mob/living/simple_mob/shadekin/proc/enter_the_dark()
+/mob/living/simple_mob/shadekin/enter_the_dark()
 	comp.respite_activating = FALSE
 	comp.in_dark_respite = TRUE
 
@@ -304,7 +304,7 @@
 	invisibility = initial(invisibility)
 	comp.respite_activating = FALSE
 
-/mob/living/simple_mob/shadekin/proc/can_leave_dark()
+/mob/living/simple_mob/shadekin/can_leave_dark()
 	comp.in_dark_respite = FALSE
 	movement_cooldown = initial(movement_cooldown)
 	to_chat(src, span_notice("You feel like you can leave the Dark again"))
