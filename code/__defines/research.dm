@@ -18,6 +18,7 @@
 #define MECHFAB		0x0004	//Mechfab
 #define CHASSIS		0x0008	//For protolathe, but differently
 #define PROSFAB		0x0010  //For prosthetics fab
+#define AUTOLATHE	0x0020	//For autolathe
 
 /// For instances where we don't want a design showing up due to it being for debug/sanity purposes
 #define DESIGN_ID_IGNORE "IGNORE_THIS_DESIGN"
