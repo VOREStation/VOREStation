@@ -47,7 +47,7 @@
 
 /obj/item/circuitboard/protolathe
 	name = T_BOARD("protolathe")
-	build_path = /obj/machinery/r_n_d/protolathe
+	build_path = /obj/machinery/rnd/production/protolathe
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(

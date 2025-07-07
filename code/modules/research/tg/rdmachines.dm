@@ -16,6 +16,13 @@
 	///The item loaded inside the machine, used by experimentors and destructive analyzers only.
 	var/obj/item/loaded_item
 
+/obj/machinery/rnd/Initialize(mapload)
+	. = ..()
+	if(!stored_research)
+		CONNECT_TO_RND_SERVER_ROUNDSTART(stored_research, src)
+	if(stored_research)
+		on_connected_techweb()
+
 /obj/machinery/rnd/Destroy()
 	if(stored_research)
 		log_research("[src] disconnected from techweb [stored_research] (destroyed).")
