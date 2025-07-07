@@ -68,11 +68,11 @@
 			nutrition_conversion_scaling = 1.5
 
 ///Sets our eye color.
-/datum/component/shadekin/proc/set_shadekin_eyecolor(var/mob/living/carbon/human/H)
+/datum/component/shadekin/proc/set_shadekin_eyecolor()
 	if(!ishuman(owner))
 		return eye_color //revert to default if we're not a human
-	else
-		H = owner
+
+	var/mob/living/carbon/human/H = owner
 	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
 
 	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
