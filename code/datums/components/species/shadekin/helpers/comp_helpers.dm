@@ -75,9 +75,10 @@
 	var/mob/living/carbon/human/H = owner
 	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
 
-	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
-	var/eyecolor_sat = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[2]
-	var/eyecolor_val = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[3]
+	var/list/hsv_color = rgb2num(eyecolor_rgb, COLORSPACE_HSV)
+	var/eyecolor_hue = hsv_color[1]
+	var/eyecolor_sat = hsv_color[2]
+	var/eyecolor_val = hsv_color[3]
 
 	//First, clamp the saturation/value to prevent black/grey/white eyes
 	if(eyecolor_sat < 10)
@@ -87,9 +88,10 @@
 
 	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, space=COLORSPACE_HSV)
 
-	H.r_eyes = rgb2num(eyecolor_rgb)[1]
-	H.g_eyes = rgb2num(eyecolor_rgb)[2]
-	H.b_eyes = rgb2num(eyecolor_rgb)[3]
+	var/list/rgb_color = rgb2num(eyecolor_rgb)
+	H.r_eyes = rgb_color[1]
+	H.g_eyes = rgb_color[2]
+	H.b_eyes = rgb_color[3]
 
 	//Now determine what color we fall into.
 	switch(eyecolor_hue)

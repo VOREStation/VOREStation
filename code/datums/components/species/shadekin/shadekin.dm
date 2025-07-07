@@ -135,6 +135,10 @@
 	owner = null
 	. = ..()
 
+/datum/component/shadekin/proc/recalc_values()
+	set_shadekin_eyecolor() //Gets what eye color we are.
+	set_eye_energy() //Sets the energy values based on our eye color.
+
 ///Handles the component running.
 /datum/component/shadekin/proc/handle_comp()
 	SIGNAL_HANDLER
