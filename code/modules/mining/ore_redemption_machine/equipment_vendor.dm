@@ -315,10 +315,14 @@
 	if(!selection)
 		to_chat(redeemer, span_notice("You decide not to redeem anything for now."))
 		return
+	if(QDELETED(voucher))
+		return
 	switch(selection)
 
 		if("Kinetic Accelerator + KA Addon") //1250-2100 points worth
 			var/addon_selection = tgui_input_list(redeemer, "Pick your addon", "Mining Voucher Redemption", list("Cooldown", "Range","Holster")) //Just the basics. Nothing too crazy.
+			if(QDELETED(voucher))
+				return
 			if(!addon_selection)
 				to_chat(redeemer, span_warning("You must select an addon."))
 				return
@@ -335,10 +339,11 @@
 		if("Resonator + Advanced Ore Scanner") //1400 points worth
 			new /obj/item/resonator(drop_location)
 			new /obj/item/mining_scanner/advanced(drop_location)
-			qdel(voucher)
 
 		if("Survival Pistol & Machete + Survival Addon") // ~3000-3500 points worth.
 			var/addon_selection = tgui_input_list(redeemer, "Pick your survival addon", "Mining Voucher Redemption", list("Shelter Capsule", "Glucose", "Panacea", "Trauma", "Medipens")) //Just the basics. Nothing too crazy.
+			if(QDELETED(voucher))
+				return
 			if(!addon_selection)
 				to_chat(redeemer, span_warning("You must select an addon."))
 				return
