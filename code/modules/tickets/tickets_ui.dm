@@ -57,6 +57,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -71,6 +72,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -85,6 +87,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -153,7 +156,7 @@
 				T.level = 1
 			else
 				T.level = 0
-			T.HandleIssue()
+			T.HandleIssue(ui.user)
 			switch(T.level)
 				if (0)
 					ui.user.client.cmd_mentor_pm(player, ticket_text, T)

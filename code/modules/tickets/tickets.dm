@@ -162,14 +162,14 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		// C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket) // Uncomment this line to enable player-side ticket ui
+		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		// T.initiator.mob.clear_alert("open ticket") // Uncomment this line to enable player-side ticket ui
+		T.initiator.mob.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 
@@ -227,6 +227,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	var/closed_at
 
 	var/client/initiator	//semi-misnomer, it's the person who ahelped/was bwoinked
+	var/datum/weakref/handler_ref
 	var/handler = "/Unassigned\\" // The admin handling the ticket
 	var/initiator_ckey
 	var/initiator_key_name
@@ -340,12 +341,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	//TC.T = src
 	//TC.tgui_interact(C.mob)
 
-	// C.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket) // Uncomment this line to enable player-side ticket ui
+	C.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 /datum/ticket/Destroy()
 	RemoveActive()
 	GLOB.tickets.closed_tickets -= src
 	GLOB.tickets.resolved_tickets -= src
+	handler_ref = null
 	return ..()
 
 /datum/ticket/proc/AddInteraction(formatted_message)
@@ -515,7 +517,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 				"color" = COLOR_WEBHOOK_BAD
 			)
 		)
-	// initiator?.mob?.clear_alert("open ticket") // Uncomment this line to enable player-side ticket ui
+	initiator?.mob?.clear_alert("open ticket")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/ticket/proc/Resolve(user, silent = FALSE)
@@ -547,7 +549,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 					"color" = COLOR_WEBHOOK_GOOD
 				)
 			)
-	// initiator?.mob?.clear_alert("open ticket") // Uncomment this line to enable player-side ticket ui
+	initiator?.mob?.clear_alert("open ticket")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/ticket/proc/Reject(mob/user)
@@ -611,9 +613,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/handler_name = ismob(user) ? key_name(usr, FALSE, TRUE) : user
+	var/handler_name = ismob(user) ? key_name(user, FALSE, TRUE) : user
 	if(handler == handler_name)
-		to_chat(usr, span_red("You are already handling this ticket."))
+		to_chat(user, span_red("You are already handling this ticket."))
 		return
 
 	var/handler_shown_name = ismob(user) ? key_name_admin(user) : user
@@ -633,6 +635,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	log_admin(msg)
 	AddInteraction("[handler_shown_name] is now handling this ticket.")
 	handler = handler_name
+	if(ismob(user))
+		var/mob/our_handler_mob = user
+		handler_ref = WEAKREF(our_handler_mob.client)
 	SSwebhooks.send(
 		WEBHOOK_AHELP_SENT,
 		list(
