@@ -309,13 +309,13 @@
 	to_chat(redeemer, span_notice("You insert your voucher into the machine!"))
 	var/selection = tgui_input_list(redeemer, "Pick your equipment.", "Mining Voucher Redemption", list("Kinetic Accelerator + KA Addon", "Resonator + Advanced Ore Scanner", "Survival Pistol & Machete + Survival Addon","1000 Points"))
 	var/drop_location = drop_location()
+	if(QDELETED(voucher))
+		return
 	if(!Adjacent(redeemer))
 		to_chat(redeemer, span_warning("You must stay near the machine to use it."))
 		return
 	if(!selection)
 		to_chat(redeemer, span_notice("You decide not to redeem anything for now."))
-		return
-	if(QDELETED(voucher))
 		return
 	switch(selection)
 
