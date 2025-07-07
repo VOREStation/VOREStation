@@ -222,7 +222,7 @@
 		traits["name"] = disease.name
 		if(istype(disease, /datum/disease/advance))
 			var/datum/disease/advance/adv_disease = disease
-			traits["can_rename"] = (adv_disease.name == "Unknown")
+			traits["can_rename"] = TRUE // Allow for all diseases to change currently. Mutable trait maybe?
 			traits["name"] = disease.name
 			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
