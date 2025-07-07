@@ -50,16 +50,22 @@
 		//Blue has constant, steady (slow) regen and ignores darkness.
 		if(BLUE_EYES)
 			set_light_and_darkness(0.75,0.75)
+			nutrition_conversion_scaling = 0.5
 		if(RED_EYES)
 			set_light_and_darkness(-0.5,0.5)
+			nutrition_conversion_scaling = 2
 		if(PURPLE_EYES)
 			set_light_and_darkness(-0.5,1)
+			nutrition_conversion_scaling = 1
 		if(YELLOW_EYES)
 			set_light_and_darkness(-2,3)
+			nutrition_conversion_scaling = 0.5
 		if(GREEN_EYES)
 			set_light_and_darkness(0.125,2)
+			nutrition_conversion_scaling = 0.5
 		if(ORANGE_EYES)
 			set_light_and_darkness(-0.25,0.75)
+			nutrition_conversion_scaling = 1.5
 
 ///Sets our eye color.
 /datum/component/shadekin/proc/set_shadekin_eyecolor(var/mob/living/carbon/human/H)
@@ -160,6 +166,14 @@
 		return //No
 	shadekin_set_energy(dark_energy + amount)
 
+/datum/component/shadekin/proc/handle_nutrition_conversion(dark_gains)
+	if(!nutrition_energy_conversion)
+		return
+	if(shadekin_get_energy() == 100 && dark_gains > 0)
+		owner.nutrition += dark_gains * 5 * nutrition_conversion_scaling
+	else if(shadekin_get_energy() < 50 && owner.nutrition > 500)
+		owner.nutrition -= nutrition_conversion_scaling * 50
+		dark_gains += nutrition_conversion_scaling
 
 /datum/component/shadekin/proc/attack_dephase(var/turf/T = null, atom/dephaser)
 	// no assigned dephase-target, just use our own

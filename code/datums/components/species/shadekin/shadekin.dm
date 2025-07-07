@@ -172,7 +172,10 @@
 		else
 			dark_gains = energy_light
 
+	handle_nutrition_conversion(dark_gains)
+
 	shadekin_adjust_energy(dark_gains)
+
 
 	//Update huds
 	update_shadekin_hud()
