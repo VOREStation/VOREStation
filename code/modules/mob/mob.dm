@@ -1353,7 +1353,6 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
-	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
 	VV_DROPDOWN_OPTION(VV_HK_ADDLANGUAGE, "Add Language")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVELANGUAGE, "Remove Language")
 	VV_DROPDOWN_OPTION(VV_HK_ADDVERB, "Add Verb")
@@ -1398,25 +1397,6 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		if(!check_rights(R_ADMIN))
 			return
 		usr.client.cmd_admin_godmode(src)
-
-	if(href_list[VV_HK_SET_SPECIES])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = src
-		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-			return
-
-		var/new_species = tgui_input_list(usr, "Please choose a new species.","Species", GLOB.all_species)
-
-		if(!H)
-			to_chat(usr, "Mob doesn't exist anymore")
-			return
-
-		if(H.set_species(new_species))
-			to_chat(usr, "Set species of [H] to [H.species].")
-		else
-			to_chat(usr, "Failed! Something went wrong.")
 
 	if(href_list[VV_HK_ADDLANGUAGE])
 		if(!check_rights(R_SPAWN))	return
