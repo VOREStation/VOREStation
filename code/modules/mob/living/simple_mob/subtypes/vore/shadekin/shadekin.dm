@@ -331,16 +331,22 @@
 		//Blue has constant, steady (slow) regen and ignores darkness.
 		if(BLUE_EYES)
 			comp.set_light_and_darkness(0.75,0.75)
+			comp.nutrition_conversion_scaling = 0.5
 		if(RED_EYES)
 			comp.set_light_and_darkness(-0.5,0.5)
+			comp.nutrition_conversion_scaling = 2
 		if(PURPLE_EYES)
 			comp.set_light_and_darkness(-0.5,1)
+			comp.nutrition_conversion_scaling = 1
 		if(YELLOW_EYES)
 			comp.set_light_and_darkness(-2,3)
+			comp.nutrition_conversion_scaling = 0.5
 		if(GREEN_EYES)
 			comp.set_light_and_darkness(0.125,2)
+			comp.nutrition_conversion_scaling = 0.5
 		if(ORANGE_EYES)
 			comp.set_light_and_darkness(-0.25,0.75)
+			comp.nutrition_conversion_scaling = 1.5
 
 /mob/living/simple_mob/shadekin/is_incorporeal()
 	if(comp.in_phase)
