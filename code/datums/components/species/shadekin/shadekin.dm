@@ -38,8 +38,8 @@
 	var/normal_phase = TRUE
 	///If we drop items on phase.
 	var/drop_items_on_phase = FALSE
-	///If only humans count as watchers
-	var/human_only_watchers = TRUE
+	///If cameras count as watchers for us
+	var/camera_counts_as_watcher = FALSE
 
 	//Dark Respite Vars (Unused on Virgo)
 	///If we are in dark respite or not
@@ -81,7 +81,7 @@
 							  /datum/power/shadekin/dark_tunneling)
 	extended_kin = TRUE
 	drop_items_on_phase = TRUE
-	human_only_watchers = FALSE
+	camera_counts_as_watcher = TRUE
 
 /datum/component/shadekin/full/rakshasa
 	flicker_time = 0 //Rakshasa don't flicker lights when they phase in.
