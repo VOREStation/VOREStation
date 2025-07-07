@@ -52,23 +52,24 @@
 	darkness = 1-brightness //Invert
 
 	var/watcher = 0
-	for(var/thing in orange(7, src))
+	for(var/mob/living/thing in orange(7, src)) //Fun fact, doing two typed loops is faster than doing one untyped loop. Check it with Tracy!
 		if(istype(thing, /mob/living/carbon/human))
 			var/mob/living/carbon/human/watchers = thing
-			if((watchers in oviewers(7,src)) && watchers.species != SPECIES_SHADEKIN)	// And they can see us... (And aren't themselves a shadekin)
-				if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
+			if(watchers in oviewers(7,src))
+				var/datum/component/shadekin/watcher_SK = watchers.get_shadekin_component()
+				if(!watcher_SK && !(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
 					watcher++	//They are watching us!
-		else if(!SK.human_only_watchers)
-			if(istype(thing, /mob/living/silicon/robot))
-				var/mob/living/silicon/robot/watchers = thing
-				if(watchers in oviewers(7,src))
-					if(!watchers.stat && !isbelly(watchers.loc))
-						watcher++	//The robot is watching us!
-			else if(istype(thing, /obj/machinery/camera))
-				var/obj/machinery/camera/watchers = thing
-				if(watchers.can_use())
-					if(src in watchers.can_see())
-						watcher++	//The camera is watching us!
+		if(istype(thing, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/watchers = thing
+			var/datum/component/shadekin/watcher_SK = watchers.get_shadekin_component() //you never know, man.
+			if(watchers in oviewers(7,src))
+				if(!watcher_SK && !watchers.stat && !isbelly(watchers.loc))
+					watcher++	//The robot is watching us!
+	if(SK.camera_counts_as_watcher)
+		for(var/obj/machinery/camera/watchers in orange(7, src))
+			if(watchers.can_use())
+				if(src in watchers.can_see())
+					watcher++	//The camera is watching us!
 
 	ability_cost = CLAMP(ability_cost/(0.01+darkness*2),50, 80)//This allows for 1 watcher in full light
 	if(watcher>0)
@@ -99,7 +100,6 @@
 	//Shifting out
 	else
 		phase_out(T, SK)
-
 
 /mob/living/proc/phase_in(var/turf/T, var/datum/component/shadekin/SK)
 	if(SK.in_phase)
