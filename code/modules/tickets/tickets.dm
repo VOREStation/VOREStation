@@ -473,6 +473,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	message_admins(msg)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
+	initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 	//TicketPanel()	//can only be done from here, so refresh it
 
 	SSwebhooks.send(
