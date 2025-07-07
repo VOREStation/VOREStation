@@ -80,3 +80,6 @@
   - admin: fix deadmin verb
   - admin: adds missing space to some atom narrate messages
   - code_imp: clean up some mob hooks
+2025-07-07:
+  Kashargul:
+  - qol: moves robot sprite setting to the visual tab
