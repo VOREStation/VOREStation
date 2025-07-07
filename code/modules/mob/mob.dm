@@ -1353,6 +1353,13 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_ADDLANGUAGE, "Add Language")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVELANGUAGE, "Remove Language")
+	VV_DROPDOWN_OPTION(VV_HK_ADDVERB, "Add Verb")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVEVERB, "Remove Verb")
+	VV_DROPDOWN_OPTION(VV_HK_ADDORGAN, "Add Organ")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVEORGAN, "Remove Organ")
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "Give Mob Ability")
 	//VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOB_ACTION, "Remove Mob Ability")
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
@@ -1391,6 +1398,169 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		if(!check_rights(R_ADMIN))
 			return
 		usr.client.cmd_admin_godmode(src)
+
+	if(href_list[VV_HK_SET_SPECIES])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		var/new_species = tgui_input_list(src, "Please choose a new species.","Species", GLOB.all_species)
+
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		if(H.set_species(new_species))
+			to_chat(src, "Set species of [H] to [H.species].")
+		else
+			to_chat(src, "Failed! Something went wrong.")
+
+	if(href_list[VV_HK_ADDLANGUAGE])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob")
+			return
+
+		var/new_language = tgui_input_list(src, "Please choose a language to add.","Language", GLOB.all_languages)
+
+		if(!new_language)
+			return
+
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		if(H.add_language(new_language))
+			to_chat(src, "Added [new_language] to [H].")
+		else
+			to_chat(src, "Mob already knows that language.")
+
+	if(href_list[VV_HK_REMOVELANGUAGE])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob")
+			return
+
+		if(!H.languages.len)
+			to_chat(src, "This mob knows no languages.")
+			return
+
+		var/datum/language/rem_language = tgui_input_list(src, "Please choose a language to remove.","Language", H.languages)
+
+		if(!rem_language)
+			return
+
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		if(H.remove_language(rem_language.name))
+			to_chat(src, "Removed [rem_language] from [H].")
+		else
+			to_chat(src, "Mob doesn't know that language.")
+
+	if(href_list[VV_HK_ADDVERB])
+		if(!check_rights(R_DEBUG))      return
+
+		var/mob/H = src
+
+		if(!ismob(H))
+			to_chat(src, "This can only be done to instances of type /mob")
+			return
+		var/list/possibleverbs = list()
+		possibleverbs += "Cancel" 								// One for the top...
+		possibleverbs += typesof(/mob/proc, /mob/verb)
+		if(isobserver(H))
+			possibleverbs += typesof(/mob/observer/dead/proc,/mob/observer/dead/verb)
+		if(isliving(H))
+			possibleverbs += typesof(/mob/living/proc,/mob/living/verb)
+		if(ishuman(H))
+			possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
+		if(isrobot(H))
+			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
+		if(isAI(H))
+			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
+		if(isanimal(H))
+			possibleverbs += typesof(/mob/living/simple_mob/proc)
+		possibleverbs -= H.verbs
+		possibleverbs += "Cancel" 								// ...And one for the bottom
+
+		var/verb = tgui_input_list(src, "Select a verb!", "Verbs", possibleverbs)
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+		if(!verb || verb == "Cancel")
+			return
+		else
+			add_verb(H, verb)
+
+	if(href_list[VV_HK_REMOVEVERB])
+		if(!check_rights(R_DEBUG))      return
+
+		var/mob/H = src
+
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob")
+			return
+		var/verb = tgui_input_list(src, "Please choose a verb to remove.","Verbs", H.verbs)
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+		if(!verb)
+			return
+		else
+			remove_verb(H, verb)
+
+	if(href_list[VV_HK_ADDORGAN])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/M = src
+		if(!istype(M))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon")
+			return
+
+		var/new_organ = tgui_input_list(src, "Please choose an organ to add.","Organ", subtypesof(/obj/item/organ))
+		if(!new_organ) return
+
+		if(!M)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		if(locate(new_organ) in M.internal_organs)
+			to_chat(src, "Mob already has that organ.")
+			return
+
+		new new_organ(M)
+
+
+	if(href_list[VV_HK_REMOVEORGAN])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/M = src
+		if(!istype(M))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon")
+			return
+
+		var/obj/item/organ/rem_organ = tgui_input_list(src, "Please choose an organ to remove.","Organ", M.internal_organs)
+
+		if(!M)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		if(!(locate(rem_organ) in M.internal_organs))
+			to_chat(src, "Mob does not have that organ.")
+			return
+
+		to_chat(src, "Removed [rem_organ] from [M].")
+		rem_organ.removed()
+		qdel(rem_organ)
 
 	//if(href_list[VV_HK_GIVE_AI])
 	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_controller, src)

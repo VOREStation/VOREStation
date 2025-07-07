@@ -135,6 +135,13 @@
 #define VV_HK_VIEW_PLANES "view_planes"
 #define VV_HK_GIVE_AI "give_ai"
 #define VV_HK_GIVE_AI_SPEECH "give_ai_speech"
+#define VV_HK_SET_SPECIES "setspecies"
+#define VV_HK_ADDLANGUAGE "addlanguage"
+#define VV_HK_REMOVELANGUAGE "remlanguage"
+#define VV_HK_ADDVERB "addverb"
+#define VV_HK_REMOVEVERB "remverb"
+#define VV_HK_ADDORGAN "addorgan"
+#define VV_HK_REMOVEORGAN "remorgan"
 
 // /mob/living
 #define VV_HK_GIVE_SPEECH_IMPEDIMENT "impede_speech"
