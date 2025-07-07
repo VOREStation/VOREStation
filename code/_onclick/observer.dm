@@ -71,7 +71,7 @@
 
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
 	if(awaygate)
-		if(user.client.holder)
+		if(check_rights_for(user.client, R_HOLDER))
 			user.loc = awaygate.loc
 		else if(active)
 			user.loc = awaygate.loc
@@ -95,7 +95,7 @@
 // commented out, of course.
 /*
 /atom/proc/attack_admin(mob/user as mob)
-	if(!user || !user.client || !user.client.holder)
+	if(!user || !user.client || !check_rights_for(user.client, R_HOLDER))
 		return
 	attack_hand(user)
 

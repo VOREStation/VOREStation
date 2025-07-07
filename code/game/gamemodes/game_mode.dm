@@ -521,7 +521,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	msg = span_notice(msg)// close the span from right at the top
 
 	for(var/mob/M in mob_list)
-		if(M.client && M.client.holder)
+		if(M.client && check_rights_for(M.client, R_HOLDER))
 			to_chat(M,msg)
 
 /proc/get_nt_opposed()

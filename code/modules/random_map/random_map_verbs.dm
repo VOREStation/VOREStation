@@ -3,7 +3,7 @@
 	set name = "Display Random Map"
 	set desc = "Show the contents of a random map."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/choice = tgui_input_list(usr, "Choose a map to display.", "Map Choice", random_maps)
 	if(!choice)
@@ -17,7 +17,7 @@
 	set name = "Delete Random Map"
 	set desc = "Delete a random map."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/choice = tgui_input_list(usr, "Choose a map to delete.", "Map Choice", random_maps)
 	if(!choice)
@@ -34,7 +34,7 @@
 	set name = "Create Random Map"
 	set desc = "Create a random map."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/map_datum = tgui_input_list(usr, "Choose a map to create.", "Map Choice", subtypesof(/datum/random_map))
 	if(!map_datum)
@@ -58,7 +58,7 @@
 	set name = "Apply Random Map"
 	set desc = "Apply a map to the game world."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/choice = tgui_input_list(usr, "Choose a map to apply.", "Map Choice", random_maps)
 	if(!choice)
@@ -83,7 +83,7 @@
 	set name = "Overlay Random Map"
 	set desc = "Apply a map to another map."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/choice = tgui_input_list(usr, "Choose a map as base.", "Map Choice", random_maps)
 	if(!choice)

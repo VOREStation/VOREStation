@@ -406,7 +406,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	  /* --- Loop through the receivers and categorize them --- */
 		// Allows admins to disable radio
-		if(R?.client?.holder)
+		if(check_rights_for(R?.client, R_HOLDER))
 			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
 				continue
 
@@ -623,7 +623,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	  /* --- Loop through the receivers and categorize them --- */
 		// Allow admins to disable radios completely
-		if(R?.client?.holder)
+		if(check_rights_for(R?.client, R_HOLDER))
 			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
 				continue
 

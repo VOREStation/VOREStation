@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(webhooks)
 	set name = "Reload Webhooks"
 	set category = "Debug"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(!SSwebhooks.subsystem_initialized)
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(webhooks)
 	set name = "Ping Webhook"
 	set category = "Debug"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(!length(SSwebhooks.webhook_decls))

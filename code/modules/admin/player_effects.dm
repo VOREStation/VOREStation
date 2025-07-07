@@ -623,7 +623,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))
@@ -634,7 +634,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))

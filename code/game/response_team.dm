@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 	set category = "Fun.Event Kit"
 	set desc = "Send an emergency response team to the station"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(usr, span_danger("Only administrators may use this command."))
 		return
 	if(!ticker)
