@@ -132,7 +132,6 @@ export type bellyOptionData = {
   private_struggle: BooleanLike;
   drainmode_options: string[];
   drainmode: string;
-  mob_belly_controls: siliconeBellyControls;
 };
 
 export type bellySoundData = {
@@ -180,6 +179,7 @@ export type bellyVisualData = {
   tail_option_shown: BooleanLike;
   tail_to_change_to: BooleanLike | string;
   tail_sprite_options: string[];
+  mob_belly_controls: siliconeBellyControls;
 };
 
 export type bellyInteractionData = {
