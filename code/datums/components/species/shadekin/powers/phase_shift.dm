@@ -52,10 +52,23 @@
 	darkness = 1-brightness //Invert
 
 	var/watcher = 0
-	for(var/mob/living/carbon/human/watchers in oview(7,src ))	// If we can see them...
-		if(watchers in oviewers(7,src))	// And they can see us...
-			if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
-				watcher++	// They are watching us!
+	for(var/thing in orange(7, src))
+		if(istype(thing, /mob/living/carbon/human))
+			var/mob/living/carbon/human/watchers = thing
+			if((watchers in oviewers(7,src)) && watchers.species != SPECIES_SHADEKIN)	// And they can see us... (And aren't themselves a shadekin)
+				if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
+					watcher++	//They are watching us!
+		else if(!SK.human_only_watchers)
+			if(istype(thing, /mob/living/silicon/robot))
+				var/mob/living/silicon/robot/watchers = thing
+				if(watchers in oviewers(7,src))
+					if(!watchers.stat && !isbelly(watchers.loc))
+						watcher++	//The robot is watching us!
+			else if(istype(thing, /obj/machinery/camera))
+				var/obj/machinery/camera/watchers = thing
+				if(watchers.can_use())
+					if(src in watchers.can_see())
+						watcher++	//The camera is watching us!
 
 	ability_cost = CLAMP(ability_cost/(0.01+darkness*2),50, 80)//This allows for 1 watcher in full light
 	if(watcher>0)
