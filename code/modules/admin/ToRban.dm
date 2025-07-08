@@ -46,7 +46,7 @@
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server.Config"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 	switch(task)
 		if("update")
 			ToRban_update()
