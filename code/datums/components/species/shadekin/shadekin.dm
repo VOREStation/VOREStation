@@ -58,8 +58,8 @@
 	//Ability Vars
 	///The innate abilities we start with
 	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-									   /datum/power/shadekin/regenerate_other,
-									   /datum/power/shadekin/create_shade)
+										/datum/power/shadekin/regenerate_other,
+										/datum/power/shadekin/create_shade)
 	///Datum holder. Largely ignore this.
 	var/list/shadekin_ability_datums = list()
 
@@ -74,11 +74,11 @@
 
 /datum/component/shadekin/full
 	shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-							  /datum/power/shadekin/regenerate_other,
-							  /datum/power/shadekin/create_shade,
-							  /datum/power/shadekin/dark_maw,
-							  /datum/power/shadekin/dark_respite,
-							  /datum/power/shadekin/dark_tunneling)
+								/datum/power/shadekin/regenerate_other,
+								/datum/power/shadekin/create_shade,
+								/datum/power/shadekin/dark_maw,
+								/datum/power/shadekin/dark_respite,
+								/datum/power/shadekin/dark_tunneling)
 	extended_kin = TRUE
 	drop_items_on_phase = TRUE
 	camera_counts_as_watcher = TRUE
@@ -135,6 +135,10 @@
 	owner = null
 	. = ..()
 
+/datum/component/shadekin/proc/recalc_values()
+	set_shadekin_eyecolor() //Gets what eye color we are.
+	set_eye_energy() //Sets the energy values based on our eye color.
+
 ///Handles the component running.
 /datum/component/shadekin/proc/handle_comp()
 	SIGNAL_HANDLER
@@ -179,10 +183,56 @@
 
 	shadekin_adjust_energy(dark_gains)
 
-
 	//Update huds
 	update_shadekin_hud()
 
+
+/datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShadekinConfig", "Shadekin Config")
+		ui.open()
+
+/datum/component/shadekin/tgui_data(mob/user)
+	var/data = list(
+		"flicker_time" = flicker_time,
+		"flicker_color" = flicker_color,
+		"flicker_break_chance" = flicker_break_chance,
+		"flicker_distance" = flicker_distance,
+	)
+
+	return data
+
+
+/datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("adjust_time")
+			var/new_time = text2num(params["val"])
+			if(!isnum(new_time))
+				return FALSE
+			flicker_time = new_time
+			return TRUE
+		if("adjust_color")
+			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
+			if(!set_new_color)
+				return FALSE
+			flicker_color = set_new_color
+			return TRUE
+		if("adjust_break")
+			var/new_brack_chance = text2num(params["val"])
+			if(!isnum(new_brack_chance))
+				return FALSE
+			flicker_break_chance = new_brack_chance
+			return TRUE
+		if("adjust_distance")
+			var/new_distance = text2num(params["val"])
+			if(!isnum(new_distance))
+				return FALSE
+			flicker_distance = new_distance
+			return TRUE
 
 /mob/living/proc/nutrition_conversion_toggle()
 	set name = "Toggle Energy <-> Nutrition conversions"
@@ -210,21 +260,5 @@
 	if(!SK)
 		to_chat(src, span_warning("Only a shadekin can use that!"))
 		return FALSE
-	var/flicker_timer = tgui_input_number(src, "Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)", "Set Flicker", SK.flicker_time, 20, 10)
-	if(flicker_timer > 20 || flicker_timer < 10)
-		to_chat(src,"<span class='warning'>You must choose a number between 10 and 20</span>")
-		return
-	SK.flicker_time = flicker_timer
-	to_chat(src,"<span class='warning'>Flicker timer set to [SK.flicker_time] seconds!</span>")
 
-	var/set_new_color = tgui_color_picker(src,"Select a color you wish the lights to flicker as (Default is #E0EFF0)","Color Selector", SK.flicker_color)
-	if(set_new_color)
-		SK.flicker_color = set_new_color
-	to_chat(src,"<span class='warning'>Flicker color set to [SK.flicker_color]!</span>")
-
-	var/break_chance = tgui_input_number(src, "Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)", "Set Break Chance", 0, 25, 0)
-	if(break_chance > 25 || break_chance < 0)
-		to_chat(src,"<span class='warning'>You must choose a number between 0 and 25</span>")
-		return
-	SK.flicker_break_chance = break_chance
-	to_chat(src,"<span class='warning'>Break chance set to [SK.flicker_break_chance]%</span>")
+	SK.tgui_interact(src)
