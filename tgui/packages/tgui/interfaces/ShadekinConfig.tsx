@@ -14,7 +14,7 @@ import {
 
 type Data = {
   flicker_time: number;
-  flicker_color: string;
+  flicker_color: string | null;
   flicker_break_chance: number;
   flicker_distance: number;
 };
@@ -64,7 +64,7 @@ export const ShadekinConfig = (props) => {
                   </Stack>
                 </LabeledList.Item>
                 <LabeledList.Item label="Flicker Color">
-                  <Stack>
+                  <Stack align="center">
                     <Stack.Item>
                       <Button
                         onClick={() => act('adjust_color')}
@@ -74,7 +74,7 @@ export const ShadekinConfig = (props) => {
                       </Button>
                     </Stack.Item>
                     <Stack.Item>
-                      <ColorBox color={flicker_color} />
+                      <ColorBox color={flicker_color || '#E0EFF0'} />
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
