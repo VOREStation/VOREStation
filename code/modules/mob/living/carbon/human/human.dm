@@ -1968,7 +1968,7 @@
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
 
-	if(VV_HK_TURN_MONKEY)
+	if(href_list[VV_HK_TURN_MONKEY])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = src
