@@ -6,7 +6,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 	set name = "Spawn Strike Team"
 	set desc = "Spawns a strike team if you want to run an admin event."
 
-	if(!src.holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
