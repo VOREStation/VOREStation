@@ -4179,6 +4179,7 @@
 #include "code\modules\research\tg\experisci\experiment\handlers\experiment_handler.dm"
 #include "code\modules\research\tg\experisci\experiment\types\experiment.dm"
 #include "code\modules\research\tg\machinery\_production.dm"
+#include "code\modules\research\tg\machinery\circuit_imprinter.dm"
 #include "code\modules\research\tg\machinery\protolathe.dm"
 #include "code\modules\research\tg\techwebs\__techweb_helpers.dm"
 #include "code\modules\research\tg\techwebs\_techweb.dm"

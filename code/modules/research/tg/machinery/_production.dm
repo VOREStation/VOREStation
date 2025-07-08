@@ -52,6 +52,8 @@
 /obj/machinery/rnd/production/update_icon()
 	cut_overlays()
 
+	icon_state = "[initial(icon_state)][panel_open ? "_t" : ""]"
+
 	if(!stripe_color)
 		return
 

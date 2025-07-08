@@ -57,7 +57,7 @@
 
 /obj/item/circuitboard/circuit_imprinter
 	name = T_BOARD("circuit imprinter")
-	build_path = /obj/machinery/r_n_d/circuit_imprinter
+	build_path = /obj/machinery/rnd/production/circuit_imprinter
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
