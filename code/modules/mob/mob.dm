@@ -1349,7 +1349,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
 	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
-	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "Give AI Controller")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "Give AI Controller")
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
@@ -1554,8 +1554,29 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		rem_organ.removed()
 		qdel(rem_organ)
 
-	//if(href_list[VV_HK_GIVE_AI])
-	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_controller, src)
+	if(href_list[VV_HK_GIVE_AI])
+		if(!check_rights(R_HOLDER))
+			return
+
+		var/mob/M = src
+		if(!isliving(M))
+			to_chat(src, span_notice("This can only be used on instances of type /mob/living"))
+			return
+		var/mob/living/L = M
+		if(L.client || L.teleop)
+			to_chat(src, span_warning("This cannot be used on player mobs!"))
+			return
+
+		if(L.ai_holder)	//Cleaning up the original ai
+			var/ai_holder_old = L.ai_holder
+			L.ai_holder = null
+			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
+		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+		L.initialize_ai_holder()
+		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+			L.AdjustSleeping(-100)
 
 	//if(href_list[VV_HK_GIVE_AI_SPEECH])
 	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_speech, src)

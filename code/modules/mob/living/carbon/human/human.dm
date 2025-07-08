@@ -1893,6 +1893,12 @@
 	//VV_DROPDOWN_OPTION(VV_HK_MOD_MUTATIONS, "Add/Remove Mutation")
 	//VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_TURN_MONKEY, "Make Monkey")
+	VV_DROPDOWN_OPTION(VV_HK_TURN_ALIEN, "Make Alien")
+	VV_DROPDOWN_OPTION(VK_HK_TURN_SKELETON, "Make Skeleton")
+	VV_DROPDOWN_OPTION(VK_HK_TURN_AI, "Make AI")
+	VV_DROPDOWN_OPTION(VK_HK_TURN_ROBOT, "Make Robot")
+
 	//VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
 	//VV_DROPDOWN_OPTION(VV_HK_APPLY_DNA_INFUSION, "Apply DNA Infusion")
 	//VV_DROPDOWN_OPTION(VV_HK_TURN_INTO_MMI, "Turn into MMI")
@@ -1956,11 +1962,92 @@
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = tgui_input_list(usr, "Please choose a new species","Species", sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc)))
+		var/result = tgui_input_list(usr, "Please choose a new species", "Species", sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_text_asc)))
 		if(result)
 			var/newtype = GLOB.all_species[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
+
+	if(VV_HK_TURN_MONKEY)
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		if(tgui_alert(src, "Confirm mob type change?","Confirm", list("Transform", "Cancel")) != "Transform")
+			return
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
+		message_admins(span_blue("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]"), 1)
+		H.monkeyize()
+
+	if(href_list[VV_HK_TURN_ALIEN])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		if(tgui_alert(src, "Confirm mob type change?","Confirm",list("Transform", "Cancel")) != "Transform")
+			return
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		usr.client.cmd_admin_alienize(H)
+
+	if(href_list[VK_HK_TURN_SKELETON])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			return
+
+		H.ChangeToSkeleton()
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
+
+
+	if(href_list[VK_HK_TURN_AI])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		if(tgui_alert(usr, "Confirm mob type change?", "Confirm", list("Transform", "Cancel")) != "Transform")
+			return
+		if(!H)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		message_admins(span_red("Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!"), 1)
+		log_admin("[key_name(usr)] AIized [key_name(H)]")
+		H.AIize()
+
+	if(href_list[VK_HK_TURN_ROBOT])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/living/carbon/human/H = src
+		if(!istype(H))
+			to_chat(src, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		if(tgui_alert(src, "Confirm mob type change?", "Confirm", list("Transform", "Cancel")) != "Transform")	return
+		if(!H)
+			to_chat(src, "Mob doesn't exist anymore")
+			return
+
+		usr.client.cmd_admin_robotize(H)
 
 	/*
 	if(href_list[VV_HK_PURRBATION])

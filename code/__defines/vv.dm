@@ -114,6 +114,7 @@
 
 // /obj
 #define VV_HK_OSAY "osay"
+#define VV_HK_FAKE_CONVO "fakepdapropconvo"
 #define VV_HK_MASS_DEL_TYPE "mass_delete_type"
 
 // /mob
@@ -166,8 +167,14 @@
 #define VV_HK_PURRBATION "purrbation"
 #define VV_HK_APPLY_DNA_INFUSION "apply_dna_infusion"
 #define VV_HK_TURN_INTO_MMI "turn_into_mmi"
+#define VV_HK_TURN_MONKEY "turn_monkey"
+#define VV_HK_TURN_ALIEN "turn_alien"
+#define VK_HK_TURN_SKELETON "turn_skeleton"
+#define VK_HK_TURN_AI "turn_ai"
+#define VK_HK_TURN_ROBOT "turn_robot"
 
 #define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
+#define VV_HK_DATUM_REFRESH "datumrefresh"
 
 // Flags for debug_variable() that do little things to what we end up rendering
 
