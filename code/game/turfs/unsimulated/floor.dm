@@ -15,3 +15,7 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "elevatorshaft"
+
+/turf/unsimulated/floor/reinforced
+	name = "reinforced floor"
+	icon_state = "reinforced"
