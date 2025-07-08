@@ -186,6 +186,15 @@
 	//Update huds
 	update_shadekin_hud()
 
+/datum/component/shadekin/proc/calculate_stun()
+	var/stun_time = 3
+	if(flicker_time > 0)
+		stun_time -= min(flicker_time / 5, 1)
+	if(flicker_distance > 0)
+		stun_time -= min(flicker_distance / 5, 1)
+	if(flicker_break_chance > 0)
+		stun_time -= min(flicker_break_chance / 5, 1)
+	return stun_time
 
 /datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -195,6 +204,7 @@
 
 /datum/component/shadekin/tgui_data(mob/user)
 	var/data = list(
+		"stun_time" = calculate_stun(),
 		"flicker_time" = flicker_time,
 		"flicker_color" = flicker_color,
 		"flicker_break_chance" = flicker_break_chance,

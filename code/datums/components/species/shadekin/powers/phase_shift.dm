@@ -179,7 +179,7 @@
 
 	SK.doing_phase = FALSE
 	if(SK.flicker_time < 5 || SK.flicker_distance < 5 || SK.flicker_break_chance < 5)
-		Stun(3)
+		Stun(SK.calculate_stun())
 	if(!SK.flicker_time)
 		return //Early return. No time, no flickering.
 	//Affect nearby lights

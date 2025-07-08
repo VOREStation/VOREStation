@@ -13,6 +13,7 @@ import {
 } from 'tgui-core/components';
 
 type Data = {
+  stun_time: number;
   flicker_time: number;
   flicker_color: string | null;
   flicker_break_chance: number;
@@ -23,6 +24,7 @@ export const ShadekinConfig = (props) => {
   const { act, data } = useBackend<Data>();
 
   const {
+    stun_time,
     flicker_time,
     flicker_color,
     flicker_break_chance,
@@ -38,7 +40,7 @@ export const ShadekinConfig = (props) => {
         <Stack fill vertical g={0}>
           {isSubtle && (
             <Stack.Item>
-              <NoticeBox>Subtle Phasing, causes temporary stun.</NoticeBox>
+              <NoticeBox>Subtle Phasing, causes {stun_time} s stun.</NoticeBox>
             </Stack.Item>
           )}
           <Stack.Item>
