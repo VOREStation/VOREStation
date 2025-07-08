@@ -224,24 +224,28 @@
 			if(!isnum(new_time))
 				return FALSE
 			flicker_time = new_time
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time)
 			return TRUE
 		if("adjust_color")
 			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
 			if(!set_new_color)
 				return FALSE
 			flicker_color = set_new_color
+			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
 			return TRUE
 		if("adjust_break")
 			var/new_brack_chance = text2num(params["val"])
 			if(!isnum(new_brack_chance))
 				return FALSE
 			flicker_break_chance = new_brack_chance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_brack_chance)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
 			if(!isnum(new_distance))
 				return FALSE
 			flicker_distance = new_distance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance)
 			return TRUE
 
 /mob/living/proc/nutrition_conversion_toggle()
