@@ -245,7 +245,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 //probably a bit iffy - will hopefully figure out a better solution
 /proc/check_if_greater_rights_than(client/other)
 	if(usr?.client)
-		if(usr.client.holder)
+		if(check_rights_for(usr.client, R_HOLDER))
 			if(!other || !other.holder)
 				return TRUE
 			return usr.client.holder.check_if_greater_rights_than_holder(other.holder)

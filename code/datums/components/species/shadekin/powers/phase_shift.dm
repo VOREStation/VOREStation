@@ -33,7 +33,7 @@
 		to_chat(src, span_warning("Can't use that ability in your state!"))
 		return FALSE
 	var/area/A = get_area(src)
-	if(!client?.holder && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
+	if(!check_rights_for(client, R_HOLDER) && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
 		to_chat(src, span_warning("You can't do that here!"))
 		return
 
@@ -178,6 +178,8 @@
 					held_lights.update_brightness()
 
 	SK.doing_phase = FALSE
+	if(SK.flicker_time < 5 || SK.flicker_distance < 5 || SK.flicker_break_chance < 5)
+		Stun(SK.calculate_stun())
 	if(!SK.flicker_time)
 		return //Early return. No time, no flickering.
 	//Affect nearby lights

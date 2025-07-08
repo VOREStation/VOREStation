@@ -361,7 +361,6 @@
 	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 	var/component_requires_late_recalc = FALSE // If TRUE, the component will do special recalculation stuff at the end of update_icons_body()
 
-
 	// For Lleill and Hanner
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200

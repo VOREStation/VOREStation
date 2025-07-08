@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(persistence)
 
 
 /datum/controller/subsystem/persistence/proc/show_info(var/mob/user)
-	if(!user.client.holder)
+	if(!check_rights_for(user.client, R_HOLDER))
 		return
 
 	var/list/dat = list("<table width = '100%'>")

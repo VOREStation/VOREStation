@@ -39,12 +39,12 @@
 			to_chat(user, span_notice("Your hand scatters \the [src]..."))
 			qdel(src)	//Delete portals which aren't set that people mess with.
 		else return		//do not send ghosts, zshadows, ai eyes, etc
-	else if(isliving(user) || isobserver(user) && user?.client?.holder)	//unless they're staff
+	else if(isliving(user) || isobserver(user) && check_rights_for(user?.client, R_HOLDER))	//unless they're staff
 		spawn(0)
 		src.teleport(user)
 
 /obj/structure/portal_event/attack_ghost(var/mob/observer/dead/user)
-	if(!target && user?.client?.holder)
+	if(!target && check_rights_for(user?.client, R_HOLDER))
 		to_chat(user, span_notice("Selecting 'Portal Here' will create and link a portal at your location, while 'Target Here' will create an object that is only visible to ghosts which will act as the target, again at your location. Each option will give you the ability to change portal types, but for all options except 'Select Type' you only get one shot at it, so be sure to experiment with 'Select Type' first if you're not familiar with them."))
 		var/response = tgui_alert(user, "You appear to be staff. This portal has no exit point. If you want to make one, move to where you want it to go, and click the appropriate option, see chat for more info, otherwise click 'Cancel'", "Unbound Portal", list("Cancel","Portal Here","Target Here", "Select Type"))
 		if(response == "Portal Here")
@@ -69,7 +69,7 @@
 			return
 		if(target)
 			message_admins("The [src]([x],[y],[z]) was given [target]([target.x],[target.y],[target.z]) as a target, and should be ready to use.")
-	else if(user?.client?.holder)
+	else if(check_rights_for(user?.client, R_HOLDER))
 		src.teleport(user)
 	else return
 

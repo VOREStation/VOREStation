@@ -50,7 +50,7 @@
 	establish_db_connection()
 	if(SSdbcore.IsConnected())
 		var/isadmin = 0
-		if(src.client && src.client.holder)
+		if(src.client && check_rights_for(src.client, R_HOLDER))
 			isadmin = 1
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")

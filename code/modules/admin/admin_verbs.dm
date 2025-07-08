@@ -67,7 +67,7 @@
 /client/proc/admin_ghost()
 	set category = "Admin.Game"
 	set name = "Aghost"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/build_mode
 	if(src.buildmode)
