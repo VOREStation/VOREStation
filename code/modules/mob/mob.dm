@@ -1399,15 +1399,15 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		usr.client.cmd_admin_godmode(src)
 
 	if(href_list[VV_HK_ADDLANGUAGE])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_SPAWN))
+			return
 
 		var/mob/H = src
 		if(!istype(H))
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 
-		var/new_language = tgui_input_list(usr, "Please choose a language to add.","Language", GLOB.all_languages)
-
+		var/new_language = tgui_input_list(usr, "Please choose a language to add.", "Language", GLOB.all_languages)
 		if(!new_language)
 			return
 
@@ -1417,11 +1417,13 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 
 		if(H.add_language(new_language))
 			to_chat(usr, "Added [new_language] to [H].")
-		else
-			to_chat(usr, "Mob already knows that language.")
+			return
+
+		to_chat(usr, "Mob already knows that language.")
 
 	if(href_list[VV_HK_REMOVELANGUAGE])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_SPAWN))
+			return
 
 		var/mob/H = src
 		if(!istype(H))
@@ -1432,7 +1434,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 			to_chat(usr, "This mob knows no languages.")
 			return
 
-		var/datum/language/rem_language = tgui_input_list(usr, "Please choose a language to remove.","Language", H.languages)
+		var/datum/language/rem_language = tgui_input_list(usr, "Please choose a language to remove.", "Language", H.languages)
 
 		if(!rem_language)
 			return
@@ -1443,11 +1445,13 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 
 		if(H.remove_language(rem_language.name))
 			to_chat(usr, "Removed [rem_language] from [H].")
-		else
-			to_chat(usr, "Mob doesn't know that language.")
+			return
+
+		to_chat(usr, "Mob doesn't know that language.")
 
 	if(href_list[VV_HK_ADDVERB])
-		if(!check_rights(R_DEBUG))      return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/mob/H = src
 
@@ -1473,41 +1477,46 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		possibleverbs += "Cancel" 								// ...And one for the bottom
 
 		var/verb = tgui_input_list(usr, "Select a verb!", "Verbs", possibleverbs)
+		if(!verb || verb == "Cancel")
+			return
+
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		if(!verb || verb == "Cancel")
-			return
-		else
-			add_verb(H, verb)
+
+		add_verb(H, verb)
 
 	if(href_list[VV_HK_REMOVEVERB])
-		if(!check_rights(R_DEBUG))      return
+		if(!check_rights(R_DEBUG))
+			return
 
 		var/mob/H = src
 
 		if(!istype(H))
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
-		var/verb = tgui_input_list(usr, "Please choose a verb to remove.","Verbs", H.verbs)
+		var/verb = tgui_input_list(usr, "Please choose a verb to remove.", "Verbs", H.verbs)
+		if(!verb)
+			return
+
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		if(!verb)
-			return
-		else
-			remove_verb(H, verb)
+
+		remove_verb(H, verb)
 
 	if(href_list[VV_HK_ADDORGAN])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_SPAWN))
+			return
 
 		var/mob/living/carbon/M = src
 		if(!istype(M))
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 			return
 
-		var/new_organ = tgui_input_list(usr, "Please choose an organ to add.","Organ", subtypesof(/obj/item/organ))
-		if(!new_organ) return
+		var/new_organ = tgui_input_list(usr, "Please choose an organ to add.", "Organ", subtypesof(/obj/item/organ))
+		if(!new_organ)
+			return
 
 		if(!M)
 			to_chat(usr, "Mob doesn't exist anymore")
@@ -1521,14 +1530,17 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 
 
 	if(href_list[VV_HK_REMOVEORGAN])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_SPAWN))
+			return
 
 		var/mob/living/carbon/M = src
 		if(!istype(M))
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 			return
 
-		var/obj/item/organ/rem_organ = tgui_input_list(usr, "Please choose an organ to remove.","Organ", M.internal_organs)
+		var/obj/item/organ/rem_organ = tgui_input_list(usr, "Please choose an organ to remove.", "Organ", M.internal_organs)
+		if(!rem_organ)
+			return
 
 		if(!M)
 			to_chat(usr, "Mob doesn't exist anymore")
