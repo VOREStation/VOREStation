@@ -55,7 +55,7 @@
 
 	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if (!holder && mtl)
+	if (!check_rights_for(src, R_HOLDER) && mtl)
 		var/minute = round(world.time, 600)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -73,7 +73,7 @@
 			return
 
 	var/stl = CONFIG_GET(number/second_topic_limit)
-	if (!holder && stl && href_list["window_id"] != "statbrowser")
+	if (!check_rights_for(src, R_HOLDER) && stl && href_list["window_id"] != "statbrowser")
 		var/second = round(world.time, 10)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -113,7 +113,7 @@
 		return
 
 	if(href_list["irc_msg"])
-		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
+		if(!check_rights_for(src, R_HOLDER) && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
 			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
 			return
 		if(mute_irc)
@@ -777,7 +777,7 @@
 // Mouse stuff
 /client/Click(atom/object, atom/location, control, params)
 	var/mcl = CONFIG_GET(number/minute_click_limit)
-	if (!holder && mcl)
+	if (!check_rights_for(src, R_HOLDER) && mcl)
 		var/minute = round(world.time, 600)
 
 		if (!clicklimiter)
@@ -800,7 +800,7 @@
 			return
 
 	var/scl = CONFIG_GET(number/second_click_limit)
-	if (!holder && scl)
+	if (!check_rights_for(src, R_HOLDER) && scl)
 		var/second = round(world.time, 10)
 		if (!clicklimiter)
 			clicklimiter = new(LIMITER_SIZE)
@@ -822,13 +822,13 @@
 	window_scaling = text2num(winget(src, null, "dpi"))
 
 /client/proc/open_filter_editor(atom/in_atom)
-	if(holder)
+	if(check_rights_for(src, R_HOLDER))
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.tgui_interact(mob)
 
 ///opens the particle editor UI for the in_atom object for this client
 /client/proc/open_particle_editor(atom/movable/in_atom)
-	if(holder)
+	if(check_rights_for(src, R_HOLDER))
 		holder.particle_test = new /datum/particle_editor(in_atom)
 		holder.particle_test.tgui_interact(mob)
 

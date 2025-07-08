@@ -129,7 +129,7 @@
 					client.prefs.real_name = random_name(client.prefs.identifying_gender)
 				observer.real_name = client.prefs.real_name
 				observer.name = observer.real_name
-				if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
+				if(!check_rights_for(client, R_HOLDER) && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 					remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD)        // Poor guys, don't know what they are missing!
 
 				observer.key = key
