@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: smite \[bsa, lightning, pie\] name```"
 	var/smite_name = message_as_list[1]
-	if(istext(smite_name))
+	if(!istext(smite_name))
 		return "```First param must be the smite name.```"
 
 	message_as_list.Cut(1, 2)
