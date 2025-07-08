@@ -17,5 +17,6 @@
 	icon_state = "elevatorshaft"
 
 /turf/unsimulated/floor/reinforced
+	icon = 'icons/turf/flooring/tiles.dmi';
 	name = "reinforced floor"
 	icon_state = "reinforced"
