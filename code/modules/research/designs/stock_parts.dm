@@ -15,14 +15,6 @@
 		desc = "A stock part used in the construction of various devices."
 
 // Matter Bins
-
-/datum/design/item/stock_part/basic_matter_bin
-	id = "basic_matter_bin"
-	req_tech = list(TECH_MATERIAL = 1)
-	materials = list(MAT_STEEL = 80)
-	build_path = /obj/item/stock_parts/matter_bin
-	sort_string = "AAAAA"
-
 /datum/design/item/stock_part/adv_matter_bin
 	id = "adv_matter_bin"
 	req_tech = list(TECH_MATERIAL = 3)
@@ -52,14 +44,6 @@
 	sort_string = "AAAAE"
 
 // Micro-manipulators
-
-/datum/design/item/stock_part/micro_mani
-	id = "micro_mani"
-	req_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
-	materials = list(MAT_STEEL = 30)
-	build_path = /obj/item/stock_parts/manipulator
-	sort_string = "AAABA"
-
 /datum/design/item/stock_part/nano_mani
 	id = "nano_mani"
 	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
@@ -89,14 +73,6 @@
 	sort_string = "AAABE"
 
 // Capacitors
-
-/datum/design/item/stock_part/basic_capacitor
-	id = "basic_capacitor"
-	req_tech = list(TECH_POWER = 1)
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	build_path = /obj/item/stock_parts/capacitor
-	sort_string = "AAACA"
-
 /datum/design/item/stock_part/adv_capacitor
 	id = "adv_capacitor"
 	req_tech = list(TECH_POWER = 3)
@@ -126,14 +102,6 @@
 	sort_string = "AAACE"
 
 // Sensors
-
-/datum/design/item/stock_part/basic_sensor
-	id = "basic_sensor"
-	req_tech = list(TECH_MAGNET = 1)
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
-	build_path = /obj/item/stock_parts/scanning_module
-	sort_string = "AAADA"
-
 /datum/design/item/stock_part/adv_sensor
 	id = "adv_sensor"
 	req_tech = list(TECH_MAGNET = 3)
@@ -163,14 +131,6 @@
 	sort_string = "AAADE"
 
 // Micro-lasers
-
-/datum/design/item/stock_part/basic_micro_laser
-	id = "basic_micro_laser"
-	req_tech = list(TECH_MAGNET = 1)
-	materials = list(MAT_STEEL = 10, MAT_GLASS = 20)
-	build_path = /obj/item/stock_parts/micro_laser
-	sort_string = "AAAEA"
-
 /datum/design/item/stock_part/high_micro_laser
 	id = "high_micro_laser"
 	req_tech = list(TECH_MAGNET = 3)
@@ -201,13 +161,6 @@
 
 
 // part bundles, because i HATE queues and i don't want to rewrite it for stack-printing
-/datum/design/item/stock_part/bundle/t1
-	id = "parts_bundle_t1"
-	req_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1, TECH_POWER = 1, TECH_MAGNET = 1)
-	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450)
-	build_path = /obj/effect/spawner/parts/t1
-	sort_string = "AAAFA"
-
 /datum/design/item/stock_part/bundle/t2
 	id = "parts_bundle_t2"
 	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2, TECH_POWER = 3, TECH_MAGNET = 3)

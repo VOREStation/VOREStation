@@ -67,3 +67,19 @@
 	)
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+// Bundles
+/datum/design_techweb/stock_part_bundle_t1
+	name = "Basic Parts Bundle"
+	desc = "A bundle of Tier 1 parts."
+	id = "parts_bundle_t1"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450)
+	build_path = /obj/effect/spawner/parts/t1
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+	research_icon = 'icons/obj/boxes.dmi'
+	research_icon_state = "box"

@@ -15,14 +15,7 @@
 	C.update_icon()
 	return C
 
-/datum/design/item/powercell/basic
-	name = "basic"
-	id = "basic_cell"
-	req_tech = list(TECH_POWER = 1)
-	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
-	build_path = /obj/item/cell
-	category = list("Misc")
-	sort_string = "BAAAA"
+
 
 /datum/design/item/powercell/high
 	name = "high-capacity"
