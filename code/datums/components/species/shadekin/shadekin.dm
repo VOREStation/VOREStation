@@ -235,12 +235,12 @@
 			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
 			return TRUE
 		if("adjust_break")
-			var/new_breack_chance = text2num(params["val"])
+			var/new_break_chance = text2num(params["val"])
 			new_break_chance = CLAMP(new_break_chance, 0, 25)
-			if(!isnum(new_breack_chance))
+			if(!isnum(new_break_chance))
 				return FALSE
-			flicker_break_chance = new_breack_chance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_breack_chance)
+			flicker_break_chance = new_break_chance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
