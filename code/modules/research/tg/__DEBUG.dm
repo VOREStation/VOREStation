@@ -8,4 +8,4 @@
 		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 		designs -= node.design_ids
 
-	to_chat(src, json_encode(designs))
+	to_chat(src, json_encode(designs, JSON_PRETTY_PRINT))

@@ -13,10 +13,10 @@
 		"parts_bundle_t1",
 		"basic_cell",
 		"high_cell",
-		// "basic_battery",
+		"device_cell",
+		"weapon_cell",
+		"high_mech_cell",
 		// "basic_scanning",
-		// "high_battery",
-		// "miniature_power_cell",
 		// "condenser",
 		// "igniter",
 		// "infrared_emitter",
@@ -41,10 +41,28 @@
 		"high_micro_laser",
 		"parts_bundle_t2",
 		"super_cell",
+		"super_mech_cell",
 		"rped",
-		// "super_battery",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/parts_adv
+	id = TECHWEB_NODE_PARTS_ADV
+	display_name = "Advanced Parts"
+	description = "The most finely tuned and accurate stock parts."
+	prereq_ids = list(TECHWEB_NODE_PARTS_UPG)
+	design_ids = list(
+		"super_matter_bin",
+		"pico_mani",
+		"super_capacitor",
+		"phasic_sensor",
+		"ultra_micro_laser",
+		"parts_bundle_t3",
+		"hyper_cell",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	// required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
 	announce_channels = list(CHANNEL_ENGINEERING)
 
 // Engineering root node
