@@ -317,6 +317,9 @@
 	if(!selection)
 		to_chat(redeemer, span_notice("You decide not to redeem anything for now."))
 		return
+	if(QDELETED(voucher))
+		to_chat(redeemer, span_warning("The voucher has already been redeemed."))
+		return
 	switch(selection)
 
 		if("Kinetic Accelerator + KA Addon") //1250-2100 points worth

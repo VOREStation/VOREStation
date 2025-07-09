@@ -1,0 +1,8 @@
+author: "Diana, Kash"
+delete-after: True
+changes:
+  - rscadd: "Shadekin light toggle now has a TGUI."
+  - bugfix: "Borg grippers don't delete items"
+  - bugfix: "A lot of borg gripper exploits/bugs fixed"
+  - qol: "Borgs can reinforce girders at a speed of 1.5 seconds instead of the normal 4"
+  - code_imp: "Two hours spent to optimize shadekin phase code and save an average of ~4 ms of CPU time per phase in extreme conditions!"

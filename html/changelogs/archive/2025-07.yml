@@ -83,3 +83,16 @@
 2025-07-07:
   Kashargul:
   - qol: moves robot sprite setting to the visual tab
+2025-07-08:
+  Kashargul:
+  - bugfix: mining voucher can no longer be redeemed multiple times
+  ShadowLarkens:
+  - rscadd: You can now write messages on people with a pen~ A shower cleans them
+      off.
+  TheCaramelion:
+  - bugfix: Virologists can change the name of their viruses now
+2025-07-09:
+  Diana:
+  - bugfix: Borg claymore and borg jaws do proper damage values
+  ShadowLarkens:
+  - bugfix: Copy slot should work better
