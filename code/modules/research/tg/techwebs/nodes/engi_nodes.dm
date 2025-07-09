@@ -121,3 +121,24 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/exp_tools
+	id = TECHWEB_NODE_EXP_TOOLS
+	display_name = "Experimental Tools"
+	description = "Enhances the functionality and versatility of station tools."
+	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
+	design_ids = list(
+		"jawslife",
+		"handdrill",
+		"expwelder",
+		// "flatpacker",
+		// "rangedanalyzer",
+		// "rtd_loaded",
+		// "mech_rcd",
+		// "rcd_loaded",
+		// "rcd_ammo",
+		// "weldingmask",
+		// "magboots",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
