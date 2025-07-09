@@ -531,14 +531,22 @@
 		. += wrapped.examine(user)
 
 /obj/item/gripper/CtrlClick(mob/user)
-	if(wrapped)
+	if(wrapped && !is_in_use())
 		wrapped.attack_self(user)
 	return
 
 /obj/item/gripper/AltClick(mob/user)
-	drop_item()
+	if(!is_in_use())
+		drop_item()
 	return
 
+//This is used to check if the gripper is currently being used.
+//If it is, we don't allow any other actions to be performed.
+/obj/item/gripper/proc/is_in_use()
+	if(wrapped)
+		if(istype(wrapped.loc, /obj/item/storage/internal/gripper))
+			return FALSE //We are in a gripper storage or another gripper, so we are not in use.
+		return TRUE
 
 //This is the code that updates our pockets and decides if they should have icons or not.
 //This should be called every time we use the gripper and our wrapped item is used up.
@@ -565,6 +573,9 @@
 			photo_images["[pocket_to_check.name]" + "[pocket_content.name]"] = pocket_image
 
 /obj/item/gripper/attack_self(mob/user as mob)
+	if(is_in_use())
+		to_chat(user, span_danger("You are currently using the gripper on something!"))
+		return
 	generate_icons()
 	var/list/options = list()
 
@@ -588,6 +599,9 @@
 	return ..()
 
 /obj/item/gripper/attackby(var/obj/item/O, var/mob/user)
+	if(is_in_use())
+		to_chat(user, span_danger("You are currently using the gripper on something!"))
+		return FALSE
 	if(wrapped)
 		wrapped.loc = src.loc //Place it in to the robot.
 		var/resolved = wrapped.attackby(O, user)
@@ -621,6 +635,9 @@
 	if(!wrapped)
 		to_chat(src, span_warning("You have nothing to drop!"))
 		return
+	if(is_in_use())
+		to_chat(src, span_danger("You are currently using the gripper on something!"))
+		return
 	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
 		wrapped = null
 		current_pocket = pick(pockets)
@@ -643,6 +660,9 @@
 	wrapped = null
 
 /obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(is_in_use())
+		to_chat(user, span_danger("You are currently using the gripper on something!"))
+		return FALSE
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 		if(QDELETED(wrapped) || (wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
 			wrapped = null //we become null
@@ -659,6 +679,9 @@
 /obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
 	if(!proximity)
 		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
+	if(is_in_use())
+		to_chat(user, span_danger("You are currently using the gripper on something!"))
+		return
 	var/current_pocket_full = FALSE
 	//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
 	if(wrapped == current_pocket)
