@@ -1054,6 +1054,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 6
 	},
+/obj/machinery/rnd/server/master,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1064,6 +1065,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 9
 	},
+/obj/machinery/rnd/server,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -3536,6 +3538,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/kitchen)
+"ix" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iy" = (
 /obj/structure/lattice,
 /turf/simulated/floor/airless,
@@ -3546,6 +3555,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
+"iA" = (
+/obj/machinery/rnd/production/protolathe,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iB" = (
+/obj/machinery/computer/rdconsole_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -9969,8 +9986,8 @@ eM
 eM
 gc
 gh
-gf
-gt
+iA
+ix
 gf
 gf
 gf
@@ -10173,7 +10190,7 @@ aa
 aa
 fY
 gf
-gf
+iB
 gv
 gf
 gf

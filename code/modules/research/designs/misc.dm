@@ -37,15 +37,6 @@
 	build_path = /obj/item/universal_translator/ear
 	sort_string = "TAACB"
 
-/datum/design/item/general/light_replacer
-	name = "Light replacer"
-	desc = "A device to automatically replace lights. Refill with working lightbulbs."
-	id = "light_replacer"
-	req_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 4)
-	materials = list(MAT_STEEL = 1500, MAT_SILVER = 150, MAT_GLASS = 3000)
-	build_path = /obj/item/lightreplacer
-	sort_string = "TAADA"
-
 /datum/design/item/general/binaryencrypt
 	name = "Binary encryption key"
 	desc = "Allows for deciphering the binary channel on-the-fly."
@@ -81,15 +72,6 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/binoculars/scope
 	sort_string = "TBAAD"
-
-/datum/design/item/general/advmop
-	name = "advanced mop"
-	desc = "An advanced mop with pressured water jets that break away the toughest stains."
-	id = "advmop"
-	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_BIO = 1)
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2000, MAT_GOLD = 1000)
-	build_path = /obj/item/mop/advanced
-	sort_string = "TBAAE"
 
 /datum/design/item/general/hyperfiber_jumpsuit
 	name = "HYPER jumpsuit"

@@ -193,7 +193,7 @@
 	if(!text)
 		return
 	var/html_file = file("[GLOB.log_directory]/[INVESTIGATE_RESEARCH].html")
-	WRITE_FILE(html_file, "[time_stamp(format = "YYYY-MM-DD hh:mm:ss")] [text]<br>")
+	WRITE_FILE(html_file, "[time_stamp()] [text]<br>")
 
 /proc/report_progress(var/progress_message)
 	admin_notice(span_boldannounce("[progress_message]"), R_DEBUG)

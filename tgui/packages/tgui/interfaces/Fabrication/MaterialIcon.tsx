@@ -75,9 +75,9 @@ export type MaterialIconProps = {
  */
 export const MaterialIcon = (props: MaterialIconProps) => {
   const { materialName, sheets = 0 } = props;
-  const icons = MATERIAL_KEYS[materialName];
+  const icon_name = MATERIAL_KEYS[materialName];
 
-  if (!icons) {
+  if (!icon_name) {
     return <Icon name="question-circle" />;
   }
 
@@ -86,8 +86,9 @@ export const MaterialIcon = (props: MaterialIconProps) => {
       <div
         className={classes([
           'FabricatorMaterialIcon__Icon',
+          'FabricatorMaterialIcon__Icon--active',
           'sheetmaterials32x32',
-          icons,
+          icon_name,
         ])}
       />
     </div>

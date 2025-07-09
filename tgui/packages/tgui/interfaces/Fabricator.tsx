@@ -87,7 +87,6 @@ const PrintButton = (props: PrintButtonProps) => {
         <MaterialCostSequence
           design={design}
           amount={quantity}
-          SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
           available={available}
         />
       }
@@ -177,7 +176,6 @@ const Recipe = (props: RecipeProps) => {
           <MaterialCostSequence
             design={design}
             amount={1}
-            SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
             available={available}
           />
         }

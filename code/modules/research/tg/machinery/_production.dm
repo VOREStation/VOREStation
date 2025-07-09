@@ -101,7 +101,9 @@
 	for(var/design_id in stored_research.researched_designs)
 		var/datum/design_techweb/design = SSresearch.techweb_design_by_id(design_id)
 
-		if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
+		// TODO: only enable this if we port departmental techfabs
+		// if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
+		if(design.build_type & allowed_buildtypes)
 			cached_designs |= design
 
 	var/design_delta = cached_designs.len - previous_design_count
@@ -224,8 +226,8 @@
 		var/cost = list()
 
 		coefficient = build_efficiency(design.build_path)
-		for(var/datum/material/mat in design.materials)
-			cost[mat.name] = OPTIMAL_COST(design.materials[mat] * coefficient)
+		for(var/mat_id in design.materials)
+			cost[mat_id] = OPTIMAL_COST(design.materials[mat_id] * coefficient)
 
 		var/icon_size = spritesheet.icon_size_id(design.id)
 		designs[design.id] = list(
