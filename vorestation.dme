@@ -615,6 +615,7 @@
 #include "code\datums\diseases\gbs.dm"
 #include "code\datums\diseases\lycancoughy.dm"
 #include "code\datums\diseases\magnitis.dm"
+#include "code\datums\diseases\roanoake.dm"
 #include "code\datums\diseases\advance\advance.dm"
 #include "code\datums\diseases\advance\disease_preset.dm"
 #include "code\datums\diseases\advance\symptoms\blobspores.dm"
