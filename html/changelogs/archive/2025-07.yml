@@ -91,3 +91,8 @@
       off.
   TheCaramelion:
   - bugfix: Virologists can change the name of their viruses now
+2025-07-09:
+  Diana:
+  - bugfix: Borg claymore and borg jaws do proper damage values
+  ShadowLarkens:
+  - bugfix: Copy slot should work better
