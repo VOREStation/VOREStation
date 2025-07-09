@@ -221,6 +221,7 @@
 	switch(action)
 		if("adjust_time")
 			var/new_time = text2num(params["val"])
+			new_time = CLAMP(new_time, 2, 20)
 			if(!isnum(new_time))
 				return FALSE
 			flicker_time = new_time
@@ -234,14 +235,16 @@
 			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
 			return TRUE
 		if("adjust_break")
-			var/new_brack_chance = text2num(params["val"])
-			if(!isnum(new_brack_chance))
+			var/new_breack_chance = text2num(params["val"])
+			new_break_chance = CLAMP(new_break_chance, 0, 25)
+			if(!isnum(new_breack_chance))
 				return FALSE
-			flicker_break_chance = new_brack_chance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_brack_chance)
+			flicker_break_chance = new_breack_chance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_breack_chance)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
+			new_distance = CLAMP(new_distance, 4, 10)
 			if(!isnum(new_distance))
 				return FALSE
 			flicker_distance = new_distance
