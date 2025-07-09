@@ -4,14 +4,6 @@
 	..()
 	name = "General purpose design ([item_name])"
 
-/datum/design/item/general/communicator
-	name = "Communicator"
-	id = "communicator"
-	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
-	build_path = /obj/item/communicator
-	sort_string = "TAAAA"
-
 /datum/design/item/general/laserpointer
 	name = "laser pointer"
 	desc = "Don't shine it in your eyes!"
@@ -120,22 +112,6 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
 	build_path = /obj/item/bodysnatcher
 	sort_string = "TBVAA"
-
-/datum/design/item/general/inducer_sci
-	name = "Inducer (Scientific)"
-	id = "inducersci"
-	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 5, TECH_POWER = 6)
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_URANIUM = 4000, MAT_PHORON = 4000)
-	build_path = /obj/item/inducer/sci
-	sort_string = "TCVAA"
-
-/datum/design/item/general/inducer_eng
-	name = "Inducer (Industrial)"
-	id = "inducerind"
-	req_tech = list(TECH_BLUESPACE = 5, TECH_MATERIAL = 7, TECH_POWER = 7)
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000, MAT_TITANIUM = 2000)
-	build_path = /obj/item/inducer/unloaded
-	sort_string = "TCVAB"
 
 /datum/design/item/general/walkpod
 	name = "PodZu Music Player"

@@ -4,6 +4,7 @@
 	display_name = "Office Equipment"
 	description = "Nanotrasen's finest in ergonomic office tech, ensuring station admin stays productive and compliant with corporate policies — because even in space, paperwork never stops."
 	design_ids = list(
+		"communicator",
 		// "fax",
 		// "sec_pen",
 		// "handlabel",
@@ -54,3 +55,4 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)

@@ -15,13 +15,6 @@
 		desc = "A stock part used in the construction of various devices."
 
 // Matter Bins
-/datum/design/item/stock_part/adv_matter_bin
-	id = "adv_matter_bin"
-	req_tech = list(TECH_MATERIAL = 3)
-	materials = list(MAT_STEEL = 80)
-	build_path = /obj/item/stock_parts/matter_bin/adv
-	sort_string = "AAAAB"
-
 /datum/design/item/stock_part/super_matter_bin
 	id = "super_matter_bin"
 	req_tech = list(TECH_MATERIAL = 5)
@@ -44,13 +37,6 @@
 	sort_string = "AAAAE"
 
 // Micro-manipulators
-/datum/design/item/stock_part/nano_mani
-	id = "nano_mani"
-	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
-	materials = list(MAT_STEEL = 30)
-	build_path = /obj/item/stock_parts/manipulator/nano
-	sort_string = "AAABB"
-
 /datum/design/item/stock_part/pico_mani
 	id = "pico_mani"
 	req_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
@@ -73,13 +59,6 @@
 	sort_string = "AAABE"
 
 // Capacitors
-/datum/design/item/stock_part/adv_capacitor
-	id = "adv_capacitor"
-	req_tech = list(TECH_POWER = 3)
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	build_path = /obj/item/stock_parts/capacitor/adv
-	sort_string = "AAACB"
-
 /datum/design/item/stock_part/super_capacitor
 	id = "super_capacitor"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
@@ -102,13 +81,6 @@
 	sort_string = "AAACE"
 
 // Sensors
-/datum/design/item/stock_part/adv_sensor
-	id = "adv_sensor"
-	req_tech = list(TECH_MAGNET = 3)
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
-	build_path = /obj/item/stock_parts/scanning_module/adv
-	sort_string = "AAADB"
-
 /datum/design/item/stock_part/phasic_sensor
 	id = "phasic_sensor"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 3)
@@ -131,12 +103,6 @@
 	sort_string = "AAADE"
 
 // Micro-lasers
-/datum/design/item/stock_part/high_micro_laser
-	id = "high_micro_laser"
-	req_tech = list(TECH_MAGNET = 3)
-	materials = list(MAT_STEEL = 10, MAT_GLASS = 20)
-	build_path = /obj/item/stock_parts/micro_laser/high
-	sort_string = "AAAEB"
 
 /datum/design/item/stock_part/ultra_micro_laser
 	id = "ultra_micro_laser"
@@ -161,13 +127,6 @@
 
 
 // part bundles, because i HATE queues and i don't want to rewrite it for stack-printing
-/datum/design/item/stock_part/bundle/t2
-	id = "parts_bundle_t2"
-	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2, TECH_POWER = 3, TECH_MAGNET = 3)
-	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450)
-	build_path = /obj/effect/spawner/parts/t2
-	sort_string = "AAAFB"
-
 /datum/design/item/stock_part/bundle/t3
 	id = "parts_bundle_t3"
 	req_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2, TECH_POWER = 5, TECH_MAGNET = 5)
@@ -190,16 +149,6 @@
 	sort_string = "AAAFE"
 
 // RPEDs
-
-/datum/design/item/stock_part/RPED
-	name = "Rapid Part Exchange Device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
-	id = "rped"
-	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
-	materials = list(MAT_STEEL = 15000, MAT_GLASS = 5000)
-	build_path = /obj/item/storage/part_replacer
-	sort_string = "ABAAA"
-
 /datum/design/item/stock_part/ARPED
 	name = "Advanced Rapid Part Exchange Device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity, \

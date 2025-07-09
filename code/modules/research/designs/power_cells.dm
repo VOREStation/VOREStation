@@ -15,26 +15,6 @@
 	C.update_icon()
 	return C
 
-
-
-/datum/design/item/powercell/high
-	name = "high-capacity"
-	id = "high_cell"
-	req_tech = list(TECH_POWER = 2)
-	materials = list(MAT_STEEL = 700, MAT_GLASS = 60)
-	build_path = /obj/item/cell/high
-	category = list("Misc")
-	sort_string = "BAAAB"
-
-/datum/design/item/powercell/super
-	name = "super-capacity"
-	id = "super_cell"
-	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 700, MAT_GLASS = 70)
-	build_path = /obj/item/cell/super
-	category = list("Misc")
-	sort_string = "BAAAC"
-
 /datum/design/item/powercell/hyper
 	name = "hyper-capacity"
 	id = "hyper_cell"

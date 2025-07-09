@@ -4175,6 +4175,7 @@
 #include "code\modules\research\tg\rdconsole.dm"
 #include "code\modules\research\tg\rdmachines.dm"
 #include "code\modules\research\tg\server.dm"
+#include "code\modules\research\tg\designs\misc.dm"
 #include "code\modules\research\tg\designs\power_cells.dm"
 #include "code\modules\research\tg\designs\stock_parts.dm"
 #include "code\modules\research\tg\designs\tool_designs.dm"
