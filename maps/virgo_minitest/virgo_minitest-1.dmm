@@ -3563,6 +3563,10 @@
 /obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"iC" = (
+/obj/machinery/mecha_part_fabricator_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -9988,7 +9992,7 @@ gc
 gh
 iA
 ix
-gf
+iC
 gf
 gf
 gf
