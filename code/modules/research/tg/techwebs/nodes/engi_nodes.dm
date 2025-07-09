@@ -42,6 +42,7 @@
 		"parts_bundle_t2",
 		"super_cell",
 		"rped",
+		// "super_battery",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
@@ -53,6 +54,7 @@
 	display_name = "Construction"
 	description = "Tools and essential machinery used for station maintenance and expansion."
 	design_ids = list(
+		"tscanner",
 		// "circuit_imprinter_offstation",
 		// "circuit_imprinter",
 		// "solarcontrol",
@@ -75,7 +77,6 @@
 		// "welding_helmet",
 		// "welding_tool",
 		// "mini_welding_tool",
-		// "tscanner",
 		// "multitool",
 		// "wrench",
 		// "crowbar",
@@ -103,6 +104,7 @@
 	design_ids = list(
 		"inducersci",
 		"inducerind",
+		"upgradedtscanner",
 		// "apc_control",
 		// "powermonitor",
 		// "smes",
