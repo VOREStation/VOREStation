@@ -1,0 +1,4 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - bugfix: "Spyndrome symptom can be found again"
