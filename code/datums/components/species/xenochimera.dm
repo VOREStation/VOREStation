@@ -18,8 +18,9 @@
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	RegisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT, PROC_REF(handle_comp))
-	handle_record()
 	RegisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(handle_record))
+	if(owner.dna)
+		handle_record()
 	add_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 
 /datum/component/xenochimera/Destroy(force)
