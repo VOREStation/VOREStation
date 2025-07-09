@@ -641,6 +641,7 @@
 #include "code\datums\diseases\advance\symptoms\shivering.dm"
 #include "code\datums\diseases\advance\symptoms\size.dm"
 #include "code\datums\diseases\advance\symptoms\sneeze.dm"
+#include "code\datums\diseases\advance\symptoms\spin.dm"
 #include "code\datums\diseases\advance\symptoms\stimulant.dm"
 #include "code\datums\diseases\advance\symptoms\symptoms.dm"
 #include "code\datums\diseases\advance\symptoms\viral.dm"
