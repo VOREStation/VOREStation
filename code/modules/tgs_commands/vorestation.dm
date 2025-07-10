@@ -351,6 +351,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	for(var/mob/living/target in player_list)
 		if(target.real_name == player_name)
 			real_target = target
+			break
 
 	if(!real_target)
 		return "Smite [smite_name] failed to find player ([player_name]), validate their name and try again."
