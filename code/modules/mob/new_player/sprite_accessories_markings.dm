@@ -76,9 +76,9 @@ includes scars and tattoos
 //END TODO
 
 /datum/sprite_accessory/marking/tat_circle/legs
-  name = "Modified Tattoo (Circle, Legs)"
-  icon_state = "tat_circle"
-  body_parts = list(BP_R_LEG,BP_L_LEG)
+	name = "Modified Tattoo (Circle, Legs)"
+	icon_state = "tat_circle"
+	body_parts = list(BP_R_LEG,BP_L_LEG)
 
 /datum/sprite_accessory/marking/tat_silverburgh
 	name = "Tattoo (Silverburgh, R.Leg)"
