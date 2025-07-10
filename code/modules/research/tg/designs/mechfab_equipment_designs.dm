@@ -93,6 +93,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+//You escape the weapon designation as well.
+/datum/design_techweb/mechfab/equipment/medigun
+	name = "BL-3/P directed restoration system"
+	desc = "A portable medical system used to treat external injuries from afar."
+	id = "mech_medigun"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 5, TECH_BIO = 6)
+	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_DIAMOND = 1500, MAT_PHORON = 4000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun
+	category = list(
+		RND_CATEGORY_MECHFAB_EQUIPMENT + RND_SUBCATEGORY_MECHFAB_EQUIPMENT_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
 // *** Weapon modules
 /datum/design_techweb/mechfab/equipment/weapon
 	//req_tech = list(TECH_COMBAT = 3)
@@ -265,6 +278,13 @@
 	//req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_URANIUM = 1500, MAT_PHORON = 4000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/incendiary
+
+/datum/design_techweb/mechfab/equipment/weapon/laser_gamma
+	name = "GA-X \"Render\" Experimental Gamma Laser"
+	id = "mech_laser_gamma"
+	//req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 4, TECH_PHORON = 4, TECH_POWER = 4, TECH_ILLEGAL = 3)
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_PHORON = 2500, MAT_SILVER = 1000, MAT_GOLD = 500, MAT_URANIUM = 3000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/gamma
 
 // *** Nonweapon modules
 /datum/design_techweb/mechfab/equipment/wormhole_gen
