@@ -640,7 +640,7 @@
 		return
 	if(!ismovable(AM))
 		return
-	if(!user.client?.holder)
+	if(!check_rights_for(user.client, R_HOLDER))
 		return
 	if(changing_state)
 		return

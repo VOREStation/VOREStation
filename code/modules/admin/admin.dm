@@ -630,7 +630,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Server.Game"
 	set name = "Restart"
 	set desc="Restarts the world"
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
 	if(!confirm || confirm == "Cancel")
@@ -1021,7 +1021,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server.Game"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!check_rights_for(usr.client, R_HOLDER))	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
 	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
@@ -1299,7 +1299,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 

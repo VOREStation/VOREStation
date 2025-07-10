@@ -18,6 +18,8 @@
 	if(!istype(SK))
 		to_chat(src, span_warning("Only a shadekin can use that!"))
 		return FALSE
+	else if(SK.special_considerations(TRUE))
+		return FALSE
 	else if(stat)
 		to_chat(src, span_warning("Can't use that ability in your state!"))
 		return FALSE

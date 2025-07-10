@@ -80,3 +80,32 @@
   - admin: fix deadmin verb
   - admin: adds missing space to some atom narrate messages
   - code_imp: clean up some mob hooks
+2025-07-07:
+  Kashargul:
+  - qol: moves robot sprite setting to the visual tab
+2025-07-08:
+  Kashargul:
+  - bugfix: mining voucher can no longer be redeemed multiple times
+  ShadowLarkens:
+  - rscadd: You can now write messages on people with a pen~ A shower cleans them
+      off.
+  TheCaramelion:
+  - bugfix: Virologists can change the name of their viruses now
+2025-07-09:
+  Diana:
+  - bugfix: Borg claymore and borg jaws do proper damage values
+  ShadowLarkens:
+  - bugfix: Copy slot should work better
+2025-07-10:
+  Diana, Kash:
+  - rscadd: Shadekin light toggle now has a TGUI.
+  - bugfix: Borg grippers don't delete items
+  - bugfix: A lot of borg gripper exploits/bugs fixed
+  - qol: Borgs can reinforce girders at a speed of 1.5 seconds instead of the normal
+      4
+  - code_imp: Two hours spent to optimize shadekin phase code and save an average
+      of ~4 ms of CPU time per phase in extreme conditions!
+  Kashargul:
+  - maptweak: floors losing icon state on turf change
+  TheCaramelion:
+  - bugfix: Spyndrome symptom can be found again

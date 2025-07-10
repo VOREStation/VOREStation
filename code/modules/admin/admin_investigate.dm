@@ -29,7 +29,7 @@
 /client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
 	set name = "Investigate"
 	set category = "Admin.Investigate"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 	switch(subject)
 		if("singulo", "telesci")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)

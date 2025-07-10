@@ -285,7 +285,7 @@ var/redspace_abduction_z
 
 	target.forceMove(locate(target.x,target.y,redspace_abduction_z))
 	to_chat(target,span_danger("The tug relaxes, but everything around you looks... slightly off."))
-	to_chat(user,span_notice("The mob has been moved. ([admin_jump_link(target,usr.client.holder)])"))
+	to_chat(user, span_notice("The mob has been moved. ([admin_jump_link(target, check_rights_for(usr.client, R_HOLDER))])"))
 
 	target.transforming = FALSE
 

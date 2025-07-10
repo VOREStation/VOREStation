@@ -77,7 +77,6 @@
 		BP_L_LEG = skip_body & EXAMINE_SKIPLEGS,
 		BP_R_LEG = skip_body & EXAMINE_SKIPLEGS)
 
-
 	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
 	var/gender_key = get_visible_gender(user, gender_hidden)
 	var/datum/gender/T = GLOB.gender_datums[gender_key]
@@ -282,6 +281,7 @@
 	vorestrings += examine_step_size()
 	vorestrings += examine_nif()
 	vorestrings += examine_chimera()
+	vorestrings += examine_body_writing(hidden, T)
 	for(var/entry in vorestrings)
 		if(entry == "" || entry == null)
 			vorestrings -= entry

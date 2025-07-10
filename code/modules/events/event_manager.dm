@@ -226,7 +226,7 @@
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug.Dangerous"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(ispath(type))
