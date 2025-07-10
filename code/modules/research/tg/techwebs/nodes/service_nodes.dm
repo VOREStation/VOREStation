@@ -56,3 +56,51 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)
+
+/datum/techweb_node/consoles
+	id = TECHWEB_NODE_CONSOLES
+	display_name = "Civilian Consoles"
+	description = "User-friendly consoles for non-technical crew members, enhancing communication and access to essential station information."
+	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
+	design_ids = list(
+		"med_data",
+		// "comconsole",
+		// "automated_announcement",
+		// "cargo",
+		// "cargorequest",
+		// "crewconsole",
+		// "bankmachine",
+		// "account_console",
+		// "idcard",
+		// "c-reader",
+		// "libraryconsole",
+		// "libraryscanner",
+		// "bookbinder",
+		// "barcode_scanner",
+		// "vendor",
+		// "custom_vendor_refill",
+		// "bounty_pad_control",
+		// "bounty_pad",
+		// "digital_clock_frame",
+		// "telescreen_research",
+		// "telescreen_ordnance",
+		// "telescreen_interrogation",
+		// "telescreen_prison",
+		// "telescreen_bar",
+		// "telescreen_entertainment",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
+
+/datum/techweb_node/gaming
+	id = TECHWEB_NODE_GAMING
+	display_name = "Gaming"
+	description = "For the slackers on the station."
+	prereq_ids = list(TECHWEB_NODE_CONSOLES)
+	design_ids = list(
+		"arcademachine",
+		"oriontrail",
+		"clawmachine",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	discount_experiments = list(/datum/experiment/physical/arcade_winner = TECHWEB_TIER_2_POINTS)

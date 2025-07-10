@@ -35,7 +35,9 @@
 		new CB.build_path(loc, CB)
 		return INITIALIZE_HINT_QDEL
 
-/obj/machinery/computer/arcade/proc/prizevend()
+/obj/machinery/computer/arcade/proc/prizevend(mob/user)
+	SEND_SIGNAL(src, COMSIG_ARCADE_PRIZEVEND, user)
+
 	if(LAZYLEN(special_prizes)) // Downstream wanted the 'win things inside contents sans circuitboard' feature kept.
 		var/atom/movable/AM = pick_n_take(special_prizes)
 		AM.forceMove(get_turf(src))
@@ -221,11 +223,11 @@
 				emagged = 0
 			else if(!contents.len)
 				feedback_inc("arcade_win_normal")
-				prizevend()
+				prizevend(user)
 
 			else
 				feedback_inc("arcade_win_normal")
-				prizevend()
+				prizevend(user)
 
 	else if (emagged && (turtle >= 4))
 		var/boomamt = rand(5,10)
@@ -1015,7 +1017,7 @@
 		message_admins("[key_name_admin(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
 		log_game("[key_name(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
-		prizevend()
+		prizevend(user)
 	emagged = 0
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
@@ -1292,7 +1294,7 @@
 
 	if(prob(winprob)) /// YEAH.
 		if(!emagged)
-			prizevend()
+			prizevend(user)
 			winscreen = "You won!"
 		else if(emagged)
 			gameprice = 1
