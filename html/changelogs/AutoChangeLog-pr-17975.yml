@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - maptweak: "floors losing icon state on turf change"
