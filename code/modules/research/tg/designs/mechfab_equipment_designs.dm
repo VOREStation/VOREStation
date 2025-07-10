@@ -2,13 +2,11 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
-	time = 10
 	materials = list(MAT_STEEL = 7500)
 
 /datum/design_techweb/mechfab/equipment/tracking
 	name = "Exosuit Tracking Beacon"
 	id = "mech_tracker"
-	time = 5
 	materials = list(MAT_STEEL = 375)
 	build_path = /obj/item/mecha_parts/mecha_tracking
 	category = list(
@@ -86,7 +84,6 @@
 	name = "Syringe Gun"
 	id = "mech_syringe_gun"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
-	time = 20
 	materials = list(MAT_STEEL = 2250, MAT_GLASS = 1500)
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT + RND_SUBCATEGORY_MECHFAB_EQUIPMENT_MEDICAL
@@ -321,7 +318,6 @@
 	name = "RCD"
 	desc = "An exosuit-mounted rapid construction device."
 	id = "mech_rcd"
-	time = 120
 	materials = list(MAT_STEEL = 20000, MAT_PLASTIC = 10000, MAT_PHORON = 18750, MAT_SILVER = 15000, MAT_GOLD = 15000)
 	//req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
