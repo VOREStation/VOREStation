@@ -293,11 +293,37 @@
 	A.AltClick(src)
 	return
 
+/**
+ * Alt click on an atom.
+ * Performs alt-click actions before attempting to open a loot window.
+ * Returns TRUE if successful, FALSE if not.
+ */
 /atom/proc/AltClick(var/mob/user)
-	var/turf/T = get_turf(src)
-	if(T && user.TurfAdjacent(T))
-		user.set_listed_turf(T)
-	return 1
+	// if(!user.can_interact_with(src))
+	// 	return FALSE
+
+	// if(SEND_SIGNAL(src, COMSIG_CLICK_ALT, user) & COMPONENT_CANCEL_CLICK_ALT)
+	// 	return TRUE
+
+	if(HAS_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER) && !isobserver(user))
+		return TRUE
+
+	var/turf/tile = get_turf(src)
+	if(isnull(tile))
+		return FALSE
+
+	if(!isturf(loc) && !isturf(src))
+		return FALSE
+
+	if(!user.TurfAdjacent(tile))
+		return FALSE
+
+	var/datum/lootpanel/panel = user.client?.loot_panel
+	if(isnull(panel))
+		return FALSE
+
+	panel.open(tile)
+	return TRUE
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
