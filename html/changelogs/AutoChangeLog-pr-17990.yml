@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - bugfix: "removed 2 pixels on the veymed female torso sprite to make it actually fit into any clothes at all that aren't skirts."
