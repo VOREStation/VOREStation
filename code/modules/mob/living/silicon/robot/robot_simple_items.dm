@@ -543,10 +543,13 @@
 //This is used to check if the gripper is currently being used.
 //If it is, we don't allow any other actions to be performed.
 /obj/item/gripper/proc/is_in_use()
-	if(wrapped)
+	if(wrapped && !QDELETED(wrapped))
 		if(istype(wrapped.loc, /obj/item/storage/internal/gripper))
 			return FALSE //We are in a gripper storage or another gripper, so we are not in use.
 		return TRUE
+	else if(QDELETED(wrapped)) //Failsafe.
+		wrapped = null
+		return FALSE //Default to 'we are not in use'
 
 //This is the code that updates our pockets and decides if they should have icons or not.
 //This should be called every time we use the gripper and our wrapped item is used up.
