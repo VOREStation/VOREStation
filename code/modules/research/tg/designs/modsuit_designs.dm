@@ -271,7 +271,8 @@
 	id = "rig_component_meson"
 	//req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 5, TECH_MAGNET = 3, TECH_POWER = 4)
 	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
-	build_path = /obj/item/rig_module/vision/mesoncategory = list(
+	build_path = /obj/item/rig_module/vision/meson
+	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
