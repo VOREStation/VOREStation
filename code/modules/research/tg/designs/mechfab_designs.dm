@@ -6,9 +6,9 @@
 /datum/design_techweb/mechfab/ripley
 	desc = "A part used in the construction of the Ripley mecha series"
 	build_type = MECHFAB
-    category = list(
-        RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
-    )
+	category = list(
+		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/ripley/chassis
@@ -63,9 +63,9 @@
 ///ODYSSEUS
 /datum/design_techweb/mechfab/odysseus
 	desc = "A part used in the construction of the Odysseus mecha series"
-    category = list(
-        RND_CATEGORY_MECHFAB_ODYSSEUS + RND_SUBCATEGORY_MECHFAB_CHASSIS
-    )
+	category = list(
+		RND_CATEGORY_MECHFAB_ODYSSEUS + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/odysseus/chassis
@@ -120,9 +120,9 @@
 ///GYGAX
 /datum/design_techweb/mechfab/gygax
 	desc = "A part used in the construction of the Gygax mecha series"
-    category = list(
-        RND_CATEGORY_MECHFAB_GYGAX + RND_SUBCATEGORY_MECHFAB_CHASSIS
-    )
+	category = list(
+		RND_CATEGORY_MECHFAB_GYGAX + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/gygax/chassis/serenity
@@ -316,3 +316,135 @@
 	build_path = /obj/item/prop/alien/phasecoil
 	time = 600
 	materials = list(MAT_SUPERMATTER = 2000, MAT_PLASTEEL = 60000, MAT_URANIUM = 3250, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000, MAT_DIAMOND = 10000, MAT_LEAD = 15000)
+
+///--------///
+///Fighters///
+///--------///
+
+///Pinnace///
+
+/datum/design_techweb/mechfab/pinnace
+	desc = "A part used in the construction of the Pinnace fighter series"
+	category = list(
+		RND_CATEGORY_MECHFAB_PINNACE + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
+
+/datum/design_techweb/mechfab/pinnace/chassis
+	name = "Pinnace Chassis"
+	id = "pinnace_chassis"
+	build_path = /obj/item/mecha_parts/fighter/chassis/pinnace
+	time = 30
+	materials = list(MAT_STEEL = 25000, MAT_GLASS = 10000, MAT_PLASTEEL = 10000)
+
+/datum/design_techweb/mechfab/pinnace/core
+	name = "Pinnace Core"
+	id = "pinnace_core"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_core
+	time = 60
+	materials = list(MAT_STEEL = 25000, MAT_GLASS = 7000, MAT_PLASTEEL = 7000)
+
+/datum/design_techweb/mechfab/pinnace/cockpit
+	name = "Pinnace Cockpit"
+	id = "pinnace_cockpit"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_cockpit
+	time = 15
+	materials = list(MAT_STEEL = 2500, MAT_PLASTEEL = 2500, MAT_GLASS = 7500, MAT_PLASTIC = 2500)
+
+/datum/design_techweb/mechfab/pinnace/main_engine
+	name = "Pinnace Main Engine"
+	id = "pinnace_main_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_main_engine
+	time = 25
+	materials = list(MAT_STEEL = 15000, MAT_PLASTEEL = 5000)
+
+/datum/design_techweb/mechfab/pinnace/left_engine
+	name = "Pinnace Left Engine"
+	id = "pinnace_left_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_left_engine
+	time = 25
+	materials = list(MAT_STEEL = 10000, MAT_PLASTEEL = 2500)
+
+/datum/design_techweb/mechfab/pinnace/right_engine
+	name = "Pinnace Right Engine"
+	id = "pinnace_right_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_right_engine
+	time = 25
+	materials = list(MAT_STEEL = 10000, MAT_PLASTEEL = 2500)
+
+/datum/design_techweb/mechfab/pinnace/left_wing
+	name = "Pinnace Left Wing"
+	id = "pinnace_left_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_left_wing
+	time = 20
+	materials = list(MAT_STEEL = 7000, MAT_PLASTIC = 3000, MAT_PLASTEEL = 5000)
+
+/datum/design_techweb/mechfab/pinnace/right_wing
+	name = "Pinnace Right Wing"
+	id = "pinnace_right_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_right_wing
+	time = 20
+	materials = list(MAT_STEEL = 7000, MAT_PLASTIC = 3000, MAT_PLASTEEL = 5000)
+
+///Baron///
+
+/datum/design_techweb/mechfab/baron
+	desc = "A part used in the construction of the Baron fighter series"
+	category = list(
+		RND_CATEGORY_MECHFAB_BARON + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
+
+/datum/design_techweb/mechfab/baron/chassis
+	name = "Baron Chassis"
+	id = "baron_chassis"
+	build_path = /obj/item/mecha_parts/fighter/chassis/baron
+	time = 30
+	materials = list(MAT_STEEL = 37500, MAT_GLASS = 15000, MAT_PLASTEEL = 15000)
+
+/datum/design_techweb/mechfab/baron/core
+	name = "Baron Core"
+	id = "baron_core"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_core
+	time = 60
+	materials = list(MAT_STEEL = 37500, MAT_GLASS = 15000, MAT_PLASTEEL = 15000)
+
+/datum/design_techweb/mechfab/baron/cockpit
+	name = "Baron Cockpit"
+	id = "baron_cockpit"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_cockpit
+	time = 15
+	materials = list(MAT_STEEL = 5000, MAT_PLASTEEL = 5000, MAT_GLASS = 10000, MAT_PLASTIC = 5000)
+
+/datum/design_techweb/mechfab/baron/main_engine
+	name = "Baron Main Engine"
+	id = "baron_main_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_main_engine
+	time = 25
+	materials = list(MAT_STEEL = 25000, MAT_PLASTEEL = 10000)
+
+/datum/design_techweb/mechfab/baron/left_engine
+	name = "Baron Left Engine"
+	id = "baron_left_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_left_engine
+	time = 25
+	materials = list(MAT_STEEL = 20000, MAT_PLASTEEL = 5000)
+
+/datum/design_techweb/mechfab/baron/right_engine
+	name = "Baron Right Engine"
+	id = "baron_right_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_right_engine
+	time = 25
+	materials = list(MAT_STEEL = 20000, MAT_PLASTEEL = 5000)
+
+/datum/design_techweb/mechfab/baron/left_wing
+	name = "Baron Left Wing"
+	id = "baron_left_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_left_wing
+	time = 20
+	materials = list(MAT_STEEL = 15000, MAT_PLASTIC = 6000, MAT_PLASTEEL = 10000)
+
+/datum/design_techweb/mechfab/baron/right_wing
+	name = "Baron Right Wing"
+	id = "baron_right_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_right_wing
+	time = 20
+	materials = list(MAT_STEEL = 15000, MAT_PLASTIC = 6000, MAT_PLASTEEL = 10000)
