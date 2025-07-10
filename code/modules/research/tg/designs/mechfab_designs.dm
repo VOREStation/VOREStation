@@ -234,43 +234,51 @@
 /datum/design_techweb/mechfab/janus/chassis
 	name = "Janus Chassis"
 	id = "janus_chassis"
-	build_path = /obj/item/mecha_parts/chassis/janus	materials = list(MAT_DURASTEEL = 19000, MAT_MORPHIUM = 10500, MAT_PLASTEEL = 5500, MAT_LEAD = 2500)
+	build_path = /obj/item/mecha_parts/chassis/janus
+	materials = list(MAT_DURASTEEL = 19000, MAT_MORPHIUM = 10500, MAT_PLASTEEL = 5500, MAT_LEAD = 2500)
 	//req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 3)
 
 /datum/design_techweb/mechfab/janus/torso
 	name = "Imperion Torso"
 	id = "janus_torso"
-	build_path = /obj/item/mecha_parts/part/janus_torso	materials = list(MAT_STEEL = 30000, MAT_DURASTEEL = 8000, MAT_MORPHIUM = 10000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000)
+	build_path = /obj/item/mecha_parts/part/janus_torso
+	materials = list(MAT_STEEL = 30000, MAT_DURASTEEL = 8000, MAT_MORPHIUM = 10000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000)
 
 /datum/design_techweb/mechfab/janus/head
 	name = "Imperion Head"
 	id = "janus_head"
-	build_path = /obj/item/mecha_parts/part/janus_head	materials = list(MAT_STEEL = 30000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 6000, MAT_GOLD = 5000)
+	build_path = /obj/item/mecha_parts/part/janus_head
+	materials = list(MAT_STEEL = 30000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 6000, MAT_GOLD = 5000)
 
 /datum/design_techweb/mechfab/janus/left_arm
 	name = "Prototype Gygax Left Arm"
 	id = "janus_left_arm"
-	build_path = /obj/item/mecha_parts/part/janus_left_arm	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
+	build_path = /obj/item/mecha_parts/part/janus_left_arm
+	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
 
 /datum/design_techweb/mechfab/janus/right_arm
 	name = "Prototype Gygax Right Arm"
 	id = "janus_right_arm"
-	build_path = /obj/item/mecha_parts/part/janus_right_arm	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
+	build_path = /obj/item/mecha_parts/part/janus_right_arm
+	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
 
 /datum/design_techweb/mechfab/janus/left_leg
 	name = "Prototype Durand Left Leg"
 	id = "janus_left_leg"
-	build_path = /obj/item/mecha_parts/part/janus_left_leg	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
+	build_path = /obj/item/mecha_parts/part/janus_left_leg
+	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
 
 /datum/design_techweb/mechfab/janus/right_leg
 	name = "Prototype Durand Right Leg"
 	id = "janus_right_leg"
-	build_path = /obj/item/mecha_parts/part/janus_right_leg	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
+	build_path = /obj/item/mecha_parts/part/janus_right_leg
+	materials = list(MAT_STEEL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
 
 /datum/design_techweb/mechfab/janus/phase_coil
 	name = "Janus Phase Coil"
 	id = "janus_coil"
-	build_path = /obj/item/prop/alien/phasecoil	materials = list(MAT_SUPERMATTER = 2000, MAT_PLASTEEL = 60000, MAT_URANIUM = 3250, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000, MAT_DIAMOND = 10000, MAT_LEAD = 15000)
+	build_path = /obj/item/prop/alien/phasecoil
+	materials = list(MAT_SUPERMATTER = 2000, MAT_PLASTEEL = 60000, MAT_URANIUM = 3250, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000, MAT_DIAMOND = 10000, MAT_LEAD = 15000)
 
 ///--------///
 ///Fighters///
